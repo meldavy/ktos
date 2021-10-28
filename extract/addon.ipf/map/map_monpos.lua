@@ -18,7 +18,6 @@ function GET_MAP_POS(frame, mapprop, x, y, width, height)
 end
 
 function MAP_MON_MINIMAP(frame, msg, argStr, argNum, info)
-
 	local isMinimap = false;
 	if frame:GetTopParentFrame():GetName() == "minimap" then
 		frame = GET_CHILD(frame, 'npclist', 'ui::CGroupBox');
@@ -33,11 +32,24 @@ function MAP_MON_MINIMAP(frame, msg, argStr, argNum, info)
 	end
 
 	local mapprop = session.GetCurrentMapProp();
-	
+
 	local isPC = info.type == 0;
 	local monCls = nil;
 	if false == isPC then
 		monCls = GetClassByType("Monster", info.type);
+	end
+
+	-- 인던일 경우 일반 몬스터의 아이콘을 dot로 변경한다.
+	local isDotIcon = false;
+	if session.world.IsIntegrateServer() == true or
+		session.world.IsIntegrateIndunServer() == true or
+		session.IsMissionMap() == true or
+		session.world.IsDungeon() == true then
+		isDotIcon = true;
+    end
+
+	if info.isDot == true then
+		isDotIcon = true;
 	end
 
 	local width;
@@ -50,8 +62,13 @@ function MAP_MON_MINIMAP(frame, msg, argStr, argNum, info)
 			width = 200;
 			height = 200;
 		else
-			width = 40;
-			height = 40;
+			if isDotIcon == true then
+				width = 14;
+				height = 14;
+			else 
+				width = 40;
+				height = 40;
+			end
 		end
 	end
 
@@ -75,7 +92,7 @@ function MAP_MON_MINIMAP(frame, msg, argStr, argNum, info)
 		dd = CLAMP(dd, 0.5, 1.5);
 		monPic:SetScale(dd, dd);
 	end
-	
+
 	if isPC then
 		monPic:SetEnableStretch(1);
 		monPic:ShowWindow(1);
@@ -94,20 +111,14 @@ function MAP_MON_MINIMAP(frame, msg, argStr, argNum, info)
 		monPic:ShowWindow(1);
 
 	else
-		if monCls.MonRank == "Boss" then
-			--�ʵ庸�� ��ġ �˷��ִ°� �ּ�
-			--SET_PICTURE_QUESTMAP(monPic, 30);
-			--ctrlName = "_MONPOS_T_" .. info.handle;
-			--local textC = frame:CreateOrGetControl('richtext', ctrlName, 0, 0, width, height);
-			--tolua.cast(textC, "ui::CRichText");
-			--textC:SetTextAlign("center", "bottom");
-			--textC:SetText("{@st42_yellow}" .. ClMsg("FieldBossAppeared!") .. "{nl}{@st42}" .. monCls.Name);
-			--textC:ShowWindow(1);
-			--textC:SetUserValue("EXTERN", "YES");
-		else
+		if monCls.MonRank ~= "Boss" then
 			local myTeam = GET_MY_TEAMID();
 			if info.useIcon == true then
-				monPic:SetImage(monCls.Icon);
+				if isDotIcon == true then
+					monPic:SetImage('monster_notice_dot')
+				else
+					monPic:SetImage(monCls.Icon);
+				end
 			else
 				if info.teamID == 0 then
 					monPic:SetImage("fullyellow");
