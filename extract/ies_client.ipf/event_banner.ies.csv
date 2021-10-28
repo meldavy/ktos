@@ -1,4 +1,6 @@
 ClassID,StartTimeYYYYMM,StartTimeDDHHMM,NewTimeYYYYMM,NewTimeDDHHMM,EndTimeYYYYMM,EndTimeDDHHMM,DeadlineTimeYYYYMM,DeadlineTimeDDHHMM,ExchangeTimeYYYYMM,ExchangeTimeDDHHMM,ClassName,Name,ImagePath,url,UserCommand1,UserCommand2,UserCommand3,ShowType
+996920,202107,10000,202107,60000,202108,10000,202107,260000,0,0,event2107_Burning,주말 앤 버닝 - 7월,event2107_Burning,http://tos.nexon.com/news/events/view.aspx?n4ArticleSN=332&n4ArticleCategorySN=1,,,,
+996930,202107,10000,202107,60000,202108,10000,202107,260000,0,0,event2107_VaivoraReward,바이보라 출석 - 7월,event2107_VaivoraReward,http://tos.nexon.com/news/events/view.aspx?n4ArticleSN=331&n4ArticleCategorySN=1,,,,
 996940,202106,170900,202106,220000,202107,220700,202107,170000,0,0,2106_CUBE_ALL_STAR,복각- 여신의 큐브 ALL STAR,2106_CUBE_ALL_STAR,http://iteminfo.nexon.com/probability/games/tos,,,,
 996950,202106,100900,202106,150000,202107,150700,202107,100000,0,0,210610_Goddess_Cube,축복받은 여신의 큐브 - 6월,210610_Goddess_Cube,http://tos.nexon.com/news/update/view.aspx?n4ArticleSN=2401&n4CategorySN=0,,,,
 996960,202106,100900,202106,150000,202107,80700,202107,30000,0,0,210610_21Summer_Event,21년 여름 이벤트,210610_21Summer_Event,http://tos.nexon.com/news/events/view.aspx?n4ArticleSN=329&n4ArticleCategorySN=1,,,,
