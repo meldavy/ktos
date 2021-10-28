@@ -547,11 +547,6 @@ function GET_INDUN_MAX_ENTERANCE_COUNT(resetGroupID)
         if indunCls.WeeklyEnterableCount ~= nil and indunCls.WeeklyEnterableCount ~= "None" and indunCls.WeeklyEnterableCount ~= 0 then
             return indunCls.WeeklyEnterableCount;  --매주 max
         else
-            if indunCls.DungeonType == "Challenge_Auto" then
-                if session.loginInfo.IsPremiumState(NEXON_PC) == true then
-                    return indunCls.PlayPerReset + 1; 
-                end
-            end
             return indunCls.PlayPerReset;          --매일 max
         end
     end

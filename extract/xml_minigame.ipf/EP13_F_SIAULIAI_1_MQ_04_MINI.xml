@@ -12,7 +12,7 @@
                                 </ToolScp>
                             </List>
                             <DeadList>
-                                <ToolScp Scp="SAI_DEAD_SOBJ_TEAM" Client="NO" UseSleep="NO">
+                                <ToolScp Scp="SAI_DEAD_SOBJ_PARTY" Client="NO" UseSleep="NO">
                                     <Str Str="SSN_EP13_F_SIAULIAI_1_MQ_04"/>
                                     <Str Str="QuestInfoValue1"/>
                                     <Num Num="5"/>
@@ -36,7 +36,7 @@
                                 </ToolScp>
                             </List>
                             <DeadList>
-                                <ToolScp Scp="SAI_DEAD_SOBJ_TEAM" Client="NO" UseSleep="NO">
+                                <ToolScp Scp="SAI_DEAD_SOBJ_PARTY" Client="NO" UseSleep="NO">
                                     <Str Str="SSN_EP13_F_SIAULIAI_1_MQ_04"/>
                                     <Str Str="QuestInfoValue1"/>
                                     <Num Num="5"/>
@@ -60,7 +60,7 @@
                                 </ToolScp>
                             </List>
                             <DeadList>
-                                <ToolScp Scp="SAI_DEAD_SOBJ_TEAM" Client="NO" UseSleep="NO">
+                                <ToolScp Scp="SAI_DEAD_SOBJ_PARTY" Client="NO" UseSleep="NO">
                                     <Str Str="SSN_EP13_F_SIAULIAI_1_MQ_04"/>
                                     <Str Str="QuestInfoValue1"/>
                                     <Num Num="5"/>
@@ -84,10 +84,10 @@
                                 </ToolScp>
                             </List>
                             <DeadList>
-                                <ToolScp Scp="SAI_DEAD_SOBJ_TEAM" Client="NO" UseSleep="NO">
+                                <ToolScp Scp="SAI_DEAD_SOBJ_PARTY" Client="NO" UseSleep="NO">
                                     <Str Str="SSN_EP13_F_SIAULIAI_1_MQ_04"/>
                                     <Str Str="QuestInfoValue1"/>
-                                    <Num Num="3"/>
+                                    <Num Num="5"/>
                                 </ToolScp>
                                 <ToolScp Scp="SAI_DEAD_FUNC2_DIRECT" Client="NO" UseSleep="NO">
                                     <Str Str="SCR_EP13_F_SIAULIAI_1_MQ_04_DEADSCR"/>
@@ -108,7 +108,7 @@
                                 </ToolScp>
                             </List>
                             <DeadList>
-                                <ToolScp Scp="SAI_DEAD_SOBJ_TEAM" Client="NO" UseSleep="NO">
+                                <ToolScp Scp="SAI_DEAD_SOBJ_PARTY" Client="NO" UseSleep="NO">
                                     <Str Str="SSN_EP13_F_SIAULIAI_1_MQ_04"/>
                                     <Str Str="QuestInfoValue1"/>
                                     <Num Num="5"/>
