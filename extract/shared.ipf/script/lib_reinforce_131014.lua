@@ -220,7 +220,7 @@ function GET_REINFORCE_PRICE(fromItem, moruItem, pc)
         else
             priceRatio = 1;
         end
-    elseif slot == 'LH' then
+    elseif slot == 'LH' or slot == 'LH RH' then
         if fromItem.ClassType == 'Shield' then
             priceRatio = 0.8;
         elseif TryGetProp(fromItem, 'ClassType', 'None') == 'Trinket' then
