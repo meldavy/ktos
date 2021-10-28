@@ -727,37 +727,6 @@
                             </ToolScp>
                         </execList>
                     </Event>
-                    <Event execCount="1" eventName="Step1_End">
-                        <condList>
-                            <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
-                                <MGameObj List="Boss/0/Boss/1"/>
-                                <Num Num="85"/>
-                                <Str Str="UNDER"/>
-                                <Num Num="1"/>
-                                <Str Str="OVER"/>
-                            </ToolScp>
-                            <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
-                                <MGameObj List="Boss/0/Boss/1"/>
-                                <Num Num="83"/>
-                                <Str Str="OVER"/>
-                                <Num Num="1"/>
-                                <Str Str="OVER"/>
-                            </ToolScp>
-                            <ToolScp Scp="GAME_ST_EVT_COND_VALUE" Client="NO" UseSleep="NO">
-                                <Str Str="demonics_hidden_power_exec"/>
-                                <Str Str="=="/>
-                                <Num Num="1"/>
-                            </ToolScp>
-                            <ToolScp Scp="MGAME_EVT_COND_SCRIPT" Client="NO" UseSleep="NO">
-                                <Str Str="SCR_GUILD_GILTINE_DEMONICS_HIDDEN_POWER_NOTICE_MSG"/>
-                            </ToolScp>
-                        </condList>
-                        <execList>
-                            <ToolScp Scp="MGAME_EVT_EXEC_DELMON" Client="NO" UseSleep="NO">
-                                <MGameObjPtr List="DemonicsHiddenPower/2/DemonicsHiddenPower/3"/>
-                            </ToolScp>
-                        </execList>
-                    </Event>
                     <Event execCount="1" eventName="Step2_Precheck">
                         <condList>
                             <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
@@ -826,37 +795,6 @@
                             </ToolScp>
                         </execList>
                     </Event>
-                    <Event execCount="1" eventName="Step2_End">
-                        <condList>
-                            <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
-                                <MGameObj List="Boss/0/Boss/1"/>
-                                <Num Num="62"/>
-                                <Str Str="UNDER"/>
-                                <Num Num="1"/>
-                                <Str Str="OVER"/>
-                            </ToolScp>
-                            <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
-                                <MGameObj List="Boss/0/Boss/1"/>
-                                <Num Num="60"/>
-                                <Str Str="OVER"/>
-                                <Num Num="1"/>
-                                <Str Str="OVER"/>
-                            </ToolScp>
-                            <ToolScp Scp="GAME_ST_EVT_COND_VALUE" Client="NO" UseSleep="NO">
-                                <Str Str="demonics_hidden_power_exec"/>
-                                <Str Str="=="/>
-                                <Num Num="1"/>
-                            </ToolScp>
-                            <ToolScp Scp="MGAME_EVT_COND_SCRIPT" Client="NO" UseSleep="NO">
-                                <Str Str="SCR_GUILD_GILTINE_DEMONICS_HIDDEN_POWER_NOTICE_MSG"/>
-                            </ToolScp>
-                        </condList>
-                        <execList>
-                            <ToolScp Scp="MGAME_EVT_EXEC_DELMON" Client="NO" UseSleep="NO">
-                                <MGameObjPtr List="DemonicsHiddenPower/2/DemonicsHiddenPower/3"/>
-                            </ToolScp>
-                        </execList>
-                    </Event>
                     <Event execCount="1" eventName="Step3_Precheck">
                         <condList>
                             <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
@@ -922,37 +860,6 @@
                             <ToolScp Scp="MGAME_EVT_SCP_TO_MON_CMD" Client="NO" UseSleep="NO">
                                 <MGameObj List="DemonicsHiddenPower/2/DemonicsHiddenPower/3"/>
                                 <Str Str="SCR_GUILD_GILTINE_DEMONICS_HIDDEN_POWER_OBJECT_START"/>
-                            </ToolScp>
-                        </execList>
-                    </Event>
-                    <Event execCount="1" eventName="Step3_End">
-                        <condList>
-                            <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
-                                <MGameObj List="Boss/0/Boss/1"/>
-                                <Num Num="40"/>
-                                <Str Str="UNDER"/>
-                                <Num Num="1"/>
-                                <Str Str="OVER"/>
-                            </ToolScp>
-                            <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
-                                <MGameObj List="Boss/0/Boss/1"/>
-                                <Num Num="38"/>
-                                <Str Str="OVER"/>
-                                <Num Num="1"/>
-                                <Str Str="OVER"/>
-                            </ToolScp>
-                            <ToolScp Scp="GAME_ST_EVT_COND_VALUE" Client="NO" UseSleep="NO">
-                                <Str Str="demonics_hidden_power_exec"/>
-                                <Str Str="=="/>
-                                <Num Num="1"/>
-                            </ToolScp>
-                            <ToolScp Scp="MGAME_EVT_COND_SCRIPT" Client="NO" UseSleep="NO">
-                                <Str Str="SCR_GUILD_GILTINE_DEMONICS_HIDDEN_POWER_NOTICE_MSG"/>
-                            </ToolScp>
-                        </condList>
-                        <execList>
-                            <ToolScp Scp="MGAME_EVT_EXEC_DELMON" Client="NO" UseSleep="NO">
-                                <MGameObjPtr List="DemonicsHiddenPower/2/DemonicsHiddenPower/3"/>
                             </ToolScp>
                         </execList>
                     </Event>
@@ -1111,37 +1018,6 @@
                             </ToolScp>
                         </execList>
                     </Event>
-                    <Event execCount="1" eventName="AStep1_End">
-                        <condList>
-                            <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
-                                <MGameObj List="Boss/2/Boss/3"/>
-                                <Num Num="34"/>
-                                <Str Str="UNDER"/>
-                                <Num Num="1"/>
-                                <Str Str="OVER"/>
-                            </ToolScp>
-                            <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
-                                <MGameObj List="Boss/2/Boss/3"/>
-                                <Num Num="32"/>
-                                <Str Str="OVER"/>
-                                <Num Num="1"/>
-                                <Str Str="OVER"/>
-                            </ToolScp>
-                            <ToolScp Scp="GAME_ST_EVT_COND_VALUE" Client="NO" UseSleep="NO">
-                                <Str Str="demonics_hidden_power_exec"/>
-                                <Str Str="=="/>
-                                <Num Num="1"/>
-                            </ToolScp>
-                            <ToolScp Scp="MGAME_EVT_COND_SCRIPT" Client="NO" UseSleep="NO">
-                                <Str Str="SCR_GUILD_GILTINE_DEMONICS_HIDDEN_POWER_NOTICE_MSG"/>
-                            </ToolScp>
-                        </condList>
-                        <execList>
-                            <ToolScp Scp="MGAME_EVT_EXEC_DELMON" Client="NO" UseSleep="NO">
-                                <MGameObjPtr List="DemonicsHiddenPower/2/DemonicsHiddenPower/3"/>
-                            </ToolScp>
-                        </execList>
-                    </Event>
                     <Event execCount="1" eventName="AStep1_Setting">
                         <condList>
                             <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
@@ -1236,37 +1112,6 @@
                             <ToolScp Scp="MGAME_EVT_SCP_TO_MON_CMD" Client="NO" UseSleep="NO">
                                 <MGameObj List="DemonicsHiddenPower/2/DemonicsHiddenPower/3"/>
                                 <Str Str="SCR_GUILD_GILTINE_DEMONICS_HIDDEN_POWER_OBJECT_START"/>
-                            </ToolScp>
-                        </execList>
-                    </Event>
-                    <Event execCount="1" eventName="AStep2_End">
-                        <condList>
-                            <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
-                                <MGameObj List="Boss/2/Boss/3"/>
-                                <Num Num="11"/>
-                                <Str Str="UNDER"/>
-                                <Num Num="1"/>
-                                <Str Str="OVER"/>
-                            </ToolScp>
-                            <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
-                                <MGameObj List="Boss/2/Boss/3"/>
-                                <Num Num="9"/>
-                                <Str Str="OVER"/>
-                                <Num Num="1"/>
-                                <Str Str="OVER"/>
-                            </ToolScp>
-                            <ToolScp Scp="GAME_ST_EVT_COND_VALUE" Client="NO" UseSleep="NO">
-                                <Str Str="demonics_hidden_power_exec"/>
-                                <Str Str="=="/>
-                                <Num Num="1"/>
-                            </ToolScp>
-                            <ToolScp Scp="MGAME_EVT_COND_SCRIPT" Client="NO" UseSleep="NO">
-                                <Str Str="SCR_GUILD_GILTINE_DEMONICS_HIDDEN_POWER_NOTICE_MSG"/>
-                            </ToolScp>
-                        </condList>
-                        <execList>
-                            <ToolScp Scp="MGAME_EVT_EXEC_DELMON" Client="NO" UseSleep="NO">
-                                <MGameObjPtr List="DemonicsHiddenPower/2/DemonicsHiddenPower/3"/>
                             </ToolScp>
                         </execList>
                     </Event>
