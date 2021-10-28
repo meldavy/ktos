@@ -176,6 +176,8 @@
                         <execList>
                             <ToolScp Scp="MGAME_SET_RAID_TIMER" Client="NO" UseSleep="NO">
                                 <Num Num="420"/>
+                                <Str Str="RemainTime"/>
+                                <Str Str=""/>
                             </ToolScp>
                         </execList>
                     </Event>

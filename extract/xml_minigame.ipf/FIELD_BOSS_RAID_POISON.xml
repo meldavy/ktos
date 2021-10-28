@@ -176,6 +176,8 @@
                         <execList>
                             <ToolScp Scp="MGAME_SET_RAID_TIMER" Client="NO" UseSleep="NO">
                                 <Num Num="420"/>
+                                <Str Str="RemainTime"/>
+                                <Str Str=""/>
                             </ToolScp>
                         </execList>
                     </Event>
@@ -234,7 +236,7 @@
                                 <Str Str="End"/>
                                 <Num Num="0"/>
                             </ToolScp>
-                        <ToolScp Scp="GAME_ST_EVT_EXEC_STAGE_DISABLE" Client="NO" UseSleep="NO">
+                            <ToolScp Scp="GAME_ST_EVT_EXEC_STAGE_DISABLE" Client="NO" UseSleep="NO">
                                 <Str Str="RemoveBuff"/>
                             </ToolScp>
                         </execList>
@@ -273,7 +275,7 @@
                     </Event>
                 </StageEvents>
             </Stage>
-        <Stage Name="RemoveBuff">
+            <Stage Name="RemoveBuff">
                 <ObjList/>
                 <StageEvents>
                     <Event execMS="3000" eventName="RemoveBuff">
