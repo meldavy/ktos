@@ -12,8 +12,8 @@ end
 
 function UPDATE_TYPING_SCRIPT(frame, ctrl)
 	local title = frame:GetUserValue("InputType");
-
-	if title ~= "InputNameForChange" and title ~= "Family_Name" and title ~= "PetName" then
+	
+	if title ~= "InputNameForChange" and title ~= "Family_Name" then
 		return;
 	end
 
@@ -28,11 +28,11 @@ function UPDATE_TYPING_SCRIPT(frame, ctrl)
 end
 	
 function INPUT_STRING_EXEC(frame)
+
 	local scpName = frame:GetSValue();
-	local fromFrameName = frame:GetUserValue("FROM_FR");	
+	local fromFrameName = frame:GetUserValue("FROM_FR");
 	local execScp = _G[scpName];
 	local resultString = GET_INPUT_STRING_TXT(frame);
-	
 	if fromFrameName == "NULL" then
 		execScp(resultString, frame);
 	else
@@ -42,4 +42,6 @@ function INPUT_STRING_EXEC(frame)
 
 	frame:SetUserValue("BeforName", "")
 	frame:ShowWindow(0);
+	
+
 end

@@ -11,8 +11,6 @@ function QUEST_ON_INIT(addon, frame)
 	addon:RegisterMsg('CUSTOM_QUEST_DELETE', 'ON_CUSTOM_QUEST_DELETE');
 	addon:RegisterMsg('MYPC_PARTY_JOIN', 'QUEST_MYPC_PARTY_JOIN');
 	addon:RegisterMsg("PARTY_PROPERTY_UPDATE", "QUEST_PARTY_PROPERTY_UPDATE");
-
-	addon:RegisterMsg('PARTY_UPDATE', "ON_PARTY_UPDATE_SHARED_QUEST")
 	
 end
 
@@ -182,51 +180,24 @@ function UPDATE_ALLQUEST(frame, msg, isNew, questID, isNewQuest)
 		for i = 0, cnt -1 do
 			local questIES = GetClassByIndexFromList(clsList, i);
 			local questAutoIES = GetClass('QuestProgressCheck_Auto',questIES.ClassName)
-            if questIES.QuestMode == 'MAIN' then
-    			if questIES.ClassName ~= "None" then
-    				local ctrlName = "_Q_" .. questIES.ClassID;
-    				local abandonCheck = QUEST_ABANDON_RESTARTLIST_CHECK(questIES, sobjIES)
-    				if abandonCheck == 'NOTABANDON' or abandonCheck == 'ABANDON/NOTLIST' then
-    
-    					local result = SCR_QUEST_CHECK_C(pc, questIES.ClassName);
-    					if IS_ABOUT_JOB(questIES) == true then
-    						if result ~= 'IMPOSSIBLE' and result ~= 'None' then
-    							posY = SET_QUEST_LIST_SET(frame, questGbox, posY, ctrlName, questIES, result, isNew, questID);
-    						end
-    					else
-    						posY = SET_QUEST_LIST_SET(frame, questGbox, posY, ctrlName, questIES, result, isNew, questID);
-    					end
-    				else
-    					questGbox:RemoveChild(ctrlName);
-    				end
-    			end
-    		end
-		end
-		
-		
-		local subQuestZoneList = {}
-		for i = 0, cnt -1 do
-			local questIES = GetClassByIndexFromList(clsList, i);
-			local questAutoIES = GetClass('QuestProgressCheck_Auto',questIES.ClassName)
-			
-            if questIES.QuestMode ~= 'MAIN' then
-    			if questIES.ClassName ~= "None" then
-    				local ctrlName = "_Q_" .. questIES.ClassID;
-    				local abandonCheck = QUEST_ABANDON_RESTARTLIST_CHECK(questIES, sobjIES)
-    				if abandonCheck == 'NOTABANDON' or abandonCheck == 'ABANDON/NOTLIST' then
-    					local result = SCR_QUEST_CHECK_C(pc, questIES.ClassName);
-    					if IS_ABOUT_JOB(questIES) == true then
-    						if result ~= 'IMPOSSIBLE' and result ~= 'None' then
-    							posY, subQuestZoneList = SET_QUEST_LIST_SET(frame, questGbox, posY, ctrlName, questIES, result, isNew, questID, nil, subQuestZoneList);
-    						end
-    					else
-    						posY, subQuestZoneList = SET_QUEST_LIST_SET(frame, questGbox, posY, ctrlName, questIES, result, isNew, questID, nil, subQuestZoneList);
-    					end
-    				else
-    					questGbox:RemoveChild(ctrlName);
-    				end
-    			end
-    		end
+
+			if questIES.ClassName ~= "None" then
+				local ctrlName = "_Q_" .. questIES.ClassID;
+				local abandonCheck = QUEST_ABANDON_RESTARTLIST_CHECK(questIES, sobjIES)
+				if abandonCheck == 'NOTABANDON' or abandonCheck == 'ABANDON/NOTLIST' then
+
+					local result = SCR_QUEST_CHECK_C(pc, questIES.ClassName);
+					if IS_ABOUT_JOB(questIES) == true then
+						if result ~= 'IMPOSSIBLE' and result ~= 'None' then
+							posY = SET_QUEST_LIST_SET(frame, questGbox, posY, ctrlName, questIES, result, isNew, questID);
+						end
+					else
+						posY = SET_QUEST_LIST_SET(frame, questGbox, posY, ctrlName, questIES, result, isNew, questID);
+					end
+				else
+					questGbox:RemoveChild(ctrlName);
+				end
+			end
 		end
 	end
 
@@ -296,47 +267,43 @@ function LINKZONECHECK(fromZone, toZone)
     return result
 end
 
-function HIDE_IN_QUEST_LIST(pc, questIES, abandonResult, subQuestZoneList)
+function HIDE_IN_QUEST_LIST(pc, questIES, abandonResult)
 	local startMode = questIES.QuestStartMode;
 	local sObj = session.GetSessionObjectByName("ssn_klapeda");
 	if sObj ~= nil then
     	sObj = GetIES(sObj:GetIESObject());
     end
-    local result1
-    
-    result1, subQuestZoneList = SCR_POSSIBLE_UI_OPEN_CHECK(pc, questIES, subQuestZoneList)
     
 	if abandonResult == 'ABANDON/LIST' or questIES.PossibleUI_Notify == 'UNCOND' then
-	elseif result1 == "HIDE" then
-	    return 1, subQuestZoneList
+	elseif SCR_POSSIBLE_UI_OPEN_CHECK(pc, questIES) == "HIDE" then
+	    return 1
 	elseif startMode == 'NPCENTER_HIDE' then
-	    return 1, subQuestZoneList
+	    return 1
 	elseif startMode == "GETITEM" then
-	    return 1, subQuestZoneList
+	    return 1
 	elseif startMode == "USEITEM" then
-	    return 1, subQuestZoneList
+	    return 1
 	elseif IS_WORLDMAPPREOPEN(questIES.StartMap) == 'NO' then
-	    return 1, subQuestZoneList
+	    return 1
 	elseif sObj ~= nil and questIES.QuestMode == 'MAIN' and pc.Lv < 100 and questIES.QStartZone ~= 'None' and sObj.QSTARTZONETYPE ~= 'None' and questIES.QStartZone ~=  sObj.QSTARTZONETYPE and LINKZONECHECK(GetZoneName(pc), questIES.StartMap) == 'NO'  then
-	    return 1, subQuestZoneList
+	    return 1
 	elseif (questIES.QuestMode == 'MAIN' or questIES.QuestMode == 'REPEAT' or questIES.QuestMode == 'SUB') and LINKZONECHECK(GetZoneName(pc), questIES.StartMap) == 'NO' and QUEST_VIEWCHECK_LEVEL(pc, questIES) == 'NO' and SCR_ISFIRSTJOBCHANGEQUEST(questIES) == 'NO'  then
-		return 1, subQuestZoneList
+		return 1
 	end
 
-	return 0, subQuestZoneList;
+	return 0;
 end
 
-function SET_QUEST_LIST_SET(frame, questGbox, posY, ctrlName, questIES, result, isNew, questID, abandonResult, subQuestZoneList)
+function SET_QUEST_LIST_SET(frame, questGbox, posY, ctrlName, questIES, result, isNew, questID, abandonResult)
 
 	questGbox:RemoveChild(ctrlName);
+
 	if result == 'IMPOSSIBLE' or result == 'COMPLETE' then
-		return posY, subQuestZoneList;
+		return posY;
 	elseif result == 'POSSIBLE' then
 	    local pc = GetMyPCObject();
-	    local result
-	    result1, subQuestZoneList = HIDE_IN_QUEST_LIST(pc, questIES, abandonResult, subQuestZoneList)
-		if result1 == 1 then
-			return posY, subQuestZoneList;
+		if HIDE_IN_QUEST_LIST(pc, questIES, abandonResult) == 1 then
+			return posY;
 		end
 	end
 
@@ -388,17 +355,9 @@ function SET_QUEST_LIST_SET(frame, questGbox, posY, ctrlName, questIES, result, 
 	            dialogReplay_Btn:ShowWindow(0)
 	        end
 	    end
-	    
-	    local abandon_Btn = Quest_Ctrl:GetChild('abandon');
-	    if (questIES.AbandonUI ~= 'YES') or (result ~= 'PROGRESS' and result ~= 'SUCCESS') then
-            abandon_Btn:ShowWindow(0)
-        end
 	else
 	    local dialogReplay_Btn = Quest_Ctrl:GetChild('dialogReplay');
 	    dialogReplay_Btn:ShowWindow(0)
-	    local abandon_Btn = Quest_Ctrl:GetChild('abandon');
-	    abandon_Btn:ShowWindow(0)
-	    
 		avandonquest_tryBtn:ShowWindow(1);
 		local checkBox = Quest_Ctrl:GetChild("save");
 		tolua.cast(checkBox, "ui::CCheckBox");
@@ -411,19 +370,14 @@ function SET_QUEST_LIST_SET(frame, questGbox, posY, ctrlName, questIES, result, 
 		Quest_Ctrl:SetSkinName('test_mainquest_skin');
 	elseif questIES.QuestMode == 'SUB' then
 		Quest_Ctrl:SetSkinName('test_subquest_skin');
-	elseif questIES.PeriodInitialization ~= "None" then -- 일일 퀘스트
-		Quest_Ctrl:SetSkinName('test_dayquest_skin');
 	elseif questIES.QuestMode == 'REPEAT' then
 		Quest_Ctrl:SetSkinName('test_repeatquest_skin');
 	elseif questIES.QuestMode == 'PARTY' then
 		Quest_Ctrl:SetSkinName('test_partyquest_skin');
-	elseif questIES.QuestMode == 'KEYITEM' then
-		Quest_Ctrl:SetSkinName('test_keyque_skin');
 	end
 
 	QUEST_CTRL_UPDATE_PARTYINFO(Quest_Ctrl, questIES);
-	
-	return Quest_Ctrl:GetHeight() + posY + 5, subQuestZoneList;
+	return Quest_Ctrl:GetHeight() + posY + 5;
 end
 
 function ADD_QUEST_DETAIL(frame, ctrl, argStr, questClassID, notUpdateRightUI)
@@ -705,7 +659,7 @@ function Q_CTRL_TITLE_SET(Quest_Ctrl, questIES, questname, result)
 			nametxt:SetText(QUEST_TITLE_FONT..questTitle)		-- ???? ??????? ?????????
 		end
 
-        local descTxt = Quest_Ctrl:CreateOrGetControl("richtext", "state", 55, y, titleWidth - 15, 18);
+        local descTxt = Quest_Ctrl:CreateOrGetControl("richtext", "state", 55, y, titleWidth, 18);
 		local desc = questIES[CONVERT_STATE(result) .. 'Desc'];
 		tolua.cast(descTxt, "ui::CRichText");
 		descTxt:SetFontName("brown_16_b");
@@ -827,39 +781,22 @@ end
 
 function RUN_QUEST_EDIT_TOOL(questID)
 	if 1 == session.IsGM() then
-        local questIES = GetClassByType('QuestProgressCheck',questID)
-	    local yesScp = string.format("SCR_GM_QUEST_UI_QUEST_CHEAT_YES(%d)",questID);
-	    local noScp = string.format("SCR_GM_QUEST_UI_QUEST_CHEAT_NO(%d)",questID);
-    	ui.MsgBox(ScpArgMsg('QUEST_CHEAT_MSG1','QUESTNAME', questIES.Name) , yesScp, noScp);
+	    local quest_ClassName = GetClassString('QuestProgressCheck', questID, 'ClassName')
+        local questdocument = io.open('..\\release\\questauto\\InGameEdit_Quest.txt','w')
+        questdocument:write(quest_ClassName)
+        io.close(questdocument)
+
+        local path = debug.GetR1Path();
+        path = path .. "questauto\\QuestAutoTool_v1.exe";
+
+		debug.ShellExecute(path);
 	end
 
-end
-
-function SCR_GM_QUEST_UI_QUEST_CHEAT_YES(questID)
-    control.CustomCommand("SCR_GM_QUEST_UI_QUEST_CHEAT", questID);
-end
-
-function SCR_GM_QUEST_UI_QUEST_CHEAT_NO(questID)
-    local quest_ClassName = GetClassString('QuestProgressCheck', questID, 'ClassName')
-    local questdocument = io.open('..\\release\\questauto\\InGameEdit_Quest.txt','w')
-    questdocument:write(quest_ClassName)
-    io.close(questdocument)
-
-    local path = debug.GetR1Path();
-    path = path .. "questauto\\QuestAutoTool_v1.exe";
-
-	debug.ShellExecute(path);
 end
 
 function SCR_QUEST_DIALOG_REPLAY(ctrlSet, ctrl)
     local questClassID = ctrlSet:GetUserValue("QUEST_CLASSID");
     control.CustomCommand("QUEST_DIALOG_REPLAY_SERVER", questClassID);
-end
-
-function SCR_QUEST_ABANDON_SELECT(ctrlSet, ctrl)
-    local questClassID = ctrlSet:GetUserValue("QUEST_CLASSID");
-    local questIES = GetClassByType('QuestProgressCheck', questClassID)
-    ui.MsgBox(ScpArgMsg("QUEST_ABANDON_SELECT_MSG","QUEST",questIES.Name), string.format("EXEC_ABANDON_QUEST(%d)", tonumber(questClassID)), "None");
 end
 
 function SCR_ABANDON_QUEST_TRY(ctrlSet, ctrl)
@@ -876,13 +813,11 @@ function QUEST_ABANDON_RESTARTLIST_CHECK(questIES, sObj_main)
 		return nil;
 	end
     local questAutoIES = GetClass('QuestProgressCheck_Auto',questIES.ClassName)
-    if (sObj_main[questIES.ClassName] == QUEST_ABANDON_VALUE or sObj_main[questIES.ClassName] == QUEST_FAIL_VALUE or sObj_main[questIES.ClassName] == QUEST_SYSTEMCANCEL_VALUE) and questIES.QuestMode ~= 'KEYITEM'  then
+    if sObj_main[questIES.ClassName] == QUEST_ABANDON_VALUE or sObj_main[questIES.ClassName] == QUEST_FAIL_VALUE or sObj_main[questIES.ClassName] == QUEST_SYSTEMCANCEL_VALUE then
         local trackInfo = SCR_STRING_CUT(questAutoIES.Track1)
         if trackInfo[1] == 'SPossible' or (trackInfo[1] == 'SProgress' and questAutoIES.Possible_NextNPC == 'PROGRESS') or (trackInfo[1] == 'SSuccess' and questAutoIES.Possible_NextNPC == 'SUCCESS') then
             --???? ???????? ???? ????????? ??????? ???
             result = 'ABANDON/NOTLIST'
-        elseif questIES.ClassName == 'DROPITEM_COLLECTINGQUEST' or questIES.ClassName == 'DROPITEM_REQUEST1' then
-            result = 'NOTABANDON'
         else
             result = 'ABANDON/LIST'
         end
@@ -893,16 +828,12 @@ function QUEST_ABANDON_RESTARTLIST_CHECK(questIES, sObj_main)
     return result
 end
 
-function QUEST_CTRL_UPDATE_PARTYINFO(ctrlSet, questIES)
+function QUEST_CTRL_UPDATE_PARTYINFO(ctrlSet)
 
 	local pcparty = session.party.GetPartyInfo();
 	ctrlSet:RemoveChild("SHARE_PARTY");
 	if pcparty == nil then
 		return;
-	end
-	
-	if questIES == nil then
-	    return
 	end
 
 	local partyObj = GetIES(pcparty:GetObject());
@@ -931,22 +862,19 @@ function QUEST_CTRL_UPDATE_PARTYINFO(ctrlSet, questIES)
 		shareBtn:SetEventScript(ui.LBUTTONUP, "CANCEL_SHARE_QUEST_WITH_PARTY");
 
 	else
-	    local exceptionList = {'DROPITEM_REQUEST1','DROPITEM_COLLECTINGQUEST'}
-	    if table.find(exceptionList, questIES.ClassName) == 0 then
-    		local shareBtn = ctrlSet:CreateControl("button", "SHARE_PARTY", 18, 18, ui.RIGHT, ui.TOP, 0, 15, 45, 0);
-    		shareBtn:ShowWindow(1);	
-    		shareBtn = tolua.cast(shareBtn, "ui::CButton");
-    		shareBtn:SetImage("btn_partyshare");
-    		shareBtn:SetTextTooltip(ClMsg("ClickToSharedQuestWithParty"));
-    		shareBtn:SetEventScript(ui.LBUTTONUP, "SHARE_QUEST_WITH_PARTY");
-    	end
+
+		local shareBtn = ctrlSet:CreateControl("button", "SHARE_PARTY", 18, 18, ui.RIGHT, ui.TOP, 0, 15, 45, 0);
+		shareBtn:ShowWindow(1);	
+		shareBtn = tolua.cast(shareBtn, "ui::CButton");
+		shareBtn:SetImage("btn_partyshare");
+		shareBtn:SetTextTooltip(ClMsg("ClickToSharedQuestWithParty"));
+		shareBtn:SetEventScript(ui.LBUTTONUP, "SHARE_QUEST_WITH_PARTY");
+
 	end
 end
 
 function CANCEL_SHARE_QUEST_WITH_PARTY(parent, ctrlSet)
 	party.ReqChangeMemberProperty(PARTY_NORMAL, "Shared_Quest", 0);
-	party.ReqChangeMemberProperty(PARTY_NORMAL, "Shared_Quest", -1);
-
 	local gbox = parent:GetParent();
 	gbox:RunUpdateScript("QUEST_GBOX_UPDATE_PARTY_PROP");
 	local questframe = parent:GetTopParentFrame();
@@ -956,7 +884,6 @@ end
 function SHARE_QUEST_WITH_PARTY(parent, ctrlSet)
 	local clsID = parent:GetUserIValue("QUEST_CLASSID");
 	party.ReqChangeMemberProperty(PARTY_NORMAL, "Shared_Quest", clsID);
-	REQUEST_SHARED_QUEST_PROGRESS(clsID)
 
 	local gbox = parent:GetParent();
 	gbox:RunUpdateScript("QUEST_GBOX_UPDATE_PARTY_PROP");	
@@ -995,7 +922,6 @@ function CHECK_PARTY_QUEST_DELETE(frame, questID)
 	local myObj = GetIES(myInfo:GetObject());
 	if questID == myObj.Shared_Quest then
 		party.ReqChangeMemberProperty(PARTY_NORMAL, "Shared_Quest", questID);
-		REQUEST_SHARED_QUEST_PROGRESS(questID)
 	end
 
 end
@@ -1013,7 +939,6 @@ function QUEST_MYPC_PARTY_JOIN(frame)
 			local clsID = ctrlSet:GetUserIValue("QUEST_CLASSID");
 			if clsID > 0 then
 				party.ReqChangeMemberProperty(PARTY_NORMAL, "Shared_Quest", clsID);
-				REQUEST_SHARED_QUEST_PROGRESS(clsID)
 				local questinfoset2 = ui.GetFrame("questinfoset_2");
 				local questGbox = questinfoset2:GetChild('member');
 				questGbox:RunUpdateScript("QUEST_GBOX_UPDATE_PARTY_PROP");
@@ -1053,54 +978,15 @@ function CHECK_PARTY_QUEST_ADD(frame, questID)
 			end
 
 			party.ReqChangeMemberProperty(PARTY_NORMAL, "Shared_Quest", questID);
-			REQUEST_SHARED_QUEST_PROGRESS(questID)
 			local questinfoset2 = ui.GetFrame("questinfoset_2");
 			local questGbox = questinfoset2:GetChild('member');
 			questGbox:RunUpdateScript("QUEST_GBOX_UPDATE_PARTY_PROP");
 		end
 	else
 		party.ReqChangeMemberProperty(PARTY_NORMAL, "Shared_Quest", questID);
-		REQUEST_SHARED_QUEST_PROGRESS(questID)
 		local questinfoset2 = ui.GetFrame("questinfoset_2");
 		local questGbox = questinfoset2:GetChild('member');
 		questGbox:RunUpdateScript("QUEST_GBOX_UPDATE_PARTY_PROP");	
-	end
-end
-
-function REQUEST_SHARED_QUEST_PROGRESS(questClsID)
-	party.ReqChangeMemberProperty(PARTY_NORMAL, "Shared_Progress", -1) -- 값을 초기화해야 바뀜
-
-	local myInfo = session.party.GetMyPartyObj(PARTY_NORMAL);
-	if nil == myInfo then
-		return;
-	end
-
-	local myObj = GET_MY_PARTY_INFO_C()
-	local sharedQuestID = TryGetProp(myObj, 'Shared_Quest')
-	if nil == sharedQuestID or sharedQuestID == 0 then
-		return;
-	end
-
-	local questIES = GetClassByType("QuestProgressCheck", questClsID)
-	if questIES == nil then
-		return;
-	end
-
-	local progStr = SCR_QUEST_CHECK_C(GetMyPCObject(), questIES.ClassName)
-	local progValue = quest.GetQuestStateValue(progStr)
-	party.ReqChangeMemberProperty(PARTY_NORMAL, "Shared_Progress", progValue)
-	party.SendSharedQuestSession(questIES.ClassID, questIES.ClassName, myInfo:GetAID());
-end
-
-function ON_PARTY_UPDATE_SHARED_QUEST()
-	local myInfo = session.party.GetMyPartyObj(PARTY_NORMAL);
-	local myPartyMemObj = GET_MY_PARTY_INFO_C()
-	local sharedQuestID = TryGetProp(myPartyMemObj, 'Shared_Quest')
-	if myInfo ~= nil and sharedQuestID ~= nil and sharedQuestID > 0 then
-		local questCls = GetClassByType('QuestProgressCheck', sharedQuestID)
-		if questCls ~= nil then
-			REQUEST_SHARED_QUEST_PROGRESS(sharedQuestID)
-		end
 	end
 end
 
