@@ -1672,7 +1672,7 @@ function TPITEM_DRAW_ITEM_DETAIL(obj, itemobj, itemcset)
 
 	-- 구매 여부와 착용 여부를 검사한다.
 	itemcset:SetUserValue("TPITEM_CLSID", tpitem_clsID);
-	TPITEM_SET_SPECIALMARK(isNew_mark, isHot_mark, isEvent_mark, isLimit_mark, tpitem_clsID);
+	TPITEM_SET_SPECIALMARK(isNew_mark, isHot_mark, isEvent_mark, isLimit_mark, tpitem_clsID, isSale_mark);
 
 	if IS_TIME_SALE_ITEM(tpitem_clsID) == true then
 		local curTime = geTime.GetServerSystemTime()
@@ -2066,14 +2066,15 @@ function _TPSHOP_TPITEM_SET_SPECIAL()
 		local isHot_mark = GET_CHILD_RECURSIVELY(itemcset,"isHot_mark");
 		local isNew_mark = GET_CHILD_RECURSIVELY(itemcset,"isNew_mark");
 		local isLimit_mark = GET_CHILD_RECURSIVELY(itemcset,"isLimit_mark");
+		local isSale_mark = GET_CHILD_RECURSIVELY(itemcset,"isSale_mark");
 
-		TPITEM_SET_SPECIALMARK(isNew_mark, isHot_mark, isEvent_mark, isLimit_mark, classID);
+		TPITEM_SET_SPECIALMARK(isNew_mark, isHot_mark, isEvent_mark, isLimit_mark, classID, isSale_mark);
 	end	
 	
 	DebounceScript("TPSHOP_CREATE_TOP5_CTRLSET", 1);
 end
 
-function TPITEM_SET_SPECIALMARK(isNew_mark, isHot_mark, isEvent_mark, isLimit_mark, classID)
+function TPITEM_SET_SPECIALMARK(isNew_mark, isHot_mark, isEvent_mark, isLimit_mark, classID, isSale_mark)
 	local founded_info = session.ui.Getlistitem_TPITEM_ADDITIONAL_INFO_Map_byID(classID);
 	local bisNew = 0;
 	local bisHot = 0;
@@ -2102,6 +2103,13 @@ function TPITEM_SET_SPECIALMARK(isNew_mark, isHot_mark, isEvent_mark, isLimit_ma
 	isHot_mark:SetVisible(bisHot);		
 	isEvent_mark:SetVisible(bisEvent);
 	isLimit_mark:SetVisible(bisLimit);
+
+	local bisSale = 0
+	if TryGetProp(GetClassByType('TPitem', classID), 'SubCategory', 'None') == 'TP_Premium_Sale' then
+		bisSale = 1
+end
+
+	isSale_mark:SetVisible(bisSale)
 end
 
 function TPSHOP_CREATE_TOP5_CTRLSET()

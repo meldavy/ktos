@@ -471,6 +471,13 @@
 			<groupbox name="property_gbox" rect="0 0 410 0" layout_gravity="left top" margin="0 46 0 0" skin="bg" hittest="false" draw="false" updateparent="true" scrollbar="false"/>
 		</controls>
 	</controlset>
+	<controlset name="tooltip_equip_property_Luciferi" hittest="true" width="410" height="0">
+		<controls>
+			<richtext name="set_item" margin="0 5 0 0" rect="0 0 190 30" format="{@st41b}{s18}  옵션" layout_gravity="left top" fixwidth="true" hittest="false" fontname="brown_16"/>
+			<labelline name="labelline2" margin="0 31 0 0" rect="0 0 390 3" skin="labelline_def_2" layout_gravity="center top"/>
+			<groupbox name="property_gbox" rect="0 0 410 0" layout_gravity="left top" margin="0 46 0 0" skin="bg" hittest="false" draw="false" updateparent="true" scrollbar="false"/>
+		</controls>
+	</controlset>
 	<controlset name="tooltip_equip_desc" hittest="true" width="410" height="0">
 		<controls>
 			<labelline name="labelline" margin="-3 0 0 0" rect="0 0 390 3" skin="labelline_def_2" layout_gravity="center top"/>
@@ -1588,7 +1595,7 @@
 			<picture name="isLimit_mark" margin="0 60 0 0" rect="0 0 72 34" hittest="false" image="limit_mark_K" changecursor="false" layout_gravity="left top"/>
 			<picture name="isHot_mark" margin="0 94 0 0" rect="0 0 72 34" hittest="false" image="hot_mark_K" changecursor="false" layout_gravity="left top"/>
 			<picture name="isEvent_mark" margin="0 128 0 0" rect="0 0 72 34" hittest="false" image="recommend_mark_K" changecursor="false" layout_gravity="left top"/>
-			<picture name="isSale_mark" margin="0 94 0 0" rect="0 0 72 34" hittest="false" image="sale_mark_K" changecursor="false" layout_gravity="left top"/>
+			<picture name="isSale_mark" margin="0 94 0 0" rect="0 0 72 34" hittest="false" image="sale_mark2" changecursor="false" layout_gravity="left top"/>
 		</controls>
 	</controlset>
 	<controlset name="tpshop_recycle" hittest="true" width="286" height="350" hittestset="true" draw="true" skin="test_skin_01_btn" stateskin="false">
@@ -2927,13 +2934,13 @@
 		<controls>
 			<groupbox name="each_achieve_gbox" margin="0 0 0 0" rect="0 0 435 230" hittestbox="false" skin="test_skin_01" layout_gravity="left top" scrollbar="false"/>
 			<picture name="each_achieve_name_box" margin="0 7 0 0" parent="each_achieve_gbox" rect="0 0 420 30" hittestbox="false" draw="false" stretch="true" image="test_com_namebg" layout_gravity="center top" scrollbar="false"/>
-			<richtext name="achieve_desctitle" parent="each_achieve_gbox" margin="15 10 0 0" rect="0 0 430 30" format="None" textalign="left center" resizebytext="true" fontname="white_18_b_ol_ds" fixwidth="false" layout_gravity="left top" hittest="false"/>
+			<richtext name="achieve_desctitle" parent="each_achieve_gbox" margin="15 10 0 0" rect="0 0 410 30" format="None" textalign="left center" resizebytext="true" fontname="white_18_b_ol_ds" fixwidth="true" layout_gravity="left top" hittest="false" autofontsizebywidth="410"/>
 			<button name="req_reward_btn" margin="0 0 5 5" rect="0 0 36 39" image="compen_btn" layout_gravity="right top" LBtnUpScp="REQ_ACHIEVE_REWARD"/>
 			<richtext name="achieve_static_desc" parent="each_achieve_gbox" margin="20 71 0 0" rect="0 0 430 30" format="{@41b}조건" textalign="left center" resizebytext="true" fontname="brown_16_b" fixwidth="false" layout_gravity="left top" hittest="false"/>
 			<richtext name="achieve_static_accomplishment" parent="each_achieve_gbox" margin="20 45 0 0" rect="0 0 60 30" format="{@41b}달성도" textalign="left center" resizebytext="true" fontname="brown_16_b" fixwidth="false" layout_gravity="left top" hittest="false"/>
 			<gauge name="achieve_gauge" parent="each_achieve_gbox" margin="0 30 0 0" rect="0 0 230 50" skin="gauge_itemtooltip_poten" inverse="false" point="50" layout_gravity="left top" text1="" textoffset1="0 1" textfont1="white_14_ol" textalign1="center center" hittest="true"/>
 			<richtext name="achieve_accomplishment" parent="each_achieve_gbox" margin="20 40 0 0" rect="0 0 335 30" caption="None" textalign="center center" resizebytext="false" fontname="white_16_ol" fixwidth="false" layout_gravity="left top" hittest="false"/>
-			<richtext name="achieve_desc" parent="each_achieve_gbox" margin="20 71 0 0" rect="0 0 335 30" caption="None" textalign="left center" resizebytext="true" fontname="brown_16_b" fixwidth="true" layout_gravity="left top" hittest="false"/>
+			<richtext name="achieve_desc" parent="each_achieve_gbox" margin="20 71 0 0" rect="0 0 310 30" caption="None" textalign="left center" resizebytext="true" fontname="brown_16_b" fixwidth="true" layout_gravity="left top" hittest="false"/>
 			<richtext name="achieve_name" parent="each_achieve_gbox" margin="20 65 0 0" rect="0 0 400 30" format="칭호       %s" param1="name" param1_def="None" textalign="left center" resizebytext="true" fontname="brown_16_b" fixwidth="false" layout_gravity="left top" hittest="false"/>
 			<richtext name="achieve_reward" parent="each_achieve_gbox" margin="20 90 0 0" rect="0 0 400 30" format="보상       %s" param1="reward" param1_def="None" textalign="left center" resizebytext="true" fontname="brown_16_b" fixwidth="false" layout_gravity="left top" hittest="false"/>
 		</controls>
@@ -3432,6 +3439,13 @@
 		<controls>
 			<groupbox name="groupbox_1" margin="0 0 0 0" rect="0 0 420 50" hittestbox="true" skin="guild_base_skin" layout_gravity="left top"/>
 			<richtext name="prop" margin="20 0 0 0" rect="0 0 440 50" format="{@st41b}%s{/}" param1="value" param1_def="ZZZZZZZZZZZZZZZZZZZZ" textalign="left center" resizebytext="false" spacey="0" maxwidth="0" fontname="white_16_ol" fixwidth="true" updateparent="false" drawbackground="false" slideshow="false" layout_gravity="left center" hittest="true" autofontsizebywidth="420"/>
+			<richtext name="value" parent="groupbox_1" margin="0 0 0 0" rect="0 0 440 50" format="{@st41b}%s{/}" param1="value" param1_def="ZZZZZZZZZZZZZZZZZZZZ" textalign="right center" resizebytext="false" spacey="0" maxwidth="0" fontname="white_16_ol" fixwidth="false" updateparent="false" drawbackground="false" slideshow="false" layout_gravity="right center" hittest="true"/>
+		</controls>
+	</controlset>
+	<controlset name="pvp_misc_boost_Detail" hittest="true" width="420" height="150" hittestset="true" draw="false" skin="none">
+		<controls>
+			<groupbox name="groupbox_1" margin="0 20 0 0" rect="0 0 420 150" hittestbox="true" skin="guild_base_skin" layout_gravity="left top"/>
+			<richtext name="prop" margin="20 95 0 0" rect="0 0 440 500" format="{@st41b}%s{/}" param1="value" param1_def="ZZZZZZZZZZZZZZZZZZZZ" textalign="left center" resizebytext="false" spacey="0" maxwidth="0" fontname="white_16_ol" fixwidth="false" updateparent="false" drawbackground="false" slideshow="false" layout_gravity="left center" hittest="true" autofontsizebywidth="420"/>
 			<richtext name="value" parent="groupbox_1" margin="0 0 0 0" rect="0 0 440 50" format="{@st41b}%s{/}" param1="value" param1_def="ZZZZZZZZZZZZZZZZZZZZ" textalign="right center" resizebytext="false" spacey="0" maxwidth="0" fontname="white_16_ol" fixwidth="false" updateparent="false" drawbackground="false" slideshow="false" layout_gravity="right center" hittest="true"/>
 		</controls>
 	</controlset>

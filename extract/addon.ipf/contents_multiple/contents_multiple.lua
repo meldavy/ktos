@@ -7,7 +7,7 @@ end
 function ON_CONTENTS_MULTIPLE_OPEN(frame, msg, argStr, argNum)
 	local contents_multiple = ui.GetFrame('contents_multiple')
 	contents_multiple:ShowWindow(1)
-	contents_multiple:SetUserValue('ITEM_CLASSNAME', argStr)
+	contents_multiple:SetUserValue('ITEM_STR_ARG', argStr)
 	if argNum ~= nil then
 		contents_multiple:SetUserValue("MSG_BOX_CHECK_FLAG", argNum);
 	end
@@ -21,7 +21,7 @@ function ON_CONTENTS_MULTIPLE_OPEN_CONTENTS(frame, msg, argStr, argNum)
 			local str_list = StringSplit(argStr, '/');
 			if str_list ~= nil and #str_list > 0 then
 				for i = 1, #str_list do
-					if i == 1 then contents_multiple:SetUserValue("ITEM_CLASSNAME", str_list[i]);
+					if i == 1 then contents_multiple:SetUserValue("ITEM_STR_ARG", str_list[i]);
 					elseif i == 2 then contents_multiple:SetUserValue("CONTENTS_NAME", str_list[i]); end
 				end
 			end
@@ -45,25 +45,17 @@ function CLOSE_CONTENTS_MULTIPLE(frame)
 end
 
 local function SET_TARGET_SLOT(frame, targetItem)
-	local req_item_name = frame:GetUserValue('ITEM_CLASSNAME');
+	local req_str_arg = frame:GetUserValue('ITEM_STR_ARG');
 	local slot = GET_CHILD_RECURSIVELY(frame, 'slot');
 	local slot_bg_image = GET_CHILD_RECURSIVELY(frame, 'slot_bg_image');
 	local text_putonitem = GET_CHILD_RECURSIVELY(frame, 'text_putonitem');
 	local text_itemname = GET_CHILD_RECURSIVELY(frame, 'text_itemname');
 	if targetItem ~= nil then
 		local targetItemObj = GetIES(targetItem:GetObject());
-		if req_item_name == 'EP12_EXPERT_MODE_MULTIPLE' or req_item_name == 'EP12_EXPERT_MODE_MULTIPLE_NoTrade' then
-			local targetItemClassName = TryGetProp(targetItemObj, 'ClassName', 'None');
-			if targetItemClassName ~= 'EP12_EXPERT_MODE_MULTIPLE' and targetItemClassName ~= 'EP12_EXPERT_MODE_MULTIPLE_NoTrade' then
-				ui.SysMsg(ClMsg('IMPOSSIBLE_ITEM'));
-				return;
-			end
-		else
-			local targetItemClassName = TryGetProp(targetItemObj, 'ClassName', 'None');
-			if string.find(targetItemClassName, req_item_name) == nil then
-				ui.SysMsg(ClMsg('IMPOSSIBLE_ITEM'));
-				return;
-			end
+		local str_arg = TryGetProp(targetItemObj, 'StringArg', 'None')
+		if req_str_arg ~= str_arg then
+			ui.SysMsg(ClMsg('IMPOSSIBLE_ITEM'));
+			return;
 		end
 		
 		SET_SLOT_ITEM(slot, targetItem);

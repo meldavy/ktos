@@ -24,11 +24,11 @@ function GET_PROPERTY_POINT(frame, msg, argStr, argNum)
 	ADD_SEQUENTIAL_PICKITEM_ForProperty(frame, msg, argStr, argNum)
 end
 
-function SEQUENTIAL_PICKITEMON_MSG(frame, msg, arg1, type, class)
+function SEQUENTIAL_PICKITEMON_MSG(frame, msg, arg1, type, class)		
     if IS_IN_EVENT_MAP() == true then
         return;
     end
-
+	
 	if msg == 'INV_ITEM_ADD' then
 		if arg1 == 'UNEQUIP' then
 			return
@@ -38,11 +38,11 @@ function SEQUENTIAL_PICKITEMON_MSG(frame, msg, arg1, type, class)
 		if class == nil then
 			class = GetClassByType("Item",	invitem.prop.type)
 		end
-		local tablekey = invitem:GetIESID().."_"..invitem.count
+		local tablekey = invitem:GetIESID().."_".. invitem.count		
 
 		if SEQUENTIALPICKITEM_alreadyOpendGUIDs[tablekey] == nil then
 			SEQUENTIALPICKITEM_alreadyOpendGUIDs[tablekey] = "AlreadyOpen"
-			ADD_SEQUENTIAL_PICKITEM(frame, msg, invitem:GetIESID(), invitem.count, class, tablekey, invitem.fromWareHouse)
+			ADD_SEQUENTIAL_PICKITEM(frame, msg, invitem:GetIESID(), invitem.count, class, tablekey, invitem.fromWareHouse)			
 		end
 
 	elseif msg == 'INV_ITEM_IN' then
@@ -52,6 +52,15 @@ function SEQUENTIAL_PICKITEMON_MSG(frame, msg, arg1, type, class)
 
 		local tablekey = arg1.."_"..invitem.count
 		
+		local cls_point = GetClass('accountprop_inventory_list', class.ClassName)
+		if cls_point ~= nil then
+			local chat_msg = ScpArgMsg("PointGet{name}{count}", "name", ClMsg(TryGetProp(cls_point, 'ClassName', 'None')), "count", count);
+			session.ui.GetChatMsg():AddSystemMsg(chat_msg, true, 'System', '', false);
+		else			
+			local chat_msg = ScpArgMsg("ItemGet{name}{count}", "name", TryGetProp(class, 'Name', 'None'), "count", count);
+			session.ui.GetChatMsg():AddSystemMsg(chat_msg, true, 'System', '', false);										
+		end
+
 		if SEQUENTIALPICKITEM_alreadyOpendGUIDs[tablekey] == nil then
 			SEQUENTIALPICKITEM_alreadyOpendGUIDs[tablekey] = "AlreadyOpen"			
 			ADD_SEQUENTIAL_PICKITEM(frame, msg, arg1, count, class, tablekey)			
@@ -116,7 +125,7 @@ function ADD_SEQUENTIAL_PICKITEM(frame, msg, itemGuid, itemCount, class, tableke
 	if frame == nil then
 		return nil;
 	end
-
+	
 	
 	frame:SetUserValue("ITEMGUID_N_COUNT",tablekey)
 	
@@ -262,7 +271,7 @@ function ADD_SEQUENTIAL_PICKITEM_ForSealLvUp(frame, msg, itemGuid, itemCount, cl
 end
 
 function ADD_SEQUENTIAL_PICKITEM_ForProperty(frame, msg, property_name, itemCount)
-	local cls = GetClass('common_gamble_property_reward', property_name)
+	local cls = GetClass('accountprop_inventory_list', property_name)
 	if cls == nil then
 		return
 	end
@@ -320,4 +329,7 @@ function ADD_SEQUENTIAL_PICKITEM_ForProperty(frame, msg, property_name, itemCoun
 	frame:ShowWindow(1);
 	frame:SetDuration(duration);
 	frame:Invalidate();
+
+	local chat_msg = ScpArgMsg("PointGet{name}{count}", "name", ClMsg(property_name), "count", count);
+	session.ui.GetChatMsg():AddSystemMsg(chat_msg, true, 'System', '', false);
 end

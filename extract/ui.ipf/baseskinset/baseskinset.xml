@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by imc (imc) -->
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by imc (imc) -->
 <!-- edited with XMLSpy v2008 sp1 (http://www.altova.com) by MintPC (Mi) -->
 <skinset name="Base">
 	<skinlist category="frames">
@@ -7849,6 +7849,9 @@
 		<image name="Collar_Event_Tecance" file="\skin\Collar_skin.tga" imgrect="155 31 30 30" CMM_Caption="2020 트캉스 수박물고기 칭호"/>
 		<image name="Collar_TOS_School_Graduate" file="\skin\Collar_skin.tga" imgrect="186 31 30 30" CMM_Caption="2020_tos 스쿨 졸업생"/>
 		<image name="Collar_Event_valentin" file="\skin\Collar_skin.tga" imgrect="217 31 30 30" CMM_Caption="2021_발렌타인"/>
+		<image name="Collar_Golden_Watermelon" file="\skin\Collar_skin.tga" imgrect="62 62 30 30" CMM_Caption="2021_수박 골드"/>
+		<image name="Collar_Silver_Watermelon" file="\skin\Collar_skin.tga" imgrect="31 62 30 30" CMM_Caption="2021_수박 실버"/>
+		<image name="Collar_Bronze_Watermelon" file="\skin\Collar_skin.tga" imgrect="0 62 30 30" CMM_Caption="2021_수박 브론즈"/>
 	</imagelist>
 	<imagelist category="testse_image">
 		<image name="indun_soulcrystal_bg" file="\skin\indun_skin.tga" imgrect="614 552 84 86" CMM_Caption="소울크리스탈 횟수제한 UI"/>
@@ -12107,6 +12110,7 @@
 		<image name="icon_Event_Yugwa" file="\icon\buff_icon4.tga" imgrect="384 896 128 128" CMM_Caption="2021_설날 유과 버프"/>
 		<image name="icon_pet_arborday_rabbit_buff" file="\icon\buff_icon5.tga" imgrect="0 128 128 128" CMM_Caption="근본 토끼 버프"/>
 		<image name="icon_pet_ep13dessert_buff" file="\icon\buff_icon5.tga" imgrect="128 128 128 128" CMM_Caption="스위트팽 버프"/>
+		<image name="icon_watermelon_buff" file="\icon\buff_icon5.tga" imgrect="128 640 128 128" CMM_Caption="2021 여름이벤트 수박 주화"/>
 	</imagelist>
 	<imagelist category="housing_bufficon">
 		<image name="icon_Weapon_Klaida" file="\icon\icon_hosing_buff.tga" imgrect="0 0 128 128"/>

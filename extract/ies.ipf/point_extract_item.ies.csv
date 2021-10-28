@@ -51,6 +51,9 @@ ClassID,Point,ClassName,ItemClassName,PointName
 128,576,SilverGachaPointExtract_28,selectbox_ep13mafia01_2,Mileage_SilverGacha
 129,96,SilverGachaPointExtract_29,selectbox_ep13mafia02_2,Mileage_SilverGacha
 130,96,SilverGachaPointExtract_30,selectbox_ep13mafia03_2,Mileage_SilverGacha
+131,576,SilverGachaPointExtract_31,selectbox_ep13stem01_2,Mileage_SilverGacha
+132,96,SilverGachaPointExtract_32,selectbox_ep13stem02_2,Mileage_SilverGacha
+133,96,SilverGachaPointExtract_33,selectbox_ep13stem03_2,Mileage_SilverGacha
 10001,50,RelicExpExtract_1,HiddenAbility_Piece,Relic_EXP
 10002,50,RelicExpExtract_2,misc_ore15,Relic_EXP
 10003,50,RelicExpExtract_3,misc_0530,Relic_EXP

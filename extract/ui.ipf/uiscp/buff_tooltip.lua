@@ -142,7 +142,7 @@ function UPDATE_PREMIUM_TOOLTIP(tooltipframe, strarg, numarg1, numarg2)
 	tooltipframe:Resize(tooltipframe:GetWidth(), gbox:GetHeight() + 20);
 end
 
-function SHOW_TOKEN_REMAIN_TIME_IN_BUFF_TOOLTIP(ctrl)
+function SHOW_TOKEN_REMAIN_TIME_IN_BUFF_TOOLTIP(ctrl)	
     local elapsedSec = imcTime.GetAppTime() - ctrl:GetUserIValue("STARTSEC");
     local startSec = ctrl:GetUserIValue("REMAINSEC");
     startSec = startSec - elapsedSec;
@@ -155,7 +155,7 @@ function SHOW_TOKEN_REMAIN_TIME_IN_BUFF_TOOLTIP(ctrl)
     return 1;
 end
 
-function UPDATE_BUFF_TOOLTIP(frame, handle, numarg1, numarg2)	
+function UPDATE_BUFF_TOOLTIP(frame, handle, numarg1, numarg2)		
 	local buff = nil;    
     if tonumber(numarg2) > 0 then
         buff = info.GetBuff(handle, numarg1, numarg2);
@@ -217,7 +217,7 @@ function BUFF_TOOLTIP_OgouVeve(buff, cls)
 	return ScpArgMsg("Auto_HimKwa_JiNeungeul_olLyeoJupNiDa."), nil;
 end
 
-function BUFF_TOOLTIP_TeamLevel(buff, cls)
+function BUFF_TOOLTIP_TeamLevel(buff, cls)	
 	local advantageText = "";
 	local expBonus = GET_TEAM_LEVEL_EXP_BONUS(buff.arg1);
 	advantageText = advantageText .. ScpArgMsg("ExpGetAmount") .. " + " .. expBonus .. "%";	
@@ -350,4 +350,55 @@ function BUFF_TOOLTIP_GLACIER_LEGEND_WITCH_COLD_DEBUFF(buff, cls)
 		return ClMsg("GLACIER_WITCH_COLD_CHANGE_TOOLTIP"), name; 
 	end
 	return cls.ToolTip, name;
+end
+
+-- 용병단 증표 부스트
+function UPDATE_PREMIUM_BOOST_TOOLTIP(tooltipframe, handle, buff_id, numarg2)		
+	local numarg1 = buff_id		
+	local pc = GetMyPCObject()
+
+	local weekly_up = tooltipframe:GetChild("weekly_up");
+	weekly_up:SetTextByKey('value', GET_COMMAED_STRING(GET_PVP_MINE_MISC_BOOST_COUNT(pc)))
+	local uphill = tooltipframe:GetChild("uphill");
+	uphill:SetTextByKey('value', GET_COMMAED_STRING(GET_ADDITIONAL_DROP_COUNT_PVP_MINE_MISC_BOOST(pc, 'uphill')))
+	local rift = tooltipframe:GetChild("rift");
+	rift:SetTextByKey('value', GET_COMMAED_STRING(GET_ADDITIONAL_DROP_COUNT_PVP_MINE_MISC_BOOST(pc, 'rift')))
+	local solo_dun = tooltipframe:GetChild("solo_dun");
+	solo_dun:SetTextByKey('value', GET_COMMAED_STRING(GET_ADDITIONAL_DROP_COUNT_PVP_MINE_MISC_BOOST(pc, 'solo_dun')))
+	local weekly_boss = tooltipframe:GetChild("weekly_boss");
+	weekly_boss:SetTextByKey('value', GET_COMMAED_STRING(GET_ADDITIONAL_DROP_COUNT_PVP_MINE_MISC_BOOST(pc, 'weekly_boss')))
+
+	local field = tooltipframe:GetChild("field");
+	field:SetTextByKey('value', (GET_PVP_MINE_MISC_BOOST_FIELD_RATE(pc) - 1) * 100)
+
+	local remaintime = tooltipframe:GetChild("remaintime");	
+	-- 남은 시간 표기	
+	local buffCls = GetClassByType('Buff', numarg1);	
+	if TryGetProp(buffCls, 'StringArg', 'None') == 'Ref_Account_datetime' then
+		local end_time = TryGetProp(GetMyAccountObj(), 'PVP_MINE_MISC_BOOST_END_DATETIME', 'None')
+		if end_time ~= 'None' then		
+			local difSec = date_time.get_diff_sec(end_time, date_time.get_lua_now_datetime_str())			
+			if 0 < difSec then
+				remaintime:SetUserValue("REMAINSEC", difSec);
+				remaintime:SetUserValue("STARTSEC", imcTime.GetAppTime());
+				SHOW_TOKEN_REMAIN_TIME_IN_BUFF_TOOLTIP(remaintime);
+				remaintime:RunUpdateScript("SHOW_TOKEN_REMAIN_TIME_IN_BUFF_TOOLTIP");
+				remaintime:ShowWindow(1);			
+			end
+		end
+	end
+
+	local cnt = tooltipframe:GetChildCount();
+	local y = 45;
+	for i = 0, cnt - 1 do
+		local ctrl = tooltipframe:GetChildByIndex(i);
+		if ctrl:IsVisible() == 1 and ctrl:GetClassString() == "ui::CRichText" and ctrl:GetName() ~= "richtext_1" then
+			ctrl:SetOffset(ctrl:GetX(), y);
+			y = y + ctrl:GetHeight();
+		end	
+	end
+
+	local gbox = tooltipframe:GetChild("gbox");
+	gbox:Resize(gbox:GetWidth(), y + 10);
+	tooltipframe:Resize(tooltipframe:GetWidth(), gbox:GetHeight() + 20);
 end

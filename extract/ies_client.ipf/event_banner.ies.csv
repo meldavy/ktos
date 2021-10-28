@@ -1,9 +1,11 @@
 ClassID,StartTimeYYYYMM,StartTimeDDHHMM,NewTimeYYYYMM,NewTimeDDHHMM,EndTimeYYYYMM,EndTimeDDHHMM,DeadlineTimeYYYYMM,DeadlineTimeDDHHMM,ExchangeTimeYYYYMM,ExchangeTimeDDHHMM,ClassName,Name,ImagePath,url,UserCommand1,UserCommand2,UserCommand3,ShowType
+996950,202106,100900,202106,150000,202107,150700,202107,100000,0,0,210610_Goddess_Cube,축복받은 여신의 큐브 - 6월,210610_Goddess_Cube,http://tos.nexon.com/news/update/view.aspx?n4ArticleSN=2401&n4CategorySN=0,,,,
+996960,202106,100900,202106,150000,202107,80700,202107,30000,0,0,210610_21Summer_Event,21년 여름 이벤트,210610_21Summer_Event,http://tos.nexon.com/news/events/view.aspx?n4ArticleSN=329&n4ArticleCategorySN=1,,,,
 996970,202106,30900,202106,80000,202107,10000,202106,250000,0,0,Event_210603_BiBiChu,뇌오세 탐구 보고서,Event_210603_BiBiChu,http://tos.nexon.com/lab/gos/view.aspx?n4ArticleSN=173,,,,
 996980,202105,200900,202105,260900,202106,100700,202106,40700,0,0,210520_goddesscube,여신의 큐브 - 마피아,210520_goddesscube,http://tos.nexon.com/news/update/view.aspx?n4ArticleSN=2384&n4CategorySN=0,,,,
 996990,202106,10000,202106,60000,202107,10000,202106,250000,0,0,event_2106Burning,주말 앤 버닝 - 6월,event_2105Burning,http://tos.nexon.com/news/events/view.aspx?n4ArticleSN=328&n4ArticleCategorySN=1,,,,
 997000,202106,10000,202106,60000,202107,10000,202106,250000,0,0,event2106_VaivoraReward,바이보라 출석 - 6월,event_2006VaivoraReward,http://tos.nexon.com/news/events/view.aspx?n4ArticleSN=327&n4ArticleCategorySN=1,,,,
-997010,202105,200900,202105,260900,202106,100700,202106,40700,0,0,event2106_DevilsTemptation,마신의 유혹 - 6월,event2104_DevilsTemptation,http://tos.nexon.com/news/events/view.aspx?n4ArticleSN=326&n4ArticleCategorySN=1,,,,
+997010,202106,100900,202106,150000,202107,150700,202107,100000,0,0,event2106_DevilsTemptation,마신의 유혹 - STEM,event2104_DevilsTemptation,http://tos.nexon.com/news/events/view.aspx?n4ArticleSN=326&n4ArticleCategorySN=1,,,,
 997020,202105,60900,202105,110000,202105,270700,202105,220000,0,0,210506_family_SpecialGiftBox,가정의달 패키지,210506_family_SpecialGiftBox,http://tos.nexon.com/news/update/view.aspx?n4ArticleSN=2364&n4CategorySN=0,,,,
 997030,202105,60900,202105,110000,202106,100700,202106,50000,0,0,210506_TOS_CAMPING_EVENT,TOS 봄 캠핑 이벤트,210506_TOS_CAMPING_EVENT,http://tos.nexon.com/news/events/view.aspx?n4ArticleSN=325&n4ArticleCategorySN=1,,,,
 997040,202104,261100,202105,10000,202105,170000,202105,110000,0,0,210416_next_event,NEXT 프로젝트,210416_next_event,http://tos.nexon.com/news/tosnotice/view.aspx?n4ArticleSN=2348,,,,

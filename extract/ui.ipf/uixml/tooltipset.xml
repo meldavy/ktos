@@ -257,6 +257,20 @@
 			<richtext name="token_remaintime" margin="10 220 0 0" rect="0 0 120 24" format="남은 토큰 시간 : {#FF0000}%s{/}" param1="value" textalign="left top" resizebytext="true" spacey="0" maxwidth="0" fontname="brown_16" fixwidth="false" updateparent="false" drawbackground="false" slideshow="false" layout_gravity="left top"/>
 		</controls>
 	</tooltip>
+	<tooltip name="premium_boost" x="0" y="0" width="400" height="270" frameskin="none" UpdateScp="UPDATE_PREMIUM_BOOST_TOOLTIP" lifetime="90000" blendtime="1500" skin="">
+		<controls>
+			<groupbox name="gbox" margin="0 0 0 0" scrollbar="false" rect="0 0 400 250" hittestbox="false" skin="test_skin_01_btn_clicked" layout_gravity="left top"/>
+			<labelline name="labelline_1" margin="10 35 0 0" rect="0 0 380 2" skin="labelline_def" layout_gravity="left top"/>
+			<richtext name="richtext_1" margin="9 10 0 0" rect="0 0 380 24" format="{@st42}용병단 증표 부스트 혜택 적용{/}" textalign="left top" resizebytext="true" spacey="0" maxwidth="0" fontname="white_18_ol" fixwidth="false" updateparent="false" drawbackground="false" slideshow="false" layout_gravity="left top"/>
+			<richtext name="weekly_up" margin="10 70 0 0" rect="0 0 380 24" format="주간 획득량 제한 {img green_up_arrow 14 14}%s" param1="value" param1_def="100" textalign="left top" resizebytext="true" spacey="0" maxwidth="0" fontname="brown_16" fixwidth="false" updateparent="false" drawbackground="false" slideshow="false" layout_gravity="left top"/>
+			<richtext name="uphill" margin="10 95 0 0" rect="0 0 380 24" format="업힐 디펜스 1회 획득량 {img green_up_arrow 14 14}%s" param1="value" param1_def="20000" textalign="left top" resizebytext="true" spacey="0" maxwidth="0" fontname="brown_16" fixwidth="false" updateparent="false" drawbackground="false" slideshow="false" layout_gravity="left top"/>
+			<richtext name="rift" margin="10 95 0 0" rect="0 0 380 24" format="차원 붕괴 지점 1회 획득량 {img green_up_arrow 14 14}%s" param1="value" param1_def="20000" textalign="left top" resizebytext="true" spacey="0" maxwidth="0" fontname="brown_16" fixwidth="false" updateparent="false" drawbackground="false" slideshow="false" layout_gravity="left top"/>
+			<richtext name="solo_dun" margin="10 95 0 0" rect="0 0 380 24" format="베르니케 파편 던전 획득량 {img green_up_arrow 14 14}%s" param1="value" param1_def="20000" textalign="left top" resizebytext="true" spacey="0" maxwidth="0" fontname="brown_16" fixwidth="false" updateparent="false" drawbackground="false" slideshow="false" layout_gravity="left top"/>
+			<richtext name="weekly_boss" margin="10 45 0 0" rect="0 0 380 24" format="주간 보스 레이드 500K 대미지 보상 획득량 {img green_up_arrow 14 14}%s" param1="value" param1_def="20000" textalign="left top" resizebytext="true" spacey="0" maxwidth="0" fontname="brown_16" fixwidth="false" updateparent="false" drawbackground="false" slideshow="false" layout_gravity="left top"/>
+			<richtext name="field" margin="10 280 0 0" rect="0 0 380 24" format="필드 사냥시 획득량 {img green_up_arrow 14 14}%s%" param1="value" param1_def="100" textalign="left top" resizebytext="true" spacey="0" maxwidth="0" fontname="brown_16" fixwidth="false" updateparent="false" drawbackground="false" slideshow="false" layout_gravity="left top"/>			
+			<richtext name="remaintime" margin="10 220 0 0" rect="0 0 380 24" format="남은 시간 : {#FF0000}%s{/}" param1="value" textalign="left top" resizebytext="true" spacey="0" maxwidth="0" fontname="brown_16" fixwidth="false" updateparent="false" drawbackground="false" slideshow="false" layout_gravity="left top"/>
+		</controls>
+	</tooltip>
 	<tooltip name="reinforceitem" x="0" y="0" fixwidth="false" width="1640" height="0" moveable="false" frameskin="None" draw="false" blendtime="" UpdateScp="UPDATE_REINFORCE_ITEM_TOOLTIP">
 		<userconfig BOTTOM_MARGIN="10"/>
 		<controls>

@@ -912,7 +912,12 @@ function DRAW_EQUIP_SUBFRAME_FIXED_ICHOR(tooltipframe, invitem, inheritanceItem,
     local gBox = GET_CHILD(tooltipframe, mainframename, 'ui::CGroupBox')
     gBox:RemoveChild('tooltip_equip_property_fixed');
     
-	local tooltip_equip_property_CSet = gBox:CreateOrGetControlSet('tooltip_equip_property_fixed', 'tooltip_equip_property_fixed', 0, yPos);
+	local tooltip_equip_Cset = 'tooltip_equip_property_fixed'
+	if IS_LEFT_SUBFRAME_ACC(invitem) == true then
+		tooltip_equip_Cset = 'tooltip_equip_property_Luciferi'
+	end
+
+	local tooltip_equip_property_CSet = gBox:CreateOrGetControlSet(tooltip_equip_Cset, tooltip_equip_Cset, 0, yPos);
     local property_gbox = GET_CHILD(tooltip_equip_property_CSet, 'property_gbox', 'ui::CGroupBox');
 
     -- 아무것도 못그렸으면 컨트롤셋 지우고 리턴
@@ -942,6 +947,10 @@ function IS_NEED_TO_DRAW_SUBFRAME_ICHOR(invitem)
             return true
         end
     end
+
+	if IS_LEFT_SUBFRAME_ACC(invitem) == true then
+		return true
+	end
 
     return false
 end
@@ -1235,7 +1244,7 @@ function DRAW_EQUIP_DESC(tooltipframe, invitem, yPos, mainframename)
 
 	local desc = GET_ITEM_TOOLTIP_DESC(invitem);
 	
-	if desc == "" then -- 일단 그릴 설명이 있는지 검사. 없으면 컨트롤 셋 자체를 안만듬
+	if desc == "" or desc == " " then -- 일단 그릴 설명이 있는지 검사. 없으면 컨트롤 셋 자체를 안만듬
 		return yPos
 	end
 	

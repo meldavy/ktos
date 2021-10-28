@@ -478,6 +478,7 @@
         <Key Name="Magic_Lightning_Atk" Value="108282"/>
         <Key Name="Magic_Melee_Atk" Value="108281"/>
         <Key Name="EnableArkLvup" Value="108323"/>
+        <Key Name="MaxSocket_COUNT0" Value="108514"/>
     </KeyIDSpc>
     <KeyIDSpc Name="Party">
         <Key Name="P_PARTY_Q_040" Value="53"/>
@@ -4813,6 +4814,54 @@
         <Key Name="HairColor_white" Value="108440"/>
         <Key Name="TeamBattleRewardInfo" Value="108445"/>
         <Key Name="TeamBattleRewardSeason" Value="108448"/>
+        <Key Name="EVENT_2106_SUMMER_BREAK_DAY_COUNT" Value="108502"/>
+        <Key Name="EVENT_2106_SUMMER_BREAK_TOTAL_COUNT" Value="108481"/>
+        <Key Name="EVENT_2106_SUMMER_FESTA_COIN_COUNT" Value="108491"/>
+        <Key Name="EVENT_2106_SUMMER_FESTA_COOL_TIME1" Value="108478"/>
+        <Key Name="EVENT_2106_SUMMER_FESTA_COOL_TIME2" Value="108490"/>
+        <Key Name="EVENT_2106_SUMMER_FESTA_PLAY_TIME" Value="108480"/>
+        <Key Name="EVENT_2106_SUMMER_FESTA_SHOP_1" Value="108503"/>
+        <Key Name="EVENT_2106_SUMMER_FESTA_SHOP_10" Value="108488"/>
+        <Key Name="EVENT_2106_SUMMER_FESTA_SHOP_11" Value="108473"/>
+        <Key Name="EVENT_2106_SUMMER_FESTA_SHOP_12" Value="108479"/>
+        <Key Name="EVENT_2106_SUMMER_FESTA_SHOP_13" Value="108495"/>
+        <Key Name="EVENT_2106_SUMMER_FESTA_SHOP_14" Value="108474"/>
+        <Key Name="EVENT_2106_SUMMER_FESTA_SHOP_15" Value="108510"/>
+        <Key Name="EVENT_2106_SUMMER_FESTA_SHOP_16" Value="108512"/>
+        <Key Name="EVENT_2106_SUMMER_FESTA_SHOP_17" Value="108504"/>
+        <Key Name="EVENT_2106_SUMMER_FESTA_SHOP_18" Value="108486"/>
+        <Key Name="EVENT_2106_SUMMER_FESTA_SHOP_19" Value="108492"/>
+        <Key Name="EVENT_2106_SUMMER_FESTA_SHOP_2" Value="108499"/>
+        <Key Name="EVENT_2106_SUMMER_FESTA_SHOP_20" Value="108476"/>
+        <Key Name="EVENT_2106_SUMMER_FESTA_SHOP_21" Value="108497"/>
+        <Key Name="EVENT_2106_SUMMER_FESTA_SHOP_22" Value="108489"/>
+        <Key Name="EVENT_2106_SUMMER_FESTA_SHOP_23" Value="108509"/>
+        <Key Name="EVENT_2106_SUMMER_FESTA_SHOP_24" Value="108501"/>
+        <Key Name="EVENT_2106_SUMMER_FESTA_SHOP_25" Value="108500"/>
+        <Key Name="EVENT_2106_SUMMER_FESTA_SHOP_26" Value="108483"/>
+        <Key Name="EVENT_2106_SUMMER_FESTA_SHOP_27" Value="108513"/>
+        <Key Name="EVENT_2106_SUMMER_FESTA_SHOP_28" Value="108507"/>
+        <Key Name="EVENT_2106_SUMMER_FESTA_SHOP_3" Value="108475"/>
+        <Key Name="EVENT_2106_SUMMER_FESTA_SHOP_4" Value="108498"/>
+        <Key Name="EVENT_2106_SUMMER_FESTA_SHOP_5" Value="108485"/>
+        <Key Name="EVENT_2106_SUMMER_FESTA_SHOP_6" Value="108508"/>
+        <Key Name="EVENT_2106_SUMMER_FESTA_SHOP_7" Value="108505"/>
+        <Key Name="EVENT_2106_SUMMER_FESTA_SHOP_8" Value="108484"/>
+        <Key Name="EVENT_2106_SUMMER_FESTA_SHOP_9" Value="108477"/>
+        <Key Name="EVENT_2106_SUMMER_FESTA_WORLD_REWARD_1" Value="108482"/>
+        <Key Name="EVENT_2106_SUMMER_FESTA_WORLD_REWARD_2" Value="108493"/>
+        <Key Name="EVENT_2106_SUMMER_FESTA_WORLD_REWARD_3" Value="108511"/>
+        <Key Name="EVENT_2106_SUMMER_FESTA_WORLD_REWARD_4" Value="108487"/>
+        <Key Name="EVENT_2106_SUMMER_FESTA_WORLD_REWARD_5" Value="108506"/>
+        <Key Name="EVENT_2106_SUMMER_FESTA_WORLD_REWARD_6" Value="108494"/>
+        <Key Name="PVP_MINE_MISC_BOOST_END_DATETIME" Value="108496"/>
+        <Key Name="cherryblossom_jp_thema" Value="108408"/>
+        <Key Name="dress_cherryblossom_jp_1" Value="108414"/>
+        <Key Name="dress_cherryblossom_jp_2" Value="108410"/>
+        <Key Name="dress_cherryblossom_jp_3" Value="108409"/>
+        <Key Name="dress_cherryblossom_jp_4" Value="108412"/>
+        <Key Name="dress_cherryblossom_jp_5" Value="108411"/>
+        <Key Name="dress_cherryblossom_jp_6" Value="108413"/>
     </KeyIDSpc>
     <KeyIDSpc Name="PCEtc">
         <Key Name="Kill_boss_Clymen_Q2" Value="7788"/>
@@ -22250,7 +22299,7 @@
         <Key Name="EP13_F_SIAULIAI_3_SQ_06" Value="108428"/>
         <Key Name="EP13_F_SIAULIAI_3_SQ_07" Value="108422"/>
         <Key Name="MG_Last_EP13_F_SIAULIAI_1_SQ_02_MINI" Value="108434"/>
-        <Key Name="MG_Last_EP13_F_SIAULIAI_1_SQ_04_MINI" Value="108414"/>
+        <Key Name="MG_Last_EP13_F_SIAULIAI_1_SQ_04_MINI" Value="108415"/>
         <Key Name="MG_Last_EP13_F_SIAULIAI_1_SQ_05_MINI" Value="108435"/>
     </KeyIDSpc>
     <KeyIDSpc Name="Monster">

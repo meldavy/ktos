@@ -229,6 +229,9 @@ ClassID,ClassName,Name,UseDaily,UseWeekly
 6156,EVENT_2103_Title_13,칭호- 마리아의 친구,NO,NO
 6157,EVENT_2103_Title_14,칭호- 워시스의 친구,NO,NO
 6158,EVENT_2103_Title_15,칭호- 갈홍의 친구,NO,NO
+6159,EVENT_2106_Title_1,칭호 - Golden Watermelon,NO,NO
+6160,EVENT_2106_Title_2,칭호 - Silver Watermelon,NO,NO
+6161,EVENT_2106_Title_3,칭호 - Bronze Watermelon,NO,NO
 7001,PardonerAbility,기부 레벨,NO,NO
 7002,TaxAbility,세금 납부 레벨,NO,NO
 8001,FreeDungeon_under_68_1,시카리오스 기믹,NO,NO

@@ -572,12 +572,12 @@ function GET_TOOLTIP_ITEM_OBJECT(strarg, guid, numarg1)
 			viewObj.Level = temp_obj.AppendPropertyStatus;			
 			return viewObj, 1;
 		end
-	elseif strarg == 'ItemTradeShop' then
+	elseif strarg == 'ItemTradeShop' then		
 		local itemObj = GetClassByType('Item', guid)
 		viewObj = CloneIES_UseCP(itemObj);
 		if itemObj.StringArg == 'EnchantJewell' then
 			local temp_obj = GetClassByType('ItemTradeShop', numarg1)
-			viewObj.Level = temp_obj.TargetItemAppendValue;			
+			viewObj.Level = temp_obj.TargetItemAppendValue;					
 			return viewObj, 1;
 		end
 	elseif strarg == 'Tradeselectitem' then
@@ -612,6 +612,11 @@ function GET_TOOLTIP_ITEM_OBJECT(strarg, guid, numarg1)
 		end
 
 		return viewObj, 1;
+	elseif strarg == 'team_belonging' then
+		local itemObj = GetClassByType('Item', numarg1)		
+		viewObj = CloneIES_UseCP(itemObj)
+		viewObj.TeamBelonging = 1
+		return viewObj, 1
 	else
 		invitem = GET_ITEM_BY_GUID(guid, 0);
 	end
@@ -1302,7 +1307,7 @@ function IS_ENABLED_USER_TRADE_ITEM(invitem)
         return false;
 	elseif true == IS_DISABLED_TRADE(invitem, TRADE_TYPE_USER) then
 		return false;
-	elseif TryGetProp(invitem, 'TeamBelonging', 0) ~= 0 then
+	elseif TryGetProp(invitem, 'TeamBelonging', 0) ~= 0 or TryGetProp(invitem, 'CharacterBelonging', 0) ~= 0 then
 		return false;
     else
         return true;
@@ -1316,7 +1321,7 @@ function IS_ENABLED_MARKET_TRADE_ITEM(invitem)
         return false;
     elseif true == IS_DISABLED_TRADE(invitem, TRADE_TYPE_MARKET) then
 		return false;
-	elseif TryGetProp(invitem, 'TeamBelonging', 0) ~= 0 then
+	elseif TryGetProp(invitem, 'TeamBelonging', 0) ~= 0 or TryGetProp(invitem, 'CharacterBelonging', 0) ~= 0 then
 		return false;
     else
         return true;
@@ -1329,7 +1334,9 @@ function IS_ENABLED_TEAM_TRADE_ITEM(invitem)
     if false == itemProp:IsEnableTeamTrade() then
         return false;
     elseif true == IS_DISABLED_TRADE(invitem, TRADE_TYPE_TEAM) then
-        return false;
+		return false;
+	elseif TryGetProp(invitem, 'CharacterBelonging', 0) ~= 0 then -- 캐릭터 귀속
+		return false
     else
         return true;
 	end

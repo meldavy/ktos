@@ -106,10 +106,12 @@ function HIDDENABILITY_DECOMPOSE_SET_MATERIAL(frame, invitem)
     local itemobj = GetIES(invitem:GetObject());
     
     local text = GET_CHILD_RECURSIVELY(frame, "mat_text");
+    text:EnableTextOmitByWidth(true)
     text:ShowWindow(1);
     text:SetTextByKey("value", "");
     text:SetTextByKey("value", itemobj.Name);
-
+    text:SetTextTooltip(itemobj.Name)
+    
     local matslot = GET_CHILD_RECURSIVELY(frame, "matslot");
     HIDDENABILITY_DECOMPOSE_SET_SLOT(matslot, itemobj);
 end

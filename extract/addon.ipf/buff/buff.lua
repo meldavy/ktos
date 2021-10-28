@@ -203,6 +203,9 @@ function SET_BUFF_SLOT(slot, capt, class, buffType, handle, slotlist, buffIndex,
 	if class.ClassName == "Premium_Nexon" or class.ClassName =="Premium_Token" then
 		icon:SetTooltipType('premium');
 		icon:SetTooltipArg(handle, buffType, buff.arg1);
+	elseif TryGetProp(class, 'StringArg', 'None') == 'Ref_Account_datetime' then
+		icon:SetTooltipType('premium_boost')		
+		icon:SetTooltipArg(handle, buffType, buff.arg1);		
 	else
 	    icon:SetTooltipType('buff');
 	    if buffIndex ~= nil then

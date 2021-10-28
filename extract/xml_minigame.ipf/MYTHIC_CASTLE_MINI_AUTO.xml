@@ -283,6 +283,7 @@
                             </ToolScp>
                             <ToolScp Scp="MGAME_EVT_MULTIPLE_REWARD" Client="NO" UseSleep="NO">
                                 <Str Str="Multiple_Token_MythicAuto"/>
+				<Str Str="MythicDungeon_Auto"/>
                                 <Str Str="MYTHIC_DUNGEON_CLEAR_MULTIPLE"/>
                             </ToolScp>
                             <ToolScp Scp="MGAME_MSG_ICON" Client="YES" UseSleep="NO">

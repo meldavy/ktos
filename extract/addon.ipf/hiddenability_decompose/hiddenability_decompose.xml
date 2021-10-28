@@ -19,7 +19,7 @@
 		<!-- material -->
 		<groupbox name="mat_gb" rect="0 0 500 220" margin="0 220 0 0" layout_gravity="center top" draw="false" scrollbar="false"/>
 		<slot name="matslot" parent="mat_gb" rect="0 0 141 141" margin="0 0 0 0" layout_gravity="center top" draw="false" DropScp="HIDDENABILITY_DECOMPOSE_ITEM_DROP" PopScp="HIDDENABILITY_DECOMPOSE_ITEM_POP" dropsound="icon_get_down"/> 
-		<richtext name="mat_text" parent="mat_gb" rect="0 0 120 20" margin="0 175 0 0" layout_gravity="center top" draw="false" format="{@st66b}{s18} %s" param1="value" param1_def="아이템 이름" textalign="center center" maxwidth="0" resizebytext="true"/>
+		<richtext name="mat_text" parent="mat_gb" rect="0 0 320 20" margin="0 175 0 0" layout_gravity="center top" draw="false" format="{@st66b}{s18} %s" param1="value" param1_def="아이템 이름" textalign="left center" maxwidth="0" resizebytext="false"/>
 		<!-- center ui -->
 		<groupbox name="text_bg" rect="0 0 490 100" margin="0 420 0 0" layout_gravity="center top" draw="false"/>
 		<picture name="pic" parent="text_bg" rect="0 0 490 92" margin="-6 0 0 0" layout_gravity="center center" hittest="false" image="BnYellow_skin" draw="true"/>

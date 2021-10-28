@@ -761,6 +761,20 @@
 				<Node2 ClassID="782" ClassName="Hair86" Face="head84" Hair="Hair86" Name="리틀벅 인형 잠옷 헬멧 (남)" EngName="helmet_m_ep12demonlord01" Color="오렌지" EngColor="orange" UseableBarrack="NO" ItemClassName="EP12_helmet_m_ep12demonlord" IsJiggleBoneHair="YES"/>
 				<Node2 ClassID="783" ClassName="Hair86" Face="head84" Hair="Hair86" Name="리틀벅 인형 잠옷 헬멧 (남)" EngName="helmet_m_ep12demonlord01" Color="브라운" EngColor="brown" UseableBarrack="NO" ItemClassName="EP12_helmet_m_ep12demonlord" IsJiggleBoneHair="YES"/>
 				<Node2 ClassID="784" ClassName="Hair86" Face="head84" Hair="Hair86" Name="리틀벅 인형 잠옷 헬멧 (남)" EngName="helmet_m_ep12demonlord01" Color="미드나이트 블루" EngColor="midnightblue" UseableBarrack="NO" ItemClassName="EP12_helmet_m_ep12demonlord" IsJiggleBoneHair="YES"/>
+				<Node2 ClassID="785" ClassName="Hair88" Face="head86" Hair="Hair88" Name="STEM 실험 과학자 헬멧" EngName="helmet_ep13stem" Color="기본" EngColor="default" UseableBarrack="NO" ItemClassName="EP13_helmet_stem" IsJiggleBoneHair="YES"/>
+				<Node2 ClassID="786" ClassName="Hair88" Face="head86" Hair="Hair88" Name="STEM 실험 과학자 헬멧" EngName="helmet_ep13stem" Color="라이트 브라운" EngColor="black" UseableBarrack="NO" ItemClassName="EP13_helmet_stem" IsJiggleBoneHair="YES"/>
+				<Node2 ClassID="787" ClassName="Hair88" Face="head86" Hair="Hair88" Name="STEM 실험 과학자 헬멧" EngName="helmet_ep13stem" Color="애플 민트" EngColor="blue" UseableBarrack="NO" ItemClassName="EP13_helmet_stem" IsJiggleBoneHair="YES"/>
+				<Node2 ClassID="788" ClassName="Hair88" Face="head86" Hair="Hair88" Name="STEM 실험 과학자 헬멧" EngName="helmet_ep13stem" Color="다크 블루" EngColor="pink" UseableBarrack="NO" ItemClassName="EP13_helmet_stem" IsJiggleBoneHair="YES"/>
+				<Node2 ClassID="789" ClassName="Hair88" Face="head86" Hair="Hair88" Name="STEM 실험 과학자 헬멧" EngName="helmet_ep13stem" Color="흰색" EngColor="white" UseableBarrack="NO" ItemClassName="EP13_helmet_stem" IsJiggleBoneHair="YES"/>
+				<Node2 ClassID="790" ClassName="Hair88" Face="head86" Hair="Hair88" Name="STEM 실험 과학자 헬멧" EngName="helmet_ep13stem" Color="애쉬 블론드" EngColor="blond" UseableBarrack="NO" ItemClassName="EP13_helmet_stem" IsJiggleBoneHair="YES"/>
+				<Node2 ClassID="791" ClassName="Hair88" Face="head86" Hair="Hair88" Name="STEM 실험 과학자 헬멧" EngName="helmet_ep13stem" Color="루비 와인" EngColor="red" UseableBarrack="NO" ItemClassName="EP13_helmet_stem" IsJiggleBoneHair="YES"/>
+				<Node2 ClassID="792" ClassName="Hair88" Face="head86" Hair="Hair88" Name="STEM 실험 과학자 헬멧" EngName="helmet_ep13stem" Color="파스텔 그린" EngColor="green" UseableBarrack="NO" ItemClassName="EP13_helmet_stem" IsJiggleBoneHair="YES"/>
+				<Node2 ClassID="793" ClassName="Hair88" Face="head86" Hair="Hair88" Name="STEM 실험 과학자 헬멧" EngName="helmet_ep13stem" Color="애쉬 그레이" EngColor="gray" UseableBarrack="NO" ItemClassName="EP13_helmet_stem" IsJiggleBoneHair="YES"/>
+				<Node2 ClassID="794" ClassName="Hair88" Face="head86" Hair="Hair88" Name="STEM 실험 과학자 헬멧" EngName="helmet_ep13stem" Color="라이트 살몬" EngColor="lightsalmon" UseableBarrack="NO" ItemClassName="EP13_helmet_stem" IsJiggleBoneHair="YES"/>
+				<Node2 ClassID="795" ClassName="Hair88" Face="head86" Hair="Hair88" Name="STEM 실험 과학자 헬멧" EngName="helmet_ep13stem" Color="바이올렛" EngColor="purple" UseableBarrack="NO" ItemClassName="EP13_helmet_stem" IsJiggleBoneHair="YES"/>
+				<Node2 ClassID="796" ClassName="Hair88" Face="head86" Hair="Hair88" Name="STEM 실험 과학자 헬멧" EngName="helmet_ep13stem" Color="오렌지" EngColor="orange" UseableBarrack="NO" ItemClassName="EP13_helmet_stem" IsJiggleBoneHair="YES"/>
+				<Node2 ClassID="797" ClassName="Hair88" Face="head86" Hair="Hair88" Name="STEM 실험 과학자 헬멧" EngName="helmet_ep13stem" Color="브라운" EngColor="brown" UseableBarrack="NO" ItemClassName="EP13_helmet_stem" IsJiggleBoneHair="YES"/>
+				<Node2 ClassID="798" ClassName="Hair88" Face="head86" Hair="Hair88" Name="STEM 실험 과학자 헬멧" EngName="helmet_ep13stem" Color="미드나이트 블루" EngColor="midnightblue" UseableBarrack="NO" ItemClassName="EP13_helmet_stem" IsJiggleBoneHair="YES"/>
 			</Node1>
 			<Node1 ClassID="2" ClassName="FEMALE">
 				<Node2 ClassID="1" ClassName="Hair01" Face="head" Hair="hair" Name="숏 컷" EngName="Shortcut" Color="기본" EngColor="default" UseableBarrack="YES" IsJiggleBoneHair=" NO"/>
@@ -1570,6 +1584,20 @@
 				<Node2 ClassID="843" ClassName="Hair87" Face="head85" Hair="Hair87" Name="말순이 인형 잠옷 헬멧 (여)" EngName="helmet_f_ep12demonlord01" Color="오렌지" EngColor="orange" UseableBarrack="NO" ItemClassName="EP12_helmet_f_ep12demonlord" IsJiggleBoneHair="YES"/>
 				<Node2 ClassID="844" ClassName="Hair87" Face="head85" Hair="Hair87" Name="말순이 인형 잠옷 헬멧 (여)" EngName="helmet_f_ep12demonlord01" Color="브라운" EngColor="brown" UseableBarrack="NO" ItemClassName="EP12_helmet_f_ep12demonlord" IsJiggleBoneHair="YES"/>
 				<Node2 ClassID="845" ClassName="Hair87" Face="head85" Hair="Hair87" Name="말순이 인형 잠옷 헬멧 (여)" EngName="helmet_f_ep12demonlord01" Color="미드나이트 블루" EngColor="midnightblue" UseableBarrack="NO" ItemClassName="EP12_helmet_f_ep12demonlord" IsJiggleBoneHair="YES"/>
+				<Node2 ClassID="846" ClassName="Hair89" Face="head87" Hair="Hair89" Name="STEM 실험 과학자 헬멧" EngName="helmet_ep13stem" Color="기본" EngColor="default" UseableBarrack="NO" ItemClassName="EP13_helmet_stem" IsJiggleBoneHair="YES"/>
+				<Node2 ClassID="847" ClassName="Hair89" Face="head87" Hair="Hair89" Name="STEM 실험 과학자 헬멧" EngName="helmet_ep13stem" Color="라이트 브라운" EngColor="black" UseableBarrack="NO" ItemClassName="EP13_helmet_stem" IsJiggleBoneHair="YES"/>
+				<Node2 ClassID="848" ClassName="Hair89" Face="head87" Hair="Hair89" Name="STEM 실험 과학자 헬멧" EngName="helmet_ep13stem" Color="애플 민트" EngColor="blue" UseableBarrack="NO" ItemClassName="EP13_helmet_stem" IsJiggleBoneHair="YES"/>
+				<Node2 ClassID="849" ClassName="Hair89" Face="head87" Hair="Hair89" Name="STEM 실험 과학자 헬멧" EngName="helmet_ep13stem" Color="다크 블루" EngColor="pink" UseableBarrack="NO" ItemClassName="EP13_helmet_stem" IsJiggleBoneHair="YES"/>
+				<Node2 ClassID="850" ClassName="Hair89" Face="head87" Hair="Hair89" Name="STEM 실험 과학자 헬멧" EngName="helmet_ep13stem" Color="흰색" EngColor="white" UseableBarrack="NO" ItemClassName="EP13_helmet_stem" IsJiggleBoneHair="YES"/>
+				<Node2 ClassID="851" ClassName="Hair89" Face="head87" Hair="Hair89" Name="STEM 실험 과학자 헬멧" EngName="helmet_ep13stem" Color="애쉬 블론드" EngColor="blond" UseableBarrack="NO" ItemClassName="EP13_helmet_stem" IsJiggleBoneHair="YES"/>
+				<Node2 ClassID="852" ClassName="Hair89" Face="head87" Hair="Hair89" Name="STEM 실험 과학자 헬멧" EngName="helmet_ep13stem" Color="루비 와인" EngColor="red" UseableBarrack="NO" ItemClassName="EP13_helmet_stem" IsJiggleBoneHair="YES"/>
+				<Node2 ClassID="853" ClassName="Hair89" Face="head87" Hair="Hair89" Name="STEM 실험 과학자 헬멧" EngName="helmet_ep13stem" Color="파스텔 그린" EngColor="green" UseableBarrack="NO" ItemClassName="EP13_helmet_stem" IsJiggleBoneHair="YES"/>
+				<Node2 ClassID="854" ClassName="Hair89" Face="head87" Hair="Hair89" Name="STEM 실험 과학자 헬멧" EngName="helmet_ep13stem" Color="애쉬 그레이" EngColor="gray" UseableBarrack="NO" ItemClassName="EP13_helmet_stem" IsJiggleBoneHair="YES"/>
+				<Node2 ClassID="855" ClassName="Hair89" Face="head87" Hair="Hair89" Name="STEM 실험 과학자 헬멧" EngName="helmet_ep13stem" Color="라이트 살몬" EngColor="lightsalmon" UseableBarrack="NO" ItemClassName="EP13_helmet_stem" IsJiggleBoneHair="YES"/>
+				<Node2 ClassID="856" ClassName="Hair89" Face="head87" Hair="Hair89" Name="STEM 실험 과학자 헬멧" EngName="helmet_ep13stem" Color="바이올렛" EngColor="purple" UseableBarrack="NO" ItemClassName="EP13_helmet_stem" IsJiggleBoneHair="YES"/>
+				<Node2 ClassID="857" ClassName="Hair89" Face="head87" Hair="Hair89" Name="STEM 실험 과학자 헬멧" EngName="helmet_ep13stem" Color="오렌지" EngColor="orange" UseableBarrack="NO" ItemClassName="EP13_helmet_stem" IsJiggleBoneHair="YES"/>
+				<Node2 ClassID="858" ClassName="Hair89" Face="head87" Hair="Hair89" Name="STEM 실험 과학자 헬멧" EngName="helmet_ep13stem" Color="브라운" EngColor="brown" UseableBarrack="NO" ItemClassName="EP13_helmet_stem" IsJiggleBoneHair="YES"/>
+				<Node2 ClassID="859" ClassName="Hair89" Face="head87" Hair="Hair89" Name="STEM 실험 과학자 헬멧" EngName="helmet_ep13stem" Color="미드나이트 블루" EngColor="midnightblue" UseableBarrack="NO" ItemClassName="EP13_helmet_stem" IsJiggleBoneHair="YES"/>
 			</Node1>
 		</Class>
 	</Category>

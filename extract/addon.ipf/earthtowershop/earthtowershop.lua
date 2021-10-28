@@ -551,7 +551,7 @@ function EARTH_TOWER_INIT(frame, shopType)
         close:SetTextTooltip(ScpArgMsg('CloseUI{NAME}', 'NAME', ScpArgMsg("EVENT_HALLOWEEN_SHOP_NAME")));
     elseif shopType == 'PVPMine' then
         title:SetText('{@st43}'..ScpArgMsg("pvp_mine_shop_name"));
-        close:SetTextTooltip(ScpArgMsg('CloseUI{NAME}', 'NAME', ScpArgMsg("pvp_mine_shop_name")));
+        close:SetTextTooltip(ScpArgMsg('CloseUI{NAME}', 'NAME', ScpArgMsg("pvp_mine_shop_name")));        
         EARTH_TOWER_SET_PROPERTY_COUNT(propertyRemain, 'misc_pvp_mine2', "MISC_PVP_MINE2")
     elseif shopType == 'MCShop1' then
         title:SetText('{@st43}'..ScpArgMsg("MASSIVE_CONTENTS_SHOP_NAME"));
@@ -890,7 +890,12 @@ function EXCHANGE_CREATE_TREE_NODE_CTRL(ctrlset, cls, shopType)
     if targetItem.StringArg == "EnchantJewell" and cls.TargetItemAppendProperty ~= 'None' then
         SET_ITEM_TOOLTIP_BY_CLASSID(itemIcon, targetItem.ClassName, 'ItemTradeShop', cls.ClassName);
     else  
-        SET_ITEM_TOOLTIP_ALL_TYPE(itemIcon, nil, targetItem.ClassName, '', targetItem.ClassID, 0);
+        SET_ITEM_TOOLTIP_ALL_TYPE(itemIcon, nil, targetItem.ClassName, '', targetItem.ClassID, 0);    
+        if TryGetProp(recipecls, 'BelongingType', 'None') == 'Team' then
+            itemIcon:SetTooltipStrArg('team_belonging') -- 팀 귀속용 str arg
+        elseif TryGetProp(recipecls, 'BelongingType', 'None') == 'Character' then
+            itemIcon:SetTooltipStrArg('char_belonging') -- 캐릭터 귀속용 str arg
+        end
     end
     
     local itemCount = 0;
@@ -1166,7 +1171,7 @@ function CLICK_EXCHANGE_SHOP_CATEGORY(ctrlSet, ctrl, strArg, numArg)
     DRAW_EXCHANGE_SHOP_IETMS(strArg)
 end
 
-function DRAW_EXCHANGE_SHOP_IETMS(categoryName)
+function DRAW_EXCHANGE_SHOP_IETMS(categoryName)    
     if categoryName == nil then
         return;
     end

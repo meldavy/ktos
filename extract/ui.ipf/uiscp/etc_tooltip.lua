@@ -739,3 +739,23 @@ function DRAW_ETC_EVENT_EQUIP(tooltipframe, invitem, argStr)
 	local CompItemToolTipScp = _G[ 'ITEM_TOOLTIP_' .. itemCls.ToolTipScp];
 	CompItemToolTipScp(tooltipframe, itemCls, argStr, "usesubframe"); -- usesubframe frame
 end
+
+local function comma_value(n)
+	local left,num,right = string.match(n,'^([^%d]*%d)(%d*)(.-)$')
+	return left..(num:reverse():gsub('(%d%d%d)','%1,'):reverse())..right
+end
+
+-- 용병단 증표 부스트
+function PVP_MINE_MISC_BOOST_DESC(item)	
+	local pc = GetMyPCObject()
+	
+	local a = comma_value(GET_PVP_MINE_MISC_BOOST_COUNT2(pc)) -- 주간 최대치
+	local b = comma_value(GET_ADDITIONAL_DROP_COUNT_PVP_MINE_MISC_BOOST2(pc, 'uphill')) -- 업힐
+	local c = comma_value(GET_ADDITIONAL_DROP_COUNT_PVP_MINE_MISC_BOOST2(pc, 'rift')) -- 차붕
+	local d = comma_value(GET_ADDITIONAL_DROP_COUNT_PVP_MINE_MISC_BOOST2(pc, 'solo_dun')) -- 베르니케
+	local e = comma_value(GET_ADDITIONAL_DROP_COUNT_PVP_MINE_MISC_BOOST2(pc, 'weekly_boss')) -- 주간 보스
+	local f = comma_value((GET_PVP_MINE_MISC_BOOST_FIELD_RATE2(pc) - 1) * 100) -- 필드 획득량
+
+	local clmsg = ScpArgMsg("pvp_mine_misc_boost_tooltip{a}{b}{c}{d}{e}{f}", "a", a ,"b", b, 'c', c, 'd', d, 'e', e, 'f', f);	
+	return clmsg
+end

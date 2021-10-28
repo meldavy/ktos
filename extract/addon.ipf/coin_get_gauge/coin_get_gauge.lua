@@ -22,6 +22,10 @@ function COIN_GET_GAUGE_SET(frame, msg, argStr, argNum)
         maxValue = maxValue + bonusValue
     end
 
+    if PVP_MINE_MISC_BOOST_EXPIRED(GetMyPCObject()) == false then
+        maxValue = maxValue + GET_PVP_MINE_MISC_BOOST_COUNT2()
+    end
+
     local get_gauge = GET_CHILD_RECURSIVELY(frame, "get_gauge")
     if currentValue >= maxValue then
         get_gauge:SetPoint(maxValue, maxValue)
@@ -39,12 +43,24 @@ end
 function COIN_GET_GAUGE_UPDATE(frame, msg, argStr, argNum)
     local get_gauge = GET_CHILD_RECURSIVELY(frame, "get_gauge")
     local currentValue = get_gauge:GetCurPoint()
-    currentValue = currentValue + argNum
+
+    if argStr == 'minus' then
+        currentValue = currentValue - argNum
+    else
+        if argNum ~= nil then
+            currentValue = currentValue + argNum
+        end
+    end
+    
     local maxValue = tonumber(MAX_WEEKLY_PVP_MINE_COUNT)
     local isTokenState = session.loginInfo.IsPremiumState(ITEM_TOKEN)
     if isTokenState == true then
         local bonusValue = tonumber(WEEKLY_PVP_MINE_COUNT_TOKEN_BONUS)
         maxValue = maxValue + bonusValue
+    end
+
+    if PVP_MINE_MISC_BOOST_EXPIRED(GetMyPCObject()) == false then
+        maxValue = maxValue + GET_PVP_MINE_MISC_BOOST_COUNT2()
     end
 
     if currentValue >= maxValue then

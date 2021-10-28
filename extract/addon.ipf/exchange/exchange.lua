@@ -148,7 +148,7 @@ local function _EXCHANGE_ADD_FROM_INV(obj, item, tradeCnt)
 		return;
 	end
     
-    if TryGetProp(obj, 'TeamBelonging', 0) ~= 0 then
+    if TryGetProp(obj, 'TeamBelonging', 0) ~= 0 or TryGetProp(obj, 'CharacterBelonging', 0) then
         ui.AlarmMsg("ItemIsNotTradable");
 		return;
     end

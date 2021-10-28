@@ -3558,3 +3558,14 @@ function SCR_IS_LEVEL_DUNGEON(pc)
 
 	return 'NO'
 end
+
+
+function IS_LEFT_SUBFRAME_ACC(item)
+    local str = TryGetProp(item, 'StringArg', 'None')
+    local ClsName = TryGetProp(item, 'ClassName', 'None')
+    if str == 'Half_Acc_EP12' or str == 'Luciferi' or str == 'Acc_EP12' or (str == 'pvp_Mine' and nil ~= string.find(ClsName, 'PVP_EP12')) then
+        return true
+    else
+        return false
+    end
+end

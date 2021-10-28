@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by ÀÌÁ¤¿ë (IMCGames Co., Ltd) -->
+<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by IMCGames Co., Ltd (IMCGames Co., Ltd) -->
 <ComponentList>
+	<Particle name="light049_pivot" texture="light049" width="5.00" height="5.00" pivot_x="0.50" pivot_y="0" texel_x="0" texel_y="0" texel_width="256" texel_height="256"/>
+	<Particle name="dash007_pivot" texture="dash007" width="4.00" height="4.00" pivot_x="0.50" pivot_y="0" texel_x="0" texel_y="0" texel_width="128" texel_height="128"/>
+	<Particle name="dash009_pivot" texture="dash009" width="5.00" height="5.00" pivot_x="1.00" pivot_y="0.50" texel_x="0" texel_y="0" texel_width="128" texel_height="64"/>
 	<Particle name="status_icon_mvp" texture="status_icon_mvp" width="5.00" height="5.00" pivot_x="0.50" pivot_y="0.50" texel_x="0" texel_y="0" texel_width="100" texel_height="100"/>
 	<Particle name="dash005_1_green" texture="dash005_1_green" width="1.00" height="1.00" pivot_x="0.00" pivot_y="0.50" texel_x="0" texel_y="0" texel_width="128" texel_height="64"/>
 	<Particle name="pattern011_alpha3" texture="pattern011_alpha3" width="5.00" height="5.00" pivot_x="0.50" pivot_y="0.50" texel_x="0" texel_y="0" texel_width="256" texel_height="256"/>
@@ -11,9 +14,9 @@
 	<Particle name="pattern011_orange" texture="pattern011_orange" width="5.00" height="5.00" pivot_x="0.50" pivot_y="0.50" texel_x="0" texel_y="0" texel_width="256" texel_height="256"/>
 	<Particle name="leaf007" texture="leaf007" width="5.00" height="5.00" pivot_x="0.50" pivot_y="0.50" texel_x="0" texel_y="0" texel_width="256" texel_height="256"/>
 	<Particle name="status_icon_badword" texture="status_icon_badword" width="5.00" height="5.00" pivot_x="0.50" pivot_y="0.50" texel_x="0" texel_y="0" texel_width="100" texel_height="100"/>
-	<Particle name="line006_2" texture="line006" width="5.00" height="5.00" pivot_x="0.5" pivot_y="0" texel_x="0" texel_y="0" texel_width="128" texel_height="128"/>
-	<Particle name="line006" texture="line006" width="5.00" height="5.00" pivot_x="0.5" pivot_y="0.5" texel_x="0" texel_y="0" texel_width="128" texel_height="128"/>
-	<Particle name="bat3" texture="bat3" width="5.00" height="5.00" pivot_x="0.5" pivot_y="0.5" texel_x="101" texel_y="0" texel_width="64" texel_height="64"/>
+	<Particle name="line006_2" texture="line006" width="5.00" height="5.00" pivot_x="0.50" pivot_y="0" texel_x="0" texel_y="0" texel_width="128" texel_height="128"/>
+	<Particle name="line006" texture="line006" width="5.00" height="5.00" pivot_x="0.50" pivot_y="0.50" texel_x="0" texel_y="0" texel_width="128" texel_height="128"/>
+	<Particle name="bat3" texture="bat3" width="5.00" height="5.00" pivot_x="0.50" pivot_y="0.50" texel_x="101" texel_y="0" texel_width="64" texel_height="64"/>
 	<Particle name="circle055" texture="circle055" width="5.00" height="5.00" pivot_x="0.50" pivot_y="0.50" texel_x="0" texel_y="0" texel_width="256" texel_height="256"/>
 	<Particle name="circle054_1" texture="circle054_1" width="5.00" height="5.00" pivot_x="0.50" pivot_y="0.50" texel_x="0" texel_y="0" texel_width="256" texel_height="256"/>
 	<Particle name="circle054" texture="circle054" width="5.00" height="5.00" pivot_x="0.50" pivot_y="0.50" texel_x="0" texel_y="0" texel_width="256" texel_height="256"/>
@@ -726,6 +729,12 @@
 	<Trail name="dash001_pink" texture="dash001_pink" height="5.00" texel_x="0" texel_y="0" texel_width="32" texel_height="16"/>
 	<Trail name="dash001" texture="dash001" height="5.00" texel_x="0" texel_y="0" texel_width="32" texel_height="16"/>
 	<Trail name="smoke002" texture="smoke002" height="10.00" texel_x="512" texel_y="512" texel_width="64" texel_height="64"/>
+	<Model name="effect_ep13stem_crossbow" model="effect_ep13stem_crossbow.xac" motion="None" texturepath="effect\high\modeltexture\" overlap="false" AlphaType="BLEND"/>
+	<Model name="effect_ep13stem01" model="effect_ep13stem01.xac" motion="effect_ep13stem01_ani.xsm" texturepath="effect\high\modeltexture\" overlap="false" AlphaType="BLEND"/>
+	<Model name="effect_ep13stem02" model="effect_ep13stem02.xac" motion="None" texturepath="effect\high\modeltexture\" overlap="false" AlphaType="BLEND"/>
+	<Model name="episode13_2_wendigo_fire" model="episode13_2_wendigo_fire.xac" motion="None" texturepath="effect\high\modeltexture\" overlap="false" AlphaType="BLEND"/>
+	<Model name="effect_ep13stem" model="effect_ep13stem.xac" motion="effect_ep13stem_ani.xsm" texturepath="effect\high\modeltexture\" overlap="false" AlphaType="BLEND"/>
+	<Model name="mokslas_researcher_flask" model="mokslas_researcher_flask.xac" motion="None" texturepath="effect\high\modeltexture\" overlap="false" AlphaType="BLEND"/>
 	<Model name="orsha_catapult001" model="orsha_catapult001.xac" motion="None" texturepath="effect\high\modeltexture\" overlap="false" AlphaType="BLEND"/>
 	<Model name="hock_swing001" model="hock_swing001.xac" motion="None" texturepath="effect\high\modeltexture\" overlap="false" AlphaType="BLEND"/>
 	<Model name="timeeruption001" model="timeeruption001.xac" motion="None" texturepath="effect\high\modeltexture\" overlap="true" AlphaType="BLEND"/>
@@ -1764,6 +1773,7 @@
 	<Model name="Corsair_Hook" model="Corsair_Hook.xac" motion="None" texturepath="item_texture\" overlap="false" AlphaType="TEST"/>
 	<Model name="potion" model="artefact_potion_hpsp.xac" motion="None" texturepath="item_texture\" overlap="false" AlphaType="TEST"/>
 	<Model name="I_boss_mokslas_valdovas_dead" model="boss_mokslas_valdovas_dead.xac" motion="boss_mokslas_valdovas_dead_ani.xsm" texturepath="char_texture\monster\boss_mokslas_valdovas\" overlap="false" AlphaType="TEST"/>
+	<Model name="I_boss_medusa_mirror_dead" model="boss_medusa_mirror_dead.xac" motion="boss_medusa_mirror_dead_ani.xsm" texturepath="char_texture\monster\boss_medusa_mirror\" overlap="false" AlphaType="TEST"/>
 	<Text name="Text_damage_self" caption="" fontfilename="ORIGINAL" fontsize="24" bold="0" italic="0" outline="0" dropshadow="0" mindistance="100.00" maxdistance="300.00"/>
 	<Text name="Text_damage_decision" caption="" fontfilename="ORIGINAL" fontsize="20" bold="1" italic="0" outline="1" dropshadow="0" mindistance="50.00" maxdistance="150.00"/>
 	<Text name="Text_destination" caption="" fontfilename="ORIGINAL" fontsize="28" bold="0" italic="0" outline="0" dropshadow="0" mindistance="100.00" maxdistance="300.00"/>

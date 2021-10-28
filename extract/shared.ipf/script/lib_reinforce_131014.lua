@@ -61,11 +61,12 @@ function IS_MORU_NOT_DESTROY_TARGET_ITEM(moruItem)
         or moruItem.ClassName == "Moru_Gold_14d_Team" 
         or moruItem.ClassName == "Moru_Gold_EVENT_1710_NEWCHARACTER"
         or moruItem.ClassName == "Moru_Gold_14d_Team_event1909" 
-        or moruItem.StringArg == 'gold_Moru' then
+        or moruItem.StringArg == 'gold_Moru' 
+        or moruItem.StringArg == 'blessed_gold_Moru' then
         return true, 'gold';
     end
 
-    if moruItem.StringArg == 'unique_gold_Moru' then
+    if moruItem.StringArg == 'unique_gold_Moru' or moruItem.StringArg == 'blessed_ruby_Moru' then
         return true, 'ruby'
     end
 
@@ -281,6 +282,16 @@ function GET_REINFORCE_PRICE(fromItem, moruItem, pc)
     -- pvp템의 강화 비용 1/10로
     if TryGetProp(fromItem, 'StringArg', 'None') == 'FreePvP' then
         value = value * 0.1        
+    end
+
+    -- 축복받은 루비 모루 가격 30% 인하
+    if TryGetProp(moruItem, 'StringArg', 'None') == 'blessed_ruby_Moru' and IsBuffApplied(pc, "Event_Reinforce_Discount_50") == "NO" then
+        value = value * 0.7        
+    end
+
+    -- 축복받은 황금 모루 가격 50% 인하
+    if TryGetProp(moruItem, 'StringArg', 'None') == 'blessed_gold_Moru' and IsBuffApplied(pc, "Event_Reinforce_Discount_50") == "NO" then 
+        value = value * 0.5    
     end
 
     return SyncFloor(value);

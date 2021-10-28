@@ -2059,38 +2059,38 @@ end
 
 -- done , 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_GET_TargeSmash_Ratio(skill)
-
-    local pc = GetSkillOwner(skill);
-    local abil = GetAbility(pc, "Rodelero17") 
     local value = 0
-    if abil ~= nil then 
-        return SCR_ABIL_ADD_SKILLFACTOR_TOOLTIP(abil);
+    local pc = GetSkillOwner(skill)
+    local abil = GetAbility(pc, "Rodelero31")
+    if abil ~= nil and TryGetProp(abil, "ActiveState", 0) == 1 then
+        value = abil.Level * 3
     end
 
+    return value
 end
 
 -- done , 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_GET_ShieldPush_Ratio2(skill)
-
-    local pc = GetSkillOwner(skill);
-    local abil = GetAbility(pc, "Rodelero20") 
     local value = 0
-    if abil ~= nil then 
-        return SCR_ABIL_ADD_SKILLFACTOR_TOOLTIP(abil);
+    local pc = GetSkillOwner(skill)
+    local abil = GetAbility(pc, "Rodelero31")
+    if abil ~= nil and TryGetProp(abil, "ActiveState", 0) == 1 then
+        value = abil.Level * 3
     end
 
+    return value
 end
 
 -- done , 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_GET_ShieldShoving_Ratio(skill)
-
-    local pc = GetSkillOwner(skill);
-    local abil = GetAbility(pc, "Rodelero26") 
     local value = 0
-    if abil ~= nil then 
-        return SCR_ABIL_ADD_SKILLFACTOR_TOOLTIP(abil);
+    local pc = GetSkillOwner(skill)
+    local abil = GetAbility(pc, "Rodelero31")
+    if abil ~= nil and TryGetProp(abil, "ActiveState", 0) == 1 then
+        value = abil.Level * 3
     end
 
+    return value
 end
 
 -- done , 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
@@ -2105,14 +2105,14 @@ end
 
 -- done , 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_GET_ShieldBash_Ratio(skill)
-
-    local pc = GetSkillOwner(skill);
-    local abil = GetAbility(pc, "Rodelero27") 
     local value = 0
-    if abil ~= nil then 
-        return SCR_ABIL_ADD_SKILLFACTOR_TOOLTIP(abil);
+    local pc = GetSkillOwner(skill)
+    local abil = GetAbility(pc, "Rodelero31")
+    if abil ~= nil and TryGetProp(abil, "ActiveState", 0) == 1 then
+        value = abil.Level * 3
     end
 
+    return value
 end
 
 -- done , 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
@@ -2138,14 +2138,14 @@ end
 
 -- done , 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_GET_ShootingStar_Ratio(skill)
-
-    local pc = GetSkillOwner(skill);
-    local abil = GetAbility(pc, "Rodelero23") 
     local value = 0
-    if abil ~= nil then 
-        return SCR_ABIL_ADD_SKILLFACTOR_TOOLTIP(abil);
+    local pc = GetSkillOwner(skill)
+    local abil = GetAbility(pc, "Rodelero31")
+    if abil ~= nil and TryGetProp(abil, "ActiveState", 0) == 1 then
+        value = abil.Level * 3
     end
 
+    return value
 end
 
 -- done , 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
@@ -9764,8 +9764,8 @@ function SCR_GET_SwashBuckling_Ratio(skill)
     local pc = GetSkillOwner(skill);
     local value = 4 * skill.Level;
     
-    if IsPVPField(pc) == 1 then
-        value = skill.Level;
+    if IsPVPField(pc) == 1 and value > 2 then
+        value = math.floor((math.max(0, value-2)^0.5))+math.min(2, value)
     end
 
     return value
@@ -14153,7 +14153,7 @@ end
 -- done , 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_GET_Fanning_Ratio(skill)
     local pc = GetSkillOwner(skill)
-    local value = math.min(4 + math.floor(TryGetProp(self, 'SR', 0) / 2), 10);
+    local value = math.min(4 + math.floor(TryGetProp(pc, 'SR', 0) / 2), 10);
 
     if IsPVPField(pc) == 1 and value > 2 then
         value = math.floor((math.max(0, value-2)^0.5))+math.min(2, value)
@@ -16905,7 +16905,7 @@ end
 -- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_GET_HornOfGolem_Ratio(skill)
     local pc = GetSkillOwner(skill);
-    local value = 15
+    local value = 10
     if IsPVPField(pc) == 1 and value > 2 then
         value = math.floor((math.max(0, value-2)^0.5))+math.min(2, value)
     end

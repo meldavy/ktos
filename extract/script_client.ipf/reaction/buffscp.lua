@@ -1654,3 +1654,11 @@ function DesperateDefenseClientScp_LEAVE(actor, obj, buff)
         actor:GetAnimation():SetRUNAnim("SKL_SNIPERSSERENITY_AWLK");
     end
 end
+
+function EP13STEM_EFFECT_2106_ENTER(actor, obj, buff)
+    effect.AddActorEffectByOffset(actor, "E_effect_ep13stem", 1.2, "MID", false, true);
+end
+
+function EP13STEM_EFFECT_2106_LEAVE(actor, obj, buff)
+    effect.DetachActorEffect(actor, "E_effect_ep13stem", 0.0);
+end

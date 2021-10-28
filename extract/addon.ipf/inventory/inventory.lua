@@ -4960,6 +4960,8 @@ function RUN_CLIENT_USE_MULTIPLE_MISC_PVP_MINE2(count)
         maxValue = maxValue + bonusValue
     end
 
+	maxValue = maxValue + GET_PVP_MINE_MISC_BOOST_COUNT(GetMyPCObject())
+
 	-- 사용할 증표 쿠폰의 획득량이 최대 증표 획득량을 초과하지 않는지 체크
 	local invItem = session.GetInvItemByGuid(tostring(multiple_misc_pvp_mine2_item_id))
 	local itemObj = GetIES(invItem:GetObject())

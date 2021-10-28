@@ -159,6 +159,14 @@ function REINFORCE_131014_MSGBOX(frame)
 	local curReinforce = fromItemObj.Reinforce_2;
 	local curPR = fromItemObj.PR;
 
+	local strArg = TryGetProp(moruObj, "StringArg", "None")
+	if strArg == "blessed_ruby_Moru" or strArg == "blessed_gold_Moru" then
+		if TryGetProp(fromItemObj, "UseLv", 1) > 440 then
+			ui.SysMsg(ScpArgMsg('CanNotUseItemLv'))
+			return;
+		end
+	end
+	
 	local not_destory, moru_type = IS_MORU_NOT_DESTROY_TARGET_ITEM(moruObj)
     local isDanger = (curPR == 0 and not_destory == false)
     local skipWarning = REINFORCE_131014_SKIP_OVER5_INFO()

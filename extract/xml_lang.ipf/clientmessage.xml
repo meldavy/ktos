@@ -443,6 +443,8 @@
 		<Class ClassID="2373" ClassName="Vibora_Weapon_Trade_Msg2" Data="같은 바이보라 무기로 교환할 수 없습니다."/>
 		<Class ClassID="2374" ClassName="Vibora_Weapon_Trade_help" Data="보유한 [Lv4] 바이보라 무기를{nl}다른 종류의 [Lv4] 바이보라 무기로 교환할 수 있습니다.{nl}교환에는 재료로 소모될 [Lv2] 바이보라 유니크 무기 4개가 필요하며{nl}주 재료로 투입한 [Lv4] 바이보라 무기가 부 재료로 투입한 [Lv2] 바이보라 무기로 변경됩니다.{nl}부 재료로 투입되는 [Lv2] 바이보라 무기 4개는 모두 동일한 종류의 아이템만 가능합니다.{nl} - 교환 주 재료 및 부 재료는 아이커도 사용할 수 있습니다."/>
 		<Class ClassID="2375" ClassName="CantCraftCuzInvalidWordInName" Data="이름에 사용할 수 없는 문자가 포함되어 있습니다."/>
+		<Class ClassID="2380" ClassName="AlreadyTooMuchReaminTime" Data="현재 버프의 남은 시간이 너무 많아 더이상 사용할 수 없습니다."/>
+		<Class ClassID="2381" ClassName="pvp_mine_misc_boost_tooltip{a}{b}{c}{d}{e}{f}" Data="- 주간 획득량 제한{img green_up_arrow 16 16}{a}{nl}- 업힐 디펜스 1회 획득량{img green_up_arrow 16 16}{b}{nl}- 차원 붕괴 지점 1회 획득량{img green_up_arrow 16 16}{c}{nl}- 베르니케 파편 던전 획득량{img green_up_arrow 16 16}{d}{nl}- 주간 보스 레이드 500K 대미지 보상 획득량{img green_up_arrow 16 16}{e}{nl}- 필드 사냥시 획득량{img green_up_arrow 16 16}{f}%"/>
 		<Class ClassID="2382" ClassName="CantDecomposition" Data="분해할 수 없는 대상입니다."/>
 		<Class ClassID="2383" ClassName="BeExceedMaxUpgrade" Data="연성 최대 수치를 초과하게 됩니다."/>
 	</Category>
@@ -559,6 +561,8 @@
 		<Class ClassID="3501" ClassName="WouldYouSelectThisCombinationAsAlchemystryTarget?" Data="이 조합을 연금 대상으로 선택합니까?"/>
 		<Class ClassID="3502" ClassName="TargetItem" Data="대상 아이템"/>
 		<Class ClassID="3503" ClassName="ManufacturingItems..." Data="아이템 조합 중.."/>
+		<Class ClassID="3504" ClassName="ItemGet{name}{count}" Data="아이템을 획득했습니다: [{#33FF33}{name}{/}]×{#33FF33}{count}{/}"/>
+		<Class ClassID="3505" ClassName="PointGet{name}{count}" Data="포인트를 획득했습니다: [{#33FF33}{name}{/}]×{#33FF33}{count}{/}"/>
 	</Category>
 	<Category Name="Item">
 		<Class ClassID="4001" ClassName="GetItem" Data="아이템 획득"/>
@@ -829,7 +833,7 @@
 		<Class ClassID="4270" ClassName="SealMaterialTargetItemWarning" Data="등록된 주 옵션 인장아이템의 강화 재료로 사용할 수 없는 아이템입니다."/>
 		<Class ClassID="4271" ClassName="EXCEED_SELECT_COUNT" Data="선택 가능한 최대 개수를 초과하였습니다."/>
 		<Class ClassID="4272" ClassName="DO_NOT_USE_HERE" Data="건물 내부에서 사용할 수 없습니다."/>
-		<Class ClassID="4273" ClassName="GET_MISC_PVP_MINE2{count}" Data="+{count} 용병단 증표"/>
+		<Class ClassID="4273" ClassName="GET_MISC_PVP_MINE2{count}" Data="포인트를 획득했습니다: [{#33FF33}용병단 증표{/}]×{#33FF33}{count}{/}"/>
 		<Class ClassID="4274" ClassName="RESULT_MISC_PVP_MINE2" Data="용병단 증표 : {count1} → {count2}"/>
 		<Class ClassID="4275" ClassName="ITEM_COUNT_SYS_MSG" Data="{#33FF33}[{itemName}]보유량: {count}{/}"/>
 		<Class ClassID="4276" ClassName="DeleteItem{ItemName}{count}" Data="[아이템 삭제] {ItemName} {count}개가 기간 만료로 삭제 됩니다."/>
@@ -929,7 +933,7 @@
 		<Class ClassID="4374" ClassName="IfLimitOver_misc_pvp_mine2_OVERUSE" Data="입력한 수량이{nl}주간 용병단 증표 최대 획득량을 초과하여{nl}용병단 증표 쿠폰이 {#ff0000}{COUNT}{/}{/}개만 소비됩니다.{/}{/}{nl}{@st66d_y}{s20}{nl} {nl}정말 사용하시겠습니까?"/>
 		<Class ClassID="4376" ClassName="HairAccCubeOpen{COUNT}" Data="정말 개봉하시겠습니까?{nl} {nl}{@st66d_y}{s20}현재 개봉 횟수{nl}{COUNT}{/}{/}{nl} {nl}30회 개봉마다 추가 보상을 획득하실 수 있습니다."/>
 		<Class ClassID="4382" ClassName="tooltip_reward_ratio_open_list" Data="사용 시 각 확률에 따라 아이템을 획득합니다."/>
-		<Class ClassID="4383" ClassName="GET_CONTENTS_TOTAL_POINT{count}" Data="+{count} 콘텐츠 통합 포인트"/>
+		<Class ClassID="4383" ClassName="GET_CONTENTS_TOTAL_POINT{count}" Data="포인트를 획득했습니다: [{#33FF33}콘텐츠 통합 포인트{/}]x{#33FF33}{count}}{/}"/>
 		<Class ClassID="4384" ClassName="tooltip_reward_ratio_open_list_spendcount" Data="사용 시 {COUNT}개를 소비하고 각 균등 확률에 따라 아이템을 획득합니다.{nl}"/>
 		<Class ClassID="4385" ClassName="Enough_Relic_Gem_DiscountStone" Data="여신의 축복석 요구 수량이 0 입니다.{nl}더 이상 할인 쿠폰을 투입하여도 여신의 축복석 할인은 적용되지 않습니다."/>
 		<Class ClassID="4386" ClassName="HairAccCubeBonus{COUNT}" Data="여신의 큐브 {COUNT}회차 추가보상이 지급되었습니다."/>
@@ -939,6 +943,7 @@
 		<Class ClassID="4390" ClassName="RelicGemCompose1" Data="같은 종류(시안, 마젠타, 블랙){nl}같은 등급의 성물 젬끼리만 합성할 수 있습니다."/>
 		<Class ClassID="4391" ClassName="tooltip_reward_ratio_open_list_sklgem" Data="사용 시 1/{COUNT}의 균등 확률에 따라 스킬 젬을 획득합니다."/>
 		<Class ClassID="4397" ClassName="TooNearFromInstallPC" Data="다른 개인 상점과 너무 가깝습니다."/>
+		<Class ClassID="4402" ClassName="ItemLevelIsGreaterThanMatItem" Data="대상 아이템의 레벨이 소모 아이템의 레벨보다 높습니다."/>
 	</Category>
 	<Category Name="ItemTooltip">
 		<Class ClassID="5001" ClassName="CoolDown : {Sec} Sec" Data="재사용 대기시간 : {Sec}초"/>
@@ -1044,7 +1049,7 @@
 		<Class ClassID="5101" ClassName="tooltip_Banderilla" Data=" - 마타도르 모든 스킬 레벨 {img green_up_arrow 16 16}1{nl}  - 올레 재사용 대기시간 10초 감소{nl}  - 카포티 재사용 대기시간 10초 감소{nl} {nl}반데릴라{nl} - 올레, 카포티 스킬 시전 시 버프 1중첩{nl}(버프 지속시간 5초, 최대 3중첩){nl} - 버프 중 150 범위 내에서 보스 몬스터 혹은 적 캐릭터가 공격 스킬 사용 시 [꿰어짐] 디버프 부여{nl} - 발동 시 버프 1중첩 소모{nl} {nl}꿰어짐{nl} - 1초 마다 찌르기 속성 지속 대미지{nl}  (스킬 계수 현재 레벨 파소 도블레의 20%){nl} - 디버프 중첩 당 지속 대미지 타격 수{img green_up_arrow 16 16}1{nl} - 디버프 대상에게 자신이 받는 피해 중첩 당 12% 감소{nl} - 디버프 중첩 당 이동속도 4 감소{nl} - 지속시간 10초, 최대 3중첩{nl} {nl}꿰어짐 대상이 캐릭터일 경우 중첩 마다 창을 꽂는 이펙트 효과"/>
 		<Class ClassID="5102" ClassName="tooltip_SpeedLoader" Data=" - 셰리프 모든 스킬 레벨 {img green_up_arrow 16 16}1{nl}  - 웨스트레이드 재사용 대기시간 25초 감소{nl} {nl}스피드 로더{nl} - 장착 시 5초 마다 [셰리프: 리로드] 버프 3 중첩{nl} - [셰리프: 리로드] 버프가 10중첩 일 때, 웨스트레이드 시전 시 중첩을 모두 소모하고{nl}[피스메이커], [에이밍 샷] 재사용 대기시간 초기화"/>
 		<Class ClassID="5103" ClassName="tooltip_CenterFire" Data=" - 익스플로전 스킬 레벨 {img green_up_arrow 16 16} 3{nl} {nl}센터파이어{nl} - 대상에게 익스플로전 시전 시 1회 추가 발사{nl}(스킬 계수 현재 레벨 익스플로전의 30%, 연타 수 5){nl} - 추가 시전 된 익스플로전은 주 대상 1명에게만 피해"/>
-		<Class ClassID="5104" ClassName="tooltip_DeflectGravitation" Data=" - 사이코키노 모든 스킬 레벨{img green_up_arrow 16 16}1{nl} {nl}편향인력{nl} - 그라비티 폴 시전 중 넉백, 넉다운 면역{nl} - 그라비티 폴 시전 중 0.5초 마다 부채꼴 범위 타격{nl}(현재 레벨의 그라비티 폴 스킬 계수 50%로 피해){nl} - 대상이 몬스터면 매 타격 마다 조금씩 끌어당김{nl} - 그라비티폴 채널링 종료 시 원형 범위 추가 타격{nl}(현재 레벨의 그라비티 폴 스킬 계수 500%로 피해){nl} - 최대 대상 수 20{nl} {nl}편향인력은 채널링으로 판정되지 않음"/>
+		<Class ClassID="5104" ClassName="tooltip_DeflectGravitation" Data=" - 사이코키노 모든 스킬 레벨{img green_up_arrow 16 16}1{nl} {nl}편향인력{nl} - 그라비티 폴 시전 중 넉백, 넉다운 면역{nl} - 그라비티 폴 시전 중 1초 마다 부채꼴 범위 타격{nl}(현재 레벨의 그라비티 폴 스킬 계수 50%로 피해){nl} - 대상이 몬스터면 매 타격 마다 조금씩 끌어당김{nl} - 그라비티폴 채널링 종료 시 원형 범위 추가 타격{nl}(현재 레벨의 그라비티 폴 스킬 계수 500%로 피해){nl} - 최대 대상 수 20{nl} {nl}편향인력은 채널링으로 판정되지 않음"/>
 		<Class ClassID="5105" ClassName="tooltip_Necrosis" Data=" - 소각 스킬 레벨{img green_up_arrow 16 16}3{nl}  - 판데믹 스킬 범위{img green_up_arrow 16 16}60%{nl} {nl}괴사{nl} - 판데믹 [공황] 받는 마법 피해 효과 최대치 50% 증가{nl}(보유한 디버프 개수 당 30%로 변경){nl} - 판데믹 시전 시 현재 레벨의 [소각], [흑사병 증기] 디버프 부여{nl} - 판데믹 시전 시 적 몬스터에게 4초 동안 [이동불가] 디버프 부여{nl} - 최대 대상 수 20{nl} {nl}장착 해제 시 괴사로 부여한 [소각], [흑사병 증기] 및 [이동불가] 디버프 제거"/>
 		<Class ClassID="5106" ClassName="tooltip_AwakeningRune" Data=" - 룬 캐스터 모든 스킬 레벨{img green_up_arrow 16 16}1{nl} {nl}각성의 룬{nl} - [룬캐스터: 캐스팅] 버프 최대 중첩 5로 변경{nl} - [룬캐스터: 캐스팅] 중첩 당 룬 캐스터 스킬로 주는 대미지{img green_up_arrow 16 16}20%{nl} - [룬캐스터 : 캐스팅] 5 중첩 일 때, 돌의 룬 시전 시 [룬캐스터 : 캐스팅]을 3 중첩 소모하고{nl} 돌의 룬 스킬 재사용 대기시간 초기화"/>
 		<Class ClassID="5107" ClassName="tooltip_AddDamageSword" Data="{nl} {nl}반향{nl} - 공격 시 20% 확률로 추가 대미지 능력치 100% 최종 증가{nl} {nl}다른 반향 효과와 중복되지 않음"/>
@@ -1128,7 +1133,7 @@
 		<Class ClassID="5185" ClassName="tooltip_Immortal" Data=" - 해골 병사 만들기 스킬 레벨 {img green_up_arrow 16 16}1{nl}  - 해골 궁수 만들기 스킬 레벨 {img green_up_arrow 16 16}1{nl}  - 해골 마법사 만들기 스킬 레벨 {img green_up_arrow 16 16}1{nl}  - 해골 소환수들의 모습과 이름이 변경 됨{nl} {nl}불멸{nl} - 소환된 몬스터들의 기본 공격이 변경되며, 스킬 공격이 추가 됨{nl} {nl}되살아난 창병{nl} - 피어스 : 재사용 대기시간 15초{nl} - 스태빙 : 재사용 대기시간 30초{nl} {nl}되살아난 궁수{nl} - 트리플 애로우 : 재사용 대기시간 20초{nl} {nl}되살아난 마법사{nl} - 에너지 볼트 : 재사용 대기시간 8초{nl} - '[아츠] 해골 마법사 만들기 : 서포터' 활성화 시, {nl}섀도우 콘덴세이션 : 재사용 대기시간 30초{nl} {nl}되살아난 엘리트 검사{nl} - 즈버크하우 : 재사용 대기시간 30초{nl} - 사이클론 : 재사용 대기시간 20초{nl} {nl}소환수의 스킬은 캐릭터의 스킬과 무관함{nl}아이템 장착 해제 시 소환되어 있는 네크로맨서 소환수 소환해제"/>
 		<Class ClassID="5186" ClassName="tooltip_Immortal_Lv4" Data="{nl} {nl}{@st66d}{s15} - 네크로맨서 소환수 스탯 증가 소환자 정신 비율 {img green_up_arrow 16 16}20%"/>
 		<Class ClassID="5187" ClassName="tooltip_Demonische" Data=" - 워록 모든 스킬 레벨 {img green_up_arrow 16 16}1{nl}  - 인보케이션 스킬 레벨 {img green_up_arrow 16 16}1{nl} {nl}데모니셰{nl} - 인보케이션 효과로 생성된 악령이 적에게 대미지를 입힐 때 마다 [데모니셰] 버프 1 중첩{nl}(상급 악령은 버프 2 중첩){nl} - 중첩수가 10일 때 150범위 내 무작위 적 대상을 기준으로 100범위에 어둠 속성 마법 대미지{nl} - 스킬 계수 현재 레벨의 인보케이션의 200%{nl} - 연타 수 5{nl} - 대상 수 10{nl} - 사바쓰의 대미지 증가 효과, '어둠의 공포', '악령 : 암흑' 특성이 적용 됨{nl} {nl}데모니셰는 인퍼널 섀도우 그림자를 공격하지 않음 {nl}'[아츠] 악령 : 광역화' 활성화 시 연타 수 1로 변경"/>
-		<Class ClassID="5188" ClassName="tooltip_Demonische_Lv4" Data="{nl} {nl}{@st66d}{s15} - 데몬 스크래치 최종 대미지 {img green_up_arrow 16 16}100%{nl} - 악령 최대 생성 수 {img green_up_arrow 16 16}5{nl} - 데몬 스크래치로 타격 시 50% 확률로 인보케이션 악령 생성{nl} {nl}아이템 장착 해제 시 생성된 악령 모두 제거"/>
+		<Class ClassID="5188" ClassName="tooltip_Demonische_Lv4" Data="{nl} {nl}{@st66d}{s15} - 데몬 스크래치 최종 대미지 {img green_up_arrow 16 16}100%{nl} - 악령 최대 생성 수 {img green_up_arrow 16 16}5{nl} - 데몬 스크래치로 타격 시 50% 확률로 인보케이션 악령 생성{nl} {nl}아이템 장착 해제 시 생성된 악령 모두 제거, 인보케이션 버프 제거"/>
 		<Class ClassID="5189" ClassName="tooltip_ProtectionGrace" Data=" - 팔라딘 모든 스킬 레벨 {img green_up_arrow 16 16}1{nl} {nl}보호의 은총{nl} - 스톤 스킨 시전 시 100범위 내 파티원에게 15초간 스톤 스킨 버프 부여{nl} - 파티원이 받는 스톤 스킨은 시전자의 현재 레벨의 스톤 스킨과 동일{nl} - 스톤 스킨 버프를 보유한 자신을 제외한 파티원은 대미지 증가 {img green_up_arrow 16 16}100%"/>
 		<Class ClassID="5190" ClassName="tooltip_ProtectionGrace_Lv4" Data="{nl} {nl}{@st66d}{s15} - 리스토레이션 회복 주기 50% 감소"/>
 	</Category>
@@ -1706,6 +1711,7 @@
 		<Class ClassID="10582" ClassName="LuciferiTypeExchange_Help" Data="장신구 계열 변경을 통해 보유 중인 장신구를 같은 레벨 같은 등급 장신구로 변경할 수 있습니다.{nl}포텐셜이 0 인 장신구만 가능하며, 변경 가능한 그룹 내에 속한 장신구끼리만 변경할 수 있습니다.{nl} {nl}변경 가능한 장비 종류{nl} - 루시페리 {nl} {nl}장신구 계열 변경에는 각 레벨에 맞는 '장신구 계열 변경의 서' 아이템이 필요합니다.{nl}변경하는 장신구 부위에 따라 '장신구 계열 변경의 서' 아이템의 필요 수량이 상이합니다.{nl} - 목걸이 : 2개{nl} - 팔찌 : 1개{nl} {nl}레벨 별로 변경 가능한 장신구 그룹은 '장신구 계열 변경의 서' 아이템 툴팁을 참고해 주세요."/>
 		<Class ClassID="10584" ClassName="CannotUseHousingCraftCoupon" Data="더 이상 쿠폰을 사용하실 수 없습니다."/>
 		<Class ClassID="10585" ClassName="CannotUseCostumeEvent" Data="해당 연출 중에는 사용할 수 없습니다."/>
+		<Class ClassID="10587" ClassName="CanNotUseItemLv" Data="장비의 레벨이 알맞지 않습니다."/>
 	</Category>
 	<Category Name="FoodTable">
 		<Class ClassID="20001" ClassName="IncreaseHP{Value}For{Time}Minute" Data="{Time}분 동안 HP가 {Value}% 증가합니다."/>
@@ -10621,7 +10627,7 @@
 		<Class ClassID="107029" ClassName="IsSureNotUseAbrasive" Data="{@st66d}각성 연마제가 없습니다.{nl} {@st66d_y}알케미스트 기본능력{@st66d}으로만 각성됩니다.{nl}"/>
 		<Class ClassID="107030" ClassName="IsSureUseAbrasive" Data="{@st66d}소모되는 각성 연마재 레벨에 따라{nl}{@st66d_y}각성 옵션의 최대치가 상승{@st66d}합니다.{nl}"/>
 		<Class ClassID="107031" ClassName="IsSureItemdungeon" Data="진행하시겠습니까?{/}"/>
-	</Category>
+		</Category>
 	<Category Name="ChatMsg">
 		<Class ClassID="108001" ClassName="GetOut!WeMustTransportStones!" Data="비켜주십시오! 빨리 돌을 운반해야 합니다."/>
 	</Category>
@@ -15121,6 +15127,30 @@
 		<Class ClassID="302504" ClassName="Event_Camping_Npc_Msg2" Data="캠프파이어 참여 횟수 초기화 합니다.{nl}캠프파이어 일일 참여횟수를 모두 사용한 경우 이벤트 기간중 팀당 1회 초기화 가능합니다."/>
 		<Class ClassID="302505" ClassName="Event_Camping_Npc_Msg3" Data="캠프파이어 일일 참여 횟수가 남아있습니다.{nl}일일 참여 횟수를 모두 소진한 뒤 초기화를 진행해주세요."/>
 		<Class ClassID="302506" ClassName="Event_Camping_Npc_Msg4" Data="캠프파이어 일일 참여 횟수가 초기화되었습니다!"/>
+		<Class ClassID="302507" ClassName="2106_SUMMER_FESTA_SEL1" Data="{#003399}[21Summer]{/} 이벤트 안내"/>
+		<Class ClassID="302508" ClassName="EVENT_2106_SUMMER_FESTA_SHOP" Data="{#003399}[21Summer]{/} 이벤트 상점"/>
+		<Class ClassID="302509" ClassName="2106_SUMMER_FESTA_SEL3" Data="{#003399}[21Summer]{/} 수박깨기"/>
+		<Class ClassID="302510" ClassName="2106_SUMMER_FESTA_SEL4" Data="{#003399}[21Summer]{/} 누적 보상 받기"/>
+		<Class ClassID="302511" ClassName="EVENT_2106_SUMMER_FESTA_POINT_CHECK_MSG1" Data="10분마다 확인가능합니다.{nl}다음 확인까지 {TIME} 분 남았습니다."/>
+		<Class ClassID="302512" ClassName="EVENT_2106_SUMMER_FESTA_EP12_SHOP" Data="{#003399}[EP12-1]{/} 스크롤 상점"/>
+		<Class ClassID="302513" ClassName="EVENT_2106_SUMMER_FESTA_POINT_CHECK_MSG2" Data="현재 월드 누적 참여율은 {#0066FF}{POINT} %{/} 입니다.{nl}다시 확인하기 위해서는 10분의 대기시간이 있습니다."/>
+		<Class ClassID="302514" ClassName="2106_SUMMER_FESTA_WORLD_SEL1" Data="{#003399}[21Summer]{/} 월드 누적 참여율 2.5% 보상 받기"/>
+		<Class ClassID="302515" ClassName="2106_SUMMER_FESTA_WORLD_SEL2" Data="{#003399}[21Summer]{/} 월드 누적 참여율 12% 보상 받기"/>
+		<Class ClassID="302516" ClassName="2106_SUMMER_FESTA_WORLD_SEL3" Data="{#003399}[21Summer]{/} 월드 누적 참여율 25% 보상 받기"/>
+		<Class ClassID="302517" ClassName="2106_SUMMER_FESTA_WORLD_SEL4" Data="{#003399}[21Summer]{/} 월드 누적 참여율 50% 보상 받기"/>
+		<Class ClassID="302518" ClassName="2106_SUMMER_FESTA_WORLD_SEL5" Data="{#003399}[21Summer]{/} 월드 누적 참여율 70% 보상 받기"/>
+		<Class ClassID="302519" ClassName="2106_SUMMER_FESTA_WORLD_SEL6" Data="{#003399}[21Summer]{/} 월드 누적 참여율 100% 보상 받기"/>
+		<Class ClassID="302520" ClassName="2106_SUMMER_FESTA_WORLD_SEL7" Data="수령 가능한 아이템이 없습니다."/>
+		<Class ClassID="302521" ClassName="2106_SUMMER_FESTA_WORLD_SEL8" Data="{#003399}[21Summer]{/} 월드 누적 참여율 확인하기"/>
+		<Class ClassID="302522" ClassName="2106_SUMMER_FESTA_WORLD_SEL9" Data="{#003399}[21Summer]{/} 월드 누적 참여 보상 받기"/>
+		<Class ClassID="302523" ClassName="EVENT_2106_SUMMER_FESTA_CHECK_MESSAGE{COIN}{DAY}{TOTAL}" Data="{#0066FF}여름 수박깨기 이벤트 현황{/}{nl}일일 [이벤트] 수박 코인 획득량 {#0066FF}({COIN}/500){/}{nl}일일 수박깨기 참여 횟수 {#0066FF}({DAY}/5){/}{nl}누적 수박깨기 참여 횟수 {#0066FF}({TOTAL}회){/}{nl}{#FF3333}※일일 제한은 매일 오전 06시 초기화 됩니다.{/}"/>
+		<Class ClassID="302524" ClassName="EVENT_2106_SUMMER_FESTA_CHECK_MESSAGE{TIME}" Data="{#0066FF}[주말 출석 버닝 이벤트 현황]{/}{nl}2시간 접속 시 보상 획득 {#0066FF}({TIME}/120분){/}{nl}{#FF3333}※일일 출석 기준 시간은 오전 06시 00분 ~ 익일 오전 05시 59분 까지 입니다.{nl}※이벤트 기간 6월 12일 ~ 7월 4일 중 토요일, 일요일{/}"/>
+		<Class ClassID="302525" ClassName="EVENT_2106_SUMMER_FESTA_POINT_CHECK_MSG3" Data="{#FF3333}※일일 참여 횟수를 초과하였습니다.{nl}매일 오전 06시 초기화 됩니다.{/}"/>
+		<Class ClassID="302526" ClassName="EVENT_2106_SUMMER_FESTA_DOUBLE_MSG" Data="{#FF3333}※수박 깨기에 성공하여 보상 아이템 수량이 2배로 지급되었습니다!{/}"/>
+		<Class ClassID="302527" ClassName="EVENT_2106_SUMMER_FESTA_WORLD_REWARD_MSG" Data="{#FF3333}※수박깨기를 50회 이상 참여하여야 수령하실 수 있습니다.{/}"/>
+		<Class ClassID="302532" ClassName="EVENT_PROGRESS_CHECK_MESSAGE{COIN}{COUNT}" Data="[FLEX BOX] 이벤트 현황{nl}일일 '[이벤트] FLEX 골드 주머니' 획득량 ({COIN}/50){nl}FLEX BOX 참여 횟수 ({COUNT}/200){nl}{#FF3333}※일일 획득 제한은 매일 오전 06시 초기화 됩니다.{/}{nl}{#FF3333}※FLEX BOX는 캐릭터 레벨 400 이상 부터 참여 가능합니다.{/}"/>
+		<Class ClassID="302533" ClassName="EVENT_FLEX_BOX_EP12_SHOP" Data="{#003399}[EP12-1]{/} 스크롤 상점"/>
+		<Class ClassID="302534" ClassName="EVENT_2106_SUMMER_FESTA_MSG1" Data="{#003399}주말 출석 보상이 지급되었습니다!{/}"/>
 	</Category>
 	<Category Name="Account">
 		<Class ClassID="303001" ClassName="MaxAccountWarehouseCount" Data="팀 창고"/>

@@ -268,7 +268,7 @@ end
 revertrandomitemlist = {'itemrandomreset', 'itemrevertrandom', 'itemunrevertrandom', 'itemsandrarevertrandom', 'itemsandraoneline_revert_random', 'itemsandra_4line_revert_random', 'itemsandra_6line_revert_random'};
 
 -- 산드라의 완벽한 돋보기 사용 가능 아이템 확인
-function IS_ENABLE_4LINE_REVERT_RANDOM_ITEM(itemObj)
+function IS_ENABLE_4LINE_REVERT_RANDOM_ITEM(itemObj, mat_item)
 	local icor = TryGetProp(itemObj, 'GroupName', 'None')
     local Lv = TryGetProp(itemObj, 'UseLv', 1)
     
@@ -292,8 +292,14 @@ function IS_ENABLE_4LINE_REVERT_RANDOM_ITEM(itemObj)
 			return false, 'NoRandom'
 		end		
 	else
+		local glass_lv = TryGetProp(mat_item, 'NumberArg1', 0)		
+
 		if Lv < 430 then
 			return false, 'Level';
+		end
+	
+		if Lv > glass_lv then
+			return false, 'ItemLevelIsGreaterThanMatItem'
 		end
 	
 		if 4 < GET_RANDOM_OPTION_COUNT(itemObj) then
