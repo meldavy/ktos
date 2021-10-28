@@ -176,7 +176,7 @@
 		<groupbox name="ranking_gb" parent="boruta_box" rect="0 0 552 500" margin="0 0 0 0" layout_gravity="left top" skin="" draw="false" hittestbox="false" scrollbar="false"/>
 		<tab name="eventtype_tab" parent="ranking_gb" rect="0 0 500 50" margin="52 6 0 0" layout_gravity="left top" LBtnDownScp="BORUTA_RANKING_DATA_REQUEST" MouseOffAnim="btn_mouseoff" MouseOnAnim="btn_mouseover" clicksound="button_click_3" fixwidth="true" itemspc="2" oversound="button_cursor_over_2" skin="tab2"/>
 		<tabitem name="event_tab1" parent="eventtype_tab" caption="{@st66b}보루타{/}" width="89" layout_gravity="left top" texttooltip="보루타 봉쇄전"/>
-		<!-- <tabitem name="event_tab2" parent="eventtype_tab" caption="{@st66b}길티네{/}" width="89" layout_gravity="left top" texttooltip="길티네"/> -->
+		<tabitem name="event_tab2" parent="eventtype_tab" caption="{@st66b}길티네{/}" width="89" layout_gravity="left top" texttooltip="길티네"/>
 		<groupbox name="ranking" parent="ranking_gb" rect="0 0 487 434" margin="52 58 0 0" layout_gravity="left top" skin="test_frame_midle" draw="true" hittestbox="false"/>
 		<groupbox name="ranking_title" parent="ranking_gb" rect="0 0 486 41" margin="52 58 0 0" layout_gravity="left top" skin="market_listbase" draw="true" hittestbox="false"/>
 		<richtext name="ranking_title_txt" parent="ranking_title" rect="0 0 30 40" margin="30 0 0 0" layout_gravity="left center" caption="{@st66b}{s16}순위"/>

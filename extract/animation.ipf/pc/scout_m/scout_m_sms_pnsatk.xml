@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by imc (imc) -->
 <ActionDesc>
-    <Sound frame="0.00" soundFile="skl_fgt_tackle_cast"/>
-    <Sound frame="0.00" soundFile="skl_eff_rifle_atk_move_m"/>
-    <Sound frame="1.00" soundFile="skl_eff_moneygun_pnsatk"/>
+	<Sound frame="0.00" soundFile="skl_fgt_tackle_cast"/>
+	<Sound frame="0.00" soundFile="skl_eff_rifle_atk_move_m"/>
 </ActionDesc>

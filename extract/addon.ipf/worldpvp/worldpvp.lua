@@ -937,6 +937,10 @@ function CONTENTS_TOTAL_SHOP_OPEN(frame, msg, argStr, argNum)
 	TOGGLE_PROPERTY_SHOP('CONTENTS_TOTAL_SHOP',1);
 end
 
+function SEASONOFF_CONTENTS_TOTAL_SHOP_OPEN()
+	TOGGLE_PROPERTY_SHOP('SEASONOFF_CONTENTS_TOTAL_SHOP',1);
+end
+
 function GET_CONTENTS_TOTAL_POINT_C()
 	local aObj = GetMyAccountObj();
 	if aObj == nil then

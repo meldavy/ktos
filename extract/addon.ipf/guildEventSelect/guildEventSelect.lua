@@ -93,6 +93,17 @@ function ACCEPT_GUILD_EVENT(parent, ctrl)
 	local clsID = parent:GetUserIValue("CLSID");
 	local cls = GetClassByType("GuildEvent", clsID)
 	local msg = ScpArgMsg("DoYouWant{GuildEvent}Start?", "GuildEvent", cls.Name);
+	if clsID == 500 then -- boruta
+		local compare_cls = GetClassByType("GuildEvent", 501);
+		if compare_cls ~= nil then
+			msg = ScpArgMsg("guild_event_start{guildEvent}{compareEvent}", "guildEvent", cls.Name, "compareEvent", compare_cls.Name);
+		end
+	elseif clsID == 501 then -- Giltine
+		local compare_cls = GetClassByType("GuildEvent", 500);
+		if compare_cls ~= nil then
+			msg = ScpArgMsg("guild_event_start{guildEvent}{compareEvent}", "guildEvent", cls.Name, "compareEvent", compare_cls.Name);
+		end
+	end
 	local yesScp = string.format("EXEC_GUILD_EVENT(%d)", clsID);
 	ui.MsgBox(msg, yesScp, "None");
 end
@@ -116,7 +127,7 @@ function EXEC_GUILD_EVENT(clsID)
 		return;
 	end
 	
-	if special_mission == false then
+	if special_mission == true then
 		-- 보루타
 	    if haveTicket < 3 then
     		ui.SysMsg(ScpArgMsg("NotEnoughTicketPossibleCount"));
@@ -131,8 +142,9 @@ end
 function ON_GUILD_EVENT_START_REQUEST_MSG_BOX(frame, msg, argStr, argNum)
 	if frame ~= nil then 
 		local eventID = tonumber(argStr);
-		local yesScp = string.format("EXEC_GUILD_EVENT_START_REQUEST_MSG_BOX(%d)", eventID);
-		ui.MsgBox(ScpArgMsg("GuildEventStartNoticeMessage"), yesScp, "None");
+		EXEC_GUILD_EVENT_START_REQUEST_MSG_BOX(eventID);
+		--[[ local yesScp = string.format("EXEC_GUILD_EVENT_START_REQUEST_MSG_BOX(%d)", eventID);
+		ui.MsgBox(ScpArgMsg("GuildEventStartNoticeMessage"), yesScp, "None"); ]]
 	end
 end
 

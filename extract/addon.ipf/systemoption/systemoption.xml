@@ -116,7 +116,7 @@
 		<!-- Graphic -->
 		<richtext name="performance_limit_text" rect="0 0 250 24" parent="perfBox" margin="300 100 0 0" layout_gravity="left top" format="{@st66b}최대 프레임 제한(%s){/}" param1="opValue" resizebytext="false" omitbywidth="true" ellipsistexttooltip="true"/>
 		<slidebar name="performance_limit_slide" rect="0 0 200 20" parent="perfBox" margin="300 120 0 0" layout_gravity="left top" SlideScp="SET_PERFORMANCE_LIMIT" clicksound="button_click_big_2" maxlevel="500" minlevel="60" oversound="button_over" skin="slidebar"/>
-		<groupbox name="graphicBox" rect="0 0 560 450" parent="bg2" margin="0 440 0 0" layout_gravity="center top" scrollbar="false" draw="false"/>
+		<groupbox name="graphicBox" rect="0 0 560 460" parent="bg2" margin="0 440 0 0" layout_gravity="center top" scrollbar="false" draw="false"/>
 		<labelline name="boardLineGraphic" rect="0 0 550 8" parent="graphicBox" margin="-15 0 0 0" layout_gravity="left top" visible="true"/>
 		<richtext name="graphic_txt" rect="0 0 250 24" parent="graphicBox" margin="10 20 0 0" layout_gravity="left top" format="{@st43}그래픽 설정{/}"/>
 		<checkbox name="check_Bloom" rect="0 0 250 30" parent="graphicBox" margin="20 70 0 0" layout_gravity="left top" ConfigName="EnableBloom" LBtnUpScp="ENABLE_BLOOM" caption="{@st66b}블룸 적용{/}" clicksound="button_click_big" oversound="button_over" resizebytext="false" omitbywidth="true" ellipsistexttooltip="true"/>
@@ -144,6 +144,7 @@
 		<richtext name="effect_transparency_boss_monster" rect="0 0 250 24" parent="graphicBox" margin="20 395 0 0" layout_gravity="left top" format="{@st66b}보스 몬스터 이펙트 선명도(%s){/}" param1="opValue" resizebytext="false" omitbywidth="true" ellipsistexttooltip="true"/>
 		<slidebar name="effect_transparency_boss_monster_value" rect="0 0 280 20" parent="graphicBox" margin="20 418 0 0" layout_gravity="left top" SlideScp="CONFIG_BOSSMON_EFECT_TRANSPARENCY" clicksound="button_click_big_2" maxlevel="255" minlevel="26" oversound="button_over" skin="slidebar"/>
 		<checkbox name="check_EnableChatFrameMotionEmoticon" rect="0 0 250 30" parent="graphicBox" margin="300 280 0 0" layout_gravity="left top" ConfigName="EnableChatFrameMotionEmoticon" caption="{@st66b}채팅창 모션 이모티콘 켜기" clicksound="button_click_big" oversound="button_over" resizebytext="false" omitbywidth="true" ellipsistexttooltip="true"/>
+		<checkbox name="Check_IsEnableSummonAlpha" rect="0 0 250 30" parent="graphicBox" margin="300 430 0 0" layout_gravity="left top" caption="{@st66b}소환수 반투명화(자신, 적대 소환수 제외)" clicksound="button_click_big" oversound="button_over" resizebytext="false" omitbywidth="true" ellipsistexttooltip="true" LBtnDownScp="SET_ENABLE_SUMMON_ALPHA"/>
 		<!-- Language -->
 		<groupbox name="languageBox" rect="0 0 590 80" parent="bg2" margin="10 990 0 0" layout_gravity="center top" scrollbar="false" draw="false"/>
 		<richtext name="language_title" parent="languageBox" rect="0 0 250 24" margin="10 10 0 0" layout_gravity="left top" format="{@st43}언어 선택{/}"/>

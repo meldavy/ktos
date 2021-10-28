@@ -510,29 +510,6 @@
 					</Event>
 				</StageEvents>
 			</Stage>
-			<Stage Name="party_buff">
-				<ObjList/>
-				<StageEvents>
-					<Event execCount="1" eventName="party_buff">
-						<condList>
-							<ToolScp Scp="MGAME_EVT_COND_PCCNT_OVER" Client="NO" UseSleep="NO">
-								<Num Num="1"/>
-							</ToolScp>
-						</condList>
-						<execList>
-							<ToolScp Scp="MGAME_EXEC_SELECT_BUFF_PARTY" Client="NO" UseSleep="NO">
-								<Num Num="20"/>
-								<Str Str="AUTO_MATCHING_PARTY_ATTACK_BUFF"/>
-								<Str Str="AUTO_MATCHING_PARTY_DEFENCE_BUFF"/>
-								<Str Str="AUTO_MATCHING_PARTY_HEAL_BUFF"/>
-								<Str Str="AUTO_MATCHING_PARTY_HEAL2_BUFF"/>
-								<Str Str="None"/>
-								<Num Num="2"/>
-							</ToolScp>
-						</execList>
-					</Event>
-				</StageEvents>
-			</Stage>
 			<Stage Name="Pattern">
 				<ObjList/>
 				<StageEvents>
@@ -615,12 +592,12 @@
 				<Num Num="0"/>
 			</ToolScp>
 			<ToolScp Scp="MGAME_ZONE_ENTER_SELECT_BUFF_SOLO" Client="NO" UseSleep="NO">
-				<Num Num="20"/>
-				<Str Str="AUTO_MATCHING_TANKER_BUFF"/>
-				<Str Str="AUTO_MATCHING_RECOVERY_BEAD_BUFF"/>
-				<Str Str="AUTO_MATCHING_HEALER_BUFF"/>
-				<Str Str="AUTO_MATCHING_SPLIT_BUFF"/>
-				<Str Str="AUTO_MATCHING_DAMAGE2_BUFF"/>
+				<Num Num="60"/>
+				<Str Str="AUTO_MATCHING2_TANKER_BUFF"/>
+				<Str Str="AUTO_MATCHING2_DAMAGE_BUFF"/>
+				<Str Str="AUTO_MATCHING2_BLOW_HEAL_BUFF"/>
+				<Str Str="AUTO_MATCHING2_HEALER_BUFF"/>
+				<Str Str="None"/>
 				<Num Num="2"/>
 			</ToolScp>
 			<ToolScp Scp="MYTHIC_DUNGEON_HUD_UI_OPEN" Client="NO" UseSleep="YES"/>

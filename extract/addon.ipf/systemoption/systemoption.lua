@@ -389,6 +389,11 @@ function INIT_GRAPHIC_CONFIG(frame)
 			performance_limit_slide:ShowWindow(0);
 		end
 	end
+	
+	local IsEnableSummonAlpha = GET_CHILD_RECURSIVELY(frame, "IsEnableSummonAlpha", "ui::CCheckBox");
+	if IsEnableSummonAlpha ~= nil then
+		IsEnableSummonAlpha:SetCheck(config.GetIsEnableSummonAlpha());
+	end
 end
 
 function INIT_GAMESYS_CONFIG(frame)
@@ -1070,4 +1075,10 @@ function SET_COOLDOWN_DECIMAL_POINT_SEC(frame)
 	else
 		txt:SetTextByKey("opValue", ScpArgMsg("LowerThan{SEC}", "SEC", value))
 	end
+end
+
+function SET_ENABLE_SUMMON_ALPHA(parent, ctrl)
+	local isEnable = ctrl:IsChecked();
+    config.SetIsEnableSummonAlpha(isEnable);
+	config.SaveConfig();
 end

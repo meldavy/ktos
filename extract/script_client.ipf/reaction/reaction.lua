@@ -85,8 +85,19 @@ function C_EFFECT(actor, obj, effectName, scale, nodeName, lifeTime)
         lifeTime = 0;
     end
 
-    -- 포포팝 피스톨 체크
+    -- 포포팝 피스톨 체크1
     if IS_EXIST_BRIQUETTING_OR_BEAUTYSHOP_ITEM(actor, "LH", "Pistol", obj.type, 634214) == true then
+        effectName = "None";
+    end
+
+    -- 레일건 피스톨 체크
+    if IS_EXIST_BRIQUETTING_OR_BEAUTYSHOP_ITEM(actor, "LH", "Pistol", obj.type, 11007106) == true then
+        effectName = "None";
+    end
+
+    -- 레일건 머스킷 체크
+    if IS_EXIST_BRIQUETTING_OR_BEAUTYSHOP_ITEM(actor, "RH", "Musket", obj.type, 11007105) == true then
+        print(effectName)
         effectName = "None";
     end
 
@@ -106,6 +117,16 @@ function C_EFFECT_ABIL(actor, obj, abilName, effectName, scale, nodeName, lifeTi
 
                 -- 포포팝 피스톨 체크
                 if IS_EXIST_BRIQUETTING_OR_BEAUTYSHOP_ITEM(actor, "LH", "Pistol", obj.type, 634214) == true then
+                    effectName = "None";
+                end
+
+                -- 레일건 피스톨 체크
+                if IS_EXIST_BRIQUETTING_OR_BEAUTYSHOP_ITEM(actor, "LH", "Pistol", obj.type, 11007106) == true then
+                    effectName = "None";
+                end
+            
+                -- 레일건 머스킷 체크
+                if IS_EXIST_BRIQUETTING_OR_BEAUTYSHOP_ITEM(actor, "RH", "Musket", obj.type, 11007105) == true then
                     effectName = "None";
                 end
 
@@ -427,6 +448,11 @@ function C_FORCE_EFT(actor, obj, eft, scale, snd, finEft, finEftScale, finSnd, d
         if obj.type == 30005 and equipItemObj.ClassType == "Musket" then
             eft = "I_archer_musket_atk#Dummy_Force_musket";
         end
+    end
+    
+    if IS_EXIST_BRIQUETTING_OR_BEAUTYSHOP_ITEM(actor, "RH", "Musket", obj.type, 11007105) == true then
+        finEft = "None";
+        eft = "None";
     end
 
     if useHitEffect== nil then

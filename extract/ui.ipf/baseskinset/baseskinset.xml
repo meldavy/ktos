@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by imc (imc) -->
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by imc (imc) -->
 <!-- edited with XMLSpy v2008 sp1 (http://www.altova.com) by MintPC (Mi) -->
 <skinset name="Base">
 	<skinlist category="frames">
@@ -7290,6 +7290,9 @@
 		<image name="test_companion_33" file="\icon\companion.tga" imgrect="606 738 100 122" CMM_Caption="달마시안_탭버튼"/>
 		<image name="test_companion_33_cursoron" file="\icon\companion.tga" imgrect="707 738 100 122"/>
 		<image name="test_companion_33_clicked" file="\icon\companion.tga" imgrect="707 738 100 122"/>
+		<image name="test_companion_34" file="\icon\companion.tga" imgrect="808 738 100 122" CMM_Caption="어시스턴트 로봇_탭버튼"/>
+		<image name="test_companion_34_cursoron" file="\icon\companion.tga" imgrect="909 738 100 122"/>
+		<image name="test_companion_34_clicked" file="\icon\companion.tga" imgrect="909 738 100 122"/>
 		<image name="test_com_ability" file="\skin\pip_test.tga" imgrect="1832 851 54 35" CMM_Caption="컴패니언_특성플러스"/>
 		<image name="test_com_ability_cursoron" file="\skin\pip_test.tga" imgrect="1832 887 54 35"/>
 		<image name="test_com_ability_clicked" file="\skin\pip_test.tga" imgrect="1832 923 54 35"/>
@@ -9353,6 +9356,7 @@
 		<image name="companion_new_penguin" file="\icon\companion_Velhider.tga" imgrect="480 320 80 80"/>
 		<image name="companion_dalmatian" file="\icon\companion_Velhider.tga" imgrect="0 400 80 80"/>
 		<image name="companion_pet_winter_rabbit" file="\icon\companion_Velhider.tga" imgrect="80 400 80 80"/>
+		<image name="companion_pet_robot_dog" file="\icon\companion_Velhider.tga" imgrect="160 400 80 80"/>
 		<image name="bg_w" file="\skin\button.tga" imgrect="252 974 50 50"/>
 		<image name="barrack_signboard" file="\skin\barrack.tga" imgrect="356 0 257 192"/>
 		<image name="barrack_attack_icon" file="\skin\barrack.tga" imgrect="59 720 55 61"/>
@@ -11786,6 +11790,8 @@
 		<image name="icon_GILTINE_BERSERK_BUFF" file="\icon\buff_icon4.tga" imgrect="640 768 128 128" CMM_Caption="아바타라스 광폭화"/>
 		<image name="icon_GILTINE_BERSERK_RAGE_DEBUFF" file="\icon\buff_icon4.tga" imgrect="768 768 128 128" CMM_Caption="아바타라스의 격노"/>
 		<image name="icon_GILTINE_GRACE_BUFF" file="\icon\buff_icon4.tga" imgrect="896 768 128 128" CMM_Caption="마신의 은총"/>
+		<image name="icon_pet_robot_dog_buff" file="\icon\buff_icon4.tga" imgrect="0 896 128 128" CMM_Caption="어시스턴트 로봇 도그"/>
+		<image name="icon_AUTO_MATCHING2_BLOW_HEAL_BUFF" file="\icon\buff_icon4.tga" imgrect="128 896 128 128" CMM_Caption="타격 힐"/>
 	</imagelist>
 	<imagelist category="housing_bufficon">
 		<image name="icon_Weapon_Klaida" file="\icon\icon_hosing_buff.tga" imgrect="0 0 128 128"/>

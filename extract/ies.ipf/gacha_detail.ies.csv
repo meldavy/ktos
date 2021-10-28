@@ -55,3 +55,7 @@ ClassID,Count,Price,ClassName,ItemClassName,Group,GachaType,RewardGroup,PreCheck
 168,11,999,Gacha_HairAcc_ReSale010_M_2,Gacha_HairAcc_ReSale010_M_2,CUBE,hair,GACHA_HAIRACC_ReSale_001_M_2,,GACHA_HAIRACC_ReSale_001_M_2,1,CUBE,NO,,
 169,1,999,Gacha_HairAcc_ReSale001_F_2,Gacha_HairAcc_ReSale001_F_2,CUBE,hair,GACHA_HAIRACC_ReSale_001_F_2,,GACHA_HAIRACC_ReSale_001_F_2,1,CUBE,NO,,
 170,11,999,Gacha_HairAcc_ReSale010_F_2,Gacha_HairAcc_ReSale010_F_2,CUBE,hair,GACHA_HAIRACC_ReSale_001_F_2,,GACHA_HAIRACC_ReSale_001_F_2,1,CUBE,NO,,
+171,1,999,Gacha_HairAcc_ReSale001_M_2_JP,Gacha_HairAcc_ReSale001_M_2_JP,CUBE,hair,GACHA_HAIRACC_ReSale_001_M_2_JP,,GACHA_HAIRACC_ReSale_001_M_2_JP,1,CUBE,NO,,
+172,11,999,Gacha_HairAcc_ReSale010_M_2_JP,Gacha_HairAcc_ReSale010_M_2_JP,CUBE,hair,GACHA_HAIRACC_ReSale_001_M_2_JP,,GACHA_HAIRACC_ReSale_001_M_2_JP,1,CUBE,NO,,
+173,1,999,Gacha_HairAcc_ReSale001_F_2_JP,Gacha_HairAcc_ReSale001_F_2_JP,CUBE,hair,GACHA_HAIRACC_ReSale_001_F_2_JP,,GACHA_HAIRACC_ReSale_001_F_2_JP,1,CUBE,NO,,
+174,11,999,Gacha_HairAcc_ReSale010_F_2_JP,Gacha_HairAcc_ReSale010_F_2_JP,CUBE,hair,GACHA_HAIRACC_ReSale_001_F_2_JP,,GACHA_HAIRACC_ReSale_001_F_2_JP,1,CUBE,NO,,

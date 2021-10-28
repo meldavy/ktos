@@ -123,6 +123,10 @@
                         <execList>
                             <ToolScp Scp="MGAME_EVT_SCP_TO_MON" Client="NO" UseSleep="NO">
                                 <MGameObj List="Initialize/0"/>
+                                <Str Str="GM_BK_SET_USED_DAY_RECORD_AFTER"/>
+                            </ToolScp>
+                            <ToolScp Scp="MGAME_EVT_SCP_TO_MON" Client="NO" UseSleep="NO">
+                                <MGameObj List="Initialize/0"/>
                                 <Str Str="SCR_GM_BK_INIT"/>
                             </ToolScp>
                         </execList>

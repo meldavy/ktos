@@ -23703,7 +23703,7 @@ return monDir-87.5"/>
                     <Num Num="0.5"/>
                 </Scp>
                 <Scp Scp="SKL_RUN_SCRIPT" Client="NO" UseSleep="NO" Time="2100">
-                    <Str Str="SCR_GILTINE_DEMONICS_LANCE"/>
+                    <Str Str="SCR_AUTO_GILTINE_DEMONICS_LANCE"/>
                 </Scp>
             </EtcList>
         </MainSkl>

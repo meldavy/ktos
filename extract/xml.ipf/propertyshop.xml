@@ -109,20 +109,6 @@
 		<Item Script="None" Name="motion_medeinacon1" Count="1" Price="700" DailyBuyLimit="0" AccountNeedProperty="ContentsTotalShop_2012_4"/>
 		<Item Script="None" Name="motion_medeinacon2" Count="1" Price="700" DailyBuyLimit="0" AccountNeedProperty="ContentsTotalShop_2012_5"/>
 		<Item Script="None" Name="motion_medeinacon3" Count="1" Price="700" DailyBuyLimit="0" AccountNeedProperty="ContentsTotalShop_2012_6"/>
-		<Item Script="None" Name="DRESS_ROOM_COLLECT_1" Count="1" Price="3000" DailyBuyLimit="0" AccountNeedProperty="ContentsTotalShop_2009_9"/>
-		<Item Script="None" Name="DRESS_ROOM_COLLECT_2" Count="1" Price="3000" DailyBuyLimit="0" AccountNeedProperty="ContentsTotalShop_2009_10"/>
-		<Item Script="None" Name="give_ticket_ep12honoredrose01_1_m" Count="1" Price="10000" DailyBuyLimit="0" AccountNeedProperty="ContentsTotalShop_2009_11"/>
-		<Item Script="None" Name="give_ticket_ep12honoredrose01_1_f" Count="1" Price="10000" DailyBuyLimit="0" AccountNeedProperty="ContentsTotalShop_2009_12"/>
-		<Item Script="None" Name="give_ticket_ep12honoredrose02_1_m" Count="1" Price="10000" DailyBuyLimit="0" AccountNeedProperty="ContentsTotalShop_2009_13"/>
-		<Item Script="None" Name="give_ticket_ep12honoredrose02_1_f" Count="1" Price="10000" DailyBuyLimit="0" AccountNeedProperty="ContentsTotalShop_2009_14"/>
-		<Item Script="None" Name="give_ticket_ep12honoredrose03_1_m" Count="1" Price="10000" DailyBuyLimit="0" AccountNeedProperty="ContentsTotalShop_2009_15"/>
-		<Item Script="None" Name="give_ticket_ep12honoredrose03_1_f" Count="1" Price="10000" DailyBuyLimit="0" AccountNeedProperty="ContentsTotalShop_2009_16"/>
-		<Item Script="None" Name="give_ticket_ep12musical03_m" Count="1" Price="10000" DailyBuyLimit="0" AccountNeedProperty="ContentsTotalShop_2009_17"/>
-		<Item Script="None" Name="give_ticket_ep12musical03_f" Count="1" Price="10000" DailyBuyLimit="0" AccountNeedProperty="ContentsTotalShop_2009_18"/>
-		<Item Script="None" Name="give_ticket_ep12musical02_2_m" Count="1" Price="10000" DailyBuyLimit="0" AccountNeedProperty="ContentsTotalShop_2009_19"/>
-		<Item Script="None" Name="give_ticket_ep12musical02_2_f" Count="1" Price="10000" DailyBuyLimit="0" AccountNeedProperty="ContentsTotalShop_2009_20"/>
-		<Item Script="None" Name="give_ticket_ep12musical03_2_m" Count="1" Price="10000" DailyBuyLimit="0" AccountNeedProperty="ContentsTotalShop_2009_21"/>
-		<Item Script="None" Name="give_ticket_ep12musical03_2_f" Count="1" Price="10000" DailyBuyLimit="0" AccountNeedProperty="ContentsTotalShop_2009_22"/>
 		<Item Script="None" Name="DRESS_ROOM_COLLECT_3" Count="1" Price="3000" DailyBuyLimit="0" AccountNeedProperty="ContentsTotalShop_2009_23"/>
 		<Item Script="None" Name="give_ticket_ep12demonlord03_m" Count="1" Price="10000" DailyBuyLimit="0" AccountNeedProperty="ContentsTotalShop_2009_24"/>
 		<Item Script="None" Name="give_ticket_ep12demonlord03_f" Count="1" Price="10000" DailyBuyLimit="0" AccountNeedProperty="ContentsTotalShop_2009_25"/>
@@ -139,11 +125,19 @@
 		<Item Script="None" Name="give_ticket_ep13vakarine03_2_f" Count="1" Price="10000" DailyBuyLimit="0" AccountNeedProperty="ContentsTotalShop_2012_13"/>
 	</Shop>
 	<Shop Name="SEASONOFF_CONTENTS_TOTAL_SHOP" PointScript="GET_CONTENTS_TOTAL_POINT">
-		<Item Script="None" Name="EP12_costume_Com_038" Count="1" Price="12000" DailyBuyLimit="0"/>
-		<Item Script="None" Name="EP12_costume_Com_041" Count="1" Price="12000" DailyBuyLimit="0"/>
-		<Item Script="None" Name="EP12_costume_Com_044" Count="1" Price="12000" DailyBuyLimit="0"/>
-		<Item Script="None" Name="EP12_costume_Com_047" Count="1" Price="12000" DailyBuyLimit="0"/>
-		<Item Script="None" Name="EP12_costume_Com_050" Count="1" Price="12000" DailyBuyLimit="0"/>
-		<Item Script="None" Name="EP12_costume_Com_053" Count="1" Price="12000" DailyBuyLimit="0"/>
+		<Item Script="None" Name="DRESS_ROOM_COLLECT_1" Count="1" Price="3600" DailyBuyLimit="0" AccountNeedProperty="ContentsTotalShop_2009_9"/>
+		<Item Script="None" Name="DRESS_ROOM_COLLECT_2" Count="1" Price="3600" DailyBuyLimit="0" AccountNeedProperty="ContentsTotalShop_2009_10"/>
+		<Item Script="None" Name="give_ticket_ep12honoredrose01_1_m" Count="1" Price="12000" DailyBuyLimit="0" AccountNeedProperty="ContentsTotalShop_2009_11"/>
+		<Item Script="None" Name="give_ticket_ep12honoredrose01_1_f" Count="1" Price="12000" DailyBuyLimit="0" AccountNeedProperty="ContentsTotalShop_2009_12"/>
+		<Item Script="None" Name="give_ticket_ep12honoredrose02_1_m" Count="1" Price="12000" DailyBuyLimit="0" AccountNeedProperty="ContentsTotalShop_2009_13"/>
+		<Item Script="None" Name="give_ticket_ep12honoredrose02_1_f" Count="1" Price="12000" DailyBuyLimit="0" AccountNeedProperty="ContentsTotalShop_2009_14"/>
+		<Item Script="None" Name="give_ticket_ep12honoredrose03_1_m" Count="1" Price="12000" DailyBuyLimit="0" AccountNeedProperty="ContentsTotalShop_2009_15"/>
+		<Item Script="None" Name="give_ticket_ep12honoredrose03_1_f" Count="1" Price="12000" DailyBuyLimit="0" AccountNeedProperty="ContentsTotalShop_2009_16"/>
+		<Item Script="None" Name="give_ticket_ep12musical03_m" Count="1" Price="12000" DailyBuyLimit="0" AccountNeedProperty="ContentsTotalShop_2009_17"/>
+		<Item Script="None" Name="give_ticket_ep12musical03_f" Count="1" Price="12000" DailyBuyLimit="0" AccountNeedProperty="ContentsTotalShop_2009_18"/>
+		<Item Script="None" Name="give_ticket_ep12musical02_2_m" Count="1" Price="12000" DailyBuyLimit="0" AccountNeedProperty="ContentsTotalShop_2009_19"/>
+		<Item Script="None" Name="give_ticket_ep12musical02_2_f" Count="1" Price="12000" DailyBuyLimit="0" AccountNeedProperty="ContentsTotalShop_2009_20"/>
+		<Item Script="None" Name="give_ticket_ep12musical03_2_m" Count="1" Price="12000" DailyBuyLimit="0" AccountNeedProperty="ContentsTotalShop_2009_21"/>
+		<Item Script="None" Name="give_ticket_ep12musical03_2_f" Count="1" Price="12000" DailyBuyLimit="0" AccountNeedProperty="ContentsTotalShop_2009_22"/>
 	</Shop>
 </PropertyShop>

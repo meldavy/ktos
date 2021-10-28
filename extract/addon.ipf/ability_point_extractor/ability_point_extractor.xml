@@ -18,9 +18,10 @@
 		<richtext name="headerText" parent="headerBox" rect="0 0 400 30" margin="0 5 0 0" layout_gravity="center center" caption="{@st66d}특성 포인트 추출"/>
 		<picture name="question" rect="0 0 44 44" margin="0 3 0 0" layout_gravity="right top" MouseOffAnim="btn_mouseoff" MouseOnAnim="btn_mouseover" hittest="true" image="testquesten_button" oversound="button_over" texttooltip="{@st59s}100,000실버를 소비하여 특성 포인트 1000당{nl}특성 포인트 스크롤 1개로 추출합니다."/>
 		<!-- type -->
+		<richtext name="typeText" rect="0 0 400 30" margin="20 47 0 0" layout_gravity="left top" caption="{@st66b}소비 재화 :{/}"/>
 		<groupbox name="checkTypeBox" rect="0 0 400 30" margin="0 45 0 0" layout_gravity="center top" draw="false"/>
-		<radiobutton name="checkType_1" parent="checkTypeBox" rect="0 0 200 24" margin="20 0 0 0" layout_gravity="left top" caption="{@st66b}실버{/}" group="extractorType" LBtnUpScp="ABILITY_POINT_EXTRACTOR_TYPE_RADIO_BTN_CLICK" LBtnUpArgNum="1"/>
-		<radiobutton name="checkType_2" parent="checkTypeBox" rect="0 0 200 24" margin="100 0 0 0" layout_gravity="left top" caption="{@st66b}특성 포인트{/}" group="extractorType" LBtnUpScp="ABILITY_POINT_EXTRACTOR_TYPE_RADIO_BTN_CLICK" LBtnUpArgNum="2"/>
+		<radiobutton name="checkType_1" parent="checkTypeBox" rect="0 0 200 24" margin="0 0 80 0" layout_gravity="right top" caption="{@st66b}실버{/}" group="extractorType" LBtnUpScp="ABILITY_POINT_EXTRACTOR_TYPE_RADIO_BTN_CLICK" LBtnUpArgNum="1"/>
+		<radiobutton name="checkType_2" parent="checkTypeBox" rect="0 0 200 24" margin="0 0 0 0" layout_gravity="right top" caption="{@st66b}특성 포인트{/}" group="extractorType" LBtnUpScp="ABILITY_POINT_EXTRACTOR_TYPE_RADIO_BTN_CLICK" LBtnUpArgNum="2"/>
 		<!-- buy fee -->
 		<groupbox name="feeBox" rect="0 0 400 30" margin="0 77 0 0" layout_gravity="center top" draw="false"/>
 		<groupbox name="feeTextBox" parent="feeBox" rect="0 0 140 25" margin="10 0 0 0" layout_gravity="left top" skin="jour_search"/>

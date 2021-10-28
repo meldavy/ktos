@@ -177,6 +177,8 @@ ClassID,Arg1,Arg2,RecipeTime,SuccessRatio,LevelByFail,TargetItemCnt,Item_1_1_Cnt
 3414,5,0,8,0,0,1,1,0,0,0,0,0,0,0,0,0,0,DailyRewardShop1_14,DailyRewardShop,Recipe,,Drag,Action,Drag,Drag,,,,CRAFT,Ark_dummy,,,misc_0533,,,,,,,,
 3415,5,0,8,0,0,1,20,0,0,0,0,0,0,0,0,0,0,DailyRewardShop1_15,DailyRewardShop,Recipe,,Drag,Action,Drag,Drag,,,,CRAFT,Premium_StatReset14,,,misc_0533,,,,,,,,
 3416,5,0,8,0,0,1,90,0,0,0,0,0,0,0,0,0,0,DailyRewardShop1_16,DailyRewardShop,Recipe,,Drag,Action,Drag,Drag,,,,CRAFT,ExchangeWeapon_Book_440,,,misc_0533,,,,,,,,
+3417,5,0,8,0,0,1,10,0,0,0,0,0,0,0,0,0,0,DailyRewardShop1_17,DailyRewardShop,Recipe,,Drag,Action,Drag,Drag,,,,CRAFT,Gem_Relic_Cyan_L_004,,,misc_0533,,,,,,,,
+3418,5,0,8,0,0,1,10,0,0,0,0,0,0,0,0,0,0,DailyRewardShop1_18,DailyRewardShop,Recipe,,Drag,Action,Drag,Drag,,,,CRAFT,Gem_Relic_Magenta_L_004,,,misc_0533,,,,,,,,
 3501,5,0,8,0,0,40,1,0,0,0,0,0,0,0,0,0,0,Bernice_1,Bernice,Recipe,,Drag,Action,Drag,Drag,,,,CRAFT,misc_pvp_mine2,,,misc_bernice_coin,,,,,,,,
 3502,5,0,8,0,0,4000,100,0,0,0,0,0,0,0,0,0,0,Bernice_2,Bernice,Recipe,,Drag,Action,Drag,Drag,,,,CRAFT,misc_pvp_mine2,,,misc_bernice_coin,,,,,,,,
 3601,5,0,8,0,0,1,250,0,0,0,0,0,0,0,0,0,0,VividCity2_Shop1,VividCity2_Shop,Recipe,,Drag,Action,Drag,Drag,,,,CRAFT,Transcend_Scroll_3_Event_1905,,EVENT_1905_VIVID_CITY_TradeCount1,EVENT_1905_VIVID_POWDER_1,,,,,,,,

@@ -4219,6 +4219,20 @@
         <Key Name="BORUTA_BLOCKADE_MODE_ENTERED" Value="107805"/>
         <Key Name="GILTINE_BLOCKADE_MODE_ENTERED" Value="107806"/>
         <Key Name="HadVisited_11230" Value="107807"/>
+        <Key Name="SEASONOFFShop_2012_1" Value="107808"/>
+        <Key Name="SEASONOFFShop_2012_10" Value="107817"/>
+        <Key Name="SEASONOFFShop_2012_11" Value="107814"/>
+        <Key Name="SEASONOFFShop_2012_12" Value="107818"/>
+        <Key Name="SEASONOFFShop_2012_13" Value="107810"/>
+        <Key Name="SEASONOFFShop_2012_14" Value="107821"/>
+        <Key Name="SEASONOFFShop_2012_2" Value="107820"/>
+        <Key Name="SEASONOFFShop_2012_3" Value="107816"/>
+        <Key Name="SEASONOFFShop_2012_4" Value="107813"/>
+        <Key Name="SEASONOFFShop_2012_5" Value="107815"/>
+        <Key Name="SEASONOFFShop_2012_6" Value="107809"/>
+        <Key Name="SEASONOFFShop_2012_7" Value="107819"/>
+        <Key Name="SEASONOFFShop_2012_8" Value="107811"/>
+        <Key Name="SEASONOFFShop_2012_9" Value="107812"/>
     </KeyIDSpc>
     <KeyIDSpc Name="PCEtc">
         <Key Name="Kill_boss_Clymen_Q2" Value="7788"/>

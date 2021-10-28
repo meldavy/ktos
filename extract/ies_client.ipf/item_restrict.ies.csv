@@ -114,10 +114,11 @@ ClassID,ClassName,Category,Icon,Spot_Name,Desc
 1406,1406,Challenge_Auto_3,,아크,퀘스트/제작 아크 Lv.3
 1501,1501,Challenge_Division_Auto_1,,주무기,"레전드 Lv.440, 고정 아이커 바이보라 Lv1, 10 강화, 8 초월"
 1502,1502,Challenge_Division_Auto_1,,보조무기,"레전드 Lv.440, 고정 아이커 Lv.380, 10 강화, 8 초월"
-1503,1503,Challenge_Division_Auto_1,,방어구,"레전드 Lv.400, 고정 아이커 Lv.400, 10 강화, 8 초월"
+1503,1503,Challenge_Division_Auto_1,,방어구,"레전드 Lv.440, 고정 아이커 Lv.400, 8 강화, 8 초월"
 1504,1504,Challenge_Division_Auto_1,,액세서리,레전드 Lv.350(근본 액세서리로 대체 불가)
 1505,1505,Challenge_Division_Auto_1,,인장,보루타 인장 Lv.1
 1506,1506,Challenge_Division_Auto_1,,아크,퀘스트/제작 아크 Lv.5
+1507,1507,Challenge_Division_Auto_1,,세트 아이템,세트 아이템 보유
 1601,1601,Legend_Raid_boss_Moringponia_Easy,,주무기,"레전드 Lv.400, 고정 아이커"
 1602,1602,Legend_Raid_boss_Moringponia_Easy,,보조무기,"레전드 Lv.400, 고정 아이커"
 1603,1603,Legend_Raid_boss_Moringponia_Easy,,방어구,"레전드 Lv.400, 고정 아이커"

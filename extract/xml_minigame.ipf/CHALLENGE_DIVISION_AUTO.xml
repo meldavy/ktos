@@ -130,6 +130,7 @@
             <Stage Name="End" AutoStart="0">
                 <ObjList>
                     <Obj Type="Monster" MonType="160055" Pos="-33.70#91.80#13.52" genCount="1" genTime="20000" autoGen="0" objectKey="0" propList="&apos;Name&apos; &apos;배수권&apos; "/>
+                    <Obj Type="Monster" MonType="160063" Pos="-23.70#91.80#75.52" genCount="1" genTime="20000" autoGen="0" objectKey="1" propList="&apos;Name&apos; &apos;모드 종료&apos; "/>
                 </ObjList>
                 <StageEvents>
                     <Event execCount="1" eventName="HardModeFail">
@@ -174,13 +175,17 @@
                                 <Str Str="Start"/>
                             </ToolScp>
                             <ToolScp Scp="MGAME_EVT_EXEC_CREMON" Client="NO" UseSleep="NO">
-                                <MGameObjIndex List="End/0"/>
+                                <MGameObjIndex List="End/0/End/1"/>
                                 <Num Num="1"/>
                                 <Num Num="0"/>
                             </ToolScp>
                             <ToolScp Scp="MGAME_EVT_SCP_TO_MON_CMD" Client="NO" UseSleep="NO">
                                 <MGameObj List="End/0"/>
                                 <Str Str="SET_AUTO_DIVISION_CHALLENGEREWARD_MULTIPLE_PORTAL"/>
+                            </ToolScp>
+                            <ToolScp Scp="MGAME_EVT_SCP_TO_MON_CMD" Client="NO" UseSleep="NO">
+                                <MGameObj List="End/1"/>
+                                <Str Str="SCR_AUTO_CHALLENGE_EXIT_PORTAL"/>
                             </ToolScp>
                             <ToolScp Scp="MGAME_EVT_SCP_TO_MON_CMD" Client="NO" UseSleep="NO">
                                 <MGameObj List="Start/0"/>

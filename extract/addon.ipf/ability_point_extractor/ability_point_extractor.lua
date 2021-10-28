@@ -26,13 +26,22 @@ function ABILITY_POINT_EXTRACTOR_RESET(frame, msg, argStr, type)
     local enableCount = 0;
 
     if type == 1 then
+        local consumeMoney, eventDiscount = ABILITY_POINT_EXTRACTOR_GET_CONSUME_MONEY(frame)
+
         feeValueText:SetTextByKey('value', GET_COMMAED_STRING(ABILITY_POINT_EXTRACTOR_FEE));
         feeValueText:SetTextByKey('value2', ClMsg("Auto_SilBeo"));
         
         local money = GET_TOTAL_MONEY_STR();
+
         enableCountByMoney = math.floor(tonumber(money) / ABILITY_POINT_EXTRACTOR_FEE);
         enableCountByPoint = math.floor(session.ability.GetAbilityPoint() / ABILITY_POINT_SCROLL_RATE);
-        enableCount = math.min(enableCountByMoney, enableCountByPoint);
+
+        if eventDiscount == 0 then
+            enableCount = math.min(enableCountByMoney, enableCountByPoint);
+        else
+            enableCount = enableCountByPoint;
+        end
+        
         consumeMoney2Box:ShowWindow(0);
         consumeMoneyBox:ShowWindow(1);
         expectMoneyBox:ShowWindow(1);
@@ -187,26 +196,21 @@ function ABILITY_POINT_EXTRACTOR_GET_CONSUME_MONEY(frame)
     
     local eventDiscount = 0
 
-    -- -- EVENT_1811_ABILITY_EXTRACTOR
-    -- local useFlag = TryGetProp(sObj, 'EVENT_1811_ABILITY_EXTRACTOR_USE')
-    -- local exceptFlag = TryGetProp(sObj, 'EVENT_1811_ABILITY_EXTRACTOR_EXCEPT')
-    -- if exceptFlag == 0 and useFlag == 0 then
-    --     consumeMoney = 0
-    --     eventDiscount = 1
-    -- end
-
-    -- ABILITY_EXTRACT_FREE_COUPON
-    local invItem = session.GetInvItemByName("Event_free_ap_return")
-    if invItem ~= nil then
-        consumeMoney = 0
-        eventDiscount = 1
-    end
-    
-    -- EVENT_2012_YAK_ABILITY_EXTRACT_FREE_COUPON
-    local invItem = session.GetInvItemByName("Event_free_ap_return2")
-    if invItem ~= nil then
-        consumeMoney = 0
-        eventDiscount = 1
+    -- 특포 무료 추출권은 실버에만 적용
+    if type == 1 then
+        -- ABILITY_EXTRACT_FREE_COUPON
+        local invItem = session.GetInvItemByName("Event_free_ap_return")
+        if invItem ~= nil then
+            consumeMoney = 0
+            eventDiscount = 1
+        end
+        
+        -- EVENT_2012_YAK_ABILITY_EXTRACT_FREE_COUPON
+        local invItem = session.GetInvItemByName("Event_free_ap_return2")
+        if invItem ~= nil then
+            consumeMoney = 0
+            eventDiscount = 1
+        end
     end
 	
     return consumeMoney, eventDiscount;

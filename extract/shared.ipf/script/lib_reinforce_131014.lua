@@ -13,7 +13,8 @@ function IS_MORU_FREE_PRICE(moruItem)
         or moruItem.ClassName == 'Moru_Silver_TA_Recycle' 
         or moruItem.ClassName == 'Moru_Silver_TA_V2' 
         or moruItem.ClassName == "Moru_Gold_TA"        
-        or moruItem.ClassName == "Moru_Gold_TA_NR"
+		or moruItem.ClassName == "Moru_Gold_TA_NR"
+		or moruItem.ClassName == "Moru_Gold_TA_NR_Team_Trade"
         or moruItem.ClassName == "Moru_Gold_EVENT_1710_NEWCHARACTER"
         or moruItem.ClassName == "Moru_Event160609" 
         or moruItem.ClassName == "Moru_Event160929_14d" 
@@ -53,7 +54,8 @@ function IS_MORU_NOT_DESTROY_TARGET_ITEM(moruItem)
         or moruItem.ClassName == "Moru_Gold" 
         or moruItem.ClassName == "Moru_Gold_14d" 
         or moruItem.ClassName == "Moru_Gold_TA" 
-        or moruItem.ClassName == "Moru_Gold_TA_NR" 
+		or moruItem.ClassName == "Moru_Gold_TA_NR" 
+		or moruItem.ClassName == "Moru_Gold_TA_NR_Team_Trade" 
         or moruItem.ClassName == "Moru_Gold_Team_Trade" 
         or moruItem.ClassName == "Moru_Gold_14d_Team" 
         or moruItem.ClassName == "Moru_Gold_EVENT_1710_NEWCHARACTER"

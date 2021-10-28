@@ -7,6 +7,9 @@ function ON_CONTENTS_MULTIPLE_OPEN(frame, msg, argStr, argNum)
 	local contents_multiple = ui.GetFrame('contents_multiple')
 	contents_multiple:ShowWindow(1)
 	contents_multiple:SetUserValue('ITEM_CLASSNAME', argStr)
+	if argNum ~= nil then
+		contents_multiple:SetUserValue("MSG_BOX_CHECK_FLAG", argNum);
+	end
 end
 
 function OPEN_CONTENTS_MULTIPLE(frame)
@@ -151,12 +154,13 @@ function CONTENTS_MULTIPLE_EXECUTE(parent, ctrl)
 	end
 
 	local targetItemID = icon:GetInfo():GetIESID()
-	local yesscp = string.format('_CONTENTS_MULTIPLE_EXECUTE("%s")', targetItemID)
-	local clMsg = 'ReallyUseContentsMultiple'
-	if CHECK_PARTY_LOCATE() == false then
+	local yesscp = string.format('_CONTENTS_MULTIPLE_EXECUTE("%s")', targetItemID);
+
+	local msgBoxCheckFlag = frame:GetUserValue("MSG_BOX_CHECK_FLAG");
+	local clMsg = 'ReallyUseContentsMultiple';
+	if CHECK_PARTY_LOCATE() == false and tonumber(msgBoxCheckFlag) ~= 1 then
 		clMsg = 'SomePartyMembersAreNotExists'
 	end
-
 	local multiple_item_obj = GetIES(multiple_item:GetObject())
 	
 	ui.MsgBox(ScpArgMsg(clMsg, 'Name', TryGetProp(multiple_item_obj, 'Name', 'None')), yesscp, '')

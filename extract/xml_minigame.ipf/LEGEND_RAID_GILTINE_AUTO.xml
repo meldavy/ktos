@@ -17,24 +17,6 @@
                             </ToolScp>
                         </execList>
                     </Event>
-                    <Event execCount="1" eventName="START_BUFF_SET">
-                        <condList>
-                            <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK" Client="NO" UseSleep="NO">
-                                <Num Num="5"/>
-                            </ToolScp>
-                        </condList>
-                        <execList>
-                            <ToolScp Scp="MGAME_EXEC_SELECT_BUFF_PARTY" Client="NO" UseSleep="NO">
-                                <Num Num="60"/>
-                                <Str Str="AUTO_MATCHING_PARTY_ATTACK_BUFF"/>
-                                <Str Str="AUTO_MATCHING_PARTY_DEFENCE_BUFF"/>
-                                <Str Str="AUTO_MATCHING_PARTY_HEAL_BUFF"/>
-                                <Str Str="AUTO_MATCHING_PARTY_HEAL2_BUFF"/>
-                                <Str Str="None"/>
-                                <Num Num="0"/>
-                            </ToolScp>
-                        </execList>
-                    </Event>
                 </StageEvents>
             </Stage>
             <Stage Name="Success" AutoStart="0">
@@ -298,29 +280,6 @@
                                 <MGameObjIndex List="STAGE_MANAGER/0"/>
                                 <Num Num="1"/>
                                 <Num Num="0"/>
-                            </ToolScp>
-                        </execList>
-                    </Event>
-                    <Event execCount="1" eventName="AutoPartyBuff">
-                        <condList>
-                            <ToolScp Scp="MGAME_EVT_COND_PCCNT_OVER" Client="NO" UseSleep="NO">
-                                <Num Num="1"/>
-                            </ToolScp>
-                            <ToolScp Scp="GAME_ST_EVT_COND_VALUE" Client="NO" UseSleep="NO">
-                                <Str Str="Giltine_Pattern_Start"/>
-                                <Str Str="=="/>
-                                <Num Num="0"/>
-                            </ToolScp>
-                        </condList>
-                        <execList>
-                            <ToolScp Scp="MGAME_EXEC_SELECT_BUFF_PARTY" Client="NO" UseSleep="NO">
-                                <Num Num="20"/>
-                                <Str Str="AUTO_MATCHING_PARTY_ATTACK_BUFF"/>
-                                <Str Str="AUTO_MATCHING_PARTY_DEFENCE_BUFF"/>
-                                <Str Str="AUTO_MATCHING_PARTY_HEAL_BUFF"/>
-                                <Str Str="AUTO_MATCHING_PARTY_HEAL2_BUFF"/>
-                                <Str Str="None"/>
-                                <Num Num="2"/>
                             </ToolScp>
                         </execList>
                     </Event>
@@ -2354,8 +2313,8 @@
             </Stage>
             <Stage Name="DemonicsHiddenPower" AutoStart="0">
                 <ObjList>
-                    <Obj Type="Monster" MonType="147500" Pos="471.00#23.86#1833.35" genCount="1" genTime="20000" autoGen="0" objectKey="0" propList="&apos;Dialog&apos; &apos;AUTO_GILTINE_DEMONICS_HIDDEN_POWER_MAIN_FIELD_WARP&apos; "/>
-                    <Obj Type="Monster" MonType="147500" Pos="-1177.38#24.74#-363.73" genCount="1" genTime="20000" autoGen="0" objectKey="1" propList="&apos;Dialog&apos; &apos;AUTO_GILTINE_DEMONICS_HIDDEN_POWER_HIDDEN_FIELD_WARP&apos; "/>
+                    <Obj Type="Monster" MonType="147500" Pos="471.00#23.86#1833.35" genCount="1" genTime="20000" autoGen="0" objectKey="0" propList="&apos;Dialog&apos; &apos;AUTO_GILTINE_DEMONICS_HIDDEN_POWER_MAIN_FIELD_WARP&apos; &apos;DialogChaseDist&apos; &apos;40&apos; "/>
+                    <Obj Type="Monster" MonType="147500" Pos="-1177.38#24.74#-363.73" genCount="1" genTime="20000" autoGen="0" objectKey="1" propList="&apos;Dialog&apos; &apos;AUTO_GILTINE_DEMONICS_HIDDEN_POWER_HIDDEN_FIELD_WARP&apos; &apos;DialogChaseDist&apos; &apos;40&apos; "/>
                     <Obj Type="Monster" MonType="160040" Pos="-506.64#24.74#-645.48" genCount="1" genTime="20000" autoGen="0" objectKey="2"/>
                 </ObjList>
                 <StageEvents>
@@ -3654,11 +3613,11 @@
         <EnterList>
             <ToolScp Scp="MGAME_ZONE_ENTER_SELECT_BUFF_SOLO" Client="NO" UseSleep="NO">
                 <Num Num="60"/>
-                <Str Str="AUTO_MATCHING_TANKER_BUFF"/>
-                <Str Str="AUTO_MATCHING_RECOVERY_BEAD_BUFF"/>
-                <Str Str="AUTO_MATCHING_HEALER_BUFF"/>
-                <Str Str="AUTO_MATCHING_DAMAGE_BUFF"/>
-                <Str Str="AUTO_MATCHING_DAMAGE2_BUFF"/>
+                <Str Str="AUTO_MATCHING2_TANKER_BUFF"/>
+                <Str Str="AUTO_MATCHING2_DAMAGE_BUFF"/>
+                <Str Str="AUTO_MATCHING2_BLOW_HEAL_BUFF"/>
+                <Str Str="AUTO_MATCHING2_HEALER_BUFF"/>
+                <Str Str="None"/>
                 <Num Num="2"/>
             </ToolScp>
         </EnterList>

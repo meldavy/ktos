@@ -54,8 +54,8 @@ function CHECK_SINGULARITY_AUTOMATCHING_FOR_EP13(pc)
 		-- 방어구 체크
 		for k, v in pairs(check_equip_list_1) do
 			local item = GetEquipItem(pc, v)
-			-- 440레벨, 레전드, 고정아이커체크, 430레벨 고정아이커
-			ret = CHECK_ARMOR_ITEM(pc, item, 440, 5, true, 0, {{'ALL',400}}, 8, 10)
+			-- 440레벨, 레전드, 고정아이커체크, 400레벨 고정아이커, 8초월, 8강
+			ret = CHECK_ARMOR_ITEM(pc, item, 440, 5, true, 0, {{'ALL',400}}, 8, 8)
 			if ret == false then
 				SendSysMsg(pc, 'RequireArmorItemLowGrade');
 				return false

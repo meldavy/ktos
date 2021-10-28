@@ -5,6 +5,8 @@ function SILVER_GACHA_ON_INIT(addon, frame)
     addon:RegisterMsg('SILVER_GACHA_NO_EVENT_EXIST', 'ON_SILVER_GACHA_NO_EVENT_EXIST');
 end
 
+local SILVER_GACHA_UNLIMITED_COUNT = 10000000
+
 -- SETTING
 function SILVER_GACHA_GET_EVENT_ID()
 	return ui.GetFrame("silver_gacha"):GetUserConfig("EVENT_ID")
@@ -68,7 +70,7 @@ function ON_SILVER_GACHA_INFO_CHANGE()
             local slot = AUTO_CAST(ctrl:GetChild('slot'))
             local text = AUTO_CAST(ctrl:GetChild('slot_text'))
 
-            if rank ~= 3 then
+            if originalCount < SILVER_GACHA_UNLIMITED_COUNT then
                 text:SetTextByKey("now", nowCount)
                 text:SetTextByKey("original", originalCount)
 
@@ -150,7 +152,7 @@ function SILVER_GACHA_SET_UI()
             -- 텍스트
             local text = AUTO_CAST(ctrl:GetChild('slot_text'))
 
-            if rank == 3 then
+            if originalCount >= SILVER_GACHA_UNLIMITED_COUNT then
                 text:SetText("{@st100white_16}{s26}"..ScpArgMsg("SilverGachaMaxVal"))
             else
                 text:SetTextByKey("now", nowCount)

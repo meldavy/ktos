@@ -204,7 +204,6 @@ function GET_VALID_LEGEND_PREFIX_MATERIAL_COUNT_C(needItemName)
 	local itemObj = GetIES(targetItem:GetObject());
 	if itemObj == nil then return end
 	
-    local count = 0;
 	local count = GET_INV_ITEM_COUNT_BY_PROPERTY({
         {Name = 'ClassName', Value = needItemName}
 	}, false, nil, function(item)
@@ -221,6 +220,26 @@ function GET_VALID_LEGEND_PREFIX_MATERIAL_COUNT_C(needItemName)
 		end
 		return false;
 	end);	
+	if needItemName == 'Legend_ExpPotion_2_complete' then
+		local count2 = GET_INV_ITEM_COUNT_BY_PROPERTY({
+			{Name = 'ClassName', Value = 'Legend_ExpPotion_2_complete_Team_Trade'}
+		}, false, nil, function(item)
+			if item == nil then
+				return false;
+			end
+			local itemExpStr = TryGetProp(item, 'ItemExpString', 'None');
+			print(itemExpStr)
+			if itemExpStr == 'None' then
+				itemExpStr = '0';
+			end
+			local itemExpNum = tonumber(itemExpStr);
+			if itemExpNum ~= nil and itemExpNum >= item.NumberArg1 then
+				return true;
+			end
+			return false;
+		end);	
+		count = count + count2
+	end
     return count;
 end
 

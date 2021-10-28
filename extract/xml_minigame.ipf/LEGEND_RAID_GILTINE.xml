@@ -3,7 +3,7 @@
     <Game Name="LEGEND_RAID_GILTINE" minLv="0" maxLv="0" mapName="raid_dcapital_108" playerCountCheckDestroy="1" startWaitSec="-1">
         <StageList>
             <Stage Name="Start">
-				<StartScpList>
+                <StartScpList>
                     <ToolScp Scp="MGAME_SET_STYLE_INFO" Client="NO" UseSleep="NO">
                         <Str Str="giltine_level"/>
                         <Str Str="bar"/>
@@ -2093,8 +2093,8 @@
             </Stage>
             <Stage Name="DemonicsHiddenPower" AutoStart="0">
                 <ObjList>
-                    <Obj Type="Monster" MonType="147500" Pos="471.00#23.86#1833.35" genCount="1" genTime="20000" autoGen="0" objectKey="0" propList="&apos;Dialog&apos; &apos;GILTINE_RAID_DEMONICS_HIDDEN_POWER_MAIN_FIELD_WARP&apos; &apos;Hittable&apos; &apos;NO&apos; "/>
-                    <Obj Type="Monster" MonType="147500" Pos="-1177.38#24.74#-363.73" genCount="1" genTime="20000" autoGen="0" objectKey="1" propList="&apos;Dialog&apos; &apos;GILTINE_RAID_DEMONICS_HIDDEN_POWER_HIDDEN_FIELD_WARP&apos; &apos;Hittable&apos; &apos;NO&apos; "/>
+                    <Obj Type="Monster" MonType="147500" Pos="471.00#23.86#1833.35" genCount="1" genTime="20000" autoGen="0" objectKey="0" propList="&apos;Dialog&apos; &apos;GILTINE_RAID_DEMONICS_HIDDEN_POWER_MAIN_FIELD_WARP&apos; &apos;Hittable&apos; &apos;NO&apos; &apos;DialogChaseDist&apos; &apos;40&apos; "/>
+                    <Obj Type="Monster" MonType="147500" Pos="-1177.38#24.74#-363.73" genCount="1" genTime="20000" autoGen="0" objectKey="1" propList="&apos;Dialog&apos; &apos;GILTINE_RAID_DEMONICS_HIDDEN_POWER_HIDDEN_FIELD_WARP&apos; &apos;Hittable&apos; &apos;NO&apos; &apos;DialogChaseDist&apos; &apos;40&apos; "/>
                     <Obj Type="Monster" MonType="160040" Pos="-506.64#24.74#-645.48" genCount="1" genTime="20000" autoGen="0" objectKey="2"/>
                 </ObjList>
                 <StageEvents>
@@ -2756,7 +2756,7 @@
                             </ToolScp>
                         </execList>
                     </Event>
-					<Event execMS="180000" eventName="AStep1(49-40)">
+                    <Event execMS="180000" eventName="AStep1(49-40)">
                         <condList>
                             <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
                                 <MGameObj List="Boss_Giltine/1"/>
@@ -2804,7 +2804,7 @@
                             </ToolScp>
                         </execList>
                     </Event>
-					<Event execMS="180000" eventName="AStep2(30-21)">
+                    <Event execMS="180000" eventName="AStep2(30-21)">
                         <condList>
                             <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
                                 <MGameObj List="Boss_Giltine/1"/>
@@ -2852,7 +2852,7 @@
                             </ToolScp>
                         </execList>
                     </Event>
-					<Event execMS="180000" eventName="AStep3(14-0)">
+                    <Event execMS="180000" eventName="AStep3(14-0)">
                         <condList>
                             <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
                                 <MGameObj List="Boss_Giltine/1"/>
@@ -3335,6 +3335,60 @@
                     </Event>
                 </StageEvents>
             </Stage>
+			<Stage Name="DemonicsSummonMonster" AutoStart="0">
+				<ObjList/>
+				<StageEvents>
+					<Event execMS="60000" eventName="SummonMonster">
+						<execList>
+							<ToolScp Scp="MGAME_EVT_SCP_TO_MON_CMD" Client="NO" UseSleep="NO">
+								<MGameObj List="Boss_Giltine/0/Boss_Giltine/1"/>
+								<Str Str="SCR_GILTINE_DEMONICS_SUMMON_MONSTER_START"/>
+							</ToolScp>
+						</execList>
+					</Event>
+					<Event execCount="1" eventName="RemoveMonster(70-51)">
+						<condList>
+							<ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
+								<MGameObj List="Boss_Giltine/0/Boss_Giltine/1"/>
+								<Num Num="70"/>
+								<Str Str="UNDER"/>
+								<Num Num="1"/>
+								<Str Str="OVER"/>
+							</ToolScp>
+							<ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
+								<MGameObj List="Boss_Giltine/0/Boss_Giltine/1"/>
+								<Num Num="51"/>
+								<Str Str="OVER"/>
+								<Num Num="1"/>
+								<Str Str="OVER"/>
+							</ToolScp>
+						</condList>
+						<execList>
+							<ToolScp Scp="MGAME_EVT_SCP_TO_MON_CMD" Client="NO" UseSleep="NO">
+								<MGameObj List="Boss_Giltine/0/Boss_Giltine/1"/>
+								<Str Str="SCR_GILTINE_DEMONICS_SUMMON_MONSTER_REMOVE"/>
+							</ToolScp>
+						</execList>
+					</Event>
+					<Event execCount="1" eventName="RemoveMonster(50-0)">
+						<condList>
+							<ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
+								<MGameObj List="Boss_Giltine/0/Boss_Giltine/1"/>
+								<Num Num="50"/>
+								<Str Str="UNDER"/>
+								<Num Num="1"/>
+								<Str Str="OVER"/>
+							</ToolScp>
+						</condList>
+						<execList>
+							<ToolScp Scp="MGAME_EVT_SCP_TO_MON_CMD" Client="NO" UseSleep="NO">
+								<MGameObj List="Boss_Giltine/0/Boss_Giltine/1"/>
+								<Str Str="SCR_GILTINE_DEMONICS_SUMMON_MONSTER_REMOVE"/>
+							</ToolScp>
+						</execList>
+					</Event>
+				</StageEvents>
+			</Stage>
         </StageList>
         <WorldInitList>
             <ToolScp Scp="MGAME_INIT_CHANGE_VIEW" Client="NO" UseSleep="NO">

@@ -11771,6 +11771,11 @@ return GET_ABIL_LEVEL(self, &quot;Fletcher6&quot;) * 10"/>
                 <Num Num="1"/>
             </ToolScp>
         </createEvent>
+        <destroyEvent>
+            <ToolScp Scp="PAD_FUNC_UPDATE_RUNSCRIPT" Client="NO" UseSleep="NO">
+                <Str Str="SCR_GILTINE_DARK_RED_THYPOON_PAD_DESTROY"/>
+            </ToolScp>
+        </destroyEvent>
         <enterEvent>
             <ToolScp Scp="PAD_TGT_SCRIPT" Client="NO" UseSleep="NO">
                 <Str Str="SCR_AUTO_GILTINE_DARK_RED_THYPOON_PAD_ENTER"/>
@@ -11819,6 +11824,11 @@ return GET_ABIL_LEVEL(self, &quot;Fletcher6&quot;) * 10"/>
         </createEvent>
         <enterEvent>
             <ToolScp Scp="PAD_TGT_SCRIPT" Client="NO" UseSleep="NO">
+                <Str Str="SCR_GILTINE_ELECTRIC_EEL_PAD_DESTROY"/>
+            </ToolScp>
+        </enterEvent>
+        <enterEvent>
+            <ToolScp Scp="PAD_TGT_SCRIPT" Client="NO" UseSleep="NO">
                 <Str Str="SCR_AUTO_GILTINE_ELECTRIC_EEL_PAD_ENTER"/>
             </ToolScp>
         </enterEvent>
@@ -11847,6 +11857,11 @@ return GET_ABIL_LEVEL(self, &quot;Fletcher6&quot;) * 10"/>
                 <Num Num="0"/>
             </ToolScp>
         </createEvent>
+        <destroyEvent>
+            <ToolScp Scp="PAD_FUNC_UPDATE_RUNSCRIPT" Client="NO" UseSleep="NO">
+                <Str Str="SCR_GILTInE_HELL_FIRE_PAD_DESTROY"/>
+            </ToolScp>
+        </destroyEvent>
         <enterEvent>
             <ToolScp Scp="PAD_TGT_SCRIPT" Client="NO" UseSleep="NO">
                 <Str Str="SCR_AUTO_GILTINE_HELL_FIRE_PAD_ENTER"/>
@@ -11856,15 +11871,6 @@ return GET_ABIL_LEVEL(self, &quot;Fletcher6&quot;) * 10"/>
             <ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
                 <Num Num="-1000"/>
                 <Num Num="1"/>
-            </ToolScp>
-            <ToolScp Scp="PAD_DAMAGE_ENEMY" Client="NO" UseSleep="NO">
-                <Num Num="1"/>
-                <Num Num="0"/>
-                <Num Num="0"/>
-                <Str_Arg Str="I_force003_green" Arg="1"/>
-                <Num Num="0"/>
-                <Num Num="0"/>
-                <Str Str="None"/>
             </ToolScp>
             <ToolScp Scp="PAD_FUNC_UPDATE_RUNSCRIPT" Client="NO" UseSleep="NO">
                 <Str Str="SCR_AUTO_GILTINE_HELL_FIRE_PAD_UPDATE"/>
@@ -11927,6 +11933,11 @@ return GET_ABIL_LEVEL(self, &quot;Fletcher6&quot;) * 10"/>
                 <Num Num="99999"/>
             </ToolScp>
         </createEvent>
+        <destroyEvent>
+            <ToolScp Scp="PAD_FUNC_UPDATE_RUNSCRIPT" Client="NO" UseSleep="NO">
+                <Str Str="SCR_GILTINE_HOLD_POSITION_PAD_DESTROY"/>
+            </ToolScp>
+        </destroyEvent>
         <enterEvent>
             <ToolScp Scp="PAD_TGT_SCRIPT" Client="NO" UseSleep="NO">
                 <Str Str="SCR_AUTO_GILTINE_HOLD_POSITION_PAD_ENTER"/>
@@ -12269,6 +12280,11 @@ return GET_ABIL_LEVEL(self, &quot;Fletcher6&quot;) * 10"/>
                 <Num Num="1"/>
             </ToolScp>
         </createEvent>
+        <destroyEvent>
+            <ToolScp Scp="PAD_FUNC_UPDATE_RUNSCRIPT" Client="NO" UseSleep="NO">
+                <Str Str="SCR_GILTINE_DARK_RED_THYPOON_PAD_DESTROY"/>
+            </ToolScp>
+        </destroyEvent>
         <enterEvent>
             <ToolScp Scp="PAD_TGT_SCRIPT" Client="NO" UseSleep="NO">
                 <Str Str="SCR_GILTINE_DARK_RED_THYPOON_PAD_ENTER"/>
@@ -12315,6 +12331,11 @@ return GET_ABIL_LEVEL(self, &quot;Fletcher6&quot;) * 10"/>
                 <Num Num="99999"/>
             </ToolScp>
         </createEvent>
+        <destroyEvent>
+            <ToolScp Scp="PAD_FUNC_UPDATE_DIRECT" Client="NO" UseSleep="NO">
+                <Str Str="SCR_GILTINE_DEMONICS_LANCE_PAD_DESTROY"/>
+            </ToolScp>
+        </destroyEvent>
         <enterEvent>
             <ToolScp Scp="PAD_TGT_SCRIPT" Client="NO" UseSleep="NO">
                 <Str Str="SCR_GILTINE_ELECTRIC_EEL_PAD_ENTER"/>
@@ -12345,6 +12366,11 @@ return GET_ABIL_LEVEL(self, &quot;Fletcher6&quot;) * 10"/>
                 <Num Num="0"/>
             </ToolScp>
         </createEvent>
+        <destroyEvent>
+            <ToolScp Scp="PAD_FUNC_UPDATE_RUNSCRIPT" Client="NO" UseSleep="NO">
+                <Str Str="SCR_GILTInE_HELL_FIRE_PAD_DESTROY"/>
+            </ToolScp>
+        </destroyEvent>
         <enterEvent>
             <ToolScp Scp="PAD_TGT_SCRIPT" Client="NO" UseSleep="NO">
                 <Str Str="SCR_GILTINE_HELL_FIRE_PAD_ENTER"/>
@@ -12354,15 +12380,6 @@ return GET_ABIL_LEVEL(self, &quot;Fletcher6&quot;) * 10"/>
             <ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
                 <Num Num="-1000"/>
                 <Num Num="1"/>
-            </ToolScp>
-            <ToolScp Scp="PAD_DAMAGE_ENEMY" Client="NO" UseSleep="NO">
-                <Num Num="1"/>
-                <Num Num="0"/>
-                <Num Num="0"/>
-                <Str_Arg Str="I_force003_green" Arg="1"/>
-                <Num Num="0"/>
-                <Num Num="0"/>
-                <Str Str="None"/>
             </ToolScp>
             <ToolScp Scp="PAD_FUNC_UPDATE_RUNSCRIPT" Client="NO" UseSleep="NO">
                 <Str Str="SCR_GILTINE_HELL_FIRE_PAD_UPDATE"/>
@@ -12425,6 +12442,11 @@ return GET_ABIL_LEVEL(self, &quot;Fletcher6&quot;) * 10"/>
                 <Num Num="99999"/>
             </ToolScp>
         </createEvent>
+        <destroyEvent>
+            <ToolScp Scp="PAD_FUNC_UPDATE_RUNSCRIPT" Client="NO" UseSleep="NO">
+                <Str Str="SCR_GILTINE_HOLD_POSITION_PAD_DESTROY"/>
+            </ToolScp>
+        </destroyEvent>
         <enterEvent>
             <ToolScp Scp="PAD_TGT_SCRIPT" Client="NO" UseSleep="NO">
                 <Str Str="SCR_GILTINE_HOLD_POSITION_PAD_ENTER"/>
