@@ -131,11 +131,12 @@ function MULTIPLE_REQUEST_TRADE_ITEM(frame, ctrl, argStr, argNum)
 		local argStr = string.format("%s#%d", itemGuid, selected)
 
 		if TryGetProp(itemObj, 'MaxStack', 0) == 1 or invItem.count == 1 then
+			frame:SetUserValue("argStr", argStr)
 			RUN_CLIENT_MULTIPLE_REQUEST_TRADE_ITEM(1)
 		else
+			frame:SetUserValue("argStr", argStr)
 			local titleText = ScpArgMsg("multiple_trade_select_item", "Auto_1", 1, "Auto_2", invItem.count)
 			INPUT_NUMBER_BOX(nil, titleText, "RUN_CLIENT_MULTIPLE_REQUEST_TRADE_ITEM", 1, 1, invItem.count)
-			frame:SetUserValue("argStr", argStr)
 		end
 	end
 

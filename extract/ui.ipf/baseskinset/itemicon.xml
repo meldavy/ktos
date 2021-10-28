@@ -3397,6 +3397,10 @@
 		<image name="icon_item_ep13dessert_mace" file="\icon\weapon\icon_item_ep13dessert_mace.png" imgrect="0 0 256 256" CMM_Caption="2021.04 테마_3종"/>
 		<image name="icon_item_ep13dessert_dagger" file="\icon\weapon\icon_item_ep13dessert_dagger.png" imgrect="0 0 256 256"/>
 		<image name="icon_item_ep13dessert_rod" file="\icon\weapon\icon_item_ep13dessert_rod.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13mafia_cannon" file="\icon\weapon\icon_item_ep13mafia_cannon.png" imgrect="0 0 256 256" CMM_Caption="2021.05테마_4종"/>
+		<image name="icon_item_ep13mafia_musket" file="\icon\weapon\icon_item_ep13mafia_musket.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13mafia_sword" file="\icon\weapon\icon_item_ep13mafia_sword.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13mafia_thsword" file="\icon\weapon\icon_item_ep13mafia_thsword.png" imgrect="0 0 256 256"/>
 	</imagelist>
 	<imagelist category="acc_item">
 		<image name="item_necklace_01" file="\icon\acc\item_necklace_1.png" imgrect="0 0 256 256" CMM_Caption="목걸이"/>
@@ -4144,6 +4148,8 @@
 		<image name="icon_item_accessory_ep13cherryblossom01" file="\icon\hairacc\icon_item_accessory_ep13cherryblossom01.png" imgrect="0 0 256 256" CMM_Caption="2021_3월 테마 2종"/>
 		<image name="icon_item_accessory_ep13cherryblossom02" file="\icon\hairacc\icon_item_accessory_ep13cherryblossom02.png" imgrect="0 0 256 256"/>
 		<image name="icon_item_accessory_ep13dessert01" file="\icon\hairacc\icon_item_accessory_ep13dessert01.png" imgrect="0 0 256 256" CMM_Caption="2021.4월_1종"/>
+		<image name="icon_item_accessory_ep13mafia" file="\icon\hairacc\icon_item_accessory_ep13mafia.png" imgrect="0 0 256 256" CMM_Caption="2021.5월_2종"/>
+		<image name="icon_item_helmet_ep13mafia" file="\icon\hairacc\icon_item_helmet_ep13mafia.png" imgrect="0 0 256 256"/>
 	</imagelist>
 	<imagelist category="collection_item">
 		<image name="icon_collitem_collection" file="\icon\colletion\icon_item_collection.tga" imgrect="0 0 673 419" CMM_Caption="월계수"/>
@@ -5841,6 +5847,7 @@
 		<image name="icon_item_1804_arbor_2" file="\icon\item\icon_item_1804_arbor_2.png" imgrect="0 0 128 128" CMM_Caption="성목 성장의 수정"/>
 		<image name="icon_item_1804_arbor_3" file="\icon\item\icon_item_1804_arbor_3.png" imgrect="0 0 128 128" CMM_Caption="풍성한 성목 성장의 수정"/>
 		<image name="icon_item_egg_mrdodo" file="\icon\item\icon_item_egg_mrdodo.png" imgrect="0 0 128 128" CMM_Caption="도도새 알"/>
+		<image name="icon_item_pvpmine_1_indigo" file="\icon\item\icon_item_pvpmine_1_indigo.png" imgrect="0 0 128 128" CMM_Caption="수정원석(군청)"/>
 		<image name="icon_item_pvpmine_1" file="\icon\item\icon_item_pvpmine_1.png" imgrect="0 0 128 128" CMM_Caption="수정원석"/>
 		<image name="icon_item_pvpmine_2" file="\icon\item\icon_item_pvpmine_2.png" imgrect="0 0 128 128" CMM_Caption="용병단토큰"/>
 		<image name="icon_item_stake_stockades" file="\icon\item\icon_item_stake_stockades.png" imgrect="0 0 128 128" CMM_Caption="방책"/>
@@ -6410,8 +6417,14 @@
 		<image name="icon_item_misc_ore15_and_misc_0530" file="\icon\item\icon_item_misc_ore15_and_misc_0530.png" imgrect="0 0 128 128" CMM_Caption="프락토늄 마정석 번들"/>
 		<image name="icon_item_relic_growth_bundle" file="\icon\item\icon_item_relic_growth_bundle.png" imgrect="0 0 128 128" CMM_Caption="성물 성장 번들"/>
 		<image name="icon_item_relic_growth_10cnt_box" file="\icon\item\icon_item_relic_growth_10cnt_box.png" imgrect="0 0 256 256" CMM_Caption="여신의 가호 성물 성장 상자"/>
+		<image name="icon_item_cyan_goddess_piece" file="\icon\item\icon_item_cyan_goddess_piece.png" imgrect="0 0 256 256" CMM_Caption="가디스 시안 젬 파편"/>
+		<image name="icon_item_magenta_goddess_piece" file="\icon\item\icon_item_magenta_goddess_piece.png" imgrect="0 0 256 256" CMM_Caption="가디스 마젠타 젬 파편"/>
+		<image name="icon_item_black_goddess_piece" file="\icon\item\icon_item_black_goddess_piece.png" imgrect="0 0 256 256" CMM_Caption="가디스 블랙 젬 파편"/>
 	</imagelist>
 	<imagelist category="housing">
+		<image name="icon_item_housing_craft_bronze_1" file="\icon\item\icon_item_housing_craft_bronze_1.png" imgrect="0 0 256 256" CMM_Caption="[하우징 공방] 쿠폰"/>
+		<image name="icon_item_housing_craft_gold_1" file="\icon\item\icon_item_housing_craft_gold_1.png" imgrect="0 0 256 256" CMM_Caption="[하우징 공방] 쿠폰"/>
+		<image name="icon_item_housing_craft_silver_1" file="\icon\item\icon_item_housing_craft_silver_1.png" imgrect="0 0 256 256" CMM_Caption="[하우징 공방] 쿠폰"/>
 		<image name="icon_item_h_bigplant_set_01_green" file="\icon\housing\icon_item_h_bigplant_set_01_green.png" imgrect="0 0 256 256" CMM_Caption="[길드 하우징] 화단_01(초록색)"/>
 		<image name="icon_item_h_flowerpot_01_blue" file="\icon\housing\icon_item_h_flowerpot_01_blue.png" imgrect="0 0 256 256" CMM_Caption="[길드 하우징] 장미꽃 화분(파란색)"/>
 		<image name="icon_item_h_flowerpot_01_red" file="\icon\housing\icon_item_h_flowerpot_01_red.png" imgrect="0 0 256 256" CMM_Caption="[길드 하우징] 장미꽃 화분(빨간색)"/>
@@ -6749,6 +6762,22 @@
 		<image name="icon_item_p_h_barrack_15_winedeco" file="\icon\housing\icon_item_p_h_barrack_15_winedeco.png" imgrect="0 0 256 256" CMM_Caption="[개인 하우징]와인바 와인 보관용 벽걸이"/>
 		<image name="icon_item_p_h_barrack_15_wineglass" file="\icon\housing\icon_item_p_h_barrack_15_wineglass.png" imgrect="0 0 256 256" CMM_Caption="[개인 하우징]와인바 백금 와인잔"/>
 		<image name="icon_item_p_h_barrack_15_winerack" file="\icon\housing\icon_item_p_h_barrack_15_winerack.png" imgrect="0 0 256 256" CMM_Caption="[개인 하우징]와인바 대형 와인 보관용 선반"/>
+		<image name="icon_item_h_barrack_12_memo_02" file="\icon\housing\icon_item_h_barrack_12_memo_02.png" imgrect="0 0 256 256" CMM_Caption="[개인 하우징]스팀펑크 보고서"/>
+		<image name="icon_item_h_barrack_12_memo_01" file="\icon\housing\icon_item_h_barrack_12_memo_01.png" imgrect="0 0 256 256" CMM_Caption="[개인 하우징]스팀펑크 설계도"/>
+		<image name="icon_item_h_barrack_12_lamp" file="\icon\housing\icon_item_h_barrack_12_lamp.png" imgrect="0 0 256 256" CMM_Caption="[개인 하우징]스팀펑크 가스등"/>
+		<image name="icon_item_h_barrack_12_phone" file="\icon\housing\icon_item_h_barrack_12_phone.png" imgrect="0 0 256 256" CMM_Caption="[개인 하우징]스팀펑크 이상한 전화기"/>
+		<image name="icon_item_h_barrack_12_clock" file="\icon\housing\icon_item_h_barrack_12_clock.png" imgrect="0 0 256 256" CMM_Caption="[개인 하우징]스팀펑크 괘종시계"/>
+		<image name="icon_item_h_barrack_12_carpet_s" file="\icon\housing\icon_item_h_barrack_12_carpet_s.png" imgrect="0 0 256 256" CMM_Caption="[개인 하우징]스팀펑크 원형 블랭킷"/>
+		<image name="icon_item_h_barrack_12_carpet_large" file="\icon\housing\icon_item_h_barrack_12_carpet_large.png" imgrect="0 0 256 256" CMM_Caption="[개인 하우징]스팀펑크 연구실 카펫"/>
+		<image name="icon_item_h_barrack_12_chair" file="\icon\housing\icon_item_h_barrack_12_chair.png" imgrect="0 0 256 256" CMM_Caption="[개인 하우징]스팀펑크 박사님 의자"/>
+		<image name="icon_item_h_barrack_12_record" file="\icon\housing\icon_item_h_barrack_12_record.png" imgrect="0 0 256 256" CMM_Caption="[개인 하우징]스팀펑크 주크박스"/>
+		<image name="icon_item_h_barrack_12_closet" file="\icon\housing\icon_item_h_barrack_12_closet.png" imgrect="0 0 256 256" CMM_Caption="[개인 하우징]스팀펑크 주크박스"/>
+		<image name="icon_item_h_barrack_12_sandglass" file="\icon\housing\icon_item_h_barrack_12_sandglass.png" imgrect="0 0 256 256" CMM_Caption="[개인 하우징]스팀펑크 모래시계"/>
+		<image name="icon_item_h_barrack_12_bird" file="\icon\housing\icon_item_h_barrack_12_bird.png" imgrect="0 0 256 256" CMM_Caption="[개인 하우징]스팀펑크 멋쟁이 조수"/>
+		<image name="icon_item_h_barrack_12_desk" file="\icon\housing\icon_item_h_barrack_12_desk.png" imgrect="0 0 256 256" CMM_Caption="[개인 하우징]스팀펑크 만능 책상"/>
+		<image name="icon_item_h_barrack_12_partition" file="\icon\housing\icon_item_h_barrack_12_partition.png" imgrect="0 0 256 256" CMM_Caption="[개인 하우징]스팀펑크 칸막이"/>
+		<image name="icon_item_h_barrack_12_tablelamp" file="\icon\housing\icon_item_h_barrack_12_tablelamp.png" imgrect="0 0 256 256" CMM_Caption="[개인 하우징]스팀펑크 증기 엔진"/>
+		<image name="icon_item_h_barrack_12_chess" file="\icon\housing\icon_item_h_barrack_12_chess.png" imgrect="0 0 256 256" CMM_Caption="[개인 하우징]스팀펑크 체스판"/>
 		<image name="icon_item_h_wild_grass_01" file="\icon\housing\icon_item_h_wild_grass_01.png" imgrect="0 0 256 256" CMM_Caption="[길드 하우징] 야생풀_1"/>
 		<image name="icon_item_h_tree_basic_03" file="\icon\housing\icon_item_h_tree_basic_03.png" imgrect="0 0 256 256" CMM_Caption="[길드 하우징] 장식용 나무_3"/>
 		<image name="icon_item_h_tree_basic_02" file="\icon\housing\icon_item_h_tree_basic_02.png" imgrect="0 0 256 256" CMM_Caption="[길드 하우징] 장식용 나무_2"/>
@@ -8275,6 +8304,7 @@
 		<image name="icon_item_selectbox_ep13toswinter02_1" file="\icon\payment\icon_item_selectbox_ep13toswinter02_1.png" imgrect="0 0 256 256"/>
 		<image name="icon_item_selectbox_ep13toswinter03_1" file="\icon\payment\icon_item_selectbox_ep13toswinter03_1.png" imgrect="0 0 256 256"/>
 		<image name="icon_item_MultipleToken_Mythic" file="\icon\payment\icon_item_MultipleToken_Mythic.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_MultipleToken_Mythic_Hard" file="\icon\payment\icon_item_MultipleToken_Mythic_Hard.png" imgrect="0 0 256 256"/>
 		<image name="icon_item_relic_exp_token_box_50" file="\icon\payment\icon_item_relic_exp_token_box_50.png" imgrect="0 0 128 128"/>
 		<image name="item_icon_twnpanda_box" file="\icon\payment\item_icon_twnpanda_box.png" imgrect="0 0 256 256" CMM_Caption="2월 대만 판다 상자"/>
 		<image name="icon_item_2021_NewYear_Package_Growth" file="\icon\payment\icon_item_2021_NewYear_Package_Growth.png" imgrect="0 0 256 256" CMM_Caption="2021_설날 패키지 4종"/>
@@ -8351,6 +8381,39 @@
 		<image name="icon_item_2021_0505_Package_BattleB" file="\icon\payment\icon_item_2021_0505_Package_BattleB.png" imgrect="0 0 256 256"/>
 		<image name="icon_item_2021_0505_Package_BattleC" file="\icon\payment\icon_item_2021_0505_Package_BattleC.png" imgrect="0 0 256 256"/>
 		<image name="icon_item_2021_0505_Package_All" file="\icon\payment\icon_item_2021_0505_Package_All.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_box_effect_ep13mafia" file="\icon\payment\icon_item_box_effect_ep13mafia.png" imgrect="0 0 256 256" CMM_Caption="2021.05테마_33종"/>
+		<image name="icon_item_box_toy_ep13mafia" file="\icon\payment\icon_item_box_toy_ep13mafia.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_box_wing_ep13mafia" file="\icon\payment\icon_item_box_wing_ep13mafia.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_effect_ep13mafia" file="\icon\payment\icon_item_effect_ep13mafia.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13mafia01_1_f" file="\icon\payment\icon_item_ep13mafia01_1_f.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13mafia01_1_m" file="\icon\payment\icon_item_ep13mafia01_1_m.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13mafia01_2_f" file="\icon\payment\icon_item_ep13mafia01_2_f.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13mafia01_2_m" file="\icon\payment\icon_item_ep13mafia01_2_m.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13mafia01_f" file="\icon\payment\icon_item_ep13mafia01_f.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13mafia01_m" file="\icon\payment\icon_item_ep13mafia01_m.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13mafia02_1_f" file="\icon\payment\icon_item_ep13mafia02_1_f.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13mafia02_1_m" file="\icon\payment\icon_item_ep13mafia02_1_m.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13mafia02_2_f" file="\icon\payment\icon_item_ep13mafia02_2_f.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13mafia02_2_m" file="\icon\payment\icon_item_ep13mafia02_2_m.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13mafia02_f" file="\icon\payment\icon_item_ep13mafia02_f.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13mafia02_m" file="\icon\payment\icon_item_ep13mafia02_m.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13mafia03_1_f" file="\icon\payment\icon_item_ep13mafia03_1_f.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13mafia03_1_m" file="\icon\payment\icon_item_ep13mafia03_1_m.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13mafia03_2_f" file="\icon\payment\icon_item_ep13mafia03_2_f.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13mafia03_2_m" file="\icon\payment\icon_item_ep13mafia03_2_m.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13mafia03_f" file="\icon\payment\icon_item_ep13mafia03_f.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13mafia03_m" file="\icon\payment\icon_item_ep13mafia03_m.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_selectbox_ep13mafia01" file="\icon\payment\icon_item_selectbox_ep13mafia01.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_selectbox_ep13mafia01_1" file="\icon\payment\icon_item_selectbox_ep13mafia01_1.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_selectbox_ep13mafia01_2" file="\icon\payment\icon_item_selectbox_ep13mafia01_2.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_selectbox_ep13mafia02" file="\icon\payment\icon_item_selectbox_ep13mafia02.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_selectbox_ep13mafia02_1" file="\icon\payment\icon_item_selectbox_ep13mafia02_1.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_selectbox_ep13mafia02_2" file="\icon\payment\icon_item_selectbox_ep13mafia02_2.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_selectbox_ep13mafia03" file="\icon\payment\icon_item_selectbox_ep13mafia03.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_selectbox_ep13mafia03_1" file="\icon\payment\icon_item_selectbox_ep13mafia03_1.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_selectbox_ep13mafia03_2" file="\icon\payment\icon_item_selectbox_ep13mafia03_2.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_toy_ep13mafia" file="\icon\payment\icon_item_toy_ep13mafia.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_wing_ep13mafia" file="\icon\payment\icon_item_wing_ep13mafia.png" imgrect="0 0 256 256"/>
 	</imagelist>
 	<imagelist category="seal">
 		<image name="icon_seal_yellow_cc_A1" file="\icon\seal\seal_yellow_cc_A1.tga" imgrect="0 0 80 80"/>

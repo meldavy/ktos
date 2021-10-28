@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by imc (imc) -->
+<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by ÀÌÁ¤¿ë (IMCGames Co., Ltd) -->
 <ComponentList>
 	<Particle name="status_icon_mvp" texture="status_icon_mvp" width="5.00" height="5.00" pivot_x="0.50" pivot_y="0.50" texel_x="0" texel_y="0" texel_width="100" texel_height="100"/>
 	<Particle name="dash005_1_green" texture="dash005_1_green" width="1.00" height="1.00" pivot_x="0.00" pivot_y="0.50" texel_x="0" texel_y="0" texel_width="128" texel_height="64"/>
@@ -726,6 +726,7 @@
 	<Trail name="dash001_pink" texture="dash001_pink" height="5.00" texel_x="0" texel_y="0" texel_width="32" texel_height="16"/>
 	<Trail name="dash001" texture="dash001" height="5.00" texel_x="0" texel_y="0" texel_width="32" texel_height="16"/>
 	<Trail name="smoke002" texture="smoke002" height="10.00" texel_x="512" texel_y="512" texel_width="64" texel_height="64"/>
+	<Model name="orsha_catapult001" model="orsha_catapult001.xac" motion="None" texturepath="effect\high\modeltexture\" overlap="false" AlphaType="BLEND"/>
 	<Model name="hock_swing001" model="hock_swing001.xac" motion="None" texturepath="effect\high\modeltexture\" overlap="false" AlphaType="BLEND"/>
 	<Model name="timeeruption001" model="timeeruption001.xac" motion="None" texturepath="effect\high\modeltexture\" overlap="true" AlphaType="BLEND"/>
 	<Model name="wing_ep13dessert" model="wing_ep13dessert.xac" motion="None" texturepath="effect\high\modeltexture\" overlap="true" AlphaType="BLEND"/>
@@ -1759,9 +1760,10 @@
 	<Model name="p_h_barrack_icecrystal_01_dead" model="p_h_barrack_icecrystal_01_dead.xac" motion="p_h_barrack_icecrystal_01_dead_ani.xsm" texturepath="char_texture\housing_p\p_h_barrack_icecrystal_01\" overlap="false" AlphaType="TEST"/>
 	<Model name="honoredrose_thsword" model="effect_honoredrose_thsword.xac" motion="None" texturepath="item_texture\" overlap="false" AlphaType="TEST"/>
 	<Model name="i_boss_saugumas_executor_dead" model="boss_saugumas_executor_dead.xac" motion="boss_saugumas_executor_dead_ani.xsm" texturepath="char_texture\monster\boss_saugumas_executor\" overlap="false" AlphaType="TEST"/>
-	<Model name="I_merkabah" model="merkabah_set.xac" motion="merkabah_run_ani.xsm" texturepath="char_texture\monster\merkabah\" overlap="false" AlphaType="TEST"/>
 	<Model name="Corsair_Cutlass" model="Corsair_Cutlass.xac" motion="None" texturepath="item_texture\" overlap="false" AlphaType="TEST"/>
 	<Model name="Corsair_Hook" model="Corsair_Hook.xac" motion="None" texturepath="item_texture\" overlap="false" AlphaType="TEST"/>
+	<Model name="potion" model="artefact_potion_hpsp.xac" motion="None" texturepath="item_texture\" overlap="false" AlphaType="TEST"/>
+	<Model name="I_boss_mokslas_valdovas_dead" model="boss_mokslas_valdovas_dead.xac" motion="boss_mokslas_valdovas_dead_ani.xsm" texturepath="char_texture\monster\boss_mokslas_valdovas\" overlap="false" AlphaType="TEST"/>
 	<Text name="Text_damage_self" caption="" fontfilename="ORIGINAL" fontsize="24" bold="0" italic="0" outline="0" dropshadow="0" mindistance="100.00" maxdistance="300.00"/>
 	<Text name="Text_damage_decision" caption="" fontfilename="ORIGINAL" fontsize="20" bold="1" italic="0" outline="1" dropshadow="0" mindistance="50.00" maxdistance="150.00"/>
 	<Text name="Text_destination" caption="" fontfilename="ORIGINAL" fontsize="28" bold="0" italic="0" outline="0" dropshadow="0" mindistance="100.00" maxdistance="300.00"/>

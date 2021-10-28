@@ -178,6 +178,20 @@ function get_remove_debuff_tooltip_Cryomancer_SubzeroShield(level)
     return str
 end
 
+-- 크로노맨서 - 백마스킹
+function get_remove_debuff_tooltip_Chronomancer_BackMasking(level)
+    local percent = 20 * tonumber(level)
+    
+    if percent > 100 then
+        percent = 100
+    end
+
+    local remove_count = 2
+
+    -- buff_type, lv, count, percent, relation, self/around
+    local str = string.format('Debuff/3/%d/%.2f/FRIEND/around', remove_count, percent)
+    return str
+end
 
 -- 섀도우맨서 - 섀도우 풀
 function get_remove_debuff_tooltip_Shadowmancer_ShadowPool(level)

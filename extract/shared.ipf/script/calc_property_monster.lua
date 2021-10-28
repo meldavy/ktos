@@ -235,8 +235,24 @@ function SCR_Get_MON_MHP(self)
     if value < 1 then
         value = 1;
     end
-    
+
+    value = GET_CONVERT_EXCEPTION_MHP(self, value);
+
     return math.floor(value);
+end
+
+function GET_CONVERT_EXCEPTION_MHP(self, value)
+    local zone_name = nil;
+    if IsServerSection(self) == 1 then zone_name = GetZoneName(self)
+    else zone_name = GetZoneName(); end
+
+    -- 샤울레이 서쪽 숲 : 초반 퀘스트 진행 보정(최저 스탯 값보다 낮은 체력을 세팅하기 위해 별도의 보정)
+    if zone_name ~= nil and zone_name == "f_siauliai_west" and TryGetProp(self, "MonRank", "None") ~= "Boss" then
+        value = value / 2;
+    end
+
+    -- 별도의 특정 조건 추가 가능.
+    return value;
 end
 
 function SCR_Get_MON_MSP(self)

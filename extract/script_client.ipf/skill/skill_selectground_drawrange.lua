@@ -145,20 +145,3 @@ function SCP_GET_RANGE_Elementalist_StormDust(className, range)
 
 	return range;
 end
-
-function SCP_GET_RANGE_Thaumaturge_AreaOfChange(className, range)
-	if className == nil then 
-		return 0;
-	end
-
-	local originRange = range;
-	local sklinfo = session.GetSkillByName(className);
-	if sklinfo ~= nil then
-		local obj = GetIES(sklinfo:GetObject());
-		if obj ~= nil then
-			range = 50 + 5 * obj.Level
-		end
-	end
-	
-	return range;
-end

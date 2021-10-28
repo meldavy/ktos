@@ -773,7 +773,7 @@ function SCR_Get_MSP(self)
     return math.floor(value);
 end
 
-function SCR_Get_MINPATK(self)
+function SCR_Get_DEFAULT_MINPATK(self, value)
     local defaultValue = 20;
 
     local lv = TryGetProp(self, "Lv");
@@ -820,7 +820,7 @@ function SCR_Get_MINPATK(self)
         leftMinAtk = leftHand.MINATK;
         maxAtk = maxAtk - leftHand.MAXATK;
     end
-    
+
     local minAtkAdj = 0;
     local adjRate = TryGetProp(self, 'PATKADJ_RATE_BM');
     if adjRate ~= nil and adjRate > 0 then
@@ -830,10 +830,18 @@ function SCR_Get_MINPATK(self)
         local atkDiff = maxAtk - (byItem - leftMinAtk);
         if atkDiff > 0 then
             minAtkAdj = atkDiff * adjRate;
-    end
+        end
     end
 
     value = value - leftMinAtk + minAtkAdj;
+
+    return value
+end
+
+
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
+function SCR_Get_MINPATK(self)
+    local value = SCR_Get_DEFAULT_MINPATK(self, value)
 
     local byBuff = 0;
     local byBuffList = { "PATK_BM", "MINPATK_BM", "PATK_MAIN_BM", "MINPATK_MAIN_BM" };
@@ -879,7 +887,7 @@ function SCR_Get_MINPATK(self)
     return math.floor(value);
 end
 
-function SCR_Get_MAXPATK(self)
+function SCR_Get_DEFAULT_MAXPATK(self, value)
     local defaultValue = 20;
     
     local lv = TryGetProp(self, "Lv");
@@ -956,7 +964,7 @@ function SCR_Get_MAXPATK(self)
     return math.floor(value);
 end
 
-function SCR_Get_MINPATK_SUB(self)
+function SCR_Get_DEFAULT_MINPATK_SUB(self, value)
     local defaultValue = 20;
 
     local lv = TryGetProp(self, "Lv");
@@ -1018,6 +1026,14 @@ function SCR_Get_MINPATK_SUB(self)
     
     value = value - rightMinAtk + minAtkAdj;
     
+    return value
+end
+
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
+function SCR_Get_MINPATK_SUB(self)
+
+    local value = SCR_Get_DEFAULT_MINPATK_SUB(self, value)
+    
     local byBuff = 0;
     local byBuffList = { "PATK_BM", "MINPATK_BM", "PATK_SUB_BM", "MINPATK_SUB_BM" };
     for i = 1, #byBuffList do
@@ -1062,7 +1078,7 @@ function SCR_Get_MINPATK_SUB(self)
     return math.floor(value);
 end
 
-function SCR_Get_MAXPATK_SUB(self)
+function SCR_Get_DEFAULT_MAXPATK_SUB(self, value)
     local defaultValue = 20;
     
     local lv = TryGetProp(self, "Lv");
@@ -1091,6 +1107,14 @@ function SCR_Get_MAXPATK_SUB(self)
     end
     
     local value = defaultValue + byLevel + byStat + byItem;
+    
+    return value
+end
+
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
+function SCR_Get_MAXPATK_SUB(self)
+    
+    local value = SCR_Get_DEFAULT_MAXPATK_SUB(self, value)
     
     local rightMaxAtk = 0;
     local rightHand = GetEquipItemForPropCalc(self, 'RH');
@@ -1143,7 +1167,7 @@ function SCR_Get_MAXPATK_SUB(self)
     return math.floor(value);
 end
 
-function SCR_Get_MINMATK(self)
+function SCR_Get_DEFAULT_MINMATK(self, value)
     local defaultValue = 20;
     
     local lv = TryGetProp(self, "Lv");
@@ -1198,6 +1222,13 @@ function SCR_Get_MINMATK(self)
     
     value = value + minAtkAdj;
     
+    return value
+end
+
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
+function SCR_Get_MINMATK(self)
+    local value = SCR_Get_DEFAULT_MINMATK(self, value)
+    
     local byBuff = 0;
     local byBuffList = { "MATK_BM", "MINMATK_BM" };
     for i = 1, #byBuffList do
@@ -1242,7 +1273,7 @@ function SCR_Get_MINMATK(self)
     return math.floor(value);
 end
 
-function SCR_Get_MAXMATK(self)
+function SCR_Get_DEFAULT_MAXMATK(self, value)
     local defaultValue = 20;
     
     local lv = TryGetProp(self, "Lv");
@@ -1271,6 +1302,13 @@ function SCR_Get_MAXMATK(self)
     end
     
     local value = defaultValue + byLevel + byStat + byItem;
+    
+    return value
+end
+
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
+function SCR_Get_MAXMATK(self)
+    local value = SCR_Get_DEFAULT_MAXMATK(self, value)
     
     local throwItemMaxMAtk = 0;
     local rightHand = GetEquipItemForPropCalc(self, 'RH');
@@ -4761,4 +4799,15 @@ function SCR_GET_PC_ENCHANT_OPTION_VALUE(self, propName)
 	end
 	
 	return optionValue;
+end
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
+function SCR_GET_DEFAULT_ATK_COMPARE(self)
+    local value = 0
+    local atkPatk = (SCR_Get_DEFAULT_MAXPATK(self) + SCR_Get_DEFAULT_MINPATK(self)) / 2
+    local atkPatk_sub = (SCR_Get_DEFAULT_MAXPATK_SUB(self) + SCR_Get_DEFAULT_MINPATK_SUB(self)) / 2
+    local atkMatk = (SCR_Get_DEFAULT_MAXMATK(self) + SCR_Get_DEFAULT_MINMATK(self)) / 2
+
+    local maxAtk = math.max(atkPatk, atkPatk_sub, atkMatk)
+
+    return maxAtk
 end

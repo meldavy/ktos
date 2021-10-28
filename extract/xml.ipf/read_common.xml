@@ -314,4 +314,7 @@
 <ReadXml Name="explorer_quiz"/>
 	<ReadXml Name="reward_ratio_open_list"/>
 	<ReadXml Name="gamble_prop_list"/>
+	<ReadXml Name="housing_craftshop_group"/>
+	<ReadXml Name="housingcraft_rewardgroup"/>
+	<ReadXml Name="EliteEquipDrop"/>
 </Category>

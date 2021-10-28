@@ -138,6 +138,8 @@
 		<Item Script="None" Name="give_ticket_ep13cherryblossom02_2_f" Count="1" Price="10000" DailyBuyLimit="0" AccountNeedProperty="ContentsTotalShop_2103_11"/>
 		<Item Script="None" Name="give_ticket_ep13cherryblossom03_2_m" Count="1" Price="10000" DailyBuyLimit="0" AccountNeedProperty="ContentsTotalShop_2103_12"/>
 		<Item Script="None" Name="give_ticket_ep13cherryblossom03_2_f" Count="1" Price="10000" DailyBuyLimit="0" AccountNeedProperty="ContentsTotalShop_2103_13"/>
+		<Item Script="None" Name="PersonalHousing_Item_hp_h_barrack_12_clock" Count="1" Price="10000" DailyBuyLimit="0" AccountNeedProperty="ContentsTotalShop_2105_1"/>
+		<Item Script="None" Name="PersonalHousing_Item_hp_h_barrack_12_bird" Count="1" Price="10000" DailyBuyLimit="0" AccountNeedProperty="ContentsTotalShop_2105_2"/>
 	</Shop>
 	<Shop Name="SEASONOFF_CONTENTS_TOTAL_SHOP" PointScript="GET_CONTENTS_TOTAL_POINT">
 		<Item Script="None" Name="DRESS_ROOM_COLLECT_1" Count="1" Price="3600" DailyBuyLimit="0" AccountNeedProperty="ContentsTotalShop_2009_9"/>

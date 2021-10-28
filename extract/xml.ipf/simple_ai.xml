@@ -16181,7 +16181,36 @@ if self.HP == 0 then return 1; else return 0; end;">
 			</ToolScp>
 		</StartList>
 	</AI>
-	<AI Name="PIED_PIPER_MSTEP_GEN_AI" UpdateMS="1000" ActiveMessageMapInBattle="1">
+	<AI Name="PERSONAL_HOUSING_OBJ_CellPhone" UpdateMS="6000" ActiveMessageMapInBattle="1">
+        <List>
+            <ToolScp Scp="SAI_FUNC2_DIRECT" Client="NO" UseSleep="NO">
+                <Str Str="PERSONAL_HOUSING_OBJ_CellPhone_UPDATE"/>
+            </ToolScp>
+        </List>
+        <DeadList>
+            <ToolScp Scp="SAI_DEAD_FUNC2_DIRECT" Client="NO" UseSleep="NO">
+                <Str Str="PERSONAL_HOUSING_OBJ_CellPhone_DEAD"/>
+            </ToolScp>
+        </DeadList>
+        <StartList>
+            <ToolScp Scp="SAI_FUNC2_DIRECT" Client="NO" UseSleep="NO">
+                <Str Str="PERSONAL_HOUSING_OBJ_CellPhone_BORN"/>
+            </ToolScp>
+        </StartList>
+    </AI>
+    <AI Name="PERSONAL_HOUSING_OBJ_SOUND_LOOP" UpdateMS="10000" ActiveMessageMapInBattle="1">
+        <List>
+            <ToolScp Scp="SAI_FUNC2_DIRECT" Client="NO" UseSleep="NO">
+                <Str Str="PERSONAL_HOUSING_OBJ_SOUND_LOOP_UPDATE"/>
+            </ToolScp>
+        </List>
+        <DeadList>
+            <ToolScp Scp="SAI_DEAD_FUNC2_DIRECT" Client="NO" UseSleep="NO">
+                <Str Str="PERSONAL_HOUSING_OBJ_SOUND_LOOP_DEAD"/>
+            </ToolScp>
+        </DeadList>
+    </AI>
+    <AI Name="PIED_PIPER_MSTEP_GEN_AI" UpdateMS="1000" ActiveMessageMapInBattle="1">
 		<List>
 			<ToolScp Scp="SAI_FUNC2_DIRECT" Client="NO" UseSleep="NO">
 				<Str Str="SCR_CHAR312_MSTEP_GEN_AI"/>

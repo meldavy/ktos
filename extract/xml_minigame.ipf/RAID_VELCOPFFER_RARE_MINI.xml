@@ -86,7 +86,7 @@
             </Stage>
             <Stage Name="STAGE4" AutoStart="0">
                 <ObjList>
-                    <Obj Type="Monster" MonType="59049" Pos="1391.78#-6.50#-1408.47" angle="270" genCount="1" genTime="20000" objectKey="0"/>
+                    <Obj Type="Monster" MonType="59049" Pos="907.26#39.35#-2025.91" angle="270" genCount="1" genTime="20000" objectKey="0"/>
                     <Obj Type="Monster" MonType="150017" Pos="779.82#39.35#-2099.89" genCount="1" genTime="20000" objectKey="1" propList="&apos;SimpleAI&apos; &apos;FOURTH_STAGE_MAGIC_SQUARE_SUMMON&apos; &apos;Faction&apos; &apos;Neutral&apos; "/>
                     <Obj Type="Monster" MonType="150017" Pos="1030.42#39.35#-2056.93" genCount="1" genTime="20000" objectKey="2" propList="&apos;Faction&apos; &apos;Neutral&apos; &apos;SimpleAI&apos; &apos;FOURTH_STAGE_MAGIC_SQUARE_SUMMON&apos; "/>
                     <Obj Type="Monster" MonType="150017" Pos="958.62#39.35#-1912.55" genCount="1" genTime="20000" objectKey="3" propList="&apos;SimpleAI&apos; &apos;FOURTH_STAGE_MAGIC_SQUARE_SUMMON&apos; &apos;Faction&apos; &apos;Neutral&apos; "/>
@@ -106,7 +106,7 @@
                     <Obj Type="Monster" MonType="59044" Pos="724.07#39.35#-1697.86" genCount="1" genTime="20000" objectKey="17" propList="&apos;Faction&apos; &apos;Neutral&apos; &apos;Range&apos; &apos;40&apos; &apos;Enter&apos; &apos;VELCOFFER_STAGE_FOUR&apos; "/>
                     <Obj Type="Monster" MonType="59053" Pos="773.93#39.35#-2027.20" genCount="1" genTime="20000" objectKey="18"/>
                     <Obj Type="Monster" MonType="59053" Pos="731.85#39.35#-1837.01" genCount="1" genTime="20000" objectKey="19"/>
-                    <Obj Type="Monster" MonType="59053" Pos="905.01#39.35#-2020.71" genCount="1" genTime="20000" objectKey="20"/>
+                    <Obj Type="Monster" MonType="59053" Pos="930.91#39.35#-1836.57" genCount="1" genTime="20000" objectKey="20"/>
                     <Obj Type="Monster" MonType="59053" Pos="1040.27#39.35#-1901.93" genCount="1" genTime="20000" objectKey="21"/>
                     <Obj Type="Monster" MonType="59053" Pos="1087.55#39.35#-1794.52" genCount="1" genTime="20000" objectKey="22"/>
                     <Obj Type="Monster" MonType="59053" Pos="1168.33#39.35#-1940.53" genCount="1" genTime="20000" objectKey="23"/>

@@ -276,8 +276,8 @@
 		<Level Level="1" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/아이언 후크 스킬 레벨 +1" PropList_HandOrFoot_Penalty="None"/>
 	</Item>
 	<Item Name="Gem_Corsair_Keelhauling">
-		<Level Level="0" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/후크 스팅 스킬 레벨 +1" PropList_HandOrFoot_Penalty="None"/>
-		<Level Level="1" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/후크 스팅 스킬 레벨 +1" PropList_HandOrFoot_Penalty="None"/>
+		<Level Level="0" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/킬홀링 스킬 레벨 +1" PropList_HandOrFoot_Penalty="None"/>
+		<Level Level="1" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/킬홀링 스킬 레벨 +1" PropList_HandOrFoot_Penalty="None"/>
 	</Item>
 	<Item Name="Gem_Corsair_DustDevil">
 		<Level Level="0" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="OptDesc/더스트 데블 스킬 레벨 +1" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/더스트 데블 스킬 레벨 +1" PropList_HandOrFoot_Penalty="None"/>
@@ -1984,8 +1984,8 @@
 		<Level Level="1" PropList_TopLeg="OptDesc/난도질 스킬 레벨 + 1" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="None" PropList_HandOrFoot_Penalty="None"/>
 	</Item>
 	<Item Name="GEM_Corsair_ImpaleDagger">
-		<Level Level="0" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="OptDesc/임페일 소드 스킬 레벨 + 1" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="None" PropList_HandOrFoot_Penalty="None"/>
-		<Level Level="1" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="OptDesc/임페일 소드 스킬 레벨 + 1" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="None" PropList_HandOrFoot_Penalty="None"/>
+		<Level Level="0" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="OptDesc/임페일 대거 스킬 레벨 + 1" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="None" PropList_HandOrFoot_Penalty="None"/>
+		<Level Level="1" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="OptDesc/임페일 대거 스킬 레벨 + 1" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="None" PropList_HandOrFoot_Penalty="None"/>
 	</Item>
 	<Item Name="GEM_Shinobi_Kunai">
 		<Level Level="0" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/쿠나이 스킬 레벨 + 1" PropList_HandOrFoot_Penalty="None"/>
@@ -2182,74 +2182,6 @@
 	<Item Name="GEM_Appraiser_TripletLens">
 		<Level Level="0" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="OptDesc/트리플렛 렌즈 스킬 레벨 + 1" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/트리플렛 렌즈 스킬 레벨 + 1" PropList_HandOrFoot_Penalty="None"/>
 		<Level Level="1" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="OptDesc/트리플렛 렌즈 스킬 레벨 + 1" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/트리플렛 렌즈 스킬 레벨 + 1" PropList_HandOrFoot_Penalty="None"/>
-	</Item>
-	<Item Name="GEM_Chronomancer_TimeEruption">
-		<Level Level="0" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="OptDesc/타임 이럽션 스킬 레벨 + 1" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/타임 이럽션 스킬 레벨 + 1" PropList_HandOrFoot_Penalty="None"/>
-		<Level Level="1" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="OptDesc/타임 이럽션 스킬 레벨 + 1" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/타임 이럽션 스킬 레벨 + 1" PropList_HandOrFoot_Penalty="None"/>
-	</Item>
-	<Item Name="GEM_Chronomancer_TimeRestriction">
-		<Level Level="0" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="OptDesc/타임 리스트릭션 스킬 레벨 + 1" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/타임 리스트릭션 스킬 레벨 + 1" PropList_HandOrFoot_Penalty="None"/>
-		<Level Level="1" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="OptDesc/타임 리스트릭션 스킬 레벨 + 1" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/타임 리스트릭션 스킬 레벨 + 1" PropList_HandOrFoot_Penalty="None"/>
-	</Item>
-	<Item Name="GEM_Linker_ChainGrip">
-		<Level Level="0" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/체인 그립 스킬 레벨 + 1" PropList_HandOrFoot_Penalty="None"/>
-		<Level Level="1" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/체인 그립 스킬 레벨 + 1" PropList_HandOrFoot_Penalty="None"/>
-	</Item>
-	<Item Name="GEM_Linker_LinkDispense">
-		<Level Level="0" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="OptDesc/링크 디스펜스 스킬 레벨 + 1" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/링크 디스펜스 스킬 레벨 + 1" PropList_HandOrFoot_Penalty="None"/>
-		<Level Level="1" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="OptDesc/링크 디스펜스 스킬 레벨 + 1" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/링크 디스펜스 스킬 레벨 + 1" PropList_HandOrFoot_Penalty="None"/>
-	</Item>
-	<Item Name="GEM_Corsair_HookSwing">
-		<Level Level="0" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="OptDesc/후크 스윙 스킬 레벨 + 1" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/후크 스윙 스킬 레벨 + 1" PropList_HandOrFoot_Penalty="None"/>
-		<Level Level="1" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="OptDesc/후크 스윙 스킬 레벨 + 1" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/후크 스윙 스킬 레벨 + 1" PropList_HandOrFoot_Penalty="None"/>
-	</Item>
-	<Item Name="GEM_Thaumaturge_AreaOfChange">
-		<Level Level="0" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/변화의 영역 스킬 레벨 + 1" PropList_HandOrFoot_Penalty="None"/>
-		<Level Level="1" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/변화의 영역 스킬 레벨 + 1" PropList_HandOrFoot_Penalty="None"/>
-	</Item>
-	<Item Name="GEM_Thaumaturge_Quickchange">
-		<Level Level="0" PropList_TopLeg="OptDesc/빠른 변화 스킬 레벨 + 1" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="None" PropList_HandOrFoot_Penalty="None"/>
-		<Level Level="1" PropList_TopLeg="OptDesc/빠른 변화 스킬 레벨 + 1" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="None" PropList_HandOrFoot_Penalty="None"/>
-	</Item>
-	<Item Name="GEM_Thaumaturge_Flowofchange">
-		<Level Level="0" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/변화의 흐름 스킬 레벨 + 1" PropList_HandOrFoot_Penalty="None"/>
-		<Level Level="1" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/변화의 흐름 스킬 레벨 + 1" PropList_HandOrFoot_Penalty="None"/>
-	</Item>
-	<Item Name="GEM_Thaumaturge_Birthceremony">
-		<Level Level="0" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/무의 탄생식 스킬 레벨 + 1" PropList_HandOrFoot_Penalty="None"/>
-		<Level Level="1" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/무의 탄생식 스킬 레벨 + 1" PropList_HandOrFoot_Penalty="None"/>
-	</Item>
-	<Item Name="GEM_Thaumaturge_Suddenchange">
-		<Level Level="0" PropList_TopLeg="OptDesc/갑작스러운 변화 스킬 레벨 + 1" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="None" PropList_HandOrFoot_Penalty="None"/>
-		<Level Level="1" PropList_TopLeg="OptDesc/갑작스러운 변화 스킬 레벨 + 1" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="None" PropList_HandOrFoot_Penalty="None"/>
-	</Item>
-	<Item Name="GEM_Thaumaturge_Reinforce">
-		<Level Level="0" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="OptDesc/신체 강화 스킬 레벨 + 1" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/신체 강화 스킬 레벨 + 1" PropList_HandOrFoot_Penalty="None"/>
-		<Level Level="1" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="OptDesc/신체 강화 스킬 레벨 + 1" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/신체 강화 스킬 레벨 + 1" PropList_HandOrFoot_Penalty="None"/>
-	</Item>
-	<Item Name="GEM_Enchanter_EnergyAbsorption">
-		<Level Level="0" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/마력 흡수 스킬 레벨 + 1" PropList_HandOrFoot_Penalty="None"/>
-		<Level Level="1" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/마력 흡수 스킬 레벨 + 1" PropList_HandOrFoot_Penalty="None"/>
-	</Item>
-	<Item Name="GEM_Enchanter_EnchantBullet">
-		<Level Level="0" PropList_TopLeg="OptDesc/인챈트탄 스킬 레벨 + 1" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="None" PropList_HandOrFoot_Penalty="None"/>
-		<Level Level="1" PropList_TopLeg="OptDesc/인챈트탄 스킬 레벨 + 1" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="None" PropList_HandOrFoot_Penalty="None"/>
-	</Item>
-	<Item Name="GEM_Enchanter_EnergyEruption">
-		<Level Level="0" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/마력 분출 스킬 레벨 + 1" PropList_HandOrFoot_Penalty="None"/>
-		<Level Level="1" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/마력 분출 스킬 레벨 + 1" PropList_HandOrFoot_Penalty="None"/>
-	</Item>
-	<Item Name="GEM_Enchanter_EnchantField">
-		<Level Level="0" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/인챈트 필드 스킬 레벨 + 1" PropList_HandOrFoot_Penalty="None"/>
-		<Level Level="1" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/인챈트 필드 스킬 레벨 + 1" PropList_HandOrFoot_Penalty="None"/>
-	</Item>
-	<Item Name="GEM_Enchanter_Fragility">
-		<Level Level="0" PropList_TopLeg="OptDesc/프레자일리티 스킬 레벨 + 1" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="None" PropList_HandOrFoot_Penalty="None"/>
-		<Level Level="1" PropList_TopLeg="OptDesc/프레자일리티 스킬 레벨 + 1" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="None" PropList_HandOrFoot_Penalty="None"/>
-	</Item>
-	<Item Name="GEM_Enchanter_EnchantSharpness">
-		<Level Level="0" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="OptDesc/인챈트 샤프니스 스킬 레벨 + 1" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/인챈트 샤프니스 스킬 레벨 + 1" PropList_HandOrFoot_Penalty="None"/>
-		<Level Level="1" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="OptDesc/인챈트 샤프니스 스킬 레벨 + 1" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/인챈트 샤프니스 스킬 레벨 + 1" PropList_HandOrFoot_Penalty="None"/>
 	</Item>
 	<Item Name="GEM_Schwarzereiter_DoubleBullet">
 		<Level Level="0" PropList_TopLeg="OptDesc/연쇄탄환 스킬 레벨 + 1" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="None" PropList_HandOrFoot_Penalty="None"/>

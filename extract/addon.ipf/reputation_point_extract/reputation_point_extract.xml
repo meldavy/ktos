@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by imc (imc) -->
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by imc (imc) -->
 <uiframe name="reputation_point_extract" x="0" y="0" width="470" height="1000">
 	<draw drawtitlebar="false"/>
 	<frame fasthide="true" layout_gravity="left top" margin="530 5 0 0"/>
@@ -14,7 +14,7 @@
 		<groupbox name="ingredientGbox" rect="0 0 450 310" margin="10 100 0 0" layout_gravity="left top" draw="true" hittestbox="false" scrollbar="false" skin="None"/>
 		<groupbox name="materialInfoGbox" rect="0 0 420 280" margin="0 430 0 0" layout_gravity="center top" draw="true" hittestbox="false" scrollbar="true" skin="test_frame_midle"/>
 		<groupbox name="point_gb" rect="0 0 420 170" margin="0 740 0 0" layout_gravity="center top" draw="true" hittestbox="false" scrollbar="false" skin="test_frame_midle"/>
-		<picture name="question" rect="0 0 44 44" margin="27 17 0 0" layout_gravity="left top" MouseOffAnim="btn_mouseoff" MouseOnAnim="btn_mouseover" hittest="true" image="testquesten_button" oversound="button_over" texttooltip="{@st59}구호 물품 또는 주요 재화를 증여하여 명성도를 올릴 수 있습니다.{/}{nl}　{nl}주요 재화 교환 정보{nl}  - 그을린 텔하르샤의 의장품 : 20{nl}  - 정제된 글레이시어의 심장 : 20{nl}  - 정제된 모스 탈크 파우더 : 20{nl}  - 브리키나이트 : 5{nl}  - 마정석 : 5{nl}  - 신비한 서 낱장 : 5{nl}  - 프락토늄 : 5{nl}  - 여신의 축복석 : 5{nl}  - [이벤트] 명성 증가 쿠폰 : 5 : 5"/>
+		<picture name="question" rect="0 0 44 44" margin="27 17 0 0" layout_gravity="left top" MouseOffAnim="btn_mouseoff" MouseOnAnim="btn_mouseover" hittest="true" image="testquesten_button" oversound="button_over" texttooltip="{@st59}구호 물품 또는 주요 재화를 증여하여 명성도를 올릴 수 있습니다.{/}{nl}　{nl}주요 재화 교환 정보{nl}  - 그을린 텔하르샤의 의장품 : 20{nl}  - 정제된 글레이시어의 심장 : 20{nl}  - 정제된 모스 탈크 파우더 : 20{nl}  - 브리키나이트 : 5{nl}  - 마정석 : 5{nl}  - 신비한 서 낱장 : 5{nl}  - 프락토늄 : 5{nl}  - 여신의 축복석 : 5{nl}  - [이벤트] 명성 증가 쿠폰 : 5 : 5{nl}  - [하우징공방] 명성 증가 쿠폰 : 5 : 5"/>
 		<tab name="material_tab" margin="0 60 0 0" rect="0 0 400 40" layout_gravity="center top" MouseOffAnim="btn_mouseoff" MouseOnAnim="btn_mouseover" clicksound="inven_arrange" LBtnDownScp="REPUTATION_POINT_EXTRACT_INIT" itemspc="0" oversound="button_cursor_over_2" skin="tab2"/>
 		<tabitem name="tab_material" parent="material_tab" width="200" caption="{@st66b}주요 재화{/}" layout_gravity="left top"/>
 		<tabitem name="tab_relief" parent="material_tab" width="200" caption="{@st66b}구호 물품{/}" layout_gravity="left top"/>

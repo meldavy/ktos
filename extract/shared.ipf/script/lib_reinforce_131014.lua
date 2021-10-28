@@ -24,6 +24,7 @@ function IS_MORU_FREE_PRICE(moruItem)
         or moruItem.ClassName == 'Moru_Silver_Team'
         or moruItem.ClassName == 'Moru_Silver_Team_event1909'
         or moruItem.ClassName == 'Moru_Ruby_noCharge'
+        or TryGetProp(moruItem, 'StringArg2', 'None') == 'free_Moru'
         then
         return true;
     end

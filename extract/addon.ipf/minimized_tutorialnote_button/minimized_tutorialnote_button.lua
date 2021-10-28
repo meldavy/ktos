@@ -10,7 +10,14 @@ function MINIMIZED_TUTORIALNOTE_BUTTON_INIT(frame)
 		ui.CloseFrame("minimized_tutorialnote_button");
 		return;
 	end
-	
+	local mapprop = session.GetCurrentMapProp();
+	local mapCls = GetClassByType("Map", mapprop.type);
+
+	local housingPlaceClass = GetClass("Housing_Place", mapCls.ClassName);
+	if housingPlaceClass ~= nil then
+		ui.CloseFrame("minimized_tutorialnote_button");
+		return
+	end
 	local point_ctrl = GET_CHILD_RECURSIVELY(frame, "point");
 	point_ctrl:ShowWindow(0);
 	MINIMIZED_TUTORIALNOTE_EFFECT_CHECK(frame);

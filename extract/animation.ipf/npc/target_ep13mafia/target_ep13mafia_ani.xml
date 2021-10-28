@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="EUC-KR"?>
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by imc (imc) -->
+<ActionDesc>
+	<Particle frame="12" attachNode="Dummy_parts12" particleName="I_ep13mafia_atk2" useAttach="false" hiddenObj="false" changeEffect="None" scale="0.5" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="14" attachNode="Dummy_parts18" particleName="I_ep13mafia_atk2" useAttach="false" hiddenObj="false" changeEffect="None" scale="0.5" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="16" attachNode="Dummy_parts07" particleName="I_ep13mafia_atk2" useAttach="false" hiddenObj="false" changeEffect="None" scale="0.5" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="17" attachNode="Dummy_parts17" particleName="I_ep13mafia_atk2" useAttach="false" hiddenObj="false" changeEffect="None" scale="0.5" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="18" attachNode="Dummy_parts11" particleName="I_ep13mafia_atk2" useAttach="false" hiddenObj="false" changeEffect="None" scale="0.5" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="19" attachNode="Dummy_parts01" particleName="I_ep13mafia_atk2" useAttach="false" hiddenObj="false" changeEffect="None" scale="0.5" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="20" attachNode="Dummy_parts02" particleName="I_ep13mafia_atk2" useAttach="false" hiddenObj="false" changeEffect="None" scale="0.7" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="20" attachNode="Dummy_parts05" particleName="I_ep13mafia_atk2" useAttach="false" hiddenObj="false" changeEffect="None" scale="1" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="20" attachNode="Dummy_parts20" particleName="I_ep13mafia_atk2" useAttach="false" hiddenObj="false" changeEffect="None" scale="0.5" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="21" attachNode="Dummy_parts06" particleName="I_ep13mafia_atk2" useAttach="false" hiddenObj="false" changeEffect="None" scale="0.6" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="22" attachNode="Dummy_parts14" particleName="I_ep13mafia_atk2" useAttach="false" hiddenObj="false" changeEffect="None" scale="0.4" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="22" attachNode="Dummy_parts08" particleName="I_ep13mafia_atk2" useAttach="false" hiddenObj="false" changeEffect="None" scale="0.8" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="22" attachNode="Dummy_parts09" particleName="I_ep13mafia_atk2" useAttach="false" hiddenObj="false" changeEffect="None" scale="0.3" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="23" attachNode="Dummy_parts14" particleName="I_ep13mafia_atk2" useAttach="false" hiddenObj="false" changeEffect="None" scale="0.5" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="24" attachNode="Dummy_parts12" particleName="I_ep13mafia_atk2" useAttach="false" hiddenObj="false" changeEffect="None" scale="0.6" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="26" attachNode="Dummy_parts03" particleName="I_ep13mafia_atk2" useAttach="false" hiddenObj="false" changeEffect="None" scale="0.8" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="27" attachNode="Dummy_parts10" particleName="I_ep13mafia_atk2" useAttach="false" hiddenObj="false" changeEffect="None" scale="0.4" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="22" attachNode="Dummy_parts04" particleName="I_ep13mafia_atk2" useAttach="false" hiddenObj="false" changeEffect="None" scale="0.7" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="29" attachNode="Dummy_parts15" particleName="I_ep13mafia_atk2" useAttach="false" hiddenObj="false" changeEffect="None" scale="0.3" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="29" attachNode="Dummy_parts17" particleName="I_ep13mafia_atk2" useAttach="false" hiddenObj="false" changeEffect="None" scale="0.9" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="29" attachNode="Dummy_parts07" particleName="I_ep13mafia_atk2" useAttach="false" hiddenObj="false" changeEffect="None" scale="0.4" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="33" attachNode="Dummy_parts13" particleName="I_ep13mafia_atk2" useAttach="false" hiddenObj="false" changeEffect="None" scale="0.5" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="0" attachNode="None" particleName="F_smoke088" useAttach="false" hiddenObj="false" changeEffect="None" scale="0.3" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="0" attachNode="None" particleName="None" useAttach="false" hiddenObj="false" changeEffect="None" scale="1" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="12" attachNode="None" particleName="F_ground068_smoke4" useAttach="false" hiddenObj="false" changeEffect="None" scale="0.2" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="22" attachNode="None" particleName="F_ground068_smoke4" useAttach="false" hiddenObj="false" changeEffect="None" scale="0.4" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="32" attachNode="None" particleName="F_ground068_smoke4" useAttach="false" hiddenObj="false" changeEffect="None" scale="0.3" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="38" attachNode="Dummy_effect_smoke" particleName="None" useAttach="false" hiddenObj="false" changeEffect="None" scale="1.5" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="15" attachNode="Dummy_effect_smoke" particleName="F_ground068_smoke4" useAttach="false" hiddenObj="false" changeEffect="None" scale="1" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="25" attachNode="Dummy_effect_smoke" particleName="F_ground068_smoke4" useAttach="false" hiddenObj="false" changeEffect="None" scale="0.9" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="35" attachNode="Dummy_effect_smoke" particleName="F_ground068_smoke4" useAttach="false" hiddenObj="false" changeEffect="None" scale="1.1" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="50" attachNode="Dummy_effect_smoke002" particleName="F_ground068_smoke4" useAttach="false" hiddenObj="false" changeEffect="None" scale="0.5" pause="true" use2DEffect="false" soft2DValue="20"/>
+</ActionDesc>

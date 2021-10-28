@@ -61,14 +61,16 @@ function INDUNINFO_UI_OPEN(frame, index)
     if session.weeklyboss.GetNowWeekNum() == 0 then
         weekly_boss.RequestWeeklyBossNowWeekNum();                  -- 현재 week_num 요청
     elseif imcTime.IsLaterThan(now_time,weekly_boss_endtime) ~= 0 then
+        weekly_boss.RequestWeeklyBossEndTime(session.weeklyboss.GetNowWeekNum());                
         weekly_boss.RequestWeeklyBossNowWeekNum();                  -- 현재 week_num 요청
 	end
 
     local boruta_endtime = session.boruta_ranking.GetBorutaEndTime();
     if session.boruta_ranking.GetNowWeekNum() == 0 then
-        boruta.RequestBorutaNowWeekNum();
+        boruta.RequestBorutaNowWeekNum();                    
     elseif imcTime.IsLaterThan(now_time, boruta_endtime) ~= 0 then
-        boruta.RequestBorutaNowWeekNum();
+        boruta.RequestBorutaEndTime(session.boruta_ranking.GetNowWeekNum())
+        boruta.RequestBorutaNowWeekNum();                    
     end
 
     local tab = GET_CHILD_RECURSIVELY(frame, "tab");
@@ -1250,7 +1252,6 @@ function INDUNINFO_MAKE_DETAIL_COMMON_INFO(frame, indunCls, resetGroupID)
                 mapNameText:SetText(mapCls.Name);
             end
         end
-   
     INDUNINFO_SET_BUTTONS(frame,indunCls)
     INDUNINFO_MAKE_PATTERN_BOX(frame,indunCls)
 end
@@ -1377,7 +1378,7 @@ function INDUNINFO_SET_BUTTONS_FIND_CLASS(indunCls)
                         class_name = "Raid";
                     end
 
-                    if class_name ~= nil and class_name ~= "None" and class_name == dungeonType then
+                    if class_name ~= nil and class_name ~= "None" and (class_name == dungeonType or subType == "MoveEnterNPC" and dungeonType == "GTower") then
                         local sub_type = TryGetProp(cls, "SubType", "None");
                         if sub_type ~= nil and sub_type ~= "None" and sub_type == subType then
                             btnInfoCls = cls;

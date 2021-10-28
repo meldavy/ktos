@@ -75,9 +75,8 @@ shared_item_relic.get_gem_compose_mat_name = function()
     end
 
     local mat_1 = TryGetProp(cls, 'Material_1', 'None')
-    local mat_2 = TryGetProp(cls, 'Material_2', 'None')
 
-    return mat_1, mat_2
+    return mat_1
 end
 
 shared_item_relic.get_gem_compose_mat_cnt = function()
@@ -87,9 +86,8 @@ shared_item_relic.get_gem_compose_mat_cnt = function()
     end
 
     local cnt_1 = TryGetProp(cls, 'MaterialCnt_1', 0)
-    local cnt_2 = TryGetProp(cls, 'MaterialCnt_2', 0)
 
-    return cnt_1, cnt_2
+    return cnt_1
 end
 
 shared_item_relic.get_gem_compose_silver = function()
@@ -100,7 +98,7 @@ shared_item_relic.get_gem_compose_silver = function()
 
     local value = TryGetProp(cls, 'SilverCost', 0)
 
-    return value
+    return 0
 end
 
 -- 성물 젬 분해

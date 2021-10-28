@@ -2,6 +2,7 @@
 <!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by imc (imc) -->
 <PlayList>
 	<BGM PlayListName="Login_Barrack" Volume="90" FileName1="tos_Kevin_TOS_Carol_2017.mp3" FileName2="tos_Tree_of_Savior_Piano.mp3" FileName3="tos_SFA_Openup_Po10.mp3"/>
+	<BGM PlayListName="NoMusic" Volume="90" FileName1="tos_mute_1minute.mp3"/>
 	<BGM PlayListName="opening" Volume="90" FileName1="tos_Kevin_Overture.mp3"/>
 	<BGM PlayListName="test_zone" Volume="90" FileName1="tos_Tree_of_Savior.mp3" FileName2="tos_SoundTeMP_Nu_Motion.mp3"/>
 	<BGM PlayListName="f_siauliai" Volume="90" FileName1="tos_SFA_The_Dignity_of_Wrath.mp3" FileName2="tos_Questrosound_First_Step.mp3" FileName3="tos_SFA_Fiesta_bloom.mp3" FileName4="tos_SFA_In_My_Dreams.mp3"/>

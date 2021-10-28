@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by IMCGames Co., Ltd (IMCGames Co., Ltd) -->
 <EmitterList>
+	<battle name="E_arrow024_yellow_move" filename="E_arrow024_yellow_move" loop="false" nodecount="2" xml="E_arrow024_yellow_move.xml" paused="NO" is2D="FALSE" softParticleFactor="20" useReverse="0" preScale="1" useAttach="FALSE" preScaleXYZ="1.0/1.0/1.0" attachNodeName="None"/>
+	<battle name="E_arrow024_yellow_1_move" filename="E_arrow024_yellow_1_move" loop="false" nodecount="2" xml="E_arrow024_yellow_1_move.xml" paused="NO" is2D="FALSE" softParticleFactor="20" useReverse="0" preScale="1" useAttach="FALSE" preScaleXYZ="1.0/1.0/1.0" attachNodeName="None"/>
 	<battle name="E_archer_LargeMagnifyingGlass_laser" filename="E_archer_LargeMagnifyingGlass_laser" loop="true" nodecount="9" xml="E_archer_LargeMagnifyingGlass_laser.xml" paused="NO" is2D="TRUE" softParticleFactor="20" useReverse="0" preScale="1" useAttach="FALSE" preScaleXYZ="1.0/1.0/1.0" attachNodeName="None"/>
 	<battle name="E_archer_tripletLens_loop" filename="E_archer_tripletLens_loop" loop="true" nodecount="9" xml="E_archer_tripletLens_loop.xml" paused="NO" is2D="FALSE" softParticleFactor="20" useReverse="0" preScale="1" useAttach="FALSE" preScaleXYZ="1.0/1.0/1.0" attachNodeName="None"/>
 	<battle name="E_scout_Energy_absorption" filename="E_scout_Energy_absorption" loop="false" nodecount="17" xml="E_scout_Energy_absorption.xml" paused="NO" is2D="FALSE" softParticleFactor="20" useReverse="0" preScale="1" useAttach="FALSE" preScaleXYZ="1.0/1.0/1.0" attachNodeName="None"/>

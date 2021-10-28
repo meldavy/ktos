@@ -107,15 +107,13 @@ function WEEKLY_BOSS_UPDATE_DPS(frame,totalTime,elapsedTime)
 			if damage ~= '0' then
                 local sklID = info:GetSkillID();
                 local sklCls = GetClassByType("Skill",sklID)
+                local sklClsName = TryGetProp(sklCls, "ClassName", "None")
                 local keyword = TryGetProp(sklCls,"Keyword","None")
                 keyword = StringSplit(keyword,';')
-                for i = 1,#keyword do
-                    if keyword[i] == 'NormalSkill' then
-                        sklID = 1
-                        break;
-                    end
+                if IsNormalSkill(sklClsName) == 1 and table.find(keyword, "NormalSkillWeeklyBoss") <= 0 then
+                    sklID = 1
                 end
-                if table.find(keyword, "pcSummonSkill") > 0 then
+                if IsSummonSkill(sklClsName) == 1 then
                     sklID = 163915
                 end
                 if table.find(keyword, "Ancient") > 0 then

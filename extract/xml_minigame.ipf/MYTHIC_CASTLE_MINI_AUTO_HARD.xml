@@ -264,6 +264,7 @@
 			</Stage>
 			<Stage Name="SUCCESS">
 				<ObjList>
+					<Obj Type="Monster" MonType="160085" Pos="1726.72#165.15#-1095.96" genCount="1" genTime="20000" autoGen="0" objectKey="0"/>
 					<Obj Type="Monster" MonType="160065" Pos="1680.52#165.15#-1207.74" genCount="1" genTime="20000" autoGen="0" objectKey="1"/>
 				</ObjList>
 				<StageEvents>
@@ -279,6 +280,10 @@
 							<ToolScp Scp="MGAME_EXEC_REVIVE" Client="NO" UseSleep="NO"/>
 							<ToolScp Scp="MGAME_EXEC_SETPOS" Client="NO" UseSleep="NO">
 								<AbsPosRange X="1660.1985" Y="165.15172" Z="-1103.0411"/>
+							</ToolScp>
+							<ToolScp Scp="MGAME_EVT_MULTIPLE_REWARD" Client="NO" UseSleep="NO">
+								<Str Str="Multiple_Token_MythicHARD"/>
+								<Str Str="MYTHIC_DUNGEON_CLEAR_MULTIPLE"/>
 							</ToolScp>
 							<ToolScp Scp="MGAME_MSG_ICON" Client="YES" UseSleep="NO">
 								<Str Str="잠시 후 입장했던 곳으로 돌아갑니다."/>
@@ -302,7 +307,7 @@
 								<Str Str="END"/>
 							</ToolScp>
 							<ToolScp Scp="MGAME_EVT_EXEC_CREMON" Client="NO" UseSleep="NO">
-								<MGameObjIndex List="SUCCESS/1"/>
+								<MGameObjIndex List="SUCCESS/0/SUCCESS/1"/>
 								<Num Num="1"/>
 								<Num Num="0"/>
 							</ToolScp>

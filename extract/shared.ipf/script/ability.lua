@@ -3203,26 +3203,6 @@ function SCR_ABIL_CLOWN12_INACTIVE(self, ability)
     end
 end
 
-function SCR_ABIL_Enchanter17_ACTIVE(self, ability)
-    if IsBuffApplied(self, "Enchanter17_AddBuff_Buff") ~= "YES" then
-        AddBuff(self, self, "Enchanter17_AddBuff_Buff", 1, 0, 0, 0);
-    end
-end
-
-function SCR_ABIL_Enchanter17_INACTIVE(self, ability)
-    RemoveBuff(self, "Enchanter17_AddBuff_Buff");
-end
-
-function SCR_ABIL_Corsair35_ACTIVE(self, ability)
-    if IsBuffApplied(self, "Corsair35_AddBuff_Buff") ~= "YES" then
-        AddBuff(self, self, "Corsair35_AddBuff_Buff", 1, 0, 0, 0);
-    end
-end
-
-function SCR_ABIL_Corsair35_INACTIVE(self, ability)
-    RemoveBuff(self, "Corsair35_AddBuff_Buff");
-end
-
 function SCR_ABIL_Schwarzereiter31_ACTIVE(self, ability)
     if IsBuffApplied(self, "Schwarzereiter_MaxR_Buff") ~= "YES" then
         AddBuff(self, self, "Schwarzereiter_MaxR_Buff", 1, 0, 0, 1);
@@ -3241,3 +3221,20 @@ function SCR_ABIL_Schwarzereiter18_INACTIVE(self, ability)
     StartCoolTime(self, 'Schwarzereiter_Limacon')
 end
 
+function SCR_ABIL_Crusader22_ACTIVE(self, ability)
+    local skill = GetSkill(self, "Crusader_RingOfLight");
+    if skill ~= nil then
+        skill.HitType = "Pad"
+
+        InvalidateSkill(self, TryGetProp(skill, "ClassName", "None"))
+    end
+end
+
+function SCR_ABIL_Crusader22_INACTIVE(self, ability)
+    local skill = GetSkill(self, "Crusader_RingOfLight");
+    if skill ~= nil then
+        skill.HitType = "Melee"
+
+        InvalidateSkill(self, TryGetProp(skill, "ClassName", "None"))
+    end
+end

@@ -1,38 +1,21 @@
 <?xml version='1.0' encoding='utf-8'?>
 <ToolSkill>
-    <Skill Name="PiedPiper_Improvisation">
-        <MainSkl ScrLock="None" JumpFlee="NO" MSPDToUsePos="0">
+<Skill Name="PiedPiper_Improvisation">
+        <MainSkl JumpFlee="NO" MSPDToUsePos="0" ScrLock="None">
             <EtcList>
-                <Scp Scp="SKL_BUFF_ABIL" Client="NO" UseSleep="NO" Time="0">
-                    <Str Str="PiedPiper23"/>
-                    <Str Str="HamelnNagetier_Buff"/>
-                    <Num Num="1"/>
-                    <Num Num="0"/>
-                    <Num Num="60000"/>
-                    <Num Num="1"/>
-                    <Num Num="100"/>
-                    <Num Num="0"/>
-                </Scp>
-                <Scp Scp="C_SOUND" Client="YES" UseSleep="NO" Time="200">
-                    <Str Str="skl_eff_piedpiper_improvisation"/>
-                </Scp>
-                <Scp Scp="SKL_RUN_SCRIPT" Client="NO" UseSleep="NO" Time="200">
-                    <Str Str="SCR_IMPROVISATION_FORCE"/>
+                <Scp Client="NO" Scp="SKL_RUN_SCRIPT" Time="100" UseSleep="NO">
+                    <Str Str="SCR_IMPROVISATION_SKILL_LIST"/>
                 </Scp>
             </EtcList>
         </MainSkl>
     </Skill>
     <Skill Name="PiedPiper_LiedDerWeltbaum">
-        <MainSkl ScrLock="None" JumpFlee="NO" MSPDToUsePos="0">
+        <MainSkl JumpFlee="NO" MSPDToUsePos="0" ScrLock="None">
             <HitList>
-                <Frame Type="FAN" Time="99799" HitCount="1" TermMin="0" TermMax="0" PosType="0" Dist="0" RandDist="0" RandomPerHit="0" Angle="0" Width="30" Length="30" SklAngle="0.17453292" AniTime="99999" RotAngle="0" ForceATK="0" ScriptIndex="0" ScriptName="" SkillType="0"/>
+                <Frame Angle="0" AniTime="99999" Dist="0" ForceATK="0" HitCount="1" Length="30" PosType="0" RandDist="0" RandomPerHit="0" RotAngle="0" SklAngle="0.17453292" TermMax="0" TermMin="0" Time="99799" Type="FAN" Width="30"/>
             </HitList>
             <EtcList>
-                <Scp Scp="C_SOUND" Client="YES" UseSleep="NO" Time="0">
-                    <Str Str="skl_eff_liedderweltbaum"/>
-                </Scp>
-                <Scp Scp="SKL_BUFF_ABIL" Client="NO" UseSleep="NO" Time="0">
-                    <Str Str="PiedPiper23"/>
+                <Scp Client="NO" Scp="SKL_BUFF" Time="0" UseSleep="NO">
                     <Str Str="HamelnNagetier_Buff"/>
                     <Num Num="1"/>
                     <Num Num="0"/>
@@ -41,24 +24,27 @@
                     <Num Num="100"/>
                     <Num Num="0"/>
                 </Scp>
-                <Scp Scp="SKL_TGT_EFFECT" Client="NO" UseSleep="NO" Time="150">
-                    <Str_Arg Str="F_buff_LiedDerWeltbaum" Arg="0.69999999"/>
+                <Scp Client="YES" Scp="C_SOUND" Time="0" UseSleep="NO">
+                    <Str Str="skl_eff_liedderweltbaum"/>
+                </Scp>
+                <Scp Client="NO" Scp="SKL_TGT_EFFECT" Time="150" UseSleep="NO">
+                    <Str_Arg Arg="0.69999999" Str="F_buff_LiedDerWeltbaum"/>
                     <Num Num="0"/>
                 </Scp>
-                <Scp Scp="SKL_BUFF" Client="NO" UseSleep="NO" Time="300">
+                <Scp Client="NO" Scp="SKL_BUFF" Time="300" UseSleep="NO">
                     <Str Str="LiedDerWeltbaum_Buff"/>
-                    <Num Num="0" UseFunc="1" FuncTxt="return obj.Level"/>
+                    <Num FuncTxt="return obj.Level" Num="0" UseFunc="1"/>
                     <Num Num="0"/>
-                    <Num Num="0" UseFunc="1" FuncTxt="local value = 10000 local abil = GetAbility(self, &quot;PiedPiper15&quot;) if abil ~= nil and abil.ActiveState == 1 then     value = value + (abil.Level * 1000) end local skillLiedDerWeltbaum  = AddCopiedSkill(self, &quot;PiedPiper_LiedDerWeltbaum&quot;) if GetExProp(self, &quot;PIEDPIPER_IMPROVISATION_FAIL&quot;) == 1 then     value = value / 2     DelExProp(self, &quot;PIEDPIPER_IMPROVISATION_FAIL&quot;) end  return value;"/>
+                    <Num FuncTxt="local value = 10000 local abil = GetAbility(self, &quot;PiedPiper15&quot;) if abil ~= nil and abil.ActiveState == 1 then     value = value + (abil.Level * 1000) end local skillLiedDerWeltbaum  = AddCopiedSkill(self, &quot;PiedPiper_LiedDerWeltbaum&quot;) if GetExProp(self, &quot;PIEDPIPER_IMPROVISATION_FAIL&quot;) == 1 then     value = value / 2     DelExProp(self, &quot;PIEDPIPER_IMPROVISATION_FAIL&quot;) end  return value;" Num="0" UseFunc="1"/>
                     <Num Num="1"/>
                     <Num Num="100"/>
                     <Num Num="1"/>
                 </Scp>
-                <Scp Scp="SKL_BUFF" Client="NO" UseSleep="NO" Time="300">
+                <Scp Client="NO" Scp="SKL_BUFF" Time="300" UseSleep="NO">
                     <Str Str="LiedDerWeltbaum_NoDamage_Buff"/>
-                    <Num Num="0" UseFunc="1" FuncTxt="return obj.Level"/>
+                    <Num FuncTxt="return obj.Level" Num="0" UseFunc="1"/>
                     <Num Num="0"/>
-                    <Num Num="0" UseFunc="1" FuncTxt="local value = 10000 local abil = GetAbility(self, &quot;PiedPiper15&quot;) if abil ~= nil and abil.ActiveState == 1 then     value = value + (abil.Level * 1000) end local skillLiedDerWeltbaum  = AddCopiedSkill(self, &quot;PiedPiper_LiedDerWeltbaum&quot;) if GetExProp(self, &quot;PIEDPIPER_IMPROVISATION_FAIL&quot;) == 1 then     value = value / 2     DelExProp(self, &quot;PIEDPIPER_IMPROVISATION_FAIL&quot;) end  return value;"/>
+                    <Num FuncTxt="local value = 10000 local abil = GetAbility(self, &quot;PiedPiper15&quot;) if abil ~= nil and abil.ActiveState == 1 then     value = value + (abil.Level * 1000) end local skillLiedDerWeltbaum  = AddCopiedSkill(self, &quot;PiedPiper_LiedDerWeltbaum&quot;) if GetExProp(self, &quot;PIEDPIPER_IMPROVISATION_FAIL&quot;) == 1 then     value = value / 2     DelExProp(self, &quot;PIEDPIPER_IMPROVISATION_FAIL&quot;) end  return value;" Num="0" UseFunc="1"/>
                     <Num Num="1"/>
                     <Num Num="100"/>
                     <Num Num="1"/>
@@ -111,7 +97,7 @@
                 </Scp>
                 <Scp Client="NO" Scp="FOLLOWERS_MOVE_TO_ATTACK_NEAR_ENEMY" Time="100" UseSleep="YES">
                     <Str Str="piedpiper_mouse_white"/>
-                    <Str Str="Mon_piedpiper_mouse_White_Skill_1"/>
+                    <Str Str="Mon_piedpiper_mouse_Skill_1"/>
                     <Pos Angle="0" Dist="3.4018404e-38" PosType="3"/>
                     <Num Num="30"/>
                     <Num Num="80"/>
@@ -127,18 +113,17 @@
         </MainSkl>
     </Skill>
     <Skill Name="PiedPiper_Marschierendeslied">
-        <MainSkl ScrLock="None" JumpFlee="NO" MSPDToUsePos="0">
+        <MainSkl JumpFlee="NO" MSPDToUsePos="0" ScrLock="None">
             <HitList>
-                <Frame Type="FAN" Time="99799" HitCount="1" TermMin="0" TermMax="0" PosType="0" Dist="0" RandDist="0" RandomPerHit="0" Angle="0" Width="30" Length="30" SklAngle="0.17453292" AniTime="99999" RotAngle="0" ForceATK="0" ScriptIndex="0" ScriptName="" SkillType="0"/>
+                <Frame Angle="0" AniTime="99999" Dist="0" ForceATK="0" HitCount="1" Length="30" PosType="0" RandDist="0" RandomPerHit="0" RotAngle="0" SklAngle="0.17453292" TermMax="0" TermMin="0" Time="99799" Type="FAN" Width="30"/>
             </HitList>
             <EtcList>
-                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="0">
-                    <Str_Arg Str="I_archer_Marschierendeslied" Arg="3"/>
+                <Scp Client="YES" Scp="C_EFFECT" Time="0" UseSleep="NO">
+                    <Str_Arg Arg="3" Str="I_archer_Marschierendeslied"/>
                     <Str Str="Dummy_effect_pipe01"/>
                     <Num Num="1.2"/>
                 </Scp>
-                <Scp Scp="SKL_BUFF_ABIL" Client="NO" UseSleep="NO" Time="0">
-                    <Str Str="PiedPiper23"/>
+                <Scp Client="NO" Scp="SKL_BUFF" Time="0" UseSleep="NO">
                     <Str Str="HamelnNagetier_Buff"/>
                     <Num Num="1"/>
                     <Num Num="0"/>
@@ -147,7 +132,7 @@
                     <Num Num="100"/>
                     <Num Num="0"/>
                 </Scp>
-                <Scp Scp="SKL_SET_TARGET_CIRCLE" Client="NO" UseSleep="NO" Time="100">
+                <Scp Client="NO" Scp="SKL_SET_TARGET_CIRCLE" Time="100" UseSleep="NO">
                     <Pos Angle="0" Dist="80"/>
                     <Num Num="120"/>
                     <Num Num="5"/>
@@ -156,7 +141,7 @@
                     <Num Num="1"/>
                     <Num Num="1"/>
                 </Scp>
-                <Scp Scp="SKL_TGT_BUFF" Client="NO" UseSleep="NO" Time="300">
+                <Scp Client="NO" Scp="SKL_TGT_BUFF" Time="300" UseSleep="NO">
                     <Str Str="Allegro_Buff"/>
                     <Num Num="1"/>
                     <Num Num="0"/>
@@ -166,27 +151,27 @@
                     <Num Num="0"/>
                     <Num Num="1"/>
                 </Scp>
-                <Scp Scp="SKL_TGT_BUFF" Client="NO" UseSleep="NO" Time="300">
+                <Scp Client="NO" Scp="SKL_TGT_BUFF" Time="300" UseSleep="NO">
                     <Str Str="Marschierendeslied_Buff"/>
-                    <Num Num="1" UseFunc="1" FuncTxt="return obj.Level"/>
+                    <Num FuncTxt="return obj.Level" Num="1" UseFunc="1"/>
                     <Num Num="0"/>
-                    <Num Num="0" UseFunc="1" FuncTxt=" local value = 60000     local skillMarschierendeslied  = AddCopiedSkill(self, &quot;PiedPiper_Marschierendeslied&quot;)     if GetExProp(self, &quot;PIEDPIPER_IMPROVISATION_FAIL&quot;) == 1 then         value = value / 2         DelExProp(self, &quot;PIEDPIPER_IMPROVISATION_FAIL&quot;)     end          return value;"/>
+                    <Num FuncTxt=" local value = 60000     local skillMarschierendeslied  = AddCopiedSkill(self, &quot;PiedPiper_Marschierendeslied&quot;)     if GetExProp(self, &quot;PIEDPIPER_IMPROVISATION_FAIL&quot;) == 1 then         value = value / 2         DelExProp(self, &quot;PIEDPIPER_IMPROVISATION_FAIL&quot;)     end          return value;" Num="0" UseFunc="1"/>
                     <Num Num="1"/>
                     <Num Num="100"/>
                     <Num Num="0"/>
                 </Scp>
-                <Scp Scp="SKL_TGT_REMOVE_DEBUFF" Client="NO" UseSleep="NO" Time="400">
-                    <Str Str="0" UseFunc="1" FuncTxt="local func_name = 'get_remove_debuff_tooltip_' .. TryGetProp(obj, 'ClassName', 'None')
+                <Scp Client="NO" Scp="SKL_TGT_REMOVE_DEBUFF" Time="400" UseSleep="NO">
+                    <Str FuncTxt="local func_name = 'get_remove_debuff_tooltip_' .. TryGetProp(obj, 'ClassName', 'None')
                local func = _G[func_name]
                if func == nil then return end
-               return func(obj.Level)"/>
+               return func(obj.Level)" Str="0" UseFunc="1"/>
                 </Scp>
             </EtcList>
         </MainSkl>
     </Skill>
     <Skill Name="PiedPiper_Friedenslied">
         <KeyInput>
-            <ToolScp Scp="SKL_KEY_DYNAMIC_CASTING" Client="YES" UseSleep="NO">
+            <ToolScp Client="YES" Scp="SKL_KEY_DYNAMIC_CASTING" UseSleep="NO">
                 <Num Num="0" UseFunc="1" FuncTxt="local value = 0;
                 local pc = GetMyPCObject()
                 local abil = GetAbility(pc,&quot;PiedPiper22&quot;)
@@ -195,17 +180,23 @@
                 end
                 return value;"/>
                 <Num Num="0"/>
-                <Num Num="5.0999999"/>
+                <Num Num="5"/>
+                <Num Num="1"/>
+                <Num Num="0" UseFunc="1" FuncTxt="    local value = 0;
+    local pc = GetMyPCObject()
+    local abil = GetAbility(pc,&quot;PiedPiper22&quot;)
+    if abil ~= nil and abil.ActiveState == 1 then
+        value = 1
+    end
+    return value;"/>
+                <Num Num="0"/>
+                <Num Num="0"/>
+                <Num Num="0"/>
+                <Num Num="0"/>
+                <Num Num="0"/>
                 <Num Num="1"/>
                 <Num Num="0"/>
-                <Num Num="0"/>
-                <Num Num="0"/>
-                <Num Num="0"/>
-                <Num Num="0"/>
-                <Num Num="0"/>
-                <Num Num="1"/>
-                <Num Num="0"/>
-                <Str_Arg Str="" Arg="0"/>
+                <Str_Arg Arg="0" Str="" />
                 <Str Str=""/>
                 <Num Num="0"/>
                 <Num Num="0"/>
@@ -215,15 +206,13 @@
                 <Num Num="0"/>
                 <Num Num="0"/>
                 <Num Num="0"/>
-                <Str Str=""/>
-                <Str Str=""/>
-            </ToolScp>
+                </ToolScp>
         </KeyInput>
         <KeyInputStart>
-            <ToolScp Scp="MONSKL_CRE_PAD" Client="NO" UseSleep="NO">
+            <ToolScp Client="NO" Scp="MONSKL_CRE_PAD" UseSleep="NO">
                 <Pos Angle="0" Dist="0"/>
                 <Angle Angle="0"/>
-                <Str Str="Friedenslied_Pad"/>
+                <Str Str="Friedenslied_Pad" UseFunc="1" FuncTxt="local value = 'Friedenslied_Pad' if IS_ACTIVE_ABILITY(self, 'PiedPiper22') == 1 then value = 'Friedenslied_Abil_Pad' end return value"/>
             </ToolScp>
             <ToolScp Scp="MONSKL_C_CASTING_ANIM_OR_PLAY_ANIM" Client="YES" UseSleep="NO">
                 <Str Str="SKL_FRIEDENSLIED"/>
@@ -236,7 +225,7 @@
                 <Num Num="1"/>
                 <Num Num="0"/>
             </ToolScp>
-            <ToolScp Scp="SKL_PLAY_SOUND" Client="NO" UseSleep="NO">
+            <ToolScp Client="NO" Scp="SKL_PLAY_SOUND" UseSleep="NO">
                 <Str Str="skl_eff_piedpiper_friedenslied_melody_abil" UseFunc="1" FuncTxt="local value = 'skl_eff_piedpiper_friedenslied_melody'
                 local abil = GetAbility(self, 'PiedPiper22')
                 if abil ~= nil and TryGetProp(abil, 'ActiveState', 0) == 1 then
@@ -251,8 +240,7 @@
                 end
                 return value"/>
             </ToolScp>
-            <ToolScp Scp="SKL_BUFF_ABIL" Client="NO" UseSleep="NO">
-                <Str Str="PiedPiper23"/>
+            <ToolScp Client="NO" Scp="SKL_BUFF" UseSleep="NO">
                 <Str Str="HamelnNagetier_Buff"/>
                 <Num Num="1"/>
                 <Num Num="0"/>
@@ -263,11 +251,14 @@
             </ToolScp>
         </KeyInputStart>
         <KeyInputEnd>
-            <ToolScp Scp="MONSKL_REMOVE_PAD" Client="NO" UseSleep="NO">
+            <ToolScp Client="NO" Scp="MONSKL_REMOVE_PAD" UseSleep="NO">
                 <Str Str="Friedenslied_Pad"/>
             </ToolScp>
-            <ToolScp Scp="MONSKL_C_RESET_CASTING_ANIM" Client="YES" UseSleep="NO"/>
-            <ToolScp Scp="SKL_STOP_SOUND" Client="NO" UseSleep="NO">
+            <ToolScp Client="NO" Scp="MONSKL_REMOVE_PAD" UseSleep="NO">
+                <Str Str="Friedenslied_Abil_Pad"/>
+            </ToolScp>
+            <ToolScp Client="YES" Scp="MONSKL_C_RESET_CASTING_ANIM" UseSleep="NO"/>
+            <ToolScp Client="NO" Scp="SKL_STOP_SOUND" UseSleep="NO">
                 <Str Str="skl_eff_piedpiper_friedenslied_melody_abil" UseFunc="1" FuncTxt="local value = 'skl_eff_piedpiper_friedenslied_melody'
                 local abil = GetAbility(self, 'PiedPiper22')
                 if abil ~= nil and TryGetProp(abil, 'ActiveState', 0) == 1 then
@@ -281,11 +272,11 @@
                 end
                 return value"/>
             </ToolScp>
-            <ToolScp Scp="SKL_CONSUME_SKILL_COOLDOWN" Client="NO" UseSleep="NO">
+            <ToolScp Client="NO" Scp="SKL_CONSUME_SKILL_COOLDOWN" UseSleep="NO">
                 <Num Num="1"/>
             </ToolScp>
         </KeyInputEnd>
-        <MainSkl ScrLock="None" JumpFlee="NO" MSPDToUsePos="0"/>
+        <MainSkl JumpFlee="NO" MSPDToUsePos="0" ScrLock="None" />
     </Skill>
     <Skill Name="PiedPiper_Wiegenlied">
         <MainSkl JumpFlee="NO" MSPDToUsePos="0" ScrLock="None">
@@ -344,13 +335,12 @@
         </MainSkl>
     </Skill>
     <Skill Name="PiedPiper_Dissonanz">
-        <MainSkl ScrLock="None" JumpFlee="NO" MSPDToUsePos="0">
+        <MainSkl JumpFlee="NO" MSPDToUsePos="0" ScrLock="None">
             <HitList>
-                <Frame Type="FAN" Time="99799" HitCount="1" TermMin="0" TermMax="0" PosType="0" Dist="0" RandDist="0" RandomPerHit="0" Angle="0" Width="30" Length="30" SklAngle="0.17453292" AniTime="99999" RotAngle="0" ForceATK="0" ScriptIndex="0" ScriptName="" SkillType="0"/>
+                <Frame Angle="0" AniTime="99999" Dist="0" ForceATK="0" HitCount="1" Length="30" PosType="0" RandDist="0" RandomPerHit="0" RotAngle="0" SklAngle="0.17453292" TermMax="0" TermMin="0" Time="99799" Type="FAN" Width="30"/>
             </HitList>
             <EtcList>
-                <Scp Scp="SKL_BUFF_ABIL" Client="NO" UseSleep="NO" Time="0">
-                    <Str Str="PiedPiper23"/>
+                <Scp Client="NO" Scp="SKL_BUFF" Time="0" UseSleep="NO">
                     <Str Str="HamelnNagetier_Buff"/>
                     <Num Num="1"/>
                     <Num Num="0"/>
@@ -359,25 +349,25 @@
                     <Num Num="100"/>
                     <Num Num="0"/>
                 </Scp>
-                <Scp Scp="C_SOUND" Client="YES" UseSleep="NO" Time="300">
+                <Scp Client="YES" Scp="C_SOUND" Time="300" UseSleep="NO">
                     <Str Str="skl_eff_piedpiper_dissonanz_shot"/>
                 </Scp>
-                <Scp Scp="SKL_SET_TARGET_CIRCLE" Client="NO" UseSleep="NO" Time="400">
+                <Scp Client="NO" Scp="SKL_SET_TARGET_CIRCLE" Time="400" UseSleep="NO">
                     <Pos Angle="0" Dist="80"/>
-                    <Num Num="100"/>
-                    <Num Num="0" UseFunc="1" FuncTxt="local value = 10 if IsPVPServer(self) == 1 then     value = 5 end return value"/>
+                    <Num Num="160"/>
+                    <Num FuncTxt="local value = 10 if IsPVPServer(self) == 1 then     value = 5 end return value" Num="0" UseFunc="1"/>
                     <Num Num="2"/>
                     <Num Num="0"/>
                     <Num Num="1"/>
                     <Num Num="0"/>
                 </Scp>
-                <Scp Scp="C_EFFECT_POS" Client="YES" UseSleep="NO" Time="400">
-                    <Str_Arg Str="F_archer_Dissonanz_ground" Arg="3.2"/>
+                <Scp Client="YES" Scp="C_EFFECT_POS" Time="400" UseSleep="NO">
+                    <Str_Arg Arg="3.2" Str="F_archer_Dissonanz_ground"/>
                     <Pos Angle="0" Dist="80"/>
                     <Num Num="0"/>
                     <Str Str="None"/>
                 </Scp>
-                <Scp Scp="SKL_TGT_BUFF" Client="NO" UseSleep="NO" Time="500">
+                <Scp Client="NO" Scp="SKL_TGT_BUFF" Time="500" UseSleep="NO">
                     <Str Str="Dissonanz_Debuff"/>
                     <Num Num="1"/>
                     <Num Num="0"/>
@@ -387,19 +377,19 @@
                     <Num Num="0"/>
                     <Num Num="0"/>
                 </Scp>
-                <Scp Scp="SKL_TGT_BUFF" Client="NO" UseSleep="NO" Time="500">
+                <Scp Client="NO" Scp="SKL_TGT_BUFF" Time="500" UseSleep="NO">
                     <Str Str="Dissonanz_Stun_Debuff"/>
                     <Num Num="1"/>
                     <Num Num="0"/>
-                    <Num Num="2000"/>
+                    <Num FuncTxt="local value = 5000                      local target = GetHardSkillTargetList(self); for i = 1, #target do     local targetList = target[i]     if IsBuffApplied(targetList, &quot;Cloaking_Buff&quot;) == &quot;YES&quot; or IsBuffApplied(targetList, &quot;Burrow_Rogue&quot;) == 'YES' then         value = 5000     end end  local skillDissonanz  = AddCopiedSkill(self, &quot;PiedPiper_Dissonanz&quot;) if GetExProp(self, &quot;PIEDPIPER_IMPROVISATION_FAIL&quot;) == 1 then     value = value / 2     DelExProp(self, &quot;PIEDPIPER_IMPROVISATION_FAIL&quot;) end  if IsPVPServer(self) == 1 or IsPVPField(self) == 1 then  value = value / 2 end  return value" Num="0" UseFunc="1"/>
                     <Num Num="1"/>
-                    <Num Num="0" UseFunc="1" FuncTxt="local value = 100 if IsPVPServer(self) == 1 then     value = 50 end return value"/>
+                    <Num FuncTxt="local value = 100 if IsPVPServer(self) == 1 then     value = 50 end return value" Num="0" UseFunc="1"/>
                     <Num Num="0"/>
                 </Scp>
-                <Scp Scp="SKL_RUN_SCRIPT" Client="NO" UseSleep="NO" Time="600">
+                <Scp Client="NO" Scp="SKL_RUN_SCRIPT" Time="600" UseSleep="NO">
                     <Str Str="SCR_DISSONANZ_DETECTING"/>
                 </Scp>
-                <Scp Scp="SKL_BUFF_REMOVE" Client="NO" UseSleep="NO" Time="900">
+                <Scp Client="NO" Scp="SKL_BUFF_REMOVE" Time="900" UseSleep="NO">
                     <Str Str="Burrow_Rogue"/>
                 </Scp>
             </EtcList>
@@ -407,15 +397,12 @@
     </Skill>
     <Skill Name="PiedPiper_HypnotischeFlote">
         <EndScripts>
-            <ToolScp Scp="SKL_CANCEL_CANCEL" Client="NO" UseSleep="NO"/>
-            <ToolScp Scp="MONSKL_REMOVE_PAD" Client="NO" UseSleep="NO">
-                <Str Str="PiedPiper_HypnotischeFlote"/>
+            <ToolScp Client="NO" Scp="SKL_CANCEL_CANCEL" UseSleep="NO"/>
+            <ToolScp Client="NO" Scp="MONSKL_REMOVE_PAD" UseSleep="NO">
+                <Str Str="PiedPiper_Fluting"/>
             </ToolScp>
-            <ToolScp Scp="SKL_STOP_SOUND" Client="NO" UseSleep="NO">
+            <ToolScp Client="NO" Scp="SKL_STOP_SOUND" UseSleep="NO">
                 <Str Str="skl_archer_piedpiper_final_1"/>
-            </ToolScp>
-            <ToolScp Scp="SKL_RUN_SCRIPT" Client="NO" UseSleep="NO">
-                <Str Str="MONSKL_END_SPAWN_PAD"/>
             </ToolScp>
         </EndScripts>
         <KeyInput>
@@ -447,38 +434,37 @@
             </ToolScp>
         </KeyInput>
         <KeyInputStart>
-            <ToolScp Scp="SKL_BUFF" Client="NO" UseSleep="NO">
+            <ToolScp Client="NO" Scp="SKL_BUFF" UseSleep="NO">
                 <Str Str="Fluting_Buff"/>
-                <Num Num="1" UseFunc="1" FuncTxt=" return obj.Level"/>
+                <Num FuncTxt=" return obj.Level" Num="1" UseFunc="1"/>
                 <Num Num="0"/>
                 <Num Num="0"/>
                 <Num Num="1"/>
                 <Num Num="100"/>
                 <Num Num="0"/>
             </ToolScp>
-            <ToolScp Scp="MONSKL_START_SPAWN_PAD" Client="NO" UseSleep="NO">
-                <Str Str="PiedPiper_HypnotischeFlote"/>
-                <Num Num="10"/>
-                <Num Num="20"/>
+            <ToolScp Client="NO" Scp="MONSKL_CRE_PAD" UseSleep="NO">
+                <Pos Angle="0" Dist="0"/>
+                <Angle Angle="0"/>
+                <Str Str="PiedPiper_Fluting"/>
             </ToolScp>
-            <ToolScp Scp="C_EFFECT" Client="YES" UseSleep="NO">
-                <Str_Arg Str="I_buff_Fluting_Buff" Arg="3"/>
+            <ToolScp Client="YES" Scp="C_EFFECT" UseSleep="NO">
+                <Str_Arg Arg="3" Str="I_buff_Fluting_Buff"/>
                 <Str Str="Dummy_effect_pipe01"/>
                 <Num Num="0"/>
             </ToolScp>
-            <ToolScp Scp="MONSKL_C_CASTING_ANIM" Client="YES" UseSleep="NO">
+            <ToolScp Client="YES" Scp="MONSKL_C_CASTING_ANIM" UseSleep="NO">
                 <Str Str="SKL_PIEDPIPER_FLUTING2"/>
                 <Str Str="None"/>
                 <Num Num="1"/>
                 <Num Num="1"/>
             </ToolScp>
-            <ToolScp Scp="SKL_PLAY_SOUND" Client="NO" UseSleep="NO">
+            <ToolScp Client="NO" Scp="SKL_PLAY_SOUND" UseSleep="NO">
                 <Str Str="skl_archer_piedpiper_1"/>
                 <Num Num="1"/>
                 <Str Str="skl_archer_piedpiper_1"/>
             </ToolScp>
-            <ToolScp Scp="SKL_BUFF_ABIL" Client="NO" UseSleep="NO">
-                <Str Str="PiedPiper23"/>
+            <ToolScp Client="NO" Scp="SKL_BUFF" UseSleep="NO">
                 <Str Str="HamelnNagetier_Buff"/>
                 <Num Num="1"/>
                 <Num Num="0"/>
@@ -489,32 +475,29 @@
             </ToolScp>
         </KeyInputStart>
         <KeyInputEnd>
-            <ToolScp Scp="SKL_RUN_SCRIPT" Client="NO" UseSleep="NO">
-                <Str Str="MONSKL_END_SPAWN_PAD"/>
-            </ToolScp>
-            <ToolScp Scp="SKL_BUFF_REMOVE" Client="NO" UseSleep="NO">
+            <ToolScp Client="NO" Scp="SKL_BUFF_REMOVE" UseSleep="NO">
                 <Str Str="Fluting_Buff"/>
             </ToolScp>
-            <ToolScp Scp="C_EFFECT_DETACH" Client="YES" UseSleep="NO">
-                <Str_Arg Str="I_buff_Fluting_Buff" Arg="1"/>
+            <ToolScp Client="NO" Scp="MONSKL_REMOVE_PAD" UseSleep="NO">
+                <Str Str="PiedPiper_Fluting"/>
+            </ToolScp>
+            <ToolScp Client="YES" Scp="C_EFFECT_DETACH" UseSleep="NO">
+                <Str_Arg Arg="1" Str="I_buff_Fluting_Buff"/>
                 <Num Num="0.5"/>
             </ToolScp>
-            <ToolScp Scp="MONSKL_C_RESET_CASTING_ANIM" Client="YES" UseSleep="NO"/>
-            <ToolScp Scp="SKL_STOP_SOUND" Client="NO" UseSleep="NO">
+            <ToolScp Client="YES" Scp="MONSKL_C_RESET_CASTING_ANIM" UseSleep="NO"/>
+            <ToolScp Client="NO" Scp="SKL_STOP_SOUND" UseSleep="NO">
                 <Str Str="skl_archer_piedpiper_1"/>
                 <Str Str="skl_archer_piedpiper_1"/>
             </ToolScp>
-            <ToolScp Scp="SKL_CONSUME_SKILL_COOLDOWN" Client="NO" UseSleep="NO">
+            <ToolScp Client="NO" Scp="SKL_CONSUME_SKILL_COOLDOWN" UseSleep="NO">
                 <Num Num="1"/>
             </ToolScp>
-            <ToolScp Scp="MONSKL_REMOVE_PAD" Client="NO" UseSleep="NO">
-                <Str Str="PiedPiper_HypnotischeFlote"/>
-            </ToolScp>
         </KeyInputEnd>
-        <MainSkl ScrLock="None" JumpFlee="NO" MSPDToUsePos="0">
+        <MainSkl JumpFlee="NO" MSPDToUsePos="0" ScrLock="None">
             <HitList>
-                <Frame Type="FAN" Time="9799" HitCount="1" TermMin="0" TermMax="0" PosType="0" Dist="0" RandDist="0" RandomPerHit="0" Angle="0" AniTime="9999" RotAngle="0" ForceATK="0" ScriptIndex="0" ScriptName="" SkillType="0"/>
+                <Frame Angle="0" AniTime="9999" Dist="0" ForceATK="0" HitCount="1" PosType="0" RandDist="0" RandomPerHit="0" RotAngle="0" TermMax="0" TermMin="0" Time="9799" Type="FAN"/>
             </HitList>
         </MainSkl>
     </Skill>
-</ToolSkill>
+    </ToolSkill>

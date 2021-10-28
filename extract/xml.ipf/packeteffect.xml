@@ -1067,6 +1067,17 @@
         <Effect Name="F_buff_basic046_red##2"/>
         <Effect Name="F_spread_out029_red##3"/>
         <Effect Name="I_smoke044_dark##3"/>
+        <Effect Name="EP13_F_SIAULIAI_1_SQ_02_MINI"/>
+        <Effect Name="EP13_F_SIAULIAI_1_SQ_04_MINI"/>
+        <Effect Name="EP13_F_SIAULIAI_1_SQ_05_MINI"/>
+        <Effect Name="skl_eff_h_barrack_12_lamp_on"/>
+        <Effect Name="skl_eff_h_barrack_12_lamp_off"/>
+        <Effect Name="skl_eff_h_barrack_12_clock_loop_10sec"/>
+        <Effect Name="skl_eff_h_barrack_12_clock_12_bell"/>
+        <Effect Name="skl_eff_h_barrack_12_record_coin"/>
+        <Effect Name="skl_eff_h_barrack_12_record_on"/>
+        <Effect Name="Orgel1"/>
+        <Effect Name="skl_eff_h_barrack_12_lamp_phone"/>
     </Category>
     <Category ID="144">
         <Effect Name="F_pc_CardBook_ground_dark"/>
@@ -6399,6 +6410,7 @@
         <Effect Name="F_pose_magical2_light02_brown"/>
         <Effect Name="F_pose_magical2_light01_cream"/>
         <Effect Name="F_pose_magical2_light02_cream"/>
+        <Effect Name="FEED4"/>
     </Category>
     <Category ID="28">
         <Effect Name="F_explosion006_green#Dummy_skl2_shot"/>

@@ -158,6 +158,7 @@
 		<Class ClassID="1145" ClassName="ShortCut" Data="바로가기"/>
 		<Class ClassID="1146" ClassName="GiveEnchant" Data="부여"/>
 		<Class ClassID="1147" ClassName="ExchangeLuciferi" Data="루시페리 장신구 교환"/>
+		<Class ClassID="1150" ClassName="HousingCraftPer" Data="재화 획득량 증가"/>
 	</Category>
 	<Category Name="Reinforce">
 		<Class ClassID="2001" ClassName="NotEnoughReinforcePotential" Data="강화에 필요한 포텐셜이 부족합니다"/>
@@ -552,7 +553,7 @@
 		<Class ClassID="3080" ClassName="Set_option" Data="세트 옵션"/>
 		<Class ClassID="3081" ClassName="FixedIcorOptin" Data="고정 아이커 옵션"/>
 		<Class ClassID="3082" ClassName="OnlyUseHavingZeroCount_Raid" Data="[{Raid}] 입장 가능 횟수가 0 인 경우에만 사용 가능합니다."/>
-		<Class ClassID="3083" ClassName="ReallyRemoveGem_Care" Data="{nl}젬을 추출하면 젬의 등급이 한단계 하락합니다.{nl}젬을 추출하시겠습니까?{nl}(단, 1레벨이하 젬은 소멸됩니다.){nl}{@st66d}{s20}(스킬 젬 추출 시 실버가 소모되지 않으며,{nl}추출된 스킬 젬이 소멸하지 않습니다.){nl}{@st66d}{s20}{#ffc500}(기간 : 4/22 점검 후 ~ 5/20 점검 전까지)"/>
+		<Class ClassID="3083" ClassName="ReallyRemoveGem_Care" Data="{nl}젬을 추출하면 젬의 등급이 한단계 하락합니다.{nl}젬을 추출하시겠습니까?{nl}(단, 1레벨이하 젬은 소멸됩니다.){nl}{@st66d}{s20}(스킬 젬 추출 시 실버가 소모되지 않으며,{nl}추출된 스킬 젬이 소멸하지 않습니다.){nl}{@st66d}{s20}{#ffc500}(기간 : 4/22 점검 후 ~ 7/22 점검 전까지)"/>
 	</Category>
 	<Category Name="ItemPuzzle">
 		<Class ClassID="3501" ClassName="WouldYouSelectThisCombinationAsAlchemystryTarget?" Data="이 조합을 연금 대상으로 선택합니까?"/>
@@ -562,7 +563,7 @@
 	<Category Name="Item">
 		<Class ClassID="4001" ClassName="GetItem" Data="아이템 획득"/>
 		<Class ClassID="4002" ClassName="DropCartToSlot" Data="카드를 장착할 슬롯에 끌어다 놓으세요."/>
-		<Class ClassID="4003" ClassName="ReallyRepair" Data="수리하시겠습니까?{nl}{ol}{Price} 실버{/}"/>
+		<Class ClassID="4003" ClassName="ReallyRepair" Data="수리하시겠습니까?{nl} {nl}{@st66d_y}{Price} 실버{/}"/>
 		<Class ClassID="4004" ClassName="NotDecidedYet" Data="미정"/>
 		<Class ClassID="4005" ClassName="NoMorePotential" Data="아이템에 남은 포텐셜이 부족합니다."/>
 		<Class ClassID="4006" ClassName="NoMoreSocket" Data="아이템에 남은 소켓이 부족합니다."/>
@@ -681,7 +682,7 @@
 		<Class ClassID="4120" ClassName="Appraisal" Data="감정"/>
 		<Class ClassID="4121" ClassName="NeedAppraisd" Data="미감정된 아이템은 사용하실 수 없습니다."/>
 		<Class ClassID="4122" ClassName="AppraisalSuccess" Data="감정 성공!"/>
-		<Class ClassID="4123" ClassName="AppraisalPrice" Data="감정 비용 : {Price}{nl}감정하시겠습니까?"/>
+		<Class ClassID="4123" ClassName="AppraisalPrice" Data="감정하시겠습니까?{nl} {nl}{@st66d_y}{Price} 실버{/}"/>
 		<Class ClassID="4124" ClassName="AppraisalItem" Data="아이템을 감정하면 확인할 수 있습니다."/>
 		<Class ClassID="4125" ClassName="RankResetStart" Data="클래스 변경을 시작하였습니다. 처리시간이 걸릴 수 있습니다."/>
 		<Class ClassID="4126" ClassName="DON_T_HAVE_ITEM_TO_APPRAISAL" Data="감정할 아이템을 선택해 주세요."/>
@@ -935,6 +936,7 @@
 		<Class ClassID="4387" ClassName="tooltip_reward_ratio_open_list2" Data="{nl}{@st45ty}{s14}항목에 대한 확률은 공식 홈페이지 [확률형 아이템] 페이지에서 확인하실 수 있습니다.{/}{/}"/>
 		<Class ClassID="4388" ClassName="tooltip_reward_ratio_open_list3" Data="사용 시 각 균등 확률에 따라 아이템을 획득합니다."/>
 		<Class ClassID="4389" ClassName="multiple_trade_select_item" Data="선택 아이템 교환 수량 입력 ({Auto_1} ~ {Auto_2})"/>
+		<Class ClassID="4390" ClassName="RelicGemCompose1" Data="같은 종류(시안, 마젠타, 블랙){nl}같은 등급의 성물 젬끼리만 합성할 수 있습니다."/>
 		<Class ClassID="4391" ClassName="tooltip_reward_ratio_open_list_sklgem" Data="사용 시 1/{COUNT}의 균등 확률에 따라 스킬 젬을 획득합니다."/>
 	</Category>
 	<Category Name="ItemTooltip">
@@ -1014,7 +1016,7 @@
 		<Class ClassID="5074" ClassName="tooltip_Convict_Lv4" Data="{nl} {nl}{@st66d}{s15} - 세이크리드 시전 시 30초 동안 자가 버프 부여{nl} - 버프 중 홀리 스매시 시전 시 [단죄]를 시전하여 전방 추가 타격{nl}(단죄 스킬 계수 현재 레벨 세이크리드의 20%){nl} - 최대 대상 수 10"/>
 		<Class ClassID="5075" ClassName="tooltip_PiercingShell_Lv4" Data="{nl} {nl}{@st66d}{s15} - 스나이퍼즈 세리니티 버프 상태에서 이동 중일 때 [은신]{nl}(은신 발동 지연시간 2초){nl} - 스나이퍼즈 세리니티 버프 상태에서 이동 중 2초마다 헤드샷과 스나이프의 재사용 대기시간이 2초 감소"/>
 		<Class ClassID="5076" ClassName="tooltip_MassHealFreeze_Lv4" Data="{nl} {nl}{@st66d}{s15} - 매스 힐 시전 시 12초 동안 자가 버프 부여{nl} - 버프 중 3초마다 자신 주변 150 범위 내의 파티원에게 [힐] 자동 시전"/>
-		<Class ClassID="5077" ClassName="tooltip_TimeRush_Lv4" Data="{nl} {nl}{@st66d}{s15} - 타임 리스트릭션 시전 시 지정 위치에 [타임 클러치] 시전{nl} - 캐스팅이 완전히 끝난 후 효과가 발생하는 공격 스킬 시전 시, 스킬의 원래 캐스팅 시간만큼 타임 리스트릭션 재사용 대기시간 감소{nl} {nl}타임 클러치{nl} - 지정 위치 60 범위에 무속성 마법 대미지{nl}(스킬 계수 현재 레벨의 타임 리스트릭션의 50%){nl} - 연타 수 2{nl} - 최대 대상 수 10{nl} - 대상 침묵 2초{nl} {nl}타임 클러치는 캐스팅으로 판정되지 않음"/>
+		<Class ClassID="5077" ClassName="tooltip_TimeRush_Lv4" Data="{nl} {nl}{@st66d}{s15}  - 슬로우 시전 시 지정 위치에 [타임 클러치] 시전{nl}  - 캐스팅이 완전히 끝난 후 효과가 발생하는 공격 스킬 시전 시, 스킬의 원래 캐스팅 시간만큼 슬로우 재사용 대기시간 감소{nl} {nl}타임 클러치{nl}  - 지정 위치 60 범위에 무속성 마법 대미지{nl}(스킬 계수 슬로우 스킬 레벨*1200%){nl}  - 최대 대상 수 10{nl}  - 대상 침묵 2초"/>
 		<Class ClassID="5078" ClassName="tooltip_LewaAdvent" Data="{nl}  - 댐발라 스킬 레벨 {img green_up_arrow 16 16}1{nl} {nl} 르와 강림 {nl} - 댐발라 시전 시 대상에게 [르와 강림] 디버프 5초 부여{nl} - [르와 강림] 디버프 지속시간 동안 어둠의 힘 중첩 수 {img green_up_arrow 16 16}1{nl} - [르와 강림] 디버프의 지속시간이 끝나면 대상에게 댐발라의 스킬 계수의 75% *4회 만큼 추가 타격{nl} - 추가 타격은 대상에게 걸려 있는 보코르 클래스가 부여한 디버프 당 대미지 20% 증가(최대 60%) "/>
 		<Class ClassID="5079" ClassName="tooltip_LewaAdvent_Lv4" Data="{nl} {nl}{@st66d}{s15} - 에피지 최종 대미지 {img green_up_arrow 16 16}100%"/>
 		<Class ClassID="5080" ClassName="tooltip_ChillWind" Data=" - 낙무아이 모든 스킬 레벨{img green_up_arrow 16 16}1{nl} {nl}삭풍{nl} - 낙무아이 공격 스킬 시전 시 삭풍 버프 1 중첩 (지속시간 30초){nl} - 버프 8 중첩일 때 람무아이 시전 시 [파야카룬] 시전{nl} {nl}파야카룬{nl} - 전방 범위 적들에게 10 연타 때리기 대미지{nl}(파야카룬 총 스킬 계수 낙무아이 모든 공격 스킬의 합){nl} - 광역 공격 비율 30{nl} - 시전 중 받는 피해 70% 감소 및 넉백,넉다운 면역"/>
@@ -1047,14 +1049,14 @@
 		<Class ClassID="5107" ClassName="tooltip_AddDamageSword" Data="{nl} {nl}반향{nl} - 공격 시 20% 확률로 추가 대미지 능력치 100% 최종 증가{nl} {nl}다른 반향 효과와 중복되지 않음"/>
 		<Class ClassID="5108" ClassName="tooltip_SlashSpace" Data=" - 로델레로 모든 스킬 레벨{img green_up_arrow 16 16}1{nl}  - 몬타노 스킬 레벨{img green_up_arrow 16 16}2{nl} {nl}공간베기{nl} - 몬타노 시전 시 전방의 적 20명에게{nl}동일한 스킬 공격력으로 추가 타격(때리기 속성){nl} - 추가 타격은 몬타노와 동일한 스킬로 판정"/>
 		<Class ClassID="5109" ClassName="tooltip_BlossomBlader_BlossomSlash" Data=" - 매화 베기 스킬 레벨 {img green_up_arrow 16 16} 2{nl}  - 매화 베기 재사용 대기시간 15초 감소{nl} {nl}화산검법{nl} - 매화 베기가 한 대상이 아닌 주변 최대 4명의 대상에게 순차적으로 대미지를 입힘"/>
-		<Class ClassID="5110" ClassName="tooltip_TimeRush" Data=" - 크로노맨서 모든 스킬 레벨{img green_up_arrow 16 16}1{nl} {nl}타임러시{nl} - 퀵 캐스트 지속 중 퀵 캐스트 스킬 레벨 * 3.5%만큼 주는 대미지 증가{nl} - 타임 포워드 디버프 지속시간 1초 감소"/>
+		<Class ClassID="5110" ClassName="tooltip_TimeRush" Data=" - 퀵 캐스트 스킬 레벨{img green_up_arrow 16 16}2{nl} {nl}타임러시{nl} - 퀵 캐스트 지속 중 퀵 캐스트 스킬 레벨 * 3.5%만큼 주는 대미지 증가{nl}  - 타임 포워드 적용 스킬{img green_up_arrow 16 16}2 "/>
 		<Class ClassID="5111" ClassName="tooltip_ReinforceString" Data=" - 바브드 애로우 스킬 레벨 {img green_up_arrow 16 16}3{nl}  - 보드킨 포인트 스킬 레벨 {img green_up_arrow 16 16}3{nl}  - 바브드 애로우 스킬 대미지 {img green_up_arrow 16 16}100%{nl} {nl}시위 강화{nl} - 바브드 애로우 스킬 치명타 발생 능력치 30% 추가 적용{nl} - 바브드 애로우가 상대의 방어구 타입을 무시하고 5연타로 적용"/>
 		<Class ClassID="5112" ClassName="tooltip_DoubleMarking" Data=" - 아발리스터 모든 스킬 레벨 {img green_up_arrow 16 16} 1{nl} {nl}이중표식{nl} - 유도화살 확률 20% 추가 증가"/>
 		<Class ClassID="5113" ClassName="tooltip_MassHealFreeze" Data=" - 매스 힐 스킬 레벨{img green_up_arrow 16 16}1 {nl} {nl}매스 힐: 냉각{nl}-  매스 힐 사용시 [힐: 과부하] 중첩에 따라{nl}매스 힐 재사용 대기시간 감소{nl} - 과부하 중첩당 1초 감소{nl} - 매스 힐 사용 시 [힐: 과부하] 중첩 모두 제거"/>
 		<Class ClassID="5114" ClassName="tooltip_Convict" Data=" - 크루세이더 모든 스킬 레벨 {img green_up_arrow 16 16}1{nl} {nl}단죄{nl} - 홀리 스매시 재사용 대기시간 5초 감소{nl} - 컨뎀 재사용 대기시간 10초 감소"/>
 		<Class ClassID="5115" ClassName="tooltip_Retiarii_ThrowNet" Data=" - 레티아리이 모든 스킬 레벨 {img green_up_arrow 16 16}1{nl}  - 투망 던지기 스킬 레벨{img green_up_arrow 16 16}2{nl} {nl}투망 발사장치{nl} - 트라이던트 피니시 첫 번째 오버히트 시전시{nl}현재 레벨의 [투망 던지기] 디버프 부여"/>
 		<Class ClassID="5116" ClassName="tooltip_Halberd" Data=" - 드라군 모든 스킬 레벨 {img green_up_arrow 16 16}1{nl} {nl}미늘창{nl} - 드라군 헬멧 착용 중 대형, 보스 몬스터에게 주는 대미지 40% 증가{nl} -  보스 몬스터에게 디쓰론 명중시 5초간 디버프 부여{nl}디버프 대상에게 자신이 받는 대미지 15% 감소"/>
-		<Class ClassID="5117" ClassName="tooltip_CurseDagger" Data=" - 루카 스킬 레벨{img green_up_arrow 16 16}3{nl}  - 바롱 스킬 레벨{img green_up_arrow 16 16}2 {nl} {nl}저주의 비수{nl} - 바롱이 부여하는 무기력 디버프 지속시간 3초 증가{nl} - 루카 시전 시 [저주의 비수] 디버프를 부여{nl} - 저주의 비수는 현재 레벨의 루카와 동일한 지속 피해를 줌{nl} - 저주의 비수 지속시간 10초"/>
+		<Class ClassID="5117" ClassName="tooltip_CurseDagger" Data=" - 루카 스킬 레벨{img green_up_arrow 16 16}3{nl}  - 케레티한 스킬 레벨{img green_up_arrow 16 16}2 {nl} {nl}저주의 비수{nl} - 루카 시전 시 현재 레벨의 케레티한 디버프 4중첩 부여{nl} - 루카 시전 시 [저주의 비수] 디버프를 부여{nl} - 저주의 비수는 현재 레벨의 루카와 동일한 지속 피해를 줌{nl} - 저주의 비수 지속시간 10초"/>
 		<Class ClassID="5118" ClassName="tooltip_StoneSlinger" Data=" - 스톤 샤워 스킬 레벨 {img green_up_arrow 16 16}2{nl} {nl}무릿매{nl} - 샌드 블래스트 치명타 적중 시 현재 레벨의 스톤 샤워 시전{nl} - 치명타가 아닐 때, 샌드 블래스트 적중 시 15% 확률로 스톤 샤워 시전"/>
 		<Class ClassID="5119" ClassName="tooltip_CryoliteBullet" Data=" - R.I.P 스킬 레벨 {img green_up_arrow 16 16}3{nl}  - R.I.P 재사용 대기시간 10초 감소{nl}  - 모잠비크 드릴 재사용 대기시간 10초 감소{nl} {nl}크리오라이트 탄두{nl}- 프리즈 불릿이 R.I.P에 적용"/>
 		<Class ClassID="5120" ClassName="tooltip_Reventador" Data=" - 펜서 모든 스킬 레벨 {img green_up_arrow 16 16}1{nl} {nl}레벤타도르{nl} - 세테뚜와르 재사용 대기시간 5초 감소{nl} - 플레쉬 재사용 대기시간 10초 감소"/>
@@ -1079,7 +1081,7 @@
 		<Class ClassID="5139" ClassName="tooltip_Retiarii_ThrowNet_Lv4" Data="{nl} {nl}{@st66d}{s15} - 블란디르 카데나 재사용 대기시간 25초 감소"/>
 		<Class ClassID="5140" ClassName="tooltip_Javelin_Lv4" Data="{nl} {nl}{@st66d}{s15} - 피어스 최종 대미지 {img green_up_arrow 16 16}100%"/>
 		<Class ClassID="5141" ClassName="tooltip_Halberd_Lv4" Data="{nl} {nl}{@st66d}{s15} - 드래곤 폴 시전 시 지정 위치 주변 60범위에 미늘창을 4회 투하{nl}(미늘창 스킬 계수 현재 레벨 드래곤 폴의 40%){nl} -  미늘창 타격 범위 60, 최대 대상수 10"/>
-		<Class ClassID="5142" ClassName="tooltip_CurseDagger_Lv4" Data="{nl} {nl}{@st66d}{s15} - 라와 최종 대미지 {img green_up_arrow 16 16}100%"/>
+		<Class ClassID="5142" ClassName="tooltip_CurseDagger_Lv4" Data="{nl} {nl}{@st66d}{s15} - 쿠투칸 최종 대미지 {img green_up_arrow 16 16}100%"/>
 		<Class ClassID="5143" ClassName="tooltip_ShadowClone_Lv4" Data="{nl} {nl}{@st66d}{s15} - 쿠나이 최종 대미지 {img green_up_arrow 16 16}100%"/>
 		<Class ClassID="5144" ClassName="tooltip_CarpetBombing_Lv4" Data="{nl} {nl}{@st66d}{s15} - 탈리오 최종 대미지 {img green_up_arrow 16 16}100%"/>
 		<Class ClassID="5145" ClassName="tooltip_ThrowingKnife_Lv4" Data="{nl} {nl}{@st66d}{s15} - 백스탭 최종 대미지 {img green_up_arrow 16 16}100%"/>
@@ -1618,7 +1620,7 @@
 		<Class ClassID="10498" ClassName="MoveDownCharSlot" Data="캐릭터 아래로 이동"/>
 		<Class ClassID="10499" ClassName="MoveUpCharSlot" Data="캐릭터 위로 이동"/>
 		<Class ClassID="10500" ClassName="ChangeRevertRandomOption{ItemName}" Data="{@st66}{b}{s18}{#8e0000}[{ItemName}]{/}{/}{/}{s18}의 옵션을 {nl}아래와 같이 변경하겠습니까?"/>
-		<Class ClassID="10501" ClassName="ReallyWarp10000{PRICE}" Data="워프하시겠습니까?{nl}{ol}{PRICE} 실버{/}"/>
+		<Class ClassID="10501" ClassName="ReallyWarp10000{PRICE}" Data="워프하시겠습니까?{nl} {nl}{@st66d_y}{PRICE} 실버{/}"/>
 		<Class ClassID="10502" ClassName="ReallyWarp100000{PRICE}" Data="워프하시겠습니까?{nl}{ol}{#ffcc00}{PRICE} 실버{/}"/>
 		<Class ClassID="10503" ClassName="ReallyWarp1000000{PRICE}" Data="워프하시겠습니까?{nl}{ol}{#ff6000}{PRICE} 실버{/}"/>
 		<Class ClassID="10504" ClassName="DoUnrevertRandomReset" Data="신비한 돋보기는 소모되며 아이템 옵션이 변경된 후 되돌릴 수 없습니다.{nl}진행하시겠습니까?"/>
@@ -1691,6 +1693,7 @@
 		<Class ClassID="10579" ClassName="misc_Relic_GemFullEnough" Data="프리즘 콜 아이템을 너무 많이 보유하고 있어 분해할 수 없습니다."/>
 		<Class ClassID="10581" ClassName="InventoryIsFull_quest_complete_fail_1" Data="인벤토리에 빈자리가 없습니다.{nl}퀘스트 완료를 위해 인벤토리 공간을 확보해주세요."/>
 		<Class ClassID="10582" ClassName="LuciferiTypeExchange_Help" Data="장신구 계열 변경을 통해 보유 중인 장신구를 같은 레벨 같은 등급 장신구로 변경할 수 있습니다.{nl}포텐셜이 0 인 장신구만 가능하며, 변경 가능한 그룹 내에 속한 장신구끼리만 변경할 수 있습니다.{nl} {nl}변경 가능한 장비 종류{nl} - 루시페리 {nl} {nl}장신구 계열 변경에는 각 레벨에 맞는 '장신구 계열 변경의 서' 아이템이 필요합니다.{nl}변경하는 장신구 부위에 따라 '장신구 계열 변경의 서' 아이템의 필요 수량이 상이합니다.{nl} - 목걸이 : 2개{nl} - 팔찌 : 1개{nl} {nl}레벨 별로 변경 가능한 장신구 그룹은 '장신구 계열 변경의 서' 아이템 툴팁을 참고해 주세요."/>
+		<Class ClassID="10584" ClassName="CannotUseHousingCraftCoupon" Data="더 이상 쿠폰을 사용하실 수 없습니다."/>
 	</Category>
 	<Category Name="FoodTable">
 		<Class ClassID="20001" ClassName="IncreaseHP{Value}For{Time}Minute" Data="{Time}분 동안 HP가 {Value}% 증가합니다."/>
@@ -10427,7 +10430,7 @@
 		<Class ClassID="105007" ClassName="CannotDoAction" Data="해당 액션을 할 수 있는 상태가 아닙니다."/>
 		<Class ClassID="105008" ClassName="AlearyHaveItemReallyBuy?" Data="이미 가지고 있는 아이템 입니다.{nl} 정말로 구매하시겠습니까?"/>
 		<Class ClassID="105009" ClassName="AlearyHaveItemReallyPreview?" Data="이미 가지고 있는 아이템 입니다. {nl} 미리보기를 하시겠습니까?"/>
-		<Class ClassID="105010" ClassName="ReallyBuy?{Price}" Data="구매하시겠습니까?{nl}{ol}{Price} 실버{/}"/>
+		<Class ClassID="105010" ClassName="ReallyBuy?{Price}" Data="구매하시겠습니까?{nl} {nl}{@st66d_y}{Price} 실버{/}"/>
 		<Class ClassID="105011" ClassName="AleadyPutInBasketReallyBuy?" Data="장바구니에 이미 있는 아이템입니다.{nl}장바구니에 담겠습니까?"/>
 		<Class ClassID="105012" ClassName="AleadyPutInBasket" Data="장바구니에 이미 있는 아이템입니다."/>
 		<Class ClassID="105013" ClassName="NoItemInBasket" Data="장바구니에 담긴 상품이 없습니다."/>
@@ -14635,7 +14638,7 @@
 		<Class ClassID="301017" ClassName="Change FamilyName" Data="팀명 변경"/>
 		<Class ClassID="301018" ClassName="Change GuildName" Data="길드명 변경"/>
 		<Class ClassID="301019" ClassName="ExistCannotEquipItem" Data="착용할 수 없는 아이템이 있습니다."/>
-		<Class ClassID="301020" ClassName="ContainWarningItem" Data="레티샤의 시크릿 큐브는 {nl}확률성 아이템으로서 구매 시 각 확률에 따라 [확률형 아이템 목록]에 안내된 구성 아이템 중 1종을 획득할 수 있습니다.{nl} {nl}확률 정보는 공식 홈페이지 하단의{nl}[확률형 아이템 목록]에서 확인이 가능합니다."/>
+		<Class ClassID="301020" ClassName="ContainWarningItem" Data="확률형 아이템은 각 확률에 따라 [확률형 아이템 목록]에{nl}안내된 구성 아이템 중 1종을 획득할 수 있습니다.{nl} {nl}[확률형 아이템 목록]은 공식 홈페이지 하단에서 확인이 가능합니다."/>
 		<Class ClassID="301021" ClassName="BuyList" Data="비확률형 아이템"/>
 		<Class ClassID="301022" ClassName="ProbabilityItem" Data="확률형 아이템"/>
 		<Class ClassID="301023" ClassName="TotalTPConsumeOK" Data="{img icon_item_tpBox_30 30 30} {TOTAL} 소모됩니다."/>
@@ -15056,7 +15059,7 @@
 		<Class ClassID="302451" ClassName="2105_CAMPING_TRAVEL_SEL5" Data="{#003399}게으른 나무꾼에게 이동하기{/} "/>
 		<Class ClassID="302452" ClassName="EVENT_2105_CAMPING_EP12_SHOP" Data="{#003399}[EP 12-1]스크롤 상점{/}"/>
 		<Class ClassID="302453" ClassName="2105_CAMPING_TRAVEL_SEL7" Data="{#003399}[봄 캠핑]{/} 장작 전달하기"/>
-		<Class ClassID="302454" ClassName="2105_CAMPING_TRAVEL_SEL8" Data="잃어버린 수첩을 찾아줘서 감사합니다!{/}{nl} 교환 가능 개수 [1~{MAX}]"/>
+		<Class ClassID="302454" ClassName="2105_CAMPING_TRAVEL_SEL8" Data="잃어버린 수첩을 찾아줘서 감사합니다!{/}{nl}{#003399}교환 가능 개수 [1~{MAX}]{/}"/>
 		<Class ClassID="302455" ClassName="EVENT_2105_CAMPING_SHOP" Data="{#003399}[봄 캠핑]이벤트 상점{/}"/>
 		<Class ClassID="302456" ClassName="2105_CAMPING_AX_SEL1" Data="{#003399}[봄 캠핑]{/}마을로 돌아간다"/>
 		<Class ClassID="302457" ClassName="2105_CAMPING_AX_SEL2" Data="{#003399}[봄 캠핑]{/}게으른 나무꾼의 부탁"/>
@@ -15738,6 +15741,23 @@
 		<Class ClassID="815135" ClassName="Personal_Housing_Not_Exists_Empty_Preview_Slot" Data="미리보기 개수를 초과 하였습니다."/>
 		<Class ClassID="815136" ClassName="Personal_Housing_Really_Payment" Data="정산 하시겠습니까?"/>
 		<Class ClassID="815137" ClassName="Personal_Housing_Really_Payment_LeftCouponMoney" Data="정산 하시겠습니까?{nl}{s20}{#ff0000}{ol}상품권 잔액 : {LeftCouponMoney}{nl}{s18}정산 시 잔액은 소멸됩니다."/>
+		<Class ClassID="815138" ClassName="Personal_Housing_Active_On_1" Data="조작한다"/>
+		<Class ClassID="815140" ClassName="Personal_Housing_Active_Off_1" Data="조작을 멈춘다"/>
+		<Class ClassID="815141" ClassName="Personal_Housing_Active_On_2" Data="조작 중"/>
+		<Class ClassID="815142" ClassName="Personal_Housing_Active_Off_2" Data="멈춤"/>
+		<Class ClassID="815143" ClassName="Personal_Housing_Active_Silence_on" Data="소리를 재생한다"/>
+		<Class ClassID="815144" ClassName="Personal_Housing_Active_Silence_off" Data="음소거 한다"/>
+		<Class ClassID="815301" ClassName="Personal_Housing_hp_barrack_12_sandglass_MSG_1" Data="개인 하우징 가구를 조작합니다.{nl}조작하는 가구 : [ {TGTNAME} ]{nl}상태 : ( {STATE} )"/>
+		<Class ClassID="815302" ClassName="Personal_Housing_Craftshop_tootip_msg_1" Data="{@st59b}재화 생산 현황판 Tip{nl} {nl}{@st59s}{#FFFF00}생산 게이지{/}{nl} - 흰    색 : 최적 효율 미만{nl} -{#3366FF}파란색{/} : 최적 효율{nl} -{#FF0000}빨간색{/} : 최적 효율 초과(초과된 생산량은 획득할 수 없습니다){nl} {nl}{#FFFF00}재화 수령{/}{nl} - 재화 수령 시간(매주 월요일 오전 6시) 이후 활성화됩니다.{nl}- 재화 수령은 재화수령 시간 전까지 설치된 생산량을 토대로 수령할 수 있습니다."/>
+		<Class ClassID="815303" ClassName="Personal_Housing_Reputation_name_1" Data="렘파라사 연못 명성 : "/>
+		<Class ClassID="815304" ClassName="Personal_Housing_Reputation_name_2" Data="덧댄다리 숲 명성 : "/>
+		<Class ClassID="815305" ClassName="Personal_Housing_Reputation_name_3" Data="파우피스 나루 명성 : "/>
+		<Class ClassID="815306" ClassName="Personal_Housing_Reputation_name_4" Data="이사우고티 숲 명성 : "/>
+		<Class ClassID="815307" ClassName="Personal_Housing_Reputation_name_5" Data="키르티마스 숲 명성 : "/>
+		<Class ClassID="815308" ClassName="Personal_Housing_Reputation_Selct_1" Data="아이템 사용 시, 다음 지역의 명성도 최대치를 초과합니다.{nl}{NUM1}{NUM1P}{nl}{NUM2}{NUM2P}{nl}{NUM3}{NUM3P}{nl}{NUM4}{NUM4P}{nl}{NUM5}{NUM5P}{np}초과된 포인트는 사라집니다.{nl}사용하시겠습니까?"/>
+		<Class ClassID="815309" ClassName="Personal_Housing_Reputation_Selct_2" Data=" 포인트 초과"/>
+		<Class ClassID="815310" ClassName="Personal_Housing_Reputation_Selct_3" Data=" 포인트"/>
+		<Class ClassID="815311" ClassName="Personal_Housing_Reputation_Selct_4" Data="각 지역의 명성도가 다음과 같이 변경되었습니다.{nl}{NUM1}{NUM1P}{nl}{NUM2}{NUM2P}{nl}{NUM3}{NUM3P}{nl}{NUM4}{NUM4P}{nl}{NUM5}{NUM5P}"/>
 	</Category>
 	<Category Name="Ancient">
 		<Class ClassID="820000" ClassName="AncientMonRegItemUse" Data="{@st66d_y}{s20}{color}{monName}{/}{/}{/} 어시스터가 등록됩니다. 획득하시겠습니까?"/>
@@ -16686,7 +16706,7 @@
 		<Class ClassID="1008010" ClassName="NO_NOT_OPEN_RELIC_MANAGER_AT_TOWN" Data="성물 관리는 마을에서만 이용 가능합니다."/>
 		<Class ClassID="1008011" ClassName="NO_NOT_USE_RELIC_RELEASE" Data="성물해방은 마을에서 사용할 수 없습니다."/>
 		<Class ClassID="1008012" ClassName="REALLY_DO_RELIC_GEM_REINFORCE" Data="재료 아이템과 {SILVER}실버를 소모하여 {NAME}의 강화를 시도합니다.{nl} {nl}{#FF0000}성공/실패 여부와 상관없이{nl}재료는 모두 소모됩니다.{/}{/}{nl} {nl}계속하시겠습니까?"/>
-		<Class ClassID="1008013" ClassName="REALLY_DO_RELIC_GEM_COMPOSE" Data="재료 아이템과 {SILVER}실버를 소모하여 합성을 시도합니다.{nl}확률에 따라 성공, 혹은 실패하며{nl}{#FF0000}성공/실패 여부와 상관 없이 재료 및 실버는 모두 소비됩니다.{/}{/}{nl}계속하시겠습니까?"/>
+		<Class ClassID="1008013" ClassName="REALLY_DO_RELIC_GEM_COMPOSE" Data="등록한 성물 젬과 프리즘 콜을 모두 소모하여 합성을 시도합니다.{nl} {nl} {@st66d_y}- 레전드 등급 성물 젬 합성 -{/}{/}{nl} * 같은 종류의 가디스 성물 젬 파편 1개 획득{nl} * 98% 확률로 같은 종류의 레전드 등급{nl}성물 젬 중 1개를 균등 확률로 획득{nl}2% 확률로 같은 종류의 가디스 등급{nl}성물 젬 중 1개를 균등 확률로 획득.{nl} {nl} {@st204_green}{s17}- 가디스 등급 성물 젬 합성 -{/}{/}{nl} * 같은 종류의 가디스 성물 젬 파편 15개 획득{nl} {nl}{#FF0000}{nl}계속하시겠습니까?"/>
 		<Class ClassID="1008014" ClassName="REALLY_DO_RELIC_GEM_TRANSFER" Data="{NAME1} 아이템의 레벨을 {NAME2} 아이템으로 이전합니다.{nl}레벨 이전 후 {NAME3} 아이템은 파괴됩니다.{nl}계속하시겠습니까?"/>
 		<Class ClassID="1008015" ClassName="REALLY_DO_RELIC_GEM_DECOMPOSE" Data="선택한 성물 젬들을 분해하여 [프리즘 콜] 아이템을 획득합니다.{nl}계속하시겠습니까?"/>
 		<Class ClassID="1008016" ClassName="EMPTY_RELIC_GEM_SOCKET" Data="{@sti1c}{s16}빈 {NAME} 소켓{/}{/}"/>
@@ -16697,5 +16717,6 @@
 		<Class ClassID="1008022" ClassName="DO_NOT_REINFORCE_RELIC_GEM_ENABLE_RELIC_LV" Data="성물의 레벨이 낮아 강화할 수 없습니다."/>
 		<Class ClassID="1008023" ClassName="RELIC_GEM_UPGRADE_TITLE_MSG" Data="성물 젬 강화"/>
 		<Class ClassID="1008024" ClassName="DO_NOT_CHARGE_RP_COLONY_LIMIT" Data="콜로니전이 종료될 때까지 마력을 충전할 수 없습니다."/>
+		<Class ClassID="1008025" ClassName="DO_NOT_RELIC_GEM_COMPOSE_LEVEL" Data="1 레벨 성물 젬만 합성 가능합니다."/>
 	</Category>
 </idspace>

@@ -126,4 +126,7 @@
 	<TimeAction Name="DESSERT" RandomLoop="0" StartAnim="skl_ep13BEST" StartAnimCount="1" NextStart="NONE" NextStartCount="0" BeforEnd="NONE" BeforEndCount="0" EndAniTime="0" EndAnim="NONE">
 		<LoopAnim Anim="None" AnimCount="1"/>
 	</TimeAction>
+	<TimeAction Name="MAFIA" RandomLoop="0" StartAnim="skl_ep13mafia" StartAnimCount="1" NextStart="NONE" NextStartCount="0" BeforEnd="NONE" BeforEndCount="0" EndAniTime="0" EndAnim="NONE">
+		<LoopAnim Anim="None" AnimCount="1"/>
+	</TimeAction>
 </TimeActionAnim>

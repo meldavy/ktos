@@ -173,7 +173,8 @@ function CONTENTS_MULTIPLE_EXECUTE(parent, ctrl)
 	end
 
 	local multiple_item_obj = GetIES(multiple_item:GetObject());
-	ui.MsgBox(ScpArgMsg(clMsg, 'Name', TryGetProp(multiple_item_obj, 'Name', 'None')), yesscp, '');
+	local msgBox = ui.MsgBox(ScpArgMsg(clMsg, 'Name', TryGetProp(multiple_item_obj, 'Name', 'None')), yesscp, '');
+	SET_MODAL_MSGBOX(msgBox);
 end
 
 function _CONTENTS_MULTIPLE_EXECUTE(targetItemID)

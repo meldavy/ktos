@@ -8,3 +8,4 @@ ClassID,ThemaPrice,MaxLevel,FloorCount,Pivot_X,Pivot_Z,DefaultColumn,DefaultRow,
 7,0,1,3,0,0,5,5,0,0,0,0,1,1,1,p_h_barrack_11_Forest,Personal,F_sys_select_ground_blue2,F_sys_select_ground_green,F_sys_select_ground_red,sys_h_grid,-250;-250;-250,250;250;250
 8,0,1,3,0,0,5,5,0,0,0,0,1,1,1,p_h_barrack_14_Flower,Personal,F_sys_select_ground_blue2,F_sys_select_ground_green,F_sys_select_ground_red,sys_h_grid,-250;-250;-250,250;250;250
 9,0,1,3,0,0,5,5,0,0,0,0,1,1,1,p_h_barrack_15_Wine,Personal,F_sys_select_ground_blue2,F_sys_select_ground_green,F_sys_select_ground_red,sys_h_grid,-250;-250;-250,250;250;250
+10,0,1,3,0,0,5,5,0,0,0,0,1,1,1,house_p_steampunk_1,Personal,F_sys_select_ground_blue2,F_sys_select_ground_green,F_sys_select_ground_red,sys_h_grid,-250;-250;-250,250;250;250

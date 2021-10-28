@@ -294,7 +294,7 @@ function CLICK_REMOVE_GEM_BUTTON(frame, slot, argStr, argNum)
 	end
 	
 	local startTimeStr = "2021-04-22 09:00:00"
-	local endTimeStr = "2021-05-20 08:59:59"
+	local endTimeStr = "2021-07-22 08:59:59"
 	local nowTime = date_time.get_lua_now_datetime_str()
 	local isBeforeTime = date_time.is_later_than(nowTime, startTimeStr)
 	local isAfterTime = date_time.is_later_than(nowTime, endTimeStr)
@@ -305,6 +305,7 @@ function CLICK_REMOVE_GEM_BUTTON(frame, slot, argStr, argNum)
 
 	local itemname = argStr;
 	local yesScp = string.format("EXEC_REMOVE_GEM()");
+
 
 	if isGemRemoveCare == true then
         	ui.MsgBox( "'"..itemname ..ScpArgMsg("Auto_'_SeonTaeg")..ScpArgMsg("ReallyRemoveGem_Care"), yesScp, "None");
@@ -337,7 +338,7 @@ function EXEC_REMOVE_GEM()
 	end
 
 	local startTimeStr = "2021-04-22 09:00:00"
-	local endTimeStr = "2021-05-20 08:59:59"
+	local endTimeStr = "2021-07-22 08:59:59"
 	local nowTime = date_time.get_lua_now_datetime_str()
 	local isBeforeTime = date_time.is_later_than(nowTime, startTimeStr)
 	local isAfterTime = date_time.is_later_than(nowTime, endTimeStr)

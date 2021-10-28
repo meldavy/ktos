@@ -4778,6 +4778,24 @@
         <Key Name="FAVORITE_INDUN_9" Value="108379"/>
         <Key Name="EVENT_2105_CAMPING_SHOP_16" Value="108387"/>
         <Key Name="USE_RELIC_IN_COLONY_LAST_DATE" Value="108388"/>
+        <Key Name="ContentsTotalShop_2105_1" Value="108401"/>
+        <Key Name="ContentsTotalShop_2105_2" Value="108390"/>
+        <Key Name="HOUSINGCRAFT_COUPON_CNT" Value="108392"/>
+        <Key Name="HOUSINGCRAFT_COUPON_PER" Value="108398"/>
+        <Key Name="HOUSINGCRAFT_END_TIME" Value="108399"/>
+        <Key Name="HOUSINGCRAFT_NEED_RECEIVE" Value="108396"/>
+        <Key Name="HOUSINGCRAFT_RECEIVED" Value="108405"/>
+        <Key Name="HOUSING_CRAFT_VALUE_1" Value="108403"/>
+        <Key Name="HadVisited_7016" Value="108391"/>
+        <Key Name="PH_REPUTATION_OPEN_REWARD" Value="108395"/>
+        <Key Name="PersonalHousing_HasPlace_7016" Value="108393"/>
+        <Key Name="PersonalHousing_Point2_Reputation" Value="108406"/>
+        <Key Name="product_ep13_f_siauliai_1_18" Value="108402"/>
+        <Key Name="product_ph_reputationReward_1" Value="108397"/>
+        <Key Name="product_ph_reputationReward_3" Value="108389"/>
+        <Key Name="product_ph_reputationReward_5" Value="108394"/>
+        <Key Name="product_ph_reputationReward_7" Value="108404"/>
+        <Key Name="product_ph_reputationReward_9" Value="108400"/>
     </KeyIDSpc>
     <KeyIDSpc Name="PCEtc">
         <Key Name="Kill_boss_Clymen_Q2" Value="7788"/>
@@ -13421,6 +13439,7 @@
         <Key Name="Pose_SHOOTDANCE" Value="108284"/>
         <Key Name="Hide_3247" Value="108346"/>
         <Key Name="HadVisited_11240" Value="108347"/>
+        <Key Name="HadVisited_7016" Value="108407"/>
     </KeyIDSpc>
     <KeyIDSpc Name="GuildMember">
         <Key Name="Name" Value="9011"/>

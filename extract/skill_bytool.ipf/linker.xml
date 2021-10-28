@@ -61,70 +61,6 @@
         <ByCondSkills>
             <SubSkl>
                 <Cond>
-                    <ToolScp Scp="SKL_SELECT_ABIL" Client="NO" UseSleep="NO">
-                        <Str Str="Linker27"/>
-                    </ToolScp>
-                </Cond>
-                <Skill ScrLock="None" JumpFlee="NO" MSPDToUsePos="0">
-                    <EtcList>
-                        <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="0">
-                            <Str_Arg Str="I_smoke058_blue" Arg="1"/>
-                            <Str Str="Dummy_R_HAND"/>
-                            <Num Num="0"/>
-                        </Scp>
-                        <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="0">
-                            <Str_Arg Str="I_light004_blue3##1" Arg="0.69999999"/>
-                            <Str Str="Dummy_effect_hand_R"/>
-                            <Num Num="0.69999999"/>
-                        </Scp>
-                        <Scp Scp="C_VOICE_SOUND" Client="YES" UseSleep="NO" Time="100">
-                            <Str Str="voice_war_atk_medium"/>
-                            <Str Str="voice_atk_medium_war_f"/>
-                        </Scp>
-                        <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="350">
-                            <Str_Arg Str="F_explosion98_rize_up" Arg="2"/>
-                            <Str Str="Dummy_effect_link_magic" UseFunc="1" FuncTxt="if SKL_CHECK_RIDING_COMPANION_C(self, obj) == 0 then return 'None' else return 'Dummy_emitter_pet' end"/>
-                            <Num Num="0"/>
-                        </Scp>
-                        <Scp Scp="C_FORCE_EFT" Client="YES_Time" UseSleep="NO" Time="450">
-                            <Str_Arg Str="None" Arg="0.60000002"/>
-                            <Str Str="arrow_cast"/>
-                            <Str_Arg Str="F_wizard_compulsionlink_shot_explosion_blue" Arg="0.5"/>
-                            <Str Str="arrow_blow"/>
-                            <Str Str="SLOW"/>
-                            <Num Num="250"/>
-                            <Num Num="1"/>
-                            <Num Num="0"/>
-                            <Angle_Abs Angle="0"/>
-                            <Num Num="0"/>
-                            <Num Num="60" UseFunc="1" FuncTxt="return 1 + obj.Level;"/>
-                            <Num Num="10"/>
-                            <Num Num="0"/>
-                            <Num Num="1"/>
-                            <Num Num="1"/>
-                            <Str Str="None"/>
-                        </Scp>
-                        <Scp Scp="SKL_MAKE_LINK" Client="NO" UseSleep="NO" Time="750">
-                            <PosDist Angle="0" Dist="3.8255448e-43" PosType="1"/>
-                            <Num Num="150"/>
-                            <Num Num="150"/>
-                            <Str Str="ENEMY"/>
-                            <Str Str="ElectricShock_Debuff"/>
-                            <Num Num="0" UseFunc="1" FuncTxt="return 3 + (obj.Level * 0.5)"/>
-                            <Num Num="100"/>
-                            <Num Num="1"/>
-                            <Num Num="5"/>
-                            <Str Str="Linker_blue"/>
-                            <Num Num="0"/>
-                            <Num Num="0.30000001"/>
-                            <Str_Arg Str="F_archer_bodkinpoint_finish" Arg="1"/>
-                            <Str Str="swd_blow_cloth2"/>
-                        </Scp>
-                    </EtcList>
-                </Skill>
-            </SubSkl>
-            <SubSkl>
-                <Cond>
                     <ToolScp Scp="SKL_SELECT_BUFF" Client="NO" UseSleep="NO">
                         <Str Str="ElectricShock_Debuff"/>
                     </ToolScp>
@@ -196,21 +132,6 @@
                 </Skill>
             </SubSkl>
         </ByCondSkills>
-    </Skill>
-    <Skill Name="Linker_ChainGrip">
-        <MainSkl ScrLock="None" JumpFlee="NO" MSPDToUsePos="0">
-            <EtcList>
-                <Scp Scp="SKL_BUFF" Client="NO" UseSleep="NO" Time="0">
-                    <Str Str="ChainGrip_Damage_buff"/>
-                    <Num Num="1"/>
-                    <Num Num="0"/>
-                    <Num Num="1800000"/>
-                    <Num Num="1"/>
-                    <Num Num="100"/>
-                    <Num Num="0"/>
-                </Scp>
-            </EtcList>
-        </MainSkl>
     </Skill>
     <Skill Name="Linker_SpiritShock">
         <MainSkl JumpFlee="NO" MSPDToUsePos="0" ScrLock="None">
@@ -350,80 +271,10 @@
             </SubSkl>
         </ByCondSkills>
     </Skill>
-    <Skill Name="Linker_LinkDispense">
-        <KeyInput>
-            <ToolScp Scp="SKL_KEY_DYNAMIC_CASTING" Client="YES" UseSleep="NO">
-                <Num Num="0"/>
-                <Num Num="0"/>
-                <Num Num="1"/>
-                <Num Num="1"/>
-                <Num Num="0"/>
-                <Num Num="0"/>
-                <Num Num="0"/>
-                <Num Num="0"/>
-                <Num Num="0"/>
-                <Num Num="0"/>
-                <Num Num="1"/>
-                <Num Num="1"/>
-                <Str_Arg Str="None" Arg="1"/>
-                <Str Str="None"/>
-                <Num Num="0"/>
-                <Num Num="0"/>
-                <Num Num="5"/>
-                <Num Num="1"/>
-                <Num Num="45"/>
-                <Num Num="0"/>
-                <Num Num="0"/>
-                <Num Num="0"/>
-                <Str Str="None"/>
-                <Str Str="None"/>
-            </ToolScp>
-        </KeyInput>
-        <MainSkl ScrLock="None" JumpFlee="NO" MSPDToUsePos="0">
-            <EtcList>
-                <Scp Scp="SKL_SET_TARGET_CIRCLE" Client="NO" UseSleep="NO" Time="0">
-                    <Pos Angle="0" Dist="0" PosType="5"/>
-                    <Num Num="200"/>
-                    <Num Num="5"/>
-                    <Num Num="1"/>
-                    <Num Num="0"/>
-                    <Num Num="1"/>
-                    <Num Num="1"/>
-                    <Num Num="0"/>
-                    <Num Num="1"/>
-                </Scp>
-                <Scp Scp="SKL_TGT_BUFF_IF_NOBUFF" Client="NO" UseSleep="NO" Time="0">
-                    <Str Str="LinkDispense_SPDrain_buff"/>
-                    <Str Str="LinkDispense_SPDrain_buff"/>
-                    <Num Num="99"/>
-                    <Num Num="0"/>
-                    <Num Num="180000"/>
-                    <Num Num="1"/>
-                    <Num Num="100"/>
-                    <Num Num="0"/>
-                </Scp>
-                <Scp Scp="SKL_MAKE_PARTY_LINK" Client="NO" UseSleep="NO" Time="0">
-                    <Num Num="200"/>
-                    <Str Str="None"/>
-                    <Num Num="1"/>
-                    <Str Str="Linker_blue2"/>
-                    <Num Num="1"/>
-                    <Num Num="0.30000001"/>
-                    <Str_Arg Str="I_scout_linker_blue2" Arg="1"/>
-                    <Str Str="None"/>
-                </Scp>
-            <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="100">
-                    <Str_Arg Str="F_buff_basic050" Arg="1.5"/>
-                    <Str Str="Bip01"/>
-                    <Num Num="0"/>
-                </Scp>
-            </EtcList>
-        </MainSkl>
-    </Skill>
     <Skill Name="Linker_Physicallink">
         <MainSkl ScrLock="None" JumpFlee="NO" MSPDToUsePos="0">
             <HitList>
-                <Frame Type="FAN" Time="9999" HitCount="1" TermMin="0" TermMax="0" PosType="0" Dist="0" RandDist="0" RandomPerHit="0" Angle="0" Width="60" Length="200" SklAngle="0.17453299" AniTime="300" RotAngle="0" ForceATK="0" ScriptIndex="0" ScriptName="" SkillType="0"/>
+                <Frame Type="FAN" Time="9999" HitCount="1" TermMin="0" TermMax="0" PosType="0" Dist="0" RandDist="0" RandomPerHit="0" Angle="0" Width="60" Length="200" SklAngle="0.17453299" AniTime="300" RotAngle="0" ForceATK="0"/>
             </HitList>
             <EtcList>
                 <Scp Scp="C_VOICE_SOUND" Client="YES" UseSleep="NO" Time="0">
@@ -436,10 +287,10 @@
                     <Num Num="150"/>
                     <Str Str="FRIEND"/>
                     <Str Str="Link_Physical"/>
-                    <Num Num="120" UseFunc="1" FuncTxt="return 10 + obj.Level"/>
+                    <Num Num="120" UseFunc="1" FuncTxt="return 60 + obj.Level * 10"/>
                     <Num Num="80"/>
                     <Num Num="1"/>
-                    <Num Num="5" FuncTxt="return 2 + obj.Level;"/>
+                    <Num Num="60" UseFunc="1" FuncTxt="return 2 + obj.Level;"/>
                     <Str Str="Linker3"/>
                     <Num Num="0"/>
                     <Num Num="0.25"/>
@@ -484,10 +335,10 @@
                 <ToolScp Scp="S_R_MAKE_LINK" Client="NO" UseSleep="NO">
                     <Str Str="ENEMY"/>
                     <Str Str="Link_Enemy"/>
-                    <Num Num="15"/>
+                    <Num Num="7"/>
                     <Num Num="120"/>
                     <Num Num="0"/>
-                    <Num Num="5" FuncTxt="return 2.5 + skill.Level * 0.5"/>
+                    <Num Num="5" UseFunc="1" FuncTxt="return 2.5 + skill.Level * 0.5"/>
                     <Str Str="Linker"/>
                     <Num Num="0"/>
                     <Num Num="0.2"/>
@@ -721,7 +572,7 @@
                     <Str_Arg Arg="1.7" Str="F_buff_scout_UmbilicalCord"/>
                     <Str FuncTxt="if SKL_CHECK_RIDING_COMPANION_C(self, obj) == 0 then return 'None' else return 'Dummy_emitter_pet' end" Str="None" UseFunc="1"/>
                     <Num Num="0"/>
-                </Scp>
+                </Scp>                
             </EtcList>
         </MainSkl>
     </Skill>

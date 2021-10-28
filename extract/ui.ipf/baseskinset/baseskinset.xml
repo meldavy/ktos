@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by imc (imc) -->
+<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by imc (imc) -->
 <!-- edited with XMLSpy v2008 sp1 (http://www.altova.com) by MintPC (Mi) -->
 <skinset name="Base">
 	<skinlist category="frames">
@@ -4571,60 +4571,71 @@
 			<img name="bottomcore" imgrect="471 1141 20 12"/>
 			<img name="bottomright" imgrect="492 1141 20 12"/>
 		</skin>
-		<skin name="guild_community_tab_line" texture="\skin\guild_community.tga">
-			<img name="topleft" imgrect="275 51 1 10"/>
-			<img name="topcore" imgrect="277 51 1 10"/>
-			<img name="topright" imgrect="279 51 1 10"/>
-			<img name="bodyleft" imgrect="275 62 1 10"/>
-			<img name="bodycore" imgrect="277 62 1 10"/>
-			<img name="bodyright" imgrect="279 62 1 10"/>
-			<img name="bottomleft" imgrect="275 73 1 10"/>
-			<img name="bottomcore" imgrect="277 73 1 10"/>
-			<img name="bottomright" imgrect="279 73 1 10"/>
+		<skin name="housing_workroom_category" texture="\skin\housing_workroom.tga">
+			<img name="topleft" imgrect="0 0 187 1"/>
+			<img name="topcore" imgrect="188 0 14 1"/>
+			<img name="topright" imgrect="203 0 187 1"/>
+			<img name="bodyleft" imgrect="0 2 187 67"/>
+			<img name="bodycore" imgrect="188 2 14 67"/>
+			<img name="bodyright" imgrect="203 2 187 67"/>
+			<img name="bottomleft" imgrect="0 70 187 1"/>
+			<img name="bottomcore" imgrect="188 70 14 1"/>
+			<img name="bottomright" imgrect="203 70 187 1"/>
 		</skin>
-		<skin name="guild_community_notice" texture="\skin\guild_community.tga">
-			<img name="topleft" imgrect="217 51 20 20"/>
-			<img name="topcore" imgrect="238 51 15 20"/>
-			<img name="topright" imgrect="254 51 20 20"/>
-			<img name="bodyleft" imgrect="217 72 20 4"/>
-			<img name="bodycore" imgrect="238 72 15 4"/>
-			<img name="bodyright" imgrect="254 72 20 4"/>
-			<img name="bottomleft" imgrect="217 77 20 20"/>
-			<img name="bottomcore" imgrect="238 77 15 20"/>
-			<img name="bottomright" imgrect="254 77 20 20"/>
+		<skin name="housing_workroom_category_shadow" texture="\skin\housing_workroom.tga">
+			<img name="topleft" imgrect="0 72 187 1"/>
+			<img name="topcore" imgrect="188 72 14 1"/>
+			<img name="topright" imgrect="203 72 187 1"/>
+			<img name="bodyleft" imgrect="0 74 187 67"/>
+			<img name="bodycore" imgrect="188 74 14 67"/>
+			<img name="bodyright" imgrect="203 74 187 67"/>
+			<img name="bottomleft" imgrect="0 142 187 1"/>
+			<img name="bottomcore" imgrect="188 142 14 1"/>
+			<img name="bottomright" imgrect="203 142 187 1"/>
 		</skin>
-		<skin name="guild_community_notice_label" texture="\skin\guild_community.tga">
-			<img name="topleft" imgrect="279 42 15 1"/>
-			<img name="topcore" imgrect="295 42 15 1"/>
-			<img name="topright" imgrect="311 42 15 1"/>
-			<img name="bodyleft" imgrect="279 44 15 1"/>
-			<img name="bodycore" imgrect="295 44 15 1"/>
-			<img name="bodyright" imgrect="311 44 15 1"/>
-			<img name="bottomleft" imgrect="279 46 15 1"/>
-			<img name="bottomcore" imgrect="295 46 15 1"/>
-			<img name="bottomright" imgrect="311 46 15 1"/>
+		<skin name="housing_workroom_maintitle" texture="\skin\housing_workroom.tga">
+			<img name="topleft" imgrect="391 0 150 1"/>
+			<img name="topcore" imgrect="542 0 50 1"/>
+			<img name="topright" imgrect="593 0 150 1"/>
+			<img name="bodyleft" imgrect="391 2 150 50"/>
+			<img name="bodycore" imgrect="542 2 50 50"/>
+			<img name="bodyright" imgrect="593 2 150 50"/>
+			<img name="bottomleft" imgrect="391 53 150 1"/>
+			<img name="bottomcore" imgrect="542 53 50 1"/>
+			<img name="bottomright" imgrect="593 53 150 1"/>
 		</skin>
-		<skin name="base_btn_shadow" texture="\skin\guild_community.tga">
-			<img name="topleft" imgrect="282 48 29 15"/>
-			<img name="topcore" imgrect="312 48 30 15"/>
-			<img name="topright" imgrect="343 48 29 15"/>
-			<img name="bodyleft" imgrect="282 64 29 5"/>
-			<img name="bodycore" imgrect="312 64 30 5"/>
-			<img name="bodyright" imgrect="343 64 29 5"/>
-			<img name="bottomleft" imgrect="282 70 29 15"/>
-			<img name="bottomcore" imgrect="312 70 30 15"/>
-			<img name="bottomright" imgrect="343 70 29 15"/>
+		<skin name="housing_property_list_bg" texture="\skin\housing_workroom.tga">
+			<img name="topleft" imgrect="581 55 30 30"/>
+			<img name="topcore" imgrect="612 55 30 30"/>
+			<img name="topright" imgrect="643 55 30 30"/>
+			<img name="bodyleft" imgrect="581 86 30 30"/>
+			<img name="bodycore" imgrect="612 86 30 30"/>
+			<img name="bodyright" imgrect="643 86 30 30"/>
+			<img name="bottomleft" imgrect="581 117 30 30"/>
+			<img name="bottomcore" imgrect="612 117 30 30"/>
+			<img name="bottomright" imgrect="643 117 30 30"/>
 		</skin>
-		<skin name="guild_community_notice_select" texture="\skin\guild_community.tga">
-			<img name="topleft" imgrect="446 0 17 17"/>
-			<img name="topcore" imgrect="464 0 17 17"/>
-			<img name="topright" imgrect="482 0 17 17"/>
-			<img name="bodyleft" imgrect="446 18 17 5"/>
-			<img name="bodycore" imgrect="464 18 17 5"/>
-			<img name="bodyright" imgrect="482 18 17 5"/>
-			<img name="bottomleft" imgrect="446 24 17 17"/>
-			<img name="bottomcore" imgrect="464 24 17 17"/>
-			<img name="bottomright" imgrect="482 24 17 17"/>
+		<skin name="housing_property_point_list" texture="\skin\housing_workroom.tga">
+			<img name="topleft" imgrect="674 55 20 20"/>
+			<img name="topcore" imgrect="695 55 20 20"/>
+			<img name="topright" imgrect="716 55 20 20"/>
+			<img name="bodyleft" imgrect="674 76 20 2"/>
+			<img name="bodycore" imgrect="695 76 20 2"/>
+			<img name="bodyright" imgrect="716 76 20 2"/>
+			<img name="bottomleft" imgrect="674 79 20 20"/>
+			<img name="bottomcore" imgrect="695 79 20 20"/>
+			<img name="bottomright" imgrect="716 79 20 20"/>
+		</skin>
+		<skin name="housing_property_name_labelline" texture="\skin\housing_workroom.tga">
+			<img name="topleft" imgrect="744 0 40 1"/>
+			<img name="topcore" imgrect="785 0 5 1"/>
+			<img name="topright" imgrect="791 0 40 1"/>
+			<img name="bodyleft" imgrect="744 2 40 11"/>
+			<img name="bodycore" imgrect="785 2 5 11"/>
+			<img name="bodyright" imgrect="791 2 40 11"/>
+			<img name="bottomleft" imgrect="744 14 40 1"/>
+			<img name="bottomcore" imgrect="785 14 5 1"/>
+			<img name="bottomright" imgrect="791 14 40 1"/>
 		</skin>
 	</skinlist>
 	<skinlist category="testje2_buttons">
@@ -6846,6 +6857,14 @@
 			<img name="barmiddle" imgrect="522 600 10 10"/>
 			<img name="barright" imgrect="533 600 10 10"/>
 		</skin>
+		<skin name="gauge_housing_workroom_jar" texture="\skin\housing_workroom.tga">
+			<img name="bgtop" imgrect="391 55 94 3"/>
+			<img name="bgmiddle" imgrect="391 58 94 72"/>
+			<img name="bgbottom" imgrect="391 130 94 3"/>
+			<img name="bartop" imgrect="391 57 94 0"/>
+			<img name="barmiddle" imgrect="486 55 94 78"/>
+			<img name="barbottom" imgrect="391 130 94 0"/>
+		</skin>
 	</skinlist>
 	<skinlist category="labellines">
 		<skin name="labelline_def_5" texture="\skin\tooltip_skin_3.tga">
@@ -8496,6 +8515,7 @@
 		<image name="context_roomchief" file="\skin\guild_community.tga" imgrect="271 98 18 14" CMM_Caption="방장 위임"/>
 		<image name="context_conversation_delete" file="\skin\guild_community.tga" imgrect="217 115 18 17" CMM_Caption="대화 나가기"/>
 		<image name="context_notice" file="\skin\guild_community.tga" imgrect="217 133 20 23" CMM_Caption="공지 지정"/>
+		<image name="housing_property_item_showbg" file="\skin\housing_workroom.tga" imgrect="0 144 154 154" CMM_Caption="하우징공방 재화 리스트 이미지bg"/>
 	</imagelist>
 	<imagelist category="yiseul_image">
 		<image name="AbillityReset_skin" file="\skin\paid_skin_title.tga" imgrect="0 330 316 165" CMM_Caption="특성 초기화"/>
@@ -9136,6 +9156,9 @@
 		<image name="ep13_event_btn_small" file="\skin\button_small.tga" imgrect="0 124 64 64"/>
 		<image name="ep13_event_btn_small_cursoron" file="\skin\button_small.tga" imgrect="65 124 64 64"/>
 		<image name="ep13_event_btn_small_clicked" file="\skin\button_small.tga" imgrect="130 124 64 64"/>
+		<image name="housing_workroom_btn_small" file="\skin\button_small.tga" imgrect="195 124 62 61" CMM_Caption="하우징공방_스몰버튼"/>
+		<image name="housing_workroom_btn_small_cursoron" file="\skin\button_small.tga" imgrect="258 124 62 61"/>
+		<image name="housing_workroom_btn_small_clicked" file="\skin\button_small.tga" imgrect="321 124 62 61"/>
 		<image name="guild_community_tab_add" file="\skin\guild_community.tga" imgrect="0 51 216 42" CMM_Caption="길드 커뮤니티 방 만들기"/>
 		<image name="guild_community_tab_add_cursoron" file="\skin\guild_community.tga" imgrect="0 94 216 42"/>
 		<image name="guild_community_tab_add_clicked" file="\skin\guild_community.tga" imgrect="0 137 216 42"/>
@@ -9708,6 +9731,7 @@
 		<image name="icon_p_h_barrack_11_Forest" file="\icon\housing\icon_p_h_barrack_11_Forest.png" imgrect="0 0 400 400"/>
 		<image name="icon_p_h_barrack_14_Flower" file="\icon\housing\icon_p_h_barrack_14_Flower.png" imgrect="0 0 400 400"/>
 		<image name="icon_p_h_barrack_15_Wine" file="\icon\housing\icon_p_h_barrack_15_Wine.png" imgrect="0 0 400 400"/>
+		<image name="icon_house_p_steampunk_1" file="\icon\housing\icon_house_p_steampunk_1.png" imgrect="0 0 400 400"/>
 	</imagelist>
 	<imagelist category="monster_info_icon">
 		<image name="mon_info_fire" file="\skin\HUD.tga" imgrect="1941 0 35 34"/>

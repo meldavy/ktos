@@ -1,13 +1,6 @@
 ClassID,UnlockArgNum,MaxLevel,Price1,Time1,Price2,Time2,Price3,Time3,Price4,Time4,Price5,Time5,Price6,Time6,Price7,Time7,Price8,Time8,Price9,Time9,Price10,Time10,ClassName,UnlockScr,UnlockArgStr,UnlockDesc,ScrCalcPrice
-4,200,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Enchanter17,UNLOCK_BASE_LEVEL,,캐릭터 200레벨 이상,ABIL_COMMON_PRICE_200LV
-101,1,100,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Enchanter18,UNLOCK_ABIL_SKILL,Enchanter_EnergyAbsorption,마력 흡수 1레벨 이상,ABIL_REINFORCE_PRICE
-201,1,100,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Enchanter19,UNLOCK_ABIL_SKILL,Enchanter_EnergyEruption,마력 분출 1레벨 이상,ABIL_REINFORCE_PRICE
-301,1,100,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Enchanter20,UNLOCK_ABIL_SKILL,Enchanter_EnchantField,인챈트 필드 1레벨 이상,ABIL_REINFORCE_PRICE
-401,1,100,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Enchanter21,UNLOCK_ABIL_SKILL,Enchanter_EnchantBullet,인챈트탄 1레벨 이상,ABIL_REINFORCE_PRICE
-501,1,100,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Enchanter22,UNLOCK_ABIL_SKILL,Enchanter_Fragility,프레자일리티 1레벨 이상,ABIL_REINFORCE_PRICE
-601,1,100,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Enchanter23,UNLOCK_ABIL_SKILL,Enchanter_EnchantSharpness,인챈트 샤프니스 1레벨 이상,ABIL_REINFORCE_PRICE
-2001,65,30,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Enchanter24,UNLOCK_ABIL_OTHERABILITY,Enchanter18,[마력 흡수: 강화] 특성 65 레벨 달성,HIDDENABIL_PRICE_COND_REINFORCE
-2002,65,30,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Enchanter25,UNLOCK_ABIL_OTHERABILITY,Enchanter19,[마력 분출: 강화] 특성 65 레벨 달성,HIDDENABIL_PRICE_COND_REINFORCE
-2003,65,30,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Enchanter26,UNLOCK_ABIL_OTHERABILITY,Enchanter20,[인챈트 필드: 강화] 특성 65 레벨 달성,HIDDENABIL_PRICE_COND_REINFORCE
-2004,65,30,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Enchanter27,UNLOCK_ABIL_OTHERABILITY,Enchanter21,[인챈트탄: 강화] 특성 65 레벨 달성,HIDDENABIL_PRICE_COND_REINFORCE
-2005,65,30,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Enchanter28,UNLOCK_ABIL_OTHERABILITY,Enchanter22,[프레자일리티: 강화] 특성 65 레벨 달성,HIDDENABIL_PRICE_COND_REINFORCE
+101,1,100,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Enchanter9,UNLOCK_ABIL_SKILL,Enchanter_EnchantGlove,인챈트 글로브 1레벨 이상,ABIL_REINFORCE_PRICE
+201,1,100,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Enchanter10,UNLOCK_ABIL_SKILL,Enchanter_Agility,어질리티 1레벨 이상,ABIL_REINFORCE_PRICE
+301,1,100,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Enchanter11,UNLOCK_ABIL_SKILL,Enchanter_EnchantLightning,인챈트 웨폰 1레벨 이상,ABIL_REINFORCE_PRICE
+401,1,100,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Enchanter12,UNLOCK_ABIL_SKILL,Enchanter_EnchantEarth,인챈트 어스 1레벨 이상,ABIL_REINFORCE_PRICE
+1001,45,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Enchanter15,UNLOCK_ABIL_JOB_LEVEL,Char5_8,인챈터 클래스 45레벨 이상,HIDDENABIL_PRICE_COND_JOBLEVEL

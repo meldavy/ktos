@@ -275,11 +275,21 @@ end
 
 
 function EVENT_GAMBLE_ITEM_REMAIN_UPDATE(frame)
-	local eventClsName = frame:GetUserValue("EVENT_CLASSNAME")
+	local eventClsName = frame:GetUserValue("EVENT_CLASSNAME")		
 	local eventCls = GetClass("gamble_list",eventClsName)
+	if eventCls == nil then
+		return
+	end
 	local itemInfo = TryGetProp(eventCls,"ConsumeItem")
+	if itemInfo == nil or #itemInfo < 2 then
+		return
+	end
+
 	itemInfo = StringSplit(itemInfo,'/')
-	local itemClsName, itemCount = itemInfo[1],itemInfo[2]
+	local itemClsName, itemCount = itemInfo[1], itemInfo[2]	
+	if itemClsName == nil or itemCount == nil then
+		return
+	end
 	local remain_coin = GET_CHILD_RECURSIVELY(frame,"remain_coin")
 	local count = GetInvItemCount(GetMyPCObject(), itemClsName)
 	count = STR_KILO_CHANGE(tostring(count))
