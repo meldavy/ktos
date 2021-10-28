@@ -132,6 +132,9 @@ function GET_MORE_EVENT_EXP(pc)
 	sumExp = sumExp + IsBuffAppliedEXP(pc, 'EVENT_2006_SALTY_ZONGZI'); -- 2006 짠쫑즈 --
 	sumExp = sumExp + IsBuffAppliedEXP(pc, 'Event_Kor_New_World_Buff'); -- 스팀 시즌 서버 혜택
 	sumExp = sumExp + IsBuffAppliedEXP(pc, 'EVENT_2008_OBON_FULLMOON_BUFF'); -- jpn 추석 이벤트 보름달 버프
+	sumExp = sumExp + IsBuffAppliedEXP(pc, 'EVENT_2011_1YEAR_JPN_BUFF'); -- JPN 1주년 버프
+	sumExp = sumExp + IsBuffAppliedEXP(pc, 'EVENT_2011_STM_HARVEST_BUFF'); -- STM 수확제 이벤트
+	sumExp = sumExp + IsBuffAppliedEXP(pc, 'EVENT_2101_NEW_YEAR_JPN_BUFF'); -- JPN 2021신년 버프
 	sumExp = sumExp + IsBuffAppliedEXP(pc, 'EVENT_2012_FRUIT_BUFF'); -- EP13 경험의 열매 이벤트 버프
 	sumExp = sumExp + IsBuffAppliedEXP(pc, 'EVENT_2012_EXP_BUFF'); -- EP13 이벤트 성장 지원 버프
 	sumExp = sumExp + IsBuffAppliedEXP(pc, 'event_RiceCake_Buff_1'); -- 가레떡 1단계 이벤트 버프

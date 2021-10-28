@@ -9,7 +9,7 @@
 	<sound opensound="skill_window_open" closesound="skill_window_close"/>
 	<layer layerlevel="92"/>
 	<script OpenScp="SILVER_GACHA_OPEN" CloseScp="SILVER_GACHA_CLOSE"/>
-	<userconfig RESULT_EFFECT="I_screen_bosscard_frame06" RESULT_EFFECT_SCALE="5" RESULT_EFFECT_DURATION="0.5" SPINE="lagana" DEDICATION_BUTTON_EFFECT="UI_screen_CircleButton" DEDICATION_BUTTON_EFFECT_SCALE="7" DEDICATION_BUTTON_EFFECT_DURATION="2" POINT_RESULT_EFFECT_SCALE="4" SLOT_IMAGE_RANK1="protection_legend" SLOT_IMAGE_RANK2="protection_unique" SLOT_IMAGE_RANK3="protection_magic"/>
+	<userconfig RESULT_EFFECT="I_screen_bosscard_frame06" RESULT_EFFECT_SCALE="5" RESULT_EFFECT_DURATION="0.5" SPINE="lagana" DEDICATION_BUTTON_EFFECT="UI_screen_CircleButton" DEDICATION_BUTTON_EFFECT_SCALE="7" DEDICATION_BUTTON_EFFECT_DURATION="2" POINT_RESULT_EFFECT_SCALE="4" SLOT_IMAGE_RANK1="protection_legend" SLOT_IMAGE_RANK2="protection_unique" SLOT_IMAGE_RANK3="protection_magic" BACKGROUND_IMAGE="protection_pattern"/>
 	<controls>
 		<!-- title -->
 		<groupbox name="main_frame" rect="0 0 1270 890" margin="0 58 0 0" layout_gravity="center top" skin="test_frame_low" hittest="false"/>
@@ -46,6 +46,5 @@
 		<button name="auto_okbtn" parent="auto_gb" rect="0 0 160 60" margin="0 190 0 0" image="login_test_button" layout_gravity="center top" stretch="false" caption="{@st43}{s24}중단" oversound="button_cursor_over_3" clicksound="button_click_big" LBtnUpScp="SILVER_GACHA_AUTO_STOP_BTN_CLICK"/>
 		<!-- protection_in -->
 		<groupbox name="protection_gb" rect="0 0 575 730" margin="-320 195 0 0" layout_gravity="center top" skin="protection_in_background" scroll="false"/>
-		<picture name="protection_gb_pic" parent="protection_gb" rect="0 0 572 720" margin="0 5 0 0" layout_gravity="center center" image="protection_pattern" hittest="false"/>
 	</controls>
 </uiframe>

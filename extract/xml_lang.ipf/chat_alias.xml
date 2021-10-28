@@ -64,6 +64,7 @@
 		<Class ClassID="69" ClassName="/fihingcat" Alias="/꽁치" ConvertWhenSend="1"/>
 		<!-- <Class ClassID="70" ClassName="/5th" Alias="/5주년" ConvertWhenSend="1"/> -->
 		<Class ClassID="72" ClassName="/episode" Alias="/에피소드" ConvertWhenSend="1"/>
+		<Class ClassID="73" ClassName="/harvest" Alias="/수확제" ConvertWhenSend="1"/>
 		<Class ClassID="76" ClassName="/reputation" Alias="/명성" ConvertWhenSend="1"/>
 		<Class ClassID="74" ClassName="/giltine" Alias="/길티네" ConvertWhenSend="1"/>
 		<Class ClassID="75" ClassName="/YAK" Alias="/야크맘보" ConvertWhenSend="1"/>

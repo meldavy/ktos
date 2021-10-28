@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by imc (imc) -->
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by imc (imc) -->
 <!-- edited with XMLSpy v2008 sp1 (http://www.altova.com) by MintPC (Mi) -->
 <skinset name="Base">
 	<skinlist category="frames">
@@ -4762,6 +4762,39 @@
 			<img name="bottomcore" imgrect="174 1211 16 18"/>
 			<img name="bottomright" imgrect="191 1211 17 18"/>
 		</skin>
+		<skin name="quest_frame_top" texture="\skin\pip_test.tga">
+			<img name="topleft" imgrect="898 1154 130 1"/>
+			<img name="topcore" imgrect="1029 1154 103 1"/>
+			<img name="topright" imgrect="1133 1154 130 1"/>
+			<img name="bodyleft" imgrect="898 1156 130 43"/>
+			<img name="bodycore" imgrect="1029 1156 103 43"/>
+			<img name="bodyright" imgrect="1133 1156 130 43"/>
+			<img name="bottomleft" imgrect="898 1200 130 1"/>
+			<img name="bottomcore" imgrect="1029 1200 103 1"/>
+			<img name="bottomright" imgrect="1133 1200 130 1"/>
+		</skin>
+		<skin name="quest_frame_name" texture="\skin\pip_test.tga">
+			<img name="topleft" imgrect="1103 1112 38 1"/>
+			<img name="topcore" imgrect="1142 1112 42 1"/>
+			<img name="topright" imgrect="1185 1112 38 1"/>
+			<img name="bodyleft" imgrect="1103 1114 38 36"/>
+			<img name="bodycore" imgrect="1142 1114 42 36"/>
+			<img name="bodyright" imgrect="1185 1114 38 36"/>
+			<img name="bottomleft" imgrect="1103 1151 38 1"/>
+			<img name="bottomcore" imgrect="1142 1151 42 1"/>
+			<img name="bottomright" imgrect="1185 1151 38 1"/>
+		</skin>
+		<skin name="quest_frame_main" texture="\skin\pip_test.tga">
+			<img name="topleft" imgrect="1265 1099 120 78"/>
+			<img name="topcore" imgrect="1386 1099 77 78"/>
+			<img name="topright" imgrect="1464 1099 120 78"/>
+			<img name="bodyleft" imgrect="1265 1178 120 77"/>
+			<img name="bodycore" imgrect="1386 1178 77 77"/>
+			<img name="bodyright" imgrect="1464 1178 120 77"/>
+			<img name="bottomleft" imgrect="1265 1256 120 30"/>
+			<img name="bottomcore" imgrect="1386 1256 77 30"/>
+			<img name="bottomright" imgrect="1464 1256 120 30"/>
+		</skin>
 	</skinlist>
 	<skinlist category="yiseul_buttons">
 		<skin name="worldmap2_btn_round" texture="\skin\worldmap2.tga">
@@ -8983,6 +9016,12 @@
 		<image name="relic_btn_tab" file="\skin\relic.tga" imgrect="307 83 138 38" CMM_Caption="성물 탭버튼"/>
 		<image name="relic_btn_tab_cursoron" file="\skin\relic.tga" imgrect="307 122 138 38"/>
 		<image name="relic_btn_tab_clicked" file="\skin\relic.tga" imgrect="307 161 138 38"/>
+		<image name="quest_Qbtn" file="\skin\pip_test.tga" imgrect="1025 1112 38 38"/>
+		<image name="quest_Qbtn_cursoron" file="\skin\pip_test.tga" imgrect="1064 1112 38 38"/>
+		<image name="quest_Qbtn_clicked" file="\skin\pip_test.tga" imgrect="1064 1112 38 38"/>
+		<image name="quest_Qmark_btn" file="\skin\pip_test.tga" imgrect="1103 1076 30 30"/>
+		<image name="quest_Qmark_btn_cursoron" file="\skin\pip_test.tga" imgrect="1134 1076 30 30"/>
+		<image name="quest_Qmark_btn_clicked" file="\skin\pip_test.tga" imgrect="1134 1076 30 30"/>
 	</imagelist>
 	<imagelist category="worldmap_image">
 		<image name="worldmap2_mainmap" file="\skin\worldmap\worldmap2_mainmap.jpg" imgrect="0 0 1920 1080" CMM_Caption="월드맵배경"/>
@@ -9213,6 +9252,7 @@
 		<image name="blue_type" file="\skin\monstercard.tga" imgrect="391 592 20 20" CMM_Caption=""/>
 		<image name="purple_type" file="\skin\monstercard.tga" imgrect="391 613 20 20" CMM_Caption=""/>
 		<image name="green_type" file="\skin\monstercard.tga" imgrect="391 634 20 20" CMM_Caption=""/>
+		<image name="goddess_type" file="\skin\monstercard.tga" imgrect="391 727 20 20" CMM_Caption=""/>
 		<image name="mon_magicsquare" file="\skin\monstercard.tga" imgrect="1658 553 382 382" CMM_Caption="몬스터강화창마법진"/>
 		<image name="mon_legendstar" file="\skin\monstercard.tga" imgrect="386 657 32 32" CMM_Caption="레젼드카드 전용 별"/>
 		<image name="mon_legendlock" file="\skin\monstercard.tga" imgrect="386 690 32 34" CMM_Caption="레젼드카드 자물쇠"/>

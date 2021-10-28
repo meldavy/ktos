@@ -15335,6 +15335,14 @@ if self.HP == 0 then return 1; else return 0; end;">
 			</ToolScp>
 		</StartList>
 	</AI>
+    <AI Name="MYTHIC_GO_TO_START_POINT" ActiveMessageMapInBattle="1">
+        <List>
+            <ToolScp Scp="S_AI_CUSTOM_SCRIPT" Client="NO" UseSleep="YES">
+                <Str Str="SCR_MYTHIC_GO_TO_START_POINT"/>
+                <Num Num="0"/>
+            </ToolScp>
+        </List>
+    </AI>
 	<AI Name="M_GELE_STAGE6_BOSS_1" ActiveMessageMapInBattle="1">
 		<List>
 			<ToolScp Scp="SAI_FUNC2_DIRECT" Client="NO" UseSleep="NO">
@@ -25410,12 +25418,12 @@ if self.HP == 0 then return 1; else return 0; end;">
 		</List>
 	</AI>
 	<AI Name="companion_pet_robot_dog" ActiveMessageMapInBattle="1">
-		<List>
-			<ToolScp Scp="SAI_FUNC2_DIRECT_SLEEP" Client="NO" UseSleep="YES">
-				<Str Str="PET_LOOP_AI"/>
-			</ToolScp>
-		</List>
-	</AI>
+        <List>
+            <ToolScp Scp="SAI_FUNC2_DIRECT_SLEEP" Client="NO" UseSleep="YES">
+                <Str Str="PET_LOOP_AI"/>
+            </ToolScp>
+        </List>
+    </AI>
 	<AI Name="companion_pointing" UpdateMS="3000" ActiveMessageMapInBattle="1">
 		<List>
 			<ToolScp Scp="SAI_FUNC2_DIRECT_SLEEP" Client="NO" UseSleep="YES">

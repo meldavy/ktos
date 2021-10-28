@@ -1356,7 +1356,7 @@ function QUESTION_QUEST_WARP(frame, ctrl, argStr, questID)
         return;
 	end
 
-	if obj.Keyword == "WeeklyBossMap" then
+	if obj.Keyword == "WeeklyBossMap" or string.find(obj.Keyword, "MythicMap") ~= nil then
 		ui.SysMsg(ScpArgMsg("WarpQuestDisabled"));
 		return;
 	end
@@ -1943,11 +1943,15 @@ function MAKE_QUESTINFO_MONSTER_BY_IES(ctrlset, questIES, startx, y, s_obj, prog
     			else
     				itemtxt = string.format("%s", monbasicname);
     			end
-    			
-    			if curcnt ~= 0 and curcnt ~= tonumber(ctrlset:GetParent():GetUserValue('KillCntAlarmSound')) then
-    				imcSound.PlaySoundEvent('sys_alarm_mon_kill_count');
-    				ctrlset:GetParent():SetUserValue('KillCntAlarmSound', curcnt);
-    			end
+				
+				local beforecnt = tonumber(ctrlset:GetParent():GetUserValue('KillCntAlarmSound'))
+				if curcnt ~= 0 and curcnt ~= beforecnt then
+					if beforecnt ~= nil then 
+    					imcSound.PlaySoundEvent('sys_alarm_mon_kill_count');
+					end
+					ctrlset:GetParent():SetUserValue('KillCntAlarmSound', curcnt);
+				end
+
                 
                 monUIIndex = i
     			local content = ctrlset:CreateOrGetControl('richtext', "MON_" .. i, startx, y, ctrlset:GetWidth() - startx - SCROLL_WIDTH, 10);

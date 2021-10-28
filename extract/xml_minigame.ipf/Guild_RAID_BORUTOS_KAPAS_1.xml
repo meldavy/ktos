@@ -58,6 +58,10 @@
                                 <Str Str="Key_Revenge"/>
                                 <Num Num="0"/>
                             </ToolScp>
+                            <ToolScp Scp="GAME_ST_EVT_EXEC_VALUE" Client="NO" UseSleep="NO">
+                                <Str Str="TIME_OUT_KILL"/>
+                                <Num Num="0"/>
+                            </ToolScp>
                         </execList>
                     </Event>
                     <Event execCount="1" eventName="Bossgen">
@@ -1131,6 +1135,10 @@
                             </ToolScp>
                         </condList>
                         <execList>
+                            <ToolScp Scp="GAME_ST_EVT_EXEC_VALUE" Client="NO" UseSleep="NO">
+                                <Str Str="TIME_OUT_KILL"/>
+                                <Num Num="1"/>
+                            </ToolScp>
                             <ToolScp Scp="MGAME_EVT_SCP_TO_MON" Client="NO" UseSleep="NO">
                                 <MGameObj List="Gen_Boss/0/Gen_Boss/1"/>
                                 <Str Str="GM_BK_FAIL_STOP_RUN"/>

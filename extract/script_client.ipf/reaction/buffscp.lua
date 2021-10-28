@@ -726,6 +726,16 @@ function Mythic_InfectiousDisease_LEAVE(actor, obj, buff)
     actor:SetAuraInfo("");
     actor:GetTitle():UpdateCaption();
 end
+
+function Mythic_Link_ENTER(actor, obj, buff)
+    actor:SetAuraInfo("Mythic_Link");
+    actor:GetTitle():UpdateCaption();
+end
+
+function Mythic_Link_LEAVE(actor, obj, buff)
+    actor:SetAuraInfo("");
+    actor:GetTitle():UpdateCaption();
+end
 --반짝이 버프: 대박 버프처럼 반짝거리기만 하는 용도
 function TwinkleBuff_Client_ENTER(actor, obj, buff)
     if buff.arg2 == 1 then

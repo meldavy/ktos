@@ -287,6 +287,22 @@ local function _SET_TRUST_POINT_PARAM_INFO(tooltipframe, index, paramType)
 	local STAR_IMG = 'star_in_arrow';
 	local STAR_SIZE = 19;
 	local starText = '';
+
+	local name = tooltipframe:GetName();
+	if name == "trust_point_global" then
+		local paramText = GET_CHILD_RECURSIVELY(tooltipframe, 'paramText'..index);
+		if 20 < paramText:GetHeight() then
+			local starTextBox = GET_CHILD_RECURSIVELY(tooltipframe, 'starTextBox'..index);
+			starTextBox:Resize(starTextBox:GetWidth(), paramText:GetHeight());
+	
+			local paramTextBox = GET_CHILD_RECURSIVELY(tooltipframe, 'paramTextBox'..index);
+			paramTextBox:Resize(paramTextBox:GetWidth(), paramText:GetHeight());
+			
+			local list = GET_CHILD_RECURSIVELY(tooltipframe, 'list'..index);
+			list:Resize(list:GetWidth(), paramText:GetHeight());
+		end
+	end
+
 	if point == 5 then
 		starText = starText..string.format('{img %s %s %s}', STAR_IMG, STAR_SIZE, STAR_SIZE);
 		starText = starText..string.format('{img %s %s %s}', "starmark_multipl05", 19, 15);
@@ -345,6 +361,19 @@ function UPDATE_TRUST_POINT_TOOLTIP(tooltipframe, tree)
 	end
 end
 
+function UPDATE_TRUST_POINT_GLOBAL_TOOLTIP(tooltipframe, tree)
+	_SET_TRUST_POINT_PARAM_INFO(tooltipframe, 1, "CreateTime");
+	_SET_TRUST_POINT_PARAM_INFO(tooltipframe, 2, "Quest");
+	_SET_TRUST_POINT_PARAM_INFO(tooltipframe, 3, "Episode");
+	_SET_TRUST_POINT_PARAM_INFO(tooltipframe, 4, "FirstTPBuy");
+	_SET_TRUST_POINT_PARAM_INFO(tooltipframe, 5, 'SafeAuth');
+	
+	local gBox = GET_CHILD_RECURSIVELY(tooltipframe, "static_gb");
+	GBOX_AUTO_ALIGN(gBox, 0, 3, 0, true, true);
+
+	tooltipframe:Resize(tooltipframe:GetWidth(), gBox:GetHeight() + 45);
+end
+
 function UPDATE_INDUN_INFO_TOOLTIP(tooltipframe, cidStr, param1, param2, actor)
 	actor =	tolua.cast(actor, "CFSMActor")
 	tootltipframe = AUTO_CAST(tooltipframe)
@@ -387,7 +416,13 @@ function UPDATE_INDUN_INFO_TOOLTIP(tooltipframe, cidStr, param1, param2, actor)
 				else
 					entranceCount = tonumber(entranceCount)
 				end
-				indunCntLabel:SetText("{@st42b}" .. entranceCount .. "/" .. BARRACK_GET_INDUN_MAX_ENTERANCE_COUNT(indunCls.PlayPerResetType))
+
+				local dungeonType = TryGetProp(indunCls, "DungeonType", "None");
+				if dungeonType == "MythicDungeon_Auto_Hard" or string.find(indunCls.ClassName, "Challenge_Division_Auto") ~= nil then
+					indunCntLabel:SetText("{@st42b}" .. entranceCount .. "{img infinity_text 20 10}");
+				else
+					indunCntLabel:SetText("{@st42b}" .. entranceCount .. "/" .. BARRACK_GET_INDUN_MAX_ENTERANCE_COUNT(indunCls.PlayPerResetType))
+				end
 			end
 
 			if pcInfo ~= nil then

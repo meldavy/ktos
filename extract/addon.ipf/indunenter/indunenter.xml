@@ -44,6 +44,7 @@
 		<picture name="cycleCtrlPic" parent="countBox" rect="0 0 52 20" margin="0 0 80 0" layout_gravity="right center" image="indun_icon_event_l_eng"/>
 		<richtext name="countText" parent="countBox" rect="0 0 190 30" margin="30 0 0 0" layout_gravity="left center" fontname="brown_18_b" caption="던전 입장"/>
 		<richtext name="countData" parent="countBox" rect="0 0 190 30" margin="0 0 0 0" layout_gravity="right center" textalign="right center" fontname="brown_18_b" format="%s/%s회" param1="now" param2="max"/>
+		<richtext name="countData2" parent="countBox" rect="0 0 190 30" margin="0 0 0 0" layout_gravity="right center" textalign="right center" fontname="brown_18_b" format="%s회 가능" param1="now" param1_def="0"/>
 		<richtext name="countItemData" parent="countBox" rect="0 0 190 30" margin="0 0 0 0" layout_gravity="right center" textalign="right center" fontname="brown_18_b" format="%s개" param1="ivnadmissionitem"/>
 		<groupbox name="lvBox" parent="noPicBox" rect="0 0 390 30" margin="5 53 0 0" layout_gravity="left top" draw="false" hittestbox="false"/>
 		<picture name="lvPic" parent="lvBox" rect="0 0 27 27" margin="0 0 0 0" layout_gravity="left top" image="indun_entrance_level"/>

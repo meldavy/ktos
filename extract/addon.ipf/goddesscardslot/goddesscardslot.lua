@@ -157,8 +157,13 @@ function GODDESSCARD_SLOT_SET_OPTION_EACH(gb,name,cardLv,optionText,optionTextVa
 	for i = 1,#optionTextValueList do
 		optionTextValueList[i] = optionTextValueList[i] * cardLv
 	end
+
 	optionText = dictionary.ReplaceDicIDInCompStr(optionText)
 	optionText = string.format(optionText, optionTextValueList[1], optionTextValueList[2], optionTextValueList[3])
+	
+	local optionImage = string.format("%s", ClMsg('MonsterCardOptionGroupGODDESS'))
+	optionText = optionImage .. optionText
+
 	local option_richText = GET_CHILD_RECURSIVELY(itemClsCtrl, "option_text", "ui::CRichText");
 	option_richText:SetText(optionText)
 

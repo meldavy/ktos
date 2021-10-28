@@ -68,7 +68,13 @@ function INDUNINFO_CHAR_UI_OPEN(frame, msg, argStr, argNum)
                         if entranceCount == 'None' then
                             entranceCount = 0;
                         end
-                        indunCntLabel:SetText("{@st42b}" .. entranceCount .. "/" .. GET_INDUN_MAX_ENTERANCE_COUNT(indunCls.PlayPerResetType))
+                        
+                        local dungeonType = TryGetProp(indunCls, "DungeonType", "None");
+                        if dungeonType == "MythicDungeon_Auto_Hard" or string.find(indunCls.ClassName, "Challenge_Division_Auto") ~= nil then
+                            indunCntLabel:SetText("{@st42b}" .. entranceCount .. "{img infinity_text 20 10}");
+                        else
+                            indunCntLabel:SetText("{@st42b}" .. entranceCount .. "/" .. GET_INDUN_MAX_ENTERANCE_COUNT(indunCls.PlayPerResetType))
+                        end
                     end
                     if indunCls.Level <= pcInfo:GetLevel() or playPerRestTypeTable["INDUN_COUNT_" .. indunCls.PlayPerResetType]==1 then
                         indunLabel:SetEnable(1)

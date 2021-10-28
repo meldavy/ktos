@@ -214,5 +214,11 @@
 		<groupbox name="field_boss_util_box" rect="0 0 500 100" margin="0 390 0 0" parent="field_boss_box" layout_gravity="right top" draw="false"/>
 		<!-- <button name="field_boss_total_damage_reward" parent="field_boss_util_box" rect="0 0 141 38" margin="0 0 80 60" layout_gravity="center bottom" format="{@st66b}{s16}누적 대미지 보상" LBtnUpScp="WEEKLY_BOSS_TOTAL_DAMAGE_REWARD_CLICK" MouseOffAnim="btn_mouseoff" MouseOnAnim="btn_mouseover" skin="test_pvp_btn" oversound="button_over"/> -->
 		<button name="field_boss_joinenter" parent="field_boss_util_box" rect="0 0 163 48" margin="0 0 69 0" layout_gravity="center bottom" format="{s16}{ol}{#FFFFFF}입장하기" LBtnUpScp="FIELD_BOSS_JOIN_ENTER_CLICK" MouseOffAnim="btn_mouseoff" MouseOnAnim="btn_mouseover" skin="test_red_button" oversound="button_over"/>
+		<!-- mythicdungeon auto hard(raid) time -->
+		<groupbox name="raid_time_box" parent="indunbox" rect="0 0 412 60" margin="0 119 0 0" layout_gravity="right top" draw="false" hittestbox="false"/>
+		<picture name="raid_time_pic" parent="raid_time_box" rect="0 0 27 27" margin="0 0 0 0" layout_gravity="left center" image="indun_entrance"/>
+		<richtext name="raid_time_text" parent="raid_time_box" rect="0 0 190 30" margin="30 0 0 0" layout_gravity="left center" fontname="brown_18_b" caption="입장 시간"/>
+		<richtext name="raid_time_data" parent="raid_time_box" rect="0 0 100 30" margin="0 0 0 0" layout_gravity="right center" textalign="right center" fontname="brown_18_b" format="%s~%s" param1="start" param1_def="00:00" param2="end" param2_def="24:00"/>
+		<picture name="raid_day_pic" parent="raid_time_box" rect="0 0 210 27" margin="110 5 0 0" layout_gravity="left center" image="indun_icon_week_l"/>
 	</controls>
 </uiframe>

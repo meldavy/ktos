@@ -1274,39 +1274,20 @@
                     </Event>
                 </StageEvents>
             </Stage>
-            <Stage Name="START_BUFF_SET">
-                <ObjList/>
-                <StageEvents>
-                    <Event execCount="1" eventName="select_buff">
-                        <condList>
-                            <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK" Client="NO" UseSleep="NO">
-                                <Num Num="5"/>
-                            </ToolScp>
-                        </condList>
-                        <execList>
-                            <ToolScp Scp="MGAME_EXEC_SELECT_BUFF_PARTY" Client="NO" UseSleep="NO">
-                                <Num Num="60"/>
-                                <Str Str="AUTO_MATCHING_PARTY_ATTACK_BUFF"/>
-                                <Str Str="AUTO_MATCHING_PARTY_DEFENCE_BUFF"/>
-                                <Str Str="AUTO_MATCHING_PARTY_HEAL_BUFF"/>
-                                <Str Str="AUTO_MATCHING_PARTY_HEAL2_BUFF"/>
-                                <Str Str="None"/>
-                                <Str Num="0"/>
-                            </ToolScp>
-                        </execList>
-                    </Event>
-                </StageEvents>
-            </Stage>
-        </StageList>
+            </StageList>
         <EnterList>
-            <ToolScp Scp="MGAME_ZONE_ENTER_SELECT_BUFF_SOLO" Client="NO" UseSleep="NO">
+            <ToolScp Scp="MGAME_ZONE_ENTER_SELECT_BUFF_SOLO_LOCK" Client="NO" UseSleep="NO">
                 <Num Num="60"/>
-                <Str Str="AUTO_MATCHING_TANKER_BUFF"/>
-                <Str Str="AUTO_MATCHING_RECOVERY_BEAD_BUFF"/>
-                <Str Str="AUTO_MATCHING_HEALER_BUFF"/>
-                <Str Str="AUTO_MATCHING_DAMAGE_BUFF"/>
-                <Str Str="AUTO_MATCHING_DAMAGE2_BUFF"/>
-                <Str Num="0"/>
+                <Str Str="AUTO_MATCHING2_TANKER_BUFF/1"/>
+                <Str Str="AUTO_MATCHING2_DAMAGE_BUFF/0"/>
+                <Str Str="AUTO_MATCHING2_BLOW_HEAL_BUFF/1"/>
+                <Str Str="AUTO_MATCHING2_HEALER_BUFF/0"/>
+                <Str Str="None"/>
+                <Num Num="2"/>
+            </ToolScp>
+            <ToolScp Scp="MGAME_ZONEENTER_SCRIPT" Client="NO" UseSleep="NO">
+                <Num Num="2"/>
+                <Str Str="SCR_MYTHIC_PLAYER_ENTER"/>
             </ToolScp>
         </EnterList>
         <WorldInitList>

@@ -1731,7 +1731,7 @@ function TRY_TO_USE_WARP_ITEM(invitem, itemobj)
 			local clsList = GetClassList("Map");
 			if clsList ~= nil then
 				local cls = GetClassByNameFromList(clsList, mapClassName);
-				if cls ~= nil and cls.Keyword == "WeeklyBossMap" then
+				if cls ~= nil and cls.Keyword == "WeeklyBossMap" or string.find(cls.Keyword, "MythicMap") ~= nil then
 					ui.SysMsg(ClMsg('ThisLocalUseNot'));
 					return 0;
 				end
@@ -4112,7 +4112,7 @@ function WEAPONSWAP_HOTKEY_ENTERED()
 end
 
 --index = 1 일때 1번창으로 스왑하는 함수. 2일때 2번창으로 스왑하는 함수
-function DO_WEAPON_SWAP(frame, index)        
+function DO_WEAPON_SWAP(frame, index)       
     if quickslot.IsDoingWeaponSwap() == true then
         return
     end
@@ -4196,7 +4196,7 @@ function SCR_CHECK_SWAPABLE_C()
 			local dungeonType = TryGetProp(indunCls,"DungeonType","None")
 			if mGameName == 'LEGEND_RAID_MORINGPONIA_EASY' or mGameName == 'LEGEND_RAID_GLACIER_EASY' or mGameName == "CHALLENGE_AUTO_1" or mGameName == "CHALLENGE_AUTO_2" or mGameName == "CHALLENGE_AUTO_3" or mGameName == "CHALLENGE_DIVISION_AUTO" or mGameName == "LEGEND_RAID_GILTINE_AUTO" or 
 				dungeonType == 'MythicDungeon_Auto' or dungeonType == 'MythicDungeon_Auto_Hard' then
-			return false;
+				return false;
 			end
 		end
 	end
@@ -4293,6 +4293,9 @@ function ON_UPDATE_TRUST_POINT(frame, msg, argStr, trustPoint)
 	trustPointText:SetTextByKey("trustPoint", trustPoint - 1);
 	trustPointGbox:SetTooltipType('trust_point');
 	trustPointGbox:SetTooltipOverlap(1);
+	if config.GetServiceNation() == "GLOBAL" then
+		trustPointGbox:SetTooltipType("trust_point_global");
+	end
 end
 
 function SELECT_INVENTORY_TAB(frame, tabIndex)
@@ -4804,5 +4807,63 @@ function BEFORE_APPLIED_SILVER_GACHA_OPEN(invItem)
 		local textmsg = string.format("[ %s ]{nl}%s", itemobj.Name, ScpArgMsg("SilverGacha_check_Use"));
 		ui.MsgBox_NonNested(textmsg, itemobj.Name, "REQUEST_SUMMON_BOSS_TX", "None");
 		return;
+	end
+end
+
+function BEFORE_APPLIED_misc_pvp_mine2_COUPON(invItem)	
+	if invItem == nil then
+		return;
+	end
+
+	local acc = GetMyAccountObj()
+	if acc == nil then
+        return
+	end
+	
+    local currentValue = TryGetProp(acc, 'WEEKLY_PVP_MINE_COUNT', 0)
+
+	local invFrame = ui.GetFrame("inventory");	
+	local itemobj = GetIES(invItem:GetObject());
+	if itemobj == nil then
+		return;
+	end
+
+	invFrame:SetUserValue("REQ_USE_ITEM_GUID", invItem:GetIESID());
+	
+	local arg_Str = TryGetProp(itemobj, "StringArg", "None")
+
+	if arg_Str == "None" then
+		return;
+	end
+
+	local maxValue = tonumber(MAX_WEEKLY_PVP_MINE_COUNT)
+    local isTokenState = session.loginInfo.IsPremiumState(ITEM_TOKEN)
+    if isTokenState == true then
+        local bonusValue = tonumber(WEEKLY_PVP_MINE_COUNT_TOKEN_BONUS)
+        maxValue = maxValue + bonusValue
+	end
+	
+	local cutA = SCR_STRING_CUT(arg_Str, ';')
+
+	local cutC = SCR_STRING_CUT(cutA[1], '/')
+	
+	local excessMany = (currentValue + cutC[2]) - maxValue
+
+	if excessMany < 0 then
+		excessMany = 0
+	end
+
+	if cutC[1] == "misc_pvp_mine2" then
+		if itemobj.Script == 'SCR_USE_STRING_GIVE_ITEM_NUMBER_SPLIT' then
+			if currentValue + cutC[2] >= maxValue then
+				local textmsg = string.format("%d {#0000ff}+ %d{/} / {#000000}%d{/}{nl}{#ff0000}(초과되는 개수 : %d){/}{nl}%s", currentValue, cutC[2], maxValue, excessMany, ScpArgMsg("IfLimitOver_misc_pvp_mine2"));
+				ui.MsgBox_NonNested(textmsg, itemobj.Name, "REQUEST_SUMMON_BOSS_TX", "None");
+				return;
+			elseif currentValue + cutC[2] < maxValue then
+				local textmsg = string.format("%d {#0000ff}+ %d{/} / {#000000}%d{/}{nl}%s", currentValue, cutC[2], maxValue, ScpArgMsg("Use_misc_pvp_mine2_Coupon"));
+				ui.MsgBox_NonNested(textmsg, itemobj.Name, "REQUEST_SUMMON_BOSS_TX", "None");
+				return;
+			end
+		end
 	end
 end

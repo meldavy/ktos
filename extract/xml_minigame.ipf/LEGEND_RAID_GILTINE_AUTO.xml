@@ -3612,14 +3612,18 @@
             </Stage>
         </StageList>
         <EnterList>
-            <ToolScp Scp="MGAME_ZONE_ENTER_SELECT_BUFF_SOLO" Client="NO" UseSleep="NO">
+            <ToolScp Scp="MGAME_ZONE_ENTER_SELECT_BUFF_SOLO_LOCK" Client="NO" UseSleep="NO">
                 <Num Num="60"/>
-                <Str Str="AUTO_MATCHING2_TANKER_BUFF"/>
-                <Str Str="AUTO_MATCHING2_DAMAGE_BUFF"/>
-                <Str Str="AUTO_MATCHING2_BLOW_HEAL_BUFF"/>
-                <Str Str="AUTO_MATCHING2_HEALER_BUFF"/>
+                <Str Str="AUTO_MATCHING2_TANKER_BUFF/1"/>
+                <Str Str="AUTO_MATCHING2_DAMAGE_BUFF/0"/>
+                <Str Str="AUTO_MATCHING2_BLOW_HEAL_BUFF/1"/>
+                <Str Str="AUTO_MATCHING2_HEALER_BUFF/0"/>
                 <Str Str="None"/>
                 <Num Num="2"/>
+            </ToolScp>
+            <ToolScp Scp="MGAME_ZONEENTER_SCRIPT" Client="NO" UseSleep="NO">
+                <Num Num="2"/>
+                <Str Str="SCR_MYTHIC_PLAYER_ENTER"/>
             </ToolScp>
         </EnterList>
         <WorldInitList>

@@ -261,6 +261,7 @@
         <Effect Name="F_boss_Moringponia_Debuff_Pad"/>
         <Effect Name="boss_misrus_circlewave"/>
         <Effect Name="SnowRolling_Buff"/>
+        <Effect Name="Crusader_DivineHammer"/>
     </Category>
     <Category ID="187">
         <Effect Name="F_bg_boil002"/>
@@ -556,7 +557,13 @@
     <Effect Name="id_castle"/>
 		<Effect Name="id_firetower"/>
 	<Effect Name="F_buff_basic008_white"/>
-	</Category>
+	<Effect Name="Mythic_Link"/>
+          <Effect Name="mineloader_laser2"/>
+        <Effect Name="Mythic_Mon_Zaibas"/>
+        <Effect Name="Mythic_Mon_Fireball_santan"/>
+        <Effect Name="Mythic_boss_firewall_red"/>
+        <Effect Name="Mythic_Grinender_FirePillar"/>
+    </Category>
     <Category ID="146">
         <Effect Name="beginner"/>
         <Effect Name="Phase0"/>
@@ -3150,7 +3157,9 @@
 		<Effect Name="Bone_hair16"/>
 		<Effect Name="F_buff_basic038"/>
 		<Effect Name="F_buff_basic047"/>
-	</Category>
+        <Effect Name="F_cleric_melstis_piety"/>
+        <Effect Name="Exorcist_Koinonia"/>
+    </Category>
 	<Category ID="84">
 		<Effect Name="M_PAST_FLIBRARY_1"/>
 	</Category>
@@ -3981,6 +3990,8 @@
 		<Effect Name="Elemental_Burst_Pad_Fire"/>
 		<Effect Name="Elemental_Burst_Pad_Lightning"/>
 		<Effect Name="Elemental_Burst_Pad_Fire2"/>
+        <Effect Name="E_wizard_Tiwaz_shot_line_abil#Dummy_emitter"/>
+        <Effect Name="E_wizard_Tiwaz_shot_line_abil"/>
 	</Category>
 	<Category ID="60">
 		<Effect Name="SETPOS"/>

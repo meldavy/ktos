@@ -15,3 +15,4 @@ ClassID,LifeTime,LinkDist,PartitionDist,Radius,MaxRadius,MinAngleSpd,MaxAngleSpd
 13,2,500,3,2,2,0,0,1,1,1,100,1,1,10,2,0,0.15,2,2,2,8,SpikeShooter,,linkskilltexture\\weapon1.tga,linkskilltexture\\weapon2.tga,,
 14,1,10,0.5,0.5,0.5,0,0,1,1,1,100,0.1,0.1,2,2,1,0.3,0.1,0.1,5,0,Koinonia,,linkskilltexture\\square_green.tga,linkskilltexture\\square_blue.tga,,linkskilltexture\\pattern241_triangle.dds
 16,1,10,2,3,3,0,0,1,1,1,100,0.3,0.1,4,1,0,0.1,0.1,0.1,30,0,Skiaclipse,I_smoke_skiaChain,linkskilltexture\\chain_matal001_dark.dds,,,
+17,1,10,2,3,3,0,0,1,1,1,100,0.5,0.1,2,1,0,0.1,0.1,0.1,30,0,Mythic_Link,F_smoke191_blue_loop2,linkskilltexture\\chain_matal001.dds,,,

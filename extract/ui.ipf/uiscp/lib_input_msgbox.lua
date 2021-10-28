@@ -1,7 +1,10 @@
 -- lib_input_msgbox.lua
 
+function INPUT_NUMBER_BOX(cbframe, titleName, strscp, defNumber, minNumber, maxNumber, numarg, strarg, isNumber)	
+	if isNumber == nil then
+		isNumber = 1
+	end
 
-function INPUT_NUMBER_BOX(cbframe, titleName, strscp, defNumber, minNumber, maxNumber, numarg, strarg, isNumber)
 	local frame = INPUT_STRING_BOX_CB(cbframe, titleName, strscp, defNumber, numarg, strarg, nil, isNumber)
 	local edit = GET_CHILD(frame, 'input', "ui::CEditControl");
 	edit:SetNumberMode(1);
@@ -14,7 +17,7 @@ function INPUT_STRING_BOX_CB(fromFrame, titleName, strscp, defText, numarg, stra
 	local titleName = ui.ConvertScpArgMsgTag(titleName)
 
 	local newframe;
-
+	
 	--판매시, 가지고 있는 아이템 수량의 MAX 값 파싱
 	if strscp == 'EXEC_SHOP_SELL' or strscp == "EXEC_HOUSING_SHOP_SELL" then
 		local str_len = string.len(titleName)
@@ -52,7 +55,7 @@ function INPUT_STRING_BOX_CB(fromFrame, titleName, strscp, defText, numarg, stra
 end
 
 -- sellMaxNum 은 가지고 있는 아이템 판매 수량 Max 값
-function INPUT_STRING_BOX(titleName, strscp, defaultText, numArg, maxLen, titleName2, defaultText2, sellMaxNum, strarg, isNumber)
+function INPUT_STRING_BOX(titleName, strscp, defaultText, numArg, maxLen, titleName2, defaultText2, sellMaxNum, strarg, isNumber)		
 	local newframe = ui.GetFrame("inputstring");
 	
 	newframe:SetUserValue("FROM_FR", "None");
@@ -78,23 +81,23 @@ function INPUT_STRING_BOX(titleName, strscp, defaultText, numArg, maxLen, titleN
 	local edit = GET_CHILD(newframe, 'input', "ui::CEditControl");
 	edit:SetEnableEditTag(1);
 	if nil ~= isNumber and 1 == isNumber then
-		edit:SetNumberMode(1);
+		edit:SetNumberMode(1);		
 	else
-	edit:SetNumberMode(0);
+		edit:SetNumberMode(0);
 	end
 	edit:SetText("");
 	if defaultText ~= nil then
 		if strscp == "EXEC_SHOP_SELL" or strscp == "EXEC_HOUSING_SHOP_SELL" then			
 			edit:SetText(sellMaxNum);
 		else
-			edit:SetText(defaultText);
+			edit:SetText(defaultText);			
 		end
 	else
-		edit:SetText("");
+		edit:SetText("");		
 	end
 
 	if maxLen ~= nil then
-		edit:SetMaxLen(maxLen);
+		edit:SetMaxLen(maxLen);		
 	end
 
 	newframe:ShowWindow(1);

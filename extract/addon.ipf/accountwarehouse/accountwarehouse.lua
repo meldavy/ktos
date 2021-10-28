@@ -149,12 +149,12 @@ local function _CHECK_ACCOUNT_WAREHOUSE_SLOT_COUNT_TO_PUT(insertItem)
     end
     
     if is_exist_stack_item == false and (slotCount <= itemCnt and index < max_slot_per_tab) then
-        ui.SysMsg(ClMsg('CannotPutBecauseMasSlot'));
+        ui.SysMsg(ClMsg('CannotPutBecauseMaxSlot'));
         return false;
     end
     
     if is_exist_stack_item == false and (slotCount <= index and index < max_slot_per_tab) then
-        ui.SysMsg(ClMsg('CannotPutBecauseMasSlot'));
+        ui.SysMsg(ClMsg('CannotPutBecauseMaxSlot'));
         return false;
     end
     return true;

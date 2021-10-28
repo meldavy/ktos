@@ -15,17 +15,20 @@ function GET_INDUN_MULTIPLE_ITEM_LIST()
             'Event_dungeoncount_10',
             'Event_dungeoncount_11',
             'Event_dungeoncount_12',
-            'Event_dungeoncount_13'};            
+            'Event_dungeoncount_13',
+            'Event_dungeoncount_14'};           
 end
 
 function IS_INDUN_MULTIPLE_ITEM(itemClassName)
-    local list = GET_INDUN_MULTIPLE_ITEM_LIST();
-    for i = 1, #list do
-        if list[i] == itemClassName then
-            return 1;
+    local itemClass = GetClass('Item', itemClassName)
+    if itemClass ~= nil then
+        local stringArg = TryGetProp(itemClass, 'StringArg', 'None')
+        if stringArg == 'MultipleIndunToken' then
+            return 1
         end
     end
-    return 0;
+
+    return 0
 end
 
 function GET_SWITCHGENDER_MATERIAL_ITEM_NAME()

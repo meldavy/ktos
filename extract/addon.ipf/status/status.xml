@@ -90,10 +90,10 @@
 		<richtext name="loceCountText" parent="likeCountGbox" rect="0 0 430 40" margin="0 0 0 0" layout_gravity="center center" fontname="white_18_ol" format="내가 받은 좋아요! : %s개" hittest="false" param1="Count" param1_def="-1" textalign="center center"/>
 		<!--명성-->
 		<groupbox name="reputationChildGBox_Frame" parent="reputationGBox" rect="0 0 444 651" margin="-2 180 0 0" layout_gravity="center top" skin="test_frame_midle" hittest="true" scrollbar="true"/>
-		<groupbox name="reputationStatusGBox" parent="reputationGBox" rect="0 0 450 176" margin="0 0 0 0" layout_gravity="center top" skin="test_frame_midle" hittest="false" scrollbar="false"/>
+		<groupbox name="reputationStatusGBox" parent="reputationGBox" rect="0 0 450 176" margin="0 0 0 0" layout_gravity="center top" skin="test_frame_midle" hittest="true" scrollbar="false"/>
 		<groupbox name="reputationChildGBox" parent="reputationGBox" rect="0 0 450 661" margin="0 180 0 0" layout_gravity="center top" skin="None" hittest="true" scrollbar="true"/>
 		<groupbox name="reputationSearchGBox" parent="reputationGBox" rect="0 0 450 30" margin="0 840 0 0" layout_gravity="center top" scrollbar="false" skin="test_weight_skin"/>
-		<groupbox name="reputationTitle" rect="0 0 330 38" margin="0 15 0 0" layout_gravity="center top" parent="reputationStatusGBox" skin="the_present_reputation_title"/>
+		<groupbox name="reputationTitle" rect="0 0 330 40" margin="0 15 0 0" layout_gravity="center top" parent="reputationStatusGBox" skin="the_present_reputation_title"/>
 		<richtext name="reputationTitleText" rect="0 0 330 38" margin="0 0 0 0" layout_gravity="center center" parent="reputationTitle" caption="{@st43b}{s18}전체 명성도 달성 현황"/>
 		<picture name="reputationStatusBGPic1" rect="0 0 92 101" margin="-178 25 0 0" layout_gravity="center center" parent="reputationStatusGBox" image="present_reputation_bg"/>
 		<picture name="reputationStatusBGPic2" rect="0 0 92 101" margin="-89 25 0 0" layout_gravity="center center" parent="reputationStatusGBox" image="present_reputation_bg"/>
@@ -113,5 +113,6 @@
 		<richtext name="reputationStatusWarningText" rect="0 0 92 101" margin="105 -5 0 0" layout_gravity="left center" parent="reputationChildGBox" fontname="white_14_ol" caption="{@st41b}열려있는 명성이 아직 없습니다.{/}"/>
 		<edit name="reputation_search" parent="reputationSearchGBox" rect="0 0 430 26" margin="5 2 0 0" layout_gravity="left top" skin="None" OffsetForDraw="0 -1" drawbackground="false" maxlen="40" textalign="left center" fontname="white_18_ol" EnterKeyScp="STATUS_REPUTATION_SEARCH" oversound="button_over" clicksound="button_click_big" typingsound="chat_typing"/>
 		<button name="reputation_search_btn" parent="reputationSearchGBox" rect="0 0 50 50" margin="0 -2 0 0" layout_gravity="right top" stretch="true" MouseOffAnim="btn_mouseoff" MouseOnAnim="btn_mouseover" image="inven_s" oversound="button_over" clicksound="button_click_big" LBtnUpScp="STATUS_REPUTATION_SEARCH"/>
+		<button name="reputation_quest_btn" parent="reputationStatusGBox" rect="0 0 38 38" margin="0 16 16 0" layout_gravity="right top" hittest="true" MouseOffAnim="btn_mouseoff" MouseOnAnim="btn_mouseover" image="quest_Qbtn" oversound="button_over" clicksound="button_click_big" LBtnUpScp="STATUS_REPUTATION_QUEST_INFO" texttooltip="{@st59}명성 퀘스트 진행 현황을 확인합니다.{/}"/>
 	</controls>
 </uiframe>

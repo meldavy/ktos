@@ -5784,6 +5784,16 @@
 			<picture name="reputation_lock" rect="0 0 30 38" margin="0 0 0 0" layout_gravity="center center" stretch="true" hittest="true" image="relabeling_lock"/>
 		</controls>
 	</controlset>
+	<controlset name="reputation_quest_info" hittest="true" width="456" height="38">
+		<userconfig MAIN_FONT="{@s16}" MAIN_COLOR="{#ff9b0d}" SUB_FONT="{@s16}" SUB_COLOR="{#09bcff}" REPEAT_FONT="{@s16}" REPEAT_COLOR="{#55EE55}" PARTY_FONT="{@s16}" PARTY_COLOR="{#FF8800}" KEYITEM_FONT="{@s16}" KEYITEM_COLOR="{#ff6fa2}"/>
+		<controls>
+			<groupbox name="quest_bg" rect="0 0 456 38" margin="0 0 0 0" layout_gravity="center center" stretch="true" hittest="false" skin="quest_frame_name"/>
+			<picture name="questmark" rect="0 0 24 24" layout_gravity="left center" stretch="true" margin="80 0 0 0"/>
+			<richtext name="level" rect="0 0 50 18" layout_gravity="left center" margin="15 0 0 0" fixwidth="false" resizebytext="true" hittest="false" fontname="yellow_16_ol"/>
+			<richtext name="name" rect="0 0 270 20" layout_gravity="left center" margin="110 0 0 0" fixwidth="true" resizebytext="false" hittest="false" omitbywidth="true" fontname="yellow_16_ol"/>
+			<richtext name="state" rect="0 0 270 20" layout_gravity="right center" textalign="right center" margin="0 0 10 0" fixwidth="true" resizebytext="false" hittest="false" omitbywidth="true" fontname="yellow_16_ol"/>
+		</controls>
+	</controlset>
 	<!--평판 끝-->
 	<controlset name="select_mgame_buff_ctrl" hittest="true" width="80" height="108" draw="false">
 		<controls>

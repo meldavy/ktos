@@ -193,15 +193,42 @@
         </ByCondSkills>
     </Skill>
     <Skill Name="Exorcist_Koinonia">
-        <EnableScripts>
-            <ToolScp Client="NO" Scp="SCR_EXOSICT_KOINONIA_IS_ENABLE" UseSleep="NO">
-                <Num Num="120"/>
-                <Str Str="Cleric"/>
-                <Num Num="3"/>
-                <Str Str="3"/>
+        <KeyInput>
+            <ToolScp Scp="SKL_KEY_GROUND_EVENT" Client="YES" UseSleep="NO">
+                <Num Num="0.5"/>
+                <Num Num="0"/>
+                <Num Num="0"/>
+                <Num Num="0"/>
+                <Num Num="150"/>
+                <Num Num="0.1"/>
+                <Num Num="0"/>
+                <Num Num="0"/>
+                <Num Num="0"/>
+                <Str_Arg Str="None" Arg="1"/>
+                <Str Str="None"/>
+                <Num Num="0"/>
+                <Num Num="0"/>
+                <Num Num="5"/>
+                <Num Num="1"/>
+                <Num Num="45"/>
+                <Num Num="0"/>
+                <Num Num="0"/>
+                <Num Num="1"/>
                 <Num Num="0"/>
             </ToolScp>
-        </EnableScripts>
+        </KeyInput>
+        <KeyInputStart>
+            <ToolScp Scp="MONSKL_C_PLAY_ANIM" Client="YES" UseSleep="NO">
+                <Str Str="SKL_KATADIKAZO_LOOP"/>
+                <Num Num="1"/>
+                <Num Num="1"/>
+                <Num Num="0"/>
+            </ToolScp>
+        </KeyInputStart>
+        <KeyInputEnd>
+            <ToolScp Scp="MONSKL_C_CLEAR_RESERVE_ANIM" Client="YES" UseSleep="NO"/>
+            <ToolScp Scp="MONSKL_C_RESET_CASTING_ANIM" Client="YES" UseSleep="NO"/>
+        </KeyInputEnd>
         <MainSkl JumpFlee="NO" MSPDToUsePos="0" ScrLock="None">
             <HitList>
                 <Frame Angle="0" AniTime="99999" Dist="0" ForceATK="0" HitCount="1" Length="30" PosType="0" RandDist="0" RandomPerHit="0" RotAngle="0" SklAngle="0.17453292" TermMax="0" TermMin="0" Time="99799" Type="FAN" Width="30"/>
@@ -211,15 +238,10 @@
                     <Str Str="voice_cleric_m_koinonia_cast"/>
                     <Str Str="voice_cleric_f_koinonia_cast"/>
                 </Scp>
-                <Scp Client="NO" Scp="SCR_EXOSICT_KOINONIA_RUN" Time="200" UseSleep="NO">
-                    <Num FuncTxt="local value = 5000 + (obj.Level *3000); return value;" Num="20000" UseFunc="1"/>
-                    <Num Num="400"/>
-                    <Num Num="5"/>
-                    <Num Num="200"/>
-                    <Num Num="8"/>
-                    <Str Str="Koinonia"/>
-                    <Num Num="1"/>
-                    <Str Str="None"/>
+                <Scp Client="NO" Scp="MONSKL_CRE_PAD" Time="600" UseSleep="NO">
+                    <Pos Angle="0" Dist="0" PosType="3"/>
+                    <Angle Angle="0"/>
+                    <Str Str="Exorcist_Koinonia"/>
                 </Scp>
                 <Scp Client="YES" Scp="C_SOUND" Time="300" UseSleep="NO">
                     <Str Str="skl_eff_koinonia_shot"/>
@@ -367,7 +389,7 @@ return time"/>
                     <Num Num="1"/>
                     <Num Num="0"/>
                 </Scp>
-                <Scp Scp="SKL_TGT_BUFF" Client="NO" UseSleep="NO" Time="500">
+                <Scp Scp="SKL_TGT_BUFF" Client="NO" UseSleep="NO" Time="300">
                     <Str Str="Gregorate_Buff"/>
                     <Num Num="1" UseFunc="1" FuncTxt="return obj.Level;"/>
                     <Num Num="0"/>
@@ -376,7 +398,7 @@ return time"/>
                     <Num Num="100"/>
                     <Num Num="0"/>
                 </Scp>
-                <Scp Scp="SKL_TGT_REMOVE_BUFF" Client="NO" UseSleep="NO" Time="500">
+                <Scp Scp="SKL_TGT_REMOVE_BUFF" Client="NO" UseSleep="NO" Time="300">
                     <Str Str="Debuff"/>
                     <Num Num="3"/>
                     <Num Num="1"/>

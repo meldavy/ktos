@@ -3,6 +3,7 @@
 <uiframe name="select_mgame_buff_solo" x="0" y="0" width="481" height="262" create="open">
 	<frame title="select_mgame_buff_solo" layout_gravity="center center" margin="-250 0 0 0"/>
 	<input maxwidth="1280" moveable="true"/>
+	<layer layerlevel="80"/>
 	<draw drawtitlebar="false" drawnotitlebar="false"/>
 	<skin frameskin="none"/>
 	<script OpenScp="SELECT_MGAME_BUFF_SOLO_OPEN" CloseScp="SELECT_MGAME_BUFF_SOLO_CLOSE"/>

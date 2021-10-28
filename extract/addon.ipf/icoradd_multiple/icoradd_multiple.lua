@@ -202,7 +202,7 @@ function ICORADD_CTRL_REG_ADD_ITEM(ctrlSet, itemID)
 	if ui.CheckHoldedUI() == true then
 		return
 	end
-
+	
 	local frame = ctrlSet:GetTopParentFrame()
 
 	local max_count = GET_ICOR_MULTIPLE_MAX_COUNT()
@@ -249,8 +249,9 @@ function ICORADD_CTRL_REG_ADD_ITEM(ctrlSet, itemID)
 	local slot = GET_CHILD_RECURSIVELY(ctrlSet, "slot")
 	local slotInvItem = GET_SLOT_ITEM(slot)
 	local slotInvItemCls = nil
-	if slotInvItem ~= nil then
-		local tempItem = GetIES(slotInvItem:GetObject())
+	local tempItem = nil
+	if slotInvItem ~= nil then		
+		tempItem = GetIES(slotInvItem:GetObject())
 		slotInvItemCls = GetClass('Item', tempItem.ClassName)
 	end
     
@@ -265,6 +266,16 @@ function ICORADD_CTRL_REG_ADD_ITEM(ctrlSet, itemID)
 		return
 	end
 	
+	if tempItem ~= nil then
+		local obj = tempItem
+		local obj_add = itemObj
+		if (TryGetProp(obj, 'InheritanceItemName', 'None') ~= 'None' and TryGetProp(obj_add, 'InheritanceItemName', 'None') ~= 'None')
+		or TryGetProp(obj, 'InheritanceRandomItemName', 'None') ~= 'None' and TryGetProp(obj_add, 'InheritanceRandomItemName', 'None') ~= 'None' then
+			ui.SysMsg(ClMsg("AlearyIcorAdded"))
+			return
+		end	
+	end
+
 	local yPos = 0
 	local basicList = GET_EQUIP_TOOLTIP_PROP_LIST(targetItem)
     local list = {}
@@ -485,7 +496,7 @@ function ICORADD_MULTIPLE_EXEC(frame)
 					ui.SysMsg(ClMsg("MaterialItemIsLock"))
 					return
 				end
-
+				
 				local obj = GetIES(invItem:GetObject())
 				local obj_add = GetIES(invItem_add:GetObject())
 				if (TryGetProp(obj, 'InheritanceItemName', 'None') ~= 'None' and TryGetProp(obj_add, 'InheritanceItemName', 'None') ~= 'None')
@@ -541,6 +552,14 @@ function _ICORADD_MULTIPLE_EXEC(checkRebuildFlag)
 				return
 			end
 	
+			local obj = GetIES(mainInvItem:GetObject())
+			local obj_add = GetIES(addInvItem:GetObject())
+			if (TryGetProp(obj, 'InheritanceItemName', 'None') ~= 'None' and TryGetProp(obj_add, 'InheritanceItemName', 'None') ~= 'None')
+			or TryGetProp(obj, 'InheritanceRandomItemName', 'None') ~= 'None' and TryGetProp(obj_add, 'InheritanceRandomItemName', 'None') ~= 'None' then
+				ui.SysMsg(ClMsg("AlearyIcorAdded"))
+				return
+			end
+
 			session.AddItemID(mainInvItem:GetIESID(), 1)
 			session.AddItemID(addInvItem:GetIESID(), 1)
 		end
@@ -696,6 +715,17 @@ function ICORADD_MULTIPLE_INV_RBTN(itemObj, slot)
 				if mainItem ~= nil then
 					local mainObj = GetIES(mainItem:GetObject())
 					local inheritItem = GetClass('Item', inheritItemName)
+
+					local slot_add = GET_CHILD_RECURSIVELY(ctrlSet, "slot_add")					
+					local invItem_add = GET_SLOT_ITEM(slot_add)
+					
+					local obj_add = itemObj
+					if (TryGetProp(mainObj, 'InheritanceItemName', 'None') ~= 'None' and TryGetProp(obj_add, 'InheritanceItemName', 'None') ~= 'None')
+					or TryGetProp(mainObj, 'InheritanceRandomItemName', 'None') ~= 'None' and TryGetProp(obj_add, 'InheritanceRandomItemName', 'None') ~= 'None' then
+						ui.SysMsg(ClMsg("AlearyIcorAdded"))
+						return
+					end
+
 					if inheritItem ~= nil and mainObj.ClassType == inheritItem.ClassType then
 						ICORADD_CTRL_REG_ADD_ITEM(ctrlSet, iconInfo:GetIESID())
 

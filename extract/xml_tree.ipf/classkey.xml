@@ -4273,6 +4273,26 @@
         <Key Name="EVENT_2101_NEW_YEAR_TOTAL_TICKET_COUNT" Value="107836"/>
         <Key Name="Episode_12_1_Clear" Value="107861"/>
         <Key Name="Episode_12_2_Clear" Value="107860"/>
+        <Key Name="ContentsTotalShop_2101_1" Value="107873"/>
+        <Key Name="ContentsTotalShop_2101_2" Value="107876"/>
+        <Key Name="ContentsTotalShop_2101_3" Value="107872"/>
+        <Key Name="ContentsTotalShop_2101_4" Value="107870"/>
+        <Key Name="ContentsTotalShop_2101_5" Value="107875"/>
+        <Key Name="ContentsTotalShop_2101_6" Value="107874"/>
+        <Key Name="ContentsTotalShop_2101_7" Value="107871"/>
+        <Key Name="EVENT_2101_NEW_YEAR_DAILY_COIN_COUNT" Value="107862"/>
+        <Key Name="cybersoldier_thema" Value="107869"/>
+        <Key Name="dress_cybersoldier_1" Value="107865"/>
+        <Key Name="dress_cybersoldier_2" Value="107867"/>
+        <Key Name="dress_cybersoldier_3" Value="107868"/>
+        <Key Name="dress_cybersoldier_4" Value="107863"/>
+        <Key Name="dress_cybersoldier_5" Value="107864"/>
+        <Key Name="dress_cybersoldier_6" Value="107866"/>
+        <Key Name="AutoMatchingPenalty" Value="107877"/>
+        <Key Name="MythicDungeon_Auto_Hard_EnableEntryCount" Value="107881"/>
+        <Key Name="REPUTATION_QUEST_CLEAR_P_R_EP13_1" Value="107880"/>
+        <Key Name="REPUTATION_QUEST_CLEAR_P_R_EP13_2" Value="107879"/>
+        <Key Name="REPUTATION_QUEST_CLEAR_P_R_EP13_3" Value="107878"/>
     </KeyIDSpc>
     <KeyIDSpc Name="PCEtc">
         <Key Name="Kill_boss_Clymen_Q2" Value="7788"/>

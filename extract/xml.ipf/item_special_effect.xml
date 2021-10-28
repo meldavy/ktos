@@ -634,5 +634,17 @@
 			<effect TargetNode="Dummy_effect_pistol_R" effect="None" scale="0.4" offset="0;0" ReinforceValue="0" UseAttach="YES" PlayType="All" IsKeeping="NO" BlendMode="NO" OnLifeTime="NO" LifeTimeValue="0.0" GiveAttackFromEffect="None" UseTrailEffectChange="true" GiveAttackFromEffectScale="1" GiveAttackSelfEffect="None" GiveAttackSelfEffectScale="10" GiveAttackFromSound="skl_eff_moneygun_pnsatk" GiveAttackSelfSound="None" TakeAttackEffect="None" TakeAttackEffectScale="0.5" TakeAttackSound="None" GiveAttackFromEffectOffSet="0;0" GiveAttackSelfEffectOffSet="0;0" TakeAttackEffectOffSet="0;0" SoundVolume="10" SubWeaponPistol="NO"/>
 		</ItemList>
 	</Effect_Item>
+	<Effect_Item>
+		<ItemList ItemClassName="wing_ep13toswinter">
+			<effect TargetNode="Dummy002" effect="F_light164_snow6" scale="1" offset="0;0" ReinforceValue="0" UseAttach="NO" PlayType="All" IsKeeping="NO" BlendMode="NO" OnLifeTime="NO" LifeTimeValue="0.0" GiveAttackFromEffect="None" UseTrailEffectChange="true" GiveAttackFromEffectScale="0.5" GiveAttackSelfEffect="None" GiveAttackSelfEffectScale="1" GiveAttackFromSound="None" GiveAttackSelfSound="None" TakeAttackEffect="None" TakeAttackEffectScale="0.7" TakeAttackSound="None" GiveAttackFromEffectOffSet="0;0" GiveAttackSelfEffectOffSet="0;0" TakeAttackEffectOffSet="0;0" SoundVolume="1" SubWeaponPistol="NO"/>
+			<effect TargetNode="Dummy001" effect="F_light164_snow6" scale="1" offset="0;0" ReinforceValue="0" UseAttach="NO" PlayType="All" IsKeeping="NO" BlendMode="NO" OnLifeTime="NO" LifeTimeValue="0.0" GiveAttackFromEffect="None" UseTrailEffectChange="true" GiveAttackFromEffectScale="0.5" GiveAttackSelfEffect="None" GiveAttackSelfEffectScale="1" GiveAttackFromSound="None" GiveAttackSelfSound="None" TakeAttackEffect="None" TakeAttackEffectScale="0.7" TakeAttackSound="None" GiveAttackFromEffectOffSet="0;0" GiveAttackSelfEffectOffSet="0;0" TakeAttackEffectOffSet="0;0" SoundVolume="1" SubWeaponPistol="NO"/>
+		</ItemList>
+	</Effect_Item>
+	<Effect_Item>
+		<ItemList ItemClassName="EP13_Artefact_005">
+			<effect TargetNode="Dummy_trail02" effect="F_light168_orange_loop_att" scale="1" offset="0;0" ReinforceValue="0" UseAttach="NO" PlayType="All" IsKeeping="NO" BlendMode="NO" OnLifeTime="NO" LifeTimeValue="0.0" GiveAttackFromEffect="None" UseTrailEffectChange="true" GiveAttackFromEffectScale="0.5" GiveAttackSelfEffect="None" GiveAttackSelfEffectScale="1" GiveAttackFromSound="None" GiveAttackSelfSound="None" TakeAttackEffect="None" TakeAttackEffectScale="0.7" TakeAttackSound="None" GiveAttackFromEffectOffSet="0;0" GiveAttackSelfEffectOffSet="0;0" TakeAttackEffectOffSet="0;0" SoundVolume="1" SubWeaponPistol="NO"/>
+			<effect TargetNode="Dummy_trail02" effect="F_light015_orange_loop" scale="1" offset="0;0" ReinforceValue="0" UseAttach="NO" PlayType="All" IsKeeping="NO" BlendMode="NO" OnLifeTime="NO" LifeTimeValue="0.0" GiveAttackFromEffect="None" UseTrailEffectChange="true" GiveAttackFromEffectScale="0.5" GiveAttackSelfEffect="None" GiveAttackSelfEffectScale="1" GiveAttackFromSound="None" GiveAttackSelfSound="None" TakeAttackEffect="None" TakeAttackEffectScale="0.7" TakeAttackSound="None" GiveAttackFromEffectOffSet="0;0" GiveAttackSelfEffectOffSet="0;0" TakeAttackEffectOffSet="0;0" SoundVolume="1" SubWeaponPistol="NO"/>
+		</ItemList>
+	</Effect_Item>
 	<Effect_Item/>
 </List>

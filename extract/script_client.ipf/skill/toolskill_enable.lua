@@ -590,3 +590,26 @@ function SCR_PRAKRITI_CHECK_BUFF_C(actor, skl, buffName)
 
     return 0;
 end
+
+function SCR_RINGOFLIGHT_CHECK_ABIL_WEAPON_C(actor, skl)
+    local abil = session.GetAbilityByName('Crusader22')
+    if abil ~= nil then
+        abil_obj = GetIES(abil:GetObject())
+    end
+    
+    if abil_obj ~= nil and TryGetProp(abil_obj, "ActiveState", 0) == 1 then
+        local rh = session.GetEquipItemBySpot(item.GetEquipSpotNum('RH'))
+        if rh ~= nil then
+            local rh_obj = GetIES(rh:GetObject())
+            if rh_obj ~= nil and IS_NO_EQUIPITEM(rh_obj) == 0 then
+                local class_type = TryGetProp(rh_obj, 'ClassType', 'None')	
+                if class_type == 'Mace' or class_type == 'THMace' then
+                    return 1
+                end
+            end
+        end
+        return 0
+    else
+        return 1
+    end
+end

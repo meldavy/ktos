@@ -499,6 +499,10 @@ end
  end
 
 -- 바이보라 연성에 필요한 재료를 가져온다.
+-- return
+-- dic , 재료이름/필요개수 
+-- dic_size , 전체 재료 종류수
+-- dic_index , 슬롯을 그릴때 필요한 index
 function GET_UPGRADE_VIBORA_MISC_LIST(goal_lv)
     local dic = {}
     local dic_index = {}

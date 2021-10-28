@@ -1,4 +1,4 @@
-function INDUNENTER_ON_INIT(addon, frame)
+﻿function INDUNENTER_ON_INIT(addon, frame)
     addon:RegisterMsg('MOVE_ZONE', 'INDUNENTER_CLOSE');
     addon:RegisterMsg('CLOSE_UI', 'INDUNENTER_CLOSE');
     addon:RegisterMsg('ESCAPE_PRESSED', 'INDUNENTER_ON_ESCAPE_PRESSED');
@@ -126,7 +126,7 @@ function SHOW_INDUNENTER_DIALOG(indunType, isAlreadyPlaying, enableAutoMatch, en
 	if IsBuffApplied(pc, "Event_Unique_Raid_Bonus") == "YES" and admissionItemName == "Dungeon_Key01" then
         nowAdmissionItemCount = admissionItemCount
     elseif IsBuffApplied(pc, "Event_Unique_Raid_Bonus_Limit") == "YES" and admissionItemName == "Dungeon_Key01" then
-        local accountObject = GetMyAccountObj(pc)
+        local accountObject = GetMyAccountObj()
         if TryGetProp(accountObject, "EVENT_UNIQUE_RAID_BONUS_LIMIT") > 0 then
             nowAdmissionItemCount = admissionItemCount
         else
@@ -330,9 +330,7 @@ function INDUNENTER_MAKE_ITEM_ALERT(frame, indunCls)
     local restrictItemBox = GET_CHILD_RECURSIVELY(frame, 'restrictItemBox');
     restrictItemBox:ShowWindow(0);
 
-    local mapName = TryGetProp(indunCls, "MapName");
-    local dungeonType = TryGetProp(indunCls, "DungeonType");
-	local cls = GetClassByStrProp("ItemRestrict","Category",dungeonType)
+	local cls = GetClassByStrProp("ItemRestrict","Category",indunCls.ClassName)
     if cls ~= nil then
 		restrictItemBox:ShowWindow(1);
 		restrictItemBox:SetTooltipOverlap(1);
@@ -340,7 +338,7 @@ function INDUNENTER_MAKE_ITEM_ALERT(frame, indunCls)
 		local TOOLTIP_POSY = frame:GetUserConfig("TOOLTIP_POSY");
 		restrictItemBox:SetPosTooltip(TOOLTIP_POSX, TOOLTIP_POSY);
 		restrictItemBox:SetTooltipType("itemRestrictList");
-		restrictItemBox:SetTooltipArg(dungeonType);
+		restrictItemBox:SetTooltipArg(indunCls.ClassName);
     end
 end
 
@@ -831,6 +829,7 @@ function INDUNENTER_MAKE_COUNT_BOX(frame, noPicBox, indunCls)
     end
     
     local countData = GET_CHILD_RECURSIVELY(frame, 'countData');
+    local countData2 = GET_CHILD_RECURSIVELY(frame, "countData2");
     local countItemData = GET_CHILD_RECURSIVELY(frame, 'countItemData');
     local cycleCtrlPic = GET_CHILD_RECURSIVELY(frame, 'cycleCtrlPic');
     cycleCtrlPic:ShowWindow(0);
@@ -846,15 +845,22 @@ function INDUNENTER_MAKE_COUNT_BOX(frame, noPicBox, indunCls)
     if admissionItemCount == nil then
         admissionItemCount = 0;
     end
-    admissionItemCount = math.floor(admissionItemCount);
 
+    admissionItemCount = math.floor(admissionItemCount);
     if admissionItemName == "None" or admissionItemName == nil then
         -- now play count
         local nowCount = TryGetProp(etc, "InDunCountType_"..tostring(TryGetProp(indunCls, "PlayPerResetType")), 0)        
         if WeeklyEnterableCount ~= nil and WeeklyEnterableCount ~= "None" and WeeklyEnterableCount ~= 0 then            
-            nowCount = GET_CURRENT_ENTERANCE_COUNT(TryGetProp(indunCls, "PlayPerResetType"))            
+            nowCount = GET_CURRENT_ENTERANCE_COUNT(TryGetProp(indunCls, "PlayPerResetType"));
         end
 
+        local resetGroupID = TryGetProp(indunCls, "PlayPerResetType", "None");
+        if resetGroupID == 817 then
+            countData2:SetTextByKey("now", nowCount);
+            countData:ShowWindow(0);
+            countData2:ShowWindow(1);
+            countItemData:ShowWindow(0);
+        else
         -- add count
         local addCount = math.floor(nowCount * admissionPlayAddItemCount);
         countData:SetTextByKey("now", nowCount);
@@ -866,17 +872,9 @@ function INDUNENTER_MAKE_COUNT_BOX(frame, noPicBox, indunCls)
         end
 
         if session.loginInfo.IsPremiumState(ITEM_TOKEN) == true then
-            local playPerResetToken = TryGetProp(indunCls, 'PlayPerReset_Token');
-            if playPerResetToken ~= nil then
-                maxCount = maxCount + playPerResetToken;
-            end
+                maxCount = maxCount + TryGetProp(indunCls, 'PlayPerReset_Token')
         end
-        if session.loginInfo.IsPremiumState(NEXON_PC) == true then
-            local playPerResetNexonPC = TryGetProp(indunCls, 'PlayPerReset_NexonPC')
-            if playPerResetNexonPC ~= nil then
-                maxCount = maxCount + playPerResetNexonPC;
-            end
-        end
+            
         local maxText = maxCount
         local infinity = TryGetProp(indunCls, 'EnableInfiniteEnter', 'NO')
         if indunCls.AdmissionItemName ~= "None" or infinity == 'YES' then
@@ -890,8 +888,10 @@ function INDUNENTER_MAKE_COUNT_BOX(frame, noPicBox, indunCls)
         frame:SetUserValue("MAX_MULTI_CNT", maxCount - nowCount);
 
         local countText = GET_CHILD_RECURSIVELY(frame, 'countText');
-        countData:ShowWindow(1)
-        countItemData:ShowWindow(0)
+            countData:ShowWindow(1);
+            countData2:ShowWindow(0);
+            countItemData:ShowWindow(0);
+        end
     else
         local pc = GetMyPCObject();
         if pc == nil then
@@ -901,7 +901,7 @@ function INDUNENTER_MAKE_COUNT_BOX(frame, noPicBox, indunCls)
         -- now play count
         local nowCount = TryGetProp(etc, "InDunCountType_"..tostring(TryGetProp(indunCls, "PlayPerResetType")), 0)        
         if WeeklyEnterableCount ~= nil and WeeklyEnterableCount ~= "None" and WeeklyEnterableCount ~= 0 then            
-            nowCount = GET_CURRENT_ENTERANCE_COUNT(TryGetProp(indunCls, "PlayPerResetType"))            
+            nowCount = GET_CURRENT_ENTERANCE_COUNT(TryGetProp(indunCls, "PlayPerResetType"))
         end
 
         if indunCls.DungeonType == "Raid" or indunCls.DungeonType =="GTower" then
@@ -911,11 +911,11 @@ function INDUNENTER_MAKE_COUNT_BOX(frame, noPicBox, indunCls)
     
                 local countText = GET_CHILD_RECURSIVELY(frame, 'countText');
                 countText:SetText(ScpArgMsg("IndunAdmissionItemPossession"))
-                countItemData:ShowWindow(1)
-                countData:ShowWindow(0)
+                countItemData:ShowWindow(1);
+                countData:ShowWindow(0);
+                countData2:ShowWindow(0);
     
                 if indunCls.DungeonType == 'UniqueRaid' then
---                    if SCR_RAID_EVENT_20190102(nil, false) == true and admissionItemName == 'Dungeon_Key01' then
                     if IsBuffApplied(pc, "Event_Unique_Raid_Bonus") == "YES"and admissionItemName == "Dungeon_Key01" then
                         cycleCtrlPic:ShowWindow(1);
                     elseif IsBuffApplied(pc, "Event_Unique_Raid_Bonus_Limit") == "YES" and admissionItemName == "Dungeon_Key01" then
@@ -928,8 +928,8 @@ function INDUNENTER_MAKE_COUNT_BOX(frame, noPicBox, indunCls)
             else
                 local addCount = math.floor(nowCount * admissionPlayAddItemCount);
                 countData:SetTextByKey("now", nowCount);
+
                 -- max play count
-            
                 local maxCount = TryGetProp(indunCls, 'PlayPerReset');
                 if WeeklyEnterableCount ~= nil and WeeklyEnterableCount ~= "None" and WeeklyEnterableCount ~= 0 then
                     maxCount = WeeklyEnterableCount
@@ -938,18 +938,16 @@ function INDUNENTER_MAKE_COUNT_BOX(frame, noPicBox, indunCls)
                 if session.loginInfo.IsPremiumState(ITEM_TOKEN) == true then
                     maxCount = maxCount + TryGetProp(indunCls, 'PlayPerReset_Token', 0)
                 end
-                if session.loginInfo.IsPremiumState(NEXON_PC) == true then
-                    maxCount = maxCount + TryGetProp(indunCls, 'PlayPerReset_NexonPC', 0)
-                end
                 countData:SetTextByKey("max", maxCount);
             
-                    -- set min/max multi count
+                -- set min/max multi count
                 local minCount = frame:GetUserConfig('MULTI_MIN');
                 frame:SetUserValue("MIN_MULTI_CNT", minCount);
                 frame:SetUserValue("MAX_MULTI_CNT", maxCount - nowCount);
             
                 local countText = GET_CHILD_RECURSIVELY(frame, 'countText');
                 countData:ShowWindow(1)
+                countData2:ShowWindow(0);
                 countItemData:ShowWindow(0)
             end
         else
@@ -960,10 +958,10 @@ function INDUNENTER_MAKE_COUNT_BOX(frame, noPicBox, indunCls)
             countText:SetText(ScpArgMsg("IndunAdmissionItemPossession"))
             countItemData:ShowWindow(1)
             countData:ShowWindow(0)
+            countData2:ShowWindow(0);
 
             local pc = GetMyPCObject()
             if indunCls.DungeonType == 'UniqueRaid' then
---                if SCR_RAID_EVENT_20190102(nil, false) == true and admissionItemName == 'Dungeon_Key01' then
                 if IsBuffApplied(pc, "Event_Unique_Raid_Bonus") == "YES" and admissionItemName == "Dungeon_Key01"then
                     cycleCtrlPic:ShowWindow(1);
                 elseif IsBuffApplied(pc, "Event_Unique_Raid_Bonus_Limit") == "YES" and admissionItemName == "Dungeon_Key01" then
@@ -991,7 +989,7 @@ function INDUNENTER_MAKE_PARTY_CONTROLSET(pcCount, memberTable, understaffCount)
     local memberBox = GET_CHILD_RECURSIVELY(frame, 'memberBox');
     local memberCnt = #memberTable / PC_INFO_COUNT;
 
-    if pcCount < 1 then -- member초기?�해주자
+    if pcCount < 1 then -- member초기??해주자
         memberCnt = 0;
     end
 
@@ -1039,8 +1037,8 @@ function INDUNENTER_MAKE_PARTY_CONTROLSET(pcCount, memberTable, understaffCount)
         matchedIcon:ShowWindow(0);
         understaffAllowImg:ShowWindow(0);
 
-        if i <= pcCount then -- 참여???�원만큼 보여주는 부�?
-            if i * PC_INFO_COUNT <= #memberTable then -- ?�티?�인 경우      
+        if i <= pcCount then -- 참여????원만큼 보여주는 부??
+            if i * PC_INFO_COUNT <= #memberTable then -- ??티??인 경우      
                 -- show leader
                 local aid = memberTable[i * PC_INFO_COUNT - (PC_INFO_COUNT - 1)];
                 local pcparty = session.party.GetPartyInfo(PARTY_NORMAL);
@@ -1070,7 +1068,7 @@ function INDUNENTER_MAKE_PARTY_CONTROLSET(pcCount, memberTable, understaffCount)
                     understaffAllowImg:ShowWindow(1);
                     understaffShowCount = understaffShowCount + 1;
                 end
-            else -- ?�티?��? ?�닌??매칭???�람
+            else -- ??티???? ??닌??매칭????람
                 jobIcon:ShowWindow(0);
                 matchedIcon:ShowWindow(1);
 
@@ -1566,11 +1564,6 @@ function INDUNENTER_UPDATE_PC_COUNT(frame, msg, infoStr, pcCount, understaffCoun
         understaffCount = 0;
     end
     
-	-- enable auto match, with match mode; except initialize
-	if frame:GetUserValue('AUTOMATCH_MODE') == 'NO' and frame:GetUserValue('WITHMATCH_MODE') == 'NO' and pcCount > 0 then
-		return;
-	end
-
     -- update pc count
     if infoStr == nil then
         infoStr = "None";
@@ -1907,7 +1900,7 @@ function INDUNENTER_MULTI_EXEC(frame, ctrl)
     if session.loginInfo.IsPremiumState(ITEM_TOKEN) == true then
 		maxCount = maxCount + TryGetProp(indunCls, 'PlayPerReset_Token');
     end
-
+    
     local remainCount = maxCount - nowCount;    
     if textCount >= remainCount then
         ui.SysMsg(ScpArgMsg('NotEnoughIndunEnterCount'));
@@ -2031,7 +2024,7 @@ function INDUNENTER_REQ_UNDERSTAFF_ENTER_ALLOW(parent, ctrl)
         return;
     end
         
-    -- ?�티?�과 ?�동매칭??경우 처리
+    -- ??티??과 ??동매칭??경우 처리
     local yesScpStr = '_INDUNENTER_REQ_UNDERSTAFF_ENTER_ALLOW()';
     local clientMsg = ScpArgMsg('ReallyAllowUnderstaffMatchingWith{MIN_MEMBER}?', 'MIN_MEMBER', UnderstaffEnterAllowMinMember);
     if INDUNENTER_CHECK_UNDERSTAFF_MODE_WITH_PARTY(topFrame) == true then
@@ -2134,7 +2127,7 @@ function INDUNENTER_CHECK_ADMISSION_ITEM(frame, matchType, indunInfoIndunType)
 		if IsBuffApplied(user, "Event_Unique_Raid_Bonus") == "YES" and admissionItemName == "Dungeon_Key01" then
             nowAdmissionItemCount = admissionItemCount
         elseif IsBuffApplied(user, "Event_Unique_Raid_Bonus_Limit") == "YES" and admissionItemName == "Dungeon_Key01" then
-            local accountObject = GetMyAccountObj(user)
+            local accountObject = GetMyAccountObj()
             if TryGetProp(accountObject, "EVENT_UNIQUE_RAID_BONUS_LIMIT") > 0 then
                 nowAdmissionItemCount = admissionItemCount
             end

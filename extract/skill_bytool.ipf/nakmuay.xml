@@ -596,7 +596,7 @@
 					<Num Num="0"/>
 					<Str Str="None"/>
 				</Scp>
-				<Scp Client="NO" Scp="SKL_RUN_SCRIPT" Time="0" UseSleep="NO">
+				<Scp Client="NO" Scp="SKL_RUN_SCRIPT" Time="0" UseSleep="YES">
 					<Str Str="SKL_VIBORA_NAKMUAY_SKILL_TEMPEST_EnableControl_RUN"/>
 				</Scp>
 			</EtcList>

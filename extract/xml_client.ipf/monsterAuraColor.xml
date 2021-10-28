@@ -52,4 +52,12 @@
 			<Color RGBA="100;65;165;200" Time="1.5"/>
 		</Node>
 	</Pattern>
+	<Pattern PatternName="Mythic_Link">
+		<Node Factor="1" TimeTerm="1.5" DiffusionType="Stop" ColorBlendType="Linear" Attach="Self">
+			<Color RGBA="224:255:255;130" Time="0"/>
+			<Color RGBA="224:255:255;130" Time="0.5"/>
+			<Color RGBA="224:255:255;130" Time="1"/>
+			<Color RGBA="224:255:255;130" Time="1.5"/>
+		</Node>
+	</Pattern>
 </Aura>

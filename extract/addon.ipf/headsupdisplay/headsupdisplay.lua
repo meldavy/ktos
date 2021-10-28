@@ -277,7 +277,8 @@ function SET_CONFIG_HEADSUP_HUD_OFFSET(frame)
     local name = frame:GetName();
     local width = option.GetClientWidth();
 	local height = option.GetClientHeight(); 			
-	config.SetHUDConfigRatio(name, x / width, y / height);	
+	config.SetHUDConfigRatio(name, x / width, y / height);		
+	config.SaveHUDConfig()
 end
 
 function GET_CONFIG_HEADSUP_HUD_OFFSET(frame, defaultX, defaultY)
@@ -296,7 +297,7 @@ function HEADSUPDISPLAY_LBTN_UP(frame, msg, argStr, argNum)
     SET_CONFIG_HEADSUP_HUD_OFFSET(frame);
 end
 
-function POST_HUD_SET_SAVED_OFFSET(frame, msg, argStr, argNum)	
+function POST_HUD_SET_SAVED_OFFSET(frame, msg, argStr, argNum)		
 	if frame == nil then
 		frame = ui.GetFrame('headsupdisplay')
 	end

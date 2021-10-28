@@ -66,9 +66,6 @@
                                 <Str Str="Door_check"/>
                                 <Num Num="1"/>
                             </ToolScp>
-                            <ToolScp Scp="MGAME_EVT_SCRIPT" Client="NO" UseSleep="NO">
-                                <Str Str="RAID_RANK_SCP_CHECK_FROM_MGAME"/>
-                            </ToolScp>
                         </execList>
                     </Event>
                 </StageEvents>

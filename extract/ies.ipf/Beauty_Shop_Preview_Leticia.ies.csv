@@ -1,15 +1,10 @@
 ClassID,Price,PriceRatio,StampCount,ClassName,Category,Gender,ItemClassName,EquipType,JobOnly,SellStartTime,SellEndTime,PackageList,IsPremium,TAG,ItemAddDate,BuyMessage
-11,-1,0,0,EP13_costume_Com_000,,M,EP13_costume_Com_000,costume,,2021-01-01 00:00:00,2021-01-15 17:59:59,,NO,,,NotBuy_Thema3
-12,-1,0,0,EP13_costume_Com_002,,M,EP13_costume_Com_002,costume,,2021-01-01 00:00:00,2021-01-15 17:59:59,,NO,,,NotBuy_Thema3
-21,-1,0,0,EP13_costume_Com_001,,F,EP13_costume_Com_001,costume,,2021-01-01 00:00:00,2021-01-15 17:59:59,,NO,,,NotBuy_Thema3
-22,-1,0,0,EP13_costume_Com_003,,F,EP13_costume_Com_003,costume,,2021-01-01 00:00:00,2021-01-15 17:59:59,,NO,,,NotBuy_Thema3
-31,-1,0,0,EP13_Artefact_000,,,EP13_Artefact_000,weapon,,2021-01-01 00:00:00,2021-01-15 17:59:59,,NO,,,NotBuy_Thema3
-32,-1,0,0,EP13_Artefact_001,,,EP13_Artefact_001,weapon,,2021-01-01 00:00:00,2021-01-15 17:59:59,,NO,,,NotBuy_Thema3
-33,-1,0,0,EP13_Artefact_002,,,EP13_Artefact_002,weapon,,2021-01-01 00:00:00,2021-01-15 17:59:59,,NO,,,NotBuy_Thema3
-34,-1,0,0,EP13_Artefact_003,,,EP13_Artefact_003,weapon,,2021-01-01 00:00:00,2021-01-15 17:59:59,,NO,,,NotBuy_Thema3
-71,-1,0,0,EP13_Hat_001,,,EP13_Hat_001,hair_costume,,2021-01-01 00:00:00,2021-01-15 17:59:59,,NO,,,NotBuy_Thema3
-72,-1,0,0,EP13_Hat_002,,,EP13_Hat_002,hair_costume,,2021-01-01 00:00:00,2021-01-15 17:59:59,,NO,,,NotBuy_Thema3
-73,-1,0,0,EP13_Hat_003,,,EP13_Hat_003,hair_costume,,2021-01-01 00:00:00,2021-01-15 17:59:59,,NO,,,NotBuy_Thema3
-74,-1,0,0,EP13_Hat_004,,,EP13_Hat_004,hair_costume,,2021-01-01 00:00:00,2021-01-15 17:59:59,,NO,,,NotBuy_Thema3
-75,-1,0,0,EP13_Hat_005,,,EP13_Hat_005,hair_costume,,2021-01-01 00:00:00,2021-01-15 17:59:59,,NO,,,NotBuy_Thema3
-76,-1,0,0,EP13_Hat_006,,,EP13_Hat_006,hair_costume,,2021-01-01 00:00:00,2021-01-15 17:59:59,,NO,,,NotBuy_Thema3
+11,-1,0,0,EP13_costume_Com_018,,M,EP13_costume_Com_018,costume,,2021-02-01 00:00:00,2021-02-15 17:59:59,,NO,,,NotBuy_Thema3
+12,-1,0,0,EP13_costume_Com_020,,M,EP13_costume_Com_020,costume,,2021-02-01 00:00:00,2021-02-15 17:59:59,,NO,,,NotBuy_Thema3
+21,-1,0,0,EP13_costume_Com_019,,F,EP13_costume_Com_019,costume,,2021-02-01 00:00:00,2021-02-15 17:59:59,,NO,,,NotBuy_Thema3
+22,-1,0,0,EP13_costume_Com_021,,F,EP13_costume_Com_021,costume,,2021-02-01 00:00:00,2021-02-15 17:59:59,,NO,,,NotBuy_Thema3
+31,-1,0,0,EP13_Artefact_004,,,EP13_Artefact_004,weapon,,2021-02-01 00:00:00,2021-02-15 17:59:59,,NO,,,NotBuy_Thema3
+32,-1,0,0,EP13_Artefact_005,,,EP13_Artefact_005,weapon,,2021-02-01 00:00:00,2021-02-15 17:59:59,,NO,,,NotBuy_Thema3
+33,-1,0,0,EP13_Artefact_006,,,EP13_Artefact_006,weapon,,2021-02-01 00:00:00,2021-02-15 17:59:59,,NO,,,NotBuy_Thema3
+34,-1,0,0,EP13_Artefact_007,,,EP13_Artefact_007,weapon,,2021-02-01 00:00:00,2021-02-15 17:59:59,,NO,,,NotBuy_Thema3
+71,-1,0,0,EP13_Hat_007,,,EP13_Hat_007,hair_costume,,2021-02-01 00:00:00,2021-02-15 17:59:59,,NO,,,NotBuy_Thema3

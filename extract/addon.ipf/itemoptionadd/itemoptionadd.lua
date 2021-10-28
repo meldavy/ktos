@@ -270,11 +270,22 @@ function ITEM_OPTIONADD_REG_ADD_ITEM(frame, itemID)
 	local slot = GET_CHILD_RECURSIVELY(frame, "slot");
 	local slotInvItem = GET_SLOT_ITEM(slot);
 	local slotInvItemCls = nil
+	local tempItem = nil
 	if slotInvItem ~= nil then
-		local tempItem = GetIES(slotInvItem:GetObject());
+		tempItem = GetIES(slotInvItem:GetObject());
 		slotInvItemCls = GetClass('Item', tempItem.ClassName)
 	end
-    
+	
+	if tempItem ~= nil then
+		local obj = tempItem
+		local obj_add = item
+		if (TryGetProp(obj, 'InheritanceItemName', 'None') ~= 'None' and TryGetProp(obj_add, 'InheritanceItemName', 'None') ~= 'None')
+		or TryGetProp(obj, 'InheritanceRandomItemName', 'None') ~= 'None' and TryGetProp(obj_add, 'InheritanceRandomItemName', 'None') ~= 'None' then
+			ui.SysMsg(ClMsg("AlearyIcorAdded"))
+			return
+		end	
+	end
+
 	--아이커의 atk 과 slot 의 atk 이 맞아야만 장착가능    
 	local targetItem = GetClass('Item', invitem.InheritanceItemName);
 
@@ -805,12 +816,12 @@ function ITEMOPTIONADD_INV_RBTN(itemObj, slot)
 	local invItem = GET_PC_ITEM_BY_GUID(iconInfo:GetIESID());
 	local obj = GetIES(invItem:GetObject());
 	
-
 	local slot = GET_CHILD_RECURSIVELY(frame, "slot");
 	local slotInvItem = GET_SLOT_ITEM(slot);
 	local slotInvItemCls = nil
+	local tempItem = nil
 	if slotInvItem ~= nil then
-		local tempItem = GetIES(slotInvItem:GetObject());
+		tempItem = GetIES(slotInvItem:GetObject());
 		slotInvItemCls = GetClass('Item', tempItem.ClassName)
 	end
 
@@ -820,6 +831,14 @@ function ITEMOPTIONADD_INV_RBTN(itemObj, slot)
 		return
 	end
 	
+	if tempItem ~= nil then		
+		local obj_add = tempItem
+		if (TryGetProp(obj, 'InheritanceItemName', 'None') ~= 'None' and TryGetProp(obj_add, 'InheritanceItemName', 'None') ~= 'None')
+		or TryGetProp(obj, 'InheritanceRandomItemName', 'None') ~= 'None' and TryGetProp(obj_add, 'InheritanceRandomItemName', 'None') ~= 'None' then
+			ui.SysMsg(ClMsg("AlearyIcorAdded"))
+			return
+		end	
+	end	
 
 	if slotInvItem ~= nil then
 		ITEM_OPTIONADD_REG_ADD_ITEM(frame, iconInfo:GetIESID())

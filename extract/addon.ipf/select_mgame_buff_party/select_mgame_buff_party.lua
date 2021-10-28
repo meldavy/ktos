@@ -11,27 +11,41 @@ end
 function SELECT_MGAME_BUFF_PARTY_CLOSE(frame)
 end
 ---------------common------------------------
-function INIT_SELECT_MGAME_BUFF(frame,buffList,time)
-	SELECT_MGAME_BUFF_LIST_SET(frame,buffList)
-	local gauge = GET_CHILD_RECURSIVELY(frame,"time_gauge")
-	gauge:SetPoint(100,100)
-	gauge:RunUpdateScript("SELECT_MGAME_BUFF_UPDATE_TIME", 0.01, time+1);
+function INIT_SELECT_MGAME_BUFF(frame, buffList, time)
+	SELECT_MGAME_BUFF_LIST_SET(frame, buffList)
+	local gauge = GET_CHILD_RECURSIVELY(frame, "time_gauge")
+	gauge:SetPoint(100, 100)
+	gauge:RunUpdateScript("SELECT_MGAME_BUFF_UPDATE_TIME", 0.01, time + 1);
 	gauge:SetUserValue("TOTAL_TIME",time)
 	local select = GET_CHILD_RECURSIVELY(frame,"select")
 	select:SetEnable(1)
 	frame:SetEnable(1)
 end
 
-function SELECT_MGAME_BUFF_UPDATE_TIME(gauge,total_elapsed_time,elapsed_time)
-	AUTO_CAST(gauge)
+function INIT_SELECT_MGAME_BUFF_OPTION(frame, buffList, time)
+	SELECT_MGAME_BUFF_OPTION_LIST_SET(frame, buffList);
+	local gauge = GET_CHILD_RECURSIVELY(frame, "time_gauge");
+	gauge:SetPoint(100, 100);
+	gauge:RunUpdateScript("SELECT_MGAME_BUFF_UPDATE_TIME", 0.01, time + 1);
+	gauge:SetUserValue("TOTAL_TIME", time);
+	local select = GET_CHILD_RECURSIVELY(frame, "select");
+	select:SetEnable(1);
+	frame:SetEnable(1);
+end
+
+function SELECT_MGAME_BUFF_UPDATE_TIME(gauge, total_elapsed_time, elapsed_time)
+	AUTO_CAST(gauge);
 	local total_time = gauge:GetUserIValue("TOTAL_TIME");
-	local remain_time = math.max(0,total_time - total_elapsed_time)
-	gauge:SetPoint(remain_time,total_time)
-	if remain_time == 2 then
-		SELECT_MGAME_BUFF_TIME_OUT(gauge:GetTopParentFrame())
-		return 2
+	local remain_time = math.max(0, total_time - total_elapsed_time);
+	gauge:SetPoint(remain_time, total_time)
+	if tonumber(remain_time) <= 2 then
+		local top_frame = gauge:GetTopParentFrame();
+		if top_frame ~= nil then
+			top_frame:ShowWindow(0);
+		end
+		return 2;
 	end
-	return 1
+	return 1;
 end
 
 function SELECT_MGAME_BUFF_LIST_SET(frame,buffList)
@@ -57,22 +71,65 @@ function SELECT_MGAME_BUFF_LIST_SET(frame,buffList)
 	end
 end
 
-function ON_SELECT_MGAME_BUFF_ICON_CLICK(parent,ctrl,argStr,argNum)
-	local frame = parent:GetTopParentFrame()
-	for i = 1,5 do
-		local ctrlSet = GET_CHILD_RECURSIVELY(frame,"BUFF_CTRL_"..i)
-		local click_pic = GET_CHILD_RECURSIVELY(ctrlSet,"buff_select_on")
-		click_pic:EnableHitTest(0)
-		click_pic:SetVisible(0)
+function SELECT_MGAME_BUFF_OPTION_LIST_SET(frame, list)
+	if frame == nil or list == nil then return; end
+	frame:SetUserValue("use_buff_lock_option", 1);
+	local buff_list = GET_CHILD_RECURSIVELY(frame, "buff_list");
+	if buff_list ~= nil then
+		buff_list:RemoveAllChild();
+		for i = 1, 5 do
+			local elem = list[i];
+			if elem ~= nil then
+				local buff_option_list = StringSplit(elem, ';');
+				if buff_option_list ~= nil and #buff_option_list >= 2 then
+					local ctrl =  buff_list:CreateOrGetControlSet('select_mgame_buff_ctrl', 'BUFF_CTRL_'..i, (i - 1) * 85, 0);
+					ctrl:SetUserValue("buff_lock_option", buff_option_list[2]);
+
+					local click_pic = GET_CHILD_RECURSIVELY(ctrl, "buff_select_on");
+					local buff_icon = GET_CHILD_RECURSIVELY(ctrl, "buff_icon");
+					local buff_cls = GetClassByType("Buff", buff_option_list[1]);
+					if buff_cls ~= nil then
+						ctrl:SetUserValue("type", buff_cls.ClassID);
+
+						local icon = string.format("icon_%s", TryGetProp(buff_cls, "Icon"));
+						buff_icon:SetImage(icon);
+
+						local buff_select_btn = GET_CHILD_RECURSIVELY(ctrl, "buff_select_btn");
+						buff_select_btn:SetEventScriptArgNumber(ui.LBUTTONUP, buff_cls.ClassID);
+						buff_select_btn:SetTooltipType("buff");
+						buff_select_btn:SetTooltipArg(session.GetMyHandle(), buff_cls.ClassID);
+
+						click_pic:SetTooltipType("buff");
+						click_pic:SetTooltipArg(session.GetMyHandle(), buff_cls.ClassID);
+					end
+					click_pic:EnableHitTest(0);
+					click_pic:SetVisible(0);
+				end
+			end
+		end
 	end
+end
+
+function ON_SELECT_MGAME_BUFF_ICON_CLICK(parent, ctrl, argStr, argNum)
+	local frame = parent:GetTopParentFrame();
+	for i = 1, 5 do
+		local ctrlSet = GET_CHILD_RECURSIVELY(frame, "BUFF_CTRL_"..i);
+		if ctrlSet ~= nil then
+			local click_pic = GET_CHILD_RECURSIVELY(ctrlSet, "buff_select_on");
+			click_pic:EnableHitTest(0);
+			click_pic:SetVisible(0);
+		end
+	end
+
 	if argNum == nil or argNum <= 0 then
-		return
+		return;
 	end
+
 	do
-		local click_pic = GET_CHILD(parent,"buff_select_on")
-		click_pic:EnableHitTest(1)
-		click_pic:SetVisible(1)
-		frame:SetUserValue("SELECT_MGAME_BUFF",argNum)
+		local click_pic = GET_CHILD(parent, "buff_select_on");
+		click_pic:EnableHitTest(1);
+		click_pic:SetVisible(1);
+		frame:SetUserValue("SELECT_MGAME_BUFF", argNum);
 	end
 end
 ---------------------------------------------

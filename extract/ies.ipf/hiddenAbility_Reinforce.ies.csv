@@ -269,7 +269,7 @@ ClassID,FactorByLevel,AddFactor,ClassName,HiddenReinforceAbil,CMM_Caption
 268,1.25,0,Exorcist_Entity,Exorcist26,[아츠] 엔터티: 상급 강화
 269,1.25,0,Exorcist_AquaBenedicta,Exorcist21,[아츠] 아쿠아 베네틱타: 상급 강화
 270,1.25,0,Exorcist_Gregorate,Exorcist22,[아츠] 그레고레이트: 상급 강화
-271,1.25,0,Exorcist_Koinonia,Exorcist23,[아츠] 코이노니아: 상급 강화
+271,1.25,0,Exorcist_Koinonia,Exorcist23,[아츠] 그랜드 크로스: 상급 강화
 272,1.25,0,Exorcist_Katadikazo,Exorcist24,[아츠] 카타디카조: 상급 강화
 273,1.25,0,Scout_DaggerSlash,Scout24,[아츠] 대거 슬래시: 상급 강화
 274,1.25,0,Scout_ObliqueFire,Scout25,[아츠] 오블리크 파이어: 상급 강화
@@ -375,3 +375,4 @@ ClassID,FactorByLevel,AddFactor,ClassName,HiddenReinforceAbil,CMM_Caption
 374,1.25,0,Peltasta_ButterFly,Murmillo31,[아츠] 버터플라이: 상급 강화
 375,1.25,0,QuarrelShooter_RunningShot,QuarrelShooter37,[아츠] 런닝 샷: 상급 강화
 376,1.25,0,Cleric_Heal_Cleric34,Cleric34,[아츠] 힐: 타락 구체 상급 강화
+377,1.25,0,Kriwi_Melstis,Kriwi31,[아츠] 파이어티: 상급 강화

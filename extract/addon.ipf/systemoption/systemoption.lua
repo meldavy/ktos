@@ -390,7 +390,7 @@ function INIT_GRAPHIC_CONFIG(frame)
 		end
 	end
 	
-	local IsEnableSummonAlpha = GET_CHILD_RECURSIVELY(frame, "IsEnableSummonAlpha", "ui::CCheckBox");
+	local IsEnableSummonAlpha = GET_CHILD_RECURSIVELY(frame, "Check_IsEnableSummonAlpha", "ui::CCheckBox");
 	if IsEnableSummonAlpha ~= nil then
 		IsEnableSummonAlpha:SetCheck(config.GetIsEnableSummonAlpha());
 	end

@@ -99,20 +99,20 @@ ClassID,EndTime,arg2,CoolDown,ApplyTime,UseCount,ClassName,Name,SkillClassName,T
 407,0,0,45000,60000,-1,Mythic_Meteor,대운석 낙하,Mon_mythic_pattern_Skill_7,Type1,25000/35000,IsBattleState,0,Weekly_Meteor,{s20}[대운석 낙하]{/} {/}{nl} {nl}랜덤한 캐릭터 위치에 운석이 떨어집니다.{nl}운석이 낙하한 지면에 마법진이 생성되어 대미지를 줍니다.
 408,0,0,45000,10000,-1,Mythic_SandStrom,모래폭풍,Mon_mythic_pattern_Skill_8,Type1,25000/35000,IsBattleState,0,Weekly_SandStrom,"{s20}[모래폭풍]{/} {/}{nl} {nl}캐릭터 주변에 모래폭풍이 생성됩니다.{nl}생성된 모래폭풍은 일정 경로로 빠르게 이동하며, 닿을 경우 대상을 크게 넉다운시킵니다."
 409,0,0,45000,10000,-1,Mythic_Brest,블랙홀,Mon_mythic_pattern_Skill_9,,25000/35000,IsBattleState,0,Weekly_Brest,소환물이 생성되어 4방향으로 브레스를 사용합니다.
-410,0,0,30000,-1,1,Mythic_Rage,격노,Mon_mythic_pattern_Skill_10,Type2,20000,,0,Mythic_Rage,{s20}[격노]{/} {/}{nl} {nl}몬스터의 체력이 30% 미만이 되면 모든 디버프를 해제 하고 격노상태가 됩니다.{nl}격노상태에서는 피격받거나 공격할 때마다 주변 적대 대상에게 대미지를 줍니다.
-411,0,0,30000,-1,1,Mythic_Berserk_Fury,광분,Mon_mythic_pattern_Skill_11,Type2,20000,,0,Mythic_Berserk_Fury,{s20}[광분]{/} {/}{nl} {nl}몬스터의 이동 속도와 적 인식 범위가 증가합니다{nl}해당 몬스터가 사망하면 주변 몬스터를 강화시킵니다.
+410,0,0,30000,-1,1,Mythic_Rage,격노,Mon_mythic_pattern_Skill_10,Type2,20000,,0,Mythic_Rage,{s20}[격노]{/} {/}{nl} {nl}몬스터의 체력이 30% 미만이 되면 모든 디버프를 해제 하고 격노상태가 됩니다.{nl}격노상태에서는 피격받거나 공격할 때마다 주변 캐릭터에게 대미지를 줍니다.
+411,0,0,30000,-1,1,Mythic_Berserk_Fury,광분,Mon_mythic_pattern_Skill_11,Type2,20000,,0,Mythic_Berserk_Fury,{s20}[광분]{/} {/}{nl} {nl}모든 몬스터의 이동 속도와 적 인식 범위가 증가합니다.{nl}몬스터가 사망하면 주변 몬스터를 강화시킵니다.
 412,0,0,30000,-1,1,Mythic_RankUp,랭크 업,Mon_mythic_pattern_Skill_12,Type2,20000,,0,Mythic_RankUp,{s20}[랭크 업]{/} {/}{nl} {nl}몬스터의 디버프 면역 레벨이 증가합니다.
-413,0,0,30000,-1,1,Mythic_WhimCaprice,변덕,Mon_mythic_pattern_Skill_13,Type2,20000,,0,Mythic_WhimCaprice,{s20}[변덕]{/} {/}{nl} {nl}몬스터가 위협 수치와 무관한 대상을 타겟으로 지정합니다.
+413,0,0,30000,-1,1,Mythic_WhimCaprice,변덕,Mon_mythic_pattern_Skill_13,,20000,,0,Mythic_WhimCaprice,{s20}[변덕]{/} {/}{nl} {nl}몬스터가 위협 수치와 무관한 대상을 타겟으로 지정합니다.
 414,0,0,30000,-1,1,Mythic_Bleeding,출혈,Mon_mythic_pattern_Skill_14,Type2,20000,,0,Mythic_Bleeding,"{s20}[출혈]{/} {/}{nl} {nl}몬스터 사망 시 주변에 출혈 디버프를 부여합니다.{nl}출혈 디버프는 지속 대미지를 주며, 중첩에 따라 대미지가 증가합니다."
-415,0,0,30000,-1,1,Mythic_Crowd,무리,Mon_mythic_pattern_Skill_15,Type2,20000,,0,Mythic_Crowd,{s20}[무리]{/} {/}{nl} {nl}몬스터 사망 시 같은 무리의 몬스터가 살아있다면{nl}되살아납니다.
-416,0,0,30000,-1,1,Mythic_Boosting_Morale,사기진작,Mon_mythic_pattern_Skill_16,Type3,20000,,0,Mythic_Boosting_Morale,{s20}[사기진작]{/} {/}{nl} {nl}특정 몬스터는 전투 시작 시 자신의 무리 몬스터를 강화시킵니다.{nl}해당 몬스터 처치 시 강화 버프가 제거됩니다.
-417,0,0,30000,-1,1,Mythic_Chain_Lightning,연쇄 번개,Mon_mythic_pattern_Skill_17,Type3,20000,,0,Mythic_Chain_Lightning,{s20}[연쇄 번개]{/} {/}{nl} {nl}특정 몬스터가 타격 시 피격 대상에게 전기 사슬을 발사하여 주변의 적들에게 옮겨갑니다.{nl}연쇄될 때마다 대미지가 증가합니다.
-418,0,0,30000,-1,1,Mythic_Puddle,피의 웅덩이,Mon_mythic_pattern_Skill_18,Type3,20000,,0,Mythic_Puddle,"{s20}[피의 웅덩이]{/} {/}{nl} {nl}특정 몬스터가 사망 시 지면에 마법진을 생성합니다.{nl}마법진 위에서는 몬스터의 체력을 회복시키며, 적에게 대미지를 줍니다."
-419,0,0,30000,-1,1,Mythic_Bomb,폭탄,Mon_mythic_pattern_Skill_19,Type3,20000,,0,Mythic_Bomb,"{s20}[폭탄]{/} {/}{nl} {nl}특정 몬스터는 전투 시작 시 캐스팅을 하여 폭탄을 터트립니다.{nl}폭발 범위 내의 적에게 대미지를 주며, 범위 안의 몬스터에게 폭탄이 전이됩니다.{nl}전이 된 폭탄은 1초 후 폭발하여 대미지를 줍니다."
-420,0,0,30000,-1,1,Mythic_InfectiousDisease,전염병,Mon_mythic_pattern_Skill_20,Type3,20000,,0,Mythic_InfectiousDisease,"{s20}[전염병]{/} {/}{nl} {nl}특정 몬스터는 전염병 디버프를 보유하고 있습니다.{nl}[전염병] 디버프를 보유하고 있는 대상이 죽을 때 주변 2개체의 대상에게 해당 디버프를 전염시킵니다.{nl}[전염병] 디버프 보유 시 방어력이 감소하며, 지속적으로 HP가 감소합니다."
-421,0,0,30000,-1,1,Mythic_Recklessness,무모함,Mon_mythic_pattern_Skill_21,Type4,20000,,0,Mythic_Recklessness,{s20}[무모함]{/} {/}{nl} {nl}캐릭터는 몬스터에게 피격 시 [상처 악화] 디버프를 부여받습니다.{nl}[상처 악화] 디버프 상태에서는 중첩당 받는 피해가 증가합니다.
+415,0,0,30000,-1,1,Mythic_Crowd,무리,Mon_mythic_pattern_Skill_15,,20000,,0,Mythic_Crowd,{s20}[무리]{/} {/}{nl} {nl}몬스터 사망 시 같은 무리의 몬스터가 살아있다면{nl}되살아납니다.
+416,0,0,30000,-1,1,Mythic_Boosting_Morale,사기진작,Mon_mythic_pattern_Skill_16,,20000,,0,Mythic_Boosting_Morale,{s20}[사기진작]{/} {/}{nl} {nl}특정 몬스터는 전투 시작 시 자신의 무리 몬스터를 강화시킵니다.{nl}해당 몬스터 처치 시 강화 버프가 제거됩니다.
+417,0,0,30000,-1,1,Mythic_Chain_Lightning,연쇄 번개,Mon_mythic_pattern_Skill_17,Type3,20000,,0,Mythic_Chain_Lightning,{s20}[연쇄 번개]{/} {/}{nl} {nl}특정 몬스터가 가장 가까운 캐릭터에게 전기 사슬을 발사하여 주변의 적들에게 옮겨갑니다.{nl}연쇄될 때마다 대미지가 증가합니다.
+418,0,0,30000,-1,1,Mythic_Puddle,피의 웅덩이,Mon_mythic_pattern_Skill_18,Type3,20000,,0,Mythic_Puddle,"{s20}[피의 웅덩이]{/} {/}{nl} {nl}특정 몬스터가 지면에 마법진을 생성합니다.{nl}마법진 위에서는 몬스터의 체력을 회복시키며, 적에게 대미지를 줍니다."
+419,0,0,30000,-1,1,Mythic_Bomb,폭탄,Mon_mythic_pattern_Skill_19,Type3,20000,,0,Mythic_Bomb,{s20}[폭탄]{/} {/}{nl} {nl}특정 몬스터는 범위 내 랜덤한 캐릭터에게 [폭탄] 디버프를 부여합니다.{nl}해당 디버프는 일정 시간이 지난 후 범위 내의 캐릭터에게 대미지를 줍니다.{nl}피해를 입을 경우 방어력이 감소합니다.
+420,0,0,30000,-1,1,Mythic_InfectiousDisease,전염병,Mon_mythic_pattern_Skill_20,Type3,20000,,0,Mythic_InfectiousDisease,"{s20}[전염병]{/} {/}{nl} {nl}특정 몬스터가 범위 내 가장 먼 캐릭터에게 [전염병] 디버프를 부여합니다.{nl}[전염병] 디버프 보유 시 방어력이 감소하며, 지속적인 피해를 받습니다.{nl}[전염병] 디버프가  3중첩 이상일 경우 디버프가 부여되면 해당 디버프가 주변 캐릭터에게 전이됩니다."
+421,0,0,30000,-1,1,Mythic_Recklessness,무모함,Mon_mythic_pattern_Skill_21,Type4,20000,,0,Mythic_Recklessness,{s20}[무모함]{/} {/}{nl} {nl}캐릭터는 몬스터에게 피격 시 [상처 악화] 디버프를 부여받습니다.{nl}[상처 악화] 디버프 상태에서는 중첩당 받는 피해가 증가합니다.{nl}[피해 감소] 버프가 있으면 [상처 악화] 디버프에 면역됩니다.
 422,0,0,30000,-1,1,Mythic_Timeattack,타임 어택,Mon_mythic_pattern_Skill_22,Type4,20000,,0,Mythic_Timeattack,{s20}[타임어택]{/} {/}{nl} {nl}캐릭터 사망 시 제한 시간이 감소합니다.
-423,0,0,15000,-1,4,Mythic_Lucky_Monster,행운 몬스터,Mon_mythic_pattern_Skill_23,Type4,20000,MonKillPercent,20,Mythic_Lucky_Monster,{s20}[행운 몬스터]{/} {/}{nl} {nl}특정 달성률에 도달 시 랜덤한 위치에 행운 몬스터가 생성됩니다.{nl}행운 몬스터 처치 시 행운의 오라를 획득합니다.
+423,0,0,15000,-1,4,Mythic_Lucky_Monster,행운 몬스터,Mon_mythic_pattern_Skill_23,,20000,MonKillPercent,20,Mythic_Lucky_Monster,{s20}[행운 몬스터]{/} {/}{nl} {nl}특정 달성률에 도달 시 랜덤한 위치에 행운 몬스터가 생성됩니다.{nl}행운 몬스터 처치 시 행운의 오라를 획득합니다.
 424,0,0,30000,-1,1,Mythic_CoordinationOfPain,고통의 조율,Mon_mythic_pattern_Skill_24,Type4,20000,,0,Mythic_CoordinationOfPain,{s20}[고통의 조율]{/} {/}{nl} {nl}캐릭터는 체력 50% 미만일 경우 대미지가 80% 증가합니다.
 425,0,0,50000,15000,-1,Mythic_Gravity_Field,중력장,Mon_mythic_pattern_Skill_25,Type4,45000,,0,Mythic_Gravity_Field,"{s20}[중력장]{/} {/}{nl} {nl}주기적으로 캐릭터에게 중력장이 생성됩니다.{nl}중력장은 시간이 지남에 따라 범위가 증가하며, 중력장 위의 캐릭터 이동속도를 감소시킵니다.{nl}일정 시간이 지나면 중력장은 폭발하며, 범위 내의 캐릭터에게 체력 비례 대미지를 줍니다."
 426,0,0,30000,-1,1,Mythic_Pyroego,중간 보스- 파이로 에고,Mon_mythic_pattern_Skill_26,Type5,20000,,0,Mythic_Pyroego,{s20}[파이로 에고]{/} {/}{nl} {nl}특정 달성률 도달 시 랜덤한 위치에 포탈이 생성됩니다.{nl}포탈 진입 시 파이로 에고가 존재하는 방으로 이동할 수 있습니다.{nl}파이로 에고를 처치하지 않으면 보스 몬스터와의 전투에서 특정 패턴이 발동합니다.
@@ -120,8 +120,7 @@ ClassID,EndTime,arg2,CoolDown,ApplyTime,UseCount,ClassName,Name,SkillClassName,T
 428,0,0,30000,-1,1,Mythic_Wavelength,자기장,Mon_mythic_pattern_Skill_28,,20000,,0,Mythic_Boosting_Morale,"특정 몬스터 전투 상태 시 모든 캐릭터에게 파장 디버프를 부여합니다.
 파장 디버프 보유 시 주변 80범위 캐릭터에게 지속 대미지를 줍니다.
 특정 몬스터 처치 시 디버프가 해제됩니다."
-429,0,0,30000,-1,1,Mythic_Link,링크,Mon_mythic_pattern_Skill_29,,20000,,0,Mythic_Link,"몬스터가 링크로 연결되어 받는 피해가 감소합니다.
-거리가 150이상 멀어지면 링크는 해제됩니다."
+429,0,0,30000,-1,1,Mythic_Link,링크,Mon_mythic_pattern_Skill_29,Type3,20000,,0,Mythic_Link,"{s20}[링크]{/} {/}{nl} {nl}특정 몬스터가 범위 내 랜덤한 캐릭터에게 링크를 연결합니다.{nl}링크가 연결되어있는 동안 몬스터는 체력을 회복하며 피격 대미지가 감소합니다.{nl}링크 지속시간에 따라 대미지 감소 값이 증가하며, 링크 대상과 거리가 멀어질 경우 해제됩니다."
 430,0,0,30000,-1,1,Mythic_Giantization,거대화,Mon_mythic_pattern_Skill_30,,20000,,0,Mythic_Giantization,"특정 몬스터가 거대화되어 공격력이 증가하며, 이동속도가 감소합니다."
 431,0,0,30000,-1,1,Mythic_TodalShield," 철갑화",Mon_mythic_pattern_Skill_31,,20000,,0,Mythic_TodalShield,"특정 몬스터는 철갑화 버프를 가지고 있습니다.
 철갑화 버프 상태에서 받는 피해가 50% 감소합니다.

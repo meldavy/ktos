@@ -143,3 +143,18 @@ function STATUS_REPUTATION_SEARCH(frame, ctrl)
         end
     end
 end
+
+function STATUS_REPUTATION_QUEST_INFO()
+    local frame = ui.GetFrame("status")
+    if frame == nil then
+        return
+    end
+
+    if GET_CHILD_RECURSIVELY(frame, "reputationStatusWarningText"):IsVisible() == 0 then
+        if ui.GetFrame('reputation_quest_info'):IsVisible() == 0 then
+            ui.OpenFrame('reputation_quest_info')
+        else
+            ui.CloseFrame('reputation_quest_info')
+        end
+    end
+end

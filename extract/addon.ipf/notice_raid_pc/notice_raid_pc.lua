@@ -11,6 +11,8 @@ function NOTICE_RAID_PC_ON_INIT(addon, frame)
     addon:RegisterMsg("NOTICE_GILTINE_DEMONICS_PRANK_REMOVE", "ON_NOTICE_RAID_TO_UI");
     addon:RegisterMsg("NOTICE_GILTINE_FIND_COLOR_RED_REMOVE", "ON_NOTICE_RAID_TO_UI");
     addon:RegisterMsg("NOTICE_GILTINE_FIND_COLOR_YELLOW_REMOVE", "ON_NOTICE_RAID_TO_UI");
+    addon:RegisterMsg("NOTICE_SOLO_BUFF_SEELCT_ICON", "ON_NOTICE_RAID_TO_UI");
+    addon:RegisterMsg("NOTICE_SOLO_BUFF_SEELCT_ICON_REMOVE", "ON_NOTICE_RAID_TO_UI");
 end
 
 function ON_NOTICE_RAID_TO_UI(frame, msg, argStr, argNum)
@@ -30,7 +32,7 @@ function ON_NOTICE_RAID_TO_UI(frame, msg, argStr, argNum)
         end
         local uiName = "notice_raid_pc"..frame:GetUserValue("SUFFIX");
         NOTICE_RAID_PC_UI_CREATE(uiName, msg, "None", handle, curTime, true, false);
-    elseif msg == "NOTICE_GILTINE_FIND_COLOR_RED" or msg == "NOTICE_GILTINE_FIND_COLOR_YELLOW" or msg == "NOTICE_GILTINE_DEMONICS_LANCE" or msg == "NOTICE_GILTINE_DEMONICS_PRANK" then
+    elseif msg == "NOTICE_GILTINE_FIND_COLOR_RED" or msg == "NOTICE_GILTINE_FIND_COLOR_YELLOW" or msg == "NOTICE_GILTINE_DEMONICS_LANCE" or msg == "NOTICE_GILTINE_DEMONICS_PRANK" or msg == "NOTICE_SOLO_BUFF_SEELCT_ICON" then
         local handle = tonumber(argNum);
         if handle ~= 0 then
             frame:SetUserValue("SUFFIX", handle);
@@ -38,7 +40,7 @@ function ON_NOTICE_RAID_TO_UI(frame, msg, argStr, argNum)
         local uiName = "notice_raid_pc"..frame:GetUserValue("SUFFIX");
         local iconName = argStr;
         NOTICE_RAID_PC_UI_CREATE(uiName, msg, iconName, handle, 0, false, true);
-    elseif msg == "NOTICE_GILTINE_DEMONICS_LANCE_REMOVE" or msg == "NOTICE_GILTINE_DEMONICS_PRANK_REMOVE" or msg == "NOTICE_GILTINE_FIND_COLOR_RED_REMOVE" or msg == "NOTICE_GILTINE_FIND_COLOR_YELLOW_REMOVE" then
+    elseif msg == "NOTICE_GILTINE_DEMONICS_LANCE_REMOVE" or msg == "NOTICE_GILTINE_DEMONICS_PRANK_REMOVE" or msg == "NOTICE_GILTINE_FIND_COLOR_RED_REMOVE" or msg == "NOTICE_GILTINE_FIND_COLOR_YELLOW_REMOVE" or msg == "NOTICE_SOLO_BUFF_SEELCT_ICON_REMOVE" then
         local handle = tonumber(argNum);
         local frame = ui.GetFrame("notice_raid_pc"..handle);
         if frame ~= nil then
@@ -52,8 +54,11 @@ function ON_NOTICE_RAID_TO_UI(frame, msg, argStr, argNum)
                 elseif msg == "NOTICE_GILTINE_FIND_COLOR_RED_REMOVE" then
                     ctrlName = "NOTICE_GILTINE_FIND_COLOR_RED"; 
                 elseif msg == "NOTICE_GILTINE_FIND_COLOR_YELLOW_REMOVE" then
-                    ctrlName = "NOTICE_GILTINE_FIND_COLOR_YELLOW"; 
+                    ctrlName = "NOTICE_GILTINE_FIND_COLOR_YELLOW";
+                elseif msg == "NOTICE_SOLO_BUFF_SEELCT_ICON_REMOVE" then
+                    ctrlName = "NOTICE_SOLO_BUFF_SEELCT_ICON"; 
                 end
+
                 local ctrl = GET_CHILD_RECURSIVELY(gbox, ctrlName);
                 if ctrl ~= nil then
                     ctrl:SetVisible(0);
@@ -63,21 +68,6 @@ function ON_NOTICE_RAID_TO_UI(frame, msg, argStr, argNum)
                 end
             end
         end
-    end
-end
-
-function NOTICE_RAID_PC_UI_REMOVE(frame, msg, iconName)
-    if frame == nil or iconName == nil then return; end
-    local uiName = "notice_raid_pc"..frame:GetUserValue("SUFFIX");
-    local findFrame = ui.GetFrame(uiName);
-    local gbox = GET_CHILD_RECURSIVELY(findFrame, "gbox");
-    if gbox == nil then return; end
-    local picture = GET_CHILD_RECURSIVELY(gbox, msg);
-    if picture ~= nil then
-        picture:SetVisible(0);
-        picture:ShowWindow(0);
-        picture:Resize(0, 0);
-        gbox:RemoveChild(picture:GetName());
     end
 end
 
@@ -104,6 +94,9 @@ function NOTICE_RAID_PC_UI_CREATE(uiName, msg, iconName, handle, curTime, isGaug
         elseif msg == "NOTICE_GILTINE_DEMONICS_LANCE" or msg == "NOTICE_GILTINE_DEMONICS_PRANK" then
             width = 60;
             height = 66;
+        elseif msg == "NOTICE_SOLO_BUFF_SEELCT_ICON" then
+            width = 45;
+            height = 45;
         end
         NOTICE_RAID_PC_NORMAL_ICON_CREATE(frame, gbox, msg, iconName, handle, width, height);
     end
@@ -146,7 +139,19 @@ function NOTICE_RAID_PC_NORMAL_ICON_CREATE(frame, gbox, msg, iconName, handle, i
         picture:Resize(imageWidth, imageHeight);
         picture:Invalidate();
         frame:SetUserValue("HANDLE", handle);
-        frame:RunUpdateScript("UPDATE_NOTICE_RAID_ICON_POS");
+        if msg == "NOTICE_SOLO_BUFF_SEELCT_ICON" then
+            local my_session = session.GetMySession();
+            local time = my_session:GetBuffSelectSoloByOptionIconTime();
+            if time ~= nil then
+                frame:SetUserValue("TOTAL_TIME", tonumber(time));
+            else
+                frame:SetUserValue("TOTAL_TIME", 60);
+            end
+            frame:SetUserValue("CTRL_NAME", picture:GetName());
+            frame:RunUpdateScript("UPDATE_TIME_NOTICE_RAID_ICON_POS", 0.01, time);
+        else
+            frame:RunUpdateScript("UPDATE_NOTICE_RAID_ICON_POS");
+        end
     end
 end
 
@@ -201,4 +206,38 @@ function UPDATE_NOTICE_RAID_ICON_POS(frame, num)
 	local y = point.y - frame:GetHeight() - 40;
     frame:MoveFrame(x, y);
 	return 1;
+end
+
+function UPDATE_TIME_NOTICE_RAID_ICON_POS(frame, total_elapsed_time, elapsed_time)
+    frame = tolua.cast(frame, "ui::CFrame");
+    local handle = frame:GetUserIValue("HANDLE");
+    if tonumber(handle) == 0 then
+        return 0;
+    end
+
+	local point = info.GetPositionInUI(handle, 2);
+	local x = point.x - frame:GetWidth() / 2;
+	local y = point.y - frame:GetHeight() - 40;
+    frame:MoveFrame(x, y);
+
+    local total_time = frame:GetUserIValue("TOTAL_TIME");
+    local remain_time = math.max(0, total_time - total_elapsed_time);
+	if tonumber(remain_time) <= 2 then
+        if frame ~= nil then
+            local gbox = GET_CHILD_RECURSIVELY(frame, "gbox");
+            if gbox == nil then return; end
+            local ctrl_name = frame:GetUserValue("CTRL_NAME");
+            local picture = GET_CHILD_RECURSIVELY(gbox, ctrl_name);
+            if picture ~= nil then
+                picture:SetVisible(0);
+                picture:ShowWindow(0);
+                picture:Resize(0, 0);
+                gbox:RemoveChild(picture:GetName());
+            end
+            frame:ShowWindow(0);
+            ui.CloseFrame(frame:GetName());
+		end
+		return 2;
+	end
+    return 1;
 end

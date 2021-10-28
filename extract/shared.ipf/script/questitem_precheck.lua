@@ -5470,7 +5470,7 @@ function SCR_PRE_ITEM_Escape(self, argObj, BuffName, arg1, arg2)
     end
     
     if GetLayer(self) ~= 0 or IsUsingSkill(self) == 1 or GetOpenedAutoSellerType(self) ~= -1 then
-        SendAddOnMsg(self, "NOTICE_Dm_!", ScpArgMsg("EscapeDisabled"), 5)
+        SendAddOnMsg(self, "NOTICE_Dm_!", ScpArgMsg("CannotUseThieInThisMap"), 5)
         return 0;
     else
         local cls = GetClassList('Map');
@@ -5493,12 +5493,12 @@ function SCR_PRE_ITEM_Escape(self, argObj, BuffName, arg1, arg2)
         end
         
         if obj.Type == "MISSION" then
-            SendAddOnMsg(self, "NOTICE_Dm_!", ScpArgMsg("EscapeDisabled"), 5);
+            SendAddOnMsg(self, "NOTICE_Dm_!", ScpArgMsg("CannotUseThieInThisMap"), 5);
             return 0
         end
         
         if IsRaidField(self) == 1 then
-            SendAddOnMsg(self, "NOTICE_Dm_!", ScpArgMsg("EscapeDisabled"), 5);
+            SendAddOnMsg(self, "NOTICE_Dm_!", ScpArgMsg("CannotUseThieInThisMap"), 5);
             return 0
         end
         

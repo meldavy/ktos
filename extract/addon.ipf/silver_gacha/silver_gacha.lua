@@ -20,10 +20,6 @@ end
 -- OPEN / CLOSE
 function SILVER_GACHA_OPEN()
     SILVER_GACHA_SPINE()
-    
-	local frame = ui.GetFrame("silver_gacha");
-    GET_CHILD_RECURSIVELY(frame, "once_count_edit"):SetText('1');
-    SILVER_GACHA_TOTAL_ONCE_SILVER_UPDATE(1);
 end
 
 function SILVER_GACHA_CLOSE()
@@ -97,12 +93,24 @@ function SILVER_GACHA_INIT()
     GET_CHILD_RECURSIVELY(frame, "auto_edit"):SetText('')
     GET_CHILD_RECURSIVELY(frame, 'dedication_slot'):ClearIcon()
     
-	SILVER_GACHA_TOGGLE_BUTTON("ON")
+    SILVER_GACHA_TOGGLE_BUTTON("ON")
+    
+    GET_CHILD_RECURSIVELY(frame, "once_count_edit"):SetText('1')
+    SILVER_GACHA_TOTAL_ONCE_SILVER_UPDATE(1)
 end
 
 -- UI SET
 function SILVER_GACHA_SET_UI()
     local frame = ui.GetFrame("silver_gacha")
+    local gb = frame:GetChild("protection_gb")
+
+    gb:RemoveAllChild()
+    
+    -- 배경 이미지
+    local pic = AUTO_CAST(gb:CreateControl('picture', 'protection_gb_pic', 572, 720, ui.CENTER_HORZ, ui.CENTER_VERT, 0, 0, 0, 0))
+    pic:SetImage(frame:GetUserConfig('BACKGROUND_IMAGE'))
+
+    -- 이벤트 ID
     local eventID = SILVER_GACHA_GET_EVENT_ID()
 
     -- 시간

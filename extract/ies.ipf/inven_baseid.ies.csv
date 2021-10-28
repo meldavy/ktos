@@ -101,14 +101,14 @@ ClassID,BaseID,ClassName,TreeGroup,TreeGroupCaption,TreeSSetTitle,InvenTabName,M
 100,500001,Look_Wing,EquipGroup,장비,등 코스튬,Equip,NO
 101,505001,Accessory_Seal,EquipGroup,장비,인장,Equip,NO
 102,510001,Premium_Doll,Premium,프리미엄,인형,Premium,NO
-103,515001,HiddenAbility_Misc,HiiddenAbility,아츠,재료,Consume,NO
-104,520001,HiddenAbility_Cube,HiiddenAbility,아츠,미식별,Consume,NO
-105,525001,HiddenAbility_Collection,HiiddenAbility,아츠,전집,Consume,NO
-106,530001,HiddenAbility_Swordbook,HiiddenAbility,아츠,신비한 서: 소드맨,Consume,NO
-107,535001,HiddenAbility_Wizardbook,HiiddenAbility,아츠,신비한 서: 위저드,Consume,NO
-108,540001,HiddenAbility_Clericbook,HiiddenAbility,아츠,신비한 서: 클레릭,Consume,NO
-109,545001,HiddenAbility_Scoutbook,HiiddenAbility,아츠,신비한 서: 스카우트,Consume,NO
-110,550001,HiddenAbility_Archerbook,HiiddenAbility,아츠,신비한 서: 아처,Consume,NO
+103,515001,HiddenAbility_Misc,HiiddenAbility,아츠,재료,Etc,NO
+104,520001,HiddenAbility_Cube,HiiddenAbility,아츠,미식별,Etc,NO
+105,525001,HiddenAbility_Collection,HiiddenAbility,아츠,전집,Etc,NO
+106,530001,HiddenAbility_Swordbook,HiiddenAbility,아츠,신비한 서: 소드맨,Etc,NO
+107,535001,HiddenAbility_Wizardbook,HiiddenAbility,아츠,신비한 서: 위저드,Etc,NO
+108,540001,HiddenAbility_Clericbook,HiiddenAbility,아츠,신비한 서: 클레릭,Etc,NO
+109,545001,HiddenAbility_Scoutbook,HiiddenAbility,아츠,신비한 서: 스카우트,Etc,NO
+110,550001,HiddenAbility_Archerbook,HiiddenAbility,아츠,신비한 서: 아처,Etc,NO
 111,555001,Housing_Furniture,Housing,길드 하우징,조경,Housing,Furniture
 112,560001,Housing_Laboratory,Housing,길드 하우징,시설,Housing,Laboratory
 113,565001,Housing_Contract,Housing,길드 하우징,계약서,Housing,Contract

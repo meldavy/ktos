@@ -3789,13 +3789,15 @@ function ON_RIDING_VEHICLE(onoff)
         return;
     end
 	
+	local cartHandle = control.GetNearSitableCart();
+	
 	local isRidingOnly = 'NO';
     local summonedCompanion = session.pet.GetSummonedPet(0); -- Riding Companion Only / Not Hawk --
     if summonedCompanion ~= nil then
 		local companionObj = summonedCompanion:GetObject();
 		local companionIES = GetIES(companionObj);
 		local companionIsActivated = TryGetProp(companionIES, 'IsActivated');
-		if companionIsActivated == 0 and onoff == 1 then 
+		if companionIsActivated == 0 and onoff == 1 and cartHandle == 0 then 
 			ui.SysMsg(ClMsg('CompanionIsNotActive'));
 			return
 		end
@@ -3806,7 +3808,6 @@ function ON_RIDING_VEHICLE(onoff)
 		end
 	end
 	
-    local cartHandle = control.GetNearSitableCart();
     --js: 현재 메르카바만 하드코딩 형태로 예외처리되어있다 위에 함수명만 봐도 알수있음, 해당 예외처리 추후 하기로 정수씨와 이야기함 (2.0끝나고)--
 
 	if (control.HaveNearCompanionToRide() == true or isRidingOnly == 'YES') and cartHandle == 0 then
