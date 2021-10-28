@@ -6,7 +6,7 @@ function MARKET_ON_INIT(addon, frame)
 end
 
 function ON_OPEN_MARKET(frame)
-	frame:ShowWindow(1);
+	MARKET_BUYMODE(frame)
 	MARKET_FIRST_OPEN(frame);
 	ui.OpenFrame("inventory");
 end
@@ -33,7 +33,8 @@ function MARKET_TREE_CLICK(parent, ctrl, str, num)
 			local oldObj = tree:GetNodeObject(htreeitem);
 			local gBox = oldObj:GetChild("group");
 			gBox:SetSkinName("base_btn");
-			tree:CloseTreeNode(htreeitem);
+			tree:ShowTreeNode(htreeitem, 0);
+			imcSound.PlaySoundEvent("button_click_roll_close");
 		end
 	end
 	if nil ~= obj then
@@ -52,6 +53,9 @@ function MARKET_TREE_CLICK(parent, ctrl, str, num)
 	local categoryName = "";
 	if 2 <= #sList then
 		categoryName = sList[2];
+		imcSound.PlaySoundEvent("button_click_4");
+	else
+		imcSound.PlaySoundEvent("button_click_roll_open");
 	end
 
 	local frame = parent:GetTopParentFrame();
@@ -64,8 +68,8 @@ function MARKET_SEARCH_GROUP_AND_CLASSTYPE(frame)
 	local groupName = frame:GetUserValue("Group");
 	local classType = frame:GetUserValue("ClassType");
 	if "None" == groupName or "None" == classType then
-		groupName = "ALL";
-		classType = "ALL";
+		groupName = "ShowAll";
+		classType = "ShowAll";
 	end
 
 	return groupName, classType;
@@ -89,7 +93,7 @@ function MARGET_FIND_PAGE(frame, page)
 	local rein_min = GET_CHILD_NUMBER_VALUE(gBox, "edit_2");
 	local rein_max = GET_CHILD_NUMBER_VALUE(gBox, "edit_2_1");
 	
-	-- ����Ʈ�� �ֱ�	
+	-- 디폴트로 최근	
 	local sortype = 2;
 	if 1 == chip:IsChecked() then
 		sortype = 0;
@@ -98,7 +102,30 @@ function MARGET_FIND_PAGE(frame, page)
 	end
 
 	local groupName, classType = MARKET_SEARCH_GROUP_AND_CLASSTYPE(frame);
-	market.ReqMarketList(page, find_name:GetText(), groupName, classType, lv_min, lv_max, rein_min, rein_max, sortype);
+	local findItem = tostring(find_name:GetText())
+	local minLength = 0
+	local findItemStrLength = findItem.len(findItem);
+	local maxLength = 60
+	if config.GetServiceNation() == "GLOBAL" then
+		minLength = 1
+		maxLength = 20
+	elseif config.GetServiceNation() == "JPN" then
+		maxLength = 60
+	elseif config.GetServiceNation() == "KOR" then
+		maxLength = 60
+	end
+	
+	if findItemStrLength ~= 0 then	-- 있다면 길이 조건 체크
+		if findItemStrLength <= minLength then
+			ui.SysMsg(ClMsg("InvalidFindItemQueryMin"));
+		elseif findItemStrLength > maxLength then
+			ui.SysMsg(ClMsg("InvalidFindItemQueryMax"));
+	        else 
+	        market.ReqMarketList(page, find_name:GetText(), groupName, classType, lv_min, lv_max, rein_min, rein_max, sortype);
+        end
+	else  -- 검색어가 없으면 바로 검색...
+		market.ReqMarketList(page, find_name:GetText(), groupName, classType, lv_min, lv_max, rein_min, rein_max, sortype);
+	end	
 end
 
 function SEARCH_ITEM_MARKET()
@@ -166,6 +193,7 @@ function MARKET_FIRST_OPEN(frame)
 	end
 	end
 
+	tree:SetFitToChild(true, 5);
 	frame:SetUserValue("Group", "ShowAll");
 	frame:SetUserValue("ClassType", "ShowAll");
 
@@ -224,7 +252,15 @@ function GET_CHILD_NUMBER_VALUE(parent, childName)
 end
 
 function MARKET_REQ_LIST(frame)
+	-- 마켓 이용 중에는 자동매칭중이면 간소화!
+	local indunenter = ui.GetFrame('indunenter');
+	if indunenter ~= nil and indunenter:IsVisible() == 1 then
+		INDUNENTER_SMALL(indunenter, nil, true);
+	end
+
 	frame = frame:GetTopParentFrame();
+	frame:SetUserValue("Group", 'ShowAll');
+	frame:SetUserValue("ClassType", 'ShowAll');
 	MARGET_FIND_PAGE(frame, 0);
 end
 
@@ -249,7 +285,7 @@ function MARKET_PAGE_SELECT(pageControl, numCtrl)
 	MARGET_FIND_PAGE(frame, page);
 end
 
-function ON_MARKET_ITEM_LIST(frame)
+function ON_MARKET_ITEM_LIST(frame, msg, argStr, argNum)
 	if frame:IsVisible() == 0 then
 		return;
 	end
@@ -277,7 +313,8 @@ function ON_MARKET_ITEM_LIST(frame)
 		SET_ITEM_TOOLTIP_ALL_TYPE(ctrlSet, marketItem, itemObj.ClassName, "market", marketItem.itemType, marketItem:GetMarketGuid());
 
 		local pic = GET_CHILD(ctrlSet, "pic", "ui::CPicture");
-		pic:SetImage(itemObj.Icon);
+		local imgName = GET_ITEM_ICON_IMAGE(itemObj);
+		pic:SetImage(imgName);
 
 		local name = ctrlSet:GetChild("name");
 		name:SetTextByKey("value", GET_FULL_NAME(itemObj));
@@ -289,13 +326,20 @@ function ON_MARKET_ITEM_LIST(frame)
 		level:SetTextByKey("value", itemObj.UseLv);
 
 		local price = ctrlSet:GetChild("price");
-		price:SetTextByKey("value", GetCommaedText(marketItem.sellPrice));
+		price:SetTextByKey("value", GetMonetaryString(marketItem.sellPrice));
 		price:SetUserValue("Price", marketItem.sellPrice);
 		if cid == marketItem:GetSellerCID() then
 			local button_1 = ctrlSet:GetChild("button_1");
 			button_1:SetEnable(0);
 
-			local btn = ctrlSet:CreateControl("button", "DETAIL_ITEM_" .. i, 639, 8, 100, 50);
+			local btnmargin = 639
+			if USE_MARKET_REPORT == 1 then
+				local button_report = ctrlSet:GetChild("button_report");
+				button_report:SetEnable(0);
+				btnmargin = 720
+			end
+
+			local btn = ctrlSet:CreateControl("button", "DETAIL_ITEM_" .. i, btnmargin, 8, 100, 50);
 			btn = tolua.cast(btn, "ui::CButton");
 			btn:ShowWindow(1);
 			btn:SetText("{@st41b}" .. ClMsg("Cancel"));
@@ -312,23 +356,26 @@ function ON_MARKET_ITEM_LIST(frame)
 			local totalPrice = ctrlSet:GetChild("totalPrice");
 			totalPrice:SetTextByKey("value", 0);
 		else
-			local numUpDown = ctrlSet:CreateControl("numupdown", "DETAIL_ITEM_" .. i, 639, 20, 100, 30);
+			local btnmargin = 639
+			if USE_MARKET_REPORT == 1 then
+				btnmargin = 560
+			end
+			local numUpDown = ctrlSet:CreateControl("numupdown", "DETAIL_ITEM_" .. i, btnmargin, 20, 100, 30);
 			numUpDown = tolua.cast(numUpDown, "ui::CNumUpDown");
 			numUpDown:SetFontName("white_18_ol");
 			numUpDown:MakeButtons("btn_numdown", "btn_numup", "editbox");
 			numUpDown:ShowWindow(1);
 			numUpDown:SetMaxValue(marketItem.count);
+			numUpDown:SetMinValue(1);
 			numUpDown:SetNumChangeScp("MARKET_CHANGE_COUNT");
+			numUpDown:SetClickSound('button_click_chat');
+			numUpDown:SetNumberValue(1)
 
 			local totalPrice = ctrlSet:GetChild("totalPrice");
-			totalPrice:SetTextByKey("value", 0);
-			if IS_EQUIP(itemObj) == true then
-				totalPrice:SetTextByKey("value", GetCommaedText(marketItem.sellPrice));
+				totalPrice:SetTextByKey("value", GetMonetaryString(marketItem.sellPrice));
 				totalPrice:SetUserValue("Price", marketItem.sellPrice);
-				numUpDown:SetNumberValue(1)
-			end 
-		end		
-	end
+		    end		
+	    end
 
 	itemlist:RealignItems();
 	GBOX_AUTO_ALIGN(itemlist, 10, 0, 0, false, true);
@@ -336,8 +383,16 @@ function ON_MARKET_ITEM_LIST(frame)
 	local maxPage = math.ceil(session.market.GetTotalCount() / MARKET_ITEM_PER_PAGE);
 	local curPage = session.market.GetCurPage();
 	local pagecontrol = GET_CHILD(frame, 'pagecontrol', 'ui::CPageController')
+    if maxPage < 1 then
+        maxPage = 1;
+    end
+
 	pagecontrol:SetMaxPage(maxPage);
 	pagecontrol:SetCurPage(curPage);
+
+	if nil ~= argNum and  argNum == 1 then
+		MARGET_FIND_PAGE(frame, session.market.GetCurPage());
+	end
 end
 
 function CANCEL_MARKET_ITEM(parent, ctrl, guid)
@@ -399,10 +454,38 @@ function _BUY_MARKET_ITEM(row)
 end
 
 function BUY_MARKET_ITEM(parent, ctrl)
-	
 	local row = parent:GetUserIValue("DETAIL_ROW");
-	ui.MsgBox(ScpArgMsg("ReallyBuy?"), string.format("_BUY_MARKET_ITEM(%d)", row+1), "None");
+	local marketItem = session.market.GetItemByIndex(row);
+	local itemObj = GetIES(marketItem:GetObject());
 
+	local txt = ScpArgMsg("ReallyBuy?");
+	ui.MsgBox(txt, string.format("_BUY_MARKET_ITEM(%d)", row+1), "None");
+end
+
+function _REPORT_MARKET_ITEM(row)
+
+	if row == nil then
+		return
+	end
+
+	local marketItem = session.market.GetItemByIndex(row-1);
+
+	if marketItem == nil then
+		return;
+	end
+
+	
+	local scpString = string.format("/marketreport %s",  marketItem:GetMarketGuid());
+	ui.Chat(scpString);
+end
+
+function REPORT_MARKET_ITEM(parent, ctrl)
+	local row = parent:GetUserIValue("DETAIL_ROW");
+	local marketItem = session.market.GetItemByIndex(row);
+	local itemObj = GetIES(marketItem:GetObject());
+	local txt = ScpArgMsg("ReallyReport");
+
+	ui.MsgBox(txt, string.format("_REPORT_MARKET_ITEM(%d)", row+1), "None");
 end
 
 function MARKET_SELLMODE(frame)
