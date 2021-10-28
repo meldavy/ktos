@@ -1,6 +1,6 @@
 ---- lib_ui.lua
 
-function REGISTERR_LASTUIOPEN_POS(frame) --pc_command.lua�� �̸� ������ ����ص־� ��
+function REGISTERR_LASTUIOPEN_POS(frame) --pc_command.lua�� �̸� ������ ����ص־� ��
 
 	local text = string.format("/lastuiopenpos %s",frame:GetName());
 	ui.Chat(text);
@@ -106,7 +106,7 @@ function SET_CHILD_TEXT_BY_KEY(frame, childName, key, value)
 	end
 end
 
-function GET_CHILD_CNT_BYNAME(frame, searchname)
+function GET_CHILD_BYNAME(frame, searchname)
 	local searchCount = 0;
 	local cnt = frame:GetChildCount();
 	for  i = 0, cnt -1 do
@@ -185,24 +185,6 @@ function DESTROY_CHILD_BYNAME_EXCEPT(frame, searchname, exceptName)
 
 end
 
-function ADDYPOS_CHILD_BYNAME(frame, searchname, addpos)
-	local index = 0;
-	while 1 do
-		if index >= frame:GetChildCount() then
-			break;
-		end
-
-		local childObj = frame:GetChildByIndex(index);
-		local name = childObj:GetName();
-
-		if string.find(name, searchname) ~= nil then
-			childObj:SetOffset(childObj:GetX(),childObj:GetY() + addpos)
-		end
-
-		index = index + 1;
-	end
-end
-
 function DESTROY_CHILD_BYNAME(frame, searchname)
 	local index = 0;
 	while 1 do
@@ -244,13 +226,10 @@ function GET_CHILD_MAX_Y(ctrl)
 	return maxY;
 end
 
-function SET_TEXT(parentCtrl, textCtrlName, key, value)
-	local ctrl = GET_CHILD(parentCtrl, textCtrlName, "ui::CRichText");
-	ctrl:SetTextByKey(key, value);
-end
 function GET_CHILD(frame, name, typeName)
 
 	if frame == nil then
+		DumpCallStack();
 		return nil;
 	end	
 	
@@ -419,8 +398,7 @@ function GET_LOCAL_MOUSE_POS(ctrl)
 end
 
 function SET_EVENT_SCRIPT_RECURSIVELY(frame, type, funcName)
-    local byFullString = string.find(funcName, '%(') ~= nil;
-	frame:SetEventScript(type, funcName, byFullString);
+	frame:SetEventScript(type, funcName);
 	local cnt = frame:GetChildCount();
 	for i = 0, cnt - 1 do
 		local child = frame:GetChildByIndex(i);
@@ -462,78 +440,4 @@ function GET_WORLDMAP_POSITION(worldMapString)
 			end
 
 			return x, y, dir, index;
-end
-
-function GET_REMAIN_LIFE_TIME(lifeTime)
-    local sysTime = geTime.GetServerSystemTime();
-	local endTime = imcTime.GetSysTimeByStr(lifeTime);
-	local difSec = imcTime.GetDifSec(endTime, sysTime);
-
-    return difSec;
-end
-
-function GET_OFFSET_IN_SCREEN(x, y, width, height)
-    return x, y;
-end
-
-function GET_CONFIG_HUD_OFFSET(frame, defaultX, defaultY)
-    local name = frame:GetName();
-    if config.IsExistHUDConfig(name) ~= 1 then
-        return defaultX, defaultY;
-    end
-    local x = math.floor(config.GetHUDConfigXRatio(name) * ui.GetClientInitialWidth());
-    local y = math.floor(config.GetHUDConfigYRatio(name) * ui.GetClientInitialHeight());
-
-    -- clamping
-    local width = option.GetClientWidth() - frame:GetWidth();
-    local height = option.GetClientHeight() - frame:GetHeight();
-    x = math.max(0, x);
-    x = math.min(x, width);
-    y = math.max(0, y);
-    y = math.min(y, height);
-    return x, y;
-end
-
-function SET_CONFIG_HUD_OFFSET(frame)
-    local x = frame:GetX();
-    local y = frame:GetY();
-    local pos = frame:FramePosToScreenPos(x, y);
-    x = pos.x;
-    y = pos.y;
-    
-    local name = frame:GetName();
-    local width = option.GetClientWidth();
-    local height = option.GetClientHeight(); 
-
-    config.SetHUDConfigRatio(name, x / width, y / height);
-end
-
-function SHOW_GUILD_HTTP_ERROR(code, msg, funcName)
-	local errNamePrefix = 'WebService_';
-	local errName = errNamePrefix;
-	if code == '0' then
-		 -- 클라<->웹서버가 아닌 클라<->존<->웹서버 경유해서 갔을때 웹서버가 다운된 상태인 경우, 
-		 -- 존에서 RunClientScript사용해서 클라로 보내주고, 코드에는 문자열로 "0"을 전달해줌
-		ShowErrorInfoMsg('CannotConnectWebServer');
-		return
-	end 
-	if code == nil then
-		local splitmsg = StringSplit(msg, " ");
-		code = splitmsg[1];
-		errName = errName .. code
-		local errString = "code:" .. code .. ", msg:" .. msg .. ", funcName:" .. funcName .. " errName:" ..  ClMsg(errName);
-		IMC_LOG("ERROR_WEBSERVICE_SCRIPT", errString)
-		ShowErrorInfoMsg('CannotConnectWebServer');
-		return
-	end
-	local splitStr = StringSplit(msg, " ");
-	errName = errName .. splitStr[1];
-	local errString = "code:" .. code .. ", msg:" .. msg .. ", funcName:" .. funcName .. " errName:" ..  ClMsg(errName);
-	IMC_LOG("ERROR_WEBSERVICE_SCRIPT", errString)
-	
-	if errName == errNamePrefix then
-		ShowErrorInfoMsg('CannotConnectWebServer');
-	else
-	ui.MsgBox(ClMsg(errName));
-end
 end

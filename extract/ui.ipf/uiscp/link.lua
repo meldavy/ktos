@@ -1,60 +1,33 @@
 --- link.lua
 
-function GET_ITEM_FULLNAME_BY_TAG_INFO(props, clsID)
-
-	local newobj = CreateIESByID("Item", clsID);
-	if props ~= 'nullval' then
-		SetModifiedPropertiesString(newobj, props);
-	end
-
-	local ret = GET_FULL_NAME(newobj);
-	DestroyIES(newobj);
-	return ret;
-
-end
 
 function SLI(props, clsID)
-	local itemFrame = ui.GetFrame("wholeitem_link");
-	if itemFrame == nil then
-		itemFrame = ui.GetNewToolTip("wholeitem_link", "wholeitem_link");
-	else
-		CLOSE_LINK_TOOLTIP(itemFrame)
-	end
 
-	local skillFrame = ui.GetFrame("skill_link");
-	if skillFrame == nil then
-		skillFrame = ui.GetNewToolTip("skill", "skill_link");
-	else
-		CLOSE_LINK_TOOLTIP(skillFrame)
-	end
+	local tooltipType = GET_ITEM_TOOLTIP_TYPE(clsID);
 
-	tolua.cast(itemFrame, 'ui::CTooltipFrame');
-	tolua.cast(skillFrame, 'ui::CTooltipFrame');
-
-	local currentFrame = nil;
-
+	local tframe = nil ;
+	
 	if 910001 ~= clsID then -- 스킬 스크롤이 아니면
+		tframe = ui.CreateToolTip('wholeitem_link', "item_link");
 		local newobj = CreateIESByID("Item", clsID);
 		if props ~= 'nullval' then
-			SetModifiedPropertiesString(newobj, props);
+			SetModifiedProperiesString(newobj, props);
 		end
 
-		itemFrame:SetTooltipType('wholeitem')
+		tframe:SetTooltipType('wholeitem')
 		local pobj = tolua.cast(newobj, "imcIES::IObject");
-		itemFrame:SetToolTipObject(pobj);
-		
-		currentFrame = itemFrame;
+		tframe:SetToolTipObject(pobj);
 	else
 		local skillType, level = GetSkillScrollProperty(props);
-		skillFrame:SetTooltipType('skill');
-		skillFrame:SetTooltipArg("Level", skillType, level);
-		currentFrame = skillFrame;
+		tframe = ui.CreateToolTip('skill_link', "skil_link");
+		tframe:SetTooltipType('skill');
+		tframe:SetTooltipArg("Level", skillType, level);
 	end
+	tframe:RefreshTooltip();
+	tframe:ShowWindow(1);
 
-	currentFrame:RefreshTooltip();
-	currentFrame:ShowWindow(1);
+	ui.ToCenter(tframe);
 
-	ui.ToCenter(currentFrame);
 end
 
 function SLM(infoString)
@@ -67,7 +40,8 @@ function SLM(infoString)
 	SCR_SHOW_LOCAL_MAP(mapCls.ClassName, true, x, z);
 end
 
-function CLOSE_LINK_TOOLTIP(frame)
+function CLOSE_LINK_TOOLTIP(frame, slot)
+	
 	frame:ShowWindow(0)
 end
 
@@ -103,13 +77,28 @@ function LINK_ITEM_TEXT(invitem)
 
 	local chatFrame = GET_CHATFRAME();
 	local edit = chatFrame:GetChild('mainchat');
-	local imgheight = edit:GetOriginalHeight();
+	local imgheight = edit:GetHeight();
 
 	local itemobj = GetIES(invitem:GetObject());
 
 	local imgtag =  "";
-	local imageName = GET_ITEM_ICON_IMAGE(itemobj);
-	
+	local imageName = itemobj.Icon;
+	if itemobj.ItemType =='Equip' and itemobj.ClassType == 'Outer' then
+
+		local tempiconname = string.sub(imageName, string.len(imageName) - 1 );
+
+		if tempiconname ~= "_m" and tempiconname ~= "_f" then
+		local pc = GetMyPCObject();
+    	if pc.Gender == 1 then
+			imageName = imageName.."_m"
+		else
+			imageName = imageName.."_f"			
+		end
+	end
+
+		
+	end
+
 	local imgtag = string.format("{img %s %d %d}", imageName, imgheight, imgheight);
 
 	local properties = "";
@@ -121,7 +110,7 @@ function LINK_ITEM_TEXT(invitem)
 		itemName = itemName .. "(" .. sklCls.Name ..")";
 		properties = GetSkillItemProperiesString(itemobj);
 	else
-		properties = GetModifiedPropertiesString(itemobj);
+		properties = GetModifiedProperiesString(itemobj);
 	end
 
 	if properties == "" then
@@ -141,21 +130,6 @@ function MAKE_LINK_MAP_TEXT(mapName, x, z)
 
 end
 
-function MAKE_LINK_MAP_TEXT_NO_POS(mapName, x, z)
-
-	local mapprop = geMapTable.GetMapProp(mapName);
-	return string.format("{a SLM %d#%d#%d}{#0000FF}{img link_map 24 24}%s{/}{/}{/}", mapprop.type, x, z, mapprop:GetName());	
-
-end
-
-function MAKE_LINK_MAP_TEXT_NO_POS_NO_FONT(mapName, x, z)
-
-	local mapprop = geMapTable.GetMapProp(mapName);
-	return string.format("{a SLM %d#%d#%d}{img link_map 24 24}%s{/}{/}{/}", mapprop.type, x, z, mapprop:GetName());	
-
-end
-
-
 function LINK_MAP_POS(mapName, x, z)
 
 	local linkstr = MAKE_LINK_MAP_TEXT(mapName, x, z);
@@ -163,32 +137,10 @@ function LINK_MAP_POS(mapName, x, z)
 
 end
 
-function SLC(linktext)
-
-	local sstart, send = string.find(linktext,"@@@")
-
-	if sstart == nil or send == nil then
-		return;
-	end
-
-	local aid = string.sub(linktext,0,sstart -1)
-	local roomid = string.sub(linktext,send + 1)
-
-	ui.GroupChatEnterRoomByTag(roomid,aid)
-
-end
-
-
 function SLP(partyID)
 	local pcparty = session.party.GetPartyInfo();
 	if pcparty ~= nil then
-		if pcparty.info ~= nil then 
-			if pcparty.info:GetPartyID() == partyID then
-				ui.SysMsg(ClMsg("HadMyPartySame"));
-			else
-				ui.SysMsg(ClMsg("HadMyPartyOther"));
-			end
-		end
+		ui.SysMsg( ClMsg("HadMyParty") );
 		return;
 	end
 

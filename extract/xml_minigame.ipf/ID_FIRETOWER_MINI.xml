@@ -430,11 +430,8 @@
             </Stage>
             <Stage Name="end" AutoStart="0">
                 <StartScpList>
-                    <ToolScp Scp="MGAME_GIVE_ADVENTURE_BOOK_CLEAR_POINT" Client="NO" UseSleep="NO">
-                        <Str Str="Indun_FireTower"/>
-                    </ToolScp>
                     <ToolScp Scp="MGAME_MSG" Client="YES" UseSleep="NO">
-                        <Str Str="60초 후에 입구로 돌아갑니다"/>
+                        <Str Str="60초 후 입구로 되돌아 갑니다"/>
                     </ToolScp>
                 </StartScpList>
                 <ObjList/>
@@ -455,7 +452,7 @@
             <Stage Name="Time">
                 <ObjList/>
                 <StageEvents>
-                    <Event execCount="1" eventName="제한 시간 메시지">
+                    <Event execCount="1" eventName="제한 시간 메세지">
                         <condList>
                             <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK" Client="NO" UseSleep="NO">
                                 <Num Num="3300"/>
@@ -496,6 +493,9 @@
         <EnterList>
             <ToolScp Scp="MGAME_CHECK_INDUN" Client="NO" UseSleep="YES">
                 <Str Str="Indun_FireTower"/>
+            </ToolScp>
+            <ToolScp Scp="MGAME_RESUR_DLG" Client="NO" UseSleep="NO">
+                <Num Num="2"/>
             </ToolScp>
         </EnterList>
     </Game>

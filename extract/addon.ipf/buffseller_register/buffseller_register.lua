@@ -1,10 +1,15 @@
+
 function BUFFSELLER_REGISTER_ON_INIT(addon, frame)
+
+
+
 end
 
 function BUFFSELLER_DROP(frame, icon, argStr, argNum)
-	local liftIcon = ui.GetLiftIcon();
-	local FromFrame = liftIcon:GetTopParentFrame();
-	local toFrame = frame:GetTopParentFrame();
+
+	local liftIcon 				= ui.GetLiftIcon();
+	local FromFrame 			= liftIcon:GetTopParentFrame();
+	local toFrame				= frame:GetTopParentFrame();
 	local iconInfo = liftIcon:GetInfo();
 
 	if iconInfo.category == "Skill" then
@@ -13,34 +18,37 @@ function BUFFSELLER_DROP(frame, icon, argStr, argNum)
 end
 
 function BUFFSELLER_REGISTER(frame, skillType)
+
 	local groupName = frame:GetUserValue("GroupName");
 	if session.autoSeller.GetByType(groupName, skillType) ~= nil then
 		return;
 	end
-	
+
 	local sklObj = GetClassByType("Skill", skillType);
 	local itemCls = GetClass("Item", sklObj.SpendItem);
-	if sklObj.ClassName ~= "Priest_Aspersion" and sklObj.ClassName ~= "Priest_Blessing" and sklObj.ClassName ~= "Priest_Sacrament" and sklObj.ClassName ~= "Pardoner_IncreaseMagicDEF" then
+	if sklObj.ClassName ~= "Priest_Aspersion" and sklObj.ClassName ~= "Priest_Blessing" and sklObj.ClassName ~= "Priest_Sacrament" then
 		ui.SysMsg(ClMsg("OnlySkillWithSpendItemIsAble"));
 		return;
 	end
-	
+
 	local invItem = session.GetInvItemByName(itemCls.ClassName)
-	
+
 	if nil == invItem then
 		ui.SysMsg(ClMsg("NotEnoughMaterial"));
 		return;
 	end
-	
+
 	if true == invItem.isLockState then
 		ui.SysMsg(ClMsg("MaterialItemIsLock"));
 		return;
 	end
-	
+
+
 	local info = session.autoSeller.CreateToGroup(groupName);
 	info.classID = skillType;
 	info.price = 0;
 	BUFFSELLER_UPDATE_LIST(frame);
+
 end
 
 function UPDATE_BUFFSELLER_SLOT(ctrlSet, info)
@@ -57,9 +65,7 @@ function UPDATE_BUFFSELLER_SLOT(ctrlSet, info)
 
 	local mat_item = GET_CHILD(ctrlSet, "mat_item", "ui::CSlot");
 	local itemCls = GetClass("Item", sklObj.SpendItem);
-
-	local spendItemCount = GET_BUFFSELLER_SPEND_ITEM_COUNT(sklObj.ClassName);
-	SET_SLOT_ITEM_INFO(mat_item, itemCls, spendItemCount);
+	SET_SLOT_ITEM_INFO(mat_item, itemCls, sklObj.SpendItemCount*10);
 
 	SET_ITEM_TOOLTIP_BY_TYPE(mat_item:GetIcon(), itemCls.ClassID);
 	SET_SKILL_TOOLTIP_BY_TYPE(skill_slot:GetIcon(), info.classID);
@@ -103,10 +109,9 @@ function BUFFSELLER_UPDATE_LIST(frame)
 	
 	local cnt = session.autoSeller.GetCount(groupName);
 	for i = 0 , cnt - 1 do
-		local autoSellerInfo = session.autoSeller.GetByIndex(groupName, i);
+		local info = session.autoSeller.GetByIndex(groupName, i);
 		local ctrlSet = selllist:CreateControlSet("buffseller_reg", "CTRLSET_" .. i,  ui.CENTER_HORZ, ui.TOP, 0, 0, 0, 0);
-		UPDATE_BUFFSELLER_SLOT(ctrlSet, autoSellerInfo);        
-		BUFFSELLER_INIT_USER_PRICE(ctrlSet, autoSellerInfo);
+		UPDATE_BUFFSELLER_SLOT(ctrlSet, info);
 	end
 
 	if customScp == "None" then
@@ -157,16 +162,12 @@ function BUFFSELLER_REG_EXEC(frame)
 	end
 	
 	if groupName == "PersonalShop" then
-		if true == session.loginInfo.IsPremiumState(ITEM_TOKEN) then
+		local accountObj = GetMyAccountObj();
+		if "None" == accountObj.TokenTime then
 			return;
 		end
 	end
-
-	if serverGroupName == 'Buff' then -- case: pardoner_spell shop
-		session.autoSeller.RequestRegister(groupName, serverGroupName, inputname:GetText(), 'Pardoner_SpellShop');
-	else
-		session.autoSeller.RequestRegister(groupName, serverGroupName, inputname:GetText(), nil);
-	end
+	session.autoSeller.RequestRegister(groupName, serverGroupName, inputname:GetText(), nil);
 end
 
 function BUFFSELLER_REG_CANCEL(frame)
@@ -202,9 +203,4 @@ function BUFFSELLER_SET_CUSTOM_SKILL_TYPE(frame, clsName, skillType)
 	end
 end
 
-function BUFFSELLER_INIT_USER_PRICE(ctrlSet, autoSellerInfo)
-	local priceinput = GET_CHILD(ctrlSet, 'priceinput');
-	PROCESS_USER_SHOP_PRICE('Pardoner_SpellShop', priceinput, autoSellerInfo.ClassID);
 
-	autoSellerInfo.price = tonumber(priceinput:GetText());
-end
