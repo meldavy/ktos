@@ -2272,6 +2272,7 @@
         <Effect Name="Elemental_Burst_Pad_Fire2"/>
         <Effect Name="Elemental_Burst_Pad_Ice"/>
         <Effect Name="Elemental_Burst_Pad_Lightning"/>
+        <Effect Name="SweepingCannon_Pad"/>
     </Category>
     <Category ID="124">
         <Effect Name="rope_pad_abil"/>
@@ -3161,6 +3162,7 @@
 		<Effect Name="F_buff_basic047"/>
         <Effect Name="F_cleric_melstis_piety"/>
         <Effect Name="Exorcist_Koinonia"/>
+        <Effect Name="Cleric_Barrier_Paladin20"/>
     </Category>
 	<Category ID="84">
 		<Effect Name="M_PAST_FLIBRARY_1"/>
@@ -3992,6 +3994,23 @@
 		<Effect Name="Elemental_Burst_Pad_Fire"/>
 		<Effect Name="Elemental_Burst_Pad_Lightning"/>
 		<Effect Name="Elemental_Burst_Pad_Fire2"/>
+        <Effect Name="E_warrior_Sturzhau_shot"/>
+        <Effect Name="E_warrior_Embowel_shot"/>
+        <Effect Name="E_fanwiseshot001"/>
+        <Effect Name="E_warrior_handknife_shot_trail"/>
+        <Effect Name="I_warrior_chrage_shot_dash_yellow"/>
+        <Effect Name="I_warrior_rimblow_shot_mash1_new"/>
+        <Effect Name="I_cleric_Aspergillum_shot_water"/>
+        <Effect Name="I_archer_fanwiseshots"/>
+        <Effect Name="I_archer_fanwiseshots"/>
+        <Effect Name="F_cleric_1inchpunch_shot_hit"/>
+        <Effect Name="E_Scout_Quickshot"/>
+        <Effect Name="E_archer_skl_chargeshot"/>
+        <Effect Name="LEGEND_RAID_GILTINE_AUTO_HARD"/>
+        <Effect Name="F_explosion99_red2"/>
+        <Effect Name="I_cleric_skl_shieldcharge_mash"/>
+        <Effect Name="I_caltrops002_mesh"/>
+        <Effect Name="ScatterCaltrop_Pad"/>
         <Effect Name="E_wizard_Tiwaz_shot_line_abil#Dummy_emitter"/>
         <Effect Name="E_wizard_Tiwaz_shot_line_abil"/>
 	</Category>

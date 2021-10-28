@@ -5,9 +5,12 @@ local relicStateInfo = {
 	Clear = 3,		-- 완료
 }
 
+local reward_exist = false
+
 local relicQuestList = nil
 local function _CLEAR_RELIC_QUEST_LIST()
 	relicQuestList = {}
+	reward_exist = false
 end
 
 local function _GET_RELIC_QUEST_LIST()
@@ -66,6 +69,11 @@ local function _SET_RELIC_QUEST_INFO(titleName, questInfo)
 		local index = #list
 		list[index + 1] = makeTitleInfo
 		titleInfo = list[index + 1]
+
+		-- 보상 수령 가능한 퀘스트가 존재하면 버튼 활성화
+		if clear == relicStateInfo.Reward then
+			reward_exist = true
+		end
 	end
 
 	-- 이미 들어 있으면 갱신
@@ -122,6 +130,11 @@ function _UPDATE_RELIC_QUEST_INFO(account, relicCls)
 		Desc = dic.getTranslatedStr(relicCls.Desc)
 	}
 	SET_RELIC_QUEST_INFO(relicCls, questInfo)
+
+	-- 보상 수령 가능한 퀘스트가 존재하면 버튼 활성화
+	if clear == relicStateInfo.Reward then
+		reward_exist = true
+	end
 end
 
 -- 세부 항목 정렬
@@ -166,6 +179,14 @@ function UPDATE_RELIC_QUEST_LIST()
 
 	-- draw
 	DRAW_RELIC_QUEST_LIST(frame)
+
+	-- 일괄 수령 버튼 활성화 유무
+	local relic_reward_all = GET_CHILD_RECURSIVELY(frame, 'relic_reward_all')
+	if reward_exist == true then
+		relic_reward_all:SetEnable(1)
+	else
+		relic_reward_all:SetEnable(0)
+	end
 end
 
 local function _MAKE_BLACK_SCREEN(frame)
@@ -356,7 +377,11 @@ function SET_RELIC_QUEST_CTRL_MARK(ctrl, questInfo)
 		typePicName = "indun_icon_day_s"
 	elseif type == relicResetType.Week then
 		typePicName = "indun_icon_week_s"
-	end
+    end
+    
+    if config.GetServiceNation() ~= 'KOR' then
+        typePicName = typePicName..'_eng'
+    end
 	
 	typePic:ShowWindow(1)
 	typePic:SetImage(typePicName)
@@ -437,4 +462,26 @@ function CLICK_RELIC_QUEST_REWARD(ctrlSet, ctrl, strArg, numArg)
 	local xPos = frame:GetWidth() - 50
     
     QUEST_RELIC_REWARD_INFO(relicRewardIES.ClassName, xPos, {})
+end
+
+-- 보상 일괄 수령 버튼
+function _CHECK_REWARD_ALL_BTN()
+	if reward_exist == true then
+		btn:SetEnable(1)
+	end
+end
+
+function _DISABLE_REWARD_ALL_BTN()
+	local frame = ui.GetFrame('quest')
+	local btn = GET_CHILD_RECURSIVELY(frame, 'relic_reward_all')
+	if btn ~= nil then
+		ReserveScript('_CHECK_REWARD_ALL_BTN()', 1)
+    	btn:SetEnable(0)
+	end
+end
+
+function CLICK_RELIC_QUEST_REWARD_ALL(parent, ctrl)
+	local argStr = ""
+	_DISABLE_REWARD_ALL_BTN()
+	pc.ReqExecuteTx("SCR_TX_RELIC_QUEST_REWARD_ALL", argStr)
 end

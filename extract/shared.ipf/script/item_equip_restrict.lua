@@ -80,8 +80,8 @@ function CHECK_SINGULARITY_AUTOMATCHING_FOR_EP13(pc)
 			return false
 		end
 
-		-- 보루타 인장 1레벨
-		ret = CHECK_SEAL_ITEM(pc, item_seal, 0, 1, { {'Boruta', 1}})
+		-- 보루타 인장 1레벨 & 근본 인장
+		ret = CHECK_SEAL_ITEM(pc, item_seal, 0, 1, { {'Boruta', 1}, {'2021NewYear', 0} })
 		if ret == false then
 			SendSysMsg(pc, "RequireSealItemLowGrade");
 			return false
@@ -356,8 +356,8 @@ function CHECK_EXTREME_GRADE_FOR_RELIC_DUNGEON(pc)
 			SendSysMsg(pc, 'RequireSealEquip')
 			return false
 		end
-		-- 레전드 등급, 보루타 인장 3레벨
-		ret = CHECK_SEAL_ITEM(pc, item_seal, 0, 5, { {'Boruta', 3}})
+		-- 레전드 등급, 보루타 인장 3레벨 & 근본 인장
+		ret = CHECK_SEAL_ITEM(pc, item_seal, 0, 5, { {'Boruta', 3}, {'2021NewYear', 0}})
 		if ret == false then
 			return false
 		end
@@ -456,8 +456,8 @@ function CHECK_EXTREME_GRADE_FOR_RELIC_DUNGEON(pc)
 			return false
 		end
 		item_seal = GetIES(item_seal:GetObject())
-		-- 레전드 등급, 보루타 인장 3레벨
-		ret = CHECK_SEAL_ITEM(pc, item_seal, 0, 5, {{'Boruta', 3}})
+		-- 레전드 등급, 보루타 인장 3레벨 & 근본 인장
+		ret = CHECK_SEAL_ITEM(pc, item_seal, 0, 5, {{'Boruta', 3}, {'2021NewYear', 0}})
 		if ret == false then
 			return false
 		end
@@ -554,8 +554,9 @@ function CHECK_HARD_GRADE_FOR_RELIC_DUNGEON(pc)
 			SendSysMsg(pc, 'RequireSealEquip')
 			return false
 		end
-		-- 레전드, 보루타 인장 1레벨
-		ret = CHECK_SEAL_ITEM(pc, item_seal, 0, 5, {{'Boruta', 3}})
+
+		-- 레전드, 보루타 인장 3레벨
+		ret = CHECK_SEAL_ITEM(pc, item_seal, 0, 5, { {'Boruta', 3} })
 		if ret == false then
 			SendSysMsg(pc, "RequireSealItemLowGrade");
 			return false
@@ -659,8 +660,8 @@ function CHECK_EASY_GRADE_FOR_RELIC_DUNGEON(pc)
 			SendSysMsg(pc, 'RequireSealEquip')
 			return false
 		end
-		-- 보루타 인장 1레벨
-		ret = CHECK_SEAL_ITEM(pc, item_seal, 0, 1, { {'Boruta', 1}})
+		-- 보루타 인장 1레벨 & 근본 인장
+		ret = CHECK_SEAL_ITEM(pc, item_seal, 0, 1, { {'Boruta', 1}, {'2021NewYear', 0} })
 		if ret == false then
 			SendSysMsg(pc, "RequireSealItemLowGrade");
 			return false
@@ -760,8 +761,8 @@ function CHECK_EASY_GRADE_FOR_RELIC_DUNGEON(pc)
 			return false
 		end
 		item_seal = GetIES(item_seal:GetObject())
-		-- 보루타 인장 1레벨
-		ret = CHECK_SEAL_ITEM(pc, item_seal, 0, 1, { {'Boruta', 1}})
+		-- 보루타 인장 1레벨 & 근본 인장
+		ret = CHECK_SEAL_ITEM(pc, item_seal, 0, 1, { {'Boruta', 1}, {'2021NewYear', 0}})
 		if ret == false then
 			return false
 		end
@@ -1204,7 +1205,7 @@ function CHECK_ARK_ITEM(pc, item, item_grade, check_string_arg_list)
 		end
 		return false
 	end
-		
+
 	if TryGetProp(item, 'ItemGrade', 0) < item_grade then
 		local msg = 'Rare'
 		if item_grade == 5 then

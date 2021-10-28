@@ -6560,12 +6560,34 @@
 			</ToolScp>
 		</List>
 	</AI>
+	<AI Name="EVENT_2101_SUPPLY_NPC3_1_CREAT_AI" UpdateMS="60000" ActiveMessageMapInBattle="1">
+        <List>
+            <ToolScp Scp="SAI_FUNC_DIRECT" Client="NO" UseSleep="NO">
+                <Str Str="EVENT_2101_SUPPLY_NPC3_CREAT"/>
+            </ToolScp>
+        </List>
+        <StartList>
+            <ToolScp Scp="EnableAIOutOfPC" Client="NO" UseSleep="NO"/>
+        </StartList>
+    </AI>
 	<AI Name="EVENT_2011_5TH_FIREWORK_NPC_AI" UpdateMS="5000" ActiveMessageMapInBattle="1">
 		<List>
 			<ToolScp Scp="SAI_FUNC2_DIRECT" Client="NO" UseSleep="NO">
 				<Str Str="EVENT_2011_5TH_FIREWORK_NPC_AI_UPDATE"/>
 			</ToolScp>
 		</List>
+	</AI>
+	<AI Name="EVENT_2101_SUPPLY_NPC_AI" UpdateMS="1000" ActiveMessageMapInBattle="1">
+		<List>
+			<ToolScp Scp="SAI_FUNC_DIRECT" Client="NO" UseSleep="NO">
+				<Str Str="EVENT_2101_SUPPLY_NPC_AI_UPDATE"/>
+			</ToolScp>
+		</List>
+		<StartList>
+			<ToolScp Scp="SAI_FUNC2_DIRECT" Client="NO" UseSleep="NO">
+				<Str Str="EVENT_2101_SUPPLY_NPC_AI_BORN"/>
+			</ToolScp>
+		</StartList>
 	</AI>
 	<AI Name="EVENT_CURSED_COAST_POTAL" ActiveMessageMapInBattle="1">
 		<StartList>
@@ -25411,6 +25433,13 @@ if self.HP == 0 then return 1; else return 0; end;">
 		</List>
 	</AI>
 	<AI Name="companion_pet_winter_rabbit" ActiveMessageMapInBattle="1">
+		<List>
+			<ToolScp Scp="SAI_FUNC2_DIRECT_SLEEP" Client="NO" UseSleep="YES">
+				<Str Str="PET_LOOP_AI"/>
+			</ToolScp>
+		</List>
+	</AI>
+	<AI Name="companion_pet_twnpanda" ActiveMessageMapInBattle="1">
 		<List>
 			<ToolScp Scp="SAI_FUNC2_DIRECT_SLEEP" Client="NO" UseSleep="YES">
 				<Str Str="PET_LOOP_AI"/>

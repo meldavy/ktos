@@ -91,16 +91,10 @@ function CHAT_SET_TO_TITLENAME(chatType, targetName)
 	end;
 		
 	local width = chatEditCtrl:GetOriginalWidth() - titleCtrl:GetWidth() - btn_ChatType:GetWidth();
-	chatEditCtrl:Resize(width, chatEditCtrl:GetOriginalHeight());
+	chatEditCtrl:Resize(width, chatEditCtrl:GetOriginalHeight());	
+	chatEditCtrl:SetOffset(offsetX, chatEditCtrl:GetOriginalY());
+end		
 	
-	if config.GetServiceNation() == "GLOBAL" then
-	chatEditCtrl:SetOffset(offsetX+20, chatEditCtrl:GetOriginalY());	
-	else
-			chatEditCtrl:SetOffset(offsetX, chatEditCtrl:GetOriginalY());	
-	end		
-	
-end
-
 
 -- 채팅창의 이모티콘선택창과 옵션창의 Open 스크립트
 --{

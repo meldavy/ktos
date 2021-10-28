@@ -805,70 +805,6 @@
             </Trigger>
         </TriggerList>
     </SpcItem>
-    <SpcItem Name="BRC03_109">
-        <TriggerList Act="UnEquip">
-            <Trigger>
-                <ExecList>
-                    <ToolScp Scp="SPCI_BUFF_EQUIPITEM" Client="NO" UseSleep="NO">
-                        <Str Str="BRC03_109_buff"/>
-                        <Num Num="1"/>
-                        <Num Num="0"/>
-                        <Num Num="0"/>
-                        <Num Num="-1"/>
-                        <Num Num="100"/>
-                        <Num Num="-1"/>
-                    </ToolScp>
-                </ExecList>
-            </Trigger>
-        </TriggerList>
-        <TriggerList Act="Equip">
-            <Trigger>
-                <ExecList>
-                    <ToolScp Scp="SPCI_BUFF_EQUIPITEM" Client="NO" UseSleep="NO">
-                        <Str Str="BRC03_109_buff"/>
-                        <Num Num="1"/>
-                        <Num Num="0"/>
-                        <Num Num="0"/>
-                        <Num Num="1"/>
-                        <Num Num="100"/>
-                        <Num Num="-1"/>
-                    </ToolScp>
-                </ExecList>
-            </Trigger>
-        </TriggerList>
-    </SpcItem>
-    <SpcItem Name="NECK03_107">
-        <TriggerList Act="UnEquip">
-            <Trigger>
-                <ExecList>
-                    <ToolScp Scp="SPCI_BUFF_EQUIPITEM" Client="NO" UseSleep="NO">
-                        <Str Str="NECK03_107_buff"/>
-                        <Num Num="1"/>
-                        <Num Num="0"/>
-                        <Num Num="0"/>
-                        <Num Num="-1"/>
-                        <Num Num="100"/>
-                        <Num Num="-1"/>
-                    </ToolScp>
-                </ExecList>
-            </Trigger>
-        </TriggerList>
-        <TriggerList Act="Equip">
-            <Trigger>
-                <ExecList>
-                    <ToolScp Scp="SPCI_BUFF_EQUIPITEM" Client="NO" UseSleep="NO">
-                        <Str Str="NECK03_107_buff"/>
-                        <Num Num="1"/>
-                        <Num Num="0"/>
-                        <Num Num="0"/>
-                        <Num Num="1"/>
-                        <Num Num="100"/>
-                        <Num Num="-1"/>
-                    </ToolScp>
-                </ExecList>
-            </Trigger>
-        </TriggerList>
-    </SpcItem>
     <SpcItem Name="Effect_Stamp_Rabbit">
         <TriggerList Act="UnEquip">
             <Trigger>
@@ -10884,6 +10820,41 @@ end"/>
 			</Trigger>
 		</TriggerList>
 	</SpcItem>
+	<SpcItem Name="Effect_Bamboo_twnpanda">
+		<TriggerList Act="Equip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="SPCI_BUFF_EQUIPITEM" Client="NO" UseSleep="NO">
+						<Str Str="ITEM_EFFECT_TWNPANDA_PRE"/>
+						<Num Num="1"/>
+						<Num Num="0"/>
+						<Num Num="0"/>
+						<Num Num="1"/>
+						<Num Num="100"/>
+						<Num Num="-1"/>
+					</ToolScp>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="UnEquip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="SPCI_REMOVE_BUFF_UNEQUIP" Client="NO" UseSleep="NO">
+						<Str Str="ITEM_EFFECT_TWNPANDA"/>
+					</ToolScp>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="UnEquip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="SPCI_REMOVE_BUFF_UNEQUIP" Client="NO" UseSleep="NO">
+						<Str Str="ITEM_EFFECT_TWNPANDA_PRE"/>
+					</ToolScp>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+	</SpcItem>
     <SpcItem Name="Effect_ep12wedding">
         <TriggerList Act="Equip">
             <Trigger>
@@ -14731,4 +14702,24 @@ end"/>
             </Trigger>
         </TriggerList>
     </SpcItem>
+    <SpcItem Name="Seal_2021_NewYear">
+		<TriggerList Act="Equip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="SPCI_SEAL_EQUIP_ADD_EXPROP_NUM" Client="NO" UseSleep="NO"/>
+					<ToolScp Scp="SCR_EQUIP_ITEM_2021_SEAL" Client="NO" UseSleep="NO"/>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="UnEquip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="SPCI_SEAL_UNEQUIP_ADD_EXPROP_NUM" Client="NO" UseSleep="NO"/>
+					<ToolScp Scp="SPCI_REMOVE_BUFF_UNEQUIP" Client="NO" UseSleep="NO">
+						<Str Str="premium_seal_2021_buff"/>
+					</ToolScp>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+	</SpcItem>
 </SpcItemList>

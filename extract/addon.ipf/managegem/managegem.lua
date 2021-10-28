@@ -116,6 +116,11 @@ function ADD_ITEM_TO_MANAGEGEM_FROM_INV(item)
 		return;
 	end
 
+	if item.ItemGrade >= 6 then
+		ui.MsgBox(ScpArgMsg("IMPOSSIBLE_ITEM"))
+		return
+	end
+
 	local id = GetIESID(item);
 	local invItem = session.GetInvItemByGuid(id);
 	if invItem == nil then
@@ -384,6 +389,10 @@ function EXEC_MAKE_NEW_SOCKET(checkRebuildFlag)
 	local grade = TryGetProp(itemobj,"ItemGrade");
 	if grade == nil then
 		return 0;
+	end
+
+	if grade >= 6 then
+		return
 	end
 
 	local price = GET_MAKE_SOCKET_PRICE(lv, grade, nextSlotIdx, GET_COLONY_TAX_RATE_CURRENT_MAP());

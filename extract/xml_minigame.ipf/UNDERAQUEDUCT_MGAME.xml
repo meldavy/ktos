@@ -242,11 +242,19 @@
             </Stage>
             <Stage Name="End" AutoStart="0">
                 <StartScpList>
+                    <ToolScp Scp="MGAME_SUCCESS_STAGE_SCP" Client="NO" UseSleep="NO">
+                        <Str Str="FreeDungeon"/>
+                    </ToolScp>
                     <ToolScp Scp="MGAME_CUSTOM_OPTION_CHECK" Client="NO" UseSleep="NO">
                         <Num Num="-1"/>
                     </ToolScp>
                     <ToolScp Scp="MGAME_CONTENT_LOG_STR" Client="NO" UseSleep="NO">
                         <Str Str="SoloRaid_Underaqueduct"/>
+                    </ToolScp>
+                    <ToolScp Scp="MGAME_SET_DM_ICON" Client="NO" UseSleep="NO">
+                        <Str Str="머즈루스 처치에 성공하였습니다.{nl}10초 후 선착장 방향 포탈이 생성됩니다."/>
+                        <Str Str="scroll"/>
+                        <Num Num="10"/>
                     </ToolScp>
                 </StartScpList>
                 <ObjList/>
@@ -269,15 +277,6 @@
                             </ToolScp>
                             <ToolScp Scp="MGAME_END" Client="NO" UseSleep="NO">
                                 <Num Num="1"/>
-                            </ToolScp>
-                        </execList>
-                    </Event>
-                    <Event execCount="1" eventName="END_MSG">
-                        <execList>
-                            <ToolScp Scp="MGAME_MSG_ICON" Client="YES" UseSleep="NO">
-                                <Str Str="머즈루스 처치에 성공하였습니다.{nl}10초 후 선착장 방향 포탈이 생성됩니다."/>
-                                <Str Str="scroll"/>
-                                <Num Num="10"/>
                             </ToolScp>
                         </execList>
                     </Event>

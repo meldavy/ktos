@@ -1970,6 +1970,10 @@ function INVENTORY_RBDC_ITEMUSE(frame, object, argStr, argNum)
 			ui.SysMsg(ClMsg("LegendReinforceCard_Not_Equip"));
 			return
 		end
+		if groupNameStr == "REINFORCE_GODDESS_CARD" then
+			ui.SysMsg(ClMsg("GoddessReinforceCard_Not_Equip"));
+			return
+		end
 		if goddesscardFrame:IsVisible() == 1 and groupNameStr=="GODDESS" then
 			local goddesscardSlot = GET_CHILD_RECURSIVELY(goddesscardFrame,'cardSlot');
 			GODDESSCARD_SLOT_EQUIP(goddesscardSlot, invitem, groupNameStr)

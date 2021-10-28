@@ -162,8 +162,8 @@ end
 
 -- 경험치 재료
 shared_item_relic.get_exp_material_name = function()
-    local name = 'Relic_exp_token_refine'
-    return name
+    local name_list = { 'Relic_exp_token_refine', 'Relic_exp_token_refine_Trade', }
+    return name_list
 end
 
 shared_item_relic.get_exp_material_value = function()

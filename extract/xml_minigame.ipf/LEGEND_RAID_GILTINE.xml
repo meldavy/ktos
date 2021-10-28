@@ -31,6 +31,9 @@
             </Stage>
             <Stage Name="Success" AutoStart="0">
                 <StartScpList>
+                    <ToolScp Scp="MGAME_SUCCESS_STAGE_SCP" Client="NO" UseSleep="NO">
+                        <Str Str="LegendRaid"/>
+                    </ToolScp>
                     <ToolScp Scp="MGAME_GIVE_ADVENTURE_BOOK_CLEAR_POINT" Client="NO" UseSleep="NO">
                         <Str Str="Legend_Raid_Giltine"/>
                     </ToolScp>
@@ -624,7 +627,7 @@
                         <execList>
                             <ToolScp Scp="GAME_ST_EVT_EXEC_VALUE" Client="NO" UseSleep="NO">
                                 <Str Str="lumberjack_interval_limit"/>
-                                <Num Num="160"/>
+                                <Num Num="100"/>
                             </ToolScp>
                             <ToolScp Scp="MGAME_EVT_SCP_TO_MON_CMD" Client="NO" UseSleep="NO">
                                 <MGameObj List="Boss_Giltine/0"/>
@@ -652,7 +655,7 @@
                         <execList>
                             <ToolScp Scp="GAME_ST_EVT_EXEC_VALUE" Client="NO" UseSleep="NO">
                                 <Str Str="lumberjack_interval_limit"/>
-                                <Num Num="160"/>
+                                <Num Num="100"/>
                             </ToolScp>
                             <ToolScp Scp="MGAME_EVT_SCP_TO_MON_CMD" Client="NO" UseSleep="NO">
                                 <MGameObj List="Boss_Giltine/0"/>
@@ -680,7 +683,7 @@
                         <execList>
                             <ToolScp Scp="GAME_ST_EVT_EXEC_VALUE" Client="NO" UseSleep="NO">
                                 <Str Str="lumberjack_interval_limit"/>
-                                <Num Num="160"/>
+                                <Num Num="100"/>
                             </ToolScp>
                             <ToolScp Scp="MGAME_EVT_SCP_TO_MON_CMD" Client="NO" UseSleep="NO">
                                 <MGameObj List="Boss_Giltine/1"/>
@@ -708,7 +711,7 @@
                         <execList>
                             <ToolScp Scp="GAME_ST_EVT_EXEC_VALUE" Client="NO" UseSleep="NO">
                                 <Str Str="lumberjack_interval_limit"/>
-                                <Num Num="160"/>
+                                <Num Num="100"/>
                             </ToolScp>
                             <ToolScp Scp="MGAME_EVT_SCP_TO_MON_CMD" Client="NO" UseSleep="NO">
                                 <MGameObj List="Boss_Giltine/1"/>
@@ -832,7 +835,7 @@
                         <execList>
                             <ToolScp Scp="GAME_ST_EVT_EXEC_VALUE" Client="NO" UseSleep="NO">
                                 <Str Str="lumberjack_interval_limit"/>
-                                <Num Num="160"/>
+                                <Num Num="100"/>
                             </ToolScp>
                             <ToolScp Scp="MGAME_EVT_SCP_TO_MON_CMD" Client="NO" UseSleep="NO">
                                 <MGameObj List="Boss_Giltine/0"/>
@@ -860,7 +863,7 @@
                         <execList>
                             <ToolScp Scp="GAME_ST_EVT_EXEC_VALUE" Client="NO" UseSleep="NO">
                                 <Str Str="lumberjack_interval_limit"/>
-                                <Num Num="160"/>
+                                <Num Num="100"/>
                             </ToolScp>
                             <ToolScp Scp="MGAME_EVT_SCP_TO_MON_CMD" Client="NO" UseSleep="NO">
                                 <MGameObj List="Boss_Giltine/1"/>
@@ -943,9 +946,12 @@
                                 <MGameObj List="Boss_Giltine/0"/>
                                 <Str Str="SCR_GILTINE_DARK_RED_THYPOON_START"/>
                             </ToolScp>
+                            <ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
+                                <Str Str="Step1(95-76)"/>
+                            </ToolScp>
                         </execList>
                     </Event>
-                    <Event execMS="165000" eventName="Step1(95-76)">
+                    <Event execMS="160000" eventName="Step1(95-76)" execWithStart="0" isEnabled="0">
                         <condList>
                             <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
                                 <MGameObj List="Boss_Giltine/0"/>
@@ -991,9 +997,12 @@
                                 <MGameObj List="Boss_Giltine/0"/>
                                 <Str Str="SCR_GILTINE_DARK_RED_THYPOON_START"/>
                             </ToolScp>
+                            <ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
+                                <Str Str="Step2(67-59)"/>
+                            </ToolScp>
                         </execList>
                     </Event>
-                    <Event execMS="165000" eventName="Step2(67-59)">
+                    <Event execMS="160000" eventName="Step2(67-59)" execWithStart="0" isEnabled="0">
                         <condList>
                             <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
                                 <MGameObj List="Boss_Giltine/0"/>
@@ -1039,9 +1048,12 @@
                                 <MGameObj List="Boss_Giltine/0"/>
                                 <Str Str="SCR_GILTINE_DARK_RED_THYPOON_START"/>
                             </ToolScp>
+                            <ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
+                                <Str Str="Step3(44-30)"/>
+                            </ToolScp>
                         </execList>
                     </Event>
-                    <Event execMS="165000" eventName="Step3(44-30)">
+                    <Event execMS="160000" eventName="Step3(44-30)" execWithStart="0" isEnabled="0">
                         <condList>
                             <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
                                 <MGameObj List="Boss_Giltine/0"/>
@@ -1087,9 +1099,12 @@
                                 <MGameObj List="Boss_Giltine/1"/>
                                 <Str Str="SCR_GILTINE_DARK_RED_THYPOON_START"/>
                             </ToolScp>
+                            <ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
+                                <Str Str="AStep1(42-31)"/>
+                            </ToolScp>
                         </execList>
                     </Event>
-                    <Event execMS="165000" eventName="AStep1(42-31)">
+                    <Event execMS="160000" eventName="AStep1(42-31)" execWithStart="0" isEnabled="0">
                         <condList>
                             <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
                                 <MGameObj List="Boss_Giltine/1"/>
@@ -1135,9 +1150,12 @@
                                 <MGameObj List="Boss_Giltine/1"/>
                                 <Str Str="SCR_GILTINE_DARK_RED_THYPOON_START"/>
                             </ToolScp>
+                            <ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
+                                <Str Str="AStep2(20-0)"/>
+                            </ToolScp>
                         </execList>
                     </Event>
-                    <Event execMS="165000" eventName="AStep2(20-0)">
+                    <Event execMS="160000" eventName="AStep2(20-0)" execWithStart="0" isEnabled="0">
                         <condList>
                             <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
                                 <MGameObj List="Boss_Giltine/1"/>
@@ -1188,9 +1206,12 @@
                                 <MGameObj List="Boss_Giltine/0"/>
                                 <Str Str="SCR_GILTINE_HELL_FIRE_START"/>
                             </ToolScp>
+                            <ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
+                                <Str Str="Step1(65-30)"/>
+                            </ToolScp>
                         </execList>
                     </Event>
-                    <Event execMS="280000" eventName="Step1(65-30)">
+                    <Event execMS="240000" eventName="Step1(65-30)" execWithStart="0" isEnabled="0">
                         <condList>
                             <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
                                 <MGameObj List="Boss_Giltine/0"/>
@@ -1236,9 +1257,12 @@
                                 <MGameObj List="Boss_Giltine/1"/>
                                 <Str Str="SCR_GILTINE_HELL_FIRE_START"/>
                             </ToolScp>
+                            <ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
+                                <Str Str="AStep1(47-35)"/>
+                            </ToolScp>
                         </execList>
                     </Event>
-                    <Event execMS="280000" eventName="AStep1(47-35)">
+                    <Event execMS="240000" eventName="AStep1(47-35)" execWithStart="0" isEnabled="0">
                         <condList>
                             <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
                                 <MGameObj List="Boss_Giltine/1"/>
@@ -1284,9 +1308,12 @@
                                 <MGameObj List="Boss_Giltine/1"/>
                                 <Str Str="SCR_GILTINE_HELL_FIRE_START"/>
                             </ToolScp>
+                            <ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
+                                <Str Str="AStep2(20-0)"/>
+                            </ToolScp>
                         </execList>
                     </Event>
-                    <Event execMS="280000" eventName="AStep2(20-0)">
+                    <Event execMS="240000" eventName="AStep2(20-0)" execWithStart="0" isEnabled="0">
                         <condList>
                             <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
                                 <MGameObj List="Boss_Giltine/1"/>
@@ -1315,16 +1342,16 @@
             <Stage Name="PestilenceDamnation" AutoStart="0">
                 <ObjList/>
                 <StageEvents>
-                    <Event execCount="1" eventName="Step1_Precheck" execWithStart="0">
+                    <Event execCount="1" eventName="Step1_Precheck">
                         <condList>
-                            <ToolScp Scp="MGAME_EVT_COND_MONHP_ACCURATE" Client="NO" UseSleep="NO">
+                            <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
                                 <MGameObj List="Boss_Giltine/0"/>
                                 <Num Num="68"/>
                                 <Str Str="UNDER"/>
                                 <Num Num="1"/>
                                 <Str Str="OVER"/>
                             </ToolScp>
-                            <ToolScp Scp="MGAME_EVT_COND_MONHP_ACCURATE" Client="NO" UseSleep="NO">
+                            <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
                                 <MGameObj List="Boss_Giltine/0"/>
                                 <Num Num="58"/>
                                 <Str Str="OVER"/>
@@ -1337,18 +1364,21 @@
                                 <MGameObj List="Boss_Giltine/0"/>
                                 <Str Str="SCR_GILTINE_PESTILENCE_DAMNATION_START"/>
                             </ToolScp>
+                            <ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
+                                <Str Str="Step1(68-58)"/>
+                            </ToolScp>
                         </execList>
                     </Event>
-                    <Event execMS="150000" eventName="Step1(68-58)">
+                    <Event execMS="340000" eventName="Step1(68-58)" execWithStart="0" isEnabled="0">
                         <condList>
-                            <ToolScp Scp="MGAME_EVT_COND_MONHP_ACCURATE" Client="NO" UseSleep="NO">
+                            <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
                                 <MGameObj List="Boss_Giltine/0"/>
                                 <Num Num="68"/>
                                 <Str Str="UNDER"/>
                                 <Num Num="1"/>
                                 <Str Str="OVER"/>
                             </ToolScp>
-                            <ToolScp Scp="MGAME_EVT_COND_MONHP_ACCURATE" Client="NO" UseSleep="NO">
+                            <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
                                 <MGameObj List="Boss_Giltine/0"/>
                                 <Num Num="58"/>
                                 <Str Str="OVER"/>
@@ -1365,14 +1395,14 @@
                     </Event>
                     <Event execCount="1" eventName="Step2_Precheck">
                         <condList>
-                            <ToolScp Scp="MGAME_EVT_COND_MONHP_ACCURATE" Client="NO" UseSleep="NO">
+                            <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
                                 <MGameObj List="Boss_Giltine/0"/>
                                 <Num Num="45"/>
                                 <Str Str="UNDER"/>
                                 <Num Num="1"/>
                                 <Str Str="OVER"/>
                             </ToolScp>
-                            <ToolScp Scp="MGAME_EVT_COND_MONHP_ACCURATE" Client="NO" UseSleep="NO">
+                            <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
                                 <MGameObj List="Boss_Giltine/0"/>
                                 <Num Num="30"/>
                                 <Str Str="OVER"/>
@@ -1385,18 +1415,21 @@
                                 <MGameObj List="Boss_Giltine/0"/>
                                 <Str Str="SCR_GILTINE_PESTILENCE_DAMNATION_START"/>
                             </ToolScp>
+                            <ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
+                                <Str Str="Step2(45-30)"/>
+                            </ToolScp>
                         </execList>
                     </Event>
-                    <Event execMS="150000" eventName="Step2(45-30)">
+                    <Event execMS="340000" eventName="Step2(45-30)" execWithStart="0" isEnabled="0">
                         <condList>
-                            <ToolScp Scp="MGAME_EVT_COND_MONHP_ACCURATE" Client="NO" UseSleep="NO">
+                            <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
                                 <MGameObj List="Boss_Giltine/0"/>
                                 <Num Num="45"/>
                                 <Str Str="UNDER"/>
                                 <Num Num="1"/>
                                 <Str Str="OVER"/>
                             </ToolScp>
-                            <ToolScp Scp="MGAME_EVT_COND_MONHP_ACCURATE" Client="NO" UseSleep="NO">
+                            <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
                                 <MGameObj List="Boss_Giltine/0"/>
                                 <Num Num="30"/>
                                 <Str Str="OVER"/>
@@ -1413,14 +1446,14 @@
                     </Event>
                     <Event execCount="1" eventName="AStep1_Precheck">
                         <condList>
-                            <ToolScp Scp="MGAME_EVT_COND_MONHP_ACCURATE" Client="NO" UseSleep="NO">
+                            <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
                                 <MGameObj List="Boss_Giltine/1"/>
                                 <Num Num="42"/>
                                 <Str Str="UNDER"/>
                                 <Num Num="1"/>
                                 <Str Str="OVER"/>
                             </ToolScp>
-                            <ToolScp Scp="MGAME_EVT_COND_MONHP_ACCURATE" Client="NO" UseSleep="NO">
+                            <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
                                 <MGameObj List="Boss_Giltine/1"/>
                                 <Num Num="33"/>
                                 <Str Str="OVER"/>
@@ -1433,18 +1466,21 @@
                                 <MGameObj List="Boss_Giltine/1"/>
                                 <Str Str="SCR_GILTINE_PESTILENCE_DAMNATION_START"/>
                             </ToolScp>
+                            <ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
+                                <Str Str="AStep1(42-33)"/>
+                            </ToolScp>
                         </execList>
                     </Event>
-                    <Event execMS="150000" eventName="AStep1(42-33)">
+                    <Event execMS="340000" eventName="AStep1(42-33)" execWithStart="0" isEnabled="0">
                         <condList>
-                            <ToolScp Scp="MGAME_EVT_COND_MONHP_ACCURATE" Client="NO" UseSleep="NO">
+                            <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
                                 <MGameObj List="Boss_Giltine/1"/>
                                 <Num Num="42"/>
                                 <Str Str="UNDER"/>
                                 <Num Num="1"/>
                                 <Str Str="OVER"/>
                             </ToolScp>
-                            <ToolScp Scp="MGAME_EVT_COND_MONHP_ACCURATE" Client="NO" UseSleep="NO">
+                            <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
                                 <MGameObj List="Boss_Giltine/1"/>
                                 <Num Num="33"/>
                                 <Str Str="OVER"/>
@@ -1461,14 +1497,14 @@
                     </Event>
                     <Event execCount="1" eventName="AStep2_Precheck">
                         <condList>
-                            <ToolScp Scp="MGAME_EVT_COND_MONHP_ACCURATE" Client="NO" UseSleep="NO">
+                            <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
                                 <MGameObj List="Boss_Giltine/1"/>
                                 <Num Num="23"/>
                                 <Str Str="UNDER"/>
                                 <Num Num="1"/>
                                 <Str Str="OVER"/>
                             </ToolScp>
-                            <ToolScp Scp="MGAME_EVT_COND_MONHP_ACCURATE" Client="NO" UseSleep="NO">
+                            <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
                                 <MGameObj List="Boss_Giltine/1"/>
                                 <Num Num="18"/>
                                 <Str Str="OVER"/>
@@ -1481,18 +1517,21 @@
                                 <MGameObj List="Boss_Giltine/1"/>
                                 <Str Str="SCR_GILTINE_PESTILENCE_DAMNATION_START"/>
                             </ToolScp>
+                            <ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
+                                <Str Str="AStep2(23-18)"/>
+                            </ToolScp>
                         </execList>
                     </Event>
-                    <Event execMS="150000" eventName="AStep2(23-18)">
+                    <Event execMS="340000" eventName="AStep2(23-18)" execWithStart="0" isEnabled="0">
                         <condList>
-                            <ToolScp Scp="MGAME_EVT_COND_MONHP_ACCURATE" Client="NO" UseSleep="NO">
+                            <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
                                 <MGameObj List="Boss_Giltine/1"/>
                                 <Num Num="23"/>
                                 <Str Str="UNDER"/>
                                 <Num Num="1"/>
                                 <Str Str="OVER"/>
                             </ToolScp>
-                            <ToolScp Scp="MGAME_EVT_COND_MONHP_ACCURATE" Client="NO" UseSleep="NO">
+                            <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
                                 <MGameObj List="Boss_Giltine/1"/>
                                 <Num Num="18"/>
                                 <Str Str="OVER"/>
@@ -1509,14 +1548,14 @@
                     </Event>
                     <Event execCount="1" eventName="AStep3_Precheck">
                         <condList>
-                            <ToolScp Scp="MGAME_EVT_COND_MONHP_ACCURATE" Client="NO" UseSleep="NO">
+                            <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
                                 <MGameObj List="Boss_Giltine/1"/>
                                 <Num Num="12"/>
                                 <Str Str="UNDER"/>
                                 <Num Num="1"/>
                                 <Str Str="OVER"/>
                             </ToolScp>
-                            <ToolScp Scp="MGAME_EVT_COND_MONHP_ACCURATE" Client="NO" UseSleep="NO">
+                            <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
                                 <MGameObj List="Boss_Giltine/1"/>
                                 <Num Num="0"/>
                                 <Str Str="OVER"/>
@@ -1529,18 +1568,21 @@
                                 <MGameObj List="Boss_Giltine/1"/>
                                 <Str Str="SCR_GILTINE_PESTILENCE_DAMNATION_START"/>
                             </ToolScp>
+                            <ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
+                                <Str Str="AStep3(12-0)"/>
+                            </ToolScp>
                         </execList>
                     </Event>
-                    <Event execMS="150000" eventName="AStep3(12-0)">
+                    <Event execMS="340000" eventName="AStep3(12-0)" execWithStart="0" isEnabled="0">
                         <condList>
-                            <ToolScp Scp="MGAME_EVT_COND_MONHP_ACCURATE" Client="NO" UseSleep="NO">
+                            <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
                                 <MGameObj List="Boss_Giltine/1"/>
                                 <Num Num="12"/>
                                 <Str Str="UNDER"/>
                                 <Num Num="1"/>
                                 <Str Str="OVER"/>
                             </ToolScp>
-                            <ToolScp Scp="MGAME_EVT_COND_MONHP_ACCURATE" Client="NO" UseSleep="NO">
+                            <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
                                 <MGameObj List="Boss_Giltine/1"/>
                                 <Num Num="0"/>
                                 <Str Str="OVER"/>
@@ -1582,9 +1624,12 @@
                                 <MGameObj List="Boss_Giltine/0"/>
                                 <Str Str="SCR_GILTINE_DEMONICS_PRANK_START"/>
                             </ToolScp>
+                            <ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
+                                <Str Str="Step1(86-70)"/>
+                            </ToolScp>
                         </execList>
                     </Event>
-                    <Event execMS="180000" eventName="Step1(86-70)">
+                    <Event execMS="355000" eventName="Step1(86-70)" execWithStart="0" isEnabled="0">
                         <condList>
                             <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
                                 <MGameObj List="Boss_Giltine/0"/>
@@ -1630,9 +1675,12 @@
                                 <MGameObj List="Boss_Giltine/0"/>
                                 <Str Str="SCR_GILTINE_DEMONICS_PRANK_START"/>
                             </ToolScp>
+                            <ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
+                                <Str Str="Step2(60-50)"/>
+                            </ToolScp>
                         </execList>
                     </Event>
-                    <Event execMS="180000" eventName="Step2(60-50)">
+                    <Event execMS="355000" eventName="Step2(60-50)" execWithStart="0" isEnabled="0">
                         <condList>
                             <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
                                 <MGameObj List="Boss_Giltine/0"/>
@@ -1678,9 +1726,12 @@
                                 <MGameObj List="Boss_Giltine/0"/>
                                 <Str Str="SCR_GILTINE_DEMONICS_PRANK_START"/>
                             </ToolScp>
+                            <ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
+                                <Str Str="Step3(40-30)"/>
+                            </ToolScp>
                         </execList>
                     </Event>
-                    <Event execMS="180000" eventName="Step3(40-30)">
+                    <Event execMS="355000" eventName="Step3(40-30)" execWithStart="0" isEnabled="0">
                         <condList>
                             <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
                                 <MGameObj List="Boss_Giltine/0"/>
@@ -1726,9 +1777,12 @@
                                 <MGameObj List="Boss_Giltine/1"/>
                                 <Str Str="SCR_GILTINE_DEMONICS_PRANK_START"/>
                             </ToolScp>
+                            <ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
+                                <Str Str="AStep1(49-40)"/>
+                            </ToolScp>
                         </execList>
                     </Event>
-                    <Event execMS="180000" eventName="AStep1(49-40)">
+                    <Event execMS="355000" eventName="AStep1(49-40)" execWithStart="0" isEnabled="0">
                         <condList>
                             <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
                                 <MGameObj List="Boss_Giltine/1"/>
@@ -1774,9 +1828,12 @@
                                 <MGameObj List="Boss_Giltine/1"/>
                                 <Str Str="SCR_GILTINE_DEMONICS_PRANK_START"/>
                             </ToolScp>
+                            <ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
+                                <Str Str="AStep2(31-21)"/>
+                            </ToolScp>
                         </execList>
                     </Event>
-                    <Event execMS="180000" eventName="AStep2(30-21)">
+                    <Event execMS="355000" eventName="AStep2(30-21)" execWithStart="0" isEnabled="0">
                         <condList>
                             <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
                                 <MGameObj List="Boss_Giltine/1"/>
@@ -1822,9 +1879,12 @@
                                 <MGameObj List="Boss_Giltine/1"/>
                                 <Str Str="SCR_GILTINE_DEMONICS_PRANK_START"/>
                             </ToolScp>
+                            <ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
+                                <Str Str="AStep3(14-0)"/>
+                            </ToolScp>
                         </execList>
                     </Event>
-                    <Event execMS="180000" eventName="AStep3(14-0)">
+                    <Event execMS="355000" eventName="AStep3(14-0)" execWithStart="0" isEnabled="0">
                         <condList>
                             <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
                                 <MGameObj List="Boss_Giltine/1"/>
@@ -1875,9 +1935,12 @@
                                 <MGameObj List="Boss_Giltine/0"/>
                                 <Str Str="SCR_GILTINE_DEMONICS_FORCE_CONCORDAT_START"/>
                             </ToolScp>
+                            <ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
+                                <Str Str="Step1(83-76)"/>
+                            </ToolScp>
                         </execList>
                     </Event>
-                    <Event execMS="180000" eventName="Step1(83-76)">
+                    <Event execMS="200000" eventName="Step1(83-76)" execWithStart="0" isEnabled="0">
                         <condList>
                             <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
                                 <MGameObj List="Boss_Giltine/0"/>
@@ -1923,9 +1986,12 @@
                                 <MGameObj List="Boss_Giltine/0"/>
                                 <Str Str="SCR_GILTINE_DEMONICS_FORCE_CONCORDAT_START"/>
                             </ToolScp>
+                            <ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
+                                <Str Str="Step2(62-52)"/>
+                            </ToolScp>
                         </execList>
                     </Event>
-                    <Event execMS="180000" eventName="Step2(62-52)">
+                    <Event execMS="200000" eventName="Step2(62-52)" execWithStart="0" isEnabled="0">
                         <condList>
                             <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
                                 <MGameObj List="Boss_Giltine/0"/>
@@ -1937,6 +2003,57 @@
                             <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
                                 <MGameObj List="Boss_Giltine/0"/>
                                 <Num Num="52"/>
+                                <Str Str="OVER"/>
+                                <Num Num="1"/>
+                                <Str Str="OVER"/>
+                            </ToolScp>
+                        </condList>
+                        <execList>
+                            <ToolScp Scp="MGAME_EVT_SCP_TO_MON_CMD" Client="NO" UseSleep="NO">
+                                <MGameObj List="Boss_Giltine/0"/>
+                                <Str Str="SCR_GILTINE_DEMONICS_FORCE_CONCORDAT_START"/>
+                            </ToolScp>
+                        </execList>
+                    </Event>
+                    <Event execCount="1" eventName="Step3_Precheck">
+                        <condList>
+                            <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
+                                <MGameObj List="Boss_Giltine/0"/>
+                                <Num Num="42"/>
+                                <Str Str="UNDER"/>
+                                <Num Num="1"/>
+                                <Str Str="OVER"/>
+                            </ToolScp>
+                            <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
+                                <MGameObj List="Boss_Giltine/0"/>
+                                <Num Num="30"/>
+                                <Str Str="OVER"/>
+                                <Num Num="1"/>
+                                <Str Str="OVER"/>
+                            </ToolScp>
+                        </condList>
+                        <execList>
+                            <ToolScp Scp="MGAME_EVT_SCP_TO_MON_CMD" Client="NO" UseSleep="NO">
+                                <MGameObj List="Boss_Giltine/0"/>
+                                <Str Str="SCR_GILTINE_DEMONICS_FORCE_CONCORDAT_START"/>
+                            </ToolScp>
+                            <ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
+                                <Str Str="Step3(42-30)"/>
+                            </ToolScp>
+                        </execList>
+                    </Event>
+                    <Event execMS="200000" eventName="Step3(42-30)" execWithStart="0" isEnabled="0">
+                        <condList>
+                            <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
+                                <MGameObj List="Boss_Giltine/0"/>
+                                <Num Num="42"/>
+                                <Str Str="UNDER"/>
+                                <Num Num="1"/>
+                                <Str Str="OVER"/>
+                            </ToolScp>
+                            <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
+                                <MGameObj List="Boss_Giltine/0"/>
+                                <Num Num="30"/>
                                 <Str Str="OVER"/>
                                 <Num Num="1"/>
                                 <Str Str="OVER"/>
@@ -1971,9 +2088,12 @@
                                 <MGameObj List="Boss_Giltine/1"/>
                                 <Str Str="SCR_GILTINE_DEMONICS_FORCE_CONCORDAT_START"/>
                             </ToolScp>
+                            <ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
+                                <Str Str="AStep1(33-19)"/>
+                            </ToolScp>
                         </execList>
                     </Event>
-                    <Event execMS="180000" eventName="AStep1(33-19)">
+                    <Event execMS="200000" eventName="AStep1(33-19)" execWithStart="0" isEnabled="0">
                         <condList>
                             <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
                                 <MGameObj List="Boss_Giltine/1"/>
@@ -2019,9 +2139,12 @@
                                 <MGameObj List="Boss_Giltine/1"/>
                                 <Str Str="SCR_GILTINE_DEMONICS_FORCE_CONCORDAT_START"/>
                             </ToolScp>
+                            <ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
+                                <Str Str="AStep2(8-0)"/>
+                            </ToolScp>
                         </execList>
                     </Event>
-                    <Event execMS="180000" eventName="AStep2(8-0)">
+                    <Event execMS="200000" eventName="AStep2(8-0)" execWithStart="0" isEnabled="0">
                         <condList>
                             <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
                                 <MGameObj List="Boss_Giltine/1"/>
@@ -2045,63 +2168,44 @@
                             </ToolScp>
                         </execList>
                     </Event>
-                    <Event execCount="1" eventName="Step3_Precheck">
-                        <condList>
-                            <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
-                                <MGameObj List="Boss_Giltine/0"/>
-                                <Num Num="42"/>
-                                <Str Str="UNDER"/>
-                                <Num Num="1"/>
-                                <Str Str="OVER"/>
-                            </ToolScp>
-                            <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
-                                <MGameObj List="Boss_Giltine/0"/>
-                                <Num Num="30"/>
-                                <Str Str="OVER"/>
-                                <Num Num="1"/>
-                                <Str Str="OVER"/>
-                            </ToolScp>
-                        </condList>
-                        <execList>
-                            <ToolScp Scp="MGAME_EVT_SCP_TO_MON_CMD" Client="NO" UseSleep="NO">
-                                <MGameObj List="Boss_Giltine/0"/>
-                                <Str Str="SCR_GILTINE_DEMONICS_FORCE_CONCORDAT_START"/>
-                            </ToolScp>
-                        </execList>
-                    </Event>
-                    <Event execMS="180000" eventName="Step3(42-30)">
-                        <condList>
-                            <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
-                                <MGameObj List="Boss_Giltine/0"/>
-                                <Num Num="42"/>
-                                <Str Str="UNDER"/>
-                                <Num Num="1"/>
-                                <Str Str="OVER"/>
-                            </ToolScp>
-                            <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
-                                <MGameObj List="Boss_Giltine/0"/>
-                                <Num Num="30"/>
-                                <Str Str="OVER"/>
-                                <Num Num="1"/>
-                                <Str Str="OVER"/>
-                            </ToolScp>
-                        </condList>
-                        <execList>
-                            <ToolScp Scp="MGAME_EVT_SCP_TO_MON_CMD" Client="NO" UseSleep="NO">
-                                <MGameObj List="Boss_Giltine/0"/>
-                                <Str Str="SCR_GILTINE_DEMONICS_FORCE_CONCORDAT_START"/>
-                            </ToolScp>
-                        </execList>
-                    </Event>
                 </StageEvents>
             </Stage>
             <Stage Name="DemonicsHiddenPower" AutoStart="0">
                 <ObjList>
-                    <Obj Type="Monster" MonType="147500" Pos="471.00#23.86#1833.35" genCount="1" genTime="20000" autoGen="0" autoDestroy="0" objectKey="0" propList="&apos;Dialog&apos; &apos;GILTINE_RAID_DEMONICS_HIDDEN_POWER_MAIN_FIELD_WARP&apos; &apos;Hittable&apos; &apos;NO&apos; &apos;DialogChaseDist&apos; &apos;40&apos; "/>
-                    <Obj Type="Monster" MonType="147500" Pos="-1177.38#24.74#-363.73" genCount="1" genTime="20000" autoGen="0" autoDestroy="0" objectKey="1" propList="&apos;Dialog&apos; &apos;GILTINE_RAID_DEMONICS_HIDDEN_POWER_HIDDEN_FIELD_WARP&apos; &apos;Hittable&apos; &apos;NO&apos; &apos;DialogChaseDist&apos; &apos;40&apos; "/>
+                    <Obj Type="Monster" MonType="147500" Pos="471.00#23.86#1833.35" genCount="1" genTime="20000" autoGen="0" objectKey="0" autoDestroy="0" propList="&apos;Dialog&apos; &apos;GILTINE_RAID_DEMONICS_HIDDEN_POWER_MAIN_FIELD_WARP&apos; &apos;Hittable&apos; &apos;NO&apos; &apos;DialogChaseDist&apos; &apos;40&apos; "/>
+                    <Obj Type="Monster" MonType="147500" Pos="-1177.38#24.74#-363.73" genCount="1" genTime="20000" autoGen="0" objectKey="1" autoDestroy="0" propList="&apos;Dialog&apos; &apos;GILTINE_RAID_DEMONICS_HIDDEN_POWER_HIDDEN_FIELD_WARP&apos; &apos;Hittable&apos; &apos;NO&apos; &apos;DialogChaseDist&apos; &apos;40&apos; "/>
                     <Obj Type="Monster" MonType="160040" Pos="-506.64#24.74#-645.48" genCount="1" genTime="20000" autoGen="0" objectKey="2"/>
                 </ObjList>
                 <StageEvents>
+                    <Event execCount="1" eventName="Step1_Setting">
+                        <condList>
+                            <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
+                                <MGameObj List="Boss_Giltine/0"/>
+                                <Num Num="85"/>
+                                <Str Str="UNDER"/>
+                                <Num Num="1"/>
+                                <Str Str="OVER"/>
+                            </ToolScp>
+                            <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
+                                <MGameObj List="Boss_Giltine/0"/>
+                                <Num Num="83"/>
+                                <Str Str="OVER"/>
+                                <Num Num="1"/>
+                                <Str Str="OVER"/>
+                            </ToolScp>
+                            <ToolScp Scp="GAME_ST_EVT_COND_VALUE" Client="NO" UseSleep="NO">
+                                <Str Str="demonics_hidden_power_exec"/>
+                                <Str Str="=="/>
+                                <Num Num="0"/>
+                            </ToolScp>
+                        </condList>
+                        <execList>
+                            <ToolScp Scp="MGAME_EVT_SCP_TO_MON_CMD" Client="NO" UseSleep="NO">
+                                <MGameObj List="Boss_Giltine/0"/>
+                                <Str Str="SCR_GILTINE_DEMONICS_HIDDEN_POWER_START"/>
+                            </ToolScp>
+                        </execList>
+                    </Event>
                     <Event execCount="1" eventName="Step1_PreCheck">
                         <condList>
                             <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
@@ -2167,6 +2271,35 @@
                             <ToolScp Scp="MGAME_EVT_SCP_TO_MON_CMD" Client="NO" UseSleep="NO">
                                 <MGameObj List="DemonicsHiddenPower/2"/>
                                 <Str Str="SCR_GILTINE_DEMONICS_HIDDEN_POWER_OBJECT_START"/>
+                            </ToolScp>
+                        </execList>
+                    </Event>
+                    <Event execCount="1" eventName="Step2_Setting">
+                        <condList>
+                            <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
+                                <MGameObj List="Boss_Giltine/0"/>
+                                <Num Num="62"/>
+                                <Str Str="UNDER"/>
+                                <Num Num="1"/>
+                                <Str Str="OVER"/>
+                            </ToolScp>
+                            <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
+                                <MGameObj List="Boss_Giltine/0"/>
+                                <Num Num="60"/>
+                                <Str Str="OVER"/>
+                                <Num Num="1"/>
+                                <Str Str="OVER"/>
+                            </ToolScp>
+                            <ToolScp Scp="GAME_ST_EVT_COND_VALUE" Client="NO" UseSleep="NO">
+                                <Str Str="demonics_hidden_power_exec"/>
+                                <Str Str="=="/>
+                                <Num Num="0"/>
+                            </ToolScp>
+                        </condList>
+                        <execList>
+                            <ToolScp Scp="MGAME_EVT_SCP_TO_MON_CMD" Client="NO" UseSleep="NO">
+                                <MGameObj List="Boss_Giltine/0"/>
+                                <Str Str="SCR_GILTINE_DEMONICS_HIDDEN_POWER_START"/>
                             </ToolScp>
                         </execList>
                     </Event>
@@ -2238,6 +2371,35 @@
                             </ToolScp>
                         </execList>
                     </Event>
+                    <Event execCount="1" eventName="Step3_Setting">
+                        <condList>
+                            <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
+                                <MGameObj List="Boss_Giltine/0"/>
+                                <Num Num="40"/>
+                                <Str Str="UNDER"/>
+                                <Num Num="1"/>
+                                <Str Str="OVER"/>
+                            </ToolScp>
+                            <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
+                                <MGameObj List="Boss_Giltine/0"/>
+                                <Num Num="38"/>
+                                <Str Str="OVER"/>
+                                <Num Num="1"/>
+                                <Str Str="OVER"/>
+                            </ToolScp>
+                            <ToolScp Scp="GAME_ST_EVT_COND_VALUE" Client="NO" UseSleep="NO">
+                                <Str Str="demonics_hidden_power_exec"/>
+                                <Str Str="=="/>
+                                <Num Num="0"/>
+                            </ToolScp>
+                        </condList>
+                        <execList>
+                            <ToolScp Scp="MGAME_EVT_SCP_TO_MON_CMD" Client="NO" UseSleep="NO">
+                                <MGameObj List="Boss_Giltine/0"/>
+                                <Str Str="SCR_GILTINE_DEMONICS_HIDDEN_POWER_START"/>
+                            </ToolScp>
+                        </execList>
+                    </Event>
                     <Event execCount="1" eventName="Step3_PreCheck">
                         <condList>
                             <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
@@ -2306,18 +2468,18 @@
                             </ToolScp>
                         </execList>
                     </Event>
-                    <Event execCount="1" eventName="Step1_Setting">
+                    <Event execCount="1" eventName="AStep1_Setting">
                         <condList>
                             <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
-                                <MGameObj List="Boss_Giltine/0"/>
-                                <Num Num="85"/>
+                                <MGameObj List="Boss_Giltine/1"/>
+                                <Num Num="34"/>
                                 <Str Str="UNDER"/>
                                 <Num Num="1"/>
                                 <Str Str="OVER"/>
                             </ToolScp>
                             <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
-                                <MGameObj List="Boss_Giltine/0"/>
-                                <Num Num="83"/>
+                                <MGameObj List="Boss_Giltine/1"/>
+                                <Num Num="32"/>
                                 <Str Str="OVER"/>
                                 <Num Num="1"/>
                                 <Str Str="OVER"/>
@@ -2330,65 +2492,7 @@
                         </condList>
                         <execList>
                             <ToolScp Scp="MGAME_EVT_SCP_TO_MON_CMD" Client="NO" UseSleep="NO">
-                                <MGameObj List="Boss_Giltine/0"/>
-                                <Str Str="SCR_GILTINE_DEMONICS_HIDDEN_POWER_START"/>
-                            </ToolScp>
-                        </execList>
-                    </Event>
-                    <Event execCount="1" eventName="Step2_Setting">
-                        <condList>
-                            <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
-                                <MGameObj List="Boss_Giltine/0"/>
-                                <Num Num="62"/>
-                                <Str Str="UNDER"/>
-                                <Num Num="1"/>
-                                <Str Str="OVER"/>
-                            </ToolScp>
-                            <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
-                                <MGameObj List="Boss_Giltine/0"/>
-                                <Num Num="60"/>
-                                <Str Str="OVER"/>
-                                <Num Num="1"/>
-                                <Str Str="OVER"/>
-                            </ToolScp>
-                            <ToolScp Scp="GAME_ST_EVT_COND_VALUE" Client="NO" UseSleep="NO">
-                                <Str Str="demonics_hidden_power_exec"/>
-                                <Str Str="=="/>
-                                <Num Num="0"/>
-                            </ToolScp>
-                        </condList>
-                        <execList>
-                            <ToolScp Scp="MGAME_EVT_SCP_TO_MON_CMD" Client="NO" UseSleep="NO">
-                                <MGameObj List="Boss_Giltine/0"/>
-                                <Str Str="SCR_GILTINE_DEMONICS_HIDDEN_POWER_START"/>
-                            </ToolScp>
-                        </execList>
-                    </Event>
-                    <Event execCount="1" eventName="Step3_Setting">
-                        <condList>
-                            <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
-                                <MGameObj List="Boss_Giltine/0"/>
-                                <Num Num="40"/>
-                                <Str Str="UNDER"/>
-                                <Num Num="1"/>
-                                <Str Str="OVER"/>
-                            </ToolScp>
-                            <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
-                                <MGameObj List="Boss_Giltine/0"/>
-                                <Num Num="38"/>
-                                <Str Str="OVER"/>
-                                <Num Num="1"/>
-                                <Str Str="OVER"/>
-                            </ToolScp>
-                            <ToolScp Scp="GAME_ST_EVT_COND_VALUE" Client="NO" UseSleep="NO">
-                                <Str Str="demonics_hidden_power_exec"/>
-                                <Str Str="=="/>
-                                <Num Num="0"/>
-                            </ToolScp>
-                        </condList>
-                        <execList>
-                            <ToolScp Scp="MGAME_EVT_SCP_TO_MON_CMD" Client="NO" UseSleep="NO">
-                                <MGameObj List="Boss_Giltine/0"/>
+                                <MGameObj List="Boss_Giltine/1"/>
                                 <Str Str="SCR_GILTINE_DEMONICS_HIDDEN_POWER_START"/>
                             </ToolScp>
                         </execList>
@@ -2461,18 +2565,18 @@
                             </ToolScp>
                         </execList>
                     </Event>
-                    <Event execCount="1" eventName="AStep1_Setting">
+                    <Event execCount="1" eventName="AStep2_Setting">
                         <condList>
                             <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
                                 <MGameObj List="Boss_Giltine/1"/>
-                                <Num Num="34"/>
+                                <Num Num="11"/>
                                 <Str Str="UNDER"/>
                                 <Num Num="1"/>
                                 <Str Str="OVER"/>
                             </ToolScp>
                             <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
                                 <MGameObj List="Boss_Giltine/1"/>
-                                <Num Num="32"/>
+                                <Num Num="9"/>
                                 <Str Str="OVER"/>
                                 <Num Num="1"/>
                                 <Str Str="OVER"/>
@@ -2558,35 +2662,6 @@
                             </ToolScp>
                         </execList>
                     </Event>
-                    <Event execCount="1" eventName="AStep2_Setting">
-                        <condList>
-                            <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
-                                <MGameObj List="Boss_Giltine/1"/>
-                                <Num Num="11"/>
-                                <Str Str="UNDER"/>
-                                <Num Num="1"/>
-                                <Str Str="OVER"/>
-                            </ToolScp>
-                            <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
-                                <MGameObj List="Boss_Giltine/1"/>
-                                <Num Num="9"/>
-                                <Str Str="OVER"/>
-                                <Num Num="1"/>
-                                <Str Str="OVER"/>
-                            </ToolScp>
-                            <ToolScp Scp="GAME_ST_EVT_COND_VALUE" Client="NO" UseSleep="NO">
-                                <Str Str="demonics_hidden_power_exec"/>
-                                <Str Str="=="/>
-                                <Num Num="0"/>
-                            </ToolScp>
-                        </condList>
-                        <execList>
-                            <ToolScp Scp="MGAME_EVT_SCP_TO_MON_CMD" Client="NO" UseSleep="NO">
-                                <MGameObj List="Boss_Giltine/1"/>
-                                <Str Str="SCR_GILTINE_DEMONICS_HIDDEN_POWER_START"/>
-                            </ToolScp>
-                        </execList>
-                    </Event>
                 </StageEvents>
             </Stage>
             <Stage Name="ElectricEel" AutoStart="0">
@@ -2614,9 +2689,12 @@
                                 <MGameObj List="Boss_Giltine/0"/>
                                 <Str Str="SCR_GILTINE_ELECTRIC_EEL_START"/>
                             </ToolScp>
+                            <ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
+                                <Str Str="Step1(86-70)"/>
+                            </ToolScp>
                         </execList>
                     </Event>
-                    <Event execMS="180000" eventName="Step1(86-70)">
+                    <Event execMS="210000" eventName="Step1(86-70)" execWithStart="0" isEnabled="0">
                         <condList>
                             <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
                                 <MGameObj List="Boss_Giltine/0"/>
@@ -2662,9 +2740,12 @@
                                 <MGameObj List="Boss_Giltine/0"/>
                                 <Str Str="SCR_GILTINE_ELECTRIC_EEL_START"/>
                             </ToolScp>
+                            <ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
+                                <Str Str="Step2(60-50)"/>
+                            </ToolScp>
                         </execList>
                     </Event>
-                    <Event execMS="180000" eventName="Step2(60-50)">
+                    <Event execMS="210000" eventName="Step2(60-50)" execWithStart="0" isEnabled="0">
                         <condList>
                             <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
                                 <MGameObj List="Boss_Giltine/0"/>
@@ -2710,9 +2791,12 @@
                                 <MGameObj List="Boss_Giltine/0"/>
                                 <Str Str="SCR_GILTINE_ELECTRIC_EEL_START"/>
                             </ToolScp>
+                            <ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
+                                <Str Str="Step3(40-30)"/>
+                            </ToolScp>
                         </execList>
                     </Event>
-                    <Event execMS="180000" eventName="Step3(40-30)">
+                    <Event execMS="210000" eventName="Step3(40-30)" execWithStart="0" isEnabled="0">
                         <condList>
                             <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
                                 <MGameObj List="Boss_Giltine/0"/>
@@ -2758,9 +2842,12 @@
                                 <MGameObj List="Boss_Giltine/1"/>
                                 <Str Str="SCR_GILTINE_ELECTRIC_EEL_START"/>
                             </ToolScp>
+                            <ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
+                                <Str Str="AStep1(49-40)"/>
+                            </ToolScp>
                         </execList>
                     </Event>
-                    <Event execMS="180000" eventName="AStep1(49-40)">
+                    <Event execMS="210000" eventName="AStep1(49-40)" execWithStart="0" isEnabled="0">
                         <condList>
                             <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
                                 <MGameObj List="Boss_Giltine/1"/>
@@ -2806,9 +2893,12 @@
                                 <MGameObj List="Boss_Giltine/1"/>
                                 <Str Str="SCR_GILTINE_ELECTRIC_EEL_START"/>
                             </ToolScp>
+                            <ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
+                                <Str Str="AStep2(30-21)"/>
+                            </ToolScp>
                         </execList>
                     </Event>
-                    <Event execMS="180000" eventName="AStep2(30-21)">
+                    <Event execMS="210000" eventName="AStep2(30-21)" execWithStart="0" isEnabled="0">
                         <condList>
                             <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
                                 <MGameObj List="Boss_Giltine/1"/>
@@ -2854,9 +2944,12 @@
                                 <MGameObj List="Boss_Giltine/1"/>
                                 <Str Str="SCR_GILTINE_ELECTRIC_EEL_START"/>
                             </ToolScp>
+                            <ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
+                                <Str Str="AStep3(14-0)"/>
+                            </ToolScp>
                         </execList>
                     </Event>
-                    <Event execMS="180000" eventName="AStep3(14-0)">
+                    <Event execMS="210000" eventName="AStep3(14-0)" execWithStart="0" isEnabled="0">
                         <condList>
                             <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
                                 <MGameObj List="Boss_Giltine/1"/>
@@ -3132,9 +3225,12 @@
                                 <MGameObj List="Boss_Giltine/0"/>
                                 <Str Str="SCR_GILTINE_DEMONICS_LANCE_START"/>
                             </ToolScp>
+                            <ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
+                                <Str Str="Step1(90-72)"/>
+                            </ToolScp>
                         </execList>
                     </Event>
-                    <Event execMS="260000" eventName="Step1(90-72)">
+                    <Event execMS="280000" eventName="Step1(90-72)" execWithStart="0" isEnabled="0">
                         <condList>
                             <ToolScp Scp="MGAME_EVT_COND_MONHP_ACCURATE" Client="NO" UseSleep="NO">
                                 <MGameObj List="Boss_Giltine/0"/>
@@ -3190,9 +3286,12 @@
                                 <MGameObj List="Boss_Giltine/0"/>
                                 <Str Str="SCR_GILTINE_DEMONICS_LANCE_START"/>
                             </ToolScp>
+                            <ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
+                                <Str Str="Step2(60-32)"/>
+                            </ToolScp>
                         </execList>
                     </Event>
-                    <Event execMS="260000" eventName="Step2(60-32)">
+                    <Event execMS="280000" eventName="Step2(60-32)" execWithStart="0" isEnabled="0">
                         <condList>
                             <ToolScp Scp="MGAME_EVT_COND_MONHP_ACCURATE" Client="NO" UseSleep="NO">
                                 <MGameObj List="Boss_Giltine/0"/>
@@ -3248,9 +3347,12 @@
                                 <MGameObj List="Boss_Giltine/1"/>
                                 <Str Str="SCR_GILTINE_DEMONICS_LANCE_START"/>
                             </ToolScp>
+                            <ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
+                                <Str Str="AStep1(43-29)"/>
+                            </ToolScp>
                         </execList>
                     </Event>
-                    <Event execMS="260000" eventName="AStep1(43-29)">
+                    <Event execMS="280000" eventName="AStep1(43-29)" execWithStart="0" isEnabled="0">
                         <condList>
                             <ToolScp Scp="MGAME_EVT_COND_MONHP_ACCURATE" Client="NO" UseSleep="NO">
                                 <MGameObj List="Boss_Giltine/1"/>
@@ -3306,9 +3408,12 @@
                                 <MGameObj List="Boss_Giltine/1"/>
                                 <Str Str="SCR_GILTINE_DEMONICS_LANCE_START"/>
                             </ToolScp>
+                            <ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
+                                <Str Str="AStep2(18-0)"/>
+                            </ToolScp>
                         </execList>
                     </Event>
-                    <Event execMS="260000" eventName="AStep2(18-0)">
+                    <Event execMS="280000" eventName="AStep2(18-0)" execWithStart="0" isEnabled="0">
                         <condList>
                             <ToolScp Scp="MGAME_EVT_COND_MONHP_ACCURATE" Client="NO" UseSleep="NO">
                                 <MGameObj List="Boss_Giltine/1"/>
@@ -3394,6 +3499,12 @@
                 </StageEvents>
             </Stage>
         </StageList>
+		<EnterList>
+			<ToolScp Scp="MGAME_ZONEENTER_SCRIPT" Client="NO" UseSleep="NO">
+				<Num Num="2"/>
+				<Str Str="SCR_RELIC_SPEND_RP_DOWN_ADDBUFF"/>
+			</ToolScp>
+		</EnterList>
         <WorldInitList>
             <ToolScp Scp="MGAME_INIT_CHANGE_VIEW" Client="NO" UseSleep="NO">
                 <Num Num="1500"/>

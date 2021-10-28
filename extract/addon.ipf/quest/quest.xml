@@ -72,8 +72,9 @@
 		<groupbox name="gb_completeQuestItem" parent="gb_body2" rect="0 0 530 740" margin="0 50 0 0" layout_gravity="left top" draw="false" hittestbox="false" resizebyparent="false" resizebyresolution="false" scrollbar="false" skin="test_frame_midle"/>
 		<groupbox name="completeGbox" parent="gb_completeQuestItem" rect="0 0 530 730" margin="1 0 0 0" layout_gravity="center top" draw="false" hittest="true" hittestbox="true" scrollbar="true"/>
 		<!-- Tab : Relic -->
-		<groupbox name="gb_relic" rect="0 0 550 920" margin="0 40 0 0" layout_gravity="center top" tabname="tab_relic" draw="false" hittestbox="false" resizebyparent="false" resizebyresolution="false" scrollbar="false" skin="test_frame_low"/>
+		<groupbox name="gb_relic" rect="0 0 550 945" margin="0 40 0 0" layout_gravity="center top" tabname="tab_relic" draw="false" hittestbox="false" resizebyparent="false" resizebyresolution="false" scrollbar="false" skin="test_frame_low"/>
 		<groupbox name="gb_body_relic" parent="gb_relic" rect="0 0 530 780" margin="10 85 0 0" layout_gravity="left top" draw="true" hittestbox="false" resizebyparent="false" resizebyresolution="false" scrollbar="false" skin="test_frame_midle"/>
+		<button name="relic_reward_all" parent="gb_relic" rect="0 0 160 50" margin="0 0 0 0" layout_gravity="center bottom" LBtnUpScp="CLICK_RELIC_QUEST_REWARD_ALL" MouseOffAnim="btn_mouseoff" MouseOnAnim="btn_mouseover" caption="{@st41b}보상 수령" skin="test_red_button" oversound="button_cursor_over_2" clicksound="button_click_stats_up" texttooltip="{@st59}획득 가능한 보상을 모두 받습니다.(퀘스트 진행도에 따른 보상은 제외){/}"/>
 		<!-- Relic - Items -->
 		<groupbox name="gb_relicItem" parent="gb_body_relic" rect="0 0 530 780" margin="0 5 0 0" layout_gravity="left top" draw="false" hittestbox="false" resizebyparent="false" resizebyresolution="false" scrollbar="false" skin="test_frame_midle"/>
 		<groupbox name="relicGbox" parent="gb_relicItem" rect="0 0 530 780" margin="1 0 0 0" layout_gravity="center top" draw="false" hittest="true" hittestbox="true" scrollbar="true"/>

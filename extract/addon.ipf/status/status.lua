@@ -1450,7 +1450,11 @@ function STATUS_ATTRIBUTE_VALUE_NEW(pc, opc, frame, gboxctrl, attributeName, y)
         value = get_percent_format(attributeName, value)        
         stat:SetText(value);        
     end
-    
+	
+    if title:GetWidth() >= 350 then
+		title:AdjustFontSizeByWidth(350)
+	end
+	
     controlSet:Resize(controlSet:GetWidth(), stat:GetHeight());
     return y + controlSet:GetHeight();
 end

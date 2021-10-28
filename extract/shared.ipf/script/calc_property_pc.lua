@@ -2414,6 +2414,10 @@ function SCR_Get_MSPD(self)
         if IsBuffApplied(self, 'ITEM_TRINKET_MASINIOS') == 'YES' then
             dashRunAddValue = dashRunAddValue + 2
         end
+	
+		if IsBuffApplied(self, 'premium_seal_2021_buff') == 'YES' and TryGetProp(self, "Lv", 1) < 460 then
+			dashRunAddValue = dashRunAddValue + 6
+		end
 
         local cardDash = GetExProp(self, 'CARD_DASH_SPEED_UP')
 
@@ -2454,7 +2458,7 @@ function SCR_Get_MSPD(self)
         value = 55;
     end
 
-    if IsBuffApplied(self, 'SnipersSerenity_Buff') == 'YES' then
+    if IsBuffApplied(self, 'SnipersSerenity_Buff') == 'YES' and (IsPVPField(self) == 1 or IsPVPServer(self) == 1) then
         if IsBuffApplied(self, 'DesperateDefense_Buff') == 'YES' then
             return math.floor(value);
         else

@@ -95,6 +95,8 @@ function ITEMCRAFT_CLOSE(frame)
 		return;
 	end
 	
+	frame:StopUpdateScript("EARTHTOWERSHOP_REMAIN_TIME_UPDATE");
+
 	session.ResetItemList();
 
 	INVENTORY_SET_CUSTOM_RBTNDOWN("None");

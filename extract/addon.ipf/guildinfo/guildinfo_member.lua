@@ -431,7 +431,7 @@ function GUILDINFO_MEMBER_LIST_UPDATE(frame, guild, leaderAID)
     memberCountText:SetTextByKey('offline', allcount - onlineCnt);
 end
 
-function _GUILDINFO_MEMBER_LIST_UPDATE(frame);
+function _GUILDINFO_MEMBER_LIST_UPDATE(frame)
     local memberCtrlBox = GET_CHILD_RECURSIVELY(frame, 'memberCtrlBox');
     DESTROY_CHILD_BYNAME(memberCtrlBox, 'MEMBER_');
 

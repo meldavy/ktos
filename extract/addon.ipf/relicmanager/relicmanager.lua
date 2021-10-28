@@ -731,14 +731,15 @@ function RELICMANAGER_EXP_REG_MAT_ITEM(frame, inv_item, item_obj)
 	local mat_ctrl = GET_CHILD_RECURSIVELY(frame, 'exp_mat_ctrl')
 	if mat_ctrl == nil then return end
 
-	local mat_class_name = TryGetProp(item_obj, 'ClassName', 'None')
-	local name = shared_item_relic.get_exp_material_name()
-	if name ~= mat_class_name then
+	local mat_name = TryGetProp(item_obj, 'ClassName', 'None')
+	local mat_name_list = shared_item_relic.get_exp_material_name()
+	local mat_index = table.find(mat_name_list, mat_name)
+	if mat_index <= 0 then
 		ui.SysMsg(ClMsg('IMPOSSIBLE_ITEM'))
 		return
 	end
-	
-	local mat_class = GetClass('Item', mat_class_name)
+
+	local mat_class = GetClass('Item', mat_name)
 	local mat_class_id = TryGetProp(mat_class, 'ClassID', 0)
 	local mat_guid = inv_item:GetIESID()
 	local exp_per = shared_item_relic.get_exp_material_value()
@@ -1066,9 +1067,9 @@ function RELICMANAGER_SOCKET_UPDATE(frame)
 		local gem_slot = GET_CHILD_RECURSIVELY(sub_ctrl, 'gem_slot', 'ui::CSlot')
 		local gem_name = GET_CHILD_RECURSIVELY(sub_ctrl, 'gem_name', 'ui::CRichText')
 		local socket_icon = GET_CHILD_RECURSIVELY(sub_ctrl, 'socket_icon', 'ui::CPicture')
-		local socket_name = GET_CHILD_RECURSIVELY(sub_ctrl, 'socket_name', 'ui::CRichText')				
+		local socket_name = GET_CHILD_RECURSIVELY(sub_ctrl, 'socket_name', 'ui::CRichText')
 		socket_name:SetTextByKey('name', ScpArgMsg('EMPTY_RELIC_GEM_SOCKET', 'NAME', ClMsg(_name)))
-		local do_remove = GET_CHILD_RECURSIVELY(sub_ctrl, 'do_remove', 'ui::CButton')		
+		local do_remove = GET_CHILD_RECURSIVELY(sub_ctrl, 'do_remove', 'ui::CButton')
 		
 		local gem_id = relic_item:GetEquipGemID(_type)
 		if gem_id == 0 then
@@ -1086,7 +1087,6 @@ function RELICMANAGER_SOCKET_UPDATE(frame)
 			socket_name:ShowWindow(0)
 			gem_name:ShowWindow(1)
 			gem_name:SetTextByKey('name', name_str)
-			gem_name:AdjustFontSizeByWidth(gem_name:GetWidth())
 			SET_SLOT_ITEM_CLS(gem_slot, gem_cls)			
 			do_remove:SetEnable(1)
 		end

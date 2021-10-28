@@ -12,15 +12,21 @@ end
 
 local NOT_SELECTED_BOX_SKIN = "chat_window_2";
 
-g_indunCategoryList = {100, 10000, 10002, 400, 800, 500};
 g_pvpIndunCategoryList = {600, 700, 900};
+--[[
+    기존의 카테고리 리스트에 들어가는 자료형을 스트링으로 바꿈
+    어떠한 카테고리로 묶고 싶다면 GroupID 칼럼 값을 통일시키면 됨(스트링 사용)
+    카테고리 안의 탭들(디테일 컨트롤)에 주/일 횟수를 표시하고 싶다면
+    ㄴ> Difficulty에 값을 넣어주면 됨(스트링); 난이도나 모드, 간결화된 이름을 넣길 권장;
+]]
+g_indunCategoryList = {"Unique", "Unique_Solo", "Gtower", "Velcoffer"};
 
 --[[
     프던 보스 카운트 및 챌린지 모드 정보 표시하려고 추가함
     contents_info.xml 데이터 중에서 ResetGroupID임
     indun.xml의 PlayPerResetType과 중복을 피하기 위해 음수로 추가해보았음
 ]] 
-g_contentsCategoryList = { -100, -200 }
+g_contentsCategoryList = { }
 
 g_weeklyBossCategory = 804
 
@@ -164,7 +170,7 @@ function INDUNINFO_CREATE_CATEGORY(frame)
     local SCROLL_WIDTH = 20;
     local categoryBtnWidth = categoryBox:GetWidth() - SCROLL_WIDTH;
     local firstBtn = nil;
-    local resetGroupTable = {};
+    local groupTable = {};
     local missionIndunSet = {};
 
     local tab = GET_CHILD_RECURSIVELY(frame, "tab")
@@ -173,88 +179,101 @@ function INDUNINFO_CREATE_CATEGORY(frame)
         local isRaid = (dungeonType == 'UniqueRaid' or dungeonType == 'Raid' or dungeonType == 'GTower' or dungeonType == "MythicDungeon_Auto" or dungeonType == "MythicDungeon_Auto_Hard")
         return ((isRaid == true and isRaidTab == true) or (isRaid == false and isRaidTab == false))
     end
-
-    local createCategory = function(resetGroupID,cls)
-        local categoryCtrl = categoryBox:GetChild('CATEGORY_CTRL_'..resetGroupID);
+    -- 카테고리 버튼 생성 함수
+    local createCategory = function(groupID,cls)
+        local categoryCtrl = categoryBox:GetChild('CATEGORY_CTRL_'..groupID);
         if categoryCtrl ~= nil then
             return nil
         end
+
         local category = cls.Category;
-        categoryCtrl = categoryBox:CreateOrGetControlSet('indun_cate_ctrl', 'CATEGORY_CTRL_'..resetGroupID, 0, 0);
+        categoryCtrl = categoryBox:CreateOrGetControlSet('indun_cate_ctrl', 'CATEGORY_CTRL_'..groupID, 0, 0);
         local name = categoryCtrl:GetChild("name");
         local btn = categoryCtrl:GetChild("button");
         local countText = categoryCtrl:GetChild('countText');
 
-        btn:Resize(categoryBtnWidth, categoryCtrl:GetHeight());
-        name:SetTextByKey("value", category);
-        if resetGroupID == -101 or resetGroupID == 816 or resetGroupID == 817 then
-            countText:SetText(ScpArgMsg('ChallengeMode_HardMode_Count', 'Count', GET_CURRENT_ENTERANCE_COUNT(resetGroupID)))
-        else
-            countText:SetTextByKey('current', GET_CURRENT_ENTERANCE_COUNT(resetGroupID));
-            countText:SetTextByKey('max', GET_INDUN_MAX_ENTERANCE_COUNT(resetGroupID));
-        end
-        
+        -- 주/일 횟수 텍스트
+        local countText = categoryCtrl:GetChild('countText');
         -- 주/일 표시 이미지
         local cyclePicImg = GET_CHILD_RECURSIVELY(categoryCtrl, 'cycleCtrlPic')   
 
-        -- 챌린지 모드 분열 자동매칭 & 성물 던전 자동매칭 Hard 모드 관련 예외처리.
-        if resetGroupID == 816 or resetGroupID == 817 then 
+        btn:Resize(categoryBtnWidth, categoryCtrl:GetHeight());
+        name:SetTextByKey("value", category);
+
+        if TryGetProp(cls,"Difficulty","None")  ~= "None" then
+            countText:ShowWindow(0);
             cyclePicImg:ShowWindow(0);
         else
+            -------횟수제한 값 불러오는 부분-------
+            local temp;
+            -- 어시스터 던전, 차원 붕괴 지점 예외 처리 
+            if TryGetProp(cls,"GroupID","None") == "Rift" then temp = -300;
+            elseif TryGetProp(cls,"GroupID","None")  == "Ancient" then temp = -500;
+            else temp = cls.PlayPerResetType; end
+            countText:SetTextByKey('current', GET_CURRENT_ENTERANCE_COUNT(temp));
+            countText:SetTextByKey('max', GET_INDUN_MAX_ENTERANCE_COUNT(temp));
         INDUNINFO_SET_CYCLE_PIC(cyclePicImg,cls,'_s')
         end
 
-        categoryCtrl:SetUserValue('RESET_GROUP_ID', resetGroupID);
+        categoryCtrl:SetUserValue('RESET_GROUP_ID', groupID);
         if firstBtn == nil then
-            firstBtn = btn
+            firstBtn = btn;
         end
     end
 
     local indunClsList, cnt = GetClassList('Indun');
     for i = 0, cnt - 1 do
-        local indunCls = GetClassByIndexFromList(indunClsList, i);
+        local indunCls = GetClassByIndexFromList(indunClsList, i); -- 클래스 id로 가져옴
         if indunCls ~= nil and indunCls.Category ~= 'None' and enableCreate(indunCls.DungeonType) == true then
-            local resetGroupID = indunCls.PlayPerResetType;
+            local groupID = TryGetProp(indunCls,"GroupID","None") ;
+            if groupID ~= 'None' then
             if indunCls.DungeonType == 'MissionIndun' then
-				INDUNINFO_ADD_COUNT(missionIndunSet,resetGroupID)
+                INDUNINFO_ADD_COUNT(missionIndunSet,groupID)
+                INDUNINFO_PUSH_BACK_TABLE(g_indunCategoryList, groupID)
+                createCategory(groupID, indunCls)
 			elseif string.find(indunCls.DungeonType, "MythicDungeon") == 1 then
 				local pattern_info = mythic_dungeon.GetPattern(mythic_dungeon.GetCurrentSeason())
 				local mapCls = GetClassByType("Map",pattern_info.mapID)
+                -- "성물 레이드 : 레이드 이름" 으로 표현하기 위해서는 생성 함수를 각각 줄 수 밖에 없었음
 				if TryGetProp(mapCls,"ClassName") == indunCls.MapName then
-					INDUNINFO_ADD_COUNT(resetGroupTable, resetGroupID)
+                    INDUNINFO_ADD_COUNT(groupTable, groupID)
+                    INDUNINFO_PUSH_BACK_TABLE(g_indunCategoryList, groupID)
+                    createCategory(groupID, indunCls)
 				end
             else
-                INDUNINFO_ADD_COUNT(resetGroupTable, resetGroupID)
+                INDUNINFO_ADD_COUNT(groupTable, groupID)
+                INDUNINFO_PUSH_BACK_TABLE(g_indunCategoryList, groupID)
+                createCategory(groupID, indunCls)
             end
-            INDUNINFO_PUSH_BACK_TABLE(g_indunCategoryList,resetGroupID);
-            createCategory(resetGroupID, indunCls)
         end
+    end
     end
 
     for key,_ in pairs(missionIndunSet) do
-        INDUNINFO_ADD_COUNT(resetGroupTable,key)
+        INDUNINFO_ADD_COUNT(groupTable,key)
     end
-    -- 인던 외 컨텐츠 표시를 일단 인던과 같이 하는데, 나중에 탭 형식으로 변경 필요함
+
+    -- -- 인던 외 컨텐츠 표시를 일단 인던과 같이 하는데, 나중에 탭 형식으로 변경 필요함
     if isRaidTab == false then
         local contentsClsList, count = GetClassList('contents_info')
         for i = 0, count - 1 do
             local contentsCls = GetClassByIndexFromList(contentsClsList, i)
             if contentsCls ~= nil and contentsCls.Category ~='None' then
-                local resetGroupID = contentsCls.ResetGroupID
-                INDUNINFO_ADD_COUNT(resetGroupTable,resetGroupID)
+                local groupID = TryGetProp(contentsCls,"GroupID","None") 
                 
-                INDUNINFO_PUSH_BACK_TABLE(g_contentsCategoryList,resetGroupID);
-                local function contents_sort(a, b)
-                    return a > b
-                end
-                table.sort(g_contentsCategoryList, contents_sort)
-                createCategory(resetGroupID,contentsCls)
+                INDUNINFO_ADD_COUNT(groupTable,groupID)
+                INDUNINFO_PUSH_BACK_TABLE(g_contentsCategoryList,groupID);
+                -- local function contents_sort(a, b) 어짜피 클래스 아이디 순번이니까 의미 없는 정렬 
+                --     return a.ResetGroupID > b.ResetGroupID
+                -- end
+                -- table.sort(g_contentsCategoryList, contents_sort)
+                createCategory(groupID,contentsCls)
             end
         end
     end
     -- set the number of indun
-    for resetGroupID, numIndun in pairs(resetGroupTable) do        
-        local categoryCtrl = categoryBox:GetChild('CATEGORY_CTRL_'..resetGroupID);
+    for groupID, numIndun in pairs(groupTable) do        
+        local categoryCtrl = categoryBox:GetChild('CATEGORY_CTRL_'..groupID);
         local name = categoryCtrl:GetChild('name');
         name:SetTextByKey('cnt', numIndun);
     end
@@ -269,22 +288,7 @@ function INDUNINFO_CATEGORY_ALIGN_DEFAULT(categoryBox)
     local selectedGroupID = frame:GetUserIValue('SELECT');
     local y = 0;
     local spacey = -6;
-    for i = 1, #g_indunCategoryList do
-        local resetGroupID = g_indunCategoryList[i];
-        local categoryCtrl = GET_CHILD_RECURSIVELY(categoryBox, 'CATEGORY_CTRL_'..resetGroupID);
-        if categoryCtrl ~= nil then
-            categoryCtrl:SetOffset(categoryCtrl:GetX(), y);            
-            y = y + categoryCtrl:GetHeight() + spacey;
-        end
 
-        if resetGroupID == selectedGroupID then
-            local indunListBox = GET_CHILD(categoryBox, 'INDUN_LIST_BOX');
-            if indunListBox ~= nil then
-                indunListBox:SetOffset(indunListBox:GetX(), y);                
-                y = y + indunListBox:GetHeight() + spacey;
-            end
-        end
-    end
     for i = 1,#g_pvpIndunCategoryList do
         local resetGroupID = g_pvpIndunCategoryList[i];
         local categoryCtrl = GET_CHILD_RECURSIVELY(categoryBox, 'CATEGORY_CTRL_'..resetGroupID);
@@ -301,7 +305,24 @@ function INDUNINFO_CATEGORY_ALIGN_DEFAULT(categoryBox)
             end
         end
     end
+    
+    selectedGroupID = frame:GetUserValue('SELECT');
+    for i = 1, #g_indunCategoryList do
+        local resetGroupID = g_indunCategoryList[i];
+        local categoryCtrl = GET_CHILD_RECURSIVELY(categoryBox, 'CATEGORY_CTRL_'..resetGroupID);
+        if categoryCtrl ~= nil then
+            categoryCtrl:SetOffset(categoryCtrl:GetX(), y);            
+            y = y + categoryCtrl:GetHeight() + spacey;
+        end
 
+        if resetGroupID == selectedGroupID then
+            local indunListBox = GET_CHILD(categoryBox, 'INDUN_LIST_BOX');
+            if indunListBox ~= nil then
+                indunListBox:SetOffset(indunListBox:GetX(), y);                
+                y = y + indunListBox:GetHeight() + spacey;
+            end
+        end
+    end
     for i = 1, #g_contentsCategoryList do
         local resetGroupID = g_contentsCategoryList[i]
         local categoryCtrl = GET_CHILD_RECURSIVELY(categoryBox, 'CATEGORY_CTRL_'..resetGroupID);
@@ -325,6 +346,7 @@ function INDUNINFO_RESET_USERVALUE(frame)
 end
 
 function INDUNINFO_DRAW_CATEGORY_DETAIL_LIST(indunListBox, cls, is_weekly_reset)
+  
     local indunDetailCtrl = indunListBox:CreateOrGetControlSet('indun_detail_ctrl', 'DETAIL_CTRL_' .. cls.ClassID, 0, 0);
     indunDetailCtrl = tolua.cast(indunDetailCtrl, 'ui::CControlSet');
     indunDetailCtrl:SetUserValue('INDUN_CLASS_ID', cls.ClassID);
@@ -333,8 +355,10 @@ function INDUNINFO_DRAW_CATEGORY_DETAIL_LIST(indunListBox, cls, is_weekly_reset)
 
     local infoText = indunDetailCtrl:GetChild('infoText');
     local nameText = indunDetailCtrl:GetChild('nameText');
+    local countText = indunDetailCtrl:GetChild('countText');
 
     local onlinePic = GET_CHILD(indunDetailCtrl,'onlinePic')
+    local cyclePic = GET_CHILD(indunDetailCtrl,'cycleCtrlPic')
     if TryGetProp(cls,"DungeonType","None") == "Ancient" then
         onlinePic:ShowWindow(1)
         local acc_obj = GetMyAccountObj()
@@ -346,7 +370,27 @@ function INDUNINFO_DRAW_CATEGORY_DETAIL_LIST(indunListBox, cls, is_weekly_reset)
     end
     
     infoText:SetTextByKey('level', cls.Level);
+    --해당 칼럼에 값이 없으면, 디테일 컨트롤에 주/일 횟수 표시 필요 없음
+    if TryGetProp(cls,"Difficulty","None") == "None" then
     nameText:SetTextByKey('name', cls.Name);
+        countText:ShowWindow(0)
+        cyclePic:ShowWindow(0)
+    else
+        nameText:SetTextByKey('name',cls.Difficulty)
+        -- if resetGroupID == -101 or resetGroupID == 816 or resetGroupID == 817 or resetGroupID == 813 then
+        -- 분열 특이점, 성물레이드, 성물레이드 도전모드 예외 처리; 
+        -- -101 : contents_info에 있는 분열특이점, 챌린지모드는 어따 쓰는지 모르겠음 일단 현황판 탭에서는 안쓰이는중
+        if cls.PlayPerResetType == 816 or cls.PlayPerResetType == 813 or cls.PlayPerResetType == 817 then
+            countText:SetText(ScpArgMsg('ChallengeMode_HardMode_Count', 'Count', GET_CURRENT_ENTERANCE_COUNT(cls.PlayPerResetType)))
+            cyclePic:ShowWindow(0);
+        else
+            countText:SetTextByKey('current', GET_CURRENT_ENTERANCE_COUNT(cls.PlayPerResetType));
+            countText:SetTextByKey('max', GET_INDUN_MAX_ENTERANCE_COUNT(cls.PlayPerResetType));
+            INDUNINFO_SET_CYCLE_PIC(cyclePic,cls,'_s')
+        end
+     
+    end
+
     if #g_selectedIndunTable == 0 then -- 디폴트는 리스트의 첫번째
         indunListBox:SetUserValue('FIRST_INDUN_ID', cls.ClassID)
         INDUNINFO_DETAIL_LBTN_CLICK(indunListBox, indunDetailCtrl);
@@ -396,11 +440,11 @@ function INDUNINFO_CATEGORY_LBTN_CLICK(categoryCtrl, ctrl)
     -- set button skin
     local topFrame = categoryCtrl:GetTopParentFrame();
     local preSelectType = topFrame:GetUserIValue('SELECT');
-    local selectedResetGroupID = categoryCtrl:GetUserIValue('RESET_GROUP_ID');
-    if preSelectType == selectedResetGroupID then
+    local selectedGroupID = categoryCtrl:GetUserValue('RESET_GROUP_ID');
+    
+    if preSelectType == selectedGroupID then
         return;
     end
-
     categoryCtrl = tolua.cast(categoryCtrl, 'ui::CControlSet');
     INDUNINFO_CHANGE_CATEGORY_BUTTON_SKIN(topFrame,categoryCtrl)
 
@@ -413,22 +457,23 @@ function INDUNINFO_CATEGORY_LBTN_CLICK(categoryCtrl, ctrl)
     g_selectedIndunTable = {};
     local indunListBox = INDUNINFO_RESET_INDUN_LISTBOX(categoryBox)
 
-    if selectedResetGroupID < 0 then
+    if table.find(g_contentsCategoryList,selectedGroupID) ~= 0  then
         local contentsClsList, count = GetClassList('contents_info')
         for i = 0, count - 1 do
             local contentsCls = GetClassByIndexFromList(contentsClsList, i)
-            if contentsCls ~= nil and contentsCls.ResetGroupID == selectedResetGroupID and contentsCls.Category ~= 'None' then
+            if contentsCls ~= nil and TryGetProp(contentsCls,"GroupID","None")  == selectedGroupID and contentsCls.Category ~= 'None' then
                 local is_weekly_reset = BoolToNumber(contentsCls.ResetPer == 'WEEK')
                 INDUNINFO_DRAW_CATEGORY_DETAIL_LIST(indunListBox, contentsCls, is_weekly_reset)
             end
         end
     else
+        
         local indunClsList, cnt = GetClassList('Indun');    
         local missionIndunCnt = 0; -- 신규 레벨던전 7곳의 로테이션은 해당 인던의 클래스가 indun.xml에 들어 있는 순서대로 일 ~ 토로 배정됨
         for i = 0, cnt - 1 do
             local indunCls = GetClassByIndexFromList(indunClsList, i);
             local add_flag = false;
-            if indunCls.PlayPerResetType == selectedResetGroupID and indunCls.Category ~= 'None' then
+            if TryGetProp(indunCls,"GroupID","None")  == selectedGroupID and indunCls.Category ~= 'None' then
                 local dungeonType = TryGetProp(indunCls, 'DungeonType')
                 if dungeonType == 'MissionIndun' then
                     local sysTime = geTime.GetServerSystemTime();
@@ -715,10 +760,10 @@ function INDUNINFO_DETAIL_LBTN_CLICK(parent, detailCtrl, clicked)
     local indunListBox = GET_CHILD_RECURSIVELY(categoryBox, 'INDUN_LIST_BOX');
     indunListBox:SetUserValue('SELECTED_DETAIL', indunClassID);
     -- 인스턴스 던전 정보 처리를 위한 임시 처리 끝 --
-    local resetGroupID = topFrame:GetUserIValue('SELECT')
+    local resetGroupID = topFrame:GetUserValue('SELECT')
     if index == 5 then
         PVP_INDUNINFO_MAKE_DETAIL_INFO_BOX(topFrame, indunClassID);
-    elseif resetGroupID < 0 then
+    elseif table.find(g_contentsCategoryList,resetGroupID) ~= 0 then
         INDUNINFO_MAKE_DETAIL_INFO_BOX_OTHER(topFrame, indunClassID)
     elseif indunClassID > 0 then
         INDUNINFO_MAKE_DETAIL_INFO_BOX(topFrame, indunClassID);
@@ -1480,7 +1525,7 @@ end
 
 function INDUNINFO_SORT_BY_LEVEL(parent, ctrl)
     local topFrame = parent:GetTopParentFrame();
-    local resetGroupID = topFrame:GetUserIValue('SELECT')
+    local groupID = topFrame:GetUserValue('SELECT')
     local radioBtn = GET_CHILD_RECURSIVELY(topFrame, 'lvAscendRadio');
     local selectedBtn = radioBtn:GetSelectedButton();
     if selectedBtn:GetName() == 'lvAscendRadio' then
@@ -1518,7 +1563,7 @@ function INDUNINFO_SORT_BY_LEVEL(parent, ctrl)
     end
     
     local firstSelectedID = indunListBox:GetUserIValue('FIRST_INDUN_ID');
-    if resetGroupID < 0 then
+    if table.find(g_contentsCategoryList,groupID) ~= 0 then
         INDUNINFO_MAKE_DETAIL_INFO_BOX_OTHER(topFrame, firstSelectedID)
     else
         INDUNINFO_MAKE_DETAIL_INFO_BOX(topFrame, firstSelectedID);
@@ -1532,14 +1577,14 @@ function SORT_BY_LEVEL_BASE_NAME(a, b)
     end
 
     -- Legend Raid Glacier : Easy / Noraml / Hard
-    if string.find(a.ClassName, "Legend_Raid_Glacier") ~= nil and string.find(b.ClassName, "Legend_Raid_Glacier") ~= nil then
-        return false;
-    end
+    -- if string.find(a.ClassName, "Legend_Raid_Glacier") ~= nil and string.find(b.ClassName, "Legend_Raid_Glacier") ~= nil then
+    --     return false;
+    -- end
 
     if tonumber(a.Level) < tonumber(b.Level) then
         return true
     elseif tonumber(a.Level) == tonumber(b.Level) then
-        return a.Name < b.Name
+        return a.ClassID < b.ClassID
     else
         return false
     end
@@ -1681,6 +1726,8 @@ function PVP_INDUNINFO_CATEGORY_LBTN_CLICK(categoryCtrl, ctrl)
             local infoText = indunDetailCtrl:GetChild('infoText');
             local nameText = indunDetailCtrl:GetChild('nameText');
             local infoTextrect = infoText:GetMargin();
+            indunDetailCtrl:GetChild('countText'):ShowWindow(0);
+            indunDetailCtrl:GetChild('cycleCtrlPic'):ShowWindow(0);
             nameText:SetMargin(infoTextrect.left,infoTextrect.top,infoTextrect.right,infoTextrect.bottom)
             nameText:SetTextByKey('name', indunCls.Name);
             indunDetailCtrl:RemoveChild('infoText')
@@ -1733,8 +1780,8 @@ function PVP_INDUNINFO_DETAIL_SET_ONLINE_PIC(indunDetailCtrl)
 end
 
 function INDUNINFO_CHANGE_CATEGORY_BUTTON_SKIN(frame,categoryCtrl)
-    local preSelectType = frame:GetUserIValue('SELECT');
-    local selectedResetGroupID = categoryCtrl:GetUserIValue('RESET_GROUP_ID');
+    local preSelectType = frame:GetUserValue('SELECT');
+    local selectedGroupID = categoryCtrl:GetUserValue('RESET_GROUP_ID');
     categoryCtrl = tolua.cast(categoryCtrl, 'ui::CControlSet');
 
     local SELECTED_BTN_SKIN = categoryCtrl:GetUserConfig('SELECTED_BTN_SKIN');
@@ -1744,10 +1791,12 @@ function INDUNINFO_CHANGE_CATEGORY_BUTTON_SKIN(frame,categoryCtrl)
         local button = preSelect:GetChild("button");
         button:SetSkinName(NOT_SELECTED_BTN_SKIN);
     end
-    frame:SetUserValue('SELECT', selectedResetGroupID);
+    frame:SetUserValue('SELECT', selectedGroupID);
     local ctrl = categoryCtrl:GetChild("button");
     ctrl:SetSkinName(SELECTED_BTN_SKIN);
 end
+
+
 
 function INDUNINFO_RESET_INDUN_LISTBOX(categoryBox)
     local listBoxWidth = categoryBox:GetWidth() - 20;

@@ -48,7 +48,7 @@ ClassID,DrawRange,DrawTime,ArrowDirCnt,ClassName,DrawType,DrawColor,DrawBlinkCol
 31201,60,0.01,0,Musketeer_CoveringFire,Circle,"0,250,0,255","0,250,0,255",,
 30506,30,0.01,0,Wugushi_JincanGu,Circle,"0,250,0,255","0,250,0,255",,SCP_GET_RANGE_Wugushi_JincanGu
 30505,50,0.01,0,Wugushi_ThrowGuPot,Circle,"0,250,0,255","0,250,0,255",,
-30202,35,0.01,0,QuarrelShooter_ScatterCaltrop,Circle,"0,250,0,255","0,250,0,255",,
+30202,50,0.01,0,QuarrelShooter_ScatterCaltrop,Circle,"0,250,0,255","0,250,0,255",,
 32105,50,0.01,0,Arquebusier_Salute,Circle,"0,250,0,255","0,250,0,255",,
 41905,85,0.01,0,Crusader_Retaliation,Circle,"0,250,0,255","0,250,0,255",,
 40906,100,0.01,0,Druid_Chortasmata,Circle,"0,250,0,255","0,250,0,255",,

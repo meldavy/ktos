@@ -394,6 +394,11 @@ function INIT_GRAPHIC_CONFIG(frame)
 	if IsEnableSummonAlpha ~= nil then
 		IsEnableSummonAlpha:SetCheck(config.GetIsEnableSummonAlpha());
 	end
+
+	local useURO = GET_CHILD_RECURSIVELY(frame, "check_UseURO", "ui::CCheckBox");
+	if useURO ~= nil then
+		useURO:SetCheck(config.GetUseURO());
+	end
 end
 
 function INIT_GAMESYS_CONFIG(frame)
@@ -1080,5 +1085,11 @@ end
 function SET_ENABLE_SUMMON_ALPHA(parent, ctrl)
 	local isEnable = ctrl:IsChecked();
     config.SetIsEnableSummonAlpha(isEnable);
+	config.SaveConfig();
+end
+
+function SET_USE_URO(parent, ctrl)
+	local isEnable = ctrl:IsChecked();
+    config.SetUseURO(isEnable);
 	config.SaveConfig();
 end

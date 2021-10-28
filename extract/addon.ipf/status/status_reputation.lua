@@ -73,7 +73,7 @@ function STATUS_REPUTATION_LIST_INIT()
     end
 
     -- 열린 평판이 없을 시의 안내문
-    local warningText = AUTO_CAST(gb:GetChild("reputationStatusWarningText"))
+    local warningText = GET_CHILD_RECURSIVELY(frame, "reputationStatusWarningText")
     
     if reputationCount == 0 then
         warningText:ShowWindow(1)

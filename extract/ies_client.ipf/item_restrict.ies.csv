@@ -3,7 +3,7 @@ ClassID,ClassName,Category,Icon,Spot_Name,Desc
 2,2,Mythic_startower_Auto,,보조무기,"레전드 Lv.440, 고정 아이커 Lv.380, 10 강화, 8 초월"
 3,3,Mythic_startower_Auto,,방어구,"레전드 Lv.400, 고정 아이커 Lv.430, 10 강화, 8 초월"
 4,4,Mythic_startower_Auto,,액세서리,레전드 Lv.350(근본 액세서리로 대체 불가)
-5,5,Mythic_startower_Auto,,인장,보루타 인장 Lv.1
+5,5,Mythic_startower_Auto,,인장,"보루타 인장 Lv.1, 2021 근본 인장"
 6,6,Mythic_startower_Auto,,아크,퀘스트/제작 아크 Lv.5
 7,7,Mythic_startower_Auto,,성물,성물 보유
 8,8,Mythic_startower_Auto,,세트 아이템,세트 아이템 보유
@@ -28,7 +28,7 @@ ClassID,ClassName,Category,Icon,Spot_Name,Desc
 302,302,Mythic_FireTower_Auto,,보조무기,"레전드 Lv.440, 고정 아이커 Lv.380, 10 강화, 8 초월"
 303,303,Mythic_FireTower_Auto,,방어구,"레전드 Lv.400, 고정 아이커 Lv.430, 10 강화, 8 초월"
 304,304,Mythic_FireTower_Auto,,액세서리,레전드 Lv.350(근본 액세서리로 대체 불가)
-305,305,Mythic_FireTower_Auto,,인장,보루타 인장 Lv.1
+305,305,Mythic_FireTower_Auto,,인장,"보루타 인장 Lv.1, 2021 근본 인장"
 306,306,Mythic_FireTower_Auto,,아크,퀘스트/제작 아크 Lv.5
 307,307,Mythic_FireTower_Auto,,성물,성물 보유
 308,308,Mythic_FireTower_Auto,,세트 아이템,세트 아이템 보유
@@ -53,7 +53,7 @@ ClassID,ClassName,Category,Icon,Spot_Name,Desc
 602,602,Mythic_thorn2_Auto,,보조무기,"레전드 Lv.440, 고정 아이커 Lv.380, 10 강화, 8 초월"
 603,603,Mythic_thorn2_Auto,,방어구,"레전드 Lv.400, 고정 아이커 Lv.430, 10 강화, 8 초월"
 604,604,Mythic_thorn2_Auto,,액세서리,레전드 Lv.350(근본 액세서리로 대체 불가)
-605,605,Mythic_thorn2_Auto,,인장,보루타 인장 Lv.1
+605,605,Mythic_thorn2_Auto,,인장,"보루타 인장 Lv.1, 2021 근본 인장"
 606,606,Mythic_thorn2_Auto,,아크,퀘스트/제작 아크 Lv.5
 607,607,Mythic_thorn2_Auto,,성물,성물 보유
 608,608,Mythic_thorn2_Auto,,세트 아이템,세트 아이템 보유
@@ -78,7 +78,7 @@ ClassID,ClassName,Category,Icon,Spot_Name,Desc
 902,902,Mythic_castle_Auto,,보조무기,"레전드 Lv.440, 고정 아이커 Lv.380, 10 강화, 8 초월"
 903,903,Mythic_castle_Auto,,방어구,"레전드 Lv.400, 고정 아이커 Lv.430, 10 강화, 8 초월"
 904,904,Mythic_castle_Auto,,액세서리,레전드 Lv.350(근본 액세서리로 대체 불가)
-905,905,Mythic_castle_Auto,,인장,보루타 인장 Lv.1
+905,905,Mythic_castle_Auto,,인장,"보루타 인장 Lv.1, 2021 근본 인장"
 906,906,Mythic_castle_Auto,,아크,퀘스트/제작 아크 Lv.5
 907,907,Mythic_castle_Auto,,성물,성물 보유
 908,908,Mythic_castle_Auto,,세트 아이템,세트 아이템 보유
@@ -116,7 +116,7 @@ ClassID,ClassName,Category,Icon,Spot_Name,Desc
 1502,1502,Challenge_Division_Auto_1,,보조무기,"레전드 Lv.440, 고정 아이커 Lv.380, 10 강화, 8 초월"
 1503,1503,Challenge_Division_Auto_1,,방어구,"레전드 Lv.440, 고정 아이커 Lv.400, 8 강화, 8 초월"
 1504,1504,Challenge_Division_Auto_1,,액세서리,레전드 Lv.350(근본 액세서리로 대체 불가)
-1505,1505,Challenge_Division_Auto_1,,인장,보루타 인장 Lv.1
+1505,1505,Challenge_Division_Auto_1,,인장,"보루타 인장 Lv.1, 2021 근본 인장"
 1506,1506,Challenge_Division_Auto_1,,아크,퀘스트/제작 아크 Lv.5
 1507,1507,Challenge_Division_Auto_1,,세트 아이템,세트 아이템 보유
 1601,1601,Legend_Raid_boss_Moringponia_Easy,,주무기,"레전드 Lv.400, 고정 아이커"
@@ -129,7 +129,7 @@ ClassID,ClassName,Category,Icon,Spot_Name,Desc
 1802,1802,Legend_Raid_Giltine,,보조무기,"레전드 Lv.440, 고정 아이커 Lv.380, 10 강화, 8 초월"
 1803,1803,Legend_Raid_Giltine,,방어구,"레전드 Lv.440, 고정 아이커 Lv.400, 10 강화, 8 초월"
 1804,1804,Legend_Raid_Giltine,,액세서리,레전드 Lv.350(근본 액세서리로 대체 불가)
-1805,1805,Legend_Raid_Giltine,,인장,보루타 인장 Lv.1
+1805,1805,Legend_Raid_Giltine,,인장,"보루타 인장 Lv.1, 2021 근본 인장"
 1806,1806,Legend_Raid_Giltine,,아크,퀘스트/제작 아크 Lv.5
 1807,1807,Legend_Raid_Giltine,,성물,성물 보유
 1808,1808,Legend_Raid_Giltine,,세트 아이템,세트 아이템 보유
@@ -137,7 +137,7 @@ ClassID,ClassName,Category,Icon,Spot_Name,Desc
 1902,1902,Legend_Raid_Giltine_Auto,,보조무기,"레전드 Lv.440, 고정 아이커 Lv.380, 10 강화, 8 초월"
 1903,1903,Legend_Raid_Giltine_Auto,,방어구,"레전드 Lv.440, 고정 아이커 Lv.400, 10 강화, 8 초월"
 1904,1904,Legend_Raid_Giltine_Auto,,액세서리,레전드 Lv.350(근본 액세서리로 대체 불가)
-1905,1905,Legend_Raid_Giltine_Auto,,인장,보루타 인장 Lv.1
+1905,1905,Legend_Raid_Giltine_Auto,,인장,"보루타 인장 Lv.1, 2021 근본 인장"
 1906,1906,Legend_Raid_Giltine_Auto,,아크,퀘스트/제작 아크 Lv.5
 1907,1907,Legend_Raid_Giltine_Auto,,성물,성물 보유
 1908,1908,Legend_Raid_Giltine_Auto,,세트 아이템,세트 아이템 보유

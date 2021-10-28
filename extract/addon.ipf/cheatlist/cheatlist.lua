@@ -6,8 +6,7 @@ function CHEATLIST_ON_INIT(addon, frame)
 end
 
 function CHEATLIST_FIRST_OPEN(frame)
-
-local tabObj		 = frame:GetChild('cheatlisttap');
+    local tabObj		 = frame:GetChild('cheatlisttap');
 	cheatlist_tab		 = tolua.cast(tabObj, "ui::CTabControl");
 
 	local changeBtnObj			= frame:GetChild('UseBtn');
@@ -90,32 +89,20 @@ local tabObj		 = frame:GetChild('cheatlisttap');
 end
 
 function SEARCH_ITEM_CHEATLIST(frame, ctrl)
-
 	CREATEITEM_UPDATE_ITEM(frame);
-	
 end
 
 function SEARCH_MON_CHEATLIST(frame, ctrl)
 	CREATEMONSTER_UPDATE_MONSTER(frame);
 end
 
-
-
 function SEARCH_MAP_CHEATLIST(frame, ctrl)
-
 	MZLIST_UPDATE_MAP(frame);
 end
 
-
-
 function SEARCH_COMBAT_CHEATLIST(frame, ctrl)
-	
 	CHEATOTHERS_UPDATE_OTHERS(frame);
-	
 end
-
-
-
 
 function CHEATLIST_TAB_CHANGE(frame, obj, argStr, argNum)
 	CheatList_curtabIndex	= cheatlist_tab:GetSelectItemIndex();
@@ -369,7 +356,11 @@ function CREATEITEM_UPDATE_ITEM(frame)
 	local capUpper = string.upper(cap)
 
 	local itemTree = CheatList_tree_array[0];
-	itemTree:Clear();
+    itemTree:Clear();
+    
+    if cap == nil or cap == "" then
+        return
+    end
 
 	local groupCount = 0;
 	local parentItemText = {};
@@ -413,7 +404,6 @@ function CREATEITEM_UPDATE_ITEM(frame)
 end
 
 function CREATEMONSTER_UPDATE_MONSTER(frame)
-
 	frame = frame:GetTopParentFrame();
 	local creatMonGroup = frame:GetChild("CreatMonGroup");
 	local edit = GET_CHILD(creatMonGroup, "MonSearch", "ui::CEditControl");
@@ -421,7 +411,11 @@ function CREATEMONSTER_UPDATE_MONSTER(frame)
 	local capUpper = string.upper(cap)
 	
 	local monTree = CheatList_tree_array[1];
-	monTree:Clear();
+    monTree:Clear();
+    
+    if cap == nil or cap == "" then
+        return
+    end
 
 	local parentItemText = {};
 

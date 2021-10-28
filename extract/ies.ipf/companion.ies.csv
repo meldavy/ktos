@@ -42,4 +42,5 @@ ClassID,RideMSPD,MaxVehicle,OffsetY,RidingOffsetY,AddSpeed,JobID,LifeMin,ClassNa
 42,4,1,0,0,50,0,0,pet_sparrow_Thanksgiving,,12,NO,YES,NO,NO,,YES,YES,pet_sparrow_thanksgivng_buff
 43,4,1,0,5,50,0,0,pet_dalmatian,,0,NO,YES,NO,NO,,YES,YES,pet_dalmatian_buff
 44,4,1,2,3,50,0,0,pet_winter_rabbit,,0,NO,YES,NO,NO,,YES,YES,pet_winter_rabbit_buff
+45,4,1,2,2,50,0,0,pet_twnpanda,,0,NO,YES,NO,NO,,YES,YES,pet_twnpanda_buff
 46,4,1,0,5,50,0,0,pet_robot_dog,,0,NO,YES,NO,NO,,YES,YES,pet_robot_dog_buff

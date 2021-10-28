@@ -73,13 +73,13 @@
 		<groupbox name="mapBox" parent="indunbox" rect="0 0 412 230" margin="0 170 0 0" layout_gravity="right top" draw="false" hittestbox="false"/>
 		<groupbox name="mapHelpBox" rect="0 0 412 45" parent="mapBox" margin="0 0 0 0" layout_gravity="right top" draw="false" image="test_com_namebg"/>
 		<richtext name="mapHelpText" rect="0 0 412 30" parent="mapHelpBox" margin="10 0 0 0" layout_gravity="left center" format="{@st66d}%s{/}" param1="text" param1_def="도움말"/>
-		<richtext name="mapText1" parent="mapBox" rect="0 0 190 30" margin="30 55 0 0" layout_gravity="left top" fontname="brown_16_b" caption="등장 지역"/>
-		<richtext name="mapText2" parent="mapBox" rect="0 0 190 30" margin="210 55 0 0" layout_gravity="left top" fontname="brown_16_b" caption="등장 지역"/>
-		<richtext name="mapText3" parent="mapBox" rect="0 0 190 30" margin="30 85 0 0" layout_gravity="left top" fontname="brown_16_b" caption="등장 지역"/>
-		<richtext name="mapText4" parent="mapBox" rect="0 0 190 30" margin="210 85 0 0" layout_gravity="left top" fontname="brown_16_b" caption="등장 지역"/>
-		<richtext name="mapText5" parent="mapBox" rect="0 0 190 30" margin="30 115 0 0" layout_gravity="left top" fontname="brown_16_b" caption="등장 지역"/>
-		<richtext name="mapText6" parent="mapBox" rect="0 0 190 30" margin="210 115 0 0" layout_gravity="left top" fontname="brown_16_b" caption="등장 지역"/>
-		<richtext name="mapText7" parent="mapBox" rect="0 0 190 30" margin="30 145 0 0" layout_gravity="left top" fontname="brown_16_b" caption="등장 지역"/>
+		<richtext name="mapText1" parent="mapBox" rect="0 0 180 30" margin="30 55 0 0" layout_gravity="left top" fontname="brown_16_b" caption="등장 지역" fixwidth="true" omitbywidth="true" ellipsistexttooltip="true"/>
+		<richtext name="mapText2" parent="mapBox" rect="0 0 180 30" margin="210 55 0 0" layout_gravity="left top" fontname="brown_16_b" caption="등장 지역" fixwidth="true" omitbywidth="true" ellipsistexttooltip="true"/>
+		<richtext name="mapText3" parent="mapBox" rect="0 0 180 30" margin="30 85 0 0" layout_gravity="left top" fontname="brown_16_b" caption="등장 지역" fixwidth="true" omitbywidth="true" ellipsistexttooltip="true"/>
+		<richtext name="mapText4" parent="mapBox" rect="0 0 180 30" margin="210 85 0 0" layout_gravity="left top" fontname="brown_16_b" caption="등장 지역" fixwidth="true" omitbywidth="true" ellipsistexttooltip="true"/>
+		<richtext name="mapText5" parent="mapBox" rect="0 0 180 30" margin="30 115 0 0" layout_gravity="left top" fontname="brown_16_b" caption="등장 지역" fixwidth="true" omitbywidth="true" ellipsistexttooltip="true"/>
+		<richtext name="mapText6" parent="mapBox" rect="0 0 180 30" margin="210 115 0 0" layout_gravity="left top" fontname="brown_16_b" caption="등장 지역" fixwidth="true" omitbywidth="true" ellipsistexttooltip="true"/>
+		<richtext name="mapText7" parent="mapBox" rect="0 0 180 30" margin="30 145 0 0" layout_gravity="left top" fontname="brown_16_b" caption="등장 지역" fixwidth="true" omitbywidth="true" ellipsistexttooltip="true"/>
 		<!-- Pattern List Box -->
 		<groupbox name="patternBox" parent="indunbox" rect="0 0 412 110" margin="0 358 0 0" layout_gravity="right top" draw="false" hittestbox="false"/>
 		<picture name="patternPic" parent="patternBox" rect="0 0 27 27" margin="5 0 0 0" layout_gravity="left top" image="indun_pattern"/>

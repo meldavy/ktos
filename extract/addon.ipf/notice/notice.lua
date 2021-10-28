@@ -75,6 +75,8 @@ function NOTICE_ON_INIT(addon, frame)
     addon:RegisterMsg('NOTICE_Dm_GuildColony', 'NOTICE_ON_MSG');    
     addon:RegisterMsg('NOTICE_Dm_GuildColony2', 'NOTICE_ON_MSG');
     addon:RegisterMsg('NOTICE_Dm_GuildColony3', 'NOTICE_ON_MSG');
+    addon:RegisterMsg('NOTICE_Dm_fanfare', 'NOTICE_ON_MSG');
+    addon:RegisterMsg('NOTICE_Dm_information', 'NOTICE_ON_MSG');
 end
 
 function NOTICE_CLOSE(frame)
@@ -396,6 +398,10 @@ function NOTICE_ON_MSG(frame, msg, argStr, argNum)
     elseif msg == 'NOTICE_Dm_GuildColony2' then
         exeText = '{@st41}'..noticeText;
     elseif msg == 'NOTICE_Dm_GuildColony3' then
+        exeText = '{@st41}'..noticeText;
+    elseif msg == 'NOTICE_Dm_fanfare' then
+        exeText = '{@st41}'..noticeText;
+    elseif msg == 'NOTICE_Dm_information' then
         exeText = '{@st41}'..noticeText;
     end
     

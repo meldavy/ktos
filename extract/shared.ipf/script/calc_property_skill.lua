@@ -172,13 +172,15 @@ function SCR_Get_SpendSP(skill)
         decsp = SCR_COOLDOWN_SPAMOUNT_DECREASE(pc, "SpendSP", value)
     elseif IsBuffApplied(pc, "FIELD_SP_FULL_BUFF") == "YES" then
         decsp = SCR_FIELD_DUNGEON_CONSUME_DECREASE(pc, "SpendSP", value)
-    else
+    elseif IsBuffApplied(pc, 'premium_seal_2021_buff') == 'YES' and IsBuffApplied(pc, 'Event_Cooldown_SPamount_Decrease') == 'NO' and SCR_IS_LEVEL_DUNGEON(pc) == 'YES' then
+		decsp = value * 0.5
+	else
         if IsBuffApplied(pc, "Gymas_Buff") == "YES" then -- 기마스
             local ratio = 0.5;
             decsp = value * ratio
         end
     end
-
+	
     ----------
     value = value - decsp;
     if value < 1 then
@@ -192,7 +194,7 @@ function SCR_Get_SpendSP(skill)
 	if IsBuffApplied(pc, "ManaAmplify_Buff") == "YES" then
         value = value * 1.5
     end
-
+	
     return math.floor(value);
 end
 
@@ -3414,7 +3416,10 @@ end
 
 -- done , 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_GET_StoneShot_Ratio(skill)
-    local value = 50
+    local value = 25 + skill.Level * 5
+    if value >= 100 then
+        value = 100
+    end
     return value
 end
 
@@ -9327,7 +9332,7 @@ end
 -- 대미지 증가 --
 -- done , 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_Get_Zhendu_Ratio2(skill)
-    local value = 20 + (10 * skill.Level);
+    local value = 5 + skill.Level;
     
     return value
 end
@@ -12478,7 +12483,7 @@ end
 
 -- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_GET_SnipersSerenity_Ratio(skill)
-    local value = 4 - ((skill.Level - 1) * 0.4)
+    local value = 4 - (skill.Level * 0.72)
     if value < 0.4 then
         value = 0.4
     end
@@ -13015,7 +13020,7 @@ end
 
 -- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_Get_Crescendo_Bane2(skill)
-    local value = skill.Level * 14
+    local value = skill.Level * 20
     
     return value;
 end
@@ -13715,11 +13720,11 @@ end
 -- done , 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_GET_Tracking_Time(skill)
     local pc = GetSkillOwner(skill)
-    local value = 20 + skill.Level * 6
+    local value = 5
     
     local abil = GetAbility(pc, "TigerHunter2");
     if abil ~= nil and abil.ActiveState == 1 then
-        value = value + 10;
+        value = value + 5;
     end
     
     return value;
@@ -13728,6 +13733,9 @@ end
 -- done , 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_GET_Tracking_Ratio(skill)
     local value = 20 * skill.Level
+    if value >= 100 then
+        value = 100
+    end
     return value
 end
 
@@ -13747,7 +13755,7 @@ end
 
 -- done , 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_GET_EyeofBeast_Ratio(skill)
-    local value = skill.Level * 6
+    local value = 10 + skill.Level * 2
     return value
 end
 
@@ -14578,7 +14586,7 @@ end
 
 -- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_GET_Tracking_Ratio2(skill)
-    local value = 20 + skill.Level * 6
+    local value = 30 + skill.Level * 4
     return value
 end
 
@@ -14658,7 +14666,12 @@ function SCR_COMMON_COOLDOWN_DECREASE(pc, skill, basicCoolDown)
         end
     end
     
-    return basicCoolDown
+	-- 2021 근본 인장
+	if IsBuffApplied(pc, 'premium_seal_2021_buff') == 'YES' and IsBuffApplied(pc, 'Event_Cooldown_SPamount_Decrease') == 'NO' and SCR_IS_LEVEL_DUNGEON(pc) == 'YES' then
+		basicCoolDown = basicCoolDown * 0.5
+	end
+
+	return basicCoolDown
 end
 
 -- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
@@ -14733,11 +14746,10 @@ end
 -- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_GET_SnipersSerenitySPD_Ratio(skill)
     local pc = GetSkillOwner(skill);
-    local value = 10
+    local lv = TryGetProp(skill, "Level", 1)
+    local value = 45 + lv
         
-    if IsPVPServer(pc) ~= 1 or IsPVPField(pc) ~= 1 then
-        value = 10 + TryGetProp(skill, 'Level', '1')
-    end
+
         
     return value;
 end
@@ -15977,4 +15989,28 @@ function SCR_GET_SKL_COOLDOWN_BreastRipper(skill)
     basicCoolDown = SCR_COMMON_COOLDOWN_DECREASE(pc, skill, basicCoolDown)
 
     return math.floor(basicCoolDown)
+end
+
+function SCR_GET_Escape_Ratio2(skill)
+    local value = skill.Level * 1
+    return value
+end
+
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
+function SCR_GET_BlockAndShoot_Ratio2(skill)
+    local pc = GetSkillOwner(skill)
+    local value = math.floor(2+pc.SR/3)
+
+    return value
+end
+
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
+function SCR_Get_Zhendu_Ratio3(skill)
+    local pc = GetSkillOwner(skill)
+    local pcLv = TryGetProp(pc, "Lv", 1)
+    local sklLv = TryGetProp(skill, "Level", 1)
+
+    local value = (15*pcLv) + (sklLv*pcLv*3.3)
+    value = value * SCR_REINFORCEABILITY_TOOLTIP(skill)
+    return math.floor(value)
 end

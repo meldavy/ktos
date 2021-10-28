@@ -373,7 +373,7 @@ return BuffTime;"/>
     local faena = GetSkill(self, &quot;Matador_Faena&quot;)
     local abil = GetAbility(self, &quot;Matador26&quot;)
     if abil ~= nil and TryGetProp(abil, &quot;ActiveState&quot;, 0) == 1 and faena ~= nil then
-        skill = &quot;Matador_Faena&quot;
+        skill = &quot;Matador_Muleta_Faena&quot;
     end
     
     return skill"/>

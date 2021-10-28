@@ -205,6 +205,10 @@ ClassID,ClassName,Name,UseDaily,UseWeekly
 6136,Event_SeasonNewWorld_Achieve1,시즌서버 이주민,NO,NO
 6137,TOS_School_Graduate,TOS스쿨 졸업생,NO,NO
 6138,Christmas_Master,마스터의 크리스마스,NO,NO
+6139,EVENT_Title_2101_1,오르샤의 작은 영웅,NO,NO
+6140,EVENT_Title_2101_2,냉혈한,NO,NO
+6141,EVENT_2102_Title_01,로잘리야의 친구,NO,NO
+6142,EVENT_2102_Title_02,보러블의 친구,NO,NO
 7001,PardonerAbility,기부 레벨,NO,NO
 7002,TaxAbility,세금 납부 레벨,NO,NO
 8001,FreeDungeon_under_68_1,시카리오스 기믹,NO,NO

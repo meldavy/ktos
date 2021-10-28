@@ -1603,6 +1603,9 @@
             </Stage>
             <Stage Name="SUCCESS" AutoStart="0">
                 <StartScpList>
+                    <ToolScp Scp="MGAME_SUCCESS_STAGE_SCP" Client="NO" UseSleep="NO">
+                        <Str Str="LegendRaid"/>
+                    </ToolScp>
                     <ToolScp Scp="MGAME_GIVE_ADVENTURE_BOOK_CLEAR_POINT" Client="NO" UseSleep="NO">
                         <Str Str="Raid_boss_Skiaclipse"/>
                     </ToolScp>

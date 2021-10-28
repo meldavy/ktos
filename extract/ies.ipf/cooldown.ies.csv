@@ -1417,3 +1417,9 @@ ClassID,OverHeatResetTime,ClassName,IsOverHeat,ReducePlayOnly,ForceReset
 4169,5000,Berkana,NO,FALSE,YES
 4170,5000,CrystalballShikigami,NO,FALSE,YES
 4171,5000,Eihwaz,NO,FALSE,YES
+4172,5000,EventBuffItem,NO,FALSE,NO
+4173,5000,EventEntranceTicket,NO,FALSE,NO
+4174,5000,EventConsumeItem,NO,FALSE,NO
+4175,5000,EventHPItem,NO,FALSE,NO
+4176,5000,EventSPItem,NO,FALSE,NO
+4177,5000,ArquebusierWeapon,NO,FALSE,NO

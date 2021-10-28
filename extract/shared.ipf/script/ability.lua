@@ -1093,24 +1093,13 @@ function SCR_ABIL_DOPPELSOELDNER24_INACTIVE(self, ability)
 end
 
 function SCR_ABIL_MUSKETEER30_ACTIVE(self, ability)
-    local minPATK = TryGetProp(self, "MINPATK")
-    local maxPATK = TryGetProp(self, "MAXPATK")
-    local addATK = 0
-    local addMSPD = 1
-    addATK = ((minPATK + maxPATK)/2) * (ability.Level * 0.01)
-
-    self.MSPD_BM = self.MSPD_BM - addMSPD
-    
-    SetExProp(self, "add_Musketeer30_ATK", addATK)
-    SetExProp(self, "add_Musketeer30_MSPD", addMSPD)
+    if IsBuffApplied(self, "Musketeer30_ATK_Buff") ~= "YES" then
+        AddBuff(self, self, "Musketeer30_ATK_Buff", 1, 0, 0, 0);
+    end
 end
 
 function SCR_ABIL_MUSKETEER30_INACTIVE(self, ability)
-    local addMSPD = GetExProp(self, "add_Musketeer30_MSPD")
-    
-    self.MSPD_BM = self.MSPD_BM + addMSPD
-    
-    DelExProp(self, "add_Musketeer30_ATK")
+    RemoveBuff(self, "Musketeer30_ATK_Buff");
 end
 
 function SCR_ABIL_TIGERHUNTER5_ACTIVE(self, ability)
@@ -1952,22 +1941,18 @@ function SCR_ABIL_Oracle23_INACTIVE(self, ability)
 end
 
 function SCR_ABIL_Arbalester16_ACTIVE(self, ability)
-    AddBuff(self, self, "Arbalester_Pre_Buff");
+    AddBuff(self, self, "Arbalester16_Buff");
 end
 
 function SCR_ABIL_Arbalester16_INACTIVE(self, ability)
-    RemoveBuff(self, "Arbalester_Pre_Buff");
     RemoveBuff(self, "Arbalester16_Buff")
-    RemoveBuff(self, "Arbalester17_Buff")
 end
 
 function SCR_ABIL_Arbalester17_ACTIVE(self, ability)
-    AddBuff(self, self, "Arbalester_Pre_Buff");
+    AddBuff(self, self, "Arbalester17_Buff");
 end
 
 function SCR_ABIL_Arbalester17_INACTIVE(self, ability)
-    RemoveBuff(self, "Arbalester_Pre_Buff");
-    RemoveBuff(self, "Arbalester16_Buff")
     RemoveBuff(self, "Arbalester17_Buff")
 end
 
@@ -3067,4 +3052,81 @@ function SCR_ABIL_Cleric32_INACTIVE(self, ability)
         skl.Attribute = GetExProp_Str(ability, "Heal_Attribute")
         skl.ValueType = GetExProp_Str(ability, "Heal_ValueType")
     end
+end
+
+function SCR_ABIL_Cannoneer21_ACTIVE(self, ability)
+    if IsBuffApplied(self, "Cannoneer21_Abil_Buff") ~= "YES" then
+        AddBuff(self, self, "Cannoneer21_Abil_Buff", 1, 0, 0, 0);
+    end
+end
+
+function SCR_ABIL_Cannoneer21_INACTIVE(self, ability)
+    RemoveBuff(self, "Cannoneer21_Abil_Buff");
+end
+
+function SCR_ABIL_Cannoneer1_ACTIVE(self, ability)
+    if IsBuffApplied(self, "Cannoneer1_Abil_Buff") ~= "YES" then
+        AddBuff(self, self, "Cannoneer1_Abil_Buff", 1, 0, 0, 0);
+    end
+end
+
+function SCR_ABIL_Cannoneer1_INACTIVE(self, ability)
+    RemoveBuff(self, "Cannoneer1_Abil_Buff");
+end
+
+function SCR_ABIL_Arbalester20_ACTIVE(self, ability)
+    AddBuff(self, self, "Arbalester20_Buff");
+end
+
+function SCR_ABIL_Arbalester20_INACTIVE(self, ability)
+    RemoveBuff(self, "Arbalester20_Buff")
+end
+
+function SCR_ABIL_Arbalester21_ACTIVE(self, ability)
+    AddBuff(self, self, "Arbalester21_Buff");
+end
+
+function SCR_ABIL_Arbalester21_INACTIVE(self, ability)
+    RemoveBuff(self, "Arbalester21_Buff")
+end
+
+function SCR_ABIL_QuarrelShooter8_ACTIVE(self, ability)
+    AddBuff(self, self, "QuarrelShooter8_ATK_Buff");
+end
+
+function SCR_ABIL_QuarrelShooter8_INACTIVE(self, ability)
+    RemoveBuff(self, "QuarrelShooter8_ATK_Buff")
+end
+
+function SCR_ABIL_Paladin20_ACTIVE(self, ability)
+    RemovePad(self, "Cleric_Barrier_PC");
+
+    local skill = GetSkill(self, "Paladin_Barrier");
+    if skill ~= nil then
+        skill.CastingCategory = "channeling"
+
+        InvalidateSkill(self, skill.ClassName);
+        SendSkillProperty(self, skill);
+    end
+end
+
+function SCR_ABIL_Paladin20_INACTIVE(self, ability)
+	local skill = GetSkill(self, "Paladin_Barrier");
+    if skill ~= nil then
+        skill.CastingCategory = "instant"
+
+        InvalidateSkill(self, skill.ClassName);
+        SendSkillProperty(self, skill);
+    end
+end
+
+function SCR_ABIL_Matador26_ACTIVE(self, ability)
+    local skill = GetSkill(self, "Matador_Faena")
+    if skill ~= nil then
+        AddInstSkill(self, "Matador_Muleta_Faena", skill.Level)
+    end
+end
+
+function SCR_ABIL_Matador26_INACTIVE(self, ability)
+    RemoveInstSkill(self, "Matador_Muleta_Faena")
 end

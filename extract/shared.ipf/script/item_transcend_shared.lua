@@ -405,6 +405,10 @@ function IS_TRANSCEND_SCROLL_ITEM(scrollObj)
             return 1;
 	elseif scrollType == "transcend_Add" then
         return 1;
+    elseif scrollType == "transcend_Set_440_Event" then
+		return 1;
+	elseif scrollType == "transcend_Set_450" then
+        return 1;
     end
 	return 0;
 end
@@ -508,6 +512,38 @@ function IS_ENCHANT_SCROLL_ITEM(targetObj)
     end
 
     return true;
+end
+
+function IS_PREMIUM_ENCHANT_SCROLL_ITEM(targetObj, scrollObj)
+	local premium = TryGetProp(targetObj, "PremiumEquip", 0)
+    if premium == 0 then
+        return false
+    end
+
+	local StringArg = TryGetProp(scrollObj, "StringArg", "None")
+	if StringArg == "ENCHANT_SCROLL_VIBORA_MAIN" then
+		if TryGetProp(targetObj, "GroupName", "None") ~= "Weapon" then
+			return false
+		end
+	elseif StringArg == "ENCHANT_SCROLL_VIBORA_SUB" then
+		if TryGetProp(targetObj, "GroupName", "None") ~= "SubWeapon" and TryGetProp(targetObj, "ClassType", "None") ~= "Shield" then
+			return false
+		end
+	else
+		return false
+	end
+
+    local itemLevel = TryGetProp(targetObj, "UseLv", 0)
+    if itemLevel < 440 then
+        return false
+    end
+
+    local ItemType_str = TryGetProp(targetObj, "ItemType", "None")
+    if ItemType_str ~= "Equip" then
+        return false
+    end
+
+    return true
 end
 
 function IS_ENCHANT_SCROLL_ITEM_EP12_REWARD_USABLE_VIBORA_LV1(scrollObj, targetObj)
@@ -642,6 +678,39 @@ function IS_SETOPTION_SCROLL_ITEM(targetObj)
 
     return true;
 end
+
+function PREMIUM_IS_SETOPTION_SCROLL_ITEM(targetObj, scrollObj)
+	local premium = TryGetProp(targetObj, "PremiumEquip", 0)
+    if premium == 0 then
+        return false
+    end
+
+	local StringArg = TryGetProp(scrollObj, "StringArg", "None")
+	if StringArg == "SETOPTION_SCROLL_ARMOR" then
+		if TryGetProp(targetObj, "GroupName", "None") ~= "Armor" or TryGetProp(targetObj, "ClassType", "None") == 'Shield' then
+			return false
+		end
+	elseif StringArg == "SETOPTION_SCROLL_WEAPON" then
+		if TryGetProp(targetObj, "GroupName", "None") ~= "Weapon" and TryGetProp(targetObj, "GroupName", "None") ~= "SubWeapon" and TryGetProp(targetObj, "ClassType", "None") ~= 'Shield' then
+			return false
+		end
+	else
+		return false
+	end
+
+    local itemLevel = TryGetProp(targetObj, "UseLv", 0)
+    if itemLevel < 440 then
+        return false
+    end
+
+    local ItemType_str = TryGetProp(targetObj, "ItemType", "None")
+    if ItemType_str ~= "Equip" then
+        return false
+    end
+
+    return true
+end
+
 
 function ENABLE_SETOPTION_SCROLL_ITEM(targetObj)
     local eventItem = TryGetProp(targetObj, "EventEquip", 0)
@@ -974,6 +1043,11 @@ function IS_TRANSCEND_SCROLL_ABLE_ITEM(itemObj, scrollType, scrollTranscend)
             end
         end
         return 0
+	elseif scrollType == "transcend_Set_450" then
+        if Lv <= 450 and TryGetProp(itemObj, 'Transcend', 0) < 10 then
+           return 1;
+        end
+        return 0
     elseif scrollType == "transcend_Add" then
         if IS_TRANSCEND_ABLE_ITEM(itemObj) == 1 then
             return 1;
@@ -1006,11 +1080,13 @@ function GET_ANTICIPATED_TRANSCEND_SCROLL_SUCCESS(itemObj, scrollObj)
         return;
     end
     
-    if scrollType == "transcend_Set" or scrollType == "transcend_Set_380" or scrollType == "transcend_Set_400" or scrollType == "transcend_Set_420"  or scrollType == "transcend_Set_430" or scrollType == "transcend_Set_440" then
+    if scrollType == "transcend_Set" or scrollType == "transcend_Set_380" or scrollType == "transcend_Set_400" or scrollType == "transcend_Set_420"  or scrollType == "transcend_Set_430" or scrollType == "transcend_Set_440" or scrollType == "transcend_Set_450" then
         return transcend, percent;
     elseif scrollType == "transcend_Set_440_Weapon" or scrollType == "transcend_Set_440_Armor" or scrollType == "transcend_Set_440_Accessory" then
         return transcend, percent;
     elseif scrollType == "transcend_Set_440_Weapon_Old" or scrollType == "transcend_Set_440_Armor_Old" or scrollType == "transcend_Set_440_Accessory_Old" then
+        return transcend, percent;
+    elseif scrollType == "transcend_Set_440_Event" then
         return transcend, percent;
     elseif scrollType == "transcend_Add" then
         local curTranscend = 0;

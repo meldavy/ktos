@@ -308,3 +308,24 @@ function UNLOCK_ABIL_JOB_LEVEL(pc, jobClassName, limitLevel, abilIES)
 
 	return "UNLOCK";
 end
+
+function UNLOCK_ARBALESTER21_LEVEL(pc, jobName, limitLevel, abilIES)
+	local pcBaseLevel = TryGetProp(pc, "Lv")
+	local skl = GetSkill(pc, "Arbalester_GuidedShot")
+	if pcBaseLevel >= limitLevel and (skl ~= nil and skl.LevelByDB >= 5) then
+		return "UNLOCK";
+	end
+	
+	return "LOCK_GRADE";
+end
+
+function UNLOCK_ARBALESTER19_LEVEL(pc, jobClassName, limitLevel, abilIES)
+	local curJobLv = GetJobLevelByName(pc, "Char3_20");
+	local pcBaseLevel = TryGetProp(pc, "Lv")
+	local abil = GetAbility(pc, "Arbalester21")
+	if (curJobLv >= limitLevel) and (pcBaseLevel >= 300) and (TryGetProp(abil, "Level", 0) >= 5) then
+		return "UNLOCK";
+	end
+
+	return "LOCK_GRADE";
+end

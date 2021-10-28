@@ -155,6 +155,9 @@ end
 function EARTHTOWERSHOP_ON_INIT(addon, frame)
     addon:RegisterMsg('EARTHTOWERSHOP_BUY_ITEM', 'EARTHTOWERSHOP_BUY_ITEM');
     addon:RegisterMsg('EARTHTOWERSHOP_BUY_ITEM_RESULT', 'EARTHTOWERSHOP_BUY_ITEM_RESULT');
+
+    addon:RegisterMsg("EARTHTOWERSHOP_REMAIN_TIME", 'EARTHTOWERSHOP_REMAIN_TIME');
+    addon:RegisterMsg("EARTHTOWERSHOP_CLOSE_SHOP_TYPE", 'EARTHTOWERSHOP_CLOSE_SHOP_TYPE');
 end
 
 function EARTHTOWERSHOP_BUY_ITEM_RESULT(frame, msg, argStr, argNum)
@@ -266,6 +269,43 @@ function EARTHTOWERSHOP_BUY_ITEM(frame, msg, itemName, itemCount)
         coin5TH_text:SetTextByKey("value", coin5TH_count);
     end
 end
+
+function EARTHTOWERSHOP_REMAIN_TIME(frame, msg, argStr, remaintime)
+    local remain_time = GET_CHILD_RECURSIVELY(frame, "remain_time")
+    remain_time:SetTextByKey("value", remaintime);
+
+	frame:SetUserValue("REMAINSEC", remaintime);
+	frame:SetUserValue("STARTSEC", math.floor(imcTime.GetAppTime()));
+    frame:RunUpdateScript("EARTHTOWERSHOP_REMAIN_TIME_UPDATE", 0, 0, 0, 1);
+    EARTHTOWERSHOP_REMAIN_TIME_UPDATE(frame)
+end
+
+function EARTHTOWERSHOP_REMAIN_TIME_UPDATE(frame)
+    local startsec = frame:GetUserValue("STARTSEC");
+    local remainsec = frame:GetUserValue("REMAINSEC");
+
+    local difsec = imcTime.GetAppTime() - startsec;
+    local remainTime = math.floor(remainsec - difsec);
+    
+    local remain_time = GET_CHILD_RECURSIVELY(frame, "remain_time");
+
+    if remainTime < 0 then
+        remain_time:SetTextByKey("value", 0);
+        return 0;
+    end
+
+    remain_time:SetTextByKey("value", remainTime);
+
+    return 1;
+end
+
+function EARTHTOWERSHOP_CLOSE_SHOP_TYPE(frame, msg, argStr, argNum)
+    local shopType = frame:GetUserValue("SHOP_TYPE");
+    if string.find(shopType, argStr) ~= nil then
+        frame:ShowWindow(0);
+    end
+end
+
 function REQ_EARTH_TOWER_SHOP_OPEN()
 
     local frame = ui.GetFrame("earthtowershop");
@@ -481,9 +521,11 @@ function EARTH_TOWER_INIT(frame, shopType)
     local propertyRemain = GET_CHILD_RECURSIVELY(frame,"propertyRemain")
     local pointbuyBtn = GET_CHILD_RECURSIVELY(frame,"pointbuyBtn")
     local event_gb = GET_CHILD_RECURSIVELY(frame, "event_gb")
-
+    local remain_time = GET_CHILD_RECURSIVELY(frame, "remain_time")
+    
     propertyRemain:ShowWindow(0)
     pointbuyBtn:ShowWindow(0)
+    remain_time:ShowWindow(0)
 
     if shopType ~= "EVENT_2011_5TH_Normal_Shop" and string.find(shopType, "EVENT_2011_5TH_Special_Shop") == nil then
         event_gb:RemoveAllChild();
@@ -616,6 +658,11 @@ function EARTH_TOWER_INIT(frame, shopType)
         
         event_gb:ShowWindow(1);
         REQ_EARTH_TOWER_SHOP_SUB_COMMON(shopType)
+    elseif string.find(shopType, "EVENT_2101_SUPPLY_Shop2") ~= nil or string.find(shopType, "EVENT_2101_SUPPLY_Shop1") ~= nil then
+        title:SetText('{@st43}'..ScpArgMsg(shopType));
+        close:SetTextTooltip(ScpArgMsg('CloseUI{NAME}', 'NAME', ScpArgMsg("EventShop")));
+
+        remain_time:ShowWindow(1);
     else
         title:SetText('{@st43}'..ScpArgMsg(shopType));
         close:SetTextTooltip(ScpArgMsg('CloseUI{NAME}', 'NAME', ScpArgMsg("EventShop")));
@@ -1166,7 +1213,7 @@ function DRAW_EXCHANGE_SHOP_IETMS(categoryName)
     tree:SetFontName("brown_18_b");
     tree:SetTabWidth(5);
 
-    local classList = _GET_INFO(categoryName);    
+    local classList = _GET_INFO(categoryName);
     local shopType = frame:GetUserValue("SHOP_TYPE");
     local slotHeight = ui.GetControlSetAttribute('earthTowerRecipe', 'height') + 5;
     for index , cls in pairs(classList) do
@@ -1229,7 +1276,14 @@ function EARTH_TOWER_SHOP_EXEC(parent, ctrl)
             end
         end
     end
-    
+
+    local remain_time = GET_CHILD_RECURSIVELY(frame, "remain_time");
+    if remain_time ~= nil and remain_time:IsVisible() == 1 then
+        local remainTime = tonumber(remain_time:GetTextByKey("value"));
+        if remainTime <= 0 then
+            return;
+        end
+    end
     
     if recipecls==nil or recipecls["Item_2_1"] ~='None' then        
         if g_account_prop_shop_table[shopType] ~= nil then

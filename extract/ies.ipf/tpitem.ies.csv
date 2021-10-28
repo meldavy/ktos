@@ -46,6 +46,10 @@ ClassID,Price,JobGrade,Itemdate,AccountLimitCount,BonusItemCnt,ClassName,Categor
 45,590,0,201112,0,0,ClassName45,TP_Premium,TP_Useable,Gacha_HairAcc_ReSale010_M_2,,2020-11-12 09:00:00,2020-12-10 08:00:00,NO,,NO
 46,59,0,201112,0,0,ClassName46,TP_Premium,TP_Useable,Gacha_HairAcc_ReSale001_F_2,,2020-11-12 09:00:00,2020-12-10 08:00:00,NO,,NO
 47,590,0,201112,0,0,ClassName47,TP_Premium,TP_Useable,Gacha_HairAcc_ReSale010_F_2,,2020-11-12 09:00:00,2020-12-10 08:00:00,NO,,NO
+48,535,0,210210,1,0,ClassName48,TP_Premium,TP_Useable,txbox_2021_NewYear_Package_Growth,,2021-02-10 00:00:00,2021-02-28 23:59:59,NO,,NO
+49,268,0,210210,10,0,ClassName49,TP_Premium,TP_Useable,txbox_2021_NewYear_Package_BattleA,,2021-02-10 00:00:00,2021-02-28 23:59:59,NO,,NO
+50,688,0,210210,3,0,ClassName50,TP_Premium,TP_Useable,txbox_2021_NewYear_Package_BattleB,,2021-02-10 00:00:00,2021-02-28 23:59:59,NO,,NO
+51,998,0,210210,1,0,ClassName51,TP_Premium,TP_Useable,txbox_2021_NewYear_Package_ALL,,2021-02-10 00:00:00,2021-02-28 23:59:59,NO,,NO
 101,39,0,151229,0,0,ClassName101,TP_Premium,TP_Consume,Mic_bundle50,,,,NO,,
 102,1,0,151229,0,0,ClassName102,TP_Premium,TP_Consume,Mic,,,,NO,,
 103,18,0,151229,0,0,ClassName103,TP_Premium,TP_Consume,RestartCristal_bundle10,,,,NO,,

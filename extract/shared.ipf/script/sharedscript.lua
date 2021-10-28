@@ -3283,3 +3283,52 @@ function GET_GUILD_MEMBER_JOIN_AUTO_GUILD_IDX()
 
     return "0";
 end
+
+function SCR_IS_LEVEL_DUNGEON(pc)
+	if IsServerSection() == 1 then
+	    local cmd = GetMGameCmd(pc)
+		if cmd == nil then
+			return 'NO'
+		end
+	
+	    local mGameName = 'None'
+	    if cmd ~= nil then
+	        mGameName = cmd:GetMGameName()
+	    end
+	
+		local IndunCls = GetClassByStrProp('Indun', 'MGame', mGameName)
+		if IndunCls == nil then
+			return 'NO'
+		end
+	
+		local DungeonType
+		if IndunCls ~= nil then
+			DungeonType = TryGetProp(IndunCls, 'DungeonType', 'None')
+		end
+	
+		if DungeonType == 'Indun' or DungeonType == 'MissionIndun' then
+			return 'YES'
+		end
+	else 
+	    local mGameName = session.mgame.GetCurrentMGameName()
+		if mGameName == nil or mGameName == 'None' then
+			return 'NO'
+		end
+
+		local IndunCls = GetClassByStrProp('Indun', 'MGame', mGameName)
+		if IndunCls == nil then
+			return 'NO'
+		end
+	
+		local DungeonType
+		if IndunCls ~= nil then
+			DungeonType = TryGetProp(IndunCls, 'DungeonType', 'None')
+		end
+	
+		if DungeonType == 'Indun' or DungeonType == 'MissionIndun' then
+			return 'YES'
+		end
+	end
+
+	return 'NO'
+end

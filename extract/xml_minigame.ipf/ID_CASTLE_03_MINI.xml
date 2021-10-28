@@ -494,6 +494,9 @@
             </Stage>
             <Stage Name="Success" AutoStart="0">
                 <StartScpList>
+                    <ToolScp Scp="MGAME_SUCCESS_STAGE_SCP" Client="NO" UseSleep="NO">
+                        <Str Str="Level"/>
+                    </ToolScp>
                     <ToolScp Scp="MGAME_SET_QUEST_NAME" Client="NO" UseSleep="NO">
                         <Str Str="성공!{nl}60초 후에 돌아갑니다"/>
                     </ToolScp>

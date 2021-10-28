@@ -20,7 +20,7 @@ function IS_ENCHANT_ITEM(item)
 	   or item.ClassName == "Event_Enchantchip_3" or item.ClassName == "Event_Enchantchip_4" or item.ClassName == "Premium_Enchantchip14_NoStack"
 	   or item.ClassName == "Event_Enchantchip_5" or item.ClassName == "Event_Enchantchip_6" or item.ClassName == "Event_Enchantchip_7"
 	   or item.ClassName == "Event_Enchantchip_200" or item.ClassName == "Event_Enchantchip_201" or item.ClassName == "Event_Enchantchip_8" 
-           or item.ClassName == "Event_Enchantchip_202" or item.ClassName == "Event_Enchantchip_10" then
+           or item.ClassName == "Event_Enchantchip_202" or item.ClassName == "Event_Enchantchip_9" or item.ClassName == "Event_Enchantchip_10" then
 		return 1;
 	end
 

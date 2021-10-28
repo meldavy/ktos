@@ -80,7 +80,8 @@ function SCR_RELIC_QUEST_CHECK(pc, className)
         return 'Error'
     end
 
-    local relicQuestIES = GetClass('Relic_Quest', className)
+    local relicQuestName = TryGetProp(relicRewardIES, 'RelicQuest', 'None')
+    local relicQuestIES = GetClass('Relic_Quest', relicQuestName)
     if relicQuestIES == nil then
         return 'Error'
     end

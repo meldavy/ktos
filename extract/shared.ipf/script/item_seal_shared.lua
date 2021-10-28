@@ -66,6 +66,10 @@ function IS_VALID_SEAL_MATERIAL_ITEM(targetSeal, materialSeal)
     if GET_CURRENT_SEAL_LEVEL(targetSeal) ~= GET_CURRENT_SEAL_LEVEL(materialSeal) then
         return false;
     end
+	
+	if TryGetProp(materialSeal, "ClassName", "None") == "Seal_2021_NewYear" then
+		return false
+	end
 
     return true;
 end

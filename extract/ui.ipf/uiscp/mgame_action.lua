@@ -1,7 +1,11 @@
 --- mgame_action.lua --
 
-function MGAME_MSG(actor, msgStr)
-    addon.BroadMsg("NOTICE_Dm_!", msgStr, 3);
+function MGAME_MSG(actor, msgStr, msgDuration)
+    if msgDuration == nil or msgDuration <= 0 then
+        msgDuration = 3;
+    end
+    
+    addon.BroadMsg("NOTICE_Dm_!", msgStr, msgDuration);
 end
 
 function SHOW_SIMPLE_MSG(msgStr)
@@ -70,6 +74,16 @@ function MGAME_EVT_SCRIPT_CLIENT(actor, scriptName)
 end
    
 function MGAME_MSG_ICON(actor, msgStr, icon,  sec)
+	-- EVENT_2101_SUPPLY
+	local objList, objCount = SelectBaseObject(actor, 1000, 'NEUTRAL');
+	for i = 1 , objCount do
+		local _obj = objList[i];
+		local obj = GetBaseObjectIES(_obj);
+		if IS_EVENT_2101_SUPPLY_CONTENT_NPC(obj.ClassName) == true then
+			return;
+		end
+	end
+
     local msg_int = "NOTICE_Dm_"..icon
 	addon.BroadMsg(msg_int, msgStr, sec);
 end

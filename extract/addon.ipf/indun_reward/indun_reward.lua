@@ -2,6 +2,9 @@ function INDUN_REWARD_ON_INIT(addon, frame)
     addon:RegisterMsg('OPEN_INDUN_REWARD', 'INDUN_REWARD_OPEN')
     addon:RegisterMsg('INDUN_REWARD_RESULT', 'INDUN_REWARD_SET')
     addon:RegisterMsg('ENABLE_RETURN_BUTTON', 'ENABLE_RETURN_BUTTON')
+	
+	addon:RegisterMsg('INDUN_REWARD_RESULT_TIME_SET', 'INDUN_REWARD_RESULT_TIME_SET')
+	addon:RegisterMsg('RETURN_PLAYERS_SHORTCUT_CHECK_MSG', 'RETURN_PLAYERS_SHORTCUT_CHECK_MSG')
 end
 
 -- 잠긴 돌아가기 버튼을 활성화
@@ -167,6 +170,11 @@ function INDUN_REWARD_SET(frame, msg, str, arg)
 end
 
 function SCR_INDUN_REWARD_WAIT_RETURN(textReturn)
+	local limitTime = textReturn:GetUserIValue("LIMIT_TIME");
+	if limitTime == 0 then
+		limitTime = 60;
+	end
+
 	local startTime = textReturn:GetUserValue("CHALLENGE_MODE_START_TIME");
 	if startTime == nil then
 		return 0;
@@ -175,13 +183,15 @@ function SCR_INDUN_REWARD_WAIT_RETURN(textReturn)
 	local nowTime = imcTime.GetAppTimeMS();
 
 	local diffTime = (nowTime - startTime) / 1000;
-	local remainTime = 60 - diffTime;
+	local remainTime = limitTime - diffTime;
 	if remainTime < 0 then
 		textReturn:SetText(ScpArgMsg("Wait{Sec}ReturnOringinServer", "Sec", 0));
 		return 0;
 	end
 
+	local remainMin = math.floor(remainTime / 60);
 	local remainSec = math.floor(remainTime % 60);
+	remainSec = remainSec + (remainMin * 60);
 	
 	textReturn:SetText(ScpArgMsg("Wait{Sec}ReturnOringinServer", "Sec", remainSec));
 	return 1;
@@ -194,4 +204,23 @@ end
 function SCR_INDUN_REWARD_CLOSE(frame)
     local frame = ui.GetFrame("indun_reward");
 	frame:ShowWindow(0);
+end
+function INDUN_REWARD_RESULT_TIME_SET(frame, msg, argStr, argNum)
+	local frame = ui.GetFrame('indun_reward')
+	if frame:IsVisible() == 0 then
+		return;
+	end
+
+	local textReturn = GET_CHILD(frame, "textReturn");
+	textReturn:SetUserValue("CHALLENGE_MODE_START_TIME", tostring(imcTime.GetAppTimeMS()));
+	textReturn:SetUserValue("LIMIT_TIME", argNum);
+end
+
+function RETURN_PLAYERS_SHORTCUT_CHECK_MSG(frame, msg, curCnt, maxCnt)
+	local msg = ScpArgMsg("Mgame_Return_Players_Agree_Count{CURCNT}{MAXCNT}", "CURCNT", curCnt, "MAXCNT", maxCnt) .."{nl} {nl}".. ScpArgMsg("Mgame_Return_Players_Check");
+	ui.MsgBox(msg, " RETURN_PLAYERS_SHORTCUT_AGREE()", "None");
+end
+
+function RETURN_PLAYERS_SHORTCUT_AGREE(frame)
+	control.CustomCommand("REQ_RETURN_PLAYERS_SHORTCUT_AGREE", 0);
 end

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by imc (imc) -->
+<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by imc (imc) -->
 <!-- edited with XMLSpy v2008 sp1 (http://www.altova.com) by MintPC (Mi) -->
 <skinset name="Base">
 	<skinlist category="frames">
@@ -7664,6 +7664,7 @@
 		<image name="Collar_Event_Stamp_skin" file="\skin\Collar_skin.tga" imgrect="124 31 30 30" CMM_Caption="2020 달려라 스탬프 투어 칭호"/>
 		<image name="Collar_Event_Tecance" file="\skin\Collar_skin.tga" imgrect="155 31 30 30" CMM_Caption="2020 트캉스 수박물고기 칭호"/>
 		<image name="Collar_TOS_School_Graduate" file="\skin\Collar_skin.tga" imgrect="186 31 30 30" CMM_Caption="2020_tos 스쿨 졸업생"/>
+		<image name="Collar_Event_valentin" file="\skin\Collar_skin.tga" imgrect="217 31 30 30" CMM_Caption="2021_발렌타인"/>
 	</imagelist>
 	<imagelist category="testse_image">
 		<image name="indun_soulcrystal_bg" file="\skin\indun_skin.tga" imgrect="614 552 84 86" CMM_Caption="소울크리스탈 횟수제한 UI"/>
@@ -9398,6 +9399,7 @@
 		<image name="companion_dalmatian" file="\icon\companion_Velhider.tga" imgrect="0 400 80 80"/>
 		<image name="companion_pet_winter_rabbit" file="\icon\companion_Velhider.tga" imgrect="80 400 80 80"/>
 		<image name="companion_pet_robot_dog" file="\icon\companion_Velhider.tga" imgrect="160 400 80 80"/>
+		<image name="companion_pet_twnpanda" file="\icon\companion_Velhider.tga" imgrect="240 400 80 80"/>
 		<image name="bg_w" file="\skin\button.tga" imgrect="252 974 50 50"/>
 		<image name="barrack_signboard" file="\skin\barrack.tga" imgrect="356 0 257 192"/>
 		<image name="barrack_attack_icon" file="\skin\barrack.tga" imgrect="59 720 55 61"/>
@@ -11833,6 +11835,8 @@
 		<image name="icon_GILTINE_GRACE_BUFF" file="\icon\buff_icon4.tga" imgrect="896 768 128 128" CMM_Caption="마신의 은총"/>
 		<image name="icon_pet_robot_dog_buff" file="\icon\buff_icon4.tga" imgrect="0 896 128 128" CMM_Caption="어시스턴트 로봇 도그"/>
 		<image name="icon_AUTO_MATCHING2_BLOW_HEAL_BUFF" file="\icon\buff_icon4.tga" imgrect="128 896 128 128" CMM_Caption="타격 힐"/>
+		<image name="icon_pet_twnpanda" file="\icon\buff_icon4.tga" imgrect="256 896 128 128" CMM_Caption="판다"/>
+		<image name="icon_Event_Yugwa" file="\icon\buff_icon4.tga" imgrect="384 896 128 128" CMM_Caption="2021_설날 유과 버프"/>
 	</imagelist>
 	<imagelist category="housing_bufficon">
 		<image name="icon_Weapon_Klaida" file="\icon\icon_hosing_buff.tga" imgrect="0 0 128 128"/>
@@ -11951,6 +11955,8 @@
 		<image name="NOTICE_Dm_GuildColony3" file="\skin\dungeon_message.tga" imgrect="505 808 100 100" CMM_Caption="Guild_Colony3"/>
 		<image name="NOTICE_Dm_Curse" file="\skin\dungeon_message.tga" imgrect="606 808 100 100" CMM_Caption="Curse"/>
 		<image name="NOTICE_Dm_Curse2" file="\skin\dungeon_message.tga" imgrect="707 808 100 100" CMM_Caption="Curse2"/>
+		<image name="NOTICE_Dm_fanfare" file="\skin\dungeon_message.tga" imgrect="808 808 100 100" CMM_Caption="event_fanfare"/>
+		<image name="NOTICE_Dm_information" file="\skin\dungeon_message.tga" imgrect="909 808 100 100" CMM_Caption="event_information"/>
 	</imagelist>
 	<imagelist category="SkillAnimPicture">
 		<image name="skillAnim" file="\icon\warrior_m.tga" imgrect="0 0 1024 512"/>
@@ -12081,6 +12087,9 @@
 		<image name="029_npc_KiolRuarawa" file="\skin\npccard\029_npc_KiolRuarawa.tga" imgrect="0 0 330 440"/>
 		<image name="030_LucidWinterspoon" file="\skin\npccard\030_LucidWinterspoon.tga" imgrect="0 0 330 440"/>
 		<image name="031_BangomontBorjigin" file="\skin\npccard\031_BangomontBorjigin.tga" imgrect="0 0 330 440"/>
+		<image name="032_DamirBorkhan" file="\skin\npccard\032_DamirBorkhan.tga" imgrect="0 0 330 440"/>
+		<image name="033_KhanomCaolaw" file="\skin\npccard\033_KhanomCaolaw.tga" imgrect="0 0 330 440"/>
+		<image name="034_Rudmila" file="\skin\npccard\034_Rudmila.tga" imgrect="0 0 330 440"/>
 	</imagelist>
 	<imagelist category="bosscard2">
 		<image name="001_boss_poata" file="\skin\bosscard\001_boss_poata.tga" imgrect="0 0 330 440"/>

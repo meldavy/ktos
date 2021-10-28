@@ -135,6 +135,11 @@
                 </StageEvents>
             </Stage>
             <Stage Name="Succ" AutoStart="0">
+                <StartScpList>
+                    <ToolScp Scp="MGAME_SUCCESS_STAGE_SCP" Client="NO" UseSleep="NO">
+                        <Str Str="FreeDungeon"/>
+                    </ToolScp>
+                </StartScpList>
                 <ObjList/>
                 <StageEvents>
                     <Event execCount="1" eventName="Reward">

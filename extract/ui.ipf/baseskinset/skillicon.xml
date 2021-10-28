@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by imc (imc) -->
+<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by imc (imc) -->
 <!-- edited with XMLSpy v2008 sp1 (http://www.altova.com) by MintPC (Mi) -->
 <skinset name="Base">
 	<imagelist category="wizard_skillicon">
@@ -371,6 +371,7 @@
 		<image name="Icon_arch_Salute" file="\icon\skill\archer\Icon_arch_Salute.png" imgrect="0 0 128 128" CMM_Caption="설룻"/>
 		<image name="Icon_arch_Desperate_Defense" file="\icon\skill\archer\Icon_arch_Desperate_Defense.png" imgrect="0 0 128 128" CMM_Caption="데스퍼레이트 디펜스"/>
 		<image name="Icon_Precision_Fire" file="\icon\skill\archer\Icon_Precision_Fire.png" imgrect="0 0 128 128" CMM_Caption="프리시전 파이어"/>
+		<image name="icon_arch_ArquebusierWeapon" file="\icon\skill\archer\icon_arch_ArquebusierWeapon.png" imgrect="0 0 128 128" CMM_Caption="아퀴버지어 스탠스"/>
 	</imagelist>
 	<imagelist category="cleric_skillicon">
 		<image name="icon_cler_Heal" file="\icon\skill\cleric\icon_cler_Heal.png" imgrect="0 0 128 128" CMM_Caption="힐"/>
@@ -2586,6 +2587,8 @@
 		<image name="ability_archer_Arquebusier18" file="\icon\icon_ability_archer09.tga" imgrect="896 256 128 128" CMM_Caption="[아츠] 데스퍼레이트 디펜스: 용기"/>
 		<image name="ability_archer_QuarrelShooter37" file="\icon\icon_ability_archer09.tga" imgrect="0 384 128 128" CMM_Caption="[아츠]런닝샷: 상급 강화"/>
 		<image name="ability_archer_Arquebusier19" file="\icon\icon_ability_archer09.tga" imgrect="128 384 128 128" CMM_Caption="아퀴버지어: 캐논"/>
+		<image name="ability_archer_arbalester19" file="\icon\icon_ability_archer09.tga" imgrect="256 384 128 128" CMM_Caption="유도화살"/>
+		<image name="ability_archer_arbalester20" file="\icon\icon_ability_archer09.tga" imgrect="384 384 128 128" CMM_Caption="[아츠] 유도화살: 추가피해"/>
 	</imagelist>
 	<imagelist category="abilityicon_cleric">
 		<image name="ability_cleric_Cleric1" file="\icon\icon_ability_cleric01.tga" imgrect="0 0 128 128" CMM_Caption="큐어-도트시간감소"/>
