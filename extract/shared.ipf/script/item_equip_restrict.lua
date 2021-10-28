@@ -145,8 +145,8 @@ function CHECK_CHALLENGE_AUTOMATCHING_FOR_EP13(pc)
 		-- 방어구 체크
 		for k, v in pairs(check_equip_list_1) do
 			local item = GetEquipItem(pc, v)
-			-- 440레벨, 레전드, 고정아이커체크, 고정아이커
-			ret = CHECK_ARMOR_ITEM(pc, item, 440, 5, true, 0, {{'ALL', 400 }}, 5, 8)
+			-- 400레벨, 레전드, 고정아이커체크, 고정아이커
+			ret = CHECK_ARMOR_ITEM(pc, item, 400, 5, true, 0, {{'ALL', 400 }}, 5, 8)
 			if ret == false then
 				SendSysMsg(pc, 'RequireArmorItemLowGrade');
 				return false
