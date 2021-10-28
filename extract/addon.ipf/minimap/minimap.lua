@@ -73,8 +73,6 @@ function MINIMAP_ON_INIT(addon, frame)
 	
 	addon:RegisterMsg('MON_MINIMAP', 'MAP_MON_MINIMAP');
 	addon:RegisterMsg('MON_MINIMAP_END', 'ON_MON_MINIMAP_END');
-    addon:RegisterMsg('COLONY_MONSTER', 'MINIMAP_COLONY_MONSTER');
-    addon:RegisterMsg('OPEN_COLONY_POINT', 'UPDATE_MINIMAP');
 
 	mini_pos = GET_CHILD(frame, "my");
 	mini_pos:SetOffset(frame:GetWidth() / 2 - mini_pos:GetImageWidth() / 2 , frame:GetHeight() / 2 - mini_pos:GetImageHeight() / 2);
@@ -101,7 +99,7 @@ end
 
 function MINIMAP_FIRST_OPEN(frame)
 
-	UPDATE_MINIMAP(frame);
+	UPDATE_MINIMAP(frame, 1);
 
 end
 
@@ -117,9 +115,9 @@ function UPDATE_MINIMAP_NPC_STATE(frame)
 	UPDATE_NPC_STATE_COMMON(npcList);
 end
 
-function UPDATE_MINIMAP(frame)
+function UPDATE_MINIMAP(frame, isFirst)
 
-	if session.DontUseMinimap() == true then
+	if session.IsMissionMap() == true then
 		frame:ShowWindow(0);
 		return;
 	end
@@ -162,16 +160,16 @@ function UPDATE_MINIMAP(frame)
 	DESTROY_CHILD_BY_USERVALUE(npcList, "EXTERN", "None");
 	npcList:Resize(minimapw, minimaph);
 
-    local isColonyMap = session.colonywar.GetIsColonyWarMap();
-
 	local mongens = mapprop.mongens;
 	if mongens ~= nil then
 		local mapNpcState = session.GetMapNPCState(mapprop:GetClassName());
 		local cnt = mongens:Count();
 		local WorldPos;
 		local minimapPos;
+
 		for i = 0 , cnt - 1 do
-			local MonProp = mongens:Element(i);            
+			local MonProp = mongens:Element(i);
+
 			if MonProp.Minimap >= 1 then
 				local GenList = MonProp.GenList;
 				local GenCnt = GenList:Count();
@@ -182,7 +180,6 @@ function UPDATE_MINIMAP(frame)
 					local miniX = MapPos.x - iconW / 2;
 					local miniY = MapPos.y - iconH / 2;
 					local ctrlname = GET_GENNPC_NAME(npcList, MonProp);
-
 					local PictureC = npcList:CreateOrGetControl('picture', ctrlname , miniX, miniY, iconW, iconH);
 					tolua.cast(PictureC, "ui::CPicture");		
 				
@@ -190,13 +187,11 @@ function UPDATE_MINIMAP(frame)
 					PictureC:SetUserValue("GlobalY", PictureC:GetGlobalY());
 				
 					SET_MAP_MONGEN_NPC_INFO(PictureC, mapprop, WorldPos, MonProp, mapNpcState, npclist, statelist, questIESlist);				
+
 					if PictureC:GetUserIValue("IsHide") == 1 then
-						PictureC:ShowWindow(0);                       
+						PictureC:ShowWindow(0);
 					end
 
-                    if isColonyMap == true and MonProp:GetClassName() == 'Warp_arrow' then
-                        PictureC:ShowWindow(1);
-                    end
 				end
 			end
 		end
@@ -222,7 +217,7 @@ function UPDATE_MINIMAP(frame)
 
 				local miniX = MapPos.x - RangeX / 2;
 				local miniY = MapPos.y - RangeY / 2;
-                
+
 				local ctrlname = "_NPC_MON_MARK" .. quemoninfo.QuestType.. "_" .. i .. "_" ..quemoninfo.MonsterType;
 				local PictureC = npcList:CreateOrGetControl('picture', ctrlname, miniX, miniY, miniX, miniY);
 				SET_MAP_CIRCLE_MARK_UI(PictureC);
@@ -356,7 +351,7 @@ function UPDATE_MINIMAP(frame)
 							elseif count == 4 then
 								range = tonumber(locationMapName);
 
-								local MapPos = mapprop:WorldPosToMinimapPos(x, z,minimapw, minimaph);
+								local MapPos = mapprop:WorldPosToMinimapPos(x, z);
 								local XC, YC, RangeX, RangeY = GET_MINIMAP_POS_BY_SESSIONOBJ(MapPos, range, mapprop, minimapw, minimaph);
 								MAKE_LOC_CLICK_ICON(npcList, i, stateidx, 'minimapgroup'..roundCount, XC, YC, RangeX, RangeY, 30);
 
@@ -449,8 +444,8 @@ function MAKE_LOC_ICON_BY_ICON_NAME(parent, i, stateidx, k, XC, YC, iconW, iconH
 
 	SET_NPC_STATE_ICON(PictureC, IconName, state, classID, worldPos);
 
-	-- ?�라 ?�운?�는 ?�상???�어???�전 방식?�로 롤백?�니??
-	-- ?�인 : UPDATE_MINIMAP_TOOLTIP()??보면 'minimap' ?�팁?�의 UserData??MonProp?�어???�나 ?�기?�는 MapPos�??�용 �?
+	-- ?�라 ?�운?�는 ?�상???�어???�전 방식?�로 롤백?�니??
+	-- ?�인 : UPDATE_MINIMAP_TOOLTIP()??보면 'minimap' ?�팁?�의 UserData??MonProp?�어???�나 ?�기?�는 MapPos�??�용 �?
 
 	--[[
 	PictureC:ShowWindow(1);
@@ -677,38 +672,4 @@ function M_MAP_UPDATE_GUILD(frame, msg, a, b, c)
 	tolua.cast(npcList, 'ui::CGroupBox');
 	MAP_UPDATE_GUILD(npcList, msg, a, b, c);
 
-end
-
-function MINIMAP_COLONY_MONSTER(frame, msg, posStr, monID)
-    local mappicturetemp = GET_CHILD(frame, 'npclist', 'ui::CPicture');  
-    mappicturetemp:RemoveChild('colonyMonPic_'..monID);
-
-    local mapFrame = ui.GetFrame('map');
-    local COLONY_MON_IMG = GET_COLONY_MONSTER_IMG(mapFrame, monID);
-    local MONSTER_SIZE = tonumber(mapFrame:GetUserConfig('COLONY_MON_SIZE'));
-    local MONSTER_EFFECT_SIZE = tonumber(mapFrame:GetUserConfig('COLONY_MON_EFFECT_SIZE'));
-
-    local x, z = GET_COLONY_MONSTER_POS(posStr);  
-    local colonyMonPic = mappicturetemp:CreateControl('picture', 'colonyMonPic_'..monID, 0, 0, MONSTER_SIZE, MONSTER_SIZE);    
-    colonyMonPic = AUTO_CAST(colonyMonPic);    
-    colonyMonPic:SetImage(COLONY_MON_IMG);
-
-    local zoneClassName = GetZoneName();
-    local mapprop = geMapTable.GetMapProp(zoneClassName);    
-    local MapPos = mapprop:WorldPosToMinimapPos(x, z, minimapw, minimaph);    
-    local _x = MapPos.x - MONSTER_SIZE / 2;
-	local _y = MapPos.y - MONSTER_SIZE / 2;
-
-    colonyMonPic:SetOffset(_x, _y);
-	colonyMonPic:SetEnableStretch(1);
-
-    if IS_COLONY_MONSTER(monID) == true then
-        frame:RemoveChild('colonyMonEffectPic');
-        local colonyMonEffectPic = frame:CreateControl('picture', 'colonyMonEffectPic', 0, 0, MONSTER_EFFECT_SIZE, MONSTER_EFFECT_SIZE);
-        colonyMonEffectPic = AUTO_CAST(colonyMonEffectPic);
-        _x = MapPos.x - MONSTER_EFFECT_SIZE / 2;
-	    _y = MapPos.y - MONSTER_EFFECT_SIZE / 2;
-        colonyMonEffectPic:SetOffset(_x, _y);
-        SET_PICTURE_QUESTMAP(colonyMonEffectPic);
-    end
 end

@@ -1,7 +1,7 @@
 
 
 TARGET_INFO_OFFSET_BOSS_X = 1200;
-TARGET_INFO_OFFSET_X = 500;
+TARGET_INFO_OFFSET_X = 785;
 TARGET_INFO_OFFSET_Y = 20;
 
 function TARGETINFO_ON_INIT(addon, frame)
@@ -11,12 +11,13 @@ function TARGETINFO_ON_INIT(addon, frame)
 	addon:RegisterMsg('TARGET_UPDATE', 'TARGETINFO_ON_MSG');
 	addon:RegisterMsg('UPDATE_SDR', 'TARGET_UPDATE_SDR');
 
+	local timer = frame:GetChild("addontimer");
+	tolua.cast(timer, "ui::CAddOnTimer");
+	timer:SetUpdateScript("UPDATE_TGT_DISTANCE");
+	timer:Start(0.1);
 	UPDATE_BOSS_SCORE_TIME(frame);
 	frame:EnableHideProcess(1);
-		
-	TARGET_INFO_OFFSET_BOSS_X = 1200;
-	TARGET_INFO_OFFSET_X = 500;
-	TARGET_INFO_OFFSET_Y = 20;
+
  end
 
  function UPDATE_BOSS_SCORE_TIME(frame)
@@ -59,61 +60,35 @@ function TGTINFO_BUFF_UPDATE(frame, msg, argStr, argNum)
 	TGTINFO_TARGET_SET(frame);
 end
 
-function GET_BIRTH_BUFF_IMG_NAME(targetHandle)
+function UPDATE_TGT_DISTANCE(frame)
 
-	local targetActor = world.GetActor(targetHandle);
-
-	if targetActor == nil then
-		return
-	end
-
-	local clslist, cnt  = GetClassList("birthbufficon");
-
-	for i = 0 , cnt - 1 do
-
-		local cls = GetClassByIndexFromList(clslist, i);
-
-		if targetActor:GetBuff():GetBuff(cls.ClassName) ~= nil then
-			return cls.ImgName
-		end
-	end
-
-	return "None";
-
-end
-
-function TGTINFO_TARGET_SET(frame, msg, argStr, argNum)
-	if argStr == "None" then
+	local tgtHandle = frame:GetValue();
+	local targetinfo = info.GetTargetInfo(tgtHandle);
+	if nil == targetinfo then
 		return;
 	end
 
-	if IS_IN_EVENT_MAP() == true then
+	local dist = targetinfo.distance;
+	local str = string.format("   %0.1fm", dist/25);
+
+	local nameRichText = GET_CHILD(frame, "dist", "ui::CRichText");
+	nameRichText:SetText("{s16}{ol}"..str);
+	-- ..ScpArgMsg("Auto_KeoLi_")..'{@st43}'..targetinfo.name.."{/}{/}{/}"
+end
+
+function TGTINFO_TARGET_SET(frame, msg, argStr, argNum)
+
+	if argStr == "None" then
 		return;
 	end
 	
 	local mypclevel = GETMYPCLEVEL();
 	local levelcolor = ""
-	local targetHandle = session.GetTargetHandle();
-	local targetinfo = info.GetTargetInfo( targetHandle );
+	
+	
+	local targetinfo = info.GetTargetInfo( session.GetTargetHandle() );
 	if nil == targetinfo then
 		return;
-	end
-    if targetinfo.TargetWindow == 0 then
-		return;
-	end
-	if targetinfo.isBoss == 1 then
-		return;
-	end
-
-    -- birth buff
-    local mon_attribute_img = TARGETINFO_GET_ATTRIBUTE_SKIN_ANG_IMG(frame, targetinfo, targetHandle);
-    local attribute = targetinfo.attribute
-    local attributeImgName = "attribute_"..attribute
-	if attributeImgName == "None" then
-		mon_attribute_img:ShowWindow(0)
-	else
-		mon_attribute_img:ShowWindow(1)
-		mon_attribute_img:SetImage(attributeImgName)
 	end
 
 	if mypclevel + 10 < targetinfo.level then
@@ -121,14 +96,65 @@ function TGTINFO_TARGET_SET(frame, msg, argStr, argNum)
 	elseif mypclevel + 5 < targetinfo.level then
 		levelcolor = frame:GetUserConfig("MON_NAME_COLOR_MORE_THAN_5");
 	end
+
+
+	if targetinfo.TargetWindow == 0 then
+		return;
+	end
+
+	local hpGauge 
+
+	if targetinfo.isBoss == 1 then
+		return;
+	end
 	
-    -- gauge    
-	local hpGauge = TARGETINFO_GET_HP_GAUGE(frame, targetinfo, targetHandle);
+	if targetinfo.isElite == 1 then
+		hpGauge = GET_CHILD(frame, "elite", "ui::CGauge");
+		local normal = GET_CHILD(frame, "normal", "ui::CGauge");
+		local elite = GET_CHILD(frame, "elite", "ui::CGauge");
+		normal:ShowWindow(0);
+		elite:ShowWindow(1);
+
+
+		local normalImage = GET_CHILD(frame, "target_info_gauge_image", "ui::CPicture");
+		local eliteImage = GET_CHILD(frame, "elitetarget_info_gauge_image", "ui::CPicture");
+		normalImage:ShowWindow(0);
+		eliteImage:ShowWindow(1);
+
+	else
+		hpGauge = GET_CHILD(frame, "normal", "ui::CGauge");
+		local normal = GET_CHILD(frame, "normal", "ui::CGauge");
+		local elite = GET_CHILD(frame, "elite", "ui::CGauge");
+		normal:ShowWindow(1);
+		elite:ShowWindow(0);
+
+		local normalImage = GET_CHILD(frame, "target_info_gauge_image", "ui::CPicture");
+		local eliteImage = GET_CHILD(frame, "elitetarget_info_gauge_image", "ui::CPicture");
+		normalImage:ShowWindow(1);
+		eliteImage:ShowWindow(0);
+	end
+	
 	frame:SetValue(session.GetTargetHandle());
+
+	local dist = targetinfo.distance;
+	local str = string.format("%0.1fm", dist/25);
+
+	local nameRichText = GET_CHILD(frame, "dist", "ui::CRichText");
+	nameRichText:SetText("{s16}{ol}"..str);
+	-- ..ScpArgMsg("Auto_KeoLi_")..'{@st43}'..targetinfo.name.."{/}{/}{/}"
+	local levelRichText = GET_CHILD(frame, "level", "ui::CRichText");
+	if targetinfo.raceType ~= 'Item' then	
+		levelRichText:SetText('{@st41}'..levelcolor..'Lv. '..targetinfo.level);
+		levelRichText:ShowWindow(1);
+	else
+		levelRichText:ShowWindow(0);
+	end
 
 	local stat = targetinfo.stat;
 
-	if stat.HP ~= hpGauge:GetCurPoint() or stat.maxHP ~= hpGauge:GetMaxPoint() then    
+
+
+	if stat.HP ~= hpGauge:GetCurPoint() or stat.maxHP ~= hpGauge:GetMaxPoint() then
 		hpGauge:SetPoint(stat.HP, stat.maxHP);
 		hpGauge:StopTimeProcess();
 	else
@@ -143,42 +169,61 @@ function TGTINFO_TARGET_SET(frame, msg, argStr, argNum)
 			hpGauge:SetColorTone("FFFFFFFF");
 		end
 	end
-    local hpText = frame:GetChild('hpText');
-    hpText:SetText(GET_COMMAED_STRING(stat.HP));
-    
-    -- name	
+
+	-- name size
+	local nametext = GET_CHILD(frame, "name", "ui::CRichText");
 	local targetSize = targetinfo.size;
-	local eliteBuffMob = "";
-	if targetSize ~= nil then		
-		if targetinfo.isEliteBuff == 1 then
-			eliteBuffMob = ClMsg("TargetNameElite") .. " ";
-		end		
+	if targetSize ~= nil then
+		
+		if targetinfo.raceType ~= 'Item' then
+			--nametext:SetText('{@st41}      {@st43}'.. targetinfo.name .. '{@st53} ' .. targetSize); -- 타겟사이즈 나중에 스킬로 뺀다고 함
+			nametext:SetText('{@st41}'.. levelcolor..targetinfo.name .. "{/}");
+		else
+			--nametext:SetText('{@st43}'.. targetinfo.name .. '{@st53} ' .. targetSize);
+			nametext:SetText('{@st43}'.. targetinfo.name .. '{@st53} ');
+		end
 	end
-    local nametext = GET_CHILD_RECURSIVELY(frame, "name", "ui::CRichText");
-	local mypclevel = GETMYPCLEVEL();
-    local levelColor = "";
-    if mypclevel + 10 < targetinfo.level then
-        nametext:SetTextByKey('color', frame:GetUserConfig("MON_NAME_COLOR_MORE_THAN_10"));
-	elseif mypclevel + 5 < targetinfo.level then
-        nametext:SetTextByKey('color', frame:GetUserConfig("MON_NAME_COLOR_MORE_THAN_5"));
-    else
-        nametext:SetTextByKey('color', frame:GetUserConfig("MON_NAME_COLOR_DEFAULT"));
-	end
-    nametext:SetTextByKey('lv', targetinfo.level);
-    nametext:SetTextByKey('name', eliteBuffMob..targetinfo.name);
 		
 	-- race
-    local monsterRaceSet = TARGETINFO_GET_RACE_CONTROL(frame, targetinfo, targetHandle);
-    local racePic = monsterRaceSet:GetChild('racePic');
-    local raceImg = TARGETINFO_GET_RACE_TYPE_IMAGE(monsterRaceSet, targetinfo.raceType);
-    racePic = tolua.cast(racePic, 'ui::CPicture');
-    racePic:SetImage(raceImg);	
+	local image = GET_CHILD(frame, "race", "ui::CPicture");
+
+	if targetinfo.raceType ~= nil and targetinfo.raceType ~= 'Item' then
+		image:SetImage('Tribe_' .. targetinfo.raceType);
+		image:SetOffset( nametext:GetX() , image:GetY());
+		image:ShowWindow(1);
+	else
+		image:ShowWindow(0);
+	end
+	
+	
+
+	-- attr
+	local imageattr = GET_CHILD(frame, "attr", "ui::CPicture");
+
+	if targetinfo.attribute == nil or targetinfo.attribute == 'Melee' then
+		imageattr:ShowWindow(0);
+	else
+		imageattr:ShowWindow(1);
+		imageattr:SetImage('Attri_' .. targetinfo.attribute);
+	end
+
+	-- attr
+	local imageArmor = GET_CHILD(frame, "armor", "ui::CPicture");
+
+	if targetinfo.armorType == nil or targetinfo.armorType == 'Melee' or targetinfo.armorType == 'None' then
+		imageArmor:ShowWindow(0);
+	else
+		imageArmor:ShowWindow(1);
+		imageArmor:SetImage('Armor_' .. targetinfo.armorType);
+	end
+	
 
 	if ui.IsFrameVisible("targetinfotoboss") == 1 then
 		frame:MoveFrame(TARGET_INFO_OFFSET_BOSS_X, TARGET_INFO_OFFSET_Y);
 	else
 		frame:MoveFrame(TARGET_INFO_OFFSET_X, TARGET_INFO_OFFSET_Y);
 	end
+
 	frame:ShowWindow(1);
 	frame:Invalidate();	
 end
@@ -195,9 +240,16 @@ function TARGETINFO_ON_MSG(frame, msg, argStr, argNum)
 			return;
 		end
 
-        local targetHandle = session.GetTargetHandle();
-		local targetinfo = info.GetTargetInfo(targetHandle);
-		local hpGauge = TARGETINFO_GET_HP_GAUGE(frame, targetinfo, targetHandle);
+		local targetinfo = info.GetTargetInfo( session.GetTargetHandle() );
+
+		local hpGauge
+
+		if targetinfo.isElite == 1 then
+			hpGauge = GET_CHILD(frame, "elite", "ui::CGauge");
+		else
+			hpGauge = GET_CHILD(frame, "normal", "ui::CGauge");
+		end
+
 		local beforeHP = hpGauge:GetCurPoint();
 		if beforeHP > stat.HP then
 			local damRate = (beforeHP - stat.HP) / stat.maxHP;
@@ -205,69 +257,10 @@ function TARGETINFO_ON_MSG(frame, msg, argStr, argNum)
 				UI_PLAYFORCE(frame, "gauge_damage");
 			end
 		end
+
 		hpGauge:SetMaxPointWithTime(stat.HP, stat.maxHP, 0.2, 0.4);
-        local hpText = frame:GetChild('hpText');
-        hpText:SetText(GET_COMMAED_STRING(stat.HP));
 		frame:Invalidate();
 	 end
  end
 
- function TARGETINFO_GET_HP_GAUGE(frame, targetinfo, targetHandle)
-    local hpGauge = nil;
-    local targetMonRank = info.GetMonRankbyHandle(targetHandle);
-    local normalGaugeBox = frame:GetChild('normalGaugeBox');
-    local specialGaugeBox = frame:GetChild('specialGaugeBox');
-    local eliteGaugeBox = frame:GetChild('eliteGaugeBox');
-        
-	if targetinfo.isElite == 1 or targetinfo.isEliteBuff == 1 then
-		hpGauge = GET_CHILD(eliteGaugeBox, "elite", "ui::CGauge");
-        normalGaugeBox:ShowWindow(0);
-        specialGaugeBox:ShowWindow(0);
-        eliteGaugeBox:ShowWindow(1);
-	elseif targetMonRank == 'Special' then
-		hpGauge = GET_CHILD(specialGaugeBox, "special", "ui::CGauge");
-        normalGaugeBox:ShowWindow(0);
-        specialGaugeBox:ShowWindow(1);
-        eliteGaugeBox:ShowWindow(0);
-    else
-        hpGauge = GET_CHILD(normalGaugeBox, "normal", "ui::CGauge");
-        normalGaugeBox:ShowWindow(1);
-        specialGaugeBox:ShowWindow(0);
-        eliteGaugeBox:ShowWindow(0);
-	end	
-    return hpGauge;
- end
 
- function TARGETINFO_GET_RACE_CONTROL(frame, targetinfo, targetHandle)
-    local raceCtrl = nil;
-    local targetMonRank = info.GetMonRankbyHandle(targetHandle);
-    local normalGaugeBox = frame:GetChild('normalGaugeBox');
-    local specialGaugeBox = frame:GetChild('specialGaugeBox');
-    local eliteGaugeBox = frame:GetChild('eliteGaugeBox');
-        
-	if targetinfo.isElite == 1 or targetinfo.isEliteBuff == 1 then
-		raceCtrl = GET_CHILD(eliteGaugeBox, "eliteRace");
-	elseif targetMonRank == 'Special' then
-		raceCtrl = GET_CHILD(specialGaugeBox, "specialRace");
-    else
-        raceCtrl = GET_CHILD(normalGaugeBox, "normalRace");
-	end	
-    return raceCtrl;
- end
-
-  function TARGETINFO_GET_ATTRIBUTE_SKIN_ANG_IMG(frame, targetinfo, targetHandle)
-    local attributeSkin;
-    local targetMonRank = info.GetMonRankbyHandle(targetHandle);
-    local normalGaugeBox = frame:GetChild('normalGaugeBox');
-    local specialGaugeBox = frame:GetChild('specialGaugeBox');
-    local eliteGaugeBox = frame:GetChild('eliteGaugeBox');
-        
-	if targetinfo.isElite == 1 or targetinfo.isEliteBuff == 1 then
-		attributeSkin = GET_CHILD(eliteGaugeBox, "elite_attribute_img");
-	elseif targetMonRank == 'Special' then
-		attributeSkin = GET_CHILD(specialGaugeBox, "special_attribute_img");
-    else
-        attributeSkin = GET_CHILD(normalGaugeBox, "normal_attribute_img");
-	end	
-    return attributeSkin;
- end

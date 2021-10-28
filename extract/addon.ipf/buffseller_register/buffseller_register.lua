@@ -18,30 +18,32 @@ function BUFFSELLER_DROP(frame, icon, argStr, argNum)
 end
 
 function BUFFSELLER_REGISTER(frame, skillType)
+
 	local groupName = frame:GetUserValue("GroupName");
 	if session.autoSeller.GetByType(groupName, skillType) ~= nil then
 		return;
 	end
-	
+
 	local sklObj = GetClassByType("Skill", skillType);
 	local itemCls = GetClass("Item", sklObj.SpendItem);
-	if sklObj.ClassName ~= "Priest_Aspersion" and sklObj.ClassName ~= "Priest_Blessing" and sklObj.ClassName ~= "Priest_Sacrament" and sklObj.ClassName ~= "Pardoner_IncreaseMagicDEF" then
+	if itemCls == nil then
 		ui.SysMsg(ClMsg("OnlySkillWithSpendItemIsAble"));
 		return;
 	end
-	
+
 	local invItem = session.GetInvItemByName(itemCls.ClassName)
-	
+
 	if nil == invItem then
 		ui.SysMsg(ClMsg("NotEnoughMaterial"));
 		return;
 	end
-	
+
 	if true == invItem.isLockState then
 		ui.SysMsg(ClMsg("MaterialItemIsLock"));
 		return;
 	end
-	
+
+
 	local info = session.autoSeller.CreateToGroup(groupName);
 	info.classID = skillType;
 	info.price = 0;
@@ -160,16 +162,12 @@ function BUFFSELLER_REG_EXEC(frame)
 	end
 	
 	if groupName == "PersonalShop" then
-		if true == session.loginInfo.IsPremiumState(ITEM_TOKEN) then
+		local accountObj = GetMyAccountObj();
+		if "None" == accountObj.TokenTime then
 			return;
 		end
 	end
-
-	if serverGroupName == 'Buff' then -- case: pardoner_spell shop
-		session.autoSeller.RequestRegister(groupName, serverGroupName, inputname:GetText(), 'Pardoner_SpellShop');
-	else
-		session.autoSeller.RequestRegister(groupName, serverGroupName, inputname:GetText(), nil);
-	end
+	session.autoSeller.RequestRegister(groupName, serverGroupName, inputname:GetText(), nil);
 end
 
 function BUFFSELLER_REG_CANCEL(frame)

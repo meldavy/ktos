@@ -169,12 +169,8 @@ function DIALOG_ON_MSG(frame, msg, argStr, argNum)
 	end
 
     if  msg == 'DIALOG_CHANGE_SELECT'  then
-		DIALOG_TEXTVIEW(frame, msg, argStr, argNum);
-		local showDialog = 1;
-		if argNum > 0 then
-			showDialog = 0;
-		end
-		frame:ShowWindow(showDialog);
+		DIALOG_TEXTVIEW(frame, msg, argStr, argNum)
+		frame:ShowWindow(1);
 		frame:SetUserValue("DialogType", 2);
     end
 
