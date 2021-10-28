@@ -1,21 +1,15 @@
 function REQ_OPEN_GUILD_EVENT_PIP()
-	gGuileEventList = {"FBOSS", "MISSION", "RAID"}
+ 	gGuileEventList = {"FBOSS", "MISSION"}
 	GUILD_EVENT_OPEN(nil)
 end
 
 
 function GUILD_EVENT_OPEN(frame)
-	
+
 	if frame == nil then
 		frame = ui.GetFrame("guildEventSelect")
 	end
 	
-	local isLeader = AM_I_LEADER(PARTY_GUILD);
-
-	if isLeader == 0 then
-		return;
-	end
-
 	ui.OpenFrame("guildEventSelect");
 
 	local pcGuild = session.party.GetPartyInfo(PARTY_GUILD);
@@ -48,6 +42,11 @@ function CREATE_GUILD_EVENT_LIST(frame)
 	for i = 0, cnt - 1 do	
 		local cls = GetClassByIndexFromList(clsList, i);
 		if cls.EventType == gGuileEventList[droplist:GetSelItemIndex()+1] then
+		    local ticket_value = 1
+		    if cls.ClassName == 'GM_BorutosKapas_1' then
+		        ticket_value = 3
+		    end
+
 			if cls.GuildLv > 0 and lv >= cls.GuildLv then
 				local ctrlSet = gbox:CreateControlSet("guild_event", cls.ClassName, ui.LEFT, ui.TOP, 0, 0, 0, 0);
 				ctrlSet:SetUserValue("GUILD_EVENT_CTRL", "YES");
@@ -55,10 +54,7 @@ function CREATE_GUILD_EVENT_LIST(frame)
 				eventName:SetTextByKey("value", cls.Name);
 
 				local userCount = GET_CHILD(ctrlSet, "UserCount");
-				userCount:SetTextByKey("value", cls.PlayerCnt);
-
-				local timeLimit = GET_CHILD(ctrlSet, "TimeLimit");	
-				timeLimit:SetTextByKey("value", cls.TimeLimit/60);
+				userCount:SetTextByKey("value", cls.MaxPlayerCnt);
 
 				local timeLimit = GET_CHILD(ctrlSet, "TimeLimit");	
 				timeLimit:SetTextByKey("value", cls.TimeLimit/60);
@@ -67,7 +63,8 @@ function CREATE_GUILD_EVENT_LIST(frame)
 				detailInfo:SetTextByKey("value", cls.DetailInfo);
 
 				local ticketText = GET_CHILD(ctrlSet, "ticketText");	
-				ticketText:SetTextByKey("value", cls.Cost);
+
+				ticketText:SetTextByKey("value", ticket_value);
 
 				local eventType = GET_CHILD_RECURSIVELY(ctrlSet, "EventType", "ui::CPicture");
 				local imgName = frame:GetUserConfig("EVENT_TYPE_"..droplist:GetSelItemIndex())
@@ -90,7 +87,6 @@ function CREATE_GUILD_EVENT_LIST_INIT(frame)
 	droplist:ClearItems();
 	droplist:AddItem("0",  ClMsg("GuildIBossSummon"), 0);
 	droplist:AddItem("1",  ClMsg("GuildMission"), 0);
-	droplist:AddItem("2",  ClMsg("GuildIRaid"), 0);
 end
 
 function CREATE_GUILD_EVENT_LIST_CLICK(frame, ctrl)
@@ -108,21 +104,37 @@ function ACCEPT_GUILD_EVENT(parent, ctrl)
 end
 
 function EXEC_GUILD_EVENT(clsID)
-	
+    local cls = GetClassByType("GuildEvent", clsID)
+    local special_mission = 0
+    if cls.ClassName == 'GM_BorutosKapas_1' then
+        special_mission = 1
+    end
+
 	local pcGuild = session.party.GetPartyInfo(PARTY_GUILD);
 	if pcGuild == nil then
 		return;
 	end
 	local guildObj = GetIES(pcGuild:GetObject());
 
-	local cls = GetClassByType("GuildEvent", clsID)
-	local ticketCost = cls.Cost;
-
 	local haveTicket = GET_REMAIN_TICKET_COUNT(guildObj)
 
-	if ticketCost > haveTicket then
+	if haveTicket <= 0 then
 		ui.SysMsg(ScpArgMsg("NotEnoughTicketPossibleCount"));
 		return;
+	end
+	
+	if special_mission == 1 then
+	    local CheckTime = guildObj.GuildEvent_BorutosKapas_Count
+
+        if CheckTime > 0 then
+            ui.SysMsg(ScpArgMsg("NotEnoughTicketPossibleCount_GMBK"));
+            return
+        end
+
+	    if haveTicket < 3 then
+    		ui.SysMsg(ScpArgMsg("NotEnoughTicketPossibleCount"));
+    		return;
+    	end
 	end
 	
 	ui.CloseFrame('guildEventSelect');

@@ -1,6 +1,6 @@
 
 
-function DRT_C_PLAY_ANIM(actor, cmd, animName, fixAnim, duplicationPlay, delayTime, passedTime)
+function DRT_C_PLAY_ANIM(actor, cmd, animName, fixAnim, duplicationPlay, delayTime, passedTime, resetAfterPlay)
 
 	if fixAnim == nil then
 		fixAnim = 1;
@@ -17,6 +17,10 @@ function DRT_C_PLAY_ANIM(actor, cmd, animName, fixAnim, duplicationPlay, delayTi
 	local startTime = 0;
 	if passedTime ~= nil and passedTime > 0.0 then
 		startTime = passedTime;
+	end
+
+	if resetAfterPlay ~= nil and resetAfterPlay == 1 then
+		actor:GetAnimation():ResetAnim();
 	end
 
 	actor:GetAnimation():PlayFixAnim(animName, 1.0, fixAnim, 1, delayTime, skipIfExist, false, startTime);
@@ -109,16 +113,31 @@ function DRT_PLAY_EFT_C(pc, cmd, eftName, scl, x, y, z, lifeTime, delay)
 end
 
 
-function DRT_C_PLAYSOUND(actor, cmd, soundName)
+function DRT_C_PLAYSOUND(actor, cmd, soundName, enableSkip)
+	if enableSkip == nil then
+		enableSkip = 0;
+	end
 
 	movie.PlayCenterSound(soundName);
-
+	if enableSkip == 1 then
+		cmd:EnableSkipSound(soundName);
+	end
 end
 
 function DRT_C_FADEOUT(actor, cmd, isOut)
 	ui.UIOpenByPacket("fullblack", isOut);
 	ui.CloseUICmdByTime("fullblack", 0.5);	
 end
+
+function DRT_C_FADEOUT_TIME(actor, cmd, isOut, time)
+    if time == nil or time == 0 then
+        time = 1
+    end
+	ui.UIOpenByPacket("fullblack", isOut);
+	ui.CloseUICmdByTime("fullblack", time);	
+end
+
+
 
 function DRT_KNOCKBACK_RUN_C(self, cmd, fromHandle, power, hAngle, vAngle, kdCount, speed, verticalPow)	
 	self:KnockDown_C(fromHandle, power, hAngle, vAngle, kdCount, speed, verticalPow);
@@ -268,7 +287,6 @@ function RESUME_CLIENT_DIRECTION()
 end
 
 function DRT_OK_DLG_CLIENT(actor, cmd, dlg)
-
 	if IsToolMode() == false then
 		g_cmdGuid = cmd:GetGuid();
 		cmd:PauseDirection();
@@ -284,22 +302,15 @@ function DRT_ACTOR_ATTACH_EFFECT_CLIENT(actor, cmd, eftName, scl, hOffset)
 end
 
 
-
 function DRT_C_HIDE_MY_CHAR(pc, cmd, isHide)
-
 	if isHide == 0 then
 		movie.ShowModel(pc:GetHandleVal(), 1)
 	else
 		movie.ShowModel(pc:GetHandleVal(), 0)
 	end;
 	
-
 end
-
 function DRT_FUNC_RUNSCRIPT_C(pc, cmd, funcName)
-
 	local func = _G[funcName];
 	func(pc ,cmd);
-
 end
-
