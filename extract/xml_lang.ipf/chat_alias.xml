@@ -14,7 +14,32 @@
 		<Class ClassID="10" ClassName="/indun" Alias="/인던" ConvertWhenSend="1"/>
 		<Class ClassID="11" ClassName="/guild" Alias="/길드초대" ConvertWhenSend="1"/>
 		<Class ClassID="12" ClassName="/g" Alias="/ㅎ" ConvertWhenSend="0"/>
-		<Class ClassID="13" ClassName="/uicallscp_coin" Alias="/누적출석" ConvertWhenSend="1"/>
 		<Class ClassID="14" ClassName="/uicallscp_test" Alias="/테스트" ConvertWhenSend="1"/>
+		<Class ClassID="15" ClassName="/cpattack" Alias="/자동공격" ConvertWhenSend="1"/>
+		<Class ClassID="16" ClassName="/comeon" Alias="/이리와" ConvertWhenSend="1"/>
+<Class ClassID="17" ClassName="/PHousePoint" Alias="/개인하우징" ConvertWhenSend="1"/>
+<Class ClassID="18" ClassName="/event1912_4th_coin" Alias="/이벤트주화" ConvertWhenSend="1"/>
+		<Class ClassID="25" ClassName="/uicallscp_ctrltypereset" Alias="/계열변경기간" ConvertWhenSend="1"/>
+		<Class ClassID="26" ClassName="/uicallscp_newcharactersub1" Alias="/몬스터처치" ConvertWhenSend="1"/>
+		<Class ClassID="27" ClassName="/uicallscp_newcharactersub2" Alias="/레이드클리어" ConvertWhenSend="1"/>
+		<Class ClassID="28" ClassName="/uicallscp_event1810guildquest" Alias="/길드퀘스트" ConvertWhenSend="1"/>
+		<Class ClassID="29" ClassName="/uicallscp_event1916coin" Alias="/주화" ConvertWhenSend="1"/>
+		<Class ClassID="31" ClassName="/uicallscp_event1909coin" Alias="/조각" ConvertWhenSend="1"/>
+		<Class ClassID="32" ClassName="/note" Alias="/수첩" ConvertWhenSend="1"/>
+		<Class ClassID="33" ClassName="/grimoire" Alias="/그리모어" ConvertWhenSend="1"/>
+		<Class ClassID="34" ClassName="/candy" Alias="/사탕" ConvertWhenSend="1"/>
+		<Class ClassID="35" ClassName="/totalPoint" Alias="/통합" ConvertWhenSend="1"/>
+		<Class ClassID="36" ClassName="/pot" Alias="/항아리" ConvertWhenSend="1"/>
+		<Class ClassID="37" ClassName="/expedition" Alias="/토벌대" ConvertWhenSend="1"/>
+		<Class ClassID="38" ClassName="/escape" Alias="/탈출" ConvertWhenSend="1"/>
+		<Class ClassID="39" ClassName="/coin" Alias="/코인" ConvertWhenSend="1"/>
+		<Class ClassID="40" ClassName="/fishing" Alias="/낚시" ConvertWhenSend="1"/>
+		<Class ClassID="41" ClassName="/candy_klaipeda" Alias="/화이트데이 클라페다" ConvertWhenSend="1"/>
+		<Class ClassID="42" ClassName="/candy_orsha" Alias="/화이트데이 오르샤" ConvertWhenSend="1"/>
+		<Class ClassID="43" ClassName="/candy_fedimian" Alias="/화이트데이 페디미안" ConvertWhenSend="1"/>
+		<Class ClassID="44" ClassName="/guildmileage" Alias="/길드마일리지" ConvertWhenSend="1"/>
+		<Class ClassID="45" ClassName="/treeday" Alias="/식목일" ConvertWhenSend="1"/>
+		<Class ClassID="46" ClassName="/badge" Alias="/뱃지" ConvertWhenSend="1"/>
+		<!--<Class ClassID="25" ClassName="/uicallscp_event1810guildquest" Alias="/길드퀘스트" ConvertWhenSend="1"/>-->
 	</Category>
 </idspace>
