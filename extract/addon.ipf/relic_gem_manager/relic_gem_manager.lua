@@ -537,6 +537,7 @@ function RELIC_GEM_MANAGER_REINFORCE_DISCOUNT_CLICK(slotSet, slot)
 					local _adjustCount = math.floor(tonumber(DivForBigNumberInt64(_adjustValue, _point)))
 					local _adjustedCount = math.max(_nowCount + _adjustCount, 0)
 					_slot:SetSelectCount(_adjustedCount)
+					frame:SetUserValue('DISCOUNT_MAT_' .. _slot:GetSlotIndex(), _adjustedCount)
 
 					if _adjustedCount == 0 then
 						_slot:Select(0)
