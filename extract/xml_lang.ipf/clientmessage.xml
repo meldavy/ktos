@@ -16304,7 +16304,7 @@
 		<Class ClassID="590004" ClassName="Weekly_Total_Point_Get_Success_Msg_command" Data="{#33FF33}현재 누적된 통합 포인트 : {TotalPoint}{nl}(주간 획득 가능한 통합 포인트 : {NowPoint}/{MaxPoint}){/}"/>
 		<Class ClassID="590005" ClassName="CONTENTS_TOTAL_POINT_extract" Data="통합 포인트 교환"/>
 		<Class ClassID="590006" ClassName="SEASONOFF_CONTENTS_TOTAL_SHOP" Data="시즌오프 콘텐츠 통합 상점"/>
-		<Class ClassID="590007" ClassName="CONTENTS_TOTAL_POINT_extract_tooltip" Data="아이템을 교환하여 콘텐츠 통합 포인트를 획득할 수 있습니다{nl} - 그을린 텔하르샤의 의장품 1개 = 300포인트{nl} - 정제된 글레이시어 심장 1개 = 300포인트{nl} - 정제된 모스 탈크 파우더 1개 = 300포인트{nl} - 브리키나이트 1개 = 300포인트{nl} - 마정석 1개 = 200포인트{nl} - 신비한 서 낱장 1개 = 200포인트{nl} - 프락토늄 1개 = 200포인트{nl} - 축복받은 조각 1개 = 20포인트 {nl} - 여신의 축복석 1개 = 200포인트{nl} - 스키아클립스 깃털 1개 = 50포인트{nl} - 대지의 파편 1개 = 1포인트{nl} - 대지의 탑 몬스터 정수 1개 = 4포인트{nl} - 벨코퍼 영혼 조각 1개 = 100포인트{nl} - 모스 파우더 1개 = 30포인트"/>
+		<Class ClassID="590007" ClassName="CONTENTS_TOTAL_POINT_extract_tooltip" Data="아이템을 교환하여 콘텐츠 통합 포인트를 획득할 수 있습니다{nl} - 그을린 텔하르샤의 의장품 1개 = 300포인트{nl} - 정제된 글레이시어 심장 1개 = 300포인트{nl} - 정제된 모스 탈크 파우더 1개 = 300포인트{nl} - 브리키나이트 1개 = 300포인트{nl} - 마정석 1개 = 200포인트{nl} - 신비한 서 낱장 1개 = 200포인트{nl} - 프락토늄 1개 = 200포인트{nl} - 축복받은 조각 1개 = 20포인트 {nl} - 여신의 축복석 1개 = 200포인트{nl} - 스키아클립스 깃털 1개 = 20포인트{nl} - 대지의 파편 1개 = 1포인트{nl} - 대지의 탑 몬스터 정수 1개 = 4포인트{nl} - 벨코퍼 영혼 조각 1개 = 20포인트{nl} - 모스 파우더 1개 = 35포인트"/>
 		<Class ClassID="590008" ClassName="EP13_Point_Get_Success_Msg{Name}{Point}{TotalPoint}" Data="{#33FF33}{Point}의 {Name}를 획득했습니다.{nl}(현재 누적된 {Name} : {TotalPoint}){/}"/>
 	</Category>
 	<Category Name="RiftDungeon">
