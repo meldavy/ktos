@@ -11944,6 +11944,8 @@
 		<Class ClassID="134126" ClassName="NotEnoughTicketPossibleCount_SoloDungeon" Data="베르니케의 파편 던전을 이용할 수 없는 시간입니다.{nl}이용제한 : 월요일 오전 5시부터 오전 6시 전까지"/>
 		<Class ClassID="134127" ClassName="LowAblityPointScore_ChangeCharacter" Data="특성 달성률이 낮아 캐릭터를 교체할 수 없습니다."/>
 		<Class ClassID="134128" ClassName="MustGoddessEquipWeaponArmorToEnter_ChangeCharacter" Data="가디스 등급의 장비를 장착하지 않은 부위가 있어서 캐릭터 교체가 불가능합니다."/>
+		<Class ClassID="134129" ClassName="DoNotHealerCharacterChange" Data="힐러 클래스는 캐릭터 교체가 불가합니다."/>		
+		<Class ClassID="134130" ClassName="IsExsitHealerClassMyCharacterChangeDeck" Data="등록된 캐릭터에 힐러 클래스가 존재하여 입장할 수 없습니다."/>				
 	</Category>
 	<Category Name="AchieveReward">
 		<Class ClassID="135001" ClassName="GainAchieveHairBefore" Data="이미 업적 보상을 받았습니다."/>
