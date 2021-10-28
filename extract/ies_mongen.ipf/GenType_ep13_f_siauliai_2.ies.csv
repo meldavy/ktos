@@ -11,7 +11,6 @@ ClassID,GenType,Lv,Range,GenRange,RespawnTime,MaxPop,Minimap,Hide,UseAIOufOfPC,A
 12,12,1,0,1,1,1,0,0,0,0,0,0,ep13_mine_cart_Q1,UnvisibleName,,,,MON_DUMMY,MON_DUMMY,,,,,NO,YES,NO,Neutral,,,,
 13,13,1,40,1,1,1,2,0,0,0,0,0,npc_rada_goddess_ep13_1,여신 라다,,,,,,,EP13_F_SIAULIAI_2_MQ_LADA_2,,,NO,YES,NO,Neutral,,,,
 14,14,1,40,1,1,1,1,0,0,0,0,0,blackman_crystal_Q1,주시자의 검은 수정,,,,MON_DUMMY,MON_DUMMY,,EP13_F_SIAULIAI_2_MQ_04_BLACKCRYSTAL,,,NO,YES,NO,Neutral,Anim/std_loop,,,
-16,16,1,40,1,1,1,0,0,0,0,0,0,npc_orb1_Q,라다 여신이 떨어뜨린 축복,,,,,,,EP13_F_SIAULIAI_2_MQ_04_PROG_01,,,NO,YES,NO,Neutral,,,,
 17,17,1,100,1,1,1,0,0,0,0,0,0,blackman_crystal_find,UnvisibleName,,,,MON_DUMMY,MON_DUMMY,,,EP13_F_SIAULIAI_2_MQ_04_SMOKE,,NO,YES,NO,Neutral,AttachEffect/F_smoke027_dark_loop3/5/BOT,,,
 18,18,1,1,1,1,1,0,0,0,0,0,0,blackman_crystal_center,UnvisibleName,,,,MON_DUMMY,MON_DUMMY,,,EP13_F_SIAULIAI_2_MQ_05_AFTER,,NO,YES,NO,Neutral,,,,
 19,19,1,40,1,1,1,1,0,0,0,0,0,blackman_crystal_Q1,주시자의 검은 수정,,,,MON_DUMMY,MON_DUMMY,,EP13_F_SIAULIAI_2_MQ_06_BLACKCRYSTAL,,,NO,YES,NO,Neutral,Anim/std_loop,,,

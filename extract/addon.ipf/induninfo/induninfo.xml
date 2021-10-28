@@ -65,6 +65,16 @@
 		<picture name="armourBtn" parent="rewardBox" rect="0 0 68 68" margin="171 25 0 0" layout_gravity="left top" image="indun_armour" oversound="button_over" stretch="true" LBtnUpScp="INDUNINFO_MAKE_DROPBOX"/>
 		<picture name="accBtn" parent="rewardBox" rect="0 0 68 68" margin="239 25 0 0" layout_gravity="left top" image="indun_acc" oversound="button_over" stretch="true" LBtnUpScp="INDUNINFO_MAKE_DROPBOX"/>
 		<picture name="materialBtn" parent="rewardBox" rect="0 0 68 68" margin="307 25 0 0" layout_gravity="left top" image="indun_material" oversound="button_over" stretch="true" LBtnUpScp="INDUNINFO_MAKE_DROPBOX"/>
+		<!-- Map Box -->
+		<groupbox name="mapBox" parent="indunbox" rect="0 0 412 230" margin="0 170 0 0" layout_gravity="right top" draw="false" hittestbox="false"/>
+		<groupbox name="mapHelpBox" rect="0 0 412 45" parent="mapBox" margin="0 0 0 0" layout_gravity="right top" draw="false" image="test_com_namebg"/>
+		<richtext name="mapHelpText" rect="0 0 412 30" parent="mapHelpBox" margin="10 0 0 0" layout_gravity="left center" format="{@st66d}%s{/}" param1="text" param1_def="도움말"/>
+		<richtext name="mapText1" parent="mapBox" rect="0 0 190 30" margin="30 55 0 0" layout_gravity="left top" fontname="brown_16_b" caption="등장 지역"/>
+		<richtext name="mapText2" parent="mapBox" rect="0 0 190 30" margin="30 85 0 0" layout_gravity="left top" fontname="brown_16_b" caption="등장 지역"/>
+		<richtext name="mapText3" parent="mapBox" rect="0 0 190 30" margin="30 115 0 0" layout_gravity="left top" fontname="brown_16_b" caption="등장 지역"/>
+		<richtext name="mapText4" parent="mapBox" rect="0 0 190 30" margin="30 145 0 0" layout_gravity="left top" fontname="brown_16_b" caption="등장 지역"/>
+		<richtext name="mapText5" parent="mapBox" rect="0 0 190 30" margin="30 175 0 0" layout_gravity="left top" fontname="brown_16_b" caption="등장 지역"/>
+		<richtext name="mapText6" parent="mapBox" rect="0 0 190 30" margin="30 205 0 0" layout_gravity="left top" fontname="brown_16_b" caption="등장 지역"/>
 		<!-- Indun Button Box -->
 		<groupbox name="buttonBox" parent="infoBox" rect="0 0 412 100" margin="0 353 0 0" layout_gravity="right top" draw="false" hittestbox="false"/>
 		<button name="Button1" rect="0 0 160 45" parent="buttonBox" margin="0 0 160 0" layout_gravity="right top" MouseOffAnim="btn_mouseoff" MouseOnAnim="btn_mouseover" skin="test_pvp_btn" oversound="button_over" format="{s17}{#050505}%s" param1="btnText" param1_def="이동"/>

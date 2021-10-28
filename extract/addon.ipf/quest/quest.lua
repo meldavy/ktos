@@ -757,7 +757,7 @@ function UPDATE_QUEST_INFO(frame, msg, argStr, argNum)
 
 	local questFrame = ui.GetFrame("quest")
 	if questFrame == nil then
-		return 
+		return
 	end
 
 	-- episode update
@@ -1502,23 +1502,26 @@ function CLICK_QUEST_MAP_TITLE(ctrl)
 	end
 
 	local tabIndex = frame:GetUserIValue('CurTabIndex')
-	local titleInfo = nil
 	if ctrl:GetName() == "quest_command_window" then
-		titleInfo = GET_CHASE_TITLE_INFO()
+		local titleInfo = GET_CHASE_TITLE_INFO()
+		if titleInfo.isOpened == true then
+			titleInfo.isOpened = false;
+		else		
+			titleInfo.isOpened = true;
+		end
 	elseif tabIndex == tabInfo.episodeTab then
-		titleInfo = GET_EPISODE_TITLE_INFO(ctrl:GetName())
+		ChangeOpenedEpisodeQuestState(ctrl:GetName());
 	else
-		titleInfo = _GET_TITLE_INFO(tabIndex, ctrl:GetName())
-	end
-
-	if titleInfo.isOpened == true then
-		titleInfo.isOpened = false;
-	else		
-		titleInfo.isOpened = true;
+		local titleInfo = _GET_TITLE_INFO(tabIndex, ctrl:GetName())
+		if titleInfo.isOpened == true then
+			titleInfo.isOpened = false;
+		else		
+			titleInfo.isOpened = true;
+		end
 	end
 
 	if tabIndex == tabInfo.episodeTab then
-		DRAW_EPISODE_QUEST_LIST(frame);
+		geQuest.episode.DrawQuest();
 	else
 		DRAW_QUEST_LIST(frame);
 	end

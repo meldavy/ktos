@@ -799,7 +799,7 @@ function CHECK_WEAPON_ITEM(pc, item, item_level, item_grade, check_inheritance, 
 		return false, ScpArgMsg('RequireWeaponEquip')
 	end
 	
-	if TryGetProp(cls, 'StringArg', 'None') == 'FreePvP' then
+	if TryGetProp(item, 'StringArg', 'None') == 'FreePvP' then
 		if active_msg == true then
 			SendSysMsg(pc, 'NotAllowFreePvPEquip')
 		end
@@ -906,7 +906,7 @@ function CHECK_ARMOR_ITEM(pc, item, item_level, item_grade, check_inheritance, i
 		return false, ScpArgMsg('RequireArmorEquip')
 	end
 	
-	if TryGetProp(cls, 'StringArg', 'None') == 'FreePvP' then
+	if TryGetProp(item, 'StringArg', 'None') == 'FreePvP' then
 		if active_msg == true then
 			SendSysMsg(pc, 'NotAllowFreePvPEquip')		
 		end		

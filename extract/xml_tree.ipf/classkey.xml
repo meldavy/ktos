@@ -4076,6 +4076,7 @@
         <Key Name="TUTO_GUIDE_CHECK7" Value="107589"/>
         <Key Name="TUTO_GUIDE_CHECK8" Value="107603"/>
         <Key Name="TUTO_GUIDE_CHECK9" Value="107591"/>
+        <Key Name="IsEnableClientTracing" Value="107723"/>
     </KeyIDSpc>
     <KeyIDSpc Name="PCEtc">
         <Key Name="Kill_boss_Clymen_Q2" Value="7788"/>

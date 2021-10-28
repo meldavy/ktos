@@ -15404,6 +15404,14 @@
 		<Class ClassID="1000041" ClassName="challenge_auto_mode_fail" Data="챌린지 모드 자동매칭에 실패하였습니다."/>
 		<Class ClassID="1000042" ClassName="challenge_auto_division_mode_fail" Data="챌린지 모드 : 분열 특이점 자동매칭에 실패하였습니다."/>
 		<Class ClassID="1000043" ClassName="challenge_auto_mode_rejoin_fail" Data="현재 진행중인 챌린지 모드 자동매칭에 진입할 수 없습니다."/>
+		<Class ClassID="1000044" ClassName="challenge_auto_division_mode_day_1{mapName}" Data="월요일 : {mapName}"/>
+		<Class ClassID="1000045" ClassName="challenge_auto_division_mode_day_2{mapName}" Data="화요일 : {mapName}"/>
+		<Class ClassID="1000046" ClassName="challenge_auto_division_mode_day_3{mapName}" Data="수요일 : {mapName}"/>
+		<Class ClassID="1000047" ClassName="challenge_auto_division_mode_day_4{mapName}" Data="목요일 : {mapName}"/>
+		<Class ClassID="1000048" ClassName="challenge_auto_division_mode_day_5{mapName}" Data="금요일 : {mapName}"/>
+		<Class ClassID="1000049" ClassName="challenge_auto_division_mode_day_6{mapName}" Data="토요일, 일요일 : {mapName}"/>
+		<Class ClassID="1000050" ClassName="challenge_auto_division_mode_day_help_text" Data="챌린지 모드 : 분열 특이점 (필드) 위치 정보"/>
+		
 	</Category>
 	<Category Name="RankReset">
 		<Class ClassID="1001000" ClassName="CannotChangeJobBecauseJobLevel" Data="클래스 레벨이 최대 레벨일 때에만 가능합니다."/>

@@ -92,6 +92,10 @@ end
 
 function SCR_QUEST_CHECK(pc,questname,npcquestcount_list)    
     
+	if IsServerSection(pc) == 0 then
+		return UpdateQuestCheck(pc, questname);
+	end
+
 	if pc == nil then
 		return;
 	end

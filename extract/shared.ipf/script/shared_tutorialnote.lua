@@ -82,7 +82,6 @@ end
 
 -- 전체 미션 클리어 여부 확인
 function TUTORIALNOTE_MISSION_ALL_CLEAR_CHECK(pc, aObj)
-	local clearCnt = 0;
 	local clslist, cnt  = GetClassList("tutorialnotelist");
 	for i = 0 , cnt - 1 do
 		local cls = GetClassByIndexFromList(clslist, i);
@@ -92,14 +91,31 @@ function TUTORIALNOTE_MISSION_ALL_CLEAR_CHECK(pc, aObj)
 			local checkpropname = checkpropStrList[1];
 			local checkprop = TryGetProp(aObj, checkpropname, 0);
 			if checkprop ~= 300 then
-				return false, clearCnt;
+				return false;
 			end
-
-			clearCnt = clearCnt + 1;
 		end
 	end
 
 	return true;
+end
+
+function TUTORIALNOTE_MISSION_CLEAR_COUNT_CHECK(pc, aObj)
+	local clearCnt = 0;
+	local clslist, cnt  = GetClassList("tutorialnotelist");
+	for i = 0 , cnt - 1 do
+		local cls = GetClassByIndexFromList(clslist, i);
+		local group = TryGetProp(cls, "Group", "None");
+		if group ~= "guide" then		
+			local checkpropStrList = StringSplit(TryGetProp(cls, "CheckProp", "None"), '/');
+			local checkpropname = checkpropStrList[1];
+			local checkprop = TryGetProp(aObj, checkpropname, 0);
+			if checkprop == 300 then
+				clearCnt = clearCnt + 1;
+			end
+		end
+	end
+
+	return clearCnt;
 end
 
 function GET_TUTORIALNOTE_MISSION_ICOR_TARGET_ITEM_TYPE(sObj)

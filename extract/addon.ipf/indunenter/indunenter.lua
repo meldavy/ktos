@@ -320,6 +320,72 @@ function INDUNENTER_MAKE_ALERT(frame, indunCls)
     end
 end
 
+function INDUNENTER_MAKE_CHALLENGE_DIVISION_HELP_TEXT(frame)
+    if frame == nil then return; end
+    INDUNENTER_SHOW_WINDOW_MONBOX_AND_REWARDBOX(frame, 0);
+
+    local indun_cls = GetClass("contents_info", "ChallengeMode_HardMode");
+    if indun_cls == nil then return; end
+
+    local map_list = StringSplit(TryGetProp(indun_cls, "StartMap", ""), '/');
+    if map_list ~= nil then
+        local map_help_text = GET_CHILD_RECURSIVELY(frame, "mapHelpText");
+        map_help_text:SetTextByKey("text", ClMsg("challenge_auto_division_mode_day_help_text"));
+
+        for i = 1, 6 do
+            local map_text = GET_CHILD_RECURSIVELY(frame, "mapText"..i);
+            if map_text ~= nil then
+                local map = map_list[i];
+                if map ~= nil then
+                    local map_cls = GetClass("Map", map);
+                    if map_cls ~= nil then
+                        local name = map_cls.Name;
+                        local cl_msg = "challenge_auto_division_mode_day_"..i.."{mapName}";
+                        local text = ScpArgMsg(cl_msg, "mapName", name);
+                        map_text:SetText(text);
+                    end
+                end
+            end
+        end
+    end
+end
+
+function INDUNENTER_SHOW_WINDOW_MONBOX_AND_REWARDBOX(frame, isVisible)
+    local mon_slot_set = GET_CHILD_RECURSIVELY(frame, 'monSlotSet');
+    local mon_right_btn = GET_CHILD_RECURSIVELY(frame, 'monRightBtn');
+    local mon_left_btn = GET_CHILD_RECURSIVELY(frame, 'monLeftBtn');
+    local mon_text = GET_CHILD_RECURSIVELY(frame, "monText");
+    local mon_pic = GET_CHILD_RECURSIVELY(frame, "monPic");
+    mon_slot_set:ShowWindow(isVisible);
+    mon_right_btn:ShowWindow(isVisible);
+    mon_left_btn:ShowWindow(isVisible);
+    mon_text:ShowWindow(isVisible);
+    mon_pic:ShowWindow(isVisible);
+
+    local reward_box = GET_CHILD_RECURSIVELY(frame, "rewardBox");
+    reward_box:ShowWindow(isVisible);
+
+    for i = 1, 6 do
+        local map_help_box = GET_CHILD_RECURSIVELY(frame, "mapHelpBox");
+        if map_help_box ~= nil then
+            if isVisible == 0 then map_help_box:ShowWindow(1);
+            elseif isVisible == 1 then map_help_box:ShowWindow(0); end
+        end
+
+        local map_help_text = GET_CHILD_RECURSIVELY(frame, "mapHelpText");
+        if map_help_text ~= nil then
+            if isVisible == 0 then map_help_text:ShowWindow(1);
+            elseif isVisible == 1 then map_help_text:ShowWindow(0); end
+        end
+
+        local map_text = GET_CHILD_RECURSIVELY(frame, "mapText"..i);
+        if map_text ~= nil then
+            if isVisible == 0 then map_text:ShowWindow(1);
+            elseif isVisible == 1 then map_text:ShowWindow(0); end
+        end
+    end
+end
+
 function INDUNENTER_MAKE_MONLIST(frame, indunCls)
     if frame == nil then
         return;
@@ -328,7 +394,17 @@ function INDUNENTER_MAKE_MONLIST(frame, indunCls)
     local monSlotSet = GET_CHILD_RECURSIVELY(frame, 'monSlotSet');
     local monRightBtn = GET_CHILD_RECURSIVELY(frame, 'monRightBtn');
     local monLeftBtn = GET_CHILD_RECURSIVELY(frame, 'monLeftBtn');
-    
+    local monText = GET_CHILD_RECURSIVELY(frame, "monText");
+    local monPic = GET_CHILD_RECURSIVELY(frame, "monPic");
+   
+     -- 챌린지 모드 자동매칭 분열 위치 표시 처리
+    if indunCls ~= nil and TryGetProp(indunCls, "PlayPerResetType") == 816 then
+        INDUNENTER_MAKE_CHALLENGE_DIVISION_HELP_TEXT(frame, indunCls);
+        return;
+    else
+        INDUNENTER_SHOW_WINDOW_MONBOX_AND_REWARDBOX(frame, 1);
+    end
+
     -- init
     monSlotSet:ClearIconAll();
     monSlotSet:SetUserValue('CURRENT_SLOT', 1);
