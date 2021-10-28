@@ -731,6 +731,7 @@ return value"/>
                             <PosDist Angle="0" Dist="-10"/>
                             <PosDist Angle="0" Dist="-10"/>
                         </Scp>
+                        <Scp Scp="SKL_CANCEL_IF_NOTARGET" Client="NO" UseSleep="NO" Time="0" LoopTime="136"/>
                         <Scp Scp="SKL_CONSUME_SP" Client="NO" UseSleep="NO" Time="650" LoopTime="500">
                             <Num Num="5" UseFunc="1" FuncTxt="local value = 20 local lv = self.Lv local bylvCorrect = lv - 300 if bylvCorrect &lt; 0 then     bylvCorrect = bylvCorrect * 2.75 / 1000 elseif bylvCorrect >= 0 then     bylvCorrect = bylvCorrect * 1.25 / 1000 end value = value * (1 + bylvCorrect) local abil = GetAbility(self, 'Pyromancer4') if abil ~= nil and abil.ActiveState == 1 then value = value * 1.3 end return math.floor(value)"/>
                         </Scp>

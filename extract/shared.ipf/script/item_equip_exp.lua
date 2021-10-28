@@ -135,12 +135,20 @@ function GET_MORE_EVENT_EXP(pc)
 	if  TryGetProp(pc, 'Lv', 0) < 450 then
 	    sumExp = sumExp + IsBuffAppliedEXP(pc, 'ITEM_BUFF_2020ArborDay_ExpUP'); --2020 근본--
 	end
+	if  TryGetProp(pc, 'Lv', 0) < PC_MAX_LEVEL then
+	    sumExp = sumExp + IsBuffAppliedEXP(pc, 'pet_sparrow_thanksgivng_buff'); --달맞이 참새 동행 버프--
+	end
 	return sumExp; 
 end
 
 function GET_MORE_ANCIENT_EXP(pc)
 	local sumExp = 0.0;
 	sumExp = sumExp + IsBuffAppliedEXP(pc, 'Ancient_boostToken');
+	
+	if IsBuffApplied(pc, "pet_sparrow_thanksgivng_buff") == "YES" then
+	    sumExp = sumExp + 1
+	end
+
 	return sumExp;
 end
 

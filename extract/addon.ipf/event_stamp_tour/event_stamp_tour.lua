@@ -280,11 +280,28 @@ function EVENT_STAMP_TOUR_MISSION_CLEAR_CHECK(frame, ctrl, nameSpace, argNum)
 		end
 	end
 	local numvalue = ((3 * currentpage) + argNum);
-	if isTradable == true then
-		EVENT_STAMP_TOUR_MISSION_CLEAR(groupName,numvalue)
+
+	local maxCnt = false;
+	local accObj = GetMyAccountObj();
+	local nowCount = TryGetProp(accObj, "GODDESS_ROULETTE_COIN_ACQUIRE_COUNT");
+	if GODDESS_ROULETTE_COIN_MAX_COUNT <= nowCount then
+		maxCnt = true;
+	end
+	
+	if isTradable == true and maxCnt == false then
+		EVENT_STAMP_TOUR_MISSION_CLEAR(groupName, numvalue)
 	else
+		local msg = "";
+		if maxCnt == true then
+			msg = msg.."{nl}"..ScpArgMsg("AlreadyMaxEventCoinMsg");
+		end
+
+		if isTradable == false then
+			msg = msg.."{nl} {nl}"..ScpArgMsg("STAMP_TOUR_TRADE_WARNING","item",itemName);
+		end
+
 		local yesScp = string.format("EVENT_STAMP_TOUR_MISSION_CLEAR(\"%s\",\"%d\")", groupName, numvalue);
-		local msgBox = ui.MsgBox(ScpArgMsg("STAMP_TOUR_TRADE_WARNING","item",itemName), yesScp, "None");
+		local msgBox = ui.MsgBox(msg, yesScp, "None");
 		local yesBtn = GET_CHILD_RECURSIVELY(msgBox,"YES")
 	end
 end

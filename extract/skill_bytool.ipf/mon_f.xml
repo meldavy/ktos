@@ -16927,7 +16927,7 @@
                     <Str Str="INVINCIBILITY_BREAK"/>
                 </Scp>
                 <Scp Client="NO" Scp="SKL_BUFF" Time="2500" UseSleep="NO">
-                    <Str Str="todal_shield"/>
+                    <Str Str="Mon_Shield"/>
                     <Num Num="1"/>
                     <Num Num="0"/>
                     <Num Num="5000"/>

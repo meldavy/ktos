@@ -1,4 +1,10 @@
 ClassID,StartTimeYYYYMM,StartTimeDDHHMM,NewTimeYYYYMM,NewTimeDDHHMM,EndTimeYYYYMM,EndTimeDDHHMM,DeadlineTimeYYYYMM,DeadlineTimeDDHHMM,ExchangeTimeYYYYMM,ExchangeTimeDDHHMM,ClassName,Name,ImagePath,url,UserCommand1,UserCommand2,UserCommand3,ShowType
+997490,202009,240900,202009,290000,202010,80700,202010,30000,0,0,event2010Specialedition,달맞이 특판,event2010Specialedition,http://tos.nexon.com/news/tosnotice/view.aspx?n4ArticleSN=2127,,,,
+997500,202009,240900,202009,290000,202010,80700,202010,30000,0,0,2010_TpPlus,TP 더드림,2010_TpPlus,http://tos.nexon.com/news/tosnotice/view.aspx?n4ArticleSN=2128,,,,
+997510,202009,240900,202009,290000,202010,50000,202009,300000,0,0,event_ChusokReward,한가위 출석 체크,event_ChusokReward,http://tos.nexon.com/news/events/view.aspx?n4ArticleSN=283&n4ArticleCategorySN=1,,,,
+997520,202009,240900,202009,290000,202010,220700,202010,170000,0,0,event_fishing,고양이의 보은,event_fishing,http://tos.nexon.com/news/events/view.aspx?n4ArticleSN=282&n4ArticleCategorySN=1,,,,
+997530,202010,10000,202010,60000,202011,10000,202010,270000,0,0,event_2010Burning,주말 앤 버닝 - 10월,event_2010Burning,http://tos.nexon.com/news/events/view.aspx?n4ArticleSN=285&n4ArticleCategorySN=1,,,,
+997540,202010,10000,202010,60000,202011,10000,202010,270000,0,0,event2010_VaivoraReward,바이보라 출석 - 10월,event2010_VaivoraReward,http://tos.nexon.com/news/events/view.aspx?n4ArticleSN=284&n4ArticleCategorySN=1,,,,
 997550,202009,170900,202009,220000,202010,220700,202010,170000,0,0,2009eventchusok,달맞이 대작전 이벤트,2009eventchusok,http://tos.nexon.com/news/events/view.aspx?n4ArticleSN=281&n4ArticleCategorySN=1,,,,
 997560,202009,30900,202009,80000,202010,80700,202010,30000,0,0,event2009_goddesscube,여신의 큐브- 9월,event2009_goddesscube,http://tos.nexon.com/news/update/view.aspx?n4ArticleSN=2096&n4CategorySN=0,,,,
 997570,202009,10000,202009,60000,202010,10000,202009,260000,0,0,event2009Burning,주말 앤 버닝 -9월,event2009Burning,http://tos.nexon.com/news/events/view.aspx?n4ArticleSN=280&n4ArticleCategorySN=1,,,,

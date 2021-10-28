@@ -609,6 +609,9 @@
                             <ToolScp Scp="GAME_ST_EVT_EXEC_STAGE_START" Client="NO" UseSleep="NO">
                                 <Str Str="BuffObject"/>
                             </ToolScp>
+                            <ToolScp Scp="GAME_EVT_OFF_BYNAME" Client="NO" UseSleep="NO">
+                                <Str Str="STAY_IN_POSITION"/>
+                            </ToolScp>
                         </execList>
                     </Event>
                     <Event execCount="1" eventName="msg1">
@@ -659,6 +662,18 @@
                             <execList>
                             <ToolScp Scp="GAME_ST_EVT_EXEC_STAGE_START" Client="NO" UseSleep="NO">
                                 <Str Str="Rental_Shop"/>
+                            </ToolScp>
+                        </execList>
+                    </Event>
+                    <Event eventName="STAY_IN_POSITION">
+                        <condList>
+                            <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK_START" Client="NO" UseSleep="NO">
+                                <Num Num="5"/>
+                            </ToolScp>
+                        </condList>
+                        <execList>
+                            <ToolScp Scp="MGAME_EXEC_ACTORSCP" Client="NO" UseSleep="NO">
+                                <Str Str="PVP_MINE_STAY_IN_POSITION"/>
                             </ToolScp>
                         </execList>
                     </Event>

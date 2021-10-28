@@ -48,6 +48,15 @@ function DIALOGSELECT_FIX_WIDTH(frame, width)
 	frame:Resize(width + 60, frame:GetHeight());
 end
 
+function DIALOGSELECT_CHECK_MSGBOX(argNum)
+	local frame = ui.GetFrame('dialogselect')
+	local btn = GET_CHILD_RECURSIVELY(frame, 'item' .. argNum .. 'Btn')
+	local txt = btn:GetText()
+	local yesScp = 'control.DialogSelect(' .. argNum .. ')'
+
+	ui.MsgBox(ScpArgMsg('ReallySelect{NAME}Item', 'NAME', txt), yesScp, 'None')
+end
+
 function DIALOGSELECT_ITEM_ADD(frame, msg, argStr, argNum)
 	if argNum == 1 then
 		if DIALOGSELECT_QUEST_REWARD_ADD(frame, argStr) == 1 then
@@ -115,9 +124,14 @@ function DIALOGSELECT_ITEM_ADD(frame, msg, argStr, argNum)
 		frame:Resize(frame:GetWidth(), (argNum + 1) * 40 + 10);
 	end
 
-    ItemBtnCtrl:SetEventScript(ui.LBUTTONUP, 'control.DialogSelect(' .. argNum .. ')', true);
+	local eventScp = 'control.DialogSelect(' .. argNum .. ')'
+	if session.IsShowSelDlgMsgBox() == true then
+		eventScp = string.format('DIALOGSELECT_CHECK_MSGBOX(%d)', argNum)
+	end
+
+    ItemBtnCtrl:SetEventScript(ui.LBUTTONUP, eventScp, true);
 	ItemBtnCtrl:ShowWindow(1);
-	ItemBtnCtrl:SetText('{s18}{b}{#2f1803}'..argStr);
+	ItemBtnCtrl:SetText('{s18}{b}{#2f1803}'..argStr..'{/}{/}{/}');
 
 	if ItemBtnCtrl:GetWidth() > tonumber(frame:GetUserConfig("MAX_WIDTH")) then
 		DIALOGSELECT_FIX_WIDTH(frame, ItemBtnCtrl:GetWidth());

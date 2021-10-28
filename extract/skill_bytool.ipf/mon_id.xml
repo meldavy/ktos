@@ -1,5 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
-<ToolSkill><Skill Name="Mon_ID_boss_kucarry_balzermancer_Skill_11">
+<ToolSkill>
+    <Skill Name="Mon_ID_boss_kucarry_balzermancer_Skill_11">
 		<MainSkl JumpFlee="NO" MSPDToUsePos="0" ScrLock="None">
 			<HitList>
 				<Frame Angle="-0.016878771" AniTime="1400" Dist="11.153663" ForceATK="0" HitCount="4" Length="130" PosType="0" RandDist="0" RandomPerHit="0" RotAngle="0" SklAngle="0.34906587" TermMax="0" TermMin="400" Time="1200" Type="FAN" Width="30" />
@@ -1024,7 +1025,7 @@
 					<Num Num="1" />
 				</Scp>
 				<Scp Client="NO" Scp="SKL_BUFF" Time="1800" UseSleep="NO">
-					<Str Str="Boss_Reflect_attack" />
+					<Str Str="Mon_Shield" />
 					<Num Num="1" />
 					<Num Num="0" />
 					<Num Num="0" />
@@ -1055,9 +1056,6 @@
 					<Num Num="0.5" />
 					<Num Num="0" />
 					<Num Num="1" />
-				</Scp>
-				<Scp Client="NO" Scp="SKL_BUFF_REMOVE" Time="3000" UseSleep="NO">
-					<Str Str="Boss_Reflect_attack" />
 				</Scp>
 			</EtcList>
 		</MainSkl>

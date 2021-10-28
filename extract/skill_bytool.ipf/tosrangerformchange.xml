@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by IMC (IMCGames Co., Ltd) -->
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by imc (imc) -->
 <ToolSkill>
 	<Skill Name="TosRangerFormChange_RedM">
 		<MainSkl JumpFlee="NO" MSPDToUsePos="0" ScrLock="None">
@@ -16,6 +16,16 @@
 				<Scp Client="YES" Scp="C_VOICE_SOUND" Time="200" UseSleep="NO">
 					<Str Str="voice_war_atk_medium"/>
 					<Str Str="voice_atk_medium_war_f"/>
+				</Scp>
+				<Scp Client="YES" Scp="C_SHOW_PARTS_MODEL" Time="0" UseSleep="NO">
+					<Str Str="RH"/>
+					<Num Num="0"/>
+					<Num Num="1"/>
+				</Scp>
+				<Scp Client="YES" Scp="C_SHOW_PARTS_MODEL" Time="0" UseSleep="NO">
+					<Str Str="LH"/>
+					<Num Num="0"/>
+					<Num Num="1"/>
 				</Scp>
 				<Scp Client="NO" Scp="SKL_BUFF" Time="1500" UseSleep="NO">
 					<Str Str="TosRangerFormChange_Red_Buff"/>
@@ -45,6 +55,16 @@
 					<Str Str="voice_war_atk_medium"/>
 					<Str Str="voice_atk_medium_war_f"/>
 				</Scp>
+				<Scp Client="YES" Scp="C_SHOW_PARTS_MODEL" Time="0" UseSleep="NO">
+					<Str Str="RH"/>
+					<Num Num="0"/>
+					<Num Num="1"/>
+				</Scp>
+				<Scp Client="YES" Scp="C_SHOW_PARTS_MODEL" Time="0" UseSleep="NO">
+					<Str Str="LH"/>
+					<Num Num="0"/>
+					<Num Num="1"/>
+				</Scp>
 				<Scp Client="NO" Scp="SKL_BUFF" Time="1500" UseSleep="NO">
 					<Str Str="TosRangerFormChange_Red_Buff"/>
 					<Num Num="1"/>
@@ -72,6 +92,16 @@
 				<Scp Client="YES" Scp="C_VOICE_SOUND" Time="200" UseSleep="NO">
 					<Str Str="voice_war_atk_medium"/>
 					<Str Str="voice_atk_medium_war_f"/>
+				</Scp>
+				<Scp Client="YES" Scp="C_SHOW_PARTS_MODEL" Time="0" UseSleep="NO">
+					<Str Str="RH"/>
+					<Num Num="0"/>
+					<Num Num="1"/>
+				</Scp>
+				<Scp Client="YES" Scp="C_SHOW_PARTS_MODEL" Time="0" UseSleep="NO">
+					<Str Str="LH"/>
+					<Num Num="0"/>
+					<Num Num="1"/>
 				</Scp>
 				<Scp Client="NO" Scp="SKL_BUFF" Time="1500" UseSleep="NO">
 					<Str Str="TosRangerFormChange_Pink_Buff"/>
@@ -101,6 +131,16 @@
 					<Str Str="voice_war_atk_medium"/>
 					<Str Str="voice_atk_medium_war_f"/>
 				</Scp>
+				<Scp Client="YES" Scp="C_SHOW_PARTS_MODEL" Time="0" UseSleep="NO">
+					<Str Str="RH"/>
+					<Num Num="0"/>
+					<Num Num="1"/>
+				</Scp>
+				<Scp Client="YES" Scp="C_SHOW_PARTS_MODEL" Time="0" UseSleep="NO">
+					<Str Str="LH"/>
+					<Num Num="0"/>
+					<Num Num="1"/>
+				</Scp>
 				<Scp Client="NO" Scp="SKL_BUFF" Time="1500" UseSleep="NO">
 					<Str Str="TosRangerFormChange_Blue_Buff"/>
 					<Num Num="1"/>
@@ -129,6 +169,16 @@
 					<Str Str="voice_war_atk_medium"/>
 					<Str Str="voice_atk_medium_war_f"/>
 				</Scp>
+				<Scp Client="YES" Scp="C_SHOW_PARTS_MODEL" Time="0" UseSleep="NO">
+					<Str Str="RH"/>
+					<Num Num="0"/>
+					<Num Num="1"/>
+				</Scp>
+				<Scp Client="YES" Scp="C_SHOW_PARTS_MODEL" Time="0" UseSleep="NO">
+					<Str Str="LH"/>
+					<Num Num="0"/>
+					<Num Num="1"/>
+				</Scp>
 				<Scp Client="NO" Scp="SKL_BUFF" Time="1500" UseSleep="NO">
 					<Str Str="TosRangerFormChange_Yellow_Buff"/>
 					<Num Num="1"/>
@@ -156,6 +206,16 @@
 				<Scp Client="YES" Scp="C_VOICE_SOUND" Time="200" UseSleep="NO">
 					<Str Str="voice_war_atk_medium"/>
 					<Str Str="voice_atk_medium_war_f"/>
+				</Scp>
+				<Scp Client="YES" Scp="C_SHOW_PARTS_MODEL" Time="0" UseSleep="NO">
+					<Str Str="RH"/>
+					<Num Num="0"/>
+					<Num Num="1"/>
+				</Scp>
+				<Scp Client="YES" Scp="C_SHOW_PARTS_MODEL" Time="0" UseSleep="NO">
+					<Str Str="LH"/>
+					<Num Num="0"/>
+					<Num Num="1"/>
 				</Scp>
 				<Scp Client="NO" Scp="SKL_BUFF" Time="1500" UseSleep="NO">
 					<Str Str="TosRangerFormChange_Green_Buff"/>

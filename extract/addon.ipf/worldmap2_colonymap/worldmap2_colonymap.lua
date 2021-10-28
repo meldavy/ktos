@@ -136,6 +136,9 @@ function WORLDMAP2_COLONYMAP_INIT_CHAMPIONS_LEAGUE(frame, colonyData, mapData, c
     if config.GetServiceNation() == "GLOBAL_JP" then
         taxCityInfoTextCtrl:ShowWindow(0)
         taxRateInfoTextCtrl:ShowWindow(0)
+
+        AUTO_CAST(set:GetChild("tax_city_text")):ShowWindow(0)
+        AUTO_CAST(set:GetChild("tax_rate_text")):ShowWindow(0)
     end
 end
 

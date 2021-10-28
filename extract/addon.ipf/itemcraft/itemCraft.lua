@@ -1923,34 +1923,42 @@ end
 
 -- 용병단 증표
 function CRAFT_PVP_MINE_ITEM_ALL(itemSet, btn)
-	local itemname = itemSet:GetUserValue("ClassName");
-	
-	if itemname ~= 'misc_pvp_mine2' then
-		return;
-	end
-	
-	local targetslot = GET_CHILD(itemSet, "slot", "ui::CSlot");	
-	local materialItemCnt = tonumber(targetslot:GetEventScriptArgString(ui.DROP));
-	
-	if itemname == 'misc_pvp_mine2' then
-		local myAccount = GetMyAccountObj()		
-		local count = TryGetProp(myAccount, 'MISC_PVP_MINE2', '0')
-		if count == 'None' then
-			count = '0'
-		end
-		if math.is_larger_than(tostring(materialItemCnt), count) == 1 then
-			ui.SysMsg(ClMsg('NotEnoughRecipe'))
-			return
-		end
-		local icon = targetslot:GetIcon();			
-		targetslot:SetEventScript(ui.RBUTTONUP, "CRAFT_ITEM_CANCEL");
+    local itemName = itemSet:GetUserValue("ClassName");
+    local propName = nil
 
-		--슬롯 컬러톤 및 폰트 밝게 변경. 
-		icon:SetColorTone('FFFFFFFF')
-		itemSet:SetUserValue("MATERIAL_IS_SELECTED", 'selected');
-		local invframe = ui.GetFrame('inventory')
-		btn:ShowWindow(0)		
-	end
+    if itemName == 'misc_pvp_mine2' then
+        propName = 'MISC_PVP_MINE2'
+    elseif itemName == 'misc_silver_gacha_mileage' then
+        propName = 'Mileage_SilverGacha'
+    end
+
+    if propName == nil then
+        return
+    end
+
+    local targetslot = GET_CHILD(itemSet, "slot", "ui::CSlot");	
+    local materialItemCnt = tonumber(targetslot:GetEventScriptArgString(ui.DROP));
+
+    local myAccount = GetMyAccountObj()
+    local count = TryGetProp(myAccount, propName, '0')
+    if count == 'None' then
+        count = '0'
+    end
+
+    if math.is_larger_than(tostring(materialItemCnt), count) == 1 then
+        ui.SysMsg(ClMsg('NotEnoughRecipe'))
+        return
+    end
+
+    local icon = targetslot:GetIcon();			
+    targetslot:SetEventScript(ui.RBUTTONUP, "CRAFT_ITEM_CANCEL");
+
+    --슬롯 컬러톤 및 폰트 밝게 변경. 
+    icon:SetColorTone('FFFFFFFF')
+    itemSet:SetUserValue("MATERIAL_IS_SELECTED", 'selected');
+
+    local invframe = ui.GetFrame('inventory')
+    btn:ShowWindow(0)
 end
 
 function CRAFT_ITEM_ALL_ForLegend()    

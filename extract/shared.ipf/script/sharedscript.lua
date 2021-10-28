@@ -3249,3 +3249,60 @@ function GET_ABILITY_POINT_EXTRACTOR_MIN_VALUE(type)
 
     return 0;    
 end
+
+function ENABLE_GUILD_MEMBER_JOIN_AUTO(aObj)
+    if USE_GUILD_MEMBER_JOIN_AUTO == 0 then
+        return false;
+    end
+
+    local isJoinedGuild = TryGetProp(aObj, "EVENT_IS_JOINED_GUILD");
+    local lastguildOutDay = TryGetProp(aObj, "LastGuildOutDay");
+    local limit = TryGetProp(aObj, "GUILD_MEMBER_JOIN_AUTO_LIMIT", 0);
+    if isJoinedGuild == 0 and lastguildOutDay == "None" and limit == 0 then
+        return true;
+    end
+
+    return false;
+end
+
+function GET_GUILD_MEMBER_JOIN_AUTO_GUILD_IDX()
+    local nation = GetServerNation();
+    local groupid = GetServerGroupID();
+
+    if nation == "KOR" then
+        if groupid == 1006 then -- qa
+            return "518402552627671";
+        elseif groupid == 9001 then -- 테스트
+            return "125675038049103";
+        elseif groupid == 8001 then -- 스테이지
+            return "347819336532015";
+        elseif groupid == 3001 then -- 시즌 서버 아우슈리네
+            return "1137006692273513";
+        elseif groupid == 3002 then -- 시즌 서버 바이보라
+            return "1137058231881971";
+        end
+    end
+
+    return "0";
+end
+
+function GET_GUILD_MEMBER_JOIN_AUTO_GUILD_OUT_IDX()
+    local nation = GetServerNation();
+    local groupid = GetServerGroupID();
+
+    if nation == "KOR" then
+        if groupid == 1006 then -- qa
+            return "518402552627671";
+        elseif groupid == 9001 then -- 테스트
+            return "125675038049103";
+        elseif groupid == 8001 then -- 스테이지
+            return "347819336532015";
+        elseif groupid == 3001 or groupid == 1001 then -- 아우슈리네
+            return "1137006692273513";
+        elseif groupid == 3002 or groupid == 1002 then -- 바이보라
+            return "1137058231881971";
+        end
+    end
+
+    return "0";
+end

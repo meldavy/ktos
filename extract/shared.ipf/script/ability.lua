@@ -2716,15 +2716,13 @@ function SCR_ABIL_Outlaw26_INACTIVE(self, ability)
     end
 end 
 function SCR_ABIL_Fencer20_ACTIVE(self, ability) 
-    SCR_ABIL_Fencer20_CALC(self, ability)
     AddBuff(self, self, "Fencer21_Buff", 1, 0, 0, 1)
+    Invalidate(self, "PATK");
 end
 
 function SCR_ABIL_Fencer20_INACTIVE(self, ability)
-    local addATK = GetExProp(ability, "Fencer20_ADD_ATK");
-    self.PATK_MAIN_BM = self.PATK_MAIN_BM - addATK;
-    DelExProp(ability,"Fencer20_ADD_ATK")
     RemoveBuff(self, "Fencer21_Buff")
+    Invalidate(self, "PATK");
 end
  
 function SCR_ABIL_Paladin43_ACTIVE(self, ability)

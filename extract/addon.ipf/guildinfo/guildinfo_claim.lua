@@ -14,7 +14,6 @@ function GET_SELECTED_CONTROL()
     return 0, selectedTitle;
 end
 
-
 function GUILDINFO_OPTION_INIT_SETTING_CLAIM_TAB()
   
 end
@@ -27,7 +26,6 @@ function GET_CLAIM_NAME_BY_AIDX(aidx)
     local claimTitle = titleList[tonumber(claimID)]
     return claimTitle;
 end
-
 
 function ON_CLAIM_GET(code, ret_json) -- run once on zone enter
     DEFAULT_CLAIM_LIST= ""
@@ -46,7 +44,7 @@ function ON_CLAIM_GET(code, ret_json) -- run once on zone enter
     end
     local list = json.decode(ret_json)
     list = json.decode(list)
-local i = 0
+    local i = 0
     for authIdx, authName in pairs(list) do
         if string.find(authName, "(default)") ~= nil then
             local front, back = string.find(authName, "(default)")
@@ -88,7 +86,7 @@ local i = 0
     GetGuildMemberTitleList("ON_MEMBER_TITLE_GET");
 end
 
-function ON_MEMBER_TITLE_GET(code, ret_json)    
+function ON_MEMBER_TITLE_GET(code, ret_json)  
     if code ~= 200 then
         SHOW_GUILD_HTTP_ERROR(code, ret_json, "ON_MEMBER_TITLE_GET")
     end
@@ -101,8 +99,8 @@ function ON_MEMBER_TITLE_GET(code, ret_json)
 
     local frame = ui.GetFrame("guildinfo");
     local titleListPanel = GET_CHILD_RECURSIVELY(frame, "titleListPanel", "ui::CScrollPanel");
-        titleListPanel:RemoveAllChild()
-        titleList = {}
+    titleListPanel:RemoveAllChild()
+    titleList = {}
 
     for key, value in pairs(list) do
         titleList[tonumber(key)] = value
@@ -140,66 +138,27 @@ function SET_TITLE_TXT_VALUE(newTitleTxt, bindFunc, idx, titleText)
     newTitleTxt:Invalidate();
 end
 
-
-function GUILDMEMBER_LIST_GET()    
+local curPage = 1;
+local scrolledTime = 0;
+local finishedLoading = false;
+function GUILDMEMBER_LIST_GET()
     local frame = ui.GetFrame("guildinfo");
-    local list = session.party.GetPartyMemberList(PARTY_GUILD);
+    
+    curPage = 1;
+    scrolledTime = 0;
+    finishedLoading = false;
+
     local memberList = GET_CHILD_RECURSIVELY(frame, "claimMemberList")
     if memberList:GetChildCount() ~= 0 then
         memberList:RemoveAllChild()		
     end
-    local count = list:Count();
+    memberList:SetScrollPos(0);
+
+    local count = session.party.GetAllMemberCount(PARTY_GUILD);
     local guild = GET_MY_GUILD_INFO();
-    for i = 0 , count - 1 do
-        local partyMemberInfo = list:Element(i);  
-        if partyMemberInfo:GetAID() ~= guild.info:GetLeaderAID() then
-            local memberCtrlSet = memberList:CreateOrGetControlSet("guild_claim_set", partyMemberInfo:GetAID(), 0, 0);            
-            
-            local memberText = GET_CHILD_RECURSIVELY(memberCtrlSet, "memberNameLabel", "ui::CRichText");
-            memberText:SetText(partyMemberInfo:GetName());
-            -- job
-            local jobID = partyMemberInfo:GetIconInfo().job;
-            local jobCls = GetClassByType('Job', jobID);
-            local jobName = TryGetProp(jobCls, 'Name');
-            local memberJob =  GET_CHILD_RECURSIVELY(memberCtrlSet, "memberJobLabel"); 
-            if jobName ~= nil then
-                memberJob:SetText(jobName)
-            else
-                memberJob:SetText("None")
-            end
-
-            local memberLvl = GET_CHILD_RECURSIVELY(memberCtrlSet, "memberLvlLabel");
-            memberLvl:SetText(partyMemberInfo:GetLevel())
-
-            local memberObj = GetIES(partyMemberInfo:GetObject());
-            local membercontribLabel = GET_CHILD_RECURSIVELY(memberCtrlSet, "memberContribLabel");
-            membercontribLabel:SetText(memberObj.Contribution)
-            
-            local memberTitleList = GET_CHILD_RECURSIVELY(memberCtrlSet, "claimList", "ui::CDropList")
-            memberTitleList:SetUserValue("account_idx", partyMemberInfo:GetAID() )
-            memberTitleList:AddItem("", "", 0)
-
-			member_droplists[partyMemberInfo:GetAID()] = partyMemberInfo:GetAID();
-
-            local i = 1
-            if titleList ~= nil then                    
-                for index, titleName in pairs(titleList) do
-                    memberTitleList:AddItem(index, titleName, i)
-                    i = i + 1;
-                end
-            end
-            
-            -- 설정 - 직급과 권한 , 직급 드랍리스트에 현재 길드원의 직급 표시
-            if aidx_claimIDTable[tostring(partyMemberInfo:GetAID())] ~= nil then                
-                memberTitleList:SelectItemByKey(aidx_claimIDTable[tostring(partyMemberInfo:GetAID())])
-            end
-            
-            GetPlayerMemberTitle("ON_PLAYER_MEMBER_TITLE_GET", partyMemberInfo:GetAID());
-        end
+    for i = 1, curPage do
+        GUILDMEMBER_LIST_CREATE(frame, i);
     end
-
-    GBOX_AUTO_ALIGN(memberList, 0, 0, 45, true, false, true)
-
 end
 
 function ON_PLAYER_MEMBER_TITLE_GET(code, ret_json)
@@ -216,15 +175,37 @@ function ON_PLAYER_MEMBER_TITLE_GET(code, ret_json)
     local memberList = GET_CHILD_RECURSIVELY(frame, "claimMemberList")    
     if memberList:GetChildCount() ~= 0 then
         if decoded_json['aidx'] ~= nil then            
-            local selectedDropList = memberList:GetControlSet("guild_claim_set", decoded_json['title_id']);            
-            if selectedDropList ~= nil and decoded_json['title_id'] ~= nil then                
-                selectedDropList:SelectItemByKey(decoded_json['title_id'])
+            local controlset = memberList:GetControlSet("guild_claim_set", decoded_json['aidx']);
+            local selectedDropList = GET_CHILD_RECURSIVELY(controlset, "claimList");
+            if selectedDropList ~= nil and decoded_json['title_id'] ~= nil then
+                selectedDropList:SelectItemByKey(decoded_json['title_id']);
             end
 
             if decoded_json['title_id'] ~= nil then
                 aidx_claimIDTable[decoded_json['aidx']] = decoded_json['title_id']
             end
         end
+    end
+end
+
+function ON_GUILDINFO_MEMBER_TITLE_GET(code, ret_json)
+    if ret_json == "\"null\"" or ret_json == "" then
+        return;
+    end
+
+    if code ~= 200 then
+        SHOW_GUILD_HTTP_ERROR(code, ret_json, "ON_GUILDINFO_MEMBER_TITLE_GET")
+        return;
+    end
+
+    local decoded_json = json.decode(ret_json);
+    local aid = decoded_json['aidx'];
+    if aid == nil then
+        return;
+    end
+
+    if decoded_json['title_id'] ~= nil then
+        aidx_claimIDTable[aid] = decoded_json['title_id']
     end
 end
 
@@ -379,7 +360,7 @@ function ON_PUT_GUILDMEMBER(code, ret_json)
 
     ui.SysMsg(ClMsg("UpdateSuccess"))
     
-
+  
     local textName = claimInput:GetText()
 
     if textName ~= "" then
@@ -511,4 +492,84 @@ function REPAINT_TITLE_BG()
         end
     end
 
+end
+
+function GUILDMEMBER_LIST_CREATE(frame, page)
+    finishedLoading = true;
+    
+    local memberList = GET_CHILD_RECURSIVELY(frame, "claimMemberList")
+
+    local guild = GET_MY_GUILD_INFO();
+    local list = session.party.GetPartyMemberListbyPage(PARTY_GUILD, page);
+    local count = list:Count();
+    for i = 0, count - 1 do
+        local partyMemberInfo = list:Element(i);
+        if partyMemberInfo:GetAID() ~= guild.info:GetLeaderAID() then
+            local memberCtrlSet = memberList:CreateOrGetControlSet("guild_claim_set", partyMemberInfo:GetAID(), 0, 0);            
+            
+            local memberText = GET_CHILD_RECURSIVELY(memberCtrlSet, "memberNameLabel", "ui::CRichText");
+            memberText:SetText(partyMemberInfo:GetName());
+            -- job
+            local jobID = partyMemberInfo:GetIconInfo().job;
+            local jobCls = GetClassByType('Job', jobID);
+            local jobName = TryGetProp(jobCls, 'Name');
+            local memberJob =  GET_CHILD_RECURSIVELY(memberCtrlSet, "memberJobLabel"); 
+            if jobName ~= nil then
+                memberJob:SetText(jobName)
+            else
+                memberJob:SetText("None")
+            end
+
+            local memberLvl = GET_CHILD_RECURSIVELY(memberCtrlSet, "memberLvlLabel");
+            memberLvl:SetText(partyMemberInfo:GetLevel())
+
+            local memberObj = GetIES(partyMemberInfo:GetObject());
+            local membercontribLabel = GET_CHILD_RECURSIVELY(memberCtrlSet, "memberContribLabel");
+            membercontribLabel:SetText(memberObj.Contribution)
+            
+            local memberTitleList = GET_CHILD_RECURSIVELY(memberCtrlSet, "claimList", "ui::CDropList")
+            memberTitleList:SetUserValue("account_idx", partyMemberInfo:GetAID())
+            memberTitleList:AddItem("", "", 0)
+
+			member_droplists[partyMemberInfo:GetAID()] = partyMemberInfo:GetAID();
+
+            local i = 1
+            if titleList ~= nil then                    
+                for index, titleName in pairs(titleList) do
+                    memberTitleList:AddItem(index, titleName, i)
+                    i = i + 1;
+                end
+            end
+            
+            -- 설정 - 직급과 권한 , 직급 드랍리스트에 현재 길드원의 직급 표시
+            if aidx_claimIDTable[tostring(partyMemberInfo:GetAID())] ~= nil then
+                memberTitleList:SelectItemByKey(aidx_claimIDTable[tostring(partyMemberInfo:GetAID())])
+            else
+                GetPlayerMemberTitle("ON_PLAYER_MEMBER_TITLE_GET", partyMemberInfo:GetAID());
+            end            
+        end
+    end
+
+    GBOX_AUTO_ALIGN(memberList, 0, 0, 45, true, false, true);
+end
+
+function GUILDMEMBER_LIST_GET_SCROLL(parent, ctrl)
+    local frame = parent:GetTopParentFrame();
+    if frame:IsVisible() == 0 then
+        return;
+    end
+
+    if ctrl:IsScrollEnd() == true and finishedLoading == true then
+        local now = imcTime.GetAppTime();
+        local dif = now - scrolledTime;
+
+        if 1 < dif then
+            finishedLoading = false;
+            curPage = curPage + 1;
+            
+            GUILDMEMBER_LIST_CREATE(frame, curPage);
+
+            scrolledTime = now;
+        end
+    end
 end

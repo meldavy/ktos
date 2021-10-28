@@ -31,6 +31,15 @@ function BARRACK_CHARLIST_ON_INIT(addon, frame)
 	current_layer = 1   
 end
 
+function BARRACK_START_FRAME_OPEN(frame)
+	if frame == nil then
+		return;
+	end
+	
+	local hidelogin = GET_CHILD_RECURSIVELY(frame, "hidelogin", "ui::CCheckBox");
+	hidelogin:SetCheck(barrack.IsHideLogin());
+end
+
 local swap_flag = false
 
 local function SET_BTN_ALPHA(frame, hittest, alpha)
@@ -1439,4 +1448,12 @@ function ON_RESULT_CHECK_MARKET(frame, msg, cid, registered)
 		clmsg = ClMsg('RegisterItemAtMarketPC')..clmsg;
 	end
 	ui.MsgBox(clmsg, 'SELECTCHARINFO_DELETECHARACTER', 'SELECTCHARINFO_DELETECHARACTER_CANCEL');
+end
+
+function UPDATE_BARRACK_HIDELOGIN_OPTION(parent, ctrl)
+	if ctrl == nil then 
+		return; 
+	end
+	local isCheck = ctrl:IsChecked();
+	barrack.SetHideLogin(isCheck);
 end

@@ -8453,8 +8453,8 @@
                     <Str_Arg Str="F_burstup001_smoke" Arg="1"/>
                 </Scp>
                 <Scp Scp="SKL_BUFF" Client="NO" UseSleep="NO" Time="2500">
-                    <Str Str="todal_shield"/>
-                    <Num Num="1"/>
+                    <Str Str="Weekly_todal_shield_Buff"/>
+                    <Num Num="99"/>
                     <Num Num="0"/>
                     <Num Num="5000"/>
                     <Num Num="1"/>

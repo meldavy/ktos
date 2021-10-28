@@ -635,4 +635,5 @@
   <Code Code="WARNING_MEMORY_ZONE" Team="tos_team" Category="INFO" SubCategory="" Logger="root" Enabled="YES" CallStack="NO" Desc="메모리 디버그 정보"/>
 <Code Code="ERROR_NEXON_CASHOUT" Team="tos_team" Category="SYSTEM" SubCategory="" Logger="root" Enabled="YES" CallStack="NO" Desc="CPQ 관련 로그"/>
 <Code Code="ERROR_MONGO_QUEUE_COUNT" Team="PROGRAM" Category="ERROR" SubCategory="" Logger="root" Enabled="YES" CallStack="NO" Desc="몽고드라이버 입력량이 많음(1000이상)"/>
+  <Code Code="ERROR_SILVER_GACHA" Team="PROGRAM" Category="ERROR" SubCategory="" Logger="root" Enabled="YES" CallStack="NO" Desc="Silver Gacha 에러 로그"/>
 </imcErrorCode>

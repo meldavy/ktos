@@ -89,7 +89,11 @@ function ON_OPEN_FOOD_TABLE_UI(frame, msg, handle, forceOpenUI)
 
 	GBOX_AUTO_ALIGN(gbox_table, 15, 3, 10, true, false);
 
+	local tabVisible = false
+
 	if isMyFoodTable == true then
+		tabVisible = true
+		
 		local gbox_make = gbox:GetChild("gbox_make");
 		gbox_make:RemoveAllChild();
 
@@ -115,18 +119,18 @@ function ON_OPEN_FOOD_TABLE_UI(frame, msg, handle, forceOpenUI)
 		end
 
 		GBOX_AUTO_ALIGN(gbox_make, 15, 3, 10, true, false);
-	else
-		local tab = gbox:GetChild("itembox");
-		if nil == tab then
-			return;
-		end
-		--gbox_table
-		tolua.cast(tab, 'ui::CTabControl');
-		local index = tab:GetIndexByName("tab_normal")
-		tab:SetTabVisible(2, false);
-		tab:SelectTab(index);
-		tab:ShowWindow(1);		
 	end
+
+	local tab = gbox:GetChild("itembox");
+	if nil == tab then
+		return;
+	end
+	--gbox_table
+	tolua.cast(tab, 'ui::CTabControl');
+	local index = tab:GetIndexByName("tab_normal")
+	tab:SetTabVisible(2, tabVisible);
+	tab:SelectTab(index);
+	tab:ShowWindow(1);
 end
 
 function SET_FOOD_TABLE_MATAERIAL_INFO(ctrlSet, cls)

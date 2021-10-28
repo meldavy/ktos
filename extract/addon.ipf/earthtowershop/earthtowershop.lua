@@ -2,6 +2,20 @@ local s_earth_shop_frame_name = ""
 local s_earth_shop_parent_name = ""
 local g_earth_shop_control_name = ""
 
+local g_account_prop_shop_table = 
+{
+    ['PVPMine'] = 
+    {
+        ['coinName'] = 'misc_pvp_mine2',
+        ['propName'] = 'MISC_PVP_MINE2',
+    },
+    ['SilverGachaShop'] = 
+    {
+        ['coinName'] = 'misc_silver_gacha_mileage',
+        ['propName'] = 'Mileage_SilverGacha',
+    },
+}
+
 function EARTHTOWERSHOP_ON_INIT(addon, frame)
     addon:RegisterMsg('EARTHTOWERSHOP_BUY_ITEM', 'EARTHTOWERSHOP_BUY_ITEM');
     addon:RegisterMsg('EARTHTOWERSHOP_BUY_ITEM_RESULT', 'EARTHTOWERSHOP_BUY_ITEM_RESULT');
@@ -9,16 +23,47 @@ end
 
 function EARTHTOWERSHOP_BUY_ITEM_RESULT(frame, msg, argStr, argNum)
     local token = StringSplit(argStr, '/')
-    ui.SysMsg(ScpArgMsg("RESULT_MISC_PVP_MINE2", "count1", GET_COMMAED_STRING(token[1]), "count2", GET_COMMAED_STRING(token[2])));
-    local propertyRemain = GET_CHILD_RECURSIVELY(frame,"propertyRemain")
-    local itemCls = GetClass('Item','misc_pvp_mine2')
-    propertyRemain:SetTextByKey('itemName',itemCls.Name)
-    local aObj = GetMyAccountObj()
-    local count = TryGetProp(aObj,"MISC_PVP_MINE2", '0')
-    if count == 'None' then
-        count = '0'
+    local shopType = token[1]
+
+    if g_account_prop_shop_table[shopType] == nil then
+        return
     end
-    propertyRemain:SetTextByKey('itemCount', GET_COMMAED_STRING(count))
+
+    local coinName = g_account_prop_shop_table[shopType]["coinName"]
+    local propName = g_account_prop_shop_table[shopType]["propName"]
+
+    if shopType == "PVPMine" then
+        ui.SysMsg(ScpArgMsg("RESULT_MISC_PVP_MINE2", "count1", GET_COMMAED_STRING(token[2]), "count2", GET_COMMAED_STRING(token[3])));
+
+        local propertyRemain = GET_CHILD_RECURSIVELY(frame,"propertyRemain")
+        local itemCls = GetClass('Item', coinName)
+
+        propertyRemain:SetTextByKey('itemName', itemCls.Name)
+
+        local aObj = GetMyAccountObj()
+        local count = TryGetProp(aObj, propName, '0')
+        if count == 'None' then
+            count = '0'
+        end
+        
+        propertyRemain:SetTextByKey('itemCount', GET_COMMAED_STRING(count))
+
+    elseif shopType == "SilverGachaShop" then
+        ui.SysMsg(ScpArgMsg("SilverGachaShopResult", "count1", GET_COMMAED_STRING(token[2]), "count2", GET_COMMAED_STRING(token[3])));
+
+        local propertyRemain = GET_CHILD_RECURSIVELY(frame,"propertyRemain")
+        local itemCls = GetClass('Item', coinName)
+
+        propertyRemain:SetTextByKey('itemName', itemCls.Name)
+
+        local aObj = GetMyAccountObj()
+        local count = TryGetProp(aObj, propName, '0')
+        if count == 'None' then
+            count = '0'
+        end
+
+        propertyRemain:SetTextByKey('itemCount', GET_COMMAED_STRING(count))
+    end
 end
 
 function EARTHTOWERSHOP_BUY_ITEM(frame, msg, itemName, itemCount)    
@@ -52,14 +97,6 @@ function EARTHTOWERSHOP_BUY_ITEM(frame, msg, itemName, itemCount)
 	if recipecls.AccountNeedProperty ~= 'None' then
 	    local aObj = GetMyAccountObj()
         local sCount = TryGetProp(aObj, recipecls.AccountNeedProperty); 
---        --EVENT_1906_SUMMER_FESTA
---        local time = geTime.GetServerSystemTime()
---        time = time.wYear..time.wMonth..time.wDay
---        if time < '2019725' then
---            if recipecls.ClassName == 'EventTotalShop1906_25' or recipecls.ClassName == 'EventTotalShop1906_26' then
---                sCount = sCount - 2
---            end
---        end
 		local cntText
 		if recipecls.ShopType == "PVPMine" then
 			if recipecls.ResetInterval == 'Week' then
@@ -239,6 +276,12 @@ function REQ_EVENT_SHOP_OPEN_COMMON(shopType)
     ui.OpenFrame('earthtowershop');
 end
 
+function REQ_SILVER_GACHA_SHOP_OPEN()
+    local frame = ui.GetFrame("earthtowershop");
+    frame:SetUserValue("SHOP_TYPE", "SilverGachaShop");
+    ui.OpenFrame('earthtowershop');
+end
+
 function EARTH_TOWER_SHOP_OPEN(frame)
     if frame == nil then
         frame = ui.GetFrame("earthtowershop")
@@ -281,8 +324,12 @@ function EARTH_TOWER_INIT(frame, shopType)
 
     INVENTORY_SET_CUSTOM_RBTNDOWN("None");
     RESET_INVENTORY_ICON();
+
     local propertyRemain = GET_CHILD_RECURSIVELY(frame,"propertyRemain")
+    local pointbuyBtn = GET_CHILD_RECURSIVELY(frame,"pointbuyBtn")
+
     propertyRemain:ShowWindow(0)
+    pointbuyBtn:ShowWindow(0)
 
     local title = GET_CHILD(frame, 'title', 'ui::CRichText')
     local close = GET_CHILD(frame, 'close');
@@ -304,16 +351,7 @@ function EARTH_TOWER_INIT(frame, shopType)
     elseif shopType == 'PVPMine' then
         title:SetText('{@st43}'..ScpArgMsg("pvp_mine_shop_name"));
         close:SetTextTooltip(ScpArgMsg('CloseUI{NAME}', 'NAME', ScpArgMsg("pvp_mine_shop_name")));
-        --property setting
-        propertyRemain:ShowWindow(1)
-        local itemCls = GetClass('Item','misc_pvp_mine2')
-        propertyRemain:SetTextByKey('itemName',itemCls.Name)
-        local aObj = GetMyAccountObj()
-        local count = TryGetProp(aObj,"MISC_PVP_MINE2", '0')
-        if count == 'None' then
-            count = '0'
-        end
-        propertyRemain:SetTextByKey('itemCount', GET_COMMAED_STRING(count))
+        EARTH_TOWER_SET_PROPERTY_COUNT(propertyRemain, 'misc_pvp_mine2', "MISC_PVP_MINE2")
     elseif shopType == 'MCShop1' then
         title:SetText('{@st43}'..ScpArgMsg("MASSIVE_CONTENTS_SHOP_NAME"));
         close:SetTextTooltip(ScpArgMsg('CloseUI{NAME}', 'NAME', ScpArgMsg("MASSIVE_CONTENTS_SHOP_NAME")));
@@ -363,6 +401,11 @@ function EARTH_TOWER_INIT(frame, shopType)
     elseif shopType == 'FishingShop2002' then
         -- title:SetText('{@st43}'..ScpArgMsg("EVENT_2002_FISHING_SHOP"));
         -- close:SetTextTooltip(ScpArgMsg('CloseUI{NAME}', 'NAME', ScpArgMsg("EventShop")));
+    elseif shopType == "SilverGachaShop" then
+        title:SetText('{@st43}'..ScpArgMsg("SilverGachaShopName"));
+        close:SetTextTooltip(ScpArgMsg('CloseUI{NAME}', 'NAME', ScpArgMsg("SilverGachaShopName")));
+        EARTH_TOWER_SET_PROPERTY_COUNT(propertyRemain, 'misc_silver_gacha_mileage', "Mileage_SilverGacha")
+        pointbuyBtn:ShowWindow(1)
     else
         title:SetText('{@st43}'..ScpArgMsg(shopType));
         close:SetTextTooltip(ScpArgMsg('CloseUI{NAME}', 'NAME', ScpArgMsg("EventShop")));
@@ -434,7 +477,20 @@ function EARTH_TOWER_INIT(frame, shopType)
     end
 
     tree:OpenNodeAll();
+end
 
+function EARTH_TOWER_SET_PROPERTY_COUNT(ctrl, itemName, propName)
+    local aObj = GetMyAccountObj()
+    local count = TryGetProp(aObj, propName, '0')
+    local itemCls = GetClass('Item', itemName)
+
+    if count == 'None' then
+        count = '0'
+    end
+
+    ctrl:SetTextByKey('itemName', itemCls.Name)
+    ctrl:SetTextByKey('itemCount', GET_COMMAED_STRING(count))
+    ctrl:ShowWindow(1)
 end
 
 function EARTH_TOWER_IS_ITEM_SELL_TIME(recipeCls)
@@ -548,7 +604,7 @@ function EXCHANGE_CREATE_TREE_PAGE(tree, slotHeight, groupName, classType, cls, 
     local y = startY; 
     y = y + 10;
     local itemHeight = 0
-    if shopType == 'PVPMine' then
+    if g_account_prop_shop_table[shopType] ~= nil then
         itemHeight = ui.GetControlSetAttribute('craftRecipe_detail_pvp_mine_item', 'height');
     else
         itemHeight = ui.GetControlSetAttribute('craftRecipe_detail_item', 'height');
@@ -592,7 +648,7 @@ function EXCHANGE_CREATE_TREE_PAGE(tree, slotHeight, groupName, classType, cls, 
             if invItemlist ~= nil then
                 for j = 0, recipeItemCnt - 1 do
                     local itemSet = nil
-                    if shopType == 'PVPMine' then
+                    if g_account_prop_shop_table[shopType] ~= nil then
                         itemSet = ctrlset:CreateOrGetControlSet('craftRecipe_detail_pvp_mine_item', "EACHMATERIALITEM_" .. i ..'_'.. j, x, y);
                     else
                         itemSet = ctrlset:CreateOrGetControlSet('craftRecipe_detail_item', "EACHMATERIALITEM_" .. i ..'_'.. j, x, y);
@@ -623,7 +679,7 @@ function EXCHANGE_CREATE_TREE_PAGE(tree, slotHeight, groupName, classType, cls, 
                 end
             else            
                 local itemSet = nil
-                if shopType == 'PVPMine' then
+                if g_account_prop_shop_table[shopType] ~= nil then
                     itemSet = ctrlset:CreateOrGetControlSet('craftRecipe_detail_pvp_mine_item', "EACHMATERIALITEM_" .. i, x, y);
                 else
                     itemSet = ctrlset:CreateOrGetControlSet('craftRecipe_detail_item', "EACHMATERIALITEM_" .. i, x, y);
@@ -761,7 +817,7 @@ function EARTH_TOWER_SHOP_EXEC(parent, ctrl)
     local recipecls = GetClass('ItemTradeShop', parent:GetName());
 
 
-    if shopType ~= 'PVPMine' then
+    if g_account_prop_shop_table[shopType] == nil then
         if recipecls ~= nil then
             local isExceptionFlag = false;
             for index = 1, 5 do
@@ -788,15 +844,15 @@ function EARTH_TOWER_SHOP_EXEC(parent, ctrl)
     
     
     if recipecls==nil or recipecls["Item_2_1"] ~='None' then        
-        if shopType == 'PVPMine' then
-            AddLuaTimerFuncWithLimitCountEndFunc("PVP_MINE_SHOP_TRADE_ENTER", 100, resultCount - 1, "EARTH_TOWER_SHOP_TRADE_LEAVE");            
+        if g_account_prop_shop_table[shopType] ~= nil then
+            AddLuaTimerFuncWithLimitCountEndFunc("ACCOUNT_PROPERTY_SHOP_TRADE_ENTER", 100, resultCount - 1, "EARTH_TOWER_SHOP_TRADE_LEAVE");            
         else
             AddLuaTimerFuncWithLimitCountEndFunc("EARTH_TOWER_SHOP_TRADE_ENTER", 100, resultCount - 1, "EARTH_TOWER_SHOP_TRADE_LEAVE");
         end
         
     else        
-        if shopType == 'PVPMine' then
-            AddLuaTimerFuncWithLimitCountEndFunc("PVP_MINE_SHOP_TRADE_ENTER", 100, 0, "EARTH_TOWER_SHOP_TRADE_LEAVE");
+        if g_account_prop_shop_table[shopType] ~= nil  then
+            AddLuaTimerFuncWithLimitCountEndFunc("ACCOUNT_PROPERTY_SHOP_TRADE_ENTER", 100, 0, "EARTH_TOWER_SHOP_TRADE_LEAVE");
         else
             AddLuaTimerFuncWithLimitCountEndFunc("EARTH_TOWER_SHOP_TRADE_ENTER", 100, 0, "EARTH_TOWER_SHOP_TRADE_LEAVE");
         end
@@ -960,14 +1016,14 @@ function EARTH_TOWER_SHOP_TRADE_ENTER()
 end
 
 -- 용병단 증표
-function PVP_MINE_SHOP_TRADE_ENTER()    
+function ACCOUNT_PROPERTY_SHOP_TRADE_ENTER()    
 	local frame = ui.GetFrame(s_earth_shop_frame_name);
 	if frame == nil then
 		return
     end
 
     local shopType = frame:GetUserValue("SHOP_TYPE");
-    if shopType ~= 'PVPMine' then
+    if g_account_prop_shop_table[shopType] == nil then
         return
     end    
 
@@ -988,6 +1044,7 @@ function PVP_MINE_SHOP_TRADE_ENTER()
 	
     session.ResetItemList();
     session.AddItemID(tostring(0), 1);
+
     local recipeCls = GetClass("ItemTradeShop", parentcset:GetName())    
 	local resultlist = session.GetItemIDList();
 	local cntText = string.format("%s %s", recipeCls.ClassID, 1);
@@ -1002,8 +1059,14 @@ function PVP_MINE_SHOP_TRADE_ENTER()
     if itemCountGBox:IsVisible() == 0 then
         resultCount = 1;
     end
+
     cntText = string.format("%s %s", recipeCls.ClassID, resultCount);
+
+    if shopType == 'PVPMine' then
     item.DialogTransaction("PVP_MINE_SHOP", resultlist, cntText);    
+    elseif shopType == 'SilverGachaShop' then
+        item.DialogTransaction("SILVER_GACHA_SHOP", resultlist, cntText);
+    end
 end
 
 function EARTH_TOWER_SHOP_TRADE_LEAVE()
@@ -1229,4 +1292,14 @@ function CRAFT_ITEM_CANCEL(eachSet, slot, stringArg)
     
     local invframe = ui.GetFrame('inventory');
     INVENTORY_UPDATE_ICONS(invframe);
+end
+
+function EARTHTOWERSHOP_POINT_BUY_OPEN()
+    local frame = ui.GetFrame('earthtowershop')
+    local shopType = frame:GetUserValue("SHOP_TYPE")
+
+    if shopType == "SilverGachaShop" then
+        REQ_ITEM_POINT_EXTRACTOR_OPEN("Mileage_SilverGacha")
+        ui.GetFrame('item_point_extractor'):SetMargin(575, 5, 0, 0)
+    end
 end

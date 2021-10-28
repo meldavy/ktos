@@ -59,6 +59,8 @@ function BEAUTYSHOP_DO_OPEN(frame, msg, shopTypeName, genderNum)
 		{Type="PREVIEW", OpenFunc = PREVIEWSHOP_OPEN, IDSpace = 'Beauty_Shop_Preview'}, 
 		{Type="SKIN", OpenFunc = SKINSHOP_OPEN, IDSpace = 'Beauty_Shop_Skin'},
 		{Type="DESIGNCUT", OpenFunc = DESIGNCUTSHOP_OPEN, IDSpace = 'Beauty_Shop_Designcut'},
+		{Type="PREVIEW_LETICIA", OpenFunc = PREVIEW_LETICIA_SHOP_OPEN, IDSpace = 'Beauty_Shop_Preview_Leticia'},
+		{Type="PREVIEW_SILVERGACHA", OpenFunc = PREVIEW_SILVERGACHA_SHOP_OPEN, IDSpace = 'Beauty_Shop_Preview_SilverGacha'},
 	};
 	
 	-- 상점 성별 설정.
@@ -316,6 +318,10 @@ function GET_BEAUTYSHOP_EQUIP_TYPE(frame, gender, itemClassName)
 		return SKINSHOP_GET_ITEM_EQUIPTYPE(itemClassName);
 	elseif shopName == 'DESIGNCUT' then
 		return DESIGNCUTSHOP_GET_ITEM_EQUIPTYPE(gender, itemClassName);
+	elseif shopName == 'PREVIEW_LETICIA' then
+		return PREVIEW_LETICIA_SHOP_GET_ITEM_EQUIPTYPE(itemClassName);
+	elseif shopName == 'PREVIEW_SILVERGACHA' then
+		return PREVIEW_SILVERGACHA_SHOP_GET_ITEM_EQUIPTYPE(itemClassName);
 	end
 	return nil;
 end
@@ -1948,6 +1954,12 @@ function BEAUTYSHOP_UPDATE_ITEM_LIST_BY_SHOP(frame)
 	elseif shopName == 'DESIGNCUT' then
 		DESIGNCUTSHOP_INIT_FUNCTIONMAP();
 		DESIGNCUTSHOP_GET_SHOP_ITEM_LIST(BEAUTYSHOP_GET_GENDER());
+	elseif shopName == 'PREVIEW_LETICIA' then
+		PREVIEW_LETICIA_SHOP_INIT_FUNCTIONMAP();
+		PREVIEW_LETICIA_SHOP_GET_SHOP_ITEM_LIST();
+	elseif shopName == 'PREVIEW_SILVERGACHA' then
+		PREVIEW_SILVERGACHA_SHOP_INIT_FUNCTIONMAP();
+		PREVIEW_SILVERGACHA_SHOP_GET_SHOP_ITEM_LIST();
 	end
 end
 

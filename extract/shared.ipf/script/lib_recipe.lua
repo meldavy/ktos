@@ -159,6 +159,15 @@ function GET_RECIPE_MATERIAL_INFO(recipeCls, index,pc)
         return recipeItemCnt, propCount,dragRecipeItem,nil,recipeItemLv,nil
     end
 
+    if itemName == 'misc_silver_gacha_mileage' then
+        local aObj = GetMyAccountObj()
+        local propCount = TryGetProp(aObj, 'Mileage_SilverGacha', '0')
+        if propCount == 'None' then
+            propCount = '0'
+        end
+        return recipeItemCnt, propCount,dragRecipeItem,nil,recipeItemLv,nil
+    end
+
 	local invItem = nil;
 	local invItemlist = nil;
     local ignoreType = false;

@@ -3529,6 +3529,9 @@
         <Key Name="HadVisited_11218" Value="106534"/>
         <Key Name="HadVisited_11219" Value="106536"/>
         <Key Name="InDunCountType_809" Value="106550"/>
+        <Key Name="GUILD_MEMBER_JOIN_AUTO_LIMIT" Value="106552"/>
+        <Key Name="Mileage_SilverGacha" Value="106553"/>
+        <Key Name="SilverShopPoint" Value="106554"/>
     </KeyIDSpc>
     <KeyIDSpc Name="PCEtc">
         <Key Name="Kill_boss_Clymen_Q2" Value="7788"/>

@@ -1,0 +1,11 @@
+ClassID,Price,PriceRatio,StampCount,ClassName,Category,Gender,ItemClassName,EquipType,JobOnly,SellStartTime,SellEndTime,PackageList,IsPremium,TAG,ItemAddDate,BuyMessage
+11,-1,0,0,EP12_costume_Com_060,,M,EP12_costume_Com_060,costume,,2020-10-01 00:00:00,2020-10-31 23:59:59,,NO,,,NotBuy_Thema
+12,-1,0,0,EP12_costume_Com_064,,M,EP12_costume_Com_064,costume,,2020-10-01 00:00:00,2020-10-31 23:59:59,,NO,,,NotBuy_Thema
+13,-1,0,0,EP12_costume_Com_068,,M,EP12_costume_Com_068,costume,,2020-10-01 00:00:00,2020-10-31 23:59:59,,NO,,,NotBuy_Thema
+14,-1,0,0,EP12_costume_Com_070,,M,EP12_costume_Com_070,costume,,2020-10-01 00:00:00,2020-10-31 23:59:59,,NO,,,NotBuy_Thema
+21,-1,0,0,EP12_costume_Com_061,,F,EP12_costume_Com_061,costume,,2020-10-01 00:00:00,2020-10-31 23:59:59,,NO,,,NotBuy_Thema
+22,-1,0,0,EP12_costume_Com_065,,F,EP12_costume_Com_065,costume,,2020-10-01 00:00:00,2020-10-31 23:59:59,,NO,,,NotBuy_Thema
+23,-1,0,0,EP12_costume_Com_069,,F,EP12_costume_Com_069,costume,,2020-10-01 00:00:00,2020-10-31 23:59:59,,NO,,,NotBuy_Thema
+24,-1,0,0,EP12_costume_Com_071,,F,EP12_costume_Com_071,costume,,2020-10-01 00:00:00,2020-10-31 23:59:59,,NO,,,NotBuy_Thema
+51,-1,0,0,wing_ep12musical,,Both,wing_ep12musical,wing,,2020-10-01 00:00:00,2020-10-15 23:59:59,,NO,,,NotBuy_Thema
+61,-1,0,0,Effect_ep12musical,,Both,Effect_ep12musical,effect_costume,,2020-10-16 00:00:00,2020-10-31 23:59:59,,NO,,,NotBuy_Thema

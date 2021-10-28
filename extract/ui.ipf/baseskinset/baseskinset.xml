@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by imc (imc) -->
+<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by imc (imc) -->
 <!-- edited with XMLSpy v2008 sp1 (http://www.altova.com) by MintPC (Mi) -->
 <skinset name="Base">
 	<skinlist category="frames">
@@ -6984,6 +6984,9 @@
 		<image name="test_companion_30" file="\icon\companion.tga" imgrect="0 738 100 122" CMM_Caption="사관생도 아르마딜로_탭버튼"/>
 		<image name="test_companion_30_cursoron" file="\icon\companion.tga" imgrect="101 738 100 122"/>
 		<image name="test_companion_30_clicked" file="\icon\companion.tga" imgrect="101 738 100 122"/>
+		<image name="test_companion_31" file="\icon\companion.tga" imgrect="202 738 100 122" CMM_Caption="달맞이 참새_탭버튼"/>
+		<image name="test_companion_31_cursoron" file="\icon\companion.tga" imgrect="303 738 100 122"/>
+		<image name="test_companion_31_clicked" file="\icon\companion.tga" imgrect="303 738 100 122"/>
 		<image name="test_com_ability" file="\skin\pip_test.tga" imgrect="1832 851 54 35" CMM_Caption="컴패니언_특성플러스"/>
 		<image name="test_com_ability_cursoron" file="\skin\pip_test.tga" imgrect="1832 887 54 35"/>
 		<image name="test_com_ability_clicked" file="\skin\pip_test.tga" imgrect="1832 923 54 35"/>
@@ -7957,6 +7960,7 @@
 		<image name="monster_card_g_frame_02" file="\skin\tocket_monsters.tga" imgrect="971 506 161 221" CMM_Caption="트켓몬 프레임_02"/>
 		<image name="gold_02arrow_below" file="\skin\pip_test.tga" imgrect="606 1025 65 58" CMM_Caption="2개 골드 화살표_아래"/>
 		<image name="cooperation_war_kill" file="\skin\pip_test.tga" imgrect="1123 1025 227 50" CMM_Caption="협동전_kill"/>
+		<image name="lure_of_a_demon_title" file="\skin\god_protect_skin.tga" imgrect="574 529 578 159" CMM_Caption="마신의 유혹 타이틀"/>
 	</imagelist>
 	<imagelist category="yiseul_image">
 		<image name="AbillityReset_skin" file="\skin\paid_skin_title.tga" imgrect="0 330 316 165" CMM_Caption="특성 초기화"/>
@@ -8940,6 +8944,7 @@
 		<image name="companion_hedgehog" file="\icon\companion_Velhider.tga" imgrect="160 320 80 80"/>
 		<image name="companion_policedog" file="\icon\companion_Velhider.tga" imgrect="240 320 80 80"/>
 		<image name="companion_pet_cadet_armadillo" file="\icon\companion_Velhider.tga" imgrect="320 320 80 80"/>
+		<image name="companion_sparrow_thanksgiving" file="\icon\companion_Velhider.tga" imgrect="400 320 80 80"/>
 		<image name="bg_w" file="\skin\button.tga" imgrect="252 974 50 50"/>
 		<image name="barrack_signboard" file="\skin\barrack.tga" imgrect="356 0 257 192"/>
 		<image name="barrack_attack_icon" file="\skin\barrack.tga" imgrect="59 720 55 61"/>
@@ -11285,6 +11290,7 @@
 		<image name="icon_TelHarsha_burning" file="\icon\buff_icon3.tga" imgrect="0 1920 128 128" CMM_Caption="헬하르샤_버닝"/>
 		<image name="icon_TelHarsha_ember" file="\icon\buff_icon3.tga" imgrect="128 1920 128 128" CMM_Caption="헬하르샤_불씨보유"/>
 		<image name="icon_arch_Arrowhead" file="\icon\buff_icon3.tga" imgrect="256 1920 128 128" CMM_Caption="화살촉 연마"/>
+		<image name="icon_pet_sparrow_thanksgivng_buff" file="\icon\buff_icon3.tga" imgrect="384 1920 128 128" CMM_Caption="달맞이 참새"/>
 	</imagelist>
 	<imagelist category="housing_bufficon">
 		<image name="icon_Weapon_Klaida" file="\icon\icon_hosing_buff.tga" imgrect="0 0 128 128"/>

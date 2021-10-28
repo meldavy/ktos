@@ -2,6 +2,10 @@
 local json = require "json_imc"
 local g_guildName = nil;
 local g_guildIdx = nil;
+local rowIndex = 1;
+local curPage = 1;
+local scrolledTime = 0;
+local finishedLoading = false;
 
 function GUILDINFO_DETAIL_ON_INIT(addon, frame)
     addon:RegisterMsg('RECEIVE_OTHER_GUILD_AGIT_INFO', 'SCR_OTHER_GUILD_AGIT_INFO');
@@ -23,10 +27,10 @@ function GUILDINFO_DETAIL_INIT(guildData, emblemPath, info, guild_idx)
         local name = guildData['name']
         local level = guildData['level']
         local introText = guildData['shortDesc']
-        local memberListJson = info['memberList']
         local avgLevel = info['avgLv']
         local createdDate = info['createdTime']
         local leaderName = info['leaderName']
+        local memberCount = info['memberCount']
 
         local guildName = GET_CHILD_RECURSIVELY(frame, "name");
         guildName:SetText("{s18}" .. name);
@@ -51,7 +55,7 @@ function GUILDINFO_DETAIL_INIT(guildData, emblemPath, info, guild_idx)
         guildDesc:SetText(introText);
         
         local memberNum = GET_CHILD_RECURSIVELY(frame, "memberNumText")
-        memberNum:SetText(#memberListJson);
+        memberNum:SetText(memberCount);
 
         local avgTeamLv = GET_CHILD_RECURSIVELY(frame, "avgTeamLvlText")
         avgTeamLv:SetText(avgLevel);
@@ -62,46 +66,15 @@ function GUILDINFO_DETAIL_INIT(guildData, emblemPath, info, guild_idx)
         local leader = GET_CHILD_RECURSIVELY(frame, "leader")
         leader:SetText(leaderName)
 
-        local rowIndex = tostring(math.ceil(#memberListJson/2))
-        local i=1
         local scrollPanel = GET_CHILD_RECURSIVELY(frame, "memberList")
-        local memberIndex = 1;
-        for i=1, rowIndex do
-            local row = scrollPanel:CreateOrGetControlSet("guild_member_row", tostring(i), 0, 0);
-            row:Resize(scrollPanel:GetWidth(), 50)
-            
-            local teamName1 = GET_CHILD_RECURSIVELY(row, "teamName1");
-            teamName1:SetText(memberListJson[memberIndex]['name']);
-            teamName1:SetUserValue("aid", memberListJson[memberIndex]['aid'])
-            teamName1:SetUserValue("name",memberListJson[memberIndex]['name'])
-
-            local level1 = GET_CHILD_RECURSIVELY(row, "team_lv1");
-            level1:SetText(memberListJson[memberIndex]['team_lv']);
-            level1:SetUserValue("team_lv", memberListJson[memberIndex]['team_lv']);
-
-            local lv1 = GET_CHILD_RECURSIVELY(row, "lv1");
-            lv1:SetText(memberListJson[memberIndex]['lv']);
-            lv1:SetUserValue("lv", memberListJson[memberIndex]['lv'])
-            memberIndex = memberIndex + 1;
-
-            if memberIndex <= #memberListJson then
-                local teamName2 = GET_CHILD_RECURSIVELY(row, "teamName2");
-                teamName2:SetText(memberListJson[memberIndex]['name']);
-                teamName2:SetUserValue("aid", memberListJson[memberIndex]['aid'])
-                teamName2:SetUserValue("name", memberListJson[memberIndex]['name'])
-                
-                local level2 = GET_CHILD_RECURSIVELY(row, "team_lv2");
-                level2:SetText(memberListJson[memberIndex]['team_lv']);
-                level2:SetUserValue("team_lv", memberListJson[memberIndex]['team_lv']);
-                
-                local lv2 = GET_CHILD_RECURSIVELY(row, "lv2");
-                lv2:SetText(memberListJson[memberIndex]['lv']);
-                lv2:SetUserValue("lv", memberListJson[memberIndex]['lv'])
-                memberIndex = memberIndex + 1;
-
-            end
-            --row:Invalidate()
-        end
+        scrollPanel:SetEventScript(ui.SCROLL, "GUILDINFO_DETAIL_MEMBER_LIST_SCROLL");
+        scrollPanel:SetEventScriptArgString(ui.SCROLL, guild_idx);
+        rowIndex = 1;
+        curPage = 1;
+        scrolledTime = 0;
+        finishedLoading = false;
+        
+        GetGuildMemberInfoList("GET_GUILDINFO_MEMBER_LIST", guild_idx, curPage);
         GetIntroductionImage("GET_INTRO_IMAGE", guild_idx);
 		
 		local agitLevelText = GET_CHILD_RECURSIVELY(frame, "agitLevelText");
@@ -155,14 +128,6 @@ function GUILDINFO_DETAIL_OPEN(addon, frame)
 
     local intro = GET_CHILD_RECURSIVELY(detail, "intro");
     intro:ShowWindow(1)
-    local btn = GET_CHILD_RECURSIVELY(detail, "joinBtn");
-
-	local pcparty = session.party.GetPartyInfo(PARTY_GUILD);
-    if pcparty == nil then
-        btn:SetEnable(1)
-    else
-        btn:SetEnable(0)
-    end
 end
 
 function OPEN_REQUEST_GUILDJOIN()
@@ -196,10 +161,12 @@ function SEND_JOIN_REQ(frame, control)
     if badword ~= nil then
 		ui.MsgBox(ScpArgMsg('{Word}_FobiddenWord','Word',badword, "None", "None"));
 		return;
-	end
+    end
+    
     PutGuildApplicationRequest('ON_GUILDJOIN_REQUEST_SUCCESS', g_guildIdx,tostring(teamLvl), tostring(charCount), tostring(GetAdventureBookMyRank()), tostring(mylevel), txtCtrl:GetText())
     joinFrame:ShowWindow(0)
 end
+
 function ON_GUILDJOIN_REQUEST_SUCCESS(code, ret_json)
     if code ~= 200 then
         SHOW_GUILD_HTTP_ERROR(code, ret_json, "ON_GUILDJOIN_REQUEST_SUCCESS")
@@ -372,18 +339,104 @@ end
 
 function GUILDINFO_DETAIL_TAB_CLICK()
     local frame = ui.GetFrame("guildinfo_detail");
-    local tabCtrl = GET_CHILD_RECURSIVELY(frame, "itembox");
-    
+	local accObj = GetMyAccountObj();
+
+    local tabCtrl = GET_CHILD_RECURSIVELY(frame, "itembox");    
     local joinballoongb = GET_CHILD_RECURSIVELY(frame, "joinballoongb");
     local joinText = GET_CHILD_RECURSIVELY(frame, "joinText");
+    local btn = GET_CHILD_RECURSIVELY(frame, "joinBtn");
 
     local index = tabCtrl:GetSelectItemIndex();
 	local pcparty = session.party.GetPartyInfo(PARTY_GUILD);
     if index == 0 and pcparty == nil then
         joinballoongb:ShowWindow(1);
         joinText:ShowWindow(1);
+        
+        btn:SetEnable(1);
     else
         joinballoongb:ShowWindow(0);
         joinText:ShowWindow(0);
+        
+        btn:SetEnable(0);
+    end
+
+    local guildidx = GET_GUILD_MEMBER_JOIN_AUTO_GUILD_IDX();
+    if guildidx ~= "0" and guildidx == g_guildIdx then
+        local limit = TryGetProp(accObj, "GUILD_MEMBER_JOIN_AUTO_LIMIT", 0);
+        if limit ~= 0 then
+            joinballoongb:ShowWindow(0);
+            joinText:ShowWindow(0);
+            
+            btn:SetEnable(0);
+        end
+    end
+end
+
+function GUILDINFO_DETAIL_MEMBER_LIST_SCROLL(parent, ctrl, guild_idx, argNum)
+    local frame = ui.GetFrame("guildinfo_detail");
+
+    if ctrl:IsScrollEnd() == true and finishedLoading == true then
+        local now = imcTime.GetAppTime();
+        local dif = now - scrolledTime;
+
+        if 1 < dif then
+            curPage = curPage + 1;
+            GetGuildMemberInfoList("GET_GUILDINFO_MEMBER_LIST", guild_idx, curPage);
+
+            scrolledTime = now;
+            finishedLoading = false;
+        end
+    end
+end
+
+function GET_GUILDINFO_MEMBER_LIST(code, ret_json)
+    finishedLoading = true;
+    if code ~= 200 then
+        return;
+    end 
+
+    local parsed = json.decode(ret_json);
+    local list = parsed['memberList'];
+    local memberCount = #list;
+    local memberIndex = 1;
+    
+    local frame = ui.GetFrame("guildinfo_detail");
+    local scrollPanel = GET_CHILD_RECURSIVELY(frame, "memberList")
+    for i = 1, math.floor((memberCount/2)+0.5) do
+        local row = scrollPanel:CreateOrGetControlSet("guild_member_row", tostring(rowIndex), 0, 0);
+        row:Resize(scrollPanel:GetWidth(), 50);
+
+        local teamName1 = GET_CHILD_RECURSIVELY(row, "teamName1");
+        teamName1:SetText(list[memberIndex]['teamname']);
+        teamName1:SetUserValue("aid", list[memberIndex]['aid'])
+        teamName1:SetUserValue("name",list[memberIndex]['teamname'])
+
+        local level1 = GET_CHILD_RECURSIVELY(row, "team_lv1");
+        level1:SetText(list[memberIndex]['team_lv']);
+        level1:SetUserValue("team_lv", list[memberIndex]['team_lv']);
+
+        local lv1 = GET_CHILD_RECURSIVELY(row, "lv1");
+        lv1:SetText(list[memberIndex]['lv']);
+        lv1:SetUserValue("lv", list[memberIndex]['lv'])
+        memberIndex = memberIndex + 1;
+
+        if memberIndex <= memberCount then
+            local teamName2 = GET_CHILD_RECURSIVELY(row, "teamName2");
+            teamName2:SetText(list[memberIndex]['teamname']);
+            teamName2:SetUserValue("aid", list[memberIndex]['aid'])
+            teamName2:SetUserValue("name", list[memberIndex]['teamname'])
+            
+            local level2 = GET_CHILD_RECURSIVELY(row, "team_lv2");
+            level2:SetText(list[memberIndex]['team_lv']);
+            level2:SetUserValue("team_lv", list[memberIndex]['team_lv']);
+            
+            local lv2 = GET_CHILD_RECURSIVELY(row, "lv2");
+            lv2:SetText(list[memberIndex]['lv']);
+            lv2:SetUserValue("lv", list[memberIndex]['lv'])
+            memberIndex = memberIndex + 1;
+        end
+
+        rowIndex = rowIndex + 1;
+        row:Invalidate();
     end
 end

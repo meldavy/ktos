@@ -8,6 +8,10 @@ end
 
 -- 아이콘으로 UI 오픈
 function GODPROTECTION_DO_OPEN()
+    if ui.GetFrame('silver_gacha'):IsVisible() == 1 then
+        return
+    end
+
 	local frame = ui.GetFrame("godprotection");
 	ui.OpenFrame("godprotection");
 

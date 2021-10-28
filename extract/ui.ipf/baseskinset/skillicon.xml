@@ -812,6 +812,7 @@
 		<image name="Icon_common_skill_4" file="\icon\skill\common\Icon_common_skill_4.png" imgrect="0 0 128 128" CMM_Caption="숫자 4"/>
 		<image name="Icon_common_skill_5" file="\icon\skill\common\Icon_common_skill_5.png" imgrect="0 0 128 128" CMM_Caption="숫자 5"/>
 		<image name="Icon_common_Acient_use_skill" file="\icon\skill\common\Icon_common_Acient_use_skill.png" imgrect="0 0 128 128" CMM_Caption="어시스터 스킬 사용"/>
+		<image name="icon_common_musical" file="\icon\skill\common\icon_common_musical.png" imgrect="0 0 128 128" CMM_Caption="뮤지컬 변신"/>
 	</imagelist>
 	<imagelist category="restquickslot_icon">
 		<image name="icon_rest_arrow" file="\icon\rest_mode_icon.tga" imgrect="0 0 128 128" CMM_Caption="화살제작"/>
