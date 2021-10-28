@@ -1,13 +1,18 @@
 
 function PARTY_ON_INIT(addon, frame)
-	
 	addon:RegisterMsg("GAME_START", "PARTY_MSG_GAMESTART");
 	addon:RegisterMsg("PARTY_UPDATE", "PARTY_MSG_UPDATE");
+    addon:RegisterMsg("PARTY_NAME_UPDATE", "ON_PARTY_NAME_UPDATE")
 	addon:RegisterMsg("PARTY_INST_UPDATE", "ON_PARTY_INST_UPDATE");
 	addon:RegisterMsg("PARTY_PROPERTY_UPDATE", "ON_PARTY_PROPERTY_UPDATE");
 	addon:RegisterMsg("PARTY_PROPERTY_NOTE_UPDATE", "ON_PARTY_PROPERTY_UPDATE");
 	addon:RegisterMsg("PVP_STATE_CHANGE", "PARTY_ON_PVP_STATE_CHANGE");
-	
+	addon:RegisterMsg("PARTY_OPTION_RESET", "ON_PARTY_OPTION_RESET");
+	addon:RegisterMsg("PARTY_JOIN", "ON_PARTY_JOIN");	
+end
+
+function ON_PARTY_JOIN(frame)
+	RESET_NAME_N_MEMO(frame)
 end
 
 function PARTY_MSG_GAMESTART(frame, msg, str, num)
@@ -29,7 +34,7 @@ function ON_PARTY_INST_UPDATE(frame)
 
 	local count = list:Count();
 	for i = 0 , count - 1 do
-		local partyMemberInfo = list:Element(i);
+		local partyMemberInfo = list:Element(i);			
 		if partyMemberInfo:GetMapID() > 0 then
 			local partyInfoCtrlSet = memberlist:GetChild('PTINFO_'.. partyMemberInfo:GetAID());
 			if partyInfoCtrlSet ~= nil then
@@ -50,9 +55,7 @@ function PARTY_OPEN(frame)
 end
 
 function PARTY_CLOSE(frame)
-
-	ui.CloseFrame('party_search')
-
+	ui.CloseFrame('party_search');
 end
 
 function UI_TOGGLE_PARTY()
@@ -67,10 +70,24 @@ function TOGGLE_PARTY_PAT()
 	ui.ToggleFrame('partylist');
 end
 
-function ON_PARTY_UPDATE(frame, msg, str, num)
-			
-	UPDATE_I_NEED_PARTY(frame, msg, str, num);
+function ON_PARTY_NAME_UPDATE(frame)
+	local pcparty = session.party.GetPartyInfo();
+	if pcparty == nil then
+		DESTROY_CHILD_BYNAME(memberlist, 'PTINFO_');
+	end
 
+	local partyNameText = GET_CHILD_RECURSIVELY(frame, 'partyName')
+	local partyNameText_setting = GET_CHILD_RECURSIVELY(frame, 'partyname_edit')
+	
+	if pcparty ~= nil then
+		partyNameText:SetTextByKey("PartyName", pcparty.info.name)
+		partyNameText_setting:SetText(pcparty.info.name)
+		partyNameText:ShowWindow(1)
+	end	
+end
+
+function ON_PARTY_UPDATE(frame, msg, str, num)    
+	UPDATE_I_NEED_PARTY(frame, msg, str, num);
 	
 	local partyTab = GET_CHILD_RECURSIVELY(frame, 'itembox')
 	local nowtab = partyTab:GetSelectItemIndex();
@@ -80,9 +97,11 @@ function ON_PARTY_UPDATE(frame, msg, str, num)
 	local list = session.party.GetPartyMemberList(PARTY_NORMAL);
 
 	local memberlist = gbox:GetChild("memberlist");
-	DESTROY_CHILD_BYNAME(memberlist, 'PTINFO_');
 
 	local pcparty = session.party.GetPartyInfo();
+	if pcparty == nil then
+		DESTROY_CHILD_BYNAME(memberlist, 'PTINFO_');
+	end
 
 	local createPartyBtn = GET_CHILD_RECURSIVELY(frame, 'createPartyBtn', 'ui::CButton')
 	local outPartyBtn = GET_CHILD_RECURSIVELY(frame, 'outPartyBtn', 'ui::CButton')
@@ -92,13 +111,11 @@ function ON_PARTY_UPDATE(frame, msg, str, num)
 	local partyNameText_setting = GET_CHILD_RECURSIVELY(frame, 'partyname_edit')
 	
 	if pcparty ~= nil then
-		partyNameText:SetTextByKey("PartyName", pcparty.info.name)
-		partyNameText_setting:SetText(pcparty.info.name)
-		partyNameText:ShowWindow(1)
 		local partyObj = GetIES(pcparty:GetObject());
 		local GainType = "ExpGainType_" .. partyObj["ExpGainType"];
 		local expGainType = GET_CHILD_RECURSIVELY(gbox, GainType, "ui::CRadioButton")
 		expGainType:Select();
+		partyNameText:ShowWindow(1)
 	else
 		partyNameText_setting:SetText("")
 		partyNameText:ShowWindow(0)
@@ -133,26 +150,41 @@ function ON_PARTY_UPDATE(frame, msg, str, num)
 	end
 
 	local partyInfo = pcparty.info;
+    local partyID = partyInfo:GetPartyID();
 
 	local memberIndex = 0;
 	local count = list:Count();
-
+	
 	for i = 0 , count - 1 do
 		local partyMemberInfo = list:Element(i);
 		local ret = nil;
-		local iconinfo = partyMemberInfo:GetIconInfo();
+		local iconinfo = partyMemberInfo:GetIconInfo();		
 		-- 접속중 파티원
 		if geMapTable.GetMapName(partyMemberInfo:GetMapID()) ~= 'None' then
-			ret = SET_PARTYINFO_ITEM(memberlist, msg, partyMemberInfo, memberIndex, false, partyInfo:GetLeaderAID(), pcparty.isCorsairType, true);
+			ret = SET_PARTYINFO_ITEM(memberlist, msg, partyMemberInfo, memberIndex, false, partyInfo:GetLeaderAID(), pcparty.isCorsairType, true, partyID);
 		-- 접속안한 파티원
 		else
-			ret = SET_LOGOUT_PARTYINFO_ITEM(memberlist, msg, partyMemberInfo, memberIndex, false, partyInfo:GetLeaderAID(), pcparty.isCorsairType, true);
+			ret = SET_LOGOUT_PARTYINFO_ITEM(memberlist, msg, partyMemberInfo, memberIndex, false, partyInfo:GetLeaderAID(), pcparty.isCorsairType, partyID);
 		end
-			if ret ~= nil then
-				memberIndex = memberIndex + 1;
+		if ret ~= nil then
+			memberIndex = memberIndex + 1;
+		end
+	end
+
+	for i = 0 , memberlist:GetChildCount() - 1 do
+		local ctrlSet = memberlist:GetChildByIndex(i);
+		if nil ~= ctrlSet then
+			local ctrlSetName = ctrlSet:GetName();
+			if string.find(ctrlSetName, "PTINFO_") ~= nil then
+				local aid = string.sub(ctrlSetName, 8, string.len(ctrlSetName));
+				local memberInfo = session.party.GetPartyMemberInfoByAID(PARTY_NORMAL, aid);
+				if memberInfo == nil then
+					memberlist:RemoveChildByIndex(i);
+					i = i - 1;
+				end
 			end
 		end
-	
+	end	
 
 	if nowtab == 0 then
 		if count > 0 then
@@ -163,10 +195,6 @@ function ON_PARTY_UPDATE(frame, msg, str, num)
 			outPartyBtn:ShowWindow(0)
 		end
 	end
-
-
-
-	UPDATE_PARTY_EVENT(frame, msg, str, num);
 
 	if count == 5 then
 		config.ChangeXMLConfig("UseINeedParty",0)
@@ -181,14 +209,11 @@ function ON_PARTY_UPDATE(frame, msg, str, num)
 
 	GBOX_AUTO_ALIGN(memberlist, 10, 0, 0, true, false)
 	frame:Invalidate();
-	frame:Invalidate();
 	frame:ResizeByResolutionRecursively(0);
 
 end
 
 function CREATE_PARTY_BTN(control)
-
-	local myfname = info.GetFamilyName(session.GetMyHandle());
 
 	local partyName = nil
 	local partyNameCls = GetClass("DefPartyName", config.GetServiceNation());
@@ -202,6 +227,7 @@ function CREATE_PARTY_BTN(control)
 	end
 
 	if partyName ~= nil then
+		local partyName = dictionary.ReplaceDicIDInCompStr(partyName); 
 		party.ReqPartyMake(partyName);
 	end
 
@@ -219,7 +245,24 @@ function OUT_PARTY_BTN(control)
 
 end
 
+function ON_PARTY_OPTION_RESET(frame, msg, argStr, argNum)
+	local pcparty = session.party.GetPartyInfo();
+	if pcparty == nil then
+		return;
+	end
+	local partyObj = GetIES(pcparty:GetObject());
 
+	local curValue = partyObj[argStr];
+	local gbox = frame:GetChild("gbox");	
+
+	local curButton = GET_CHILD(gbox, argStr .. "_" .. curValue, "ui::CRadioButton");
+	if nil == curButton then
+		return;
+	end
+
+	curButton:Select();
+	ui.SysMsg(ScpArgMsg("CannotChagePropertyThisServer"));
+end
 
 function SET_PARTY_PROPERTY_RADIO_BUTTON(gbox, partyObj, propName, maxValue, isLeader)
 
@@ -231,20 +274,17 @@ function SET_PARTY_PROPERTY_RADIO_BUTTON(gbox, partyObj, propName, maxValue, isL
 	local curValue = partyObj[propName];
 	local curButton = GET_CHILD(gbox, propName .. "_" .. curValue, "ui::CRadioButton");
 	curButton:Select();
-	MSG_CHANGE_RADIO(gbox, propName, curValue, isLeader, curButton)
+	MSG_CHANGE_RADIO(gbox, propName, curValue, curButton)
 end
 
-function MSG_CHANGE_RADIO(gbox,propName,curValue,isLeader, button)
-	
-	local leader = tonumber(isLeader)
-
+function MSG_CHANGE_RADIO(gbox,propName,curValue, button)
 	local preValue = tonumber(gbox:GetUserValue(propName.."Pre"))
 	if preValue == nil then
 		gbox:SetUserValue(propName.."Pre", curValue)
 		return
 	end
 
-	if preValue ~= curValue and leader == 0 then
+	if preValue ~= curValue then
 		if propName == "ItemRouting" then
 			ui.SysMsg(ScpArgMsg("{Change}ItemRouting", "Change", button:GetText()))
 		elseif propName == "ExpGainType" then
@@ -284,7 +324,7 @@ function SAVE_PARTY_NAME_AND_MEMO(parent)
 	end
 	
 	if partyName ~= nil and nowPartyName ~= partyName then
-		party.ReqPartyNameChange(PARTY_NORMAL, PARTY_STRING_NAME, partyName);
+		party.ReqPartyNameChange(PARTY_NORMAL, PARTY_STRING_NAME, partyName, session.loginInfo.GetAID());
 	end
 
 	if partyNote ~= nil and nowPartyNote ~= partyNote then
@@ -296,29 +336,38 @@ function SAVE_PARTY_NAME_AND_MEMO(parent)
 end
 
 function RESET_NAME_N_MEMO(frame)
-
 	local pcparty = session.party.GetPartyInfo();
 	if pcparty == nil then
+		local outPartyBtn = GET_CHILD_RECURSIVELY(frame, 'outPartyBtn');
+		outPartyBtn:ShowWindow(0);
 		return;
 	end
 	local partyObj = GetIES(pcparty:GetObject());
 	local nowPartyName = pcparty.info.name;
 	local nowPartyNote = partyObj["Note"];	
-
+	
 	local partynoteText = GET_CHILD_RECURSIVELY(frame,"partynote");
 	partynoteText:SetText(nowPartyNote)
 	local partyNameText_setting = GET_CHILD_RECURSIVELY(frame, 'partyname_edit')
 	partyNameText_setting:SetText(nowPartyName)
+	local partyNameText = GET_CHILD_RECURSIVELY(frame, 'partyname')
+	partyNameText:SetTextByKey("PartyName", nowPartyName);
+	
+	local createPartyBtn = GET_CHILD_RECURSIVELY(frame, 'createPartyBtn');
+	createPartyBtn:ShowWindow(0);
 end
 
 
 function ON_PARTY_PROPERTY_UPDATE(frame, msg, str, num)
+	local gbox = frame:GetChild("gbox");
 
 	UPDATE_I_NEED_PARTY(frame, msg, str, num)
-	UPDATE_PARTY_EVENT(frame, msg, str, num);
 
 	local pcparty = session.party.GetPartyInfo();
 	if pcparty == nil then
+		gbox:SetUserValue("ItemRoutingPre", "None")
+		gbox:SetUserValue("ExpGainTypePre", "None")
+		gbox:SetUserValue("IsQuestSharePre", "None")
 		return;
 	end
 	local partyObj = GetIES(pcparty:GetObject());
@@ -328,7 +377,6 @@ function ON_PARTY_PROPERTY_UPDATE(frame, msg, str, num)
 		isLeader = 1;
 	end
 
-	local gbox = frame:GetChild("gbox");	
 	SET_PARTY_PROPERTY_RADIO_BUTTON(gbox, partyObj, "ItemRouting", 2, isLeader);
 	SET_PARTY_PROPERTY_RADIO_BUTTON(gbox, partyObj, "ExpGainType", 2, isLeader);
 	SET_PARTY_PROPERTY_RADIO_BUTTON(gbox, partyObj, "IsQuestShare", 1, isLeader);
@@ -336,8 +384,6 @@ function ON_PARTY_PROPERTY_UPDATE(frame, msg, str, num)
 	local partynote = GET_CHILD_RECURSIVELY(frame,"partynote");
 	if msg == "PARTY_PROPERTY_NOTE_UPDATE" then
 		partynote:SetText(str);
-	else
-		partynote:SetText(partyObj["Note"])
 	end
 
 	local savePartyNameAndMemo = GET_CHILD_RECURSIVELY(frame,"savePartyNameAndMemo")
@@ -634,205 +680,6 @@ function OPEN_PARTY_QUEST_UI(msgInfo)
 
 end
 
-function UPDATE_PARTY_EVENT(frame, msg, propName, propValue)
-	--UPDATE_PARTY_QUEST(frame, msg, propName, propValue)
-	--UPDATE_PARTY_MISSION(frame, msg, propName, propValue)
-	
-	UPDATE_PARTY_TICKET(frame, msg, propName, propValue)
-
-end
-
-function UPDATE_PARTY_TICKET(frame, msg, propName, propValue)
-	
-	local pcparty = session.party.GetPartyInfo();
-	if pcparty == nil then
-		return;
-	end
-	local partyObj = GetIES(pcparty:GetObject());
-	
-	local gbox = frame:GetChild("gbox");
-	local quest_gbox = GET_CHILD(gbox, "quest_gbox");
-	DESTROY_CHILD_BY_USERVALUE(quest_gbox, "PARTY_QUEST_CTRL", "YES");
-	-- quest_gbox:RemoveAllChild();
-
-
-	local clsList, cnt = GetClassList("PartyQuest");
-	for i = 0 , cnt - 1 do
-		local cls = GetClassByIndexFromList(clsList, i);
-		
-		if cls.ClassName == "PartyQuest" then
-			
-			for i = 10, 100, 10 do
-				local propName = string.format("P_PARTY_Q_%03d", i)
-				
-				if 1 == partyObj[propName.."_Ticket"] then
-					local ctrlSet = quest_gbox:CreateControlSet("party_ticket", propName.."_Ticket", ui.LEFT, ui.TOP, 0, 0, 0, 0);
-					
-
-					local questName = string.format("PARTY_Q_%03d", i)
-					local questCls = GetClass("QuestProgressCheck", questName);
-	
-
-					ctrlSet:SetUserValue("PARTY_QUEST_CTRL", "YES");
-					ctrlSet:SetUserValue("CLSNAME", questName);
-					ctrlSet:SetUserValue("TICKET", questName.."_Ticket");
-
-					local button = GET_CHILD(ctrlSet, "btn_start", "ui::CButton");
-			
-					local desc = GET_CHILD(ctrlSet, "desc");
-					desc:SetTextByKey("value", questCls.StartStory);
-					local title = GET_CHILD(ctrlSet, "title");
-					title:SetTextByKey("value", questCls.Name);
-
-
-					local dec_gbox = GET_CHILD_RECURSIVELY(ctrlSet, "dec_gbox")
-					dec_gbox:Resize(dec_gbox:GetOriginalWidth(), desc:GetY() + desc:GetHeight() + 20)
-
-					local addheight = dec_gbox:GetHeight() - dec_gbox:GetOriginalHeight()
-
-					if addheight < 0 then
-						dec_gbox:Resize(dec_gbox:GetOriginalWidth(),dec_gbox:GetOriginalHeight())
-					else
-	
-					ctrlSet:Resize(ctrlSet:GetOriginalWidth(), ctrlSet:GetOriginalHeight() + addheight)
-					end
-
-				end
-			end
-		end
-
-		if 1 == partyObj[cls.ClassName.."_Ticket"] then
-			local ctrlSet = quest_gbox:CreateControlSet("party_ticket", cls.ClassName, ui.LEFT, ui.TOP, 0, 0, 0, 0);
-			ctrlSet:SetUserValue("PARTY_QUEST_CTRL", "YES");
-			ctrlSet:SetUserValue("CLSNAME", cls.ClassName);
-			ctrlSet:SetUserValue("TICKET", cls.ClassName.."_Ticket");
-			local button = GET_CHILD(ctrlSet, "btn_start", "ui::CButton");
-			
-			local desc = GET_CHILD(ctrlSet, "desc");
-			desc:SetTextByKey("value", cls.Desc);
-			local title = GET_CHILD(ctrlSet, "title");
-			title:SetTextByKey("value", cls.Name);
-
-			
-			local dec_gbox = GET_CHILD_RECURSIVELY(ctrlSet, "dec_gbox")
-			dec_gbox:Resize(dec_gbox:GetOriginalWidth(), desc:GetY() + desc:GetHeight() + 20)
-
-			local addheight = dec_gbox:GetHeight() - dec_gbox:GetOriginalHeight()
-
-			if addheight < 0 then
-				dec_gbox:Resize(dec_gbox:GetOriginalWidth(),dec_gbox:GetOriginalHeight())
-			else
-				ctrlSet:Resize(ctrlSet:GetOriginalWidth(), ctrlSet:GetOriginalHeight() + addheight)
-			end
-	
-		elseif cls.ViewProp ~= "None" then
-			--이 밑에는 구버전 호환용 입니다. 갯수가 많아지면 따로 관리하게 끔 해봐야함.
-			if cls.ClassName == "FieldBossRaid" then
-				if partyObj.FieldBossSummon == 1 then
-					local ctrlSet = quest_gbox:CreateControlSet("party_ticket", cls.ClassName, ui.LEFT, ui.TOP, 0, 0, 0, 0);
-					ctrlSet:SetUserValue("PARTY_QUEST_CTRL", "YES");
-					ctrlSet:SetUserValue("CLSNAME", cls.ClassName);
-					local button = GET_CHILD(ctrlSet, "btn_start", "ui::CButton");
-			
-					local desc = GET_CHILD(ctrlSet, "desc");
-					desc:SetTextByKey("value", cls.Desc);
-					local title = GET_CHILD(ctrlSet, "title");
-					title:SetTextByKey("value", cls.Name);
-					ctrlSet:GetChild("btn_start"):SetEnable(0);
-
-					local locInfo = geClientPartyQuest.GetPartyQuestLocaionInfo(pcparty, cls.ClassName);
-					if locInfo ~= nil then
-						local mapCls = GetClassByType("Map", locInfo.mapID);
-						local linkStr = string.format("{#a62300}{a @SHOW_PARTY_QUEST_MAP_UI}%s{/}{/}", mapCls.Name);
-						local descStr = ScpArgMsg("IfAllPartyMemberAssembleTo{MapName}_QuestWillBeStarted", "MapName", linkStr);
-						desc:SetTextByKey("value", descStr);
-						ctrlSet:SetUserValue("IS_ACCEPTED", "YES");
-	
-						local pos = geClientPartyQuest.GetLocInfoPos(locInfo);
-						geClientPartyQuest.RunPartyQuestAssembleCheck(true);
-						local mapprop = session.GetCurrentMapProp();
-						if locInfo.mapID == mapprop.type then
-							session.minimap.AddIconInfo("PartyQuest_" .. cls.ClassName, "trasuremapmark", pos, ClMsg("PartyQuestArea"), true, "None", 1.5);
-						end
-					else
-						desc:SetTextByKey("value", cls.Desc);
-						ctrlSet:SetUserValue("IS_ACCEPTED", "NO");
-						geClientPartyQuest.RunPartyQuestAssembleCheck(false);
-						session.minimap.RemoveIconInfo("PartyQuest_" .. cls.ClassName);
-					end
-
-					local dec_gbox = GET_CHILD_RECURSIVELY(ctrlSet, "dec_gbox")
-					dec_gbox:Resize(dec_gbox:GetOriginalWidth(), desc:GetY() + desc:GetHeight() + 20)
-
-					local addheight = dec_gbox:GetHeight() - dec_gbox:GetOriginalHeight()
-
-					if addheight < 0 then
-						dec_gbox:Resize(dec_gbox:GetOriginalWidth(),dec_gbox:GetOriginalHeight())
-					else
-						ctrlSet:Resize(ctrlSet:GetOriginalWidth(), ctrlSet:GetOriginalHeight() + addheight)
-					end
-				end
-
-				local locInfo = geClientPartyQuest.GetPartyQuestLocaionInfo(pcparty, cls.ClassName);
-				if locInfo ~= nil and partyObj.FieldBossSummon == 0 and partyObj.FieldBossSummon == 0 then
-					session.minimap.RemoveIconInfo("PartyQuest_" .. cls.ClassName);
-				end
-			elseif cls.ClassName == "PartyMission" then
-				if partyObj.MissionAble == 1 then
-					local ctrlSet = quest_gbox:CreateControlSet("party_ticket", cls.ClassName, ui.LEFT, ui.TOP, 0, 0, 0, 0);
-					ctrlSet:SetUserValue("CLSNAME", cls.ClassName);
-					ctrlSet:SetUserValue("PARTY_QUEST_CTRL", "YES");
-					local button = GET_CHILD(ctrlSet, "btn_start", "ui::CButton");
-			
-					local desc = GET_CHILD(ctrlSet, "desc");
-					desc:SetTextByKey("value", cls.Desc);
-					local title = GET_CHILD(ctrlSet, "title");
-					title:SetTextByKey("value", cls.Name);
-					ctrlSet:GetChild("btn_start"):SetEnable(0);
-
-					local dec_gbox = GET_CHILD_RECURSIVELY(ctrlSet, "dec_gbox")
-					dec_gbox:Resize(dec_gbox:GetOriginalWidth(), desc:GetY() + desc:GetHeight() + 20)
-
-					local addheight = dec_gbox:GetHeight() - dec_gbox:GetOriginalHeight()
-
-					if addheight < 0 then
-						dec_gbox:Resize(dec_gbox:GetOriginalWidth(),dec_gbox:GetOriginalHeight())
-					else
-						ctrlSet:Resize(ctrlSet:GetOriginalWidth(), ctrlSet:GetOriginalHeight() + addheight)
-					end
-				end
-			elseif cls.ClassName == "BattleField" then
-				if partyObj.PartyPVP == 1 then
-					local ctrlSet = quest_gbox:CreateControlSet("party_ticket", cls.ClassName, ui.LEFT, ui.TOP, 0, 0, 0, 0);
-					ctrlSet:SetUserValue("CLSNAME", cls.ClassName);
-					ctrlSet:SetUserValue("PARTY_QUEST_CTRL", "YES");
-					local button = GET_CHILD(ctrlSet, "btn_start", "ui::CButton");
-			
-					local desc = GET_CHILD(ctrlSet, "desc");
-					desc:SetTextByKey("value", cls.Desc);
-					local title = GET_CHILD(ctrlSet, "title");
-					title:SetTextByKey("value", cls.Name);
-					ctrlSet:GetChild("btn_start"):SetEnable(0);
-
-					local dec_gbox = GET_CHILD_RECURSIVELY(ctrlSet, "dec_gbox")
-					dec_gbox:Resize(dec_gbox:GetOriginalWidth(), desc:GetY() + desc:GetHeight() + 20)
-
-					local addheight = dec_gbox:GetHeight() - dec_gbox:GetOriginalHeight()
-
-					if addheight < 0 then
-						dec_gbox:Resize(dec_gbox:GetOriginalWidth(),dec_gbox:GetOriginalHeight())
-					else
-						ctrlSet:Resize(ctrlSet:GetOriginalWidth(), ctrlSet:GetOriginalHeight() + addheight)
-					end
-				end
-			end
-		end
-	end	
-		
-	GBOX_AUTO_ALIGN(quest_gbox, 20, 3, 10, true, false);
-
-end
-
 function PARTY_QUEST_WAITING_START()
 	session.bindFunc.AddPushMsg("PartyQuestWaitingStart", ClMsg("PartyQuestMemberSatisfied_QuestWillBeEnabledAfterAWhile"), "OPEN_PARTY_QUEST_UI", 10);
 end
@@ -854,29 +701,6 @@ function SHOW_PARTY_QUEST_MAP_UI(ctrl)
 	
 end
 
-function ACCEPT_PARTY_QUEST(parent, ctrl)
-
-	local clsName = parent:GetUserValue("CLSNAME");
-	party.ReqAcceptPartyQuest(PARTY_NORMAL, clsName);
-	
-
-end
-
-function ACCEPT_PARTY_EVENT(parent, ctrl)
-
-	local clsName = parent:GetUserValue("CLSNAME");
-
-	if clsName == "FieldBossRaid" then
-		party.ReqAcceptPartyQuest(PARTY_NORMAL, clsName);
-	else
-		party.ReqAcceptPartyEvent(PARTY_NORMAL, clsName);
-	end
-	
-	--local desc = GET_CHILD(parent, "desc");
-	--desc:SetTextByKey("value", "미션시작?");
-	--parent:GetChild("btn_start"):ShowWindow(0);
-end
-
 function DELETE_PARTY_EVENT(parent, ctrl)
 	local clsName = parent:GetUserValue("CLSNAME");
 
@@ -888,109 +712,6 @@ end
 function DELETE_PARTY_EVENT_YES(clsName)
 	party.ReqDeletePartyEvent(PARTY_NORMAL, clsName);
 end
-
-
-function PARTY_QUEST_UPDATE_FIELDBOSS(quest_gbox, pcparty, partyObj, cls)
-		local ctrlSet = quest_gbox:CreateControlSet("party_quest", cls.ClassName, ui.LEFT, ui.TOP, 0, 0, 0, 0);
-		ctrlSet:SetUserValue("CLSNAME", cls.ClassName);
-		local title = GET_CHILD(ctrlSet, "title");
-		local desc = GET_CHILD(ctrlSet, "desc");
-		title:SetTextByKey("value", cls.Name);
-		ctrlSet:GetChild("btn_start"):SetEnable(0);
-		desc:SetTextByKey("value", cls.Desc);
-	ctrlSet:GetChild("btn_start"):ShowWindow(1);
-		ctrlSet:GetChild("btn_start"):SetEnable(1);
-	local locInfo = geClientPartyQuest.GetPartyQuestLocaionInfo(pcparty, cls.ClassName);
-
-		if locInfo ~= nil then
-			local mapCls = GetClassByType("Map", locInfo.mapID);
-			local linkStr = string.format("{#00FF00}{a @SHOW_PARTY_QUEST_MAP_UI}%s{/}{/}", mapCls.Name);
-			local descStr = ScpArgMsg("IfAllPartyMemberAssembleTo{MapName}_QuestWillBeStarted", "MapName", linkStr);
-			desc:SetTextByKey("value", descStr);
-			ctrlSet:SetUserValue("IS_ACCEPTED", "YES");
-
-			local pos = geClientPartyQuest.GetLocInfoPos(locInfo);
-			geClientPartyQuest.RunPartyQuestAssembleCheck(true);
-			local mapprop = session.GetCurrentMapProp();
-			if locInfo.mapID == mapprop.type then
-				session.minimap.AddIconInfo("PartyQuest_" .. cls.ClassName, "trasuremapmark", pos, ClMsg("PartyQuestArea"), true, "None", 1.5);
-			end
-		else
-
-			desc:SetTextByKey("value", cls.Desc);
-			ctrlSet:SetUserValue("IS_ACCEPTED", "NO");
-			geClientPartyQuest.RunPartyQuestAssembleCheck(false);
-
-			session.minimap.RemoveIconInfo("PartyQuest_" .. cls.ClassName);
-		end
-
-		local remainSec = geClientPartyQuest.GetPartyQuestRemainTime(pcparty, cls.ClassName);
-	--[[
-		if remainSec ~= -999 then
-			title:SetTextByKey("state", "");
-			
-			time_title:SetTextByKey("value", ClMsg("NextQuestAbleTime") .. " : ");
-			ctrlSet:SetUserValue("TOTAL_SEC", geClientPartyQuest.GetPartyQuestWaitSec());
-			ctrlSet:SetUserValue("REMAIN_SEC", remainSec);
-			ctrlSet:SetUserValue("REMAIN_SEC_START", imcTime.GetAbsoluteTime());
-			ctrlSet:RunUpdateScript("UPDATE_PARTYQUEST_REMAIN_TIME", 0, 0, 0, 1);
-			
-			ctrlSet:SetUserValue("LAST_SEC", -1);
-
-			local autoResetTime = geClientPartyQuest.GetPartyQuestAutoResetTime(pcparty, cls.ClassName);
-			ctrlSet:SetUserValue("AUTORESET_SEC", autoResetTime);
-			if autoResetTime ~= -1 then
-				ctrlSet:SetUserValue("PLAYER_CNT", cls.PlayerCnt);
-				session.bindFunc.RemovePushMsg("PartyQuest");
-				ctrlSet:GetChild("btn_start"):SetEnable(0);
-			end
-
-			UPDATE_PARTYQUEST_REMAIN_TIME(ctrlSet);						
-		else
-
-			local playerCnt = cls.PlayerCnt;
-			local count = session.party.GetAlivePartyMemberList();
-			local countStr = string.format("(%d/%d)", count, playerCnt);
-			local str = string.format(" : %s - %s", ClMsg("NotEnoughPartyMember"), countStr);
-			title:SetTextByKey("state", str);
-			gauge:SetPoint(100, 100);
-			gauge:SetGrayStyle(1);
-			desc:SetGrayStyle(1);
-			time_title:ShowWindow(0);
-			session.bindFunc.RemovePushMsg("PartyQuest");
-			ctrlSet:GetChild("btn_start"):SetEnable(0);
-		end
-	]]
-
-	end
-
-
-
-function UPDATE_PARTY_QUEST(frame, msg, propName, propValue)
-	local pcparty = session.party.GetPartyInfo();
-	local partyObj = GetIES(pcparty:GetObject());
-	
-	local gbox = frame:GetChild("gbox");
-	local quest_gbox = GET_CHILD(gbox, "quest_gbox");
-	quest_gbox:RemoveAllChild();
-	if pcparty == nil then
-		return;
-end
-
-	local clsList, cnt = GetClassList("PartyQuest");
-	for i = 0 , cnt - 1 do
-		local cls = GetClassByIndexFromList(clsList, i);
-
-		if cls.Type == "Field" then
-			PARTY_QUEST_UPDATE_FIELDBOSS(quest_gbox, pcparty, partyObj, cls)
-		elseif cls.Type == "Mission" then
-			PARTY_QUEST_UPDATE_MISSION(quest_gbox, pcparty, partyObj, cls)
-		end
-	end
-
-	GBOX_AUTO_ALIGN(quest_gbox, 20, 3, 10, true, false);
-end
-
 
 function REQ_I_NEED_PARTY()
 		
@@ -1040,60 +761,60 @@ function UPDATE_I_NEED_PARTY(frame, msg, str, num)
 
 	if pcparty == nil or isLeader == 1 then
 
-	if myuse == 0 then
-		useineedparty_checkbox:SetCheck(0)
-	else
-		useineedparty_checkbox:SetCheck(1)
-	end
+		if myuse == 0 then
+			useineedparty_checkbox:SetCheck(0)
+		else
+			useineedparty_checkbox:SetCheck(1)
+		end
 
 		-- 001 : 퀘스트 / 010 : 닥사 / 100 : 파티이벤트
-	if math.floor(myplaystyle % 10) == 1 then
-		playstyle_quest_checkbox:SetCheck(1)
-	else
-		playstyle_quest_checkbox:SetCheck(0)
-	end
-	if math.floor((myplaystyle/10) % 10) == 1 then
-		playstyle_hunt_checkbox:SetCheck(1)
-	else
-		playstyle_hunt_checkbox:SetCheck(0)
-	end
-	if math.floor((myplaystyle/100) % 10) == 1 then
-		playstyle_event_checkbox:SetCheck(1)
-	else
-		playstyle_event_checkbox:SetCheck(0)
-	end
+		if math.floor(myplaystyle % 10) == 1 then
+			playstyle_quest_checkbox:SetCheck(1)
+		else
+			playstyle_quest_checkbox:SetCheck(0)
+		end
+		if math.floor((myplaystyle/10) % 10) == 1 then
+			playstyle_hunt_checkbox:SetCheck(1)
+		else
+			playstyle_hunt_checkbox:SetCheck(0)
+		end
+		if math.floor((myplaystyle/100) % 10) == 1 then
+			playstyle_event_checkbox:SetCheck(1)
+		else
+			playstyle_event_checkbox:SetCheck(0)
+		end
 
-	if mylevellimit == -1 then
-		uselevellimit_checkbox:SetCheck(1)
-		need_lv_minmax_edit:SetText('0')
-		need_lv_minmax_edit:SetEnable(0)
-	else
-		uselevellimit_checkbox:SetCheck(0)
-		need_lv_minmax_edit:SetText(tostring(mylevellimit))
-		need_lv_minmax_edit:SetEnable(1)
-	end
+		if mylevellimit == -1 then
+			uselevellimit_checkbox:SetCheck(1)
+			need_lv_minmax_edit:SetText('0')
+			need_lv_minmax_edit:SetEnable(0)
+		else
+			uselevellimit_checkbox:SetCheck(0)
+			need_lv_minmax_edit:SetText(tostring(mylevellimit))
+			need_lv_minmax_edit:SetEnable(1)
+		end
 
 		-- 0001 : 소드맨 / 0010 : 위자드 / 0100 : 아처 / 1000 : 클레릭
-	if math.floor(myneedctrltype % 10) == 1 then
-		inp_classlimite_war_checkbox:SetCheck(1)
-	else
-		inp_classlimite_war_checkbox:SetCheck(0)
-	end
-	if math.floor((myneedctrltype/10) % 10) == 1 then
-		inp_classlimite_wiz_checkbox:SetCheck(1)
-	else
-		inp_classlimite_wiz_checkbox:SetCheck(0)
-	end
-	if math.floor((myneedctrltype/100) % 10) == 1 then
-		inp_classlimite_arc_checkbox:SetCheck(1)
-	else
-		inp_classlimite_arc_checkbox:SetCheck(0)
-	end
-	if math.floor((myneedctrltype/1000) % 10) == 1 then
-		inp_classlimite_cle_checkbox:SetCheck(1)
-	else
-		inp_classlimite_cle_checkbox:SetCheck(0)
-	end
+		if math.floor(myneedctrltype % 10) == 1 then
+			inp_classlimite_war_checkbox:SetCheck(1)
+		else
+			inp_classlimite_war_checkbox:SetCheck(0)
+		end
+		if math.floor((myneedctrltype/10) % 10) == 1 then
+			inp_classlimite_wiz_checkbox:SetCheck(1)
+		else
+			inp_classlimite_wiz_checkbox:SetCheck(0)
+		end
+		if math.floor((myneedctrltype/100) % 10) == 1 then
+			inp_classlimite_arc_checkbox:SetCheck(1)
+		else
+			inp_classlimite_arc_checkbox:SetCheck(0)
+		end
+		if math.floor((myneedctrltype/1000) % 10) == 1 then
+			inp_classlimite_cle_checkbox:SetCheck(1)
+		else
+			inp_classlimite_cle_checkbox:SetCheck(0)
+		end
 
 		useineedparty_checkbox:SetEnable(1)
 		need_lv_minmax_edit:SetEnable(1)
@@ -1191,7 +912,7 @@ function UPDATE_I_NEED_PARTY(frame, msg, str, num)
 			playstyle_quest_checkbox:SetCheck(1)
 		else
 			playstyle_quest_checkbox:SetCheck(0)
-end
+		end
 
 		if INP_PreferHunt == 1 then
 			playstyle_hunt_checkbox:SetCheck(1)
@@ -1288,15 +1009,15 @@ function SET_I_NEED_PARTY()
 
 	if pcparty == nil then -- 파티 속해있지 않다면 그냥 적용
 
-	config.ChangeXMLConfig("UseINeedParty",tostring(useineedparty))
-	local temp = config.GetXMLConfig("UseINeedParty")
-	config.ChangeXMLConfig("INP_PlayStyle",tostring(playstyle))
-	config.ChangeXMLConfig("INP_LevelLimit",tostring(levellimit))
-	config.ChangeXMLConfig("INP_NeedCtrlType",tostring(needtype))
+		config.ChangeXMLConfig("UseINeedParty",tostring(useineedparty))
+		local temp = config.GetXMLConfig("UseINeedParty")
+		config.ChangeXMLConfig("INP_PlayStyle",tostring(playstyle))
+		config.ChangeXMLConfig("INP_LevelLimit",tostring(levellimit))
+		config.ChangeXMLConfig("INP_NeedCtrlType",tostring(needtype))
 
 		local requseineedparty = true
 
-	if useineedparty == 0 then
+		if useineedparty == 0 then
 			requseineedparty = false
 		end
 
@@ -1352,7 +1073,7 @@ function SET_I_NEED_PARTY()
 			-- 레벨
 			if levellimit == -1 then
 				party.ReqChangeProperty(PARTY_NORMAL, "UseLevelLimit", 0);
-	else 
+			else
 				party.ReqChangeProperty(PARTY_NORMAL, "UseLevelLimit", 1);
 
 				local minlv = GETMYPCLEVEL() - levellimit
@@ -1382,11 +1103,11 @@ function SET_I_NEED_PARTY()
 				party.ReqChangeProperty(PARTY_NORMAL, "INP_PreferMission", 1);
 			else
 				party.ReqChangeProperty(PARTY_NORMAL, "INP_PreferMission", 0);
-	end
+			end
 
 
-end
-
+		end
+		
 	end
 end
 
