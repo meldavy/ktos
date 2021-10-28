@@ -94,9 +94,10 @@ function SET_SLOT_ITEM_OBJ(slot, itemCls, gender, isBarrack)
 		SET_ITEM_TOOLTIP_TYPE(icon, itemCls.ClassID, itemCls);
 	else
 		SET_ITEM_TOOLTIP_ALL_TYPE(icon, itemCls, itemCls.ClassName, "tooltips", itemCls.ClassID, tooltipID);
-		SET_SLOT_STYLESET(slot, itemCls)			
 		if nil == isBarrack then
 			slot:CopyTooltipData(icon);
+		else
+			SET_SLOT_STYLESET(slot, itemCls)
 		end
 	end
 end
