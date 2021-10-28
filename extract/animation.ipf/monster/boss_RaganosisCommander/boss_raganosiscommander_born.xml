@@ -1,6 +1,11 @@
-<?xml version="1.0" encoding="EUC-KR"?>
-<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by IMCGames Co., Ltd (IMCGames Co., Ltd) -->
+<?xml version="1.0" encoding="UTF-8"?>
 <ActionDesc>
-	<Particle frame="2" attachNode="Dummy_emitter" particleName="None" useAttach="false" hiddenObj="false" changeEffect="None" scale="1" pause="true" use2DEffect="false" soft2DValue="20"/>
-	<Particle frame="0" attachNode="Dummy_emitter" particleName="None" useAttach="false" hiddenObj="false" changeEffect="None" scale="1" pause="true" use2DEffect="false" soft2DValue="20"/>
+    <Sound frame="0.00" soundFile="mon_voice5_l_15"/>
+    <Sound frame="15.10" soundFile="skl_eff_landing_m"/>
+    <Sound frame="17.00" soundFile="skl_eff_jumplanding_1"/>
+    <Sound frame="48.06" soundFile="skl_eff_h_armor_laboratory_set_dead3"/>
+    <Sound frame="53.00" soundFile="mon_voice5_l_dead_15"/>
+    <Sound frame="53.00" soundFile="mon_voice5_l_dead_7"/>
+    <Sound frame="55.00" soundFile="mon_big_footstep_1"/>
+    <Sound frame="102.00" soundFile="mon_voice5_l_cast_4"/>
 </ActionDesc>
