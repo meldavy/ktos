@@ -31,7 +31,6 @@ function SCR_CREATE_FAIRY(ownerHandle, monName)
 	local monActor = ownerActor:GetClientMonster():GetClientMonsterByName(monName);
 	if monActor == nil then
 		local ownerPos = ownerActor:GetPos();
-
 		ownerActor:GetClientMonster():ClientMonsterToPos(monName, "STD", ownerPos.x, ownerPos.y, ownerPos.z, 0, 0);
 		monActor = ownerActor:GetClientMonster():GetClientMonsterByName(monName);
 		local monHandle = monActor:GetHandleVal();
@@ -53,7 +52,7 @@ function SCR_CREATE_FAIRY_GROUND(owner_handle, mon_name)
 		owner_actor:GetClientMonster():ClientMonsterToPos(mon_name, "STD", owner_pos.x, owner_pos.y, owner_pos.z, 0, 0);
 		mon_actor = owner_actor:GetClientMonster():GetClientMonsterByName(mon_name);
 		local mon_handle = mon_actor:GetHandleVal();
-		FollowToActor(mon_handle, owner_handle, "None", 0, 0, 0, 1, 0.1, 1, 20);
+		FollowToActorGround(mon_handle, owner_handle, "None", 0, 0, 0, 1, 0.1, 20);
 		StartImitatingAnimation(mon_handle, owner_handle);
 	end
 end
