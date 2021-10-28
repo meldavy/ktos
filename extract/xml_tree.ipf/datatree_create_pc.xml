@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by imc (imc) -->
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by imc (imc) -->
 <!-- edited with XMLSpy v2008 sp1 (http://www.altova.com) by MintPC (Mi) -->
 <idspace id="CreatePcInfo">
 	<Category Name="Parts">
@@ -708,6 +708,9 @@
 				<Node2 ClassID="715" ClassName="Hair72" Face="head72" Hair="Hair72" Name="슬라이트 웨이비" EngName="slightwavy" Color="기본" EngColor="default" UseableBarrack="NO" ItemClassName="HAIR_M_141" IsJiggleBoneHair="YES"/>
 				<Node2 ClassID="716" ClassName="Hair72_ashblue" Face="head72" Hair="Hair72_ashblue" Name="슬라이트 웨이비" EngName="slightwavy" Color="애쉬 블루" EngColor="ashblue" UseableBarrack="NO" ItemClassName="HAIR_M_141" IsJiggleBoneHair="YES"/>
 				<Node2 ClassID="717" ClassName="Hair72_ashgreen" Face="head72" Hair="Hair72_ashgreen" Name="슬라이트 웨이비" EngName="slightwavy" Color="애쉬 그린" EngColor="ashgreen" UseableBarrack="NO" ItemClassName="HAIR_M_141" IsJiggleBoneHair="YES"/>
+				<Node2 ClassID="718" ClassName="Hair84" Face="head82" Hair="Hair84" Name="롱 웻 웨이브" EngName="20halloween_seaweed_hair" Color="블랙" EngColor="default" UseableBarrack="NO" ItemClassName="HAIR_M_145" IsJiggleBoneHair="YES"/>
+				<Node2 ClassID="719" ClassName="Hair84" Face="head82" Hair="Hair84_indigo" Name="롱 웻 웨이브" EngName="20halloween_seaweed_hair" Color="인디고" EngColor="indigo" UseableBarrack="NO" ItemClassName="HAIR_M_145" IsJiggleBoneHair="YES"/>
+				<Node2 ClassID="720" ClassName="Hair84" Face="head82" Hair="Hair84_brown" Name="롱 웻 웨이브" EngName="20halloween_seaweed_hair" Color="브라운" EngColor="brown" UseableBarrack="NO" ItemClassName="HAIR_M_145" IsJiggleBoneHair="YES"/>
 				<Node2 ClassID="735" ClassName="Hair75" Face="head75" Hair="Hair75" Name="빛나는 트리 헤드 코스튬" EngName="helmet_xmastreecos" Color="기본" EngColor="default" UseableBarrack="NO"/>
 				<Node2 ClassID="736" ClassName="Hair76" Face="head76" Hair="Hair76" Name="자우라 헬멧" EngName="helmet_Zawra01" Color="기본" EngColor="default" UseableBarrack="NO"/>
 				<Node2 ClassID="737" ClassName="Hair76_black" Face="head76" Hair="Hair76_black" Name="자우라 헬멧" EngName="helmet_Zawra01" Color="라이트 브라운" EngColor="black" UseableBarrack="NO"/>
@@ -744,9 +747,6 @@
 				<Node2 ClassID="768" ClassName="Hair81" Face="head81" Hair="Hair81" Name="아이롱펌" EngName="hiphop_male_hair_nocap" Color="기본" EngColor="default" UseableBarrack="NO" ItemClassName="HAIR_M_144" IsJiggleBoneHair="YES"/>
 				<Node2 ClassID="769" ClassName="Hair81" Face="head81" Hair="Hair81_green" Name="아이롱펌" EngName="hiphop_male_hair_nocap" Color="그린" EngColor="green" UseableBarrack="NO" ItemClassName="HAIR_M_144" IsJiggleBoneHair="YES"/>
 				<Node2 ClassID="770" ClassName="Hair81" Face="head81" Hair="Hair81_silvergreen" Name="아이롱펌" EngName="hiphop_male_hair_nocap" Color="실버그린" EngColor="silvergreen" UseableBarrack="NO" ItemClassName="HAIR_M_144" IsJiggleBoneHair="YES"/>
-				<Node2 ClassID="768" ClassName="Hair84" Face="head82" Hair="Hair84" Name="롱 웻 웨이브" EngName="20halloween_seaweed_hair" Color="블랙" EngColor="default" UseableBarrack="NO" ItemClassName="HAIR_M_145" IsJiggleBoneHair="YES"/>
-				<Node2 ClassID="769" ClassName="Hair84" Face="head82" Hair="Hair84_indigo" Name="롱 웻 웨이브" EngName="20halloween_seaweed_hair" Color="인디고" EngColor="indigo" UseableBarrack="NO" ItemClassName="HAIR_M_145" IsJiggleBoneHair="YES"/>
-				<Node2 ClassID="770" ClassName="Hair84" Face="head82" Hair="Hair84_brown" Name="롱 웻 웨이브" EngName="20halloween_seaweed_hair" Color="브라운" EngColor="brown" UseableBarrack="NO" ItemClassName="HAIR_M_145" IsJiggleBoneHair="YES"/>
 				<Node2 ClassID="771" ClassName="Hair86" Face="head84" Hair="Hair86" Name="리틀벅 인형 잠옷 헬멧 (남)" EngName="helmet_m_ep12demonlord01" Color="기본" EngColor="default" UseableBarrack="NO" ItemClassName="EP12_helmet_m_ep12demonlord" IsJiggleBoneHair="YES"/>
 				<Node2 ClassID="772" ClassName="Hair86" Face="head84" Hair="Hair86" Name="리틀벅 인형 잠옷 헬멧 (남)" EngName="helmet_m_ep12demonlord01" Color="라이트 브라운" EngColor="black" UseableBarrack="NO" ItemClassName="EP12_helmet_m_ep12demonlord" IsJiggleBoneHair="YES"/>
 				<Node2 ClassID="773" ClassName="Hair86" Face="head84" Hair="Hair86" Name="리틀벅 인형 잠옷 헬멧 (남)" EngName="helmet_m_ep12demonlord01" Color="애플 민트" EngColor="blue" UseableBarrack="NO" ItemClassName="EP12_helmet_m_ep12demonlord" IsJiggleBoneHair="YES"/>
@@ -1557,19 +1557,19 @@
 				<Node2 ClassID="830" ClassName="Hair85_pink" Face="head83" Hair="Hair85_pink" Name="탱글 업" EngName="20halloween_tangle_up_hair" Color="핑크" EngColor="pink" UseableBarrack="NO" ItemClassName="HAIR_F_149" IsJiggleBoneHair="YES"/>
 				<Node2 ClassID="831" ClassName="Hair85_gray" Face="head83" Hair="Hair85_gray" Name="탱글 업" EngName="20halloween_tangle_up_hair" Color="애쉬 그레이" EngColor="gray" UseableBarrack="NO" ItemClassName="HAIR_F_149" IsJiggleBoneHair="YES"/>
 				<Node2 ClassID="832" ClassName="Hair87" Face="head85" Hair="Hair87" Name="말순이 인형 잠옷 헬멧 (여)" EngName="helmet_f_ep12demonlord01" Color="기본" EngColor="default" UseableBarrack="NO" ItemClassName="EP12_helmet_f_ep12demonlord" IsJiggleBoneHair="YES"/>
-				<Node2 ClassID="832" ClassName="Hair87" Face="head85" Hair="Hair87" Name="말순이 인형 잠옷 헬멧 (여)" EngName="helmet_f_ep12demonlord01" Color="라이트 브라운" EngColor="default" UseableBarrack="NO" ItemClassName="EP12_helmet_f_ep12demonlord" IsJiggleBoneHair="YES"/>
-				<Node2 ClassID="832" ClassName="Hair87" Face="head85" Hair="Hair87" Name="말순이 인형 잠옷 헬멧 (여)" EngName="helmet_f_ep12demonlord01" Color="애플 민트" EngColor="default" UseableBarrack="NO" ItemClassName="EP12_helmet_f_ep12demonlord" IsJiggleBoneHair="YES"/>
-				<Node2 ClassID="832" ClassName="Hair87" Face="head85" Hair="Hair87" Name="말순이 인형 잠옷 헬멧 (여)" EngName="helmet_f_ep12demonlord01" Color="다크 블루" EngColor="default" UseableBarrack="NO" ItemClassName="EP12_helmet_f_ep12demonlord" IsJiggleBoneHair="YES"/>
-				<Node2 ClassID="832" ClassName="Hair87" Face="head85" Hair="Hair87" Name="말순이 인형 잠옷 헬멧 (여)" EngName="helmet_f_ep12demonlord01" Color="흰색" EngColor="default" UseableBarrack="NO" ItemClassName="EP12_helmet_f_ep12demonlord" IsJiggleBoneHair="YES"/>
-				<Node2 ClassID="832" ClassName="Hair87" Face="head85" Hair="Hair87" Name="말순이 인형 잠옷 헬멧 (여)" EngName="helmet_f_ep12demonlord01" Color="애쉬 블론드" EngColor="default" UseableBarrack="NO" ItemClassName="EP12_helmet_f_ep12demonlord" IsJiggleBoneHair="YES"/>
-				<Node2 ClassID="832" ClassName="Hair87" Face="head85" Hair="Hair87" Name="말순이 인형 잠옷 헬멧 (여)" EngName="helmet_f_ep12demonlord01" Color="루비 와인" EngColor="default" UseableBarrack="NO" ItemClassName="EP12_helmet_f_ep12demonlord" IsJiggleBoneHair="YES"/>
-				<Node2 ClassID="832" ClassName="Hair87" Face="head85" Hair="Hair87" Name="말순이 인형 잠옷 헬멧 (여)" EngName="helmet_f_ep12demonlord01" Color="파스텔 그린" EngColor="default" UseableBarrack="NO" ItemClassName="EP12_helmet_f_ep12demonlord" IsJiggleBoneHair="YES"/>
-				<Node2 ClassID="832" ClassName="Hair87" Face="head85" Hair="Hair87" Name="말순이 인형 잠옷 헬멧 (여)" EngName="helmet_f_ep12demonlord01" Color="애쉬 그레이" EngColor="default" UseableBarrack="NO" ItemClassName="EP12_helmet_f_ep12demonlord" IsJiggleBoneHair="YES"/>
-				<Node2 ClassID="832" ClassName="Hair87" Face="head85" Hair="Hair87" Name="말순이 인형 잠옷 헬멧 (여)" EngName="helmet_f_ep12demonlord01" Color="라이트 살몬" EngColor="default" UseableBarrack="NO" ItemClassName="EP12_helmet_f_ep12demonlord" IsJiggleBoneHair="YES"/>
-				<Node2 ClassID="832" ClassName="Hair87" Face="head85" Hair="Hair87" Name="말순이 인형 잠옷 헬멧 (여)" EngName="helmet_f_ep12demonlord01" Color="바이올렛" EngColor="default" UseableBarrack="NO" ItemClassName="EP12_helmet_f_ep12demonlord" IsJiggleBoneHair="YES"/>
-				<Node2 ClassID="832" ClassName="Hair87" Face="head85" Hair="Hair87" Name="말순이 인형 잠옷 헬멧 (여)" EngName="helmet_f_ep12demonlord01" Color="오렌지" EngColor="default" UseableBarrack="NO" ItemClassName="EP12_helmet_f_ep12demonlord" IsJiggleBoneHair="YES"/>
-				<Node2 ClassID="832" ClassName="Hair87" Face="head85" Hair="Hair87" Name="말순이 인형 잠옷 헬멧 (여)" EngName="helmet_f_ep12demonlord01" Color="브라운" EngColor="default" UseableBarrack="NO" ItemClassName="EP12_helmet_f_ep12demonlord" IsJiggleBoneHair="YES"/>
-				<Node2 ClassID="832" ClassName="Hair87" Face="head85" Hair="Hair87" Name="말순이 인형 잠옷 헬멧 (여)" EngName="helmet_f_ep12demonlord01" Color="미드나이트 블루" EngColor="default" UseableBarrack="NO" ItemClassName="EP12_helmet_f_ep12demonlord" IsJiggleBoneHair="YES"/>
+				<Node2 ClassID="833" ClassName="Hair87" Face="head85" Hair="Hair87" Name="말순이 인형 잠옷 헬멧 (여)" EngName="helmet_f_ep12demonlord01" Color="라이트 브라운" EngColor="default" UseableBarrack="NO" ItemClassName="EP12_helmet_f_ep12demonlord" IsJiggleBoneHair="YES"/>
+				<Node2 ClassID="834" ClassName="Hair87" Face="head85" Hair="Hair87" Name="말순이 인형 잠옷 헬멧 (여)" EngName="helmet_f_ep12demonlord01" Color="애플 민트" EngColor="default" UseableBarrack="NO" ItemClassName="EP12_helmet_f_ep12demonlord" IsJiggleBoneHair="YES"/>
+				<Node2 ClassID="835" ClassName="Hair87" Face="head85" Hair="Hair87" Name="말순이 인형 잠옷 헬멧 (여)" EngName="helmet_f_ep12demonlord01" Color="다크 블루" EngColor="default" UseableBarrack="NO" ItemClassName="EP12_helmet_f_ep12demonlord" IsJiggleBoneHair="YES"/>
+				<Node2 ClassID="836" ClassName="Hair87" Face="head85" Hair="Hair87" Name="말순이 인형 잠옷 헬멧 (여)" EngName="helmet_f_ep12demonlord01" Color="흰색" EngColor="default" UseableBarrack="NO" ItemClassName="EP12_helmet_f_ep12demonlord" IsJiggleBoneHair="YES"/>
+				<Node2 ClassID="837" ClassName="Hair87" Face="head85" Hair="Hair87" Name="말순이 인형 잠옷 헬멧 (여)" EngName="helmet_f_ep12demonlord01" Color="애쉬 블론드" EngColor="default" UseableBarrack="NO" ItemClassName="EP12_helmet_f_ep12demonlord" IsJiggleBoneHair="YES"/>
+				<Node2 ClassID="838" ClassName="Hair87" Face="head85" Hair="Hair87" Name="말순이 인형 잠옷 헬멧 (여)" EngName="helmet_f_ep12demonlord01" Color="루비 와인" EngColor="default" UseableBarrack="NO" ItemClassName="EP12_helmet_f_ep12demonlord" IsJiggleBoneHair="YES"/>
+				<Node2 ClassID="839" ClassName="Hair87" Face="head85" Hair="Hair87" Name="말순이 인형 잠옷 헬멧 (여)" EngName="helmet_f_ep12demonlord01" Color="파스텔 그린" EngColor="default" UseableBarrack="NO" ItemClassName="EP12_helmet_f_ep12demonlord" IsJiggleBoneHair="YES"/>
+				<Node2 ClassID="840" ClassName="Hair87" Face="head85" Hair="Hair87" Name="말순이 인형 잠옷 헬멧 (여)" EngName="helmet_f_ep12demonlord01" Color="애쉬 그레이" EngColor="default" UseableBarrack="NO" ItemClassName="EP12_helmet_f_ep12demonlord" IsJiggleBoneHair="YES"/>
+				<Node2 ClassID="841" ClassName="Hair87" Face="head85" Hair="Hair87" Name="말순이 인형 잠옷 헬멧 (여)" EngName="helmet_f_ep12demonlord01" Color="라이트 살몬" EngColor="default" UseableBarrack="NO" ItemClassName="EP12_helmet_f_ep12demonlord" IsJiggleBoneHair="YES"/>
+				<Node2 ClassID="842" ClassName="Hair87" Face="head85" Hair="Hair87" Name="말순이 인형 잠옷 헬멧 (여)" EngName="helmet_f_ep12demonlord01" Color="바이올렛" EngColor="default" UseableBarrack="NO" ItemClassName="EP12_helmet_f_ep12demonlord" IsJiggleBoneHair="YES"/>
+				<Node2 ClassID="843" ClassName="Hair87" Face="head85" Hair="Hair87" Name="말순이 인형 잠옷 헬멧 (여)" EngName="helmet_f_ep12demonlord01" Color="오렌지" EngColor="default" UseableBarrack="NO" ItemClassName="EP12_helmet_f_ep12demonlord" IsJiggleBoneHair="YES"/>
+				<Node2 ClassID="844" ClassName="Hair87" Face="head85" Hair="Hair87" Name="말순이 인형 잠옷 헬멧 (여)" EngName="helmet_f_ep12demonlord01" Color="브라운" EngColor="default" UseableBarrack="NO" ItemClassName="EP12_helmet_f_ep12demonlord" IsJiggleBoneHair="YES"/>
+				<Node2 ClassID="845" ClassName="Hair87" Face="head85" Hair="Hair87" Name="말순이 인형 잠옷 헬멧 (여)" EngName="helmet_f_ep12demonlord01" Color="미드나이트 블루" EngColor="default" UseableBarrack="NO" ItemClassName="EP12_helmet_f_ep12demonlord" IsJiggleBoneHair="YES"/>
 			</Node1>
 		</Class>
 	</Category>
