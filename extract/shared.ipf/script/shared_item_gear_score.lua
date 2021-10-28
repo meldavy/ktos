@@ -171,14 +171,14 @@ function GET_GEAR_SCORE(item, pc)
 
     if type == 'SEAL' then
         reinforce = GET_CURRENT_SEAL_LEVEL(item)        
-        local ret = ((0.7 *(100*reinforce))+((1000*grade)+(1*use_lv)) * 0.3)*0.26        
+        local ret = ((0.7 *(100*reinforce))+((1100*grade)+(1*use_lv)) * 0.3)*0.26        
         return math.floor(ret + 0.5)
     elseif type == 'RELIC' then        
         return 0
     elseif type == 'ARK' then
         local ark_lv = TryGetProp(item, 'ArkLevel', 1)
         local is_quest_ark = TryGetProp(item, 'StringArg2', 'None') == 'Quest_Ark'
-        local quest_ark_penalty = 1
+        local quest_ark_penalty = 1.1
         if is_quest_ark == true then
             quest_ark_penalty = 0.95 -- 5% 패널티
         end
@@ -192,7 +192,7 @@ function GET_GEAR_SCORE(item, pc)
         local random_option_penalty = 0
         local enchant_option_penalty = 0
 
-        local gem_point = 0        
+        local gem_point = 0
 
         if type ~= 'RING' and type ~= 'NECK' then
             -- 고정 아이커 레벨 체크
@@ -291,9 +291,9 @@ function GET_GEAR_SCORE(item, pc)
             avg_lv = use_lv
             if base_acc == false then
                 if TryGetProp(item, 'StringArg', 'None') == 'Luciferi' then
-                    add_acc = 50
+                    add_acc = 80
                 elseif TryGetProp(item, 'StringArg', 'None') == 'Acc_EP12' then
-                    add_acc = 40
+                    add_acc = 70
                 else
                     add_acc = 30
                 end
@@ -332,7 +332,7 @@ function GET_GEAR_SCORE(item, pc)
     return 0
 end
 
-function GET_PLAYER_GEAR_SCORE(pc)
+function GET_PLAYER_GEAR_SCORE(pc)    
     local total = 13
     local score = 0
 

@@ -1423,7 +1423,7 @@ function CHECK_GEAR_SCORE_FOR_CONTENTS(pc, indun_cls)
 
 		-- giltine
 		if string.find(indun_cls.ClassName, "Legend_Raid_Giltine") ~= nil then
-			if gear_score < 420 then
+			if gear_score < 430 then
 				SendSysMsg(pc, "LowEquipedItemGearScore");
 				return false;
 			end
@@ -1432,12 +1432,12 @@ function CHECK_GEAR_SCORE_FOR_CONTENTS(pc, indun_cls)
 		-- vasilissa
 		if string.find(indun_cls.ClassName, "Goddess_Raid_Vasilissa") ~= nil then
 			if indun_cls.ClassName == "Goddess_Raid_Vasilissa" then
-				if gear_score < 470 then
+				if gear_score < 490 then
 					SendSysMsg(pc, "LowEquipedItemGearScore");
 					return false;
 				end
 			elseif indun_cls.ClassName == "Goddess_Raid_Vasilissa_Auto" then
-				if gear_score < 450 then
+				if gear_score < 470 then
 					SendSysMsg(pc, "LowEquipedItemGearScore");
 					return false;
 				end
@@ -1535,12 +1535,12 @@ function CHECK_GEAR_SCORE_FOR_CONTENTS(pc, indun_cls)
 					return false;
 				end
 			elseif indun_cls.ClassName == "Challenge_Auto_Hard_Party" then -- auto hard
-				if gear_score < 420 then
+				if gear_score < 430 then
 					SendSysMsg(pc, "LowEquipedItemGearScore");
 					return false;
 				end
 			elseif indun_cls.ClassName == "Challenge_Division_Auto_1" then -- auto division
-				if gear_score < 440 then
+				if gear_score < 450 then
 					SendSysMsg(pc, "LowEquipedItemGearScore");
 					return false;
 				end

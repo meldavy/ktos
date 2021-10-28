@@ -1348,6 +1348,13 @@ end
 function IS_ENABLED_MARKET_TRADE_ITEM(invitem)
 	local itemProp = geItemTable.GetPropByName(invitem.ClassName);
 
+	local check = GetClassByType('market_trade_restrict', TryGetProp(invitem, 'ClassID', 0))
+	if check ~= nil then
+		if TryGetProp(check, 'Type', 'None') == 'NoTrade' then			
+			return false
+		end
+	end
+
     if false == itemProp:IsEnableMarketTrade() then
         return false;
     elseif true == IS_DISABLED_TRADE(invitem, TRADE_TYPE_MARKET) then

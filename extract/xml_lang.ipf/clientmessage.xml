@@ -10058,6 +10058,7 @@
 		<Class ClassID="92112" ClassName="UITUTO_GLASS1" Data="신비한 돋보기 사용"/>
 		<Class ClassID="92113" ClassName="UITUTO_GLASS2" Data="산드라의 감정 돋보기 사용"/>
 		<Class ClassID="92114" ClassName="UITUTO_GLASS3" Data="산드라의 미세 감정 돋보기 사용"/>
+		<Class ClassID="92115" ClassName="MustUseWeeklyCount" Data="소모한 주간 교환 횟수가 없어 사용할 수 없습니다."/>
 	</Category>
 	<Category Name="BattleText">
 		<Class ClassID="100001" ClassName="ADD_DAMAGE_{Auto_1}!" Data="추가 대미지 {Auto_1}!"/>

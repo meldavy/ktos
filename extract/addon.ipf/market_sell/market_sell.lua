@@ -67,7 +67,7 @@ function MARKET_SELL_OPTIONCTRL_INIT(frame)
 	end
 end
 
-function MARKET_SELL_UPDATE_SLOT_ITEM(frame)
+function MARKET_SELL_UPDATE_SLOT_ITEM(frame)	
 	local groupbox = frame:GetChild("groupbox");
 
 	local slot_item = GET_CHILD_RECURSIVELY(groupbox, "slot_item", "ui::CSlot");
@@ -198,7 +198,7 @@ function ON_MARKET_REGISTER(frame, msg, argStr, argNum)
 	CLEAR_SELL_INFO(frame)
 end
 
-function MARKET_SELL_UPDATE_REG_SLOT_ITEM(frame, invItem, slot)	
+function MARKET_SELL_UPDATE_REG_SLOT_ITEM(frame, invItem, slot)
 	if true == invItem.isLockState then
 		ui.SysMsg(ClMsg("MaterialItemIsLock"));
 		return false;
@@ -210,7 +210,14 @@ function MARKET_SELL_UPDATE_REG_SLOT_ITEM(frame, invItem, slot)
 		return false;
 	end
 
-	local obj = GetIES(invItem:GetObject());
+	local obj = GetIES(invItem:GetObject());	
+	local check = GetClassByType('market_trade_restrict', TryGetProp(obj, 'ClassID', 0))
+	if check ~= nil then
+		if TryGetProp(check, 'Type', 'None') == 'NoTrade' then
+			ui.AlarmMsg("ItemIsNotTradable");	
+			return false
+		end
+	end
 
     if TryGetProp(obj, 'TeamBelonging', 0) ~= 0 or TryGetProp(obj, 'CharacterBelonging', 0) ~= 0 then
         ui.AlarmMsg("ItemIsNotTradable");
@@ -379,7 +386,7 @@ function MARKET_SELL_ITEM_POP_BY_SLOT(parent, slot)
 	CLEAR_SELL_INFO(frame)
 end
 
-function MARKET_SELL_ITEM_DROP_BY_SLOT(parent, slot)
+function MARKET_SELL_ITEM_DROP_BY_SLOT(parent, slot)	
 	local frame = parent:GetTopParentFrame();
 	local liftIcon = ui.GetLiftIcon();
 	local groupbox = slot:GetParent();

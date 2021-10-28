@@ -344,4 +344,5 @@
 	<ReadXml Name="resurrect_return_control"/>
 	<ReadXml Name="ability_point_score"/>
 	<ReadXml Name="ui_tutorial"/>
+	<ReadXml Name="market_trade_restrict"/>
 </Category>

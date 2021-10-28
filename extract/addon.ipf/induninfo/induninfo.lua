@@ -435,7 +435,7 @@ function INDUNINFO_DRAW_CATEGORY_DETAIL_LIST(indunListBox, cls, is_weekly_reset)
 
     -- 주간 입장 텍스트 설정
     local topFrame = indunListBox:GetTopParentFrame()
-    local canNotEnterText = GET_CHILD_RECURSIVELY(topFrame, 'canNotEnterText');         --랭킹 집계로 인해 월요일 오전 0시부터 오전 6시 사이에는 입장이 불가능합니다.    
+    local canNotEnterText = GET_CHILD_RECURSIVELY(topFrame, 'canNotEnterText');         --랭킹 집계로 인해 토요일 오전 0시부터 오전 6시 사이에는 입장이 불가능합니다.    
     local resetInfoText = GET_CHILD_RECURSIVELY(topFrame, 'resetInfoText');             --"입장 횟수는 매일 %s시에 초기화 됩니다."
     local resetInfoText_Week = GET_CHILD_RECURSIVELY(topFrame, 'resetInfoText_Week');   --"입장 횟수는 매주 월요일 %s시에 초기화 됩니다."
 
