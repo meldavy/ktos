@@ -21,7 +21,7 @@ function GET_RELICQUEST_MAP_LIST_RESULT(pc, group)
         return false
     end
 
-    local fieldTB13 = {"ep13_f_siauliai_1", "ep13_f_siauliai_2", "ep13_f_siauliai_3", "ep13_f_siauliai_4", "ep13_f_siauliai_5"}
+    local fieldTB13 = {"ep13_f_siauliai_1", "ep13_f_siauliai_2", "ep13_f_siauliai_3", "ep13_f_siauliai_4", "ep13_f_siauliai_5", "ep13_2_d_prison_1", "ep13_2_d_prison_2", "ep13_2_d_prison_3"}
     local indunTypeTB13 = {"MythicDungeon_Auto", "MythicDungeon_Auto_Hard", "Challenge_Auto",
                             "Raid", "UniqueRaid", "FieldBossRaid", "MissionIndun", "DefenceMission"
                         }

@@ -10025,6 +10025,8 @@
 		<Class ClassID="92098" ClassName="IndunWeeklyEnteredCount_NumberArg1" Data="[{NAME}]{nl}입장 횟수가 1 추가되었습니다."/>
 		<Class ClassID="92099" ClassName="Warning_IndunWeeklyEnteredCount_NumberArg1" Data="[{NAME}]{nl}입장 횟수를 모두 소진해야 사용 가능합니다."/>
 		<Class ClassID="92101" ClassName="Vasilissa_PER_MSG" Data="{#FF3333}※ EP13-2 퀘스트 '설교자 쫓기(11)'를 완료 후 사용 가능합니다.{/}"/>
+		<Class ClassID="92102" ClassName="AbilityPointScore" Data="특성 달성률"/>
+		<Class ClassID="92103" ClassName="TooltipDescAbilityPointScore" Data="습득한 특성 포인트 달성률입니다."/>
 	</Category>
 	<Category Name="BattleText">
 		<Class ClassID="100001" ClassName="ADD_DAMAGE_{Auto_1}!" Data="추가 대미지 {Auto_1}!"/>
@@ -11791,6 +11793,7 @@
 		<Class ClassID="134122" ClassName="TargetItemIsNot10Transcend" Data="해당 장비의 초월 단계가 10이 아닙니다."/>
 		<Class ClassID="134123" ClassName="MustEquipWeaponArmorToEnter" Data="장비를 장착하지 않은 부위가 있어서 진행이 불가능합니다."/>
 		<Class ClassID="134124" ClassName="CantEvolvedEquip" Data="진화시킬 수 없는 장비 혹은 이미 진화된 장비입니다."/>
+		<Class ClassID="134125" ClassName="LowAblityPointScore" Data="특성 달성률이 낮아 입장할 수 없습니다."/>
 	</Category>
 	<Category Name="AchieveReward">
 		<Class ClassID="135001" ClassName="GainAchieveHairBefore" Data="이미 업적 보상을 받았습니다."/>
@@ -16176,9 +16179,9 @@
 		<Class ClassID="1000034" ClassName="CantJoinChallengeCasualMode" Data="파티원이 2명이상인 상태에서는 챌린지 모드(1인)에 입장하실 수 없습니다."/>
 		<Class ClassID="1000035" ClassName="challenge_Mode_Auto_StartMsg" Data="5초 뒤에 시작됩니다."/>
 		<Class ClassID="1000036" ClassName="AutoMathcingWithPartyMaxLimit" Data="최대 파티 인원수 보다 더 많은 파티원으로 매칭할 수 없습니다."/>
-		<Class ClassID="1000037" ClassName="challenge_Mode_Auto_Enter_01" Data="챌린지 모드 자동매칭 : 1인 모드"/>
-		<Class ClassID="1000038" ClassName="challenge_Mode_Auto_Enter_02" Data="챌린지 모드 자동매칭 : 일반 모드(파티)"/>
-		<Class ClassID="1000039" ClassName="challenge_Mode_Auto_Enter_03" Data="챌린지 모드 자동매칭 : 하드 모드(파티)"/>
+		<Class ClassID="1000037" ClassName="challenge_Mode_Auto_Enter_01" Data="챌린지 모드 : Lv400 1인 모드"/>
+		<Class ClassID="1000038" ClassName="challenge_Mode_Auto_Enter_02" Data="챌린지 모드 : Lv440 1인 모드"/>
+		<Class ClassID="1000039" ClassName="challenge_Mode_Auto_Enter_03" Data="챌린지 모드 : Lv440 자동매칭"/>
 		<Class ClassID="1000040" ClassName="challenge_HardMode_Auto_Enter_01" Data="챌린지 모드 : 분열 특이점 자동매칭 "/>
 		<Class ClassID="1000041" ClassName="challenge_auto_mode_fail" Data="챌린지 모드 자동매칭에 실패하였습니다."/>
 		<Class ClassID="1000042" ClassName="challenge_auto_division_mode_fail" Data="챌린지 모드 : 분열 특이점 자동매칭에 실패하였습니다."/>
@@ -17137,5 +17140,11 @@
 		<Class ClassID="1040019" ClassName="UNKNOWN_SANTUARY_GATE_CLMSG_PAY_WARNING_5" Data="해당 지역의 미지의 성역을 관리할 권한이 없습니다."/>
 		<Class ClassID="1040020" ClassName="UNKNOWN_SANTUARY_GATE_CLMSG_PAY_WARNING_6" Data="[성역의 가호] 효과를 획득하기 위해 {Cost}실버가 소모됩니다. 효과를 획득하시겠습니까?"/>
 		<Class ClassID="1040021" ClassName="UNKNOWN_SANTUARY_GATE_CLMSG_BUFF_CHECK_1" Data="보유중인 [성역의 가호] 버프가 없습니다. {nl}[성역의 가호]버프를 보유한 상태여야 입장이 가능합니다."/>
+	</Category>
+	<Category Name="trade_select_item_set">
+		<Class ClassID="1050001" ClassName="trade_select_item_set_1" Data="드라코나스 {@st66d_y}리느키 시트{/} 세트 {@st66d_y}(마법 계열){/}{/}"/>
+		<Class ClassID="1050002" ClassName="trade_select_item_set_2" Data="드라코나스 {@st66d_y}카이트 무어{/} 세트 {@st66d_y}(추가 대미지 계열){/}{/}"/>
+		<Class ClassID="1050003" ClassName="trade_select_item_set_3" Data="드라코나스 {@st66d_y}파시우테스{/} 세트 {@st66d_y}(물리 계열){/}{/}"/>
+		<Class ClassID="1050004" ClassName="trade_select_item_set_4" Data="드라코나스 {@st66d_y}프리에노{/} 세트 {@st66d_y}(물리 광역 계열){/}{/}"/>
 	</Category>
 </idspace>

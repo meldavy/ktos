@@ -29,6 +29,7 @@ function AETHER_GEM_REINFORCE_INIT_VISIBLE(frame)
 	AETHER_GEM_REINFORCE_SET_VISIBLE_BY_RATIO(frame, 0);
 	AETHER_GEM_REINFORCE_SET_VISIBLE_BY_REINFORCE_BUTTON(frame, 0);
 	AETHER_GEM_REINFORCE_SET_VISIBLE_BY_SUMMIT_BUTTON(frame, 0);
+	AETHER_GEM_REINFORCE_SET_HITTEST_SELECT_GEM(frame, 1);
 	AETHER_GEM_REINFORCE_TAB_INIT(frame);
 end
 
@@ -872,19 +873,23 @@ function AETHER_GEM_REINFORCE_RESULT_SUCCESS_RATIO_UPDATE(frame)
 		local is_equip = gem_slot:GetUserIValue("select_gem_is_equip");
 		if is_equip == 0 then
 			local guid = gem_slot:GetUserValue("select_gem_guid");
-			local gem = session.GetInvItemByGuid(guid);
-			if gem ~= nil then
-				local gem_class = GetIES(gem:GetObject());
-				AETHER_GEM_REINFORCE_SUCCESS_RATIO_UPDATE(frame, gem_class, is_equip);
+			if guid ~= nil and guid ~= "None" then
+				local gem = session.GetInvItemByGuid(guid);
+				if gem ~= nil then
+					local gem_class = GetIES(gem:GetObject());
+					AETHER_GEM_REINFORCE_SUCCESS_RATIO_UPDATE(frame, gem_class, is_equip);
+				end
 			end
 		else
 			local guid = gem_slot:GetUserValue("select_gem_parent_guid");
-			local euqip_item = session.GetEquipItemByGuid(guid);
-			local index = gem_slot:GetUserIValue("select_gem_socket_index");
-			local gem_id = euqip_item:GetEquipGemID(index);
-			if gem_id ~= nil then
-				local gem_class = GetClassByType("Item", gem_id);
-				AETHER_GEM_REINFORCE_SUCCESS_RATIO_UPDATE(frame, gem_class, is_equip);
+			if guid ~= nil and guid ~= "None" then
+				local euqip_item = session.GetEquipItemByGuid(guid);
+				local index = gem_slot:GetUserIValue("select_gem_socket_index");
+				local gem_id = euqip_item:GetEquipGemID(index);
+				if gem_id ~= nil then
+					local gem_class = GetClassByType("Item", gem_id);
+					AETHER_GEM_REINFORCE_SUCCESS_RATIO_UPDATE(frame, gem_class, is_equip);
+				end
 			end
 		end
 	end
@@ -903,24 +908,18 @@ end
 
 function AETHER_GEM_REINFORCE_SET_HITTEST_SELECT_GEM(frame, enable)
 	if frame ~= nil then 
-		local tab = GET_CHILD_RECURSIVELY(frame, "tab");
-		if tab ~= nil then
-			local tab_index = tab:GetSelectItemIndex();
-			if tab_index == 0 then
-				local gem_slot_list = GET_CHILD_RECURSIVELY(frame, "gem_slot_list");
-				if gem_slot_list ~= nil then
-					gem_slot_list:EnableHitTest(enable);
-					gem_slot_list = tolua.cast(gem_slot_list, "ui::CSlotSet");
-					gem_slot_list:EnableSelection(enable);
-				end
-			elseif tab_index == 1 then
-				local gem_slot_list = GET_CHILD_RECURSIVELY(frame, "gem_slot_list_inven");
-				if gem_slot_list ~= nil then
-					gem_slot_list:EnableHitTest(enable);
-					gem_slot_list = tolua.cast(gem_slot_list, "ui::CSlotSet");
-					gem_slot_list:EnableSelection(enable);
-				end
-			end
+		local gem_slot_list = GET_CHILD_RECURSIVELY(frame, "gem_slot_list");
+		if gem_slot_list ~= nil then
+			gem_slot_list:EnableHitTest(enable);
+			gem_slot_list = tolua.cast(gem_slot_list, "ui::CSlotSet");
+			gem_slot_list:EnableSelection(enable);
+		end
+
+		local gem_slot_list_inven = GET_CHILD_RECURSIVELY(frame, "gem_slot_list_inven");
+		if gem_slot_list_inven ~= nil then
+			gem_slot_list_inven:EnableHitTest(enable);
+			gem_slot_list_inven = tolua.cast(gem_slot_list_inven, "ui::CSlotSet");
+			gem_slot_list_inven:EnableSelection(enable);
 		end
 	end
 end

@@ -5297,6 +5297,8 @@
         <Key Name="EP12_NECK06_HIGH_004_cabinet_upgrade" Value="109444"/>
         <Key Name="EP12_NECK06_HIGH_005_cabinet_upgrade" Value="109449"/>
         <Key Name="EP12_NECK06_HIGH_006_cabinet_upgrade" Value="109451"/>
+        <Key Name="USE_RELIC_IN_BOSS_COOP_LAST_DATE" Value="109455"/>
+        <Key Name="USE_RELIC_IN_GUILD_RAID_LAST_DATE" Value="109456"/>
     </KeyIDSpc>
     <KeyIDSpc Name="PCEtc">
         <Key Name="Kill_boss_Clymen_Q2" Value="7788"/>

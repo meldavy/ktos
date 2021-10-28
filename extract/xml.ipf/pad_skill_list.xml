@@ -32993,6 +32993,7 @@ end"/>
                 <Num Num="0"/>
                 <Num Num="0"/>
             </ToolScp>
+            <ToolScp Scp="PAD_USEABLE_PC" Client="NO" UseSleep="NO"/>
         </createEvent>
         <enterEvent>
             <ToolScp Scp="PAD_TGT_DAMAGE" Client="NO" UseSleep="NO">

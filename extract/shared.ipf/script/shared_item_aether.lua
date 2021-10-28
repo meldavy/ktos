@@ -128,7 +128,7 @@ end
 -- by gem item
 function is_max_aether_gem_level(item)
     if item == nil then return false; end
-    local max_level = 100;
+    local max_level = 120;
     local cur_level = TryGetProp(item, "AetherGemLevel", 1);
     if cur_level >= max_level then return true;
     else return false; end
@@ -138,9 +138,8 @@ end
 -- by gem level
 function is_max_aether_gem_level_equip(level)
     if item == nil then return false; end
-    local max_level = 100;
-    local cur_level = TryGetProp(item, "AetherGemLevel", 1);
-    if cur_level >= max_level then return true;
+    local max_level = 120;
+    if level >= max_level then return true;
     else return false; end
     return false;
 end

@@ -1072,6 +1072,57 @@ function CREATE_QUEST_REWARE_CTRL_DIFF_COUNT(box, y, index, ItemName, itemCnt, N
 end
 
 
+function TRRADE_SELECT_STRING_SPLIT_CTRL(box, y, index, ItemName, tradeselectitemClassName)
+
+	local isOddCol = 0;
+	if math.floor((index - 1) % 2) == 1 then
+		isOddCol = 0;
+	end
+
+	local x = 5;
+	if isOddCol == 1 then
+		x = (box:GetWidth() / 2) + 5;
+		local ctrlHeight = ui.GetControlSetAttribute('quest_reward_s', 'height');
+		y = y - ctrlHeight - 10;
+	end
+	
+	local ctrlSet = box:CreateControlSet('quest_reward_s', "REWARD_" .. index, x, y);
+	tolua.cast(ctrlSet, "ui::CControlSet");
+	ctrlSet:SetValue(index);
+	
+	if callFunc == 'DIALOGSELECT_QUEST_REWARD_ADD' then
+	ctrlSet:Resize(box:GetHeight() + 70,ctrlSet:GetHeight())
+	end
+
+	local itemCls = ClMsg(ItemName)
+	local slot = ctrlSet:GetChild("slot");
+	tolua.cast(slot, "ui::CSlot");
+
+	local boxitemcls = GetClass('Item', tradeselectitemClassName)
+
+	local icon = GET_ITEM_ICON_IMAGE(boxitemcls, GETMYPCGENDER())
+	SET_SLOT_IMG(slot, icon);
+
+	local ItemName = ctrlSet:GetChild("ItemName");
+	local itemText = string.format("{@st41b}%s", itemCls);
+
+	ItemName:EnableTextOmitByWidth(true);
+	ItemName:SetText(itemText);
+
+	ctrlSet:SetOverSound("button_cursor_over_3");
+	ctrlSet:SetClickSound("button_click_stats");
+	ctrlSet:SetEnableSelect(1);
+	ctrlSet:SetSelectGroupName("QuestRewardList");
+	
+	ctrlSet:Resize(box:GetWidth() - 30, ctrlSet:GetHeight());
+
+	y = y + ctrlSet:GetHeight();
+	return y;
+
+end
+
+
+
 function CREATE_ANCIENT_CARD_CTRL(box, y, index, ItemName, itemCnt, targetItemName, targetName, targetCost)
 end
 

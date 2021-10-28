@@ -373,6 +373,9 @@ function INVENTORY_MYPC_CHANGE_SHAPE(frame)
 end
 
 function UPDATE_SHIHOUETTE_IMAGE(frame)
+	if frame:IsVisible() ~= 1 then
+		return
+	end
 
 	local equipgroup = GET_CHILD_RECURSIVELY(frame, 'equip', 'ui::CGroupBox')
 	local shihouette = GET_CHILD_RECURSIVELY(equipgroup, 'shihouette', "ui::CPicture");

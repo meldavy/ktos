@@ -900,6 +900,9 @@ function STATUS_INFO()
     local returnY = STATUS_ITEM_GEAR_SCORE(pc, opc, frame, gboxctrl, y);
     if returnY ~= y then y = returnY + 3; end
 
+    local returnY = STATUS_ABILITY_POINT_SCORE(pc, opc, frame, gboxctrl, y);
+    if returnY ~= y then y = returnY + 3; end    
+
     local returnY = STATUS_ATTRIBUTE_VALUE_NEW(pc, opc, frame, gboxctrl, "MHP", y);
     if returnY ~= y then y = returnY + 3; end
     returnY = STATUS_ATTRIBUTE_VALUE_NEW(pc, opc, frame, gboxctrl, "MSP", y);
@@ -1406,6 +1409,30 @@ function STATUS_ITEM_GEAR_SCORE(pc, opc, frame, gboxctrl, y)
     
     title:SetText('{@sti8}' .. ScpArgMsg("EquipedItemGearScore"));
     title:SetTextTooltip(ScpArgMsg("TooltipDescGearScore"))
+
+    local stat = GET_CHILD(controlSet, "stat", "ui::CRichText");
+    title:SetUseOrifaceRect(true)
+    stat:SetUseOrifaceRect(true)
+
+    stat:SetText('{@sti8}' .. score);
+	
+    if title:GetWidth() >= 350 then
+		title:AdjustFontSizeByWidth(350)
+	end
+	
+    controlSet:Resize(controlSet:GetWidth(), stat:GetHeight());
+    return y + controlSet:GetHeight();
+end
+
+function STATUS_ABILITY_POINT_SCORE(pc, opc, frame, gboxctrl, y)        
+    local score = GET_PLAYER_ABILITY_SCORE(pc) .. '%'
+
+    local controlSet = gboxctrl:CreateOrGetControlSet('status_stat', 'ability_point_score', 0, y);    
+    tolua.cast(controlSet, "ui::CControlSet");
+    local title = GET_CHILD(controlSet, "title", "ui::CRichText");
+    
+    title:SetText('{@sti8}' .. ScpArgMsg("AbilityPointScore"));
+    title:SetTextTooltip(ScpArgMsg("TooltipDescAbilityPointScore"))
 
     local stat = GET_CHILD(controlSet, "stat", "ui::CRichText");
     title:SetUseOrifaceRect(true)

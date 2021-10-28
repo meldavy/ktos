@@ -423,3 +423,69 @@ function GET_GEAR_SCORE_BY(type, transcend, reinforce, grade, use_lv, item_lv)
 
     return 0
 end
+
+function GET_PLAYER_ABILITY_SCORE(pc)
+    local job_list = GetJobHistoryList(pc)
+
+    local total_score_list = {}
+    table.insert(total_score_list, 600000)
+    table.insert(total_score_list, 600000)
+    table.insert(total_score_list, 600000)
+    table.insert(total_score_list, 600000)
+
+    for i = 1, #job_list do
+        local ability_point_score = GetClassByType('ability_point_score', job_list[i])
+        if ability_point_score ~= nil then
+            local require_score = TryGetProp(ability_point_score, 'RequireScore', 600000)
+            total_score_list[i] = require_score
+        end
+    end
+
+    local total_score = 0
+    for i = 1, #total_score_list do
+        total_score = total_score + total_score_list[i]
+    end
+
+    if total_score <= 0 then
+        total_score = 1
+    end
+
+    local use_point = 0
+    
+    if IsServerSection() == 1 then
+        local abilList = GetAbilityNames(pc)
+        for i = 1, #abilList do
+            local abil_obj = GetAbilityIESObject(pc, abilList[i]);            
+            local name = TryGetProp(abil_obj, 'ClassName', 'None') -- 특성 이름
+            local score = GET_MAX_REQUIRED_ABILITY_POINT(pc, name)                
+            if score ~= nil then
+                local now = GET_ABILITY_POINT_BY_NAME(pc, name)
+                use_point = use_point + now
+            end 
+        end
+    else
+        pc = GetMyPCObject()
+
+        local abilList = session.GetAbilityList();
+        local abilListCnt = abilList:Count();
+            
+        for i = 0, abilListCnt - 1 do
+            local abil = session.GetAbilityByIndex(i);
+            if abil ~= nil then
+                local abil_obj = GetIES(abil:GetObject());
+                local name = TryGetProp(abil_obj, 'ClassName', 'None') -- 특성 이름
+                local score = GET_MAX_REQUIRED_ABILITY_POINT(pc, name)                
+                if score ~= nil then
+                    local now = GET_ABILITY_POINT_BY_NAME(pc, name)
+                    use_point = use_point + now
+                end                
+            end
+        end
+    end    
+
+    local ret = use_point / total_score * 100
+        if ret >= 100 then
+            ret = 100
+        end
+    return string.format('%.2f', ret)
+end

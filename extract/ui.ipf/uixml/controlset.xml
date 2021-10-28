@@ -6072,7 +6072,7 @@
 		<controlset name="ranksystem_ui_info" hittest="true" hittestset="false" skin="test_skin_01_btn" draw="true" width="467" height="68">
 		<controls>
             <picture name="rank_icon" rect="0 0 72 54" margin="10 0 0 0" layout_gravity="left center" stretch="true" hittest="false" image="hero_icon_gradeLow"/>
-            <richtext name="rank_text" rect="0 0 24 24" margin="0 0 0 0" parent="rank_icon" layout_gravity="center center" format="{@st44}{s16}%s" param1="rank" param1_def="0" fixwidth="true" resizebytext="true" hittest="false" textalign="center center"/>
+			<richtext name="rank_text" rect="0 0 24 24" margin="0 0 0 0" parent="rank_icon" layout_gravity="center center" format="{@st44}{s16}%s" param1="rank" param1_def="0" fixwidth="false" resizebytext="true" hittest="false" textalign="center center"/>
             <picture name="rank_guild_icon" rect="0 0 40 40" margin="95 0 0 0" layout_gravity="left center" stretch="true" hittest="false" image=""/>
             <picture name="rank_guild_icon_frame" rect="0 0 40 40" margin="95 0 0 0" layout_gravity="left center" stretch="true" hittest="false" image="hero_guild_frame"/>
             <richtext name="rank_team_text" rect="0 0 300 24" margin="65 11 0 0" layout_gravity="center center" format="%s" param1="name" param1_def="{@st202}{s16}팀명" fixwidth="true" resizebytext="false" hittest="false" textalign="left center"/>

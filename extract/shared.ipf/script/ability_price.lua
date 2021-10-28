@@ -313,7 +313,7 @@ function ABIL_BASE_PRICE(pc, abilName, abilLevel, maxLevel)
     return price, time;
 end
 
-function ABIL_REINFORCE_PRICE(pc, abilName, abilLevel, maxLevel)
+function ABIL_REINFORCE_PRICE(pc, abilName, abilLevel, maxLevel)    
 
     local baseFactor = 1.07
     local increseFactorList = { 1, 2, 3, 4, 5, 
@@ -327,7 +327,7 @@ function ABIL_REINFORCE_PRICE(pc, abilName, abilLevel, maxLevel)
     end
     
     local price = math.floor(baseFactor^(abilLevel - 1) * increseFactorList[index])
-    local time = 0;
+    local time = 0;    
 
     return price, time;
     
@@ -796,3 +796,109 @@ function GET_TOTAL_ABILITY_PRICE_BY_PRICE_COLUMN(abilGroup, abilName, abilLevel)
 
     return price;
 end
+-- 현재 레벨까지의 특성 소모 특성 포인트를 가져온다.
+-- 특성 활성화 조건을 만족하지 않았다면 0을 반환
+function GET_ABILITY_POINT_BY_NAME(pc, name)
+    local cls = GetClass('Ability', name)
+    if cls == nil then
+        return 0
+    end
+
+    local job_list = TryGetProp(cls, 'Job', 'None')
+    if job_list == 'None' then
+        return 0
+    end
+
+    local need_skill = TryGetProp(cls, 'SkillCategory', 'None')
+    if  need_skill ~= 'All' and need_skill ~= 'None' then
+        local skill = GetSkill(pc, need_skill)
+        if skill == nil then
+            return 0
+        end
+    end
+
+
+    local token = StringSplit(job_list, ';')
+    for i = 1, #token do
+        local job = token[i]
+        local job_cls = GetClass('Job', job)
+        if job_cls ~= nil then
+            local suffix = TryGetProp(job_cls, 'EngName', 'None')
+            local group_name = 'Ability_' .. suffix
+            local shop_info = GetClass(group_name, name)
+            if shop_info ~= nil then
+                local abil = GetAbility(pc, TryGetProp(shop_info, 'ClassName', 'None'))
+                local level = TryGetProp(abil, 'Level', 0)                
+                local func_name = TryGetProp(shop_info, 'ScrCalcPrice', 'None')
+                local max_level = TryGetProp(shop_info, 'MaxLevel', 100)                
+
+                local unlockFuncName = TryGetProp(shop_info, 'UnlockScr', 'None')
+                local flag = true
+                if unlockFuncName ~= 'None' then
+                    local scp = _G[unlockFuncName];
+                    if scp ~= nil then                        
+                        local ret = scp(pc, TryGetProp(shop_info, 'UnlockArgStr', 'None'), TryGetProp(shop_info, 'UnlockArgNum', 99), abil);
+                        if ret ~= 'UNLOCK' then
+                            flag = false
+                        end
+                    end
+                end
+
+                if func_name ~= 'None' and flag == true then
+                    local func = _G[func_name]                    
+                    if func ~= nil then
+                        local point = 0
+                        for j = 1, level do
+                            local add = func(pc, name, j, max_level)                            
+                            point = point + add                            
+                        end
+                        return point
+                    end
+                end
+            end
+        end
+    end
+
+    return 0
+end
+
+-- 특성 max레벨을 달성하기 위해 필요한 총 특성 포인트량
+function GET_MAX_REQUIRED_ABILITY_POINT(pc, name)
+    local cls = GetClass('Ability', name)
+    if cls == nil then
+        return nil
+    end
+
+    local job_list = TryGetProp(cls, 'Job', 'None')
+    if job_list == 'None' then
+        return nil
+    end
+
+    local token = StringSplit(job_list, ';')
+    for i = 1, #token do
+        local job = token[i]
+        local job_cls = GetClass('Job', job)
+        if job_cls ~= nil then
+            local suffix = TryGetProp(job_cls, 'EngName', 'None')
+            local group_name = 'Ability_' .. suffix
+            local shop_info = GetClass(group_name, name)
+            if shop_info ~= nil then
+                local func_name = TryGetProp(shop_info, 'ScrCalcPrice', 'None')
+                local max_level = TryGetProp(shop_info, 'MaxLevel', 100)                
+                if func_name ~= 'None' then
+                    local func = _G[func_name]                    
+                    if func ~= nil then
+                        local point = 0
+                        for j = 1, max_level do
+                            point = point + func(pc, name, j, max_level)
+                        end
+                        return point
+                    end
+                end
+            end
+        end
+    end
+
+    return nil
+end
+                

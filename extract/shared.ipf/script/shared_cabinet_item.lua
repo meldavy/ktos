@@ -283,6 +283,26 @@ function GET_CABINET_ITEM_NAME(cls, acc)
     end
 end
 
+function GET_UPGRADE_CABINET_ITEM_NAME(cls, lv)
+    if cls == nil then
+        return 'None'
+    end
+
+    if TryGetProp(cls, 'Upgrade', 'None') == 1 then
+        local name = TryGetProp(cls, 'ClassName', 'None')        
+        if lv <= 1 then
+            return name
+        else
+            name = name .. '_Lv' .. lv
+            return name
+        end
+    else
+        return TryGetProp(cls, 'ClassName', 'None')
+    end
+end
+
+
+
 function GET_CABINET_ACC_ITEM_NAME(cls, acc)
     if cls == nil or acc == nil then
         return 'None'
@@ -293,6 +313,57 @@ function GET_CABINET_ACC_ITEM_NAME(cls, acc)
         local upgrade_property = TryGetProp(cls, 'UpgradeAccountProperty', 0)
         
         local lv = TryGetProp(acc, upgrade_property, 0)        
+        if lv <= 1 then
+            return name
+        elseif lv == 2 then
+            if name == 'EP12_NECK05_HIGH_006' then
+                return 'EP12_NECK06_HIGH_005'
+            end
+
+            if name == 'EP12_BRC05_HIGH_006' then
+                return 'EP12_BRC06_HIGH_005'
+            end
+
+            if name == 'EP12_NECK05_HIGH_007' then
+                return 'EP12_NECK06_HIGH_006'                
+            end
+
+            if name == 'EP12_BRC05_HIGH_007' then
+                return 'EP12_BRC06_HIGH_006'
+            end
+
+            if name == 'EP12_NECK05_HIGH_005' then
+                return 'EP12_NECK06_HIGH_004'
+            end
+
+            if name == 'EP12_BRC05_HIGH_005' then
+                return 'EP12_BRC06_HIGH_004'
+            end
+
+            if string.find(name, '_NECK05_') ~= nil then
+                name = replace(name, '_NECK05_', '_NECK06_')
+                return name
+            elseif string.find(name, '_BRC05_') ~= nil then
+                name = replace(name, '_BRC05_', '_BRC06_')
+                return name
+            else
+                return name
+            end
+        else
+            return name
+        end
+    else
+        return TryGetProp(cls, 'ClassName', 'None')
+    end
+end
+
+function GET_UPGRADE_CABINET_ACC_ITEM_NAME(cls, lv)
+    if cls == nil then
+        return 'None'
+    end
+    
+    if TryGetProp(cls, 'Upgrade', 'None') == 1 then
+        local name = TryGetProp(cls, 'ClassName', 'None')
         if lv <= 1 then
             return name
         elseif lv == 2 then

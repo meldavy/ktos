@@ -15112,6 +15112,10 @@ function SCR_COMMON_COOLDOWN_DECREASE(pc, skill, basicCoolDown)
 		basicCoolDown = basicCoolDown * GetExProp(pc, "TOSHero_CoolDownRate")
     end
     
+	if IS_TOS_HERO_ZONE(pc) == 'YES' and TryGetProp(skill, "ValueType", "None") == "Attack" and basicCoolDown <= 20000 and GetBuffOver(pc, "TOSHero_Buff_Tear3_AttackSPD") >= 5 then
+		basicCoolDown = 5000
+	end
+
 	return basicCoolDown
 end
 

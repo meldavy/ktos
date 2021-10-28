@@ -133,7 +133,7 @@ function AUTORESIZE_RESTART(frame)
 	campGroup:RemoveAllChild();	
 	campGroup:SetOffset(campGroup:GetX(), ctrly);
 
-	if IsBuffApplied(GetMyPCObject(), 'BountyHunt_BUFF') == 'YES' then
+	if GetExProp(GetMyPCObject(), 'BOUNTYHUNT_PLAYING') == 1 then
 		frame:Resize(frame:GetWidth(), maxy + 40);
 		return;
 	end

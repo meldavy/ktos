@@ -16,6 +16,8 @@ local function GET_RANK_ICON(tier)
         return "hero_icon_gradeMiddle"
     elseif tier == 2 then
         return "hero_icon_gradeLow"
+    else
+        return ""
     end
 end
 
@@ -172,7 +174,7 @@ function RANKSYSTEM_MY_DATA_INIT(argStr)
     if argStr ~= "NO_DATA" then
         GET_CHILD_RECURSIVELY(controlset, "rank_icon"):SetImage(GET_RANK_ICON(tier))
     else
-        GET_CHILD_RECURSIVELY(controlset, "rank_icon"):SetImage(GET_RANK_ICON(2))
+        GET_CHILD_RECURSIVELY(controlset, "rank_icon"):SetImage("")
     end
     GET_CHILD_RECURSIVELY(controlset, "rank_text"):SetTextByKey("rank", rank)
     GET_CHILD_RECURSIVELY(controlset, "rank_team_text"):SetTextByKey("name", style..teamName)

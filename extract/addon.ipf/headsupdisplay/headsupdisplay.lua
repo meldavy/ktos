@@ -69,7 +69,11 @@ function MOVETOCAMP(aid)
     if session.colonywar.GetIsColonyWarMap() == true then
         ui.SysMsg(ClMsg('ImpossibleInCurrentMap'));
 	    return;
-    end
+	end
+	if GetExProp(GetMyPCObject(), 'BOUNTYHUNT_PLAYING') == 1 then
+		ui.SysMsg(ClMsg('WarpBanBountyHunt'));
+		return;
+	end
 	session.party.RequestMoveToCamp(aid);
 end
 
