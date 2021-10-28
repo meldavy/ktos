@@ -41,7 +41,7 @@ function CHANGE_LOADING_IMG_URLSTR()
 	local cls = GetClassByTypeFromList(clsList, clsID);
 	local url = config.GetLoadingImgURL();
 	local urlStr = string.format("%s%s", url, cls.FileName);
-	return urlStr, cls;
+	return urlStr, currentLoadingType;
 end
 
 function LOADINGBG_ON_INIT(addon, frame)
@@ -58,7 +58,7 @@ function LOADINGBG_ON_INIT(addon, frame)
 	local pic = GET_CHILD(frame, "pic", "ui::CWebPicture");
 	pic:Resize(frame:GetWidth(), frame:GetHeight());
 
-	local urlStr, cls = CHANGE_LOADING_IMG_URLSTR();
+	local urlStr, currentLoadingType = CHANGE_LOADING_IMG_URLSTR();
 	pic:SetUrlInfo(urlStr);
 
 	local tipGroupbox 		= frame:GetChild('tip');
@@ -66,27 +66,18 @@ function LOADINGBG_ON_INIT(addon, frame)
 	local faqGroupbox 		= GET_CHILD_RECURSIVELY(frame,'faq')
 	local faqCtl 			= GET_CHILD_RECURSIVELY(frame,'gamefaq')
 	
-	if cls ~= nil then
-		local isVisible = 0;
+	if currentLoadingType ~= 'LoadingDefault' then
+		tipGroupbox:SetVisible(0);
+		faqGroupbox:SetVisible(0);
+	else
+		tipGroupbox:SetVisible(1);
+		faqGroupbox:SetVisible(1);
+	end;
 
-		if cls.FAQ_Hide == "NO" then
-			isVisible = 1;
-		else
-			isVisible = 0;
-		end
-		--faqGroupbox:SetVisible(isVisible);
-
-		if cls.Tooltip_Hide == "NO" then
-			isVisible = 1;
-		else
-			isVisible = 0;
-		end
-		tipGroupbox:SetVisible(isVisible);
-	end
-	
 	local gauge = frame:GetChild("gauge");
 	gauge:Resize(frame:GetWidth(), gauge:GetHeight());
 
+	
 	local nowjobtype = config.GetConfig("LastJobCtrltype");
 	local nowlevel = config.GetConfigInt("LastPCLevel", 0);
 
@@ -123,6 +114,16 @@ function LOADINGBG_ON_INIT(addon, frame)
 	    return
 	end
 	
+--	for i = 1, cnt*5 do -- 그냥 무한루프�?막기 ?�함. 조건??맞는 ?�이 ?�올?�까지 골라본다.
+--	
+--		tipClass = GetClassByIndexFromList(clsList, OSRandom(0, cnt  - 1));
+--		if tipClass.MinLv <= nowlevel and tipClass.MaxLv >= nowlevel then
+--			if tipClass.Job == 'All' or tipClass.Job == nowjobtype then
+--				break;
+--			end
+--		end
+--
+--	end
 	local txt = '{#f0dcaa}{s20}{ol}{gr gradation2}'..ScpArgMsg("Todays_Tip") ..tipClass.Text;
 	tipCtl:SetText(txt);
 	tipGroupbox:Resize(tipCtl:GetWidth()+40, tipGroupbox:GetHeight());
@@ -132,8 +133,8 @@ function LOADINGBG_ON_INIT(addon, frame)
 	local faqClass  = GetClassByIndexFromList(faqclsList, OSRandom(0, faqcnt  - 1));
 	local faqtxt = '{#f0dcaa}{s18}{ol}{gr gradation2}'..faqClass.Text;
 
-	--faqCtl:SetText(faqtxt);
-	--faqGroupbox:Resize(faqCtl:GetWidth()+70, faqCtl:GetHeight() + 50);
+	faqCtl:SetText(faqtxt);
+	faqGroupbox:Resize(faqCtl:GetWidth()+70, faqCtl:GetHeight() + 50);
 	
 	frame:Invalidate();
 
@@ -161,3 +162,4 @@ function DO_RESIZE_BY_CLIENT_SIZE(frame)
 	
 	frame:Invalidate();
 end
+

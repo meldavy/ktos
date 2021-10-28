@@ -1,6 +1,6 @@
 ClassID,GenType,Lv,Range,GenRange,RespawnTime,MaxPop,Minimap,Hide,UseAIOufOfPC,AnchorCount,UP_ReturnRange,P_MaxDialog,ClassType,Name,UniqueName,QuestName,Tag,Tactics,BTree,SimpleAI,Dialog,Enter,Leave,Save,OnlyPCCheck,SmartGen,Faction,ArgStr1,ArgStr2,ArgStr3,Tendency
 1,1,1,30,1,60000,1,2,0,0,0,0,0,Warp_arrow,테넷 화원,,,,MON_DUMMY,,,,CHAPEL575_GELE574,,NO,YES,NO,Neutral,,,,
-2,2,1,30,1,60000,1,2,0,0,0,0,0,Warp_arrow,테넷 성당 지상 1층,,,,MON_DUMMY,,,,CHAPEL575_CHAPEL576,,NO,YES,NO,Neutral,,,,
+2,2,1,30,1,60000,1,3,0,0,0,0,0,Warp_arrow,테넷 성당 지상 1층,,,,MON_DUMMY,,,,CHAPEL575_CHAPEL576,,NO,YES,NO,Neutral,,,,
 3,3,1,1,1,60000,1,1,0,0,1,50,0,npc_paladin_follower1_2,추종자 토마스,,,,,,,CHAPEL_TOMAS,,,NO,YES,NO,Neutral,,,,
 4,4,1,1,1,60000,1,1,0,0,1,50,0,npc_paladin_follower1_3,추종자 티베리유스,,,,,,,CHAPEL_TABERIJUS,,,NO,YES,NO,Neutral,,,,
 6,6,1,1,1,60000,1,1,0,0,1,50,0,npc_paladin_follower1_3,추종자 바이다스,,,,,,,CHAPEL_VIDAS,,,NO,YES,NO,Neutral,,,,
@@ -20,4 +20,3 @@ ClassID,GenType,Lv,Range,GenRange,RespawnTime,MaxPop,Minimap,Hide,UseAIOufOfPC,A
 30,30,0,40,9999,0,35,0,0,0,0,0,0,New_desmodus,,,,,,,,,,,NO,YES,NO,Monster,SmartGen,,,Attack
 32,32,0,40,100,0,3,0,0,0,1,0,0,Glizardon,,,,,,,,,,,NO,YES,NO,Monster,,,,Attack
 33,33,1,0,1,1,1,0,0,0,0,0,0,treasure_box1,보물 상자 LV1,,,,,,,TREASUREBOX_LV,,,,YES,NO,Neutral,LV1,ITEM:COLLECT_132:1,,
-34,34,1,20,1,60000,1,0,0,0,0,0,0,HiddenTrigger4,UnvisibleName,,,,,,,,EXPLORER_MISLE6,,NO,YES,NO,Neutral,,,,
