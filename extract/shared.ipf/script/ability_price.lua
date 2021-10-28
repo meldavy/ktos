@@ -433,3 +433,12 @@ function ABIL_RODELERO29_PRICE(pc, abilName, abilLevel, maxLevel)
 	
 end
 
+function ABIL_CLERIC18_PRICE(pc, abilName, abilLevel, maxLevel)
+    
+    local price = 1670 + (abilLevel - 1) * 100;
+    local time = 1;
+    
+	return price, time;
+	
+end
+
