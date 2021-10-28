@@ -74,8 +74,8 @@ function WARNINGMSGBOX_FRAME_OPEN(clmsg, yesScp, noScp, itemGuid)
 	frame:Resize(frame:GetWidth(), totalHeight)
 end
 
-function _WARNINGMSGBOX_FRAME_OPEN_YES(parent, ctrl, argStr, argNum)
-    local input_frame = GET_CHILD_RECURSIVELY(parent, "input")    
+function _WARNINGMSGBOX_FRAME_OPEN_YES(parent, ctrl, argStr, argNum)	
+	local input_frame = GET_CHILD_RECURSIVELY(parent, "input")    	
     if local_item_grade >= 3 and input_frame:GetText() ~= '0000' then
         -- 확인메시지 불일치
 		ui.SysMsg(ClMsg('miss_match_confirm_text'))
@@ -243,7 +243,7 @@ function NOT_ROASTING_GEM_EQUIP_WARNINGMSGBOX_FRAME_OPEN(itemGuid, argNum)
 	frame:Resize(frame:GetWidth(), totalHeight);
 end
 
-function _NOT_ROASTING_GEM_EQUIP_WARNINGMSGBOX_FRAME_OPEN_YES(parent, ctrl, argStr, argNum)
+function _NOT_ROASTING_GEM_EQUIP_WARNINGMSGBOX_FRAME_OPEN_YES(parent, ctrl, argStr, argNum)	
     local input_frame = GET_CHILD_RECURSIVELY(parent, "input");
 	if input_frame:GetText() ~= '0000' then
 		-- 확인메시지 불일치
@@ -299,7 +299,7 @@ function WARNINGMSGBOX_FRAME_OPEN_REBUILDPOPUP()
 	
 end
 
-function _WARNINGMSGBOX_FRAME_OPEN_REBUILDPOPUP_YES(parent, ctrl, argStr, argNum)
+function _WARNINGMSGBOX_FRAME_OPEN_REBUILDPOPUP_YES(parent, ctrl, argStr, argNum)		
     local input_frame = GET_CHILD_RECURSIVELY(parent, "input");
 	if input_frame:GetText() ~= '0000' then
 		-- 확인메시지 불일치
@@ -374,7 +374,7 @@ function WARNINGMSGBOX_FRAME_OPEN_NONNESTED(clmsg, enablehide, type, yesScp, noS
 	frame:Resize(frame:GetWidth(), totalHeight);
 end
 
-function _WARNINGMSGBOX_FRAME_OPEN_NONNESTED_OK(parent, ctrl, argStr, argNum)
+function _WARNINGMSGBOX_FRAME_OPEN_NONNESTED_OK(parent, ctrl, argStr, argNum)	
 	local input_frame = GET_CHILD_RECURSIVELY(parent, "input");
 	local scpstr = "";
 
@@ -461,4 +461,103 @@ function WARNINGMSGBOX_FRAME_OPEN_WITH_CHECK(clmsg, yesScp, noScp)
 	warningbox:Resize(warningbox:GetWidth(), totalHeight)
 	bg:Resize(bg:GetWidth(), totalHeight)
 	frame:Resize(frame:GetWidth(), totalHeight)
+end
+
+-- 아이템 버리기, 아이템 파괴
+function WARNINGMSGBOX_FRAME_OPEN_DELETE_ITEM(clmsg, yesScp, noScp, itemGuid)
+	ui.OpenFrame("warningmsgbox")
+	
+	local frame = ui.GetFrame('warningmsgbox')
+	frame:EnableHide(1);
+	
+	local warningText = GET_CHILD_RECURSIVELY(frame, "warningtext")
+	warningText:SetText(clmsg)
+
+    local input_frame = GET_CHILD_RECURSIVELY(frame, "input")
+    input_frame:ShowWindow(1)
+	input_frame:SetText('')
+	input_frame:SetMaxLen(13)
+
+	local showTooltipCheck = GET_CHILD_RECURSIVELY(frame, "cbox_showTooltip")
+	if itemGuid ~= nil then
+		frame:SetUserValue("ITEM_GUID" , itemGuid)
+		WARNINGMSGBOX_CREATE_TOOLTIP(frame);
+		showTooltipCheck:ShowWindow(1)
+	else
+		showTooltipCheck:ShowWindow(0)
+	end
+    
+    if itemGuid ~= nil then
+		local item = session.GetInvItemByGuid(itemGuid)
+        if item ~= nil then
+            local_item_grade = GetIES(item:GetObject()).ItemGrade
+        else
+            local_item_grade = 0
+        end
+    else
+        local_item_grade = 0
+    end
+    
+	local yesBtn = GET_CHILD_RECURSIVELY(frame, "yes")
+	tolua.cast(yesBtn, "ui::CButton");
+
+    if local_item_grade < 3 then
+        input_frame:ShowWindow(0)            
+    end
+
+	yesBtn:SetEventScript(ui.LBUTTONUP, '_WARNINGMSGBOX_FRAME_OPEN_DELETE_ITEM_YES');
+	yesBtn:SetEventScriptArgString(ui.LBUTTONUP, yesScp);
+
+	local noBtn = GET_CHILD_RECURSIVELY(frame, "no")
+	tolua.cast(noBtn, "ui::CButton");
+
+	noBtn:SetEventScript(ui.LBUTTONUP, '_WARNINGMSGBOX_FRAME_OPEN_DELETE_ITEM_NO');
+	noBtn:SetEventScriptArgString(ui.LBUTTONUP, noScp)
+
+	local buttonMargin = noBtn:GetMargin()
+	local warningbox = GET_CHILD_RECURSIVELY(frame, 'warningbox')
+	local totalHeight = warningbox:GetY() + warningText:GetY() + warningText:GetHeight() + showTooltipCheck:GetHeight() + noBtn:GetHeight() + 2 * buttonMargin.bottom + input_frame:GetHeight()
+    if itemGuid == nil or local_item_grade < 3 then
+        totalHeight = warningbox:GetY() + warningText:GetY() + warningText:GetHeight() + showTooltipCheck:GetHeight() + noBtn:GetHeight() + 2 * buttonMargin.bottom
+    end
+
+	local okBtn = GET_CHILD_RECURSIVELY(frame, "ok")
+	tolua.cast(okBtn, "ui::CButton");
+
+	yesBtn:ShowWindow(1);
+	noBtn:ShowWindow(1);
+	okBtn:ShowWindow(0);
+
+	local bg = GET_CHILD_RECURSIVELY(frame, 'bg')
+	warningbox:Resize(warningbox:GetWidth(), totalHeight)
+	bg:Resize(bg:GetWidth(), totalHeight)
+	frame:Resize(frame:GetWidth(), totalHeight)
+end
+
+function _WARNINGMSGBOX_FRAME_OPEN_DELETE_ITEM_YES(parent, ctrl, argStr, argNum)	
+	local input_frame = GET_CHILD_RECURSIVELY(parent, "input")    	
+    if local_item_grade >= 3 and input_frame:GetText() ~= ClMsg('destory_now') then
+        -- 확인메시지 불일치
+		ui.SysMsg(ClMsg('miss_match_confirm_text'))
+        return
+    end
+
+	IMC_LOG("INFO_NORMAL", "_WARNINGMSGBOX_FRAME_OPEN_DELETE_ITEM_YES" .. argStr)
+	local scp = _G[argStr]
+	if scp ~= nil then
+		scp()
+	end
+	ui.CloseFrame("warningmsgbox")
+	ui.CloseFrame("item_tooltip")
+end
+
+function _WARNINGMSGBOX_FRAME_OPEN_DELETE_ITEM_NO(parent, ctrl, argStr, argNum)
+	IMC_LOG("INFO_NORMAL", "_WARNINGMSGBOX_FRAME_OPEN_DELETE_ITEM_NO" .. argStr)
+	local scp = _G[argStr]
+	if scp ~= nil then
+		scp()
+	end
+	--RunScript(argStr)
+	ui.CloseFrame("warningmsgbox")
+	ui.CloseFrame("item_tooltip")
 end

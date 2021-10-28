@@ -47,7 +47,11 @@
                 <Scp Client="NO" Scp="SKL_SET_TARGET_CIRCLE" Time="0" UseSleep="NO">
                     <Pos Angle="0" Dist="3.8076374e-36"/>
                     <Num Num="90"/>
-                    <Num Num="10"/>
+					<Num Num="10" UseFunc="1" FuncTxt="local value = 10
+					if IsPVPField(self) == 1 and value > 2 then
+					value = math.floor((math.max(0, value-2)^0.5))+math.min(2, value)
+					end
+					return value"/>
                     <Num Num="2"/>
                     <Num Num="0"/>
                     <Num Num="0"/>
@@ -253,7 +257,7 @@
         <MainSkl JumpFlee="NO" MSPDToUsePos="0" ScrLock="None">
             <EtcList>
                 <Scp Client="YES" Scp="C_EFFECT" Time="0" UseSleep="NO">
-                    <Str_Arg Arg="4.5" Str="F_spread_in032_fire3"/>
+                    <Str_Arg Arg="4.8" Str="F_spread_in032_fire3"/>
                     <Str Str="None"/>
                     <Num Num="0"/>
                 </Scp>
@@ -266,8 +270,14 @@
                 </Scp>
                 <Scp Client="NO" Scp="SKL_SET_TARGET_CIRCLE" Time="0" UseSleep="NO">
                     <Pos Angle="0" Dist="0"/>
-                    <Num Num="100"/>
-                    <Num Num="10"/>
+					<Num FuncTxt="local range = 100
+               if GetExProp(self, 'ITEM_VIBORA_SelfImmolate') ~= 0 then range = range * 1.25  end			   
+               return range" Num="100" UseFunc="1"/>
+					<Num Num="10" UseFunc="1" FuncTxt="local value = 10
+                	if IsPVPField(self) == 1 and value > 2 then
+                	value = math.floor((math.max(0, value-2)^0.5))+math.min(2, value)
+                	end
+                	return value"/>
                     <Num Num="2"/>
                     <Num Num="0"/>
                     <Num Num="0"/>
@@ -299,7 +309,9 @@
                     <Str Str="ImmolationMeltArmor_Debuff"/>
                     <Num Num="1"/>
                     <Num Num="-1"/>
-                    <Num Num="5000"/>
+                    <Num FuncTxt="local remainTime = 5000
+               if GetExProp(self, 'ITEM_VIBORA_SelfImmolate') ~= 0 then remainTime = 20000 end			   
+               return remainTime" Num="5000"UseFunc="1"/>
                     <Num Num="0"/>
                     <Num Num="1"/>
                     <Num Num="100"/>
@@ -309,7 +321,9 @@
                     <Str Str="ImmolationMeltArmor_Buff"/>
                     <Num Num="1"/>
                     <Num Num="0"/>
-                    <Num Num="5000"/>
+                    <Num FuncTxt="local remainTime = 5000
+               if GetExProp(self, 'ITEM_VIBORA_SelfImmolate') ~= 0 then remainTime = 20000 end			   
+               return remainTime" Num="5000"UseFunc="1"/>
                     <Num Num="1"/>
                     <Num Num="100"/>
                     <Num Num="0"/>

@@ -15,6 +15,11 @@ function IS_SEASON_SERVER(pc)
         return "YES";
     end
 
+    return "NO";
+end
+
+-- 시즌서버 출신?? 플레이어 체크시에 해당 함수를 사용할 것
+function IS_SEASON_SERVER_PLAYER(pc)
     if pc ~= nil then
         local accObj = nil;
         if IsServerObj(pc) == 1 then
@@ -35,7 +40,7 @@ function IS_SEASON_SERVER(pc)
         end
     end
 
-    return "NO";
+    return 'NO'
 end
 
 function IS_SEASON_SERVER_OPEN()

@@ -1252,16 +1252,7 @@ function CHECK_ARK_ITEM(pc, item, item_grade, check_string_arg_list)
 	return true
 end
 
-function CHECK_SET_OPTION(pc)
-	if item == nil then
-		if IsServerSection() == 1 then
-			SendSysMsg(pc, 'RequireLegendSetOption')
-		else
-			ui.SysMsg(ScpArgMsg('RequireLegendSetOption'))	
-		end
-		return false
-	end
-
+function CHECK_SET_OPTION(pc)	
 	local check_equip_list_1 = {'SHIRT', 'GLOVES', 'BOOTS', 'PANTS'}
 	local dic_set_option = {}
 

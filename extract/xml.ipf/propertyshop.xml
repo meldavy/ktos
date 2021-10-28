@@ -100,6 +100,11 @@
 		<Item Script="None" Name="PVP_TMAC04_118_5" Count="1" Price="1" DailyBuyLimit="0"/>
 		<Item Script="None" Name="PVP_TMAC04_118_6" Count="1" Price="1" DailyBuyLimit="0"/>
 		<Item Script="None" Name="PVP_PST04_122_3" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="PVP_DAG04_123_7" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="PVP_TMAC04_118_7" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="PVP_TSF04_129_7" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="PVP_TSF04_129_8" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="PVP_MAC04_129_2" Count="1" Price="1" DailyBuyLimit="0"/>
 	</Shop>
 	<Shop Name="GUILD_CONTRIBUTION_SHOP" PointScript="GET_GUILD_CONTRIBUTION_POINT">
 		<Item Script="None" Name="BRC99_114_guildshop_7d" Count="1" Price="1000" DailyBuyLimit="0"/>

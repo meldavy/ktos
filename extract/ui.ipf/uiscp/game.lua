@@ -4373,6 +4373,13 @@ function IS_EXIST_BRIQUETTING_OR_BEAUTYSHOP_ITEM(actor, spot, skillType, skillCl
 			end
 		end
 	end
+	return false;
+end
 
+function IS_ACHIEVE_HAIR_COLOR(color)
+	if color == nil or color == "" or color == "None" then return false; end
+	if color == "black" or color == "blue" or color == "white" or color == "pink" then
+		return true;
+	end
 	return false;
 end

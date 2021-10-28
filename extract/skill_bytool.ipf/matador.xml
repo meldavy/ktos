@@ -287,7 +287,7 @@ return BuffTime;"/>
                     <Str Str="voice_war_atk_medium"/>
                     <Str Str="voice_atk_medium_war_f"/>
                 </Scp>
-                <Scp Scp="SKL_TGT_DMG" Client="NO" UseSleep="NO" Time="100" LoopTime="110" TimeSync="0" >
+                <Scp Scp="SKL_TGT_DMG" Client="NO" UseSleep="NO" Time="100" TimeSync="0">
                     <Num Num="1"/>
                     <Num Num="1"/>
                     <Num Num="0"/>
@@ -301,6 +301,11 @@ return BuffTime;"/>
                     <Num Num="8"/>
                 </Scp>
                 <Scp Scp="SKL_CHECK_LOOPING_COUNT" Client="NO" UseSleep="NO" Time="200" LoopTime="110" TimeSync="0" />
+                <Scp Scp="SKL_TGT_DMG" Client="NO" UseSleep="NO" Time="300" TimeSync="0">
+                    <Num Num="1"/>
+                    <Num Num="1"/>
+                    <Num Num="0"/>
+                </Scp>
             </EtcList>
         </MainSkl>
     </Skill>

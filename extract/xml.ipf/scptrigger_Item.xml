@@ -8212,7 +8212,7 @@ end"/>
 				<ExecList>
 					<ToolScp Scp="SPCI_EQUIP_ADD_EXPROP_NUM" Client="NO" UseSleep="NO">
 						<Str Str="ITEM_FENCER_ATTAQUECOMPOSEE_HIT_UP"/>
-						<Num Num="1"/>
+						<Num Num="2"/>
 					</ToolScp>
 				</ExecList>
 			</Trigger>
@@ -8222,7 +8222,7 @@ end"/>
 				<ExecList>
 					<ToolScp Scp="SPCI_EQUIP_ADD_EXPROP_NUM" Client="NO" UseSleep="NO">
 						<Str Str="ITEM_FENCER_ATTAQUECOMPOSEE_HIT_UP"/>
-						<Num Num="-1"/>
+						<Num Num="-2"/>
 					</ToolScp>
 				</ExecList>
 			</Trigger>
@@ -13675,6 +13675,121 @@ end"/>
 			</Trigger>
 		</TriggerList>
 	</SpcItem>
+	<SpcItem Name="DAG04_123_7">
+		<TriggerList Act="UnEquip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="unequip_vibora" Client="NO" UseSleep="NO"/>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="Equip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="equip_vibora" Client="NO" UseSleep="NO"/>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="SkillUsed">
+			<Trigger>
+				<CondList>
+					<ToolScp Scp="skillused_vibora" Client="NO" UseSleep="NO"/>
+				</CondList>
+			</Trigger>
+		</TriggerList>
+	</SpcItem>
+	<SpcItem Name="TMAC04_118_7">
+		<TriggerList Act="UnEquip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="unequip_vibora" Client="NO" UseSleep="NO"/>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="Equip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="equip_vibora" Client="NO" UseSleep="NO"/>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="SkillUsed">
+			<Trigger>
+				<CondList>
+					<ToolScp Scp="skillused_vibora" Client="NO" UseSleep="NO"/>
+				</CondList>
+			</Trigger>
+		</TriggerList>
+	</SpcItem>
+	<SpcItem Name="TSF04_129_8">
+		<TriggerList Act="UnEquip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="unequip_vibora" Client="NO" UseSleep="NO"/>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="Equip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="equip_vibora" Client="NO" UseSleep="NO"/>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="SkillUsed">
+			<Trigger>
+				<CondList>
+					<ToolScp Scp="skillused_vibora" Client="NO" UseSleep="NO"/>
+				</CondList>
+			</Trigger>
+		</TriggerList>
+	</SpcItem>
+	<SpcItem Name="TSF04_129_7">
+		<TriggerList Act="UnEquip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="unequip_vibora" Client="NO" UseSleep="NO"/>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="Equip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="equip_vibora" Client="NO" UseSleep="NO"/>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="SkillUsed">
+			<Trigger>
+				<CondList>
+					<ToolScp Scp="skillused_vibora" Client="NO" UseSleep="NO"/>
+				</CondList>
+			</Trigger>
+		</TriggerList>
+	</SpcItem>
+	<SpcItem Name="MAC04_129_2">
+		<TriggerList Act="UnEquip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="unequip_vibora" Client="NO" UseSleep="NO"/>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="Equip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="equip_vibora" Client="NO" UseSleep="NO"/>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="SkillUsed">
+			<Trigger>
+				<CondList>
+					<ToolScp Scp="skillused_vibora" Client="NO" UseSleep="NO"/>
+				</CondList>
+			</Trigger>
+		</TriggerList>
+	</SpcItem>
 	<SpcItem Name="Ark_dispersion">
 		<TriggerList Act="Equip">
 			<Trigger>
@@ -14660,7 +14775,7 @@ end"/>
 				<ExecList>
 					<ToolScp Scp="SPCI_EQUIP_ADD_EXPROP_NUM" Client="NO" UseSleep="NO">
 						<Str Str="ITEM_FENCER_ATTAQUECOMPOSEE_HIT_UP"/>
-						<Num Num="1"/>
+						<Num Num="2"/>
 					</ToolScp>
 				</ExecList>
 			</Trigger>
@@ -14670,7 +14785,7 @@ end"/>
 				<ExecList>
 					<ToolScp Scp="SPCI_EQUIP_ADD_EXPROP_NUM" Client="NO" UseSleep="NO">
 						<Str Str="ITEM_FENCER_ATTAQUECOMPOSEE_HIT_UP"/>
-						<Num Num="-1"/>
+						<Num Num="-2"/>
 					</ToolScp>
 				</ExecList>
 			</Trigger>
@@ -15751,7 +15866,7 @@ end"/>
 				<ExecList>
 					<ToolScp Scp="SPCI_EQUIP_ADD_EXPROP_NUM" Client="NO" UseSleep="NO">
 						<Str Str="ITEM_FENCER_ATTAQUECOMPOSEE_HIT_UP"/>
-						<Num Num="1"/>
+						<Num Num="2"/>
 					</ToolScp>
 				</ExecList>
 			</Trigger>
@@ -15761,7 +15876,7 @@ end"/>
 				<ExecList>
 					<ToolScp Scp="SPCI_EQUIP_ADD_EXPROP_NUM" Client="NO" UseSleep="NO">
 						<Str Str="ITEM_FENCER_ATTAQUECOMPOSEE_HIT_UP"/>
-						<Num Num="-1"/>
+						<Num Num="-2"/>
 					</ToolScp>
 				</ExecList>
 			</Trigger>

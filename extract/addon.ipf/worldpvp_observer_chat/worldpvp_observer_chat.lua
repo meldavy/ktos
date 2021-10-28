@@ -36,7 +36,7 @@ function CHAT_OBSERVER_ENABLE(count, aidList, teamIDList, iconList)
 		ctrlSet:EnableHitTest(1);
 		local pic = GET_CHILD(ctrlSet, "pic");
 
-		local imgName = GET_JOB_ICON(iconInfo.job);
+		local imgName = GET_JOB_ICON(iconInfo.repre_job);
 		pic:SetImage(imgName);
 		local btn = ctrlSet:GetChild("btn");
 		local text = ScpArgMsg("Observe{PC}", "PC", iconInfo:GetFamilyName());

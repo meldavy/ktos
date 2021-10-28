@@ -4796,6 +4796,23 @@
         <Key Name="product_ph_reputationReward_5" Value="108394"/>
         <Key Name="product_ph_reputationReward_7" Value="108404"/>
         <Key Name="product_ph_reputationReward_9" Value="108400"/>
+        <Key Name="AllowedHairColor" Value="108439"/>
+        <Key Name="HairColor_black" Value="108453"/>
+        <Key Name="HairColor_blond" Value="108438"/>
+        <Key Name="HairColor_blue" Value="108449"/>
+        <Key Name="HairColor_brown" Value="108441"/>
+        <Key Name="HairColor_default" Value="108446"/>
+        <Key Name="HairColor_gray" Value="108452"/>
+        <Key Name="HairColor_green" Value="108442"/>
+        <Key Name="HairColor_lightsalmon" Value="108450"/>
+        <Key Name="HairColor_midnightblue" Value="108447"/>
+        <Key Name="HairColor_orange" Value="108443"/>
+        <Key Name="HairColor_pink" Value="108437"/>
+        <Key Name="HairColor_purple" Value="108451"/>
+        <Key Name="HairColor_red" Value="108444"/>
+        <Key Name="HairColor_white" Value="108440"/>
+        <Key Name="TeamBattleRewardInfo" Value="108445"/>
+        <Key Name="TeamBattleRewardSeason" Value="108448"/>
     </KeyIDSpc>
     <KeyIDSpc Name="PCEtc">
         <Key Name="Kill_boss_Clymen_Q2" Value="7788"/>
@@ -13440,6 +13457,17 @@
         <Key Name="Hide_3247" Value="108346"/>
         <Key Name="HadVisited_11240" Value="108347"/>
         <Key Name="HadVisited_7016" Value="108407"/>
+        <Key Name="EP13_F_SIAULIAI_1_SQ_02_TRACK" Value="108467"/>
+        <Key Name="EP13_F_SIAULIAI_1_SQ_03_TRACK" Value="108462"/>
+        <Key Name="EP13_F_SIAULIAI_1_SQ_04_TRACK" Value="108458"/>
+        <Key Name="EP13_F_SIAULIAI_1_SQ_05_TRACK" Value="108459"/>
+        <Key Name="EP13_F_SIAULIAI_3_HQ_01_TRACK" Value="108461"/>
+        <Key Name="Hide_3249" Value="108464"/>
+        <Key Name="Hide_3250" Value="108466"/>
+        <Key Name="Hide_3251" Value="108460"/>
+        <Key Name="Hide_3252" Value="108463"/>
+        <Key Name="Hide_3253" Value="108468"/>
+        <Key Name="Hide_3254" Value="108465"/>
     </KeyIDSpc>
     <KeyIDSpc Name="GuildMember">
         <Key Name="Name" Value="9011"/>
@@ -14044,6 +14072,10 @@
         <Key Name="MATK_RATE_MUL_BM" Value="105554"/>
         <Key Name="MDEF_RATE_MUL_BM" Value="105557"/>
         <Key Name="PATK_RATE_MUL_BM" Value="105558"/>
+        <Key Name="EQUIP_MATK" Value="108455"/>
+        <Key Name="EQUIP_PATK" Value="108457"/>
+        <Key Name="EQUIP_PATK_MAIN" Value="108454"/>
+        <Key Name="EQUIP_PATK_SUB" Value="108456"/>
     </KeyIDSpc>
     <KeyIDSpc Name="Skill">
         <Key Name="OnNeutral" Value="6715"/>
@@ -22198,6 +22230,28 @@
         <Key Name="GIVEHOLYTHING_Q_1" Value="107722"/>
         <Key Name="EVENT_2102_STATUE_BUFF_COUNT" Value="108087"/>
         <Key Name="USER_CARE_ORCHARD_324_MQ_07_REWARD" Value="108330"/>
+        <Key Name="EP13_F_SIAULIAI_1_SQ_01" Value="108423"/>
+        <Key Name="EP13_F_SIAULIAI_1_SQ_02" Value="108419"/>
+        <Key Name="EP13_F_SIAULIAI_1_SQ_03" Value="108421"/>
+        <Key Name="EP13_F_SIAULIAI_1_SQ_04" Value="108432"/>
+        <Key Name="EP13_F_SIAULIAI_1_SQ_05" Value="108430"/>
+        <Key Name="EP13_F_SIAULIAI_2_SQ_01" Value="108433"/>
+        <Key Name="EP13_F_SIAULIAI_2_SQ_02" Value="108417"/>
+        <Key Name="EP13_F_SIAULIAI_2_SQ_03" Value="108416"/>
+        <Key Name="EP13_F_SIAULIAI_2_SQ_04" Value="108426"/>
+        <Key Name="EP13_F_SIAULIAI_2_SQ_05" Value="108420"/>
+        <Key Name="EP13_F_SIAULIAI_2_SQ_06" Value="108425"/>
+        <Key Name="EP13_F_SIAULIAI_3_HQ_01" Value="108424"/>
+        <Key Name="EP13_F_SIAULIAI_3_SQ_01" Value="108427"/>
+        <Key Name="EP13_F_SIAULIAI_3_SQ_02" Value="108431"/>
+        <Key Name="EP13_F_SIAULIAI_3_SQ_03" Value="108436"/>
+        <Key Name="EP13_F_SIAULIAI_3_SQ_04" Value="108429"/>
+        <Key Name="EP13_F_SIAULIAI_3_SQ_05" Value="108418"/>
+        <Key Name="EP13_F_SIAULIAI_3_SQ_06" Value="108428"/>
+        <Key Name="EP13_F_SIAULIAI_3_SQ_07" Value="108422"/>
+        <Key Name="MG_Last_EP13_F_SIAULIAI_1_SQ_02_MINI" Value="108434"/>
+        <Key Name="MG_Last_EP13_F_SIAULIAI_1_SQ_04_MINI" Value="108414"/>
+        <Key Name="MG_Last_EP13_F_SIAULIAI_1_SQ_05_MINI" Value="108435"/>
     </KeyIDSpc>
     <KeyIDSpc Name="Monster">
         <Key Name="MaxHate" Value="6671"/>

@@ -322,3 +322,8 @@ ClassID,NeedCount,ClassName,Group,Category,Name,Desc,Icon,Hidden,DescTitle,Rewar
 110010,50,Ancient_10,AchievePoint,어시스터 코스트,피규어 수집가,[주간 보스 레이드]에 50회 참여하였습니다.,icon_item_Misc_00021,NO,주간 보스 레이드 50회 참여,,True,Ancient_10,YES,,,,ACHIEVE_REWARD_ANCIENT_COST,NO,YES,
 110011,30,Ancient_11,AchievePoint,어시스터 코스트,끝없는 성장,[성물 레이드 : 자동 매칭(Hard)]를 30회 클리어하였습니다.,icon_item_Misc_00021,NO,성물 레이드 : 자동 매칭(Hard) 30회 클리어,,True,Ancient_11,YES,,,,ACHIEVE_REWARD_ANCIENT_COST,NO,YES,
 110012,50,Ancient_12,AchievePoint,어시스터 코스트,레이드 숙련자,"[나비목 접선지 : Hard, 하얀 마녀의 숲 : Hard, 마신의 성소 : 파티]을 총50회 클리어하였습니다.",icon_item_Misc_00021,NO,특정 레전드 레이드 50회 클리어,,True,Ancient_12,YES,,,,ACHIEVE_REWARD_ANCIENT_COST,NO,YES,
+120001,1,Boss_Co_Op_1,AchievePoint,보스 협동전,Heart of a lion,보스 협동전 훈장 교환 칭호,icon_item_Misc_00021,NO,Heart of a lion,,True,Boss_Co_Op_1,YES,,,,,NO,YES,plate_achieve_coop_boss_Rank3
+120002,1,Boss_Co_Op_2,AchievePoint,보스 협동전,Reckless Daredevil,보스 협동전 훈장 교환 칭호,icon_item_Misc_00021,NO,Reckless Daredevil,,True,Boss_Co_Op_2,YES,,,,,NO,YES,plate_achieve_coop_boss_Rank2
+120003,1,Boss_Co_Op_3,AchievePoint,보스 협동전,Raging Imperator,보스 협동전 훈장 교환 칭호,icon_item_Misc_00021,NO,Raging Imperator,,True,Boss_Co_Op_3,YES,,,,,NO,YES,plate_achieve_coop_boss_Rank1
+120004,1,Boss_Co_Op_4,AchievePoint,보스 협동전,Raid Veteran,보스 협동전 훈장 교환 칭호,icon_item_Misc_00021,NO,Raid Veteran,,True,Boss_Co_Op_4,YES,,,,,NO,YES,plate_achieve_coop_boss_20
+120005,1,Boss_Co_Op_5,AchievePoint,보스 협동전,Eternal Warrior,보스 협동전 훈장 교환 칭호,icon_item_Misc_00021,NO,Eternal Warrior,,True,Boss_Co_Op_5,YES,,,,,NO,YES,plate_achieve_coop_boss_100

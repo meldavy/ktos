@@ -42,7 +42,7 @@ function INIT_ITEM_EQUIP_HELPER(frame)
 			local tmp = GetEquipItem(pc,spots[i])
 			if IS_NO_EQUIPITEM(tmp) == 0 then
 				equip_weapon = tmp
-				equip_spot = spots[i]
+				equip_spot = spots[i]				
 				break
 			end
 		end
@@ -55,8 +55,8 @@ function SET_ITEM_EQUIP_HELPER_CTRL(ctrl,item, equip_spot)
 	local item_name = GET_CHILD_RECURSIVELY(ctrl,"item_name")
 	if item ~= nil then
 		local grade_font = ctrl:GetUserConfig("FONT_GRADE_"..item.ItemGrade)
-		local item_text = string.format("%s%s",grade_font,item.Name)
-		item_name:SetTextByKey("name",item_text)
+		local item_text = string.format("%s%s",grade_font,item.Name)		
+		item_name:SetTextByKey("name", item_text)
 	else
 		local grade_font = ctrl:GetUserConfig("FONT_NOT_EQUIP")
 		local item_text = string.format("%s%s",grade_font,ClMsg("None"))
@@ -109,6 +109,16 @@ function GET_ITEM_EQUIP_HELPER_WARNING_TEXT(item, spot)
 		return tooltip
 	end
 
+	local awaken_flag = 0;
+	if IS_ENABLE_GIVE_HIDDEN_PROP_ITEM(item) == false then
+		awaken_flag = 1;
+	end
+	
+	local enchant_flag = 0
+	if IS_ENABLE_APPLY_JEWELL_TOOLTIPTEXT(item) == false then
+	    enchant_flag = 1
+	end
+
 	--초월
 	if REINFORCE_ABLE_131014(item) == 1 and TryGetProp(item, "Transcend") == 0 then
 		concat_string("Transcend")
@@ -119,7 +129,7 @@ function GET_ITEM_EQUIP_HELPER_WARNING_TEXT(item, spot)
 	end
 
 	--인챈트
-	if IS_ENABLE_APPLY_JEWELL_TOOLTIPTEXT(item) ~= false and TryGetProp(item,"RandomOptionRare") == 'None' then
+	if enchant_flag ~= 1 and IS_ENABLE_APPLY_JEWELL_TOOLTIPTEXT(item) ~= false and TryGetProp(item,"RandomOptionRare") == 'None' then
 		concat_string("Jewel")
 	end
 	
@@ -149,12 +159,12 @@ function GET_ITEM_EQUIP_HELPER_WARNING_TEXT(item, spot)
 		concat_string("Gem")
 	end
 
-	if is_awaken_spot(spot) == true then
+	if awaken_flag ~= 1 and is_awaken_spot(spot) == true then
 		if TryGetProp(item, 'IsAwaken', 0) == 0 then
 			concat_string('ItemDecomposeWarningProp_Awaken')
 		end
 	end
-
+	
 	return tooltip
 end
 

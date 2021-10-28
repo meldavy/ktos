@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by imc (imc) -->
+<ActionDesc>
+	<BlendOn frame="4" R="100" G="100" B="100" A="50"/>
+	<BlendOn frame="5" R="0" G="0" B="0" A="0"/>
+	<BlendOn frame="6" R="100" G="100" B="100" A="50"/>
+	<BlendOff frame="7" R="0" G="0" B="0" A="0"/>
+	<Shockwave frame="5" type="2" intensity="5" frequency="70" duration="0.2" range="1000"/>
+</ActionDesc>

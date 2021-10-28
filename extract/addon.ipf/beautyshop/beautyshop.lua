@@ -2142,13 +2142,27 @@ end
 function GET_ALLOW_DUPLICATE_ITEM_CLIENT_MSG(itemClassName) -- return 'buy case client msg', 'preview case client msg'
 	local itemCls = GetClass('Item', itemClassName);
 	if itemCls.Script == 'SCR_USE_ITEM_HAIRCOLOR' then -- 염색약 처리
-		local etc = GetMyEtcObject();		
-		if TryGetProp(etc, 'HairColor_'..itemCls.StringArg, 0) == 1 then
-			return 'AlreadyHaveWigDye', 'AlreadyHaveWigDyePreview';
+		local color = itemCls.StringArg;
+		if IS_ACHIEVE_HAIR_COLOR(color) == true then 
+			local acc = GetMyAccountObj();
+			if acc ~= nil then
+				if TryGetProp(acc, "HairColor_"..itemCls.StringArg, 0) == 1 then
+					return 'AlreadyHaveWigDye', 'AlreadyHaveWigDyePreview';
+				end
+			end
+		else
+			local etc = GetMyEtcObject();
+			if etc ~= nil then
+				if TryGetProp(etc, 'HairColor_'..itemCls.StringArg, 0) == 1 then
+					return 'AlreadyHaveWigDye', 'AlreadyHaveWigDyePreview';
+				end
+			end
 		end
+
 		if session.GetInvItemByType(itemCls.ClassID) ~= nil then
 			return 'AlreadyHaveWigDye', 'AlreadyHaveWigDyePreview';
 		end
+
 		if session.GetWarehouseItemByType(itemCls.ClassID) ~= nil then
 			return 'AlreadyHaveWigDye', 'AlreadyHaveWigDyePreview';
 		end

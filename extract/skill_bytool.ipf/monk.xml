@@ -655,7 +655,11 @@ return obj.Level;"/>
 					<Num Num="0"/>
 					<Num Num="250"/>
 					<Num Num="20"/>
-					<Num Num="25"/>
+					<Num Num="25" UseFunc="1" FuncTxt="local value = 25
+                	if IsPVPField(self) == 1 and value > 2 then
+                	value = math.floor((math.max(0, value-2)^0.5))+math.min(2, value)
+                	end
+                	return value"/>
 					<Num Num="2"/>
 				</Scp>
 				<Scp Scp="SKL_TGT_KNOCKDOWN" Client="NO" UseSleep="NO" Time="201" LoopTime="500">
@@ -732,7 +736,11 @@ return obj.Level;"/>
 							<Num Num="0"/>
 							<Num Num="250"/>
 							<Num Num="20" UseFunc="1" FuncTxt="local value = 20 local flowTime = GetDynamicCastingFlowTime(self) if flowTime >= 2 then value = value * 2.4 elseif flowTime >= 1 then value = value * 1.7 end return value"/>
-							<Num Num="25"/>
+							<Num Num="25" UseFunc="1" FuncTxt="local value = 25
+                			if IsPVPField(self) == 1 and value > 2 then
+                			value = math.floor((math.max(0, value-2)^0.5))	+math.min(2, value)
+                			end
+                			return value"/>
 							<Num Num="2"/>
 						</Scp>
 						<Scp Scp="SKL_TGT_KNOCKDOWN" Client="NO" UseSleep="NO" Time="201" LoopTime="500">

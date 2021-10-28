@@ -77,6 +77,6 @@
 		<Class ClassID="84" ClassName="/arbordaycheck" Alias="/출석" ConvertWhenSend="1"/>
 		<Class ClassID="85" ClassName="/theif" Alias="/도둑" ConvertWhenSend="1"/>
 		<Class ClassID="88" ClassName="/check" Alias="/체크" ConvertWhenSend="1"/>
-		<Class ClassID="89" ClassName="/campimg" Alias="/캠핑" ConvertWhenSend="1"/>
+		<Class ClassID="89" ClassName="/camping" Alias="/캠핑" ConvertWhenSend="1"/>
 	</Category>
 </idspace>

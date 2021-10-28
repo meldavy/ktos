@@ -305,6 +305,9 @@ return value"/>
                 <Str Str="skl_eff_rollingstone_cast"/>
                 <Str Str="skl_eff_rollingstone_cast"/>
             </ToolScp>
+            <ToolScp Scp="C_SOUND" Client="YES" UseSleep="NO">
+                <Str Str="skl_eff_rollingstone_shot"/>
+            </ToolScp>
         </KeyInputEnd>
         <MaxChargeEvent>
             <ToolScp Scp="SKL_BUFF" Client="NO" UseSleep="NO">

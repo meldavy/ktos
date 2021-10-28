@@ -1,4 +1,5 @@
 ClassID,StartTimeYYYYMM,StartTimeDDHHMM,NewTimeYYYYMM,NewTimeDDHHMM,EndTimeYYYYMM,EndTimeDDHHMM,DeadlineTimeYYYYMM,DeadlineTimeDDHHMM,ExchangeTimeYYYYMM,ExchangeTimeDDHHMM,ClassName,Name,ImagePath,url,UserCommand1,UserCommand2,UserCommand3,ShowType
+996970,202106,30900,202106,80000,202107,10000,202106,250000,0,0,Event_210603_BiBiChu,뇌오세 탐구 보고서,Event_210603_BiBiChu,http://tos.nexon.com/lab/gos/view.aspx?n4ArticleSN=173,,,,
 996980,202105,200900,202105,260900,202106,100700,202106,40700,0,0,210520_goddesscube,여신의 큐브 - 마피아,210520_goddesscube,http://tos.nexon.com/news/update/view.aspx?n4ArticleSN=2384&n4CategorySN=0,,,,
 996990,202106,10000,202106,60000,202107,10000,202106,250000,0,0,event_2106Burning,주말 앤 버닝 - 6월,event_2105Burning,http://tos.nexon.com/news/events/view.aspx?n4ArticleSN=328&n4ArticleCategorySN=1,,,,
 997000,202106,10000,202106,60000,202107,10000,202106,250000,0,0,event2106_VaivoraReward,바이보라 출석 - 6월,event_2006VaivoraReward,http://tos.nexon.com/news/events/view.aspx?n4ArticleSN=327&n4ArticleCategorySN=1,,,,

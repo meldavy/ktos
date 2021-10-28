@@ -2724,8 +2724,7 @@ function CHANGE_HAIR_COLOR(frame)
 		return;
 	end
 
-	local pc = GetMyPCObject()
-    local etc = GetMyEtcObject();
+	local pc = GetMyPCObject();
 
 	local haveHairColorList = {}
 	local haveHairColorEList = {}
@@ -2790,10 +2789,23 @@ function CHANGE_HAIR_COLOR(frame)
 				local eachColorE = imcIES.GetString(eachcls, 'EngColor');	
 				eachColorE = string.lower(eachColorE);
 				-- 전체 헤어 컬러 목록에서 유저가 가진 헤어 컬러 목록을 드롭 리스트에 넣음
-				if TryGetProp(etc, "HairColor_" .. eachColorE) == 1 then
-					haveHairColorList[#haveHairColorList + 1] = eachColor;
-					haveHairColorEList[#haveHairColorEList + 1] = eachColorE;
-				end				
+				if IS_ACHIEVE_HAIR_COLOR(eachColorE) == true then 
+					local acc = GetMyAccountObj();
+					if acc ~= nil then
+						if TryGetProp(acc, "HairColor_"..eachColorE) == 1 then
+							haveHairColorList[#haveHairColorList + 1] = eachColor;
+							haveHairColorEList[#haveHairColorEList + 1] = eachColorE;
+						end
+					end
+				else
+					local etc = GetMyEtcObject();
+					if etc ~= nil then
+						if TryGetProp(etc, "HairColor_"..eachColorE) == 1 then
+							haveHairColorList[#haveHairColorList + 1] = eachColor;
+							haveHairColorEList[#haveHairColorEList + 1] = eachColorE;
+						end				
+					end
+				end
 			end
 		end
 	end
@@ -3100,10 +3112,10 @@ function INVENTORY_DELETE(itemIESID, itemType)
 		local yesScp = string.format("EXEC_DELETE_ITEMDROP");
         local clmsg = ScpArgMsg('ReallyDestroy{ITEM}', 'ITEM', s_dropDeleteItemName);
         if item_grade >= 3 then
-            clmsg = ScpArgMsg('HighItemGradeReallyDestroy{ITEM}', 'ITEM', s_dropDeleteItemName);
+            clmsg = ScpArgMsg('HighItemGradeReallyDestroy{msg}{ITEM}', 'msg', ClMsg('destory_now'), 'ITEM', s_dropDeleteItemName);
         end
 		--ui.MsgBox(clmsg, yesScp, "None");
-		WARNINGMSGBOX_FRAME_OPEN(clmsg, yesScp, "None", itemIESID)
+		WARNINGMSGBOX_FRAME_OPEN_DELETE_ITEM(clmsg, yesScp, "None", itemIESID)
 	end
 	--end
 end
@@ -3160,13 +3172,13 @@ function CHECK_EXEC_DELETE_ITEMDROP(count, className)
 	local yesScp = string.format("EXEC_DELETE_ITEMDROP");
     local clmsg = ScpArgMsg('ReallyDestroy{ITEM}{COUNT}', 'ITEM', s_dropDeleteItemName, 'COUNT', s_dropDeleteItemCount);
     if item_grade >= 3 then
-        clmsg = ScpArgMsg('HighItemGradeReallyDestroy{ITEM}{COUNT}', 'ITEM', s_dropDeleteItemName, 'COUNT', s_dropDeleteItemCount);
+        clmsg = ScpArgMsg('HighItemGradeReallyDestroy{msg}{ITEM}{COUNT}', 'msg', ClMsg('destory_now'), 'ITEM', s_dropDeleteItemName, 'COUNT', s_dropDeleteItemCount);
     end
 
 	--ui.MsgBox(clmsg, yesScp, "None");
 	local inputstringframe = ui.GetFrame("inputstring");
 	local itemGuid = s_dropDeleteItemIESID
-	WARNINGMSGBOX_FRAME_OPEN(clmsg, yesScp, "None", itemGuid)
+	WARNINGMSGBOX_FRAME_OPEN_DELETE_ITEM(clmsg, yesScp, "None", itemGuid)
 end
 
 function EXEC_DELETE_ITEMDROP()
@@ -3906,6 +3918,11 @@ function INV_HAT_VISIBLE_STEATE_SET(frame)
 		return;
 	end
 
+	if IsBuffApplied(pc, "Play_Costume_Event") == "YES" then
+		ui.SysMsg(ClMsg('CannotUseCostumeEvent'));
+		return;
+	end
+
 	if frame:GetUserIValue("CLICK_COOL_TIME") > imcTime.GetAppTime() then
 		return;	
 	end
@@ -3981,6 +3998,11 @@ end
 function INV_HAIR_WIG_VISIBLE_STATE_SET(frame)
 	local pc = GetMyPCObject();
 	if IsBuffApplied(pc, 'Instrument_Use_Buff') == 'YES' then
+		return;
+	end
+
+	if IsBuffApplied(pc, "Play_Costume_Event") == "YES" then
+		ui.SysMsg(ClMsg('CannotUseCostumeEvent'));
 		return;
 	end
 

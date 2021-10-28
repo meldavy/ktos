@@ -779,7 +779,11 @@ local maxR = sklObj.MaxR
                     <Str_Arg Arg="1" Str="E_archer_crossarrow_shot_ground"/>
                     <Num Num="20"/>
                     <Num Num="100"/>
-                    <Num Num="20"/>
+                    <Num Num="20" UseFunc="1" FuncTxt="local value = 20
+                    if IsPVPField(self) == 1 and value > 2 then
+                    value = math.floor((math.max(0, value-2)^0.5))+math.min(2, value)
+                    end
+                    return value"/>
                     <Num Num="1"/>
                     <Num Num="0.1"/>
                     <Num Num="1"/>
@@ -825,7 +829,11 @@ local maxR = sklObj.MaxR
                             <Str_Arg Arg="1" Str="E_archer_crossarrow_shot_ground"/>
                             <Num Num="20"/>
                             <Num Num="100"/>
-                            <Num Num="20"/>
+                            <Num Num="20" UseFunc="1" FuncTxt="local value = 20
+                            if IsPVPField(self) == 1 and value > 2 then
+                            value = math.floor((math.max(0, value-2)^0.5))+math.min(2, value)
+                            end
+                            return value"/>
                             <Num Num="1"/>
                             <Num Num="0.1"/>
                             <Num Num="1"/>

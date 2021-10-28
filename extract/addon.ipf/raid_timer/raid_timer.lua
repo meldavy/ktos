@@ -51,7 +51,7 @@ function RAID_TIMER_UPDATE_TEXT_GAUGE(frame, msg, argStr)
     local color_str = argument_list[2];
 
     local remaintimeText = GET_CHILD_RECURSIVELY(frame, "remaintimeText");
-    remaintimeText:SetText(ClMsg(ui_msg));
+    remaintimeText:SetText("{@st42b}{ds}{s14}" .. ClMsg(ui_msg) .. "{/}{/}{/}");
 
     local remaintimeGauge = GET_CHILD_RECURSIVELY(frame, "remaintimeGauge", "ui::CGauge");
     if color_str == "Yellow" then

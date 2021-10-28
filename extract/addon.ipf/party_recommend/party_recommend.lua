@@ -269,15 +269,13 @@ function OPEN_SELECT_TARGET_FROM_SUMMON(frame, msg, argStr)
     PARTY_RECOMMEND_DEFAULT_SETTING(frame, skillID);
     
     -- summoned monsters
-    local summonTypeList = { 103019, 58534, 300011 };
-    local summonSklList = { 20909, 20911, 20912 };
     local emphasizePic = nil;
     local emphasizeValue = nil;
     local index = 1;
 
-    for j = 1, 3 do
-        local summonList = hardSkill.GetSummonHandleList(summonTypeList[j]);
-        local summonSklID = summonSklList[j];
+    for j = 0, 2 do
+        local summonSklID = hardSkill.GetSummonSkillIDByIndex(j);
+        local summonList = hardSkill.GetSummonHandleList(summonSklID);
         if summonList ~= nil then
             local count = summonList:Count();
             local memberSet = GET_CHILD_RECURSIVELY(frame, 'memberSet_'..index);

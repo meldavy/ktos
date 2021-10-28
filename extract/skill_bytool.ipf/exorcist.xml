@@ -52,7 +52,11 @@
                 <Scp Scp="SKL_SET_TARGET_CIRCLE" Client="NO" UseSleep="NO" Time="0">
                     <Pos Angle="0" Dist="3.884188e-36" PosType="3"/>
                     <Num Num="70"/>
-                    <Num Num="15"/>
+                    <Num Num="15" UseFunc="1" FuncTxt="local value = 15
+                    if IsPVPField(self) == 1 and value > 2 then
+                    value = math.floor((math.max(0, value-2)^0.5))+math.min(2, value)
+                    end
+                    return value"/>
                     <Num Num="2"/>
                     <Num Num="0"/>
                     <Num Num="0"/>
@@ -142,7 +146,11 @@
                         <Scp Scp="SKL_SET_TARGET_CIRCLE" Client="NO" UseSleep="NO" Time="0">
                             <Pos Angle="0" Dist="3.884188e-36" PosType="3"/>
                             <Num Num="70"/>
-                            <Num Num="15"/>
+                            <Num Num="15" UseFunc="1" FuncTxt="local value = 15
+                            if IsPVPField(self) == 1 and value > 2 then
+                            value = math.floor((math.max(0, value-2)^0.5))+math.min(2, value)
+                            end
+                            return value"/>
                             <Num Num="2"/>
                             <Num Num="0"/>
                             <Num Num="0"/>
@@ -377,7 +385,11 @@ return time"/>
                 <Scp Scp="SKL_SET_TARGET_CIRCLE" Client="NO" UseSleep="NO" Time="100">
                     <Pos Angle="0" Dist="0"/>
                     <Num Num="150"/>
-                    <Num Num="5"/>
+                    <Num Num="5" UseFunc="1" FuncTxt="local value = 5
+                    if IsPVPField(self) == 1 and value > 2 then
+                    value = math.floor((math.max(0, value-2)^0.5))+math.min(2, value)
+                    end
+                    return value"/>
                     <Num Num="1"/>
                     <Num Num="0"/>
                     <Num Num="1"/>

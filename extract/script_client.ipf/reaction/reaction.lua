@@ -110,6 +110,13 @@ function C_EFFECT(actor, obj, effectName, scale, nodeName, lifeTime)
         effectName = "None";
     end
 
+    local pc = GetMyPCObject()
+    if effectName == 'F_spread_in032_fire3' and GetExProp(pc, "ITEM_VIBORA_SelfImmolate") > 0 then
+        scale = scale * 100
+        scale = math.floor(scale * 1.25)
+        scale = scale / 100
+    end
+
     effect.PlayActorEffect(actor, effectName, nodeName, lifeTime, scale);
 
 end

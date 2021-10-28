@@ -593,19 +593,18 @@ function ARK_COMPOSITION_BUTTON_CLICK(parent, ctrl)
     end
 
     local frame = parent:GetTopParentFrame();
-    
+    local type = frame:GetUserValue('TYPE');
     local ark_guid = frame:GetUserValue('ARK_ITEM_GUID');
     if ark_guid == 'None' or ark_guid == '0' then
         return;
     end
 
-    local decomposecost = GET_CHILD_RECURSIVELY(frame, "decomposecost");
-    if IsGreaterThanForBigNumber(decomposecost:GetText(), GET_TOTAL_MONEY_STR()) == 1 then
+    local decomposecost = GET_CHILD_RECURSIVELY(frame, "decomposecost");    
+    if type == 'EXP' and IsGreaterThanForBigNumber(decomposecost:GetText(), GET_TOTAL_MONEY_STR()) == 1 then
         ui.SysMsg(ClMsg("Auto_SoJiKeumi_BuJogHapNiDa."));
         return;
     end
-
-    local type = frame:GetUserValue('TYPE');
+    
     if type == 'EXP' then
         local countList = NewStringList();
 

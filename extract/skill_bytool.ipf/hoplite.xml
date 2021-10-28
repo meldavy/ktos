@@ -124,7 +124,7 @@
                 <Num Num="0"/>
                 <Num Num="0"/>
                 <Num Num="0"/>
-                <Str_Arg Arg="0" Str="" />
+                <Str_Arg Arg="0" Str=""/>
                 <Str Str=""/>
                 <Num Num="0"/>
                 <Num Num="0"/>
@@ -136,30 +136,30 @@
                 <Num Num="0"/>
             </ToolScp>
         </KeyInput>
-        <MainSkl JumpFlee="NO" MSPDToUsePos="0"ScrLock="None">
+        <MainSkl JumpFlee="NO" MSPDToUsePos="0" ScrLock="None">
             <HitList>
-                <Frame Angle="0" AniTime="10199" Dist="0" ForceATK="0" HitCount="1" Length="30" PosType="0" RandDist="0" RandomPerHit="0" RotAngle="0" SklAngle="0.17453299" TermMax="0" TermMin="0" Time="9999" Type="FAN" Width="30" />
+                <Frame Angle="0" AniTime="10199" Dist="0" ForceATK="0" HitCount="1" Length="30" PosType="0" RandDist="0" RandomPerHit="0" RotAngle="0" SklAngle="0.17453299" TermMax="0" TermMin="0" Time="9999" Type="FAN" Width="30"/>
             </HitList>
             <EtcList>
-                <Scp Client="YES" Scp="MONSKL_C_PLAY_ANIM" Time="0" UseSleep="NO" >
+                <Scp Client="YES" Scp="MONSKL_C_PLAY_ANIM" Time="0" UseSleep="NO">
                     <Str Str="SKL_THROUWINGSPEAR"/>
                     <Num Num="2.4"/>
                     <Num Num="1"/>
                     <Num Num="0"/>
                 </Scp>
-                <Scp Client="YES" Scp="C_VOICE_SOUND" Time="0" UseSleep="NO" >
+                <Scp Client="YES" Scp="C_VOICE_SOUND" Time="0" UseSleep="NO">
                     <Str Str="voice_war_atk_short"/>
                     <Str Str="voice_atk_short_war_f"/>
                 </Scp>
-                <Scp Client="YES" Scp="C_VOICE_SOUND" Time="120" UseSleep="NO" >
+                <Scp Client="YES" Scp="C_VOICE_SOUND" Time="120" UseSleep="NO">
                     <Str Str="voice_war_atk_medium"/>
                     <Str Str="voice_atk_medium_war_f"/>
                 </Scp>
-                <Scp Client="NO" Scp="SKL_THROW_EQUIP_OBJECT" Time="485" TimeSync="0"UseSleep="YES">
+                <Scp Client="NO" Scp="SKL_THROW_EQUIP_OBJECT" Time="485" TimeSync="0" UseSleep="YES">
                     <Str Str="warrior_f_"/>
                     <Str Str="RH"/>
                     <Pos Angle="0" Dist="0" PosType="3"/>
-                    <Str_Arg Arg="3" Str="F_smoke177" />
+                    <Str_Arg Arg="3" Str="F_smoke177"/>
                     <Num Num="65"/>
                     <Num Num="0.2"/>
                     <Num Num="0"/>
@@ -167,7 +167,7 @@
                     <Num Num="1"/>
                     <Str Str="Spear"/>
                 </Scp>
-                <Scp Client="YES" Scp="C_SHOCKWAVE" Time="485" UseSleep="NO" >
+                <Scp Client="YES" Scp="C_SHOCKWAVE" Time="485" UseSleep="NO">
                     <Num Num="8"/>
                     <Num Num="0.40000001"/>
                     <Num Num="55"/>
@@ -224,18 +224,18 @@ return value"/>
     </Skill>
     <Skill Name="Hoplite_Stabbing">
         <EndScripts>
-            <ToolScp Client="YES" Scp="C_EFFECT_DETACH" UseSleep="NO">
-                <Str_Arg Arg="1" Str="E_warrior_florysh"/>
+            <ToolScp Scp="C_EFFECT_DETACH" Client="YES" UseSleep="NO">
+                <Str_Arg Str="E_warrior_florysh" Arg="1"/>
                 <Num Num="0.1"/>
             </ToolScp>
-            <ToolScp Client="YES" Scp="C_EFFECT_DETACH" UseSleep="NO">
-                <Str_Arg Arg="1" Str="I_breath001_fire"/>
+            <ToolScp Scp="C_EFFECT_DETACH" Client="YES" UseSleep="NO">
+                <Str_Arg Str="I_breath001_fire" Arg="1"/>
                 <Num Num="0.1"/>
             </ToolScp>
-            <ToolScp Client="NO" Scp="SKL_BUFF_REMOVE" UseSleep="NO">
+            <ToolScp Scp="SKL_BUFF_REMOVE" Client="NO" UseSleep="NO">
                 <Str Str="Stabbing_Debuff"/>
             </ToolScp>
-            <ToolScp Client="NO" Scp="SKL_BUFF" UseSleep="NO">
+            <ToolScp Scp="SKL_BUFF" Client="NO" UseSleep="NO">
                 <Str Str="Stabbing_Buff"/>
                 <Num Num="1"/>
                 <Num Num="0"/>
@@ -244,28 +244,28 @@ return value"/>
                 <Num Num="100"/>
                 <Num Num="0"/>
             </ToolScp>
-            <ToolScp Client="NO" Scp="SKL_CANCEL_CANCEL" UseSleep="NO"/>
+            <ToolScp Scp="SKL_CANCEL_CANCEL" Client="NO" UseSleep="NO"/>
         </EndScripts>
         <KeyInput>
-            <ToolScp Client="YES" Scp="SKL_KEY_PRESS" UseSleep="NO">
+            <ToolScp Scp="SKL_KEY_PRESS" Client="YES" UseSleep="NO">
                 <Num Num="0.30000001"/>
                 <Num Num="0.2"/>
-                <Num FuncTxt="return 10000" Num="1000" UseFunc="1"/>
+                <Num Num="1000" UseFunc="1" FuncTxt="return 10000"/>
                 <Num Num="1"/>
             </ToolScp>
         </KeyInput>
         <KeyCancelScp>
-            <ToolScp Client="NO" Scp="SKL_CANCEL_CANCEL" UseSleep="NO"/>
+            <ToolScp Scp="SKL_CANCEL_CANCEL" Client="NO" UseSleep="NO"/>
         </KeyCancelScp>
-        <MainSkl JumpFlee="NO" MSPDToUsePos="0" ScrLock="None">
+        <MainSkl ScrLock="None" JumpFlee="NO" MSPDToUsePos="0">
             <HitList>
-                <Frame Angle="0" AniTime="99999" Dist="0" ForceATK="0" HitCount="1" PosType="0" RandDist="0" RandomPerHit="0" RotAngle="0" SklAngle="0.17453292" TermMax="0" TermMin="0" Time="99799" Type="FAN"/>
+                <Frame Type="FAN" Time="99799" HitCount="1" TermMin="0" TermMax="0" PosType="0" Dist="0" RandDist="0" RandomPerHit="0" Angle="0" SklAngle="0.17453292" AniTime="99999" RotAngle="0" ForceATK="0" ScriptIndex="0" ScriptName="" SkillType="0"/>
             </HitList>
             <EtcList>
-                <Scp Client="NO" Scp="SKL_BUFF_REMOVE" Time="0" UseSleep="NO">
+                <Scp Scp="SKL_BUFF_REMOVE" Client="NO" UseSleep="NO" Time="0">
                     <Str Str="Stabbing_Buff"/>
                 </Scp>
-                <Scp Client="NO" Scp="SKL_BUFF" Time="0" TimeSync="0" UseSleep="NO">
+                <Scp Scp="SKL_BUFF" Client="NO" UseSleep="NO" Time="0" TimeSync="0">
                     <Str Str="Stabbing_Debuff"/>
                     <Num Num="1"/>
                     <Num Num="0"/>
@@ -274,13 +274,13 @@ return value"/>
                     <Num Num="100"/>
                     <Num Num="0"/>
                 </Scp>
-                <Scp Client="YES" Scp="MONSKL_C_PLAY_ANIM" Time="0" TimeSync="0" UseSleep="NO">
+                <Scp Scp="MONSKL_C_PLAY_ANIM" Client="YES" UseSleep="NO" Time="0" TimeSync="0">
                     <Str Str="SKL_FLORYSH"/>
                     <Num Num="1.5"/>
                     <Num Num="1"/>
                     <Num Num="0"/>
                 </Scp>
-                <Scp Client="NO" Scp="SKL_SET_TARGET_SQUARE" Time="235" TimeSync="0" UseSleep="NO">
+                <Scp Scp="SKL_SET_TARGET_SQUARE" Client="NO" UseSleep="NO" Time="235" TimeSync="0">
                     <Pos Angle="0" Dist="0"/>
                     <Num Num="0"/>
                     <Num Num="90"/>
@@ -291,11 +291,11 @@ return value"/>
                     <Num Num="0"/>
                     <Num Num="0"/>
                 </Scp>
-                <Scp Client="NO" Scp="SKL_TGT_SPLASH_DMG_WITH_SR" Time="235" TimeSync="0" UseSleep="YES">
+                <Scp Scp="SKL_TGT_SPLASH_DMG_WITH_SR" Client="NO" UseSleep="YES" Time="235" TimeSync="0">
                     <Num Num="0"/>
                     <Str Str="None"/>
                 </Scp>
-                <Scp Client="NO" Scp="SKL_BUFF" Time="235" TimeSync="0" UseSleep="NO">
+                <Scp Scp="SKL_BUFF" Client="NO" UseSleep="NO" Time="235" TimeSync="0">
                     <Str Str="Stabbing_Buff"/>
                     <Num Num="1"/>
                     <Num Num="0"/>
@@ -304,7 +304,7 @@ return value"/>
                     <Num Num="100"/>
                     <Num Num="0"/>
                 </Scp>
-                <Scp Client="NO" LoopTime="140" Scp="SKL_SET_TARGET_SQUARE" Time="545" TimeSync="0" UseSleep="NO">
+                <Scp Scp="SKL_SET_TARGET_SQUARE" Client="NO" UseSleep="NO" Time="545" LoopTime="280" TimeSync="0">
                     <Pos Angle="0" Dist="0"/>
                     <Num Num="0"/>
                     <Num Num="90"/>
@@ -315,11 +315,11 @@ return value"/>
                     <Num Num="0"/>
                     <Num Num="0"/>
                 </Scp>
-                <Scp Client="NO" LoopTime="140" Scp="SKL_TGT_SPLASH_DMG_WITH_SR" Time="545" TimeSync="0" UseSleep="YES">
+                <Scp Scp="SKL_TGT_SPLASH_DMG_WITH_SR" Client="NO" UseSleep="YES" Time="545" LoopTime="280" TimeSync="0">
                     <Num Num="0"/>
                     <Str Str="None"/>
                 </Scp>
-                <Scp Client="NO" LoopTime="140" Scp="SKL_BUFF" Time="545" TimeSync="0" UseSleep="NO">
+                <Scp Scp="SKL_BUFF" Client="NO" UseSleep="NO" Time="545" LoopTime="140" TimeSync="0">
                     <Str Str="Stabbing_Buff"/>
                     <Num Num="1"/>
                     <Num Num="0"/>
@@ -328,17 +328,17 @@ return value"/>
                     <Num Num="100"/>
                     <Num Num="0"/>
                 </Scp>
-                <Scp Client="NO" Scp="SKL_CHECK_LOOPING_COUNT_INIT" Time="550" TimeSync="0" UseSleep="NO">
+                <Scp Scp="SKL_CHECK_LOOPING_COUNT_INIT" Client="NO" UseSleep="NO" Time="550" TimeSync="0">
                     <Num Num="14" UseFunc="1" FuncTxt="return 14;"/>
                 </Scp>
-                <Scp Client="NO" LoopTime="140" Scp="SKL_CHECK_LOOPING_COUNT" Time="550" TimeSync="0" UseSleep="NO"/>
+                <Scp Scp="SKL_CHECK_LOOPING_COUNT" Client="NO" UseSleep="NO" Time="550" LoopTime="140" TimeSync="0"/>
             </EtcList>
             <ResultList>
-                <ToolScp Client="NO" Scp="S_R_TGT_REMOVE_BUFF" UseSleep="NO">
-                    <Str FuncTxt="local func_name = 'get_remove_buff_tooltip_' .. TryGetProp(skill, 'ClassName', 'None')
+                <ToolScp Scp="S_R_TGT_REMOVE_BUFF" Client="NO" UseSleep="NO">
+                    <Str Str="0" UseFunc="1" FuncTxt="local func_name = 'get_remove_buff_tooltip_' .. TryGetProp(skill, 'ClassName', 'None')
                local func = _G[func_name]
                if func == nil then return end
-               return func(skill.Level)" Str="0" UseFunc="1"/>
+               return func(skill.Level)"/>
                 </ToolScp>
             </ResultList>
         </MainSkl>

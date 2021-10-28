@@ -269,17 +269,17 @@
     </Skill>
     <Skill Name="Miko_HoukiBroom">
         <EndScripts>
-            <ToolScp Client="NO" Scp="SKL_RUN_SCRIPT" UseSleep="NO">
+            <ToolScp Scp="SKL_RUN_SCRIPT" Client="NO" UseSleep="NO">
                 <Str Str="MONSKL_END_SPAWN_PAD"/>
             </ToolScp>
         </EndScripts>
         <KeyInput>
-            <ToolScp Client="YES" Scp="SKL_KEY_DYNAMIC_CASTING" UseSleep="NO">
+            <ToolScp Scp="SKL_KEY_DYNAMIC_CASTING" Client="YES" UseSleep="NO">
                 <Num Num="1"/>
                 <Num Num="0"/>
                 <Num Num="5"/>
                 <Num Num="1"/>
-                <Num Num="0"/>
+                <Num Num="1"/>
                 <Num Num="0"/>
                 <Num Num="0"/>
                 <Num Num="0"/>
@@ -287,7 +287,7 @@
                 <Num Num="0"/>
                 <Num Num="1"/>
                 <Num Num="0"/>
-                <Str_Arg Arg="0" Str=""/>
+                <Str_Arg Str="" Arg="0"/>
                 <Str Str=""/>
                 <Num Num="0"/>
                 <Num Num="0"/>
@@ -297,18 +297,20 @@
                 <Num Num="0"/>
                 <Num Num="0"/>
                 <Num Num="0"/>
+                <Str Str=""/>
+                <Str Str=""/>
             </ToolScp>
         </KeyInput>
         <KeyInputStart>
-            <ToolScp Client="NO" Scp="SKL_CONSUME_SKILL_COOLDOWN" UseSleep="NO">
+            <ToolScp Scp="SKL_CONSUME_SKILL_COOLDOWN" Client="NO" UseSleep="NO">
                 <Num Num="1"/>
             </ToolScp>
-            <ToolScp Client="NO" Scp="MONSKL_START_SPAWN_PAD" UseSleep="NO">
+            <ToolScp Scp="MONSKL_START_SPAWN_PAD" Client="NO" UseSleep="NO">
                 <Str Str="Miko_HoukiBroom"/>
-                <Num FuncTxt="return 5" Num="10" UseFunc="1"/>
+                <Num Num="10" UseFunc="1" FuncTxt="return 5"/>
                 <Num Num="60"/>
             </ToolScp>
-            <ToolScp Client="NO" Scp="SKL_BUFF" UseSleep="NO">
+            <ToolScp Scp="SKL_BUFF" Client="NO" UseSleep="NO">
                 <Str Str="HoukiBroom_Buff"/>
                 <Num Num="1"/>
                 <Num Num="0"/>
@@ -317,28 +319,28 @@
                 <Num Num="100"/>
                 <Num Num="0"/>
             </ToolScp>
-            <ToolScp Client="NO" Scp="SKL_PLAY_SOUND" UseSleep="NO">
+            <ToolScp Scp="SKL_PLAY_SOUND" Client="NO" UseSleep="NO">
                 <Str Str="skl_eff_houkibroom_ground"/>
                 <Num Num="0"/>
                 <Str Str="skl_eff_houkibroom_ground"/>
             </ToolScp>
         </KeyInputStart>
         <KeyInputEnd>
-            <ToolScp Client="NO" Scp="SKL_BUFF_REMOVE" UseSleep="NO">
+            <ToolScp Scp="SKL_BUFF_REMOVE" Client="NO" UseSleep="NO">
                 <Str Str="HoukiBroom_Buff"/>
             </ToolScp>
-            <ToolScp Client="NO" Scp="SKL_RUN_SCRIPT" UseSleep="NO">
+            <ToolScp Scp="SKL_RUN_SCRIPT" Client="NO" UseSleep="NO">
                 <Str Str="MONSKL_END_SPAWN_PAD"/>
             </ToolScp>
         </KeyInputEnd>
         <KeyCancelScp>
-            <ToolScp Client="NO" Scp="SKL_RUN_SCRIPT" UseSleep="NO">
+            <ToolScp Scp="SKL_RUN_SCRIPT" Client="NO" UseSleep="NO">
                 <Str Str="MONSKL_END_SPAWN_PAD"/>
             </ToolScp>
         </KeyCancelScp>
-        <MainSkl JumpFlee="NO" MSPDToUsePos="0" ScrLock="None">
+        <MainSkl ScrLock="None" JumpFlee="NO" MSPDToUsePos="0">
             <HitList>
-                <Frame Angle="0" AniTime="10999" Dist="0" ForceATK="0" HitCount="1" PosType="0" RandDist="0" RandomPerHit="0" RotAngle="0" TermMax="0" TermMin="0" Time="10799" Type="FAN"/>
+                <Frame Type="FAN" Time="10799" HitCount="1" TermMin="0" TermMax="0" PosType="0" Dist="0" RandDist="0" RandomPerHit="0" Angle="0" AniTime="10999" RotAngle="0" ForceATK="0" ScriptIndex="0" ScriptName="" SkillType="0"/>
             </HitList>
         </MainSkl>
     </Skill>

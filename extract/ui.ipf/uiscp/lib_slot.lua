@@ -309,7 +309,11 @@ function SET_SLOT_STYLESET(slot, itemCls, itemGrade_Flag, itemLevel_Flag, itemAp
 			local reinforceLv = TryGetProp(itemCls, 'Reinforce_2');
 			if TryGetProp(itemCls, 'GroupName') == 'Seal' then
 				reinforceLv = GET_CURRENT_SEAL_LEVEL(itemCls);
-			end
+			elseif TryGetProp(itemCls, 'GroupName', 'None') == 'Ark' then
+				reinforceLv = TryGetProp(itemCls, 'ArkLevel', 1)
+			elseif TryGetProp(itemCls, 'GroupName', 'None') == 'Relic' then
+				reinforceLv = TryGetProp(GetMyAccountObj(), 'Relic_LV', 1)
+			end			
 			SET_SLOT_REINFORCE_LEVEL(slot, reinforceLv);			
 		end
 	end

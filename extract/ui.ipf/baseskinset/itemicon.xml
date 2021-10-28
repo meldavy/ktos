@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by imc (imc) -->
+<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by imc (imc) -->
 <!-- edited with XMLSpy v2008 sp1 http://www.altova.com by MintPC Mi -->
 <skinset name="Base">
 	<imagelist category="item_tooltip_icon">
@@ -848,6 +848,8 @@
 		<image name="icon_item_ep13cherryblossom03_2_m" file="\icon\equip\icon_item_ep13cherryblossom03_2_m.png" imgrect="0 0 256 256"/>
 		<image name="icon_item_ep13cherryblossom03_f" file="\icon\equip\icon_item_ep13cherryblossom03_f.png" imgrect="0 0 256 256"/>
 		<image name="icon_item_ep13cherryblossom03_m" file="\icon\equip\icon_item_ep13cherryblossom03_m.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_boss_coop_costume_f" file="\icon\equip\icon_item_boss_coop_costume_f.png" imgrect="0 0 256 256" CMM_Caption="보스 협동전_2종"/>
+		<image name="icon_item_boss_coop_costume_m" file="\icon\equip\icon_item_boss_coop_costume_m.png" imgrect="0 0 256 256"/>
 	</imagelist>
 	<imagelist category="256_costume_icons">
 		<image name="icon_item_Alchemist_f" file="\icon\equip\Alchemist_f_icon.png" imgrect="0 0 256 256" CMM_Caption="알케미스트"/>
@@ -4150,6 +4152,7 @@
 		<image name="icon_item_accessory_ep13dessert01" file="\icon\hairacc\icon_item_accessory_ep13dessert01.png" imgrect="0 0 256 256" CMM_Caption="2021.4월_1종"/>
 		<image name="icon_item_accessory_ep13mafia" file="\icon\hairacc\icon_item_accessory_ep13mafia.png" imgrect="0 0 256 256" CMM_Caption="2021.5월_2종"/>
 		<image name="icon_item_helmet_ep13mafia" file="\icon\hairacc\icon_item_helmet_ep13mafia.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_boss_coop_helmet" file="\icon\hairacc\icon_item_boss_coop_helmet.png" imgrect="0 0 256 256" CMM_Caption="보스협동전_헬멧"/>
 	</imagelist>
 	<imagelist category="collection_item">
 		<image name="icon_collitem_collection" file="\icon\colletion\icon_item_collection.tga" imgrect="0 0 673 419" CMM_Caption="월계수"/>
@@ -8414,6 +8417,8 @@
 		<image name="icon_item_selectbox_ep13mafia03_2" file="\icon\payment\icon_item_selectbox_ep13mafia03_2.png" imgrect="0 0 256 256"/>
 		<image name="icon_item_toy_ep13mafia" file="\icon\payment\icon_item_toy_ep13mafia.png" imgrect="0 0 256 256"/>
 		<image name="icon_item_wing_ep13mafia" file="\icon\payment\icon_item_wing_ep13mafia.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_boss_coop_set_f" file="\icon\payment\icon_item_boss_coop_set_f.png" imgrect="0 0 256 256" CMM_Caption="보스 협동전_세트 2종"/>
+		<image name="icon_item_boss_coop_set_m" file="\icon\payment\icon_item_boss_coop_set_m.png" imgrect="0 0 256 256"/>
 	</imagelist>
 	<imagelist category="seal">
 		<image name="icon_seal_yellow_cc_A1" file="\icon\seal\seal_yellow_cc_A1.tga" imgrect="0 0 80 80"/>

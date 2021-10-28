@@ -1862,10 +1862,14 @@ function MAKE_QUESTINFO_JOURNALMONSTER_BY_IES(ctrlset, questIES, startx, y, s_ob
         			local monbasicname = monname
         			itemtxt = ScpArgMsg("JOURNAL_SUCC_MONKILL")..string.format(monname.." (%d/%d)", curcnt, needcnt);
         			
-        			if curcnt ~= 0 and curcnt ~= tonumber(ctrlset:GetParent():GetUserValue('KillCntAlarmSound')) then
-        				imcSound.PlaySoundEvent('sys_alarm_mon_kill_count');
-        				ctrlset:GetParent():SetUserValue('KillCntAlarmSound', curcnt);
-        			end
+					local beforecnt = tonumber(ctrlset:GetParent():GetUserValue('KillCntAlarmSound'))
+					if curcnt ~= 0 and curcnt ~= beforecnt then
+						if beforecnt ~= nil then 
+							imcSound.PlaySoundEvent('sys_alarm_mon_kill_count');
+						end
+						ctrlset:GetParent():SetUserValue('KillCntAlarmSound', curcnt);
+					end
+	
                     
                     monUIIndex = i
         			local content = ctrlset:CreateOrGetControl('richtext', "JOURNAL_MON_" .. i, startx, y, ctrlset:GetWidth() - startx - SCROLL_WIDTH, 10);

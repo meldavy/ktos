@@ -535,7 +535,7 @@ function GUILDINFO_MEMBER_LIST_CREATE(memberCtrlBox, partyMemberInfo)
     txt_teamname:SetTextTooltip(partyMemberInfo:GetName());
 
     -- job
-    local jobID = partyMemberInfo:GetIconInfo().job;
+    local jobID = partyMemberInfo:GetIconInfo().repre_job;    
     local jobCls = GetClassByType('Job', jobID);
     local jobName = GET_JOB_NAME(jobCls, partyMemberInfo:GetIconInfo().gender);
     if jobName ~= nil then

@@ -12702,6 +12702,11 @@
 		<image name="plate_achieve_weeklyrank_16" file="\skin\user_title_skin.tga" imgrect="0 327 214 36" CMM_Caption="주간보스_루시"/>
 		<image name="plate_Christmas_Master" file="\skin\user_title_skin.tga" imgrect="215 290 214 34" CMM_Caption="2020_크리스마스 칭호"/>
 		<image name="plate_achieve_Giltine_auto_clear" file="\skin\user_title_skin.tga" imgrect="430 283 214 34" CMM_Caption="길티네_자동매칭 클리어"/>
+		<image name="plate_achieve_coop_boss_20" file="\skin\user_title_skin.tga" imgrect="215 325 214 36" CMM_Caption="보스 협동전 20회 참여"/>
+		<image name="plate_achieve_coop_boss_100" file="\skin\user_title_skin.tga" imgrect="430 318 214 36" CMM_Caption="보스 협동전 100회 참여"/>
+		<image name="plate_achieve_coop_boss_Rank3" file="\skin\user_title_skin.tga" imgrect="645 283 214 36" CMM_Caption="보스 협동전 3위(1회)"/>
+		<image name="plate_achieve_coop_boss_Rank2" file="\skin\user_title_skin.tga" imgrect="645 320 214 36" CMM_Caption="보스 협동전 2위(1회)"/>
+		<image name="plate_achieve_coop_boss_Rank1" file="\skin\user_title_skin.tga" imgrect="645 357 214 36" CMM_Caption="보스 협동전 1위(1회)"/>
 		<image name="plate_achieve_Giltine_clear_2" file="\skin\user_title_skin.tga" imgrect="0 364 214 34" CMM_Caption="길티네 개편_클리어"/>
 		<image name="plate_achieve_Giltine_first_kill_2" file="\skin\user_title_skin.tga" imgrect="215 364 214 34" CMM_Caption="길티네 개편_퍼스트"/>
 		<image name="plate_achieve_contest_Event" file="\skin\user_title_skin.tga" imgrect="430 364 214 34" CMM_Caption="일본 서버 일러스트 공모전 보상"/>

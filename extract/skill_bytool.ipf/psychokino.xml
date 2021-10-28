@@ -189,7 +189,11 @@ return value"/>
 					<Num Num="0" />
 					<Num Num="150" />
 					<Num Num="30" />
-					<Num FuncTxt="if IsPVPServer(self) == 1 then return obj.Level else return 10 + obj.Level * 1; end" Num="20" UseFunc="1" />
+					<Num Num="20" UseFunc="1" FuncTxt="local value = 10 + obj.Level;
+					if IsPVPField(self) == 1 and value > 2 then
+					value = math.floor((math.max(0, value-2)^0.5))+math.min(2, value)
+					end
+					return value"/>
 					<Num Num="2" />
 				</Scp>
 				<Scp Client="YES" Scp="C_VOICE_SOUND" Time="0" UseSleep="NO">
@@ -209,7 +213,7 @@ return value"/>
 					<Str Str="Dummy_effect_gravitational" />
 					<Num Num="0" />
 				</Scp>
-				<Scp Client="NO" LoopTime="500" Scp="SKL_TGT_ATTRACT_SQUARE" Time="550" UseSleep="YES">
+				<Scp Client="NO" LoopTime="1000" Scp="SKL_TGT_ATTRACT_SQUARE" Time="550" UseSleep="YES">
 					<Pos Angle="0" Dist="0" />
 					<Angle Angle="0" />
 					<Num Num="150" />
@@ -219,7 +223,7 @@ return value"/>
 					<Num Num="0" />
 					<Num Num="0.2" />
 				</Scp>
-				<Scp Client="NO" LoopTime="500" Scp="SKL_TGT_DMG" Time="600" UseSleep="NO">
+				<Scp Client="NO" LoopTime="1000" Scp="SKL_TGT_DMG" Time="600" UseSleep="NO">
 					<Num Num="1" />
 					<Num Num="0" />
 					<Num Num="0" />
@@ -251,14 +255,18 @@ return value"/>
                             <Num Num="0"/>
                             <Num Num="150"/>
                             <Num Num="30"/>
-                            <Num Num="20" UseFunc="1" FuncTxt="return 10 + obj.Level * 1;"/>
+                            <Num Num="20" UseFunc="1" FuncTxt="local value = 10 + obj.Level * 1;
+							if IsPVPField(self) == 1 and value > 2 then
+							value = math.floor((math.max(0, value-2)^0.5))+math.min(2, value)
+							end
+							return value"/>
                             <Num Num="2"/>
                         </Scp>
                         <Scp Scp="C_VOICE_SOUND" Client="YES" UseSleep="NO" Time="0">
                             <Str Str="voice_wiz_m_gravitypole_shot"/>
                             <Str Str="voice_wiz_gravitypole_shot"/>
                         </Scp>
-                        <Scp Scp="SKL_CONSUME_SP" Client="NO" UseSleep="NO" Time="550" LoopTime="1000">
+                        <Scp Scp="SKL_CONSUME_SP" Client="NO" UseSleep="NO" Time="550" LoopTime="500">
                             <Num Num="8" UseFunc="1" FuncTxt="local value = 47 local lv = self.Lv local bylvCorrect = lv - 300 if bylvCorrect &lt; 0 then     bylvCorrect = bylvCorrect * 2.75 / 1000 elseif bylvCorrect >= 0 then     bylvCorrect = bylvCorrect * 1.25 / 1000 end value = value * (1 + bylvCorrect) local abil = GetAbility(self, &quot;Psychokino20&quot;) if abil ~= nil and abil.ActiveState == 1 then value = value * 1.2 end return math.floor(value)"/>
                         </Scp>
                         <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="550">
@@ -266,7 +274,7 @@ return value"/>
                             <Str Str="Dummy_effect_gravitational"/>
                             <Num Num="0"/>
                         </Scp>
-                        <Scp Scp="SKL_TGT_DMG" Client="NO" UseSleep="NO" Time="600" LoopTime="240">
+                        <Scp Scp="SKL_TGT_DMG" Client="NO" UseSleep="NO" Time="600" LoopTime="500">
                             <Num Num="1"/>
                             <Num Num="0"/>
                             <Num Num="0"/>
@@ -555,7 +563,11 @@ return value"/>
 					<Num Num="0" />
 					<Num FuncTxt="local value = 40 if IsBuffApplied(self, &quot;FireFoxShikigami_Buff&quot;) == &quot;YES&quot; then     value = value + 50 end return value" Num="0" UseFunc="1" />
 					<Num Num="25" />
-					<Num FuncTxt="return 4 + obj.Level * 1;" Num="1" UseFunc="1" />
+					<Num Num="1" UseFunc="1" FuncTxt="local value = 4 + obj.Level * 1
+					if IsPVPField(self) == 1 and value > 2 then
+                	value = math.floor((math.max(0, value-2)^0.5))+math.min(2, value)
+                	end
+                	return value"/>
 					<Num Num="2" />
 					<Num Num="0" />
 				</Scp>

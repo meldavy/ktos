@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by imc (imc) -->
 <ActionDesc>
-    <Sound frame="0.00" soundFile="mon_voice_giltine_dead"/>
-    <Sound frame="8.31" soundFile="mon_lecifer_wing"/>
-    <Sound frame="24.64" soundFile="mon_lecifer_wing"/>
-    <Sound frame="27.00" soundFile="atk_cloth_m_l2"/>
+	<Sound frame="8.31" soundFile="mon_lecifer_wing"/>
+	<Sound frame="24.64" soundFile="mon_lecifer_wing"/>
+	<Sound frame="27.00" soundFile="atk_cloth_m_l2"/>
 </ActionDesc>

@@ -29,16 +29,11 @@
         </KeyInput>
         <MainSkl ScrLock="None" JumpFlee="NO" MSPDToUsePos="0">
             <HitList>
-                <Frame Type="SQUARE" Time="0" HitCount="1" TermMin="0" TermMax="0" PosType="3" Dist="0" RandDist="0" RandomPerHit="0" Angle="0" Width="25" Length="130" SklAngle="0.17453292" AniTime="100" RotAngle="0.69813174" ForceATK="0" ScriptIndex="0" ScriptName="" SkillType="0"/>
-                <Frame Type="SQUARE" Time="0" HitCount="1" TermMin="0" TermMax="0" PosType="3" Dist="0" RandDist="0" RandomPerHit="0" Angle="0" Width="25" Length="130" SklAngle="0.17453292" AniTime="150" RotAngle="1.308997" ForceATK="0" ScriptIndex="0" ScriptName="" SkillType="0"/>
-                <Frame Type="SQUARE" Time="0" HitCount="1" TermMin="0" TermMax="0" PosType="3" Dist="0" RandDist="0" RandomPerHit="0" Angle="0" Width="25" Length="130" SklAngle="0.17453292" AniTime="200" RotAngle="1.9198623" ForceATK="0" ScriptIndex="0" ScriptName="" SkillType="0"/>
-                <Frame Type="SQUARE" Time="50" HitCount="1" TermMin="0" TermMax="0" PosType="3" Dist="0" RandDist="0" RandomPerHit="0" Angle="0" Width="25" Length="130" SklAngle="0.17453292" AniTime="250" RotAngle="2.5307276" ForceATK="0" ScriptIndex="0" ScriptName="" SkillType="0"/>
-                <Frame Type="SQUARE" Time="100" HitCount="1" TermMin="0" TermMax="0" PosType="3" Dist="0" RandDist="0" RandomPerHit="0" Angle="0" Width="25" Length="130" SklAngle="0.17453292" AniTime="300" RotAngle="3.1415927" ForceATK="0" ScriptIndex="0" ScriptName="" SkillType="0"/>
-                <Frame Type="SQUARE" Time="200" HitCount="1" TermMin="0" TermMax="0" PosType="3" Dist="0" RandDist="0" RandomPerHit="0" Angle="0" Width="25" Length="130" SklAngle="0.17453292" AniTime="400" RotAngle="3.7524581" ForceATK="0" ScriptIndex="0" ScriptName="" SkillType="0"/>
-                <Frame Type="SQUARE" Time="250" HitCount="1" TermMin="0" TermMax="0" PosType="3" Dist="0" RandDist="0" RandomPerHit="0" Angle="0" Width="25" Length="130" SklAngle="0.17453292" AniTime="450" RotAngle="4.3633232" ForceATK="0" ScriptIndex="0" ScriptName="" SkillType="0"/>
-                <Frame Type="SQUARE" Time="300" HitCount="1" TermMin="0" TermMax="0" PosType="3" Dist="0" RandDist="0" RandomPerHit="0" Angle="0" Width="25" Length="130" SklAngle="0.17453292" AniTime="500" RotAngle="4.9741888" ForceATK="0" ScriptIndex="0" ScriptName="" SkillType="0"/>
-                <Frame Type="SQUARE" Time="350" HitCount="1" TermMin="0" TermMax="0" PosType="3" Dist="0" RandDist="0" RandomPerHit="0" Angle="0" Width="25" Length="130" SklAngle="0.17453292" AniTime="550" RotAngle="5.5850539" ForceATK="0" ScriptIndex="0" ScriptName="" SkillType="0"/>
-                <Frame Type="SQUARE" Time="400" HitCount="1" TermMin="0" TermMax="0" PosType="3" Dist="0" RandDist="0" RandomPerHit="0" Angle="0" Width="25" Length="130" SklAngle="0.17453292" AniTime="600" RotAngle="6.195919" ForceATK="0" ScriptIndex="0" ScriptName="" SkillType="0"/>
+                <Frame Type="SQUARE" Time="0" HitCount="1" TermMin="0" TermMax="0" PosType="3" Dist="0" RandDist="0" RandomPerHit="0" Angle="0" Width="50" Length="130" SklAngle="0.17453292" AniTime="150" RotAngle="0" ForceATK="0" ScriptIndex="0" ScriptName="" SkillType="0"/>
+                <Frame Type="SQUARE" Time="50" HitCount="1" TermMin="0" TermMax="0" PosType="3" Dist="0" RandDist="0" RandomPerHit="0" Angle="0" Width="50" Length="130" SklAngle="0.17453292" AniTime="250" RotAngle="1.2566371" ForceATK="0" ScriptIndex="0" ScriptName="" SkillType="0"/>
+                <Frame Type="SQUARE" Time="250" HitCount="1" TermMin="0" TermMax="0" PosType="3" Dist="0" RandDist="0" RandomPerHit="0" Angle="0" Width="50" Length="130" SklAngle="0.17453292" AniTime="450" RotAngle="2.5132742" ForceATK="0" ScriptIndex="0" ScriptName="" SkillType="0"/>
+                <Frame Type="SQUARE" Time="350" HitCount="1" TermMin="0" TermMax="0" PosType="3" Dist="0" RandDist="0" RandomPerHit="0" Angle="0" Width="50" Length="130" SklAngle="0.17453292" AniTime="550" RotAngle="3.7699113" ForceATK="0" ScriptIndex="0" ScriptName="" SkillType="0"/>
+                <Frame Type="SQUARE" Time="400" HitCount="1" TermMin="0" TermMax="0" PosType="3" Dist="0" RandDist="0" RandomPerHit="0" Angle="0" Width="50" Length="130" SklAngle="0.17453292" AniTime="600" RotAngle="5.0265484" ForceATK="0" ScriptIndex="0" ScriptName="" SkillType="0"/>
             </HitList>
             <EtcList>
                 <Scp Scp="MONSKL_C_PLAY_ANIM" Client="YES" UseSleep="NO" Time="0">
@@ -293,7 +288,7 @@
             <ToolScp Scp="SKL_KEY_DYNAMIC_CASTING_HAVE_ABIL" Client="YES" UseSleep="NO">
                 <Num Num="0"/>
                 <Num Num="0"/>
-                <Num FuncTxt="return 0.5 + obj.Level * 0.1" Num="1" UseFunc="1"/>
+                <Num FuncTxt="return 0.75 + obj.Level * 0.15" Num="1" UseFunc="1" />
                 <Num Num="1"/>
                 <Num Num="0"/>
                 <Num Num="0"/>
@@ -322,22 +317,22 @@
                 <Frame Angle="0" AniTime="9999" Dist="0" ForceATK="0" HitCount="1" PosType="0" RandDist="0" RandomPerHit="0" RotAngle="0" TermMax="0" TermMin="0" Time="9799" Type="FAN"/>
             </HitList>
             <EtcList>
-                <Scp Client="NO" Scp="SKL_SET_TARGET_CLIENT_TARGETTING" Time="10" UseSleep="NO"/>
-                <Scp Client="YES" Scp="C_VOICE_SOUND" Time="500" UseSleep="NO">
+                <Scp Client="NO" Scp="SKL_SET_TARGET_CLIENT_TARGETTING" Time="10" UseSleep="NO" />
+                <Scp Client="YES" Scp="C_VOICE_SOUND" Time="500" UseSleep="NO" >
                     <Str Str="voice_archer_m_DownFall_cast"/>
                     <Str Str="voice_archer_DownFall_cast"/>
                 </Scp>
-                <Scp Client="YES" Scp="C_SHOCKWAVE" Time="890" UseSleep="NO">
+                <Scp Client="YES" Scp="C_SHOCKWAVE" Time="890" UseSleep="NO" >
                     <Num Num="1"/>
                     <Num Num="3"/>
                     <Num Num="70"/>
                     <Num Num="999"/>
                 </Scp>
-                <Scp Client="NO" Scp="SKL_TGT_BUFF" Time="900" UseSleep="NO">
+                <Scp Client="NO" Scp="SKL_TGT_BUFF" Time="900" UseSleep="NO" >
                     <Str Str="DownFall_Debuff"/>
-                    <Num FuncTxt="return obj.Level;" Num="1" UseFunc="1"/>
+                    <Num FuncTxt="return obj.Level;" Num="1" UseFunc="1" />
                     <Num Num="0"/>
-                    <Num FuncTxt="return obj.Level * 500 + 3000" Num="3000" UseFunc="1"/>
+                    <Num FuncTxt="return obj.Level * 500 + 3500" Num="3000" UseFunc="1" />
                     <Num Num="1"/>
                     <Num Num="100"/>
                     <Num Num="0"/>
@@ -353,7 +348,7 @@
                 </Cond>
                 <Skill ScrLock="None" JumpFlee="NO" MSPDToUsePos="0">
                     <HitList>
-                        <Frame Type="FAN" Time="99799" HitCount="1" TermMin="0" TermMax="0" PosType="0" Dist="0" RandDist="0" RandomPerHit="0" Angle="0" SklAngle="0.17453292" AniTime="99999" RotAngle="0" ForceATK="0"/>
+                        <Frame Type="FAN" Time="99799" HitCount="1" TermMin="0" TermMax="0" PosType="0" Dist="0" RandDist="0" RandomPerHit="0" Angle="0" SklAngle="0.17453292" AniTime="99999" RotAngle="0" ForceATK="0" />
                     </HitList>
                     <EtcList>
                         <Scp Scp="SKL_SET_TARGET_SQUARE" Client="NO" UseSleep="NO" Time="0" LoopTime="500">
@@ -362,14 +357,24 @@
                             <Num Num="150"/>
                             <Num Num="50"/>
                             <Num Num="5" UseFunc="1" FuncTxt="local hitcnt = 3
-        local addhitcnt = TryGetProp(self, &quot;SR&quot;)
-        hitcnt = hitcnt + (addhitcnt / 3) return math.floor(hitcnt)"/>
+                            local addhitcnt = TryGetProp(self, &quot;SR&quot;)
+                            hitcnt = hitcnt + (addhitcnt / 3)
+                            if IsPVPField(self) == 1 and hitcnt > 2 then
+                            hitcnt = math.floor((math.max(0, hitcnt-2)^0.5))+math.min(2, hitcnt)
+                            end
+                            return hitcnt"/>
                             <Num Num="2"/>
                             <Num Num="1"/>
                             <Num Num="0"/>
                             <Num Num="0"/>
                         </Scp>
-                        <Scp Scp="SKL_TGT_DMG" Client="NO" UseSleep="NO" Time="285" LoopTime="60">
+                        <Scp Scp="MONSKL_C_PLAY_ANIM" Client="YES" UseSleep="NO" Time="0">
+                            <Str Str="SKL_DOWNFALL"/>
+                            <Num Num="0.64999998"/>
+                            <Num Num="1"/>
+                            <Num Num="0"/>
+                        </Scp>
+                        <Scp Scp="SKL_TGT_DMG" Client="NO" UseSleep="NO" Time="285" LoopTime="450">
                             <Num Num="1"/>
                             <Num Num="1"/>
                             <Num Num="0"/>

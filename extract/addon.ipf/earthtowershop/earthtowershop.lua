@@ -663,6 +663,9 @@ function EARTH_TOWER_INIT(frame, shopType)
         close:SetTextTooltip(ScpArgMsg('CloseUI{NAME}', 'NAME', ScpArgMsg("EventShop")));
 
         remain_time:ShowWindow(1);
+	elseif shopType == "BOSS_COOP_SHOP" then
+		 title:SetText('{@st43}'..ScpArgMsg(shopType));
+		close:SetTextTooltip(ScpArgMsg('CloseUI{NAME}', 'NAME', ScpArgMsg("bosscoopshop")));
     else
         title:SetText('{@st43}'..ScpArgMsg(shopType));
         close:SetTextTooltip(ScpArgMsg('CloseUI{NAME}', 'NAME', ScpArgMsg("EventShop")));
@@ -1781,4 +1784,10 @@ function RELEASE_2011_5TH_SPECIAL_SHOP_UPDATE_HOLD()
     btn:SetEnable(1);
 
     ui.SetHoldUI(false);
+end
+
+function REQ_BOSS_CO_OP_SHOP_OPEN()
+    local frame = ui.GetFrame("earthtowershop")
+    frame:SetUserValue("SHOP_TYPE", 'BOSS_COOP_SHOP')
+    ui.OpenFrame('earthtowershop')
 end

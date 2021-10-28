@@ -2817,27 +2817,24 @@ function TPSHOP_ITEM_TO_BASKET_PREPROCESSOR(parent, control, tpitemname, tpitem_
 end
 
 function TPSHOP_ITEM_TO_BASKET(tpitemname, classid)	
-	
 	if g_TpShopParent == nil or g_TpShopcontrol == nil then
 		return;
 	end
 
 	local parent = g_TpShopParent;
 	local control = g_TpShopcontrol;
-
 	g_TpShopParent = nil;
 	g_TpShopcontrol = nil;
 
-	local item = GetClassByType("Item", classid)
-
+	local item = GetClassByType("Item", classid);
 	if item == nil then
 		return;
 	end
 
 	local tpitem = GetClass("TPitem", tpitemname);
 	if tpitem == nil then
-		ui.MsgBox(ScpArgMsg("DataError"))
-		return
+		ui.MsgBox(ScpArgMsg("DataError"));
+		return;
 	end
 
 	local frame = parent:GetTopParentFrame();
@@ -2847,16 +2844,30 @@ function TPSHOP_ITEM_TO_BASKET(tpitemname, classid)
 	end
 
 	if tpitem.SubCategory == "TP_Costume_Color" then
-		local etc = GetMyEtcObject();
-		if nil == etc then
-			ui.MsgBox(ScpArgMsg("DataError"))
-			return;
+		local pc_object = nil;
+		local color = item.StringArg;
+		if IS_ACHIEVE_HAIR_COLOR(color) == true then
+			local acc = GetMyAccountObj();
+			if acc == nil then
+				ui.MsgBox(ScpArgMsg("DataError"));
+				return;
+			end
+			pc_object = acc;
+		else
+			local etc = GetMyEtcObject();
+			if etc == nil then
+				ui.MsgBox(ScpArgMsg("DataError"));
+				return;
+			end
+			pc_object = etc;
 		end
 
-		local nowAllowedColor = etc['AllowedHairColor']
-		if string.find(nowAllowedColor, item.StringArg) ~= nil or TryGetProp(etc, "HairColor_"..item.StringArg) == 1 then
-			ui.MsgBox(ScpArgMsg("AlearyEquipColor"))
-			return;
+		if pc_object ~= nil then
+			local now_allowed_color = pc_object['AllowedHairColor']
+			if string.find(now_allowed_color, item.StringArg) ~= nil or TryGetProp(pc_object, "HairColor_"..item.StringArg) == 1 then
+				ui.MsgBox(ScpArgMsg("AlearyEquipColor"));
+				return;
+			end
 		end
            
         if session.GetInvItemByType(item.ClassID) ~= nil then
@@ -2865,33 +2876,24 @@ function TPSHOP_ITEM_TO_BASKET(tpitemname, classid)
         end
 	end
 
-	local slotset = GET_CHILD_RECURSIVELY(frame,"basketslotset")
+	local slotset = GET_CHILD_RECURSIVELY(frame, "basketslotset")
 	local slotCount = slotset:GetSlotCount();
-
 	for i = 0, slotCount - 1 do
 		local slotIcon	= slotset:GetIconByIndex(i);
-
 		if slotIcon == nil then
-
 			local slot  = slotset:GetSlotByIndex(i);
-
 			slot:SetEventScript(ui.RBUTTONDOWN, 'TPSHOP_BASKETSLOT_REMOVE');
 			slot:SetEventScriptArgNumber(ui.RBUTTONDOWN, classid);
 			slot:SetUserValue("CLASSNAME", item.ClassName);
 			slot:SetUserValue("TPITEMNAME", tpitemname);
-
 			SET_SLOT_IMG(slot, GET_ITEM_ICON_IMAGE(item));
 			local icon = slot:GetIcon();
 			icon:SetTooltipType('wholeitem');
 			icon:SetTooltipArg('', item.ClassID, 0);
-
 			break;
-
 		end
 	end
-
-	UPDATE_BASKET_MONEY(frame)	
-	
+	UPDATE_BASKET_MONEY(frame);
 end
 
 function TPSHOP_BASKETSLOT_REMOVE(parent, control, strarg, classid)	

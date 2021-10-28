@@ -219,7 +219,7 @@ end
 
 -- 세번째 옵션 민/맥 물공은 5레벨당 500씩 오른다.
 function get_tooltip_Ark_str_arg3()
-    return 1, 'PATK_BM', 5, 700
+    return 1, 'EQUIP_PATK', 5, 700
 end
 
 -------------- 아크 - 지능 ----------------
@@ -235,7 +235,7 @@ end
 
 -- 세번째 옵션 민/맥 마공은 5레벨당 x씩 오른다.
 function get_tooltip_Ark_int_arg3()
-    return 1, 'MATK_BM', 5, 700
+    return 1, 'EQUIP_MATK', 5, 700
 end
 
 -------------- 아크 - 민첩 ----------------

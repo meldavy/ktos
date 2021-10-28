@@ -3435,7 +3435,7 @@ function IS_ARTSRESET_ITEM(itemClsName)
         local strArg = TryGetProp(itemCls, 'StringArg', 'None')
         local numArg1 = TryGetProp(itemCls, 'NumberArg1', -1)
         local numArg2 = TryGetProp(itemCls, 'NumberArg2', -1)
-        if strArg == 'AbilityPointReset' and numArg1 > 0 and numArg2 > 0 then
+        if strArg == 'AbilityPointReset_Arts' then
             return true
         end
     end

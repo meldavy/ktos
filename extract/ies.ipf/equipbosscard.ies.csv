@@ -12,7 +12,7 @@ ClassID,ConditionArg4,ClassName,UseType,ValueType,PropertyType,ConditionScp,Cond
 11,0,card_Devilglove,BeforeAttack,StarCount,,SCR_CARDCHECK_MONRACE,Paramune,100,,SCR_CARDEFFECT_ADD_DAMAGE_RATE_BM,,,1,변이형 속성 몬스터에게 주는 대미지{@st66d_y}{s16}[%d]{/}{/}%% 증가,1
 12,0,card_Denoptic,Always,StarCount,,,,,,SCR_CARDEFFECT_STATUS_PLUS,MDEF_BM,MDEF,10,마법 방어력 +{@st66d_y}{s16}[%d]{/}{/},10
 13,0,card_Ravinepede,Always,StarCount,,,,100,,SCR_CARDEFFECT_ITEM_EFFECTIVE,STAPOTION,,,STA 포션 종류 효과 +{@st66d_y}{s16}[%d]{/}{/}%%,1
-14,0,card_Rajatoad,Always,StarCount,,SCR_CARDCHECK_ATTACKTYPE_EQUIP,Aries,100,,SCR_CARDEFFECT_PATK_PLUS,MAXPATK_BM/MINPATK_BM,PATK/PATK,7,찌르기류 무기 착용 시 물리 공격력 +{@st66d_y}{s16}[%d]{/}{/},7
+14,0,card_Rajatoad,Always,StarCount,,SCR_CARDCHECK_ATTACKTYPE_EQUIP,Aries,100,,SCR_CARDEFFECT_PATK_PLUS,EQUIP_PATK,PATK,7,찌르기류 무기 착용 시 물리 공격력 +{@st66d_y}{s16}[%d]{/}{/},7
 15,0,card_Rocktortuga,Kill,StarCount,,SCR_CARDCHECK_MONATTRIBUTE,Earth,,,SCR_CARDEFFECT_RECOVER_SP,5,,,땅 속성 몬스터 처치 시 {@st66d_y}{s16}[%d]{/}{/}%% 확률로 SP 5%% 회복,1
 16,0,card_lecifer,Always,StarCount,,,,100,,SCR_CARDEFFECT_STATUS_PLUS,CRTMATK_BM,CRTMATK,10,마법 치명타 공격력 +{@st66d_y}{s16}[%d]{/}{/},10
 17,0,card_Reaverpede,BeforeAttack,StarCount,,SCR_CARDCHECK_MONSIZE_MIDDLE,M/PC,100,,SCR_CARDEFFECT_ADD_DAMAGE_RATE_BM,,,0.5,중형 대상에게 주는 대미지{@st66d_y}{s16}[%d]{/}{/}%% 증가,0.5
@@ -24,7 +24,7 @@ ClassID,ConditionArg4,ClassName,UseType,ValueType,PropertyType,ConditionScp,Cond
 23,0,card_Mummyghast,Always,StarCount,,,,,,SCR_CARDEFFECT_STATUS_DUAL_PLUS,STR_ITEM_BM/DEX_ITEM_BM,,0.5/0.5,"힘 스텟 +{@st66d_y}{s16}[%d]{/}{/}, 민첩 스탯 +{@st66d_y}{s16}[%d]{/}{/} ",0.5/0.5
 24,0,card_mushcaria,Always,StarCount,,,,,,SCR_CARDEFFECT_STATUS_PLUS,RSP_BM,,6,SP 회복력 +{@st66d_y}{s16}[%d]{/}{/},6
 25,0,card_Merge,BeforeAttack,StarCount,,SCR_CARDCHECK_MONATTRIBUTE,Ice,100,,SCR_CARDEFFECT_ADD_DAMAGE_RATE_BM,,,1,얼음 속성 몬스터에게 주는 대미지{@st66d_y}{s16}[%d]{/}{/}%% 증가,1
-26,0,card_Mothstem,Always,StarCount,,SCR_CARDCHECK_ATTACKTYPE_EQUIP,Strike,100,,SCR_CARDEFFECT_MATK_PLUS,MAXMATK_BM/MINMATK_BM,MATK/MATK,7,때리기류 무기 착용시 마법 공격력 +{@st66d_y}{s16}[%d]{/}{/},7
+26,0,card_Mothstem,Always,StarCount,,SCR_CARDCHECK_ATTACKTYPE_EQUIP,Strike,100,,SCR_CARDEFFECT_MATK_PLUS,EQUIP_MATK,MATK,7,때리기류 무기 착용시 마법 공격력 +{@st66d_y}{s16}[%d]{/}{/},7
 27,0,card_moa,BeforeAttack,StarCount,,SCR_CARDCHECK_MONRACE,Velnias,100,,SCR_CARDEFFECT_ADD_DAMAGE_RATE_BM,,,1,악마형 몬스터에게 주는 대미지{@st66d_y}{s16}[%d]{/}{/}%% 증가,1
 28,0,card_Moyabruka,BeforeAttack,StarCount,,SCR_CARDCHECK_MONRACE,Leather,100,,SCR_CARDEFFECT_ADD_DAMAGE_RATE_BM,,,0.5,가죽 갑옷 대상에게 주는 대미지{@st66d_y}{s16}[%d]{/}{/}%% 증가,0.5
 29,0,card_Moldyhorn,BeforeAttack,StarCount,,,,,,SCR_CARDEFFECT_DAMAGE_RATE_BY_BUFF,Solid,Keyword,1,석화 상태 이상에 걸린 대상에게 주는 대미지{@st66d_y}{s16}[%d]{/}{/}%% 증가,1
@@ -35,7 +35,7 @@ ClassID,ConditionArg4,ClassName,UseType,ValueType,PropertyType,ConditionScp,Cond
 34,0,card_bearkaras,BeforeAttack,StarCount,,SCR_CARDCHECK_MONATTRIBUTE,Earth,100,,SCR_CARDEFFECT_ADD_DAMAGE_RATE_BM,,,1,땅 속성 몬스터에게 주는 대미지{@st66d_y}{s16}[%d]{/}{/}%% 증가,1
 35,0,card_Velorchard,Always,StarCount,,,,,,SCR_CARDEFFECT_STATUS_PLUS,DR_BM,DR,2,회피 +{@st66d_y}{s16}[%d]{/}{/},2
 36,0,card_Goblin_Warrior,BeforeAttack,StarCount,,SCR_CARDCHECK_MONRACE,Widling,100,,SCR_CARDEFFECT_ADD_DAMAGE_RATE_BM,,,1,야수형 몬스터에게 주는 대미지{@st66d_y}{s16}[%d]{/}{/}%% 증가,1
-37,0,card_Goblin_Warrior_red,Always,StarCount,,SCR_CARDCHECK_ATTACKTYPE_EQUIP,Strike,100,,SCR_CARDEFFECT_PATK_PLUS,MAXPATK_BM/MINPATK_BM,PATK/PATK,7,때리기류 무기 착용 시 물리 공격력 +{@st66d_y}{s16}[%d]{/}{/},7
+37,0,card_Goblin_Warrior_red,Always,StarCount,,SCR_CARDCHECK_ATTACKTYPE_EQUIP,Strike,100,,SCR_CARDEFFECT_PATK_PLUS,EQUIP_PATK,PATK,7,때리기류 무기 착용 시 물리 공격력 +{@st66d_y}{s16}[%d]{/}{/},7
 38,0,card_bramble,Always,StarCount,,,,,,SCR_CARDEFFECT_STATUS_PLUS,ResEarth_BM,ResEarth,10,땅 속성 저항력 +{@st66d_y}{s16}[%d]{/}{/},10
 39,0,card_BiteRegina,Attack,StarCount,,SCR_CARDCHECK_ATTACK_RATE,,3,,SCR_CARDEFFECT_ADD_BUFF_MONSTER,UC_poison,,6000,공격 시 {@st66d_y}{s16}[%d]{/}{/}%% 확률로 상대방에게 6초간 중독 상태,0.34
 40,0,card_Strongholder,Always,StarCount,,,,,,SCR_CARDEFFECT_STATUS_PLUS,MaxSta_BM,,1,스태미너 +{@st66d_y}{s16}[%d]{/}{/},1
@@ -73,13 +73,13 @@ ClassID,ConditionArg4,ClassName,UseType,ValueType,PropertyType,ConditionScp,Cond
 72,0,card_Sequoia_blue,Always,StarCount,,,,,,SCR_CARDEFFECT_STATUS_DUAL_PLUS,DEF_BM/MDEF_BM,DEF/MDEF,5/5,"물리 방어력 +{@st66d_y}{s16}[%d]{/}{/}, 마법 방어력 +{@st66d_y}{s16}[%d]{/}{/}",5/5
 73,0,card_Harpeia,Kill,StarCount,,SCR_CARDCHECK_MONATTRIBUTE,Lightning,,,SCR_CARDEFFECT_RECOVER_SP,5,,,전기 속성 몬스터 처치 시 {@st66d_y}{s16}[%d]{/}{/}%% 확률로 SP 5%% 회복,1
 74,0,card_honeypin,Always,StarCount,,,,,,SCR_CARDEFFECT_STATUS_PLUS,Poison_Atk_BM,Poison_Atk,10,독 속성 추가 대미지 +{@st66d_y}{s16}[%d]{/}{/},10
-75,0,card_helgasercle,Always,StarCount,,,,,,SCR_CARDEFFECT_STATUS_PLUS,MATK_BM,MATK,5,마법 공격력 +{@st66d_y}{s16}[%d]{/}{/},5
+75,0,card_helgasercle,Always,StarCount,,,,,,SCR_CARDEFFECT_STATUS_PLUS,EQUIP_MATK,MATK,5,마법 공격력 +{@st66d_y}{s16}[%d]{/}{/},5
 76,0,card_Spector_F,Always,StarCount,,,,100,,SCR_CARDEFFECT_STATUS_PLUS,MSP_BM,MSP,30,최대 SP +{@st66d_y}{s16}[%d]{/}{/},30
 77,0,card_hydra,BeforeAttack,StarCount,,,,,,SCR_CARDEFFECT_DAMAGE_RATE_BY_BUFF,Freeze,Keyword,1,결빙 상태 이상에 걸린 대상에게 주는 대미지{@st66d_y}{s16}[%d]{/}{/}%% 증가,1
 78,0,card_rajapearl,Attack,StarCount,,SCR_CARDCHECK_ATTACK_RATE,,3,,SCR_CARDEFFECT_ADD_BUFF_MONSTER,CARD_Wound,,6000,공격 시 {@st66d_y}{s16}[%d]{/}{/}%% 확률로 상대방에게 6초간 출혈 상태,0.34
 79,0,card_fallen_statue,BeforeAttack,StarCount,,SCR_CARDCHECK_MONRACE,Holding,100,,SCR_CARDEFFECT_ADD_DAMAGE_RATE_BM,,,1,고정형 몬스터에게 주는 대미지{@st66d_y}{s16}[%d]{/}{/}%% 증가,1
 80,0,card_lepus,Always,StarCount,,SCR_CARDCHECK_ATTACKTYPE_EQUIP,SH,100,,SCR_CARDEFFECT_ATK_SPEED,,,1,한손 무기 착용 시 공격 속도 +{@st66d_y}{s16}[%d]{/}{/},1
-81,0,card_sparnas,Always,StarCount,,SCR_CARDCHECK_ATTACKTYPE_MISSILE,Arrow/Cannon/Gun,100,,SCR_CARDEFFECT_PATK_PLUS,MAXPATK_BM/MINPATK_BM,PATK/PATK,7,미사일류 무기 착용 시 물리 공격력 +{@st66d_y}{s16}[%d]{/}{/},7
+81,0,card_sparnas,Always,StarCount,,SCR_CARDCHECK_ATTACKTYPE_MISSILE,Arrow/Cannon/Gun,100,,SCR_CARDEFFECT_PATK_PLUS,EQUIP_PATK,PATK,7,미사일류 무기 착용 시 물리 공격력 +{@st66d_y}{s16}[%d]{/}{/},7
 82,0,card_Sparnanman,Always,StarCount,,,,,,SCR_CARDEFFECT_STATUS_PLUS,ResDark_BM,,10,어둠 속성 저항력 +{@st66d_y}{s16}[%d]{/}{/},10
 83,5000,card_Kerberos,Attacked,StarCount,,SCR_CARDCHECK_MONSIZE_COOLDOWN,M/PC,,,SCR_CARDEFFECT_RECOVER_SP,1,,,중형 대상에게 피격 시 {@st66d_y}{s16}[%d]{/}{/}%% 확률로 SP 1%% 회복,1
 84,0,card_capria,Always,StarCount,,,,100,,SCR_CARDEFFECT_STATUS_IMMUNE,Res_Sleep_Debuff_BM,,2,수면 상태이상 저항 +{@st66d_y}{s16}[%d]{/}{/},2
@@ -96,8 +96,8 @@ ClassID,ConditionArg4,ClassName,UseType,ValueType,PropertyType,ConditionScp,Cond
 95,0,card_Glackuman,Always,StarCount,,,,100,,SCR_CARDEFFECT_STATUS_PLUS,DefSlash_BM,DefSlash,10,베기류 방어력 +{@st66d_y}{s16}[%d]{/}{/},10
 96,0,card_Tetraox,Always,StarCount,,,,100,,SCR_CARDEFFECT_STATUS_IMMUNE,Res_Wound_Debuff_BM,,2,출혈 상태이상 저항 +{@st66d_y}{s16}[%d]{/}{/},2
 97,0,card_basilisk,Always,StarCount,,,,100,,SCR_CARDEFFECT_STATUS_PLUS,CRTDR_BM,CRTDR,2,치명타 저항 +{@st66d_y}{s16}[%d]{/}{/},2
-98,0,card_gremlin,Always,StarCount,,SCR_CARDCHECK_ATTACKTYPE_EQUIP,Slash,100,,SCR_CARDEFFECT_PATK_PLUS,MAXPATK_BM/MINPATK_BM,PATK/PATK,7,베기류 무기 착용 시 물리 공격력 +{@st66d_y}{s16}[%d]{/}{/},7
-99,0,card_plokste,Always,StarCount,,,,,,SCR_CARDEFFECT_STATUS_PLUS,PATK_BM,PATK,5,물리 공격력 +{@st66d_y}{s16}[%d]{/}{/},5
+98,0,card_gremlin,Always,StarCount,,SCR_CARDCHECK_ATTACKTYPE_EQUIP,Slash,100,,SCR_CARDEFFECT_PATK_PLUS,EQUIP_PATK,PATK,7,베기류 무기 착용 시 물리 공격력 +{@st66d_y}{s16}[%d]{/}{/},7
+99,0,card_plokste,Always,StarCount,,,,,,SCR_CARDEFFECT_STATUS_PLUS,EQUIP_PATK,PATK,5,물리 공격력 +{@st66d_y}{s16}[%d]{/}{/},5
 100,0,card_Woodhoungan,Always,StarCount,,,,,,SCR_CARDEFFECT_STATUS_DUAL_PLUS,INT_ITEM_BM/CON_ITEM_BM,,0.5/0.5,"지능 스텟 +{@st66d_y}{s16}[%d]{/}{/}, 체력 스탯 +{@st66d_y}{s16}[%d]{/}{/} ",0.5/0.5
 101,15000,card_velnewt,Attacked,StarCount,,SCR_CARDCHECK_MONSIZE_COOLDOWN,S,,,SCR_CARDEFFECT_RECOVER_HP,0.5,,,소형 몬스터에게 피격 시 {@st66d_y}{s16}[%d]{/}{/}%% 확률로 HP 0.5%% 회복,1
 102,0,card_Velpede,Attack,StarCount,,SCR_CARDCHECK_ATTACK_RATE,,3,CARD_Haste,SCR_CARDEFFECT_ADD_BUFF_PC_PLUS,CARD_Haste,,6000,공격 시 {@st66d_y}{s16}[%d]{/}{/}%% 확률로 6초간 이동속도 +4,0.34
@@ -111,7 +111,7 @@ ClassID,ConditionArg4,ClassName,UseType,ValueType,PropertyType,ConditionScp,Cond
 110,0,card_Marionette,Attack,StarCount,,SCR_CARDCHECK_ATTACK_RATE,,3,,SCR_CARDEFFECT_ADD_BUFF_MONSTER,Monster_Slow,,3000,공격 시 {@st66d_y}{s16}[%d]{/}{/}%% 확률로 상대방에게 3초간 슬로우 상태,0.34
 111,15000,card_Canceril,Attacked,StarCount,,SCR_CARDCHECK_MONSIZE_COOLDOWN,M/PC,,,SCR_CARDEFFECT_RECOVER_HP,2,,,중형 대상에게 피격 시 {@st66d_y}{s16}[%d]{/}{/}%% 확률로 HP 2%% 회복,1
 112,0,card_Crabil,Always,StarCount,,,,100,,SCR_CARDEFFECT_STATUS_IMMUNE,Res_Stun_Debuff_BM,,2,스턴 상태이상 저항 +{@st66d_y}{s16}[%d]{/}{/},2
-113,0,card_Genmagnus,Always,StarCount,,,,100,,SCR_CARDEFFECT_SUB_PATK_PLUS,MAXPATK_SUB_BM/MINPATK_SUB_BM,PATK_SUB/PATK_SUB,3,보조 물리 공격력 +{@st66d_y}{s16}[%d]{/}{/},3
+113,0,card_Genmagnus,Always,StarCount,,,,100,,SCR_CARDEFFECT_SUB_PATK_PLUS,EQUIP_PATK_SUB,PATK_SUB,3,보조 물리 공격력 +{@st66d_y}{s16}[%d]{/}{/},3
 114,0,card_merregina,Always,StarCount,,,,,,SCR_CARDEFFECT_STATUS_PLUS,Ice_Atk_BM,Ice_Atk,10,얼음 속성 추가 대미지 +{@st66d_y}{s16}[%d]{/}{/},10
 115,0,card_Templeshooter,Always,StarCount,,,,,,SCR_CARDEFFECT_STATUS_DUAL_PLUS,STR_ITEM_BM/MNA_ITEM_BM,,0.5/0.5,"힘 스텟 +{@st66d_y}{s16}[%d]{/}{/}, 정신 스탯 +{@st66d_y}{s16}[%d]{/}{/} ",0.5/0.5
 116,0,card_Fireload,Always,StarCount,,,,,,SCR_CARDEFFECT_STATUS_PLUS,Fire_Atk_BM,Fire_Atk,10,불 속성 추가 대미지 +{@st66d_y}{s16}[%d]{/}{/},10
@@ -163,7 +163,7 @@ ClassID,ConditionArg4,ClassName,UseType,ValueType,PropertyType,ConditionScp,Cond
 162,0,card_Misrus,Always,StarCount,,,,100,,SCR_CARDEFFECT_STATUS_IMMUNE_AND_STATUS,Res_Blind_Debuff_BM/MSP_BM,,100/60,"암흑 상태이상 저항 +{@st66d_y}{s16}[%d]{/}{/}, 최대 SP +{@st66d_y}{s16}[%d]{/}{/}",1/60
 163,0,Legendcard_Misrus,Always,StarCount,,,,,,SCR_CARDEFFECT_ADD_BUFF_STARVALUE_PC,card_Misrus_legendcard,,0,실드 적용 중인 대상에게 {@st66d_y}{s16}[%d]{/}{/} 추가 대미지,1000
 164,0,card_tantaliser,Always,StarCount,,,,,,SCR_CARDEFFECT_STATUS_ALL_PLUS,CON_ITEM_BM/STR_ITEM_BM,CON_ITEM_BM/INT_ITEM_BM,1/1,"힘, 체력 + {@st66d_y}{s16}[%d]{/}{/}",1
-165,0,card_vaidotas,Always,StarCount,,,,,,SCR_CARDEFFECT_STATUS_ALL_PLUS,PATK_BM/MATK_BM,,10/10,"물리 공격력, 마법 공격력 + {@st66d_y}{s16}[%d]{/}{/}",10/10
+165,0,card_vaidotas,Always,StarCount,,,,,,SCR_CARDEFFECT_STATUS_ALL_PLUS,EQUIP_PATK/EQUIP_MATK,,10/10,"물리 공격력, 마법 공격력 + {@st66d_y}{s16}[%d]{/}{/}",10/10
 166,0,card_vlaentinas,Always,StarCount,,,,,,SCR_CARDEFFECT_STATUS_ALL_PLUS,DEF_BM/MDEF_BM,,10/10,"물리 방어력, 마법 방어력 + {@st66d_y}{s16}[%d]{/}{/}",10/10
 167,0,card_uska,Always,StarCount,,,,,,SCR_CARDEFFECT_STATUS_ALL_PLUS,CON_ITEM_BM/MNA_ITEM_BM/INT_ITEM_BM/DEX_ITEM_BM/STR_ITEM_BM,,0.4/0.4/0.4/0.4/0.4,"힘, 체력, 지능, 정신, 민첩 + {@st66d_y}{s16}[%d]{/}{/}",0.4
 168,0,card_cyrenia,Always,StarCount,,,,,,SCR_CARDEFFECT_STATUS_ALL_PLUS,MaxSta_BM/MHP_BM,,1/100,"스태미너 +{@st66d_y}{s16}[%d]{/}{/}, 최대 HP +{@st66d_y}{s16}[%d]{/}{/}",1/100

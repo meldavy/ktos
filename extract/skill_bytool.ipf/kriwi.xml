@@ -97,7 +97,11 @@
                 <Scp Client="NO" Scp="SKL_SET_TARGET_CIRCLE" Time="0" UseSleep="NO">
                     <Pos Angle="0" Dist="50"/>
                     <Num Num="50"/>
-                    <Num Num="5"/>
+					<Num Num="5" UseFunc="1" FuncTxt="local value = 5
+					if IsPVPField(self) == 1 and value > 2 then
+					value = math.floor((math.max(0, value-2)^0.5))+math.min(2, value)
+					end
+					return value"/>
                     <Num Num="2"/>
                 </Scp>
                 <Scp Client="NO" Scp="SKL_TGT_ATTACH_FORCE" Time="550" UseSleep="NO">

@@ -2509,7 +2509,7 @@ end
 function SCR_GET_MON_ADD_Damage_ATK(self)
     local value = 0
 
-    local byBuff = TryGetProp(self, 'ADD_Damage_Atk_BM', 0)
+    local byBuff = TryGetProp(self, 'Add_Damage_Atk_BM', 0)
 
     value = value + byBuff
 

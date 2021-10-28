@@ -147,6 +147,16 @@ function BEFORE_APPLIED_TOKEN_OPEN(invItem)
 		arg1 = 1296000 -- 15일
 	elseif itemobj.ClassName == "PremiumToken_14d_event" then
 		arg1 = 1209600 -- 14일
+	elseif itemobj.ClassName == "PremiumToken_30d" then
+		arg1 = 2592000 -- 30O
+	elseif itemobj.ClassName == "PremiumToken_60d" then
+		arg1 = 5184000 -- 60O
+	elseif itemobj.ClassName == "steam_PremiumToken_30day" then
+		arg1 = 2592000 -- 30O
+	elseif itemobj.ClassName == "steam_PremiumToken_60d" then
+		arg1 = 5184000 -- 60O
+	elseif itemobj.ClassName == "steam_PremiumToken_7d" then
+		arg1 = 604800 -- 70
 	end
 	local endTime = GET_TIME_TXT(arg1, 1)
 	local endTxt = frame:GetChild("endTime");

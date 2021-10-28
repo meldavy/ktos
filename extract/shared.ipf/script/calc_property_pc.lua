@@ -800,7 +800,9 @@ function SCR_Get_DEFAULT_MINPATK(self, value)
         
         byItem = byItem + byItemTemp;
     end
-    
+
+    byItem = byItem + TryGetProp(self, "EQUIP_PATK", 0) + TryGetProp(self, "EQUIP_PATK_MAIN", 0);
+
     local value = defaultValue + byLevel + byStat + byItem;
     
     local maxAtk = 0;
@@ -914,7 +916,9 @@ function SCR_Get_DEFAULT_MAXPATK(self, value)
         
         byItem = byItem + byItemTemp;
     end
-    
+
+    byItem = byItem + TryGetProp(self, "EQUIP_PATK", 0) + TryGetProp(self, "EQUIP_PATK_MAIN", 0);
+
     local value = defaultValue + byLevel + byStat + byItem;
     
     local leftMaxAtk = 0;
@@ -991,6 +995,8 @@ function SCR_Get_DEFAULT_MINPATK_SUB(self, value)
         
         byItem = byItem + byItemTemp;
     end
+
+    byItem = byItem + TryGetProp(self, "EQUIP_PATK", 0) + TryGetProp(self, "EQUIP_PATK_SUB", 0);
     
     local value = defaultValue + byLevel + byStat + byItem;
 
@@ -1094,7 +1100,7 @@ function SCR_Get_DEFAULT_MAXPATK_SUB(self, value)
     end
     
     local byStat = (stat * 2) + (math.floor(stat / 10) * (byLevel * 0.05));
-    
+
     local byItem = 0;
     local byItemList = { "MAXATK", "PATK", "ADD_MAXATK" };
     for i = 1, #byItemList do
@@ -1105,7 +1111,9 @@ function SCR_Get_DEFAULT_MAXPATK_SUB(self, value)
         
         byItem = byItem + byItemTemp;
     end
-    
+
+    byItem = byItem + TryGetProp(self, "EQUIP_PATK", 0) + TryGetProp(self, "EQUIP_PATK_SUB", 0);
+
     local value = defaultValue + byLevel + byStat + byItem;
     
     return value
@@ -1194,6 +1202,8 @@ function SCR_Get_DEFAULT_MINMATK(self, value)
         
         byItem = byItem + byItemTemp;
     end
+
+    byItem = byItem + TryGetProp(self, "EQUIP_MATK", 0);
     
     local value = defaultValue + byLevel + byStat + byItem;
 
@@ -1301,6 +1311,8 @@ function SCR_Get_DEFAULT_MAXMATK(self, value)
         byItem = byItem + byItemTemp;
     end
     
+    byItem = byItem + TryGetProp(self, "EQUIP_MATK", 0);
+
     local value = defaultValue + byLevel + byStat + byItem;
     
     return value
@@ -2630,6 +2642,10 @@ function SCR_Get_SDR(self)
     	value = 1;
     end
     
+    if IsPVPField(self) == 1 and value > 4 then
+        value = math.floor((math.max(0, value-4)^0.5))+math.min(4, value)
+    end
+
     return math.floor(value);
 end
 
@@ -4578,24 +4594,41 @@ function SCR_GET_LOOTINGCHANCE(self)
 end
 
 function SCR_Get_HEAL_PWR(self)
+    
+    -- 이전 치유력 계산식
+    --local defaultValue = 20;
+    --local byLevel = lv * 1.0;
+    --local byStat = (stat * 1) + (math.floor(stat / 10) * (byLevel * 0.03));
+    --local value = defaultValue + byLevel + byStat;
+
+    -- 레벨 이중 적용 계산식
+    --local defaultValue = 70;
+    --local byLevel = lv * (1 + 0.0073 * lv);
+    --local byStat = stat * 0.9;
+    --local byAttack = SCR_GET_DEFAULT_ATK_COMPARE(self) * 0.086
+    --local value = math.floor(defaultValue + byLevel + byStat + byAttack)
+
     local defaultValue = 20;
     
     local lv = TryGetProp(self, "Lv");
     if lv == nil then
         lv = 1;
     end
-    
-    local byLevel = lv * 1.0;
+
+    local byLevel = lv * 2.5;
     
     local stat = TryGetProp(self, "MNA");
     if stat == nil then
         stat = 1;
     end
-    
-    local byStat = (stat * 1) + (math.floor(stat / 10) * (byLevel * 0.03));
-    
-    local value = defaultValue + byLevel + byStat;
-    
+
+    local byStat = stat * 1;
+
+    local atk = SCR_GET_DEFAULT_ATK_COMPARE(self)
+    local byAttack = atk * 0.08
+
+    local value = math.floor(defaultValue + byLevel + byStat + byAttack)
+
     local byBuff = 0;
     
     local byBuffTemp = TryGetProp(self, "HEAL_PWR_BM");
@@ -4609,8 +4642,8 @@ function SCR_Get_HEAL_PWR(self)
     if byRateBuffTemp ~= nil then
         byRateBuff = byRateBuff + byRateBuffTemp;
     end
-    
-    byRateBuff = math.floor(value * byRateBuffTemp);    
+
+    byRateBuff = math.floor(value * byRateBuffTemp);
     value = value + byBuff + byRateBuff;    
     local byAbil = GetExProp(self, "ABIL_MACE_ADDHEAL")
     if byAbil == nil then
@@ -4624,7 +4657,7 @@ function SCR_Get_HEAL_PWR(self)
     if value < 1 then
     	value = 1;
     end
-    
+
     return math.floor(value);
 end
 

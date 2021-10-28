@@ -39,3 +39,6 @@ ClassID,GenType,Lv,Range,GenRange,RespawnTime,MaxPop,Minimap,Hide,UseAIOufOfPC,A
 1041,1041,1,40,1,60000,2,0,0,0,0,0,0,darbas_miner,,,,,,,,,,,NO,YES,NO,Monster,,,,
 1042,1042,1,40,1,60000,2,0,0,0,0,0,0,darbas_miner,,,,,,,,,,,NO,YES,NO,Monster,,,,
 1043,1043,1,40,1,60000,2,0,0,0,0,0,0,darbas_miner,,,,,,,,,,,NO,YES,NO,Monster,,,,
+1044,1044,1,40,1,60000,1,1,0,0,1,0,0,orsha_m_2,[왕국 재건단]{nl}오르샤 피해복구반,,,,MON_DUMMY,,,EP13_SUB_RECONSTRUCTION_NPC_SIAU_2_1,,,NO,YES,NO,Neutral,,,,
+1045,1045,1,40,1,60000,1,1,0,0,1,0,0,orsha_m_2,[왕국 재건단]{nl}오르샤 피해복구반,,,,MON_DUMMY,,,EP13_SUB_RECONSTRUCTION_NPC_SIAU_2_2,,,NO,YES,NO,Neutral,,,,
+1046,1046,1,40,1,60000,1,1,0,0,0,0,0,Hiddennpc_Q2,성자의 기도소,,,,,,PORTAL_RED,GADDESS_RAID_MEDUSA_PORTAL,,,NO,YES,NO,Neutral,,,,

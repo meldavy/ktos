@@ -1981,14 +1981,14 @@ function SCR_ABIL_SPEARMASTERY_Dagger_ACTIVE(self, ability)
 
     addATK = addATK * add_rate;
     
-    self.PATK_MAIN_BM = self.PATK_MAIN_BM + addATK;
+    self.EQUIP_PATK_MAIN = self.EQUIP_PATK_MAIN + addATK;
     
     SetExProp(ability, "ABIL_ADD_ATK", addATK);
 end
 
 function SCR_ABIL_SPEARMASTERY_Dagger_INACTIVE(self, ability)
     local addATK = GetExProp(ability, "ABIL_ADD_ATK");
-    self.PATK_MAIN_BM = self.PATK_MAIN_BM - addATK;
+    self.EQUIP_PATK_MAIN = self.EQUIP_PATK_MAIN - addATK;
 end
 
 function SCR_ABIL_Chaplain20_ACTIVE(self, ability)

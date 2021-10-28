@@ -5879,6 +5879,22 @@
 			</ToolScp>
 		</StartList>
 	</AI>
+	<AI Name="EP13_F_SIAULIAI_3_SQ_02_INTER_MAKE_DIR_AI_1" UpdateMS="1000" ActiveMessageMapInBattle="1">
+		<List>
+			<ToolScp Scp="SAI_FUNC2_DIRECT" Client="NO" UseSleep="NO">
+				<Str Str="EP13_F_SIAULIAI_3_SQ_02_INTER_MAKE_DIR_AI_1_RUN"/>
+			</ToolScp>
+			<ToolScp Scp="S_AI_MOVE_RALLY" Client="NO" UseSleep="YES" ExtraArg="1">
+				<AbsPos X="2090.7048" Y="209.71518" Z="-428.42331"/>
+			</ToolScp>
+			<ToolScp Scp="S_AI_MOVE_RALLY" Client="NO" UseSleep="YES" ExtraArg="1">
+				<AbsPos X="2655.9463" Y="171.9151" Z="-576.62665"/>
+			</ToolScp>
+		</List>
+		<StartList>
+			<ToolScp Scp="EnableAIOutOfPC" Client="NO" UseSleep="NO"/>
+		</StartList>
+	</AI>
 	<AI Name="EVENT1912_4TH_BUFF2_RUN_MON_AI_RUN" UpdateMS="10000" ActiveMessageMapInBattle="1">
 		<List>
 			<ToolScp Scp="SAI_FUNC2_DIRECT" Client="NO" UseSleep="NO">
@@ -11026,14 +11042,14 @@
 			</ToolScp>
 		</List>
 	</AI>
-    <AI Name="GILTINE_SHADOW" ActiveMessageMapInBattle="1">
-        <List>
-            <ToolScp Scp="S_AI_CUSTOM_SCRIPT" Client="NO" UseSleep="YES">
-                <Str Str="SCR_GILTINE_SHADOW_AI"/>
-                <Num Num="0"/>
-            </ToolScp>
-        </List>
-    </AI>
+	<AI Name="GILTINE_SHADOW" ActiveMessageMapInBattle="1">
+		<List>
+			<ToolScp Scp="S_AI_CUSTOM_SCRIPT" Client="NO" UseSleep="YES">
+				<Str Str="SCR_GILTINE_SHADOW_AI"/>
+				<Num Num="0"/>
+			</ToolScp>
+		</List>
+	</AI>
 	<AI Name="GIMMICK_STATUE_AI" ActiveMessageMapInBattle="1">
 		<StartList>
 			<ToolScp Scp="S_AI_SET_BTREE" Client="NO" UseSleep="NO">
@@ -16182,35 +16198,35 @@ if self.HP == 0 then return 1; else return 0; end;">
 		</StartList>
 	</AI>
 	<AI Name="PERSONAL_HOUSING_OBJ_CellPhone" UpdateMS="6000" ActiveMessageMapInBattle="1">
-        <List>
-            <ToolScp Scp="SAI_FUNC2_DIRECT" Client="NO" UseSleep="NO">
-                <Str Str="PERSONAL_HOUSING_OBJ_CellPhone_UPDATE"/>
-            </ToolScp>
-        </List>
-        <DeadList>
-            <ToolScp Scp="SAI_DEAD_FUNC2_DIRECT" Client="NO" UseSleep="NO">
-                <Str Str="PERSONAL_HOUSING_OBJ_CellPhone_DEAD"/>
-            </ToolScp>
-        </DeadList>
-        <StartList>
-            <ToolScp Scp="SAI_FUNC2_DIRECT" Client="NO" UseSleep="NO">
-                <Str Str="PERSONAL_HOUSING_OBJ_CellPhone_BORN"/>
-            </ToolScp>
-        </StartList>
-    </AI>
-    <AI Name="PERSONAL_HOUSING_OBJ_SOUND_LOOP" UpdateMS="10000" ActiveMessageMapInBattle="1">
-        <List>
-            <ToolScp Scp="SAI_FUNC2_DIRECT" Client="NO" UseSleep="NO">
-                <Str Str="PERSONAL_HOUSING_OBJ_SOUND_LOOP_UPDATE"/>
-            </ToolScp>
-        </List>
-        <DeadList>
-            <ToolScp Scp="SAI_DEAD_FUNC2_DIRECT" Client="NO" UseSleep="NO">
-                <Str Str="PERSONAL_HOUSING_OBJ_SOUND_LOOP_DEAD"/>
-            </ToolScp>
-        </DeadList>
-    </AI>
-    <AI Name="PIED_PIPER_MSTEP_GEN_AI" UpdateMS="1000" ActiveMessageMapInBattle="1">
+		<List>
+			<ToolScp Scp="SAI_FUNC2_DIRECT" Client="NO" UseSleep="NO">
+				<Str Str="PERSONAL_HOUSING_OBJ_CellPhone_UPDATE"/>
+			</ToolScp>
+		</List>
+		<DeadList>
+			<ToolScp Scp="SAI_DEAD_FUNC2_DIRECT" Client="NO" UseSleep="NO">
+				<Str Str="PERSONAL_HOUSING_OBJ_CellPhone_DEAD"/>
+			</ToolScp>
+		</DeadList>
+		<StartList>
+			<ToolScp Scp="SAI_FUNC2_DIRECT" Client="NO" UseSleep="NO">
+				<Str Str="PERSONAL_HOUSING_OBJ_CellPhone_BORN"/>
+			</ToolScp>
+		</StartList>
+	</AI>
+	<AI Name="PERSONAL_HOUSING_OBJ_SOUND_LOOP" UpdateMS="10000" ActiveMessageMapInBattle="1">
+		<List>
+			<ToolScp Scp="SAI_FUNC2_DIRECT" Client="NO" UseSleep="NO">
+				<Str Str="PERSONAL_HOUSING_OBJ_SOUND_LOOP_UPDATE"/>
+			</ToolScp>
+		</List>
+		<DeadList>
+			<ToolScp Scp="SAI_DEAD_FUNC2_DIRECT" Client="NO" UseSleep="NO">
+				<Str Str="PERSONAL_HOUSING_OBJ_SOUND_LOOP_DEAD"/>
+			</ToolScp>
+		</DeadList>
+	</AI>
+	<AI Name="PIED_PIPER_MSTEP_GEN_AI" UpdateMS="1000" ActiveMessageMapInBattle="1">
 		<List>
 			<ToolScp Scp="SAI_FUNC2_DIRECT" Client="NO" UseSleep="NO">
 				<Str Str="SCR_CHAR312_MSTEP_GEN_AI"/>
@@ -27543,6 +27559,16 @@ return GET_RATE_MHP(self, damage) * 100"/>
 				<Str Str="BOT"/>
 			</ToolScp>
 		</List>
+	</AI>
+	<AI Name="EP13_SQ_PAJAUTA_FOLLOWNPC_RUN_1" ActiveMessageMapInBattle="1">
+		<List>
+			<ToolScp Scp="SAI_FUNC2_DIRECT" Client="NO" UseSleep="NO">
+				<Str Str="EP13_SQ_PAJAUTA_FOLLOWNPC_RUN_1_ACT"/>
+			</ToolScp>
+		</List>
+		<StartList>
+			<ToolScp Scp="EnableAIOutOfPC" Client="NO" UseSleep="NO"/>
+		</StartList>
 	</AI>
 	<AI Name="EP13_F_SIAULIAI_5_ENDPOINT_AI" ActiveMessageMapInBattle="1">
 		<List>

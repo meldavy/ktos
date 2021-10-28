@@ -50,8 +50,7 @@
 		<groupbox name="destroy_gb" parent="pic_bg" rect="0 0 470 362" margin="0 50 0 0" skin="None" hittest="false" layout_gravity="center bottom"/>
 		<groupbox name="yellow_skin_destroy" parent="destroy_gb" rect="0 0 400 180" margin="0 0 0 0" skin="mission_fail_name" hittest="false" layout_gravity="center top" draw="true" scrollbar="false"/>
 		<picture name="result_fail_effect_bg" parent="destroy_gb" rect="0 0 507 313"  margin="0 0 0 0" hittest="false" image="None" draw="false" oversound="button_cursor_over_3" stretch="true" layout_gravity="center top"/>
-		<picture name="text_destroy" parent="destroy_gb" rect="0 0 330 133" margin="0 0 0 0" hittest="false" image="card_reinforce_DESTROY" stretch="false" layout_gravity="center top"/>
-		<richtext name="destroy_text" parent="destroy_gb" rect="0 0 267 34" margin="0 120 0 0" layout_gravity="center top" format="{s22}아이템이 파괴되었습니다." textalign="center center" fontname="white_18_ol"/>
+		<picture name="text_destroy" parent="destroy_gb" rect="0 0 330 133" margin="0 0 0 0" hittest="false" image="card_reinforce_DESTROY" stretch="false" layout_gravity="center top"/>		
 		<!-- 결과 - 성공 -->
 		<groupbox name="result_gb" rect="0 0 470 362" margin="0 50 0 0" layout_gravity="center top" parent="bg" draw="false" hittestbox="false" resizebyparent="false" changecursor="false" scrollbar="false" hittest="true" skin="test_socket_topskin"/>
 		<picture name="result_effect_bg" parent="result_gb" rect="0 0 507 313"  margin="0 0 0 0" hittest="false" image="SUCCESS_gold_bg" oversound="button_cursor_over_3" stretch="true" layout_gravity="center top"/>

@@ -705,7 +705,7 @@
 		<controls>
 			<picture name="material_icon" layout_gravity="left top" rect="0 0 40 40" margin="10 10 0 0" stretch="true"/>
 			<picture name="material_questionmark" image="question_mark" layout_gravity="left top" rect="0 0 40 40" margin="10 10 0 0" stretch="true"/>
-			<richtext name="material_name" rect="0 0 80 30" margin="90 0 0 0" layout_gravity="left center" textalign="left center" resizebytext="true" fixwidth="false" format="미정" param1="미정" param2="미정" param3="미정" caption="미정" fontname="brown_18"/>
+			<richtext name="material_name" rect="0 0 280 30" margin="55 0 0 0" layout_gravity="left center" textalign="left center" resizebytext="true" fixwidth="true" format="미정" param1="미정" param2="미정" param3="미정" caption="미정" fontname="brown_18"/>
 			<richtext name="material_count" rect="0 0 30 30" margin="0 0 30 0" layout_gravity="right center" textalign="right center" resizebytext="true" fixwidth="false" format="%s%s{/} / %s{/}" param1="color" param2="curCount" param3="needCount" fontname="brown_18"/>
 			<labelline name="labelline" skin="labelline_def_2" margin="10 0 0 0" rect="0 0 390 1" layout_gravity="left bottom"/>
 		</controls>
@@ -5876,7 +5876,7 @@
 		</controls>
 	</controlset>
 	<controlset name="item_equip_helper_ctrl" hittest="true" width="465" height="37" draw="false">
-		<userconfig FONT_GRADE_1="{@st42b}{s20}{#ffffff}" FONT_GRADE_2="{@st42b}{s20}{#0e7fe8}" FONT_GRADE_3="{@st42b}{s20}{#a124d0}" FONT_GRADE_4="{@st42b}{s20}{#d92400}" FONT_GRADE_5="{@st42b}{s20}{#ffcd00}" FONT_NOT_EQUIP="{@st42b}{s20}"/>
+		<userconfig FONT_GRADE_1="{@st42b}{s20}{#ffffff}" FONT_GRADE_2="{@st42b}{s20}{#0e7fe8}" FONT_GRADE_3="{@st42b}{s20}{#a124d0}" FONT_GRADE_4="{@st42b}{s20}{#d92400}" FONT_GRADE_5="{@st42b}{s20}{#ffcd00}" FONT_GRADE_6="{@st42b}{s20}{#66d28b}" FONT_NOT_EQUIP="{@st42b}{s20}"/>
 		<controls>
 			<groupbox name="equip_helper_bg" rect="0 0 465 30" margin="0 0 0 0" layout_gravity="left top" skin="equipment_info_bg" hittest="true"/>
 			<groupbox name="equip_spot_bg" rect="0 0 80 30" margin="0 0 0 0" layout_gravity="left top" parent="equip_helper_bg" hittest="true" skin="equipment_info_title"/>
