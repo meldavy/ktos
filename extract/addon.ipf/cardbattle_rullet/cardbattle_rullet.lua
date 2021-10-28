@@ -79,6 +79,7 @@ function PLAY_RESULT_EFFECT(frame)
 end
 
 function SHOW_CARDBATTLE_RESULT(elapsedTime, handle, factor, winSide, randomValue)
+
 	if 0 == ui.IsFrameVisible("cardbattle") then
 		return;
 	end
@@ -322,10 +323,7 @@ function RUN_CARDBATTLE_RULLET(frame, elapsedTime)
 
 	local last_Random_Section = frame:GetUserIValue("LASTRANDOM");
 	local randomSection = math.floor(angle / 52);
-	if isEnd == true then
-		randomSection = frame:GetUserIValue('RANDOMVALUE');
-	end
-	if randomSection ~= last_Random_Section or isEnd == true then
+	if randomSection ~= last_Random_Section then
 		local txt_nowcondition = frame:GetChild("txt_nowcondition");
 		local desc = GET_CARDBATTLE_DECISION_DESC(randomSection);
 		txt_nowcondition:SetTextByKey("value", ScpArgMsg(desc));
