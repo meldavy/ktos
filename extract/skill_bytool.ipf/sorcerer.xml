@@ -454,18 +454,12 @@ return value"/>
                     <Str Str="voice_wiz_m_obey_shot"/>
                     <Str Str="voice_wiz_obey_shot"/>
                 </Scp>
-                <Scp Client="NO" Scp="SORCER_TGT_ATTACH_SELF_TO_TARGET" Time="700" UseSleep="NO">
+                <Scp Client="NO" Scp="SORCER_OBEY_CONTROL_START" Time="700" UseSleep="NO">
                     <Str Str="Dummy_Summon"/>
                     <Num Num="0"/>
                     <Str_Arg Arg="1" Str="None"/>
                     <Str Str="RIDE_OBEY"/>
-                </Scp>
-                <Scp Client="NO" Scp="SORCER_CONTROL_START" Time="750" UseSleep="NO">
-                    <Str Str="summoncontrol"/>
                     <Str Str="SORCERER_SPEND_SP"/>
-                </Scp>
-                <Scp Scp="SKL_RUN_SCRIPT" Client="NO" UseSleep="NO" Time="500">
-                    <Str Str="SCR_Karaliene_Isgariti_BUFF"/>
                 </Scp>
             </EtcList>
         </MainSkl>
