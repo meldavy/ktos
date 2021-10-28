@@ -3489,23 +3489,15 @@ function GODDESS_MGR_SOCKET_REQ_GEM_REMOVE(parent, btn)
 		local inv_item = session.GetInvItemByGuid(guid)
 		if inv_item == nil then return end
 
-		local start_str = '2021-04-22 09:00:00'
-		local end_str = '2021-07-22 08:59:59'
-		local now_time = date_time.get_lua_now_datetime_str()
-		local is_before_time = date_time.is_later_than(now_time, start_str)
-		local is_after_time = date_time.is_later_than(now_time, end_str)
-		local remove_care = false
-		if is_before_time == true and is_after_time == false then
-			remove_care = true
-		end
 		
 		local item_obj = GetIES(inv_item:GetObject())
 		local item_name = dic.getTranslatedStr(TryGetProp(item_obj, 'Name', 'None'))
-		local msg_cls_name = 'ReallyRemoveGem'
-		if remove_care == true then
-			msg_cls_name = 'ReallyRemoveGem_Care'
-		end
-		local clmsg = "'" .. item_name .. ScpArgMsg("Auto_'_SeonTaeg") .. ScpArgMsg(msg_cls_name)
+		local msg_cls_name = 'ReallyRemoveGem_AetherGem'
+		local gem_id = inv_item:GetEquipGemID(2)
+		local gem_cls = GetClassByType('Item', gem_id)
+		local gem_numarg1 = TryGetProp(gem_cls, 'NumberArg1', 0)
+		local price = gem_numarg1 * 100
+		local clmsg = "[" .. item_name .. "]" .. ScpArgMsg(msg_cls_name) .. tostring(price)
 
 		local index = parent:GetUserValue('SLOT_INDEX')
 		local yesscp = string.format('_GODDESS_MGR_SOCKET_REQ_GEM_REMOVE(%s)', index)

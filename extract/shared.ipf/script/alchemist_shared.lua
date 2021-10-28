@@ -2,7 +2,7 @@ function GET_BRIQUETTING_NEED_LOOK_ITEM_CNT(targetItem)
 	if targetItem.StringArg == 'WoodCarving' then
 		return 0;
 	end
-
+	
 	local needItem = 6 - targetItem.ItemGrade	
 	return needItem;
 end
@@ -27,6 +27,10 @@ function GET_BRIQUETTING_PRICE(targetItem, lookItem, lookMaterialItemList, taxRa
 	if grade == nil then
 	    return;
 	end
+
+	if grade > 5 then
+		grade = 5
+	end	
 	
 	local price = (lv * 100) +  SyncFloor((lv^1.6*grade) * (lv/(6-grade)))
 	

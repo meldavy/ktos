@@ -5461,3 +5461,33 @@ function RUN_CLIENT_USE_MULTIPLE_ARTS_ABILITY(count)
     local resultlist = session.GetItemIDList()
 	item.DialogTransaction("MULTIPLE_USE_ARTS_ABILITY", resultlist)	
 end
+
+function BEFORE_APPLIED_CHANGE_VIBORA(invItem)
+	if invItem == nil then
+		return;
+	end
+	
+	local invFrame = ui.GetFrame("inventory");	
+	local itemobj = GetIES(invItem:GetObject());
+	if itemobj == nil then
+		return;
+	end
+	
+	if TryGetProp(itemobj, 'StringArg', 'None') ~= 'Vibora' then
+		return
+	else
+		if TryGetProp(cls, 'NumberArg1', 0) > 1 then
+			return
+		end
+	end
+
+	local itemClassName = TryGetProp(itemobj, "ClassName", "None")
+	if itemClassName ~= 'SWD04_126_3' and itemClassName ~= 'DAG04_123_4' and itemClassName ~= 'SHD04_122_1' and itemClassName ~= 'DAG04_123_6' and itemClassName ~= 'SHD04_122_2' then
+		return
+	end
+	
+	invFrame:SetUserValue("REQ_USE_ITEM_GUID", invItem:GetIESID());
+	
+	local textmsg = string.format("[ %s ]{nl}%s", itemobj.Name, ScpArgMsg("YESSCP_OPEN_BASIC_MSG"));
+	ui.MsgBox_NonNested(textmsg, itemobj.Name, 'REQUEST_SUMMON_BOSS_TX', "None");
+end

@@ -466,6 +466,9 @@ end
 
 -- 보상 일괄 수령 버튼
 function _CHECK_REWARD_ALL_BTN()
+	local frame = ui.GetFrame('quest')
+	local btn = GET_CHILD_RECURSIVELY(frame, 'relic_reward_all')
+	
 	if reward_exist == true then
 		btn:SetEnable(1)
 	end

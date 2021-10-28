@@ -1519,7 +1519,7 @@ function CHECK_GEAR_SCORE_FOR_CONTENTS(pc, indun_cls)
 					return false;
 				end
 			elseif indun_cls.ClassName == "Challenge_Auto_Hard_Party" then -- auto hard
-				if gear_score < 430 then
+				if gear_score < 420 then
 					SendSysMsg(pc, "LowEquipedItemGearScore");
 					return false;
 				end

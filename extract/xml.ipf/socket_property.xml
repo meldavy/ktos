@@ -1508,12 +1508,12 @@
 		<Level Level="1" PropList_TopLeg="OptDesc/디바인 마이트 스킬 레벨 + 1" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/디바인 마이트 스킬 레벨 + 1" PropList_HandOrFoot_Penalty="None"/>
 	</Item>
 	<Item Name="GEM_OutLaw_FireBlindly">
-		<Level Level="0" PropList_TopLeg="OptDesc/난사 스킬 레벨 + 1" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/난사 스킬 레벨 + 1" PropList_HandOrFoot_Penalty="None"/>
-		<Level Level="1" PropList_TopLeg="OptDesc/난사 스킬 레벨 + 1" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/난사 스킬 레벨 + 1" PropList_HandOrFoot_Penalty="None"/>
-	</Item>
-	<Item Name="GEM_OutLaw_Bully">
 		<Level Level="0" PropList_TopLeg="OptDesc/농락 스킬 레벨 + 1" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/농락 스킬 레벨 + 1" PropList_HandOrFoot_Penalty="None"/>
 		<Level Level="1" PropList_TopLeg="OptDesc/농락 스킬 레벨 + 1" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/농락 스킬 레벨 + 1" PropList_HandOrFoot_Penalty="None"/>
+	</Item>
+	<Item Name="GEM_OutLaw_Bully">
+		<Level Level="0" PropList_TopLeg="OptDesc/시비걸기 스킬 레벨 + 1" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/시비걸기 스킬 레벨 + 1" PropList_HandOrFoot_Penalty="None"/>
+		<Level Level="1" PropList_TopLeg="OptDesc/시비걸기 스킬 레벨 + 1" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/시비걸기 스킬 레벨 + 1" PropList_HandOrFoot_Penalty="None"/>
 	</Item>
 	<Item Name="GEM_OutLaw_Rampage">
 		<Level Level="0" PropList_TopLeg="OptDesc/난동 부리기 스킬 레벨 + 1" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/난동 부리기 스킬 레벨 + 1" PropList_HandOrFoot_Penalty="None"/>

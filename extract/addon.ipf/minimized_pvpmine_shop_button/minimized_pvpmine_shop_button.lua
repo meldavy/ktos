@@ -11,6 +11,6 @@ function MINIMIZED_PVPMINE_SHOP_BUTTON_CLICK(parent, ctrl)
 	if frame:IsVisible() == 1 then
 		ui.CloseFrame('earthtowershop')
 	end
-
-	REQ_PVP_MINE_SHOP_OPEN()
+	
+	pc.ReqExecuteTx_NumArgs("SCR_PVP_MINE_SHOP_OPEN", 0);
 end

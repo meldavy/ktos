@@ -236,9 +236,7 @@ function SCR_ABIL_HIGHLANDER9_ACTIVE(self, ability)
         cnt = math.min(cnt + 1, 2)
     end
 
-    if cnt > 0 then
-        AddBuff(self, self, "Highlander9_Buff", cnt);
-    end
+    AddBuff(self, self, "Highlander9_Buff", cnt);
 end
 
 function SCR_ABIL_HIGHLANDER9_INACTIVE(self, ability)

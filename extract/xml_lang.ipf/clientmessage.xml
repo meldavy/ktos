@@ -619,6 +619,7 @@
 		<Class ClassID="3087" ClassName="EvolvedItem" Data="[진화]"/>
 		<Class ClassID="3088" ClassName="ReallyMakeSocketGoddess{img}{value}" Data="소켓을 추가하시겠습니까?{nl} {nl}{img}  {value}개"/>
 		<Class ClassID="3089" ClassName="OnlyGoddessEquipManagement" Data="가디스 장비 관리에서만 가능합니다."/>
+		<Class ClassID="3090" ClassName="ReallyRemoveGem_AetherGem" Data="{nl}무기에서 에테르 젬을 추출하시겠습니까?{nl}추출 비용 : {img silver 20 20/}"/>
 	</Category>
 	<Category Name="ItemPuzzle">
 		<Class ClassID="3501" ClassName="WouldYouSelectThisCombinationAsAlchemystryTarget?" Data="이 조합을 연금 대상으로 선택합니까?"/>
