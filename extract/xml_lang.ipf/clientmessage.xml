@@ -1326,7 +1326,7 @@
 		<Class ClassID="5206" ClassName="tooltip_DobleAtaque" Data=" - 루차 데 시야 스킬 레벨 {img green_up_arrow 16 16}3{nl}  - 골페아르 스킬 레벨 {img green_up_arrow 16 16}1{nl}  - 루차 데 시야 공격이 적에게 적중되면 루차도르 마스터가 등장하여 [에스페시알] 기술을 시전{nl}{nl} {nl}에스페시알{nl}  - 루차도르 마스터가 적을 향해 돌진하여 접근과 동시에 피해를 주고(1회 타격) 팔을 휘둘러 2회 공격한 뒤 공중으로 점프하여 범위 공격(3회 타격){nl}  - 에스페시알의 스킬 계수 현재 루차 데 시야의 100%. 타격 수 총 6회"/>
 		<Class ClassID="5207" ClassName="tooltip_DobleAtaque_Lv4" Data="{nl} {nl}{@st66d}{s15} - 골페아르 최종 대미지 {img green_up_arrow 16 16}100%"/>
 		<Class ClassID="5208" ClassName="tooltip_Arena" Data=" - 어인 투구, 스프린트를 제외한 모든 무르밀로 스킬 레벨 {img green_up_arrow 16 16}1{nl}  - 어인 투구의 페널티 감소 (이동속도 감소 5 → 3, 회피 감소 25% → 12.5%){nl}  - 프렌지드 버스트 사용 후 캐릭터 주변에 [아레나] 지대가 형성됨 (아레나 지속시간은 현재 프렌지드 버스트 재사용 대기시간의 절반만큼 지속되며, 마지막에 형성된 아레나만 유지됨){nl}{nl} {nl}아레나{nl}  - 아레나 안에서 시전자의 무르밀로 공격 스킬 최종 대미지 30% 증가{nl}  - 아레나를 벗어난 적 캐릭터는 10초 동안 [도망자] 디버프 부여 (디버프는 적 캐릭터만 적용됨. 시전자, 몬스터에게는 적용되지 않음){nl}{nl} {nl}[도망자] 디버프 효과{nl}  - 이동속도 10 감소{nl}  - 공격 시 최종 대미지 10% 감소{nl}  - 회피, 블록 50% 감소"/>
-		<Class ClassID="5209" ClassName="tooltip_Arena_Lv4" Data="{nl} {nl}{@st66d}{s15} -  헤드버트가 적에게 적중 시 잔상이 2명 소환되어 각각 적에게 버터플라이 시전 (재발동 대기시간 30초)"/>
+		<Class ClassID="5209" ClassName="tooltip_Arena_Lv4" Data="{nl} {nl}{@st66d}{s15} -  헤드버트가 적에게 적중 시 잔상이 2명 소환되어 각각 적에게 버터플라이 시전 (재발동 대기시간 30초. [헤드버트: 엠퍼러즈 베인] 특성 활성화 중에는 시전되지 않음)"/>
 	</Category>
 	<Category Name="PeriodicTitle">
 		<Class ClassID="6001" ClassName="TournamentChampion" Data="토너먼트 챔피언"/>
