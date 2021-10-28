@@ -136,7 +136,7 @@ function ITEM_OPTIONADD_REG_MAIN_ITEM(frame, itemID)
 	if invItem == nil then
 		return;
 	end
-	
+
 	
 	local item = GetIES(invItem:GetObject());
 	local itemCls = GetClassByType('Item', item.ClassID)
@@ -146,6 +146,11 @@ function ITEM_OPTIONADD_REG_MAIN_ITEM(frame, itemID)
 	end
 	local invitem = item
 
+	--이벤트 아이템 확인
+	if SHARED_IS_EVENT_ITEM_CHECK(itemCls, "NoEnchant") == true then
+		ui.SysMsg(ClMsg("NotAllowedItemOptionAdd"))
+		return
+	end
 	
 	local slot = GET_CHILD_RECURSIVELY(frame, "slot");
 	local slotInvItem = GET_SLOT_ITEM(slot);
@@ -808,6 +813,13 @@ function ITEMOPTIONADD_INV_RBTN(itemObj, slot)
 		local tempItem = GetIES(slotInvItem:GetObject());
 		slotInvItemCls = GetClass('Item', tempItem.ClassName)
 	end
+
+	--이벤트 아이템 확인
+	if SHARED_IS_EVENT_ITEM_CHECK(itemObj, "NoEnchant") == true then
+		ui.SysMsg(ClMsg("IcorNotAdded_EP12_CANT1"))
+		return
+	end
+	
 
 	if slotInvItem ~= nil then
 		ITEM_OPTIONADD_REG_ADD_ITEM(frame, iconInfo:GetIESID())

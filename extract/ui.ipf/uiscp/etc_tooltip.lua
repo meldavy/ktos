@@ -23,7 +23,6 @@ function ITEM_TOOLTIP_ETC(tooltipframe, invitem, argStr, usesubframe)
 	else
 		ypos = DRAW_REMAIN_LIFE_TIME(tooltipframe, invitem, ypos, mainframename); -- 남은 시간
 	end
-	
 end
 
 function DRAW_ETC_COMMON_TOOLTIP(tooltipframe, invitem, mainframename, from)
@@ -288,6 +287,22 @@ local function _SET_TRUST_POINT_PARAM_INFO(tooltipframe, index, paramType)
 	local STAR_IMG = 'star_in_arrow';
 	local STAR_SIZE = 19;
 	local starText = '';
+
+	local name = tooltipframe:GetName();
+	if name == "trust_point_global" then
+		local paramText = GET_CHILD_RECURSIVELY(tooltipframe, 'paramText'..index);
+		if 20 < paramText:GetHeight() then
+			local starTextBox = GET_CHILD_RECURSIVELY(tooltipframe, 'starTextBox'..index);
+			starTextBox:Resize(starTextBox:GetWidth(), paramText:GetHeight());
+	
+			local paramTextBox = GET_CHILD_RECURSIVELY(tooltipframe, 'paramTextBox'..index);
+			paramTextBox:Resize(paramTextBox:GetWidth(), paramText:GetHeight());
+			
+			local list = GET_CHILD_RECURSIVELY(tooltipframe, 'list'..index);
+			list:Resize(list:GetWidth(), paramText:GetHeight());
+		end
+	end
+
 	if point == 5 then
 		starText = starText..string.format('{img %s %s %s}', STAR_IMG, STAR_SIZE, STAR_SIZE);
 		starText = starText..string.format('{img %s %s %s}', "starmark_multipl05", 19, 15);
@@ -344,6 +359,19 @@ function UPDATE_TRUST_POINT_TOOLTIP(tooltipframe, tree)
 	if config.GetServiceNation() ~= 'KOR' and config.GetServiceNation() ~= 'GLOBAL' and config.GetServiceNation() ~= 'GLOBAL_JP' then
 		_HIDE_SAFEAUTH_INFO(tooltipframe, 4, 5);
 	end
+end
+
+function UPDATE_TRUST_POINT_GLOBAL_TOOLTIP(tooltipframe, tree)
+	_SET_TRUST_POINT_PARAM_INFO(tooltipframe, 1, "CreateTime");
+	_SET_TRUST_POINT_PARAM_INFO(tooltipframe, 2, "Quest");
+	_SET_TRUST_POINT_PARAM_INFO(tooltipframe, 3, "Episode");
+	_SET_TRUST_POINT_PARAM_INFO(tooltipframe, 4, "FirstTPBuy");
+	_SET_TRUST_POINT_PARAM_INFO(tooltipframe, 5, 'SafeAuth');
+	
+	local gBox = GET_CHILD_RECURSIVELY(tooltipframe, "static_gb");
+	GBOX_AUTO_ALIGN(gBox, 0, 3, 0, true, true);
+
+	tooltipframe:Resize(tooltipframe:GetWidth(), gBox:GetHeight() + 45);
 end
 
 function UPDATE_INDUN_INFO_TOOLTIP(tooltipframe, cidStr, param1, param2, actor)
@@ -498,4 +526,147 @@ function ITEM_TOOLTIP_MONSTER_PIECE(tooltipframe, invitem, argStr, usesubframe)
 		ypos = DRAW_REMAIN_LIFE_TIME(tooltipframe, invitem, ypos, mainframename); -- 남은 시간
 	end
 	
+end
+
+
+-- 서브 툴팁이 출력되는 이벤트 아이템용 툴팁
+function ITEM_TOOLTIP_ETC_EVENT(tooltipframe, invitem, argStr, usesubframe)    
+	tolua.cast(tooltipframe, "ui::CTooltipFrame");
+
+	local mainframename = 'etc'
+	
+	if usesubframe == "usesubframe" then
+		mainframename = "etc_sub"
+	elseif usesubframe == "usesubframe_recipe" then
+		mainframename = "etc_sub"
+	end
+
+	local ypos = DRAW_ETC_COMMON_TOOLTIP(tooltipframe, invitem, mainframename, argStr); -- 기타 템이라면 공통적으로 그리는 툴팁들	
+	ypos = DRAW_ETC_DESC_TOOLTIP(tooltipframe, invitem, ypos, mainframename); -- 아이템 설명.
+	ypos = DRAW_ETC_RECIPE_NEEDITEM_TOOLTIP(tooltipframe, invitem, ypos, mainframename); -- 재료템이라면 필요한 재료랑 보여줌
+	ypos = DRAW_ETC_PREVIEW_TOOLTIP(tooltipframe, invitem, ypos, mainframename);			-- 아이콘 확대해서 보여줌
+	ypos = DRAW_EQUIP_TRADABILITY(tooltipframe, invitem, ypos, mainframename);
+	
+	local isHaveLifeTime = TryGetProp(invitem, "LifeTime", 0);	
+	if 0 == tonumber(isHaveLifeTime) and TryGetProp(invitem, 'ExpireDateTime', 'None') == 'None' then
+		ypos = DRAW_SELL_PRICE(tooltipframe, invitem, ypos, mainframename); -- 가격
+	else
+		ypos = DRAW_REMAIN_LIFE_TIME(tooltipframe, invitem, ypos, mainframename); -- 남은 시간
+	end
+
+	DRAW_ETC_EVENT_SET(tooltipframe, invitem, 0); -- 세트아이템
+	DRAW_ETC_EVENT_EQUIP(tooltipframe, invitem, argStr); -- 특정 아이템
+end
+
+-- 세트 옵션 스크롤 
+function DRAW_ETC_EVENT_SET(tooltipframe, invitem, ypos)
+	local gBox = GET_CHILD(tooltipframe, "equip_main_addinfo",'ui::CGroupBox'); -- addinfo frame
+	gBox:RemoveChild('tooltip_set');
+
+	-- 세트 옵션 구분 조건
+	local prefix = TryGetProp(invitem, "StringArg", "None");
+	local prefixCls = GetClass("LegendSetItem", prefix);
+	if prefixCls == nil then
+		return ypos;
+	end
+
+	local group = TryGetProp(prefixCls, "LegendGroup", "None");
+
+	local tooltip_CSet = gBox:CreateControlSet('tooltip_set', 'tooltip_set', 0, ypos);
+	tolua.cast(tooltip_CSet, "ui::CControlSet");
+	local set_gbox_type= GET_CHILD(tooltip_CSet, 'set_gbox_type', 'ui::CGroupBox');
+	local set_gbox_prop= GET_CHILD(tooltip_CSet, 'set_gbox_prop', 'ui::CGroupBox');
+
+	local inner_yPos = 0;
+	local inner_xPos = 0;
+	local DEFAULT_POS_Y = tooltip_CSet:GetUserConfig("DEFAULT_POS_Y");
+	inner_yPos = DEFAULT_POS_Y;
+	inner_xPos = 0;
+
+	local EntireHaveCount = 0;
+	local setList = {'RH', 'LH', 'SHIRT', 'PANTS', 'GLOVES', 'BOOTS'};
+	local setFlagList = {RH_flag, LH_flag, SHIRT_flag, PANTS_flag, GLOVES_flag, BOOTS_flag};
+	local setItemCount = 0;
+	setItemCount, setFlagList[1], setFlagList[2], setFlagList[3], setFlagList[4], setFlagList[5], setFlagList[6] = CHECK_EQUIP_SET_ITEM(invitem, group, prefix);
+
+	for i = 1, setItemCount do
+		local setItemTextCset = set_gbox_type:CreateControlSet('eachitem_in_setitemtooltip', 'setItemText'..i, inner_xPos, inner_yPos);
+		tolua.cast(setItemTextCset, "ui::CControlSet");
+		local setItemName = GET_CHILD_RECURSIVELY(setItemTextCset, "setitemtext");
+		if setFlagList[i] == 0 then
+			setItemName:SetTextByKey("font", tooltip_CSet:GetUserConfig("NOT_HAVE_ITEM_FONT"));
+		else 
+			setItemName:SetTextByKey("font", tooltip_CSet:GetUserConfig("HAVE_ITEM_FONT"));
+			EntireHaveCount = EntireHaveCount + 1;
+		end
+
+		local temp = "";
+		if prefixCls ~= nil then
+			temp = prefixCls.Name;
+		end
+
+		local setItemText = temp .. ' ' .. tooltip_CSet:GetUserConfig(setList[i] .. '_SET_TEXT');
+		setItemName:SetTextByKey("itemname", setItemText);
+		local heightMargin = setItemTextCset:GetUserConfig("HEIGHT_MARGIN");
+		inner_yPos = inner_yPos + heightMargin;
+	end
+
+	set_gbox_type:Resize(set_gbox_type:GetWidth(), inner_yPos);
+
+	local USE_SETOPTION_FONT = tooltip_CSet:GetUserConfig("USE_SETOPTION_FONT");
+	local NOT_USE_SETOPTION_FONT = tooltip_CSet:GetUserConfig("NOT_USE_SETOPTION_FONT");
+
+	inner_yPos = DEFAULT_POS_Y;
+
+	local max_option_count = TryGetProp(prefixCls, 'MaxOptionCount', 5);
+	if prefixCls ~= nil then
+		for i = 0, (max_option_count - 3) do		-- 3 4 5 
+		local index = 'EffectDesc_' .. i+ 3;
+			local color = USE_SETOPTION_FONT;
+			if EntireHaveCount >= i + 3 then
+				color = NOT_USE_SETOPTION_FONT;
+			end
+
+			local setTitle = ScpArgMsg("Auto_{s16}{Auto_1}{Auto_2}_SeTeu_HyoKwa__{nl}", "Auto_1",color, "Auto_2",i + 3);
+			local setDesc = string.format("{s16}%s%s", color, prefixCls[index]);
+
+			local each_text_CSet = set_gbox_prop:CreateControlSet('tooltip_set_each_prop_text', 'each_text_CSet'..i, inner_xPos, inner_yPos);
+			tolua.cast(each_text_CSet, "ui::CControlSet");
+			local set_text = GET_CHILD(each_text_CSet,'set_prop_Text','ui::CRichText');
+			set_text:SetTextByKey("setTitle",setTitle);
+			set_text:SetTextByKey("setDesc",setDesc);
+
+			local labelline = GET_CHILD_RECURSIVELY(each_text_CSet, 'labelline');
+			local y_margin = each_text_CSet:GetUserConfig("TEXT_Y_MARGIN");
+			local testRect = set_text:GetMargin();
+			each_text_CSet:Resize(each_text_CSet:GetWidth(), set_text:GetHeight() + testRect.top);				
+			inner_yPos = inner_yPos + each_text_CSet:GetHeight() + y_margin;
+		end
+	end
+
+	-- 맨 아랫쪽 여백
+	local BOTTOM_MARGIN = tooltipframe:GetUserConfig("BOTTOM_MARGIN");
+	set_gbox_prop:Resize( set_gbox_prop:GetWidth() ,inner_yPos  + BOTTOM_MARGIN);
+	set_gbox_prop:SetOffset(set_gbox_prop:GetX(),set_gbox_type:GetY()+set_gbox_type:GetHeight());
+	tooltip_CSet:Resize(tooltip_CSet:GetWidth(), set_gbox_prop:GetHeight() + set_gbox_prop:GetY() + BOTTOM_MARGIN);
+	gBox:Resize(gBox:GetWidth(),gBox:GetHeight() + tooltip_CSet:GetHeight());
+	
+	return tooltip_CSet:GetHeight() + tooltip_CSet:GetY();
+end
+
+-- 인챈트 스크롤
+function DRAW_ETC_EVENT_EQUIP(tooltipframe, invitem, argStr)
+	local item_ClassName = TryGetProp(invitem, "StringArg", "None");
+	local itemCls = GetClass("Item", item_ClassName);
+	if itemCls == nil then
+		return;
+	end
+	
+	local itemType = itemCls.ItemType;
+	if itemType ~= "Equip" then
+		return;
+	end
+
+	local CompItemToolTipScp = _G[ 'ITEM_TOOLTIP_' .. itemCls.ToolTipScp];
+	CompItemToolTipScp(tooltipframe, itemCls, argStr, "usesubframe"); -- usesubframe frame
 end

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by imc (imc) -->
+<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by imc (imc) -->
 <!-- edited with XMLSpy v2008 sp1 (http://www.altova.com) by MintPC (Mi) -->
 <skinset name="Base">
 	<skinlist category="frames">
@@ -8347,6 +8347,7 @@
 		<image name="wedge_icon_s_time" file="\skin\pip_test.tga" imgrect="209 1173 16 19" CMM_Caption="쐐기 던전_시간 아이콘_s"/>
 		<image name="wedge_icon_s_goal" file="\skin\pip_test.tga" imgrect="226 1173 16 19" CMM_Caption="쐐기 던전_목표 아이콘"/>
 		<image name="wedge_icon_s_pattern" file="\skin\pip_test.tga" imgrect="243 1173 16 19" CMM_Caption="쐐기 던전_패턴 아이콘_s"/>
+		<image name="2021_flex_box" file="\skin\2021flexbox.tga" imgrect="0 0 510 714" CMM_Caption="[2021 신년맞이] 플렉스 박스"/>
 	</imagelist>
 	<imagelist category="je_button">
 		<image name="menu_guild_info" file="\skin\guild_skin.tga" imgrect="165 298 45 45" CMM_Caption="길드 정보"/>
@@ -12038,6 +12039,8 @@
 		<image name="028_npc_Leticia" file="\skin\npccard\028_npc_Leticia.tga" imgrect="0 0 330 440"/>
 		<image name="028_npc_Tesla" file="\skin\npccard\028_npc_Tesla.tga" imgrect="0 0 330 440"/>
 		<image name="029_npc_KiolRuarawa" file="\skin\npccard\029_npc_KiolRuarawa.tga" imgrect="0 0 330 440"/>
+		<image name="030_LucidWinterspoon" file="\skin\npccard\030_LucidWinterspoon.tga" imgrect="0 0 330 440"/>
+		<image name="031_BangomontBorjigin" file="\skin\npccard\031_BangomontBorjigin.tga" imgrect="0 0 330 440"/>
 	</imagelist>
 	<imagelist category="bosscard2">
 		<image name="001_boss_poata" file="\skin\bosscard\001_boss_poata.tga" imgrect="0 0 330 440"/>
@@ -12370,6 +12373,8 @@
 		<image name="plate_achieve_weeklyrank_14" file="\skin\user_title_skin.tga" imgrect="645 246 214 36" CMM_Caption="주간보스_티니삼형제"/>
 		<image name="plate_achieve_weeklyrank_15" file="\skin\user_title_skin.tga" imgrect="0 290 214 36" CMM_Caption="주간보스_솔콤"/>
 		<image name="plate_achieve_weeklyrank_16" file="\skin\user_title_skin.tga" imgrect="0 327 214 36" CMM_Caption="주간보스_루시"/>
+		<image name="plate_Christmas_Master" file="\skin\user_title_skin.tga" imgrect="215 290 214 34" CMM_Caption="2020_크리스마스 칭호"/>
+		<image name="plate_achieve_Giltine_auto_clear" file="\skin\user_title_skin.tga" imgrect="430 283 214 34" CMM_Caption="길티네_자동매칭 클리어"/>
 	</imagelist>
 	<imagelist category="skin_hair">
 		<image name="icon_skintone_01_m01" file="\skin\skinhair\icon_skintone_01_m01.png" imgrect="0 0 80 80" CMM_Caption="남성 01"/>

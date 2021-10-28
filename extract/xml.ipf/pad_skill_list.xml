@@ -12256,7 +12256,7 @@ return GET_ABIL_LEVEL(self, &quot;Fletcher6&quot;) * 10"/>
                 <Num Num="30"/>
             </ToolScp>
             <ToolScp Scp="PAD_DAMAGE_ENEMY" Client="NO" UseSleep="NO">
-                <Num Num="1"/>
+                <Num Num="0.5"/>
                 <Num Num="-20000"/>
                 <Num Num="0"/>
                 <Str_Arg Str="None" Arg="1"/>

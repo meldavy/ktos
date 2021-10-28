@@ -10,7 +10,7 @@
 	<option closebutton="false"/>
 	<sound opensound="window_open" closesound="window_close"/>
 	<script OpenScp="ITEM_SANDRA_ONELINE_REVERT_RANDOM_OPEN" CloseScp="ITEM_SANDRA_ONELINE_REVERT_RANDOM_CLOSE"/>
-	<userconfig RESET_SUCCESS_SOUND="sys_transcend_success" RESET_SUCCESS_EFFECT="UI_item_parts" EFFECT_SCALE="5" EFFECT_DURATION="3" MAX_CHECK_COUNT="1"/>
+	<userconfig RESET_SUCCESS_SOUND="sys_transcend_success" RESET_SUCCESS_EFFECT="UI_item_parts" EFFECT_SCALE="5" EFFECT_DURATION="0.5" MAX_CHECK_COUNT="1"/>
 	<controls>
 		<groupbox name="bg" rect="0 0 400 730" margin="0 0 0 0" layout_gravity="center top" draw="true" hittestbox="false" resizebyparent="false" resizebyresolution="true" scrollbar="true" skin="test_Item_tooltip_equip"/>
 		<richtext name="richtext_1" rect="0 0 120 24" margin="0 10 0 0" layout_gravity="center top" drawbackground="false" fixwidth="false" fontname="white_16_ol" maxwidth="0" resizebytext="true" slideshow="false" spacey="0" textalign="left top" updateparent="false" format="{@st41b}%s" param1="value" param1_def="산드라의 미세 감정 돋보기"/>

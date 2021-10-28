@@ -3,6 +3,47 @@ MAX_GODDESS_LEVEL = 3  -- 현재 여신 마신 최대 레벨
 
 MATERIAL_COUNT = {300, 450, 750, 1200, 1950, 3150}
 
+g_vibora_weapon_list = nil
+
+function make_vibora_list()
+    if g_vibora_weapon_list ~= nil then
+        return
+    end
+
+    g_vibora_weapon_list = {}
+
+    local xmlList, xmlCount = GetClassList("Item")
+    for i = 0, xmlCount - 1 do
+        local cls = GetClassByIndexFromList(xmlList, i)
+        if cls ~= nil then
+            local string_arg = TryGetProp(cls, 'StringArg', 'None')
+            local lv = TryGetProp(cls, 'NumberArg1', 0)
+            if string_arg == 'Vibora' and lv >= 1 then
+                if g_vibora_weapon_list[lv] == nil then
+                    g_vibora_weapon_list[lv] = {}                    
+                end
+
+                if g_vibora_weapon_list[lv][cls.ClassType] == nil then
+                    g_vibora_weapon_list[lv][cls.ClassType] = {}
+                end
+                
+                table.insert(g_vibora_weapon_list[lv][cls.ClassType], cls.ClassName)
+            end
+        end
+    end
+end
+
+make_vibora_list()  -- 바이보라 리스트 생성
+
+-- nil이 될 수 있음
+function GET_VIBORA_SELECT_LIST(class_type, lv)
+    if g_vibora_weapon_list == nil then
+        make_vibora_list()        
+    end
+
+    return g_vibora_weapon_list[lv][class_type]
+end
+
 function IS_ENABLE_EXTRACT_OPTION(item)
     if TryGetProp(item,'Extractable', 'No') ~= 'Yes' or TryGetProp(item,'LifeTime', 1) ~= 0 then
         return false;
@@ -220,18 +261,25 @@ function IS_ENABLE_RELEASE_OPTION(item)
     return false;
 end;
 
-function GET_OPTION_RELEASE_COST(item, taxRate)
+function GET_OPTION_RELEASE_COST(item, taxRate, isLegendShop)
     if item == nil then
-        return 0;
+        return 0, 0;
     end;
 
-    local price = TryGetProp(item, 'UseLv');
-    price = price * 100;
+    local useLv = TryGetProp(item, 'UseLv');
+    local priceWithoutTax = useLv * 100;
+    
+    if isLegendShop ~= nil and isLegendShop ~= 1 then
+        -- 앉아서 하면 1.2배, 세율 미적용
+        priceWithoutTax = priceWithoutTax * 1.2;
+    end
+    
+    local price = priceWithoutTax;
     if taxRate ~= nil then
         price = tonumber(CALC_PRICE_WITH_TAX_RATE(price, taxRate));
     end;
     
-    return SyncFloor(price);
+    return SyncFloor(price), SyncFloor(priceWithoutTax);
 end;
 
 -- 아이커가 가능한 랜덤 레전드 아이템인가?
@@ -743,6 +791,75 @@ function GET_VIBORA_DECOMPOSE_MISC_COUNT(item)
 
     return 500
 end
+
+--------------------------------- 세트 옵션 ---------------------------------
+function GET_SAVED_SETOPTION_LIST(pc)
+    local acc_obj = nil
+    if IsServerSection() == 1 and pc ~= nil then
+        acc_obj = GetAccountObj(pc)
+    else
+        acc_obj = GetMyAccountObj()
+    end
+
+    if acc_obj == nil then
+        return nil
+    end
+
+    local option_list = {}
+
+    local set_cls_list, cnt = GetClassList('LegendSetItem')
+    for i = 0, cnt - 1 do
+        local set_cls = GetClassByIndexFromList(set_cls_list, i)
+        if set_cls ~= nil then
+            local set_cls_name = TryGetProp(set_cls, 'ClassName', 'None')
+            if acc_obj[set_cls_name] ~= nil and acc_obj[set_cls_name] == 1 then
+                table.insert(option_list, set_cls_name)
+            end
+        end
+    end
+
+    return option_list
+end
+
+function IS_SETOPTION_MATCH(item_list)
+    local prefix_list = {}
+    local no_option_flag = false
+    for k, item in pairs(item_list) do
+        local prefix = TryGetProp(item, 'LegendPrefix', 'None')
+        if prefix ~= 'None' and table.find(prefix_list, prefix) <= 0 then
+            table.insert(prefix_list, prefix)
+        elseif prefix == 'None' then
+            no_option_flag = true
+        end
+    end
+
+    if #prefix_list == 0 then
+        return 'None'
+    elseif #prefix_list == 1 and no_option_flag == false then
+        return prefix_list[1]
+    else
+        return 'DIFF'
+    end
+end
+
+-- 현재 적용된 세트 옵션 제외 적용 가능한 세트 옵션 리스트 반환
+function GET_ENABLE_SETOPTION_LIST(itemObj)
+    local option_list = {};
+    
+    local legendGroup = TryGetProp(itemObj, "LegendGroup", "None");
+    local setOption = TryGetProp(itemObj, "LegendPrefix", "None");
+    local clsList, cnt = GetClassList("LegendSetItem");
+	for i = 0, cnt - 1 do
+        local cls = GetClassByIndexFromList(clsList, i);
+        if string.find(cls.LegendGroup, legendGroup) ~= nil and cls.ClassName ~= setOption then
+            option_list[#option_list + 1] = cls.ClassName;
+        end
+	end
+
+    return option_list;
+end
+--------------------------------- 세트 옵션 ---------------------------------
+
 
 function GIBBS_SAMPLING(list, max_number)
     local production_sum = 0

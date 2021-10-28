@@ -201,13 +201,16 @@ function REWARD_ITEM_BALLOON(handle, rewardList)
 end
 
 function RAID_REWARD_BAL_POS(frame)
-
+	
 	frame = tolua.cast(frame, "ui::CFrame");
 	local handle = frame:GetUserIValue("HANDLE");
-	local point = info.GetPositionInUI(handle, 2);
+	local pos = info.GetPositionInScreen(handle, 2);
+	local point = frame:ScreenPosToFramePos(pos.x, pos.y);
+
 	local x = point.x - frame:GetWidth() / 2;
-	local y = point.y - frame:GetHeight() - 40;
+	local y = point.y - frame:GetHeight();
 	frame:MoveFrame(x, y);
+
 	return 1;
 end
 

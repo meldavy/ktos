@@ -1626,8 +1626,11 @@ function DRAW_EQUIP_SET(tooltipframe, invitem, ypos, mainframename)
 
 end
 
-function CHECK_EQUIP_SET_ITEM(invitem)
-	local legendGroup = invitem.LegendGroup
+function CHECK_EQUIP_SET_ITEM(invitem, group, prefix)
+	local legendGroup = TryGetProp(invitem, "LegendGroup", "None");
+	if group ~= nil then
+		legendGroup = group;
+	end
 
 	local invframe = ui.GetFrame("inventory")
 
@@ -1646,7 +1649,7 @@ function CHECK_EQUIP_SET_ITEM(invitem)
 			return 0, 0,0,0,0,0,0
 		end
 	else
-		RHflag, LHflag, SHIRTflag, PANTSflag, GLOVESflag, BOOTSflag = GET_PREFIX_SET_ITEM_FLAG(invitem)
+		RHflag, LHflag, SHIRTflag, PANTSflag, GLOVESflag, BOOTSflag = GET_PREFIX_SET_ITEM_FLAG(invitem, prefix)
 -- 세트아이템 수 정해야함
 		setItemCount = 6
 	end
@@ -1654,14 +1657,18 @@ function CHECK_EQUIP_SET_ITEM(invitem)
 	return setItemCount, RHflag, LHflag, SHIRTflag, PANTSflag, GLOVESflag, BOOTSflag
 end
 
-function GET_PREFIX_SET_ITEM_FLAG(invitem)
-
+function GET_PREFIX_SET_ITEM_FLAG(invitem, prefix)
 	local frame = ui.GetFrame("inventory");
 	if frame == nil then
 		frame = ui.GetFrame("barrack_charlist")
 	end
 
-	local prefixCls = GetClass('LegendSetItem', invitem.LegendPrefix)
+	local legendPrefix = TryGetProp(invitem, "LegendPrefix", "None");
+	if prefix ~= nil then
+		legendPrefix = prefix;
+	end
+
+	local prefixCls = GetClass('LegendSetItem', legendPrefix)
 	if prefixCls == nil then
 		return 0, 0, 0, 0, 0, 0;
 	end
@@ -1686,7 +1693,6 @@ function GET_PREFIX_SET_ITEM_FLAG(invitem)
 	end
 
 	return returnValue[1], returnValue[2], returnValue[3], returnValue[4], returnValue[5], returnValue[6]
-
 end
 
 

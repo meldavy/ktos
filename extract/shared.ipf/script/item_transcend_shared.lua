@@ -404,10 +404,415 @@ function IS_TRANSCEND_SCROLL_ITEM(scrollObj)
         elseif scrollType == "transcend_Set_440_Weapon_Old" or scrollType == "transcend_Set_440_Armor_Old" or scrollType == "transcend_Set_440_Accessory_Old" then
             return 1;
 	elseif scrollType == "transcend_Add" then
-		return 1;
-	end
+        return 1;
+    end
 	return 0;
 end
+
+-- ReLabeling_Rewards_EP12
+-- Target Itme TRANSCEND
+function IS_TRANSCEND_SCROLL_ITEM_EP12_REWARD(scrollObj)
+    local className = TryGetProp(scrollObj, "ClassName")
+
+    if className == "Episode12_Transcend_Scroll_8_Weapon_440Lv" then
+        return 1
+    elseif className == "Episode12_Transcend_Scroll_8_Armor_440Lv" then
+        return 1
+    end
+
+    return 0
+end
+
+function IS_TRANSCEND_SCROLL_ITEM_EP12_REWARD_USABLE(scrollObj, targetObj)
+    local scrollName = TryGetProp(scrollObj, "ClassName")
+    local targetGroup = TryGetProp(targetObj, "EquipGroup")
+    
+    if SHARED_IS_EVENT_ITEM_CHECK(targetObj, "EP12REWARD") ~= true then
+        return 0
+    end
+
+    if scrollName == "Episode12_Transcend_Scroll_8_Weapon_440Lv" then
+        if targetGroup == "THWeapon" or targetGroup == "SubWeapon" or targetGroup == "Weapon" then
+            return 1
+        end
+    elseif scrollName == "Episode12_Transcend_Scroll_8_Armor_440Lv" then
+        if targetGroup == "SHIRT" or targetGroup == "PANTS" or targetGroup == "GLOVES" or targetGroup == "BOOTS" then
+            return 1
+        end
+    end
+
+    return 0
+end
+
+-- Target Itme Reinforce
+function IS_REINFORCE_SCROLL_ITEM_EP12_REWARD(scrollObj)
+    local className = TryGetProp(scrollObj, "ClassName")
+
+    if className == "Episode12_Reinforce_Scroll_11_Weapon_440Lv" then
+        return 1
+    elseif className == "Episode12_Reinforce_Scroll_11_Armor_440Lv" then
+        return 1
+    end
+
+    return 0
+end
+
+function IS_REINFORCE_SCROLL_ITEM_EP12_REWARD_USABLE(scrollObj, targetObj)
+    local scrollName = TryGetProp(scrollObj, "ClassName")
+    local targetGroup = TryGetProp(targetObj, "EquipGroup")
+    
+    if SHARED_IS_EVENT_ITEM_CHECK(targetObj, "EP12REWARD") ~= true then
+        return 0
+    end
+
+    if scrollName == "Episode12_Reinforce_Scroll_11_Weapon_440Lv" then
+        if targetGroup == "THWeapon" or targetGroup == "SubWeapon" or targetGroup == "Weapon" then
+            return 1
+        end
+    elseif scrollName == "Episode12_Reinforce_Scroll_11_Armor_440Lv" then
+        if targetGroup == "SHIRT" or targetGroup == "PANTS" or targetGroup == "GLOVES" or targetGroup == "BOOTS" then
+            return 1
+        end
+    end
+
+    return 0
+end
+
+
+-- Target Itme Enchant
+function IS_ENCHANT_SCROLL_ITEM_EP12_REWARD(scrollObj)
+    local className = TryGetProp(scrollObj, "ClassName", "None")
+    if className == "Episode12_Enchant_Scroll_Main_440Lv"
+        or className == "Episode12_Enchant_Scroll_Sub_440Lv" then
+            return 1
+
+    end
+
+    return 0
+end
+
+function IS_ENCHANT_SCROLL_ITEM(targetObj)
+    local eventItem = TryGetProp(targetObj, "EventEquip", 0);
+    if eventItem == 0 then
+        return false;
+    end
+
+    local itemLevel = TryGetProp(targetObj, "UseLv", 0);
+    if itemLevel ~= 440 then
+        return false;
+    end
+
+    local ItemType_str = TryGetProp(targetObj, "ItemType", "None");
+    if ItemType_str ~= "Equip" then
+        return false;
+    end
+
+    return true;
+end
+
+function IS_ENCHANT_SCROLL_ITEM_EP12_REWARD_USABLE_VIBORA_LV1(scrollObj, targetObj)
+    local scrollName = TryGetProp(scrollObj, "ClassName")
+    local tgtItemClassType = "None"
+    if scrollName == "Episode12_Enchant_Scroll_Main_440Lv" then
+        tgtItemClassType = "MAIN_Hand"
+    elseif scrollName == "Episode12_Enchant_Scroll_Sub_440Lv" then
+        tgtItemClassType = "SUB_Hand"
+    end
+
+    local iSPass = 0
+    local targetGroup = TryGetProp(targetObj, "GroupName", "None")
+    if tgtItemClassType == "MAIN_Hand" then
+        if targetGroup == "Weapon" then
+            iSPass = 1
+        end
+    elseif tgtItemClassType == "SUB_Hand" then
+        if targetGroup ~= "Weapon" then
+            iSPass = 1
+        end
+    end
+
+    if iSPass == 1 then
+        if SHARED_IS_EVENT_ITEM_CHECK(targetObj, "ENCHANT") == true then
+            return 1
+        end
+    end
+    return 0;
+end
+
+
+function IS_ENCHANT_SCROLL_ITEM_EP12_REWARD_USABLE(scrollObj, targetObj)
+    local itemTB = {
+        { 'Dagger', 'EP12_Vaivora_Enchant_DAG04_123_1'},
+        { 'Dagger', 'EP12_Vaivora_Enchant_DAG04_123_5'},
+        { 'Dagger', 'EP12_Vaivora_Enchant_DAG04_123_3'},
+        { 'Dagger', 'EP12_Vaivora_Enchant_DAG04_123_2'},
+        { 'Dagger', 'EP12_Vaivora_Enchant_DAG04_123'},
+        { 'Dagger', 'EP12_Vaivora_Enchant_DAG04_123_4'},
+        { 'Rapier', 'EP12_Vaivora_Enchant_RAP04_124'},
+        { 'Rapier', 'EP12_Vaivora_Enchant_RAP04_124_1'},
+        { 'Staff', 'EP12_Vaivora_Enchant_STF04_127_3'},
+        { 'Staff', 'EP12_Vaivora_Enchant_STF04_127_1'},
+        { 'Staff', 'EP12_Vaivora_Enchant_STF04_127_2'},
+        { 'Staff', 'EP12_Vaivora_Enchant_STF04_127'},
+        { 'Musket', 'EP12_Vaivora_Enchant_MUS04_118_2'},
+        { 'Musket', 'EP12_Vaivora_Enchant_MUS04_118_1'},
+        { 'Musket', 'EP12_Vaivora_Enchant_MUS04_118'},
+        { 'Mace', 'EP12_Vaivora_Enchant_MAC04_129'},
+        { 'Mace', 'EP12_Vaivora_Enchant_MAC04_129_1'},
+        { 'THBow', 'EP12_Vaivora_Enchant_TBW04_126_1'},
+        { 'THBow', 'EP12_Vaivora_Enchant_TBW04_126'},
+        { 'Sword', 'EP12_Vaivora_Enchant_SWD04_126_1'},
+        { 'Sword', 'EP12_Vaivora_Enchant_SWD04_126_2'},
+        { 'Sword', 'EP12_Vaivora_Enchant_SWD04_126'},
+        { 'Sword', 'EP12_Vaivora_Enchant_SWD04_126_4'},
+        { 'Sword', 'EP12_Vaivora_Enchant_SWD04_126_3'},
+        { 'THStaff', 'EP12_Vaivora_Enchant_TSF04_129_4'},
+        { 'THStaff', 'EP12_Vaivora_Enchant_TSF04_129'},
+        { 'THStaff', 'EP12_Vaivora_Enchant_TSF04_129_2'},
+        { 'THStaff', 'EP12_Vaivora_Enchant_TSF04_129_3'},
+        { 'THStaff', 'EP12_Vaivora_Enchant_TSF04_129_1'},
+        { 'Spear', 'EP12_Vaivora_Enchant_SPR04_127_1'},
+        { 'Spear', 'EP12_Vaivora_Enchant_SPR04_127'},
+        { 'Shield', 'EP12_Vaivora_Enchant_SHD04_122'},
+        { 'Shield', 'EP12_Vaivora_Enchant_SHD04_122_1'},
+        { 'Cannon', 'EP12_Vaivora_Enchant_CAN04_118_1'},
+        { 'Cannon', 'EP12_Vaivora_Enchant_CAN04_118'},
+        { 'Bow', 'EP12_Vaivora_Enchant_BOW04_126'},
+        { 'Bow', 'EP12_Vaivora_Enchant_BOW04_126_1'},
+        { 'THMace', 'EP12_Vaivora_Enchant_TMAC04_118_3'},
+        { 'THMace', 'EP12_Vaivora_Enchant_TMAC04_118'},
+        { 'THMace', 'EP12_Vaivora_Enchant_TMAC04_118_4'},
+        { 'THMace', 'EP12_Vaivora_Enchant_TMAC04_118_2'},
+        { 'THMace', 'EP12_Vaivora_Enchant_TMAC04_118_1'},
+        { 'THSword', 'EP12_Vaivora_Enchant_TSW04_126_1'},
+        { 'THSword', 'EP12_Vaivora_Enchant_TSW04_126_2'},
+        { 'THSword', 'EP12_Vaivora_Enchant_TSW04_126'},
+        { 'Trinket', 'EP12_Vaivora_Enchant_TRK04_111'},
+        { 'THSpear', 'EP12_Vaivora_Enchant_TSP04_128'},
+        { 'THSpear', 'EP12_Vaivora_Enchant_TSP04_128_1'},
+        { 'THSpear', 'EP12_Vaivora_Enchant_TSP04_128_2'},
+        { 'Pistol', 'EP12_Vaivora_Enchant_PST04_122_2'},
+        { 'Pistol', 'EP12_Vaivora_Enchant_PST04_122'},
+        { 'Pistol', 'EP12_Vaivora_Enchant_PST04_122_1'}
+    }
+
+
+    local scrollName = TryGetProp(scrollObj, "ClassName")
+    local targetGroup = TryGetProp(targetObj, "ClassType")
+    for i = 1, #itemTB do
+        if itemTB[i][1] == targetGroup then
+            if itemTB[i][2] == scrollName then
+                return 1
+            end
+        end
+    end
+
+    return 0
+end
+
+
+
+-- Target Itme SetOption
+function IS_SETOPTION_SCROLL_ITEM_EP12_REWARD(scrollObj)
+    local className = TryGetProp(scrollObj, "ClassName", "None")
+    if className == "Episode12_SetOption_Scroll_Armor_440Lv"
+        or className == "Episode12_SetOption_Scroll_Weapon_440Lv" then
+            return 1
+
+    end
+
+    return 0
+end
+
+function IS_SETOPTION_SCROLL_ITEM(targetObj)
+    local eventItem = TryGetProp(targetObj, "EventEquip", 0)
+    if eventItem == 0 then
+        return false;
+    end
+
+    local itemLevel = TryGetProp(targetObj, "UseLv", 0)
+    if itemLevel ~= 440 then
+        return false;
+    end
+
+    local ItemType_str = TryGetProp(targetObj, "ItemType", "None")
+    if ItemType_str ~= "Equip" then
+        return false;
+    end
+
+    return true;
+end
+
+function ENABLE_SETOPTION_SCROLL_ITEM(targetObj)
+    local eventItem = TryGetProp(targetObj, "EventEquip", 0)
+    if eventItem == 0 then
+        return false;
+    end
+
+    local itemLevel = TryGetProp(targetObj, "UseLv", 0)
+    if itemLevel ~= 440 then
+        return false;
+    end
+
+    local ItemType_str = TryGetProp(targetObj, "ItemType", "None")
+    if ItemType_str ~= "Equip" then
+        return false;
+    end
+
+    return true;
+end
+
+local targetEquipGroup = TryGetProp(targetObj, "EquipGroup")
+if ScrollType == "Weapon" then
+    if targetEquipGroup == "THWeapon" 
+    or targetEquipGroup == "SubWeapon" 
+    or targetEquipGroup == "Weapon" then
+        return 1
+    end
+elseif ScrollType == "Armor" then
+    if targetEquipGroup == "SHIRT" 
+    or targetEquipGroup == "PANTS" 
+    or targetEquipGroup == "GLOVES" 
+    or targetEquipGroup == "BOOTS" then
+        return 1
+    end
+end
+
+function IS_SETOPTION_SCROLL_ITEM_EP12_REWARD_USABLE_440(scrollObj, targetObj)
+    local scrollName = TryGetProp(scrollObj, "ClassName")
+    local tgtItemClassType = "None"
+    if scrollName == "Episode12_SetOption_Scroll_Weapon_440Lv" then
+        tgtItemClassType = "Weapon_set"
+    elseif scrollName == "Episode12_SetOption_Scroll_Armor_440Lv" then
+        tgtItemClassType = "Armor_set"
+    end
+
+    local iSPass = 0
+    local targetEquipGroup = TryGetProp(targetObj, "EquipGroup", "None")
+    if tgtItemClassType == "Weapon_set" then
+        if targetEquipGroup == "THWeapon" 
+        or targetEquipGroup == "SubWeapon" 
+        or targetEquipGroup == "Weapon" then
+            iSPass = 1
+        end
+    elseif tgtItemClassType == "Armor_set" then
+        if targetEquipGroup == "SHIRT" 
+        or targetEquipGroup == "PANTS" 
+        or targetEquipGroup == "GLOVES" 
+        or targetEquipGroup == "BOOTS" then
+            iSPass = 1
+        end
+    end
+
+    if iSPass == 1 then
+        if SHARED_IS_EVENT_ITEM_CHECK(targetObj, "NoSetOpt") == true then
+            return 1
+        end
+    end
+    return 0;
+end
+
+function IS_SETOPTION_SCROLL_ITEM_EP12_REWARD_USABLE(scrollObj, targetObj)
+    local SetOptionTB = {
+
+        { 'Weapon', 'EP12_SetOptionScroll_Weapon_Set_Balinta' },
+        { 'Armor', 'EP12_SetOptionScroll_Armor_Set_Balinta' },
+        { 'Weapon', 'EP12_SetOptionScroll_Weapon_Set_Sauk' },
+        { 'Armor', 'EP12_SetOptionScroll_Armor_Set_Sauk' },
+        { 'Weapon', 'EP12_SetOptionScroll_Weapon_Set_Svirti' },
+        { 'Armor', 'EP12_SetOptionScroll_Armor_Set_Svirti' },
+        { 'Weapon', 'EP12_SetOptionScroll_Weapon_Set_Lydeti' },
+        { 'Armor', 'EP12_SetOptionScroll_Armor_Set_Lydeti' }
+        
+
+    }
+
+
+    local itemTB = {
+
+        'Episode12_EP12_FIELD_TOP_001',
+        'Episode12_EP12_FIELD_TOP_002',
+        'Episode12_EP12_FIELD_TOP_003',
+        'Episode12_EP12_FIELD_LEG_001',
+        'Episode12_EP12_FIELD_LEG_002',
+        'Episode12_EP12_FIELD_LEG_003',
+        'Episode12_EP12_FIELD_FOOT_001',
+        'Episode12_EP12_FIELD_FOOT_002',
+        'Episode12_EP12_FIELD_FOOT_003',
+        'Episode12_EP12_FIELD_HAND_001',
+        'Episode12_EP12_FIELD_HAND_002',
+        'Episode12_EP12_FIELD_HAND_003',
+        'Episode12_EP12_FIELD_SWORD',
+        'Episode12_EP12_FIELD_THSWORD',
+        'Episode12_EP12_FIELD_STAFF',
+        'Episode12_EP12_FIELD_THBOW',
+        'Episode12_EP12_FIELD_BOW',
+        'Episode12_EP12_FIELD_MACE',
+        'Episode12_EP12_FIELD_THMACE',
+        'Episode12_EP12_FIELD_SHIELD',
+        'Episode12_EP12_FIELD_SPEAR',
+        'Episode12_EP12_FIELD_THSPEAR',
+        'Episode12_EP12_FIELD_DAGGER',
+        'Episode12_EP12_FIELD_THSTAFF',
+        'Episode12_EP12_FIELD_PISTOL',
+        'Episode12_EP12_FIELD_RAPIER',
+        'Episode12_EP12_FIELD_CANNON',
+        'Episode12_EP12_FIELD_MUSKET',
+        'Episode12_EP12_FIELD_TRINKET'
+        
+
+    }
+
+    local ScrollType = "None"
+    local ScrollTypeName = "None"
+
+    local scrollName = TryGetProp(scrollObj, "ClassName")
+    for i = 1, #SetOptionTB do
+        if SetOptionTB[i][2] == scrollName then
+            ScrollType = SetOptionTB[i][1]
+            ScrollTypeName = SetOptionTB[i][2]
+            break
+        end
+    end
+
+    if ScrollType ~= "None" then
+        local iSPass = 0
+
+        local targetClassName = TryGetProp(targetObj, "ClassName")
+        for i = 1, #itemTB do
+            if itemTB[i] == targetClassName then
+                iSPass = 1
+            end
+        end
+
+        --여기서 무기랑 방어구 구분이 안 되고 있음 수정 해야함
+        if iSPass == 1 then
+
+            local targetEquipGroup = TryGetProp(targetObj, "EquipGroup")
+            if ScrollType == "Weapon" then
+                if targetEquipGroup == "THWeapon" 
+                or targetEquipGroup == "SubWeapon" 
+                or targetEquipGroup == "Weapon" then
+                    return 1
+                end
+            elseif ScrollType == "Armor" then
+                if targetEquipGroup == "SHIRT" 
+                or targetEquipGroup == "PANTS" 
+                or targetEquipGroup == "GLOVES" 
+                or targetEquipGroup == "BOOTS" then
+                    return 1
+                end
+            end
+        end
+            
+        
+
+    end
+
+    return 0
+end
+
+
 
 function IS_TRANSCEND_SCROLL_ITEM_EVENT_2011_5TH(scrollObj)
     local className = TryGetProp(scrollObj, "ClassName")
@@ -424,6 +829,13 @@ end
 function IS_TRANSCEND_SCROLL_ITEM_EVENT_2011_5TH_USABLE(scrollObj, targetObj)
     local scrollName = TryGetProp(scrollObj, "ClassName")
     local targetGroup = TryGetProp(targetObj, "EquipGroup")
+    local EventType = TryGetProp(targetObj, "Ev_EventType")
+    if EventType ~= nil then
+        local checkResult = SHARED_IS_EVENT_ITEM_CHECK(targetObj, "EP12REWARD")
+        if checkResult == true then
+            return 0;
+        end
+    end
     
     if scrollName == "Event_Transcend_Scroll_8_440Lv_Weapon_Ev" then
         if targetGroup == "THWeapon" or targetGroup == "SubWeapon" or targetGroup == "Weapon" then
@@ -436,6 +848,22 @@ function IS_TRANSCEND_SCROLL_ITEM_EVENT_2011_5TH_USABLE(scrollObj, targetObj)
     end
 
     return 0
+end
+
+function IS_TRANSCEND_SCROLL_ABLE_ITEM_EP12(itemObj, scrollType, scrollTranscend)
+    local Lv = TryGetProp(itemObj, "UseLv", 1)      -- Level 
+    local itemGroup = TryGetProp(itemObj, "EquipGroup", "None")     -- Check Armor and Weapon 
+    local itemType = TryGetProp(itemObj, "ClassType", "None")       -- Check Accessory
+    local potential = TryGetProp(itemObj, "PR") -- Check potential
+
+    if scrollType == "transcend_Set_440_EP12" then
+        if IS_TRANSCEND_ABLE_ITEM(itemObj) == 1 then
+            return 1;
+        else
+            return 0;
+        end
+    end
+    return 0;
 end
 
 function IS_TRANSCEND_SCROLL_ABLE_ITEM(itemObj, scrollType, scrollTranscend)
@@ -539,8 +967,21 @@ function IS_TRANSCEND_SCROLL_ABLE_ITEM(itemObj, scrollType, scrollTranscend)
             end
         return 0
         end
+    elseif scrollType == "transcend_Set_440_Event" then
+        if Lv == 440 then
+            if TryGetProp(itemObj, 'EventEquip', 0) == 1 then -- Is item UseLv under 440 and  Event Equip then
+                return 1;
+            end
+        end
+        return 0
     elseif scrollType == "transcend_Add" then
         if IS_TRANSCEND_ABLE_ITEM(itemObj) == 1 then
+            return 1;
+        else
+            return 0;
+        end
+    elseif scrollType == "ENCHANT" then
+        if SHARED_IS_EVENT_ITEM_CHECK_SCROLL(itemObj, scrollType) == 1 then
             return 1;
         else
             return 0;

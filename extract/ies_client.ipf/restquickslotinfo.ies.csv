@@ -10,7 +10,7 @@ ClassID,ClassName,Desc,Icon,Script,TargetItem,VisibleScript,EnableScript,Disable
 12,restslot12,주문서 제작,icon_rest_creatitem,OPEN_MAGIC_SKL_UI,,QSLOT_VISIBLE_CRAFT_SPELL_BOOK,,,
 13,restslot13,아크 합성,icon_rest_ark_composition,TOGGLE_ARK_COMPOSITION,,,,,
 14,restslot14,아크 이전,icon_rest_ark_relocation,TOGGLE_ARK_RELOCATION,,,,,
-15,restslot15,,,,,,,,
+15,restslot15,아이커 장착/해제,icon_rest_linksoul_relocation,REQUEST_ICOR_MANAGE_DLG,,QSLOT_VISIBLE_ICOR_MANAGE_DLG,QSLOT_ENABLE_ICOR_MANAGE_DLG,토큰 이용자만 이용할 수 있습니다.,
 16,restslot16,,,,,,,,
 17,restslot17,,,,,,,,
 18,restslot18,,,,,,,,

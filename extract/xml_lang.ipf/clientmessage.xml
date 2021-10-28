@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by josungkwan (IMCGames Co., Ltd) -->
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by imc (imc) -->
 <idspace id="ClientMessage">
 	<Category Name="ErrorMsg">
 		<Class ClassID="1" Data="DirectX 9.0c 이상의 버전이 설치되어 있어야 합니다"/>
@@ -154,6 +154,7 @@
 		<Class ClassID="1143" ClassName="SearchResult" Data="검색 결과"/>
 		<Class ClassID="1144" ClassName="Piece2" Data="장"/>
 		<Class ClassID="1145" ClassName="ShortCut" Data="바로가기"/>
+		<Class ClassID="1146" ClassName="GiveEnchant" Data="부여"/>
 	</Category>
 	<Category Name="Reinforce">
 		<Class ClassID="2001" ClassName="NotEnoughReinforcePotential" Data="강화에 필요한 포텐셜이 부족합니다"/>
@@ -270,6 +271,14 @@
 		<Class ClassID="2113" ClassName="AdvancedCardReinforceSuccessProb" Data="성공확룰"/>
 		<Class ClassID="2114" ClassName="GoddessCardReinforcePoint" Data="강화에 필요한 경험치"/>
 		<Class ClassID="2115" ClassName="GoddessCardReinforcePointNeed" Data="강화에 필요한 경험치가 부족합니다"/>
+		<Class ClassID="2116" ClassName="ItemIsNotEnchantable_vibora" Data="해당 장비에 아이커를 적용할 수 없습니다"/>
+		<Class ClassID="2117" ClassName="ItemIsNotEnchantable_SetOption" Data="해당 장비에 세트 옵션을 적용할 수 없습니다"/>
+		<Class ClassID="2118" ClassName="ItemIsNotEnchantable_SetOption_Cant" Data="해당 장비에 이미 동일한 세트 옵션이{nl} 적용되어 있습니다"/>
+		<Class ClassID="2119" ClassName="ItemIsNotEnchantable_vibora_CANT" Data="해당 장비에 이미 동일한 아이커 옵션이{nl} 적용되어 있습니다"/>
+		<Class ClassID="2120" ClassName="IcorNotAdded_EP12_CANT1" Data="해당 장비는 고정 아이커 장착/해제 기능을 사용할 수 없습니다"/>
+		<Class ClassID="2121" ClassName="IcorNotAdded_EP12_CANT2" Data="해당 장비에 스크롤을 사용할 수 없습니다"/>
+		<Class ClassID="2122" ClassName="Success_Opt_Change_clientScpMsg_1" Data="세트 옵션이 변경되었습니다{nl}변경된 세트 옵션 : {#3366FF} {OPTION} {/}"/>
+		<Class ClassID="2123" ClassName="Success_Opt_Change_clientScpMsg_2" Data="고정 아이커 옵션이 변경되었습니다{nl}변경된 옵션 : {#3366FF} {OPTION} {/}"/>
 	</Category>
 	<Category Name="ItemContents">
 		<Class ClassID="2200" ClassName="ClickSocketTargetItem" Data="소켓을 추가 할 아이템을 선택해주세요"/>
@@ -420,6 +429,9 @@
 		<Class ClassID="2362" ClassName="IsNotOptionExtractKit_Tutorial3" Data="장비부터 진행해 주세요"/>
 		<Class ClassID="2363" ClassName="IsNotOptionExtractKit_Tutorial4" Data="[튜토리얼]은빛 아이커 추출 키트를 사용해 진행해 주세요"/>
 		<Class ClassID="2364" ClassName="IsNotOptionExtractKit_Tutorial5" Data="[튜토리얼] 황금 아이커 무료 추출 키트를 사용해 진행해 주세요"/>
+		<Class ClassID="2365" ClassName="EnchantScrollTipText" Data="해당 고정 아이커는 추출할 수 없습니다."/>
+		<Class ClassID="2366" ClassName="EnchantScrollWarning{ITEM}" Data="아이템 변경사항 안내{nl} {nl} - 고정 아이커 옵션 변경{nl}{ITEM}"/>
+		<Class ClassID="2367" ClassName="SetoptionScrollWarning{OPTION}" Data="아이템 변경사항 안내{nl} {nl} - 세트 옵션 변경 변경{nl}{OPTION}"/>
 	</Category>
 	<Category Name="ClassContents">
 		<Class ClassID="2500" ClassName="FullWeeklyGainClassResetExp" Data="주간 획득 가능한 클래스 변경 포인트를 모두 달성하였습니다."/>
@@ -521,8 +533,12 @@
 		<Class ClassID="3073" ClassName="CanRegisterOnlySameItem" Data="같은 종류의 아이템만 등록 가능합니다."/>
 		<Class ClassID="3074" ClassName="OnlyUseHavingZeroCount" Data="챌린지 모드 : 분열 특이점 입장 가능 횟수가 0 인 경우에만 사용 가능합니다."/>
 		<Class ClassID="3075" ClassName="FixedIcor" Data="고정 아이커"/>
+		<Class ClassID="3076" ClassName="IcorAdd" Data="아이커 장착"/>
+		<Class ClassID="3077" ClassName="IcorReleaseFixed" Data="아이커 장착 해제(고정 옵션)"/>
+		<Class ClassID="3078" ClassName="IcorReleaseRandom" Data="아이커 장착 해제(랜덤 옵션)"/>
 		<Class ClassID="3079" ClassName="Random_Icor" Data="랜덤 아이커"/>
 		<Class ClassID="3080" ClassName="Set_option" Data="세트 옵션"/>
+		<Class ClassID="3081" ClassName="FixedIcorOptin" Data="고정 아이커 옵션"/>
 	</Category>
 	<Category Name="ItemPuzzle">
 		<Class ClassID="3501" ClassName="WouldYouSelectThisCombinationAsAlchemystryTarget?" Data="이 조합을 연금 대상으로 선택합니까?"/>
@@ -885,7 +901,10 @@
 		<Class ClassID="4358" ClassName="UseOnlyLessThan{level}Char" Data="{level}레벨이하 캐릭터만 사용가능합니다."/>
 		<Class ClassID="4359" ClassName="MustHaveHiddenAbility{goal_lv}{count}{current}" Data="{goal_lv}레벨 이상의 상급 특성을 {count}개를 보유해야 합니다. 현재 {current}개 입니다."/>
 		<Class ClassID="4360" ClassName="SilverGacha_check_Use" Data="개봉 시 팀 창고 이동을 제외한 거래가 불가능해집니다.{nl}정말 사용하시겠습니까?"/>
-        <Class ClassID="4361" ClassName="ReallyWantToMakeGiltineCard{Material1}{Material2}" Data="정말 {Material1}와 {Material2}를 사용하여 길티네 카드를 제작하시겠습니까?"/>
+		<Class ClassID="4361" ClassName="ReallyWantToMakeGiltineCard{Material1}{Material2}" Data="정말 {Material1}와 {Material2}를 사용하여 길티네 카드를 제작하시겠습니까?"/>
+		<Class ClassID="4363" ClassName="Transcend_Scroll" Data="초월 스크롤"/>
+		<Class ClassID="4364" ClassName="Enchant_Scroll" Data="인챈트 옵션 부여 스크롤"/>
+		<Class ClassID="4365" ClassName="SetOptionScroll" Data="세트 옵션 부여 스크롤"/>
 	</Category>
 	<Category Name="ItemTooltip">
 		<Class ClassID="5001" ClassName="CoolDown : {Sec} Sec" Data="재사용 대기시간 : {Sec}초"/>
@@ -5205,6 +5224,7 @@
 		<Class ClassID="27323" ClassName="PARTY_PLAYER_QUEST_REWARD_SHOP_MSG2" Data="{nl}퀘스트 보상 중 : {REWARD}"/>
 		<Class ClassID="27324" ClassName="PARTY_PLAYER_QUEST_REWARD_SHOP_MSG3" Data="{nl}상점 사용 중 : {SHOP}"/>
 		<Class ClassID="27325" ClassName="PARTY_PLAYER_QUEST_REWARD_SHOP_MSG4" Data="{nl}퀘스트 사전조건 불만족 : {BEFORE}"/>
+		<Class ClassID="27326" ClassName="HighLvZoneEnterMsg3" Data="지역 : {ZONE}{nl}이동 하시겠습니까?"/>
 		<Class ClassID="27330" ClassName="SuccessJobExpGiveMSG1" Data="{@st41b}클래스 경험치 : "/>
 		<Class ClassID="27340" ClassName="JournalMonsterKillRewardMSG1" Data="'{MONSTER}' {COUNT}마리 처치 달성!{nl}바이보라의 날개를 찾아가셔서 경험치 카드를 받으세요!"/>
 		<Class ClassID="27341" ClassName="JournalMonsterKillRewardMSG2" Data="'{MONSTER}' {COUNT}마리를 처치하면 경험치 카드를 받으실 수 있습니다!{nl}경험치 카드는 바이보라의 날개에서 받으실 수 있습니다."/>
@@ -14623,7 +14643,7 @@
 		<Class ClassID="302138" ClassName="event_flex_box_open_btn_tip_text{ITEM}{COUNT}" Data="{ITEM}을(를) {COUNT}개 소모합니다"/>
 		<Class ClassID="302139" ClassName="SSSGradeItemGetMessage{EVENT}{TEAMNAME}{ITEM}{COUNT}" Data="{TEAMNAME}님이 {EVENT}에서 {ITEM}을/를 {COUNT}개 획득하였습니다."/>
 		<Class ClassID="302140" ClassName="EVENT_FLEX_BOX_LIMIT_BY_CONTENTS{ITEM}" Data="오늘 콘텐츠 플레이로 획득 가능한 {ITEM}을(를) 전부 획득하셨습니다."/>
-		<Class ClassID="302141" ClassName="Event_Flex_box_Open_Max_Count" Data="개봉 가능 횟 수를 모두 이용하셨습니다."/>
+		<Class ClassID="302141" ClassName="Event_Flex_box_Open_Max_Count" Data="개봉 가능 횟수를 모두 이용하셨습니다."/>
 		<Class ClassID="302142" ClassName="EVENT_FLEX_BOX_StackOverItemExist" Data="인벤토리에 메데이나 FLEX BOX의 상품 중 최대 수량을 가진 아이템이 존재합니다."/>
 		<Class ClassID="302143" ClassName="STAMP_TOUR_ALL_CLEAR_REWARD_ACQUIRE" Data=" 스탬프 투어 미션 클리어 기념 상자 수령하기"/>
 		<Class ClassID="302144" ClassName="NEW_SEASON_SERVER_COIN_CHECK_TOOLTIP_1" Data="일일 1시간 접속, 스탬프 투어, 콘텐츠 이용을 통해 획득한 모든 주화 입니다.{nl}최대 600개 획득 가능합니다."/>
@@ -14743,6 +14763,15 @@
 		<Class ClassID="302275" ClassName="EVENT_COIN_WEEK_FULL{COIN}" Data="주간 획득 가능한 {COIN}을(를) 전부 획득하셨습니다."/>
 		<Class ClassID="302276" ClassName="Enable_Pc_{LV}" Data="{LV}레벨 이상의 캐릭터만 이용할 수 있습니다."/>
 		<Class ClassID="302277" ClassName="EVENT_2011_5TH_USE_SCROLL{USE}{TARGET}" Data="{USE}를 {TARGET}에 사용하시겠습니까?"/>
+		<Class ClassID="302290" ClassName="EVENT_2101_NEW_YEAR_SEL_MSG1" Data="{#003399}[신년맞이]{/}이벤트 안내"/>
+		<Class ClassID="302291" ClassName="EVENT_2101_NEW_YEAR_SEL_MSG2" Data="{#003399}[신년맞이]{/}이벤트 상점"/>
+		<Class ClassID="302292" ClassName="EVENT_2101_NEW_YEAR_SEL_MSG3" Data="{#003399}[신년맞이]{/}말순이의 행운 박스"/>
+		<Class ClassID="302293" ClassName="EVENT_2101_NEW_YEAR_COMMAND{CNT1}{CNT2}{CNT3}" Data="신년맞이 축제{nl}[이벤트] 행운의 동전 콘텐츠 획득량 ({CNT1}/200){nl}[이벤트] 행운의 동전 필드 사냥 획득량 ({CNT2}/100){nl}[이벤트] 신년 티켓 1시간 접속 보상 획득량 ({CNT3}/5){nl}※일일 제한은 매일 오전 06시 초기화 됩니다."/>
+		<Class ClassID="302294" ClassName="EVENT_2101_NEW_YEAR_SHOP" Data="[신년맞이] 이벤트 상점"/>
+		<Class ClassID="302295" ClassName="EVENT_2101_NEW_YEAR_BOX_TITLE" Data="말순이의 행운 박스"/>
+		<Class ClassID="302296" ClassName="EVENT_COIN_CONTENT_FULL{COIN}" Data="오늘 콘텐츠 클리어로 획득 가능한 {COIN}을(를) 전부 획득하셨습니다."/>
+		<Class ClassID="302297" ClassName="EVENT_COIN_FIELD_FULL{COIN}" Data="오늘 필드 사냥으로 획득 가능한 {COIN}을(를) 전부 획득하셨습니다."/>
+		<Class ClassID="302298" ClassName="Event_Flex_box_Daily_Open_Max_Count_Over" Data="개봉 가능 횟수를 모두 이용하셨습니다."/>
 	</Category>
 	<Category Name="Account">
 		<Class ClassID="303001" ClassName="MaxAccountWarehouseCount" Data="팀 창고"/>
@@ -14896,6 +14925,7 @@
 		<Class ClassID="501274" ClassName="EVENT_2006_DRAGON_BOAT_SEL_MSG4" Data="행운의 죽엽 교환"/>
 		<Class ClassID="501275" ClassName="EVENT_2006_DRAGON_BOAT_SEL_MSG5" Data="+{REINFORCE} 보상 교환({NOW}/{MAX})"/>
 		<Class ClassID="501276" ClassName="EVENT_2006_DRAGON_BOAT_INFINITY" Data="무제한"/>
+		<Class ClassID="501281" ClassName="Event_Transcend_Scroll_Choice_box" Data="아이템 선택"/>
 	</Category>
 	<Category Name="GEM_GACHA">
 		<Class ClassID="510001" ClassName="GEM_GACHA_SEL1" Data="젬 1회 뽑기"/>
@@ -16013,6 +16043,7 @@
 		<Class ClassID="560045" ClassName="motion_medeina_emotion04" Data="{nl} {nl}사용한 캐릭터가 채팅 이모티콘을 흭득합니다.{nl} {nl}{#FF0000}사용 후 복구가 불가능합니다.{nl} {nl}{@st66d_y}이모티콘을 습득하시겠습니까?"/>
 		<Class ClassID="560046" ClassName="motion_medeina_emotion06" Data="{nl} {nl}사용한 캐릭터가 채팅 이모티콘을 흭득합니다.{nl} {nl}{#FF0000}사용 후 복구가 불가능합니다.{nl} {nl}{@st66d_y}이모티콘을 습득하시겠습니까?"/>
 		<Class ClassID="560047" ClassName="SorshaHutton_emotion01" Data="{nl} {nl}사용한 캐릭터가 채팅 이모티콘을 흭득합니다.{nl} {nl}{#FF0000}사용 후 복구가 불가능합니다.{nl} {nl}{@st66d_y}이모티콘을 습득하시겠습니까?"/>
+		<Class ClassID="560048" ClassName="malsuns_emotion82" Data="{nl} {nl}사용한 캐릭터가 채팅 이모티콘을 흭득합니다.{nl} {nl}{#FF0000}사용 후 복구가 불가능합니다.{nl} {nl}{@st66d_y}이모티콘을 습득하시겠습니까?"/>
 	</Category>
 	<Category Name="Gesture">
 		<Class ClassID="570000" ClassName="Already_Gesture" Data="이미 보유한 제스처입니다."/>

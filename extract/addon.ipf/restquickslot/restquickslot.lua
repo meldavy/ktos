@@ -137,8 +137,11 @@ function ON_RESTQUICKSLOT_CLOSE(frame, msg, argStr, argNum)
 		local joystickQuickFrame = ui.GetFrame('joystickquickslot')
 		joystickQuickFrame:ShowWindow(1);
 	end
-	ui.CloseFrame('reinforce_by_mix')
 
+	ui.CloseFrame('reinforce_by_mix')
+	ui.CloseFrame('icoradd_multiple')
+	ui.CloseFrame('icorrelease_multiple')
+	ui.CloseFrame('icorrelease_random_multiple')
 end
 
 function SET_REST_QUICK_SLOT(slot, cls)
@@ -412,4 +415,22 @@ function QSLOT_VISIBLE_CRAFT_SPELL_BOOK()
 		return 1;
 	end
 	return 0;
+end
+
+function QSLOT_VISIBLE_ICOR_MANAGE_DLG()
+	if session.loginInfo.IsPremiumState(ITEM_TOKEN) == true then
+		if IsPVPField() == 1 or IsPVPServer() == 1 or session.world.IsIntegrateServer() == true or session.colonywar.GetIsColonyWarMap() == true then
+			return 0
+		end
+	end
+	return 1
+end
+
+function QSLOT_ENABLE_ICOR_MANAGE_DLG()
+	if session.loginInfo.IsPremiumState(ITEM_TOKEN) == true then
+		if IsPVPField() == 1 or IsPVPServer() == 1 or session.world.IsIntegrateServer() == true or session.colonywar.GetIsColonyWarMap() == true then
+			return 0
+		end
+	end
+	return 1
 end

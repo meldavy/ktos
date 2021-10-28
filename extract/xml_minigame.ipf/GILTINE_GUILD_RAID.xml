@@ -654,8 +654,8 @@
             </Stage>
             <Stage Name="DemonicsHiddenPower" AutoStart="0">
                 <ObjList>
-                    <Obj Type="Monster" MonType="147500" Pos="473.05#23.86#1822.87" genCount="1" genTime="20000" autoGen="0" objectKey="0" propList="&apos;Dialog&apos; &apos;GUILD_GILTINE_RAID_DEMONICS_HIDDEN_POWER_MAIN_FIELD_WARP&apos; &apos;DialogChaseDist&apos; &apos;40&apos; "/>
-                    <Obj Type="Monster" MonType="147500" Pos="-1180.42#24.74#-360.19" genCount="1" genTime="20000" autoGen="0" objectKey="1" propList="&apos;Dialog&apos; &apos;GUILD_GILTINE_RAID_DEMONICS_HIDDEN_POWER_HIDDEN_FIELD_WARP&apos; &apos;DialogChaseDist&apos; &apos;40&apos; "/>
+                    <Obj Type="Monster" MonType="147500" Pos="473.05#23.86#1822.87" genCount="1" genTime="20000" autoGen="0" autoDestroy="0" objectKey="0" propList="&apos;Dialog&apos; &apos;GUILD_GILTINE_RAID_DEMONICS_HIDDEN_POWER_MAIN_FIELD_WARP&apos; &apos;DialogChaseDist&apos; &apos;40&apos; "/>
+                    <Obj Type="Monster" MonType="147500" Pos="-1180.42#24.74#-360.19" genCount="1" genTime="20000" autoGen="0" autoDestroy="0" objectKey="1" propList="&apos;Dialog&apos; &apos;GUILD_GILTINE_RAID_DEMONICS_HIDDEN_POWER_HIDDEN_FIELD_WARP&apos; &apos;DialogChaseDist&apos; &apos;40&apos; "/>
                     <Obj Type="Monster" MonType="160040" Pos="-1347.03#25.82#338.04" genCount="1" genTime="20000" autoGen="0" objectKey="2" propList="&apos;NumArg1&apos; &apos;1&apos; "/>
                     <Obj Type="Monster" MonType="160040" Pos="-509.78#24.74#-650.42" genCount="1" genTime="20000" autoGen="0" objectKey="3" propList="&apos;NumArg1&apos; &apos;2&apos; "/>
                 </ObjList>

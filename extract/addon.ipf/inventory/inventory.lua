@@ -1634,7 +1634,21 @@ function CHECK_INV_LBTN(frame, object, argStr, argNum)
             if IS_TRANSCEND_SCROLL_ITEM_EVENT_2011_5TH(useItemObj) == 1 then
                 SCR_EVENT_2011_5TH_SCROLL_SELECT(argNum, useItemIndex, 'inventory');
                 return;
-            end
+			end
+			
+			-- ReLabeling_Rewards_EP12
+			-- Target Itme TRANSCEND
+			if IS_TRANSCEND_SCROLL_ITEM_EP12_REWARD(useItemObj) == 1 then
+				SCR_EVENT_EP12_REWARD_SCROLL_SELECT(argNum, useItemIndex, 'inventory');
+				return;
+			end
+
+			-- ReLabeling_Rewards_EP12
+			-- Target Itme Reinforce
+			if IS_REINFORCE_SCROLL_ITEM_EP12_REWARD(useItemObj) == 1 then
+				SCR_EVENT_EP12_REWARD_SCROLL_SELECT_REINFORCE(argNum, useItemIndex, 'inventory');
+				return;
+			end
 
 	        if useItemGroup == 'Gem' and useItemUseType == 'ITEMTARGET' then
                 SCR_GEM_ITEM_SELECT(argNum, useItem, 'inventory');
@@ -1885,7 +1899,19 @@ function INVENTORY_RBDC_ITEMUSE(frame, object, argStr, argNum)
     -- EVENT_2011_5TH
     if USE_ITEMTARGET_ICON_EVENT_2011_5TH_SCROLL(itemobj, argNum) == 1 then
         return;
-    end
+	end
+
+	-- ReLabeling_Rewards_EP12
+	-- Target Itme TRANSCEND
+	if USE_ITEMTARGET_ICON_EP12_REWARD(itemobj, argNum) == 1 then
+		return;
+	end
+
+	-- ReLabeling_Rewards_EP12
+	-- Target Itme Reinforce
+	if USE_ITEMTARGET_ICON_EP12_REWARD_REINFORCE(itemobj, argNum) == 1 then
+		return;
+	end
 
     -- equip
 	local equip = IS_EQUIP(itemobj);
@@ -4267,6 +4293,9 @@ function ON_UPDATE_TRUST_POINT(frame, msg, argStr, trustPoint)
 	trustPointText:SetTextByKey("trustPoint", trustPoint - 1);
 	trustPointGbox:SetTooltipType('trust_point');
 	trustPointGbox:SetTooltipOverlap(1);
+	if config.GetServiceNation() == "GLOBAL" then
+		trustPointGbox:SetTooltipType("trust_point_global");
+	end
 end
 
 function SELECT_INVENTORY_TAB(frame, tabIndex)

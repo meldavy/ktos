@@ -103,6 +103,7 @@ ClassID,NeedCount,ClassName,Group,Category,Name,Desc,Icon,Hidden,DescTitle,Rewar
 2136,1,Event_EVENT_2010_LVUP_Achieve1,AchievePoint,이벤트,축복받은 구원자,캐릭터 성장 이벤트 참여자에게 지급되는 칭호입니다.,icon_item_Misc_00021,YES,축복받은 구원자,,False,Event_EVENT_2010_LVUP_Achieve1,NO,,,,,NO,
 2137,1,Event_SeasonNewWorld_Achieve1,AchievePoint,이벤트,시즌서버 이주민,시즌서버 출신 유저들에게 지급되는 칭호 입니다.,icon_item_Misc_00021,YES,시즌서버 이주민,,False,Event_SeasonNewWorld_Achieve1,NO,,,,,NO,
 2138,1,TOS_School_Graduate,AchievePoint,이벤트,{img Collar_TOS_School_Graduate 24 24} TOS스쿨 졸업생,튜토리얼 콘텐츠의 모든 미션을 클리어한 구원자에게 지급되는 칭호 입니다.,icon_item_Misc_00021,YES,TOS스쿨 졸업생,,False,TOS_School_Graduate,NO,,,,,NO,
+2139,1,Christmas_Master,AchievePoint,이벤트,마스터의 크리스마스,크리스마스 팬아트 공모전 수상자에게 주어지는 칭호입니다.,icon_item_Misc_00021,YES,마스터의 크리스마스,,False,Christmas_Master,NO,,,,,NO,plate_Christmas_Master
 3001,10,Pardoner10,AchievePoint,스킬,자선가,주문서를 더욱 열심히 팔면 기부를 더 많이 할 수 있습니다.,icon_item_Misc_00021,YES,기부 10번,,True,PardonerAbility,NO,,,,,NO,
 3002,50,Pardoner50,AchievePoint,스킬,일반 파드너,사람들 사이에서 당신의 디스펠러는 큰 인기입니다.,icon_item_Misc_00021,YES,기부 50번,,True,PardonerAbility,NO,,,,,NO,
 3003,100,Pardoner100,AchievePoint,스킬,상급 파드너,기부를 행한만큼 그간 당신이 취한 이득은 끝이 없겠죠?,icon_item_Misc_00021,YES,기부 100번,,True,PardonerAbility,NO,,,,,NO,
@@ -176,6 +177,8 @@ ClassID,NeedCount,ClassName,Group,Category,Name,Desc,Icon,Hidden,DescTitle,Rewar
 5042,1,EPISODE_ACHIEVE_11,AchievePoint,에피소드,EP 11 별의 탑을 넘어서,에피소드 11 별의 탑을 넘어서 클리어,icon_item_Misc_00021,YES,EP 11 별의 탑을 넘어서,,True,EPISODE_ACHIEVE_P_11,NO,,,,,NO,
 5043,1,QAC12_2_d_dcapital_108,AchievePoint,퀘스트,냉철한 숙명의 심판자,에피소드 12-2 : 숙명의 메인퀘스트를 모두 완료한 유저에게 주어지는 칭호,icon_item_Misc_00021,YES,냉철한 숙명의 심판자,,True,QP12_2_d_dcapital_108,NO,,,,,NO,
 5044,1,QAC13_ep13_f_siauliai_5,AchievePoint,퀘스트,그림자 흔적,에피소드 13 : 운명의 여흔 메인 퀘스트를 모두 완료한 유저에게 주어지는 칭호,icon_item_Misc_00021,YES,그림자 흔적,,True,QP13_ep13_f_siauliai_5,NO,,,,,NO,
+5045,1,EPISODE_ACHIEVE_12_1,AchievePoint,에피소드,EP 12-1 사명의 완성,에피소드 12-1 마지막 계시 - 사명의 완성 클리어,icon_item_Misc_00021,YES,EP 12-1 사명의 완성,,True,EPISODE_ACHIEVE_P_12_1,NO,,,,,NO,
+5046,1,EPISODE_ACHIEVE_12_2,AchievePoint,에피소드,EP 12-2 숙명,에피소드 12-1 마지막 계시 - 숙명,icon_item_Misc_00021,YES,EP 12-2 숙명,,True,EPISODE_ACHIEVE_P_12_2,NO,,,,,NO,
 6001,1,TeamBattle_GoldRanker,WeekRanker,팀배틀리그,Team Battle 1st,팀 배틀 리그 순위 보상 [매주 월요일 6시 초기화],icon_item_Misc_00021,NO,팀 배틀 리그 1위,,False,TeamBattle_Gold,NO,,,,,YES,Collar_TBL1st
 6002,1,TeamBattle_SilverRanker,WeekRanker,팀배틀리그,Team Battle 2nd,팀 배틀 리그 순위 보상 [매주 월요일 6시 초기화],icon_item_Misc_00021,NO,팀 배틀 리그 2위,,False,TeamBattle_Silver,NO,,,,,YES,Collar_TBL2nd
 6003,1,TeamBattle_BronzeRanker,WeekRanker,팀배틀리그,Team Battle 3rd,팀 배틀 리그 순위 보상 [매주 월요일 6시 초기화],icon_item_Misc_00021,NO,팀 배틀 리그 3위,,False,TeamBattle_Bronze,NO,,,,,YES,Collar_TBL3rd
@@ -200,6 +203,7 @@ ClassID,NeedCount,ClassName,Group,Category,Name,Desc,Icon,Hidden,DescTitle,Rewar
 8013,1,glacier_first_kill,AchievePoint,킬,Icicle Queen,각 서버에서 최초로 [하얀 마녀의 숲: 레전드]를 클리어한 유저에게 지급되는 칭호입니다.,icon_item_Misc_00021,YES,Icicle Queen,,True,glacier_first_kill,YES,,,,,,plate_achieve_Glacier_first_kill
 8014,1,Giltine_first_kill,AchievePoint,킬,Fallen Goddess,각 서버에서 최초로 [마신의 성소: 레전드]를 클리어한 유저에게 지급되는 칭호입니다.,icon_item_Misc_00021,YES,Fallen Goddess,,True,Giltine_first_kill,YES,,,,,,plate_achieve_Giltine_first_kill
 8015,1,Giltine_clear,AchievePoint,킬,Wing Breaker,각 서버에서 [마신의 성소: 레전드]를 일정 기간 내에 클리어한 유저에게 지급되는 칭호입니다.,icon_item_Misc_00021,YES,Wing Breaker,,True,Giltine_clear,YES,,,,,,plate_achieve_Giltine_clear
+8016,1,Giltine_auto_clear,AchievePoint,킬,Feather Picker,일정 기간 내에 [마신의 성소 (자동 매칭)]을 클리어한 유저에게 지급되는 칭호입니다.,icon_item_Misc_00021,YES,Feather Picker,,False,Giltine_auto_clear,YES,,,,,,plate_achieve_Giltine_auto_clear
 9001,1,WEEKLY_BOSS_RANK_1,AchievePoint,랭킹,Iron Lord,"주간 보스 [자우라] 계열 별 랭킹 보상으로 지급되는 칭호입니다. ",icon_item_Misc_00021,YES,Iron Lord,,True,WeeklyRank_1,YES,,,,,,plate_achieve_weeklyrank_1
 9002,1,WEEKLY_BOSS_RANK_2,AchievePoint,랭킹,Demon Rose,"주간 보스 [헬가세르클] 계열 별 랭킹 보상으로 지급되는 칭호입니다. ",icon_item_Misc_00021,YES,Demon Rose,,True,WeeklyRank_2,YES,,,,,,plate_achieve_weeklyrank_2
 9003,1,WEEKLY_BOSS_RANK_3,AchievePoint,랭킹,Mist Bringer,"주간 보스 [누아엘레] 계열 별 랭킹 보상으로 지급되는 칭호입니다. ",icon_item_Misc_00021,YES,Mist Bringer,,True,WeeklyRank_3,YES,,,,,,plate_achieve_weeklyrank_3

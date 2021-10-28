@@ -5335,12 +5335,12 @@
 	</controlset>
 	<controlset name="reward_item_list" hittest="true" width="550" height="90" draw="true" hittestset="false" skin="test_skill_skin3">
 		<controls>
-			<picture name="grade" rect="0 0 92 44" margin="25 0 0 0" layout_gravity="left center" imagealign="center center"/>
+			<picture name="grade" rect="0 0 92 44" margin="23 0 0 0" layout_gravity="left center" imagealign="center center"/>
 			<picture name="icon" rect="0 0 60 60" margin="140 0 0 0" layout_gravity="left center" image="icon_item_Event_Roulette_Coin" stretch="true" imagealign="center center"/>
-			<richtext name="name" rect="0 0 270 40" margin="220 0 0 0" layout_gravity="left center" fontname="black_18_b" format="%s" param1="name" fixwidth="true" hittest="false" textalign="center center"/>
+			<richtext name="name" rect="0 0 270 40" margin="210 0 0 0" layout_gravity="left center" fontname="black_18_b" format="%s" param1="name" fixwidth="true" hittest="false" textalign="center center"/>
 			<richtext name="listtext" rect="0 0 380 40" margin="120 0 0 0" layout_gravity="left center" fontname="black_18_b" format="%s" param1="value" fixwidth="true" hittest="false" textalign="left center"/>
-			<richtext name="count" rect="0 0 60 40" margin="0 0 20 0" layout_gravity="right center" fontname="black_18_b" format="%s개" param1="count" fixwidth="true" hittest="false" textalign="right center"/>
-			<richtext name="text" rect="0 0 100 40" margin="20 0 0 0" layout_gravity="left center" format="{@st66b}{s20}%s" param1="value" fixwidth="true" hittest="false" textalign="center center" draw="false"/>
+			<richtext name="count" rect="0 0 60 40" margin="0 0 22 0" layout_gravity="right center" fontname="black_18_b" format="%s개" param1="count" fixwidth="true" hittest="false" textalign="right center"/>
+			<richtext name="text" rect="0 0 100 40" margin="22 0 0 0" layout_gravity="left center" format="{@st66b}{s20}%s" param1="value" fixwidth="true" hittest="false" textalign="center center" draw="false"/>
 		</controls>
 	</controlset>
 	<controlset name="craft_recipe" hittest="true" width="525" height="250" skin="earth_T_shop_skin" hittestset="true" draw="true" stateskin="false">

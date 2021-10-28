@@ -1415,3 +1415,6 @@ ClassID,OverHeatResetTime,ClassName,IsOverHeat,ReducePlayOnly,ForceReset
 4169,5000,Berkana,NO,FALSE,NO
 4170,5000,CrystalballShikigami,NO,FALSE,NO
 4171,5000,Eihwaz,NO,FALSE,NO
+4177,5000,RuneCaster_Berkana,NO,FALSE,YES
+4178,5000,RuneCaster_Ehwaz,NO,FALSE,YES
+4179,5000,Onmyoji_CrystalballShikigami,NO,FALSE,YES

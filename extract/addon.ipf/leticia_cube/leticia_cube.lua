@@ -56,6 +56,8 @@ function LETICIA_CUBE_LIST_UPDATE(frame)
                     priceText:SetText(math.floor(info.ConsumeItemCnt));
                 end
                 itemNameText:SetText(itemCls.Name);
+                itemNameText:AdjustFontSizeByWidth(280);
+                itemNameText:Invalidate();
 
                 cube:SetEventScript(ui.LBUTTONDOWN, 'LETICIA_CUBE_CHANGE_INFO');
                 cube:SetEventScriptArgString(ui.LBUTTONDOWN, info.ItemClassName);
@@ -126,7 +128,7 @@ function LETICIA_CUBE_OPEN_BUTTON(frame, ctrl, argStr, argNum, _gachaClassName, 
 	if frame:GetUserIValue('OPEN_MSG_BOX') == 0 then
 		local msg = string.format("%s{nl} {nl}{#85070a}%s",ScpArgMsg('LeticiaGacha{CONSUME}', 'CONSUME', clMsg, 'COUNT', Cnt),ClMsg('ContainWarningItem'))
 		local yesScp = string.format('REQ_LETICIA_CUBE_OPEN("%s")',cubeName)
-		if config.GetServiceNation() ~= "KOR" then
+		if config.GetServiceNation() ~= "KOR" and config.GetServiceNation() ~= "GLOBAL_JP" then
 			local usedTP = session.shop.GetUsedMedalTotal();
 			if usedTP == 0 then
 				msg = ScpArgMsg('tpshop_first_buy_msg')

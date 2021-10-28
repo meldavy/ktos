@@ -7199,16 +7199,20 @@
 					<Num Num="0" />
 				</Scp>
 				<Scp Client="YES" Scp="C_SOUND" Time="100" UseSleep="NO">
-					<Str Str="skl_wiz_teleportation" />
-				</Scp>
-				<Scp Client="NO" Scp="SKL_TELEPORTATION_POS" Time="400" UseSleep="NO">
-					<Num FuncTxt="local value = 200; if IsBuffApplied(self, &quot;Thurisaz_Buff&quot;) == &quot;YES&quot; then value = value * 1.5 end return value;" Num="200" UseFunc="1" />
-					<Num Num="0" />
-					<Num Num="0" />
-				</Scp>
-				<Scp Client="NO" Scp="SKL_INVIN" Time="400" UseSleep="NO">
-					<Num Num="0.5" />
-				</Scp>
+                    <Str Str="skl_wiz_teleportation"/>
+                </Scp>
+                <Scp Scp="SKL_INVIN" Client="NO" UseSleep="NO" Time="400">
+                    <Num Num="0.5"/>
+                </Scp>
+                <Scp Scp="SKL_SET_IMMUNE_STATE" Client="NO" UseSleep="NO" Time="400">
+                    <Str Str="Skill_NoDamage_Buff"/>
+                    <Num Num="100"/>
+                </Scp>
+                <Scp Scp="SKL_TELEPORTATION_POS" Client="NO" UseSleep="NO" Time="400">
+                    <Num Num="200" UseFunc="1" FuncTxt="local value = 200; if IsBuffApplied(self, &quot;Thurisaz_Buff&quot;) == &quot;YES&quot; then value = value * 1.5 end return value;"/>
+                    <Num Num="0"/>
+                    <Num Num="0"/>
+                </Scp>
 			</EtcList>
 		</MainSkl>
 	</Skill>

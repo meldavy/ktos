@@ -62,6 +62,8 @@ ClassID,ClassName,Name,UseDaily,UseWeekly
 1047,EPISODE_ACHIEVE_P_11,EP 11 별의 탑을 넘어서,NO,NO
 1048,QP12_2_d_dcapital_108,냉철한 숙명의 심판자,NO,NO
 1049,QP13_ep13_f_siauliai_5,그림자 흔적,NO,NO
+1050,EPISODE_ACHIEVE_P_12_1,EP 12-1 사명의 완성,NO,NO
+1051,EPISODE_ACHIEVE_P_12_2,EP 12-2 숙명,NO,NO
 1501,F_3CMLAKE26,란코 지역,NO,NO
 1502,D_FANTASYLIB48,환상도서관 지역,NO,NO
 2002,ItemRecipe,아이템제작,NO,NO
@@ -80,6 +82,7 @@ ClassID,ClassName,Name,UseDaily,UseWeekly
 2509,glacier_clear,[하얀 마녀의 숲: 레전드] 일정 기간 내 클리어,NO,NO
 2510,Giltine_first_kill,[마신의 성소 : 레전드] 서버별 최초 클리어,NO,NO
 2511,Giltine_clear,[마신의 성소] 일정 기간 내 클리어,NO,NO
+2512,Giltine_auto_clear,[마신의 성소 (자동 매칭)] 일정 기간 내 클리어,NO,NO
 3001,HairShop,미용실,NO,NO
 3002,Connection,접속 횟수,NO,NO
 3003,INDUN,인던입장횟수,NO,NO
@@ -201,6 +204,7 @@ ClassID,ClassName,Name,UseDaily,UseWeekly
 6135,Event_EVENT_2010_LVUP_Achieve1,축복받은 구원자,NO,NO
 6136,Event_SeasonNewWorld_Achieve1,시즌서버 이주민,NO,NO
 6137,TOS_School_Graduate,TOS스쿨 졸업생,NO,NO
+6138,Christmas_Master,마스터의 크리스마스,NO,NO
 7001,PardonerAbility,기부 레벨,NO,NO
 7002,TaxAbility,세금 납부 레벨,NO,NO
 8001,FreeDungeon_under_68_1,시카리오스 기믹,NO,NO

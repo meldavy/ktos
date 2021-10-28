@@ -38,12 +38,12 @@ function MINIMIZED_EVENT_PROGRESS_CHECK_BUTTON1(frame, gb)
 	-- end
 
 	-- EVENT_2011_5TH
-	btn:SetImage("5thevent_btn");
-	btn:SetEventScript(ui.LBUTTONUP, "MINIMIZED_EVENT_PROGRESS_CHECK_BUTTON_CLICK");
-	btn:SetEventScriptArgNumber(ui.LBUTTONUP, 6);
+	-- btn:SetImage("5thevent_btn");
+	-- btn:SetEventScript(ui.LBUTTONUP, "MINIMIZED_EVENT_PROGRESS_CHECK_BUTTON_CLICK");
+	-- btn:SetEventScriptArgNumber(ui.LBUTTONUP, 6);
 	
-	title:SetTextByKey("value", ClMsg("EVENT_2011_5TH_TITLE"));
-	gb:ShowWindow(1);
+	-- title:SetTextByKey("value", ClMsg("EVENT_2011_5TH_TITLE"));
+	-- gb:ShowWindow(1);
 end
 
 function MINIMIZED_EVENT_PROGRESS_CHECK_BUTTON2(frame, gb)

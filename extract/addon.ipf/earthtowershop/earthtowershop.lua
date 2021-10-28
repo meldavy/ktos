@@ -964,8 +964,13 @@ function EXCHANGE_CREATE_TREE_NODE_CTRL(ctrlset, cls, shopType)
 			else
 				cntText = ScpArgMsg("Excnaged_AccountCount_Remind_Day","COUNT",string.format("%d", sCount))
 			end
-		else
-			cntText = ScpArgMsg("Excnaged_AccountCount_Remind","COUNT",string.format("%d", sCount))
+        else
+            local reset = TryGetProp(recipecls, "ResetInterval", "None");
+            if reset == "Day" then
+                cntText = ScpArgMsg("Excnaged_AccountCount_Remind_Day","COUNT",string.format("%d", sCount))
+            else
+			    cntText = ScpArgMsg("Excnaged_AccountCount_Remind","COUNT",string.format("%d", sCount))
+            end
 		end
         local tradeBtn = GET_CHILD(ctrlset, "tradeBtn");
         if sCount <= 0 then

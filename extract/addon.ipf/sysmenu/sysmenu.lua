@@ -758,3 +758,11 @@ function SYSMENU_GUILD_PROMOTE_NOTICE(frame)
 	noticeBallon:SetLayerLevel(60);
 	noticeBallon:ShowWindow(1);
 end
+
+function REQUEST_ICOR_MANAGE_DLG(frame)
+	ui.CloseFrame('reinforce_by_mix')
+	ui.CloseFrame('icoradd_multiple')
+	ui.CloseFrame('icorrelease_multiple')
+	ui.CloseFrame('icorrelease_random_multiple')
+	control.CustomCommand('REQ_ICOR_MANAGE_DLG', 0)
+end

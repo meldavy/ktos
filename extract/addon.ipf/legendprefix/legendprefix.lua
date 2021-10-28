@@ -90,15 +90,20 @@ function LEGENDPREFIX_SET_TARGET_ITEM(frame, itemGuid, prefixName)
 	if invItemCls == nil then
 		return;
 	end
-	
+
 	if invItem.isLockState == true then
         ui.SysMsg(ClMsg("MaterialItemIsLock"));
         return;
 	end
-
+	
     if IS_VALID_ITEM_FOR_GIVING_PREFIX(invItemCls) == false then
     	ui.SysMsg(ClMsg('NotEnoughTarget'));
         return;
+	end
+
+	if SHARED_IS_EVENT_ITEM_CHECK(invItemCls, "NoSetOpt") == true then
+		ui.SysMsg(ClMsg('NotEnoughTarget'));
+		return
 	end
 
 	frame:SetUserValue('TARGET_ITEM_GUID', itemGuid);

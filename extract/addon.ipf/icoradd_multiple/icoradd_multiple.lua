@@ -150,6 +150,13 @@ function ICORADD_CTRL_REG_MAIN_ITEM(ctrlSet, itemID)
 	    ui.SysMsg(ClMsg("NotAllowedItemOptionAdd"))
         return
 	end
+
+	--이벤트 아이템 확인
+	if SHARED_IS_EVENT_ITEM_CHECK(itemCls, "NoEnchant") == true then
+		ui.SysMsg(ClMsg("NotAllowedItemOptionAdd"))
+		return
+	end
+
 		
 	local invframe = ui.GetFrame("inventory")
 	if true == invItem.isLockState or true == IS_TEMP_LOCK(invframe, invItem) then
@@ -642,6 +649,12 @@ function ICORADD_MULTIPLE_INV_RBTN(itemObj, slot)
 	if TryGetProp(itemCls, 'NeedRandomOption', 0) == 1 and TryGetProp(itemCls, 'LegendGroup', 'None') == 'None' then    
 	    ui.SysMsg(ClMsg("NotAllowedItemOptionAdd"))
         return
+	end
+
+	--이벤트 아이템 확인
+	if SHARED_IS_EVENT_ITEM_CHECK(itemCls, "NoEnchant") == true then
+		ui.SysMsg(ClMsg("NotAllowedItemOptionAdd"))
+		return
 	end
 
 	local icon = slot:GetIcon()

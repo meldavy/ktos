@@ -97,7 +97,6 @@ function C_EFFECT(actor, obj, effectName, scale, nodeName, lifeTime)
 
     -- 레일건 머스킷 체크
     if IS_EXIST_BRIQUETTING_OR_BEAUTYSHOP_ITEM(actor, "RH", "Musket", obj.type, 11007105) == true then
-        print(effectName)
         effectName = "None";
     end
 

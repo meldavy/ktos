@@ -374,6 +374,11 @@ function _SUCCESS_ENCHANT_JEWELL()
 	end
 
 	_RAREOPTION_SET_JEWELL_ITEM(frame, nil);
+	local pic_bg = GET_CHILD_RECURSIVELY(frame, 'pic_bg');
+	if pic_bg == nil then
+		return;
+	end
+	pic_bg:StopUIEffect('RESET_SUCCESS_EFFECT', true, 0.5);
 end
 
 function RAREOPTION_INIT_EXCEPT_TARGET(parent, ctrl)

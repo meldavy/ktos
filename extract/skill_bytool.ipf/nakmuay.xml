@@ -116,6 +116,12 @@
 				<Frame Angle="0" AniTime="400" Dist="0" ForceATK="0" HitCount="1" Length="55" PosType="0" RandDist="0" RandomPerHit="0" RotAngle="0" SklAngle="0.17453292" TermMax="0" TermMin="0" Time="200" Type="SQUARE" Width="30"/>
 			</HitList>
 			<EtcList>
+				<Scp Client="YES" Scp="MONSKL_C_PLAY_ANIM" Time="0" UseSleep="NO">
+					<Str Str="SKL_NAKMUAY_SOKCHIANG"/>
+					<Num Num="2"/>
+					<Num Num="1"/>
+					<Num Num="0"/>
+				</Scp>
 				<Scp Client="YES" Scp="C_VOICE_SOUND" Time="100" UseSleep="NO">
 					<Str Str="voice_war_atk_short"/>
 					<Str Str="voice_atk_short_war_f"/>
@@ -182,6 +188,12 @@
 				<Frame Angle="0" AniTime="300" Dist="0" ForceATK="0" HitCount="1" Length="55" PosType="0" RandDist="0" RandomPerHit="0" RotAngle="0" SklAngle="0.17453292" TermMax="0" TermMin="0" Time="100" Type="SQUARE" Width="30"/>
 			</HitList>
 			<EtcList>
+				<Scp Client="YES" Scp="MONSKL_C_PLAY_ANIM" Time="0" UseSleep="NO">
+					<Str Str="SKL_NAKMUAY_TETRONG"/>
+					<Num Num="2"/>
+					<Num Num="1"/>
+					<Num Num="0"/>
+				</Scp>
 				<Scp Client="YES" Scp="C_VOICE_SOUND" Time="200" UseSleep="NO">
 					<Str Str="voice_war_atk_medium"/>
 					<Str Str="voice_atk_medium_war_f"/>
@@ -359,6 +371,12 @@
 				<Frame Angle="0" AniTime="400" Dist="0" ForceATK="0" HitCount="1" Length="55" PosType="0" RandDist="0" RandomPerHit="0" RotAngle="0" SklAngle="0.17453292" TermMax="0" TermMin="0" Time="200" Type="SQUARE" Width="30"/>
 			</HitList>
 			<EtcList>
+				<Scp Client="YES" Scp="MONSKL_C_PLAY_ANIM" Time="0" UseSleep="NO">
+					<Str Str="SKL_NAKMUAY_TEKHA"/>
+					<Num Num="2"/>
+					<Num Num="1"/>
+					<Num Num="0"/>
+				</Scp>
 				<Scp Client="YES" Scp="C_VOICE_SOUND" Time="100" UseSleep="NO">
 					<Str Str="voice_war_atk_short"/>
 					<Str Str="voice_atk_short_war_f"/>

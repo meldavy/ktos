@@ -25,20 +25,13 @@ end
 
 function TRANSCEND_SCROLL_SET_TARGET_ITEM(invframe, invItem)
 	local frame = ui.GetFrame("transcend_scroll");
-	local scrollType = frame:GetUserValue("ScrollType");
-	local slot = GET_CHILD(frame, "slot");
-	local slot_temp = GET_CHILD(frame, "slot_temp");
-	local text_name = GET_CHILD(frame, "text_name")
-	local text_transcend = GET_CHILD(frame, "text_transcend")
-	local text_rate = GET_CHILD(frame, "text_rate")
-	local text_desc = GET_CHILD(frame, "text_desc")	
-	local text_itemtranscend = frame:GetChild("text_itemtranscend");	
-	local button_transcend = frame:GetChild("button_transcend");	
-	local button_close = frame:GetChild("button_close");	
 
+	local button_transcend = GET_CHILD(frame, "button_transcend");	
+	local button_close = GET_CHILD(frame, "button_close");
 	button_close:ShowWindow(0);	
 	button_transcend:ShowWindow(1);	
-
+	
+	local slot_temp = GET_CHILD(frame, "slot_temp");
 	slot_temp:StopActiveUIEffect();
 	slot_temp:ShowWindow(0);	
 
@@ -60,7 +53,19 @@ function TRANSCEND_SCROLL_SET_TARGET_ITEM(invframe, invItem)
 	end
 
 	local scrollObj = GetIES(scrollInvItem:GetObject());
+	if IS_ENCHANT_SCROLL_ITEM_EP12_REWARD(scrollObj) == 1 then
+		ENCHANT_SCROLL_SET_TARGET_ITEM(invframe, invItem);
+		return;
+	end
+
+	if IS_SETOPTION_SCROLL_ITEM_EP12_REWARD(scrollObj) == 1 then
+		SETOPTION_SCROLL_SET_TARGET_ITEM(invframe, invItem);
+		return;
+	end
+
+	local scrollType = frame:GetUserValue("ScrollType");
 	local itemObj = GetIES(invItem:GetObject());
+
 	if IS_TRANSCEND_SCROLL_ABLE_ITEM(itemObj, scrollType, scrollObj.NumberArg1) ~= 1 then
 		if scrollType == "transcend_Add" then
 			ui.SysMsg(ClMsg("TranscendScrollAddDisabledItem"));
@@ -78,12 +83,20 @@ function TRANSCEND_SCROLL_SET_TARGET_ITEM(invframe, invItem)
 			ui.SysMsg(ClMsg("TranscendScrollSetDisabledItem"));
 		elseif scrollType == "transcend_Set_440_Accessory_Old" then
 			ui.SysMsg(ClMsg("TranscendScrollSetDisabledItem"));
+		elseif scrollType == "ENCHANT" then
+			ui.SysMsg(ClMsg("IcorNotAdded_EP12_CANT2"));
 		end
 		return;
 	end
 
-	local anticipatedTranscend, percent = GET_ANTICIPATED_TRANSCEND_SCROLL_SUCCESS(itemObj, scrollObj)
+	local text_name = GET_CHILD_RECURSIVELY(frame, "text_name")
+	local text_transcend = GET_CHILD_RECURSIVELY(frame, "text_transcend")
+	local text_rate = GET_CHILD_RECURSIVELY(frame, "text_rate")
+	local text_desc = GET_CHILD_RECURSIVELY(frame, "text_desc")	
+	local text_itemtranscend = GET_CHILD_RECURSIVELY(frame, "text_itemtranscend");
+	local slot = GET_CHILD(frame, "slot");
 
+	local anticipatedTranscend, percent = GET_ANTICIPATED_TRANSCEND_SCROLL_SUCCESS(itemObj, scrollObj)
 	text_name:SetTextByKey("value", "");
 	text_name:SetTextByKey("value", itemObj.Name)
 	text_name:ShowWindow(1);
@@ -150,10 +163,6 @@ function TRANSCEND_SCROLL_EXEC_ASK_AGAIN(frame, btn)
 	end
 
 	local itemObj = GetIES(invItem:GetObject());
-	local potential = TryGetProp(itemObj, "PR");
-	if potential == nil then
-		return;
-	end
 
 	local scrollGuid = frame:GetUserValue("ScrollGuid")
 	local scrollInvItem = session.GetInvItemByGuid(scrollGuid);
@@ -162,6 +171,21 @@ function TRANSCEND_SCROLL_EXEC_ASK_AGAIN(frame, btn)
 		return;
 	end
 	local scrollObj = GetIES(scrollInvItem:GetObject());
+
+	if IS_ENCHANT_SCROLL_ITEM_EP12_REWARD(scrollObj) == 1 then
+		ENCHANT_SCROLL_EXEC_ASK_AGAIN(frame);
+		return;
+	end
+
+	if IS_SETOPTION_SCROLL_ITEM_EP12_REWARD(scrollObj) == 1 then
+		SETOPTION_SCROLL_EXEC_ASK_AGAIN(frame);
+		return;
+	end
+
+	local potential = TryGetProp(itemObj, "PR");
+	if potential == nil then
+		return;
+	end
 
 	local transcend, rate = GET_ANTICIPATED_TRANSCEND_SCROLL_SUCCESS(itemObj, scrollObj);
 	if transcend == nil then
@@ -195,7 +219,7 @@ function TRANSCEND_SCROLL_EXEC_ASK_AGAIN(frame, btn)
 		ui.SysMsg(ScpArgMsg('ItemTranscendChanged'));
 		return;
 	end
-    local text_rate = GET_CHILD(frame, "text_rate")
+    local text_rate = GET_CHILD_RECURSIVELY(frame, "text_rate")
     local clmsg = ScpArgMsg("TranscendScrollWarning{Before}To{After}", "Before", beforeTranscend, "After", transcend)
     if text_rate:GetTextByKey('value') ~= nil then
         local rate = tonumber(text_rate:GetTextByKey('value'))
@@ -266,6 +290,11 @@ function TRANSCEND_SCROLL_RESULT_UPDATE(frame, isSuccess)
 		timesecond = 1;
 	end
 	
+	local scroll_type = frame:GetUserValue("ScrollType");
+	if scroll_type == "ENCHANT" or scroll_type == "SETOPTION" then
+		return;
+	end
+
 	local invItem = GET_SLOT_ITEM(slot);
 	if invItem == nil then
 		slot:ClearIcon();
@@ -374,11 +403,14 @@ function TRANSCEND_SCROLL_EXEC()
 	local slot = GET_CHILD(frame, "slot");
 	local targetItem = GET_SLOT_ITEM(slot);
 	local scrollGuid = frame:GetUserValue("ScrollGuid")
+	
 	session.ResetItemList();
 	session.AddItemID(targetItem:GetIESID());
 	session.AddItemID(scrollGuid);
+	
 	local resultlist = session.GetItemIDList();
 	item.DialogTransaction("ITEM_TRANSCEND_SCROLL", resultlist);
+	
 	imcSound.PlaySoundEvent(frame:GetUserConfig("TRANS_CAST"));
 end
 
@@ -415,7 +447,9 @@ function TRANSCEND_SCROLL_SELECT_TARGET_ITEM(scrollItem)
 		ui.SysMsg(ScpArgMsg('LessThanItemLifeTime'));
 		return;
 	end
-	
+
+	TRANSCEND_SCROLL_CANCEL();
+	TRANSCEND_SCROLL_UI_INIT();
 	TRANSCEND_SCROLL_UI_RESET();
 	frame:ShowWindow(1);
 	
@@ -487,6 +521,40 @@ function TRANSCEND_SCROLL_LOCK_ITEM(guid)
 	INVENTORY_ON_MSG(invframe, "UPDATE_ITEM_TRANSCEND_SCROLL", lockItemGuid);
 end
 
+function TRANSCEND_SCROLL_UI_INIT()
+	local frame = ui.GetFrame("transcend_scroll");
+
+	local text_title = GET_CHILD(frame, "text_title");
+	text_title:SetTextByKey("value", ClMsg("Transcend_Scroll"));
+
+	local droplist = GET_CHILD(frame, "droplist");	
+	droplist:ShowWindow(0);
+	
+	local button_close = GET_CHILD(frame, "button_close");	
+	button_close:ShowWindow(1);
+	
+	local transcend_gb = GET_CHILD_RECURSIVELY(frame, "transcend_gb");
+	transcend_gb:ShowWindow(1);
+
+	local text_transcend = GET_CHILD_RECURSIVELY(frame, "text_transcend");
+	text_transcend:SetTextByKey("value", 0);
+	text_transcend:ShowWindow(1);
+
+	local text_rate = GET_CHILD_RECURSIVELY(frame, "text_rate");
+	text_rate:SetTextByKey("value", 0);
+	text_rate:ShowWindow(1);
+
+	local text_desc = GET_CHILD_RECURSIVELY(frame, "text_desc");
+	text_desc:SetTextByKey("value", 0);
+	text_desc:ShowWindow(1);
+
+	local main_gb = GET_CHILD_RECURSIVELY(frame, "main_gb");
+	main_gb:ShowWindow(0);
+
+	local button_transcend = GET_CHILD(frame, "button_transcend");
+	button_transcend:SetTextByKey("value", ClMsg("Transcend"));
+end
+
 function TRANSCEND_SCROLL_UI_RESET()
 	local frame = ui.GetFrame("transcend_scroll");
 
@@ -519,4 +587,458 @@ function TRANSCEND_SCROLL_ITEM_DROP(parent, ctrl)
 
 	local invframe = ui.GetFrame("inventory");
 	TRANSCEND_SCROLL_SET_TARGET_ITEM(invframe, invItem)
+end
+
+function TRANSCEND_SCROLL_DROPLIST_SELECT(parent, ctrl)
+	local frame = ui.GetFrame("transcend_scroll");
+
+	local scrollGuid = frame:GetUserValue("ScrollGuid");
+	local scrollInvItem = session.GetInvItemByGuid(scrollGuid);
+	if scrollInvItem == nil then return; end
+	
+	local option = ctrl:GetSelItemKey();
+	frame:SetUserValue("SelctOption", option);
+end
+
+--------------------------- 인챈트 스크롤 ---------------------------
+function ENCHANT_SCROLL_SELECT_TARGET_ITEM(scrollItem)
+	if session.colonywar.GetIsColonyWarMap() == true then
+        ui.SysMsg(ClMsg('CannotUseInPVPZone'));
+        return;
+    end
+
+	if IsPVPServer() == 1 then	
+		ui.SysMsg(ScpArgMsg('CantUseThisInIntegrateServer'));
+		return;
+	end
+
+	local rankresetFrame = ui.GetFrame("rankreset");
+	if 1 == rankresetFrame:IsVisible() then
+		ui.SysMsg(ScpArgMsg('CannotDoAction'));
+		return;
+	end
+	
+	local frame = ui.GetFrame("transcend_scroll");
+
+	local scrollObj = GetIES(scrollItem:GetObject());
+	if IS_ENCHANT_SCROLL_ITEM_EP12_REWARD(scrollObj) ~= 1 then
+		return;
+	end
+	
+
+	local scrollType = "ENCHANT";
+	local scrollGuid = GetIESGuid(scrollObj);
+	frame:SetUserValue("ScrollType", scrollType);
+	frame:SetUserValue("ScrollGuid", scrollGuid);
+
+	if scrollObj.ItemLifeTimeOver > 0 then
+		ui.SysMsg(ScpArgMsg('LessThanItemLifeTime'));
+		return;
+	end
+	
+	TRANSCEND_SCROLL_CANCEL();
+	ENCHANT_SCROLL_UI_INIT();
+	ENCHANT_SCROLL_UI_RESET();
+
+	frame:ShowWindow(1);
+	
+	ui.GuideMsg("DropItemPlz");
+
+	local invframe = ui.GetFrame("inventory");
+	local gbox = invframe:GetChild("inventoryGbox");
+	ui.SetEscapeScp("TRANSCEND_SCROLL_CANCEL()");
+		
+	local tab = gbox:GetChild("inventype_Tab");	
+	tolua.cast(tab, "ui::CTabControl");
+	tab:SelectTab(1);
+	
+	SET_SLOT_APPLY_FUNC(invframe, "TRANSCEND_SCROLL_CHECK_TARGET_ITEM", nil, "Equip");
+	INVENTORY_SET_CUSTOM_RBTNDOWN("TRANSCEND_SCROLL_INV_RBTN");
+end
+
+function ENCHANT_SCROLL_UI_INIT()
+	local frame = ui.GetFrame("transcend_scroll");
+
+	local text_title = GET_CHILD(frame, "text_title");
+	text_title:SetTextByKey("value", ClMsg("Enchant_Scroll"));
+	
+	local droplist = GET_CHILD(frame, "droplist");	
+	droplist:ShowWindow(1);
+	
+	local button_close = GET_CHILD(frame, "button_close");	
+	button_close:ShowWindow(0);
+	
+	local transcend_gb = GET_CHILD_RECURSIVELY(frame, "transcend_gb");
+	transcend_gb:ShowWindow(0);
+	
+	local text_itemtranscend = GET_CHILD_RECURSIVELY(frame, "text_itemtranscend");
+	text_itemtranscend:ShowWindow(0);
+	
+	local main_gb = GET_CHILD_RECURSIVELY(frame, "main_gb");
+	main_gb:ShowWindow(1);
+	
+	local main_text = GET_CHILD_RECURSIVELY(frame, "main_text");
+	main_text:SetTextByKey("value", ClMsg("FixedIcorOptin"));
+
+	local main_name = GET_CHILD_RECURSIVELY(frame, "main_name");
+	main_name:SetTextByKey("value", "");
+
+	local main_tiptext = GET_CHILD_RECURSIVELY(frame, "main_tiptext");
+	main_tiptext:ShowWindow(1);
+	main_tiptext:SetTextByKey("value", ClMsg("EnchantScrollTipText"));
+
+	local button_transcend = GET_CHILD(frame, "button_transcend");
+	button_transcend:SetTextByKey("value", ClMsg("GiveEnchant"));
+end
+
+function ENCHANT_SCROLL_UI_RESET()
+	local frame = ui.GetFrame("transcend_scroll");
+	
+	local slot = GET_CHILD(frame, "slot");
+	slot:ClearIcon();
+
+	local droplist = GET_CHILD(frame, "droplist");
+	droplist:ClearItems();
+end
+
+function ENCHANT_SCROLL_SET_TARGET_ITEM(invframe, invItem)
+	local frame = ui.GetFrame("transcend_scroll");
+	local scrollGuid = frame:GetUserValue("ScrollGuid");
+	local scrollInvItem = session.GetInvItemByGuid(scrollGuid);
+	if scrollInvItem == nil then return; end
+
+	local scrollObj = GetIES(scrollInvItem:GetObject());
+	if IS_ENCHANT_SCROLL_ITEM_EP12_REWARD(scrollObj) ~= 1 then
+		return;
+	end
+	
+	local targetObj = GetIES(invItem:GetObject());
+	local targetGuid = GetIESID(targetObj);
+	
+	local ret = IS_ENCHANT_SCROLL_ITEM(targetObj);
+	
+	if ret == false then
+		ui.SysMsg(ClMsg("NotEnoughTarget"));
+		return;
+	end
+	if IS_ENCHANT_SCROLL_ITEM_EP12_REWARD_USABLE_VIBORA_LV1(scrollObj, targetObj) == 0 then
+		ui.SysMsg(ClMsg("NotEnoughTarget"));
+        return;
+    end
+
+	TRANSCEND_SCROLL_CANCEL();
+	
+	local slot = GET_CHILD(frame, "slot");	
+	SET_SLOT_ITEM(slot, invItem);
+
+	local main_name = GET_CHILD_RECURSIVELY(frame, "main_name");
+	main_name:SetTextByKey("value", targetObj.Name);
+	
+	TRANSCEND_SCROLL_LOCK_ITEM(targetGuid);
+	ENCHANT_SCROLL_DROP_LIST_UPDATE();
+	
+	local droplist = GET_CHILD(frame, "droplist");
+	TRANSCEND_SCROLL_DROPLIST_SELECT(frame, droplist);
+	
+	frame:SetUserValue("EnableTranscendButton", 1);
+end
+
+function ENCHANT_SCROLL_DROP_LIST_UPDATE()
+	local frame = ui.GetFrame("transcend_scroll");
+	
+	local slot = GET_CHILD(frame, "slot");
+	local droplist = GET_CHILD(frame, "droplist");
+	droplist:ClearItems();
+
+	local targetItem = GET_SLOT_ITEM(slot);
+	local itemObj = GetIES(targetItem:GetObject());
+
+	local scrollGuid = frame:GetUserValue("ScrollGuid")
+	local scrollInvItem = session.GetInvItemByGuid(scrollGuid);
+	if scrollInvItem == nil then
+		ui.SysMsg(ScpArgMsg('TranscendScrollNotExist'));
+		return;
+	end
+
+	local scrollObj = GetIES(scrollInvItem:GetObject());
+	local lv = TryGetProp(scrollObj, "NumberArg1", 1);
+
+	local classType = TryGetProp(itemObj, "ClassType", "None");
+	local list = GET_VIBORA_SELECT_LIST(classType, lv);
+	for k, v in pairs(list) do
+		local className = v;
+		local cls = GetClass("Item", className);
+		if cls ~= nil then
+			droplist:AddItem(v, cls.Name);
+		end
+	end
+end
+
+function ENCHANT_SCROLL_EXEC_ASK_AGAIN(frame)
+	local scrollType = frame:GetUserValue("ScrollType")
+	local clickable = frame:GetUserValue("EnableTranscendButton")
+	if tonumber(clickable) ~= 1 then
+		return;
+	end
+
+	local slot = GET_CHILD(frame, "slot");
+	local invItem = GET_SLOT_ITEM(slot);
+	if invItem == nil then
+		ui.MsgBox(ScpArgMsg("DropItemPlz"));
+		imcSound.PlaySoundEvent(frame:GetUserConfig("TRANS_BTN_OVER_SOUND"));
+		return;
+	end
+
+	local targetObj = GetIES(invItem:GetObject());
+
+	local scrollGuid = frame:GetUserValue("ScrollGuid")
+	local scrollInvItem = session.GetInvItemByGuid(scrollGuid);
+	if scrollInvItem == nil then
+		ui.SysMsg(ScpArgMsg('TranscendScrollNotExist'));
+		return;
+	end
+	local scrollObj = GetIES(scrollInvItem:GetObject());
+	
+	
+	if IS_ENCHANT_SCROLL_ITEM_EP12_REWARD_USABLE_VIBORA_LV1(scrollObj, targetObj) == 0 then
+		ui.MsgBox(ScpArgMsg("ItemIsNotEnchantable_vibora"))
+        return;
+    end
+    
+	imcSound.PlaySoundEvent(frame:GetUserConfig("TRANS_BTN_OK_SOUND"));
+	
+	local clmsg = ScpArgMsg("EnchantScrollWarning{ITEM}", "ITEM", targetObj.Name);
+	ui.MsgBox_NonNested(clmsg, frame:GetName(), "ENCHANT_SCROLL_EXEC", "None");
+end
+
+function ENCHANT_SCROLL_EXEC()
+	local frame = ui.GetFrame("transcend_scroll");		
+	imcSound.PlaySoundEvent(frame:GetUserConfig("TRANS_EVENT_EXEC"));
+	frame:SetUserValue("EnableTranscendButton", 0);
+	
+	local slot = GET_CHILD(frame, "slot");
+	local targetItem = GET_SLOT_ITEM(slot);
+	local scrollGuid = frame:GetUserValue("ScrollGuid");
+	local selctOption = frame:GetUserValue("SelctOption");
+
+	session.ResetItemList();
+	session.AddItemID(scrollGuid);
+	session.AddItemID(targetItem:GetIESID());
+	local resultlist = session.GetItemIDList();
+	
+	local argStrList = NewStringList();
+	argStrList:Add(selctOption);
+
+	item.DialogTransaction("ITEM_ENCHANT_SCROLL", resultlist, "", argStrList);
+
+	imcSound.PlaySoundEvent(frame:GetUserConfig("TRANS_CAST"));
+end
+
+--------------------------- 세트 옵션 스크롤 ---------------------------
+function SETOPTION_SCROLL_SELECT_TARGET_ITEM(scrollItem)
+	if session.colonywar.GetIsColonyWarMap() == true then
+        ui.SysMsg(ClMsg('CannotUseInPVPZone'));
+        return;
+    end
+
+	if IsPVPServer() == 1 then	
+		ui.SysMsg(ScpArgMsg('CantUseThisInIntegrateServer'));
+		return;
+	end
+
+	local rankresetFrame = ui.GetFrame("rankreset");
+	if 1 == rankresetFrame:IsVisible() then
+		ui.SysMsg(ScpArgMsg('CannotDoAction'));
+		return;
+	end
+	
+	local frame = ui.GetFrame("transcend_scroll");
+
+	local scrollObj = GetIES(scrollItem:GetObject());
+	if IS_SETOPTION_SCROLL_ITEM_EP12_REWARD(scrollObj) ~= 1 then
+		return;
+	end
+
+	local scrollType = "SETOPTION";
+	local scrollGuid = GetIESGuid(scrollObj);
+	frame:SetUserValue("ScrollType", scrollType);
+	frame:SetUserValue("ScrollGuid", scrollGuid);
+
+	if scrollObj.ItemLifeTimeOver > 0 then
+		ui.SysMsg(ScpArgMsg('LessThanItemLifeTime'));
+		return;
+	end
+
+	TRANSCEND_SCROLL_CANCEL();
+	SETOPTION_SCROLL_UI_INIT();
+	SETOPTION_SCROLL_UI_RESET();
+
+	frame:ShowWindow(1);
+	
+	ui.GuideMsg("DropItemPlz");
+
+	local invframe = ui.GetFrame("inventory");
+	local gbox = invframe:GetChild("inventoryGbox");
+	ui.SetEscapeScp("TRANSCEND_SCROLL_CANCEL()");
+		
+	local tab = gbox:GetChild("inventype_Tab");	
+	tolua.cast(tab, "ui::CTabControl");
+	tab:SelectTab(1);
+	
+	SET_SLOT_APPLY_FUNC(invframe, "TRANSCEND_SCROLL_CHECK_TARGET_ITEM", nil, "Equip");
+	INVENTORY_SET_CUSTOM_RBTNDOWN("TRANSCEND_SCROLL_INV_RBTN");
+end
+
+function SETOPTION_SCROLL_UI_INIT()
+	local frame = ui.GetFrame("transcend_scroll");
+
+	local text_title = GET_CHILD(frame, "text_title");
+	text_title:SetTextByKey("value", ClMsg("SetOptionScroll"));
+	
+	local droplist = GET_CHILD(frame, "droplist");	
+	droplist:ShowWindow(1);
+	
+	local button_close = GET_CHILD(frame, "button_close");	
+	button_close:ShowWindow(0);
+
+	local transcend_gb = GET_CHILD_RECURSIVELY(frame, "transcend_gb");
+	transcend_gb:ShowWindow(0);
+	
+	local text_itemtranscend = GET_CHILD_RECURSIVELY(frame, "text_itemtranscend");
+	text_itemtranscend:ShowWindow(0);
+
+	local main_gb = GET_CHILD_RECURSIVELY(frame, "main_gb");
+	main_gb:ShowWindow(1);
+
+	local main_text = GET_CHILD_RECURSIVELY(frame, "main_text");
+	main_text:SetTextByKey("value", ClMsg("Set_option"));
+	
+	local main_name = GET_CHILD_RECURSIVELY(frame, "main_name");
+	main_name:SetTextByKey("value", "");
+
+	local main_tiptext = GET_CHILD_RECURSIVELY(frame, "main_tiptext");
+	main_tiptext:ShowWindow(0);
+
+	local button_transcend = GET_CHILD(frame, "button_transcend");
+	button_transcend:SetTextByKey("value", ClMsg("GiveEnchant"));
+end
+
+function SETOPTION_SCROLL_UI_RESET()
+	local frame = ui.GetFrame("transcend_scroll");
+
+	local slot = GET_CHILD(frame, "slot");
+	slot:ClearIcon();
+
+	local droplist = GET_CHILD(frame, "droplist");
+	droplist:ClearItems();
+end
+
+function SETOPTION_SCROLL_SET_TARGET_ITEM(invframe, invItem)
+	local frame = ui.GetFrame("transcend_scroll");
+	local scrollGuid = frame:GetUserValue("ScrollGuid");
+	local scrollInvItem = session.GetInvItemByGuid(scrollGuid);
+	if scrollInvItem == nil then return; end
+
+	local scrollObj = GetIES(scrollInvItem:GetObject());
+	if IS_SETOPTION_SCROLL_ITEM_EP12_REWARD(scrollObj) ~= 1 then
+		return;
+	end
+	
+	local targetObj = GetIES(invItem:GetObject());
+	local targetGuid = GetIESID(targetObj);
+	
+	local ret = ENABLE_SETOPTION_SCROLL_ITEM(targetObj);
+	if ret == false then
+		ui.SysMsg(ClMsg("NotEnoughTarget"));
+		return;
+	end
+	if IS_SETOPTION_SCROLL_ITEM_EP12_REWARD_USABLE_440(scrollObj, targetObj) == 0 then
+		ui.SysMsg(ClMsg("NotEnoughTarget"));
+        return;
+    end
+
+	TRANSCEND_SCROLL_CANCEL();
+
+	local slot = GET_CHILD(frame, "slot");	
+	SET_SLOT_ITEM(slot, invItem);
+
+	local main_name = GET_CHILD_RECURSIVELY(frame, "main_name");
+	main_name:SetTextByKey("value", targetObj.Name);
+
+	TRANSCEND_SCROLL_LOCK_ITEM(invItem:GetIESID())
+	SETOPTION_SCROLL_DROP_LIST_UPDATE();
+
+	local droplist = GET_CHILD(frame, "droplist");
+	TRANSCEND_SCROLL_DROPLIST_SELECT(frame, droplist);
+
+	frame:SetUserValue("EnableTranscendButton", 1);
+end
+
+function SETOPTION_SCROLL_DROP_LIST_UPDATE()
+	local frame = ui.GetFrame("transcend_scroll");
+	
+	local slot = GET_CHILD(frame, "slot");
+	local droplist = GET_CHILD(frame, "droplist");
+	droplist:ClearItems();
+
+	local targetItem = GET_SLOT_ITEM(slot);
+	local itemObj = GetIES(targetItem:GetObject());
+
+	local list = GET_ENABLE_SETOPTION_LIST(itemObj);
+	for k, v in pairs(list) do
+		local className = v;
+		local cls = GetClass("LegendSetItem", className);
+		if cls ~= nil then
+			if cls.ClassName ~= "Set_Ezera" and cls.ClassName ~= "Set_Karys" then
+				droplist:AddItem(v, cls.Name);
+			end
+		end
+	end
+end
+
+function SETOPTION_SCROLL_EXEC_ASK_AGAIN(frame)
+	local scrollType = frame:GetUserValue("ScrollType")
+	local clickable = frame:GetUserValue("EnableTranscendButton")
+	if tonumber(clickable) ~= 1 then
+		return;
+	end
+
+	local slot = GET_CHILD(frame, "slot");
+	local invItem = GET_SLOT_ITEM(slot);
+	if invItem == nil then
+		ui.MsgBox(ScpArgMsg("DropItemPlz"));
+		imcSound.PlaySoundEvent(frame:GetUserConfig("TRANS_BTN_OVER_SOUND"));
+		return;
+	end
+    
+	imcSound.PlaySoundEvent(frame:GetUserConfig("TRANS_BTN_OK_SOUND"));
+
+	local droplist = GET_CHILD(frame, "droplist");
+	local option = droplist:GetSelItemCaption();
+	
+	local clmsg = ScpArgMsg("SetoptionScrollWarning{OPTION}", "OPTION", option);
+	ui.MsgBox_NonNested(clmsg, frame:GetName(), "SETOPTION_SCROLL_EXEC", "None");
+end
+
+function SETOPTION_SCROLL_EXEC()
+	local frame = ui.GetFrame("transcend_scroll");		
+	imcSound.PlaySoundEvent(frame:GetUserConfig("TRANS_EVENT_EXEC"));
+	frame:SetUserValue("EnableTranscendButton", 0);
+	
+	local slot = GET_CHILD(frame, "slot");
+	local targetItem = GET_SLOT_ITEM(slot);
+	local scrollGuid = frame:GetUserValue("ScrollGuid");
+	local selctOption = frame:GetUserValue("SelctOption");
+
+	session.ResetItemList();
+	session.AddItemID(scrollGuid);
+	session.AddItemID(targetItem:GetIESID());
+	local resultlist = session.GetItemIDList();
+	
+	local argStrList = NewStringList();
+	argStrList:Add(selctOption);
+
+	item.DialogTransaction("ITEM_SETOPTION_SCROLL", resultlist, "", argStrList);
+
+	imcSound.PlaySoundEvent(frame:GetUserConfig("TRANS_CAST"));
 end

@@ -8,8 +8,13 @@ function ICORRELEASE_MULTIPLE_ON_INIT(addon, frame)
 	addon:RegisterMsg("UPDATE_COLONY_TAX_RATE_SET", "ON_ICORRELEASE_MULTIPLE_UPDATE_COLONY_TAX_RATE_SET")
 end
 
-function ON_OPEN_DLG_ICORRELEASE_MULTIPLE(frame)
+function ON_OPEN_DLG_ICORRELEASE_MULTIPLE(frame, msg, argStr, argNum)
 	frame:ShowWindow(1)
+	if argNum == 1 then
+		frame:SetUserValue('IS_LEGEND_SHOP', 1)
+	else
+		frame:SetUserValue('IS_LEGEND_SHOP', 0)
+	end
 end
 
 function ON_ICORRELEASE_MULTIPLE_UPDATE_COLONY_TAX_RATE_SET(frame)
@@ -87,12 +92,15 @@ function CLEAR_ICORRELEASE_MULTIPLE()
 
 	local costBox = GET_CHILD_RECURSIVELY(frame, 'costBox')
 	local priceText = GET_CHILD_RECURSIVELY(costBox, 'priceText')
-	priceText:SetTextByKey('price', GET_OPTION_RELEASE_COST())
+	local price = GET_OPTION_RELEASE_COST()
+	priceText:SetTextByKey('price', price)
 	costBox:ShowWindow(1)
 end
 
 function _UPDATE_RELEASE_MULTIPLE_COST(frame)
 	local totalPrice = 0
+
+	local is_legend_shop = frame:GetUserIValue('IS_LEGEND_SHOP')
 
 	local max_count = GET_ICOR_MULTIPLE_MAX_COUNT()
 	for i = 1, max_count do
@@ -101,7 +109,10 @@ function _UPDATE_RELEASE_MULTIPLE_COST(frame)
 		local invItem = GET_SLOT_ITEM(slot)
 		if invItem ~= nil then
 			local invItemObj = GetIES(invItem:GetObject())
-			local eachPrice = GET_OPTION_RELEASE_COST(invItemObj, GET_COLONY_TAX_RATE_CURRENT_MAP())
+			local eachPrice = GET_OPTION_RELEASE_COST(invItemObj, GET_COLONY_TAX_RATE_CURRENT_MAP(), is_legend_shop)
+			if is_legend_shop ~= 1 then
+				eachPrice = GET_OPTION_RELEASE_COST(invItemObj, nil, is_legend_shop)
+			end
 
 			totalPrice = totalPrice + eachPrice
 		end
@@ -160,10 +171,15 @@ function ICORRELEASE_CTRL_REG_TARGETITEM(ctrlSet, itemID)
 
 	local invItemObj = GetIES(invItem:GetObject())
 	local itemCls = GetClassByType('Item', invItemObj.ClassID)
-	
 	if IS_ENABLE_RELEASE_OPTION(invItemObj) ~= true then
 		-- 복원 대상인지 체크
 		ui.SysMsg(ClMsg("IcorNotAdded"))
+		return
+	end
+
+	--이벤트 장비인지 체크
+	if SHARED_IS_EVENT_ITEM_CHECK(itemCls, "NoEnchant") == true then
+		ui.SysMsg(ClMsg("IcorNotAdded_EP12_CANT1"))
 		return
 	end
 	
@@ -367,6 +383,8 @@ function ICORRELEASE_MULTIPLE_EXEC(frame)
 	frame = frame:GetTopParentFrame()
 	local invframe = ui.GetFrame("inventory")
 
+	local is_legend_shop = frame:GetUserIValue('IS_LEGEND_SHOP')
+
 	local totalPrice = 0
 	local max_count = GET_ICOR_MULTIPLE_MAX_COUNT()
 	for i = 1, max_count do
@@ -380,7 +398,10 @@ function ICORRELEASE_MULTIPLE_EXEC(frame)
 			end
 			
 			local invItemObj = GetIES(invItem:GetObject())
-			local eachPrice = GET_OPTION_RELEASE_COST(invItemObj, GET_COLONY_TAX_RATE_CURRENT_MAP())
+			local eachPrice = GET_OPTION_RELEASE_COST(invItemObj, GET_COLONY_TAX_RATE_CURRENT_MAP(), is_legend_shop)
+			if is_legend_shop ~= 1 then
+				eachPrice = GET_OPTION_RELEASE_COST(invItemObj, nil, is_legend_shop)
+			end
 
 			totalPrice = totalPrice + eachPrice
 		end

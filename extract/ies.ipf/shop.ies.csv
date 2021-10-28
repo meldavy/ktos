@@ -865,4 +865,7 @@ ClassID,SellRate,Count,Price,ShopName,IDSpace,ItemName,Description,NeedProperty
 20211,1,1,1,Personal_Housing,Item,PersonalHousing_Item_hp_p_h_barrack_snowman_03,지면,Hide
 20212,1,1,1,Personal_Housing,Item,PersonalHousing_Item_hp_p_h_barrack_snowman_04,지면,Hide
 20213,1,1,1,Personal_Housing,Item,PersonalHousing_Item_hp_p_h_barrack_igloo_01,지면,Hide
+20214,1,1,1,Personal_Housing,Item,PersonalHousing_Item_hp_p_h_barrack_pond_01,지면,Hide
+20215,1,1,1,Personal_Housing,Item,PersonalHousing_Item_hp_h_torii_01,지면,Hide
+20216,1,1,1,Personal_Housing,Item,PersonalHousing_Item_hp_h_torii_snow_01,지면,Hide
 21001,1,1,1,Event2002_Fish_Shop,Item,Event_2002_mudfish,,

@@ -5,7 +5,7 @@ end
 function ON_OPEN_DLG_ITEMTRANSCEND(frame, msg, argStr, isLegendShop)
 	frame:SetUserValue('IS_LEGEND_SHOP', isLegendShop);
 	frame:ShowWindow(1);	
-	ui.SetHoldUI(false);
+	ui.SetHoldUI(false);	
 end
 
 function ITEMTRASCEND_OPEN(frame)	
@@ -801,7 +801,7 @@ end
 
 
 -- 애니픽쳐의 애니메이션 틱에 따른 결과 UIeffect 설정
-function ITEMTRANSCEND_BG_ANIM_TICK(ctrl, str, tick)
+function ITEMTRANSCEND_BG_ANIM_TICK(ctrl, str, tick)	
 
 	if tick == 14 then
 		local frame = ctrl:GetTopParentFrame();
@@ -822,16 +822,17 @@ end
 
 function UPDATE_TRANSCEND_RESULT(frame, isSuccess)
 	if isSuccess == 1 then
-		local animpic_bg = GET_CHILD_RECURSIVELY(frame, "animpic_bg");
-		animpic_bg:ShowWindow(1);
-		animpic_bg:ForcePlayAnimation();
+		-- local animpic_bg = GET_CHILD_RECURSIVELY(frame, "animpic_bg");
+		-- animpic_bg:ShowWindow(1);
+		-- animpic_bg:ForcePlayAnimation();
+		ReserveScript("TRANSCEND_EFFECT()", 0.3);		
 	else
 		_UPDATE_TRANSCEND_RESULT(frame, 0);
 	end;
 end
 
 -- 서버의 성공여부에 따른 UI이펙트와 결과 업데이트 
-function _UPDATE_TRANSCEND_RESULT(frame, isSuccess)			
+function _UPDATE_TRANSCEND_RESULT(frame, isSuccess)				
 	local slot = GET_CHILD(frame, "slot");
 	
 	local timesecond = 0;
@@ -839,14 +840,14 @@ function _UPDATE_TRANSCEND_RESULT(frame, isSuccess)
 		imcSound.PlaySoundEvent(frame:GetUserConfig("TRANS_SUCCESS_SOUND"));
 		slot:StopActiveUIEffect();
 		slot:PlayActiveUIEffect();
-		timesecond = 2;
+		timesecond = 0.1;		
 	else
 		imcSound.PlaySoundEvent(frame:GetUserConfig("TRANS_FAIL_SOUND"));
 		local slotTemp = GET_CHILD(frame, "slotTemp");
 		slotTemp:ShowWindow(1);
 		slotTemp:StopActiveUIEffect();
 		slotTemp:PlayActiveUIEffect();
-		timesecond = 1;
+		timesecond = 0.1;
 	end
 			
 	
@@ -855,7 +856,7 @@ function _UPDATE_TRANSCEND_RESULT(frame, isSuccess)
 
 	local invItem = GET_SLOT_ITEM(slot);
 	if invItem == nil then		
-		ui.SetHoldUI(false);
+		ui.SetHoldUI(false);		
 		slot:ClearIcon();
 		ITEMTRANSCEND_LOCK_ITEM("None");
 		frame:StopUpdateScript("TIMEWAIT_STOP_ITEMTRANSCEND");
@@ -876,7 +877,7 @@ function _UPDATE_TRANSCEND_RESULT(frame, isSuccess)
 
 	local transcendCls = GetClass("ItemTranscend", transcend  );
 	if transcendCls == nil then
-		ui.SetHoldUI(false);
+		ui.SetHoldUI(false);		
 		return;
 	end
 
@@ -928,6 +929,7 @@ function _UPDATE_TRANSCEND_RESULT(frame, isSuccess)
 	frame:StopUpdateScript("TIMEWAIT_STOP_ITEMTRANSCEND");
 	frame:RunUpdateScript("TIMEWAIT_STOP_ITEMTRANSCEND", timesecond);
 	frame:SetUserValue("ONANIPICTURE_PLAY", 0);
+	ui.SetHoldUI(false);
 end
 
 -------------------------
@@ -949,7 +951,7 @@ function TIMEWAIT_STOP_ITEMTRANSCEND()
 end
 
 function ITEMTRANSCEND_FAIL_TO_TRANSCEND()
-	ui.SetHoldUI(false);
+	ui.SetHoldUI(false);	
 end
 
 function IS_ENABLE_BUFF_STATE_TO_REINFORCE_OR_TRANSCEND_C()

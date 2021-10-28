@@ -8,8 +8,13 @@ function ITEMOPTIONRELEASE_ON_INIT(addon, frame)
 	addon:RegisterMsg("UPDATE_COLONY_TAX_RATE_SET", "ON_OPTIONRELEASE_UPDATE_COLONY_TAX_RATE_SET");
 end;
 
-function ON_OPEN_DLG_ITEMOPTIONRELEASE(frame)
+function ON_OPEN_DLG_ITEMOPTIONRELEASE(frame, msg, argStr, argNum)
 	frame:ShowWindow(1);
+	if argNum == 1 then
+		frame:SetUserValue('IS_LEGEND_SHOP', 1)
+	else
+		frame:SetUserValue('IS_LEGEND_SHOP', 0)
+	end
 end;
 
 function ON_OPTIONRELEASE_UPDATE_COLONY_TAX_RATE_SET(frame)
@@ -95,7 +100,8 @@ function CLEAR_ITEMOPTIONRELEASE_UI()
 
 	local costBox = GET_CHILD_RECURSIVELY(frame, 'costBox');
 	local priceText = GET_CHILD_RECURSIVELY(costBox, 'priceText');
-	priceText:SetTextByKey('price', GET_OPTION_RELEASE_COST());
+	local price = GET_OPTION_RELEASE_COST()
+	priceText:SetTextByKey('price', price);
 	costBox:ShowWindow(1);
 end;
 
@@ -107,7 +113,8 @@ function _UPDATE_RELEASE_COST(frame)
 		return;
 	end;
 	local invItemObj = GetIES(invItem:GetObject());
-	priceText:SetTextByKey('price', GET_COMMAED_STRING(GET_OPTION_RELEASE_COST(invItemObj, GET_COLONY_TAX_RATE_CURRENT_MAP())));
+	local isLegendShop = frame:GetUserIValue('IS_LEGEND_SHOP')
+	priceText:SetTextByKey('price', GET_COMMAED_STRING(GET_OPTION_RELEASE_COST(invItemObj, GET_COLONY_TAX_RATE_CURRENT_MAP(), isLegendShop)));
 end
 
 function ITEM_OPTIONRELEASE_DROP(frame, icon, argStr, argNum)
@@ -147,6 +154,12 @@ function ITEM_OPTIONRELEASE_REG_TARGETITEM(frame, itemID)
 		return;
 	end;
 	
+	--이벤트 장비인지 체크
+	if SHARED_IS_EVENT_ITEM_CHECK(itemCls, "NoEnchant") == true then
+		ui.SysMsg(ClMsg("IcorNotAdded_EP12_CANT1"))
+		return
+	end
+
 	local pc = GetMyPCObject();
 	if pc == nil then
 		return;
@@ -363,7 +376,8 @@ function ITEMOPTIONRELEASE_EXEC(frame)
 	end;
 
 	local invItemObj = GetIES(invItem:GetObject());
-	local price = GET_OPTION_RELEASE_COST(invItemObj, GET_COLONY_TAX_RATE_CURRENT_MAP());
+	local isLegendShop = frame:GetUserIValue('IS_LEGEND_SHOP')
+	local price = GET_OPTION_RELEASE_COST(invItemObj, GET_COLONY_TAX_RATE_CURRENT_MAP(), isLegendShop);
 	local pcMoney = GET_TOTAL_MONEY_STR();
 	if IsGreaterThanForBigNumber(price, pcMoney) == 1 then
         ui.SysMsg(ClMsg('NotEnoughMoney'));

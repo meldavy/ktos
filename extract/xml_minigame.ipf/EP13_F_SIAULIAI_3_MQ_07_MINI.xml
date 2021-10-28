@@ -11,6 +11,13 @@
                                     <Num Num="500"/>
                                 </ToolScp>
                             </List>
+                            <DeadList>
+                                <ToolScp Scp="SAI_DEAD_SOBJ_PARTY" Client="NO" UseSleep="NO">
+                                    <Str Str="SSN_EP13_F_SIAULIAI_3_MQ_07"/>
+                                    <Str Str="QuestInfoValue1"/>
+                                    <Num Num="1"/>
+                                </ToolScp>
+                            </DeadList>
                             <StartList>
                                 <ToolScp Scp="S_AI_SET_TENDENCY" Client="NO" UseSleep="NO">
                                     <Str Str="Attack"/>
@@ -25,6 +32,13 @@
                                     <Num Num="500"/>
                                 </ToolScp>
                             </List>
+                            <DeadList>
+                                <ToolScp Scp="SAI_DEAD_SOBJ_PARTY" Client="NO" UseSleep="NO">
+                                    <Str Str="SSN_EP13_F_SIAULIAI_3_MQ_07"/>
+                                    <Str Str="QuestInfoValue1"/>
+                                    <Num Num="1"/>
+                                </ToolScp>
+                            </DeadList>
                             <StartList>
                                 <ToolScp Scp="S_AI_SET_TENDENCY" Client="NO" UseSleep="NO">
                                     <Str Str="Attack"/>
@@ -39,6 +53,13 @@
                                     <Num Num="500"/>
                                 </ToolScp>
                             </List>
+                            <DeadList>
+                                <ToolScp Scp="SAI_DEAD_SOBJ_PARTY" Client="NO" UseSleep="NO">
+                                    <Str Str="SSN_EP13_F_SIAULIAI_3_MQ_07"/>
+                                    <Str Str="QuestInfoValue1"/>
+                                    <Num Num="1"/>
+                                </ToolScp>
+                            </DeadList>
                             <StartList>
                                 <ToolScp Scp="S_AI_SET_TENDENCY" Client="NO" UseSleep="NO">
                                     <Str Str="Attack"/>
@@ -53,6 +74,13 @@
                                     <Num Num="500"/>
                                 </ToolScp>
                             </List>
+                            <DeadList>
+                                <ToolScp Scp="SAI_DEAD_SOBJ_PARTY" Client="NO" UseSleep="NO">
+                                    <Str Str="SSN_EP13_F_SIAULIAI_3_MQ_07"/>
+                                    <Str Str="QuestInfoValue1"/>
+                                    <Num Num="1"/>
+                                </ToolScp>
+                            </DeadList>
                             <StartList>
                                 <ToolScp Scp="S_AI_SET_TENDENCY" Client="NO" UseSleep="NO">
                                     <Str Str="Attack"/>
@@ -67,6 +95,13 @@
                                     <Num Num="500"/>
                                 </ToolScp>
                             </List>
+                            <DeadList>
+                                <ToolScp Scp="SAI_DEAD_SOBJ_PARTY" Client="NO" UseSleep="NO">
+                                    <Str Str="SSN_EP13_F_SIAULIAI_3_MQ_07"/>
+                                    <Str Str="QuestInfoValue1"/>
+                                    <Num Num="1"/>
+                                </ToolScp>
+                            </DeadList>
                             <StartList>
                                 <ToolScp Scp="S_AI_SET_TENDENCY" Client="NO" UseSleep="NO">
                                     <Str Str="Attack"/>
@@ -81,6 +116,13 @@
                                     <Num Num="500"/>
                                 </ToolScp>
                             </List>
+                            <DeadList>
+                                <ToolScp Scp="SAI_DEAD_SOBJ_PARTY" Client="NO" UseSleep="NO">
+                                    <Str Str="SSN_EP13_F_SIAULIAI_3_MQ_07"/>
+                                    <Str Str="QuestInfoValue1"/>
+                                    <Num Num="1"/>
+                                </ToolScp>
+                            </DeadList>
                             <StartList>
                                 <ToolScp Scp="S_AI_SET_TENDENCY" Client="NO" UseSleep="NO">
                                     <Str Str="Attack"/>
@@ -95,6 +137,13 @@
                                     <Num Num="500"/>
                                 </ToolScp>
                             </List>
+                            <DeadList>
+                                <ToolScp Scp="SAI_DEAD_SOBJ_PARTY" Client="NO" UseSleep="NO">
+                                    <Str Str="SSN_EP13_F_SIAULIAI_3_MQ_07"/>
+                                    <Str Str="QuestInfoValue1"/>
+                                    <Num Num="1"/>
+                                </ToolScp>
+                            </DeadList>
                             <StartList>
                                 <ToolScp Scp="S_AI_SET_TENDENCY" Client="NO" UseSleep="NO">
                                     <Str Str="Attack"/>
@@ -109,6 +158,13 @@
                                     <Num Num="500"/>
                                 </ToolScp>
                             </List>
+                            <DeadList>
+                                <ToolScp Scp="SAI_DEAD_SOBJ_PARTY" Client="NO" UseSleep="NO">
+                                    <Str Str="SSN_EP13_F_SIAULIAI_3_MQ_07"/>
+                                    <Str Str="QuestInfoValue1"/>
+                                    <Num Num="1"/>
+                                </ToolScp>
+                            </DeadList>
                             <StartList>
                                 <ToolScp Scp="S_AI_SET_TENDENCY" Client="NO" UseSleep="NO">
                                     <Str Str="Attack"/>
@@ -123,6 +179,13 @@
                                     <Num Num="500"/>
                                 </ToolScp>
                             </List>
+                            <DeadList>
+                                <ToolScp Scp="SAI_DEAD_SOBJ_PARTY" Client="NO" UseSleep="NO">
+                                    <Str Str="SSN_EP13_F_SIAULIAI_3_MQ_07"/>
+                                    <Str Str="QuestInfoValue1"/>
+                                    <Num Num="1"/>
+                                </ToolScp>
+                            </DeadList>
                             <StartList>
                                 <ToolScp Scp="S_AI_SET_TENDENCY" Client="NO" UseSleep="NO">
                                     <Str Str="Attack"/>
@@ -137,6 +200,13 @@
                                     <Num Num="500"/>
                                 </ToolScp>
                             </List>
+                            <DeadList>
+                                <ToolScp Scp="SAI_DEAD_SOBJ_PARTY" Client="NO" UseSleep="NO">
+                                    <Str Str="SSN_EP13_F_SIAULIAI_3_MQ_07"/>
+                                    <Str Str="QuestInfoValue1"/>
+                                    <Num Num="1"/>
+                                </ToolScp>
+                            </DeadList>
                             <StartList>
                                 <ToolScp Scp="S_AI_SET_TENDENCY" Client="NO" UseSleep="NO">
                                     <Str Str="Attack"/>
@@ -151,6 +221,13 @@
                                     <Num Num="500"/>
                                 </ToolScp>
                             </List>
+                            <DeadList>
+                                <ToolScp Scp="SAI_DEAD_SOBJ_PARTY" Client="NO" UseSleep="NO">
+                                    <Str Str="SSN_EP13_F_SIAULIAI_3_MQ_07"/>
+                                    <Str Str="QuestInfoValue1"/>
+                                    <Num Num="1"/>
+                                </ToolScp>
+                            </DeadList>
                             <StartList>
                                 <ToolScp Scp="S_AI_SET_TENDENCY" Client="NO" UseSleep="NO">
                                     <Str Str="Attack"/>
@@ -165,6 +242,13 @@
                                     <Num Num="500"/>
                                 </ToolScp>
                             </List>
+                            <DeadList>
+                                <ToolScp Scp="SAI_DEAD_SOBJ_PARTY" Client="NO" UseSleep="NO">
+                                    <Str Str="SSN_EP13_F_SIAULIAI_3_MQ_07"/>
+                                    <Str Str="QuestInfoValue1"/>
+                                    <Num Num="1"/>
+                                </ToolScp>
+                            </DeadList>
                             <StartList>
                                 <ToolScp Scp="S_AI_SET_TENDENCY" Client="NO" UseSleep="NO">
                                     <Str Str="Attack"/>
@@ -179,6 +263,13 @@
                                     <Num Num="500"/>
                                 </ToolScp>
                             </List>
+                            <DeadList>
+                                <ToolScp Scp="SAI_DEAD_SOBJ_PARTY" Client="NO" UseSleep="NO">
+                                    <Str Str="SSN_EP13_F_SIAULIAI_3_MQ_07"/>
+                                    <Str Str="QuestInfoValue1"/>
+                                    <Num Num="1"/>
+                                </ToolScp>
+                            </DeadList>
                             <StartList>
                                 <ToolScp Scp="S_AI_SET_TENDENCY" Client="NO" UseSleep="NO">
                                     <Str Str="Attack"/>
@@ -193,6 +284,13 @@
                                     <Num Num="500"/>
                                 </ToolScp>
                             </List>
+                            <DeadList>
+                                <ToolScp Scp="SAI_DEAD_SOBJ_PARTY" Client="NO" UseSleep="NO">
+                                    <Str Str="SSN_EP13_F_SIAULIAI_3_MQ_07"/>
+                                    <Str Str="QuestInfoValue1"/>
+                                    <Num Num="1"/>
+                                </ToolScp>
+                            </DeadList>
                             <StartList>
                                 <ToolScp Scp="S_AI_SET_TENDENCY" Client="NO" UseSleep="NO">
                                     <Str Str="Attack"/>
@@ -207,6 +305,13 @@
                                     <Num Num="500"/>
                                 </ToolScp>
                             </List>
+                            <DeadList>
+                                <ToolScp Scp="SAI_DEAD_SOBJ_PARTY" Client="NO" UseSleep="NO">
+                                    <Str Str="SSN_EP13_F_SIAULIAI_3_MQ_07"/>
+                                    <Str Str="QuestInfoValue1"/>
+                                    <Num Num="1"/>
+                                </ToolScp>
+                            </DeadList>
                             <StartList>
                                 <ToolScp Scp="S_AI_SET_TENDENCY" Client="NO" UseSleep="NO">
                                     <Str Str="Attack"/>
@@ -221,6 +326,13 @@
                                     <Num Num="500"/>
                                 </ToolScp>
                             </List>
+                            <DeadList>
+                                <ToolScp Scp="SAI_DEAD_SOBJ_PARTY" Client="NO" UseSleep="NO">
+                                    <Str Str="SSN_EP13_F_SIAULIAI_3_MQ_07"/>
+                                    <Str Str="QuestInfoValue1"/>
+                                    <Num Num="1"/>
+                                </ToolScp>
+                            </DeadList>
                             <StartList>
                                 <ToolScp Scp="S_AI_SET_TENDENCY" Client="NO" UseSleep="NO">
                                     <Str Str="Attack"/>
@@ -235,6 +347,13 @@
                                     <Num Num="500"/>
                                 </ToolScp>
                             </List>
+                            <DeadList>
+                                <ToolScp Scp="SAI_DEAD_SOBJ_PARTY" Client="NO" UseSleep="NO">
+                                    <Str Str="SSN_EP13_F_SIAULIAI_3_MQ_07"/>
+                                    <Str Str="QuestInfoValue1"/>
+                                    <Num Num="1"/>
+                                </ToolScp>
+                            </DeadList>
                             <StartList>
                                 <ToolScp Scp="S_AI_SET_TENDENCY" Client="NO" UseSleep="NO">
                                     <Str Str="Attack"/>
@@ -249,6 +368,13 @@
                                     <Num Num="500"/>
                                 </ToolScp>
                             </List>
+                            <DeadList>
+                                <ToolScp Scp="SAI_DEAD_SOBJ_PARTY" Client="NO" UseSleep="NO">
+                                    <Str Str="SSN_EP13_F_SIAULIAI_3_MQ_07"/>
+                                    <Str Str="QuestInfoValue1"/>
+                                    <Num Num="1"/>
+                                </ToolScp>
+                            </DeadList>
                             <StartList>
                                 <ToolScp Scp="S_AI_SET_TENDENCY" Client="NO" UseSleep="NO">
                                     <Str Str="Attack"/>
@@ -263,6 +389,13 @@
                                     <Num Num="500"/>
                                 </ToolScp>
                             </List>
+                            <DeadList>
+                                <ToolScp Scp="SAI_DEAD_SOBJ_PARTY" Client="NO" UseSleep="NO">
+                                    <Str Str="SSN_EP13_F_SIAULIAI_3_MQ_07"/>
+                                    <Str Str="QuestInfoValue1"/>
+                                    <Num Num="1"/>
+                                </ToolScp>
+                            </DeadList>
                             <StartList>
                                 <ToolScp Scp="S_AI_SET_TENDENCY" Client="NO" UseSleep="NO">
                                     <Str Str="Attack"/>
@@ -277,6 +410,13 @@
                                     <Num Num="500"/>
                                 </ToolScp>
                             </List>
+                            <DeadList>
+                                <ToolScp Scp="SAI_DEAD_SOBJ_PARTY" Client="NO" UseSleep="NO">
+                                    <Str Str="SSN_EP13_F_SIAULIAI_3_MQ_07"/>
+                                    <Str Str="QuestInfoValue1"/>
+                                    <Num Num="1"/>
+                                </ToolScp>
+                            </DeadList>
                             <StartList>
                                 <ToolScp Scp="S_AI_SET_TENDENCY" Client="NO" UseSleep="NO">
                                     <Str Str="Attack"/>
@@ -291,6 +431,13 @@
                                     <Num Num="500"/>
                                 </ToolScp>
                             </List>
+                            <DeadList>
+                                <ToolScp Scp="SAI_DEAD_SOBJ_PARTY" Client="NO" UseSleep="NO">
+                                    <Str Str="SSN_EP13_F_SIAULIAI_3_MQ_07"/>
+                                    <Str Str="QuestInfoValue1"/>
+                                    <Num Num="1"/>
+                                </ToolScp>
+                            </DeadList>
                             <StartList>
                                 <ToolScp Scp="S_AI_SET_TENDENCY" Client="NO" UseSleep="NO">
                                     <Str Str="Attack"/>
@@ -305,6 +452,13 @@
                                     <Num Num="500"/>
                                 </ToolScp>
                             </List>
+                            <DeadList>
+                                <ToolScp Scp="SAI_DEAD_SOBJ_PARTY" Client="NO" UseSleep="NO">
+                                    <Str Str="SSN_EP13_F_SIAULIAI_3_MQ_07"/>
+                                    <Str Str="QuestInfoValue1"/>
+                                    <Num Num="1"/>
+                                </ToolScp>
+                            </DeadList>
                             <StartList>
                                 <ToolScp Scp="S_AI_SET_TENDENCY" Client="NO" UseSleep="NO">
                                     <Str Str="Attack"/>
@@ -319,6 +473,13 @@
                                     <Num Num="500"/>
                                 </ToolScp>
                             </List>
+                            <DeadList>
+                                <ToolScp Scp="SAI_DEAD_SOBJ_PARTY" Client="NO" UseSleep="NO">
+                                    <Str Str="SSN_EP13_F_SIAULIAI_3_MQ_07"/>
+                                    <Str Str="QuestInfoValue1"/>
+                                    <Num Num="1"/>
+                                </ToolScp>
+                            </DeadList>
                             <StartList>
                                 <ToolScp Scp="S_AI_SET_TENDENCY" Client="NO" UseSleep="NO">
                                     <Str Str="Attack"/>
@@ -333,6 +494,13 @@
                                     <Num Num="500"/>
                                 </ToolScp>
                             </List>
+                            <DeadList>
+                                <ToolScp Scp="SAI_DEAD_SOBJ_PARTY" Client="NO" UseSleep="NO">
+                                    <Str Str="SSN_EP13_F_SIAULIAI_3_MQ_07"/>
+                                    <Str Str="QuestInfoValue1"/>
+                                    <Num Num="1"/>
+                                </ToolScp>
+                            </DeadList>
                             <StartList>
                                 <ToolScp Scp="S_AI_SET_TENDENCY" Client="NO" UseSleep="NO">
                                     <Str Str="Attack"/>
@@ -347,6 +515,13 @@
                                     <Num Num="500"/>
                                 </ToolScp>
                             </List>
+                            <DeadList>
+                                <ToolScp Scp="SAI_DEAD_SOBJ_PARTY" Client="NO" UseSleep="NO">
+                                    <Str Str="SSN_EP13_F_SIAULIAI_3_MQ_07"/>
+                                    <Str Str="QuestInfoValue1"/>
+                                    <Num Num="1"/>
+                                </ToolScp>
+                            </DeadList>
                             <StartList>
                                 <ToolScp Scp="S_AI_SET_TENDENCY" Client="NO" UseSleep="NO">
                                     <Str Str="Attack"/>
@@ -361,6 +536,13 @@
                                     <Num Num="500"/>
                                 </ToolScp>
                             </List>
+                            <DeadList>
+                                <ToolScp Scp="SAI_DEAD_SOBJ_PARTY" Client="NO" UseSleep="NO">
+                                    <Str Str="SSN_EP13_F_SIAULIAI_3_MQ_07"/>
+                                    <Str Str="QuestInfoValue1"/>
+                                    <Num Num="1"/>
+                                </ToolScp>
+                            </DeadList>
                             <StartList>
                                 <ToolScp Scp="S_AI_SET_TENDENCY" Client="NO" UseSleep="NO">
                                     <Str Str="Attack"/>
@@ -375,6 +557,13 @@
                                     <Num Num="500"/>
                                 </ToolScp>
                             </List>
+                            <DeadList>
+                                <ToolScp Scp="SAI_DEAD_SOBJ_PARTY" Client="NO" UseSleep="NO">
+                                    <Str Str="SSN_EP13_F_SIAULIAI_3_MQ_07"/>
+                                    <Str Str="QuestInfoValue1"/>
+                                    <Num Num="1"/>
+                                </ToolScp>
+                            </DeadList>
                             <StartList>
                                 <ToolScp Scp="S_AI_SET_TENDENCY" Client="NO" UseSleep="NO">
                                     <Str Str="Attack"/>
@@ -389,6 +578,13 @@
                                     <Num Num="500"/>
                                 </ToolScp>
                             </List>
+                            <DeadList>
+                                <ToolScp Scp="SAI_DEAD_SOBJ_PARTY" Client="NO" UseSleep="NO">
+                                    <Str Str="SSN_EP13_F_SIAULIAI_3_MQ_07"/>
+                                    <Str Str="QuestInfoValue1"/>
+                                    <Num Num="1"/>
+                                </ToolScp>
+                            </DeadList>
                             <StartList>
                                 <ToolScp Scp="S_AI_SET_TENDENCY" Client="NO" UseSleep="NO">
                                     <Str Str="Attack"/>
@@ -403,6 +599,13 @@
                                     <Num Num="500"/>
                                 </ToolScp>
                             </List>
+                            <DeadList>
+                                <ToolScp Scp="SAI_DEAD_SOBJ_PARTY" Client="NO" UseSleep="NO">
+                                    <Str Str="SSN_EP13_F_SIAULIAI_3_MQ_07"/>
+                                    <Str Str="QuestInfoValue1"/>
+                                    <Num Num="1"/>
+                                </ToolScp>
+                            </DeadList>
                             <StartList>
                                 <ToolScp Scp="S_AI_SET_TENDENCY" Client="NO" UseSleep="NO">
                                     <Str Str="Attack"/>
@@ -417,6 +620,13 @@
                                     <Num Num="500"/>
                                 </ToolScp>
                             </List>
+                            <DeadList>
+                                <ToolScp Scp="SAI_DEAD_SOBJ_PARTY" Client="NO" UseSleep="NO">
+                                    <Str Str="SSN_EP13_F_SIAULIAI_3_MQ_07"/>
+                                    <Str Str="QuestInfoValue1"/>
+                                    <Num Num="1"/>
+                                </ToolScp>
+                            </DeadList>
                             <StartList>
                                 <ToolScp Scp="S_AI_SET_TENDENCY" Client="NO" UseSleep="NO">
                                     <Str Str="Attack"/>
@@ -425,6 +635,29 @@
                         </SelfAI>
                     </Obj>
                 </ObjList>
+                <StageEvents>
+                    <Event eventName="ClearCheck">
+                        <condList>
+                            <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK_START" Client="NO" UseSleep="NO">
+                                <Num Num="1"/>
+                            </ToolScp>
+                            <ToolScp Scp="MGAME_EVT_COND_MONCNT_ALIVE" Client="NO" UseSleep="NO">
+                                <MGameObj List="DefGroup/0/DefGroup/1/DefGroup/2/DefGroup/3/DefGroup/4/DefGroup/5/DefGroup/6/DefGroup/7/DefGroup/8/DefGroup/9/DefGroup/10/DefGroup/11/DefGroup/12/DefGroup/13/DefGroup/14/DefGroup/15/DefGroup/16/DefGroup/17/DefGroup/18/DefGroup/19/DefGroup/20/DefGroup/21/DefGroup/22/DefGroup/23/DefGroup/24/DefGroup/25/DefGroup/26/DefGroup/27/DefGroup/28/DefGroup/29"/>
+                                <Num Num="0"/>
+                            </ToolScp>
+                        </condList>
+                        <execList>
+                            <ToolScp Scp="MGAME_EXEC_SSN_ADD" Client="NO" UseSleep="NO">
+                                <Str Str="SSN_EP13_F_SIAULIAI_3_MQ_07"/>
+                                <Str Str="QuestInfoValue1"/>
+                                <Num Num="30"/>
+                            </ToolScp>
+                            <ToolScp Scp="MGAME_END" Client="NO" UseSleep="NO">
+                                <Num Num="1"/>
+                            </ToolScp>
+                        </execList>
+                    </Event>
+                </StageEvents>
             </Stage>
         </StageList>
     </Game>

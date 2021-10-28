@@ -75,7 +75,7 @@ function _T_PVP_UPDATE_GAUGE(gauge, teamID)
 	end
 
 	local maxPoint = 0;
-	local totalPoint = 0;
+	local totalPoint = 0.0;
 	if teamInfo ~= nil then
 		local teamList = teamInfo:GetPCList();
 		local cnt = teamList:size();
@@ -91,14 +91,13 @@ function _T_PVP_UPDATE_GAUGE(gauge, teamID)
 		gauge:SetPoint(1, 1);
 		return;
 	end
-
 	gauge:SetMaxPoint(maxPoint);
 	local cur = gauge:GetDestPoint();
 	if cur ~= totalPoint then
-		gauge:SetPointWithTime(totalPoint, 0.25, 0.5);
-		if cur > totalPoint then
+		if cur - totalPoint >  0.00001 then
 			UI_PLAYFORCE(gauge, "gauge_damage");
 		end
+		gauge:SetPointWithTime(totalPoint, 0.25, 0.5);
 	end
 	
 end

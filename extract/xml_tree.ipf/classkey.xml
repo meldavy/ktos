@@ -472,6 +472,7 @@
         <Key Name="TeamBelonging" Value="107796"/>
         <Key Name="Relic_EXP" Value="107797"/>
         <Key Name="Relic_LV" Value="107798"/>
+        <Key Name="Ev_EventType" Value="107859"/>
     </KeyIDSpc>
     <KeyIDSpc Name="Party">
         <Key Name="P_PARTY_Q_040" Value="53"/>
@@ -4233,6 +4234,45 @@
         <Key Name="SEASONOFFShop_2012_7" Value="107819"/>
         <Key Name="SEASONOFFShop_2012_8" Value="107811"/>
         <Key Name="SEASONOFFShop_2012_9" Value="107812"/>
+        <Key Name="EVENT_2101_NEW_YEAR_DAILY_CONTENT_COUNT" Value="107824"/>
+        <Key Name="EVENT_2101_NEW_YEAR_DAILY_FIELD_COUNT" Value="107844"/>
+        <Key Name="EVENT_2101_NEW_YEAR_DAILY_PLAY_TIME" Value="107852"/>
+        <Key Name="EVENT_2101_NEW_YEAR_SHOP_1" Value="107839"/>
+        <Key Name="EVENT_2101_NEW_YEAR_SHOP_10" Value="107838"/>
+        <Key Name="EVENT_2101_NEW_YEAR_SHOP_11" Value="107845"/>
+        <Key Name="EVENT_2101_NEW_YEAR_SHOP_12" Value="107837"/>
+        <Key Name="EVENT_2101_NEW_YEAR_SHOP_13" Value="107825"/>
+        <Key Name="EVENT_2101_NEW_YEAR_SHOP_14" Value="107834"/>
+        <Key Name="EVENT_2101_NEW_YEAR_SHOP_15" Value="107823"/>
+        <Key Name="EVENT_2101_NEW_YEAR_SHOP_16" Value="107842"/>
+        <Key Name="EVENT_2101_NEW_YEAR_SHOP_17" Value="107829"/>
+        <Key Name="EVENT_2101_NEW_YEAR_SHOP_18" Value="107843"/>
+        <Key Name="EVENT_2101_NEW_YEAR_SHOP_19" Value="107854"/>
+        <Key Name="EVENT_2101_NEW_YEAR_SHOP_2" Value="107828"/>
+        <Key Name="EVENT_2101_NEW_YEAR_SHOP_20" Value="107846"/>
+        <Key Name="EVENT_2101_NEW_YEAR_SHOP_21" Value="107857"/>
+        <Key Name="EVENT_2101_NEW_YEAR_SHOP_22" Value="107851"/>
+        <Key Name="EVENT_2101_NEW_YEAR_SHOP_23" Value="107835"/>
+        <Key Name="EVENT_2101_NEW_YEAR_SHOP_24" Value="107833"/>
+        <Key Name="EVENT_2101_NEW_YEAR_SHOP_25" Value="107848"/>
+        <Key Name="EVENT_2101_NEW_YEAR_SHOP_26" Value="107849"/>
+        <Key Name="EVENT_2101_NEW_YEAR_SHOP_27" Value="107850"/>
+        <Key Name="EVENT_2101_NEW_YEAR_SHOP_28" Value="107856"/>
+        <Key Name="EVENT_2101_NEW_YEAR_SHOP_29" Value="107822"/>
+        <Key Name="EVENT_2101_NEW_YEAR_SHOP_3" Value="107830"/>
+        <Key Name="EVENT_2101_NEW_YEAR_SHOP_30" Value="107853"/>
+        <Key Name="EVENT_2101_NEW_YEAR_SHOP_31" Value="107840"/>
+        <Key Name="EVENT_2101_NEW_YEAR_SHOP_4" Value="107831"/>
+        <Key Name="EVENT_2101_NEW_YEAR_SHOP_5" Value="107847"/>
+        <Key Name="EVENT_2101_NEW_YEAR_SHOP_6" Value="107855"/>
+        <Key Name="EVENT_2101_NEW_YEAR_SHOP_7" Value="107858"/>
+        <Key Name="EVENT_2101_NEW_YEAR_SHOP_8" Value="107841"/>
+        <Key Name="EVENT_2101_NEW_YEAR_SHOP_9" Value="107832"/>
+        <Key Name="EVENT_2101_NEW_YEAR_TOTAL_BOX_OPEN_COUNT" Value="107826"/>
+        <Key Name="EVENT_2101_NEW_YEAR_TOTAL_COIN_COUNT" Value="107827"/>
+        <Key Name="EVENT_2101_NEW_YEAR_TOTAL_TICKET_COUNT" Value="107836"/>
+        <Key Name="Episode_12_1_Clear" Value="107861"/>
+        <Key Name="Episode_12_2_Clear" Value="107860"/>
     </KeyIDSpc>
     <KeyIDSpc Name="PCEtc">
         <Key Name="Kill_boss_Clymen_Q2" Value="7788"/>

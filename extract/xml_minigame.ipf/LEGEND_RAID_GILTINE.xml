@@ -2093,8 +2093,8 @@
             </Stage>
             <Stage Name="DemonicsHiddenPower" AutoStart="0">
                 <ObjList>
-                    <Obj Type="Monster" MonType="147500" Pos="471.00#23.86#1833.35" genCount="1" genTime="20000" autoGen="0" objectKey="0" propList="&apos;Dialog&apos; &apos;GILTINE_RAID_DEMONICS_HIDDEN_POWER_MAIN_FIELD_WARP&apos; &apos;Hittable&apos; &apos;NO&apos; &apos;DialogChaseDist&apos; &apos;40&apos; "/>
-                    <Obj Type="Monster" MonType="147500" Pos="-1177.38#24.74#-363.73" genCount="1" genTime="20000" autoGen="0" objectKey="1" propList="&apos;Dialog&apos; &apos;GILTINE_RAID_DEMONICS_HIDDEN_POWER_HIDDEN_FIELD_WARP&apos; &apos;Hittable&apos; &apos;NO&apos; &apos;DialogChaseDist&apos; &apos;40&apos; "/>
+                    <Obj Type="Monster" MonType="147500" Pos="471.00#23.86#1833.35" genCount="1" genTime="20000" autoGen="0" autoDestroy="0" objectKey="0" propList="&apos;Dialog&apos; &apos;GILTINE_RAID_DEMONICS_HIDDEN_POWER_MAIN_FIELD_WARP&apos; &apos;Hittable&apos; &apos;NO&apos; &apos;DialogChaseDist&apos; &apos;40&apos; "/>
+                    <Obj Type="Monster" MonType="147500" Pos="-1177.38#24.74#-363.73" genCount="1" genTime="20000" autoGen="0" autoDestroy="0" objectKey="1" propList="&apos;Dialog&apos; &apos;GILTINE_RAID_DEMONICS_HIDDEN_POWER_HIDDEN_FIELD_WARP&apos; &apos;Hittable&apos; &apos;NO&apos; &apos;DialogChaseDist&apos; &apos;40&apos; "/>
                     <Obj Type="Monster" MonType="160040" Pos="-506.64#24.74#-645.48" genCount="1" genTime="20000" autoGen="0" objectKey="2"/>
                 </ObjList>
                 <StageEvents>

@@ -1145,8 +1145,22 @@ function CHECK_EQP_LBTN(frame, slot, argStr, argNum)
 			if IS_TRANSCEND_SCROLL_ITEM_EVENT_2011_5TH(useItemObj) == 1 then
 				SCR_EVENT_2011_5TH_SCROLL_SELECT(argNum, useItem, 'status');
 				return;
-			end
-
+            end
+            
+            -- ReLabeling_Rewards_EP12
+            -- Target Itme TRANSCEND
+			if IS_TRANSCEND_SCROLL_ITEM_EP12_REWARD(useItemObj) == 1 then
+				SCR_EVENT_EP12_REWARD_SCROLL_SELECT(argNum, useItem, 'status');
+				return;
+            end
+            
+            -- ReLabeling_Rewards_EP12
+            -- Target Itme Reinforce
+			if IS_REINFORCE_SCROLL_ITEM_EP12_REWARD(useItemObj) == 1 then
+				SCR_EVENT_EP12_REWARD_SCROLL_SELECT_REINFORCE(argNum, useItem, 'status');
+				return;
+            end
+            
 			if useItemGroup == 'Gem' and useItemUseType == 'ITEMTARGET' then
 				SCR_GEM_ITEM_SELECT(argNum, useItem, 'status');
 				return;
