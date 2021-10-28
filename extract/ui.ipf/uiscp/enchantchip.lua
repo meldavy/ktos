@@ -1,5 +1,7 @@
 -- ENCHANTCHIP.lua --
 
+enchantGuid = "";
+
 function CLIENT_ENCHANTCHIP(invItem)
 	local mapCls = GetClass("Map", session.GetMapName());
 	if nil == mapCls then
@@ -21,40 +23,32 @@ function CLIENT_ENCHANTCHIP(invItem)
 		return;
 	end
 	
-	-- check life time of enchant item
-	if TryGetProp(obj, "LifeTime") > 0 and TryGetProp(obj, "ItemLifeTimeOver") > 0 then
-		return
-	end
-
-	HAIRENCHANT_UI_RESET();
-
-	local enchantFrame = ui.GetFrame("hairenchant");
+	ui.GuideMsg("SelectItem");
 	local invframe = ui.GetFrame("inventory");
-	enchantFrame:ShowWindow(1);
-	enchantFrame:SetOffset(invframe:GetX() - enchantFrame:GetWidth(), enchantFrame:GetY());
-	enchantFrame:SetUserValue("Enchant", invItem:GetIESID());
-	local cnt = enchantFrame:GetChild("scrollCnt");
-	cnt:SetTextByKey("value", tostring(invItem.count));
-	
+	local gbox = invframe:GetChild("inventoryGbox");
+	local x, y = GET_GLOBAL_XY(gbox);
+	x = x - gbox:GetWidth() * 0.7;
+	y = y - 40;
+	SET_MOUSE_FOLLOW_BALLOON(ClMsg("ClickItemToReinforce"), 0, x, y);
 	ui.SetEscapeScp("CANCEL_ENCHANTCHIP()");
 
-	SET_SLOT_APPLY_FUNC(invframe, "CHECK_ENCHANTCHIP_TARGET_ITEM", nil, "Equip");
-	local tab = GET_CHILD_RECURSIVELY(invframe, "inventype_Tab");
-	tolua.cast(tab, "ui::CTabControl");
-	tab:SelectTab(1);
-
+	enchantGuid = invItem:GetIESID();
+	SET_SLOT_APPLY_FUNC(invframe, "CHECK_ENCHANTCHIP_TARGET_ITEM");
 	SET_INV_LBTN_FUNC(invframe, "ENCHANTCHIP_LBTN_CLICK");
-	ui.GuideMsg("SelectItem");
+
 	CHANGE_MOUSE_CURSOR("MORU", "MORU_UP", "CURSOR_CHECK_ENCHANTCHIP");
 end
 
+function ENCHANTCHIP_SUCEECD()
+	imcSound.PlaySoundEvent("premium_enchantchip");
+end
 
 function CANCEL_ENCHANTCHIP()
 	SET_MOUSE_FOLLOW_BALLOON(nil);
 	ui.RemoveGuideMsg("SelectItem");
 	SET_MOUSE_FOLLOW_BALLOON();
 	ui.SetEscapeScp("");
-	HAIRENCHANT_UI_RESET();
+	enchantGuid = "";
 	local invframe = ui.GetFrame("inventory");
 	SET_SLOT_APPLY_FUNC(invframe, "None");
 	SET_INV_LBTN_FUNC(invframe, "None");
@@ -92,8 +86,34 @@ function CHECK_ENCHANTCHIP_TARGET_ITEM(slot)
 end
 
 function ENCHANTCHIP_LBTN_CLICK(frame, invItem)
-	local enchantFrame = ui.GetFrame("hairenchant");
-	local slot = enchantFrame:GetChild("slot");
-	slot  = tolua.cast(slot, 'ui::CSlot');
-	HAIRENCHANT_DRAW_HIRE_ITEM(slot, invItem);
+	if true == invItem.isLockState then
+		ui.SysMsg(ClMsg("MaterialItemIsLock"));
+		return;
+	end
+
+	local obj = GetIES(invItem:GetObject());
+	if ENCHANTCHIP_ABLIE(obj) == 0 then
+		ui.SysMsg(ClMsg("ItemIsNotEnchantable1"));
+		return;
+	end
+
+	local itemIES = invItem:GetIESID();
+	if nil ~= session.GetEquipItemByGuid(itemIES) then
+		ui.SysMsg(ClMsg("CantRegisterEquipItemToEnchant"));
+		return;
+	end
+
+	local str = ScpArgMsg("RealyDoEnchant");
+	local yesScp = string.format("DO_ITEM_ENCHANT(\'%s\')", itemIES) 
+	ui.MsgBox(str, yesScp, "CANCEL_ENCHANTCHIP()");
+end
+
+function DO_ITEM_ENCHANT(itemIES)
+	if enchantGuid == "" or itemIES == "" then
+		CANCEL_ENCHANTCHIP();
+		return;
+	end
+
+	item.DoPremiumItemEnchantchip(itemIES, enchantGuid);
+	CANCEL_ENCHANTCHIP();
 end

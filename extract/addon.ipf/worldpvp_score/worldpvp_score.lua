@@ -21,7 +21,7 @@ function SET_TARGETINFO_TO_PVP_POS()
 	local channel = ui.GetFrame("channel");
 	channel:ShowWindow(0);
 
-	local mapAreaText = ui.GetFrame("mapareatext");
+	local mapAreaText = ui.GetFrame("mapAreaText");
 	mapAreaText:ShowWindow(0);
 
 	local bugreport = ui.GetFrame("bugreport");

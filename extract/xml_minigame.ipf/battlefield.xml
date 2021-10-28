@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by imc (IMCGames Co., Ltd) -->
 <GameList>
     <Game Name="battlefield" useWorldChat="1" minLv="0" maxLv="0" mapName="pvp_tournament">
         <StageList>
@@ -8,23 +7,15 @@
                 <StageEvents>
                     <Event execCount="1" eventName="3" execWithStart="0">
                         <execList>
-                            <ToolScp Scp="MGAME_PC_ENALBE_CONTROL" Client="NO" UseSleep="NO">
-                                <Num Num="1"/>
-                            </ToolScp>
-                            <ToolScp Scp="MGAME_MSG_SIMPLE" Client="YES" UseSleep="NO">
-                                <Str Str="{@st55_a}"/>
+                            <ToolScp Scp="MGAME_MSG" Client="YES" UseSleep="NO">
                                 <Str Str="3"/>
                                 <Num Num="1"/>
-                            </ToolScp>
-                            <ToolScp Scp="MGAME_EVT_SCRIPT" Client="NO" UseSleep="NO">
-                                <Str Str="BATTLEFILD_WAIT_BUFF"/>
                             </ToolScp>
                         </execList>
                     </Event>
                     <Event execMS="2000" execCount="1" eventName="2" execWithStart="0">
                         <execList>
-                            <ToolScp Scp="MGAME_MSG_SIMPLE" Client="YES" UseSleep="NO">
-                                <Str Str="{@st55_a}"/>
+                            <ToolScp Scp="MGAME_MSG" Client="YES" UseSleep="NO">
                                 <Str Str="2"/>
                                 <Num Num="1"/>
                             </ToolScp>
@@ -32,8 +23,7 @@
                     </Event>
                     <Event execMS="3000" execCount="1" eventName="1" execWithStart="0">
                         <execList>
-                            <ToolScp Scp="MGAME_MSG_SIMPLE" Client="YES" UseSleep="NO">
-                                <Str Str="{@st55_a}"/>
+                            <ToolScp Scp="MGAME_MSG" Client="YES" UseSleep="NO">
                                 <Str Str="1"/>
                                 <Num Num="5"/>
                             </ToolScp>
@@ -47,10 +37,12 @@
                             <ToolScp Scp="GAME_ST_EVT_EXEC_STAGE_RESTART" Client="NO" UseSleep="NO">
                                 <Str Str="battle"/>
                             </ToolScp>
-                            <ToolScp Scp="MGAME_MSG_SIMPLE" Client="YES" UseSleep="NO">
-                                <Str Str="{@st55_a}"/>
+                          <ToolScp Scp="MGAME_MSG" Client="YES" UseSleep="NO">
                                 <Str Str="전투 시작!"/>
                                 <Num Num="1"/>
+                            </ToolScp>
+                            <ToolScp Scp="MGAME_EVT_SCRIPT" Client="NO" UseSleep="NO">
+                                <Str Str="WORLDPVP_ROUND_START"/>
                             </ToolScp>
                             <ToolScp Scp="GAME_ST_EVT_EXEC_STAGE_START" Client="NO" UseSleep="NO">
                                 <Str Str="checkoutofarea"/>
@@ -83,12 +75,12 @@
                                 <Num Num="0.5"/>
                                 <Num Num="1"/>
                             </ToolScp>
-                            <ToolScp Scp="MLIST_E_SETPOS" Client="NO" UseSleep="NO">
-                                <AbsPos X="-162.00397" Y="-31.563601" Z="-211.12802" Random="10"/>
-                                <Num Num="1"/>
-                            </ToolScp>
                             <ToolScp Scp="MLIST_E_RUNSCRIPT" Client="NO" UseSleep="NO">
                                 <Str Str="PVP_RESET_BATTLE_STATE"/>
+                            </ToolScp>
+                            <ToolScp Scp="MLIST_E_SETPOS" Client="NO" UseSleep="NO">
+                                <AbsPos X="-162.00397" Y="-31.563601" Z="-211.12802" Random="10"/>
+                              <Num Num="1"/> 
                             </ToolScp>
                             <ToolScp Scp="MLIST_E_MAKE_SCLOCK" Client="NO" UseSleep="NO">
                                 <Str Str="tournament_wait"/>
@@ -108,12 +100,12 @@
                                 <Num Num="0.5"/>
                                 <Num Num="1"/>
                             </ToolScp>
-                            <ToolScp Scp="MLIST_E_SETPOS" Client="NO" UseSleep="NO">
-                                <AbsPos X="163.27687" Y="-31.563601" Z="138.04266" Height="2"/>
-                                <Num Num="1"/>
-                            </ToolScp>
                             <ToolScp Scp="MLIST_E_RUNSCRIPT" Client="NO" UseSleep="NO">
                                 <Str Str="PVP_RESET_BATTLE_STATE"/>
+                            </ToolScp>
+                            <ToolScp Scp="MLIST_E_SETPOS" Client="NO" UseSleep="NO">
+                                <AbsPos X="163.27687" Y="-31.563601" Z="138.04266" Height="2"/>
+                              <Num Num="1"/>
                             </ToolScp>
                             <ToolScp Scp="MLIST_E_MAKE_SCLOCK" Client="NO" UseSleep="NO">
                                 <Str Str="tournament_wait"/>
@@ -132,11 +124,11 @@
                         <execList>
                             <ToolScp Scp="MGAME_SET_TIMER" Client="NO" UseSleep="NO">
                                 <Str Str="Battle"/>
-                                <Num Num="180"/>
+                                <Num Num="300"/>
                             </ToolScp>
                             <ToolScp Scp="GAME_ST_EVT_EXEC_VALUE" Client="NO" UseSleep="NO">
                                 <Str Str="RoundMaxTime"/>
-                                <Num Num="180"/>
+                                <Num Num="300"/>
                             </ToolScp>
                             <ToolScp Scp="GAME_ST_EVT_EXEC_VALUE" Client="NO" UseSleep="NO">
                                 <Str Str="Team_1_Damage"/>
@@ -223,7 +215,7 @@
                             </ToolScp>
                         </listExec>
                     </Event>
-                    <Event execMS="180000" execCount="1" eventName="checkTimer_team2_win" execWithStart="0">
+                    <Event execMS="300000" execCount="1" eventName="checkTimer_team2_win" execWithStart="0">
                         <condList>
                             <ToolScp Scp="MGAME_EVT_COND_SCRIPT" Client="NO" UseSleep="NO">
                                 <Str Str="CHECK_TEAM2_HP_MORE"/>
@@ -236,24 +228,20 @@
                             </ToolScp>
                         </execList>
                     </Event>
-                    <Event execCount="1" eventName="exec_team_2_win" execWithStart="0" isEnabled="0">
+                    <Event eventName="exec_team_2_win" execWithStart="0" isEnabled="0">
                         <execList>
                             <ToolScp Scp="GAME_ST_EVT_ADD_VALUE" Client="NO" UseSleep="NO">
                                 <Str Str="Team2_Score"/>
                                 <Num Num="1"/>
                             </ToolScp>
-                            <ToolScp Scp="MGAME_MSG_SIMPLE" Client="YES" UseSleep="NO">
-                                <Str Str="{@st55_a}"/>
-                                <Str Str="2팀 승리"/>
+                            <ToolScp Scp="MGAME_MSG" Client="YES" UseSleep="NO">
+                                <Str Str="2팀 Win"/>
                                 <Num Num="5"/>
                             </ToolScp>
                             <ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
                                 <Str Str="battle_end"/>
                             </ToolScp>
                             <ToolScp Scp="GAME_EVT_OFF" Client="NO" UseSleep="NO"/>
-                            <ToolScp Scp="MGAME_PC_ENALBE_CONTROL" Client="NO" UseSleep="NO">
-                                <Num Num="0"/>
-                            </ToolScp>
                         </execList>
                     </Event>
                     <Event execCount="1" eventName="exec_team_1_win" execWithStart="0" isEnabled="0">
@@ -262,23 +250,19 @@
                                 <Str Str="Team1_Score"/>
                                 <Num Num="1"/>
                             </ToolScp>
-                            <ToolScp Scp="MGAME_MSG_SIMPLE" Client="YES" UseSleep="NO">
-                                <Str Str="{@st55_a}"/>
-                                <Str Str="1팀 승리"/>
+                            <ToolScp Scp="MGAME_MSG" Client="YES" UseSleep="NO">
+                                <Str Str="1팀 Win"/>
                                 <Num Num="5"/>
                             </ToolScp>
                             <ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
                                 <Str Str="battle_end"/>
                             </ToolScp>
                             <ToolScp Scp="GAME_EVT_OFF" Client="NO" UseSleep="NO"/>
-                            <ToolScp Scp="MGAME_PC_ENALBE_CONTROL" Client="NO" UseSleep="NO">
-                                <Num Num="0"/>
-                            </ToolScp>
                         </execList>
                     </Event>
                     <Event execCount="1" eventName="battle_end" execWithStart="0" isEnabled="0">
                         <execList>
-                            <ToolScp Scp="MLIST_ST_FULLFIL_END_CONDITION" Client="NO" UseSleep="NO"/>
+                          <ToolScp Scp="MLIST_ST_REMOVE_MONSTER" Client="NO" UseSleep="NO"/>
                             <ToolScp Scp="GAME_ST_EVT_ADD_VALUE" Client="NO" UseSleep="NO">
                                 <Str Str="Round"/>
                                 <Num Num="1"/>
@@ -291,7 +275,7 @@
                             </ToolScp>
                         </execList>
                     </Event>
-                    <Event execMS="180000" execCount="1" eventName="checktimer_team1_win" execWithStart="0">
+                    <Event execMS="300000" execCount="1" eventName="checktimer_team1_win" execWithStart="0">
                         <condList>
                             <ToolScp Scp="MGAME_EVT_COND_SCRIPT" Client="NO" UseSleep="NO">
                                 <Str Str="CHECK_TEAM1_HP_MORE"/>
@@ -304,7 +288,7 @@
                             </ToolScp>
                         </execList>
                     </Event>
-                    <Event execMS="180000" execCount="1" eventName="checktimer_draw" execWithStart="0">
+                    <Event execMS="300000" execCount="1" eventName="checktimer_draw" execWithStart="0">
                         <condList>
                             <ToolScp Scp="GAME_ST_EVT_COND_VALUE_COMPARE" Client="NO" UseSleep="NO">
                                 <Str Str="Team_1_Damage"/>
@@ -363,9 +347,8 @@
                             </ToolScp>
                         </condList>
                         <execList>
-                            <ToolScp Scp="MGAME_MSG_SIMPLE" Client="YES" UseSleep="NO">
-                                <Str Str="{@st55_a}"/>
-                                <Str Str="2팀 승리"/>
+                            <ToolScp Scp="MGAME_MSG" Client="YES" UseSleep="NO">
+                                <Str Str="Team2 Win"/>
                                 <Num Num="5"/>
                             </ToolScp>
                             <ToolScp Scp="GAME_ST_EVT_EXEC_STAGE_DISABLE" Client="NO" UseSleep="NO">
@@ -390,9 +373,8 @@
                             </ToolScp>
                         </condList>
                         <execList>
-                            <ToolScp Scp="MGAME_MSG_SIMPLE" Client="YES" UseSleep="NO">
-                                <Str Str="{@st55_a}"/>
-                                <Str Str="1팀 승리"/>
+                            <ToolScp Scp="MGAME_MSG" Client="YES" UseSleep="NO">
+                                <Str Str="Team1 Win"/>
                                 <Num Num="5"/>
                             </ToolScp>
                             <ToolScp Scp="GAME_ST_EVT_EXEC_STAGE_DISABLE" Client="NO" UseSleep="NO">
@@ -420,7 +402,7 @@
                 </StartScpList>
                 <ObjList/>
                 <StageEvents>
-                    <Event execMS="20000" execCount="1" eventName="wait" execWithStart="0">
+                    <Event execMS="5000" execCount="1" eventName="wait" execWithStart="0">
                         <execList>
                             <ToolScp Scp="GAME_ST_EVT_EXEC_STAGE_DISABLE" Client="NO" UseSleep="NO">
                                 <Str Str="WaitStart"/>
@@ -433,7 +415,7 @@
                     <Event execCount="1" eventName="setui">
                         <execList>
                             <ToolScp Scp="MGAME_COUNTDOWN" Client="NO" UseSleep="YES">
-                                <Num Num="20"/>
+                                <Num Num="5"/>
                             </ToolScp>
                         </execList>
                     </Event>
@@ -467,7 +449,7 @@
                             </ToolScp>
                             <ToolScp Scp="MLIST_E_SETPOS" Client="NO" UseSleep="NO">
                                 <AbsPos X="-151.37685" Y="16.1378" Z="-209.30209" Random="10"/>
-                                <Num Num="1"/>
+                              <Num Num="1"/>
                             </ToolScp>
                             <ToolScp Scp="MLIST_E_MAKE_SCLOCK" Client="NO" UseSleep="NO">
                                 <Str Str="tournament_wait"/>
@@ -489,7 +471,7 @@
                             </ToolScp>
                             <ToolScp Scp="MLIST_E_SETPOS" Client="NO" UseSleep="NO">
                                 <AbsPos X="161.92622" Y="-31.563601" Z="144.24774" Height="2"/>
-                                <Num Num="1"/>
+                              <Num Num="1"/>
                             </ToolScp>
                             <ToolScp Scp="MLIST_E_MAKE_SCLOCK" Client="NO" UseSleep="NO">
                                 <Str Str="tournament_wait"/>
@@ -497,13 +479,6 @@
                                 <Num Num="1"/>
                             </ToolScp>
                         </listExec>
-                    </Event>
-                    <Event eventName="waitbuff">
-                        <execList>
-                            <ToolScp Scp="MGAME_EVT_SCRIPT" Client="NO" UseSleep="NO">
-                                <Str Str="BATTLEFILD_WAIT_BUFF"/>
-                            </ToolScp>
-                        </execList>
                     </Event>
                 </StageEvents>
             </Stage>
@@ -622,10 +597,10 @@
                 <Num Num="2"/>
                 <Str Str="INIT_PVP_SCRIPT"/>
             </ToolScp>
-            <ToolScp Scp="MGAME_ZONEENTER_SCRIPT" Client="NO" UseSleep="NO">
-                <Num Num="2"/>
-                <Str Str="INIT_PVP_STAT"/>
-            </ToolScp>
+          <ToolScp Scp="MGAME_ZONEENTER_SCRIPT" Client="NO" UseSleep="NO">
+            <Num Num="2"/>
+            <Str Str="INIT_PVP_STAT"/>
+          </ToolScp>
         </EnterList>
         <LeaveList>
             <ToolScp Scp="MGAME_C_OPEN_UI" Client="YES" UseSleep="NO">
@@ -637,9 +612,6 @@
             </ToolScp>
         </LeaveList>
         <WorldInitList>
-            <ToolScp Scp="MGAME_INIT_CHANGE_VIEW" Client="NO" UseSleep="NO">
-                <Num Num="600.000000"/>
-            </ToolScp>
             <ToolScp Scp="MGAME_INIT_SOBJ" Client="NO" UseSleep="NO">
                 <Str Str="ssn_mission"/>
             </ToolScp>
