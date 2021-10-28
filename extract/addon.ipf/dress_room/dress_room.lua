@@ -192,13 +192,18 @@ function ON_DRESS_ROOM_UPDATE(frame,msg,thema,argNum)
 	local clsList,cnt = GetClassList("dress_room_reward")
 	local ListBox = GET_CHILD_RECURSIVELY(frame,"ListBox")
 	local ctrlSet = nil
-	for i = 0,cnt-1 do
+	for i = 0, cnt-1 do
 		local tmp = ListBox:GetControlSet('dress_room_deck', 'CTRL_'..i);
-		if tmp:GetUserValue("THEMA") == thema then
+		if tmp ~= nil and tmp:GetUserValue("THEMA") == thema then
 			ctrlSet = tmp
 			break
 		end
 	end
+
+	if ctrlSet == nil then
+		return
+	end
+
 	local aObj = GetMyAccountObj()
 	local itemTable = DRESS_ROOM_GET_ITEM_TABLE()
 	local rewardCls = GetClass("dress_room_reward",thema)

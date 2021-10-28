@@ -1618,11 +1618,12 @@ function EXEC_CANCEL_MARKET_ITEM(itemGuid)
 	market.CancelMarketItem(itemGuid);
 end
 
-function MARKET_SET_TOTAL_PRICE(ctrlset, price, count)
+function MARKET_SET_TOTAL_PRICE(ctrlset, price, count)	
 	local totalPrice_num = GET_CHILD_RECURSIVELY(ctrlset, "totalPrice_num")
-	totalPrice_num:SetTextByKey("value", GET_COMMAED_STRING(tonumber(math.mul_int_for_lua(price, count))))
+	local a, b, c = math.mul_int_for_lua(price, count)
+	totalPrice_num:SetTextByKey("value", GET_COMMAED_STRING(tonumber(a)))
 	local totalPrice_text = GET_CHILD_RECURSIVELY(ctrlset, "totalPrice_text")
-	totalPrice_text:SetTextByKey("value", GetMonetaryString(tonumber(math.mul_int_for_lua(price, count))))
+	totalPrice_text:SetTextByKey("value", GetMonetaryString(tonumber(a)))
 end
 
 function MARKET_CHANGE_COUNT(parent, ctrl)
@@ -1643,7 +1644,7 @@ function MARKET_ITEM_COUNT_UP(frame)
 	if editCount == nil then
 		return
 	end
-
+	
 	local nowCount = tonumber(editCount:GetText())
 	nowCount = nowCount + 1
 
@@ -1724,7 +1725,8 @@ function _BUY_MARKET_ITEM(row, isRecipeSearchBox)
 			if tonumber(buyCount) > 0 then
 				local marketItem = session.market.GetRecipeSearchByIndex(row-1);
 				market.AddBuyInfo(marketItem:GetMarketGuid(), buyCount);
-				totalPrice = SumForBigNumber(totalPrice, math.mul_int_for_lua(buyCount, marketItem:GetSellPrice()));
+				local a, b, c = math.mul_int_for_lua(buyCount, marketItem:GetSellPrice())
+				totalPrice = SumForBigNumber(totalPrice, a);
 			else
 				ui.SysMsg(ScpArgMsg("YouCantBuyZeroItem"));
 			end
@@ -1746,7 +1748,8 @@ function _BUY_MARKET_ITEM(row, isRecipeSearchBox)
 			if tonumber(buyCount) > 0 then
 				local marketItem = session.market.GetItemByIndex(row-1);
 				market.AddBuyInfo(marketItem:GetMarketGuid(), buyCount);
-				totalPrice = SumForBigNumber(totalPrice, math.mul_int_for_lua(buyCount, marketItem:GetSellPrice()));	
+				local a, b, c = math.mul_int_for_lua(buyCount, marketItem:GetSellPrice())
+				totalPrice = SumForBigNumber(totalPrice, a);	
 			else
 				ui.SysMsg(ScpArgMsg("YouCantBuyZeroItem"));
 			end

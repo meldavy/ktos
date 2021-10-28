@@ -127,7 +127,7 @@ function ON_MARKET_SELL_LIST(frame, msg, argStr, argNum)
 		nameCtrl:SetTextByKey("value", GET_FULL_NAME(itemObj));
 
 		local totalPriceCtrl = ctrlSet:GetChild("totalPrice");
-		local totalPriceValue = math.mul_int_for_lua(marketItem:GetSellPrice(), marketItem.count);
+		local totalPriceValue, b, c = math.mul_int_for_lua(marketItem:GetSellPrice(), marketItem.count);
 		local totalPrice = GET_COMMAED_STRING(totalPriceValue);
 		totalPriceCtrl:SetTextByKey("value", totalPrice);
 
@@ -151,7 +151,7 @@ function ON_MARKET_SELL_LIST(frame, msg, argStr, argNum)
 		local cashValue = GetCashValue(marketItem.premuimState, "marketSellCom") * 0.01;
 		local stralue = GetCashValue(marketItem.premuimState, "marketSellCom");
 		local feeValueCtrl = ctrlSet:GetChild("feeValue");
-		local feeValue =  math.floor(math.mul_int_for_lua(totalPriceValue, cashValue));
+		local feeValue, b, c =  math.floor(math.mul_int_for_lua(totalPriceValue, cashValue));
 
 		local feeStr = GET_COMMAED_STRING(feeValue);
 		feeValueCtrl:SetTextByKey("value", feeStr);
@@ -500,7 +500,9 @@ function MARKET_SELL_REGISTER(parent, ctrl)
 		return;
 	end
 
-	if IsGreaterThanForBigNumber(math.mul_int_for_lua(price, count), limitMoneyStr) == 1 then
+	local a, b, c = math.mul_int_for_lua(price, count)
+
+	if IsGreaterThanForBigNumber(a, limitMoneyStr) == 1 then
 		ui.SysMsg(ScpArgMsg('MarketMaxSilverLimit{LIMIT}Over', 'LIMIT', GET_COMMAED_STRING(limitMoneyStr)));
 		return;
 	end
@@ -709,7 +711,8 @@ function UPDATE_MARKET_MONEY_STRING(parent, ctrl)
 
 	local limitTradeStr = GET_REMAIN_MARKET_TRADE_AMOUNT_STR();
 	if limitTradeStr ~= nil then
-		if IsGreaterThanForBigNumber(math.mul_int_for_lua(moneyText, itemCount), limitTradeStr) == 1 then			
+		local a, b, c = math.mul_int_for_lua(moneyText, itemCount)
+		if IsGreaterThanForBigNumber(a, limitTradeStr) == 1 then			
 			ui.SysMsg(ScpArgMsg('MarketMaxSilverLimit{LIMIT}Over', 'LIMIT', GET_COMMAED_STRING(limitTradeStr)));			
 			moneyText = limitTradeStr;
 		end		
