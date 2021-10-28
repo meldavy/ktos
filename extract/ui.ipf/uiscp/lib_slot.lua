@@ -1,80 +1,27 @@
 -- lib_slot.lua
 
-imcSlot = {
-	GetEmptySlotIndex = function(self, slotset)
-		for i = 0, slotset:GetSlotCount() - 1 do
-			if slotset:GetSlotByIndex(i):GetIcon() == nil then
-				return i;
-			end
-		end
-		return 0;
-	end,
-	GetFilledSlotCount = function(self, slotset)
-		local cnt = 0;
-		for i = 0, slotset:GetSlotCount() - 1 do
-			if slotset:GetSlotByIndex(i):GetIcon() ~= nil then
-				cnt = cnt + 1;
-			end
-		end
-		return cnt;
-	end,
-	SetImage = function(self, slot, img)		
-		tolua.cast(slot, "ui::CSlot");
-		local icon = slot:GetIcon();
-		if icon == nil then
-			icon = CreateIcon(slot);
-		end
-		icon:SetImage(img);
-		return icon;
-	end,
-	SetItemInfo = function(self, slot, invItem, count)
-		local itemCls = GetClassByType("Item", invItem.type);
-		local type = itemCls.ClassID;
-		local obj = GetIES(invItem:GetObject());
-		local img = GET_ITEM_ICON_IMAGE(obj);    
-		self:SetImage(slot, img);
-		SET_SLOT_COUNT(slot, count);
-		SET_SLOT_IESID(slot, invItem:GetIESID());
-		local icon = slot:GetIcon();
-		local iconInfo = icon:GetInfo();
-		iconInfo.type = type;
-		SET_ITEM_TOOLTIP_ALL_TYPE(icon, invItem, itemCls.ClassName, 'inven', type, invItem:GetIESID());
-		return icon;
-	end,
-};
-
 function SET_SLOT_ITEM_CLS(slot, itemCls)
 	if itemCls == nil then
 		return;
 	end
-	local img =	GET_EQUIP_ITEM_IMAGE_NAME(itemCls, "TooltipImage");
-	if itemCls.GroupName == "Card" or itemCls.GroupName == "Recipe" then
-		img = itemCls.Icon
-	end
-	
+	local img = itemCls.Icon;
 	SET_SLOT_IMG(slot, img);
 	SET_ITEM_TOOLTIP_BY_TYPE(slot:GetIcon(), itemCls.ClassID);
 end
 
-function SET_SLOT_ITEM_INFO(slot, itemCls, count, style, x, y)
+
+
+function SET_SLOT_ITEM_INFO(slot, itemCls, count)
+
 	local icon = CreateIcon(slot);
 	icon:EnableHitTest(0);
+
 	if itemCls == nil then
 		return;
 	end
-    local iconImageName = GET_EQUIP_ITEM_IMAGE_NAME(itemCls, 'Icon');
-    if style == nil then
-        style = '{s20}{ol}{b}'
-    end
-	icon:Set(iconImageName, "item", itemCls.ClassID, count);
-	if itemCls.ItemType ~= "Equip" then
-		-- 아이템 수량 표시, 기존에 -2, 1 고정이였던 부분 x, y로 받아와서 설정 할 수 있도록 수정
-		if x == nil then x = -2; end
-		if y == nil then y = 1; end
-		
-		slot:SetText(style..count, 'count', ui.RIGHT, ui.BOTTOM, x, y);
-	end
 
+	icon:Set(itemCls.Icon, "item", itemCls.ClassID, count);
+	slot:SetText('{s12}{ol}{b}'..count, 'count', 'right', 'bottom', -2, 1);
 	SET_ITEM_TOOLTIP_BY_TYPE(slot:GetIcon(), itemCls.ClassID);
 	return icon;
 end
@@ -89,7 +36,7 @@ function SET_SLOT_ITEM_OBJ(slot, itemCls, gender, isBarrack)
 	if nil == icon then
 		return;
 	end
-	local tooltipID = GetExProp(itemCls, "TooltipID");	
+	local tooltipID = GetExProp(itemCls, "TooltipID");
 	if tooltipID == 0 then
 		SET_ITEM_TOOLTIP_TYPE(icon, itemCls.ClassID, itemCls);
 	else
@@ -115,7 +62,33 @@ function SET_SLOT_INVITEM(slot, invItem, cnt, font, hor, ver, stateX, stateY)
 	SET_SLOT_COUNT_TEXT(slot, cnt, font, hor, ver, stateX, stateY);
 end
 
-function SET_SLOT_INVITEM_NOT_COUNT(slot, invItem, cnt, font, hor, ver, stateX, stateY)
+function SET_SLOT_ITEM_INV(slot, itemCls)
+		local type = itemCls.ClassID;
+	local img = itemCls.Icon;
+	SET_SLOT_IMG(slot, img)
+	SET_ITEM_TOOLTIP_BY_TYPE(slot:GetIcon(), type);
+
+	local iconInfo = slot:GetIcon():GetInfo();
+	iconInfo.type = type;
+	local invItem = session.GetInvItemByType(type);
+	if nil ~= invItem then
+		slot:SetText('{s12}{ol}{b}'..invItem.count, 'count', 'right', 'bottom', -2, 1);
+	end
+
+	slot:SetEventScript(ui.RBUTTONDOWN, 'SLOT_ITEMUSE_BY_TYPE');
+	slot:SetEventScriptArgNumber(ui.RBUTTONDOWN, itemCls.ClassID);
+
+	slot:SetEventScript(ui.LBUTTONUP, 'SLOT_ITEMUSE_BY_TYPE');
+	slot:SetEventScriptArgNumber(ui.LBUTTONUP, itemCls.ClassID);
+
+end
+
+-- ?�단 ?�이??�?�� ?�자가가 ?�서... ?��?지�?보이�??�기 ?�해
+function SET_SLOT_ITEM_IMANGE(slot, invItem)
+	if nil == invItem then
+		return;
+	end
+
 	if cnt == nil then
 		cnt = invItem.count;
 	end
@@ -127,53 +100,31 @@ function SET_SLOT_INVITEM_NOT_COUNT(slot, invItem, cnt, font, hor, ver, stateX, 
 	SET_ITEM_TOOLTIP_ALL_TYPE(icon, invItem, invItem.ClassName, 'None', invItem.type, invItem:GetIESID());
 end
 
-function SET_SLOT_ITEM_INV(slot, itemCls)
-		local type = itemCls.ClassID;
+function SET_SLOT_ITEM(slot, invItem, count)
+
+	local itemCls = GetClassByType("Item", invItem.type);
+
+	local type = itemCls.ClassID;
 	local img = itemCls.Icon;
 	SET_SLOT_IMG(slot, img)
-	SET_ITEM_TOOLTIP_BY_TYPE(slot:GetIcon(), type);
+	SET_SLOT_COUNT(slot, count)
+	SET_SLOT_IESID(slot, invItem:GetIESID())
+	slot:SetTooltipArg('inven', type, invItem:GetIESID());
 
-	local iconInfo = slot:GetIcon():GetInfo();
-	iconInfo.type = type;
-	local invItem = session.GetInvItemByType(type);
-	if nil ~= invItem then
-		slot:SetText('{s12}{ol}{b}'..invItem.count, 'count', ui.RIGHT, ui.BOTTOM, -2, 1);
-	end
-
-	slot:SetEventScript(ui.RBUTTONDOWN, 'SLOT_ITEMUSE_BY_TYPE');
-	slot:SetEventScriptArgNumber(ui.RBUTTONDOWN, itemCls.ClassID);
-
-	slot:SetEventScript(ui.LBUTTONUP, 'SLOT_ITEMUSE_BY_TYPE');
-	slot:SetEventScriptArgNumber(ui.LBUTTONUP, itemCls.ClassID);
-
-end
-
-function SET_SLOT_ITEM_IMAGE(slot, invItem)
-	if nil == invItem then
-		return;
-	end
-
-	if cnt == nil then
-		cnt = invItem.count;
-	end
-
-	local obj = GetIES(invItem:GetObject());
 	local icon = slot:GetIcon();
-    if icon == nil then
-        icon = CreateIcon(slot);
-    end
-	local iconName = GET_ITEM_ICON_IMAGE(obj);
-	icon:Set(iconName, 'None', invItem.type, invItem.count, invItem:GetIESID(), cnt);
-	
-	SET_ITEM_TOOLTIP_ALL_TYPE(icon, invItem, invItem.ClassName, 'None', invItem.type, invItem:GetIESID());
-end
+	local iconInfo = icon:GetInfo();
+	iconInfo.type = type;
+	SET_ITEM_TOOLTIP_ALL_TYPE(icon, invItem, itemCls.ClassName, 'inven', type, invItem:GetIESID());
+	--SET_ITEM_TOOLTIP_TYPE(icon, itemCls.ClassID, itemCls);
+	--icon:SetTooltipArg('inven', type, invItem:GetIESID());
 
-function SET_SLOT_ITEM(slot, invItem, count)
-	imcSlot:SetItemInfo(slot, invItem, count);
 end
 
 function SET_SLOT_IMG(slot, img)
-	imcSlot:SetImage(slot, img);
+	tolua.cast(slot, "ui::CSlot");
+	local icon = CreateIcon(slot);
+	icon:SetImage(img);
+
 end
 
 function SET_SLOT_IESID(slot, iesid)
@@ -249,11 +200,11 @@ function SET_SLOT_COUNT_TEXT(slot, cnt, font, hor, ver, stateX, stateY)
 		end
 		
 		if hor == nil then
-			hor = ui.RIGHT;
+			hor = 'right';
 		end
 
 		if ver == nil then
-			ver = ui.BOTTOM;
+			ver = 'bottom';
 		end
 
 		if stateX == nil then
@@ -267,176 +218,6 @@ function SET_SLOT_COUNT_TEXT(slot, cnt, font, hor, ver, stateX, stateY)
 		slot:SetText(font..cnt, 'count', hor, ver, stateX, stateY);
 end
 
-function SET_SLOT_STYLESET(slot, itemCls, itemGrade_Flag, itemLevel_Flag, itemAppraisal_Flag, itemReinforce_Flag, isInventory)
-	if slot == nil then
-		return
-	end
-
-	if itemCls == nil then
-		return
-	end
-
-	if itemGrade_Flag == nil or itemGrade_Flag == 1 then
-		if isInventory ~= nil and isInventory == 1 and config.GetXMLConfig("ViewGradeStyle") == 0 then
-			
-		else
-			SET_SLOT_BG_BY_ITEMGRADE(slot, itemCls.ItemGrade)
-		end
-	end
-
-	if itemLevel_Flag == nil or itemLevel_Flag == 1 then
-		if isInventory ~= nil and isInventory == 1 and config.GetXMLConfig("ViewTranscendStyle") == 0 then
-		
-		else
-			SET_SLOT_TRANSCEND_LEVEL(slot, TryGetProp(itemCls, 'Transcend'))
-		end
-	end
-
-	local needAppraisal = nil
-	local needRandomOption = nil
-	if itemCls ~= nil then
-		needAppraisal = TryGetProp(itemCls, "NeedAppraisal");
-		needRandomOption = TryGetProp(itemCls, "NeedRandomOption");
-	end
-
-	if itemAppraisal_Flag == nil or itemAppraisal_Flag == 1 then
-		SET_SLOT_NEED_APPRAISAL(slot, needAppraisal, needRandomOption)
-	end
-
-	if itemReinforce_Flag == nil or itemReinforce_Flag == 1 then
-		if isInventory ~= nil and isInventory == 1 and config.GetXMLConfig("ViewReinforceStyle") == 0 then
-
-		else
-			local reinforceLv = TryGetProp(itemCls, 'Reinforce_2');
-			if TryGetProp(itemCls, 'GroupName') == 'Seal' then
-				reinforceLv = GET_CURRENT_SEAL_LEVEL(itemCls);
-			end
-			SET_SLOT_REINFORCE_LEVEL(slot, reinforceLv);			
-		end
-	end
-
-	if TryGetProp(itemCls, "Dur") ~= nil then
-		SET_SLOT_DURATION(slot, itemCls)
-	end
-end
-
-
-function SET_SLOT_TRANSCEND_LEVEL(slot, transcendLv)
-	if slot == nil then
-		return
-	end 
-
-	DESTROY_CHILD_BYNAME(slot, "styleset_transcend")
-	
-	if transcendLv == nil or transcendLv == 0 then
-		return
-	end
-
-	local icon = slot:GetIcon()
-	if icon == nil then
-		return
-	end
-
-	local styleSet = slot:CreateOrGetControlSet('itemslot_transcend_styleset', "styleset_transcend", 0, 0)
-	styleSet:Resize(slot:GetWidth(), slot:GetHeight())
-
-	local imgName = "itemslot_star_icon_" .. transcendLv
-	local starIcon = GET_CHILD_RECURSIVELY(styleSet, "starIcon")
-	if starIcon == nil then
-		return
-	end
-
-	starIcon:SetImage(imgName)
-	
-end
-
-function SET_SLOT_BG_BY_ITEMGRADE(slot, itemgrade)
-	local skinName = "invenslot_nomal"
-	if slot == nil then
-		return
-	end
-	if itemgrade == nil or itemgrade == 0 or itemgrade == 1 or itemgrade == "None" then
-		slot:SetSkinName(skinName)
-		return
-	end
-		
-	if itemgrade == 2 then
-		skinName = "invenslot_magic"
-	elseif itemgrade == 3 then
-		skinName = "invenslot_rare"
-	elseif itemgrade == 4 then
-		skinName = "invenslot_unique"
-	elseif itemgrade == 5 then
-		skinName = "invenslot_legend"
-	end
-
-	slot:SetSkinName(skinName)
-	
-end
-
-function SET_SLOT_NEED_APPRAISAL(slot, needAppraisal, needRandomOption)
-	if slot == nil then
-		return
-	end
-
-	DESTROY_CHILD_BYNAME(slot, "styleset_appraisal")
-
-	if needAppraisal == nil and needRandomOption == nil then
-		return
-	end
-
-	local icon = slot:GetIcon()
-	if icon == nil then
-		return
-	end
-
-	if needAppraisal == 1 or needRandomOption == 1 then
-		local styleSet = slot:CreateOrGetControlSet('itemslot_appraisal_styleset', "styleset_appraisal", 0, 0)
-		styleSet:Resize(slot:GetWidth(), slot:GetHeight())
-		icon:SetColorTone("FFFF0000")
-		local temp = GET_CHILD_RECURSIVELY(slot, "styleset_appraisal")
-	else
-		DESTROY_CHILD_BYNAME(slot, "styleset_appraisal")
-	end
-end
-
-function SET_SLOT_REINFORCE_LEVEL(slot, reinforceLv)
-	if slot == nil then
-		return
-	end
-
-	DESTROY_CHILD_BYNAME(slot, "styleset_reinforce")
-
-	if reinforceLv == nil or reinforceLv == 0 then
-		return
-	end
-
-	local icon = slot:GetIcon()
-	if icon == nil then
-		return
-	end
-
-	local styleSet = slot:CreateOrGetControlSet('itemslot_reinforce_styleset', "styleset_reinforce", 0, 0)
-	styleSet:Resize(slot:GetWidth(), slot:GetHeight())
-	local levelText = GET_CHILD_RECURSIVELY(styleSet, "levelText")
-	if levelText == nil then
-		return
-	end
-
-	levelText:SetTextByKey("level", reinforceLv)
-end
-
-function SET_SLOT_DURATION(slot, itemCls)
-	if itemCls.Dur == 0 then
-		local icon = slot:GetIcon()
-		if icon == nil then
-			return
-		end
-
-		icon : SetColorTone("FFFF0000")
-	end
-end
-
 function SET_SLOT_ITEM_TEXT(slot, invItem, obj)
 	if obj.MaxStack > 1 then
 		SET_SLOT_COUNT_TEXT(slot, invItem.count);
@@ -444,14 +225,15 @@ function SET_SLOT_ITEM_TEXT(slot, invItem, obj)
 	end
 
 	local lv = TryGetProp(obj, "Level");
-	if lv ~= nil and lv > 1 then		
+	if lv ~= nil and lv > 1 then
 		slot:SetFrontImage('enchantlevel_indi_icon');
-		slot:SetText('{s20}{ol}{#FFFFFF}{b}'..lv, 'count', ui.LEFT, ui.TOP, 8, 2);
+		slot:SetText('{s20}{ol}{#FFFFFF}{b}'..lv, 'count', 'left', 'top', 8, 2);
 		return;
 	end
 end
 
-function SET_SLOT_ITEM_TEXT_USE_INVCOUNT(slot, invItem, obj, count, font)	
+function SET_SLOT_ITEM_TEXT_USE_INVCOUNT(slot, invItem, obj, count)
+
 	local refreshScp = TryGetProp(obj,'RefreshScp')
 
 	if refreshScp ~= "None" and refreshScp ~= nil and obj ~= nil then
@@ -460,49 +242,31 @@ function SET_SLOT_ITEM_TEXT_USE_INVCOUNT(slot, invItem, obj, count, font)
 	end	
 
 	if obj.MaxStack > 1 then
-		if IS_ENCHANT_JEWELL_ITEM(obj) == true then			
-			local number = TryGetProp(obj, 'NumberArg1', 0)
-			if number > 0 then
-				slot:SetText('{s15}{ol}{#FFFFFF}{b}LV.' ..number .. '{nl} {nl}' .. tostring(invItem.count), 'count', ui.RIGHT, ui.BOTTOM, -2, 1);
-			end
+		if count ~= nil then
+			SET_SLOT_COUNT_TEXT(slot, count);
 		else
-			if count ~= nil then
-				if 100000 <= count then	-- 6자리 수 폰트 크기 조정
-					font = "{s14}{ol}{b}";
-				end
-
-				SET_SLOT_COUNT_TEXT(slot, count, font);
-			else
-				if 100000 <= invItem.count then	-- 6자리 수 폰트 크기 조정
-					font = "{s14}{ol}{b}";
-				end
-
-				SET_SLOT_COUNT_TEXT(slot, invItem.count, font);
-			end
+			SET_SLOT_COUNT_TEXT(slot, invItem.count);
 		end
-
 		return;
 	end
 
-	local lv = TryGetProp(obj, "Level", 0)	
-	if lv > 1 then
+	local lv = TryGetProp(obj, "Level");
+	if lv ~= nil and lv > 1 then
 		--slot:SetFrontImage('enchantlevel_indi_icon');
-		if IS_ENCHANT_JEWELL_ITEM(obj) == true then			
-			slot:SetText('{s15}{ol}{#FFFFFF}{b}LV.'..lv, 'count', ui.LEFT, ui.BOTTOM, 3, 2);			
-		else
-			slot:SetText('{s17}{ol}{#FFFFFF}{b}LV. '..lv, 'count', ui.LEFT, ui.TOP, 3, 2);
-		end
+		slot:SetText('{s17}{ol}{#FFFFFF}{b}LV. '..lv, 'count', 'left', 'top', 3, 2);
+		return;
 	end
 end
 
 function GET_SLOT_ITEM(slot)
+
 	slot = AUTO_CAST(slot);
 	local icon = slot:GetIcon();
 	if icon == nil then
 		return nil;
 	end
-
 	local iconInfo = icon:GetInfo();
+
 	if iconInfo:GetIESID() ~= "0" then
 		return GET_PC_ITEM_BY_GUID(iconInfo:GetIESID()), iconInfo.count
 	else
@@ -542,16 +306,4 @@ function _EXEC_SLOT_SELECT_COUNT(numberString, inputFrame)
 	slotSet:MakeSelectionList();
 
 
-end
-
-function GET_SLOT_ITEM_TYPE(slot)
-	local icon = slot:GetIcon();
-	if icon == nil then
-		return 0;		
-	end
-	local iconinfo = icon:GetInfo();
-	if iconinfo == nil then
-		return 0;
-	end
-	return iconinfo.type;
 end

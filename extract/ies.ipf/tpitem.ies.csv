@@ -1,54 +1,129 @@
-ClassID,Price,JobGrade,Itemdate,AccountLimitCount,ClassName,Category,SubCategory,ItemClassName,Job,SellStartTime,SellEndTime,WarningMsg
-1,99,0,151229,0,ClassName1,TP_Premium,TP_Useable,PremiumToken,,,,NO
-2,49,0,170810,1,ClassName2,TP_Premium,TP_Useable,Premium_Vakarine,,,,NO
-3,9,0,151229,0,ClassName3,TP_Premium,TP_Useable,Premium_boostToken,,,,NO
-4,88,0,151231,0,ClassName4,TP_Premium,TP_Useable,Premium_SkillReset,,,,NO
-5,30,0,161010,0,ClassName5,TP_Premium,TP_Useable,Gacha_HairAcc_001,,,,YES
-6,300,0,161010,0,ClassName6,TP_Premium,TP_Useable,Gacha_HairAcc_010,,,,YES
-7,39,0,161009,0,ClassName7,TP_Premium,TP_Useable,emoticonItem_24_46,,,,NO
-8,167,0,161009,0,ClassName8,TP_Premium,TP_Useable,Premium_StatReset,,,,NO
-9,15,0,180614,0,ClassName9,TP_Premium,TP_Useable,Premium_Mystic_Glass,,,,NO
-10,149,0,180614,0,ClassName10,TP_Premium,TP_Useable,Premium_Mystic_Glass_Box,,,,NO
-11,24,0,180614,0,ClassName11,TP_Premium,TP_Useable,Premium_Master_Glass,,,,NO
-12,239,0,180614,0,ClassName12,TP_Premium,TP_Useable,Premium_Master_Glass_Box,,,,NO
-13,129,0,180616,0,ClassName13,TP_Premium,TP_Useable,KickOff_Cube_2018,,2018-06-16 10:00:00,2018-07-01 00:00:00,YES
-14,229,0,180616,1,ClassName14,TP_Premium,TP_Useable,KickOff_Package_2018,,2018-06-16 10:00:00,2018-07-01 00:00:00,NO
-15,95,0,180628,0,ClassName15,TP_Premium,TP_Useable,Premium_WoodCarviig_Core,,,,NO
-16,35,0,180712,0,ClassName16,TP_Premium,TP_Useable,Summer_Marine_Box,,2018-07-12 10:00:00,2018-08-16 10:00:00,YES
-17,350,0,180712,0,ClassName17,TP_Premium,TP_Useable,Summer_Marine_Box10,,2018-07-12 10:00:00,2018-08-16 10:00:00,YES
-18,550,0,1080920,0,ClassName18,TP_Premium,TP_Useable,Gacha_HairAcc_022,,2018-10-04 09:00:00,2018-10-08 00:00:00,YES
-19,88,0,181206,0,ClassName19,TP_Premium,TP_Useable,Premium_Abillitypoint,,2018-12-06 10:00:00,,NO
-20,127,0,181206,0,ClassName20,TP_Premium,TP_Useable,Premium_Reset_Package,,2018-12-06 10:00:00,,NO
-21,30,0,181207,0,ClassName21,TP_Premium,TP_Useable,Premium_RankReset_Point_Lv1,,2018-12-06 10:00:00,,NO
-22,128,0,181207,0,ClassName22,TP_Premium,TP_Useable,Premium_RankReset_Point_Lv2,,2018-12-06 10:00:00,,NO
-23,227,0,181207,0,ClassName23,TP_Premium,TP_Useable,Premium_RankReset_Point_Lv3,,2018-12-06 10:00:00,,NO
-24,129,0,181213,0,ClassName24,TP_Premium,TP_Useable,3years_Guilty_Box,,2018-12-13 09:00:00,2018-12-27 10:00:00,YES
-25,387,0,181213,0,ClassName25,TP_Premium,TP_Useable,3years_Guilty_Box3,,2018-12-13 09:00:00,2018-12-27 10:00:00,YES
-26,198,0,190131,1,ClassName26,TP_Premium,TP_Useable,1902_NewYear_Package_01,,2019-01-31 09:00:00,2019-02-14 00:00:00,YES
-27,297,0,190131,1,ClassName27,TP_Premium,TP_Useable,1902_NewYear_Package_02,,2019-01-31 09:00:00,2019-02-14 00:00:00,YES
-28,495,0,190131,1,ClassName28,TP_Premium,TP_Useable,1902_NewYear_Package_03,,2019-01-31 09:00:00,2019-02-14 00:00:00,YES
-29,990,0,190131,1,ClassName29,TP_Premium,TP_Useable,1902_NewYear_Package_ALL,,2019-01-31 09:00:00,2019-02-14 00:00:00,YES
-30,495,0,190905,1,ClassName30,TP_Premium,TP_Useable,1909_Chuseok_Package_01,,2019-09-05 09:00:00,2019-09-19 00:00:00,NO
-31,287,0,190905,3,ClassName31,TP_Premium,TP_Useable,1909_Chuseok_Package_02,,2019-09-05 09:00:00,2019-09-19 00:00:00,NO
-32,99,0,190905,5,ClassName32,TP_Premium,TP_Useable,1909_Chuseok_Package_03,,2019-09-05 09:00:00,2019-09-19 00:00:00,NO
-33,147,0,190905,3,ClassName33,TP_Premium,TP_Useable,1909_Chuseok_Package_04,,2019-09-05 09:00:00,2019-09-19 00:00:00,NO
-38,421,0,191212,1,ClassName38,TP_Premium,TP_Useable,Premium_Forever,,2019-12-12 10:00:00,2019-12-27 06:00:00,NO
-39,498,0,200123,1,ClassName39,TP_Premium,TP_Useable,2020_NewYear_Package_01,,2020-01-23 10:00:00,2020-01-30 6:00:00,NO
-40,748,0,200123,1,ClassName40,TP_Premium,TP_Useable,2020_NewYear_Package_02,,2020-01-23 10:00:00,2020-01-30 6:00:00,NO
-41,253,0,200123,3,ClassName41,TP_Premium,TP_Useable,2020_NewYear_Package_03,,2020-01-23 10:00:00,2020-01-30 6:00:00,NO
-42,998,0,200123,1,ClassName42,TP_Premium,TP_Useable,2020_NewYear_Package_All,,2020-01-23 10:00:00,2020-01-30 6:00:00,NO
-101,39,0,151229,0,ClassName101,TP_Premium,TP_Consume,Mic_bundle50,,,,NO
-102,1,0,151229,0,ClassName102,TP_Premium,TP_Consume,Mic,,,,NO
-103,18,0,151229,0,ClassName103,TP_Premium,TP_Consume,RestartCristal_bundle10,,,,NO
-104,2,0,151229,0,ClassName104,TP_Premium,TP_Consume,RestartCristal,,,,NO
-105,5,0,151229,0,ClassName105,TP_Premium,TP_Consume,Premium_WarpScroll_bundle10,,,,NO
-106,1,0,151229,0,ClassName106,TP_Premium,TP_Consume,Premium_WarpScroll,,,,NO
-107,3,0,160121,0,ClassName107,TP_Premium,TP_Consume,Premium_repairPotion,,,,NO
-108,128,0,160128,0,ClassName108,TP_Premium,TP_Consume,Premium_Enchantchip_20,,,,YES
-109,8,0,160121,0,ClassName109,TP_Premium,TP_Consume,Premium_Enchantchip,,,,YES
-501,298,0,160428,0,ClassName501,TP_Premium,TP_Petitem,egg_006,,,,
-502,10,0,160428,0,ClassName502,TP_Premium,TP_Petitem,Premium_Penguin_Food,,,,
-503,3,0,160428,0,ClassName503,TP_Premium,TP_Petitem,food_penguin,,,,
-504,298,0,160728,0,ClassName504,TP_Premium,TP_Petitem,egg_009,,,,
-505,3,0,160728,0,ClassName505,TP_Premium,TP_Petitem,food_cereal,,,,
-506,10,0,160818,0,ClassName506,TP_Premium,TP_Petitem,Premium_parrotbill_Food,,,,
+ClassID,Price,JobGrade,LimitCount,ClassName,Category,SubCategory,ItemClassName,Job,LimitDuration
+1,99,0,5,ClassName1,TP_Premium,TP_Useable,PremiumToken,,Month
+2,9,0,0,ClassName2,TP_Premium,TP_Useable,Premium_boostToken,,
+3,88,0,0,ClassName3,TP_Premium,TP_Useable,Premium_SkillReset,,
+101,39,0,0,ClassName101,TP_Premium,TP_Consume,Mic_bundle50,,
+102,1,0,0,ClassName102,TP_Premium,TP_Consume,Mic,,
+103,18,0,0,ClassName103,TP_Premium,TP_Consume,RestartCristal_bundle10,,
+104,2,0,0,ClassName104,TP_Premium,TP_Consume,RestartCristal,,
+105,5,0,0,ClassName105,TP_Premium,TP_Consume,Premium_WarpScroll_bundle10,,
+106,1,0,0,ClassName106,TP_Premium,TP_Consume,Premium_WarpScroll,,
+107,3,0,0,ClassName107,TP_Premium,TP_Consume,Premium_repairPotion,,
+108,128,0,0,ClassName108,TP_Premium,TP_Consume,Premium_Enchantchip_20,,
+109,8,0,0,ClassName109,TP_Premium,TP_Consume,Premium_Enchantchip,,
+501,248,0,0,ClassName501,TP_Premium,TP_Petitem,egg_006,,
+502,10,0,0,ClassName502,TP_Premium,TP_Petitem,Premium_Penguin_Food,,
+503,3,0,0,ClassName503,TP_Premium,TP_Petitem,food_penguin,,
+1001,129,0,0,ClassName1001,TP_Costume_M,War_costume_M,costume_war_m_001,,
+1002,129,3,0,ClassName1002,TP_Costume_M,War_costume_M,costume_war_m_002,Char1_2,
+1003,129,1,0,ClassName1003,TP_Costume_M,War_costume_M,costume_war_m_004,Char1_1,
+1004,59,1,0,ClassName1004,TP_Costume_M,War_costume_M,costume_war_m_006,Char1_1,
+1005,59,1,0,ClassName1005,TP_Costume_M,War_costume_M,costume_war_m_005,Char1_1,
+1006,129,1,0,ClassName1006,TP_Costume_M,War_costume_M,costume_war_m_007,Char1_1,
+1007,129,1,0,ClassName1007,TP_Costume_M,War_costume_M,costume_war_m_008,Char1_1,
+1201,129,0,0,ClassName1201,TP_Costume_M,Wiz_costume_M,costume_wiz_m_001,,
+1202,129,3,0,ClassName1202,TP_Costume_M,Wiz_costume_M,costume_wiz_m_003,Char2_1,
+1203,129,1,0,ClassName1203,TP_Costume_M,Wiz_costume_M,costume_wiz_m_004,Char2_1,
+1204,59,1,0,ClassName1204,TP_Costume_M,Wiz_costume_M,costume_wiz_m_006,Char2_1,
+1205,59,1,0,ClassName1205,TP_Costume_M,Wiz_costume_M,costume_wiz_m_005,Char2_1,
+1206,129,1,0,ClassName1206,TP_Costume_M,Wiz_costume_M,costume_wiz_m_007,Char2_1,
+1207,129,1,0,ClassName1207,TP_Costume_M,Wiz_costume_M,costume_wiz_m_008,Char2_1,
+1401,129,0,0,ClassName1401,TP_Costume_M,Arc_costume_M,costume_arc_m_001,,
+1402,129,3,0,ClassName1402,TP_Costume_M,Arc_costume_M,costume_arc_m_002,Char3_1,
+1403,129,1,0,ClassName1403,TP_Costume_M,Arc_costume_M,costume_arc_m_004,Char3_1,
+1404,129,3,0,ClassName1404,TP_Costume_M,Arc_costume_M,costume_arc_m_006,Char3_3,
+1405,59,1,0,ClassName1405,TP_Costume_M,Arc_costume_M,costume_arc_m_007,Char3_1,
+1406,59,1,0,ClassName1406,TP_Costume_M,Arc_costume_M,costume_arc_m_005,Char3_1,
+1407,129,1,0,ClassName1407,TP_Costume_M,Arc_costume_M,costume_arc_m_008,Char3_1,
+1408,129,1,0,ClassName1408,TP_Costume_M,Arc_costume_M,costume_arc_m_009,Char3_1,
+1601,129,0,0,ClassName1601,TP_Costume_M,Cle_costume_M,costume_clr_m_001,,
+1602,129,3,0,ClassName1602,TP_Costume_M,Cle_costume_M,costume_clr_m_002,Char4_2,
+1603,129,1,0,ClassName1603,TP_Costume_M,Cle_costume_M,costume_clr_m_004,Char4_1,
+1604,59,1,0,ClassName1604,TP_Costume_M,Cle_costume_M,costume_clr_m_006,Char4_1,
+1605,59,1,0,ClassName1605,TP_Costume_M,Cle_costume_M,costume_clr_m_005,Char4_1,
+1606,129,1,0,ClassName1606,TP_Costume_M,Cle_costume_M,costume_clr_m_007,Char4_1,
+1607,129,3,0,ClassName1607,TP_Costume_M,Cle_costume_M,costume_clr_m_008,Char4_7,
+1608,129,1,0,ClassName1608,TP_Costume_M,Cle_costume_M,costume_clr_m_009,Char4_1,
+1801,129,0,0,ClassName1801,TP_Costume_M,Com_costume_M,costume_Com_4,,
+2001,129,0,0,ClassName2001,TP_Costume_F,War_costume_F,costume_war_f_001,,
+2002,129,3,0,ClassName2002,TP_Costume_F,War_costume_F,costume_war_f_002,Char1_2,
+2003,129,1,0,ClassName2003,TP_Costume_F,War_costume_F,costume_war_f_004,Char1_1,
+2004,59,1,0,ClassName2004,TP_Costume_F,War_costume_F,costume_war_f_006,Char1_1,
+2005,59,1,0,ClassName2005,TP_Costume_F,War_costume_F,costume_war_f_005,Char1_1,
+2006,129,1,0,ClassName2006,TP_Costume_F,War_costume_F,costume_war_f_007,Char1_1,
+2007,129,1,0,ClassName2007,TP_Costume_F,War_costume_F,costume_war_f_008,Char1_1,
+2201,129,0,0,ClassName2201,TP_Costume_F,Wiz_costume_F,costume_wiz_f_001,,
+2202,129,3,0,ClassName2202,TP_Costume_F,Wiz_costume_F,costume_wiz_f_003,Char2_1,
+2203,129,1,0,ClassName2203,TP_Costume_F,Wiz_costume_F,costume_wiz_f_004,Char2_1,
+2204,59,1,0,ClassName2204,TP_Costume_F,Wiz_costume_F,costume_wiz_f_006,Char2_1,
+2205,59,1,0,ClassName2205,TP_Costume_F,Wiz_costume_F,costume_wiz_f_005,Char2_1,
+2206,129,1,0,ClassName2206,TP_Costume_F,Wiz_costume_F,costume_wiz_f_007,Char2_1,
+2207,129,1,0,ClassName2207,TP_Costume_F,Wiz_costume_F,costume_wiz_f_008,Char2_1,
+2401,129,0,0,ClassName2401,TP_Costume_F,Arc_costume_F,costume_arc_f_001,,
+2402,129,3,0,ClassName2402,TP_Costume_F,Arc_costume_F,costume_arc_f_002,Char3_1,
+2403,129,1,0,ClassName2403,TP_Costume_F,Arc_costume_F,costume_arc_f_004,Char3_1,
+2404,129,3,0,ClassName2404,TP_Costume_F,Arc_costume_F,costume_arc_f_006,Char3_3,
+2405,59,1,0,ClassName2405,TP_Costume_F,Arc_costume_F,costume_arc_f_007,Char3_1,
+2406,59,1,0,ClassName2406,TP_Costume_F,Arc_costume_F,costume_arc_f_005,Char3_1,
+2407,129,1,0,ClassName2407,TP_Costume_F,Arc_costume_F,costume_arc_f_008,Char3_1,
+2408,129,1,0,ClassName2408,TP_Costume_F,Arc_costume_F,costume_arc_f_009,Char3_1,
+2601,129,0,0,ClassName2601,TP_Costume_F,Cle_costume_F,costume_clr_f_001,,
+2602,129,3,0,ClassName2602,TP_Costume_F,Cle_costume_F,costume_clr_f_002,Char4_2,
+2603,129,1,0,ClassName2603,TP_Costume_F,Cle_costume_F,costume_clr_f_004,Char4_1,
+2604,59,1,0,ClassName2604,TP_Costume_F,Cle_costume_F,costume_clr_f_006,Char4_1,
+2605,59,1,0,ClassName2605,TP_Costume_F,Cle_costume_F,costume_clr_f_005,Char4_1,
+2606,129,1,0,ClassName2606,TP_Costume_F,Cle_costume_F,costume_clr_f_007,Char4_1,
+2607,129,3,0,ClassName2607,TP_Costume_F,Cle_costume_F,costume_clr_f_008,Char4_7,
+2608,129,1,0,ClassName2608,TP_Costume_F,Cle_costume_F,costume_clr_f_009,Char4_1,
+2801,129,0,0,ClassName2801,TP_Costume_F,Com_costume_F,costume_Com_4,,
+3001,15,0,0,ClassName3001,TP_Character,TP_Hair_M,HAIR_M_103,,
+3002,15,0,0,ClassName3002,TP_Character,TP_Hair_M,HAIR_M_104,,
+3003,15,0,0,ClassName3003,TP_Character,TP_Hair_M,HAIR_M_105,,
+3004,15,0,0,ClassName3004,TP_Character,TP_Hair_M,HAIR_M_106,,
+3005,15,0,0,ClassName3005,TP_Character,TP_Hair_M,HAIR_M_107,,
+3006,15,0,0,ClassName3006,TP_Character,TP_Hair_M,HAIR_M_108,,
+3007,15,0,0,ClassName3007,TP_Character,TP_Hair_M,HAIR_M_109,,
+3008,15,0,0,ClassName3008,TP_Character,TP_Hair_M,HAIR_M_110,,
+3009,15,0,0,ClassName3009,TP_Character,TP_Hair_M,HAIR_M_111,,
+3010,15,0,0,ClassName3010,TP_Character,TP_Hair_M,HAIR_M_112,,
+3201,15,0,0,ClassName3201,TP_Character,TP_Hair_F,HAIR_F_103,,
+3202,15,0,0,ClassName3202,TP_Character,TP_Hair_F,HAIR_F_104,,
+3203,15,0,0,ClassName3203,TP_Character,TP_Hair_F,HAIR_F_105,,
+3204,15,0,0,ClassName3204,TP_Character,TP_Hair_F,HAIR_F_106,,
+3205,15,0,0,ClassName3205,TP_Character,TP_Hair_F,HAIR_F_107,,
+3206,15,0,0,ClassName3206,TP_Character,TP_Hair_F,HAIR_F_108,,
+3207,15,0,0,ClassName3207,TP_Character,TP_Hair_F,HAIR_F_109,,
+3208,15,0,0,ClassName3208,TP_Character,TP_Hair_F,HAIR_F_110,,
+3209,15,0,0,ClassName3209,TP_Character,TP_Hair_F,HAIR_F_111,,
+3210,15,0,0,ClassName3210,TP_Character,TP_Hair_F,HAIR_F_112,,
+3211,15,0,0,ClassName3211,TP_Character,TP_Hair_F,HAIR_F_113,,
+3212,15,0,0,ClassName3212,TP_Character,TP_Hair_F,HAIR_F_114,,
+3401,298,0,0,ClassName3401,TP_Character,TP_Hair_M_Premium,HAIR_M_102,,
+3402,198,0,0,ClassName3402,TP_Character,TP_Hair_M_Premium,HAIR_M_101,,
+3403,198,0,0,ClassName3403,TP_Character,TP_Hair_M_Premium,HAIR_M_113,,
+3404,198,0,0,ClassName3404,TP_Character,TP_Hair_M_Premium,HAIR_M_114,,
+3405,198,0,0,ClassName3405,TP_Character,TP_Hair_M_Premium,HAIR_M_116,,
+3406,198,0,0,ClassName3406,TP_Character,TP_Hair_M_Premium,HAIR_M_117,,
+3407,198,0,0,ClassName3407,TP_Character,TP_Hair_M_Premium,HAIR_M_118,,
+3601,298,0,0,ClassName3601,TP_Character,TP_Hair_F_Premium,HAIR_F_101,,
+3602,198,0,0,ClassName3602,TP_Character,TP_Hair_F_Premium,HAIR_F_102,,
+3603,298,0,0,ClassName3603,TP_Character,TP_Hair_F_Premium,HAIR_F_116,,
+3604,198,0,0,ClassName3604,TP_Character,TP_Hair_F_Premium,HAIR_F_115,,
+3605,198,0,0,ClassName3605,TP_Character,TP_Hair_F_Premium,HAIR_F_117,,
+3606,198,0,0,ClassName3606,TP_Character,TP_Hair_F_Premium,HAIR_F_118,,
+3607,198,0,0,ClassName3607,TP_Character,TP_Hair_F_Premium,HAIR_F_119,,
+4001,49,0,0,ClassName4001,TP_Character,TP_Costume_Lens,LENS01_001,,
+4002,49,0,0,ClassName4002,TP_Character,TP_Costume_Lens,LENS01_002,,
+4003,49,0,0,ClassName4003,TP_Character,TP_Costume_Lens,LENS01_003,,
+4004,49,0,0,ClassName4004,TP_Character,TP_Costume_Lens,LENS01_004,,
+4005,59,0,0,ClassName4005,TP_Character,TP_Costume_Lens,LENS01_005,,
+4006,59,0,0,ClassName4006,TP_Character,TP_Costume_Lens,LENS01_006,,
+4201,49,0,0,ClassName4201,TP_Character,TP_Costume_Hairacc,Hat_628136,,
+4202,49,0,0,ClassName4202,TP_Character,TP_Costume_Hairacc,Hat_628137,,
+4203,49,0,0,ClassName4203,TP_Character,TP_Costume_Hairacc,Hat_628138,,
+4204,49,0,0,ClassName4204,TP_Character,TP_Costume_Hairacc,Hat_628139,,
+4205,49,0,0,ClassName4205,TP_Character,TP_Costume_Hairacc,Hat_628140,,
+4401,49,0,0,ClassName4401,TP_Character,TP_Costume_Color,Premium_hairColor_01,,
+4402,49,0,0,ClassName4402,TP_Character,TP_Costume_Color,Premium_hairColor_02,,
+4403,49,0,0,ClassName4403,TP_Character,TP_Costume_Color,Premium_hairColor_03,,
+4404,49,0,0,ClassName4404,TP_Character,TP_Costume_Color,Premium_hairColor_04,,

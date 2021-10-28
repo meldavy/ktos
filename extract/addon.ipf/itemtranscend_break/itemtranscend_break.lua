@@ -1,5 +1,3 @@
--- 현재 사용하지 않는 축복석 추출 / 아이템 추출 관련 UI입니다.
--- 자세한 내용은 Dev #30338을 참조해주시기 바랍니다.
 
 function ITEMTRANSCEND_BREAK_ON_INIT(addon, frame)
 
@@ -21,39 +19,24 @@ function ITEMTRASCEND_BREAK_OPEN(frame)
 	slot:SetText("");
 	slot_material:ClearIcon();
 	slot_material:SetText("");
-	
+	local txt_result = frame:GetChildRecursively("txt_result");
+	txt_result:ShowWindow(0);
+
 	UPDATE_TRANSCEND_BREAK_ITEM(frame);
 	INVENTORY_SET_CUSTOM_RBTNDOWN("ITEMTRANSCEND_BREAK_INV_RBTN")	
 	ui.OpenFrame("inventory");
 
-	frame:SetUserValue("REQ_LEGEND_ITEM_DIALOG_TYPE", 0);
-	
-	local needTxt = string.format("{@st43b}{s16}%s{/}", ScpArgMsg("ITEMTRANSCEND_BREAK_GUIDE_FIRST"));	
-	SETTEXT_GUIDE(frame, 3, needTxt);
-	
-	local gbox = frame:GetChild("gbox");
-	local reg = GET_CHILD(gbox, "reg");
-	reg:ShowWindow(0);
 end
 
 function ITEMTRASCEND_BREAK_CLOSE(frame)
 	if ui.CheckHoldedUI() == true then
 		return;
 	end
-
-	control.DialogOk();
 		
-	INVENTORY_SET_CUSTOM_RBTNDOWN("None");
-
-	-- DialogOk()를 실행하면 다이얼로그가 전부 닫힙니다.
-	-- 추가적인 다이얼로그를 띄우고 싶으시다면 반드시 DialogOK() 하단에 실행해주세요.
-	local dialog_type = frame:GetUserValue("REQ_LEGEND_ITEM_DIALOG_TYPE");
-	control.CustomCommand("REQ_LEGEND_ITEM_DIALOG", dialog_type);
-
-	frame:SetUserValue("REQ_LEGEND_ITEM_DIALOG_TYPE", 0);
 	frame:SetUserValue("ANIMETION_PROG_WIP", 0);
+	INVENTORY_SET_CUSTOM_RBTNDOWN("None");
 	frame:ShowWindow(0);
-
+	control.DialogOk();
 	ui.CloseFrame("inventory");
  end
 
@@ -91,20 +74,14 @@ function REMOVE_TRANSCEND_BREAK_TARGET_ITEM(frame)
 	slot_material:ClearIcon();
 	slot_material:SetText("");
 	UPDATE_TRANSCEND_BREAK_ITEM(frame);
-	
-	local needTxt = string.format("{@st43b}{s16}%s{/}", ScpArgMsg("ITEMTRANSCEND_BREAK_GUIDE_FIRST"));	
-	SETTEXT_GUIDE(frame, 3, needTxt);
-	
-	local gbox = frame:GetChild("gbox");
-	local reg = GET_CHILD(gbox, "reg");
-	reg:ShowWindow(0);
+
 end
 
  function ITEM_TRANSEND_BREAK_DROP(frame, icon, argStr, argNum)
 
-	local liftIcon = ui.GetLiftIcon();
-	local FromFrame = liftIcon:GetTopParentFrame();
-	local toFrame = frame:GetTopParentFrame();
+	local liftIcon 				= ui.GetLiftIcon();
+	local FromFrame 			= liftIcon:GetTopParentFrame();
+	local toFrame				= frame:GetTopParentFrame();
 
 	local iconInfo = liftIcon:GetInfo();
 	ITEM_TRANSCEND_BREAK_REG_TARGETITEM(frame, iconInfo:GetIESID());
@@ -112,6 +89,7 @@ end
 end
   
 function ITEM_TRANSCEND_BREAK_REG_TARGETITEM(frame, itemID)
+
 	local invItem = GET_PC_ITEM_BY_GUID(itemID);
 	if invItem == nil then
 		return;
@@ -132,17 +110,9 @@ function ITEM_TRANSCEND_BREAK_REG_TARGETITEM(frame, itemID)
 		ui.SysMsg(ClMsg("MaterialItemIsLock"));
 		return;
 	end
-	
-	local transcend = TryGetProp(obj, "Transcend")
-	if transcend == nil or transcend == 0 then
-		ui.MsgBox(ScpArgMsg("YouCanBreakOnlyTreancendedItem"));
-		return;
-	end
 
-	if TryGetProp(obj, 'LegendGroup', 'None') ~= 'None' then
-		frame:SetUserValue("REQ_LEGEND_ITEM_DIALOG_TYPE", 2);
-		ui.CloseFrame('itemtranscend_break');
-		ui.CloseFrame('inventory');
+	if transcend == 0 then
+		ui.MsgBox(ScpArgMsg("YouCanBreakOnlyTreancendedItem"));
 		return;
 	end
 
@@ -160,6 +130,7 @@ function ITEM_TRANSCEND_BREAK_REG_TARGETITEM(frame, itemID)
 
 	local txt_result = frame:GetChildRecursively("txt_result");
 	txt_result:ShowWindow(0);
+
 	UPDATE_TRANSCEND_BREAK_ITEM(frame);	
 	
 end
@@ -176,12 +147,14 @@ function UPDATE_TRANSCEND_BREAK_ITEM(frame)
 	local text_itemstar = frame:GetChild("text_itemstar");
 	local text_itemtranscend = frame:GetChild("text_itemtranscend");	
 	local text_breakresult = frame:GetChild("text_breakresult");	
+	local reg = frame:GetChildRecursively("reg");
 
 	if invItem == nil then
 		text_itemstar:ShowWindow(0);
 		text_material:ShowWindow(0);
 		text_itemtranscend:ShowWindow(0);		
 		text_breakresult:ShowWindow(0);
+		reg:SetTextByKey("value", "");
 	else
 		local targetObj = GetIES(invItem:GetObject());
 		text_itemstar:ShowWindow(1);
@@ -195,26 +168,19 @@ function UPDATE_TRANSCEND_BREAK_ITEM(frame)
 		text_material:SetTextByKey("value", GET_FULL_NAME(targetObj));
 		text_material:ShowWindow(1);
 
-		local materialItem = "misc_BlessedStone";
+		local materialItem = GET_TRANSCEND_MATERIAL_ITEM(targetObj);
 		local matItemCls = GetClass("Item", materialItem);
 		if matItemCls ~= nil then
-			local resultString = ScpArgMsg("{Item}WillBeReturnedBy{Count}", "Item", matItemCls.Name, "Count", GET_TRANSCEND_BREAK_ITEM_COUNT(targetObj) * 10);
+			local resultString = ScpArgMsg("{Item}WillBeReturnedBy{Count}", "Item", matItemCls.Name, "Count", GET_TRANSCEND_BREAK_ITEM_COUNT(targetObj));
 			text_breakresult:SetTextByKey("value", resultString);
 		else
 			text_breakresult:SetTextByKey("value", "");
 		end
 
 		text_breakresult:ShowWindow(1);
-		
-	
-		local mtrlCls = GetClass("Item", "Premium_itemDissassembleStone");
-		if mtrlCls == nil then
-			return;
-		end
-		local needTxt = "";	
+
 		local sil = GET_TRANSCEND_BREAK_SILVER(targetObj);
-		needTxt = string.format("{img %s 30 30}{/}{@st43_green}{s16}%s{/}{@st42b}{s16}, {/}{@st43_red}{s16}%s  {/}{@st42b}{s16}%s{/}", mtrlCls.Icon, mtrlCls.Name, GET_MONEY_IMG(24) .. " " .. GetCommaedText(sil), ScpArgMsg("Need_Item"));			
-		SETTEXT_GUIDE(frame, 1, needTxt);
+		reg:SetTextByKey("value", GET_MONEY_IMG(24) .. " " .. GetCommaedText(sil));
 	end
 
 
@@ -272,10 +238,7 @@ function ITEM_TRANSCEND_BREAK_REG_MATERIAL(frame, itemID)
 	local slot_material = GET_CHILD(frame, "slot_material");
 	SET_SLOT_INVITEM(slot_material, invItem, 1);
 	UPDATE_TRANSCEND_BREAK_ITEM(frame);
-	
-	local gbox = frame:GetChild("gbox");
-	local reg = GET_CHILD(gbox, "reg");
-	reg:ShowWindow(1);
+
 end
 
 function ITEMTRANSCEND_BREAK_EXEC(frame)
@@ -298,16 +261,16 @@ function ITEMTRANSCEND_BREAK_EXEC(frame)
 		ui.MsgBox(msgString);
 		return;
 	end
-	ui.SetHoldUI(false);
 	
 	imcSound.PlaySoundEvent(frame:GetUserConfig("TRANS_BTN_OK_SOUND"));
+	ui.SetHoldUI(true);
 	ui.MsgBox_NonNested(ScpArgMsg("ItemWillBeDeleted_Continue?"), frame:GetName(), "_ITEMTRANSCEND_BREAK_EXEC_MSG", "_ITEMTRANSCEND_BREAK_CANCEL");		
 	
+	frame:SetUserValue("ANIMETION_PROG_WIP", 1);
 end
 
 function _ITEMTRANSCEND_BREAK_EXEC_MSG()
 	ui.MsgBox(ScpArgMsg("ReallyBreakTransendedItem?"), "_ITEMTRANSCEND_BREAK_EXEC", "_ITEMTRANSCEND_BREAK_CANCEL");		
-	ui.SetHoldUI(false);
 end
 
 function _ITEMTRANSCEND_BREAK_CANCEL()
@@ -330,13 +293,11 @@ function _ITEMTRANSCEND_BREAK_EXEC()
 	end
 
 	local obj = GetIES(invItem:GetObject());
-	if IsGreaterThanForBigNumber(GET_TRANSCEND_BREAK_SILVER(obj), GET_TOTAL_MONEY_STR()) == 1 then
+	if GET_TOTAL_MONEY() < GET_TRANSCEND_BREAK_SILVER(obj) then
 		ui.SysMsg(ClMsg("NotEnoughMoney"));
 		return;
 	end
 
-	ui.SetHoldUI(true);
-	frame:SetUserValue("ANIMETION_PROG_WIP", 1);
 	session.ResetItemList();	
 	session.AddItemID(invItem:GetIESID());
 	session.AddItemID(materialItem:GetIESID());	
@@ -352,9 +313,6 @@ end
 
 function TRANSCEND_BREAK_UPDATE(itemName, count)
 	local frame = ui.GetFrame("itemtranscend_break");
-    local needTxt = string.format("{@st43b}{s16}%s{/}", ScpArgMsg("ITEMTRANSCEND_BREAK_GUIDE_FIRST"));	
-	SETTEXT_GUIDE(frame, 3, needTxt);
-
 	UPDATE_TRANSCEND_BREAK_ITEM(frame);
 	UPDATE_TRANSCEND_BREAK_RESULT(frame, itemName, count);
 end
@@ -397,7 +355,7 @@ function _UPDATE_TRANSCEND_RESULT_BREAK(frame)
 	slot:ClearIcon();
 	slot:SetText("");
 	SET_SLOT_ITEM_CLS(slot, itemCls);
-	SET_SLOT_COUNT_TEXT(slot, count, "{@st43}{s22}{ol}{b}");
+	SET_SLOT_COUNT_TEXT(slot, count);
 	
 	local slot_material = GET_CHILD(frame, "slot_material");
 	slot_material:ClearIcon();
@@ -418,11 +376,5 @@ function _UPDATE_TRANSCEND_RESULT_BREAK(frame)
 
 	local resultTxt = GET_FULL_NAME(itemCls) .. " " .. count .. ScpArgMsg("CountOfThings");
 	txt_result:SetTextByKey("value", resultTxt);
-	
-	local needTxt = string.format("{@st43b}{s16}%s{/}", ScpArgMsg("ITEMTRANSCEND_BREAK_GUIDE_FIRST"));	
-	SETTEXT_GUIDE(frame, 3, needTxt);
-	
-	local gbox = frame:GetChild("gbox");
-	local reg = GET_CHILD(gbox, "reg");
-	reg:ShowWindow(0);
+
 end
