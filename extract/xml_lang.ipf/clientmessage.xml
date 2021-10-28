@@ -14959,7 +14959,7 @@
 		<Class ClassID="302380" ClassName="EVENT_2103_ARBOR_DAY_MSG1" Data="식목일 접속 보상을 획득하였습니다."/>
 		<Class ClassID="302381" ClassName="EVENT_2103_ARBOR_DAY_MSG2" Data="기존 유저는 3월 25일 점검 후 생성 캐릭터만 참여 가능합니다."/>
 		<Class ClassID="302382" ClassName="EVENT_2103_ARBOR_DAY_MSG3" Data="팀당 1회만 참여 가능합니다."/>
-		<Class ClassID="302383" ClassName="EVENT_2103_ARBOR_DAY_MSG4" Data="450레벨 미만의 캐릭터만 참여 가능합니다."/>
+		<Class ClassID="302383" ClassName="EVENT_2103_ARBOR_DAY_MSG4" Data="450레벨 이하의 캐릭터만 참여 가능합니다."/>
 		<Class ClassID="302384" ClassName="EVENT_2103_ARBOR_DAY_MSG5" Data="성장 지원을 받는다. [ 팀 기준 남은 횟수 : {#FF0000}{COUNT}{/} ] 회"/>
 		<Class ClassID="302385" ClassName="EVENT_2103_ARBOR_DAY_SEL1" Data="{#003399}[식목일]{/} 이벤트 안내"/>
 		<Class ClassID="302386" ClassName="EVENT_2103_ARBOR_DAY_SEL2" Data="{#003399}[식목일]{/} 이벤트 상점"/>
