@@ -13278,7 +13278,13 @@ end
 
 -- done , 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_GET_InfernalShadow_CaptionRatio(skill)
-    return 20 + (skill.Level -1) * 20;
+    local value = 20 + (skill.Level -1) * 20;
+
+    if value > 120 then
+        value = 120
+    end
+    
+    return value
 end
 
 -- done , 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.

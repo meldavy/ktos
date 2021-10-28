@@ -921,7 +921,7 @@ function IS_NEED_TO_DRAW_SUBFRAME_ICHOR(invitem)
     local itemGrade = TryGetProp(invitem, "ItemGrade")
     local targetGroup = TryGetProp(invitem, "EquipGroup")
 
-    if itemGrade > 4 then
+    if itemGrade > 4 and TryGetProp(invitem, "UseLv", 1) >= 360 then
         -- 레전드 등급 이상 무기
         if targetGroup == "THWeapon" or targetGroup == "SubWeapon" or targetGroup == "Weapon" then
             return true
