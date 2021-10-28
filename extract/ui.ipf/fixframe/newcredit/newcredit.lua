@@ -1,7 +1,7 @@
 
 
 g_credintimageNum = 1
-MAX_IMAGE_NUM = 5
+MAX_IMAGE_NUM = 4
 
 
 
@@ -48,7 +48,7 @@ function NEWCREDIT_NEXT_PAGE()
 
 	
 	local imgname = "nameimg"..tostring(g_credintimageNum)
-	
+
 	local nowimage = GET_CHILD_RECURSIVELY(frame,imgname);
 	nowimage:ShowWindow(1)
 
@@ -79,12 +79,6 @@ function NEWCREDIT_FADEOUT()
 end
 
 function OPEN_NEWCREDIT(frame)
-	
-	local loginFrame = ui.GetFrame("loginui_idpw");
-	if loginFrame ~= nil then
-	  local loginButton = GET_CHILD_RECURSIVELY(loginFrame, "OK");
-	  loginButton:StopActiveUIEffect();
-	end
 	
 	g_credintimageNum = 1
 

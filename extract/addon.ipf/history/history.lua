@@ -9,7 +9,7 @@ function UI_TOGGLE_HISTORY()
 		return;
 	end
 	
-	session.playHistory.ReqPlayHistory(HISTORY_TP, 1);
+	session.playHistory.ReqPlayHistory(HISTORY_STAT, 1);
 end
 
 function PLAY_HISTORY_ON_MSG(frame, msg, strArg, numArg)
@@ -31,35 +31,34 @@ function UPDATE_PLAY_HISTORY(frame, numArg)
 	local gBox = nil;
 	local respect = nil;
 	local menu = frame:GetChild("menu")
-	local rect4 = menu:GetChild("richtext_4");
---if numArg == HISTORY_STAT then
---	gBox = frame:GetChild("skill");
---	gBox:RemoveAllChild();
---	gBox:ShowWindow(0);
---	gBox = frame:GetChild("tp");
---	gBox:RemoveAllChild();
---	gBox:ShowWindow(0);
---	gBox = frame:GetChild("stat");
---
---	respect = frame:GetChild("skill_respect");
---	respect:RemoveAllChild();
---	respect = frame:GetChild("stat_respect");
---	rect4:ShowWindow(1);
---elseif numArg == HISTORY_SKILL then
---	gBox = frame:GetChild("stat");
---	gBox:RemoveAllChild();
---	gBox:ShowWindow(0);
---	gBox = frame:GetChild("tp");
---	gBox:ShowWindow(0);
---	gBox:RemoveAllChild();
---	gBox = frame:GetChild("skill");
---
---	respect = frame:GetChild("stat_respect");
---	respect:RemoveAllChild();
---	respect = frame:GetChild("skill_respect");
---	rect4:ShowWindow(1);
---else
-	if numArg == HISTORY_TP then
+		local rect4 = menu:GetChild("richtext_4");
+	if numArg == HISTORY_STAT then
+		gBox = frame:GetChild("skill");
+		gBox:RemoveAllChild();
+		gBox:ShowWindow(0);
+		gBox = frame:GetChild("tp");
+		gBox:RemoveAllChild();
+		gBox:ShowWindow(0);
+		gBox = frame:GetChild("stat");
+
+		respect = frame:GetChild("skill_respect");
+		respect:RemoveAllChild();
+		respect = frame:GetChild("stat_respect");
+		rect4:ShowWindow(1);
+	elseif numArg == HISTORY_SKILL then
+		gBox = frame:GetChild("stat");
+		gBox:RemoveAllChild();
+		gBox:ShowWindow(0);
+		gBox = frame:GetChild("tp");
+		gBox:ShowWindow(0);
+		gBox:RemoveAllChild();
+		gBox = frame:GetChild("skill");
+
+		respect = frame:GetChild("stat_respect");
+		respect:RemoveAllChild();
+		respect = frame:GetChild("skill_respect");
+		rect4:ShowWindow(1);
+	elseif numArg == HISTORY_TP then
 		gBox = frame:GetChild("skill");
 		gBox:RemoveAllChild();
 		gBox:ShowWindow(0);
@@ -81,23 +80,20 @@ function UPDATE_PLAY_HISTORY(frame, numArg)
 
 	local TPbox = frame:GetChild("TPBox");
 	local medalText = TPbox:GetChild("MyTp");
-	medalText:SetTextByKey("value", GET_CASH_TOTAL_POINT_C());
+	medalText:SetTextByKey("value", GET_CASH_POINT_C());
 
 	gBox:ShowWindow(1);
 	gBox:RemoveAllChild();
 	respect:RemoveAllChild();
+	local info = session.playHistory.GetHistoryRespec(numArg);
+	local ctrlSet = respect:CreateControlSet("skill_stat_resCnt", "repect",  ui.CENTER_HORZ, ui.TOP, 0, 0, 0, 0);
+	ctrlSet:SetSkinName("test_weight_skin");
+	local resCnt = ctrlSet:GetChild("resCnt");
 	local rollbackCnt = 0;
-
-	if numArg ~= HISTORY_TP then
-		local info = session.playHistory.GetHistoryRespec(numArg);
-		local ctrlSet = respect:CreateControlSet("skill_stat_resCnt", "repect",  ui.CENTER_HORZ, ui.TOP, 0, 0, 0, 0);
-		ctrlSet:SetSkinName("test_weight_skin");
-		local resCnt = ctrlSet:GetChild("resCnt");
-		if nil ~= info then
-			rollbackCnt = info.count;
-		end
-		resCnt:SetTextByKey("value", rollbackCnt);	
+	if nil ~= info then
+		rollbackCnt = info.count;
 	end
+	resCnt:SetTextByKey("value", rollbackCnt);	
 
 	--skill_stat_his
 	local cnt = session.playHistory.GetHistoryCount(numArg);
@@ -122,14 +118,7 @@ function UPDATE_PLAY_HISTORY(frame, numArg)
 			name = cls.Name;
 			data = "-"..string.format("%s", info.value);
 		elseif numArg == HISTORY_TP then
-			local sList = StringSplit(info:GetPropName(), ":");
-			print(info:GetPropName());
-			if 2 > #sList then
-				name = ClMsg(info:GetPropName());
-			else
-				local itemCls = GetClass("Item", sList[2]);
-				name = ClMsg(sList[1]) .. " : " .. itemCls.Name;
-			end
+			name = info:GetPropName();
 			data = info.value;
 		end
 		propName:SetTextByKey("value", name);
@@ -141,36 +130,31 @@ function UPDATE_PLAY_HISTORY(frame, numArg)
 
 		local button_1 = ctrlSet:GetChild("button_1");
 		button_1:ShowWindow(0);
-		local btnData = "None";
 		if numArg ~= HISTORY_TP then
-			
+			local data = string.format("%d", rollbackCnt) .. "TP";
 			if info.isFree == true then
 				preValue:ShowWindow(1);
-				btnData = ClMsg("IsFree");
-				preValue:SetTextByKey("value", btnData);
+				data = ClMsg("IsFree");
+				preValue:SetTextByKey("value", data);
 			else
-				if 0 == rollbackCnt then
-					rollbackCnt = 1;
-				end
-				btnData = string.format("%d", rollbackCnt) .. "TP";
 				preValue:ShowWindow(1);
-				preValue:SetTextByKey("value", btnData);
+				preValue:SetTextByKey("value", data);
 				rollbackCnt = rollbackCnt+1;
 			end
-			
+
 			if 1 == curPage and i == 0 then
-				button_1:ShowWindow(1);
+			button_1:ShowWindow(1);
 				preValue:ShowWindow(0);
-				button_1:SetUserValue("propName", info:GetPropName());
-				button_1:SetUserValue("value", info.preValue);
-				button_1:SetUserValue("RollBackCnt", rollbackCnt);
-				button_1:SetUserValue("saveTime", info:GetSaveTime());
-				button_1:SetTextByKey("value", btnData);
+			button_1:SetUserValue("propName", info:GetPropName());
+			button_1:SetUserValue("value", info.preValue);
+			button_1:SetUserValue("RollBackCnt", rollbackCnt);
+			button_1:SetUserValue("saveTime", info:GetSaveTime());
+				button_1:SetTextByKey("value", data);
 			end
 		end
 	end
 
-	GBOX_AUTO_ALIGN(gBox, 5, 3, 10, true, false);
+	GBOX_AUTO_ALIGN(gBox, 20, 3, 10, true, false);
 
 	-- 페이지 셋팅
 
@@ -213,14 +197,14 @@ end
 
 function HISTORY_TAB_CHANGE(frame, ctrl, argStr, argNum)
 
---local tabObj		    = frame:GetChild('statusTab');
---local itembox_tab		= tolua.cast(tabObj, "ui::CTabControl");
---local curtabIndex	    = itembox_tab:GetSelectItemIndex();
---HISTORY_DATA_VIEW(frame, curtabIndex);
+	local tabObj		    = frame:GetChild('statusTab');
+	local itembox_tab		= tolua.cast(tabObj, "ui::CTabControl");
+	local curtabIndex	    = itembox_tab:GetSelectItemIndex();
+	HISTORY_DATA_VIEW(frame, curtabIndex);
 end
 
 function HISTORY_DATA_VIEW(frame, curtabIndex)
-	--session.playHistory.ReqPlayHistory(curtabIndex, 1);
+	session.playHistory.ReqPlayHistory(curtabIndex, 1);
 end
 
 function HISTORY_REQ_ROLL_BACK(frame, btn)
@@ -228,7 +212,7 @@ function HISTORY_REQ_ROLL_BACK(frame, btn)
 	ReserveScript("HISTORY_REQ_ROLL_BACK_BTN_ENALBE()", 3);
 	-- 연타방지
 	if 1 == parent:GetUserIValue("Enable") then
-		ui.SysMsg(ClMsg("TryLater"));	
+		ui.SysMsg(ClMsg("Auto_JamSi_Hu_DaSi_SiDoHae_JuSeyo."));	
 		return;
 	end
 
@@ -249,7 +233,7 @@ function HISTORY_REQ_ROLL_BACK(frame, btn)
 	if FREE_RESPECT_TIME < diff then
 		-- 현재는 리스펙 횟수에 따라 메달을 차감하는데 이공식이 어떻게 바뀔지모르겠다.
 		-- 어떻게 해야 확장적일까
-		if  0 > GET_CASH_TOTAL_POINT_C() - rollBackCnt then
+		if  0 > GET_CASH_POINT_C() - rollBackCnt then
 			ui.SysMsg(ClMsg("NotEnoughMedal"));	
 			return;
 		end

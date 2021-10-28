@@ -8,6 +8,7 @@ end
 function PUB_CANCEL_CREATECHAR(frame)
 
 	frame:ShowWindow(0);
+	selectMap = 0;
 	GetBarrackPub():EnableFocusChar(false);
 
 end
@@ -43,7 +44,22 @@ function PUB_CHARFRAME_UPDATE(frame, actor)
 	job_desc:SetTextByKey("value", jobCls.Caption1);
 
 	SET_HEAD_NAME(frame, gender, headType);
-	--SET_HEAD_COLOR_NAME(frame, gender, headType);	
+	--SET_HEAD_COLOR_NAME(frame, gender, headType);
+
+
+	if selectMap == 0 then
+		local KlaipeBtn_mark = GET_CHILD_RECURSIVELY(frame, "KlaipeBtn_mark", "ui::CPicture");
+		local OrshaBtn_mark = GET_CHILD_RECURSIVELY(frame, "OrshaBtn_mark", "ui::CPicture");
+		KlaipeBtn_mark:ShowWindow(0);
+		OrshaBtn_mark:ShowWindow(0);
+
+		local klaipeBtn = GET_CHILD_RECURSIVELY(frame, "KlaipeBtn")
+		local orshaBtn = GET_CHILD_RECURSIVELY(frame, "OrshaBtn")
+		klaipeBtn:SetEnable(1);
+		orshaBtn:SetEnable(1);
+	end
+
+	
 end
 
 function SET_HEAD_COLOR_NAME(frame, gender, headType)
@@ -99,34 +115,26 @@ function PUB_NEXT_HEAD(parent, ctrl)
 	local Selectclasslist = Selectclass:GetSubClassList();
 	local cnt		      = Selectclasslist:Count();
 	
-	
-
-	for i = headType, cnt do
+	for i = headType+1, cnt do
 		local nextCls = Selectclasslist:GetByIndex(i);
-		local currCls = Selectclasslist:GetByIndex(headType-1);
-		if nextCls == nil then
-			if cnt <= i then
-				for j = 0, headType do
-					nextCls = Selectclasslist:GetByIndex(j);
-					if nextCls ~= nil then
-						if imcIES.GetString(nextCls, 'Type') ~= imcIES.GetString(currCls, 'Type') and
-						   imcIES.GetString(nextCls, 'UseableBarrack') ==  'YES' then
-						   headType = j + 1;
-						   break;
-						end
-					end
+		local currCls = Selectclasslist:GetByIndex(headType);
+	
+		if cnt <= i then
+			for j = 0, headType do
+				  nextCls = Selectclasslist:GetByIndex(j);
+				if imcIES.GetString(nextCls, 'Type') ~= imcIES.GetString(currCls, 'Type') and
+				   imcIES.GetString(nextCls, 'ColorE') ==  'default' then
+				   headType = j + 1;
+				   break;
 				end
 			end
-		else
-			if imcIES.GetString(nextCls, 'Type') ~= imcIES.GetString(currCls, 'Type') and
-			   imcIES.GetString(nextCls, 'UseableBarrack') ==  'YES' then
-				headType = i + 1;
-				break;
-			end
+		elseif imcIES.GetString(nextCls, 'Type') ~= imcIES.GetString(currCls, 'Type') and
+		   imcIES.GetString(nextCls, 'ColorE') ==  'default' then
+			headType = i + 1;
+			break;
 		end
 	end
 
-	
 	GetBarrackPub():ChangeHair(headType);
 	local frame = parent:GetTopParentFrame();
 	SET_HEAD_NAME(frame, apc:GetGender(), headType);
@@ -143,29 +151,35 @@ function PUB_PREV_HEAD(parent, ctrl)
 	local Selectclasslist = Selectclass:GetSubClassList();
 	local cnt		      = Selectclasslist:Count();
     
-	if headType-2 < 0 then
-		for I = cnt-1, 0, -1 do
-			local nextCls = Selectclasslist:GetByIndex(I);
-			local currCls = Selectclasslist:GetByIndex(headType-1);
-    		
-			if imcIES.GetString(nextCls, 'Type') ~= imcIES.GetString(currCls, 'Type') and
-				imcIES.GetString(nextCls, 'UseableBarrack') ==  'YES' then
-					headType = I + 1;
-					break;
-			end
-    	end
-	else
-		for i = headType-2, 0, -1 do
-    		local nextCls = Selectclasslist:GetByIndex(i);
-			local currCls = Selectclasslist:GetByIndex(headType-1);
-
+    for i = headType-1, 0, -1 do
+    	local nextCls = Selectclasslist:GetByIndex(i);
+		local currCls = Selectclasslist:GetByIndex(headType);
+    	-- i가 0과 같아 진다면 다시 확인
+    	if i == 0 then
 			if  imcIES.GetString(nextCls, 'Type') ~= imcIES.GetString(currCls, 'Type') and
-				imcIES.GetString(nextCls, 'UseableBarrack') ==  'YES' then
+				imcIES.GetString(nextCls, 'ColorE') ==  'default' then
+    				headType = i + 1;
+    				break;
+			else
+				for j = cnt-1, headType, -1 do
+    				nextCls = Selectclasslist:GetByIndex(j);
+					if imcIES.GetString(nextCls, 'Type') ~= imcIES.GetString(currCls, 'Type') and
+					   imcIES.GetString(nextCls, 'ColorE') ==  'default' then
+						  headType = j + 1;
+						  break;
+					end
+    			end
+    		end
+    		
+    	else
+    		if  imcIES.GetString(nextCls, 'Type') ~= imcIES.GetString(currCls, 'Type') and
+				imcIES.GetString(nextCls, 'ColorE') ==  'default' then
     				headType = i + 1;
     				break;
     		end
-		end
+    	end
     end
+    
 
     GetBarrackPub():ChangeHair(headType);
     local frame = parent:GetTopParentFrame();
@@ -315,8 +329,21 @@ function PUB_BARRACK_NEWCHARACTER(frame)
 	local input_name = GET_CHILD(frame, "input_name", "ui::CEditControl");
 	input_name:ClearText();
 end
+selectMap = 0;
 
 function OPEN_PUB_CREATECHAR(frame)
+
+	local OrshaBtn_mark = GET_CHILD_RECURSIVELY(frame, "OrshaBtn_mark")
+	local KlaipeBtn_mark = GET_CHILD_RECURSIVELY(frame, "KlaipeBtn_mark")
+
+	KlaipeBtn_mark:ShowWindow(0);
+	OrshaBtn_mark:ShowWindow(0);
+
+	local klaipeBtn = GET_CHILD_RECURSIVELY(frame, "KlaipeBtn")
+	local orshaBtn = GET_CHILD_RECURSIVELY(frame, "OrshaBtn")
+	klaipeBtn:SetEnable(1);
+	orshaBtn:SetEnable(1);
+	selectMap = 0;
 
 end
 
@@ -325,26 +352,43 @@ function CLOSE_PUB_CREATECHAR(frame)
 end
 
 function PUB_EXEC_CREATECHAR(parent, ctrl)
-	local accountInfo = session.barrack.GetMyAccount();
-	if accountInfo:GetPCCount() > 0 then
-		
-		local msg = ScpArgMsg("WillYouSeeOpeningAgain?");
-		ui.MsgBox(msg, "_PUB_EXEC_CREATECHAR(1)", "_PUB_EXEC_CREATECHAR(0)");
 
-	else
-		_PUB_EXEC_CREATECHAR(1)
+	if selectMap == 0 then
+		ui.SysMsg(ClMsg("NotChooseStartMap"));
+		return;
 	end
-end
 
-function _PUB_EXEC_CREATECHAR(viewOpening)
-
-	local frame = ui.GetFrame("pub_createchar");
+	local frame = parent:GetTopParentFrame();
 
 	local input_name = GET_CHILD(frame, "input_name", "ui::CEditControl");
 	local text = input_name:GetText();
 
 	local actor = GetBarrackPub():GetSelectedActor();
-	barrack.RequestCreateCharacter(text, actor);
-	GetBarrackPub():EnablePlayOpening(viewOpening);
+	barrack.RequestCreateCharacter(text, actor, selectMap);
+end
 
+function SELECT_START_MAP_KLAIPE(parent, ctrl)
+	ctrl:SetEnable(0);
+	local KlaipeBtn_mark = parent:GetChild("KlaipeBtn_mark");
+	local OrshaBtn_mark = parent:GetChild("OrshaBtn_mark");
+	
+	OrshaBtn_mark:ShowWindow(0);
+	KlaipeBtn_mark:ShowWindow(1);
+
+	local orshaBtn = parent:GetChild("OrshaBtn");
+	orshaBtn:SetEnable(1);
+	selectMap = 1;
+end
+
+function SELECT_START_MAP_ORSHA(parent, ctrl)
+	ctrl:SetEnable(0);
+	local OrshaBtn_mark = parent:GetChild("OrshaBtn_mark");
+	local KlaipeBtn_mark = parent:GetChild("KlaipeBtn_mark");
+
+	KlaipeBtn_mark:ShowWindow(0);
+	OrshaBtn_mark:ShowWindow(1);
+
+	local klaipeBtn = parent:GetChild("KlaipeBtn");
+	klaipeBtn:SetEnable(1);
+	selectMap = 2;
 end

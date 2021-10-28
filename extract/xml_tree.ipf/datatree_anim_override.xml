@@ -669,10 +669,6 @@
 			<Node1 ClassID="17" ClassName="ATK_SHOT" FileName="npc\Catapult\npc_Catapult_std"/>
 			<Node1 ClassID="18" ClassName="ATK2_SHOT" FileName="npc\Catapult\npc_Catapult_std"/>
 		</Class>
-		<Class ClassID="46223" ClassName="musicbox_popolion">
-			<Node1 ClassID="1" ClassName="BORN" FileName="pc\equip\musicbox_poporion_rotate"/>
-			<Node1 ClassID="2" ClassName="STD" FileName="pc\equip\musicbox_poporion_rotate"/>
-		</Class>
 		<Class ClassID="46231" ClassName="Barricade_butterfly">
 			<Node1 ClassID="1" ClassName="BORN" FileName="npc\barricade_butterfly\npc_barricade_butterfly_born"/>
 			<Node1 ClassID="2" ClassName="STD" FileName="npc\barricade_butterfly\npc_barricade_butterfly_std"/>
@@ -821,28 +817,6 @@
 			<Node1 ClassID="17" ClassName="BORN2" FileName="monster\spector_gh_boss\monster_spector_gh_boss_born2"/>
 			<Node1 ClassID="18" ClassName="EVENT" FileName="monster\spector_gh_boss\monster_spector_gh_boss_event"/>
 			<Node1 ClassID="18" ClassName="SHOUT" FileName="monster\spector_gh_boss\monster_spector_gh_boss_shout"/>
-			<Node1 ClassID="19" ClassName="DEAD2" FileName="monster\spector_gh_boss\monster_spector_gh_boss_dead2"/>
-		</Class>
-		<Class ClassID="45141" ClassName="spector_gh_boss2">
-			<Node1 ClassID="1" ClassName="BORN" FileName="monster\spector_gh_boss2\monster_spector_gh_boss2_born"/>
-			<Node1 ClassID="2" ClassName="STD" FileName="monster\spector_gh_boss2\monster_spector_gh_boss2_std"/>
-			<Node1 ClassID="3" ClassName="ASTD" FileName="monster\spector_gh_boss2\monster_spector_gh_boss2_astd"/>
-			<Node1 ClassID="4" ClassName="RUN" FileName="monster\spector_gh_boss2\monster_spector_gh_boss2_wlk"/>
-			<Node1 ClassID="5" ClassName="WLK" FileName="monster\spector_gh_boss2\monster_spector_gh_boss2_wlk"/>
-			<Node1 ClassID="7" ClassName="RAISEUP" FileName="monster\spector_gh_boss2\monster_spector_gh_boss2_raiseup"/>
-			<Node1 ClassID="8" ClassName="FALLDOWN" FileName="monster\spector_gh_boss2\monster_spector_gh_boss2_astd"/>
-			<Node1 ClassID="9" ClassName="DOWN" FileName="monster\spector_gh_boss2\monster_spector_gh_boss2_down"/>
-			<Node1 ClassID="10" ClassName="KNOCKDOWN" FileName="monster\spector_gh_boss2\monster_spector_gh_boss2_knockdown"/>
-			<Node1 ClassID="11" ClassName="KNOCKBACK" FileName="monster\spector_gh_boss2\monster_spector_gh_boss2_knockdown"/>
-			<Node1 ClassID="12" ClassName="ATK01_SHOT" FileName="monster\spector_gh_boss2\monster_spector_gh_boss2_atk"/>
-			<Node1 ClassID="14" ClassName="DEAD" FileName="monster\spector_gh_boss2\monster_spector_gh_boss2_dead"/>
-			<Node1 ClassID="12" ClassName="ATK01_SHOT" FileName="monster\spector_gh_boss2\monster_spector_gh_boss2_atk"/>
-			<Node1 ClassID="15" ClassName="ATK_EVENT" FileName="monster\spector_gh_boss2\monster_spector_gh_boss2_atk_event"/>
-			<Node1 ClassID="16" ClassName="SKL_SHOT" FileName="monster\spector_gh_boss2\monster_spector_gh_boss2_skl"/>
-			<Node1 ClassID="17" ClassName="BORN2" FileName="monster\spector_gh_boss2\monster_spector_gh_boss2_born2"/>
-			<Node1 ClassID="18" ClassName="EVENT" FileName="monster\spector_gh_boss2\monster_spector_gh_boss2_event"/>
-			<Node1 ClassID="18" ClassName="SHOUT" FileName="monster\spector_gh_boss2\monster_spector_gh_boss2_shout"/>
-			<Node1 ClassID="19" ClassName="DEAD2" FileName="monster\spector_gh_boss2\monster_spector_gh_boss2_dead2"/>
 		</Class>
 		<Class ClassID="46301" ClassName="test_wall1">
 			<Node1 ClassID="1" ClassName="BORN" FileName="monster\stone\monster_stone_std"/>
@@ -949,7 +923,6 @@
 			<Node1 ClassID="30" ClassName="BATTLESTART" FileName="monster\wood_spirit_02\monster_wood_spirit_02_battlestart"/>
 			<Node1 ClassID="31" ClassName="WLK" FileName="monster\wood_spirit_02\monster_wood_spirit_02_wlk"/>
 			<Node1 ClassID="32" ClassName="RUN" FileName="monster\wood_spirit_02\monster_wood_spirit_02_run"/>
-			<Node1 ClassID="33" ClassName="EVENT_BORN" FileName="monster\wood_spirit_02\monster_wood_spirit_02_event_born"/>
 		</Class>
 		<Class ClassID="47001" ClassName="Onion_Big">
 			<Node1 ClassID="1" ClassName="STD" FileName="monster\onion\monster_onion_astd"/>
@@ -1062,7 +1035,7 @@
 			<Node1 ClassID="43" ClassName="ATK2_CAST" FileName="npc\soldier_m\soldier_m_atk2_shot"/>
 			<Node1 ClassID="43" ClassName="ASCENSION" FileName="npc\soldier_m\soldier_m_ascension"/>
 			<Node1 ClassID="44" ClassName="ATK1" FileName="npc\soldier_m\soldier_m_atk1"/>
-			<Node1 ClassID="45" ClassName="ATK2" FileName="npc\soldier_m\soldier_m_atk2"/>
+			<Node1 ClassID="44" ClassName="ATK2" FileName="npc\soldier_m\soldier_m_atk2"/>
 			<Node1 ClassID="46" ClassName="LEVER" FileName="npc\soldier_m\soldier_m_lever"/>
 			<Node1 ClassID="47" ClassName="EVENT_SIT" FileName="npc\soldier_m\soldier_m_event_sit"/>
 			<Node1 ClassID="48" ClassName="EVENT_STANDUP" FileName="npc\soldier_m\soldier_m_event_standUP"/>
@@ -1071,12 +1044,6 @@
 			<Node1 ClassID="51" ClassName="EVENT_KICK" FileName="npc\soldier_m\soldier_m_event_kick"/>
 			<Node1 ClassID="52" ClassName="ATURN" FileName="npc\soldier_m\soldier_m_aturn"/>
 			<Node1 ClassID="53" ClassName="EVENT_POINT" FileName="npc\soldier_m\soldier_m_event_point"/>
-			<Node1 ClassID="54" ClassName="EVENT_SIT_2" FileName="npc\soldier_m\soldier_m_event_sit_2"/>
-			<Node1 ClassID="55" ClassName="EVENT_SOVEL" FileName="npc\soldier_m\soldier_m_event_shovel"/>
-			<Node1 ClassID="57" ClassName="EVENT_FLASK" FileName="npc\soldier_m\soldier_m_event_flask"/>
-			<Node1 ClassID="58" ClassName="EVENT_SITGROPE_LOOP" FileName="npc\soldier_m\soldier_m_event_sitgrope_loop"/>
-			<Node1 ClassID="59" ClassName="WEAPON_SHARPEN" FileName="npc\soldier_m\soldier_m_weapon_sharpen"/>
-			<Node1 ClassID="60" ClassName="EVENT_BURY" FileName="npc\soldier_m\soldier_m_event_bury"/>
 		</Class>
 		<Class ClassID="20014" ClassName="ghost_soldier">
 			<Node1 ClassID="1" ClassName="ASTD" FileName="npc\soldier_m\soldier_m_astd"/>
@@ -1286,7 +1253,6 @@
 			<Node1 ClassID="5" ClassName="TALK3" FileName="npc\intermediate_officer_men\intermediate_officer_men_talk3"/>
 			<Node1 ClassID="6" ClassName="TALK4" FileName="npc\intermediate_officer_men\intermediate_officer_men_talk4"/>
 			<Node1 ClassID="7" ClassName="WLK" FileName="npc\intermediate_officer_men\intermediate_officer_men_wlk"/>
-			<Node1 ClassID="8" ClassName="RUN" FileName="npc\intermediate_officer_men\intermediate_officer_men_run"/>
 		</Class>
 		<Class ClassID="20030" ClassName="npc_low_lev_officer_m">
 			<Node1 ClassID="1" ClassName="BORN" FileName="npc\low_lev_officer_m\low_lev_officer_m_std"/>
@@ -1349,9 +1315,6 @@
 			<Node1 ClassID="24" ClassName="EVENT_LOOP" FileName="npc\npc_matron\npc_matron_event_loop"/>
 			<Node1 ClassID="25" ClassName="SOUL_STD" FileName="npc\npc_matron\npc_matron_soul_std"/>
 			<Node1 ClassID="26" ClassName="SOUL_WLK" FileName="npc\npc_matron\npc_matron_soul_wlk"/>
-			<Node1 ClassID="27" ClassName="POINT" FileName="npc\npc_matron\npc_matron_point"/>
-			<Node1 ClassID="28" ClassName="PRAY" FileName="npc\npc_matron\npc_matron_pray"/>
-			<Node1 ClassID="29" ClassName="SOUL_SCARE" FileName="npc\npc_matron\npc_matron_soul_scare"/>
 		</Class>
 		<Class ClassID="20037" ClassName="npc_tool_merchants">
 			<Node1 ClassID="1" ClassName="BORN" FileName="npc\npc_tool_merchants\npc_tool_merchants_std"/>
@@ -2409,10 +2372,9 @@
 			<Node1 ClassID="3" ClassName="DEAD" FileName="monster\stone\monster_stone_std"/>
 		</Class>
 		<Class ClassID="47103" ClassName="npc_rokas_3">
-			<Node1 ClassID="1" ClassName="BORN" FileName="npc\npc_rokas_3\npc_rokas_3_born"/>
-			<Node1 ClassID="2" ClassName="STD" FileName="npc\npc_rokas_3\npc_rokas_3_std"/>
-			<Node1 ClassID="3" ClassName="EVENT_DEAD" FileName="npc\npc_rokas_3\npc_rokas_3_event_dead"/>
-			<Node1 ClassID="4" ClassName="EVENT_LOOP" FileName="npc\npc_rokas_3\npc_rokas_3_event_loop"/>
+			<Node1 ClassID="1" ClassName="BORN" FileName="monster\stone\monster_stone_std"/>
+			<Node1 ClassID="2" ClassName="STD" FileName="monster\stone\monster_stone_std"/>
+			<Node1 ClassID="3" ClassName="DEAD" FileName="monster\stone\monster_stone_std"/>
 		</Class>
 		<Class ClassID="47104" ClassName="npc_rokas_4">
 			<Node1 ClassID="1" ClassName="BORN" FileName="monster\stone\monster_stone_std"/>
@@ -2920,7 +2882,6 @@
 			<Node1 ClassID="14" ClassName="SKL" FileName="monster\Corpse_Flower\Corpse_flower_skl"/>
 			<Node1 ClassID="15" ClassName="RAISEUP" FileName="monster\Corpse_Flower\Corpse_Flower_raiseup"/>
 			<Node1 ClassID="16" ClassName="IDLE" FileName="monster\Corpse_Flower\Corpse_Flower_idle"/>
-			<Node1 ClassID="17" ClassName="EVENT_IDLE" FileName="monster\Corpse_Flower\Corpse_Flower_event_idle"/>
 		</Class>
 		<Class ClassID="401461" ClassName="Flying_Flog">
 			<Node1 ClassID="1" ClassName="STD" FileName="monster\Flying_Flog\Flying_Flog_astd"/>
@@ -3153,13 +3114,6 @@
 			<Node1 ClassID="26" ClassName="RIGHTTURN_EVENT" FileName="monster\Sequoia\sequoia_rightturn_event"/>
 			<Node1 ClassID="27" ClassName="IDLE_EVENT" FileName="monster\Sequoia\sequoia_idle_event"/>
 			<Node1 ClassID="28" ClassName="SKL_READY_EVENT" FileName="monster\Sequoia\sequoia_skl_ready_event"/>
-			<Node1 ClassID="29" ClassName="EVENT_WAKEUP" FileName="monster\Sequoia\sequoia_event_wakeup"/>
-			<Node1 ClassID="30" ClassName="EVENT_IDLE" FileName="monster\Sequoia\sequoia_event_idle"/>
-			<Node1 ClassID="31" ClassName="EVENT_CRAZY" FileName="monster\Sequoia\sequoia_event_crazy"/>
-			<Node1 ClassID="32" ClassName="EVENT_CRAZY2" FileName="monster\Sequoia\sequoia_event_crazy2"/>
-			<Node1 ClassID="33" ClassName="EVENT_SKL" FileName="monster\Sequoia\sequoia_event_skl"/>
-			<Node1 ClassID="34" ClassName="EVENT_BORN" FileName="monster\Sequoia\Sequoia_event_born"/>
-			<Node1 ClassID="35" ClassName="EVENT_BORN2" FileName="monster\Sequoia\Sequoia_event_born2"/>
 		</Class>
 		<Class ClassID="401681" ClassName="Fallen_Statue">
 			<Node1 ClassID="1" ClassName="STD" FileName="monster\Fallen_Statue\Fallen_Statue_astd"/>
@@ -3428,13 +3382,6 @@
 			<Node1 ClassID="8" ClassName="EVENT_WLK" FileName="npc\Laima\Laima_event_wlk"/>
 			<Node1 ClassID="9" ClassName="EVENT_STANDUP" FileName="npc\Laima\Laima_event_standup"/>
 			<Node1 ClassID="10" ClassName="EVENT_LOOP" FileName="npc\Laima\Laima_event_loop"/>
-			<Node1 ClassID="11" ClassName="EVENT_IDLE" FileName="npc\Laima\Laima_event_idle"/>
-			<Node1 ClassID="12" ClassName="EVENT_IDLE2" FileName="npc\Laima\Laima_event_idle2"/>
-			<Node1 ClassID="13" ClassName="EVENT_IDLE3" FileName="npc\Laima\Laima_event_idle3"/>
-			<Node1 ClassID="14" ClassName="EVENT_NO" FileName="npc\Laima\Laima_event_no"/>
-			<Node1 ClassID="15" ClassName="EVENT_ATK" FileName="npc\Laima\Laima_event_atk"/>
-			<Node1 ClassID="16" ClassName="EVENT_LOOP3" FileName="npc\Laima\Laima_event_loop3"/>
-			<Node1 ClassID="17" ClassName="EVENT_SIT" FileName="npc\Laima\Laima_event_sit"/>
 		</Class>
 		<Class ClassID="40129" ClassName="npc_sculptor">
 			<Node1 ClassID="1" ClassName="STD" FileName="npc\sculptor\sculptor_std"/>
@@ -3594,7 +3541,6 @@
 		</Class>
 		<Class ClassID="40172" ClassName="npc_SCH_master">
 			<Node1 ClassID="1" ClassName="STD" FileName="npc\npc_SCH_master\npc_SCH_master_std"/>
-			<Node1 ClassID="2" ClassName="WLK" FileName="npc\npc_SCH_master\npc_SCH_master_wlk"/>
 		</Class>
 		<Class ClassID="40174" ClassName="npc_SAP_master">
 			<Node1 ClassID="1" ClassName="STD" FileName="npc\npc_SAP_master\SAP_master_std"/>
@@ -3610,7 +3556,6 @@
 		</Class>
 		<Class ClassID="40178" ClassName="npc_COS_master">
 			<Node1 ClassID="1" ClassName="STD" FileName="npc\npc_COS_master\COS_master_std"/>
-			<Node1 ClassID="2" ClassName="WLK" FileName="npc\npc_COS_master\COS_master_wlk"/>
 		</Class>
 		<Class ClassID="40179" ClassName="npc_SQR_master">
 			<Node1 ClassID="1" ClassName="STD" FileName="npc\npc_SQR_master\SQR_master_std"/>
@@ -3710,10 +3655,7 @@
 		<Class ClassID="40196" ClassName="closing_device">
 			<Node1 ClassID="1" ClassName="STD" FileName="npc\closing_device\closing_device_std"/>
 			<Node1 ClassID="2" ClassName="ON" FileName="npc\closing_device\closing_device_on"/>
-			<Node1 ClassID="3" ClassName="ON2" FileName="npc\closing_device\closing_device_on2"/>
-			<Node1 ClassID="4" ClassName="DEAD" FileName="npc\closing_device\closing_device_dead"/>
-			<Node1 ClassID="4" ClassName="EVENT_LOOP" FileName="npc\closing_device\closing_device_event_loop"/>
-			<Node1 ClassID="4" ClassName="EVENT_LOOP2" FileName="npc\closing_device\closing_device_event_loop2"/>
+			<Node1 ClassID="2" ClassName="ON2" FileName="npc\closing_device\closing_device_on2"/>
 		</Class>
 		<Class ClassID="40197" ClassName="spell_crystal_red">
 			<Node1 ClassID="1" ClassName="STD" FileName="npc\spell_crystal_red\spell_crystal_red_std"/>
@@ -3798,9 +3740,6 @@
 		<Class ClassID="40217" ClassName="f_farm_47_power_01">
 			<Node1 ClassID="1" ClassName="STD" FileName="npc\f_farm_47_power_01\f_farm_47_power_01_std"/>
 			<Node1 ClassID="2" ClassName="ON" FileName="npc\f_farm_47_power_01\f_farm_47_power_01_on"/>
-			<Node1 ClassID="3" ClassName="OFF" FileName="npc\f_farm_47_power_01\f_farm_47_power_01_off"/>
-			<Node1 ClassID="4" ClassName="DEAD" FileName="npc\f_farm_47_power_01\f_farm_47_power_01_dead"/>
-			<Node1 ClassID="5" ClassName="EVENT_LOOP" FileName="npc\f_farm_47_power_01\f_farm_47_power_01_event_loop"/>
 		</Class>
 		<Class ClassID="40218" ClassName="f_farm_47_circle_01">
 			<Node1 ClassID="1" ClassName="STD" FileName="npc\f_farm_47_circle_01\f_farm_47_circle_01_std"/>
@@ -3808,21 +3747,24 @@
 			<Node1 ClassID="3" ClassName="ON2" FileName="npc\f_farm_47_circle_01\f_farm_47_circle_01_on2"/>
 		</Class>
 		<Class ClassID="40219" ClassName="NPC_Blowfish2">
-			<Node1 ClassID="1" ClassName="BORN" FileName="npc\cart\npc_blowfish_born"/>
-			<Node1 ClassID="2" ClassName="STD" FileName="npc\cart\npc_blowfish_astd"/>
-			<Node1 ClassID="3" ClassName="ASTD" FileName="npc\cart\npc_blowfish_astd"/>
+			<Node1 ClassID="1" ClassName="BORN" FileName="npc\cart\npc_blowfish_std"/>
+			<Node1 ClassID="2" ClassName="STD" FileName="npc\cart\npc_blowfish_std"/>
+			<Node1 ClassID="3" ClassName="ASTD" FileName="npc\cart\npc_blowfish_std"/>
 			<Node1 ClassID="4" ClassName="RUN" FileName="npc\cart\npc_blowfish_run"/>
 			<Node1 ClassID="5" ClassName="WLK" FileName="npc\cart\npc_blowfish_run"/>
-			<Node1 ClassID="6" ClassName="HIT" FileName="npc\cart\npc_blowfish_astd"/>
-			<Node1 ClassID="7" ClassName="RAISEUP" FileName="npc\cart\npc_blowfish_astd"/>
-			<Node1 ClassID="8" ClassName="FALLDOWN" FileName="npc\cart\npc_blowfish_astd"/>
-			<Node1 ClassID="9" ClassName="DOWN" FileName="npc\cart\npc_blowfish_astd"/>
-			<Node1 ClassID="10" ClassName="KNOCKDOWN" FileName="npc\cart\npc_blowfish_astd"/>
-			<Node1 ClassID="11" ClassName="KNOCKBACK" FileName="npc\cart\npc_blowfish_astd"/>
-			<Node1 ClassID="12" ClassName="ATK" FileName="npc\cart\npc_blowfish_skl"/>
-			<Node1 ClassID="14" ClassName="DEAD" FileName="npc\cart\npc_blowfish_dead"/>
-			<Node1 ClassID="19" ClassName="LEFTTURN" FileName="npc\cart\npc_blowfish_astd"/>
-			<Node1 ClassID="20" ClassName="RIGHTTURN" FileName="npc\cart\npc_blowfish_astd"/>
+			<Node1 ClassID="6" ClassName="HIT" FileName="npc\cart\npc_blowfish_std"/>
+			<Node1 ClassID="7" ClassName="RAISEUP" FileName="npc\cart\npc_blowfish_std"/>
+			<Node1 ClassID="8" ClassName="FALLDOWN" FileName="npc\cart\npc_blowfish_std"/>
+			<Node1 ClassID="9" ClassName="DOWN" FileName="npc\cart\npc_blowfish_std"/>
+			<Node1 ClassID="10" ClassName="KNOCKDOWN" FileName="npc\cart\npc_blowfish_std"/>
+			<Node1 ClassID="11" ClassName="KNOCKBACK" FileName="npc\cart\npc_blowfish_std"/>
+			<Node1 ClassID="12" ClassName="ATK" FileName="npc\cart\npc_blowfish_std"/>
+			<Node1 ClassID="14" ClassName="DEAD" FileName="npc\cart\npc_blowfish_std"/>
+			<Node1 ClassID="16" ClassName="ATK_CAST" FileName="npc\cart\npc_blowfish_std"/>
+			<Node1 ClassID="17" ClassName="ATK_SHOT" FileName="npc\cart\npc_blowfish_std"/>
+			<Node1 ClassID="18" ClassName="ATK2_SHOT" FileName="npc\cart\npc_blowfish_std"/>
+			<Node1 ClassID="19" ClassName="LEFTTURN" FileName="npc\cart\npc_blowfish_std"/>
+			<Node1 ClassID="20" ClassName="RIGHTTURN" FileName="npc\cart\npc_blowfish_std"/>
 		</Class>
 	</Category>
 </idspace>

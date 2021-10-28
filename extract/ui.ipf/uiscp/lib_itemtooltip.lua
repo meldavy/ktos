@@ -1,28 +1,5 @@
 -- lib_itemtooltip.lua
 
-function GET_EQUIP_ITEM_IMAGE_NAME(invitem, imageType, gender)
-	if 'TooltipImage' == imageType then
-		local changeItemcls = nil;
-		local faceID = TryGetProp(invitem, 'BriquettingIndex');
-		if nil ~= faceID and tonumber(faceID) > 0 then
-			faceID = tonumber(faceID);
-			 changeItemcls = GetClassByType('Item', faceID)
-		end
-
-		if nil ~= changeItemcls then
-			return changeItemcls.TooltipImage;
-		end
-		local imageName = TryGetProp(invitem, imageType);
-		if nil ~= imageName then
-			return tostring(imageName)
-		end
-	elseif 'Icon' == imageType then
-		return GET_ITEM_ICON_IMAGE(invitem, gender);
-	end
-
-	return 'None'
-end
-
 function IS_NEED_DRAW_GEM_TOOLTIP(invitem)
 
 	local cnt = 0
@@ -32,8 +9,8 @@ function IS_NEED_DRAW_GEM_TOOLTIP(invitem)
 		end
 	end
 
-	if cnt <= 0 then 
-	return false
+	if cnt <= 0 then -- 일단 그릴 소켓이 있는지 검사. 없으면 컨트롤 셋 자체를 안만듬
+		return false
 	end
 
 	return true
@@ -49,8 +26,8 @@ function IS_NEED_DRAW_MAGICAMULET_TOOLTIP(invitem)
 		end
 	end
 
-	if cnt <= 0 then 
-	return false
+	if cnt <= 0 then -- 일단 그릴 소켓이 있는지 검사. 없으면 컨트롤 셋 자체를 안만듬
+		return false
 	end
 
 	return true
@@ -82,96 +59,61 @@ function GET_USEJOB_TOOLTIP(invitem)
 	if usejob == nil then
 		return '';
 	end
-
-	local usegender = TryGetProp(invitem,'UseGender')
-
 	local resultstr = ''	
 
 	if usejob == "All" then
 		resultstr =  ScpArgMsg("USEJOB_ALL")
 	else
-	    local jobOnly = TryGetProp(invitem,'JobOnly')
-	    if jobOnly ~= nil and jobOnly ~= 'None' then
-	        local jobOnlyIES = GetClass('Job',jobOnly)
-	        if jobOnlyIES ~= nil then
-    	        local jobName = TryGetProp(jobOnlyIES,'Name')
-    	        if jobName ~= nil then
-        	        local jobGrade = TryGetProp(invitem,'JobGrade')
-        	        if jobGrade ~= nil and jobGrade > 1 then
-            			if resultstr ~= '' then
-            				resultstr = resultstr..', '
-            			end
-            			resultstr = resultstr..jobName..ScpArgMsg("JOB_ONLY_EQUIP_ITEM_MSG1").." "..jobGrade..ScpArgMsg("JOB_ONLY_EQUIP_ITEM_MSG2")
-        	        else
-            			if resultstr ~= '' then
-            				resultstr = resultstr..', '
-            			end
-            			resultstr = resultstr..jobName..ScpArgMsg("JOB_ONLY_EQUIP_ITEM_MSG1")
-        	        end
-        	    end
-    	    end
-	    else
-    		local char1 = string.find(usejob, 'Char1')
-    
-    		if char1 ~= nil then
-    			if resultstr ~= '' then
-    				resultstr = resultstr..', '
-    			end
-    			resultstr = resultstr .. ScpArgMsg("USEJOB_WAR")
-    		end
-    		local char2 = string.find(usejob, 'Char2')
-    
-    		if char2 ~= nil then
-    			if resultstr ~= '' then
-    				resultstr = resultstr..', '
-    			end
-    			resultstr = resultstr .. ScpArgMsg("USEJOB_WIZ")
-    		end
-    		local char3 = string.find(usejob, 'Char3')
-    
-    		if char3 ~= nil then
-    			if resultstr ~= '' then
-    				resultstr = resultstr..', '
-    			end
-    			resultstr = resultstr .. ScpArgMsg("USEJOB_ARC")
-    		end
-    		local char4 = string.find(usejob, 'Char4')
-    
-    		if char4 ~= nil then
-    			if resultstr ~= '' then
-    				resultstr = resultstr..', '
-    			end
-    			resultstr = resultstr .. ScpArgMsg("USEJOB_CLE")
-    		end
+		local char1 = string.find(usejob, 'Char1')
+
+		if char1 ~= nil then
+			if resultstr ~= '' then
+				resultstr = resultstr..', '
+			end
+			resultstr = resultstr .. ScpArgMsg("USEJOB_WAR")
 		end
+		local char2 = string.find(usejob, 'Char2')
+
+		if char2 ~= nil then
+			if resultstr ~= '' then
+				resultstr = resultstr..', '
+			end
+			resultstr = resultstr .. ScpArgMsg("USEJOB_WIZ")
+		end
+		local char3 = string.find(usejob, 'Char3')
+
+		if char3 ~= nil then
+			if resultstr ~= '' then
+				resultstr = resultstr..', '
+			end
+			resultstr = resultstr .. ScpArgMsg("USEJOB_ARC")
+		end
+		local char4 = string.find(usejob, 'Char4')
+
+		if char4 ~= nil then
+			if resultstr ~= '' then
+				resultstr = resultstr..', '
+			end
+			resultstr = resultstr .. ScpArgMsg("USEJOB_CLE")
+		end
+		
 	end
 
 	if resultstr ~= '' then
-		
 		if usejob == "All" then
-			resultstr =  resultstr .. ScpArgMsg('EquipPossible')
+			return resultstr .. ScpArgMsg('EquipPossible')
 		else
-			resultstr =  resultstr .. ScpArgMsg('EquipPossible')
+			return resultstr .. ScpArgMsg('EquipPossible')
 		end
-
-		if usegender ~= nil and usegender ~= 'Both' then
-			resultstr = resultstr..', '
-				
-			if usegender == "Male" then
-				resultstr = resultstr .. ScpArgMsg("OnlyMale")
-			else
-				resultstr = resultstr .. ScpArgMsg("OnlyFemale")
-			end
-		end
-
-		return resultstr
 	else
 		return "ERROR! check invitem.usejob column";
 	end
 end
 
 function SET_DAMAGE_TEXT(parent, strArg, iconname, mindamage, maxdamage, index, reinforceAddValue)
+
 	tolua.cast(parent, "ui::CControlSet");
+
 	if reinforceAddValue == nil then
 		reinforceAddValue = 0
 	end
@@ -182,7 +124,7 @@ function SET_DAMAGE_TEXT(parent, strArg, iconname, mindamage, maxdamage, index, 
 	end
 
 	if iconname ~= 'None' then
-
+		-- 타입 아이콘
 		local weapon_type_img = GET_CHILD(parent, "weapon_type", "ui::CPicture");
 		weapon_type_img:SetImage(iconname);
 		weapon_type_img:ShowWindow(1)
@@ -195,6 +137,7 @@ function SET_DAMAGE_TEXT(parent, strArg, iconname, mindamage, maxdamage, index, 
 	local atkValueCtrl = GET_CHILD(parent, "atkValue"..index, "ui::CRichText");
 	if mindamage == maxdamage or maxdamage == 0 then
 		if reinforceAddValue ~= 0 then
+			--강화수치를 따로 표현해주지 않고 합쳐서 보여준다.
 			--atkValueCtrl:SetText(mindamage..' '..color..'(+'..reinforceAddValue..'){/}');
 			atkValueCtrl:SetText(mindamage + reinforceAddValue);
 		else
@@ -202,6 +145,7 @@ function SET_DAMAGE_TEXT(parent, strArg, iconname, mindamage, maxdamage, index, 
 		end
 	else
 		if reinforceAddValue ~= 0 then
+			--강화수치를 따로 표현해주지 않고 합쳐서 보여준다.
 			atkValueCtrl:SetText(mindamage + reinforceAddValue.." ~ "..maxdamage + reinforceAddValue);
 		else
 			atkValueCtrl:SetText(mindamage.." ~ "..maxdamage);
@@ -289,7 +233,7 @@ function ADD_ITEM_SOCKET_PROP(GroupCtrl, invitem, socket, gem, gemExp, gemLv, yP
 		end
 
 		local cnt2 = socketProp:GetPropPenaltyCountByType(type);
-
+		-- 원래 한단게 아래에, 젬 강화가 존재한다면 젬 강화 레벨을 뺀다
 		local penaltyLv = lv - gemLv;
 		if 0 > penaltyLv then
 			penaltyLv = 0;
@@ -299,7 +243,7 @@ function ADD_ITEM_SOCKET_PROP(GroupCtrl, invitem, socket, gem, gemExp, gemLv, yP
 			local addProp = socketPenaltyProp:GetPropPenaltyAddByType(type, i);
 			local tempvalue = addProp.value
 			local plma_mark = POSITIVE_COLOR .. "{img green_up_arrow 16 16}"..'{/}';
-
+			-- 만약 마이너스 패널티라면
 			if tempvalue < 0 then
 				plma_mark = NEGATIVE_COLOR .. "{img red_down_arrow 16 16}"..'{/}';			
 			end
@@ -340,6 +284,7 @@ function ADD_ITEM_PROPERTY_TEXT(GroupCtrl, txt, xmargin, yPos )
 	end
 
 	local cnt = GroupCtrl:GetChildCount();
+	
 	local ControlSetObj			= GroupCtrl:CreateControlSet('tooltip_item_prop_richtxt', "ITEM_PROP_" .. cnt , 0, yPos);
 	local ControlSetCtrl		= tolua.cast(ControlSetObj, 'ui::CControlSet');
 	local richText = GET_CHILD(ControlSetCtrl, "text", "ui::CRichText");
@@ -353,43 +298,15 @@ function ADD_ITEM_PROPERTY_TEXT(GroupCtrl, txt, xmargin, yPos )
 end
 
 function SET_GRADE_TOOLTIP(parent, invitem, starsize)
+
+	-- 아이템 grade 설정
 	local gradeChild = parent:GetChild('grade');
 	if gradeChild ~= nil then
-		local itemGuid = parent:GetTopParentFrame():GetUserValue('TOOLTIP_ITEM_GUID');
-		local isEquiped = 1;
-		if session.GetEquipItemByGuid(itemGuid) == nil then
-			isEquiped = 0;
-		end
-		local gradeString = GET_ITEM_GRADE_TXT(invitem, starsize, isEquiped);
+		local gradeString = GET_ITEM_GRADE_TXT(invitem, starsize);
 		gradeChild:SetText(gradeString);
-
-		local gradeSize = gradeChild:GetY () + gradeChild:GetHeight();
-		if parent:GetHeight() < gradeSize then
-			parent:Resize(parent:GetWidth(), gradeSize);
-		end
 	end
 end
 
-function SET_CARD_EDGE_TOOLTIP(parent, invitem)
-	local cardEdge = GET_CHILD(parent, "card_edge", "ui::CPicture");
-	if cardEdge ~= nil and invitem.CardGroupName ~= 'None' then
-		local cardGroupName = invitem.CardGroupName
-			
-		if cardGroupName == 'ATK' then
-			cardEdge:SetImage('moncard_red')
-		elseif cardGroupName == 'DEF' then
-			cardEdge : SetImage('moncard_blue')
-		elseif cardGroupName == 'UTIL' then
-			cardEdge : SetImage('moncard_purple')
-		elseif cardGroupName == 'STAT' then
-			cardEdge : SetImage('moncard_green')
-		elseif cardGroupName == 'LEG' then
-			cardEdge : SetImage('moncard_yellow')
-		else 
-			cardEdge:SetImage('moncard_red')
-		end
-	end
-end
 
 function ITEM_COMPARISON_SET_OFFSET(tooltipframe, isReadObj)
 	local equipChild = tooltipframe:GetChild('equip');
@@ -401,10 +318,41 @@ end
 
 function COMPARISON_BY_PROPLIST(list, invitem, eqpItem, tooltipframe, equipchange, ispickitem)
 
-	local valueList = GET_COMPARE_VALUE_LIST(list, invitem, eqpItem);
+	local valueList = {};
+	for i = 1 , #list do
+		local propName = list[i];
+		if eqpItem == nil then
 
-	local IsNeedShowTooltip = 0;
-		for i = 1 , #list do
+			local invaddvalue = TryGetProp(invitem,'ADD_'..propName);
+			if invaddvalue == nil then
+				invaddvalue = 0
+			end
+
+			local invtemvalue = invitem[propName] + invaddvalue
+
+			local changeValue = ABILITY_DESC_COMPARITION(ScpArgMsg(propName), invtemvalue, 0);
+			valueList[i] = changeValue;
+		else
+			local invaddvalue = TryGetProp(invitem,'ADD_'..propName);
+			if invaddvalue == nil then
+				invaddvalue = 0
+			end
+
+			local equipaddvalue = TryGetProp(eqpItem,'ADD_'..propName);
+			if equipaddvalue == nil then
+				equipaddvalue = 0
+			end
+
+			local invtemvalue = invitem[propName] + invaddvalue
+			local equiptemvalue = eqpItem[propName] + equipaddvalue
+
+			local changeValue = ABILITY_DESC_COMPARITION(ScpArgMsg(propName), invtemvalue, equiptemvalue);
+			valueList[i] = changeValue;
+		end
+	end
+
+	local IsNeedShowTooltip = 0; -- 툴팁 자체가 떠야하는가에 대한 변수. 하나라도 보여줄게 있었는지?
+	for i = 1 , #list do
 		local propName = list[i];
 		local changeValue = valueList[i];
 		if ADD_COMPARITION_TOOLTIP(equipchange, changeValue) == 1 then
@@ -439,43 +387,6 @@ function COMPARISON_BY_PROPLIST(list, invitem, eqpItem, tooltipframe, equipchang
 	end
 end
 
-function GET_COMPARE_VALUE_LIST(list, invitem, eqpItem, style)
-	local valueList = {};
-	for i = 1 , #list do
-		local propName = list[i];
-		if eqpItem == nil then
-
-			local invaddvalue = TryGetProp(invitem,'ADD_'..propName);
-			if invaddvalue == nil then
-				invaddvalue = 0
-			end
-
-			local invtemvalue = invitem[propName] + invaddvalue
-
-			local changeValue = ABILITY_DESC_COMPARITION(ScpArgMsg(propName), invtemvalue, 0, style);
-			valueList[i] = changeValue;
-		else
-			local invaddvalue = TryGetProp(invitem,'ADD_'..propName);
-			if invaddvalue == nil then
-				invaddvalue = 0
-			end
-
-			local equipaddvalue = TryGetProp(eqpItem,'ADD_'..propName);
-			if equipaddvalue == nil then
-				equipaddvalue = 0
-			end
-
-			local invtemvalue = invitem[propName] + invaddvalue
-			local equiptemvalue = eqpItem[propName] + equipaddvalue
-
-			local changeValue = ABILITY_DESC_COMPARITION(ScpArgMsg(propName), invtemvalue, equiptemvalue, style);
-			valueList[i] = changeValue;
-		end
-	end
-
-	return valueList;
-end
-
 function IS_DRAG_RECIPE_ITEM(itemObj)
 
 	local itemProp = geItemTable.GetProp(itemObj.ClassID);
@@ -488,12 +399,16 @@ function IS_DRAG_RECIPE_ITEM(itemObj)
 		return 0;
 	end
 
+	if session.GetWiki(recipeProp.needWikiID) == nil then
+		return 0;
+	end
+
 	local liftIcon = ui.GetLiftIcon();
 	if liftIcon == nil then
 		return 0;
 	end
 
-	return 0;
+	return 0; --왜 항상 0인겨?
 end
 
 function GET_DRAG_RECIPE_INFO(itemObj)
@@ -581,7 +496,6 @@ function IS_DRAW_ETC_ITEM_DAMAGE(invitem)
 end
 
 function GET_TOOLTIP_ITEM_OBJECT(strarg, guid, numarg1)
-
 	local invitem = nil;
 	if strarg == 'select' then
 		invitem = session.GetSelectItemByIndex(guid);
@@ -589,15 +503,10 @@ function GET_TOOLTIP_ITEM_OBJECT(strarg, guid, numarg1)
 		invitem = GET_SOLDITEM_BY_INDEX(guid);
 	elseif strarg == 'equip' then
 		invitem = GET_ITEM_BY_GUID(guid, 1);
-		if invitem == nil then
-			invitem = session.otherPC.GetItemByGuid(guid);
-		end
 	elseif strarg == 'dummyPC' then
 		invitem = GET_DUMMYPC_ITEM(guid, numarg1);
 	elseif strarg == "warehouse" then
 		invitem = session.GetWarehouseItemByGuid(guid);
-	elseif strarg == "accountwarehouse" then
-		invitem = session.GetEtcItemByGuid(IT_ACCOUNT_WAREHOUSE, guid);
 	elseif strarg == "party" then
 		invitem = GetItemByID(guid, session.party.GetPartyInfo().inv);
 	elseif strarg == "exchange" then
@@ -610,24 +519,14 @@ function GET_TOOLTIP_ITEM_OBJECT(strarg, guid, numarg1)
 			return GetIES(obj);
 		end
 	elseif strarg == "collection" then
-		--[[
 		local colls = session.GetMySession():GetCollection();
-		local coll = colls:Get(numarg1);
+		local coll = colls:Get(guid);
 		if coll ~= nil then
-			local collItem = coll:GetByItemID(guid);
-			if collItem == nil then
-				local item = GetClassByType("Item", guid);
-				return item;
-			end
-
+			local collItem = coll:Get(numarg1);
 			if collItem ~= nil then
 				return GetIES(collItem:GetObject());
 			end
 		end
-		]]--
-		-- collection parameter(guid) is classID.
-		local item = GetClassByType("Item", guid);
-		return item;
 	elseif strarg == "market" then
 		local marketItem = session.market.GetItemByMarketID(guid);
 		if marketItem ~= nil then
@@ -641,7 +540,7 @@ function GET_TOOLTIP_ITEM_OBJECT(strarg, guid, numarg1)
 			return obj;
 		end
 	elseif strarg == "petequip" then
-		local item = session.pet.GetPetEquipObjByGuid(guid);
+		local item = session.pet.GetPetEquipByGuid(guid);
 		if item ~= nil then
 			local obj = GetIES(item:GetObject());
 			return obj;
@@ -657,8 +556,6 @@ function GET_TOOLTIP_ITEM_OBJECT(strarg, guid, numarg1)
 				return ownerItemObj;
 			end
 		end
-	elseif strarg == "guildwarehouse" then
-		invitem = session.GetEtcItemByGuid(IT_GUILD, guid);
 	else
 		invitem = GET_ITEM_BY_GUID(guid, 0);
 	end
@@ -750,31 +647,6 @@ function SET_BUFF_TEXT(gBox, invitem, yPos, strarg)
 
 	end
 
-	if invitem.EnchanterBuffValue ~= 'None' and invitem.EnchanterBuffValue ~= 0  then
-		local y = GET_CHILD_MAX_Y(gBox);
-		local content = gBox:CreateOrGetControl('richtext', "ENCHANTBUFF", 20, yPos, gBox:GetWidth() - 30, 20);
-		local clientTxt = "";
-		content = tolua.cast(content, "ui::CRichText");
-		content:SetTextFixWidth(1);
-		content:SetFormat("%s %s");
-		content:AddParamInfo("text", "");
-		content:AddParamInfo("remaintime", "");
-
-		local sysTime = geTime.GetServerSystemTime();
-		local endTime = imcTime.GetSysTimeByStr(invitem.EnchanterBuffEndTime);
-		local difSec = imcTime.GetDifSec(endTime, sysTime);
-		content:SetUserValue("REMAINSEC", difSec);
-		content:SetUserValue("STARTSEC", imcTime.GetAppTime());
-		content:SetUserValue("ENCHANT", 1);
-		SHOW_REMAIN_BUFF_TIME(content);
-		content:RunUpdateScript("SHOW_REMAIN_BUFF_TIME");
-		local clientTxt = invitem.EnchanterBuffValue .. '_DESC';
-		local text = string.format("{#004123}".."- "..ScpArgMsg(clientTxt));
-		content:SetTextByKey("text", text);
-
-		yPos = yPos + content:GetHeight();
-	end
-
 	return yPos;
 end
 
@@ -782,18 +654,8 @@ function SHOW_REMAIN_BUFF_TIME(ctrl)
 	local elapsedSec = imcTime.GetAppTime() - ctrl:GetUserIValue("STARTSEC");
 	local startSec = ctrl:GetUserIValue("REMAINSEC");
 	startSec = startSec - elapsedSec;
-	if 0 > startSec then
-		ctrl:SetTextByKey("remaintime", "{#004123}");
-		ctrl:StopUpdateScript("SHOW_REMAIN_BUFF_TIME");
-		return 0;
-	end 
 	local timeTxt = GET_TIME_TXT(startSec);
-	local enchant = ctrl:GetUserIValue("ENCHANT");
-	if 1 == enchant then
-		ctrl:SetTextByKey("remaintime", "{nl}{#004123}    " .. timeTxt);
-	else
-		ctrl:SetTextByKey("remaintime", "{#004123}" .. timeTxt);
-	end
+	ctrl:SetTextByKey("remaintime", "{#004123}" .. timeTxt);
 	return 1;
 end
 
@@ -805,65 +667,8 @@ function SHOW_REMAIN_BUFF_COUNT(ctrl)
 	return 1;
 end
 
-function SET_TRANSCEND_TEXT(gBox, invitem, yPos, isEquiped)
-    if isEquiped == nil then
-		isEquiped = 0;
-	end
-	local pc = GetMyPCObject();
-	local ignoreTranscend = TryGetProp(pc, 'IgnoreReinforce');
-	if isEquiped == 0 then
-		ignoreTranscend = 0;
-	end
-    local transcend = TryGetProp(invitem, "Transcend");
-	if ignoreTranscend == 1 then
-		transcend = 0;
-	end
-
-	if transcend ~= nil and transcend > 0 then
-		local y = GET_CHILD_MAX_Y(gBox);
-
-		local propNames, propValues = GET_ITEM_TRANSCENDED_PROPERTY(invitem);
-		for i = 1 , #propNames do
-			local propName = propNames[i];
-			local propValue = propValues[i];
-
-			local mhpText = gBox:CreateOrGetControl('richtext', "TRASNCEND_TEXT_" .. propName, 20, yPos, gBox:GetWidth() - 30, 20);
-			mhpText = AUTO_CAST(mhpText);
-			mhpText:SetTextFixWidth(1);
-			local text = "{#004123}- " .. ScpArgMsg(propName .. "TranscendBy{Count}", "Count", transcend);
-			mhpText:SetText(text);
-		
-			local hpUpValue = gBox:CreateOrGetControl('richtext', "TRASNCEND_VALUE_" .. propName, 200, yPos, 200, 20);
-			hpUpValue = AUTO_CAST(hpUpValue);
-			hpUpValue:SetTextFixWidth(1);
-			hpUpValue:SetTextAlign("right", "center");
-
-			local valueText = string.format("{#004123}"..ScpArgMsg("PropUp").."%d", propValue)
-			hpUpValue:SetText(valueText.."%");
-			
-			yPos = yPos + mhpText:GetHeight();
-		end
-	end
-
-	return yPos;
-end
-
-function SET_REINFORCE_TEXT(gBox, invitem, yPos, isEquiped, basicProp)
-	if isEquiped == nil then
-		isEquiped = 0;
-	end
-	local pc = GetMyPCObject();
-	local ignoreReinf = TryGetProp(pc, 'IgnoreReinforce');
-	local bonusReinf = TryGetProp(pc, 'BonusReinforce');
-	if TryGetProp(invitem, 'EquipGroup') ~= 'SubWeapon' or isEquiped == 0 then
-		bonusReinf = 0;
-	end
-	if isEquiped == 0 then
-		ignoreReinf = 0;
-	end
-	local itemReinf = invitem.Reinforce_2 + bonusReinf;
-
-	if itemReinf > 0  then
+function SET_REINFORCE_TEXT(gBox, invitem, yPos)
+	if invitem.Reinforce_2 > 0  then
 		local y = GET_CHILD_MAX_Y(gBox);
 		local reinforceText = gBox:CreateOrGetControl('richtext', "REINFORCE_TEXT", 20, yPos, gBox:GetWidth() - 30, 20);
 		reinforceText = tolua.cast(reinforceText, "ui::CRichText");
@@ -874,11 +679,11 @@ function SET_REINFORCE_TEXT(gBox, invitem, yPos, isEquiped, basicProp)
 		local reinforceValue = 0;
 
 		if invitem.GroupName == "Armor" then
-			reinforceValue = GET_REINFORCE_ADD_VALUE(basicProp, invitem, ignoreReinf, bonusReinf);
+			reinforceValue = GET_REINFORCE_ADD_VALUE(invitem.BasicTooltipProp, invitem)
 		elseif invitem.GroupName == "Weapon" then
-			reinforceValue = GET_REINFORCE_ADD_VALUE_ATK(invitem, ignoreReinf, bonusReinf, basicProp);
+			reinforceValue = GET_REINFORCE_ADD_VALUE_ATK(invitem)
 		elseif invitem.GroupName == "SubWeapon" then
-			reinforceValue = GET_REINFORCE_ADD_VALUE_ATK(invitem, ignoreReinf, bonusReinf, basicProp);
+			reinforceValue = GET_REINFORCE_ADD_VALUE_ATK(invitem)
 		end
 
 		if invitem.BuffValue > 0 then
@@ -888,14 +693,7 @@ function SET_REINFORCE_TEXT(gBox, invitem, yPos, isEquiped, basicProp)
 				reinforceValue = reinforceValue - invitem.BuffValue
 			end
 		end
-		local infoText = ScpArgMsg("MoruReinforce");
-		if bonusReinf > 0 then
-			infoText = ScpArgMsg("OverEstimate");
-		end
-		if ignoreReinf == 1 then
-			infoText = ScpArgMsg("Devaluation");
-		end
-		local text = string.format("{#004123}".."- "..infoText)
+		local text = string.format("{#004123}".."- "..ScpArgMsg("MoruReinforce"))
 		reinforceText:SetTextByKey("ReinforceText", text);
 
 		local reinforceUpValue = gBox:CreateOrGetControl('richtext', "REINFORCE_VALUE", 350, yPos, gBox:GetWidth() - 30, 20);
@@ -904,6 +702,7 @@ function SET_REINFORCE_TEXT(gBox, invitem, yPos, isEquiped, basicProp)
 		reinforceUpValue:SetTextFixWidth(1);
 		reinforceUpValue:SetFormat("%s");
 		reinforceUpValue:AddParamInfo("ReinforceValue", "");
+
 		reinforceUpValue:SetTextByKey("ReinforceValue", valueText);
 
 		yPos = yPos + reinforceText:GetHeight();
@@ -912,66 +711,16 @@ function SET_REINFORCE_TEXT(gBox, invitem, yPos, isEquiped, basicProp)
 	return yPos;
 end
 
-function SET_REINFORCE_BUFF_TEXT(gBox, invitem, yPos)
-	if invitem.Reinforce_2 >= 10  then
-		if invitem.DefRatio == 0 and invitem.MDefRatio == 0 then
-			return yPos;
-		end
-		
-		local y = GET_CHILD_MAX_Y(gBox);
-		
-		local reinforceBuffText = gBox:CreateOrGetControl('richtext', "REINFORCE_BUFF_TEXT", 20, yPos, gBox:GetWidth() - 30, 20);
-		reinforceBuffText = tolua.cast(reinforceBuffText, "ui::CRichText");
-		reinforceBuffText:SetTextFixWidth(1);
-		reinforceBuffText:SetFormat("%s");
-		reinforceBuffText:AddParamInfo("ReinforceBuffText", "");
-
-		local text;
-		local ratioValue = 0;
-		if invitem.DefRatio > 0 then
-			text = string.format("{#004123}".."- "..ScpArgMsg("MeleeDamage"))
-			ratioValue = invitem.DefRatio;
-		elseif invitem.MDefRatio > 0 then
-			text = string.format("{#004123}".."- "..ScpArgMsg("MagicDamage"));
-			ratioValue = invitem.MDefRatio;
-		end
-		reinforceBuffText:SetTextByKey("ReinforceBuffText", text);
-
-		local reinforceBuffValue = gBox:CreateOrGetControl('richtext', "REINFORCE_BUFF_VALUE", 350, yPos, gBox:GetWidth() - 30, 20);
-		reinforceBuffValue = tolua.cast(reinforceBuffValue, "ui::CRichText");
-		reinforceBuffValue:SetTextFixWidth(1);
-		reinforceBuffValue:SetFormat("%s");
-		reinforceBuffValue:AddParamInfo("ReinforceValue", "");
-		
-		local valueText = string.format("{#004123}"..ScpArgMsg("PropUp").."%d%%", ratioValue);
-		reinforceBuffValue:SetTextByKey("ReinforceValue", valueText);
-
-		yPos = yPos + reinforceBuffValue:GetHeight();
-	end
-
-	return yPos;
-end
 
 function ABILITY_CHANGEVALUE_SKINSET(tooltipframe, itemtype, invitem, equipItem)
-	local valueUp = IS_VALUE_UP_BY_CHANGE_ITEM(itemtype, invitem, equipItem);
-	local gbox = GET_CHILD(tooltipframe,'changevalue','ui::CGroupBox')
-
-	if valueUp == 0 then
-		gbox:SetSkinName("comparisonballoon_negative");
-	else
-		gbox:SetSkinName("comparisonballoon_positive");
-	end
-end
-
-function IS_VALUE_UP_BY_CHANGE_ITEM(itemtype, beforeItem, afterItem)
 	local valueUp = 0;
-	if itemtype == "WEAPON" and afterItem ~= nil then
+	if itemtype == "WEAPON" and equipItem ~= nil then
 
-		local equipMinAtkInfo = afterItem.MINATK;
-		local equipMaxAtkInfo = afterItem.MAXATK;
+		local equipMinAtkInfo = equipItem.MINATK;
+		local equipMaxAtkInfo = equipItem.MAXATK;
 
-		local invMinAtkInfo = beforeItem.MINATK;
-		local invMaxAtkInfo = beforeItem.MAXATK;
+		local invMinAtkInfo = invitem.MINATK;
+		local invMaxAtkInfo = invitem.MAXATK;
 
 		if ABILITY_COMPARITION_VALUE(invMinAtkInfo, equipMinAtkInfo) < 0 or ABILITY_COMPARITION_VALUE(invMaxAtkInfo, equipMaxAtkInfo) < 0 then
 			valueUp = 1;
@@ -983,30 +732,30 @@ function IS_VALUE_UP_BY_CHANGE_ITEM(itemtype, beforeItem, afterItem)
 			
 			for i = 3 , #list do
 				local propName = list[i];
-				equipAbilityTotal = equipAbilityTotal + afterItem[propName];
-				invAbilityTotal = invAbilityTotal + beforeItem[propName];
+				equipAbilityTotal = equipAbilityTotal + equipItem[propName];
+				invAbilityTotal = invAbilityTotal + invitem[propName];
 			end
 
 			if ABILITY_COMPARITION_VALUE(invAbilityTotal, equipAbilityTotal) < 0 then
 				valueUp = 1;
 			end
 		end
-	elseif itemtype == "ARMOR" and afterItem ~= nil then
+	elseif itemtype == "ARMOR" and equipItem ~= nil then
 		local equipDefInfo = 0;
 		local invDefInfo = 0;
 
-		if afterItem.ClassType == 'Pants' or afterItem.ClassType == 'Shirt' then
-			equipDefInfo = afterItem.DEF;
-			invDefInfo = beforeItem.DEF;
-		elseif afterItem.ClassType == 'Gloves' then
+		if equipItem.ClassType == 'Pants' or equipItem.ClassType == 'Shirt' then
+			equipDefInfo = equipItem.DEF;
+			invDefInfo = invitem.DEF;
+		elseif equipItem.ClassType == 'Gloves' then
 
-			equipDefInfo = afterItem.CRTATK;
-			invDefInfo = beforeItem.CRTATK;
+			equipDefInfo = equipItem.CRTATK;
+			invDefInfo = invitem.CRTATK;
 
-		elseif afterItem.ClassType == 'Boots' then
+		elseif equipItem.ClassType == 'Boots' then
 
-			equipDefInfo = afterItem.MSTA;
-			invDefInfo = beforeItem.MSTA;
+			equipDefInfo = equipItem.MSTA;
+			invDefInfo = invitem.MSTA;
 		end
 
 		if ABILITY_COMPARITION_VALUE(invDefInfo, equipDefInfo) < 0 then
@@ -1020,35 +769,40 @@ function IS_VALUE_UP_BY_CHANGE_ITEM(itemtype, beforeItem, afterItem)
 
 		for i = 1 , #list do
 			local propName = list[i];
-			equipAbilityTotal = equipAbilityTotal + afterItem[propName];
-			invAbilityTotal = invAbilityTotal + beforeItem[propName];
+			equipAbilityTotal = equipAbilityTotal + equipItem[propName];
+			invAbilityTotal = invAbilityTotal + invitem[propName];
 
 		end
 
 		if ABILITY_COMPARITION_VALUE(invAbilityTotal, equipAbilityTotal) < 0 then
 			valueUp = 1;
 		end
+
 	end
-	return valueUp;
+
+	local gbox = GET_CHILD(tooltipframe,'changevalue','ui::CGroupBox')
+
+	if valueUp == 0 then
+		gbox:SetSkinName("comparisonballoon_negative");
+	else
+		gbox:SetSkinName("comparisonballoon_positive");
+	end
 end
 
 function ABILITY_COMPARITION_VALUE(invInfo, equipInfo)
 	return equipInfo - invInfo;
 end
 
-function ABILITY_DESC_COMPARITION(desc, invInfo, equipInfo, style)
-	if style == nil then
-		style = "{s20}";
-	end
+function ABILITY_DESC_COMPARITION(desc, invInfo, equipInfo)
 	local result = invInfo - equipInfo;
 	if result > 0 then
 
 		--if desc == ScpArgMsg('Auto_KangHwaJamJaeLyeog') then
 		--	result = invInfo;
 		--end
-		return string.format(style.."{#050505}%s{/} "..style.."{#004000}{b}+%d{/}", desc, result);
+		return string.format("{s20}{#050505}%s{/} {s20}{#004000}{b}+%d{/}", desc, result);
 	elseif result < 0 then
-		return string.format(style.."{#050505}%s{/} "..style.."{#400000}{b}%d{/}", desc, result);
+		return string.format("{s20}{#050505}%s{/} {s20}{#400000}{b}%d{/}", desc, result);
 	end
 	return string.format("None");
 end
@@ -1114,16 +868,6 @@ function ABILITY_DESC_PLUS(desc, cur)
 
 end
 
-function ABILITY_DESC_NO_PLUS(desc, cur)
-
-    if cur < 0 then
-        return string.format(" %s "..ScpArgMsg("PropDown").."%d", desc, math.abs(cur));
-    else
-    	return string.format(" %s "..ScpArgMsg("PropUp").."%d", desc, math.abs(cur));
-	end
-
-end
-
 function ABILITY_DESC_GENERAL(desc, basic, cur, color)
 	local fontColor = color;
 	if fontColor == nil then
@@ -1154,137 +898,4 @@ function GET_DUR_TEXT(invitem)
 	return dureinfo;
 end
 
-function TOGGLE_TRADE_OPTION(tradabilityCset, invitem, pictureName, richtextName, property)
-    local styleTradeOn = tradabilityCset:GetUserConfig('STYLE_TRADE_ON');
-    local styleTradeOff = tradabilityCset:GetUserConfig('STYLE_TRADE_OFF');
 
-	local picture = GET_CHILD(tradabilityCset, pictureName, 'ui::CPicture')
-	local richtext = GET_CHILD(tradabilityCset, richtextName, 'ui::CRichText')
-
-	if IS_ENABLE_TRADE_BY_TRADE_TYPE(invitem, property) == true then
-		picture:SetImage('tradecondition_on')
-        richtext:SetTextByKey('style', styleTradeOn);
-    else
-	    picture:SetImage('tradecondition_off')
-        richtext:SetTextByKey('style', styleTradeOff);
-    end
-end
-
-function IS_ENABLE_TRADE_BY_TRADE_TYPE(invitem, property)
-    if property == "ShopTrade" then
-	    return IS_ENABLED_SHOP_TRADE_ITEM(invitem)
-    elseif property == "UserTrade" then
-	    return IS_ENABLED_USER_TRADE_ITEM(invitem)
-    elseif property == "TeamTrade" then
-	    return IS_ENABLED_TEAM_TRADE_ITEM(invitem)
-    elseif property == "MarketTrade" then
-	    return IS_ENABLED_MARKET_TRADE_ITEM(invitem)
-    else
-        IMC_LOG("INFO_NORMAL", "IS_ENABLE_TRADE_BY_TRADE_TYPE ERROR!!")
-    end
-end
-
-function ON_TOGGLE_EQUIP_ITEM_TOOLTIP_DESC()
-	local frame = ui.GetFrame("inventory")
-    if frame == nil then
-        return;
-    end
-	local wholeitem = ui.GetTooltip("wholeitem")
-	local wholeitem_link = ui.GetFrame("wholeitem_link")
-    
-    local is_frame_visible = frame ~= nil and frame:IsVisible() == 1;
-    local is_wholeitem_visible = wholeitem ~= nil and wholeitem:IsVisible() == 1;
-    local is_wholeitem_link_visible = wholeitem_link ~= nil and wholeitem_link:IsVisible() == 1;
-    
-    if is_frame_visible == false and is_wholeitem_link_visible == false then
-        return;
-    end
-
-    isToggle = IS_TOGGLE_EQUIP_ITEM_TOOLTIP_DESC()
-	if isToggle == 1 then
-		frame:SetUserValue("IS_TOGGLE_EQUIP_ITEM_TOOLTIP_DESC", 0);
-	else
-        frame:SetUserValue("IS_TOGGLE_EQUIP_ITEM_TOOLTIP_DESC", 1);
-	end
-
-    ON_REFRESH_ITEM_TOOLTIP()
-end
-
-function IS_TOGGLE_EQUIP_ITEM_TOOLTIP_DESC()
-    local frame = ui.GetFrame("inventory")
-    if frame == nil then
-        return 0;
-    end
-    local value = frame:GetUserValue("IS_TOGGLE_EQUIP_ITEM_TOOLTIP_DESC");
-	return tonumber(value)
-end
-
-function IS_DISABLED_TRADE(invitem)
-	local itemProp = geItemTable.GetPropByName(invitem.ClassName);
-	local blongProp = TryGetProp(invitem, "BelongingCount");
-	local blongCnt = 0;
-	if blongProp ~= nil then
-		blongCnt = tonumber(blongProp);
-	end
-
-    if invitem.MaxStack <= 1 and (GetTradeLockByProperty(invitem) ~= "None" or 0 <  blongCnt) then
-        return true;
-    end
-    return false;
-end
-
-function IS_ENABLED_SHOP_TRADE_ITEM(invitem)
-	local itemProp = geItemTable.GetPropByName(invitem.ClassName);
-    if false == itemProp:IsEnableShopTrade() then
-        return false;
-    else
-        return true;
-    end
-end
-function IS_ENABLED_USER_TRADE_ITEM(invitem)
-	local itemProp = geItemTable.GetPropByName(invitem.ClassName);
-
-	if false == itemProp:IsEnableUserTrade()then
-        return false;
-	elseif true == IS_DISABLED_TRADE(invitem) then
-        return false;
-    else
-        return true;
-	end
-end
-
-function IS_ENABLED_MARKET_TRADE_ITEM(invitem)
-	local itemProp = geItemTable.GetPropByName(invitem.ClassName);
-
-    if false == itemProp:IsEnableMarketTrade() then
-        return false;
-    elseif true == IS_DISABLED_TRADE(invitem) then
-        return false;
-    else
-        return true;
-    end
-end
-
-function IS_ENABLED_TEAM_TRADE_ITEM(invitem)
-	local itemProp = geItemTable.GetPropByName(invitem.ClassName);
-
-    if false == itemProp:IsEnableTeamTrade() then
-        return false;
-    elseif true == IS_DISABLED_TRADE(invitem) then
-        return false;
-    else
-        return true;
-	end
-end
-
-function GET_ENABLE_TRADE_MSG(itemProp)
-	if itemProp == nil then
-		return "";
-	elseif itemProp : IsEnableUserTrade() == true then
-		return ScpArgMsg("UserTradeAble");
-	elseif itemProp : IsEnableMarketTrade() == true then
-		return ScpArgMsg("MarketTradeAble");
-	else
-		return ScpArgMsg("UserTradeUnable")
-	end
-end

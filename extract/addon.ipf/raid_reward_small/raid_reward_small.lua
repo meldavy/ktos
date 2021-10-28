@@ -16,17 +16,9 @@ function ITEM_BALLOON_CLEAR(handle)
 end
 
 function ITEM_BALLOON_COMMON(handle, itemCls, tooltipEnum, duration, delaySec, skinName, msgText)
-  if world.GetLayer() ~= 0 then --
+-- ?????? ?????? ??? ??? ???? ?????
+  if world.GetLayer() ~= 0 then
 		return 0;
-	end
-
-	if nil == itemCls then
-		return;
-	end
-
-	local scp = _G[itemCls.RefreshScp];
-	if nil ~= scp then
-		scp(itemCls);
 	end
 
 	delaySec = 0.0;
@@ -88,8 +80,9 @@ function ITEM_BALLOON_COMMON(handle, itemCls, tooltipEnum, duration, delaySec, s
 	if itemCls ~= nil then
 		SET_SLOT_ITEM_OBJ(itemSlot, itemCls);
 		itemSlot:EnableDrag(0);
-		local rewardTxt = REWARD_SET_ITEM_TEXT(skinName, itemCls);
-		itemtext:SetTextByKey("txt", rewardTxt);
+
+		local gradeTxt = GET_ITEM_GRADE_TXT(itemCls, 24);
+		itemtext:SetTextByKey("txt", gradeTxt);
 	else
 		CLEAR_SLOT_ITEM_INFO(itemSlot);
 		itemtext:SetTextByKey("txt", "");
@@ -104,14 +97,6 @@ function ITEM_BALLOON_COMMON(handle, itemCls, tooltipEnum, duration, delaySec, s
 	itemSlot:EnableHitTest(1)
 	RAID_REWARD_BAL_POS(frame);
 
-end
-
-function REWARD_SET_ITEM_TEXT(skinName, itemCls)
-	if skinName == "junksilvergacha_itembox" then
-		return GET_FULL_NAME(itemCls)
-	else
-		return GET_ITEM_GRADE_TXT(itemCls, 24);
-	end
 end
 
 function REWARD_ITEM_BALLOON(handle, rewardList)

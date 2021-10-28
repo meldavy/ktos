@@ -20,44 +20,6 @@ function SET_MONB_ALWAYS_VISIBLE(handle, enable)
 
 end
 
-function DRAW_DEBUFF_UI_EFECT(handle, buffType)
-	local frame= ui.GetFrame("monb_"..handle);	
-	if frame == nil then
-		if handle == session.GetMyHandle() then
-			frame= ui.GetFrame("charbaseinfo1_my");	
-		else
-			frame= ui.GetFrame("charbaseinfo1_"..handle);	
-		end
-
-		if frame == nil then
-			return;
-		end
-	end
-
-	local pCls = GetClassByType("Buff", buffType)
-	if nil == pCls then
-		return;
-	end
-
-	local pic =frame:GetChild('desenchant');
-	local gx, gy = GET_UI_FORCE_POS(pic);
-	local delayTime = 0.1;
-	local curTime = math.floor(imcTime.GetAppTime());
-	if curTime <= pic:GetUserIValue('LASTTIME') then
-		local beforDelay = pic:GetUserValue('LAST_DELAY_TIME');
-		delayTime = tonumber(beforDelay) + 0.1;
-		pic:SetUserValue('LAST_DELAY_TIME', delayTime);
-	else
-		pic:SetUserValue('LASTTIME', 0);
-		pic:SetUserValue('LAST_DELAY_TIME', delayTime);
-	end
-	UI_FORCE("skill_disenchant", gx, gy, 0, 0, delayTime, 'Icon_'..pCls.Icon);
-	pic:SetUserValue('LASTTIME', curTime);
-
-	-- ÏÇ¨ÎùºÏßàÎïåÎßàÎã§ ÏÇ¨Ïö¥Îìú ÏÜåÎ¶¨Í∞Ä ÎÇòÏïºÌïúÎã®Îã§.
-	imcSound.PlaySoundEvent("skl_eff_disenchant_icon");
-end
-
 function MONBASE_GAUGE_SET(frame, targetinfo)
 	local nameRichText = GET_CHILD(frame, "name", "ui::CRichText");
 	local stat = targetinfo.stat;
@@ -72,13 +34,14 @@ function MONBASE_GAUGE_SET(frame, targetinfo)
 	
 	hpGauge:SetPoint(stat.HP, stat.maxHP);
 	frame:SetDuration(10);
-	if stat.shield <= 0 then
+	if stat.shield == 0 then
 		shield:ShowWindow(0);
 	else
 		shield:Resize(gaugeWidth, 10);
 		shield:SetPoint(stat.shield, stat.maxHP);
 		shield:ShowWindow(1);
 	end		
+
 end
 
 function HIDE_MONBASE_INFO(frame)
@@ -92,44 +55,22 @@ function HIDE_MONBASE_INFO(frame)
 end
 
 function ON_MON_ENTER_SCENE(frame, msg, str, handle)
-	SHOW_MONB_TARGET(handle, 0.0);
+	
+	local visible = session.ui.IsAlwaysVisible(handle);
+	if visible == true then
+		SHOW_MONB_TARGET(handle, 0.0);
+	end
 end
 
 function UPDATE_MONB(handle)
 	local frame= ui.GetFrame("monb_"..handle);	
 	if frame ~= nil then
 		UPDATE_MONB_HP(frame, handle);
-	end
-	if #ZONENAME_LIST == 0 then
-	    local mapClassCount = GetClassCount('Map')
-	    for i = 0 , mapClassCount-1 do
-	        local zoneLv = GetClassNumberByIndex('Map', i, 'QuestLevel')
-	        local preOpen = GetClassStringByIndex('Map', i, 'WorldMapPreOpen')
-	        local zoneType = GetClassStringByIndex('Map', i, 'MapType')
-	        if zoneLv > 0 and preOpen == 'YES' and (zoneType == 'Field' or zoneType == 'Dungeon') then
-                ZONENAME_LIST[#ZONENAME_LIST + 1] = GetClassStringByIndex('Map', i, 'Name')
-                ZONENAME_LIST_LV[#ZONENAME_LIST_LV + 1] = zoneLv
-            end
-        end
-	end
-	if #ZONENAME_LIST > 0 and handle ~= nil and world ~= nil and world.GetActor(handle) ~= nil then
-	    local npcName = world.GetActor(handle):GetName()
-	    local findTableIndex = table.find(ZONENAME_LIST, npcName)
-	    if findTableIndex > 0 then
-	        local npcNameText = frame:GetChild("name"):GetText()
-	        local npcNameTextTable = SCR_STRING_CUT(npcNameText,'}')
-	        if npcNameTextTable[#npcNameTextTable] == npcName then
-    	        local zoneLv = ZONENAME_LIST_LV[findTableIndex]
-    	        if zoneLv > 0 then
-        	        local changeName = string.gsub(npcNameText, npcName, npcName..'['..ScpArgMsg("Level")..':'..zoneLv..']')
-        	        frame:GetChild("name"):SetText(changeName)
-        	    end
-        	end
-	    end
-	end
+	end			
 end
 
 function SHOW_MONB_TARGET(handle, duration)
+
 	local frameName = "monb_" .. handle;
 	local cFrame = ui.GetFrame(frameName);
 	if cFrame == nil then
@@ -150,7 +91,7 @@ function ON_SHOW_TARGET_UI(frame, msg, argStr, handle)
 end
 
 function OPEN_MONB_FRAME(frame, handle)	
-	if frame ~= nil and frame:IsVisible() == 0 and session.world.IsDirectionMode() == false and IS_IN_EVENT_MAP() == false then
+	if frame ~= nil and frame:IsVisible() == 0 then
 		frame:ShowWindow(1);
 		ui.UpdateCharBasePos(handle);
 	end	
@@ -173,7 +114,7 @@ function ON_TARGET_CLEAR(msgFrame, msg, argStr, handle)
 
 		local targetInfo = info.GetTargetInfo(handle);
 		if targetInfo.showHP == 1 then
-			visible = false; -- ÌÉÄÍ≤åÌåÖÏ§ëÏù¥ ÏïÑÎãå Ï†ÅÏùÄ Ïù¥Î¶ÑÏ†úÍ±∞
+			visible = false; -- ≈∏∞‘∆√¡ﬂ¿Ã æ∆¥— ¿˚¿∫ ¿Ã∏ß¡¶∞≈
 		end
 		if visible == false then
 			frame:ShowWindow(0);
@@ -186,9 +127,9 @@ function UPDATE_MONB_HP(frame, handle)
 		return;
 	end
 
-	-- Î≥¥Ïä§Îäî Î≥¥Ïä§HP UIÏóêÏÑú Îî∞Î°ú Î≥¥Ïó¨Ï§å. Ïù¥Í±∞ÎïúÏãú Îπ®Í∞Ñhp, name ÍπúÎπ°Í±∞Î¶º
+	-- ∫∏Ω∫¥¬ ∫∏Ω∫HP UIø°º≠ µ˚∑Œ ∫∏ø©¡‹. ¿Ã∞≈∂´Ω√ ª°∞£hp, name ±Ù∫˝∞≈∏≤
 	local targetInfo = info.GetTargetInfo(handle);
-	if targetInfo ~= nil and targetInfo.isBoss == true and targetInfo.isSummonedBoss ~= 1 then
+	if targetInfo ~= nil and targetInfo.isBoss == true then
 		frame:ShowWindow(0);
 		return;
 	end
@@ -214,10 +155,6 @@ function UPDATE_MONB_HP(frame, handle)
 
 	elseif hpGauge:GetMaxPoint() == 0 then
 		hpGauge:SetPoint(stat.HP, stat.maxHP);
-	end
-
-	if targetInfo.isSummonedBoss == 1 then
-		hpGauge:ShowWindow(1)
 	end
 end
 
@@ -268,4 +205,6 @@ function MONSTERBASEINFO_CHECK_CTRL_OPENCONDITION(frame, ctrlName, frameName)
 	hpGauge:ShowWindow(targetInfoOpen);
 	frame:Invalidate();
 end
+
+
 

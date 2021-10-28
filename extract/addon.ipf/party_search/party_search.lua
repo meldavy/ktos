@@ -238,8 +238,7 @@ function UPDATE_RECOMMEND_MEMBER_LIST(frame, ctrl, argStr, argNum)
 			local clslist, cnt  = GetClassList("Job");
 			local nowjobcls = GetClassByTypeFromList(clslist, nowjobinfo.jobID);
 			local jobRank		= nowjobinfo.grade
-			local gender		= otherpcinfo:GetAppearance():GetGender();
-			local jobName		= GET_JOB_NAME(nowjobcls, gender)
+			local jobName		= nowjobcls.Name
 			local jobtext = GET_CHILD_RECURSIVELY(set,"job")
 			jobtext:SetTextByKey("jobname",jobName);
 			jobtext:SetTextByKey("jobrank",jobRank);
@@ -294,8 +293,8 @@ function UPDATE_PARTY_SEARCH_LIST(frame, msg, str, page)
 
 	for i = (page-1)*3 , listcount-1 do
 
-		local ctrlheight = ui.GetControlSetAttribute('partyfound_info2', 'height') + 5;
-		local set = mainGbox2:CreateOrGetControlSet('partyfound_info2', 'foundpartylist_'..i, 0, startYmargin + ctrlheight*i);
+		local ctrlheight = ui.GetControlSetAttribute('partyfound_info', 'height') + 10
+		local set = mainGbox2:CreateOrGetControlSet('partyfound_info', 'foundpartylist_'..i, 0, startYmargin + ctrlheight*i);
 		if foundpartylist:Element(i) == nil then
 			break;
 		end
@@ -307,10 +306,8 @@ function UPDATE_PARTY_SEARCH_LIST(frame, msg, str, page)
 		local partyObj = GetIES(ppartyobj);
 
 		-- 파티 이름
-		--[[
 		local nameTxt = GET_CHILD(set,'name')
 		nameTxt:SetTextByKey('name',eachpartyinfo.info.name)
-		]]--
 
 		-- 파티 설명
 		local noteTxt = GET_CHILD(set,'note')
@@ -321,13 +318,13 @@ function UPDATE_PARTY_SEARCH_LIST(frame, msg, str, page)
 
 		local num = curClassType
 		local calcresult={}
-		local k = 0
+		local i = 0
 	
 		while num > 0 do 
 		
-			calcresult[k] = num%2
+			calcresult[i] = num%2
 			num = math.floor(num/2)
-			k = k + 1
+			i = i + 1
 			if num < 1 then
 				break;
 			end
@@ -356,11 +353,10 @@ function UPDATE_PARTY_SEARCH_LIST(frame, msg, str, page)
 			end
 			findclassstr = findclassstr .. ScpArgMsg('JustCleric')
 		end
-		--[[
+		
 		local findClassTxt = GET_CHILD(set,'findClass','ui::CRichText')
 		findClassTxt:SetTextByKey('findClass',findclassstr)
-		]]--
-		--[[
+	
 		-- 퀘스트 공유 옵션 세팅
 		local questPolicyTxt = GET_CHILD(set,'questPolicy','ui::CRichText')
 		if partyObj["IsQuestShare"] == 1 then
@@ -368,8 +364,7 @@ function UPDATE_PARTY_SEARCH_LIST(frame, msg, str, page)
 		else
 			questPolicyTxt:SetTextByKey('isuse',ScpArgMsg("PartySearchQuestOpt1"))
 		end
-		]]--
-		--[[
+
 		-- 경험치 공유 옵션 세팅
 		local expPolicyTxt = GET_CHILD(set,'expPolicy','ui::CRichText')
 		if partyObj["ExpGainType"] == 0 then
@@ -379,8 +374,7 @@ function UPDATE_PARTY_SEARCH_LIST(frame, msg, str, page)
 		else
 			expPolicyTxt:SetTextByKey('isuse',ScpArgMsg("PartySearchExpOpt3"))
 		end
-		]]--
-		--[[
+
 		-- 아이템 분배 규칙 옵션 세팅
 		local itemPolicyTxt = GET_CHILD(set,'itemPolicy','ui::CRichText')
 		if partyObj["ItemRouting"] == 0 then
@@ -390,24 +384,17 @@ function UPDATE_PARTY_SEARCH_LIST(frame, msg, str, page)
 		else
 			itemPolicyTxt:SetTextByKey('isuse',ScpArgMsg("PartySearchItemOpt3"))
 		end		
-		]]--
 
 		-- 파티원 정보 표시
-		--DESTROY_CHILD_BYNAME(set, 'foundeachmember_');
+		DESTROY_CHILD_BYNAME(set, 'foundeachmember_');
 
 		local avglevel = 0;
 		local loginMemberCnt = 0
-		local partyMemberCnt = eachpartymemberlist:Count();
-		local joinParty = GET_CHILD(set,'joinParty')
-		local leaderAid = eachpartyinfo.info:GetLeaderAID();
-		joinParty:SetEventScript(ui.LBUTTONDOWN, 'LCLICK_PARTY_LIST');
-		joinParty:SetEventScriptArgString(ui.LBUTTONDOWN, eachpartyinfo.info.leaderName );
-		for j = 0 , partyMemberCnt - 1 do
 
-			local eachpartymember = eachpartymemberlist:Element(j);
-			avglevel = avglevel + eachpartymember:GetLevel();
-			loginMemberCnt = loginMemberCnt + 1;
-			--[[
+		for j = 0 , eachpartymemberlist:Count() - 1 do
+
+			local eachpartymember = eachpartymemberlist:Element(j)		
+	
 			local memberinfoset = set:CreateOrGetControlSet('partyfound_member_info', 'foundeachmember_'..j, 5+(j*127), 180);
 			
 			local joblv = eachpartymember:GetIconInfo().joblv			
@@ -465,20 +452,14 @@ function UPDATE_PARTY_SEARCH_LIST(frame, msg, str, page)
 				leaderMark:SetColorTone(color);
 				jobportraitImg:SetColorTone(color);
 			end
-				]]--
+				
 		end
 
-		avglevel = math.floor( avglevel / loginMemberCnt );
+		avglevel = math.floor( avglevel / loginMemberCnt )
 
 		-- 파티 평균 레벨
-		local avgLevelTxt = GET_CHILD(set,'avgLevel','ui::CRichText');
-		avgLevelTxt:SetTextByKey('avglv',avglevel);
-		
-		local numberNmax = GET_CHILD(set,'numberNmax','ui::CRichText');
-		numberNmax:SetTextByKey('maxCnt',partyMemberCnt);
-		
-		set:SetTooltipType("partyinfotooltipNormal");
-		set:SetTooltipArg("", i)
+		local avgLevelTxt = GET_CHILD(set,'avgLevel','ui::CRichText')
+		avgLevelTxt:SetTextByKey('avglv',avglevel)
 
 	end
 
@@ -547,7 +528,7 @@ function LCLICK_PARTY_LIST(frame, ctrl, familyName, argNum)
 		return;
 	end
 
-	local str = ScpArgMsg("AreYouWantReqJoinTheParty");
+	local str = ScpArgMsg("AreYouWantJoinTheParty");
 	local yesScp = string.format("REQUEST_JOIN_FOUND_PARTY(\"%s\")", familyName);
 	ui.MsgBox(str, yesScp, "None");
 
@@ -555,9 +536,9 @@ end
 
 function REQUEST_JOIN_FOUND_PARTY(familyName)
 
-	if familyName ~= nil and familyName ~= "" then
-		party.ReqInviteMe(familyName)
-	end
+	session.party.ClearFoundPartyList(PARTY_NORMAL);
+	party.AcceptInvite(0, familyName, 1)
+	REQUEST_TO_FIND_PARTY_LIST()
 	ui.CloseFrame('party_search');
 
 end
