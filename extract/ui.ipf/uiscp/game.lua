@@ -146,13 +146,14 @@ function TEST_MAPMAKE()
 end
 
 
-
+	
 function TEST_AYASE2(x,y)
 
 
 end
 
 	
+
 function MAKE_NPC_LIST_TO_HTML()
 					
 	local file = io.open("mon_image_list.html","w+")
@@ -216,11 +217,9 @@ end
 
 	
 function TEST_AYASE()
-	
-	
-
-
-	
+    print("friend ui test");    
+    session.friends.TestAddManyFriend(FRIEND_LIST_COMPLETE, 200);
+    session.friends.TestAddManyFriend(FRIEND_LIST_BLOCKED, 100);
 end
 
 function JOB_COMMAND()
@@ -565,18 +564,6 @@ function RELOAD_MAP()
 
 end
 
-function UI_TOGGLE_GUILD()
-
-	local guildinfo = session.GetGuildInfo();
-	if guildinfo == nil then
-		ui.ToggleFrame('guildcreate');
-		return;
-	end
-
-	ui.ToggleFrame('guild');
-
-end
-
 function OPEN_CHAT_MENU(frame, control, commname, text, x, y)
 
 	OPEN_CHAT_CONTEXT(commname);
@@ -674,7 +661,6 @@ function GET_ITEM_BY_GUID(guid, equipfirst)
 end
 
 function UPDATE_TXT_TOOLTIP(frame, strArg, num, arg2)
-
 	local caption = frame:GetChild("caption");
 	caption:SetText(strArg);
 	if num > 0 then
@@ -885,7 +871,7 @@ function ADD_EX_TOOLTIP(GroupCtrl, txt, yPos, ySize)
 	ControlSetCtrl:SetGravity(ui.LEFT, ui.TOP);
 	richText:SetGravity(ui.LEFT, ui.TOP);
 	richText:SetFontName(ITEM_TOOLTIP_TEXT_FONT);
-	ControlSetCtrl:Resize(255, ySize);		-- 3?�리까�?�?출력?�서 7~8?�리까�? ?�림
+	ControlSetCtrl:Resize(255, ySize);
 	ControlSetCtrl:SetTextByKey('text', txt);
 	GroupCtrl:ShowWindow(1)
 	return ControlSetCtrl:GetHeight() + ControlSetCtrl:GetOffsetY();
@@ -988,7 +974,7 @@ function GET_ITEM_SET_EFFECT_TEXT(set, onlyEquip, GroupCtrl, y)
 				color = '{#050505}';
 			end
 
-			local setTitle = ScpArgMsg("Auto_{s18}{Auto_1}{Auto_2}_SeTeu_HyoKwa_:_", "Auto_1",color, "Auto_2",i + 1);
+			local setTitle = ScpArgMsg("Auto_{s18}{Auto_1}{Auto_2}_SeTeu_HyoKwa__{nl}", "Auto_1",color, "Auto_2",i + 1);
 			local setDesc = string.format("{s18}%s%s", color, setEffect:GetDesc());
 
 			local setTitleText = GroupCtrl:CreateOrGetControl("richtext", "SET_LIST_EFT_"..i, 15, y, 350, 20);
@@ -1256,23 +1242,29 @@ function GET_ITEM_TOOLTIP_SKIN(cls)
 	return "Item_tooltip_consumable";
 end
 
-function GET_ITEM_BG_PICTURE_BY_GRADE(rank)
+function GET_ITEM_BG_PICTURE_BY_GRADE(rank, needAppraisal, needRandomOption)
 
-	if rank == nil then
-		return "None";
+	local pic = 'None'
+	local flag = 3
+	
+	if needAppraisal == 1 or needRandomOption == 1 then
+		flag = 4
 	end
-
 	if rank == 1 then
-		return "one_two_star_item_bg";
+		pic = "one_two_star_item_bg" .. flag;
 	elseif rank == 2 then
-		return "three_star_item_bg";
+		pic ="three_star_item_bg" .. flag;
 	elseif rank == 3 then
-		return "four_star_item_bg";
+		pic = "four_star_item_bg" .. flag;
 	elseif rank == 4 then
-		return "five_item_bg";
+		pic = "five_item_bg" .. flag;
+	elseif rank == 5 then
+	    pic = "six_item_bg" .. flag;
+	elseif rank == 0 then
+		return "premium_item_bg";
 	end
 
-	return "None";
+	return pic;
 end
 
 function GET_ITEM_BG_PICTURE_BY_ITEMLEVEL(itemlv) 
@@ -1336,11 +1328,35 @@ function GET_FULL_GRADE_NAME(itemCls, gradeSize)
 	return GET_FULL_NAME(itemCls) .. "{nl}" .. gradeTxt;
 end
 
-function GET_FULL_NAME(item, useNewLine)
-
+function GET_FULL_NAME(item, useNewLine, isEquiped)	
+	if isEquiped == nil then
+		isEquiped = 0;
+	end
 	local ownName = GET_NAME_OWNED(item);
-
 	local reinforce_2 = TryGetProp(item, "Reinforce_2");
+	local isHaveLifeTime = TryGetProp(item, "LifeTime");
+	local pc = GetMyPCObject();
+	local bonusReinf = TryGetProp(pc, 'BonusReinforce');
+	local ignoreReinf = TryGetProp(pc, 'IgnoreReinforce');
+	local overReinf = TryGetProp(pc, 'OverReinforce');
+	if bonusReinf ~= nil then
+		if TryGetProp(item, 'EquipGroup') == 'SubWeapon' and isEquiped > 0 then
+			reinforce_2 = reinforce_2 + bonusReinf;
+		end
+	end
+	if overReinf ~= nil then
+		if TryGetProp(item, 'GroupName') == 'Weapon' and isEquiped > 0 then
+			reinforce_2 = reinforce_2 + overReinf;
+		end
+	end
+	if isEquiped > 0 and ignoreReinf == 1 then
+		reinforce_2 = 0;
+	end	
+	
+	if 0 ~= isHaveLifeTime then
+		ownName = string.format("{img test_cooltime 30 30}%s{/}", ownName);
+	end
+	
 	if reinforce_2 ~= nil and reinforce_2 > 0 then
 		ownName = string.format("+%d %s", reinforce_2, ownName);
 	end
@@ -1357,13 +1373,27 @@ function GET_FULL_NAME(item, useNewLine)
 		end
 	end
 
+	if IS_ENCHANT_JEWELL_ITEM(item) == true then
+		return GET_EXTRACT_ITEM_NAME(item);
+	end
+
+	if IS_SKILL_SCROLL_ITEM ~= nil and IS_SKILL_SCROLL_ITEM(item) == true then
+		local skillCls = GetClassByType('Skill', item.SkillType);
+		return ownName..string.format('[Lv. %d %s]', item.SkillLevel, skillCls.Name);
+	end
+
 	return ownName;
 end
 
 function GET_NAME_OWNED(item)
+	local itemName = item.Name
+	local legendPrefix = TryGetProp(item, "LegendPrefix")
+	if legendPrefix ~= nil then
+		itemName = GET_LEGEND_PREFIX_ITEM_NAME(item)
+	end
 
 	if item.ItemType == "Equip" and item.IsPrivate == "YES" and item.Equiped == 0 then
-		return ClMsg("LOST_ITEM") .. " " .. item.Name;
+		return ClMsg("LOST_ITEM") .. " " ..itemName;
 	end
 
 	local customTooltip = TryGetProp(item, "CustomToolTip");
@@ -1377,11 +1407,11 @@ function GET_NAME_OWNED(item)
 	if GetPropType(item, 'CustomName') ~= nil then
 		local customName = item.CustomName;
 		if customName ~= "None" then
-			return customName..'('..item.Name..')';
+			return customName..'('..itemName..')';
 		end
 	end
 
-	return item.Name;
+	return itemName;
 
 end
 
@@ -1457,82 +1487,10 @@ function IS_RECIPE_ITEM(itemCls)
 
 end
 
--- ???�수???�크�??�이?�도 ?�시?????�용?�니??
-function SET_ITEM_TOOLTIP_ALL_TYPE(icon, invitem, className, strType, ItemType, index)
-	
-	if className == 'Scroll_SkillItem' then
-		SET_TOOLTIP_SKILLSCROLL(icon, invitem);
-	else
-		icon:SetTooltipType('wholeitem');
-		if nil ~= strType and nil ~= ItemType and nil ~= index then
-			icon:SetTooltipArg(strType, ItemType, index);
-		end
-	end
-end
-
-function SET_ITEM_TOOLTIP_TYPE(prop, itemID, itemCls)
-	prop:SetTooltipType('wholeitem');
-	
-end
-
-function GET_ITEM_TOOLTIP_TYPE(itemID, itemCls)
-
-	return 'wholeitem'
-end
-
-function SET_TOOLTIP_SKILLSCROLL(icon, invitem, itemCls)
-
-	local obj = GetIES(invitem:GetObject());
-
-	if nil == obj or obj.SkillType == 0 then
-		return 0;
-	end 
-
-	SET_SKILL_TOOLTIP_BY_TYPE_LEVEL(icon, obj.SkillType, obj.SkillLevel);
-	return 1;
-end
-
--- 마켓?�에??묘사?�서 ?�킬�??�오?�록
-function SET_ITEM_DESC(value, desc, item)
-	if desc == "None" then
-		desc = "";
-	end
-
-	local obj = GetIES(item:GetObject());
-
-	if nil ~= obj and
-	   obj.ClassName == 'Scroll_SkillItem' then		
-		local sklCls = GetClassByType("Skill", obj.SkillType)
-		value:SetTextByKey("value", obj.SkillLevel .. " Level/ "..  sklCls.Name);
-	else
-		value:SetTextByKey("value", desc);
-	end
-end
-
-function ICON_SET_INVENTORY_TOOLTIP(icon, invitem, strarg, itemCls)
-
-	if strarg == nil then
-		strarg = 'inven';
-	end
-
-	SET_ITEM_TOOLTIP_ALL_TYPE(icon, invitem, itemCls.ClassName, strarg, 0, invitem:GetIESID());
-
-	local itemobj = GetIES(invitem:GetObject());
-	if itemobj.ItemType == "Equip" and itemobj.MaxDur ~= 0 and itemobj.Dur == 0 then
-		icon:SetColorTone("FFFF0000");
-	end
-
-end
-
-function ICON_SET_EQUIPITEM_TOOLTIP(icon, equipitem)
-
-	SET_ITEM_TOOLTIP_TYPE(icon, equipitem.type);
-	icon:SetTooltipArg('equip', equipitem.type, equipitem:GetIESID());
-
-end
-
 function SCR_MAGICAMULET_EQUIP(fromitem, toitem)
-
+	if nil == fromitem or nil == toitem then
+		return;
+	end
 	local fromobj = GetIES(fromitem:GetObject());
 	local toobj = GetIES(toitem:GetObject());
 
@@ -1572,7 +1530,7 @@ function SCR_GEM_EQUIP(fromitem, toitem)
 	local socketindex = GET_GEM_SOCKET_CNT(toobj,fromobj_gemtype);
 
 	if socketindex == -1 then
-		socketindex = GET_GEM_SOCKET_CNT(toobj,5); -- ?쨍짰?T
+		socketindex = GET_GEM_SOCKET_CNT(toobj,5);
 	end
 
 	if socketindex == -1 then
@@ -1797,7 +1755,7 @@ function SHOW_MONSTER_HELP(monsterID)
 	txt:SetText(strarg);
 
 	local imgname = "npc_icon_" .. moncls.ClassName;
-	if ui.IsImageExist(imgname) == 1 then
+	if ui.IsImageExist(imgname) == true then
 		local img = tooltipframe:GetChild("img");
 		tolua.cast(img, "ui::CPicture");
 		img:SetImage(imgname);
@@ -1871,19 +1829,6 @@ function FIND_STRING(str, startPos, findStr)
 	return pos + startPos;
 end
 
-
- function SCR_ITEM_ABILITY_CLIENT(invitem)
-
-	item.UseByInvIndex(invitem.invIndex);
-
- end
-
- function SCR_ABILITY_SLOT_CLIENT(invitem)
-
-	item.UseByInvIndex(invitem.invIndex);
-
- end
-
 function SCR_SKILLITEM(invItem)
 
 	local obj = GetIES(invItem:GetObject());
@@ -1930,16 +1875,14 @@ function SCR_EXEC_MONWANGGA(guid, x, y, z)
 
 end
 
-function GET_TOTAL_MONEY()
-	local Cron = 0;
+ function GET_TOTAL_MONEY_STR() -- int로 잘리지 않고 싶으면 이걸 쓰도록하되, 밖에서 계산할 때는 tonumber하거나 BigNumber 전용 함수들 사용 권장
+	local silver = '0';
 	local invItem = session.GetInvItemByName('Vis');
 	if invItem ~= nil then
-		Cron = invItem.count;
+		silver = invItem:GetAmountStr();
 	end
-
-	return Cron;
+	return silver;
  end
-
 
 function TRADE_DIALOG_CLOSE()
 	control.DialogOk();
@@ -2003,7 +1946,7 @@ end
 
 
 
--- ON_WORLD_MSG_%d (WORLD_MESSAGE_ACHIEVE_ADD == 0)   : �???�븝??�??? 쨘�??
+-- ON_WORLD_MSG_%d (WORLD_MESSAGE_ACHIEVE_ADD == 0)
 function ON_WORLD_MSG_0(name, type, pointType, point)
 
 	local list = session.party.GetPartyMemberList(PARTY_NORMAL);
@@ -2019,7 +1962,7 @@ function ON_WORLD_MSG_0(name, type, pointType, point)
 		end
 	end
 	
-	if FRIEND_LIST_COMPLETE == session.friends.GetFriendListTypeByFamilyName(name) or ispartymesmbers == true then
+	if nil ~= session.friends.GetFriendByFamilyName(FRIEND_LIST_COMPLETE, name) or ispartymesmbers == true then
 		
 		local achiName = geAchieveTable.GetName(type);	
 
@@ -2108,7 +2051,9 @@ function CHECK_EQUIPABLE(type)
 			return 'ABIL'
 		end
 	else
-		if 0 ~= haveAbil then
+		if ret == 'LV' or ret == 'GENDER' then
+			return ret;
+		elseif 0 ~= haveAbil then
 			return 'OK'
 		end
 	end
@@ -2120,35 +2065,44 @@ function ITEM_EQUIP_EXCEPTION(item)
 	if item == nil then
 		return 0
 	end
-
+	
 	local hairFrame = ui.GetFrame('beauty_hair');
 	if hairFrame ~= nil and hairFrame:IsVisible() == 1 then
 		ui.SysMsg(ScpArgMsg("Auto_MiyongSil_iyongJungeNeun_aiTemeul_JangChag_Hal_Su_eopSeupNiDa."));
 		return 0
 	end
-
+			
 	local result = CHECK_EQUIPABLE(item.type);
 	if result ~= "OK" then
 		ui.MsgBox(ITEM_REASON_MSG(result));
 		return 0
 	end
-
+			
 	local obj = GetIES(item:GetObject());
 	if obj.IsPrivate == "YES" and obj.Equiped == 0 then
 		ui.EnableToolTip(0);
 		ui.MsgBox(ScpArgMsg("Auto_HaeDang_aiTemeun_ChagyongSi_KwiSogDoeeo_KeoLaeHal_Su_eopSeupNiDa._ChagyongHaSiKessSeupNiKka?"), strscp, "None");
 		return 0;
 	end
-	
+		
 	return 1;
 end
 
 function ITEM_EQUIP_MSG(item, slotName)
-
+	
 	if 1 ~= ITEM_EQUIP_EXCEPTION(item) then
 		return;
 	end
-
+		
+	if true == BEING_TRADING_STATE() then
+		return;
+	end
+	
+	local itemCls = GetIES(item:GetObject());
+	if itemCls.EqpType == "HELMET" and slotName == "HAIR" then
+		slotName = "HELMET";
+	end
+	
 	local strscp = string.format("item.Equip(%d)", item.invIndex);
 	if slotName ~= nil then
 		strscp = string.format("item.Equip(\"%s\", %d)", slotName, item.invIndex);
@@ -2176,9 +2130,9 @@ function ITEM_REASON_MSG(msg)
 	elseif msg == "GENDER" then
 		local gender = GETMYPCGENDER();
 		if gender == 1 then
-			return ScpArgMsg("Auto_yeoSeongeun_ChagyongHal_Su_eopSeupNiDa._aiTem_SeolMyeongeSeo_JangChag_KaNeungHan_SeongByeolKwa_LeBeleul_HwaginHaSeyo");
-		else
 			return ScpArgMsg("Auto_NamSeongeun_ChagyongHal_Su_eopSeupNiDa._aiTem_SeolMyeongeSeo_JangChag_KaNeungHan_SeongByeolKwa_LeBeleul_HwaginHaSeyo");
+		else
+			return ScpArgMsg("Auto_yeoSeongeun_ChagyongHal_Su_eopSeupNiDa._aiTem_SeolMyeongeSeo_JangChag_KaNeungHan_SeongByeolKwa_LeBeleul_HwaginHaSeyo");
 		end
 	elseif msg == "ABIL" then
 		return ScpArgMsg("EquipWeaponNeedAbility");
@@ -2213,64 +2167,7 @@ function MAKE_HAVE_ITEM_TOOLTIP(control, itemType)
 	end
 
 	SET_ITEM_TOOLTIP_ALL_TYPE(control, invItem, invItem.ClassName,'inven', itemType, "");
---SET_ITEM_TOOLTIP_TYPE(control, itemType);
---control:SetTooltipArg('inven', itemType, "");
 end
-
--- function EXEC_COMBOMACRO(index)
-	-- control.ComboMacro(index);	
--- end
-
--- function COMBOMACRO_EXECUTE(index)
-	
-	-- local stat = info.GetStat(session.GetMyHandle());	
-	-- local macro = GET_COMBO_MACRO(index);
-	-- if macro == nil or stat.HP <= 0 then
-		-- return 0;
-	-- end
-
-	-- if macro.macro ~= nil and macro.macro ~= "" then
-		-- ui.Chat(macro.macro);
-	-- end
-
-	-- if macro.category == 'Skill' then		
-		-- if session.GetSklCoolDown(macro.classID) ~= 0 then
-			-- return 0;
-		-- end
-
-		-- control.Skill(macro.classID);		
-		-- return 1;
-
-	-- elseif macro.category == 'Item' then
-
-		-- local invenItemInfo = session.GetInvItemByType(macro.classID);
-		-- if invenItemInfo.count == 0 then
-			-- return 0;
-		-- end
-		
-		-- if item.GetCoolDown(macro.classID) ~= 0 then
-			-- return 0;
-		-- end
-		
-		-- item.Use(macro.classID);		
-		-- return 1;
-	-- end
-
-	-- return 0;
--- end
-
--- function GET_COMBO_MACRO(index)
-	-- local list = session.GetComboMacroList();
-	-- local cnt = list:Count();
-	-- for i = 0 , cnt - 1 do
-		-- local info = list:PtrAt(i);
-		-- if info.index == index then
-			-- return info;
-		-- end
-	-- end
-
-	-- return nil;
--- end
 
 function EXEC_CHATMACRO(index)
 
@@ -2288,7 +2185,7 @@ function EXEC_CHATMACRO(index)
 		return;
 	end
 
-	ui.Chat(macro.macro);
+	ui.Chat(REPLACE_EMOTICON(macro.macro));
 end
 
 function GET_CHAT_MACRO(index)
@@ -2342,6 +2239,14 @@ function ON_RULLET_LIST()
 
 end
 
+function UI_CHECK_NOT_PVP_MAP()
+	if world.IsPVPMap() or session.colonywar.GetIsColonyWarMap() == true then
+		return 0;
+	end
+
+	return 1;
+end
+
 function UI_CHECK_PROP(propname, propvalue)
 
 	local pc = GetMyPCObject();
@@ -2362,31 +2267,6 @@ function UI_CHECK_GRIMOIRE_UI_OPEN(propname, propvalue)
 	end
 
 	return 0;
-end
-
-function UI_CHECK_NECRO_UI_OPEN(propname, propvalue)
-
-	local jobcls = GetClass("Job", 'Char2_9');
-	local jobid = jobcls.ClassID
-
-	if IS_HAD_JOB(jobid) == 1 then
-		return 1
-	end
-
-	return 0;
-end
-
-function UI_CHECK_POSIONPOT_UI_OPEN(propname, propvalue)
-
-	local jobcls = GetClass("Job", 'Char3_6');
-	local jobid = jobcls.ClassID
-
-	if IS_HAD_JOB(jobid) == 1 then
-		return 1
-	end
-
-	return 0;
-
 end
 
 function UI_CHECK_PARTY()
@@ -2617,7 +2497,7 @@ end
 function GET_MONEY_TAG_TXT(itemCnt)
 
 	itemCnt = math.abs(itemCnt);
-	return ScpArgMsg("Auto_{ol}{@st45}BatKe_Doel_SilBeo_:_{Auto_1}_{img_Zeny_20_20}","Auto_1", itemCnt)
+	return ScpArgMsg("Auto_{ol}{@st45}BatKe_Doel_SilBeo_:_{Auto_1}_{img_Zeny_20_20}","Auto_1", GetCommaedText(itemCnt))
 
 end
 
@@ -2632,6 +2512,34 @@ function GET_BUFF_TAG_TXT(buffName)
 
 	return ScpArgMsg("Auto_{img_{Auto_1}_20_20}{ol}{@st45}_{Auto_2}_BeoPeu","Auto_1", 'icon_'..cls.Icon,"Auto_2", cls.Name)
 
+end
+function GET_PCPROPERTY_TAG_TXT(propertyName, value)
+    local ret, propertyTxt
+    if propertyName == 'STR' then
+        propertyTxt = ScpArgMsg("STR")
+    elseif propertyName == 'DEX' then
+        propertyTxt = ScpArgMsg("DEX")
+    elseif propertyName == 'CON' then
+        propertyTxt = ScpArgMsg("CON")
+    elseif propertyName == 'INT' then
+        propertyTxt = ScpArgMsg("INT")
+    elseif propertyName == 'MSTA' then
+        propertyTxt = ScpArgMsg("MSTA")
+    elseif propertyName == 'MHP' then
+        propertyTxt = ScpArgMsg("MHP")
+    elseif propertyName == 'MSP' then
+        propertyTxt = ScpArgMsg("MSP")
+    elseif propertyName == 'MaxWeight' then
+        propertyTxt = ScpArgMsg("MaxWeight")
+	elseif propertyName == 'MNA' then
+        propertyTxt = ScpArgMsg("MNA")
+    else
+        propertyTxt = propertyName
+    end
+    
+    ret = ScpArgMsg("QuestRewardPCPropertyText1","Auto_1", propertyTxt,"Auto_2", value)
+    
+    return ret
 end
 
 function GET_HONOR_TAG_TXT(honor, point_value)
@@ -2913,64 +2821,7 @@ function ITEM_ENTER_COMMON_EFFECT(invitem, equipItem, strarg)
 end
 
 function SCR_ITEM_FIELD_TOOLTIP(itemObj, handle, itemType)
-	if itemObj == nil then
-		return -1;
-	end
-
-	if itemObj.ToolTipScp ~= 'WEAPON' and itemObj.ToolTipScp ~= 'ARMOR' then
-		return -1;
-	end
-
-	local result = CHECK_EQUIPABLE(itemObj.ClassID);
-	if result == "JOB" then
-		return itemObj.ClassID;
-	end
-
-	local fieldTooltipName = 'field_tooltip_'.. handle;
-	local tooltipframe = ui.CreateFieldTooltip('itemchangevalue', fieldTooltipName);
-	if tooltipframe == nil then
-		return -1;
-	end
-
-	local isVisble = 0;
-	local ispicktooltip = 1;
-
-	local ToolTipScp = _G['ITEM_TOOLTIP_' .. itemObj.ToolTipScp..'_CHANGEVALUE'];
-
-	if itemObj.EqpType == 'SH' then
-		if itemObj.DefaultEqpSlot == 'RH' then
-			local item = session.GetEquipItemBySpot(item.GetEquipSpotNum("RH"));
-			local equipItem = GetIES(item:GetObject());
-			isVisble = ToolTipScp(tooltipframe, itemObj, equipItem, strarg, ispicktooltip);
-		elseif itemObj.DefaultEqpSlot == 'LH' then
-			local item = session.GetEquipItemBySpot(item.GetEquipSpotNum("LH"));
-			local equipItem = GetIES(item:GetObject());
-			isVisble = ToolTipScp(tooltipframe, itemObj, equipItem, strarg, ispicktooltip);
-		end
-	elseif itemObj.EqpType == 'DH' then
-		local item = session.GetEquipItemBySpot(item.GetEquipSpotNum("RH"));
-		local equipItem = GetIES(item:GetObject());
-		isVisble = ToolTipScp(tooltipframe, itemObj, equipItem, strarg, ispicktooltip);
-	else
-		local equitSpot = item.GetEquipSpotNum(itemObj.EqpType);
-		local item = session.GetEquipItemBySpot(equitSpot);
-		if item ~= nil then
-			local equipItem = GetIES(item:GetObject());
-			isVisble = ToolTipScp(tooltipframe, itemObj, equipItem, strarg, ispicktooltip);
-		end
-	end
-
-	local gbox = GET_CHILD(tooltipframe,'changevalue','ui::CGroupBox')
-	if isVisble ~= 0 and gbox:GetSkinName() ~= 'comparisonballoon_negative' then
-		tolua.cast(tooltipframe, "ui::CFrame");
-		tooltipframe:EnableCloseButton(0);
-		tooltipframe:ShowWindow(1);
-	else
-		--tooltipframe:Resize(0, 0);
-		tooltipframe:ShowWindow(0);
-	end
-	
-	return itemObj.ClassID;
+	-- ????
 end
 
 function USE_ITEMTARGET_ICON(frame, itemobj, argNum)
@@ -3098,43 +2949,45 @@ function USE_ITEMTARGET_ICON(frame, itemobj, argNum)
 
 
 	elseif itemobj.GroupName == "Gem" then
-
+							
 		local invItemList = session.GetInvItemList();
 		local index = invItemList:Head();
 		local itemCount = session.GetInvItemList():Count();
 
 		local cnt = 0;
-
 		for i = 0, itemCount - 1 do
 			local invItem = invItemList:Element(index);
-			
-			if invItem ~= nil and false == geItemTable.IsMoney(invItem.type) then
-			
+			local invitem = GET_TOOLTIP_ITEM_OBJECT('inven', invItem:GetIESID());
+			if invItem ~= nil and false == geItemTable.IsMoney(invItem.type) and invitem.ItemType == "Equip" then
+				local tab = GET_CHILD_RECURSIVELY(frame, "inventype_Tab")
+				tolua.cast(tab, "ui::CTabControl");
+				tab:SelectTab(1);
+
 				local slot = INV_GET_SLOT_BY_ITEMGUID(invItem:GetIESID())
 				tolua.cast(slot, "ui::CSlot");
-				local icon = slot:GetIcon();
-				if icon ~= nil then
-					local class     = GetClassByType('Item', invItem.type);
-					local invitem  = GET_TOOLTIP_ITEM_OBJECT('inven', invItem:GetIESID());
-					local socketCnt = GET_SOCKET_CNT(invitem);
+				if slot ~= nil then
+					local icon = slot:GetIcon();
+					if icon ~= nil then
+						local class     = GetClassByType('Item', invItem.type);
+						
+						local socketCnt = GET_SOCKET_CNT(invitem);
 
-					if invitem.ItemType == 'Equip' then
-						for i=0, socketCnt do
-							local temp = GetIESProp(invitem, 'Socket_Equip_'..i);
-							if temp == 0 then
-								socketNum = i;
-								break;
+							for i=0, socketCnt do
+								local temp = GetIESProp(invitem, 'Socket_Equip_'..i);
+								if temp == 0 then
+									socketNum = i;
+									break;
+								end
 							end
-						end
 
-						if socketCnt > socketNum then
-							slot:Select(1);
-						else
-							slot:Select(0);
-						end
+							if socketCnt > socketNum then
+								slot:Select(1);
+							else
+								slot:Select(0);
+							end
 					end
+					cnt = cnt + 1;
 				end
-				cnt = cnt + 1;
 			end
 
 			index = invItemList:Next(index);
@@ -3155,7 +3008,7 @@ function USE_ITEMTARGET_ICON(frame, itemobj, argNum)
 
 				if  slot  ~=  nil  then
 
-				slot:SetSelectedImage('socket_slot_check')
+		--		slot:SetSelectedImage('socket_slot_check')
 
 					if  equipItem.type  ~=  item.GetNoneItem(equipItem.equipSpot)  then
 						local equipItemObj = GetIES(equipItem:GetObject());
@@ -3168,7 +3021,7 @@ function USE_ITEMTARGET_ICON(frame, itemobj, argNum)
 								break;
 							end
 						end
-
+						
 						if socketCnt > socketNum then
 							slot:Select(1);
 						else
@@ -3180,62 +3033,120 @@ function USE_ITEMTARGET_ICON(frame, itemobj, argNum)
 		end
 	end
 
+	if itemobj.GroupName == "Gem" then
+		local yesscp = string.format("USE_ITEMTARGET_ICON_GEM(%d)", argNum);
+		ui.MsgBox(ClMsg("GemHasPenaltyLater"), yesscp, "RELEASE_ITEMTARGET_ICON_GEM()");
+		return;
+	end
 	item.SelectTargetItem(argNum);
+end
+
+function RELEASE_ITEMTARGET_ICON_GEM()
+	SCR_ITEM_USE_TARGET_RELEASE()
+end
+
+function USE_ITEMTARGET_ICON_GEM(argNum)
+	local invFrame     	= ui.GetFrame("inventory");
+	local invGbox		= invFrame:GetChild('inventoryGbox');
+	local tab = invGbox:GetChild("inventype_Tab");
+	tolua.cast(tab, "ui::CTabControl");
+	tab:SelectTab(1);
+	item.SelectTargetItem(argNum)
 end
 
 function SCR_ITEM_USE_TARGET_RELEASE()
 	local frame				= ui.GetFrame('inventory');	
-	INVENTORY_LIST_GET(frame);
+	INVENTORY_UPDATE_ICONS(frame);
+	STATUS_EQUIP_SLOT_SET(frame)
 
 	local frame 			= ui.GetFrame('status');
 	STATUS_ON_MSG(frame, 'EQUIP_ITEM_LIST_GET', 'None', 0);
 end
 
 function SCR_GEM_ITEM_SELECT(argNum, luminItem, frameName)
-	local invitem;
+	
+	-- get inventory item
+	local invitem = nil;
 	if frameName == 'inventory' then
-		invitem = session.GetInvItem(argNum);
-		if invitem == nil then
-			return;
-		end
-
-		local itemobj = GetIES(invitem:GetObject());
-		local socketCnt = GET_SOCKET_CNT(itemobj);
-		if socketCnt == 0 then
-			return;
-		end
+		invitem = session.GetInvItem(argNum);		
 	else
 		invitem = session.GetEquipItemBySpot(argNum);
-		if invitem == nil then
-			return;
-		end
+	end
+	if invitem == nil then
+		return;
+	end
 
-		if invitem ~= nil then
-			local itemobj = GetIES(invitem:GetObject());
-			local socketCnt = GET_SOCKET_CNT(itemobj);
-			if socketCnt == 0 then
-				return;
+	-- get item object
+	local itemobj = GetIES(invitem:GetObject());
+	if itemobj == nil then
+		return
+	end
+
+	-- get total / empty socket count
+	local socketCnt = GET_SOCKET_CNT(itemobj);
+	if socketCnt == 0 then
+		ui.SysMsg(ScpArgMsg("NOT_HAVE_SOCKET_SPACE"))
+		return;
+	end
+	local emptyCnt = GET_EMPTY_SOCKET_CNT(socketCnt, itemobj)
+	if emptyCnt < 1 then
+		ui.SysMsg(ScpArgMsg("Auto_SoKaeseopKeoNa_JeonBu_SayongJungiDa"))
+		return
+	end
+
+	-- 몬스?�젬�?중복검??
+	local gemClass = GetClassByType("Item", luminItem.type)
+	if gemClass ~= nil then
+		local gemEquipGroup = TryGetProp(gemClass, "EquipXpGroup")
+		if gemEquipGroup == 'Gem_Skill' then
+			if IS_SAME_TYPE_GEM_IN_ITEM(itemobj, luminItem.type, socketCnt) then
+				local ret = true
+				local invFrame = ui.GetFrame(frameName)
+				invFrame:SetUserValue("GEM_EQUIP_ITEM_ID", luminItem:GetIESID())
+				invFrame:SetUserValue("GEM_EQUIP_TARGET_ID", invitem:GetIESID())
+
+				if frameName == 'inventory' then
+					ui.MsgBox(ScpArgMsg("GEM_EQUIP_SAME_TYPE"), "GEM_EQUIP_TRY", "None")
+				elseif frameName == 'status' then
+					ui.MsgBox(ScpArgMsg("GEM_EQUIP_SAME_TYPE"), "GEM_EQUIP_TRY_STATUS", "None")
+				end
+				return
 			end
 		end
 	end
 
-	local itemobj = GetIES(invitem:GetObject());
-	local socketCnt = GET_SOCKET_CNT(itemobj);
+	if IS_ENABLE_EQUIP_GEM(itemobj, gemClass.ClassID) == false then
+		ui.SysMsg(ScpArgMsg("ValidDupEquipGemBy{VALID_CNT}", "VALID_CNT", VALID_DUP_GEM_CNT));
+		return;
+	end
 
 	local cnt = 0;
 	for i = 0 , socketCnt - 1 do
 		local socketName = "SOCKET_" .. i;
 		local skttype = itemobj["Socket_" .. i];
 		local socketCls = GetClassByType('Socket', skttype);
+
 		if socketCls ~= nil then
 			break;
 		else
-
 			cnt = cnt + 1;
 		end
 	end
-
 	item.UseItemToItem(luminItem:GetIESID(), invitem:GetIESID(), cnt);
+end
+
+function GEM_EQUIP_TRY_STATUS()
+	local invFrame = ui.GetFrame('status')
+	local fromItem = invFrame:GetUserValue("GEM_EQUIP_ITEM_ID")
+	local toItem = invFrame:GetUserValue('GEM_EQUIP_TARGET_ID')
+	item.UseItemToItem(fromItem, toItem, 0);
+end
+
+function GEM_EQUIP_TRY()
+	local invFrame = ui.GetFrame('inventory')
+	local fromItem = invFrame:GetUserValue("GEM_EQUIP_ITEM_ID")
+	local toItem = invFrame:GetUserValue('GEM_EQUIP_TARGET_ID')
+	item.UseItemToItem(fromItem, toItem, 0);
 end
 
 function ENABLE_CTRL(ctrl, isEnable)
@@ -3286,243 +3197,6 @@ function GET_MY_PCNAME()
 	local MySession		= session.GetMyHandle()
 	local CharName		= info.GetName(MySession);
 	return CharName;
-end
-
-function WIKI_MONSTER_TROPHY_VIEW(frame, pageNum)
-	local clslist = GetClassList("Wiki");
-	local index = 1;
-	local slotYIndex = 0;
-	local itemIndex = 0;
-	local x = 65;
-	local y = 110;
-
-	local frameHeight = frame:GetHeight();
-	frameHeight = frameHeight - y - 94 - 44;
-	local yMaxSlotCount = math.floor(frameHeight / 44);
-	local pageMaxSlotCount = yMaxSlotCount * 6;
-
-	while 1 do
-
-		local cls = GetClassByIndexFromList(clslist, index);
-		if cls == nil then
-			break;
-		end
-
-		local wikiIndex = session.GetWikiIndex(cls.ClassID);
-
-		if cls.Category == 'Monster' then
-			if pageNum * pageMaxSlotCount <= itemIndex and pageNum * pageMaxSlotCount + pageMaxSlotCount > itemIndex then
-				if slotYIndex % 6 == 0 and sloYIndex ~= 0 then
-					x = 65;
-					y = y + 46;
-				elseif slotYIndex ~= 0 then
-					x = x + 50;
-				end
-
-				local slot = frame:CreateOrGetControl('slot', 'WIKI_SLOT_'..slotYIndex, x, y, 44, 44);
-				tolua.cast(slot, 'ui::CSlot');
-				local iconname = cls.TargetClassName;
-				slot:SetEventScript(ui.LBUTTONUP, 'WIKI_TROPHY_SLOT_LBTNUP');
-				slot:SetEventScriptArgNumber(ui.LBUTTONUP, cls.ClassID);
-				slot:EnableHitTest(1);
-				slot:EnableDrag(0);
-				local icon = CreateIcon(slot);
-				icon:SetImage(iconname);
-
-				if wikiIndex == -1 then
-					icon:SetColorTone("FF050505");
-				else
-					icon:SetColorTone("00000000");
-				end
-
-				slotYIndex = slotYIndex + 1;
-			end
-			itemIndex = itemIndex + 1;
-		end
-
-		index = index + 1;
-	end
-
-	return itemIndex, pageMaxSlotCount;
-end
-
-function WIKI_NPC_TROPHY_VIEW(frame, pageNum)
-	WIKI_ALLTROPHY_SLOT_DESTROY(frame);
-	local clslist = GetClassList("Wiki");
-	local index = 1;
-	local slotYIndex = 0;
-	local itemIndex = 0;
-	local x = 65;
-	local y = 110;
-
-	local frameHeight = frame:GetHeight();
-	frameHeight = frameHeight - y - 94 - 44;
-	local yMaxSlotCount = math.floor(frameHeight / 44);
-	local pageMaxSlotCount = yMaxSlotCount * 6;
-
-	while 1 do
-
-		local cls = GetClassByIndexFromList(clslist, index);
-		if cls == nil then
-			break;
-		end
-
-		local wikiIndex = session.GetWikiIndex(cls.ClassID);
-
-		if cls.Category == 'npc' then
-			if pageNum * pageMaxSlotCount <= itemIndex and pageNum * pageMaxSlotCount + pageMaxSlotCount > itemIndex then
-				if slotYIndex % 6 == 0 and sloYIndex ~= 0 then
-					x = 65;
-					y = y + 46;
-				elseif slotYIndex ~= 0 then
-					x = x + 50;
-				end
-
-				local slot = frame:CreateOrGetControl('slot', 'WIKI_SLOT_'..slotYIndex, x, y, 44, 44);
-				tolua.cast(slot, 'ui::CSlot');
-
-				local iconname = cls.TargetClassName;
-				slot:SetEventScript(ui.LBUTTONUP, 'WIKI_TROPHY_SLOT_LBTNUP');
-				slot:SetEventScriptArgNumber(ui.LBUTTONUP, cls.ClassID);
-				slot:EnableHitTest(1);
-				slot:EnableDrag(0);
-				local icon = CreateIcon(slot);
-				icon:SetImage(iconname);
-
-				if wikiIndex == -1 then
-					icon:SetColorTone("FF050505");
-				else
-					icon:SetColorTone("00000000");
-				end
-
-				slotYIndex = slotYIndex + 1;
-			end
-			itemIndex = itemIndex + 1;
-		end
-
-		index = index + 1;
-	end
-
-	return itemIndex, pageMaxSlotCount;
-end
-
-function WIKI_MAP_TROPHY_VIEW(frame, pageNum)
-	WIKI_ALLTROPHY_SLOT_DESTROY(frame);
-	local clslist = GetClassList("Wiki");
-	local index = 1;
-	local slotYIndex = 0;
-	local itemIndex = 0;
-	local x = 65;
-	local y = 110;
-
-	local frameHeight = frame:GetHeight();
-	frameHeight = frameHeight - y - 94 - 44;
-	local yMaxSlotCount = math.floor(frameHeight / 44);
-	local pageMaxSlotCount = yMaxSlotCount * 6;
-
-	while 1 do
-
-		local cls = GetClassByIndexFromList(clslist, index);
-		if cls == nil then
-			break;
-		end
-
-		local wikiIndex = session.GetWikiIndex(cls.ClassID);
-
-		if cls.Category == 'Map' then
-			if pageNum * pageMaxSlotCount <= itemIndex and pageNum * pageMaxSlotCount + pageMaxSlotCount > itemIndex then
-				if slotYIndex % 6 == 0 and sloYIndex ~= 0 then
-					x = 65;
-					y = y + 46;
-				elseif slotYIndex ~= 0 then
-					x = x + 50;
-				end
-
-				local slot = frame:CreateOrGetControl('slot', 'WIKI_SLOT_'..slotYIndex, x, y, 44, 44);
-				tolua.cast(slot, 'ui::CSlot');
-
-				local iconname = cls.TargetClassName;
-				slot:SetEventScript(ui.LBUTTONUP, 'WIKI_TROPHY_SLOT_LBTNUP');
-				slot:SetEventScriptArgNumber(ui.LBUTTONUP, cls.ClassID);
-				slot:EnableHitTest(1);
-				slot:EnableDrag(0);
-				local icon = CreateIcon(slot);
-				icon:SetImage(iconname);
-
-				if wikiIndex == -1 then
-					icon:SetColorTone("FF050505");
-				else
-					icon:SetColorTone("00000000");
-				end
-
-				slotYIndex = slotYIndex + 1;
-			end
-			itemIndex = itemIndex + 1;
-		end
-
-		index = index + 1;
-	end
-	return itemIndex, pageMaxSlotCount;
-end
-
-function WIKI_ETC_TROPHY_VIEW(frame, pageNum)
-	WIKI_ALLTROPHY_SLOT_DESTROY(frame);
-	local clslist = GetClassList("Wiki");
-	local index = 1;
-	local slotYIndex = 0;
-	local itemIndex = 0;
-	local x = 65;
-	local y = 110;
-
-	local frameHeight = frame:GetHeight();
-	frameHeight = frameHeight - y - 94 - 44;
-	local yMaxSlotCount = math.floor(frameHeight / 44);
-	local pageMaxSlotCount = yMaxSlotCount * 6;
-
-	while 1 do
-
-		local cls = GetClassByIndexFromList(clslist, index);
-		if cls == nil then
-			break;
-		end
-
-		local wikiIndex = session.GetWikiIndex(cls.ClassID);
-
-		if cls.Category == 'Etc' then
-			if pageNum * pageMaxSlotCount <= itemIndex and pageNum * pageMaxSlotCount + pageMaxSlotCount > itemIndex then
-				if slotYIndex % 6 == 0 and sloYIndex ~= 0 then
-					x = 65;
-					y = y + 46;
-				elseif slotYIndex ~= 0 then
-					x = x + 50;
-				end
-
-				local slot = frame:CreateOrGetControl('slot', 'WIKI_SLOT_'..slotYIndex, x, y, 44, 44);
-				tolua.cast(slot, 'ui::CSlot');
-
-				local iconname = cls.TargetClassName;
-				slot:SetEventScript(ui.LBUTTONUP, 'WIKI_TROPHY_SLOT_LBTNUP');
-				slot:SetEventScriptArgNumber(ui.LBUTTONUP, cls.ClassID);
-				slot:EnableHitTest(1);
-				slot:EnableDrag(0);
-				local icon = CreateIcon(slot);
-				icon:SetImage(iconname);
-
-				if wikiIndex == -1 then
-					icon:SetColorTone("FF050505");
-				else
-					icon:SetColorTone("00000000");
-				end
-
-				slotYIndex = slotYIndex + 1;
-			end
-			itemIndex = itemIndex + 1;
-		end
-
-		index = index + 1;
-	end
-
-	return itemIndex, pageMaxSlotCount;
 end
 
 function WIKI_ALLTROPHY_SLOT_DESTROY(frame)
@@ -3610,7 +3284,7 @@ end
 
 function SCR_QUEST_CHECK_T(pc, questname)
 	local result, reason = SCR_QUEST_CHECK(pc, questname);
-		local reasonString = "";
+	local reasonString = "";
 	if reason ~= nil then
 		for j = 1 , #reason do
 			reasonString = reasonString .. reason[j];
@@ -3624,7 +3298,19 @@ function SCR_QUEST_CHECK_T(pc, questname)
 end
 
 function SCR_QUEST_CHECK_C(pc, questname)
-	return GetQuestState(questname);
+	local questState = GetQuestState(questname);
+	if "PROGRESS" == questState then -- 진행중일?? ?�션?�브?�트???�로 ?�인?�보?�록 ?�자.
+	-- 마법?�회 ?�스?��? 갱신???��? ?�기?�문??
+		local questIES = GetClass('QuestProgressCheck', questname);
+		local sObj_quest = GetSessionObject(pc, questIES.Quest_SSN);
+		if nil ~= sObj_quest then
+			local Succ_req_SSNInvItem, ssnInvItemCheck = SCR_QUEST_SUCC_CHECK_MODULE_SSNINVITEM(pc, questIES, sObj_quest);
+			if 'YES' == Succ_req_SSNInvItem then
+				return SCR_QUEST_CHECK(pc, questname);
+			end
+		end
+	end
+	return questState;
 end
 
 
@@ -3683,10 +3369,6 @@ function SHOW_RIGHTBASE_UI()
 
 end
 
-function CHATFRAMESET_CLOSE(frame)
-	ui.CloseChatFrame(frame:GetName());
-end
-
 function CHATFRAME_LEFTPIC_LBTNUP(frame, ctrl, argStr, argNum)
 	tolua.cast(frame, "ui::CChatFrame");
 	local pageIndex = frame:GetPageIndex();
@@ -3726,6 +3408,26 @@ function HAVE_ACHIEVE_FIND(achieveType)
 	return 0;
 end
 
+function GET_ACHIEVE_COUNT(exceptPeriodAchieve)
+	local list = session.GetAchieveList();
+	local cnt = list:Count();
+	local noPeriodAchieveCnt = 0
+
+	for i = 0 , cnt - 1 do
+		local classID = list:Element(i)
+		local cls = GetClassByType("Achieve", classID)
+
+		if cls.PeriodAchieve == 'NO' then
+			noPeriodAchieveCnt = noPeriodAchieveCnt + 1
+		end
+	end
+
+	if exceptPeriodAchieve == 1 then
+		return noPeriodAchieveCnt
+	else
+		return cnt
+	end
+end
 
 function CLEAR_ITEM_SLOTSET(slots, overSound)
 
@@ -3877,11 +3579,14 @@ function SCR_TREASURE_MARK_BYMAP(zoneClassName, xPos, yPos, zPos)
 
 	local mappicturetemp = GET_CHILD(newframe,'map','ui::CPicture')	
 	mappicturetemp:SetImage(zoneClassName);
+	
+	local width = ui.GetImageWidth(zoneClassName .. "_fog");
+	local height = ui.GetImageHeight(zoneClassName .. "_fog");
 
 	local treasureMarkPic = newframe:CreateOrGetControl('picture', 'treasuremark', 0, 0, 32, 32);
 	tolua.cast(treasureMarkPic, "ui::CPicture");
 	treasureMarkPic:SetImage('trasuremapmark');
-	local MapPos = mapprop:WorldPosToMinimapPos(xPos, zPos, 1024, 1024);
+	local MapPos = mapprop:WorldPosToMinimapPos(xPos, zPos, width, height);
 	treasureMarkPic:SetEnableStretch(1);
 
 	local offsetX = mappicturetemp:GetX();
@@ -3922,6 +3627,9 @@ function SCR_TREASURE_MARK_LIST_MAP(zoneClassName, posVec)
 	local mappicturetemp = GET_CHILD(newframe,'map','ui::CPicture')	
 	mappicturetemp:SetImage(zoneClassName);
 	
+	local width = ui.GetImageWidth(zoneClassName .. "_fog");
+	local height = ui.GetImageHeight(zoneClassName .. "_fog");
+
 	local cnt = GetLuaPosCount(posVec);
 	for i = 0 , cnt - 1 do
 		local pos = GetLuaPosByIndex(posVec, i);
@@ -3933,7 +3641,8 @@ function SCR_TREASURE_MARK_LIST_MAP(zoneClassName, posVec)
 		treasureMarkPic:SetImage('trasuremapmark');
 		local mappicturetemp = GET_CHILD(newframe,'map','ui::CPicture')	
 		mappicturetemp:SetImage(zoneClassName);
-		local MapPos = mapprop:WorldPosToMinimapPos(xPos, zPos, 1024, 1024);
+
+		local MapPos = mapprop:WorldPosToMinimapPos(xPos, zPos, width, height);
 		treasureMarkPic:SetEnableStretch(1);
 	
 		local offsetX = mappicturetemp:GetX();
@@ -4031,20 +3740,6 @@ function DIALOG_TEXT_VOICE(flowTextObj)
 	end
 end
 
--- function COMMON_SHOP_TOGGLE()
-
-
-	-- local shopCommonFrame = ui.GetFrame("shop");
-
-
-	-- if shopCommonFrame:IsVisible() == 1 then
-		-- shopCommonFrame:ShowWindow(0);
-	-- else
-		-- ui.CommonShopToggle();
-	-- end
-
--- end
-
 function GET_RADIOBTN_NUMBER(radioBtn)
 
 	radioBtn = tolua.cast(radioBtn, "ui::CRadioButton");
@@ -4070,42 +3765,51 @@ function CHEAT_LIST_OPEN()
 end
 
 function ON_RIDING_VEHICLE(onoff)
+    local commanderPC = GetCommanderPC()
+    if IsBuffApplied(commanderPC, 'pet_PetHanaming_buff') == 'YES' then -- no ride
+        return;
+    end
+	
+	local isRidingOnly = 'NO';
+    local summonedCompanion = session.pet.GetSummonedPet(0);	-- Riding Companion Only / Not Hawk --
+    if summonedCompanion ~= nil then
+		local companionObj = summonedCompanion:GetObject();
+		local companionIES = GetIES(companionObj);
+		local companionClassName = TryGetProp(companionIES, 'ClassName');
+		if companionClassName ~= nil then
+			local companionClass = GetClass('Companion', companionClassName);
+			isRidingOnly = TryGetProp(companionClass, 'RidingOnly');
+		end
+	end
+	
+    local cartHandle = control.GetNearSitableCart();
+    --js: 현재 메르카바만 하드코딩 형태로 예외처리되어있다 위에 함수명만 봐도 알수있음, 해당 예외처리 추후 하기로 정수씨와 이야기함 (2.0끝나고)--
 
-	if control.HaveNearCompanionToRide() == true then
+	if (control.HaveNearCompanionToRide() == true or isRidingOnly == 'YES') and cartHandle == 0 then
 		local fsmActor = GetMyActor();
 
 		local subAction = fsmActor:GetSubActionState();
-	
-		-- 42 == CSS_SKILL_USE
-		if onoff == 0 and subAction == 42 then
+		
+		-- 41, 42 == CSS_SKILL_READY, CSS_SKILL_USE
+		if subAction == 41 or subAction == 42 then
 			ui.SysMsg(ClMsg('SkillUse_Vehicle'));
 			return;
 		end
-
+		
 		if 1 == onoff then
 			local abil = GetAbility(GetMyPCObject(), "CompanionRide");
-			if nil == abil then
+			if nil == abil and control.IsPremiumCompanion() == false then
 				ui.SysMsg(ClMsg('PetHasNotAbility'));
 				return
 			end
 		end
-
+		
 		local ret = control.RideCompanion(onoff);
-
-		local isSit = control.IsRestSit();
-
-		if onoff == 1 and isSit == true then
-			ui.SysMsg(ClMsg('SitState_Vehicle'));
-			return;
-		end
-
-		if onoff == 1 and ret == false then
-			--ui.SysMsg(ClMsg('DistanceIsTooFar'));
+		if ret == false then
 			return;
 		end
 	else
 		if onoff == 1 then
-			local cartHandle = control.GetNearSitableCart();
 			if cartHandle ~= 0 then
 				local index = control.GetNearSitableCartIndex();
 				control.ReqRideCart(cartHandle, index);
@@ -4164,8 +3868,7 @@ function UPDATE_COMPANION_TITLE(frame, handle)
 
 	frame = tolua.cast(frame, "ui::CObject");
 
-	local petguid  = session.pet.GetPetGuidByHandle(handle)
-
+	local petguid  = session.pet.GetPetGuidByHandle(handle);
 
 	local mycompinfoBox = GET_CHILD_RECURSIVELY(frame, "mycompinfo");
 	if mycompinfoBox == nil then
@@ -4193,18 +3896,17 @@ function UPDATE_COMPANION_TITLE(frame, handle)
 
 		local mynameRtext = GET_CHILD_RECURSIVELY(frame, "myname");
 		local gauge_stamina = GET_CHILD_RECURSIVELY(frame, "StGauge");
-		local hp_stamina = GET_CHILD_RECURSIVELY(frame, "HpGauge");
+		local gauge_HP = GET_CHILD_RECURSIVELY(frame, "HpGauge");
 
-		local petInfo = session.pet.GetPetByGUID(petguid);	
+		local pet = session.pet.GetPetByGUID(petguid);
+		mynameRtext:SetText(pet:GetName())
 
-		local obj = GetIES(petInfo:GetObject());
-		gauge_stamina:SetPoint(obj.Stamina, obj.MaxStamina);
-		hp_stamina:SetPoint(obj.HP, obj.MHP);
-		mynameRtext:SetText(petInfo:GetName())
-
+		local petObj = GetIES(pet:GetObject());
+		gauge_stamina:SetPoint(petObj.Stamina, petObj.MaxStamina);
+		
+		local petInfo = info.GetStat(handle); --IESObject ?�보 ?�용??HP???�시간으�??�기???��? ?�는??
+		gauge_HP:SetPoint(petInfo.HP, petInfo.maxHP);		
 	end
-
-
 
 	frame:Invalidate()
 
@@ -4235,7 +3937,7 @@ end
 function TEST_TIARUA()
 
 ReloadHotKey()
---print("리로?�핫??)
+--print("?�щ줈??�빂??)
 --ui.OpenFrame("joystickrestquickslot");
 --[[
 local quickFrame = ui.GetFrame('quickslotnexpbar')
@@ -4265,46 +3967,106 @@ end
 
 function UI_MODE_CHANGE(index)
 
-
 	local quickFrame = ui.GetFrame('quickslotnexpbar')
+	local restquickslot = ui.GetFrame('restquickslot')
 	local joystickQuickFrame = ui.GetFrame('joystickquickslot')
+	local joystickrestquickslot = ui.GetFrame('joystickrestquickslot')
+	local flutingFrame = ui.GetFrame('fluting_keyboard')
+	local monQuickslot = ui.GetFrame("monsterquickslot")
 	if joystickQuickFrame == nil then
+		return;
+	end
+
+	if monQuickslot:IsVisible() == 1 then
+		return;
+	end
+	
+	if flutingFrame:IsVisible() == 1 then
 		return;
 	end
 
 	local Set1 = GET_CHILD(joystickQuickFrame,'Set1','ui::CGroupBox');
 	local Set2 = GET_CHILD(joystickQuickFrame,'Set2','ui::CGroupBox');
 
-if index == nil then
-	if IsJoyStickMode() == 1 then
-		quickFrame:ShowWindow(0);
-		joystickQuickFrame:ShowWindow(1);
-		Set1:ShowWindow(1);
-		Set2:ShowWindow(0);	
-	elseif IsJoyStickMode() == 0 then
-		quickFrame:ShowWindow(1);
-		joystickQuickFrame:ShowWindow(0);
-		Set1:ShowWindow(0);
-		Set2:ShowWindow(0);	
-	end
+	if index == nil then
+		if IsJoyStickMode() == 1 then
+			if control.IsRestSit() == true then	
+				joystickQuickFrame:ShowWindow(0);
+				joystickrestquickslot:ShowWindow(1);
+			else
+				joystickQuickFrame:ShowWindow(1);
+				joystickrestquickslot:ShowWindow(0);
+			end
+			
+			quickFrame:ShowWindow(0);
+			restquickslot:ShowWindow(0);
+
+			Set1:ShowWindow(1);
+			Set2:ShowWindow(0);	
+		elseif IsJoyStickMode() == 0 then
+			if control.IsRestSit() == true then	
+				if flutingFrame:IsVisible() ~= 1 then
+					quickFrame:ShowWindow(0);
+					restquickslot:ShowWindow(1);
+				else
+					quickFrame:ShowWindow(0);
+					restquickslot:ShowWindow(0);
+				end
+			else
+				quickFrame:ShowWindow(1);
+				restquickslot:ShowWindow(0);
+			end
+			
+			joystickQuickFrame:ShowWindow(0);
+			joystickrestquickslot:ShowWindow(0);
+
+			Set1:ShowWindow(0);
+			Set2:ShowWindow(0);	
+		end
 	elseif index == 1 then
+		if control.IsRestSit() == true then	
+			joystickQuickFrame:ShowWindow(0);
+			joystickrestquickslot:ShowWindow(1);
+		else
+			joystickQuickFrame:ShowWindow(1);
+			joystickrestquickslot:ShowWindow(0);
+		end
+			
 		quickFrame:ShowWindow(0);
-		joystickQuickFrame:ShowWindow(1);
+		restquickslot:ShowWindow(0);
+
 		Set1:ShowWindow(1);
 		Set2:ShowWindow(0);	
-	elseif index == 2 then	
-		quickFrame:ShowWindow(1);
+	elseif index == 2 then
+		if control.IsRestSit() == true then	
+			quickFrame:ShowWindow(0);
+			restquickslot:ShowWindow(1);
+		else
+			quickFrame:ShowWindow(1);
+			restquickslot:ShowWindow(0);
+		end
+			
 		joystickQuickFrame:ShowWindow(0);
+		joystickrestquickslot:ShowWindow(0);
+
 		Set1:ShowWindow(0);
 		Set2:ShowWindow(0);	
 	end
 end
 
 function KEYBOARD_INPUT()
-	
+	if geClientDirection.IsMyActorPlayingClientDirection() == true then
+        return;
+    end
+
+	if GetChangeUIMode() == 1 then
+		return;
+	end
+
 	local quickFrame = ui.GetFrame('quickslotnexpbar')
 	local restquickslot = ui.GetFrame('restquickslot')
 	local joystickrestquickslot = ui.GetFrame('joystickrestquickslot')
+	local flutingFrame = ui.GetFrame('fluting_keyboard')
 	local monsterquickslot = ui.GetFrame('monsterquickslot')
 	local summoncontrol = ui.GetFrame('summoncontrol')
 	SetJoystickMode(0)
@@ -4316,15 +4078,31 @@ function KEYBOARD_INPUT()
 		if joystickrestquickslot:IsVisible() == 1 then
 			joystickrestquickslot:ShowWindow(0);
 		end
-		return;
 	end
+
 	if GetChangeUIMode() == 0 then
 		local quickFrame = ui.GetFrame('quickslotnexpbar')
 		local joystickQuickFrame = ui.GetFrame('joystickquickslot')
 		local Set1 = GET_CHILD(joystickQuickFrame,'Set1','ui::CGroupBox');
 		local Set2 = GET_CHILD(joystickQuickFrame,'Set2','ui::CGroupBox');
-		quickFrame:ShowWindow(1);
+
+		if monsterquickslot:IsVisible() ~= 1 then
+			if control.IsRestSit() == true then
+				quickFrame:ShowWindow(0);
+				if flutingFrame:IsVisible() ~= 1 then
+					restquickslot:ShowWindow(1);
+				else
+					restquickslot:ShowWindow(0);
+				end
+			else
+				quickFrame:ShowWindow(1);
+				restquickslot:ShowWindow(0);
+			end
+		end
+
 		joystickQuickFrame:ShowWindow(0);
+		joystickrestquickslot:ShowWindow(0);
+
 		Set1:ShowWindow(0);
 		Set2:ShowWindow(0);	
 
@@ -4333,9 +4111,18 @@ function KEYBOARD_INPUT()
 end
 
 function JOYSTICK_INPUT()
+    if geClientDirection.IsMyActorPlayingClientDirection() == true then
+        return;
+    end
+
+	if GetChangeUIMode() == 2 or GetChangeUIMode() == 3 then
+		return;
+	end
+
 	local joystickQuickFrame = ui.GetFrame('joystickquickslot')
 	local joystickrestquickslot = ui.GetFrame('joystickrestquickslot')
 	local restquickslot = ui.GetFrame('restquickslot')
+	local flutingFrame = ui.GetFrame('fluting_keyboard')
 	local monsterquickslot = ui.GetFrame('monsterquickslot')
 	local summoncontrol = ui.GetFrame('summoncontrol')
 	SetJoystickMode(1)
@@ -4347,19 +4134,40 @@ function JOYSTICK_INPUT()
 		if restquickslot:IsVisible() == 1 then	
 			restquickslot:ShowWindow(0);
 		end
-		return;
 	end
-
 
 	if GetChangeUIMode() == 0 then
 		local quickFrame = ui.GetFrame('quickslotnexpbar')
 		local Set1 = GET_CHILD(joystickQuickFrame,'Set1','ui::CGroupBox');
 		local Set2 = GET_CHILD(joystickQuickFrame,'Set2','ui::CGroupBox');
-		quickFrame:ShowWindow(0);
-		joystickQuickFrame:ShowWindow(1);
-		Set1:ShowWindow(1);
-		Set2:ShowWindow(0);	
+		
+		if monsterquickslot:IsVisible() ~= 1 then
+			if control.IsRestSit() == true then
+				if flutingFrame:IsVisible() ~= 1 then
+					joystickQuickFrame:ShowWindow(0);
+					joystickrestquickslot:ShowWindow(1);
+				else
+					joystickQuickFrame:ShowWindow(0);
+					joystickrestquickslot:ShowWindow(0);
+				end
+			else
+				joystickQuickFrame:ShowWindow(1);
+				joystickrestquickslot:ShowWindow(0);
+			end
+		end
 
+		quickFrame:ShowWindow(0);
+		restquickslot:ShowWindow(0);
+
+		-- 기존 set ????.
+		if Set2:IsVisible() == 1 then 
+			Set1:ShowWindow(0);
+			Set2:ShowWindow(1);
+		else
+			Set2:ShowWindow(0);
+			Set1:ShowWindow(1);
+		end
+		
 		joystickQuickFrame:Invalidate();
 	end
 end
@@ -4383,3 +4191,30 @@ function BLOCK_MSG(blockName, sysTime)
 	
 end
 
+function UI_CHECK_NOT_EVENT_MAP()
+    if IS_IN_EVENT_MAP() == true then
+        return 0;
+    end
+    return 1;
+end
+
+function TEST_CLIENT_SCRIPT()
+
+	local frame = ui.GetFrame("beautyshop_test");
+	if frame ~= nil then
+		if frame:IsVisible() == 1 then
+			frame:ShowWindow(0)
+		else
+			frame:ShowWindow(1)
+		end
+	end 
+	
+
+	--[[
+	local pc = GetMyActor();
+	local pos = pc:GetPos();
+ 
+  	print("TEST_CLIENT_SCRIPT xyz", pos.x, pos.y, pos.z);
+	TEST_CAMERA_CHANGE(pc, 1, pos.x , pos.y, pos.z, 180)
+	]]
+end
