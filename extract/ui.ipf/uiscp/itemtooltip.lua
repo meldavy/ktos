@@ -23,7 +23,6 @@ end
 
 function UPDATE_ITEM_TOOLTIP(tooltipframe, strarg, numarg1, numarg2, userdata, tooltipobj, noTradeCnt)	
 	tolua.cast(tooltipframe, "ui::CTooltipFrame");
-
 	local itemObj, isReadObj = nil;	
 	if tooltipobj ~= nil then
 		itemObj = tooltipobj;
@@ -52,24 +51,17 @@ function UPDATE_ITEM_TOOLTIP(tooltipframe, strarg, numarg1, numarg2, userdata, t
 	tooltipframe:SetUserValue('TOOLTIP_ITEM_GUID', numarg2);
 
 	local recipeitemobj = nil
-
 	local recipeid = IS_RECIPE_ITEM(itemObj)
 	-- 레시피 아이템 쪽
-		
 	if recipeid ~= 0 then
-		
 		local recipeIES = CreateIESByID('Item', recipeid);
-		
 		if recipeIES ~= nil then
-
 			recipeitemobj = recipeIES
 			local refreshScp = recipeitemobj.RefreshScp;
-	
 			if refreshScp ~= "None" then				
 				refreshScp = _G[refreshScp];				
 				refreshScp(recipeitemobj);
 			end	
-
 		end
 	end
 	
@@ -83,7 +75,6 @@ function UPDATE_ITEM_TOOLTIP(tooltipframe, strarg, numarg1, numarg2, userdata, t
 			local tabTxt = "";
 			tabTxt, numarg1 = GET_DRAG_RECIPE_INFO(itemObj);
 			isReadObj = 1;
-			
 			local tabCtrl = GET_CHILD(tooltipframe, "tabText", "ui::CTabControl");
 			tabCtrl:ChangeCaption(0, tabText);
 			tabCtrl:ShowWindow(1);
@@ -118,7 +109,7 @@ function UPDATE_ITEM_TOOLTIP(tooltipframe, strarg, numarg1, numarg2, userdata, t
 	if isReadObj == 1 then -- IES가 없는 아이템. 가령 제작서의 완성 아이템 표시 등
 		local class = itemObj;
 		if class ~= nil then
-			local ToolTipScp = _G['ITEM_TOOLTIP_' .. class.ToolTipScp];			
+			local ToolTipScp = _G['ITEM_TOOLTIP_' .. class.ToolTipScp];	
 			ToolTipScp(tooltipframe, class, strarg, "mainframe", isForgeryItem);
 		end		
 	else
@@ -355,7 +346,6 @@ end
 
 -- propNameList만 가져오는 함수. 만일 툴팁이나 기타 등등에 아이템의 옵션을 표시할 때 옵션값들을 하나의 통합된 string 형태가 아니라 그냥 리스트로 가져오고 싶을 때 활용.
 function GET_ITEM_PROP_NAME_LIST(obj) 
-
 	local tooltipValue = TryGetProp(obj, "TooltipValue");
 	if tooltipValue == nil or tooltipValue == "None" then
 		return "";
@@ -371,25 +361,47 @@ function GET_ITEM_PROP_NAME_LIST(obj)
 		else
 			propNameList[#propNameList + 1] = {};
 			propNameList[#propNameList]["PropName"] = propName;
-
             local propValue = math.floor(obj[propName]);
             if propName == 'CoolDown' and propValue == 0 then -- 인벤토리가 아닌 아이템의 경우 CP계산을 못해요
                 propValue = obj.ItemCoolDown;
             end
-
 			propNameList[#propNameList]["PropValue"] = propValue;
 		end
 	end
-	
-	return propNameList
+	return propNameList;
+end
 
+-- 에테르 젬 아이템 프로퍼티 옵션 값
+function AETHER_GET_ITEM_PROP_NAME_LIST(obj, guid) 
+	local tooltip_value = TryGetProp(obj, "TooltipValue");
+	if tooltip_value == nil or tooltip_value == "None" then
+		return "";
+	end
+
+	local string_list = StringSplit(tooltip_value, "/");
+	local prop_name_list = {};
+	for i = 1, #string_list do
+		local prop_name = string_list[i];
+		if string.sub(prop_name, 1, 1) == "#" then
+			local func = _G[string.sub(prop_name, 2, string.len(prop_name) )];
+			func(obj, prop_name_list, guid);
+		else
+			prop_name_list[#prop_name_list + 1] = {};
+			prop_name_list[#prop_name_list]["PropName"] = prop_name;
+            local prop_value = math.floor(obj[prop_name]);
+            if prop_name == 'CoolDown' and prop_value == 0 then
+                prop_value = obj.ItemCoolDown;
+            end
+			prop_name_list[#prop_name_list]["PropValue"] = prop_value;
+		end
+	end
+	return prop_name_list;
 end
 
 function GET_ITEM_DESC_BY_TOOLTIP_VALUE(obj)
 
 	local propNameList = GET_ITEM_PROP_NAME_LIST(obj)
 	local ret = "";
-
 	for i = 1, #propNameList do
 		local propName = propNameList[i]["PropName"];
 		local propValue = propNameList[i]["PropValue"];

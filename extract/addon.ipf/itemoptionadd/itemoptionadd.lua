@@ -141,7 +141,7 @@ function ITEM_OPTIONADD_REG_MAIN_ITEM(frame, itemID)
 	local item = GetIES(invItem:GetObject());
 	local itemCls = GetClassByType('Item', item.ClassID)
 	if TryGetProp(itemCls, 'NeedRandomOption', 0) == 1 and TryGetProp(itemCls, 'LegendGroup', 'None') == 'None' then
-	    ui.SysMsg(ClMsg("NotAllowedItemOptionAdd"));
+		ui.SysMsg(ClMsg("NotAllowedItemOptionAdd"));
         return;
 	end
 	local invitem = item
@@ -152,6 +152,11 @@ function ITEM_OPTIONADD_REG_MAIN_ITEM(frame, itemID)
 		return
 	end
 	
+	if TryGetProp(item, 'ItemGrade') > 5 then
+		ui.SysMsg(ClMsg('CantUseGoddessItemToIcor'))
+		return
+	end
+
 	local slot = GET_CHILD_RECURSIVELY(frame, "slot");
 	local slotInvItem = GET_SLOT_ITEM(slot);
 	local slotInvItemCls = nil
@@ -239,7 +244,7 @@ function ITEM_OPTIONADD_REG_MAIN_ITEM(frame, itemID)
 	SET_OPTIONADD_RESET(frame);	
 end
 
-function ITEM_OPTIONADD_REG_ADD_ITEM(frame, itemID)    
+function ITEM_OPTIONADD_REG_ADD_ITEM(frame, itemID)    	
 	if ui.CheckHoldedUI() == true then
 		return;
 	end
@@ -261,9 +266,9 @@ function ITEM_OPTIONADD_REG_ADD_ITEM(frame, itemID)
 		return;
 	end
 
--- invItem 이 아이커가 아니면 에러 후 리턴 if invItem
-	if TryGetProp(invitem, 'GroupName') ~= 'Icor' then
-		ui.SysMsg(ClMsg("MustEquipIcor"));
+	-- invItem 이 아이커가 아니면 에러 후 리턴 if invItem
+	if TryGetProp(invitem, 'GroupName') ~= 'Icor' and TryGetProp(invitem, 'GroupName', 'None') ~= 'Arcane' then
+		ui.SysMsg(ClMsg("MustEquipIcor"));		
 		return;
 	end
 	
@@ -284,16 +289,43 @@ function ITEM_OPTIONADD_REG_ADD_ITEM(frame, itemID)
 			ui.SysMsg(ClMsg("AlearyIcorAdded"))
 			return
 		end	
+
+		if TryGetProp(obj, 'ItemGrade', 0) > 5 then
+			ui.SysMsg(ClMsg('IMPOSSIBLE_ITEM'))			
+			return
+		end
 	end
 
 	--아이커의 atk 과 slot 의 atk 이 맞아야만 장착가능    
 	local targetItem = GetClass('Item', invitem.InheritanceItemName);
 
+	if invitem.GroupName == 'Icor' then
+        if TryGetProp(targetItem, 'StringArg', 'None') == 'Vibora' then				
+			ui.SysMsg(ClMsg('NowCantViboraIcorToWeapon'))
+			return
+		end
+    end
+
+	if TryGetProp(invitem, 'GroupName', 'None') == 'Arcane' then
+		if TryGetProp(invitem, 'TeamBelonging', 0) == 1 then
+			ui.SysMsg(ClMsg('TeamBelongingArcaneOnlyUseGoddess'))
+			return
+		end
+
+		local class_type = TryGetProp(slotInvItemCls, 'ClassType', 'None')
+		if IS_WEAPON_TYPE(class_type) == false then
+			ui.SysMsg(ClMsg('NotMatchItemClassType')) -- atk 타입이 안맞아서 리턴	
+			return
+		end
+
+		targetItem = GetClass('Item', invitem.ClassName);
+	end
+
     if targetItem == nil then
         targetItem = GetClass('Item', invitem.InheritanceRandomItemName);
     end
-        
-	if targetItem.ClassType ~= slotInvItemCls.ClassType or (IS_ICORABLE_RANDOM_LEGEND_ITEM(slotInvItemCls) and invitem.InheritanceRandomItemName ~= 'None') then
+
+	if (IS_ICORABLE_RANDOM_LEGEND_ITEM(slotInvItemCls) and invitem.InheritanceRandomItemName ~= 'None') then
 		ui.SysMsg(ClMsg('NotMatchItemClassType')) -- atk 타입이 안맞아서 리턴
 		return
 	end
@@ -807,10 +839,15 @@ function ITEMOPTIONADD_INV_RBTN(itemObj, slot)
 	
 	local itemCls = GetClass('Item', TryGetProp(itemObj, 'ClassName', 'None'))
 	if TryGetProp(itemCls, 'NeedRandomOption', 0) == 1 and TryGetProp(itemCls, 'LegendGroup', 'None') == 'None' then    
-	    ui.SysMsg(ClMsg("NotAllowedItemOptionAdd"));
+		ui.SysMsg(ClMsg("NotAllowedItemOptionAdd"));
         return;
 	end
 	
+	if TryGetProp(itemObj, 'ItemGrade') > 5 then
+		ui.SysMsg(ClMsg('CantUseGoddessItemToIcor'))
+		return
+	end
+
 	local icon = slot:GetIcon();
 	local iconInfo = icon:GetInfo();
 	local invItem = GET_PC_ITEM_BY_GUID(iconInfo:GetIESID());

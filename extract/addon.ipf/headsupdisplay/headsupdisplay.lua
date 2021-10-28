@@ -517,6 +517,8 @@ function HEADSUPDISPLAY_UPDATE_RP_VISIBLE(frame, type)
 		myhpspright:SetMargin(right_margin.left, margin_top, right_margin.right, right_margin.bottom)
 
 		HEADSUPDISPLAY_UPDATE_RP_GAUGE(frame)
+
+		STAMINA_UPDATE(frame)
 	else
 		bg_relic:ShowWindow(0)
 		bg_default:ShowWindow(1)

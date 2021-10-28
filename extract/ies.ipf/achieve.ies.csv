@@ -80,6 +80,7 @@ ClassID,NeedCount,ClassName,Group,Category,Name,Desc,Icon,Hidden,DescTitle,Rewar
 2094,1,WEB_PROPOSAL_3,AchievePoint,이벤트,건의왕,월간 BEST 건의 10회 선정자에게 주어지는 칭호,icon_item_Misc_00021,YES,건의왕,,False,WEB_PROPOSAL_3,NO,,,,,NO,NO,
 2095,1,Event_1808_Lab_3_1,AchievePoint,이벤트,[TOS 3기 연구원],TOS 3기 연구원으로 참여자께 지급되는 칭호입니다.,icon_item_Misc_00021,YES,[TOS 3기 연구원],,False,Event_1808_Lab_3_1,NO,,,,,NO,NO,
 2097,1,EVENT_1809_UCC_ACHIEVE,AchievePoint,이벤트,축제를 즐기는,다이누 슈벤테이벤트 참가자분께 주어지는 칭호입니다.,icon_item_Misc_00021,YES,축제를 즐기는,,False,EVENT_1809_UCC_ACHIEVE,NO,,,,,NO,NO,
+2098,1,Achieve_Event_Game_Guide_Creator,AchievePoint,이벤트,Game Guide Creator,Game Guide Creator에게 지급되는 칭호입니다. 마우스 오른쪽 클릭으로 사용합니다.,icon_item_Misc_00021,YES,Game Guide Creator,,False,Achieve_Event_Game_Guide_Creator,NO,,,,,NO,,
 2099,1,EVENT_1809_CHUSEOK_MOON_ACHIEVE,AchievePoint,이벤트,달아 달아 밝은 달아,보름달 키우기 대작전 이벤트 참가자분께 주어지는 칭호입니다.,icon_item_Misc_00021,YES,달아 달아 밝은 달아,,False,EVENT_1809_CHUSEOK_MOON_ACHIEVE,NO,,,,,NO,NO,
 2102,1,COLONYWAR_KOR_BETA_REWARD_ACHIEVE,AchievePoint,이벤트,콜로니 선봉대,길드 콜로니전 베타 참여자에게 지급되는 칭호입니다.,icon_item_Misc_00021,YES,콜로니 선봉대,,False,COLONYWAR_KOR_BETA_REWARD_ACHIEVE,NO,,,,,NO,NO,
 2103,1,EVENT_1809_OTP_ACHIEVE1,AchievePoint,이벤트,OTP는 0원 보안은 영원,계정 보호를 기원해 구원자분께 지급되는 칭호입니다.,icon_item_Misc_00021,YES,OTP는 0원 보안은 영원,,False,EVENT_1809_OTP_ACHIEVE1,NO,,,,,NO,NO,
@@ -231,6 +232,10 @@ ClassID,NeedCount,ClassName,Group,Category,Name,Desc,Icon,Hidden,DescTitle,Rewar
 8018,1,Giltine_clear_gold,AchievePoint,킬,Begin A Prelude[Gold],[마신의 성소: 레전드] 3분 이내에 클리어한 유저에게 지급되는 칭호입니다.,icon_item_Misc_00021,YES,Begin A Prelude,,True,Giltine_clear_gold,YES,,,,,,NO,plate_achieve_Giltine_clear_2
 8019,1,Giltine_clear_silver,AchievePoint,킬,Begin A Prelude[Silver],[마신의 성소: 레전드] 10분 이내에 클리어한 유저에게 지급되는 칭호입니다.,icon_item_Misc_00021,YES,Begin A Prelude,,True,Giltine_clear_silver,YES,,,,,,NO,plate_achieve_Giltine_clear_2_02
 8020,1,Giltine_clear_bronze,AchievePoint,킬,Begin A Prelude[Bronze],[마신의 성소: 레전드] 클리어한 유저에게 지급되는 칭호입니다.,icon_item_Misc_00021,YES,Begin A Prelude,,True,Giltine_clear_bronze,YES,,,,,,NO,plate_achieve_Giltine_clear_2_01
+8021,1,Vasilissa_first_kill,AchievePoint,킬,Queen of Ruination,각 서버에서 최초로 [성자의 기도소: 가디스] 클리어한 유저에게 지급되는 칭호입니다.,icon_item_Misc_00021,YES,Queen of Ruination,,True,Vasilissa_first_kill,YES,,,,,,NO,plate_achieve_Vasilisa_first_kill
+8022,1,Vasilissa_clear_gold,AchievePoint,킬,Cursed Fate[Gold],[성자의 기도소: 가디스] 3분 이내에 클리어한 유저에게 지급되는 칭호입니다.,icon_item_Misc_00021,YES,Cursed Fate,,True,Vasilissa_clear_gold,YES,,,,,,NO,plate_achieve_Vasilisa_clear_03
+8023,1,Vasilissa_clear_silver,AchievePoint,킬,Cursed Fate[Silver],[성자의 기도소: 가디스] 10분 이내에 클리어한 유저에게 지급되는 칭호입니다.,icon_item_Misc_00021,YES,Cursed Fate,,True,Vasilissa_clear_silver,YES,,,,,,NO,plate_achieve_Vasilisa_clear_02
+8024,1,Vasilissa_clear_bronze,AchievePoint,킬,Cursed Fate[Bronze],[성자의 기도소: 가디스] 클리어한 유저에게 지급되는 칭호입니다.,icon_item_Misc_00021,YES,Cursed Fate,,True,Vasilissa_clear_bronze,YES,,,,,,NO,plate_achieve_Vasilisa_clear_01
 9001,1,WEEKLY_BOSS_RANK_1,AchievePoint,랭킹,Iron Lord,"주간 보스 [자우라] 계열 별 랭킹 보상으로 지급되는 칭호입니다. ",icon_item_Misc_00021,YES,Iron Lord,,True,WeeklyRank_1,YES,,,,,,NO,plate_achieve_weeklyrank_1
 9002,1,WEEKLY_BOSS_RANK_2,AchievePoint,랭킹,Demon Rose,"주간 보스 [헬가세르클] 계열 별 랭킹 보상으로 지급되는 칭호입니다. ",icon_item_Misc_00021,YES,Demon Rose,,True,WeeklyRank_2,YES,,,,,,NO,plate_achieve_weeklyrank_2
 9003,1,WEEKLY_BOSS_RANK_3,AchievePoint,랭킹,Mist Bringer,"주간 보스 [누아엘레] 계열 별 랭킹 보상으로 지급되는 칭호입니다. ",icon_item_Misc_00021,YES,Mist Bringer,,True,WeeklyRank_3,YES,,,,,,NO,plate_achieve_weeklyrank_3
@@ -318,9 +323,9 @@ ClassID,NeedCount,ClassName,Group,Category,Name,Desc,Icon,Hidden,DescTitle,Rewar
 110003,300,Ancient_3,AchievePoint,어시스터 코스트,챌린지 무한회랑,[챌린지 모드 자동 매칭]을 300회 클리어하였습니다.,icon_item_Misc_00021,NO,챌린지 모드 자동 매칭 300회 클리어,,True,Ancient_3,YES,,,,ACHIEVE_REWARD_ANCIENT_COST,NO,YES,
 110004,50,Ancient_4,AchievePoint,어시스터 코스트,차원 배회자,[차원 붕괴 지점] 10단계 이상 난이도를 50회 클리어하였습니다.,icon_item_Misc_00021,NO,차원 붕괴 지점 10단계 50회 클리어,,True,Ancient_4,YES,,,,ACHIEVE_REWARD_ANCIENT_COST,NO,YES,
 110005,50,Ancient_5,AchievePoint,어시스터 코스트,던전 키퍼,400레벨 이상 입장가능한 레벨 던전을 50회 클리어하였습니다.,icon_item_Misc_00021,NO,400 레벨 던전 50회 클리어,,True,Ancient_5,YES,,,,ACHIEVE_REWARD_ANCIENT_COST,NO,YES,
-110006,10,Ancient_6,AchievePoint,어시스터 코스트,정상을 향해,[베르니케의 파편 던전]을 80단계 이상 10회 도전하였습니다.,icon_item_Misc_00021,NO,베르니케의 파편 던전 80단계 이상 10회 도전,,True,Ancient_6,YES,,,,ACHIEVE_REWARD_ANCIENT_COST,NO,YES,
+110006,10,Ancient_6,AchievePoint,어시스터 코스트,정상을 향해,[베르니케의 파편 던전]을 30단계 이상 10회 도전하였습니다.,icon_item_Misc_00021,NO,베르니케의 파편 던전 30단계 이상 10회 도전,,True,Ancient_6,YES,,,,ACHIEVE_REWARD_ANCIENT_COST,NO,YES,
 110007,50,Ancient_7,AchievePoint,어시스터 코스트,견고한 수비,[업힐 디펜스] 매우 어려움 난이도를 50회 클리어하였습니다.,icon_item_Misc_00021,NO,업힐 디펜스 : 매우 어려움 50회 클리어,,True,Ancient_7,YES,,,,ACHIEVE_REWARD_ANCIENT_COST,NO,YES,
-110008,20,Ancient_8,AchievePoint,어시스터 코스트,광부,[자원 쟁탈전]에서 20회 승리하였습니다.,icon_item_Misc_00021,NO,자원 쟁탈전 20회 승리,,True,Ancient_8,YES,,,,ACHIEVE_REWARD_ANCIENT_COST,NO,YES,
+110008,20,Ancient_8,AchievePoint,어시스터 코스트,광부,[자원 쟁탈전] 또는 [팀 배틀 리그]에서 20회 승리하였습니다.,icon_item_Misc_00021,NO,자원 쟁탈전 또는 팀 배틀 리그 20회 승리,,True,Ancient_8,YES,,,,ACHIEVE_REWARD_ANCIENT_COST,NO,YES,
 110009,20,Ancient_9,AchievePoint,어시스터 코스트,배틀 비기너,[팀 배틀 리그]에서 20회 승리하였습니다.,icon_item_Misc_00021,NO,팀 배틀 리그 20회 승리,,True,Ancient_9,YES,,,,ACHIEVE_REWARD_ANCIENT_COST,NO,YES,
 110010,50,Ancient_10,AchievePoint,어시스터 코스트,피규어 수집가,[주간 보스 레이드]에 50회 참여하였습니다.,icon_item_Misc_00021,NO,주간 보스 레이드 50회 참여,,True,Ancient_10,YES,,,,ACHIEVE_REWARD_ANCIENT_COST,NO,YES,
 110011,30,Ancient_11,AchievePoint,어시스터 코스트,끝없는 성장,[성물 레이드 : 자동 매칭(Hard)]를 30회 클리어하였습니다.,icon_item_Misc_00021,NO,성물 레이드 : 자동 매칭(Hard) 30회 클리어,,True,Ancient_11,YES,,,,ACHIEVE_REWARD_ANCIENT_COST,NO,YES,
@@ -330,3 +335,5 @@ ClassID,NeedCount,ClassName,Group,Category,Name,Desc,Icon,Hidden,DescTitle,Rewar
 120003,1,Boss_Co_Op_3,AchievePoint,보스 협동전,Raging Imperator,보스 협동전 훈장 교환 칭호,icon_item_Misc_00021,NO,Raging Imperator,,True,Boss_Co_Op_3,YES,,,,,NO,YES,plate_achieve_coop_boss_Rank1
 120004,1,Boss_Co_Op_4,AchievePoint,보스 협동전,Raid Veteran,보스 협동전 훈장 교환 칭호,icon_item_Misc_00021,NO,Raid Veteran,,True,Boss_Co_Op_4,YES,,,,,NO,YES,plate_achieve_coop_boss_20
 120005,1,Boss_Co_Op_5,AchievePoint,보스 협동전,Eternal Warrior,보스 협동전 훈장 교환 칭호,icon_item_Misc_00021,NO,Eternal Warrior,,True,Boss_Co_Op_5,YES,,,,,NO,YES,plate_achieve_coop_boss_100
+140001,1,Achieve_TOSHero_1,AchievePoint,영웅담,이름 없는 영웅,영웅담을 클리어하였습니다.,icon_item_Misc_00021,NO,영웅담 1회 클리어,,True,Achieve_TOSHero_1,NO,,,,,NO,NO,
+140002,150,Achieve_TOSHero_2,AchievePoint,영웅담,{img Collar_TOSHero_1 30 30}{img Collar_TOSHero_2 30 30}{img Collar_TOSHero_3 30 30}{img Collar_TOSHero_4 30 30}{img Collar_TOSHero_5 30 30}{img Collar_TOSHero_6 30 30},영웅담을 150회 클리어 했습니다.,icon_item_Misc_00021,NO,영웅담 150회 클리어,,True,Achieve_TOSHero_1,NO,,,,,NO,NO,

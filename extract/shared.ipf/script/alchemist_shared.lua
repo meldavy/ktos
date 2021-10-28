@@ -117,6 +117,7 @@ function IS_VALID_BRIQUETTING_TARGET_ITEM(targetItem)
 	return false;
 end
 
+--- 외형 변경 재료 아이템 검사
 function IS_VALID_LOOK_ITEM(lookItem)
 	if lookItem == nil then
 		return false;
@@ -126,12 +127,17 @@ function IS_VALID_LOOK_ITEM(lookItem)
 		return false;
 	end
 
-	if lookItem.LifeTime > 0 then
+	if tonumber(TryGetProp(lookItem, 'LifeTime', 0)) > 0 then
 		return false;
 	end
 
+
     if TryGetProp(lookItem, 'BriquettingIndex') ~= nil then
-    	if (lookItem.UseLv >= 360 and lookItem.ItemGrade >= 5) or lookItem.BriquettingIndex ~= 0 then
+		if (TryGetProp(lookItem, 'UseLv', 0) >= 360 
+		and TryGetProp(lookItem, 'ItemGrade', 0) >= 5 
+		and TryGetProp(lookItem, 'LegendGroup', 'None') ~= 'Varna' 
+		and TryGetProp(lookItem, 'LegendGroup', 'None') ~= 'Velcoffer' 
+		and TryGetProp(lookItem, 'ExchangeGroup', 'None') ~= 'GlacierLegenda') or TryGetProp(lookItem, 'BriquettingIndex', 0) ~= 0 then
     		return false;
     	end
     end

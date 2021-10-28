@@ -1694,12 +1694,19 @@ function SLOT_ITEMUSE_BY_TYPE(frame, object, argStr, type)
 end
 
 function TRY_TO_USE_WARP_ITEM(invitem, itemobj)
+	local pc = GetMyPCObject();
+
 	-- 워프 주문서 아니면 리턴
 	if itemobj.ClassID ~= 640022 and itemobj.ClassID ~= 640079 and itemobj.ClassID ~= 490006 and itemobj.ClassID ~= 490110 then
 		return 0;
 	end
 
-	local pc = GetMyPCObject();
+	-- 바운티 헌트 관련 처리
+	if ENABLE_WARP_CHECK(pc) == false then
+		ui.SysMsg(ScpArgMsg("WarpBanBountyHunt"))
+		return 0
+	end 
+
 	if pc == nil or IsPVPServer(pc) == 1 then
 		local isEnableUseInPVPMap = TryGetProp(itemobj, "PVPMap");
 		if isEnableUseInPVPMap ~= "YES" then
@@ -1743,12 +1750,12 @@ function TRY_TO_USE_WARP_ITEM(invitem, itemobj)
 			end
 		end
 
-		if session.IsAutoChallengeMap() == true then
+		if session.IsAutoChallengeMap() == true or session.IsSoloChallengeMap() == true then
 			ui.SysMsg(ClMsg('ThisLocalUseNot'));
 			return 0;
 		end
 
-		if session.IsGiltineRaidMap() == true then
+		if session.IsWarpDisabledRaidMap() == true then
 			ui.SysMsg(ClMsg('ThisLocalUseNot'));
 			return 0;
 		end
@@ -1796,7 +1803,7 @@ function INVENTORY_RBDC_ITEMUSE(frame, object, argStr, argNum)
 		IES_MAN_IESID(invitem:GetIESID());
 		return;
 	end
-
+	
 	local itemobj = GetIES(invitem:GetObject());
 
     -- custom
@@ -2137,6 +2144,67 @@ function REQUEST_SUMMON_BOSS_TX()
 	item.UseByGUID(invItem:GetIESID());
 end
 
+function REQUEST_USE_QUEST_CLEAR_SCROLL_TX()
+	local invFrame = ui.GetFrame("inventory");
+	local itemGuid = invFrame:GetUserValue("REQ_USE_ITEM_GUID");
+	local invItem = session.GetInvItemByGuid(itemGuid)
+	
+	if nil == invItem then
+		return;
+	end
+	
+	if true == invItem.isLockState then
+		ui.SysMsg(ClMsg("MaterialItemIsLock"));
+		return;
+	end
+	
+	local stat = info.GetStat(session.GetMyHandle());		
+	if stat.HP <= 0 then
+		return;
+	end
+	
+	local itemtype = invItem.type;
+	local curTime = item.GetCoolDown(itemtype);
+	if curTime ~= 0 then
+		imcSound.PlaySoundEvent("skill_cooltime");
+		return;
+	end
+	
+	item.UseByGUID(invItem:GetIESID());
+end
+
+
+function BEFORE_USE_TEST_SCROLL_TX()
+	local invFrame = ui.GetFrame("inventory");
+	local itemGuid = invFrame:GetUserValue("REQ_USE_ITEM_GUID");
+	local invItem = session.GetInvItemByGuid(itemGuid)
+	
+	if nil == invItem then
+		return;
+	end
+	
+	if true == invItem.isLockState then
+		ui.SysMsg(ClMsg("MaterialItemIsLock"));
+		return;
+	end
+	
+	local stat = info.GetStat(session.GetMyHandle());		
+	if stat.HP <= 0 then
+		return;
+	end
+	
+	local itemtype = invItem.type;
+	local curTime = item.GetCoolDown(itemtype);
+	if curTime ~= 0 then
+		imcSound.PlaySoundEvent("skill_cooltime");
+		return;
+	end
+	
+	item.UseByGUID(invItem:GetIESID());
+end
+
+
+
 --아이템의 사용
 function INVENTORY_RBDOUBLE_ITEMUSE(frame, object, argStr, argNum)
 	local pc = GetMyPCObject();
@@ -2357,8 +2425,7 @@ function INVENTORY_ON_DROP(frame, control, argStr, argNum)
 				if fromSlotIndex == toSlotIndex then
 					return;
 				end
-				
-				item.SwapSlotIndex(IT_INVENTORY, fromInvIndex, toInvIndex);
+								
 				ON_CHANGE_INVINDEX(toFrame, nil, fromInvIndex, toInvIndex);
 				
 				parentSlotSet:SwapSlot(fromSlotIndex, toSlotIndex, "ONUPDATE_SLOT_INVINDEX");
@@ -2592,7 +2659,7 @@ function INV_ICON_SETINFO(frame, slot, invItem, customFunc, scriptArg, count)
 	SET_SLOT_ICOR_CATEGORY(slot, itemobj);
 
 	if invItem.isNew == true  then
-		slot:SetHeaderImage('new_inventory_icon');
+		slot:SetHeaderImage('new_inventory_icon_s');		
 	elseif IS_EQUIPPED_WEAPON_SWAP_SLOT(invItem) then
 		slot:SetHeaderImage('equip_inven');
 	else
@@ -2903,6 +2970,11 @@ function _INV_EQUIP_LIST_SET_ICON(slot, icon, equipItem)
 	else
 		slot:ClearText();
 	end
+
+	local score = GET_GEAR_SCORE(itemObj)	
+	if score > 0 then
+		slot:SetText('{s14}{ol}{#FFFFFF}'..score, 'count', ui.RIGHT, ui.TOP, 0, 2)
+	end	
 end
 
 function SET_EQUIP_SLOT_ITEMGRADE_BG(frame, slot, obj)
@@ -3084,13 +3156,27 @@ function INVENTORY_DELETE(itemIESID, itemType)
 	if nil == cls then
 		return;
 	end
-
-	local itemProp = geItemTable.IsDestroyable(itemType);
-	if cls.Destroyable == 'NO' or geItemTable.IsDestroyable(itemType) == false then
-		local obj = GetIES(invItem:GetObject());
-		if obj.ItemLifeTimeOver == 0 then
-			ui.AlarmMsg("ItemIsNotDestroy");
-			return;
+	
+	local item_obj = GetIES(invItem:GetObject())
+	local is_character_belonging = TryGetProp(item_obj, 'CharacterBelonging', 0) == 1	
+	local is_ark = TryGetProp(item_obj, 'GroupName', 'None') == 'Ark' and TryGetProp(item_obj, 'StringArg2', 'None') == 'Made_Ark'
+	local destroable_ark = is_character_belonging and is_ark	
+	local itemProp = geItemTable.IsDestroyable(itemType);	
+	if is_ark == true then
+		if destroable_ark == false or cls.Destroyable == 'NO' or geItemTable.IsDestroyable(itemType) == false then
+			local obj = GetIES(invItem:GetObject());
+			if obj.ItemLifeTimeOver == 0 then
+				ui.AlarmMsg("ItemIsNotDestroy");
+				return;
+			end
+		end
+	else		
+		if cls.Destroyable == 'NO' or geItemTable.IsDestroyable(itemType) == false then
+			local obj = GetIES(invItem:GetObject());
+			if obj.ItemLifeTimeOver == 0 then
+				ui.AlarmMsg("ItemIsNotDestroy");
+				return;
+			end
 		end
 	end
 
@@ -3102,6 +3188,14 @@ function INVENTORY_DELETE(itemIESID, itemType)
 		local inputstringframe = ui.GetFrame("inputstring");
 		inputstringframe:SetUserValue("ITEM_CLASSNAME", cls.ClassName)        
         item_grade = GetIES(invItem:GetObject()).ItemGrade
+		local isExpCard = GetIES(invItem:GetObject())
+		if isExpCard.StringArg == "XpCard" then
+			local pc = GetMyPCObject();
+			if isExpCard.NumberArg2 > pc.Lv then
+				ui.SysMsg(ClMsg("CantDestroyExpCard_Level"));
+				return
+			end
+		end
 		INPUT_NUMBER_BOX(invFrame, titleText, "CHECK_EXEC_DELETE_ITEMDROP", 1, 1, invItem.count);
 			
 	else
@@ -4087,81 +4181,105 @@ function GET_WEAPON_SWAP_INDEX()
 	return curIndex
 end
 
-function MAKE_WEAPON_SWAP_BUTTON()	
+function MAKE_WEAPON_SWAP_BUTTON()
 	local frame = ui.GetFrame("inventory");	
 	local pc = GetMyPCObject();
 	if pc == nil then
 		return;
 	end
 
+	local WEAPON_bg = GET_CHILD_RECURSIVELY(frame, "WEAPON_bg")
+	local SW_bg = GET_CHILD_RECURSIVELY(frame, "SW_bg")
 	local weaponSwap1 = GET_CHILD_RECURSIVELY(frame, "weapon_swap_1")
 	local weaponSwap2 = GET_CHILD_RECURSIVELY(frame, "weapon_swap_2")
 	
 	local abil = GetAbility(pc, "SwapWeapon");	
 	if abil ~= nil then
-		weaponSwap1 : ShowWindow(1)
-		weaponSwap2 : ShowWindow(1)
+		weaponSwap1:ShowWindow(1)
+		weaponSwap2:ShowWindow(1)
 	else
-		weaponSwap1 : ShowWindow(0)
-		weaponSwap2 : ShowWindow(0)
+		weaponSwap1:ShowWindow(0)
+		weaponSwap2:ShowWindow(0)
 
 		return;
 	end
-    
-	local curIndex = 0
-	curIndex = GET_WEAPON_SWAP_INDEX()
-				
-	local WEAPONSWAP_UP_IMAGE = frame:GetUserConfig('WEAPONSWAP_UP_IMAGE')
-	local WEAPONSWAP_DOWN_IMAGE = frame : GetUserConfig('WEAPONSWAP_DOWN_IMAGE')
 
-	if frame:GetUserIValue('CURRENT_WEAPON_INDEX') == 0 then
-		if curIndex == 0 or curIndex == 1 then
-			frame : SetUserValue('CURRENT_WEAPON_INDEX', 1)
-			weaponSwap1 : SetImage(WEAPONSWAP_UP_IMAGE);
-			weaponSwap2:SetImage(WEAPONSWAP_DOWN_IMAGE);
-		elseif curIndex == 2 or curIndex == 3 then
-			frame : SetUserValue('CURRENT_WEAPON_INDEX', 2)
-			weaponSwap2 : SetImage(WEAPONSWAP_UP_IMAGE);
-			weaponSwap1:SetImage(WEAPONSWAP_DOWN_IMAGE);
+	if tonumber(USE_SUBWEAPON_SLOT) == 1 then
+		local curSlotIndex = frame:GetUserIValue('CURRENT_WEAPON_INDEX')
+		if curSlotIndex == 0 or curSlotIndex == 1 then
+			DO_WEAPON_SLOT_CHANGE(frame, 1)
+		elseif curSlotIndex == 2 then
+			DO_WEAPON_SLOT_CHANGE(frame, 2)
 		end
-	elseif frame:GetUserIValue('CURRENT_WEAPON_INDEX') == 1 then
-		DO_WEAPON_SWAP(frame, 1)
-	elseif frame:GetUserIValue('CURRENT_WEAPON_INDEX') == 2 then
-		DO_WEAPON_SWAP(frame, 2)
+	else
+		-- 기존 스왑 방식에서는 보조무기 슬롯을 사용 안하므로 보이지 않는다
+		WEAPON_bg:ShowWindow(1)
+		SW_bg:ShowWindow(0)
+
+		local curIndex = 0
+		curIndex = GET_WEAPON_SWAP_INDEX()
+					
+		local WEAPONSWAP_UP_IMAGE = frame:GetUserConfig('WEAPONSWAP_UP_IMAGE')
+		local WEAPONSWAP_DOWN_IMAGE = frame : GetUserConfig('WEAPONSWAP_DOWN_IMAGE')
+	
+		if frame:GetUserIValue('CURRENT_WEAPON_INDEX') == 0 then
+			if curIndex == 0 or curIndex == 1 then
+				frame:SetUserValue('CURRENT_WEAPON_INDEX', 1)
+				weaponSwap1:SetImage(WEAPONSWAP_UP_IMAGE);
+				weaponSwap2:SetImage(WEAPONSWAP_DOWN_IMAGE);
+			elseif curIndex == 2 or curIndex == 3 then
+				frame:SetUserValue('CURRENT_WEAPON_INDEX', 2)
+				weaponSwap2:SetImage(WEAPONSWAP_UP_IMAGE);
+				weaponSwap1:SetImage(WEAPONSWAP_DOWN_IMAGE);
+			end
+		elseif frame:GetUserIValue('CURRENT_WEAPON_INDEX') == 1 then
+			DO_WEAPON_SWAP(frame, 1)
+		elseif frame:GetUserIValue('CURRENT_WEAPON_INDEX') == 2 then
+			DO_WEAPON_SWAP(frame, 2)
+		end
 	end
 end
 
 function WEAPONSWAP_HOTKEY_ENTERED()
-	--제작시에는 무기스왑 안되게 끔..
-	if GetCraftState() == 1 then
-		ui.SysMsg(ClMsg("prosessItemCraft"));
-		return;
-	end
-	local frame = ui.GetFrame("inventory");
-	
 	local pc = GetMyPCObject();
 	if pc == nil then
 		return;
 	end
-
-	local abil = GetAbility(pc, "SwapWeapon");
 	
+	local abil = GetAbility(pc, "SwapWeapon");
 	if abil == nil then
 		return;
 	end
+	
+	local frame = ui.GetFrame("inventory");
 
-	local curIndex = 0
-	curIndex = GET_WEAPON_SWAP_INDEX()
-
-	if frame:GetUserIValue('CURRENT_WEAPON_INDEX') == 1 then
-		DO_WEAPON_SWAP(frame, 2)
-	elseif frame:GetUserIValue('CURRENT_WEAPON_INDEX') == 2 then
-		DO_WEAPON_SWAP(frame, 1)
-	elseif frame:GetUserIValue('CURRENT_WEAPON_INDEX') == 0 then
-		if curIndex == 0 or curIndex == 1 then
+	if tonumber(USE_SUBWEAPON_SLOT) == 1 then
+		local curSlotIndex = frame:GetUserIValue('CURRENT_WEAPON_INDEX')
+		if curSlotIndex == 1 then
+			DO_WEAPON_SLOT_CHANGE(frame, 2)
+		elseif curSlotIndex == 0 or curSlotIndex == 2 then
+			DO_WEAPON_SLOT_CHANGE(frame, 1)
+		end
+	else
+		--제작시에는 무기스왑 안되게 끔..
+		if GetCraftState() == 1 then
+			ui.SysMsg(ClMsg("prosessItemCraft"));
+			return;
+		end
+	
+		local curIndex = 0
+		curIndex = GET_WEAPON_SWAP_INDEX()
+	
+		if frame:GetUserIValue('CURRENT_WEAPON_INDEX') == 1 then
 			DO_WEAPON_SWAP(frame, 2)
-		elseif curIndex == 2 or curIndex == 3 then
+		elseif frame:GetUserIValue('CURRENT_WEAPON_INDEX') == 2 then
 			DO_WEAPON_SWAP(frame, 1)
+		elseif frame:GetUserIValue('CURRENT_WEAPON_INDEX') == 0 then
+			if curIndex == 0 or curIndex == 1 then
+				DO_WEAPON_SWAP(frame, 2)
+			elseif curIndex == 2 or curIndex == 3 then
+				DO_WEAPON_SWAP(frame, 1)
+			end
 		end
 	end
 end
@@ -4238,18 +4356,65 @@ function DO_WEAPON_SWAP(frame, index)
 	SHOW_WEAPON_SWAP_TEMP_IMAGE(frame:GetUserIValue('CURRENT_WEAPON_RH'), frame:GetUserIValue('CURRENT_WEAPON_LH'), tempIndex)
 end
 
+function DO_WEAPON_SLOT_CHANGE(frame, index)
+	if index == nil then
+		index = 1
+	end
+	
+	local pc = GetMyPCObject()
+	if pc == nil then
+		return
+	end  	
+	
+	local frame = ui.GetFrame("inventory")
+	local WEAPON_bg = GET_CHILD_RECURSIVELY(frame, "WEAPON_bg")
+	local SW_bg = GET_CHILD_RECURSIVELY(frame, "SW_bg")
+    local weaponSwap1 = GET_CHILD_RECURSIVELY(frame, "weapon_swap_1")
+	local weaponSwap2 = GET_CHILD_RECURSIVELY(frame, "weapon_swap_2")
+	local WEAPONSWAP_UP_IMAGE = frame:GetUserConfig('WEAPONSWAP_UP_IMAGE')
+	local WEAPONSWAP_DOWN_IMAGE = frame:GetUserConfig('WEAPONSWAP_DOWN_IMAGE')
+	
+	if index == 1 then
+		WEAPON_bg:ShowWindow(1)
+		SW_bg:ShowWindow(0)
+		weaponSwap1:SetImage(WEAPONSWAP_UP_IMAGE)
+		weaponSwap2:SetImage(WEAPONSWAP_DOWN_IMAGE)
+	elseif index == 2 then
+		WEAPON_bg:ShowWindow(0)
+		SW_bg:ShowWindow(1)
+		weaponSwap1:SetImage(WEAPONSWAP_DOWN_IMAGE)
+		weaponSwap2:SetImage(WEAPONSWAP_UP_IMAGE)
+	end
+	
+	if frame:GetUserIValue('CURRENT_WEAPON_INDEX') == index then
+		return
+	end
+	
+	frame:SetUserValue('CURRENT_WEAPON_INDEX', index)
+end
+
 function DO_WEAPON_SWAP_1(frame)
 	if frame == nil then
 		frame = ui.GetFrame("inventory");
-	end   
-	DO_WEAPON_SWAP(frame, 1)
+	end
+
+	if tonumber(USE_SUBWEAPON_SLOT) == 1 then
+		DO_WEAPON_SLOT_CHANGE(frame, 1)
+	else
+		DO_WEAPON_SWAP(frame, 1)
+	end
 end
 
 function DO_WEAPON_SWAP_2(frame)
 	if frame == nil then
 		frame = ui.GetFrame("inventory");
-	end    
-	DO_WEAPON_SWAP(frame, 2)
+	end
+
+	if tonumber(USE_SUBWEAPON_SLOT) == 1 then
+		DO_WEAPON_SLOT_CHANGE(frame, 2)
+	else
+		DO_WEAPON_SWAP(frame, 2)
+	end
 end
 
 function SCR_CHECK_SWAPABLE_C()
@@ -4258,7 +4423,7 @@ function SCR_CHECK_SWAPABLE_C()
 		if mGameName ~= nil then
 			local indunCls = GetClassByStrProp("Indun","MGame",mGameName)
 			local dungeonType = TryGetProp(indunCls,"DungeonType","None")
-			if mGameName == 'LEGEND_RAID_MORINGPONIA_EASY' or mGameName == 'LEGEND_RAID_GLACIER_EASY' or mGameName == "CHALLENGE_AUTO_1" or mGameName == "CHALLENGE_AUTO_2" or mGameName == "CHALLENGE_AUTO_3" or mGameName == "CHALLENGE_DIVISION_AUTO" or mGameName == "LEGEND_RAID_GILTINE_AUTO" or dungeonType == "MythicDungeon_Auto" then
+			if mGameName == 'LEGEND_RAID_MORINGPONIA_EASY' or mGameName == 'LEGEND_RAID_GLACIER_EASY' or string.find(mGameName, "CHALLENGE_AUTO") ~= nil or string.find(mGameName, "CHALLENGE_SOLO") ~= nil or mGameName == "CHALLENGE_DIVISION_AUTO" or mGameName == "LEGEND_RAID_GILTINE_AUTO" or dungeonType == "MythicDungeon_Auto" then
 				return false;
 			end
 		end
@@ -4510,6 +4675,45 @@ function INVENTORY_TREE_OPENOPTION_CHANGE(parent, ctrl, strarg, numarg)
 	end
 end
 
+function BEFORE_USE_QUEST_CLEAR_SCROLL(invItem)	
+	if invItem == nil then
+		return;
+	end
+
+	local invFrame = ui.GetFrame("inventory");	
+	local itemobj = GetIES(invItem:GetObject());
+	if itemobj == nil then
+		return;
+	end
+	invFrame:SetUserValue("REQ_USE_ITEM_GUID", invItem:GetIESID());
+	
+	local pc = GetMyPCObject();
+
+	local textmsg = string.format("{#ff0000}[ %s ]{/}{nl}%s", itemobj.Name, ScpArgMsg("isrealUseQuestClearScroll_Msg_1"));
+	ui.MsgBox_NonNested(textmsg, itemobj.Name, "REQUEST_USE_QUEST_CLEAR_SCROLL_TX", "None");
+	return;
+end
+
+function BEFORE_USE_TEST_SCROLL(invItem)	
+	if invItem == nil then
+		return;
+	end
+
+	local invFrame = ui.GetFrame("inventory");	
+	local itemobj = GetIES(invItem:GetObject());
+	if itemobj == nil then
+		return;
+	end
+	invFrame:SetUserValue("REQ_USE_ITEM_GUID", invItem:GetIESID());
+	
+	local pc = GetMyPCObject();
+
+	local textmsg = string.format("{#ff0000}[ %s ]{/}{nl}%s", itemobj.Name, ScpArgMsg("isrealUseQuestClearScroll_Msg_1"));
+	ui.MsgBox_NonNested(textmsg, itemobj.Name, "BEFORE_USE_TEST_SCROLL_TX", "None");
+	return;
+end
+
+
 function BEFORE_APPLIED_NON_EQUIP_ITEM_OPEN(invItem)	
 	if invItem == nil then
 		return;
@@ -4564,11 +4768,42 @@ function BEFORE_APPLIED_YESSCP_OPEN_BASIC_MSG(invItem)
 		return;
 	end
 	invFrame:SetUserValue("REQ_USE_ITEM_GUID", invItem:GetIESID());
-
+	
 	local textmsg = string.format("[ %s ]{nl}%s", itemobj.Name, ScpArgMsg("YESSCP_OPEN_BASIC_MSG"));
 	ui.MsgBox_NonNested(textmsg, itemobj.Name, 'REQUEST_SUMMON_BOSS_TX', "None");
 	
 	return;
+end
+
+function BEFORE_APPLIED_YESSCP_OPEN_BASIC_MSG_VIBORA(invItem)
+	if invItem == nil then
+		return;
+	end
+	
+	local invFrame = ui.GetFrame("inventory");	
+	local itemobj = GetIES(invItem:GetObject());
+	if itemobj == nil then
+		return;
+	end
+
+	local name = TryGetProp(itemobj, 'InheritanceItemName', 'None')
+	if name == 'None' then
+		return
+	end
+	
+	local cls = GetClass('Item', name)
+	if TryGetProp(cls, 'StringArg', 'None') ~= 'Vibora' then
+		return
+	else
+		if TryGetProp(cls, 'NumberArg1', 0) > 1 then
+			return
+		end
+	end
+
+	invFrame:SetUserValue("REQ_USE_ITEM_GUID", invItem:GetIESID());
+	
+	local textmsg = string.format("[ %s ]{nl}%s", itemobj.Name, ScpArgMsg("YESSCP_OPEN_BASIC_MSG"));
+	ui.MsgBox_NonNested(textmsg, itemobj.Name, 'REQUEST_SUMMON_BOSS_TX', "None");
 end
 
 function BEFORE_APPLIED_YESSCP_OPEN_DO_NOT_TRADE_MSG(invItem)
@@ -4590,6 +4825,26 @@ function BEFORE_APPLIED_YESSCP_OPEN_DO_NOT_TRADE_MSG(invItem)
 end
 
 function BEFORE_APPLIED_YESSCP_OPEN_LVCARD(invItem)
+	if invItem == nil then
+		return;
+	end
+	
+	local invFrame = ui.GetFrame("inventory");	
+	local itemobj = GetIES(invItem:GetObject());
+	if itemobj == nil then
+		return;
+	end
+	invFrame:SetUserValue("REQ_USE_ITEM_GUID", invItem:GetIESID());
+	
+	local lv = TryGetProp(itemobj , 'NumberArg1')
+	if lv ~= 0 then
+    	local textmsg = string.format("[ %s ]{nl}%s", itemobj.Name, ScpArgMsg("EXPCARD_JUMPING_SET_LV_MSG", "LEVEL", lv));
+    	ui.MsgBox_NonNested(textmsg, itemobj.Name, 'REQUEST_SUMMON_BOSS_TX', "None");
+    end
+	return;
+end
+
+function BEFORE_APPLIED_YESSCP_OPEN_EPISODE_UNLOCK(invItem)
 	if invItem == nil then
 		return;
 	end
@@ -4859,8 +5114,8 @@ end
 
 function CHECK_CLIENT_CONVERT_TO_HIDDEN_ABILITY(item_id)
 	local invItem = session.GetInvItemByGuid(item_id)	
-	local titleText = ScpArgMsg("INPUT_CNT_D_D", "Auto_1", 1, "Auto_2", invItem.count);
-	INPUT_NUMBER_BOX(nil, titleText, "RUN_CLIENT_CONVERT_TO_HIDDEN_ABILITY", 1, 1, invItem.count);	
+	local titleText = ScpArgMsg("INPUT_CNT_D_D", "Auto_1", 1, "Auto_2", math.floor(invItem.count * 0.5));
+	INPUT_NUMBER_BOX(nil, titleText, "RUN_CLIENT_CONVERT_TO_HIDDEN_ABILITY", 1, 1, math.floor(invItem.count * 0.5));	
 	convert_hidden_ability_item_id = tostring(item_id)
 end
 
@@ -5094,3 +5349,115 @@ function RUN_CLIENT_USE_MULTIPLE_USE_STRING_GIVE_ITEM_NUMBER_SPLIT(count)
     item.DialogTransaction("MULTIPLE_USE_STRING_GIVE_ITEM_NUMBER_SPLIT", resultlist)
 end
 -----------------------------------
+
+-- 미식별 신비한서 분해
+local multiple_hidden_ability_fragment_item_id = '0'
+function CLIENT_USE_MULTIPLE_HIDDEN_ABILITY_FRAGMENT(item_obj)
+	multiple_hidden_ability_fragment_item_id = '0'
+	local item = GetIES(item_obj:GetObject())	
+	
+	if GetCraftState() == 1 then
+		return;
+	end
+
+	if true == BEING_TRADING_STATE() then
+		return;
+	end
+	
+	local invItem = session.GetInvItemByGuid(item_obj:GetIESID())	
+	if nil == invItem then
+		return;
+	end
+	
+	if true == invItem.isLockState then
+		ui.SysMsg(ClMsg("MaterialItemIsLock"));
+		return;
+	end
+	
+	CHECK_CLIENT_USE_MULTIPLE_HIDDEN_ABILITY_FRAGMENT(invItem:GetIESID())
+end
+
+function CHECK_CLIENT_USE_MULTIPLE_HIDDEN_ABILITY_FRAGMENT(item_id)
+	local invItem = session.GetInvItemByGuid(tostring(item_id))
+	local itemObj = GetIES(invItem:GetObject());	
+	
+	if TryGetProp(itemObj, 'MaxStack', 0) == 1 or invItem.count == 1 then
+		multiple_hidden_ability_fragment_item_id = tostring(item_id)
+		RUN_CLIENT_USE_MULTIPLE_HIDDEN_ABILITY_FRAGMENT(1)		
+	else
+		local titleText = ScpArgMsg("INPUT_CNT_D_D", "Auto_1", 1, "Auto_2", invItem.count);
+		INPUT_NUMBER_BOX(nil, titleText, "RUN_CLIENT_USE_MULTIPLE_HIDDEN_ABILITY_FRAGMENT", 1, 1, invItem.count);	
+		multiple_hidden_ability_fragment_item_id = tostring(item_id)		
+	end
+end
+
+function RUN_CLIENT_USE_MULTIPLE_HIDDEN_ABILITY_FRAGMENT(count)	
+	session.ResetItemList();
+    local pc = GetMyPCObject();
+	session.AddItemID(multiple_hidden_ability_fragment_item_id, count)   	
+    local resultlist = session.GetItemIDList()
+	item.DialogTransaction("MULTIPLE_USE_HIDDEN_ABILITY_FRAGMENT", resultlist)	
+end
+
+-- 아츠 다수 사용
+local multiple_arts_ability_item_id = '0'
+function CLIENT_USE_MULTIPLE_ARTS_ABILITY(item_obj)
+	multiple_arts_ability_item_id = '0'
+	local item = GetIES(item_obj:GetObject())	
+	
+	if GetCraftState() == 1 then
+		return;
+	end
+
+	if true == BEING_TRADING_STATE() then
+		return;
+	end
+	
+	local invItem = session.GetInvItemByGuid(item_obj:GetIESID())	
+	if nil == invItem then
+		return;
+	end
+	
+	if true == invItem.isLockState then
+		ui.SysMsg(ClMsg("MaterialItemIsLock"));
+		return;
+	end
+	
+	CHECK_CLIENT_USE_MULTIPLE_ARTS_ABILITY(invItem:GetIESID())
+end
+
+function CHECK_CLIENT_USE_MULTIPLE_ARTS_ABILITY(item_id)
+	local invItem = session.GetInvItemByGuid(tostring(item_id))
+	local itemObj = GetIES(invItem:GetObject());	
+	
+	local abilName = TryGetProp(itemObj, 'StringArg', 'None')
+    local name = TryGetProp(GetClass('Ability', abilName), 'Name')
+    local abilUnlockID = TryGetProp(itemObj, "AbilityIdspace")
+    local abilUnlockObj = GetClass(abilUnlockID, abilName)
+
+    local maxLevel = TryGetProp(abilUnlockObj, "MaxLevel")        
+	local abilObj = GetAbilityIESObject(GetMyPCObject(), abilName)	
+	if abilObj ~= nil then		
+		if maxLevel == TryGetProp(abilObj, 'Level', 0) then
+			ui.SysMsg(ClMsg('CantUseInMaxLv'))
+			return
+		end
+	end
+
+	if TryGetProp(itemObj, 'MaxStack', 0) == 1 or invItem.count == 1 or abilObj == nil then
+		multiple_arts_ability_item_id = tostring(item_id)
+		RUN_CLIENT_USE_MULTIPLE_ARTS_ABILITY(1)		
+	else
+		local titleText = ScpArgMsg("INPUT_CNT_D_D", "Auto_1", 1, "Auto_2", invItem.count);
+		INPUT_NUMBER_BOX(nil, titleText, "RUN_CLIENT_USE_MULTIPLE_ARTS_ABILITY", 1, 1, invItem.count);	
+		multiple_arts_ability_item_id = tostring(item_id)		
+	end
+end
+
+function RUN_CLIENT_USE_MULTIPLE_ARTS_ABILITY(count)	
+	session.ResetItemList();
+    local pc = GetMyPCObject();
+	session.AddItemID(multiple_arts_ability_item_id, count)   	
+    local resultlist = session.GetItemIDList()
+	item.DialogTransaction("MULTIPLE_USE_ARTS_ABILITY", resultlist)	
+end

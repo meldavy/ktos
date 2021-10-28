@@ -215,13 +215,13 @@ function SOLODUNGEON_RANKINGPAGE_FILL_MY_RANK(gbox, ctrlType, week)
     local myCharLv = "-"
     local cnt = 0
     local myStage = "-"
-    local myKillCount = "-"
+    local myClearTime = "-"
     if myScoreInfo ~= nil and myRank ~= 0 then
         myTeamName = myScoreInfo.familyName
         myCharLv = myScoreInfo.level
         cnt = myScoreInfo:GetJobHistoryCount()
         myStage = myScoreInfo.stage
-        myKillCount = myScoreInfo.killCount
+        myClearTime = myScoreInfo.clear_time
     end
 
     local myrankGbox = gbox:CreateOrGetControlSet('solodungeon_page_rank', 'myrankGbox', 0, 0)
@@ -272,18 +272,20 @@ function SOLODUNGEON_RANKINGPAGE_FILL_MY_RANK(gbox, ctrlType, week)
     local maxStageText = GET_CHILD_RECURSIVELY(myrankGbox, "maxStageText")
     maxStageText:SetTextByKey("maxstage", myStage)
 
+    if myClearTime ~= "-" then
+        myClearTime = session.soloDungeon.GetClearTimeConvert(tonumber(myClearTime));
+    end
+
+    local result_time = myClearTime;
     local killMonsterText = GET_CHILD_RECURSIVELY(myrankGbox, "killMonsterText")
-    killMonsterText:SetTextByKey("killmonster", myKillCount)
+    killMonsterText:SetTextByKey("killmonster", result_time)
 end
 
 function SOLODUNGEON_RANKINGPAGE_FILL_RANK_CTRL(rankGbox, ctrlType, rank, week)
     AUTO_CAST(rankGbox)
     local emblemSlotImageName = rankGbox:GetUserConfig("GUILD_EMBLEM_SLOT");
     local scoreInfo = session.soloDungeon.GetRankingByIndex(week, ctrlType, rank)
-
-    if scoreInfo == nil then
-        return
-    end
+    if scoreInfo == nil then return; end
     
     local rankText = GET_CHILD_RECURSIVELY(rankGbox, "rankText")
     rankText:SetTextByKey("rank", rank + 1)
@@ -313,7 +315,6 @@ function SOLODUNGEON_RANKINGPAGE_FILL_RANK_CTRL(rankGbox, ctrlType, rank, week)
     end
 
     local cnt = scoreInfo:GetJobHistoryCount()
-
     local jobTreeList = {}
     local jobTreeGbox = GET_CHILD_RECURSIVELY(rankGbox, "jobTreeGbox")
     for i = 0, cnt - 1 do
@@ -347,15 +348,18 @@ function SOLODUNGEON_RANKINGPAGE_FILL_RANK_CTRL(rankGbox, ctrlType, rank, week)
         
         jobtext = jobtext ..('{nl}');
     end
-
     jobTreeGbox:SetTextTooltip(jobtext);
 
-
     local maxStageText = GET_CHILD_RECURSIVELY(rankGbox, "maxStageText")
-    maxStageText:SetTextByKey("maxstage", scoreInfo.stage)
+    maxStageText:SetTextByKey("maxstage", scoreInfo.stage);
+
+    local clear_time = scoreInfo.clear_time;
+    if clear_time ~= 0 then
+        clear_time = session.soloDungeon.GetClearTimeConvert(tonumber(clear_time));
+    end
 
     local killMonsterText = GET_CHILD_RECURSIVELY(rankGbox, "killMonsterText")
-    killMonsterText:SetTextByKey("killmonster", scoreInfo.killCount)
+    killMonsterText:SetTextByKey("killmonster", clear_time)
 end
 
 function SOLODUNGEON_RANKINGPAGE_SHOW_RANK_PAGE(frame)

@@ -773,7 +773,8 @@ function SCR_Get_MSP(self)
     return math.floor(value);
 end
 
-function SCR_Get_DEFAULT_MINPATK(self, value)
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
+function SCR_Get_DEFAULT_MINPATK(self)
     local defaultValue = 20;
 
     local lv = TryGetProp(self, "Lv");
@@ -789,53 +790,71 @@ function SCR_Get_DEFAULT_MINPATK(self, value)
     end
     
     local byStat = (stat * 2) + (math.floor(stat / 10) * (byLevel * 0.05));
-    
+
     local byItem = 0;
+    if tonumber(USE_SUBWEAPON_SLOT) == 1 then
+        local rhAtk = 0
+        local lhAtk = 0
+        local rh_subAtk = 0
+        local lh_subAtk = 0
+
+        local rh = GetEquipItemForPropCalc(self, 'RH')
+        if rh ~= nil then
+            rhAtk = TryGetProp(rh, 'MINATK', 0)
+        end
+        
+        local lh = GetEquipItemForPropCalc(self, 'LH')
+        if lh ~= nil and IS_NO_EQUIPITEM(lh) ~= 1 then
+            if TryGetProp(lh, "ClassType", 'None') == "Trinket" then
+                lhAtk = TryGetProp(lh, 'MINATK', 0)
+            else
+
+                lhAtk = TryGetProp(lh, 'MINATK', 0) * 0.3
+            end
+        end
+
+        byItem = rhAtk + lhAtk
+        
+        local rh_sub = GetEquipItemForPropCalc(self, 'RH_SUB')
+        if rh_sub ~= nil and IS_NO_EQUIPITEM(rh_sub) ~= 1 then
+            rh_subAtk = TryGetProp(rh_sub, 'MINATK', 0)
+
+            local lh_sub = GetEquipItemForPropCalc(self, 'LH_SUB')
+            if lh_sub ~= nil then
+                if TryGetProp(lh_sub, "ClassType") == "Trinket" then
+                    lh_subAtk = TryGetProp(lh_sub, 'MINATK', 0)
+                else
+                    lh_subAtk = TryGetProp(lh_sub, 'MINATK', 0) * 0.3
+                end
+            end
+
+            local bySubItem = rh_subAtk + lh_subAtk
+            byItem = byItem * 0.5 + bySubItem * 0.5
+        end
+
+        byItem = math.floor(byItem)
+    end
+    
     local byItemList = { "MINATK", "PATK", "ADD_MINATK" };
     for i = 1, #byItemList do
         local byItemTemp = GetSumOfEquipItem(self, byItemList[i]);
         if byItemTemp == nil then
             byItemTemp = 0;
         end
-        
         byItem = byItem + byItemTemp;
     end
+
+    local ori_rhAtk = TryGetProp(GetEquipItemForPropCalc(self, 'RH'), 'MINATK', 0)
+    local ori_lhAtk = TryGetProp(GetEquipItemForPropCalc(self, 'LH'), 'MINATK', 0)
+    local ori_trinketAtk = TryGetProp(GetEquipItemForPropCalc(self, 'TRINKET'), 'MINATK', 0)
+    local ori_rh_subAtk = TryGetProp(GetEquipItemForPropCalc(self, 'RH_SUB'), 'MINATK', 0)
+    local ori_lh_subAtk = TryGetProp(GetEquipItemForPropCalc(self, 'LH_SUB'), 'MINATK', 0)
+    
+    byItem = byItem - (ori_rhAtk + ori_lhAtk + ori_trinketAtk + ori_rh_subAtk + ori_lh_subAtk)
 
     byItem = byItem + TryGetProp(self, "EQUIP_PATK", 0) + TryGetProp(self, "EQUIP_PATK_MAIN", 0);
 
     local value = defaultValue + byLevel + byStat + byItem;
-    
-    local maxAtk = 0;
-    local maxAtkList = { "MAXATK", "PATK", "ADD_MAXATK" };
-    for i = 1, #maxAtkList do
-        local maxAtkTemp = GetSumOfEquipItem(self, maxAtkList[i]);
-        if maxAtkTemp == nil then
-            maxAtkTemp = 0;
-        end
-        
-        maxAtk = maxAtk + maxAtkTemp;
-    end
-
-    local leftMinAtk = 0;
-    local leftHand = GetEquipItemForPropCalc(self, 'LH');
-    if leftHand ~= nil then
-        leftMinAtk = leftHand.MINATK;
-        maxAtk = maxAtk - leftHand.MAXATK;
-    end
-
-    local minAtkAdj = 0;
-    local adjRate = TryGetProp(self, 'PATKADJ_RATE_BM');
-    if adjRate ~= nil and adjRate > 0 then
-        if adjRate > 1 then
-            adjRate = 1
-        end
-        local atkDiff = maxAtk - (byItem - leftMinAtk);
-        if atkDiff > 0 then
-            minAtkAdj = atkDiff * adjRate;
-        end
-    end
-
-    value = value - leftMinAtk + minAtkAdj;
 
     return value
 end
@@ -843,7 +862,7 @@ end
 
 -- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_Get_MINPATK(self)
-    local value = SCR_Get_DEFAULT_MINPATK(self, value)
+    local value = SCR_Get_DEFAULT_MINPATK(self)
 
     local byBuff = 0;
     local byBuffList = { "PATK_BM", "MINPATK_BM", "PATK_MAIN_BM", "MINPATK_MAIN_BM" };
@@ -889,7 +908,8 @@ function SCR_Get_MINPATK(self)
     return math.floor(value);
 end
 
-function SCR_Get_DEFAULT_MAXPATK(self, value)
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
+function SCR_Get_DEFAULT_MAXPATK(self)
     local defaultValue = 20;
     
     local lv = TryGetProp(self, "Lv");
@@ -907,27 +927,73 @@ function SCR_Get_DEFAULT_MAXPATK(self, value)
     local byStat = (stat * 2) + (math.floor(stat / 10) * (byLevel * 0.05));
     
     local byItem = 0;
+    if tonumber(USE_SUBWEAPON_SLOT) == 1 then
+        local rhAtk = 0
+        local lhAtk = 0
+        local rh_subAtk = 0
+        local lh_subAtk = 0
+
+        local rh = GetEquipItemForPropCalc(self, 'RH')
+        if rh ~= nil then
+            rhAtk = TryGetProp(rh, 'MAXATK', 0)
+        end
+
+        local lh = GetEquipItemForPropCalc(self, 'LH')
+        if lh ~= nil and IS_NO_EQUIPITEM(lh) ~= 1 then
+            if TryGetProp(lh, "ClassType") == "Trinket" then
+                lhAtk = TryGetProp(lh, 'MAXATK', 0)
+            else
+                lhAtk = TryGetProp(lh, 'MAXATK', 0) * 0.3
+            end
+        end       
+
+        byItem = rhAtk + lhAtk
+
+        local rh_sub = GetEquipItemForPropCalc(self, 'RH_SUB')
+        if rh_sub ~= nil and IS_NO_EQUIPITEM(rh_sub) ~= 1 then
+            rh_subAtk = TryGetProp(rh_sub, 'MAXATK', 0)
+
+            local lh_sub = GetEquipItemForPropCalc(self, 'LH_SUB')
+            if TryGetProp(lh_sub, "ClassType") == "Trinket" then
+                lh_subAtk = TryGetProp(lh_sub, 'MAXATK', 0)
+            else
+                lh_subAtk = TryGetProp(lh_sub, 'MAXATK', 0) * 0.3
+            end
+
+            local bySubItem = rh_subAtk + lh_subAtk
+            byItem = byItem * 0.5 + bySubItem * 0.5
+        end
+
+        byItem = math.floor(byItem)
+    end
+
     local byItemList = { "MAXATK", "PATK", "ADD_MAXATK" };
     for i = 1, #byItemList do
         local byItemTemp = GetSumOfEquipItem(self, byItemList[i]);
         if byItemTemp == nil then
             byItemTemp = 0;
         end
-        
         byItem = byItem + byItemTemp;
     end
+
+    local ori_rhAtk = TryGetProp(GetEquipItemForPropCalc(self, 'RH'), 'MAXATK', 0)
+    local ori_lhAtk = TryGetProp(GetEquipItemForPropCalc(self, 'LH'), 'MAXATK', 0)
+    local ori_trinketAtk = TryGetProp(GetEquipItemForPropCalc(self, 'TRINKET'), 'MAXATK', 0)
+    local ori_rh_subAtk = TryGetProp(GetEquipItemForPropCalc(self, 'RH_SUB'), 'MAXATK', 0)
+    local ori_lh_subAtk = TryGetProp(GetEquipItemForPropCalc(self, 'LH_SUB'), 'MAXATK', 0)
+    
+    byItem = byItem - (ori_rhAtk + ori_lhAtk + ori_trinketAtk + ori_rh_subAtk + ori_lh_subAtk)
 
     byItem = byItem + TryGetProp(self, "EQUIP_PATK", 0) + TryGetProp(self, "EQUIP_PATK_MAIN", 0);
 
     local value = defaultValue + byLevel + byStat + byItem;
     
-    local leftMaxAtk = 0;
-    local leftHand = GetEquipItemForPropCalc(self, 'LH');
-    if leftHand ~= nil then
-        leftMaxAtk = leftHand.MAXATK;
-    end
-    
-    value = value - leftMaxAtk;
+    return value
+end
+
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
+function SCR_Get_MAXPATK(self)
+    local value = SCR_Get_DEFAULT_MAXPATK(self)
     
     local byBuff = 0;
     local byBuffList = { "PATK_BM", "MAXPATK_BM", "PATK_MAIN_BM", "MAXPATK_MAIN_BM" };
@@ -968,7 +1034,7 @@ function SCR_Get_DEFAULT_MAXPATK(self, value)
     return math.floor(value);
 end
 
-function SCR_Get_DEFAULT_MINPATK_SUB(self, value)
+function SCR_Get_DEFAULT_MINPATK_SUB(self)
     local defaultValue = 20;
 
     local lv = TryGetProp(self, "Lv");
@@ -984,7 +1050,7 @@ function SCR_Get_DEFAULT_MINPATK_SUB(self, value)
     end
     
     local byStat = (stat * 2) + (math.floor(stat / 10) * (byLevel * 0.05));
-    
+
     local byItem = 0;
     local byItemList = { "MINATK", "PATK", "ADD_MINATK" };
     for i = 1, #byItemList do
@@ -992,53 +1058,23 @@ function SCR_Get_DEFAULT_MINPATK_SUB(self, value)
         if byItemTemp == nil then
             byItemTemp = 0;
         end
-        
+
         byItem = byItem + byItemTemp;
     end
-
+ 
     byItem = byItem + TryGetProp(self, "EQUIP_PATK", 0) + TryGetProp(self, "EQUIP_PATK_SUB", 0);
-    
+   
+    -- 20%
+    byItem = math.floor(byItem * 0.3)
+
     local value = defaultValue + byLevel + byStat + byItem;
 
-    local maxAtk = 0;
-    local maxAtkList = { "MAXATK", "PATK", "ADD_MAXATK" };
-    for i = 1, #maxAtkList do
-        local maxAtkTemp = GetSumOfEquipItem(self, maxAtkList[i]);
-        if maxAtkTemp == nil then
-            maxAtkTemp = 0;
-        end
-        
-        maxAtk = maxAtk + maxAtkTemp;
-    end
-    
-    local rightMinAtk = 0;
-    local rightHand = GetEquipItemForPropCalc(self, 'RH');
-    if rightHand ~= nil then
-        rightMinAtk = rightHand.MINATK;
-        maxAtk = maxAtk - rightHand.MAXATK;
-    end
-
-    local minAtkAdj = 0;
-    local adjRate = TryGetProp(self, 'PATKADJ_SUB_RATE_BM');
-    if adjRate ~= nil and adjRate > 0 then
-        if adjRate > 1 then
-            adjRate = 1
-        end
-        local atkDiff = maxAtk - (byItem - rightMinAtk);
-        if atkDiff > 0 then
-            minAtkAdj = atkDiff * adjRate;
-        end
-    end
-    
-    value = value - rightMinAtk + minAtkAdj;
-    
     return value
 end
 
 -- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_Get_MINPATK_SUB(self)
-
-    local value = SCR_Get_DEFAULT_MINPATK_SUB(self, value)
+    local value = SCR_Get_DEFAULT_MINPATK_SUB(self)
     
     local byBuff = 0;
     local byBuffList = { "PATK_BM", "MINPATK_BM", "PATK_SUB_BM", "MINPATK_SUB_BM" };
@@ -1076,7 +1112,7 @@ function SCR_Get_MINPATK_SUB(self)
     if value > maxPATK_SUB then
         value = maxPATK_SUB;
     end
-    
+
     if value < 1 then
     	value = 1;
     end
@@ -1084,7 +1120,7 @@ function SCR_Get_MINPATK_SUB(self)
     return math.floor(value);
 end
 
-function SCR_Get_DEFAULT_MAXPATK_SUB(self, value)
+function SCR_Get_DEFAULT_MAXPATK_SUB(self)
     local defaultValue = 20;
     
     local lv = TryGetProp(self, "Lv");
@@ -1108,11 +1144,13 @@ function SCR_Get_DEFAULT_MAXPATK_SUB(self, value)
         if byItemTemp == nil then
             byItemTemp = 0;
         end
-        
         byItem = byItem + byItemTemp;
     end
 
     byItem = byItem + TryGetProp(self, "EQUIP_PATK", 0) + TryGetProp(self, "EQUIP_PATK_SUB", 0);
+
+    -- 20%
+    byItem = math.floor(byItem * 0.3)
 
     local value = defaultValue + byLevel + byStat + byItem;
     
@@ -1121,20 +1159,7 @@ end
 
 -- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_Get_MAXPATK_SUB(self)
-    
-    local value = SCR_Get_DEFAULT_MAXPATK_SUB(self, value)
-    
-    local rightMaxAtk = 0;
-    local rightHand = GetEquipItemForPropCalc(self, 'RH');
-    if rightHand ~= nil then
-        rightMaxAtk = rightHand.MAXATK;
-    end
-
-    if IsServerSection(self) == 1 then
-        REFRESH_ITEM(self, rightHand);
-    end
-    
-    value = value - rightMaxAtk;
+    local value = SCR_Get_DEFAULT_MAXPATK_SUB(self)
     
     local byBuff = 0;
     local byBuffList = { "PATK_BM", "MAXPATK_BM", "PATK_SUB_BM", "MAXPATK_SUB_BM" };
@@ -1175,7 +1200,8 @@ function SCR_Get_MAXPATK_SUB(self)
     return math.floor(value);
 end
 
-function SCR_Get_DEFAULT_MINMATK(self, value)
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
+function SCR_Get_DEFAULT_MINMATK(self)
     local defaultValue = 20;
     
     local lv = TryGetProp(self, "Lv");
@@ -1193,51 +1219,76 @@ function SCR_Get_DEFAULT_MINMATK(self, value)
     local byStat = (stat * 2) + (math.floor(stat / 10) * (byLevel * 0.05));
     
     local byItem = 0;
+    if tonumber(USE_SUBWEAPON_SLOT) == 1 then
+        local rhAtk = 0
+        local lhAtk = 0
+        local rh_subAtk = 0
+        local lh_subAtk = 0
+
+        local rh = GetEquipItemForPropCalc(self, 'RH')
+        if rh ~= nil then
+            rhAtk = TryGetProp(rh, 'MATK', 0)
+        end
+
+        local lh = GetEquipItemForPropCalc(self, 'LH')
+        if lh ~= nil and IS_NO_EQUIPITEM(lh) ~= 1 then
+            if TryGetProp(lh, "ClassType") == "Trinket" then
+                lhAtk = TryGetProp(lh, 'MATK', 0)
+            else
+                lhAtk = TryGetProp(lh, 'MINATK', 0) * 0.3
+            end
+            
+        end
+
+        byItem = rhAtk + lhAtk
+        
+        local rh_sub = GetEquipItemForPropCalc(self, 'RH_SUB')
+        if rh_sub ~= nil and IS_NO_EQUIPITEM(rh_sub) ~= 1 then
+            rh_subAtk = TryGetProp(rh_sub, 'MATK', 0)
+
+            local lh_sub = GetEquipItemForPropCalc(self, 'LH_SUB')
+            if lh_sub ~= nil then
+                if TryGetProp(lh_sub, "ClassType") == "Trinket" then
+                    lh_subAtk = TryGetProp(lh_sub, 'MATK', 0)
+                else
+                    lh_subAtk = TryGetProp(lh_sub, 'MINATK', 0) * 0.3
+                end
+            end
+
+            local bySubItem = rh_subAtk + lh_subAtk
+            byItem = byItem * 0.5 + bySubItem * 0.5
+        end
+
+        byItem = math.floor(byItem)
+    end
+    
     local byItemList = { "MATK", "ADD_MATK", "ADD_MINATK" };
     for i = 1, #byItemList do
         local byItemTemp = GetSumOfEquipItem(self, byItemList[i]);
         if byItemTemp == nil then
             byItemTemp = 0;
         end
-        
         byItem = byItem + byItemTemp;
     end
 
+    local ori_rhAtk = TryGetProp(GetEquipItemForPropCalc(self, 'RH'), 'MATK', 0)
+    local ori_lhAtk = TryGetProp(GetEquipItemForPropCalc(self, 'LH'), 'MATK', 0)
+    local ori_trinketAtk = TryGetProp(GetEquipItemForPropCalc(self, 'TRINKET'), 'MATK', 0)
+    local ori_rh_subAtk = TryGetProp(GetEquipItemForPropCalc(self, 'RH_SUB'), 'MATK', 0)
+    local ori_lh_subAtk = TryGetProp(GetEquipItemForPropCalc(self, 'LH_SUB'), 'MATK', 0)
+
+    byItem = byItem - (ori_rhAtk + ori_lhAtk + ori_trinketAtk + ori_rh_subAtk + ori_lh_subAtk)
+
     byItem = byItem + TryGetProp(self, "EQUIP_MATK", 0);
-    
+
     local value = defaultValue + byLevel + byStat + byItem;
 
-    local maxAtk = 0;
-    local maxAtkList = { "MATK", "ADD_MATK", "ADD_MAXATK" };
-    for i = 1, #maxAtkList do
-        local maxAtkTemp = GetSumOfEquipItem(self, maxAtkList[i]);
-        if maxAtkTemp == nil then
-            maxAtkTemp = 0;
-        end
-        
-        maxAtk = maxAtk + maxAtkTemp;
-    end
-
-    local minAtkAdj = 0;
-    local adjRate = TryGetProp(self, 'MATKADJ_RATE_BM');
-    if adjRate ~= nil and adjRate > 0 then
-        if adjRate > 1 then
-            adjRate = 1
-        end
-        local atkDiff = maxAtk - byItem;
-        if atkDiff > 0 then
-            minAtkAdj = atkDiff * adjRate;
-        end
-    end
-    
-    value = value + minAtkAdj;
-    
     return value
 end
 
 -- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_Get_MINMATK(self)
-    local value = SCR_Get_DEFAULT_MINMATK(self, value)
+    local value = SCR_Get_DEFAULT_MINMATK(self)
     
     local byBuff = 0;
     local byBuffList = { "MATK_BM", "MINMATK_BM" };
@@ -1283,7 +1334,8 @@ function SCR_Get_MINMATK(self)
     return math.floor(value);
 end
 
-function SCR_Get_DEFAULT_MAXMATK(self, value)
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
+function SCR_Get_DEFAULT_MAXMATK(self)
     local defaultValue = 20;
     
     local lv = TryGetProp(self, "Lv");
@@ -1299,18 +1351,67 @@ function SCR_Get_DEFAULT_MAXMATK(self, value)
     end
     
     local byStat = (stat * 2) + (math.floor(stat / 10) * (byLevel * 0.05));
-    
+
     local byItem = 0;
+    if tonumber(USE_SUBWEAPON_SLOT) == 1 then
+        local rhAtk = 0
+        local lhAtk = 0
+        local rh_subAtk = 0
+        local lh_subAtk = 0
+
+        local rh = GetEquipItemForPropCalc(self, 'RH')
+        if rh ~= nil then
+            rhAtk = TryGetProp(rh, 'MATK', 0)
+        end
+
+        local lh = GetEquipItemForPropCalc(self, 'LH')
+        if lh ~= nil and IS_NO_EQUIPITEM(lh) ~= 1 then
+            if TryGetProp(lh, "ClassType") == "Trinket" then
+                lhAtk = TryGetProp(lh, 'MATK', 0)
+            else
+                lhAtk = TryGetProp(lh, 'MAXATK', 0) * 0.3
+            end            
+        end
+
+        byItem = rhAtk + lhAtk
+
+        local rh_sub = GetEquipItemForPropCalc(self, 'RH_SUB')
+        if rh_sub ~= nil and IS_NO_EQUIPITEM(rh_sub) ~= 1 then
+            rh_subAtk = TryGetProp(rh_sub, 'MATK', 0)
+
+            local lh_sub = GetEquipItemForPropCalc(self, 'LH_SUB')
+            if lh_sub ~= nil then
+                if TryGetProp(lh_sub, "ClassType") == "Trinket" then
+                    lh_subAtk = TryGetProp(lh_sub, 'MATK', 0)
+                else
+                    lh_subAtk = TryGetProp(lh_sub, 'MAXATK', 0) * 0.3
+                end
+            end
+
+            local bySubItem = rh_subAtk + lh_subAtk
+            byItem = byItem * 0.5 + bySubItem * 0.5
+        end
+
+        byItem = math.floor(byItem)
+    end
+    
     local byItemList = { "MATK", "ADD_MATK", "ADD_MAXATK" };
     for i = 1, #byItemList do
         local byItemTemp = GetSumOfEquipItem(self, byItemList[i]);
         if byItemTemp == nil then
             byItemTemp = 0;
         end
-        
         byItem = byItem + byItemTemp;
     end
-    
+
+    local ori_rhAtk = TryGetProp(GetEquipItemForPropCalc(self, 'RH'), 'MATK', 0)
+    local ori_lhAtk = TryGetProp(GetEquipItemForPropCalc(self, 'LH'), 'MATK', 0)
+    local ori_trinketAtk = TryGetProp(GetEquipItemForPropCalc(self, 'TRINKET'), 'MATK', 0)
+    local ori_rh_subAtk = TryGetProp(GetEquipItemForPropCalc(self, 'RH_SUB'), 'MATK', 0)
+    local ori_lh_subAtk = TryGetProp(GetEquipItemForPropCalc(self, 'LH_SUB'), 'MATK', 0)
+
+    byItem = byItem - (ori_rhAtk + ori_lhAtk + ori_trinketAtk + ori_rh_subAtk + ori_lh_subAtk)
+
     byItem = byItem + TryGetProp(self, "EQUIP_MATK", 0);
 
     local value = defaultValue + byLevel + byStat + byItem;
@@ -1320,7 +1421,7 @@ end
 
 -- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_Get_MAXMATK(self)
-    local value = SCR_Get_DEFAULT_MAXMATK(self, value)
+    local value = SCR_Get_DEFAULT_MAXMATK(self)
     
     local throwItemMaxMAtk = 0;
     local rightHand = GetEquipItemForPropCalc(self, 'RH');
@@ -1433,6 +1534,21 @@ function SCR_CALC_BASIC_DEF(self)
     local byStat = (stat * 2) + (math.floor(stat / 10) * (byLevel * 0.05));
     
     local byItem = 0;
+    if tonumber(USE_SUBWEAPON_SLOT) == 1 then
+        local lhItem = GetEquipItemForPropCalc(self, "LH")
+        if lhItem ~= nil then
+            byItem = TryGetProp(lhItem, "DEF", 0)
+        end
+
+        local rh_sub = GetEquipItemForPropCalc(self, "RH_SUB")
+        local lh_sub = GetEquipItemForPropCalc(self, "LH_SUB")
+        if IS_NO_EQUIPITEM(rh_sub) ~= 1 or IS_NO_EQUIPITEM(lh_sub) ~= 1 then
+            local lhDef = TryGetProp(lhItem, "DEF", 0)
+            local subDef = TryGetProp(lh_sub, "DEF", 0)
+            byItem = math.floor((lhDef + subDef) / 2)
+        end
+    end
+    
     local byItemList = { "DEF", "ADD_DEF" };
     for i = 1, #byItemList do
         local byItemTemp = GetSumOfEquipItem(self, byItemList[i]);
@@ -1443,6 +1559,10 @@ function SCR_CALC_BASIC_DEF(self)
         byItem = byItem + byItemTemp;
     end
     
+    local ori_lhAtk = TryGetProp(GetEquipItemForPropCalc(self, 'LH'), 'DEF', 0)
+    local ori_lh_subAtk = TryGetProp(GetEquipItemForPropCalc(self, 'LH_SUB'), 'DEF', 0)
+    byItem  = byItem  - (ori_lhAtk + ori_lh_subAtk)
+
     local byBonus = TryGetProp(self, "MAXDEF_Bonus");
     if byBonus == nil then
         byBonus = 0;
@@ -1505,6 +1625,21 @@ function SCR_CALC_BASIC_MDEF(self)
     local byStat = (stat * 2) + (math.floor(stat / 10) * (byLevel * 0.05));
     
     local byItem = 0;
+    if tonumber(USE_SUBWEAPON_SLOT) == 1 then
+        local lhItem = GetEquipItemForPropCalc(self, "LH")
+        if lhItem ~= nil then
+            byItem = TryGetProp(lhItem, "MDEF", 0)
+        end
+
+        local rh_sub = GetEquipItemForPropCalc(self, "RH_SUB")
+        local lh_sub = GetEquipItemForPropCalc(self, "LH_SUB")
+        if IS_NO_EQUIPITEM(rh_sub) ~= 1 or IS_NO_EQUIPITEM(lh_sub) ~= 1 then
+            local lhDef = TryGetProp(lhItem, "MDEF", 0)
+            local subDef = TryGetProp(lh_sub, "MDEF", 0)
+            byItem = math.floor((lhDef + subDef) / 2)
+        end
+    end
+    
     local byItemList = { "MDEF", "ADD_MDEF" };
     for i = 1, #byItemList do
         local byItemTemp = GetSumOfEquipItem(self, byItemList[i]);
@@ -1515,6 +1650,10 @@ function SCR_CALC_BASIC_MDEF(self)
         byItem = byItem + byItemTemp;
     end
     
+    local ori_lhAtk = TryGetProp(GetEquipItemForPropCalc(self, 'LH'), 'MDEF', 0)
+    local ori_lh_subAtk = TryGetProp(GetEquipItemForPropCalc(self, 'LH_SUB'), 'MDEF', 0)
+    byItem  = byItem  - (ori_lhAtk + ori_lh_subAtk)
+    
     local jobRate = SCR_GET_JOB_RATIO_STAT(self, "MDEF");
     
     local value = defaultValue + ((byLevel + byStat) * jobRate) + byItem;
@@ -1523,30 +1662,34 @@ function SCR_CALC_BASIC_MDEF(self)
 end
 
 function SCR_Get_BLKABLE(self)
+
+    local value = 0
+
     local equipLH = GetEquipItem(self, 'LH');
-    local isShield = TryGetProp(equipLH, 'ClassType');
-    local abilFencer22 = GetAbility(self, "Fencer22")
-    if abilFencer22 ~= nil and TryGetProp(abilFencer22, "ActiveState", 0) == 1 and TryGetProp(equipLH, "ClassType", "None") == "Dagger" then
-        return 1;
+    if TryGetProp(equipLH, 'ClassType') == 'Shield' then
+        value = 2
     end
 
-    if isShield == 'Shield' then
-        return 1;
+    local equipRH_SUB = GetEquipItem(self, 'RH_SUB');
+    local equipLH_SUB = GetEquipItem(self, 'LH_SUB');
+    if IS_NO_EQUIPITEM(equipRH_SUB) ~= 1 or IS_NO_EQUIPITEM(equipLH_SUB) ~= 1 then
+        value = value / 2
+
+        if TryGetProp(equipLH_SUB, 'ClassType') == 'Shield' then
+            value = value + 1
+        end
     end
-    
---    local buffList = { "CrossGuard_Buff", "NonInvasiveArea_Buff", "EnchantEarth_Buff", "Retiarii_DaggerGuard" };
---    for i = 1, #buffList do
---        if IsBuffApplied(self, buffList[i]) == 'YES' then
---            return 2;
---        end
---    end
-    
+
     local enableBlockBuff = TryGetProp(self, "BLKABLE_BM", 0);
     if enableBlockBuff >= 1 then
-            return 2;
-        end
+        value = enableBlockBuff
+    end
     
-    return 0;
+    if value > 2 then
+        value = 2
+    end
+
+    return value;
 end
 
 function SCR_Get_BLK(self)
@@ -1567,12 +1710,12 @@ function SCR_Get_BLK(self)
     if byItem == nil then
         byItem = 0;
     end
-    
+
     local byBlockRate = GetSumOfEquipItem(self, 'BlockRate');
     if byBlockRate == nil then
         byBlockRate = 0;
     end
-    
+
     byBlockRate = byLevel * (byBlockRate * 0.01);
     
     local value = byLevel + byItem + byBlockRate;
@@ -2361,8 +2504,24 @@ function SCR_Get_MSPD(self)
         
         if IsPVPServer(self) == 1 or IsPVPField(self) == 1 then
             byBuff = byBuff * 0.5
-        end
+
+            local addmspd = 0
+            if IsBuffApplied(self, 'Limacon_Buff') == 'YES' or IsBuffApplied(self, 'RunningShot_Buff') == 'YES' then
+                local lhItem = GetEquipItem(self, "LH")
+                local lh_subItem = GetEquipItem(self, "LH_SUB")
         
+                if TryGetProp(lhItem, "ClassType", "None") == "Shield" then
+                    addmspd = addmspd - 2
+                end
+        
+                if TryGetProp(lh_subItem, "ClassType", "None") == "Shield" then
+                    addmspd = addmspd - 2
+                end
+            end
+
+            byBuff = byBuff + addmspd
+        end
+
         local byBuffOnlyTopValue = 0;
         if IsServerSection(self) == 1 then
             local byBuffOnlyTopList = GetMSPDBuffInfoTable(self)
@@ -2374,7 +2533,7 @@ function SCR_Get_MSPD(self)
                 end
             end
         end
-		
+
 		value = value + byBuff + byBuffOnlyTopValue;
         
         local nowWeight = 0;
@@ -2484,6 +2643,10 @@ function SCR_Get_MSPD(self)
         if isDashRun == 3 and RidingDashAbil ~= nil then
             value = value + 3;  -- 탑승 대쉬 특성이 있으면 속도 +3 --
         end
+
+		if IS_TOS_HERO_ZONE(self) == 'YES' and GetExProp(self, 'TOSHero_Tear2_MoveSPD') > 0 then
+			value = value + 5
+		end
     end
     
     -- 최대 이속 제한 --
@@ -2746,7 +2909,7 @@ function SCR_PC_MOVINGSHOTABLE(pc)
     else
         jobObj = GetJobObject();
     end
-
+    
     if jobObj == nil then
         return 0;
     end
@@ -2755,9 +2918,9 @@ function SCR_PC_MOVINGSHOTABLE(pc)
         return 1;
     end
 
-    local buffList = { "Warrior_EnableMovingShot_Buff", "Warrior_RushMove_Buff", "Cyclone_EnableMovingShot_Buff", 'DoubleGunStance_Buff' };
+    local buffList = { "Warrior_EnableMovingShot_Buff", "Warrior_RushMove_Buff", "Cyclone_EnableMovingShot_Buff", 'DoubleGunStance_Buff', 'Limacon_Buff' };
     for i = 1, #buffList do
-        if IsBuffApplied(pc, buffList[i]) == "YES" then    
+        if IsBuffApplied(pc, buffList[i]) == "YES" then
             return 1;
         end
     end
@@ -2929,6 +3092,10 @@ function SCR_Get_Sta_Run(self)
         value = SCR_FIELD_DUNGEON_CONSUME_DECREASE(self, 'Sta_Run', value);
     end
     
+	if IS_TOS_HERO_ZONE(self) == 'YES' and GetExProp(self, "TOSHero_NECK_MoveSPD") > 0 then
+		value = 0
+	end
+
     return math.floor(value);
 end
 
@@ -4837,10 +5004,9 @@ end
 function SCR_GET_DEFAULT_ATK_COMPARE(self)
     local value = 0
     local atkPatk = (SCR_Get_DEFAULT_MAXPATK(self) + SCR_Get_DEFAULT_MINPATK(self)) / 2
-    local atkPatk_sub = (SCR_Get_DEFAULT_MAXPATK_SUB(self) + SCR_Get_DEFAULT_MINPATK_SUB(self)) / 2
     local atkMatk = (SCR_Get_DEFAULT_MAXMATK(self) + SCR_Get_DEFAULT_MINMATK(self)) / 2
 
-    local maxAtk = math.max(atkPatk, atkPatk_sub, atkMatk)
+    local maxAtk = math.max(atkPatk, atkMatk)
 
     return maxAtk
 end

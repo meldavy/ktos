@@ -5,9 +5,11 @@ ClassID,ClassName,SubType,RedButtonText,RedButtonScp,Button1Text,Button1Scp,Butt
 4,teamBattle,,참여,ON_JOIN_TEAM_BATTLE,도움말,ON_TEAMBATTLE_HELP,보상 안내,SCR_OPEN_INDUNINFO_PVPREWARD,랭킹/관전하기,SCR_OPEN_OBSERVE_TEAMBATTLE
 5,Ancient,,입장하기,INDUNINFO_MOVE_TO_ANCIENT_DUNGEON,,,,,보상 안내,SCR_OPEN_INDUNINFO_PVPREWARD
 7,MythicDungeon,,순위/보상 안내,OPEN_MYTHIC_DUNGEON_INFO,,,,,,
-8,Challenge_Auto,Auto,자동매칭,REQ_CHALLENGE_AUTO_UI_OPEN,,,,,,
+8,Challenge_Auto,,자동매칭,REQ_CHALLENGE_AUTO_UI_OPEN,,,,,,
 9,Raid,Auto,자동매칭,REQ_RAID_AUTO_UI_OPEN,,,,,,
 10,MythicDungeon_Auto,,자동매칭,REQ_RAID_AUTO_UI_OPEN,,,,,,
 11,MythicDungeon_Auto_Hard,,자동매칭,REQ_RAID_AUTO_UI_OPEN,,,,,,
 12,Raid_MoveEnterNPC,MoveEnterNPC,이동,INDUNINFO_MOVE_TO_ENTER_NPC,,,,,,
+13,TOSHero,,입장하기,REQ_TOSHERO_ENTER,,,,,순위별 보상 확인,TOSHERO_REWARD_CLICK
 14,GTower,MoveEnterNPC,이동,INDUNINFO_MOVE_TO_ENTER_NPC,,,,,,
+15,Challenge_Solo,,입장하기,REQ_CHALLENGE_AUTO_UI_OPEN,,,,,,

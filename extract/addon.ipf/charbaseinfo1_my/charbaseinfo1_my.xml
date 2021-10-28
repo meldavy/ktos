@@ -22,5 +22,6 @@
 		<picture name="guildEmblem_edge" rect="0 0 32 32" margin="0 0 0 0" hittest="false" layout_gravity="left top" image="charinfo_markslot" stretch="true"/>
 		<picture name="guildEmblem" rect="0 0 30 30" margin="0 0 0 0" hittest="false" layout_gravity="left top" image="guildmark_slot" stretch="true" forceupdate="true"/>
 		<picture name="pcBangImg" rect="0 0 21 16" margin="2 3 0 0" hittest="false" layout_gravity="left top" image="pcbang_user_icon" stretch="true" forceupdate="true"/>
+		<picture name="rankEmblem" rect="0 0 30 23" margin="2 0 0 0" hittest="false" layout_gravity="left top" image="guildmark_slot" stretch="true" forceupdate="true"/>
 	</controls>
 </uiframe>

@@ -44,6 +44,9 @@
         </MainSkl>
     </Skill>
     <Skill Name="Kabbalist_Clone">
+        <EnableScripts>
+            <ToolScp Client="BOTH" Scp="CHECK_IS_NO_CHANGEDROPLIST" UseSleep="NO"/>
+        </EnableScripts>
         <MainSkl JumpFlee="NO" MSPDToUsePos="0" ScrLock="None">
             <EtcList>
                 <Scp Client="NO" Scp="SKL_SET_TARGET_CIRCLE" Time="0" UseSleep="NO">

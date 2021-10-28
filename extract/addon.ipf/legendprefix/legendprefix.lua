@@ -177,8 +177,9 @@ function LEGENDPREFIX_MATERIAL_INIT(frame, preFixName, invItem)
 	end
 	
 	local matText = GET_CHILD_RECURSIVELY(frame, 'matText');
-	local needCnt = GET_LEGEND_PREFIX_NEED_MATERIAL_COUNT_BY_NEEDITEM(targetObj, needItemClsName, GetMyPCObject());
-	local curCnt = GET_VALID_LEGEND_PREFIX_MATERIAL_COUNT_C(needItemClsName);
+	local needCnt = GET_LEGEND_PREFIX_NEED_MATERIAL_COUNT_BY_NEEDITEM(targetObj, needItemClsName, GetMyPCObject());	
+	local curCnt = GET_VALID_LEGEND_PREFIX_MATERIAL_COUNT_C(needItemClsName, TryGetProp(targetObj, 'UseLv', 1));
+
 	if needCnt > curCnt then
 		local NOT_ENOUPH_STYLE = frame:GetUserConfig('NOT_ENOUPH_STYLE');
 		matText:SetTextByKey('style', NOT_ENOUPH_STYLE);
@@ -196,7 +197,7 @@ function LEGENDPREFIX_MATERIAL_INIT(frame, preFixName, invItem)
 end
 
 -- 등록한 재료 보유 수
-function GET_VALID_LEGEND_PREFIX_MATERIAL_COUNT_C(needItemName)  
+function GET_VALID_LEGEND_PREFIX_MATERIAL_COUNT_C(needItemName)  	
 	local frame = ui.GetFrame("legendprefix");
 	if frame == nil then return end
 	
@@ -206,45 +207,27 @@ function GET_VALID_LEGEND_PREFIX_MATERIAL_COUNT_C(needItemName)
 		targetItem = session.GetInvItemByGuid(itemGuid);
 	end
 
-	local itemObj = GetIES(targetItem:GetObject());
+	local itemObj = GetIES(targetItem:GetObject());	
 	if itemObj == nil then return end
 	
-	local count = GET_INV_ITEM_COUNT_BY_PROPERTY({
-        {Name = 'ClassName', Value = needItemName}
-	}, false, nil, function(item)
-		if item == nil then
-			return false;
-		end
-		local itemExpStr = TryGetProp(item, 'ItemExpString', 'None');
-        if itemExpStr == 'None' then
-            itemExpStr = '0';
-        end
-		local itemExpNum = tonumber(itemExpStr);
-        if itemExpNum ~= nil and itemExpNum >= item.NumberArg1 then
-            return true;
-		end
-		return false;
-	end);	
-	if needItemName == 'Legend_ExpPotion_2_complete' then
-		local count2 = GET_INV_ITEM_COUNT_BY_PROPERTY({
-			{Name = 'ClassName', Value = 'Legend_ExpPotion_2_complete_Team_Trade'}
-		}, false, nil, function(item)
-			if item == nil then
-				return false;
+	local lv = TryGetProp(itemObj, 'UseLv', 1)
+
+	local itemList = session.GetInvItemList();	
+	local guidList = itemList:GetGuidList();
+	local cnt = guidList:Count();
+    local count = 0;
+    local matchedList = {};
+	for i = 0, cnt - 1 do
+		local guid = guidList:Get(i);
+		local invItem = itemList:GetItemByGuid(guid);
+        if invItem ~= nil and invItem:GetObject() ~= nil and (exceptLock ~= true or invItem.isLockState == false) then
+	        local item_obj = GetIES(invItem:GetObject());
+			if TryGetProp(item_obj, 'StringArg', 'None') == 'Legend_ExpPotion_2_complete' and TryGetProp(item_obj, 'NumberArg2', 0) >= lv then
+				count = count + invItem.count			
 			end
-			local itemExpStr = TryGetProp(item, 'ItemExpString', 'None');
-			print(itemExpStr)
-			if itemExpStr == 'None' then
-				itemExpStr = '0';
-			end
-			local itemExpNum = tonumber(itemExpStr);
-			if itemExpNum ~= nil and itemExpNum >= item.NumberArg1 then
-				return true;
-			end
-			return false;
-		end);	
-		count = count + count2
+	    end
 	end
+
     return count;
 end
 

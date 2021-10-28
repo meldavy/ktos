@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="EUC-KR"?>
+<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by IMCGames Co., Ltd (IMCGames Co., Ltd) -->
+<ActionDesc>
+	<Particle frame="18" attachNode="Dummy_effect_snake001" particleName="F_drop_water005_violet" useAttach="true" hiddenObj="false" changeEffect="None" scale="0.8" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="0" attachNode="Dummy_effect_snake001" particleName="F_drop_stone001_1_2" useAttach="true" hiddenObj="false" changeEffect="None" scale="0.3" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="45" attachNode="Dummy_effect_snake001" particleName="F_drop_stone001_1_2" useAttach="true" hiddenObj="false" changeEffect="None" scale="0.2" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="18" attachNode="Dummy_effect_snake002" particleName="F_drop_water005_violet" useAttach="true" hiddenObj="false" changeEffect="None" scale="0.8" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="0" attachNode="Dummy_effect_snake002" particleName="F_drop_stone001_1_2" useAttach="true" hiddenObj="false" changeEffect="None" scale="0.3" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="45" attachNode="Dummy_effect_snake002" particleName="F_drop_stone001_1_2" useAttach="true" hiddenObj="false" changeEffect="None" scale="0.2" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="18" attachNode="Dummy_effect_snake003" particleName="F_drop_water005_violet" useAttach="true" hiddenObj="false" changeEffect="None" scale="0.8" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="0" attachNode="Dummy_effect_snake003" particleName="F_drop_stone001_1_2" useAttach="true" hiddenObj="false" changeEffect="None" scale="0.3" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="45" attachNode="Dummy_effect_snake003" particleName="F_drop_stone001_1_2" useAttach="true" hiddenObj="false" changeEffect="None" scale="0.2" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="18" attachNode="Dummy_effect_snake004" particleName="F_drop_water005_violet" useAttach="true" hiddenObj="false" changeEffect="None" scale="0.8" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="0" attachNode="Dummy_effect_snake004" particleName="F_drop_stone001_1_2" useAttach="true" hiddenObj="false" changeEffect="None" scale="0.3" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="45" attachNode="Dummy_effect_snake004" particleName="F_drop_stone001_1_2" useAttach="true" hiddenObj="false" changeEffect="None" scale="0.2" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="18" attachNode="Dummy_effect_snake005" particleName="F_drop_water005_violet" useAttach="true" hiddenObj="false" changeEffect="None" scale="0.8" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="0" attachNode="Dummy_effect_snake005" particleName="F_drop_stone001_1_2" useAttach="true" hiddenObj="false" changeEffect="None" scale="0.3" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="45" attachNode="Dummy_effect_snake005" particleName="F_drop_stone001_1_2" useAttach="true" hiddenObj="false" changeEffect="None" scale="0.2" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="18" attachNode="Dummy_effect_snake006" particleName="F_drop_water005_violet" useAttach="true" hiddenObj="false" changeEffect="None" scale="0.8" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="0" attachNode="Dummy_effect_snake006" particleName="F_drop_stone001_1_2" useAttach="true" hiddenObj="false" changeEffect="None" scale="0.3" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="45" attachNode="Dummy_effect_snake006" particleName="F_drop_stone001_1_2" useAttach="true" hiddenObj="false" changeEffect="None" scale="0.2" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="18" attachNode="Dummy_effect_snake007" particleName="F_drop_water005_violet" useAttach="true" hiddenObj="false" changeEffect="None" scale="0.8" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="0" attachNode="Dummy_effect_snake007" particleName="F_drop_stone001_1_2" useAttach="true" hiddenObj="false" changeEffect="None" scale="0.3" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="45" attachNode="Dummy_effect_snake007" particleName="F_drop_stone001_1_2" useAttach="true" hiddenObj="false" changeEffect="None" scale="0.2" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="18" attachNode="Dummy_effect_snake008" particleName="F_drop_water005_violet" useAttach="true" hiddenObj="false" changeEffect="None" scale="0.8" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="0" attachNode="Dummy_effect_snake008" particleName="F_drop_stone001_1_2" useAttach="true" hiddenObj="false" changeEffect="None" scale="0.3" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="45" attachNode="Dummy_effect_snake008" particleName="F_drop_stone001_1_2" useAttach="true" hiddenObj="false" changeEffect="None" scale="0.2" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="18" attachNode="Dummy_effect_snake009" particleName="F_drop_water005_violet" useAttach="true" hiddenObj="false" changeEffect="None" scale="0.8" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="0" attachNode="Dummy_effect_snake009" particleName="F_drop_stone001_1_2" useAttach="true" hiddenObj="false" changeEffect="None" scale="0.3" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="45" attachNode="Dummy_effect_snake009" particleName="F_drop_stone001_1_2" useAttach="true" hiddenObj="false" changeEffect="None" scale="0.2" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="0" attachNode="back_R_Bone006" particleName="F_drop_stone001_1_2" useAttach="false" hiddenObj="false" changeEffect="None" scale="0.4" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="45" attachNode="back_R_Bone006" particleName="F_drop_stone001_1_2" useAttach="false" hiddenObj="false" changeEffect="None" scale="0.6" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="0" attachNode="back_R_Bone002" particleName="F_drop_stone001_1_2" useAttach="false" hiddenObj="false" changeEffect="None" scale="0.4" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="45" attachNode="back_R_Bone002" particleName="F_drop_stone001_1_2" useAttach="false" hiddenObj="false" changeEffect="None" scale="0.6" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="0" attachNode="back_L_Bone002" particleName="F_drop_stone001_1_2" useAttach="false" hiddenObj="false" changeEffect="None" scale="0.4" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="45" attachNode="back_L_Bone002" particleName="F_drop_stone001_1_2" useAttach="false" hiddenObj="false" changeEffect="None" scale="0.6" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="0" attachNode="back_L_Bone006" particleName="F_drop_stone001_1_2" useAttach="false" hiddenObj="false" changeEffect="None" scale="0.4" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="45" attachNode="back_L_Bone006" particleName="F_drop_stone001_1_2" useAttach="false" hiddenObj="false" changeEffect="None" scale="0.6" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="0" attachNode="Dummy_effect_head001" particleName="F_drop_stone001_1_2" useAttach="false" hiddenObj="false" changeEffect="None" scale="0.4" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="45" attachNode="Dummy_effect_head001" particleName="F_drop_stone001_1_2" useAttach="false" hiddenObj="false" changeEffect="None" scale="0.6" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="0" attachNode="Dummy_effect_head002" particleName="F_drop_stone001_1_2" useAttach="false" hiddenObj="false" changeEffect="None" scale="0.4" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="45" attachNode="Dummy_effect_head002" particleName="F_drop_stone001_1_2" useAttach="false" hiddenObj="false" changeEffect="None" scale="0.6" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="0" attachNode="Dummy_effect_head003" particleName="F_drop_stone001_1_2" useAttach="false" hiddenObj="false" changeEffect="None" scale="0.4" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="45" attachNode="Dummy_effect_head003" particleName="F_drop_stone001_1_2" useAttach="false" hiddenObj="false" changeEffect="None" scale="0.6" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="0" attachNode="Point160_po" particleName="F_drop_stone001_1_2" useAttach="false" hiddenObj="false" changeEffect="None" scale="0.9" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="45" attachNode="Point160_po" particleName="F_drop_stone001_1_2" useAttach="false" hiddenObj="false" changeEffect="None" scale="0.6" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="0" attachNode="Point158_po" particleName="F_drop_stone001_1_2" useAttach="false" hiddenObj="false" changeEffect="None" scale="0.9" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="45" attachNode="Point158_po" particleName="F_drop_stone001_1_2" useAttach="false" hiddenObj="false" changeEffect="None" scale="0.6" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="0" attachNode="Point156_po" particleName="F_drop_stone001_1_2" useAttach="false" hiddenObj="false" changeEffect="None" scale="0.9" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="45" attachNode="Point156_po" particleName="F_drop_stone001_1_2" useAttach="false" hiddenObj="false" changeEffect="None" scale="0.6" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="0" attachNode="Point154_po" particleName="F_drop_stone001_1_2" useAttach="false" hiddenObj="false" changeEffect="None" scale="0.9" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="45" attachNode="Point154_po" particleName="F_drop_stone001_1_2" useAttach="false" hiddenObj="false" changeEffect="None" scale="0.6" pause="true" use2DEffect="false" soft2DValue="20"/>
+</ActionDesc>

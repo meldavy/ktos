@@ -82,6 +82,10 @@ function CLEAR_ITEM_SANDRAREVERT_RANDOM_UI()
 	local bodyGbox2_1 = GET_CHILD_RECURSIVELY(frame, 'bodyGbox2_1');
 	bodyGbox2_1:RemoveAllChild();
 
+	for i = 1, MAX_RANDOM_OPTION_COUNT do
+		frame:SetUserValue("IS_CHECKED_" .. i, 0)
+	end
+
 	UPDATE_REMAIN_SANDRA_GLASS_COUNT(frame)
 end
 
@@ -109,6 +113,18 @@ function SENDOK_ITEM_SANDRAREVERT_RANDOM_UI()
 	local bodyGbox1 = GET_CHILD_RECURSIVELY(frame, 'bodyGbox1');
 	bodyGbox1:ShowWindow(1)
 	local bodyGbox1_1 = GET_CHILD_RECURSIVELY(frame, 'bodyGbox1_1');
+	local cnt = frame:GetUserIValue("RANDOM_PROP_CNT");
+	for i = 1, cnt do
+		local controlset = GET_CHILD_RECURSIVELY(bodyGbox1_1, "PROPERTY_CSET_"..i);
+		if controlset ~= nil then
+			local checkbox = GET_CHILD_RECURSIVELY(controlset, "checkbox");	
+			if checkbox:IsChecked() == 1 then
+				frame:SetUserValue("IS_CHECKED_" .. i, 1)
+			else
+				frame:SetUserValue("IS_CHECKED_" .. i, 0)
+			end			
+		end
+	end
 	bodyGbox1_1:RemoveAllChild();
 	bodyGbox1_1:EnableHitTest(1);
 
@@ -215,6 +231,13 @@ function ITEM_SANDRAREVERT_RANDOM_REG_TARGETITEM(frame, itemID)
 			itemClsCtrl:Move(0, i * pos_y);
 			local propertyList = GET_CHILD_RECURSIVELY(itemClsCtrl, "property_name", "ui::CRichText");
 			propertyList:SetText(strInfo);
+			local checkbox = GET_CHILD_RECURSIVELY(itemClsCtrl, "checkbox");
+			if frame:GetUserIValue("IS_CHECKED_" .. i) == 1 then
+				checkbox:SetCheck(1);
+			else
+				checkbox:SetCheck(0);
+			end
+
 			ypos = i * pos_y + propertyList:GetHeight() + 5;
 			
 			cnt = cnt + 1;
@@ -248,8 +271,13 @@ function ITEM_SANDRAREVERT_RANDOM_EXEC(frame)
 		return;
 	end
 
-	local clmsg = ScpArgMsg("DoSandrarevertRandomResetOptionCountNoReset")
-	ui.MsgBox_NonNested(clmsg, frame:GetName(), "_ITEM_SANDRAREVERT_RANDOM_EXEC", "None");
+	local check_no_msgbox = GET_CHILD_RECURSIVELY(frame, 'check_no_msgbox')
+	if check_no_msgbox:IsChecked() == 1 then
+		_ITEM_SANDRAREVERT_RANDOM_EXEC()
+	else
+		local clmsg = ScpArgMsg("DoSandrarevertRandomResetOptionCountNoReset")
+		ui.MsgBox_NonNested(clmsg, frame:GetName(), "_ITEM_SANDRAREVERT_RANDOM_EXEC", "None");
+	end
 end
 
 function _ITEM_SANDRAREVERT_RANDOM_EXEC()

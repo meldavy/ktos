@@ -33,3 +33,4 @@ ClassID,GenType,Lv,Range,GenRange,RespawnTime,MaxPop,Minimap,Hide,UseAIOufOfPC,A
 1020,1020,1,20,1,1,1,2,0,0,0,0,0,Warp_arrow,델무어 소작촌,,,,MON_DUMMY,,,,EP13_ENDINGPOINT,,NO,YES,NO,Neutral,,,,
 1021,1021,1,40,1,60000,1,0,0,0,0,0,0,fire_tree_wall,UnvisibleName,,,,MON_DUMMY,,,,,,NO,YES,NO,Neutral,Anim/std3,,,
 1022,1022,1,40,1,60000,1,1,0,0,0,0,0,hidden_monster4,,,,,,,,,,,NO,YES,NO,Monster,,,,
+1023,1023,1,1,1,1,1,2,0,0,0,0,0,blank_npc_warp,미지의 성역 1층,,,,,,VELNIAS_WARP_GATE_EFFECT,UNKNOWN_SANTUARY_GATE_NORMAL,,,NO,YES,NO,Netral,,,,

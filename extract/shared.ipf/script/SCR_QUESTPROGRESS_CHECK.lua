@@ -4906,6 +4906,12 @@ function SCR_EPISODE_CHECK(pc, episodeRewardClassName)
         return "Error"
     end
    
+    local ScrollUnLockGroup = TryGetProp(episodeRewardIES, "ScrollUnLockGroup")
+    if ScrollUnLockGroup == nil then
+        return 0
+    end
+
+
     local accountObj = nil;
 	if IsServerObj(pc) == 1 then
 		accountObj =  GetAccountObj(pc);
@@ -4951,6 +4957,14 @@ function SCR_EPISODE_CHECK(pc, episodeRewardClassName)
         return "Clear"; -- 이미 받아감.
     end
     
+    
+    local tgtProp = ScrollUnLockGroup.."_ScrollUnLock"
+    local isUnLock = TryGetProp(accountObj, tgtProp, 0)
+    if isUnLock > 0 then
+        return "Reward";
+    end
+
+
     -- 3. 에피소드의 모든 퀘스트 검사.
     local list = GET_EPISODE_QUEST_LIST(episodeNumberStrProp)
     if list == nil then

@@ -181,7 +181,13 @@ return value"/>
                     <Str Str="EvasiveAction_Buff"/>
                     <Num Num="1"/>
                     <Num Num="0"/>
-                    <Num Num="8000"/>
+                    <Num Num="0" UseFunc="1" FuncTxt="    local value = 8000
+    local abil = GetAbility(self, &quot;Schwarzereiter34&quot;)
+    if abil ~= nil and TryGetProp(abil, &quot;ActiveState&quot;, 0) == 1 then
+        value = 1800000
+    end
+
+    return value"/>
                     <Num Num="1"/>
                     <Num Num="100"/>
                     <Num Num="0"/>
@@ -213,6 +219,9 @@ return value"/>
                 <Frame Type="FAN" Time="99799" HitCount="1" TermMin="0" TermMax="0" PosType="0" Dist="0" RandDist="0" RandomPerHit="0" Angle="0" Width="30" Length="30" SklAngle="0.17453292" AniTime="99999" RotAngle="0" ForceATK="0" ScriptIndex="0" ScriptName="" SkillType="0"/>
             </HitList>
             <EtcList>
+                <Scp Scp="SKL_RESET_COOLTIME" Client="NO" UseSleep="NO" Time="0">
+                    <Str Str="Schwarzereiter_DoubleBullet"/>
+                </Scp>
                 <Scp Scp="SKL_BUFF" Client="NO" UseSleep="NO" Time="0">
                     <Str Str="DoubleBullet_Buff"/>
                     <Num Num="1"/>
@@ -650,7 +659,15 @@ return value"/>
                     <Str Str="voice_atk_medium_war_f"/>
                 </Scp>
                 <Scp Scp="SKL_BUFF" Client="NO" UseSleep="NO" Time="600">
-                    <Str Str="Limacon_Buff" UseFunc="1" FuncTxt="local lhItem = GetEquipItem(self, 'LH') if lhItem ~= nil and lhItem.ClassType == &quot;Pistol&quot; then     return &quot;Limacon_Buff&quot; end return &quot;None&quot;"/>
+                    <Str Str="Limacon_Buff" UseFunc="1" FuncTxt="
+                    local weapon = GetEquipItem(self, 'LH')
+                    if tonumber(USE_SCOUT_MAINWEAPON) == 1 then
+                        weapon = GetEquipItem(self, 'RH')
+                    end
+                    if weapon ~= nil and weapon.ClassType == &quot;Pistol&quot; then
+                        return &quot;Limacon_Buff&quot;
+                    end
+                    return &quot;None&quot;"/>
                     <Num Num="1"/>
                     <Num Num="0"/>
                     <Num Num="0"/>

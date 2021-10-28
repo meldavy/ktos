@@ -384,7 +384,7 @@
 		<image name="TUTO_LEGEND_CARD_08" file="helpimg\TUTO_LEGEND_CARD_08.jpg" imgrect="0 0 380 878"/>
 		<image name="TUTO_LEGEND_CARD_09" file="helpimg\TUTO_LEGEND_CARD_09.jpg" imgrect="0 0 380 349"/>
 		<image name="TUTO_VELCOFFER_RAID_01" file="helpimg\TUTO_VELCOFFER_RAID_01.jpg" imgrect="0 0 380 313"/>
-		<image name="TUTO_VELCOFFER_RAID_02" file="helpimg\TUTO_VELCOFFER_RAID_02.jpg" imgrect="0 0 380 820"/>
+		<image name="TUTO_VELCOFFER_RAID_02" file="helpimg\TUTO_VELCOFFER_RAID_02.jpg" imgrect="0 0 380 609"/>
 		<image name="TUTO_VELCOFFER_RAID_03" file="helpimg\TUTO_VELCOFFER_RAID_03.jpg" imgrect="0 0 380 544"/>
 		<image name="TUTO_VELCOFFER_RAID_04" file="helpimg\TUTO_VELCOFFER_RAID_04.jpg" imgrect="0 0 380 408"/>
 		<image name="TUTO_VELCOFFER_RAID_05" file="helpimg\TUTO_VELCOFFER_RAID_05.jpg" imgrect="0 0 380 138"/>
@@ -487,6 +487,7 @@
 		<image name="TUTO_CHALLENGE_MODE_04" file="helpimg\TUTO_CHALLENGE_MODE_04.jpg" imgrect="0 0 380 269"/>
 		<image name="TUTO_CHALLENGE_MODE_05" file="helpimg\TUTO_CHALLENGE_MODE_05.jpg" imgrect="0 0 380 289"/>
 		<image name="TUTO_CHALLENGE_MODE_06" file="helpimg\TUTO_CHALLENGE_MODE_06.jpg" imgrect="0 0 380 281"/>
+		<image name="TUTO_CHALLENGE_MODE_07" file="helpimg\TUTO_CHALLENGE_MODE_07.jpg" imgrect="0 0 380 216"/>
 		<image name="TUTO_DIMENSION_COLLAPSE_01" file="helpimg\TUTO_DIMENSION_COLLAPSE_01.jpg" imgrect="0 0 380 557"/>
 		<image name="TUTO_DIMENSION_COLLAPSE_02" file="helpimg\TUTO_DIMENSION_COLLAPSE_02.jpg" imgrect="0 0 380 461"/>
 		<image name="TUTO_DIMENSION_COLLAPSE_03" file="helpimg\TUTO_DIMENSION_COLLAPSE_03.jpg" imgrect="0 0 380 330"/>
@@ -638,7 +639,7 @@
 		<image name="TUTO_ARK_05" file="\helpimg\TUTO_ARK_05.jpg" imgrect="0 0 380 80"/>
 		<image name="TUTO_ARK_06" file="\helpimg\TUTO_ARK_06.jpg" imgrect="0 0 380 925"/>
 		<image name="TUTO_ARTS_01" file="\helpimg\TUTO_ARTS_01.jpg" imgrect="0 0 380 215"/>
-		<image name="TUTO_ARTS_02" file="\helpimg\TUTO_ARTS_02.jpg" imgrect="0 0 380 668"/>
+		<image name="TUTO_ARTS_02" file="\helpimg\TUTO_ARTS_02.jpg" imgrect="0 0 380 175"/>
 		<image name="TUTO_ARTS_03" file="\helpimg\TUTO_ARTS_03.jpg" imgrect="0 0 380 237"/>
 		<image name="TUTO_ARTS_04" file="\helpimg\TUTO_ARTS_04.jpg" imgrect="0 0 380 285"/>
 		<image name="TUTO_ARTS_05" file="\helpimg\TUTO_ARTS_05.jpg" imgrect="0 0 380 122"/>
@@ -680,5 +681,48 @@
 		<image name="TUTO_RELIC_16" file="\helpimg\TUTO_RELIC_16.jpg" imgrect="0 0 380 265"/>
 		<image name="TUTO_RELIC_17" file="\helpimg\TUTO_RELIC_17.jpg" imgrect="0 0 380 279"/>
 		<image name="TUTO_RELIC_18" file="\helpimg\TUTO_RELIC_18.jpg" imgrect="0 0 380 278"/>
+		<image name="TUTO_SOLO_D_1" file="\helpimg\TUTO_SOLO_D_01.jpg" imgrect="0 0 380 289"/>
+		<image name="TUTO_SOLO_D_2" file="\helpimg\TUTO_SOLO_D_02.jpg" imgrect="0 0 380 282"/>
+		<image name="TUTO_SOLO_D_3" file="\helpimg\TUTO_SOLO_D_03.jpg" imgrect="0 0 380 300"/>
+		<image name="TUTO_SOLO_D_4" file="\helpimg\TUTO_SOLO_D_04.jpg" imgrect="0 0 380 469"/>
+		<image name="TUTO_SOLO_D_5" file="\helpimg\TUTO_SOLO_D_05.jpg" imgrect="0 0 380 505"/>
+		<image name="TUTO_SOLO_D_6" file="\helpimg\TUTO_SOLO_D_06.jpg" imgrect="0 0 380 708"/>
+		<image name="TUTO_TOSHERO_1" file="\helpimg\TUTO_TOSHERO_1.jpg" imgrect="0 0 380 338"/>
+		<image name="TUTO_TOSHERO_2" file="\helpimg\TUTO_TOSHERO_2.jpg" imgrect="0 0 380 234"/>
+		<image name="TUTO_TOSHERO_3" file="\helpimg\TUTO_TOSHERO_3.jpg" imgrect="0 0 380 234"/>
+		<image name="TUTO_TOSHERO_4" file="\helpimg\TUTO_TOSHERO_4.jpg" imgrect="0 0 380 338"/>
+		<image name="TUTO_TOSHERO_5" file="\helpimg\TUTO_TOSHERO_5.jpg" imgrect="0 0 380 338"/>
+		<image name="TUTO_TOSHERO_6" file="\helpimg\TUTO_TOSHERO_6.jpg" imgrect="0 0 380 509"/>
+		<image name="TUTO_TOSHERO_7" file="\helpimg\TUTO_TOSHERO_7.jpg" imgrect="0 0 380 209"/>
+		<image name="TUTO_TOSHERO_8" file="\helpimg\TUTO_TOSHERO_8.jpg" imgrect="0 0 380 189"/>
+		<image name="TUTO_TOSHERO_9" file="\helpimg\TUTO_TOSHERO_9.jpg" imgrect="0 0 380 266"/>
+		<image name="TUTO_TOSHERO_10" file="\helpimg\TUTO_TOSHERO_10.jpg" imgrect="0 0 380 266"/>
+		<image name="TUTO_TOSHERO_11" file="\helpimg\TUTO_TOSHERO_11.jpg" imgrect="0 0 380 266"/>
+		<image name="TUTO_TOSHERO_12" file="\helpimg\TUTO_TOSHERO_12.jpg" imgrect="0 0 380 266"/>
+		<image name="TUTO_TOSHERO_13" file="\helpimg\TUTO_TOSHERO_13.jpg" imgrect="0 0 380 541"/>
+		<image name="TUTO_TOSHERO_14" file="\helpimg\TUTO_TOSHERO_14.jpg" imgrect="0 0 380 541"/>
+		<image name="TUTO_TOSHERO_15" file="\helpimg\TUTO_TOSHERO_15.jpg" imgrect="0 0 380 792"/>
+		<image name="TUTO_TOSHERO_16" file="\helpimg\TUTO_TOSHERO_16.jpg" imgrect="0 0 380 92"/>
+		<image name="TUTO_TOSHERO_17" file="\helpimg\TUTO_TOSHERO_17.jpg" imgrect="0 0 380 266"/>
+		<image name="TUTO_SHARD_CABINET_PIC_1" file="\helpimg\TUTO_SHARD_CABINET_PIC_1.jpg" imgrect="0 0 380 220"/>
+		<image name="TUTO_SHARD_CABINET_PIC_2" file="\helpimg\TUTO_SHARD_CABINET_PIC_2.jpg" imgrect="0 0 380 368"/>
+		<image name="TUTO_SHARD_CABINET_PIC_3" file="\helpimg\TUTO_SHARD_CABINET_PIC_3.jpg" imgrect="0 0 380 697"/>
+		<image name="TUTO_SHARD_CABINET_PIC_4" file="\helpimg\TUTO_SHARD_CABINET_PIC_4.jpg" imgrect="0 0 380 321"/>
+		<image name="TUTO_BOUNTYHUNT_PIC_1" file="\helpimg\TUTO_BOUNTYHUNT_PIC_1.jpg" imgrect="0 0 380 271"/>
+		<image name="TUTO_BOUNTYHUNT_PIC_2" file="\helpimg\TUTO_BOUNTYHUNT_PIC_2.jpg" imgrect="0 0 380 271"/>
+		<image name="TUTO_BOUNTYHUNT_PIC_3" file="\helpimg\TUTO_BOUNTYHUNT_PIC_3.jpg" imgrect="0 0 380 271"/>
+		<image name="TUTO_BOUNTYHUNT_PIC_4" file="\helpimg\TUTO_BOUNTYHUNT_PIC_4.jpg" imgrect="0 0 380 271"/>
+		<image name="TUTO_BOUNTYHUNT_PIC_5" file="\helpimg\TUTO_BOUNTYHUNT_PIC_5.jpg" imgrect="0 0 380 271"/>
+		<image name="TUTO_GODDESSEQUIP_PIC_1" file="\helpimg\TUTO_GODDESSEQUIP_PIC_1.jpg" imgrect="0 0 380 232"/>
+		<image name="TUTO_GODDESSEQUIP_PIC_2" file="\helpimg\TUTO_GODDESSEQUIP_PIC_2.jpg" imgrect="0 0 380 277"/>
+		<image name="TUTO_GODDESSEQUIP_PIC_3" file="\helpimg\TUTO_GODDESSEQUIP_PIC_3.jpg" imgrect="0 0 380 277"/>
+		<image name="TUTO_GODDESSEQUIP_PIC_4" file="\helpimg\TUTO_GODDESSEQUIP_PIC_4.jpg" imgrect="0 0 380 277"/>
+		<image name="TUTO_GODDESSEQUIP_PIC_5" file="\helpimg\TUTO_GODDESSEQUIP_PIC_5.jpg" imgrect="0 0 380 277"/>
+		<image name="TUTO_GODDESSEQUIP_PIC_6" file="\helpimg\TUTO_GODDESSEQUIP_PIC_6.jpg" imgrect="0 0 380 277"/>
+		<image name="TUTO_GODDESSEQUIP_PIC_7" file="\helpimg\TUTO_GODDESSEQUIP_PIC_7.jpg" imgrect="0 0 380 277"/>
+		<image name="TUTO_UNKNOWNSANTUARY_PIC_1" file="\helpimg\TUTO_UNKNOWNSANTUARY_PIC_1.jpg" imgrect="0 0 380 300"/>
+		<image name="TUTO_UNKNOWNSANTUARY_PIC_2" file="\helpimg\TUTO_UNKNOWNSANTUARY_PIC_2.jpg" imgrect="0 0 380 692"/>
+		<image name="TUTO_UNKNOWNSANTUARY_PIC_3" file="\helpimg\TUTO_UNKNOWNSANTUARY_PIC_3.jpg" imgrect="0 0 380 137"/>
+		<image name="TUTO_UNKNOWNSANTUARY_PIC_4" file="\helpimg\TUTO_UNKNOWNSANTUARY_PIC_4.jpg" imgrect="0 0 380 317"/>
 	</imagelist>
 </skinset>

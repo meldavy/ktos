@@ -35,6 +35,9 @@ ClassID,Coordinate_X,Coordinate_Y,ClassName,MapName,Episode,TooltipDirection,IsI
 305,-285,415,city_orsha_5,ep13_f_siauliai_4,city_orsha,left,YES,
 306,-162,396,city_orsha_6,ep13_f_siauliai_5,city_orsha,right,YES,
 307,-439,25,city_orsha_7,f_bracken_42_1,city_orsha,right,NO,
+308,-452,372,city_orsha_8,ep13_2_d_prison_2,city_orsha,left,YES,ep13_2_d_prison_2
+309,-452,372,city_orsha_9,ep13_2_d_prison_3,city_orsha,left,YES,ep13_2_d_prison_2
+310,-452,372,city_orsha_10,ep13_2_d_prison_1,city_orsha,left,YES,ep13_2_d_prison_2
 10101,-275,-136,EP2_1,f_gele_57_1,EP2,right,YES,
 10102,-165,28,EP2_2,f_gele_57_2,EP2,right,YES,
 10103,-13,-92,EP2_3,f_gele_57_3,EP2,right,YES,

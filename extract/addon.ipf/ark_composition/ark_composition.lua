@@ -354,8 +354,13 @@ function ARK_LV_UP_MATERIAL_INIT(frame, itemObj)
     local current_lv = TryGetProp(itemObj, 'ArkLevel', -1)
     local max_lv = TryGetProp(itemObj, 'MaxArkLv', -1)
 
+    local is_character_belong = false
+    if TryGetProp(itemObj, 'CharacterBelonging', 0) == 1 then
+        is_character_belong = true
+    end
+
     local transcend, arcane, siera = shared_item_ark.get_require_item_list_for_lv()
-    local transcend_count, arcane_count, siera_count = shared_item_ark.get_require_count_for_next_lv(current_lv + 1 , max_lv)
+    local transcend_count, arcane_count, siera_count = shared_item_ark.get_require_count_for_next_lv(current_lv + 1 , max_lv, is_character_belong)
     
     ARK_LV_UP_MATERIAL_INFO(frame, 1, transcend, transcend_count)
     ARK_LV_UP_MATERIAL_INFO(frame, 2, arcane, arcane_count)

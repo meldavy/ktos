@@ -2,10 +2,12 @@
     addon:RegisterMsg('RECEIVE_GUILD_AGIT_WEAPON', 'OPEN_HOUSING_LAB_WEAPON');
     addon:RegisterMsg('RECEIVE_GUILD_AGIT_ARMOR', 'OPEN_HOUSING_LAB_ARMOR');
     addon:RegisterMsg('RECEIVE_GUILD_AGIT_ATTRIBUTE', 'OPEN_HOUSING_LAB_ATTRIBUTE');
+	addon:RegisterMsg("RECEIVE_GUILD_AGIT_DUNGEON", "OPEN_HOUSING_LAB_DUNGEON");
 
     addon:RegisterMsg('REFRESH_GUILD_AGIT_WEAPON', 'SET_HOUSING_LAB_WEAPON');
     addon:RegisterMsg('REFRESH_GUILD_AGIT_ARMOR', 'SET_HOUSING_LAB_ARMOR');
     addon:RegisterMsg('REFRESH_GUILD_AGIT_ATTRIBUTE', 'SET_HOUSING_LAB_ATTRIBUTE');
+	addon:RegisterMsg("REFRESH_GUILD_AGIT_DUNGEON", "SET_HOUSING_LAB_DUNGEON");
 end
 
 local function SET_HOUSING_LAB_RESEARCH(guildAgit, gbox, researchEnum, labClassName)
@@ -96,6 +98,36 @@ local function SET_HOUSING_LAB_RESEARCH(guildAgit, gbox, researchEnum, labClassN
 		research_use_guild:SetImage("btn_use_buff_guild_off");
 	else
 		research_use_guild:SetImage("btn_use_buff_guild_on");
+	end
+end
+
+local function SET_HOUSING_DUNGEON_LAB_RESEARCH(guild_agit, gbox, research_enum, lab_class_name)
+	local research_name = tos.housing.guild.lua.ToStringResearch(research_enum);
+	local level = guild_agit.researchLevels[research_enum + 1];
+	local frame = gbox:GetTopParentFrame();
+	local class = GetClass("guild_housing", research_name);
+	if class ~= nil then
+		local ctrl_set = gbox:CreateControlSet("housing_dungeon_lab_research", "HOUSING_LAB_RESEARCH_"..research_name, ui.CENTER_HORZ, ui.TOP, 0, 0, 0, 0);
+		if ctrl_set ~= nil then
+			local title = TryGetProp(class, "Name", "");
+			local research_title = GET_CHILD_RECURSIVELY(ctrl_set, "txt_research_title");
+			research_title:SetTextByKey("type", title);
+
+			local research_pic = GET_CHILD_RECURSIVELY(ctrl_set, "pic_research");
+			research_pic:SetImage("god_protection_button");
+
+			local caption_1 = TryGetProp(class, "Caption1", "");
+			local research_content_text = GET_CHILD_RECURSIVELY(ctrl_set, "txt_research_content");
+			research_content_text:SetText("{@st66b}{s16}"..caption_1);
+
+			local caption_2 = TryGetProp(class, "Caption2", "");
+			research_content_text:SetTextTooltip(caption_1);
+
+			local research_use_guild = GET_CHILD_RECURSIVELY(ctrl_set, "btn_research_use_guild");
+			research_use_guild:SetUserValue("ResearchType", research_name);
+			research_use_guild:SetTextTooltip(ScpArgMsg("GuildAssetLog_UnknownSantuary_Activate"));
+			research_use_guild:SetImage("btn_use_buff_guild_on");
+		end	
 	end
 end
 
@@ -212,6 +244,37 @@ function SET_HOUSING_LAB_ATTRIBUTE()
     GBOX_AUTO_ALIGN(gbox, 0, 3, 10, true, false);
 end
 
+function OPEN_HOUSING_LAB_DUNGEON()
+	local guildAgit = housing.GetGuildAgitInfo();
+	if guildAgit == nil then
+		housing.RequestGuildAgitInfo("RECEIVE_GUILD_AGIT_DUNGEON");
+		return;
+	end
+	session.party.ReqGuildAsset();
+	ui.OpenFrame("housing_lab");
+	SET_HOUSING_LAB_DUNGEON();
+end
+
+function SET_HOUSING_LAB_DUNGEON()
+	local guildAgit = housing.GetGuildAgitInfo();
+	if guildAgit == nil then
+		housing.RequestGuildAgitInfo("REFRESH_GUILD_AGIT_DUNGEON");
+		return;
+	end
+
+	local frame = ui.GetFrame("housing_lab");
+	SET_HOUSING_LAB_FRAME(frame, "Dungeon");
+
+	local gbox = GET_CHILD_RECURSIVELY(frame, "gbox");
+	gbox:RemoveAllChild();
+	
+	SET_HOUSING_DUNGEON_LAB_RESEARCH(guildAgit, gbox, tos.housing.guild.eDungeon_c_Klaipe, "guild_dungeon_laboratory_extension");	-- 클라페다
+	SET_HOUSING_DUNGEON_LAB_RESEARCH(guildAgit, gbox, tos.housing.guild.eDungeon_c_orsha, "guild_dungeon_laboratory_extension");  -- 오르샤
+	SET_HOUSING_DUNGEON_LAB_RESEARCH(guildAgit, gbox, tos.housing.guild.eDungeon_c_fedimian, "guild_dungeon_laboratory_extension");	-- 페디미안
+
+    GBOX_AUTO_ALIGN(gbox, 0, 3, 10, true, false);
+end
+
 function BTN_HOUSING_LAB_RESEARCH_LV_UP(gbox, btn)
 	local guildAgit = housing.GetGuildAgitInfo();
 	if guildAgit == nil then
@@ -305,14 +368,13 @@ function BTN_HOUSING_LAB_RESEARCH_USE_GUILD(gbox, btn)
 	local labType = frame:GetUserValue("LabType");
 	local researchType = btn:GetUserValue("ResearchType");
 	
-    local agit = housing.GetGuildAgitInfo()
+    local agit = housing.GetGuildAgitInfo();
     local researchTypeNumber = tos.housing.guild.lua.ToResearchType(researchType)
-    local skillLv = agit.researchLevels[researchTypeNumber+1]
+	local skillLv = agit.researchLevels[researchTypeNumber + 1];
     local buffCls = GetClass("Buff", "Guild_"..researchType.."_Group_Buff")
     local buffName = buffCls.Name;
-    local need_silver = 1000000
-    need_silver = need_silver * tonumber(skillLv)
-
+    local need_silver = 2000000 -- 길드 연구소 단체 활성화 가격(클라)
+    --need_silver = need_silver * tonumber(skillLv)
     local clmsg
     local yesScp
     local noScp
@@ -347,6 +409,19 @@ function BTN_HOUSING_LAB_RESEARCH_USE_GUILD(gbox, btn)
 	local acceptMsgBox = ui.MsgBox(clmsg, yesScp, noScp);
     acceptMsgBox = tolua.cast(acceptMsgBox, 'ui::CMessageBoxFrame');
     frame:SetUserValue('ACCEPT_MSGBOX_INDEX', acceptMsgBox:GetIndex());
+end
+
+function BTN_HOUSING_DUNGEON_LAB_RESEARCH_USE_GUILD(gbox, btn)
+	if gbox == nil or btn == nil then return; end
+	local research_name = btn:GetUserValue("ResearchType");
+	local class = GetClass("guild_housing", research_name);
+	if class ~= nil then
+		local clmsg = ScpArgMsg("Guild_Housing_Dungon_Lab_Enter", "Name", class.Name);
+		local yes_scp = string.format("SCR_GUILD_HOUSING_RESEARCH_BUFF_GUILD_APPLY_CHECK('%d', '%s')", 1, research_name);
+		local no_scp = string.format("SCR_GUILD_HOUSING_RESEARCH_BUFF_GUILD_APPLY_CHECK('%d')", 0);
+		local msg_box = ui.MsgBox(clmsg, yes_scp, no_scp);
+		msg_box = tolua.cast(msg_box, "ui::CMessageBoxFrame");
+	end
 end
 
 function SCR_GUILD_HOUSING_RESEARCH_BUFF_PERSONAL_APPLY_CHECK(flag, researchType)

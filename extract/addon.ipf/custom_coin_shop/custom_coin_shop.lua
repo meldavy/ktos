@@ -1,5 +1,6 @@
 function CUSTOM_COIN_SHOP_ON_INIT(addon, frame)
 	addon:RegisterMsg("OPEN_DLG_CUSTOM_COIN_SHOP", "CUSTOM_COIN_SHOP_OPEN");
+	addon:RegisterMsg("CLOSE_DLG_CUSTOM_COIN_SHOP", "CLOSE_CUSTOM_COIN_SHOP");
 end
 
 function CUSTOM_COIN_SHOP_OPEN(frame,msg,argStr,argNum)
@@ -27,6 +28,7 @@ end
 function CLOSE_CUSTOM_COIN_SHOP(frame)
 	local slotset = GET_CHILD_RECURSIVELY(frame,"buyitemslot")
 	CUSTOM_COIN_SHOP_CLEAR_BUYLIST(frame,slotset)
+	frame:ShowWindow(0)
 end
 
 function CUSTOM_COIN_SHOP_GET_NAME(ctrl)
@@ -53,7 +55,13 @@ function CUSTOM_COIN_SHOP_MAKE_ITEMLIST(parent,ctrl)
 		
 			ShopItemCountCtrl:SetOverSound("button_over");
 			local printText	= '{@st66b}' .. GET_SHOPITEM_TXT(shopItem, itemCls);
-			local priceText	= string.format(" {img icon_item_pvpmine_2 20 20} {@st66b}%s", shopItem.price);
+			local printIcon = "icon_item_pvpmine_2"
+
+			if IsInTOSHeroMap(GetMyPCObject()) == true then -- 영웅담 상점 아이콘 변경
+				printIcon = "icon_item_toshero_tradepoint"
+			end
+
+			local priceText	= string.format(" {img "..printIcon.." 20 20} {@st66b}%s", shopItem.price);
 			ShopItemCountCtrl:SetTextByKey('ItemName_Count', printText);
 			ShopItemCountCtrl:SetTextByKey('Item_Price', priceText);
 			ShopItemCountCtrl:Resize(ShopItemCountCtrl:GetWidth()-20,ShopItemCountCtrl:GetHeight())
@@ -238,7 +246,14 @@ function CUSTOM_COIN_SHOP_CLEAR_BUYLIST(frame,slotset)
 	buyMoneyCtrl:SetTextByKey("price1",0)
 	buyMoneyCtrl:SetValue("0")
 	local remainMoneyCtrl = GET_CHILD_RECURSIVELY(frame,"finalprice")
-	remainMoneyCtrl:SetTextByKey("price1",0)
+	local totalPrice = frame:GetUserValue("totalprice")
+	if totalPrice == nil or totalPrice == 'None' then
+		totalPrice = 0
+	end
+
+	local nowMoney =  GET_PROPERTY_SHOP_MY_POINT(buyMoneyCtrl:GetTopParentFrame()) - totalPrice
+
+	remainMoneyCtrl:SetTextByKey("price1",nowMoney)
 end
 
 function CUSTOM_COIN_SHOP_ADD_MONEY(buyMoneyCtrl, remainMoneyCtrl, price)
@@ -286,6 +301,7 @@ function CUSTOM_COIN_SHOP_BUY_ITEM(parent,ctrl,argStr,argNum)
 		frame = ui.GetFrame('shop');
 	end
 
+	frame:SetUserValue("totalprice", totalprice)
 	propertyShop.ReqBuyPropertyShopItem(shopName)
 	imcSound.PlaySoundEvent("market buy");
 	CUSTOM_COIN_SHOP_CLEAR_BUYLIST(frame,slotset)

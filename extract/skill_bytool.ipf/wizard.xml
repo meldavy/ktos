@@ -316,32 +316,6 @@
 		<EndScripts>
 			<ToolScp Client="YES" Scp="MONSKL_C_RESET_CASTING_ANIM" UseSleep="NO" />
 		</EndScripts>
-		<KeyInput>
-			<ToolScp Client="YES" Scp="SKL_KEY_DYNAMIC_CASTING" UseSleep="NO">
-				<Num Num="1"/>
-				<Num Num="0" />
-				<Num Num="0.5" />
-				<Num Num="0" />
-				<Num Num="1"/>
-				<Num Num="0" />
-				<Num Num="0" />
-				<Num Num="0" />
-				<Num Num="0" />
-				<Num Num="0" />
-				<Num Num="1" />
-				<Num Num="0" />
-				<Str_Arg Arg="1" Str="None" />
-				<Str Str="None" />
-				<Num Num="0" />
-				<Num Num="0" />
-				<Num Num="5" />
-				<Num Num="1" />
-				<Num Num="45" />
-				<Num Num="0" />
-				<Num Num="1" />
-				<Num Num="0" />
-			</ToolScp>
-		</KeyInput>
 		<KeyInputStart>
 			<ToolScp Client="NO" Scp="SKL_PLAY_SOUND" UseSleep="NO">
 				<Str Str="voice_wiz_energybolt_cast" />

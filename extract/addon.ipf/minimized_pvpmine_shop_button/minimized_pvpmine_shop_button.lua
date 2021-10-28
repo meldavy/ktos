@@ -3,28 +3,14 @@ function MINIMIZED_PVPMINE_SHOP_BUTTON_ON_INIT(addon, frame)
 end
 
 function MINIMIZED_PVPMINE_SHOP_BUTTON_OPEN_CHECK(frame, msg, argStr, argNum)
-	local mapprop = session.GetCurrentMapProp();
-	local mapCls = GetClassByType("Map", mapprop.type);	
-    if session.world.IsIntegrateServer() == true then
-        frame:ShowWindow(0);
-    else
-    	frame:ShowWindow(1);
 
-		local mapprop = session.GetCurrentMapProp();
-		local mapCls = GetClassByType("Map", mapprop.type);
-	
-		local housingPlaceClass = GetClass("Housing_Place", mapCls.ClassName);
-		if housingPlaceClass ~= nil then
-			local margin = frame:GetMargin()
-			frame:SetMargin(margin.left, 163, margin.right, margin.bottom)
-		end
-    end
 end
 
 function MINIMIZED_PVPMINE_SHOP_BUTTON_CLICK(parent, ctrl)
 	local frame = ui.GetFrame('earthtowershop')
-	if frame ~= nil and frame:IsVisible() == 1 then
-		return
+	if frame:IsVisible() == 1 then
+		ui.CloseFrame('earthtowershop')
 	end
-	pc.ReqExecuteTx_NumArgs("SCR_PVP_MINE_SHOP_OPEN", 0);
+
+	REQ_PVP_MINE_SHOP_OPEN()
 end

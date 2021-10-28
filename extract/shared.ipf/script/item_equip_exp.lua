@@ -3,9 +3,10 @@
 function GET_MORE_EXP_BOOST_TOKEN(pc)
 	local sumExp = 0.0;
 	sumExp = sumExp + IsBuffAppliedEXP(pc, 'Premium_boostToken');	-- 경험의 서 경험치
-	sumExp = sumExp + IsBuffAppliedEXP(pc, 'Premium_boostToken02');	-- 경험의서 4배
-	sumExp = sumExp + IsBuffAppliedEXP(pc, 'Premium_boostToken03');	-- 경험의서 8배
-	sumExp = sumExp + IsBuffAppliedEXP(pc, 'Premium_boostToken04'); -- 이벤트 경험의 서
+	for i = 1, 20 do
+		local name = string.format('Premium_boostToken%02d', i)
+		sumExp = sumExp + IsBuffAppliedEXP(pc, name);	-- 경험의서 버프 적용
+	end	
 	return sumExp;
 end
 
@@ -147,6 +148,8 @@ function GET_MORE_EVENT_EXP(pc)
 	-- sumExp = sumExp + IsBuffAppliedEXP(pc, 'Event_LuckyBreak_Add_Exp_1'); -- 럭키브레이크 성장 경험치 증가 1
 	-- sumExp = sumExp + IsBuffAppliedEXP(pc, 'Event_LuckyBreak_Add_Exp_2'); -- 럭키브레이크 성장 경험치 증가 2
 	-- sumExp = sumExp + IsBuffAppliedEXP(pc, 'Event_LuckyBreak_Add_Exp_3'); -- 럭키브레이크 성장 경험치 증가 3
+	sumExp = sumExp + IsBuffAppliedEXP(pc, 'EVENT_2107_APPLE_BUFF'); -- NEXT_이벤트1
+	sumExp = sumExp + IsBuffAppliedEXP(pc, 'EVENT_2107_APPLE_GOLD_BUFF'); -- NEXT_이벤트2
 
 	sumExp = sumExp + IsBuffAppliedEXP(pc, 'EVENT_2102_STATUE_BUFF'); -- STM 딥디르비와 여신상 버프
 	if  TryGetProp(pc, 'Lv', 0) < 450 then

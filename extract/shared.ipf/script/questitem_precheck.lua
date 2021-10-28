@@ -1,4 +1,4 @@
-﻿function SCR_PRE_VACYS_RECORD(self, argstring, argnum1, argnum2)
+function SCR_PRE_VACYS_RECORD(self, argstring, argnum1, argnum2)
     local pcX, pcY, pcZ = GetPos(self)
     if GetZoneName(self) == 'f_rokas_31' and SCR_POINT_DISTANCE(pcX,pcZ,-1229,576) <= 50 then
         return 1
@@ -5449,6 +5449,12 @@ end
 
 --Escape_Orb
 function SCR_PRE_ITEM_Escape(self, argObj, BuffName, arg1, arg2)
+	-- 바운티 헌트 이동제한
+	if ENABLE_WARP_CHECK(self) == false then
+	    SendSysMsg(self, 'WarpBanBountyHunt')
+        return
+	end
+
     local CompanionPeeding = GetExProp(self, 'feed')
     if CompanionPeeding == 1 then
         SendAddOnMsg(self, "NOTICE_Dm_!", ScpArgMsg("CanNotUseWarpDuringFeeding"), 2)

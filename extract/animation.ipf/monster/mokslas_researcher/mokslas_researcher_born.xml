@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ActionDesc>
+    <Sound frame="1.62" soundFile="skl_eff_move_s_1"/>
+    <Sound frame="4.95" soundFile="mon_voice10_s_5"/>
+</ActionDesc>

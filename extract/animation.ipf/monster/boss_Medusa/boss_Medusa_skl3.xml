@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="EUC-KR"?>
+<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by IMCGames Co., Ltd (IMCGames Co., Ltd) -->
+<ActionDesc>
+    <Particle frame="0" attachNode="Dummy_root" particleName="F_smoke198_red_violet" useAttach="true" hiddenObj="false" changeEffect="None" scale="4" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <BlendOn frame="0" R="0" G="0" B="0" A="50"/>
+    <Particle frame="6" attachNode="Dummy_effect_eye_R" particleName="F_pc_item_ep13cybersoldier01_pistol_light_red" useAttach="true" hiddenObj="false" changeEffect="None" scale="0.1" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Particle frame="6" attachNode="Dummy_effect_eye_L" particleName="F_pc_item_ep13cybersoldier01_pistol_light_red" useAttach="true" hiddenObj="false" changeEffect="None" scale="0.1" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Sound frame="14.44" soundFile="swd_blow_leather1"/>
+    <Particle frame="15" attachNode="Dummy_root" particleName="F_smoke198_red_violet" useAttach="true" hiddenObj="false" changeEffect="None" scale="4" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Sound frame="16.28" soundFile="swd_blow_metal1"/>
+    <Sound frame="21.94" soundFile="swd_blow_cloth2"/>
+    <Particle frame="22" attachNode="Dummy_effect_skl3_001" particleName="F_scratch001_mint2" useAttach="false" hiddenObj="false" changeEffect="None" scale="3" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Shockwave frame="23" type="2" intensity="2" frequency="60" duration="0.3" range="1000"/>
+    <BlendOn frame="23" R="130" G="130" B="150" A="100"/>
+    <BlendOn frame="24" R="80" G="90" B="110" A="100"/>
+    <BlendOn frame="25" R="0" G="0" B="0" A="50"/>
+    <Particle frame="30" attachNode="Dummy_root" particleName="F_smoke198_red_violet" useAttach="true" hiddenObj="false" changeEffect="None" scale="4" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Sound frame="33.33" soundFile="swd_blow_leather1"/>
+    <Sound frame="37.51" soundFile="swd_blow_metal1"/>
+    <Sound frame="38.93" soundFile="swd_blow_cloth2"/>
+    <Particle frame="40" attachNode="Dummy_effect_skl3_002" particleName="F_scratch001_mint2" useAttach="false" hiddenObj="false" changeEffect="None" scale="3" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Shockwave frame="41" type="2" intensity="2" frequency="60" duration="0.3" range="1000"/>
+    <BlendOn frame="41" R="140" G="140" B="160" A="100"/>
+    <BlendOn frame="42" R="80" G="90" B="110" A="100"/>
+    <BlendOn frame="43" R="0" G="0" B="0" A="50"/>
+    <Particle frame="45" attachNode="Dummy_root" particleName="F_smoke198_red_violet" useAttach="true" hiddenObj="false" changeEffect="None" scale="4" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Sound frame="50.00" soundFile="skl_eff_atk_move_m_6"/>
+    <Sound frame="50.00" soundFile="skl_eff_stone_blow_m"/>
+    <Shockwave frame="57" type="2" intensity="2" frequency="60" duration="0.3" range="1000"/>
+    <BlendOn frame="57" R="150" G="150" B="170" A="100"/>
+    <BlendOn frame="58" R="80" G="90" B="110" A="100"/>
+    <BlendOn frame="59" R="0" G="0" B="0" A="50"/>
+    <BlendOff frame="60" R="0" G="0" B="0" A="0"/>
+</ActionDesc>

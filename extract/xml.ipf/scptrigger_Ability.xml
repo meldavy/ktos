@@ -171,9 +171,6 @@
         <TriggerList Act="BeforeAttack">
             <Trigger>
                 <CondList>
-                    <ToolScp Scp="SPCI_CHECK_ITEM_CLASSTYPE" Client="NO" UseSleep="NO">
-                        <Str Str="Mace"/>
-                    </ToolScp>
                     <ToolScp Scp="SPCI_CHECK_TARGET_RELATION" Client="NO" UseSleep="NO">
                         <Str Str="ENEMY"/>
                     </ToolScp>

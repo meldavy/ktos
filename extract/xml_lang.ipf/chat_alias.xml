@@ -80,5 +80,7 @@
 		<Class ClassID="92" ClassName="/watermelon" Alias="/수박깨기" ConvertWhenSend="1"/>
 		<Class ClassID="93" ClassName="/weekendcheck" Alias="/주말출석" ConvertWhenSend="1"/>
 		<Class ClassID="94" ClassName="/flex" Alias="/플렉스" ConvertWhenSend="1"/>
+		<Class ClassID="95" ClassName="/explorer" Alias="/개척자" ConvertWhenSend="1"/>
+		<Class ClassID="96" ClassName="/next" Alias="/개편" ConvertWhenSend="1"/>
 	</Category>
 </idspace>

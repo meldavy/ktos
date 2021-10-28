@@ -148,3 +148,5 @@ ClassID,BaseID,ClassName,TreeGroup,TreeGroupCaption,TreeSSetTitle,InvenTabName,M
 147,735001,Gem_Relic_Cyan,Gem,젬,시안 젬,Gem,NO
 148,740001,Gem_Relic_Magenta,Gem,젬,마젠타 젬,Gem,NO
 149,745001,Gem_Relic_Black,Gem,젬,블랙 젬,Gem,NO
+150,750001,Weapon_Arcane,EquipGroup,장비,비전,Equip,NO
+151,755001,Gem_High_Color,Gem,젬,에테르 젬,Gem,NO

@@ -105,3 +105,51 @@ end
 function GET_CARD_REINFORCE_NEED_ITEM_STRARG(cls,cardObj)
 	return cardObj.StringArg
 end
+
+-- 여신카드 경험치 복사
+function IS_GODDESS_LEGEND_CARD(item)
+	if item == nil then
+		return false
+	end
+
+	if TryGetProp(item, 'EquipXpGroup', 'None') == 'Goddess_Card' then
+		return true
+	end
+
+	return false
+end
+
+function IS_VALID_COND_LEGEND_GODDESS_CARD(src, target)
+	if IS_GODDESS_LEGEND_CARD(src) == false or IS_GODDESS_LEGEND_CARD(target) == false then
+		return false, 'NotGoddessCard'
+	end
+
+	if TryGetProp(src, 'ClassName', 'None') ~= TryGetProp(target, 'ClassName', 'None') then
+		return false, 'OnlySameCardType'
+	end
+
+	local lv = GET_ITEM_LEVEL(src)
+
+	if lv < 2 then
+		return false, 'LessLevelofSourceCard'
+	end
+
+	local target_lv = GET_ITEM_LEVEL(target)
+	if target_lv >= lv then
+		return false, 'GreaterLevelofTargetCardThanSourceCard'
+	end
+
+	return true, 'None'
+end
+
+function GET_COPY_COST_LEGEND_GODDESS_CARD(src)
+	if IS_GODDESS_LEGEND_CARD(src) == true then
+		local lv = GET_ITEM_LEVEL(src)
+		if lv > 1 then
+			return 'REPUTATION_COIN_EP13', lv * 1000
+		end
+	end
+
+	return 'None', 999999999
+end
+-- end of 여신카드 경험치 복사

@@ -38,8 +38,8 @@ end
 
 function SCR_NEWCLE_MATERIAL(item)
 
- 	local itemGradeRatio = {75, 50, 35, 20, 20};
-    local itemMaxRatio = {1.4, 1.5, 1.8, 2, 2};
+ 	local itemGradeRatio = {75, 50, 35, 20, 20, 20};
+    local itemMaxRatio = {1.4, 1.5, 1.8, 2, 2, 2};
 
 	local itemLv = TryGetProp(item, "UseLv")
 	if itemLv == nil then
@@ -281,7 +281,7 @@ function IS_ENABLE_4LINE_REVERT_RANDOM_ITEM(itemObj, mat_item)
 			end
             
             Lv = TryGetProp(cls, "UseLv", 1)
-		    if Lv < 430 then
+		    if Lv < 430 or Lv > 440 then
 				return false, 'Level';
 			end
 			
@@ -324,7 +324,7 @@ function IS_ENABLE_6LINE_REVERT_RANDOM_ITEM(itemObj)
 			end
             
             Lv = TryGetProp(cls, "UseLv", 1)
-			if Lv < 430 then				
+			if Lv < 430 or Lv > 440 then				
 				return false, 'Level';
 			end
 			
@@ -335,7 +335,7 @@ function IS_ENABLE_6LINE_REVERT_RANDOM_ITEM(itemObj)
 			return false, 'NoRandom'
 		end		
 	else		
-		if Lv < 430 then
+		if Lv < 430 or Lv > 440 then
 			return false, 'Level';
 		end
 		

@@ -81,7 +81,7 @@
 			<groupbox name="etc" margin="820 0 0 0" rect="0 0 410 0" skin="bg" hittest="false" draw="true" updateparent="true" scrollbar="false" layout_gravity="left top"/>
 			<groupbox name="etc_sub" margin="410 0 0 0" rect="0 0 410 0" skin="test_Item_tooltip_normal" hittest="false" draw="true" updateparent="true" scrollbar="false" layout_gravity="left top"/>
 			<groupbox name="equip_main" margin="820 0 0 0" rect="0 0 410 0" skin="test_Item_tooltip_equip" hittest="false" draw="true" updateparent="true" scrollbar="false" layout_gravity="left top"/>
-            <groupbox name="equip_main_ichor" margin="410 0 0 0" rect="0 0 410 0" skin="test_Item_tooltip_equip_sub" hittest="false" draw="true" updateparent="true" scrollbar="false" layout_gravity="left top"/>
+			<groupbox name="equip_main_ichor" margin="410 0 0 0" rect="0 0 410 0" skin="test_Item_tooltip_equip_sub" hittest="false" draw="true" updateparent="true" scrollbar="false" layout_gravity="left top"/>
 			<groupbox name="equip_main_addinfo" margin="1230 0 0 0" rect="0 0 300 0" skin="test_Item_tooltip_equip_sub" hittest="false" draw="true" updateparent="true" scrollbar="false" layout_gravity="left top"/>
 			<groupbox name="equip_sub" margin="410 0 0 0" rect="0 0 410 0" skin="test_Item_tooltip_equip" hittest="false" draw="true" updateparent="true" scrollbar="false" layout_gravity="left top"/>
 			<groupbox name="equip_sub_addinfo" margin="110 0 0 0" rect="0 0 300 0" skin="test_Item_tooltip_equip_sub" hittest="false" draw="true" updateparent="true" scrollbar="false" layout_gravity="left top"/>
@@ -101,12 +101,12 @@
 			<groupbox name="etc" margin="820 0 0 0" rect="0 0 410 0" skin="bg" hittest="false" draw="true" updateparent="true" scrollbar="false" layout_gravity="left top"/>
 			<groupbox name="etc_sub" margin="410 0 0 0" rect="0 0 410 50" skin="test_Item_tooltip_normal" hittest="false" draw="true" updateparent="true" scrollbar="false" layout_gravity="left top"/>
 			<groupbox name="equip_main" margin="820 0 0 0" rect="0 0 410 0" skin="test_Item_tooltip_equip" hittest="false" draw="true" updateparent="true" scrollbar="false" layout_gravity="left top"/>
-            <groupbox name="equip_main_ichor" margin="410 0 0 0" rect="0 0 410 0" skin="test_Item_tooltip_equip_sub" hittest="false" draw="true" updateparent="true" scrollbar="false" layout_gravity="left top"/>
+			<groupbox name="equip_main_ichor" margin="410 0 0 0" rect="0 0 410 0" skin="test_Item_tooltip_equip_sub" hittest="false" draw="true" updateparent="true" scrollbar="false" layout_gravity="left top"/>
 			<groupbox name="equip_main_addinfo" margin="1230 0 0 0" rect="0 0 300 0" skin="test_Item_tooltip_equip" hittest="false" draw="true" updateparent="true" scrollbar="false" layout_gravity="left top"/>
 			<groupbox name="equip_sub" margin="410 0 0 0" rect="0 0 410 0" skin="test_Item_tooltip_equip" hittest="false" draw="true" updateparent="true" scrollbar="false" layout_gravity="left top"/>
 			<groupbox name="equip_sub_addinfo" margin="110 0 0 0" rect="0 0 300 0" skin="test_Item_tooltip_equip" hittest="false" draw="true" updateparent="true" scrollbar="false" layout_gravity="left top"/>
 			<groupbox name="bosscard" margin="820 0 0 0" rect="0 0 380 0" skin="monstercard" hittest="false" draw="false" updateparent="true" scrollbar="false" layout_gravity="left top"/>
-            <groupbox name="goddesscard" margin="820 0 0 0" rect="0 0 433 0" skin="monstercard" hittest="false" draw="false" updateparent="true" scrollbar="false" layout_gravity="left top"/>
+			<groupbox name="goddesscard" margin="820 0 0 0" rect="0 0 433 0" skin="monstercard" hittest="false" draw="false" updateparent="true" scrollbar="false" layout_gravity="left top"/>
 			<groupbox name="gem" margin="820 0 0 0" rect="0 0 330 0" skin="test_Item_tooltip_equip" hittest="false" draw="true" updateparent="true" scrollbar="false" layout_gravity="left top"/>
 			<groupbox name="legendexppotion" margin="820 0 0 0" rect="0 0 330 0" skin="test_Item_tooltip_equip" hittest="false" draw="true" updateparent="true" scrollbar="false" layout_gravity="left top"/>
 			<groupbox name="appraisal" margin="940 -58 0 0" rect="0 0 160 54" skin="" hittest="false" draw="true" updateparent="false" scrollbar="false" layout_gravity="left top"/>
@@ -267,7 +267,7 @@
 			<richtext name="rift" margin="10 95 0 0" rect="0 0 380 24" format="차원 붕괴 지점 1회 획득량 {img green_up_arrow 14 14}%s" param1="value" param1_def="20000" textalign="left top" resizebytext="true" spacey="0" maxwidth="0" fontname="brown_16" fixwidth="false" updateparent="false" drawbackground="false" slideshow="false" layout_gravity="left top"/>
 			<richtext name="solo_dun" margin="10 95 0 0" rect="0 0 380 24" format="베르니케 파편 던전 획득량 {img green_up_arrow 14 14}%s" param1="value" param1_def="20000" textalign="left top" resizebytext="true" spacey="0" maxwidth="0" fontname="brown_16" fixwidth="false" updateparent="false" drawbackground="false" slideshow="false" layout_gravity="left top"/>
 			<richtext name="weekly_boss" margin="10 45 0 0" rect="0 0 380 24" format="주간 보스 레이드 500K 대미지 보상 획득량 {img green_up_arrow 14 14}%s" param1="value" param1_def="20000" textalign="left top" resizebytext="true" spacey="0" maxwidth="0" fontname="brown_16" fixwidth="false" updateparent="false" drawbackground="false" slideshow="false" layout_gravity="left top"/>
-			<richtext name="field" margin="10 280 0 0" rect="0 0 380 24" format="필드 사냥시 획득량 {img green_up_arrow 14 14}%s%" param1="value" param1_def="100" textalign="left top" resizebytext="true" spacey="0" maxwidth="0" fontname="brown_16" fixwidth="false" updateparent="false" drawbackground="false" slideshow="false" layout_gravity="left top"/>			
+			<richtext name="field" margin="10 280 0 0" rect="0 0 380 24" format="필드 사냥시 획득량 {img green_up_arrow 14 14}%s%" param1="value" param1_def="100" textalign="left top" resizebytext="true" spacey="0" maxwidth="0" fontname="brown_16" fixwidth="false" updateparent="false" drawbackground="false" slideshow="false" layout_gravity="left top"/>
 			<richtext name="remaintime" margin="10 220 0 0" rect="0 0 380 24" format="남은 시간 : {#FF0000}%s{/}" param1="value" textalign="left top" resizebytext="true" spacey="0" maxwidth="0" fontname="brown_16" fixwidth="false" updateparent="false" drawbackground="false" slideshow="false" layout_gravity="left top"/>
 		</controls>
 	</tooltip>
@@ -278,7 +278,7 @@
 			<groupbox name="etc" margin="820 0 0 0" rect="0 0 410 0" skin="bg" hittest="false" draw="true" updateparent="true" scrollbar="false" layout_gravity="left top"/>
 			<groupbox name="etc_sub" margin="410 0 0 0" rect="0 0 410 0" skin="test_Item_tooltip_normal" hittest="false" draw="true" updateparent="true" scrollbar="false" layout_gravity="left top"/>
 			<groupbox name="equip_main" margin="820 0 0 0" rect="0 0 410 0" skin="test_Item_tooltip_equip" hittest="false" draw="true" updateparent="true" scrollbar="false" layout_gravity="left top"/>
-            <groupbox name="equip_main_ichor" margin="410 0 0 0" rect="0 0 410 0" skin="test_Item_tooltip_equip_sub" hittest="false" draw="true" updateparent="true" scrollbar="false" layout_gravity="left top"/>
+			<groupbox name="equip_main_ichor" margin="410 0 0 0" rect="0 0 410 0" skin="test_Item_tooltip_equip_sub" hittest="false" draw="true" updateparent="true" scrollbar="false" layout_gravity="left top"/>
 			<groupbox name="equip_main_addinfo" margin="1230 0 0 0" rect="0 0 300 0" skin="test_Item_tooltip_equip_sub" hittest="false" draw="true" updateparent="true" scrollbar="false" layout_gravity="left top"/>
 			<groupbox name="equip_sub" margin="410 0 0 0" rect="0 0 410 0" skin="test_Item_tooltip_equip" hittest="false" draw="true" updateparent="true" scrollbar="false" layout_gravity="left top"/>
 			<groupbox name="equip_sub_addinfo" margin="110 0 0 0" rect="0 0 300 0" skin="test_Item_tooltip_equip_sub" hittest="false" draw="true" updateparent="true" scrollbar="false" layout_gravity="left top"/>
@@ -396,7 +396,7 @@
 		<userconfig INNER_X="5" INNER_Y="5" ICON_SIZE="23"/>
 		<controls>
 			<groupbox name="titleBox" rect="0 0 440 30" margin="5 5 0 0" fixwidth="true" fixheight="false" draw="false" updateparent="true" scrollbar="false"/>
-			<richtext name="title" parent="titleBox" rect="0 0 440 30" margin="5 5 0 0" fixwidth="false" fixheight="false" updateparent="true" caption="{@st43}{s16}특정 등급 이상의 아이템과 조건을 만족해야 입장이 가능합니다.{/}" resizebytext="true"/>
+			<richtext name="title" parent="titleBox" rect="0 0 440 30" margin="5 5 0 0" fixwidth="false" fixheight="false" updateparent="true" caption="{@st43}{s16}기어 스코어 이상 또는 요구 장비를 장착해야 입장이 가능합니다.{/}" resizebytext="true"/>
 		</controls>
 	</tooltip>
 	<tooltip name="ancient_card" x="0" y="0" frameskin="None" marginy="10" fixwidth="true" width="280" height="650" moveable="false" blendtime="" UpdateScp="UPDATE_ANCIENT_CARD_TOOLTIP">

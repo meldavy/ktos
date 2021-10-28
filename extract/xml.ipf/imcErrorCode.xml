@@ -8,6 +8,7 @@
 	<Code Code="FATAL_INIT_TABLE" Team="tos_team" Category="LOGIC" SubCategory="" Logger="root" Enabled="YES" CallStack="NO" Desc="테이블 초기화에 실패하였습니다.  다음 정보 및 파일 로드 실패 등 이전 로그를 참조하세요."/>
 	<Code Code="FATAL_SERVER_INIT" Team="tos_team" Category="LOGIC" SubCategory="" Logger="root" Enabled="YES" CallStack="NO" Desc="서버 초기화에 실패하였습니다. 프로그램을 종료합니다."/>
 	<Code Code="ERROR_AUTH_CHECK_FAIL" Team="PROGRAM" Category="LOGIC" SubCategory="" Logger="root" Enabled="YES" CallStack="NO" Desc="넥슨 AuthCheck에 실패하였습니다. 해당 오류코드와 authCheck.h의 오류코드표를 확인하세요."/>
+  <Code Code="ERROR_RANK_SYSTEM" Team="PROGRAM" Category="ERROR" SubCategory="" Logger="root" Enabled="YES" CallStack="NO" Desc="rank_system 관련 에러"/>
 	<Code Code="WARNING_SEND_ERROR_TO_CLIENT" Team="tos_team" Category="LOGIC" SubCategory="" Logger="root" Enabled="YES" CallStack="NO" Desc="클라이언트에 다음과 같은 에러 또는 로그를 전송하였습니다."/>
 	<Code Code="ERROR_BINARY_ALLOCATE_FAIL" Team="PROGRAM" Category="LOGIC" SubCategory="" Logger="root" Enabled="YES" CallStack="NO" Desc="바이너리에 메모리 Allocate를 실패했습니다. 바이너리 size 지정을 확인하세요."/>
 	<Code Code="FATAL_CIRCLE_QUEUE_OVERFLOW" Team="PROGRAM" Category="LOGIC" SubCategory="" Logger="root" Enabled="YES" CallStack="NO" Desc="패킷 버퍼 오버 플로가 발생되었습니다."/>

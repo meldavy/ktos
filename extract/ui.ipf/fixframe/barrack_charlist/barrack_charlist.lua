@@ -471,26 +471,25 @@ function BARRACK_GET_CHAR_INDUN_ENTRANCE_COUNT(cid, resetGroupID)
 	
 	if indunCls.WeeklyEnterableCount ~= nil and indunCls.WeeklyEnterableCount ~= "None" and indunCls.WeeklyEnterableCount ~= 0 then
 		if indunCls.UnitPerReset == 'PC' then
-			return accountInfo:GetBarrackCharEtcProp(cid,'IndunWeeklyEnteredCount_'..resetGroupID)  --매주 ?��? ?�수
+			return accountInfo:GetBarrackCharEtcProp(cid,'IndunWeeklyEnteredCount_'..resetGroupID)  --매주 남은 횟수
 		else
-			return(acc_obj['IndunWeeklyEnteredCount_'..resetGroupID])   							--매주 ?��? ?�수
+			return(acc_obj['IndunWeeklyEnteredCount_'..resetGroupID])   							--매주 남은 횟수
 		end
         
 	else
 		if indunCls.UnitPerReset == 'PC' then
-			return accountInfo:GetBarrackCharEtcProp(cid, 'InDunCountType_'..resetGroupID);         --매일 ?��? ?�수
-		else
-			if indunCls.DungeonType == "Challenge_Auto" then
+			return accountInfo:GetBarrackCharEtcProp(cid, 'InDunCountType_'..resetGroupID);         --매일 남은 횟수
+		else -- 'ACCOUNT'
+			if TryGetProp(indunCls, 'CheckCountName', 'None') ~= 'None' then
+                return acc_obj[TryGetProp(indunCls, 'CheckCountName', 'None')]
+            end
+
+			if indunCls.DungeonType == "Challenge_Auto" or indunCls.DungeonType == "Challenge_Solo" then
 				if string.find(indunCls.ClassName, "Challenge_Division") == nil then
 					-- 챌린지 자동매칭 클리어 횟수
-					return accountInfo:GetBarrackCharEtcProp(cid, "ChallengeModeCompleteCount");
-				else
-					-- 챌린지 분열 클리어 횟수
-					return acc_obj['InDunCountType_'..resetGroupID];
+					return accountInfo:GetBarrackCharEtcProp(cid, "ChallengeModeCompleteCount");				
 				end
-			elseif indunCls.DungeonType == "MythicDungeon_Auto_Hard" then
-				return acc_obj['IndunWeeklyEnteredCount_'..resetGroupID];
-			else
+			else			
 				return acc_obj['InDunCountType_'..resetGroupID];
 			end
 		end        
@@ -548,7 +547,9 @@ local function toint(n)
     end
 end
 
-function CREATE_SCROLL_CHAR_LIST(frame, actor)   
+local skin_list = {}
+
+function CREATE_SCROLL_CHAR_LIST(frame, actor)   	
     local barrackMode = frame:GetUserValue("BarrackMode");
 	local name = actor:GetName();    
 	local brk = GetBarrackSystem(actor);
@@ -615,7 +616,7 @@ function CREATE_SCROLL_CHAR_LIST(frame, actor)
 		local mapName = mapCls.Name;
 		mapNameCtrl:SetText("{@st66b}".. mapName);
 	end
-		
+	
 	local spotCount = item.GetEquipSpotCount() - 1;
 	for i = 0 , spotCount do
 		local eqpObj = bpc:GetEquipObj(i);
@@ -634,8 +635,12 @@ function CREATE_SCROLL_CHAR_LIST(frame, actor)
 		        end
 		end
 		
-		local eqpSlot = GET_CHILD(detail, esName, "ui::CSlot");
+		local eqpSlot = GET_CHILD(detail, esName, "ui::CSlot");		
 		if eqpSlot ~= nil then
+			if skin_list[esName] == nil then
+				skin_list[esName] = eqpSlot:GetSkinName()
+			end
+
 			eqpSlot:EnableDrag(0);
 			if eqpObj == nil then
 				CLEAR_SLOT_ITEM_INFO(eqpSlot);
@@ -651,7 +656,13 @@ function CREATE_SCROLL_CHAR_LIST(frame, actor)
 					CLEAR_SLOT_ITEM_INFO(eqpSlot);
 					SET_SLOT_ITEM_OBJ(eqpSlot, obj, gender, 1);
 				else
-					CLEAR_SLOT_ITEM_INFO(eqpSlot);
+					local skin_name = skin_list[esName]
+					if skin_name ~= nil then
+						eqpSlot:SetSkinName(skin_name)
+					end
+					SET_SLOT_TRANSCEND_LEVEL(eqpSlot, 0)
+					SET_SLOT_REINFORCE_LEVEL(eqpSlot, 0)					
+					CLEAR_SLOT_ITEM_INFO(eqpSlot);					
 				end
 			end
 		end

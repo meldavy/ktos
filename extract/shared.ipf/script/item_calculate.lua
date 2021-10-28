@@ -1,5 +1,6 @@
 -- item_calculate.lua
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function GET_COMMON_PROP_LIST()
     return {
         'MINATK',
@@ -85,7 +86,6 @@ function GET_COMMON_PROP_LIST()
         'LootingChance',
         'RareOption_MainWeaponDamageRate',
         'RareOption_MainWeaponDamageRate',
-        'RareOption_SubWeaponDamageRate' ,
         'RareOption_BossDamageRate',
         'RareOption_MeleeReducedRate',
         'RareOption_MagicReducedRate',
@@ -114,6 +114,7 @@ function GET_COMMON_PROP_LIST()
     };
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function INIT_WEAPON_PROP(item, class)
     local commonPropList = GET_COMMON_PROP_LIST();
     for i = 1, #commonPropList do
@@ -123,6 +124,7 @@ function INIT_WEAPON_PROP(item, class)
     OVERRIDE_INHERITANCE_PROPERTY(item);
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function INIT_ARMOR_PROP(item, class)
     local commonPropList = GET_COMMON_PROP_LIST();
     for i = 1, #commonPropList do
@@ -132,6 +134,7 @@ function INIT_ARMOR_PROP(item, class)
     OVERRIDE_INHERITANCE_PROPERTY(item);
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function GET_REINFORCE_ADD_VALUE_ATK(item, ignoreReinf, reinfBonusValue, basicTooltipProp)
     if basicTooltipProp == nil then
         basicTooltipProp = item.BasicTooltipProp;
@@ -213,9 +216,54 @@ function GET_REINFORCE_ADD_VALUE_ATK(item, ignoreReinf, reinfBonusValue, basicTo
     value = value + buffValue
           
     value = SyncFloor(value);
+
+    if grade == 6 then
+        value = SCR_GET_GODDESS_REINFORCE(item)
+        if classType == 'Trinket' then
+            value = value * 0.3
+        end
+    end
+
     return math.floor(value);
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
+function SCR_GET_GODDESS_REINFORCE(item)
+    local itemReinforce = TryGetProp(item, "Reinforce_2", 0)
+    local lv = TryGetProp(item, 'UseLv', 0)
+    if itemReinforce == 0 or lv == 0 then
+        return 0;
+    end
+    
+    if itemReinforce > 30 then
+        return 0;
+    end
+
+    local type = 'AddAtk'
+    if IS_WEAPON_TYPE(TryGetProp(item, "ClassType", "None")) == false then
+        type = 'AddDef'
+    end 
+
+    if TryGetProp(item, 'DefaultEqpSlot', 'None') == 'NECK' or TryGetProp(item, 'DefaultEqpSlot', 'None') == 'RING' then
+        type = 'AddAccAtk'
+    end
+    
+    local reinforceDmg = 0
+
+    for i = 1, itemReinforce do        
+        local cls = GetClassByType('item_goddess_reinforce_' .. tostring(lv), i)
+        if cls == nil then
+            reinforceDmg = reinforceDmg + 0
+        else
+            local add = TryGetProp(cls, type, 0)
+            reinforceDmg = reinforceDmg + add
+        end
+    end
+    
+    return reinforceDmg;
+end
+
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function GET_REINFORCE_ADD_VALUE(prop, item, ignoreReinf, reinfBonusValue)
     if ignoreReinf == 1 then
         return 0;
@@ -272,7 +320,6 @@ function GET_REINFORCE_ADD_VALUE(prop, item, ignoreReinf, reinfBonusValue)
     end
     -- 팀 배틀 리그에서는 가상의 무기 강화, 레벨, 등급 값을 받아 오도록 설정 --
     lv, grade, reinforceValue = SCR_PVP_ITEM_LV_GRADE_REINFORCE_SET(item, lv, grade, reinforceValue);
-    
     local gradeRatio = SCR_GET_ITEM_GRADE_RATIO(grade, "ReinforceRatio")
     
     local typeRatio;
@@ -301,9 +348,14 @@ function GET_REINFORCE_ADD_VALUE(prop, item, ignoreReinf, reinfBonusValue)
     end
     value = value * (item.ReinforceRatio / 100) + buffValue;
 
+    if grade == 6 then
+        value = SCR_GET_GODDESS_REINFORCE(item)
+    end
+
     return SyncFloor(value);
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function GET_BASIC_ATK(item)
     local lv = TryGetProp(item,"UseLv");
     if lv == nil then
@@ -399,13 +451,41 @@ function GET_BASIC_ATK(item)
     if damageRange == nil then
         return 0, 0;
     end
-    
+
+    if grade == 6 then
+        itemATK = 13128
+        if TryGetProp(item, 'ClassType', 'None') == 'Trinket' then
+            itemATK = itemATK * 0.15
+        elseif TryGetProp(item, 'EquipGroup', 'None') == 'THWeapon' then
+            itemATK = itemATK * 1.15
+        end
+    end
+
     local maxAtk = itemATK * damageRange;
     local minAtk = itemATK * (2 - damageRange);
 
     return maxAtk, minAtk;
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
+function GET_EVOLVED_ATK(item)
+    if TryGetProp(item, 'EvolvedItemLv', 0) <= TryGetProp(item, 'UseLv', 0) then
+        return 0
+    end
+
+    local evolvedAtkUp = 0
+    local basicAtk = 13128
+    if TryGetProp(item, 'ClassType', 'None') == 'Trinket' then
+        basicAtk = basicAtk * 0.15
+    elseif TryGetProp(item, 'EquipGroup', 'None') == 'THWeapon' then
+        basicAtk = basicAtk * 1.15
+    end
+
+    evolvedAtkUp = basicAtk * 0.05
+    return evolvedAtkUp
+end
+
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function GET_BASIC_MATK(item)
     local grade = TryGetProp(item, "ItemGrade");
     if grade == nil then
@@ -481,9 +561,19 @@ function GET_BASIC_MATK(item)
         itemATK = ChangeBasicProp
     end
     
+    if grade == 6 then
+        itemATK = 13128
+        if TryGetProp(item, 'ClassType', 'None') == 'Trinket' then
+            itemATK = itemATK * 0.15
+        elseif TryGetProp(item, 'EquipGroup', 'None') == 'THWeapon' then
+            itemATK = itemATK * 1.15
+        end
+    end
+    
     return itemATK;
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_REFRESH_WEAPON(item, enchantUpdate, ignoreReinfAndTranscend, reinfBonusValue)
     if nil == enchantUpdate then
         enchantUpdate = 0;
@@ -522,9 +612,24 @@ function SCR_REFRESH_WEAPON(item, enchantUpdate, ignoreReinfAndTranscend, reinfB
             item.MAXATK, item.MINATK = GET_BASIC_ATK(item);
             
             local reinforceAddValueAtk = GET_REINFORCE_ADD_VALUE_ATK(item, ignoreReinfAndTranscend, reinfBonusValue, basicProp);            
+            local evolvedMaxAtkUp = 0
+            local evolvedMinAtkUp = 0
 
-            item.MAXATK = SyncFloor((item.MAXATK * upgradeRatio)  + buffarg + reinforceAddValueAtk);
-            item.MINATK = SyncFloor((item.MINATK * upgradeRatio)  + buffarg + reinforceAddValueAtk);
+            if TryGetProp(item, 'ItemGrade', 0) == 6 and TryGetProp(item, 'EvolvedItemLv', 0) > TryGetProp(item, 'UseLv', 0) then
+                local classType = TryGetProp(item, "ClassType");
+                local itemGradeClass = GetClassList('item_grade')
+                local weaponDamageClass = GetClassByNameFromList(itemGradeClass,'WeaponDamageRange')
+                local damageRange = weaponDamageClass[classType]
+                if damageRange == nil then
+                    damageRange = 0 
+                end
+
+                evolvedMaxAtkUp = GET_EVOLVED_ATK(item) * damageRange
+                evolvedMinAtkUp = GET_EVOLVED_ATK(item) * (2 - damageRange)
+            end
+
+            item.MAXATK = SyncFloor((item.MAXATK * upgradeRatio) + buffarg + reinforceAddValueAtk + evolvedMaxAtkUp);
+            item.MINATK = SyncFloor((item.MINATK * upgradeRatio) + buffarg + reinforceAddValueAtk + evolvedMinAtkUp);
             
             if zero ~= item.MAXATK_AC then
                 item.MAXATK = SyncFloor(item.MAXATK + item.MAXATK_AC);
@@ -537,12 +642,47 @@ function SCR_REFRESH_WEAPON(item, enchantUpdate, ignoreReinfAndTranscend, reinfB
             item.MATK = GET_BASIC_MATK(item);
             
             local reinfAddValueAtk = GET_REINFORCE_ADD_VALUE_ATK(item, ignoreReinfAndTranscend, reinfBonusValue, basicProp);
-            item.MATK = SyncFloor((item.MATK * upgradeRatio)  + buffarg + reinfAddValueAtk);
+            local evolvedAtkUp = 0
+            if TryGetProp(item, 'ItemGrade', 0) == 6 and TryGetProp(item, 'EvolvedItemLv', 0) > TryGetProp(item, 'UseLv', 0) then
+                evolvedAtkUp = GET_EVOLVED_ATK(item)
+            end
+
+            item.MATK = SyncFloor((item.MATK * upgradeRatio) + buffarg + reinfAddValueAtk + evolvedAtkUp);
             
             if zero ~= item.MAXATK_AC then
                 item.MATK = item.MATK + item.MAXATK_AC;
             end
         end
+
+       ---- 트매쉬 장비 전용
+		if TryGetProp(item, 'StringArg', 'None') == 'TOSHeroEquip' then
+			local itemGradeClass = GetClassList('item_grade')
+			local damageRange = GetClassByNameFromList(itemGradeClass,'WeaponDamageRange')
+			local TOSHeroEquipProp = GetClassByNameFromList(itemGradeClass,'TOSHeroEquipProp')
+			local classType = TryGetProp(item, "ClassType", "None")
+			if classType == nil or classType == "None" then
+				return
+			end
+			local propValue = TOSHeroEquipProp[classType]
+			
+			local TOSHeroEquipReinforce = TryGetProp(item, 'TOSHeroEquipReinforce', 0)
+			if TOSHeroEquipReinforce > 0 then
+				if TOSHeroEquipReinforce > 3 then 
+					TOSHeroEquipReinforce = 3
+				end
+				propValue = TOSHeroEquipProp['Sword_Reinforce_'..TOSHeroEquipReinforce]
+			end
+
+			if basicProp == 'ATK' then
+			    item.MAXATK = SyncFloor(propValue * damageRange[classType])
+				item.MINATK = SyncFloor(propValue * (2 - damageRange[classType]))
+			elseif basicProp == 'MATK' then
+				item.MATK = propValue
+			elseif basicProp == 'DEF' or basicProp == 'MDEF' then
+				item.DEF = propValue
+				item.MDEF = propValue
+			end
+		end
     end
     
     APPLY_OPTION_SOCKET(item);
@@ -552,6 +692,7 @@ function SCR_REFRESH_WEAPON(item, enchantUpdate, ignoreReinfAndTranscend, reinfB
     MAKE_ITEM_OPTION_BY_OPTION_SOCKET(item);
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_REFRESH_ARMOR(item, enchantUpdate, ignoreReinfAndTranscend, reinfBonusValue)
     if enchantUpdate == nil then
         enchantUpdate = 0
@@ -650,23 +791,38 @@ function SCR_REFRESH_ARMOR(item, enchantUpdate, ignoreReinfAndTranscend, reinfBo
             armorClassTypeRatio[classType] = 0
         end
 
-        basicDef = ((40 + lv * 8) * armorClassTypeRatio[classType]) * gradeRatio;
+        if grade < 6 then
+            basicDef = ((40 + lv * 8) * armorClassTypeRatio[classType]) * gradeRatio;
         
-        local Upper440BonusRatio = GetClassByNameFromList(itemGradeClass,'Upper440LevelClassTypeRatioIncrease')
-        if Upper440BonusRatio ~= nil and lv >= 440 then
-            basicDef = basicDef * Upper440BonusRatio[classType]
-        end
+            local Upper440BonusRatio = GetClassByNameFromList(itemGradeClass,'Upper440LevelClassTypeRatioIncrease')
+            if Upper440BonusRatio ~= nil and lv >= 440 then
+                basicDef = basicDef * Upper440BonusRatio[classType]
+            end
 
-        local ChangeBasicProp = TryGetProp(item, "ChangeBasicPropValue", 0)
-        if ChangeBasicProp > 0 then
-            basicDef = ChangeBasicProp
+            local ChangeBasicProp = TryGetProp(item, "ChangeBasicPropValue", 0)
+            if ChangeBasicProp > 0 then
+                basicDef = ChangeBasicProp
+            end
+        
+            upgradeRatio = upgradeRatio + GET_UPGRADE_ADD_DEF_RATIO(item, ignoreReinfAndTranscend) / 100;
+        
+            local armorMaterialRatio = GetClassByNameFromList(itemGradeClass,'armorMaterial_'..basicProp)        
+        
+            basicDef = basicDef * armorMaterialRatio[equipMaterial]
+        else
+            if TryGetProp(item, "EquipGroup", "None") == "SubWeapon" then
+                -- 방패
+                basicDef = 13128
+            else
+                -- 상,하,장,신
+                basicDef = 13670 * 0.25
+
+                local armorMaterialRatio = GetClassByNameFromList(itemGradeClass,'armorMaterial_'..basicProp)
+
+                basicDef = basicDef * armorMaterialRatio[equipMaterial]
+            end
+            upgradeRatio = upgradeRatio + GET_UPGRADE_ADD_DEF_RATIO(item, ignoreReinfAndTranscend) / 100;
         end
-        
-        upgradeRatio = upgradeRatio + GET_UPGRADE_ADD_DEF_RATIO(item, ignoreReinfAndTranscend) / 100;
-        
-        local armorMaterialRatio = GetClassByNameFromList(itemGradeClass,'armorMaterial_'..basicProp)        
-        
-        basicDef = basicDef * armorMaterialRatio[equipMaterial]
        
         if basicDef < 1 then
             basicDef = 1;
@@ -680,9 +836,9 @@ function SCR_REFRESH_ARMOR(item, enchantUpdate, ignoreReinfAndTranscend, reinfBo
             end
         end
 
-        basicDef = math.floor(basicDef) * upgradeRatio + GET_REINFORCE_ADD_VALUE(basicProp, item, ignoreReinfAndTranscend, reinfBonusValue) + buffarg
-        item[basicProp] = SyncFloor(basicDef);
-    end
+                basicDef = math.floor(basicDef) * upgradeRatio + GET_REINFORCE_ADD_VALUE(basicProp, item, ignoreReinfAndTranscend, reinfBonusValue) + buffarg
+                item[basicProp] = SyncFloor(basicDef);
+        end
     
     APPLY_AWAKEN(item);
     APPLY_RANDOM_OPTION(item);
@@ -690,6 +846,7 @@ function SCR_REFRESH_ARMOR(item, enchantUpdate, ignoreReinfAndTranscend, reinfBo
     MAKE_ITEM_OPTION_BY_OPTION_SOCKET(item);
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_REFRESH_ACC(item, enchantUpdate, ignoreReinfAndTranscend, reinfBonusValue)
     if enchantUpdate == nil then
         enchantUpdate = 0
@@ -793,14 +950,17 @@ function SCR_REFRESH_ACC(item, enchantUpdate, ignoreReinfAndTranscend, reinfBonu
     MAKE_ITEM_OPTION_BY_OPTION_SOCKET(item);    
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_REFRESH_GEM(item)
     item.Level = GET_ITEM_LEVEL(item);
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_REFRESH_CARD(item)
     item.Level = GET_ITEM_LEVEL(item);
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function APPLY_OPTION_SOCKET(item)
     local nextSlotIdx = GET_NEXT_SOCKET_SLOT_INDEX(item);
     if nextSlotIdx == 0 then
@@ -854,6 +1014,7 @@ function APPLY_OPTION_SOCKET(item)
     end
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_REFRESH_HAIRACC(item)
     local class = GetClassByType('Item', item.ClassID);
     INIT_ARMOR_PROP(item, class)
@@ -869,6 +1030,7 @@ function SCR_REFRESH_HAIRACC(item)
     end
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function APPLY_RANDOM_OPTION(item)
     for i = 1, 6 do
         local propName = "RandomOption_"..i;
@@ -882,6 +1044,7 @@ function APPLY_RANDOM_OPTION(item)
     end
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function APPLY_RARE_RANDOM_OPTION(item)
     local propName = "RandomOptionRare";
     local propValue = "RandomOptionRareValue";
@@ -893,6 +1056,7 @@ function APPLY_RARE_RANDOM_OPTION(item)
     end
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function APPLY_AWAKEN(item)
     if item.IsAwaken ~= 1 then
         return;
@@ -902,238 +1066,295 @@ function APPLY_AWAKEN(item)
     item[hiddenProp] = item[hiddenProp] + item.HiddenPropValue;
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_ENTER_AQUA(item, arg1, arg2)
 
     item.STR = item.STR + arg1;
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_ENTER_TOPAZ(item, arg1, arg2)
 
     item.DEX = item.DEX + arg1;
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_ENTER_RUBY(item, arg1, arg2)
 
     item.CON = item.CON + arg1;
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_ENTER_PERI(item, arg1, arg2)
 
     item.INT = item.INT + arg1;
 end
 
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_OPT_ATK(item, optvalue)
     item.MINATK = item.MINATK + optvalue;
     item.MAXATK = item.MAXATK + optvalue;
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_OPT_SR(item, optvalue)
     item.SR = item.SR + optvalue;
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_OPT_DEF(item, optvalue)
     item.DEF = item.DEF + optvalue;
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_OPT_RR(item, optvalue)
     item.RR = item.RR + optvalue;
 end
 
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_OPT_Aries(item, optvalue)
     item.Aries = item.Aries + optvalue;
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_OPT_AriesDEF(item, optvalue)
     item.AriesDEF = item.AriesDEF + optvalue;
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_OPT_Slash(item, optvalue)
     item.Slash = item.Slash + optvalue;
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_OPT_SlashDEF(item, optvalue)
     item.SlashDEF = item.SlashDEF + optvalue;
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_OPT_Strike(item, optvalue)
     item.Strike = item.Strike + optvalue;
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_OPT_StrikeDEF(item, optvalue)
     item.StrikeDEF = item.StrikeDEF + optvalue;
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_OPT_CRTHR(item, optvalue)
     item.CRTHR = item.CRTHR + optvalue;
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_OPT_StunRate(item, optvalue)
     item.StunRate = item.StunRate + optvalue;
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_OPT_KDBonus(item, optvalue)
     item.KDBonusDamage = item.KDBonusDamage + optvalue;
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_OPT_CRTDR(item, optvalue)
     item.CRTDR = item.CRTDR + optvalue;
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_OPT_STR(item, optvalue)
     item.STR = item.STR + optvalue;
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_OPT_DEX(item, optvalue)
     item.DEX = item.DEX + optvalue;
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_OPT_CON(item, optvalue)
     item.CON = item.CON + optvalue;
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_OPT_INT(item, optvalue)
     item.INT = item.INT + optvalue;
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_OPT_CRTATK(item, optvalue)
     item.CRTATK = item.CRTATK + optvalue;
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_OPT_CRTDEF(item, optvalue)
     item.CRTDEF = item.CRTDEF + optvalue;
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_OPT_HR(item, optvalue)
     item.HR = item.HR + optvalue;
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_OPT_DR(item, optvalue)
     item.DR = item.DR + optvalue;
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_OPT_MGP(item, optvalue)
     item.MGP = item.MGP + optvalue;
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_OPT_MHP(item, optvalue)
     item.MHP = item.MHP + optvalue;
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_OPT_MSP(item, optvalue)
     item.MSP = item.MSP + optvalue;
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_OPT_RHP(item, optvalue)
     item.RHP = item.RHP + optvalue;
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_OPT_RSP(item, optvalue)
     item.RSP = item.RSP + optvalue;
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_OPT_ADDFIRE(item, optvalue)
     item.ADD_FIRE = item.ADD_FIRE + optvalue;
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_OPT_RESFIRE(item, optvalue)
     item.RES_FIRE = item.RES_FIRE + optvalue;
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_OPT_ADDICE(item, optvalue)
     item.ADD_ICE = item.ADD_ICE + optvalue;
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_OPT_RESICE(item, optvalue)
     item.RES_ICE = item.RES_ICE + optvalue;
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_OPT_ADDLIGHTNING(item, optvalue)
     item.ADD_LIGHTNING = item.ADD_LIGHTNING + optvalue;
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_OPT_RESLIGHTNING(item, optvalue)
     item.RES_LIGHTNING = item.RES_LIGHTNING + optvalue;
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_OPT_ADDSOUL(item, optvalue)
     item.ADD_SOUL = item.ADD_SOUL + optvalue;
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_OPT_RESSOUL(item, optvalue)
     item.RES_SOUL = item.RES_SOUL + optvalue;
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_OPT_ADDEARTH(item, optvalue)
     item.ADD_EARTH = item.ADD_EARTH + optvalue;
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_OPT_RESEARTH(item, optvalue)
     item.RES_EARTH = item.RES_EARTH + optvalue;
 end
 
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_OPT_ADDPOISON(item, optvalue)
     item.ADD_POISON = item.ADD_POISON + optvalue;
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_OPT_RESPOISON(item, optvalue)
     item.RES_POISON = item.RES_POISON + optvalue;
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_OPT_ADDLIGHT(item, optvalue)
     item.ADD_LIGHT = item.ADD_LIGHT + optvalue;
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_OPT_RESLIGHT(item, optvalue)
     item.RES_LIGHT = item.RES_LIGHT + optvalue;
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_OPT_ADDDARK(item, optvalue)
     item.ADD_DARK = item.ADD_DARK + optvalue;
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_OPT_RESDARK(item, optvalue)
     item.RES_DARK = item.RES_DARK + optvalue;
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_OPT_VelniasATK(item, optvalue)
     item.VelniasATK = item.ADD_VELNIAS + optvalue;
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_OPT_VelniasDEF(item, optvalue)
     item.VelniasDEF = item.RES_VELNIAS + optvalue;
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_OPT_ForesterATK(item, optvalue)
     item.ForesterATK = item.ADD_FORESTER + optvalue;
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_OPT_ForesterDEF(item, optvalue)
     item.ForesterDEF = item.RES_FORESTER + optvalue;
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_OPT_ParamuneATK(item, optvalue)
     item.ParamuneATK = item.ADD_PARAMUNE + optvalue;
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_OPT_ParamuneDEF(item, optvalue)
     item.ParamuneDEF = item.RES_PARAMUNE + optvalue;
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_OPT_WidlingATK(item, optvalue)
     item.WidlingATK = item.ADD_WIDLING + optvalue;
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_OPT_WidlingDEF(item, optvalue)
     item.WidlingDEF = item.RES_WIDLING + optvalue;
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function OPT_CONSUME(optValue, skillResult)
     return 1;
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function OPT_CRITICAL(optValue, skillResult)
     local resultType = skillResult:GetResultType();
     if resultType == 3 then
@@ -1146,6 +1367,7 @@ end
 
 
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function GET_REINFORCE_SEC(item, reinforce)
     local itemrank_weight
     local reinforce_sec
@@ -1168,6 +1390,7 @@ function GET_REINFORCE_SEC(item, reinforce)
 
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function GET_ITEM_REINF_REMAIN_TIME(pc, item, startTime, sysTime)
 
     local reinSec = GET_REINFORCE_SEC(item, item.Reinforce);
@@ -1178,12 +1401,14 @@ function GET_ITEM_REINF_REMAIN_TIME(pc, item, startTime, sysTime)
     
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function GET_REINFORCE_PR(obj)
 
     return obj.PR;
     
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function GET_APPRAISAL_PRICE(item, SellPrice, taxRate)
     -- ???????캿추??¸??μ???
     local lv = TryGetProp(item,"UseLv");
@@ -1209,6 +1434,7 @@ function GET_APPRAISAL_PRICE(item, SellPrice, taxRate)
     return SellPrice;
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function GET_DECOMPOSE_PRICE(item, taxRate)
     local lv = TryGetProp(item,"UseLv");
     local itemGradeRatio = {75, 50, 35, 20};
@@ -1226,6 +1452,7 @@ function GET_DECOMPOSE_PRICE(item, taxRate)
     return price;
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function GET_REPAIR_PRICE(item, fillValue, taxRate)
     local reinforceCount = TryGetProp(item, "Reinforce_2");
         if reinforceCount == nil then
@@ -1242,45 +1469,21 @@ function GET_REPAIR_PRICE(item, fillValue, taxRate)
     local priceRatio = item.RepairPriceRatio / 100;
     local price = GetClassByType("Stat_Weapon", lv);
     local value;
+
+    local equipGruop = TryGetProp(item, "EquipGroup", "None")
     
-    if item.DefaultEqpSlot == 'RH' or item.DefaultEqpSlot == 'RH LH' then
-        if item.DBLHand == 'YES' then
-            local stat_weapon = GetClassByType("Stat_Weapon", lv)
-            value = stat_weapon.RepairPrice_THWeapon;
-        else
-            local stat_weapon = GetClassByType("Stat_Weapon", lv)
-            value = stat_weapon.RepairPrice_Weapon;
-        end
-    elseif item.DefaultEqpSlot == 'LH' then
+    if equipGruop == 'Weapon' or equipGruop == 'THWeapon' or equipGruop == 'SubWeapon' then
         local stat_weapon = GetClassByType("Stat_Weapon", lv)
-        value = stat_weapon.RepairPrice_SubWeapon;
-
-    elseif item.DefaultEqpSlot == 'SHIRT' then
+        value = (stat_weapon.RepairPrice_THWeapon + stat_weapon.RepairPrice_Weapon + stat_weapon.RepairPrice_SubWeapon + stat_weapon.RepairPrice_TRINKET) / 4
+    elseif equipGruop == 'SHIRT' or equipGruop == 'PANTS' or equipGruop == 'GLOVES' or equipGruop == 'BOOTS'then
         local stat_weapon = GetClassByType("Stat_Weapon", lv)
-        value = stat_weapon.RepairPrice_SHIRT;
-
-    elseif item.DefaultEqpSlot == 'PANTS' then
-        local stat_weapon = GetClassByType("Stat_Weapon", lv)
-        value = stat_weapon.RepairPrice_PANTS;
-
-    elseif item.DefaultEqpSlot == 'GLOVES' then
-        local stat_weapon = GetClassByType("Stat_Weapon", lv)
-        value = stat_weapon.RepairPrice_GLOVES;
-
-    elseif item.DefaultEqpSlot == 'BOOTS' then
-        local stat_weapon = GetClassByType("Stat_Weapon", lv)
-        value = stat_weapon.RepairPrice_BOOTS;
-
+        value = (stat_weapon.RepairPrice_SHIRT + stat_weapon.RepairPrice_PANTS + stat_weapon.RepairPrice_GLOVES + stat_weapon.RepairPrice_BOOTS) / 4
     elseif item.DefaultEqpSlot == 'NECK' then
         local stat_weapon = GetClassByType("Stat_Weapon", lv)
         value = stat_weapon.RepairPrice_NECK;
-
     elseif item.DefaultEqpSlot == 'RING' then
         local stat_weapon = GetClassByType("Stat_Weapon", lv)
-        value = stat_weapon.RepairPrice_RING;
-    elseif item.DefaultEqpSlot == 'TRINKET' then
-    local stat_weapon = GetClassByType("Stat_Weapon", lv)
-        value = stat_weapon.RepairPrice_TRINKET;
+        value = stat_weapon.RepairPrice_RING;    
     end
     
     local reinforceRatio = (0.01 * reinforceCount);
@@ -1309,6 +1512,7 @@ function GET_REPAIR_PRICE(item, fillValue, taxRate)
     return value;
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function GET_REPAIR_PRICE_BY_RANK(item, fillValue)
 
     local itemrank_num = item.ItemStar;
@@ -1317,6 +1521,7 @@ function GET_REPAIR_PRICE_BY_RANK(item, fillValue)
 
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function GET_ROP1_PRICE(item, fillValue)
 
     local fee = item.Price * fillValue / 10000;
@@ -1324,6 +1529,7 @@ function GET_ROP1_PRICE(item, fillValue)
 
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function GET_ROP2_PRICE(item, fillValue)
 
     local fee = item.Price * fillValue / 10000;
@@ -1331,12 +1537,14 @@ function GET_ROP2_PRICE(item, fillValue)
     
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function GET_OP_REFILL_PRICE(item, fillValue)
 
     local fee = item.Price * fillValue * 0.1;
     return math.ceil(fee);
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function IS_NEED_REPAIR(item)
 
     if math.floor( (item.MaxDur - item.Dur) / DUR_DIV()) > 0 then
@@ -1363,18 +1571,21 @@ function IS_NEED_REPAIR(item)
 
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function GET_AUCTION_START_PRICE(item)
     
     return math.max(1, item.SellPrice);
 
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function GET_AUCTION_INCR_PRICE(item)
     
     return math.ceil(1, item.SellPrice / 10);
 
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function GET_MAGICAMULET_EMPTY_SOCKET_INDEX(invitem)
 
     if invitem.ItemType ~= 'Equip' then
@@ -1391,6 +1602,7 @@ function GET_MAGICAMULET_EMPTY_SOCKET_INDEX(invitem)
     return -1;
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function GET_NEXT_SOCKET_SLOT_INDEX(item)
     if item.ItemType ~= 'Equip' then
         return 0;
@@ -1423,6 +1635,7 @@ function GET_NEXT_SOCKET_SLOT_INDEX(item)
     return SKT_COUNT;
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function GET_OPTION_CNT(invitem)
 
     if invitem.ItemType ~= "Equip" then
@@ -1439,6 +1652,7 @@ function GET_OPTION_CNT(invitem)
     return OPT_COUNT;
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function GET_OPTION_TARGET_INDEX(invitem, optclass)
 
     local clsID = optclass.ClassID;
@@ -1458,14 +1672,17 @@ end
 SOCKET_MAX = 10000;
 OPT_MAX = 10000;
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function BASIC_SOCKET(type)
     return type % SOCKET_MAX;
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function CUR_SOCKET(type)
     return math.floor(type / SOCKET_MAX);
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function GET_OPT(item, index)
 
     local optionValue = item["Option_" .. index];
@@ -1476,14 +1693,17 @@ function GET_OPT(item, index)
     
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function OPT_TYPE(type)
     return type % OPT_MAX;
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function OPT_VALUE(type)
     return math.floor(type / OPT_MAX);
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function IS_EQUIPITEM(ItemClassName)
 
     local itemObj = GetClass("Item", ItemClassName);
@@ -1495,6 +1715,7 @@ function IS_EQUIPITEM(ItemClassName)
 end
 
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function IS_PERSONAL_SHOP_TRADABLE(itemCls)
     if itemCls.GroupName == "Premium" then
         return 0;
@@ -1513,18 +1734,22 @@ function IS_PERSONAL_SHOP_TRADABLE(itemCls)
 end
 
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_GET_ITEM_COOLDOWN(item)
   return item.ItemCoolDown;
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_GET_HASTE_COOLDOWN(item)
   return item.ItemCoolDown;
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_GET_STA_COOLDOWN(item)
   return item.ItemCoolDown;
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_GET_HP_COOLDOWN(item)    
     local owner = GetItemOwner(item)    
     if owner == nil then
@@ -1547,10 +1772,12 @@ function SCR_GET_HP_COOLDOWN(item)
   return item.ItemCoolDown;
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_GET_HPSP_COOLDOWN(item)  
   return item.ItemCoolDown;
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_GET_SP_COOLDOWN(item)  
     ---GuildColony POTION_TP CoolTime Setting---
     local owner = GetItemOwner(item)
@@ -1569,6 +1796,7 @@ function SCR_GET_SP_COOLDOWN(item)
   return item.ItemCoolDown;
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_GET_COLONY_POTION_TP_COOLDOWN(item)
     local coolDownGroup = item.CoolDownGroup
     local owner = GetItemOwner(item)
@@ -1589,6 +1817,7 @@ function SCR_GET_COLONY_POTION_TP_COOLDOWN(item)
     return 0
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function GET_KEYWORD_PROP_NAME(idx)
 
     if idx == 1 then
@@ -1599,6 +1828,7 @@ function GET_KEYWORD_PROP_NAME(idx)
 end
 
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_GET_MAXPROP_ENCHANT_DEF(item)
     
     local result = IMCRandom(41, 110)
@@ -1610,6 +1840,7 @@ function SCR_GET_MAXPROP_ENCHANT_DEF(item)
     return math.floor(result);
 end 
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_GET_MAXPROP_ENCHANT_DEFATTRIBUTE(item)    
     --local result = IMCRandom(40, 84)
     local result = IMCRandom(46, 99) * 2
@@ -1622,6 +1853,7 @@ function SCR_GET_MAXPROP_ENCHANT_DEFATTRIBUTE(item)
 end
 
 -- 추가 대미지, 추가 대미지 저항 하나로 통합
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_GET_MAXPROP_ENCHANT_ATTRIBUTE(item)    
     local result = IMCRandom(92, 198)
     
@@ -1632,6 +1864,7 @@ function SCR_GET_MAXPROP_ENCHANT_ATTRIBUTE(item)
     return math.floor(result);
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_GET_MAXPROP_ENCHANT_ATK(item)
     
     local result = IMCRandom(61, 126)
@@ -1643,6 +1876,7 @@ function SCR_GET_MAXPROP_ENCHANT_ATK(item)
     return math.floor(result);
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_GET_MAXPROP_ENCHANT_CRTATK(item)
     
     local result = IMCRandom(91, 189)
@@ -1654,6 +1888,7 @@ function SCR_GET_MAXPROP_ENCHANT_CRTATK(item)
     return math.floor(result);
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_GET_MAXPROP_ENCHANT_ATTRIBUTEATK(item)
 
     local result = IMCRandom(46, 99) * 2
@@ -1665,6 +1900,7 @@ function SCR_GET_MAXPROP_ENCHANT_ATTRIBUTEATK(item)
     return math.floor(result);
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_GET_MAXPROP_ENCHANT_STAT(item)
     
     local value = 280;
@@ -1680,6 +1916,7 @@ function SCR_GET_MAXPROP_ENCHANT_STAT(item)
     return math.floor(result);
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_GET_MAXPROP_ENCHANT_MHP(item)
     
     
@@ -1692,6 +1929,7 @@ function SCR_GET_MAXPROP_ENCHANT_MHP(item)
     return math.floor(result);
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_GET_MAXPROP_ENCHANT_MSP(item)
     
     
@@ -1704,6 +1942,7 @@ function SCR_GET_MAXPROP_ENCHANT_MSP(item)
     return math.floor(result);
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_GET_MAXPROP_ENCHANT_RHP(item)
     
     local result = IMCRandom(28, 56)
@@ -1715,6 +1954,7 @@ function SCR_GET_MAXPROP_ENCHANT_RHP(item)
     return math.floor(result);
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_GET_MAXPROP_ENCHANT_RSP(item)
     
     local result = IMCRandom(21, 42)
@@ -1726,17 +1966,21 @@ function SCR_GET_MAXPROP_ENCHANT_RSP(item)
     return math.floor(result);
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_GET_MAXPROP_ENCHANT_MSPD(item)
     return 1;
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_GET_MAXPROP_ENCHANT_SR(item)
     return 1;
 end
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_GET_MAXPROP_ENCHANT_SDR(item)
     return 4;
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function IS_SAME_TYPE_GEM_IN_ITEM(invItem, gemType, sckCnt, itemObj)
     if TryGetProp(itemObj, "ItemType") ~= 'Equip' then
         return false
@@ -1752,6 +1996,7 @@ function IS_SAME_TYPE_GEM_IN_ITEM(invItem, gemType, sckCnt, itemObj)
 
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function GET_EMPTY_SOCKET_CNT(socketCnt, invItem)
     local emptyCnt = 0
     for i = 0, socketCnt - 1 do
@@ -1762,10 +2007,12 @@ function GET_EMPTY_SOCKET_CNT(socketCnt, invItem)
     return emptyCnt
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_GET_MAX_SOKET(item)    
     return item.MaxSocket_COUNT + item.AppraisalSoket;
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SRC_KUPOLE_GROWTH_ITEM(item, Reinforce)
     
     if item == nil then
@@ -1810,6 +2057,7 @@ function SRC_KUPOLE_GROWTH_ITEM(item, Reinforce)
     return lv;
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_GET_ITEM_GRADE_RATIO(grade, prop)
     local class = GetClassByNumProp("item_grade", "Grade", grade)
     if class == nil then
@@ -1826,7 +2074,7 @@ function SCR_GET_ITEM_GRADE_RATIO(grade, prop)
     return value;
 end
 
-
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_CHECK_ADD_SOCKET(item, invItem)
     --예외처리
     if item == nil then
@@ -1882,11 +2130,13 @@ function SCR_CHECK_ADD_SOCKET(item, invItem)
 	return true;
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function GET_SOCKET_ADD_PRICE_BY_TICKET(item)
     local nextSlotIdx = GET_NEXT_SOCKET_SLOT_INDEX(item);
     return GET_MAKE_SOCKET_PRICE(item.UseLv, item.ItemGrade, nextSlotIdx);
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function GET_COPY_TARGET_OPTION_LIST()
 	return {
 		'Reinforce_2', 
@@ -1904,6 +2154,7 @@ function GET_COPY_TARGET_OPTION_LIST()
 	};
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function CALC_GROWTH_ITEM_LEVEL(item)
 
     if item == nil then
@@ -1937,6 +2188,7 @@ function CALC_GROWTH_ITEM_LEVEL(item)
     
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function GET_CURRENT_AVAILABLE_SOCKET_COUNT(item, invItem)
     if item == nil then
         return 0;
@@ -1957,6 +2209,7 @@ function GET_CURRENT_AVAILABLE_SOCKET_COUNT(item, invItem)
     return count;
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function MAKE_ITEM_OPTION_BY_OPTION_SOCKET(item)
     if IsServerSection() == 1 then
         MakeItemOptionByOptionSocket(item);

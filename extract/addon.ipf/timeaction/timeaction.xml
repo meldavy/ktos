@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by imc (imc) -->
 <uiframe name="timeaction" x="0" y="0" width="540" height="130" create="open">
-    <frame title="{@st43}{s22}name{/}" titlepos="0 5" fasthide="true" layout_gravity="center bottom" margin="0 0 0 200" piptype="top"/>
+    <frame title="{@st43}{s22}name{/}" titlepos="0 5" fasthide="true" layout_gravity="center bottom" margin="0 0 0 200"/>
     <input maxwidth="1280" moveable="false" hittestframe="false"/>
     <layer layerlevel="95"/>
     <option closebutton="false" hideable="true"/>

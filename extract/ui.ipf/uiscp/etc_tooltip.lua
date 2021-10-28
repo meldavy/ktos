@@ -171,7 +171,7 @@ function DRAW_ETC_DESC_TOOLTIP(tooltipframe, invitem, yPos, mainframename)
 	local descRichtext= GET_CHILD(CSet,'desc_text','ui::CRichText')
 
 	local customSet = false;
-	local customTooltip = TryGetProp(invitem, "CustomToolTip");
+	local customTooltip = TryGetProp(invitem, "CustomToolTip", 'None');		
 	if customTooltip ~= nil and customTooltip ~= "None" then
 		local nameFunc = _G[customTooltip .. "_DESC"];
 		if nameFunc ~= nil then
@@ -458,21 +458,25 @@ function UPDATE_INDUN_INFO_TOOLTIP(tooltipframe, cidStr, param1, param2, actor)
 			local indunGroupBox = indunListBox:CreateOrGetControl("groupbox", "INDUN_CONTROL_".. indunCls.PlayPerResetType, ctrlLeftMargin, 0, ctrlWidth, ctrlHeight)
 			indunGroupBox = tolua.cast(indunGroupBox, "ui::CGroupBox")
 			indunGroupBox:EnableDrawFrame(0)
-			local indunLabel = indunGroupBox:CreateOrGetControl("richtext", "INDUN_NAME_" .. indunCls.PlayPerResetType, 0, 0, ctrlWidth / 2, ctrlHeight)
+			local indunLabel = indunGroupBox:CreateOrGetControl("richtext", "INDUN_NAME_" .. indunCls.PlayPerResetType, 0, 0, ctrlWidth - 60, ctrlHeight)
 			indunLabel = tolua.cast(indunLabel, 'ui::CRichText')
+			indunLabel:SetTextFixWidth(1);
+			indunLabel:SetTextFixHeight(true);
+			indunLabel:SetAutoFontSizeByWidth(indunLabel:GetWidth())
 			indunLabel:SetText('{@st42b}' .. indunCls.Category)
 			indunLabel:SetEnable(0)
 			local difficulty = TryGetProp(indunCls, "Difficulty", "None")
             if difficulty ~= "None" then
                 indunLabel:SetText('{@st42b}' .. indunCls.Category .. ' - ' .. difficulty)
             end
-		
+			
+
 			local indunCntLabel = indunGroupBox:CreateOrGetControl("richtext", "INDUN_COUNT_" .. indunCls.PlayPerResetType, 0, 0, ctrlWidth / 2, ctrlHeight)
 			indunCntLabel:SetGravity(ui.RIGHT, ui.TOP)
 			indunCntLabel:SetEnable(0)
 
 			local entranceCount = BARRACK_GET_CHAR_INDUN_ENTRANCE_COUNT(cidStr, indunCls.PlayPerResetType)
-
+		
 			if entranceCount ~= nil then
 				if entranceCount == 'None' then
 					entranceCount = 0;
@@ -738,6 +742,15 @@ function DRAW_ETC_EVENT_EQUIP(tooltipframe, invitem, argStr)
 
 	local CompItemToolTipScp = _G[ 'ITEM_TOOLTIP_' .. itemCls.ToolTipScp];
 	CompItemToolTipScp(tooltipframe, itemCls, argStr, "usesubframe"); -- usesubframe frame
+end
+
+-- 강화 복구 스크롤
+function SAVED_REINFORCE_AND_PR_DESC(item)
+	local rein = TryGetProp(item, 'Saved_Reinforce', 0)
+	local pr = TryGetProp(item, 'Saved_PR', 0)	
+	local trans = TryGetProp(item, 'Saved_Transcend', 0)	
+	local clmsg = ScpArgMsg("SavedReinforceAndPR{reinforce}{pr}{trans}", "reinforce", rein ,"pr", pr, 'trans', trans);	
+	return clmsg
 end
 
 local function comma_value(n)

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by imc (imc) -->
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by imc (imc) -->
 <idspace id="AnimOverrideList">
 	<Category>
 		<Class ClassID="1" ClassName="mon_zealot">
@@ -669,6 +669,10 @@
 			<Node1 ClassID="17" ClassName="ATK_SHOT" FileName="npc\Catapult\npc_Catapult_std"/>
 			<Node1 ClassID="18" ClassName="ATK2_SHOT" FileName="npc\Catapult\npc_Catapult_std"/>
 		</Class>
+		<Class ClassID="46223" ClassName="musicbox_popolion">
+			<Node1 ClassID="1" ClassName="BORN" FileName="pc\equip\musicbox_poporion_rotate"/>
+			<Node1 ClassID="2" ClassName="STD" FileName="pc\equip\musicbox_poporion_rotate"/>
+		</Class>
 		<Class ClassID="46231" ClassName="Barricade_butterfly">
 			<Node1 ClassID="1" ClassName="BORN" FileName="npc\barricade_butterfly\npc_barricade_butterfly_born"/>
 			<Node1 ClassID="2" ClassName="STD" FileName="npc\barricade_butterfly\npc_barricade_butterfly_std"/>
@@ -1282,6 +1286,7 @@
 			<Node1 ClassID="5" ClassName="TALK3" FileName="npc\intermediate_officer_men\intermediate_officer_men_talk3"/>
 			<Node1 ClassID="6" ClassName="TALK4" FileName="npc\intermediate_officer_men\intermediate_officer_men_talk4"/>
 			<Node1 ClassID="7" ClassName="WLK" FileName="npc\intermediate_officer_men\intermediate_officer_men_wlk"/>
+			<Node1 ClassID="8" ClassName="RUN" FileName="npc\intermediate_officer_men\intermediate_officer_men_run"/>
 		</Class>
 		<Class ClassID="20030" ClassName="npc_low_lev_officer_m">
 			<Node1 ClassID="1" ClassName="BORN" FileName="npc\low_lev_officer_m\low_lev_officer_m_std"/>
@@ -1312,6 +1317,8 @@
 			<Node1 ClassID="1" ClassName="BORN" FileName="npc\npc_healer\npc_healer_std"/>
 			<Node1 ClassID="2" ClassName="STD" FileName="npc\npc_healer\npc_healer_std"/>
 			<Node1 ClassID="3" ClassName="STD_CARE" FileName="npc\npc_healer\npc_healer_std_care"/>
+			<Node1 ClassID="4" ClassName="EVENT_SKL_READY" FileName="npc\npc_healer\npc_healer_event_skl_ready"/>
+			<Node1 ClassID="4" ClassName="EVENT_SKL" FileName="npc\npc_healer\npc_healer_event_skl"/>
 		</Class>
 		<Class ClassID="20035" ClassName="npc_knight">
 			<Node1 ClassID="1" ClassName="BORN" FileName="npc\npc_knight\npc_knight_std"/>
@@ -1346,6 +1353,7 @@
 			<Node1 ClassID="26" ClassName="SOUL_WLK" FileName="npc\npc_matron\npc_matron_soul_wlk"/>
 			<Node1 ClassID="27" ClassName="POINT" FileName="npc\npc_matron\npc_matron_point"/>
 			<Node1 ClassID="28" ClassName="PRAY" FileName="npc\npc_matron\npc_matron_pray"/>
+			<Node1 ClassID="29" ClassName="SOUL_SCARE" FileName="npc\npc_matron\npc_matron_soul_scare"/>
 		</Class>
 		<Class ClassID="20037" ClassName="npc_tool_merchants">
 			<Node1 ClassID="1" ClassName="BORN" FileName="npc\npc_tool_merchants\npc_tool_merchants_std"/>
@@ -3429,6 +3437,7 @@
 			<Node1 ClassID="15" ClassName="EVENT_ATK" FileName="npc\Laima\Laima_event_atk"/>
 			<Node1 ClassID="16" ClassName="EVENT_LOOP3" FileName="npc\Laima\Laima_event_loop3"/>
 			<Node1 ClassID="17" ClassName="EVENT_SIT" FileName="npc\Laima\Laima_event_sit"/>
+			<Node1 ClassID="18" ClassName="EVENT_ORDER" FileName="npc\Laima\Laima_event_order"/>
 		</Class>
 		<Class ClassID="40129" ClassName="npc_sculptor">
 			<Node1 ClassID="1" ClassName="STD" FileName="npc\sculptor\sculptor_std"/>
@@ -3588,6 +3597,7 @@
 		</Class>
 		<Class ClassID="40172" ClassName="npc_SCH_master">
 			<Node1 ClassID="1" ClassName="STD" FileName="npc\npc_SCH_master\npc_SCH_master_std"/>
+			<Node1 ClassID="2" ClassName="WLK" FileName="npc\npc_SCH_master\npc_SCH_master_wlk"/>
 		</Class>
 		<Class ClassID="40174" ClassName="npc_SAP_master">
 			<Node1 ClassID="1" ClassName="STD" FileName="npc\npc_SAP_master\SAP_master_std"/>
@@ -3603,6 +3613,7 @@
 		</Class>
 		<Class ClassID="40178" ClassName="npc_COS_master">
 			<Node1 ClassID="1" ClassName="STD" FileName="npc\npc_COS_master\COS_master_std"/>
+			<Node1 ClassID="2" ClassName="WLK" FileName="npc\npc_COS_master\COS_master_wlk"/>
 		</Class>
 		<Class ClassID="40179" ClassName="npc_SQR_master">
 			<Node1 ClassID="1" ClassName="STD" FileName="npc\npc_SQR_master\SQR_master_std"/>
@@ -3815,6 +3826,9 @@
 			<Node1 ClassID="14" ClassName="DEAD" FileName="npc\cart\npc_blowfish_dead"/>
 			<Node1 ClassID="19" ClassName="LEFTTURN" FileName="npc\cart\npc_blowfish_astd"/>
 			<Node1 ClassID="20" ClassName="RIGHTTURN" FileName="npc\cart\npc_blowfish_astd"/>
+		</Class>
+		<Class ClassID="40220" ClassName="dungeon_tower_1">
+			<Node1 ClassID="1" ClassName="STD" FileName="housing\h_dungeon_laboratory\h_dungeon_laboratory_loop2"/>
 		</Class>
 	</Category>
 </idspace>

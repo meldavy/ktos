@@ -30,6 +30,10 @@ function IS_TRANSCEND_ABLE_ITEM(obj)
         return 0;
     end
     
+    if TryGetProp(obj, 'GroupName', 'None') == 'Arcane' then
+        return 0;
+    end
+
     if TryGetProp(obj, "BasicTooltipProp") == nil then
         return 0;
     end
@@ -142,6 +146,7 @@ function GET_TRANSCEND_MATERIAL_COUNT(targetItem, Arg1)
     
     local needMatCount;
     
+    if grade <= 5 then
     local classType = TryGetProp(targetItem , "ClassType");
     
     if classType == nil then
@@ -162,19 +167,19 @@ function GET_TRANSCEND_MATERIAL_COUNT(targetItem, Arg1)
     end
     
     if groupName == 'Weapon' then
-        if classType == 'Sword' or classType == 'Staff' or classType =='Rapier' or classType =='Spear' or classType =='Bow' or classType =='Mace' then
-            equipTypeRatio = 0.8;
-        elseif slot == 'RH' then
-        --Twohand Weapon-- 
-            equipTypeRatio = 1;
-        else
-            return 0;
-        end
+            if classType == 'Sword' or classType == 'Staff' or classType =='Rapier' or classType =='Spear' or classType =='Bow' or classType =='Mace' then
+                equipTypeRatio = 0.8;
+            elseif slot == 'RH' then
+            --Twohand Weapon-- 
+                equipTypeRatio = 1;
+            else
+                return 0;
+            end
     elseif groupName == 'SubWeapon' then
             equipTypeRatio = 0.6;
-        if classType == 'Trinket' then
-            equipTypeRatio = 0.4
-        end
+            if classType == 'Trinket' then
+                equipTypeRatio = 0.4
+            end
     elseif groupName == 'Armor' and classType ~= 'Shield' then
         --Amor/Acc--
             equipTypeRatio = 0.33;
@@ -232,9 +237,31 @@ function GET_TRANSCEND_MATERIAL_COUNT(targetItem, Arg1)
     --         needMatCount = 1
     --     end
 	-- end
-    -- PvP ?�이?�인 경우, ?�구??개수 1
+    
+    if TryGetProp(targetItem, 'ItemGrade', 0) <= 5 and TryGetProp(targetItem, 'CharacterBelonging', 0) == 1 then
+        needMatCount = math.floor(needMatCount * 0.25)
+        if needMatCount < 1 then
+            needMatCount = 1
+        end
+    end
+
     if TryGetProp(targetItem, 'StringArg', 'None') == 'FreePvP' then
         needMatCount = 1
+    end
+    else
+        if transcendCount < 10 then
+            local itemLv = TryGetProp(targetItem, 'UseLv', 0)
+            local classType = TryGetProp(targetItem, 'ClassType', 'None')
+            local curCount = TryGetProp(targetItem, 'Transcend', 0)
+            
+            needMatCount = item_goddess_transcend.get_material_list(itemLv, classType, curCount, transcendCount)
+        else
+            return 0;
+        end
+
+        if needMatCount == nil or needMatCount == 0 then
+            return 0;
+        end
     end
 
     return SyncFloor(needMatCount);
@@ -319,6 +346,7 @@ function CHECK_EXIST_ELEMENT_IN_LIST(list, element)
     return false;
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function GET_UPGRADE_ADD_ATK_RATIO(item, ignoreTranscend)
     if item.Transcend > 0 and ignoreTranscend ~= 1 then
         local class = GetClassByType('ItemTranscend', item.Transcend);
@@ -327,7 +355,13 @@ function GET_UPGRADE_ADD_ATK_RATIO(item, ignoreTranscend)
         -- PVP --
         value = SCR_PVP_ITEM_TRANSCEND_SET(item, value);        
         
-        return value;
+        local grade = TryGetProp(item, "ItemGrade");
+
+        if grade < 6 then
+            return value;
+        else
+            return 0.3 * value
+        end
     end
     local value = 0;
     value = SCR_PVP_ITEM_TRANSCEND_SET(item, value);
@@ -335,6 +369,7 @@ function GET_UPGRADE_ADD_ATK_RATIO(item, ignoreTranscend)
     return value;
 end
 
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function GET_UPGRADE_ADD_DEF_RATIO(item, ignoreTranscend)
     if item.Transcend > 0  and ignoreTranscend ~= 1 then
         local class = GetClassByType('ItemTranscend', item.Transcend);
@@ -342,8 +377,14 @@ function GET_UPGRADE_ADD_DEF_RATIO(item, ignoreTranscend)
         
         -- PVP --
         value = SCR_PVP_ITEM_TRANSCEND_SET(item, value);
-        
-        return value;
+
+        local grade = TryGetProp(item, "ItemGrade");
+
+        if grade < 6 then
+            return value;
+        else
+            return 0.3 * value
+        end
     end
     local value = 0;
     value = SCR_PVP_ITEM_TRANSCEND_SET(item, value);
@@ -358,7 +399,14 @@ function GET_UPGRADE_ADD_MDEF_RATIO(item, ignoreTranscend)
         
         -- PVP --
         value = SCR_PVP_ITEM_TRANSCEND_SET(item, value);
-        return value;
+
+        local grade = TryGetProp(item, "ItemGrade");
+
+        if grade < 6 then
+            return value;
+        else
+            return 0.3 * value
+        end
     end
     local value = 0;
     value = SCR_PVP_ITEM_TRANSCEND_SET(item, value);

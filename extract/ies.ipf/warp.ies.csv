@@ -825,3 +825,10 @@ ClassID,TargetX,TargetY,TargetZ,Latitude,Longitude,StartDir,ClassName,CMM_Name,T
 3035,133,0,-4,45,45,0,C_KLAIPE_CATHEDRAL_MEDIUM_IN_TO_C_KLAIPE_CATHEDRAL_MEDIUM,라이마의 성소 내부 -> 라이마의 성소,c_klaipe_cathedral_medium
 3036,-462,74,1846,45,45,0,BRACKEN42_1_TO_EP13_F_SIAULIAI_1,코노트 숲 -> 렘파라사 연못,ep13_f_siauliai_1
 3037,113,629,986,45,45,0,EP13_F_SIAULIAI_1_TO_BRACKEN42_1,렘파라사 연못 -> 코노트 숲,f_bracken_42_1
+3038,591,111,-115,45,45,0,EP13_F_SIAULIAI_5_TO_ID_UNKNOWNSANCTUARY_1,키르티마스 숲 -> 미지의 성역 1층,id_Unknownsanctuary_1
+3039,1859,220,82,45,45,0,EP13_F_SIAULIAI_3_TO_EP13_2_D_PRISON_2,파우피스 나루 -> 아샤크 지하감옥 2층,ep13_2_d_prison_2
+3040,1165,320,1562,45,45,0,EP13_2_D_PRISON_2_TO_EP13_F_SIAULIAI_3,아샤크 지하 감옥 2층 -> 파우피스 나루,ep13_f_siauliai_3
+3041,734,10,-1019,45,45,0,EP13_2_D_PRISON_2_TO_EP13_2_D_PRISON_3,아샤크 지하 감옥 2층 -> 아샤크 지하 감옥 격리 구역,ep13_2_d_prison_3
+3042,-1794,426,1800,45,45,0,EP13_2_D_PRISON_3_TO_EP13_2_D_PRISON_2,아샤크 지하 감옥 격리 구역 -> 아샤크 지하감옥 2층,ep13_2_d_prison_2
+3043,-563,325,269,45,45,0,EP13_2_D_PRISON_3_TO_EP13_2_D_PRISON_1,아샤크 지하 감옥 격리 구역 -> 아샤크 지하감옥 1층,ep13_2_d_prison_1
+3044,-509,10,1011,45,45,0,EP13_2_D_PRISON_1_TO_EP13_2_D_PRISON_3,아샤크 지하 감옥 1층 -> 아샤크 지하 감옥 격리 구역,ep13_2_d_prison_3

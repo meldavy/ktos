@@ -248,6 +248,39 @@
 			</ToolScp>
 		</updateEvent>
 	</PadSkill>
+	<PadSkill Name="Ancient_PC_Skill_1" CheckerType="0" Dist="81.885452" Angle="-2.0523725" Range="40" UpdateTerm="1000" AutoPos="1" AllowOverlap="1">
+		<createEvent>
+			<ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
+				<Num Num="10000"/>
+				<Num Num="1"/>
+			</ToolScp>
+			<ToolScp Scp="PAD_USEABLE_RELATION_ENEMY" Client="NO" UseSleep="NO"/>
+			<ToolScp Scp="C_PAD_EFFECT_POS" Client="YES" UseSleep="NO">
+				<Str_Arg Str="I_chain004_mash_loop" Arg="2"/>
+				<Pos Angle="0" Dist="0"/>
+				<Num Num="0"/>
+				<Str_Arg Str="None" Arg="1"/>
+				<Num Num="1"/>
+			</ToolScp>
+		</createEvent>
+		<updateEvent>
+			<ToolScp Scp="PAD_BUFF_ENEMY" Client="NO" UseSleep="NO">
+				<Str Str="ENEMY"/>
+				<Num Num="0"/>
+				<Num Num="0"/>
+				<Str Str="UC_slowdown"/>
+				<Num Num="9"/>
+				<Num Num="0"/>
+				<Num Num="1000"/>
+				<Num Num="1"/>
+				<Num Num="100"/>
+			</ToolScp>
+			<ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
+				<Num Num="-2000"/>
+				<Num Num="1"/>
+			</ToolScp>
+		</updateEvent>
+	</PadSkill>
 	<PadSkill Name="Ancient_Tantaliser_square" CheckerType="1" Range="40" InnerRange="100" AutoPos="1" AutoDir="1" ApplyFlyMon="1" AllowOverlap="1">
 		<createEvent>
 			<ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
@@ -285,7 +318,7 @@
 			</ToolScp>
 			<ToolScp Scp="PAD_CONCURRENT_USE_COUNT" Client="NO" UseSleep="NO">
 				<Num Num="10" UseFunc="1" FuncTxt="local value = 10
-                if IsPVPField(self) == 1 and value > 2 then
+                if IsPVPField(self) == 1 and value &gt; 2 then
                 value = math.floor((math.max(0, value-2)^0.5))+math.min(2, value)
                 end
                 return value"/>
@@ -370,13 +403,13 @@
 			<ToolScp Scp="PAD_USEABLE_RELATION_ENEMY" Client="NO" UseSleep="NO"/>
 			<ToolScp Scp="PAD_CONCURRENT_USE_COUNT" Client="NO" UseSleep="NO">
 				<Num Num="10" UseFunc="1" FuncTxt="local value = 10
-                if IsPVPField(self) == 1 and value > 2 then
+                if IsPVPField(self) == 1 and value &gt; 2 then
                 value = math.floor((math.max(0, value-2)^0.5))+math.min(2, value)
                 end
                 return value"/>
 			</ToolScp>
 			<ToolScp Scp="C_PAD_EFFECT_POS" Client="YES" UseSleep="NO">
-				<Str_Arg Str="F_archer_blindside_arts" Arg="0.9"/>
+				<Str_Arg Str="F_archer_blindside_arts" Arg="0.89999998"/>
 				<Pos Angle="0" Dist="0"/>
 				<Num Num="0"/>
 				<Str_Arg Str="None" Arg="1"/>
@@ -573,7 +606,7 @@ return time;"/>
 			</ToolScp>
 			<ToolScp Scp="PAD_CONCURRENT_USE_COUNT" Client="NO" UseSleep="NO">
 				<Num Num="10" UseFunc="1" FuncTxt="local value = math.floor(7 + TryGetProp(self, &apos;SR&apos;, 0) / 3) 
-                if IsPVPField(self) == 1 and value > 2 then
+                if IsPVPField(self) == 1 and value &gt; 2 then
                 value = math.floor((math.max(0, value-2)^0.5))+math.min(2, value)
                 end
                 return value"/>
@@ -640,24 +673,7 @@ return time;"/>
 		<createEvent>
 			<ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
 				<Num Num="10000" UseFunc="1" FuncTxt="local value = 10000
-
-local CrescendoBane = GetSkill(self, &apos;Wugushi_CrescendoBane&apos;)
-
-if CrescendoBane ~= nil then
-
-    local CrescendoBaneLv = TryGetProp(CrescendoBane, &apos;Level&apos;, 0)
-
-    local downtime = 1 - (CrescendoBaneLv * 0.1)
-
-    if IsBuffApplied(self, &apos;Crescendo_Bane_Buff&apos;) == &apos;YES&apos; then 
-
-        value = value * downtime
-
-    end 
-
-end
-
-return value"/>
+                return value"/>
 				<Num Num="9999"/>
 			</ToolScp>
 			<ToolScp Scp="C_PAD_EFFECT_POS" Client="YES" UseSleep="NO">
@@ -671,7 +687,7 @@ return value"/>
 			</ToolScp>
 			<ToolScp Scp="PAD_CONCURRENT_USE_COUNT" Client="NO" UseSleep="NO">
 				<Num Num="5" UseFunc="1" FuncTxt="local value = 5
-                if IsPVPField(self) == 1 and value > 2 then
+                if IsPVPField(self) == 1 and value &gt; 2 then
                 value = math.floor((math.max(0, value-2)^0.5))+math.min(2, value)
                 end
                 return value"/>
@@ -689,23 +705,6 @@ return value"/>
 				<Num Num="1" UseFunc="1" FuncTxt="return obj.Level;"/>
 				<Num Num="0"/>
 				<Num Num="0" UseFunc="1" FuncTxt="local value = 60000
-
-local CrescendoBane = GetSkill(self, &apos;Wugushi_CrescendoBane&apos;)
-
-if CrescendoBane ~= nil then
-
-    local CrescendoBaneLv = TryGetProp(CrescendoBane, &apos;Level&apos;, 0)
-
-    local downtime = 1 - (CrescendoBaneLv * 0.1)
-
-    if IsBuffApplied(self, &apos;Crescendo_Bane_Buff&apos;) == &apos;YES&apos; then 
-
-        value = value * downtime
-
-    end 
-
-end
-
 return value"/>
 				<Num Num="1"/>
 				<Num Num="100"/>
@@ -718,59 +717,25 @@ return value"/>
 				<Num Num="0"/>
 			</ToolScp>
 			<ToolScp Scp="PAD_BUFF_CHECK_BUFF_ENEMY" Client="NO" UseSleep="NO">
-                <Str Str="ENEMY"/>
-                <Num Num="0"/>
-                <Num Num="0"/>
-                <Str Str="JincanGu_Debuff"/>
-                <Str Str="JincanGu_Debuff"/>
-                <Num Num="99"/>
-                <Num Num="0"/>
-                <Num Num="0" UseFunc="1" FuncTxt="local value = 60000
-
-local CrescendoBane = GetSkill(self, 'Wugushi_CrescendoBane')
-
-if CrescendoBane ~= nil then
-
-    local CrescendoBaneLv = TryGetProp(CrescendoBane, 'Level', 0)
-
-    local downtime = 1 - (CrescendoBaneLv * 0.1)
-
-    if IsBuffApplied(self, 'Crescendo_Bane_Buff') == 'YES' then 
-
-        value = value * downtime
-
-    end 
-
-end
-
+				<Str Str="ENEMY"/>
+				<Num Num="0"/>
+				<Num Num="0"/>
+				<Str Str="JincanGu_Debuff"/>
+				<Str Str="JincanGu_Debuff"/>
+				<Num Num="99"/>
+				<Num Num="0"/>
+				<Num Num="0" UseFunc="1" FuncTxt="local value = 60000
 return value"/>
-                <Num Num="1"/>
-                <Num Num="100"/>
-            </ToolScp>
+				<Num Num="1"/>
+				<Num Num="100"/>
+			</ToolScp>
 		</updateEvent>
 	</PadSkill>
 	<PadSkill Name="Archer_JincanGu_Abil" CheckerType="0" Range="100" ApplyFlyMon="1" AllowOverlap="1" IsMagicType="0">
 		<createEvent>
 			<ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
 				<Num Num="10000" UseFunc="1" FuncTxt="local value = 10000
-
-local CrescendoBane = GetSkill(self, &apos;Wugushi_CrescendoBane&apos;)
-
-if CrescendoBane ~= nil then
-
-    local CrescendoBaneLv = TryGetProp(CrescendoBane, &apos;Level&apos;, 0)
-
-    local downtime = 1 - (CrescendoBaneLv * 0.1)
-
-    if IsBuffApplied(self, &apos;Crescendo_Bane_Buff&apos;) == &apos;YES&apos; then 
-
-        value = value * downtime
-
-    end 
-
-end
-
-return value"/>
+                return value"/>
 				<Num Num="9999"/>
 			</ToolScp>
 			<ToolScp Scp="C_PAD_EFFECT_POS" Client="YES" UseSleep="NO">
@@ -801,7 +766,7 @@ return value"/>
 			</ToolScp>
 			<ToolScp Scp="PAD_CONCURRENT_USE_COUNT" Client="NO" UseSleep="NO">
 				<Num Num="0" UseFunc="1" FuncTxt="local value = 12
-                if IsPVPField(self) == 1 and value > 2 then
+                if IsPVPField(self) == 1 and value &gt; 2 then
                 value = math.floor((math.max(0, value-2)^0.5))+math.min(2, value)
                 end
                 return value"/>
@@ -819,24 +784,7 @@ return value"/>
 				<Num Num="1" UseFunc="1" FuncTxt="return obj.Level;"/>
 				<Num Num="0"/>
 				<Num Num="0" UseFunc="1" FuncTxt="local value = 60000
-
-local CrescendoBane = GetSkill(self, &apos;Wugushi_CrescendoBane&apos;)
-
-if CrescendoBane ~= nil then
-
-    local CrescendoBaneLv = TryGetProp(CrescendoBane, &apos;Level&apos;, 0)
-
-    local downtime = 1 - (CrescendoBaneLv * 0.1)
-
-    if IsBuffApplied(self, &apos;Crescendo_Bane_Buff&apos;) == &apos;YES&apos; then 
-
-        value = value * downtime
-
-    end 
-
-end
-
-return value"/>
+                return value"/>
 				<Num Num="1"/>
 				<Num Num="100"/>
 				<Num Num="0"/>
@@ -848,35 +796,151 @@ return value"/>
 				<Num Num="0"/>
 			</ToolScp>
 			<ToolScp Scp="PAD_BUFF_CHECK_BUFF_ENEMY" Client="NO" UseSleep="NO">
-                <Str Str="ENEMY"/>
-                <Num Num="0"/>
-                <Num Num="0"/>
-                <Str Str="JincanGu_Abil_Debuff"/>
-                <Str Str="JincanGu_Abil_Debuff"/>
-                <Num Num="99"/>
-                <Num Num="0"/>
-                <Num Num="0" UseFunc="1" FuncTxt="local value = 60000
-
-local CrescendoBane = GetSkill(self, 'Wugushi_CrescendoBane')
-
-if CrescendoBane ~= nil then
-
-    local CrescendoBaneLv = TryGetProp(CrescendoBane, 'Level', 0)
-
-    local downtime = 1 - (CrescendoBaneLv * 0.1)
-
-    if IsBuffApplied(self, 'Crescendo_Bane_Buff') == 'YES' then 
-
-        value = value * downtime
-
-    end 
-
-end
-
-return value"/>
-                <Num Num="1"/>
-                <Num Num="100"/>
-            </ToolScp>
+				<Str Str="ENEMY"/>
+				<Num Num="0"/>
+				<Num Num="0"/>
+				<Str Str="JincanGu_Abil_Debuff"/>
+				<Str Str="JincanGu_Abil_Debuff"/>
+				<Num Num="99"/>
+				<Num Num="0"/>
+				<Num Num="0" UseFunc="1" FuncTxt="local value = 60000
+                return value"/>
+				<Num Num="1"/>
+				<Num Num="100"/>
+			</ToolScp>
+		</updateEvent>
+	</PadSkill>
+	<PadSkill Name="Archer_JincanGu_Vibora" CheckerType="0" Range="100" ApplyFlyMon="1" AllowOverlap="1" IsMagicType="0">
+		<createEvent>
+			<ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
+				<Num Num="10000" UseFunc="1" FuncTxt="local value = 10000
+                return value"/>
+				<Num Num="9999"/>
+			</ToolScp>
+			<ToolScp Scp="C_PAD_EFFECT_POS" Client="YES" UseSleep="NO">
+				<Str_Arg Str="F_ground004_yellow" Arg="2"/>
+				<Pos Angle="0" Dist="0"/>
+				<Num Num="0"/>
+				<Str_Arg Str="None" Arg="1"/>
+			</ToolScp>
+			<ToolScp Scp="C_PAD_EFFECT_POS" Client="YES" UseSleep="NO">
+				<Str_Arg Str="F_ground132_dark_green_loop" Arg="3"/>
+				<Pos Angle="0" Dist="0"/>
+				<Num Num="0"/>
+				<Str_Arg Str="None" Arg="1"/>
+			</ToolScp>
+			<ToolScp Scp="PAD_DESTROY_EFFECT_BLENDTIME" Client="NO" UseSleep="NO">
+				<Num Num="3"/>
+				<Num Num="1"/>
+				<Num Num="0"/>
+				<Num Num="1"/>
+				<Num Num="0.0049999999"/>
+			</ToolScp>
+			<ToolScp Scp="C_PAD_MONSTER" Client="YES" UseSleep="NO">
+				<Str Str="pcskill_tutu"/>
+				<Num Num="1"/>
+				<Str Str="std"/>
+				<Str Str="None"/>
+				<Num Num="0"/>
+			</ToolScp>
+			<ToolScp Scp="PAD_CONCURRENT_USE_COUNT" Client="NO" UseSleep="NO">
+				<Num Num="0" UseFunc="1" FuncTxt="local value = 12
+                if IsPVPField(self) == 1 and value &gt; 2 then
+                value = math.floor((math.max(0, value-2)^0.5))+math.min(2, value)
+                end
+                return value"/>
+			</ToolScp>
+		</createEvent>
+		<enterEvent>
+			<ToolScp Scp="PAD_ACTIVATE" Client="NO" UseSleep="NO">
+				<Str Str="ENEMY"/>
+			</ToolScp>
+			<ToolScp Scp="PAD_TGT_BUFF" Client="NO" UseSleep="NO">
+				<Str Str="ENEMY"/>
+				<Num Num="0"/>
+				<Num Num="0"/>
+				<Str Str="JincanGu_Abil_Debuff"/>
+				<Num Num="1" UseFunc="1" FuncTxt="return obj.Level;"/>
+				<Num Num="0"/>
+				<Num Num="0" UseFunc="1" FuncTxt="local value = 60000
+                return value"/>
+				<Num Num="1"/>
+				<Num Num="100"/>
+				<Num Num="0"/>
+			</ToolScp>
+		</enterEvent>
+		<updateEvent>
+			<ToolScp Scp="PAD_MSL_FALL" Client="NO" UseSleep="NO">
+				<Num Num="100"/>
+				<Num Num="80"/>
+				<Str_Arg Str="I_force011_green2" Arg="0.5"/>
+				<Str_Arg Str="F_ground160_poison" Arg="1"/>
+				<Str_Arg Str="None" Arg="1"/>
+				<Num Num="40"/>
+				<Num Num="0"/>
+				<Num Num="1.2"/>
+				<Num Num="250"/>
+				<Num Num="2"/>
+				<Num Num="1000"/>
+				<Num Num="1"/>
+				<Num Num="0"/>
+				<Num Num="0"/>
+				<Str_Arg Str="None" Arg="0.30000001"/>
+				<Num Num="0"/>
+			</ToolScp>
+			<ToolScp Scp="PAD_MSL_FALL" Client="NO" UseSleep="NO">
+				<Num Num="100"/>
+				<Num Num="80"/>
+				<Str_Arg Str="I_force011_green2" Arg="0.5"/>
+				<Str_Arg Str="F_ground160_poison" Arg="1"/>
+				<Str_Arg Str="None" Arg="1"/>
+				<Num Num="40"/>
+				<Num Num="0"/>
+				<Num Num="1.2"/>
+				<Num Num="250"/>
+				<Num Num="2"/>
+				<Num Num="1000"/>
+				<Num Num="1"/>
+				<Num Num="0"/>
+				<Num Num="0"/>
+				<Str_Arg Str="None" Arg="0.30000001"/>
+				<Num Num="0"/>
+			</ToolScp>
+			<ToolScp Scp="PAD_MSL_FALL" Client="NO" UseSleep="NO">
+				<Num Num="100"/>
+				<Num Num="80"/>
+				<Str_Arg Str="I_force011_green2" Arg="0.5"/>
+				<Str_Arg Str="F_ground160_poison" Arg="1"/>
+				<Str_Arg Str="None" Arg="1"/>
+				<Num Num="40"/>
+				<Num Num="0"/>
+				<Num Num="1.2"/>
+				<Num Num="250"/>
+				<Num Num="2"/>
+				<Num Num="1000"/>
+				<Num Num="1"/>
+				<Num Num="0"/>
+				<Num Num="0"/>
+				<Str_Arg Str="None" Arg="0.30000001"/>
+				<Num Num="0"/>
+			</ToolScp>
+			<ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
+				<Num Num="-500"/>
+				<Num Num="0"/>
+			</ToolScp>
+			<ToolScp Scp="PAD_BUFF_CHECK_BUFF_ENEMY" Client="NO" UseSleep="NO">
+				<Str Str="ENEMY"/>
+				<Num Num="0"/>
+				<Num Num="0"/>
+				<Str Str="JincanGu_Abil_Debuff"/>
+				<Str Str="JincanGu_Abil_Debuff"/>
+				<Num Num="99"/>
+				<Num Num="0"/>
+				<Num Num="0" UseFunc="1" FuncTxt="local value = 60000
+                return value"/>
+				<Num Num="1"/>
+				<Num Num="100"/>
+			</ToolScp>
 		</updateEvent>
 	</PadSkill>
 	<PadSkill Name="Archer_SpikeShooter" CheckerType="5" UpdateTerm="1500" ApplyFlyMon="1" Relation="2" IsMagicType="0">
@@ -912,25 +976,7 @@ return value"/>
 	<PadSkill Name="Archer_VerminPot" CheckerType="0" PadHeight="10" Range="50" ApplyFlyMon="1" AllowOverlap="1" IsMagicType="0">
 		<createEvent>
 			<ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
-				<Num Num="15000" UseFunc="1" FuncTxt="local value = 15000
-
-local CrescendoBane = GetSkill(self, &apos;Wugushi_CrescendoBane&apos;)
-
-if CrescendoBane ~= nil then
-
-    local CrescendoBaneLv = TryGetProp(CrescendoBane, &apos;Level&apos;, 0)
-
-    local downtime = 1 - (CrescendoBaneLv * 0.1)
-
-    if IsBuffApplied(self, &apos;Crescendo_Bane_Buff&apos;) == &apos;YES&apos; then 
-
-        value = value * downtime
-
-    end 
-
-end
-
-return value"/>
+				<Num Num="15000"/>
 				<Num Num="9999"/>
 			</ToolScp>
 			<ToolScp Scp="C_PAD_EFFECT_POS" Client="YES" UseSleep="NO">
@@ -958,7 +1004,7 @@ return value"/>
 			</ToolScp>
 			<ToolScp Scp="PAD_CONCURRENT_USE_COUNT" Client="NO" UseSleep="NO">
 				<Num Num="0" UseFunc="1" FuncTxt="local value = 6
-                if IsPVPField(self) == 1 and value > 2 then
+                if IsPVPField(self) == 1 and value &gt; 2 then
                 value = math.floor((math.max(0, value-2)^0.5))+math.min(2, value)
                 end
                 return value"/>
@@ -976,25 +1022,7 @@ return value"/>
 				<Str Str="Archer_VerminPot_Debuff"/>
 				<Num Num="1" UseFunc="1" FuncTxt="return obj.Level;"/>
 				<Num Num="0"/>
-				<Num Num="0" UseFunc="1" FuncTxt="local value = 15000
-
-local CrescendoBane = GetSkill(self, &apos;Wugushi_CrescendoBane&apos;)
-
-if CrescendoBane ~= nil then
-
-    local CrescendoBaneLv = TryGetProp(CrescendoBane, &apos;Level&apos;, 0)
-
-    local downtime = 1 - (CrescendoBaneLv * 0.1)
-
-    if IsBuffApplied(self, &apos;Crescendo_Bane_Buff&apos;) == &apos;YES&apos; then 
-
-        value = value * downtime
-
-    end 
-
-end
-
-return value"/>
+				<Num Num="15000"/>
 				<Num Num="1"/>
 				<Num Num="100"/>
 				<Num Num="0"/>
@@ -1053,7 +1081,7 @@ return value"/>
 			</ToolScp>
 			<ToolScp Scp="PAD_CONCURRENT_USE_COUNT" Client="NO" UseSleep="NO">
 				<Num Num="7" UseFunc="1" FuncTxt="local value = 7
-                if IsPVPField(self) == 1 and value > 2 then
+                if IsPVPField(self) == 1 and value &gt; 2 then
                 value = math.floor((math.max(0, value-2)^0.5))+math.min(2, value)
                 end
 				return value"/>
@@ -1125,7 +1153,7 @@ return value"/>
 			<ToolScp Scp="PAD_USEABLE_RELATION_ENEMY" Client="NO" UseSleep="NO"/>
 			<ToolScp Scp="PAD_CONCURRENT_USE_COUNT" Client="NO" UseSleep="NO">
 				<Num Num="15" UseFunc="1" FuncTxt="local value = 15
-                if IsPVPField(self) == 1 and value > 2 then
+                if IsPVPField(self) == 1 and value &gt; 2 then
                 value = math.floor((math.max(0, value-2)^0.5))+math.min(2, value)
                 end
 				return value"/>
@@ -1385,7 +1413,7 @@ return value"/>
 			</ToolScp>
 			<ToolScp Scp="PAD_CONCURRENT_USE_COUNT" Client="NO" UseSleep="NO">
 				<Num Num="5" UseFunc="1" FuncTxt="local value = 5
-                if IsPVPField(self) == 1 and value > 2 then
+                if IsPVPField(self) == 1 and value &gt; 2 then
                 value = math.floor((math.max(0, value-2)^0.5))+math.min(2, value)
                 end
                 return value"/>
@@ -2988,56 +3016,6 @@ return obj.Level"/>
 			</ToolScp>
 		</updateEvent>
 	</PadSkill>
-	<PadSkill Name="SuddenDeath_Assassin_Vibora" CheckerType="0" PadHeight="10" Range="20" UpdateTerm="500">
-		<createEvent>
-			<ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
-				<Num Num="5000"/>
-				<Num Num="999"/>
-			</ToolScp>
-		</createEvent>
-		<destroyEvent>
-			<ToolScp Scp="C_EFFECT_REMOVE_KEY" Client="YES" UseSleep="NO">
-				<Str Str="newbless"/>
-				<Num Num="0.5"/>
-			</ToolScp>
-		</destroyEvent>
-		<updateEvent>
-			<ToolScp Scp="PAD_BUFF_CHECK_BUFF_SELF" Client="NO" UseSleep="NO">
-				<Num Num="0"/>
-				<Num Num="0"/>
-				<Str Str="ITEM_BUFF_VIBORA_DAGGER_ASSASSIN"/>
-				<Str Str="SuddenDeath_Pad_Buff"/>
-				<Num Num="1"/>
-				<Num Num="0"/>
-				<Num Num="3000"/>
-				<Num Num="1"/>
-				<Num Num="100"/>
-				<Num Num="1"/>
-			</ToolScp>
-			<ToolScp Scp="PAD_BUFF_CHECK_BUFF_SELF" Client="NO" UseSleep="NO">
-				<Num Num="0"/>
-				<Num Num="0"/>
-				<Str Str="ITEM_BUFF_VIBORA_DAGGER_ASSASSIN"/>
-				<Str Str="SuddenDeath_Pad_Buff_Speed"/>
-				<Num Num="1"/>
-				<Num Num="0"/>
-				<Num Num="3000"/>
-				<Num Num="1"/>
-				<Num Num="100"/>
-				<Num Num="1"/>
-			</ToolScp>
-			<ToolScp Scp="PAD_CHECK_OWNER_BUFF_REMOVE" Client="NO" UseSleep="NO">
-				<Str Str="ITEM_BUFF_VIBORA_DAGGER_ASSASSIN"/>
-			</ToolScp>
-			<ToolScp Scp="PAD_FUNC_UPDATE_RUNSCRIPT" Client="NO" UseSleep="NO">
-				<Str Str="SCR_VIBORA_LOCAL_PAD_EFFECT"/>
-			</ToolScp>
-			<ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
-				<Num Num="-500"/>
-				<Num Num="0"/>
-			</ToolScp>
-		</updateEvent>
-	</PadSkill>
 	<PadSkill Name="ChiefGuard_smoke" CheckerType="0" Range="60" UpdateTerm="1000" ApplyFlyMon="1" AllowOverlap="1" IsMineType="0">
 		<createEvent>
 			<ToolScp Scp="C_PAD_EFFECT_POS" Client="YES" UseSleep="NO">
@@ -3140,10 +3118,10 @@ return obj.Level"/>
 		<createEvent>
 			<ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
 				<Num Num="15000" UseFunc="1" FuncTxt="	local value = 10000
-                if IsPVPServer(self) == 1 then
-                value = value * 0.5;
-                end
-                return value"/>
+    if IsPVPServer(self) == 1 then
+        value = value * 0.5;
+    end
+    return value"/>
 				<Num Num="99990"/>
 			</ToolScp>
 			<ToolScp Scp="C_PAD_EFFECT_POS" Client="YES" UseSleep="NO">
@@ -3197,7 +3175,7 @@ return obj.Level"/>
 			<ToolScp Scp="PAD_USEABLE_RELATION_ENEMY" Client="NO" UseSleep="NO"/>
 			<ToolScp Scp="PAD_CONCURRENT_USE_COUNT" Client="NO" UseSleep="NO">
 				<Num Num="0" UseFunc="1" FuncTxt="local value = 5
-                if IsPVPField(self) == 1 and value > 2 then
+                if IsPVPField(self) == 1 and value &gt; 2 then
                 value = math.floor((math.max(0, value-2)^0.5))+math.min(2, value)
                 end
                 return value"/>
@@ -3341,10 +3319,15 @@ return obj.Level;"/>
 			</ToolScp>
 		</updateEvent>
 	</PadSkill>
-	<PadSkill Name="Cleric_Barrier_Paladin20" CheckerType="0" Range="1.2" UpdateTerm="200" ApplyFlyMon="1">
+	<PadSkill Name="Cleric_Barrier_PC" CheckerType="0" Range="1.2" UpdateTerm="200" ApplyFlyMon="1">
 		<createEvent>
 			<ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
-				<Num Num="10000"/>
+				<Num Num="50000" UseFunc="1" FuncTxt="local value = obj.Level * 4000
+if IsPVPServer(self) == 1 or IsPVPField(self) == 1 then
+    value = value / 2
+end
+
+return value"/>
 				<Num Num="1"/>
 			</ToolScp>
 			<ToolScp Scp="PAD_ADD_CHECKER" Client="NO" UseSleep="NO">
@@ -3464,15 +3447,10 @@ return obj.Level;"/>
 			</ToolScp>
 		</updateEvent>
 	</PadSkill>
-	<PadSkill Name="Cleric_Barrier_PC" CheckerType="0" Range="1.2" UpdateTerm="200" ApplyFlyMon="1">
+	<PadSkill Name="Cleric_Barrier_Paladin20" CheckerType="0" Range="1.2" UpdateTerm="200" ApplyFlyMon="1">
 		<createEvent>
 			<ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
-				<Num Num="50000" UseFunc="1" FuncTxt="local value = obj.Level * 4000
-if IsPVPServer(self) == 1 or IsPVPField(self) == 1 then
-    value = value / 2
-end
-
-return value"/>
+				<Num Num="10000"/>
 				<Num Num="1"/>
 			</ToolScp>
 			<ToolScp Scp="PAD_ADD_CHECKER" Client="NO" UseSleep="NO">
@@ -5637,7 +5615,7 @@ return 40000 + obj.Level * 10000"/>
 			<ToolScp Scp="PAD_USEABLE_RELATION_ENEMY" Client="NO" UseSleep="NO"/>
 			<ToolScp Scp="PAD_CONCURRENT_USE_COUNT" Client="NO" UseSleep="NO">
 				<Num Num="0" UseFunc="1" FuncTxt="local value = 4
-                if IsPVPField(self) == 1 and value > 2 then
+                if IsPVPField(self) == 1 and value &gt; 2 then
                 value = math.floor((math.max(0, value-2)^0.5))+math.min(2, value)
                 end
                 return value"/>
@@ -5684,7 +5662,7 @@ return 40000 + obj.Level * 10000"/>
 				<Num Num="4"/>
 			</ToolScp>
 			<ToolScp Scp="C_PAD_EFFECT_POS" Client="YES" UseSleep="NO">
-				<Str_Arg Str="F_cleric_zaibas_ground" Arg="4.3"/>
+				<Str_Arg Str="F_cleric_zaibas_ground" Arg="4.3000002"/>
 				<Pos Angle="0" Dist="0"/>
 				<Num Num="0"/>
 				<Str_Arg Str="None" Arg="1"/>
@@ -5705,7 +5683,7 @@ return 40000 + obj.Level * 10000"/>
 			</ToolScp>
 			<ToolScp Scp="PAD_DAMAGE_ENEMY_ONETIME_COUNT" Client="NO" UseSleep="NO">
 				<Num Num="15" UseFunc="1" FuncTxt="local value = 15
-                if IsPVPField(self) == 1 and value > 2 then
+                if IsPVPField(self) == 1 and value &gt; 2 then
                 value = math.floor((math.max(0, value-2)^0.5))+math.min(2, value)
                 end
                 return value"/>
@@ -6106,7 +6084,7 @@ return 40000 + obj.Level * 10000"/>
 			<ToolScp Scp="PAD_USEABLE_RELATION_ENEMY" Client="NO" UseSleep="NO"/>
 			<ToolScp Scp="PAD_CONCURRENT_USE_COUNT" Client="NO" UseSleep="NO">
 				<Num Num="0" UseFunc="1" FuncTxt="local value = obj.Level
-				if IsPVPField(self) == 1 and value > 2 then
+				if IsPVPField(self) == 1 and value &gt; 2 then
                 value = math.floor((math.max(0, value-2)^0.5))+math.min(2, value)
                 end
 				return value"/>
@@ -6169,7 +6147,7 @@ return 40000 + obj.Level * 10000"/>
 			<ToolScp Scp="PAD_USEABLE_RELATION_ENEMY" Client="NO" UseSleep="NO"/>
 			<ToolScp Scp="PAD_CONCURRENT_USE_COUNT" Client="NO" UseSleep="NO">
 				<Num Num="0" UseFunc="1" FuncTxt="local value = obj.Level
-				if IsPVPField(self) == 1 and value > 2 then
+				if IsPVPField(self) == 1 and value &gt; 2 then
                 value = math.floor((math.max(0, value-2)^0.5))+math.min(2, value)
                 end
 				return value"/>
@@ -6243,7 +6221,7 @@ return 40000 + obj.Level * 10000"/>
 			<ToolScp Scp="PAD_USEABLE_RELATION_ENEMY" Client="NO" UseSleep="NO"/>
 			<ToolScp Scp="PAD_CONCURRENT_USE_COUNT" Client="NO" UseSleep="NO">
 				<Num Num="7" UseFunc="1" FuncTxt="local value = 7
-                if IsPVPField(self) == 1 and value > 2 then
+                if IsPVPField(self) == 1 and value &gt; 2 then
                 value = math.floor((math.max(0, value-2)^0.5))+math.min(2, value)
                 end
                 return value"/>
@@ -6851,7 +6829,7 @@ return 40000 + obj.Level * 10000"/>
 			<ToolScp Scp="PAD_CONCURRENT_USE_COUNT" Client="NO" UseSleep="NO">
 				<Num Num="15" UseFunc="1" FuncTxt="local SR = self.SR
                 local value = math.floor(4+SR/3)
-                if IsPVPField(self) == 1 and value > 2 then
+                if IsPVPField(self) == 1 and value &gt; 2 then
                 value = math.floor((math.max(0, value-2)^0.5))+math.min(2, value)
                 end
                 return value"/>
@@ -7072,7 +7050,7 @@ return &quot;E_cleric_ProtectionOfGoddess_ground_end_red&quot;, 1.1;
 			<ToolScp Scp="PAD_CONCURRENT_USE_COUNT" Client="NO" UseSleep="NO">
 				<Num Num="15" UseFunc="1" FuncTxt="local SR = self.SR
                 local value = math.floor(3+SR/3)
-                if IsPVPField(self) == 1 and value > 2 then
+                if IsPVPField(self) == 1 and value &gt; 2 then
                 value = math.floor((math.max(0, value-2)^0.5))+math.min(2, value)
                 end
                 return value"/>
@@ -7140,7 +7118,7 @@ return &quot;E_cleric_ProtectionOfGoddess_ground_end_red&quot;, 1.1;
 			<ToolScp Scp="PAD_CONCURRENT_USE_COUNT" Client="NO" UseSleep="NO">
 				<Num Num="15" UseFunc="1" FuncTxt="local SR = self.SR
                 local value = math.floor(3+SR/3)
-                if IsPVPField(self) == 1 and value > 2 then
+                if IsPVPField(self) == 1 and value &gt; 2 then
                 value = math.floor((math.max(0, value-2)^0.5))+math.min(2, value)
                 end
                 return value"/>
@@ -7204,7 +7182,7 @@ return &quot;F_cleric_Sacred_ground_loop_violet&quot;, 1.5;
 			<ToolScp Scp="PAD_CONCURRENT_USE_COUNT" Client="NO" UseSleep="NO">
 				<Num Num="15" UseFunc="1" FuncTxt="local SR = self.SR
                 local value = math.floor(3+SR/3)
-                if IsPVPField(self) == 1 and value > 2 then
+                if IsPVPField(self) == 1 and value &gt; 2 then
                 value = math.floor((math.max(0, value-2)^0.5))+math.min(2, value)
                 end
                 return value"/>
@@ -7614,7 +7592,7 @@ return lifeTime"/>
 			</ToolScp>
 			<ToolScp Scp="PAD_CONCURRENT_USE_COUNT" Client="NO" UseSleep="NO">
 				<Num Num="20" UseFunc="1" FuncTxt="local value = 20
-                if IsPVPField(self) == 1 and value > 2 then
+                if IsPVPField(self) == 1 and value &gt; 2 then
                 value = math.floor((math.max(0, value-2)^0.5))+math.min(2, value)
                 end
                 return value"/>
@@ -7962,7 +7940,7 @@ return value"/>
 			<ToolScp Scp="PAD_USEABLE_RELATION_ENEMY" Client="NO" UseSleep="NO"/>
 			<ToolScp Scp="PAD_CONCURRENT_USE_COUNT" Client="NO" UseSleep="NO">
 				<Num Num="0" UseFunc="1" FuncTxt="local value = 3
-                if IsPVPField(self) == 1 and value > 2 then
+                if IsPVPField(self) == 1 and value &gt; 2 then
                 value = math.floor((math.max(0, value-2)^0.5))+math.min(2, value)
                 end
                 return value"/>
@@ -9038,7 +9016,7 @@ return value;"/>
 				<Str_Arg Str="F_wizard_hail_hit_ice" Arg="0.5"/>
 				<Str_Arg Str="None" Arg="1"/>
 				<Num Num="40"/>
-				<Num Num="0.4"/>
+				<Num Num="0.40000001"/>
 				<Num Num="0.60000002"/>
 				<Num Num="200"/>
 				<Num Num="2"/>
@@ -9433,7 +9411,7 @@ return obj.Level"/>
 			</ToolScp>
 			<ToolScp Scp="PAD_CONCURRENT_USE_COUNT" Client="NO" UseSleep="NO">
 				<Num Num="10" UseFunc="1" FuncTxt="local value = 10
-                if IsPVPField(self) == 1 and value > 2 then
+                if IsPVPField(self) == 1 and value &gt; 2 then
                 value = math.floor((math.max(0, value-2)^0.5))+math.min(2, value)
                 end
                 return value"/>
@@ -9591,7 +9569,7 @@ return obj.Level"/>
 			</ToolScp>
 			<ToolScp Scp="PAD_CONCURRENT_USE_COUNT" Client="NO" UseSleep="NO">
 				<Num Num="7" UseFunc="1" FuncTxt="local value = 7
-                if IsPVPField(self) == 1 and value > 2 then
+                if IsPVPField(self) == 1 and value &gt; 2 then
                 value = math.floor((math.max(0, value-2)^0.5))+math.min(2, value)
                 end
                 return value"/>
@@ -9694,7 +9672,7 @@ return obj.Level"/>
 			</ToolScp>
 			<ToolScp Scp="PAD_CONCURRENT_USE_COUNT" Client="NO" UseSleep="NO">
 				<Num Num="15" UseFunc="1" FuncTxt="local value = 15
-                if IsPVPField(self) == 1 and value > 2 then
+                if IsPVPField(self) == 1 and value &gt; 2 then
                 value = math.floor((math.max(0, value-2)^0.5))+math.min(2, value)
                 end
                 return value"/>
@@ -9728,14 +9706,14 @@ return obj.Level"/>
 			<ToolScp Scp="PAD_USEABLE_RELATION_ENEMY" Client="NO" UseSleep="NO"/>
 			<ToolScp Scp="PAD_CONCURRENT_USE_COUNT" Client="NO" UseSleep="NO">
 				<Num Num="5" UseFunc="1" FuncTxt="local count = 5;
-                local abilExorcist2 = GetAbility(self, &quot;Exorcist2&quot;);
-                if abilExorcist2 ~= nil and TryGetProp(abilExorcist2, &quot;ActiveState&quot;) == 1 then
-                count = count + abilExorcist2.Level;
-                end
-                if IsPVPField(self) == 1 and count > 2 then
+local abilExorcist2 = GetAbility(self, &quot;Exorcist2&quot;);
+if abilExorcist2 ~= nil and TryGetProp(abilExorcist2, &quot;ActiveState&quot;) == 1 then
+count = count + abilExorcist2.Level;
+end
+                if IsPVPField(self) == 1 and count &gt; 2 then
                 count = math.floor((math.max(0, count-2)^0.5))+math.min(2, count)
                 end
-                return count;"/>
+return count;"/>
 			</ToolScp>
 		</createEvent>
 		<destroyEvent>
@@ -9806,14 +9784,14 @@ return obj.Level"/>
 			<ToolScp Scp="PAD_USEABLE_RELATION_ENEMY" Client="NO" UseSleep="NO"/>
 			<ToolScp Scp="PAD_CONCURRENT_USE_COUNT" Client="NO" UseSleep="NO">
 				<Num Num="5" UseFunc="1" FuncTxt="local count = 5;
-                local abilExorcist2 = GetAbility(self, &quot;Exorcist2&quot;);
-                if abilExorcist2 ~= nil and TryGetProp(abilExorcist2, &quot;ActiveState&quot;) == 1 then
-                count = count + abilExorcist2.Level;
-                end
-                if IsPVPField(self) == 1 and count > 2 then
+local abilExorcist2 = GetAbility(self, &quot;Exorcist2&quot;);
+if abilExorcist2 ~= nil and TryGetProp(abilExorcist2, &quot;ActiveState&quot;) == 1 then
+count = count + abilExorcist2.Level;
+end
+                if IsPVPField(self) == 1 and count &gt; 2 then
                 count = math.floor((math.max(0, count-2)^0.5))+math.min(2, count)
                 end
-                return count;"/>
+return count;"/>
 			</ToolScp>
 		</createEvent>
 		<destroyEvent>
@@ -10301,7 +10279,7 @@ return time;"/>
 				<Num Num="0"/>
 			</ToolScp>
 			<ToolScp Scp="PAD_DAMAGE_ENEMY_BY_RATE" Client="NO" UseSleep="NO">
-				<Num Num="0.05"/>
+				<Num Num="0.050000001"/>
 				<Num Num="0"/>
 				<Num Num="0"/>
 				<Str_Arg Str="None" Arg="1"/>
@@ -10319,7 +10297,7 @@ return time;"/>
 			</ToolScp>
 			<ToolScp Scp="PAD_CONCURRENT_USE_COUNT" Client="NO" UseSleep="NO">
 				<Num Num="0" UseFunc="1" FuncTxt="local value = 12
-                if IsPVPField(self) == 1 and value > 2 then
+                if IsPVPField(self) == 1 and value &gt; 2 then
                 value = math.floor((math.max(0, value-2)^0.5))+math.min(2, value)
                 end
                 return value"/>
@@ -10367,7 +10345,7 @@ return &quot;self&quot;"/>
 			</ToolScp>
 			<ToolScp Scp="PAD_CONCURRENT_USE_COUNT" Client="NO" UseSleep="NO">
 				<Num Num="0" UseFunc="1" FuncTxt="local value = 6
-                if IsPVPField(self) == 1 and value > 2 then
+                if IsPVPField(self) == 1 and value &gt; 2 then
                 value = math.floor((math.max(0, value-2)^0.5))+math.min(2, value)
                 end
                 return value"/>
@@ -10472,13 +10450,13 @@ return obj.Level"/>
 				<Str_Arg Str="F_wizard_Kurdaitcha_ground_active" Arg="1"/>
 			</ToolScp>
 			<ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
-		<Num Num="5000"/>
+				<Num Num="5000"/>
 				<Num Num="999"/>
 			</ToolScp>
 			<ToolScp Scp="PAD_USEABLE_RELATION_ENEMY" Client="NO" UseSleep="NO"/>
 			<ToolScp Scp="PAD_CONCURRENT_USE_COUNT" Client="NO" UseSleep="NO">
 				<Num Num="0" UseFunc="1" FuncTxt="local value = 3
-                if IsPVPField(self) == 1 and value > 2 then
+                if IsPVPField(self) == 1 and value &gt; 2 then
                 value = math.floor((math.max(0, value-2)^0.5))+math.min(2, value)
                 end
                 return value"/>
@@ -11793,7 +11771,7 @@ return obj.Level"/>
 			</ToolScp>
 		</updateEvent>
 	</PadSkill>
-	<PadSkill Name="Fletcher_MagicArrow" CheckerType="0" Range="20" ApplyFlyMon="1" IsMagicType="0" UpdateTerm="1000">
+	<PadSkill Name="Fletcher_MagicArrow" CheckerType="0" Range="20" UpdateTerm="1000" ApplyFlyMon="1" IsMagicType="0">
 		<createEvent>
 			<ToolScp Scp="C_PAD_EFFECT_POS" Client="YES" UseSleep="NO">
 				<Str_Arg Str="F_archere_magicarrow_gruond_loop" Arg="1.17"/>
@@ -11807,7 +11785,7 @@ return obj.Level"/>
 			</ToolScp>
 			<ToolScp Scp="PAD_CONCURRENT_USE_COUNT" Client="NO" UseSleep="NO">
 				<Num Num="0" UseFunc="1" FuncTxt="local value = 3
-                if IsPVPField(self) == 1 and value > 2 then
+                if IsPVPField(self) == 1 and value &gt; 2 then
                 value = math.floor((math.max(0, value-2)^0.5))+math.min(2, value)
                 end
                 return value"/>
@@ -11873,7 +11851,7 @@ return GET_ABIL_LEVEL(self, &quot;Fletcher6&quot;) * 10"/>
 			</ToolScp>
 			<ToolScp Scp="PAD_CONCURRENT_USE_COUNT" Client="NO" UseSleep="NO">
 				<Num Num="0" UseFunc="1" FuncTxt="local value = obj.Level + 4
-                if IsPVPField(self) == 1 and value > 2 then
+                if IsPVPField(self) == 1 and value &gt; 2 then
                 value = math.floor((math.max(0, value-2)^0.5))+math.min(2, value)
                 end
                 return value"/>
@@ -11905,7 +11883,7 @@ return GET_ABIL_LEVEL(self, &quot;Fletcher6&quot;) * 10"/>
 			</ToolScp>
 			<ToolScp Scp="PAD_CONCURRENT_USE_COUNT" Client="NO" UseSleep="NO">
 				<Num Num="0" UseFunc="1" FuncTxt="local value = obj.Level + 4
-                if IsPVPField(self) == 1 and value > 2 then
+                if IsPVPField(self) == 1 and value &gt; 2 then
                 value = math.floor((math.max(0, value-2)^0.5))+math.min(2, value)
                 end
                 return value"/>
@@ -13752,7 +13730,7 @@ return GET_ABIL_LEVEL(self, &quot;Fletcher6&quot;) * 10"/>
 			<ToolScp Scp="PAD_USEABLE_RELATION_ENEMY" Client="NO" UseSleep="NO"/>
 			<ToolScp Scp="PAD_CONCURRENT_USE_COUNT" Client="NO" UseSleep="NO">
 				<Num Num="0" UseFunc="1" FuncTxt="local value = 13
-                if IsPVPField(self) == 1 and value > 2 then
+                if IsPVPField(self) == 1 and value &gt; 2 then
                 value = math.floor((math.max(0, value-2)^0.5))+math.min(2, value)
                 end
                 return value"/>
@@ -13858,10 +13836,12 @@ return Time;"/>
 				<Str Str="Psychokino_Raise"/>
 				<Num Num="120"/>
 			</ToolScp>
-			<ToolScp Scp="PAD_USEABLE_RELATION_ENEMY" Client="NO" UseSleep="NO"/>
+			<ToolScp Scp="PAD_USEABLE_FUNCNAME" Client="NO" UseSleep="NO">
+				<Str Str="SCR_PAD_USEABLE_RELATION_FRIEND_AND_ENEMY_CHECK"/>
+			</ToolScp>
 			<ToolScp Scp="PAD_CONCURRENT_USE_COUNT" Client="NO" UseSleep="NO">
 				<Num Num="0" UseFunc="1" FuncTxt="local value = 13
-                if IsPVPField(self) == 1 and value > 2 then
+                if IsPVPField(self) == 1 and value &gt; 2 then
                 value = math.floor((math.max(0, value-2)^0.5))+math.min(2, value)
                 end
                 return value"/>
@@ -14163,7 +14143,7 @@ end"/>
 		<createEvent>
 			<ToolScp Scp="PAD_CONCURRENT_USE_COUNT" Client="NO" UseSleep="NO">
 				<Num Num="0" UseFunc="1" FuncTxt="local value = 10
-                if IsPVPField(self) == 1 and value > 2 then
+                if IsPVPField(self) == 1 and value &gt; 2 then
                 value = math.floor((math.max(0, value-2)^0.5))+math.min(2, value)
                 end
                 return value"/>
@@ -15398,7 +15378,7 @@ return value"/>
 			<ToolScp Scp="PAD_USEABLE_RELATION_ENEMY" Client="NO" UseSleep="NO"/>
 			<ToolScp Scp="PAD_CONCURRENT_USE_COUNT" Client="NO" UseSleep="NO">
 				<Num Num="15" UseFunc="1" FuncTxt="local value = 15
-                if IsPVPField(self) == 1 and value > 2 then
+                if IsPVPField(self) == 1 and value &gt; 2 then
                 value = math.floor((math.max(0, value-2)^0.5))+math.min(2, value)
                 end
                 return value"/>
@@ -15476,7 +15456,7 @@ end" Arg="1"/>
 		<createEvent>
 			<ToolScp Scp="PAD_CONCURRENT_USE_COUNT" Client="NO" UseSleep="NO">
 				<Num Num="15" UseFunc="1" FuncTxt="local value = 15
-                if IsPVPField(self) == 1 and value > 2 then
+                if IsPVPField(self) == 1 and value &gt; 2 then
                 value = math.floor((math.max(0, value-2)^0.5))+math.min(2, value)
                 end
                 return value"/>
@@ -15673,14 +15653,14 @@ end" Arg="1"/>
 		<createEvent>
 			<ToolScp Scp="PAD_CONCURRENT_USE_COUNT" Client="NO" UseSleep="NO">
 				<Num Num="10" UseFunc="1" FuncTxt="local HitC = 10;
-                local HCUP = GetExProp(self, &quot;ITEM_CANISTERSHOT_HITCOUNT&quot;);
-                if HCUP &gt; 0 then
-                HitC = HitC + HCUP;
-                end
-                if IsPVPField(self) == 1 and HitC > 2 then
+local HCUP = GetExProp(self, &quot;ITEM_CANISTERSHOT_HITCOUNT&quot;);
+if HCUP &gt; 0 then
+HitC = HitC + HCUP;
+end
+                if IsPVPField(self) == 1 and HitC &gt; 2 then
                 HitC = math.floor((math.max(0, HitC-2)^0.5))+math.min(2, HitC)
                 end
-                return HitC;"/>
+return HitC;"/>
 			</ToolScp>
 			<ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
 				<Num Num="500"/>
@@ -15930,7 +15910,7 @@ return -1000"/>
 			</ToolScp>
 			<ToolScp Scp="PAD_CONCURRENT_USE_COUNT" Client="NO" UseSleep="NO">
 				<Num Num="0" UseFunc="1" FuncTxt="local value = 10
-                if IsPVPField(self) == 1 and value > 2 then
+                if IsPVPField(self) == 1 and value &gt; 2 then
                 value = math.floor((math.max(0, value-2)^0.5))+math.min(2, value)
                 end
                 return value"/>
@@ -16001,7 +15981,7 @@ return -1000"/>
 			</ToolScp>
 			<ToolScp Scp="PAD_CONCURRENT_USE_COUNT" Client="NO" UseSleep="NO">
 				<Num Num="0" UseFunc="1" FuncTxt="local value = 10
-                if IsPVPField(self) == 1 and value > 2 then
+                if IsPVPField(self) == 1 and value &gt; 2 then
                 value = math.floor((math.max(0, value-2)^0.5))+math.min(2, value)
                 end
                 return value"/>
@@ -16060,7 +16040,7 @@ return -1000"/>
 			</ToolScp>
 			<ToolScp Scp="PAD_CONCURRENT_USE_COUNT" Client="NO" UseSleep="NO">
 				<Num Num="0" UseFunc="1" FuncTxt="local value = 10
-                if IsPVPField(self) == 1 and value > 2 then
+                if IsPVPField(self) == 1 and value &gt; 2 then
                 value = math.floor((math.max(0, value-2)^0.5))+math.min(2, value)
                 end
                 return value"/>
@@ -18763,7 +18743,7 @@ end"/>
 			</ToolScp>
 			<ToolScp Scp="PAD_CONCURRENT_USE_COUNT" Client="NO" UseSleep="NO">
 				<Num Num="0" UseFunc="1" FuncTxt="local value = 7
-                if IsPVPField(self) == 1 and value > 2 then
+                if IsPVPField(self) == 1 and value &gt; 2 then
                 value = math.floor((math.max(0, value-2)^0.5))+math.min(2, value)
                 end
                 return value"/>
@@ -18809,7 +18789,7 @@ end"/>
 			</ToolScp>
 			<ToolScp Scp="PAD_CONCURRENT_USE_COUNT" Client="NO" UseSleep="NO">
 				<Num Num="0" UseFunc="1" FuncTxt="local value = 7
-                if IsPVPField(self) == 1 and value > 2 then
+                if IsPVPField(self) == 1 and value &gt; 2 then
                 value = math.floor((math.max(0, value-2)^0.5))+math.min(2, value)
                 end
                 return value"/>
@@ -19469,11 +19449,20 @@ return time"/>
 		<createEvent>
 			<ToolScp Scp="PAD_ATTACH_EQUIP" Client="NO" UseSleep="NO">
 				<Str Str="warrior_f_"/>
-				<Str Str="LH"/>
+				<Str Str="LH" UseFunc="1" FuncTxt="
+				local lhItem = GetEquipItem(self, &quot;LH&quot;)
+				if lhItem == nil or TryGetProp(lhItem, &quot;ClassType&quot;, &quot;None&quot;) ~= &quot;Shield&quot; then
+					local lhsubItem = GetEquipItem(self, &quot;LH_SUB&quot;)
+					if lhsubItem ~= nil and TryGetProp(lhsubItem, &quot;ClassType&quot;, &quot;None&quot;) == &quot;Shield&quot; then
+						return &quot;LH_SUB&quot;
+					end
+				end
+				return &quot;LH&quot;
+				"/>
 				<Pos Angle="0" Dist="0"/>
 				<Num Num="22"/>
 				<Num Num="0"/>
-				<Str_Arg Str="I_light004_violet" Arg="1"/>
+				<Str_Arg Str="I_light004_violet" UseFunc="1" FuncTxt="local name = &apos;I_light004_violet&apos; local valum = 1     if GetExProp(self, &apos;ITEM_VIBORA_SawbladeShield&apos;) &gt; 0 then name = &apos;F_spin039_sword_orange_reverse_Sawblade_Shield&apos; valum = 0.7 end return name, valum" Arg="1"/>
 				<Num Num="90"/>
 				<Num Num="0"/>
 				<Num Num="0"/>
@@ -19488,7 +19477,7 @@ return time"/>
 			</ToolScp>
 			<ToolScp Scp="PAD_CONCURRENT_USE_COUNT" Client="NO" UseSleep="NO">
 				<Num Num="8" UseFunc="1" FuncTxt="local value = 8
-                if IsPVPField(self) == 1 and value > 2 then
+                if IsPVPField(self) == 1 and value &gt; 2 then
                 value = math.floor((math.max(0, value-2)^0.5))+math.min(2, value)
                 end
                 return value"/>
@@ -19526,11 +19515,20 @@ return time"/>
 		<createEvent>
 			<ToolScp Scp="PAD_ATTACH_EQUIP" Client="NO" UseSleep="NO">
 				<Str Str="warrior_f_"/>
-				<Str Str="LH"/>
+				<Str Str="LH" UseFunc="1" FuncTxt="
+				local lhItem = GetEquipItem(self, &quot;LH&quot;)
+				if lhItem == nil or TryGetProp(lhItem, &quot;ClassType&quot;, &quot;None&quot;) ~= &quot;Shield&quot; then
+					local lhsubItem = GetEquipItem(self, &quot;LH_SUB&quot;)
+					if lhsubItem ~= nil and TryGetProp(lhsubItem, &quot;ClassType&quot;, &quot;None&quot;) == &quot;Shield&quot; then
+						return &quot;LH_SUB&quot;
+					end
+				end
+				return &quot;LH&quot;
+				"/>
 				<Pos Angle="0" Dist="0"/>
 				<Num Num="22"/>
 				<Num Num="0"/>
-				<Str_Arg Str="I_light004_violet2" Arg="1"/>
+				<Str_Arg Str="I_light004_violet" UseFunc="1" FuncTxt="local name = &apos;I_light004_violet&apos; local valum = 1     if GetExProp(self, &apos;ITEM_VIBORA_SawbladeShield&apos;) &gt; 0 then name = &apos;F_spin039_sword_orange_reverse_Sawblade_Shield&apos; valum = 0.7 end return name, valum" Arg="1"/>
 				<Num Num="90"/>
 				<Num Num="0"/>
 				<Num Num="0"/>
@@ -19545,13 +19543,20 @@ return time"/>
 			</ToolScp>
 			<ToolScp Scp="PAD_CONCURRENT_USE_COUNT" Client="NO" UseSleep="NO">
 				<Num Num="8" UseFunc="1" FuncTxt="local value = 8
-                if IsPVPField(self) == 1 and value > 2 then
+                if IsPVPField(self) == 1 and value &gt; 2 then
                 value = math.floor((math.max(0, value-2)^0.5))+math.min(2, value)
                 end
                 return value"/>
 			</ToolScp>
 			<ToolScp Scp="PAD_USEABLE_RELATION_ENEMY" Client="NO" UseSleep="NO"/>
 		</createEvent>
+		<destroyEvent>
+			<ToolScp Scp="PAD_OWNER_SHOW_PARTS_MODEL_C" Client="YES" UseSleep="NO">
+				<Str Str="LH"/>
+                <Num Num="1"/>
+                <Num Num="1"/>
+			</ToolScp>
+		</destroyEvent>
 		<enterEvent>
 			<ToolScp Scp="PAD_TGT_DAMAGE" Client="NO" UseSleep="NO">
 				<Str Str="ENEMY"/>
@@ -19797,7 +19802,7 @@ return GET_ABIL_LEVEL(self, &quot;PlagueDoctor6&quot;);"/>
 			</ToolScp>
 			<ToolScp Scp="PAD_CONCURRENT_USE_COUNT" Client="NO" UseSleep="NO">
 				<Num Num="0" UseFunc="1" FuncTxt="local value = 4
-                if IsPVPField(self) == 1 and value > 2 then
+                if IsPVPField(self) == 1 and value &gt; 2 then
                 value = math.floor((math.max(0, value-2)^0.5))+math.min(2, value)
                 end
                 return value"/>
@@ -19828,7 +19833,7 @@ return GET_ABIL_LEVEL(self, &quot;PlagueDoctor6&quot;);"/>
 			</ToolScp>
 			<ToolScp Scp="PAD_CONCURRENT_USE_COUNT" Client="NO" UseSleep="NO">
 				<Num Num="0" UseFunc="1" FuncTxt="local value = 4
-                if IsPVPField(self) == 1 and value > 2 then
+                if IsPVPField(self) == 1 and value &gt; 2 then
                 value = math.floor((math.max(0, value-2)^0.5))+math.min(2, value)
                 end
                 return value"/>
@@ -20008,7 +20013,7 @@ return GET_ABIL_LEVEL(self, &quot;PlagueDoctor6&quot;);"/>
 			</ToolScp>
 			<ToolScp Scp="PAD_CONCURRENT_USE_COUNT" Client="NO" UseSleep="NO">
 				<Num Num="5" UseFunc="1" FuncTxt="local value = obj.Level;
-                if IsPVPField(self) == 1 and value > 2 then
+                if IsPVPField(self) == 1 and value &gt; 2 then
                 value = math.floor((math.max(0, value-2)^0.5))+math.min(2, value)
                 end
                 return value"/>
@@ -20206,7 +20211,7 @@ return 8100;"/>
 			<ToolScp Scp="PAD_USEABLE_RELATION_ENEMY" Client="NO" UseSleep="NO"/>
 			<ToolScp Scp="PAD_CONCURRENT_USE_COUNT" Client="NO" UseSleep="NO">
 				<Num Num="10" UseFunc="1" FuncTxt="local value = 10
-                if IsPVPField(self) == 1 and value > 2 then
+                if IsPVPField(self) == 1 and value &gt; 2 then
                 value = math.floor((math.max(0, value-2)^0.5))+math.min(2, value)
                 end
                 return value"/>
@@ -20273,7 +20278,7 @@ return 8100;"/>
 			<ToolScp Scp="PAD_USEABLE_RELATION_ENEMY" Client="NO" UseSleep="NO"/>
 			<ToolScp Scp="PAD_CONCURRENT_USE_COUNT" Client="NO" UseSleep="NO">
 				<Num Num="0" UseFunc="1" FuncTxt="local value = 5
-                if IsPVPField(self) == 1 and value > 2 then
+                if IsPVPField(self) == 1 and value &gt; 2 then
                 value = math.floor((math.max(0, value-2)^0.5))+math.min(2, value)
                 end
                 return value"/>
@@ -20587,7 +20592,7 @@ return 1"/>
 			<ToolScp Scp="PAD_USEABLE_RELATION_ENEMY" Client="NO" UseSleep="NO"/>
 			<ToolScp Scp="PAD_CONCURRENT_USE_COUNT" Client="NO" UseSleep="NO">
 				<Num Num="0" UseFunc="1" FuncTxt="local value = 6
-                if IsPVPField(self) == 1 and value > 2 then
+                if IsPVPField(self) == 1 and value &gt; 2 then
                 value = math.floor((math.max(0, value-2)^0.5))+math.min(2, value)
                 end
                 return value"/>
@@ -20727,7 +20732,7 @@ return 200 + GET_ABIL_LEVEL(self, &quot;Rodelero3&quot;) * 50"/>
 			</ToolScp>
 		</updateEvent>
 	</PadSkill>
-	<PadSkill Name="Rogue_Lachrymator_abil" CheckerType="0" Range="75" IsMagicType="0" ApplyFlyMon="1">
+	<PadSkill Name="Rogue_Lachrymator_abil" CheckerType="0" Range="75" ApplyFlyMon="1" IsMagicType="0">
 		<createEvent>
 			<ToolScp Scp="C_PAD_EFFECT_POS" Client="YES" UseSleep="NO">
 				<Str_Arg Str="F_archer_lachrymator_smoke" Arg="1.3"/>
@@ -21470,7 +21475,7 @@ return 30000 + obj.Level * 5000"/>
 			<ToolScp Scp="PAD_USEABLE_RELATION_ENEMY" Client="NO" UseSleep="NO"/>
 			<ToolScp Scp="PAD_CONCURRENT_USE_COUNT" Client="NO" UseSleep="NO">
 				<Num Num="0" UseFunc="1" FuncTxt="local value = 3
-                if IsPVPField(self) == 1 and value > 2 then
+                if IsPVPField(self) == 1 and value &gt; 2 then
                 value = math.floor((math.max(0, value-2)^0.5))+math.min(2, value)
                 end
                 return value"/>
@@ -21523,7 +21528,7 @@ return 30000 + obj.Level * 5000"/>
 			</ToolScp>
 			<ToolScp Scp="PAD_CONCURRENT_USE_COUNT" Client="NO" UseSleep="NO">
 				<Num Num="10" UseFunc="1" FuncTxt="local value = 10
-                if IsPVPField(self) == 1 and value > 2 then
+                if IsPVPField(self) == 1 and value &gt; 2 then
                 value = math.floor((math.max(0, value-2)^0.5))+math.min(2, value)
                 end
                 return value"/>
@@ -21745,7 +21750,7 @@ return 30000 + obj.Level * 5000"/>
 		<createEvent>
 			<ToolScp Scp="PAD_CONCURRENT_USE_COUNT" Client="NO" UseSleep="NO">
 				<Num Num="10" UseFunc="1" FuncTxt="local value = 10
-                if IsPVPField(self) == 1 and value > 2 then
+                if IsPVPField(self) == 1 and value &gt; 2 then
                 value = math.floor((math.max(0, value-2)^0.5))+math.min(2, value)
                 end
                 return value"/>
@@ -23114,7 +23119,7 @@ return value;"/>
 			</ToolScp>
 			<ToolScp Scp="PAD_CONCURRENT_USE_COUNT" Client="NO" UseSleep="NO">
 				<Num Num="1" UseFunc="1" FuncTxt="local value = 6 + (obj.Level * 1);
-                if IsPVPField(self) == 1 and value > 2 then
+                if IsPVPField(self) == 1 and value &gt; 2 then
                 value = math.floor((math.max(0, value-2)^0.5))+math.min(2, value)
                 end
                 return value"/>
@@ -23192,7 +23197,7 @@ return value;"/>
 			</ToolScp>
 			<ToolScp Scp="PAD_CONCURRENT_USE_COUNT" Client="NO" UseSleep="NO">
 				<Num Num="1" UseFunc="1" FuncTxt="local value = 12 + (obj.Level * 2);
-                if IsPVPField(self) == 1 and value > 2 then
+                if IsPVPField(self) == 1 and value &gt; 2 then
                 value = math.floor((math.max(0, value-2)^0.5))+math.min(2, value)
                 end
                 return value"/>
@@ -23276,6 +23281,56 @@ return value;"/>
 			</ToolScp>
 		</enterEvent>
 		<updateEvent>
+			<ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
+				<Num Num="-500"/>
+				<Num Num="0"/>
+			</ToolScp>
+		</updateEvent>
+	</PadSkill>
+	<PadSkill Name="SuddenDeath_Assassin_Vibora" CheckerType="0" PadHeight="10" Range="20">
+		<createEvent>
+			<ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
+				<Num Num="5000"/>
+				<Num Num="999"/>
+			</ToolScp>
+		</createEvent>
+		<destroyEvent>
+			<ToolScp Scp="C_EFFECT_REMOVE_KEY" Client="YES" UseSleep="NO">
+				<Str Str="newbless"/>
+				<Num Num="0.5"/>
+			</ToolScp>
+		</destroyEvent>
+		<updateEvent>
+			<ToolScp Scp="PAD_BUFF_CHECK_BUFF_SELF" Client="NO" UseSleep="NO">
+				<Num Num="0"/>
+				<Num Num="0"/>
+				<Str Str="ITEM_BUFF_VIBORA_DAGGER_ASSASSIN"/>
+				<Str Str="SuddenDeath_Pad_Buff"/>
+				<Num Num="1"/>
+				<Num Num="0"/>
+				<Num Num="3000"/>
+				<Num Num="1"/>
+				<Num Num="100"/>
+				<Num Num="1"/>
+			</ToolScp>
+			<ToolScp Scp="PAD_BUFF_CHECK_BUFF_SELF" Client="NO" UseSleep="NO">
+				<Num Num="0"/>
+				<Num Num="0"/>
+				<Str Str="ITEM_BUFF_VIBORA_DAGGER_ASSASSIN"/>
+				<Str Str="SuddenDeath_Pad_Buff_Speed"/>
+				<Num Num="1"/>
+				<Num Num="0"/>
+				<Num Num="3000"/>
+				<Num Num="1"/>
+				<Num Num="100"/>
+				<Num Num="1"/>
+			</ToolScp>
+			<ToolScp Scp="PAD_CHECK_OWNER_BUFF_REMOVE" Client="NO" UseSleep="NO">
+				<Str Str="ITEM_BUFF_VIBORA_DAGGER_ASSASSIN"/>
+			</ToolScp>
+			<ToolScp Scp="PAD_FUNC_UPDATE_RUNSCRIPT" Client="NO" UseSleep="NO">
+				<Str Str="SCR_VIBORA_LOCAL_PAD_EFFECT"/>
+			</ToolScp>
 			<ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
 				<Num Num="-500"/>
 				<Num Num="0"/>
@@ -23474,7 +23529,7 @@ return value;"/>
 			</ToolScp>
 			<ToolScp Scp="PAD_CONCURRENT_USE_COUNT" Client="NO" UseSleep="NO">
 				<Num Num="0" UseFunc="1" FuncTxt="local value = 10
-                if IsPVPField(self) == 1 and value > 2 then
+                if IsPVPField(self) == 1 and value &gt; 2 then
                 value = math.floor((math.max(0, value-2)^0.5))+math.min(2, value)
                 end
                 return value"/>
@@ -23504,6 +23559,130 @@ return value;"/>
 				<Num Num="0"/>
 			</ToolScp>
 		</updateEvent>
+	</PadSkill>
+	<PadSkill Name="TOSHero_Buff_Avatar_3_Pad" CheckerType="0" Range="50" AllowOverlap="1">
+		<createEvent>
+			<ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
+				<Num Num="10000"/>
+				<Num Num="99999"/>
+			</ToolScp>
+			<ToolScp Scp="C_PAD_EFFECT_POS" Client="YES" UseSleep="NO">
+				<Str_Arg Str="F_burstup053" Arg="2.5"/>
+				<Pos Angle="0" Dist="0"/>
+				<Num Num="0"/>
+				<Str_Arg Str="None" Arg="1"/>
+				<Num Num="1"/>
+			</ToolScp>
+			<ToolScp Scp="PAD_FUNC_UPDATE_RUNSCRIPT" Client="NO" UseSleep="NO">
+				<Str Str="TOSHero_Buff_Avatar_3_Pad_enterSCR"/>
+			</ToolScp>
+			<ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
+				<Num Num="-10000"/>
+				<Num Num="-99999"/>
+			</ToolScp>
+		</createEvent>
+	</PadSkill>
+	<PadSkill Name="TOSHero_Buff_Avatar_H_Pad" CheckerType="0" PadHeight="5" Dist="43.622456" Angle="0.20129643" Range="80" UpdateTerm="100" AllowOverlap="1">
+		<createEvent>
+			<ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
+				<Num Num="10000"/>
+				<Num Num="10"/>
+			</ToolScp>
+			<ToolScp Scp="C_PAD_EFFECT_POS" Client="YES" UseSleep="NO">
+				<Str_Arg Str="F_common_TheEnd_loop" Arg="2.5"/>
+				<Pos Angle="0" Dist="0"/>
+				<Num Num="0"/>
+				<Str_Arg Str="None" Arg="1"/>
+				<Num Num="1"/>
+			</ToolScp>
+		</createEvent>
+		<updateEvent>
+			<ToolScp Scp="PAD_FUNC_UPDATE_RUNSCRIPT" Client="NO" UseSleep="NO">
+				<Str Str="TOSHero_Buff_Avatar_H_Pad_RunSCR"/>
+			</ToolScp>
+			<ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
+				<Num Num="-1000"/>
+				<Num Num="-1"/>
+			</ToolScp>
+		</updateEvent>
+	</PadSkill>
+	<PadSkill Name="TOSHero_Buff_PoisonPad" CheckerType="0" Dist="3.1389942" Angle="-0.92681986" Range="50" AllowOverlap="1">
+		<createEvent>
+			<ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
+				<Num Num="11000"/>
+				<Num Num="11"/>
+			</ToolScp>
+			<ToolScp Scp="C_PAD_EFFECT_POS" Client="YES" UseSleep="NO">
+				<Str_Arg Str="F_spread_out064_green_loop" Arg="2.3"/>
+				<Pos Angle="0" Dist="0"/>
+				<Num Num="0"/>
+				<Str_Arg Str="None" Arg="1"/>
+				<Num Num="1"/>
+			</ToolScp>
+		</createEvent>
+		<updateEvent>
+			<ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
+				<Num Num="-1000"/>
+				<Num Num="-1"/>
+			</ToolScp>
+			<ToolScp Scp="PAD_DAMAGE_ENEMY" Client="NO" UseSleep="NO">
+				<Num Num="5"/>
+				<Num Num="0"/>
+				<Num Num="0"/>
+				<Str_Arg Str="F_explosion068_green" Arg="1"/>
+				<Num Num="0"/>
+				<Num Num="0"/>
+				<Str Str="None"/>
+			</ToolScp>
+		</updateEvent>
+	</PadSkill>
+	<PadSkill Name="TOSHero_Straight_FireGround" CheckerType="0" PadHeight="1" Dist="63.701565" Angle="-1.7920176" Range="100" UpdateTerm="1000" AllowOverlap="1">
+		<createEvent>
+			<ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
+				<Num Num="10000"/>
+				<Num Num="99999"/>
+			</ToolScp>
+		</createEvent>
+		<updateEvent>
+			<ToolScp Scp="PAD_FUNC_UPDATE_RUNSCRIPT" Client="NO" UseSleep="NO">
+				<Str Str="TOSHERO_STRAIGHT_MAPPATTERN_FIREGROUND_DAMAGE"/>
+			</ToolScp>
+		</updateEvent>
+	</PadSkill>
+	<PadSkill Name="TOSHero_Straight_FireGround2" AllowOverlap="1">
+		<Area/>
+		<createEvent>
+			<ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
+				<Num Num="10000"/>
+				<Num Num="99999"/>
+			</ToolScp>
+		</createEvent>
+	</PadSkill>
+	<PadSkill Name="TOSHero_Straight_Gale1" CheckerType="1" PadHeight="2" Dist="183.08681" Angle="-2.4001744" Range="20" InnerRange="20" ApplyFlyMon="1" AllowOverlap="1">
+		<createEvent>
+			<ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
+				<Num Num="10000"/>
+				<Num Num="99999"/>
+			</ToolScp>
+		</createEvent>
+		<enterEvent>
+			<ToolScp Scp="PAD_TGT_SCRIPT" Client="NO" UseSleep="NO">
+				<Str Str="TOSHERO_STRAIGHT_MAPPATTERN_RUN"/>
+			</ToolScp>
+		</enterEvent>
+	</PadSkill>
+	<PadSkill Name="TOSHero_Straight_Gale2" CheckerType="1" PadHeight="2" Dist="183.08681" Angle="-2.4001744" Range="20" InnerRange="20" ApplyFlyMon="1" AllowOverlap="1">
+		<createEvent>
+			<ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
+				<Num Num="10000"/>
+				<Num Num="99999"/>
+			</ToolScp>
+		</createEvent>
+		<enterEvent>
+			<ToolScp Scp="PAD_TGT_SCRIPT" Client="NO" UseSleep="NO">
+				<Str Str="TOSHERO_STRAIGHT_MAPPATTERN_HEAL_RUN"/>
+			</ToolScp>
+		</enterEvent>
 	</PadSkill>
 	<PadSkill Name="Tantaliser_Hard_Breath" CheckerType="1" Dist="100.0007" Angle="-1.2318741" Range="250" InnerRange="15" UpdateTerm="300" ApplyFlyMon="1" AllowOverlap="1" EnableSearch="0" IsMagicType="0" IsMineType="0">
 		<createEvent>
@@ -24832,7 +25011,7 @@ end"/>
 			<ToolScp Scp="PAD_USEABLE_RELATION_ENEMY" Client="NO" UseSleep="NO"/>
 			<ToolScp Scp="PAD_CONCURRENT_USE_COUNT" Client="NO" UseSleep="NO">
 				<Num Num="10" UseFunc="1" FuncTxt="local value = 10
-                if IsPVPField(self) == 1 and value > 2 then
+                if IsPVPField(self) == 1 and value &gt; 2 then
                 value = math.floor((math.max(0, value-2)^0.5))+math.min(2, value)
                 end
                 return value"/>
@@ -25605,7 +25784,7 @@ return 3 + obj.Level * 0.5"/>
 			</ToolScp>
 			<ToolScp Scp="PAD_CONCURRENT_USE_COUNT" Client="NO" UseSleep="NO">
 				<Num Num="15" UseFunc="1" FuncTxt="local value = 15
-                if IsPVPField(self) == 1 and value > 2 then
+                if IsPVPField(self) == 1 and value &gt; 2 then
                 value = math.floor((math.max(0, value-2)^0.5))+math.min(2, value)
                 end
                 return value"/>
@@ -25767,6 +25946,11 @@ return 3 + obj.Level * 0.5"/>
 				<Num Num="1"/>
 			</ToolScp>
 		</createEvent>
+		<destroyEvent>
+			<ToolScp Scp="PAD_FUNC_UPDATE_DIRECT" Client="NO" UseSleep="NO">
+				<Str Str="SCR_UNIQUE_GLACIER_SNOW_STORM_DESTROY"/>
+			</ToolScp>
+		</destroyEvent>
 		<enterEvent>
 			<ToolScp Scp="PAD_TGT_SCRIPT" Client="NO" UseSleep="NO">
 				<Str Str="SCR_UNIQUE_GLACIER_SNOW_STORM_ENTER"/>
@@ -25777,11 +25961,6 @@ return 3 + obj.Level * 0.5"/>
 				<Str Str="SCR_UNIQUE_GLACIER_SNOW_STORM_LEAVE"/>
 			</ToolScp>
 		</leaveEvent>
-		<destroyEvent>
-			<ToolScp Scp="PAD_FUNC_UPDATE_DIRECT" Client="NO" UseSleep="NO">
-				<Str Str="SCR_UNIQUE_GLACIER_SNOW_STORM_DESTROY"/>
-			</ToolScp>
-		</destroyEvent>
 		<updateEvent>
 			<ToolScp Scp="PAD_FUNC_UPDATE_RUNSCRIPT" Client="NO" UseSleep="NO">
 				<Str Str="SCR_UNIQUE_GLACIER_SNOW_STORM_UPDATE"/>
@@ -26175,6 +26354,252 @@ return 3 + obj.Level * 0.5"/>
 			</ToolScp>
 		</updateEvent>
 	</PadSkill>
+	<PadSkill Name="Vasilissa_Enter_Mirror_Pad" CheckerType="0" Range="30" AllowOverlap="1">
+		<createEvent>
+			<ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
+				<Num Num="10000"/>
+				<Num Num="1"/>
+			</ToolScp>
+			<ToolScp Scp="C_PAD_EFFECT_POS" Client="YES" UseSleep="NO">
+				<Str_Arg Str="F_warrior_greatbearformation_active_circle" Arg="2.5"/>
+				<Pos Angle="0" Dist="3.5285386e-16"/>
+				<Num Num="0"/>
+				<Str_Arg Str="None" Arg="1"/>
+				<Num Num="1"/>
+			</ToolScp>
+			<ToolScp Scp="PAD_USEABLE_PC" Client="NO" UseSleep="NO"/>
+		</createEvent>
+		<enterEvent>
+			<ToolScp Scp="PAD_TGT_SCRIPT" Client="NO" UseSleep="NO">
+				<Str Str="SCR_VASILISSA_ROTATE_MIRROR_ENTER"/>
+			</ToolScp>
+		</enterEvent>
+		<leaveEvent>
+			<ToolScp Scp="PAD_TGT_SCRIPT" Client="NO" UseSleep="NO">
+				<Str Str="SCR_VASILISSA_ROTATE_MIRROR_LEAVE"/>
+			</ToolScp>
+		</leaveEvent>
+	</PadSkill>
+	<PadSkill Name="Vasilissa_Front_Pertrify_Pad" CheckerType="1" Dist="55.739937" Angle="-0.093888097" Range="80" InnerRange="50" UpdateTerm="1000" AutoPos="1" AutoDir="1" AllowOverlap="1" EnableSearch="0" IsMagicType="0">
+		<createEvent>
+			<ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
+				<Num Num="10000"/>
+				<Num Num="1"/>
+			</ToolScp>
+			<ToolScp Scp="PAD_USEABLE_PC" Client="NO" UseSleep="NO"/>
+		</createEvent>
+		<updateEvent>
+			<ToolScp Scp="PAD_FUNC_UPDATE_RUNSCRIPT" Client="NO" UseSleep="NO">
+				<Str Str="SCR_VASILISSA_FRONT_PERTRIFY_UPDATE"/>
+			</ToolScp>
+		</updateEvent>
+	</PadSkill>
+	<PadSkill Name="Vasilissa_HighFeverArea_Pad" CheckerType="4" PadHeight="10" Dist="254.05176" Angle="-1.776665" Range="420" InnerRange="260" UpdateTerm="1000" AllowOverlap="1">
+		<createEvent>
+			<ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
+				<Num Num="10000"/>
+				<Num Num="1"/>
+			</ToolScp>
+		</createEvent>
+		<enterEvent>
+			<ToolScp Scp="PAD_TGT_SCRIPT" Client="NO" UseSleep="NO">
+				<Str Str="SCR_VASILISSA_HIGH_FEVER_AREA_ENTER"/>
+			</ToolScp>
+		</enterEvent>
+		<leaveEvent>
+			<ToolScp Scp="PAD_TGT_SCRIPT" Client="NO" UseSleep="NO">
+				<Str Str="SCR_VASILISSA_HIGH_FEVER_AREA_LEAVE"/>
+			</ToolScp>
+		</leaveEvent>
+		<updateEvent>
+			<ToolScp Scp="PAD_FUNC_UPDATE_RUNSCRIPT" Client="NO" UseSleep="NO">
+				<Str Str="SCR_VAISLISSA_HIGH_FEVER_AREA_UPDATE"/>
+			</ToolScp>
+		</updateEvent>
+	</PadSkill>
+	<PadSkill Name="Vasilissa_Petrify_Pad" CheckerType="0" Range="20" UpdateTerm="200" EnableSearch="0">
+		<createEvent>
+			<ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
+				<Num Num="10000"/>
+				<Num Num="1"/>
+			</ToolScp>
+			<ToolScp Scp="PAD_ADD_CHECKER" Client="NO" UseSleep="NO">
+				<Num Num="800"/>
+				<Num Num="2"/>
+				<Num Num="0"/>
+				<Num Num="0"/>
+			</ToolScp>
+			<ToolScp Scp="PAD_USEABLE_PC" Client="NO" UseSleep="NO"/>
+		</createEvent>
+		<enterEvent>
+			<ToolScp Scp="PAD_TGT_DAMAGE" Client="NO" UseSleep="NO">
+				<Str Str="ENEMY"/>
+				<Num Num="1"/>
+				<Num Num="0"/>
+				<Num Num="0"/>
+			</ToolScp>
+			<ToolScp Scp="PAD_TGT_SCRIPT" Client="NO" UseSleep="NO">
+				<Str Str="SCR_VASILISSA_PAD_TARGET_PETRIFY_BUFF"/>
+			</ToolScp>
+		</enterEvent>
+		<updateEvent>
+			<ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
+				<Num Num="-1000"/>
+				<Num Num="0"/>
+			</ToolScp>
+		</updateEvent>
+	</PadSkill>
+    <PadSkill Name="Vasilissa_PoisonSmog_Pad" CheckerType="0" Dist="79.167412" Angle="-1.3771418" Range="100" UpdateTerm="1000" AllowOverlap="1" IgnoreDistanceInterval="1" EnableSearch="0">
+		<createEvent>
+			<ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
+				<Num Num="50000"/>
+				<Num Num="1"/>
+			</ToolScp>
+			<ToolScp Scp="PAD_FUNC_UPDATE_RUNSCRIPT" Client="NO" UseSleep="NO">
+				<Str Str="SCR_VASILISSA_POISON_SMOG_CREATE"/>
+			</ToolScp>
+		</createEvent>
+		<enterEvent>
+			<ToolScp Scp="PAD_TGT_SCRIPT" Client="NO" UseSleep="NO">
+				<Str Str="SCR_VASILISSA_POISON_SMOG_ENTER"/>
+			</ToolScp>
+		</enterEvent>
+		<leaveEvent>
+			<ToolScp Scp="PAD_TGT_SCRIPT" Client="NO" UseSleep="NO">
+				<Str Str="SCR_VASILISSA_POISON_SMOG_LEAVE"/>
+			</ToolScp>
+		</leaveEvent>
+		<updateEvent>
+			<ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
+				<Num Num="-1000"/>
+				<Num Num="1"/>
+			</ToolScp>
+			<ToolScp Scp="PAD_FUNC_UPDATE_RUNSCRIPT" Client="NO" UseSleep="NO">
+				<Str Str="SCR_VASILISSA_POSION_SMOG_UPDATE"/>
+			</ToolScp>
+		</updateEvent>
+	</PadSkill>
+	<PadSkill Name="Vasilissa_Poison_Pad" CheckerType="0" Range="90" UpdateTerm="1000" AllowOverlap="1">
+		<createEvent>
+			<ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
+				<Num Num="20000"/>
+				<Num Num="1"/>
+			</ToolScp>
+			<ToolScp Scp="C_PAD_EFFECT_POS" Client="YES" UseSleep="NO">
+				<Str_Arg Str="F_ground220_poison_green_loop" Arg="2.5"/>
+				<Pos Angle="0" Dist="0"/>
+				<Num Num="0"/>
+				<Str_Arg Str="None" Arg="1"/>
+				<Num Num="1"/>
+			</ToolScp>
+			<ToolScp Scp="PAD_USEABLE_PC" Client="NO" UseSleep="NO"/>
+		</createEvent>
+		<leaveEvent>
+			<ToolScp Scp="PAD_TGT_BUFF_REMOVE_MON" Client="NO" UseSleep="NO">
+				<Str Str="ENEMY"/>
+				<Num Num="0"/>
+				<Num Num="0"/>
+				<Str Str="VASILISSA_UNRECOVERY_DEBUFF"/>
+			</ToolScp>
+		</leaveEvent>
+		<updateEvent>
+			<ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
+				<Num Num="-200"/>
+				<Num Num="99999"/>
+			</ToolScp>
+			<ToolScp Scp="PAD_DAMAGE_ENEMY" Client="NO" UseSleep="NO">
+				<Num Num="1"/>
+				<Num Num="0"/>
+				<Num Num="0"/>
+				<Str_Arg Str="None" Arg="1"/>
+				<Num Num="0"/>
+				<Num Num="0"/>
+				<Str Str="None"/>
+			</ToolScp>
+			<ToolScp Scp="PAD_FUNC_UPDATE_RUNSCRIPT" Client="NO" UseSleep="NO">
+				<Str Str="SCR_VASILISSA_POSION_PAD_UPDATE"/>
+			</ToolScp>
+		</updateEvent>
+	</PadSkill>
+	<PadSkill Name="Vasilissa_Thunderstroke_Pad" CheckerType="0" Dist="121.52144" Angle="0.033389211" AutoPos="1" AllowOverlap="1">
+		<createEvent>
+			<ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
+				<Num Num="10000"/>
+				<Num Num="1"/>
+			</ToolScp>
+		</createEvent>
+		<updateEvent>
+			<ToolScp Scp="PAD_MSL_FALL" Client="NO" UseSleep="NO">
+				<Num Num="100"/>
+				<Num Num="150"/>
+				<Str_Arg Str="None" Arg="1"/>
+				<Str_Arg Str="F_rize015_1_drop_white2" Arg="1.5"/>
+				<Str_Arg Str="I_weapon_npc_mark" Arg="1"/>
+				<Num Num="25"/>
+				<Num Num="1"/>
+				<Num Num="0.1"/>
+				<Num Num="300"/>
+				<Num Num="3"/>
+				<Num Num="1000"/>
+				<Num Num="1"/>
+				<Num Num="0"/>
+				<Num Num="0"/>
+				<Str_Arg Str="I_skillrange360" Arg="1"/>
+				<Num Num="1"/>
+			</ToolScp>
+		</updateEvent>
+	</PadSkill>
+	<PadSkill Name="Vasilissa_Tsunami_Pad" CheckerType="1" Dist="46.470219" Angle="-1.6458354" Range="70" InnerRange="200" UpdateTerm="100" ApplyFlyMon="1" AllowOverlap="1" EnableSearch="0">
+		<createEvent>
+			<ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
+				<Num Num="40000"/>
+				<Num Num="1"/>
+			</ToolScp>
+			<ToolScp Scp="C_PAD_EFFECT_POS" Client="YES" UseSleep="NO">
+				<Str_Arg Str="E_wave001_loop" Arg="1.8"/>
+				<Pos Angle="0" Dist="-4.7361645e-18" Height="20"/>
+				<Num Num="0"/>
+				<Str_Arg Str="None" Arg="1"/>
+				<Num Num="1"/>
+			</ToolScp>
+			<ToolScp Scp="PAD_USEABLE_PC" Client="NO" UseSleep="NO"/>
+		</createEvent>
+		<destroyEvent>
+			<ToolScp Scp="PAD_FUNC_UPDATE_RUNSCRIPT" Client="NO" UseSleep="NO">
+				<Str Str="SCR_VASILISSA_TSUNAMI_PAD_DESTROY"/>
+			</ToolScp>
+		</destroyEvent>
+		<enterEvent>
+			<ToolScp Scp="PAD_FUNC_DIRECT" Client="NO" UseSleep="NO">
+				<Str Str="SCR_VASILISSA_TSUNAMI_PAD_ENTER"/>
+			</ToolScp>
+		</enterEvent>
+		<updateEvent>
+			<ToolScp Scp="PAD_UPDATE_TGT_KNOCKDOWN" Client="NO" UseSleep="NO">
+				<Str Str="ENEMY"/>
+				<Str Str="KB"/>
+				<Num Num="400"/>
+				<Num Num="5"/>
+				<Num Num="1"/>
+				<Num Num="0"/>
+				<Num Num="0"/>
+				<Str Str="VASILISSA_BREAKWATER_BUFF"/>
+			</ToolScp>
+			<ToolScp Scp="PAD_DAMAGE_ENEMY" Client="NO" UseSleep="NO">
+				<Num Num="0.5"/>
+				<Num Num="0"/>
+				<Num Num="0"/>
+				<Str_Arg Str="None" Arg="1"/>
+				<Num Num="0"/>
+				<Num Num="0"/>
+				<Str Str="None"/>
+			</ToolScp>
+			<ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
+				<Num Num="-1000"/>
+				<Num Num="1"/>
+			</ToolScp>
+		</updateEvent>
+	</PadSkill>
 	<PadSkill Name="Velo_Holdbuff" CheckerType="0" Dist="2.3241811" Angle="-0.544415" Range="77.5" EnableSearch="0">
 		<createEvent>
 			<ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
@@ -26228,7 +26653,7 @@ return 3 + obj.Level * 0.5"/>
 			<ToolScp Scp="PAD_USEABLE_RELATION_ENEMY" Client="NO" UseSleep="NO"/>
 			<ToolScp Scp="PAD_CONCURRENT_USE_COUNT" Client="NO" UseSleep="NO">
 				<Num Num="0" UseFunc="1" FuncTxt="local value = 7
-                if IsPVPField(self) == 1 and value > 2 then
+                if IsPVPField(self) == 1 and value &gt; 2 then
                 value = math.floor((math.max(0, value-2)^0.5))+math.min(2, value)
                 end
                 return value"/>
@@ -26288,7 +26713,7 @@ return 3 + obj.Level * 0.5"/>
 			<ToolScp Scp="PAD_USEABLE_RELATION_ENEMY" Client="NO" UseSleep="NO"/>
 			<ToolScp Scp="PAD_CONCURRENT_USE_COUNT" Client="NO" UseSleep="NO">
 				<Num Num="0" UseFunc="1" FuncTxt="local value = 4
-                if IsPVPField(self) == 1 and value > 2 then
+                if IsPVPField(self) == 1 and value &gt; 2 then
                 value = math.floor((math.max(0, value-2)^0.5))+math.min(2, value)
                 end
                 return value"/>
@@ -27726,7 +28151,7 @@ return obj.Level"/>
 			<ToolScp Scp="PAD_USEABLE_RELATION_ENEMY" Client="NO" UseSleep="NO"/>
 			<ToolScp Scp="PAD_CONCURRENT_USE_COUNT" Client="NO" UseSleep="NO">
 				<Num Num="0" UseFunc="1" FuncTxt="local value = 7
-                if IsPVPField(self) == 1 and value > 2 then
+                if IsPVPField(self) == 1 and value &gt; 2 then
                 value = math.floor((math.max(0, value-2)^0.5))+math.min(2, value)
                 end
                 return value"/>
@@ -28056,7 +28481,7 @@ return 1"/>
 			</ToolScp>
 			<ToolScp Scp="PAD_CONCURRENT_USE_COUNT" Client="NO" UseSleep="NO">
 				<Num Num="15" UseFunc="1" FuncTxt="local value = 15
-                if IsPVPField(self) == 1 and value > 2 then
+                if IsPVPField(self) == 1 and value &gt; 2 then
                 value = math.floor((math.max(0, value-2)^0.5))+math.min(2, value)
                 end
                 return value"/>
@@ -28120,7 +28545,7 @@ return 1"/>
 			</ToolScp>
 			<ToolScp Scp="PAD_CONCURRENT_USE_COUNT" Client="NO" UseSleep="NO">
 				<Num Num="15" UseFunc="1" FuncTxt="local value = 15
-                if IsPVPField(self) == 1 and value > 2 then
+                if IsPVPField(self) == 1 and value &gt; 2 then
                 value = math.floor((math.max(0, value-2)^0.5))+math.min(2, value)
                 end
                 return value"/>
@@ -28196,6 +28621,172 @@ return 1"/>
 		<updateEvent>
 			<ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
 				<Num Num="-150"/>
+				<Num Num="0"/>
+			</ToolScp>
+		</updateEvent>
+	</PadSkill>
+	<PadSkill Name="blackman_ArrowRain" CheckerType="0" Range="40" UpdateTerm="100">
+		<createEvent>
+			<ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
+				<Num Num="3000"/>
+				<Num Num="9999"/>
+			</ToolScp>
+		</createEvent>
+		<updateEvent>
+			<ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
+				<Num Num="-100"/>
+				<Num Num="0"/>
+			</ToolScp>
+			<ToolScp Scp="PAD_MSL_FALL" Client="NO" UseSleep="NO">
+				<Num Num="25"/>
+				<Num Num="40"/>
+				<Str_Arg Str="I_archer_ArrowRain_trail" Arg="1.5"/>
+				<Str_Arg Str="I_drop003_arrow_mesh" Arg="0.80000001"/>
+				<Str_Arg Str="None" Arg="1"/>
+				<Num Num="9"/>
+				<Num Num="0"/>
+				<Num Num="0.60000002"/>
+				<Num Num="200"/>
+				<Num Num="2"/>
+				<Num Num="1000"/>
+				<Num Num="1"/>
+				<Num Num="0"/>
+				<Num Num="0"/>
+				<Str_Arg Str="None" Arg="0.30000001"/>
+				<Num Num="0"/>
+			</ToolScp>
+			<ToolScp Scp="PAD_MSL_FALL" Client="NO" UseSleep="NO">
+				<Num Num="25"/>
+				<Num Num="40"/>
+				<Str_Arg Str="I_archer_ArrowRain_trail" Arg="1.5"/>
+				<Str_Arg Str="I_drop003_arrow_mesh" Arg="0.80000001"/>
+				<Str_Arg Str="None" Arg="1"/>
+				<Num Num="9"/>
+				<Num Num="0"/>
+				<Num Num="0.60000002"/>
+				<Num Num="200"/>
+				<Num Num="2"/>
+				<Num Num="1000"/>
+				<Num Num="1"/>
+				<Num Num="0"/>
+				<Num Num="0"/>
+				<Str_Arg Str="None" Arg="0.30000001"/>
+				<Num Num="0"/>
+			</ToolScp>
+			<ToolScp Scp="PAD_MSL_FALL" Client="NO" UseSleep="NO">
+				<Num Num="40"/>
+				<Num Num="40"/>
+				<Str_Arg Str="I_archer_ArrowRain_trail" Arg="1.5"/>
+				<Str_Arg Str="I_drop003_arrow_mesh" Arg="0.80000001"/>
+				<Str_Arg Str="None" Arg="1"/>
+				<Num Num="9"/>
+				<Num Num="0"/>
+				<Num Num="0.60000002"/>
+				<Num Num="200"/>
+				<Num Num="2"/>
+				<Num Num="1000"/>
+				<Num Num="1"/>
+				<Num Num="0"/>
+				<Num Num="0"/>
+				<Str_Arg Str="None" Arg="0.30000001"/>
+				<Num Num="0"/>
+			</ToolScp>
+		</updateEvent>
+	</PadSkill>
+	<PadSkill Name="blackman_ArrowRain2" CheckerType="0" Range="40" UpdateTerm="100">
+		<createEvent>
+			<ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
+				<Num Num="3000"/>
+				<Num Num="9999"/>
+			</ToolScp>
+		</createEvent>
+		<updateEvent>
+			<ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
+				<Num Num="-100"/>
+				<Num Num="0"/>
+			</ToolScp>
+			<ToolScp Scp="PAD_MSL_FALL" Client="NO" UseSleep="NO">
+				<Num Num="30"/>
+				<Num Num="40"/>
+				<Str_Arg Str="I_archer_ArrowRain_trail" Arg="1.5"/>
+				<Str_Arg Str="I_drop003_arrow_mesh" Arg="0.80000001"/>
+				<Str_Arg Str="None" Arg="1"/>
+				<Num Num="9"/>
+				<Num Num="0"/>
+				<Num Num="0.60000002"/>
+				<Num Num="200"/>
+				<Num Num="2"/>
+				<Num Num="1000"/>
+				<Num Num="1"/>
+				<Num Num="0"/>
+				<Num Num="0"/>
+				<Str_Arg Str="None" Arg="0.30000001"/>
+				<Num Num="0"/>
+			</ToolScp>
+			<ToolScp Scp="PAD_MSL_FALL" Client="NO" UseSleep="NO">
+				<Num Num="25"/>
+				<Num Num="40"/>
+				<Str_Arg Str="I_archer_ArrowRain_trail" Arg="1.5"/>
+				<Str_Arg Str="I_drop003_arrow_mesh" Arg="0.80000001"/>
+				<Str_Arg Str="None" Arg="1"/>
+				<Num Num="9"/>
+				<Num Num="0"/>
+				<Num Num="0.60000002"/>
+				<Num Num="200"/>
+				<Num Num="2"/>
+				<Num Num="1000"/>
+				<Num Num="1"/>
+				<Num Num="0"/>
+				<Num Num="0"/>
+				<Str_Arg Str="None" Arg="0.30000001"/>
+				<Num Num="0"/>
+			</ToolScp>
+			<ToolScp Scp="PAD_MSL_FALL" Client="NO" UseSleep="NO">
+				<Num Num="25"/>
+				<Num Num="40"/>
+				<Str_Arg Str="I_archer_ArrowRain_trail" Arg="1.5"/>
+				<Str_Arg Str="I_drop003_arrow_mesh" Arg="0.80000001"/>
+				<Str_Arg Str="None" Arg="1"/>
+				<Num Num="9"/>
+				<Num Num="0"/>
+				<Num Num="0.60000002"/>
+				<Num Num="200"/>
+				<Num Num="2"/>
+				<Num Num="1000"/>
+				<Num Num="1"/>
+				<Num Num="0"/>
+				<Num Num="0"/>
+				<Str_Arg Str="None" Arg="0.30000001"/>
+				<Num Num="0"/>
+			</ToolScp>
+		</updateEvent>
+	</PadSkill>
+	<PadSkill Name="blackman_pad1" CheckerType="0" Range="30" ApplyFlyMon="1" AllowOverlap="1" EnableSearch="0" IsMagicType="0" IsMineType="0">
+		<createEvent>
+			<ToolScp Scp="C_PAD_EFFECT_POS" Client="YES" UseSleep="NO">
+				<Str_Arg Str="F_circle26" Arg="1"/>
+				<Pos Angle="0" Dist="-1.9999811e-07" Height="20"/>
+				<Num Num="0"/>
+				<Str_Arg Str="None" Arg="1"/>
+				<Num Num="1"/>
+			</ToolScp>
+			<ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
+				<Num Num="10000"/>
+				<Num Num="1"/>
+			</ToolScp>
+		</createEvent>
+		<updateEvent>
+			<ToolScp Scp="PAD_DAMAGE_ENEMY" Client="NO" UseSleep="NO">
+				<Num Num="1"/>
+				<Num Num="0"/>
+				<Num Num="0"/>
+				<Str_Arg Str="None" Arg="1"/>
+				<Num Num="0"/>
+				<Num Num="0"/>
+				<Str Str="None"/>
+			</ToolScp>
+			<ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
+				<Num Num="-500"/>
 				<Num Num="0"/>
 			</ToolScp>
 		</updateEvent>
@@ -30067,7 +30658,7 @@ end"/>
 			<ToolScp Scp="PAD_USEABLE_RELATION_ENEMY" Client="NO" UseSleep="NO"/>
 			<ToolScp Scp="PAD_CONCURRENT_USE_COUNT" Client="NO" UseSleep="NO">
 				<Num Num="0" UseFunc="1" FuncTxt="local value = 10
-                if IsPVPField(self) == 1 and value > 2 then
+                if IsPVPField(self) == 1 and value &gt; 2 then
                 value = math.floor((math.max(0, value-2)^0.5))+math.min(2, value)
                 end
                 return value"/>
@@ -30891,6 +31482,73 @@ end"/>
 			</ToolScp>
 		</updateEvent>
 	</PadSkill>
+	<PadSkill Name="insane_marnoks_pad" CheckerType="0" Range="33" UpdateTerm="1000" AllowOverlap="1">
+		<createEvent>
+			<ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
+				<Num Num="10000"/>
+				<Num Num="1"/>
+			</ToolScp>
+			<ToolScp Scp="C_PAD_EFFECT_POS" Client="YES" UseSleep="NO">
+				<Str_Arg Str="F_ground219_green" Arg="2"/>
+				<Pos Angle="0" Dist="0"/>
+				<Num Num="0"/>
+				<Str_Arg Str="None" Arg="1"/>
+				<Num Num="1"/>
+			</ToolScp>
+		</createEvent>
+		<updateEvent>
+			<ToolScp Scp="PAD_DAMAGE_ENEMY" Client="NO" UseSleep="NO">
+				<Num Num="1"/>
+				<Num Num="0"/>
+				<Num Num="0"/>
+				<Str_Arg Str="None" Arg="1"/>
+				<Num Num="0"/>
+				<Num Num="0"/>
+				<Str Str="None"/>
+			</ToolScp>
+			<ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
+				<Num Num="-1000"/>
+				<Num Num="0"/>
+			</ToolScp>
+			<ToolScp Scp="C_PAD_EFFECT_POS" Client="YES" UseSleep="NO">
+				<Str_Arg Str="F_ground219_green" Arg="2"/>
+				<Pos Angle="0" Dist="0"/>
+				<Num Num="0"/>
+				<Str_Arg Str="None" Arg="1"/>
+				<Num Num="1"/>
+			</ToolScp>
+		</updateEvent>
+	</PadSkill>
+	<PadSkill Name="insane_marnoks_pad2" CheckerType="0" Dist="116.55795" Angle="2.0063305" Range="60" UpdateTerm="1000" AllowOverlap="1" EnableSearch="0" IsMineType="0">
+		<createEvent>
+			<ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
+				<Num Num="10000"/>
+				<Num Num="1"/>
+			</ToolScp>
+			<ToolScp Scp="C_PAD_EFFECT_POS" Client="YES" UseSleep="NO">
+				<Str_Arg Str="F_ground059_fire2_green" Arg="3"/>
+				<Pos Angle="0" Dist="4.28346e-15"/>
+				<Num Num="0"/>
+				<Str_Arg Str="None" Arg="1"/>
+				<Num Num="1"/>
+			</ToolScp>
+		</createEvent>
+		<updateEvent>
+			<ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
+				<Num Num="-1000"/>
+				<Num Num="1"/>
+			</ToolScp>
+			<ToolScp Scp="PAD_DAMAGE_ENEMY" Client="NO" UseSleep="NO">
+				<Num Num="1"/>
+				<Num Num="0"/>
+				<Num Num="0"/>
+				<Str_Arg Str="None" Arg="1"/>
+				<Num Num="0"/>
+				<Num Num="0"/>
+				<Str Str="None"/>
+			</ToolScp>
+		</updateEvent>
+	</PadSkill>
 	<PadSkill Name="kubas_prominence" CheckerType="5" UpdateTerm="100">
 		<createEvent>
 			<ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
@@ -30928,7 +31586,7 @@ end"/>
 			</ToolScp>
 		</updateEvent>
 	</PadSkill>
-	<PadSkill Name="lachrymator_pad" CheckerType="0" Range="50" IsMagicType="0" ApplyFlyMon="1">
+	<PadSkill Name="lachrymator_pad" CheckerType="0" Range="50" ApplyFlyMon="1" IsMagicType="0">
 		<createEvent>
 			<ToolScp Scp="C_PAD_EFFECT_POS" Client="YES" UseSleep="NO">
 				<Str_Arg Str="F_archer_lachrymator_smoke" Arg="1"/>
@@ -30977,7 +31635,7 @@ end"/>
 			</ToolScp>
 		</updateEvent>
 	</PadSkill>
-	<PadSkill Name="lachrymator_pad_Rogue26" CheckerType="0" Range="50" UpdateTerm="1000" AllowOverlap="1" ApplyFlyMon="1">
+	<PadSkill Name="lachrymator_pad_Rogue26" CheckerType="0" Range="50" UpdateTerm="1000" ApplyFlyMon="1" AllowOverlap="1">
 		<createEvent>
 			<ToolScp Scp="C_PAD_EFFECT_POS" Client="YES" UseSleep="NO">
 				<Str_Arg Str="F_archer_lachrymator_smoke" Arg="0.80000001"/>
@@ -30992,7 +31650,7 @@ end"/>
 			</ToolScp>
 			<ToolScp Scp="PAD_CONCURRENT_USE_COUNT" Client="NO" UseSleep="NO">
 				<Num Num="5" UseFunc="1" FuncTxt="local value = 5
-                if IsPVPField(self) == 1 and value > 2 then
+                if IsPVPField(self) == 1 and value &gt; 2 then
                 value = math.floor((math.max(0, value-2)^0.5))+math.min(2, value)
                 end
                 return value"/>
@@ -31201,6 +31859,36 @@ end"/>
 			</ToolScp>
 		</updateEvent>
 	</PadSkill>
+	<PadSkill Name="mokslas_valdovas_pad" CheckerType="0" Range="40" UpdateTerm="1000" AllowOverlap="1" EnableSearch="0" IsMagicType="0" IsMineType="0">
+		<createEvent>
+			<ToolScp Scp="C_PAD_EFFECT_POS" Client="YES" UseSleep="NO">
+				<Str_Arg Str="F_ground132_dark_green_loop2" Arg="1"/>
+				<Pos Angle="0" Dist="0"/>
+				<Num Num="0"/>
+				<Str_Arg Str="None" Arg="1"/>
+				<Num Num="1"/>
+			</ToolScp>
+			<ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
+				<Num Num="30000"/>
+				<Num Num="1"/>
+			</ToolScp>
+		</createEvent>
+		<updateEvent>
+			<ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
+				<Num Num="-1000"/>
+				<Num Num="0"/>
+			</ToolScp>
+			<ToolScp Scp="PAD_DAMAGE_ENEMY" Client="NO" UseSleep="NO">
+				<Num Num="1"/>
+				<Num Num="0"/>
+				<Num Num="0"/>
+				<Str_Arg Str="None" Arg="1"/>
+				<Num Num="0"/>
+				<Num Num="0"/>
+				<Str Str="None"/>
+			</ToolScp>
+		</updateEvent>
+	</PadSkill>
 	<PadSkill Name="molich_magicfinish" CheckerType="0" Range="150" UpdateTerm="400" EnableSearch="0">
 		<createEvent>
 			<ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
@@ -31309,7 +31997,7 @@ end"/>
 			</ToolScp>
 			<ToolScp Scp="PAD_CONCURRENT_USE_COUNT" Client="NO" UseSleep="NO">
 				<Num Num="0" UseFunc="1" FuncTxt="local value = 9
-                if IsPVPField(self) == 1 and value > 2 then
+                if IsPVPField(self) == 1 and value &gt; 2 then
                 value = math.floor((math.max(0, value-2)^0.5))+math.min(2, value)
                 end
                 return value"/>

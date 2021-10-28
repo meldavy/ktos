@@ -83,14 +83,14 @@ local function GET_JEWELL_ITEM_OBJECT_BY_FRAME(frame)
 	return GetIES(jewellItem:GetObject()), jewellItem;
 end
 
-local function SET_TARGET_SLOT(frame, targetItem)
+local function SET_TARGET_SLOT(frame, targetItem)	
 	local slot = GET_CHILD_RECURSIVELY(frame, 'slot');
 	local slot_bg_image = GET_CHILD_RECURSIVELY(frame, 'slot_bg_image');
 	local text_putonitem = GET_CHILD_RECURSIVELY(frame, 'text_putonitem');
 	local text_itemname = GET_CHILD_RECURSIVELY(frame, 'text_itemname');
 
 	if targetItem ~= nil then
-		local targetItemObj = GetIES(targetItem:GetObject());
+		local targetItemObj = GetIES(targetItem:GetObject());		
 		SET_SLOT_ITEM(slot, targetItem);		
 		text_itemname:SetText(targetItemObj.Name);		
 		slot_bg_image:ShowWindow(0);
@@ -173,6 +173,13 @@ local function CHECK_EXECUTE_ENCHNAT_JEWELL(frame, targetItemID)
 		ui.SysMsg(ScpArgMsg('CannotApplyJewellBecause{REASON}', 'REASON', ClMsg(reason)));
 		return false;
 	end
+
+	local targetItemObj = GetIES(targetItem:GetObject());
+	if TryGetProp(targetItemObj, 'ItemGrade', 1) >= 6 then
+		ui.SysMsg(ClMsg("CantUseGoddessItemByEnchantJewellItem"))
+		return false
+	end
+
 	return true;
 end
 
@@ -258,7 +265,7 @@ function RAREOPTION_REGISTER_ITEM(frame, invItemID)
 	end
 
 	local jewellItem = GET_JEWELL_ITEM_OBJECT_BY_FRAME(frame);	
-	if jewellItem ==nil then
+	if jewellItem == nil then
 		local curSettedLv = frame:GetUserIValue('JEWELL_LEVEL');
 		local curSettedGrade = frame:GetUserIValue('JEWELL_GRADE');
 		ui.MsgBox(ScpArgMsg('UseUp{LEVEL}{GRADE}Jewell', 'LEVEL', curSettedLv, 'GRADE', gradestr_list[curSettedGrade]), 'ui.CloseFrame("rareoption")', 'None');

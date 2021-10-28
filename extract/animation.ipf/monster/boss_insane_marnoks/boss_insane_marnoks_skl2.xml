@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ActionDesc>
+    <Sound frame="0.56" soundFile="mon_voice_saltistter_3"/>
+    <Sound frame="3.00" soundFile="mon_bramble_atk_ready"/>
+    <Sound frame="18.00" soundFile="skl_eff_atk_move_l_20"/>
+    <Sound frame="65.00" soundFile="m_kerberos_skl_2"/>
+    <Sound frame="65.91" soundFile="boss_skl_eff_atk_move_l_2"/>
+    <Sound frame="68.16" soundFile="skl_eff_atk_sperad"/>
+</ActionDesc>

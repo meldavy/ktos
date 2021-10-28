@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ActionDesc>
+    <Sound frame="0.60" soundFile="mon_voice_saltistter_6"/>
+    <Sound frame="15.00" soundFile="mon_voice_onion_the_great_3"/>
+    <Sound frame="23.34" soundFile="skl_eff_landing_m"/>
+    <Sound frame="75.00" soundFile="mon_voice_onion_the_great_1"/>
+    <Sound frame="76.00" soundFile="skl_eff_special_hit_2"/>
+    <Sound frame="89.00" soundFile="mon_big_footstep_6"/>
+    <Sound frame="98.00" soundFile="mon_big_footstep_6"/>
+    <Sound frame="105.00" soundFile="mon_big_footstep_6"/>
+    <Sound frame="107.00" soundFile="skl_eff_big_whoosh_2"/>
+    <Sound frame="108.00" soundFile="swd_blow_flesh1--"/>
+    <Sound frame="108.00" soundFile="boss_skl_eff_scythe_attack"/>
+</ActionDesc>

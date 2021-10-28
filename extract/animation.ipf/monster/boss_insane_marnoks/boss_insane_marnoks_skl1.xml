@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ActionDesc>
+    <Sound frame="11.09" soundFile="mon_voice_saltistter_3"/>
+    <Sound frame="18.00" soundFile="swd_blow_flesh1--"/>
+    <Sound frame="18.70" soundFile="skl_eff_short_impact_whoosh_1"/>
+    <Sound frame="20.00" soundFile="boss_skl_eff_atk_move_l_2"/>
+    <Sound frame="34.00" soundFile="skl_eff_palmstrike_ground"/>
+    <Sound frame="37.00" soundFile="skl_eff_thurisaz_landing"/>
+    <Sound frame="37.00" soundFile="arw_blow_flesh1"/>
+</ActionDesc>

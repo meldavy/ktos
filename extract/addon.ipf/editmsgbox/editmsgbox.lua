@@ -3,7 +3,6 @@ function EDITMSGBOX_ON_INIT(addon, frame)
 	addon:RegisterMsg("DO_OPEN_EDITMSGBOX_UI", "EDITMSGBOX_FRAME_OPEN");
 end
 
-
 function EDITMSGBOX_FRAME_OPEN(clmsg, yesScp, noScp)
 	ui.OpenFrame("editmsgbox")
 	

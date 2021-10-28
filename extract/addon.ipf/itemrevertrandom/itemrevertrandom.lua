@@ -82,7 +82,7 @@ function REVERT_RANDOM_UPDATE(isSuccess)
 	UPDATE_REVERT_RANDOM_RESULT(frame, isSuccess);
 end
 
-function CLEAR_ITEM_REVERT_RANDOM_UI()
+function CLEAR_ITEM_REVERT_RANDOM_UI(itemID)
 	if ui.CheckHoldedUI() == true then
 		return;
 	end
@@ -125,6 +125,12 @@ function CLEAR_ITEM_REVERT_RANDOM_UI()
 	isCloseable = 1
 
 	UPDATE_REMAIN_MASTER_GLASS_COUNT(frame)
+
+	if itemID ~= nil and itemID ~= "None" then
+		ITEM_REVERT_RANDOM_REG_TARGETITEM(frame, itemID)
+	else
+		frame:SetUserValue("TARGET_GUID", "None")
+	end
 end
 
 function ITEM_REVERT_RANDOM_DROP(frame, icon, argStr, argNum)
@@ -179,6 +185,8 @@ function ITEM_REVERT_RANDOM_REG_TARGETITEM(frame, itemID, reReg)
 		ui.SysMsg(ClMsg("MaterialItemIsLock"));
 		return;
 	end
+
+	frame:SetUserValue("TARGET_GUID", itemID);
 
 	local putOnItem = GET_CHILD_RECURSIVELY(frame, "text_putonitem")
 	putOnItem:ShowWindow(0)
@@ -248,8 +256,13 @@ function ITEM_REVERT_RANDOM_EXEC(frame)
 		return;
 	end
 
-	local clmsg = ScpArgMsg("DoRevertRandomReset")
-	ui.MsgBox_NonNested(clmsg, frame:GetName(), "_ITEM_REVERT_RANDOM_EXEC", "None");
+	local check_no_msgbox = GET_CHILD_RECURSIVELY(frame, 'check_no_msgbox')
+	if check_no_msgbox:IsChecked() == 1 then
+		_ITEM_REVERT_RANDOM_EXEC()
+	else
+		local clmsg = ScpArgMsg("DoRevertRandomReset")
+		ui.MsgBox_NonNested(clmsg, frame:GetName(), "_ITEM_REVERT_RANDOM_EXEC", "None");
+	end
 end
 
 function _ITEM_REVERT_RANDOM_EXEC()
@@ -418,7 +431,9 @@ function ITEM_REVERT_RANDOM_SEND_OK()
 		return
 	end
 
-	CLEAR_ITEM_REVERT_RANDOM_UI()
+	local itemID = frame:GetUserValue("TARGET_GUID")
+
+	CLEAR_ITEM_REVERT_RANDOM_UI(itemID)
 end
 
 function ITEM_REVERT_RANDOM_INV_RBTN(itemObj, slot)
@@ -468,9 +483,14 @@ function ITEM_OPTION_SELECT_BEFORE(frame)
 		return ""
 	end
 
-	local clmsg = ScpArgMsg("ChangeRevertRandomOption{ItemName}", "ItemName", obj.Name)
-	local yesScp = string.format("ITEMREVERTRANDOM_SEND_ANSWER");
-	REVERTRANDOM_AGREEBOX_FRAME_OPEN(clmsg, obj, yesScp, "No")
+	local check_no_msgbox = GET_CHILD_RECURSIVELY(frame, 'check_no_msgbox');
+	if check_no_msgbox:IsChecked() == 1 then
+		ITEMREVERTRANDOM_SEND_ANSWER(nil, nil, "No");
+	else
+		local clmsg = ScpArgMsg("ChangeRevertRandomOption{ItemName}", "ItemName", obj.Name)
+		local yesScp = string.format("ITEMREVERTRANDOM_SEND_ANSWER");
+		REVERTRANDOM_AGREEBOX_FRAME_OPEN(clmsg, obj, yesScp, "No")
+	end
 end
 
 function ITEM_OPTION_SELECT_AFTER(frame)
@@ -497,9 +517,14 @@ function ITEM_OPTION_SELECT_AFTER(frame)
 		return ""
 	end
 
-	local clmsg = ScpArgMsg("ChangeRevertRandomOption{ItemName}", "ItemName", obj.Name)
-	local yesScp = string.format("ITEMREVERTRANDOM_SEND_ANSWER");
-	REVERTRANDOM_AGREEBOX_FRAME_OPEN(clmsg, obj, yesScp, "Yes");
+	local check_no_msgbox = GET_CHILD_RECURSIVELY(frame, 'check_no_msgbox');
+	if check_no_msgbox:IsChecked() == 1 then
+		ITEMREVERTRANDOM_SEND_ANSWER(nil, nil, "Yes")
+	else
+		local clmsg = ScpArgMsg("ChangeRevertRandomOption{ItemName}", "ItemName", obj.Name)
+		local yesScp = string.format("ITEMREVERTRANDOM_SEND_ANSWER");
+		REVERTRANDOM_AGREEBOX_FRAME_OPEN(clmsg, obj, yesScp, "Yes");
+	end
 end
 
 function ITEM_OPTION_SELECT_GETNAME()

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="EUC-KR"?>
+<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by imc (imc) -->
+<ActionDesc>
+    <BlendOn frame="0" R="0" G="0" B="0" A="50"/>
+    <Sound frame="11.11" soundFile="skl_eff_atk_move_m_7"/>
+    <Sound frame="16.28" soundFile="swd_blow_metal1"/>
+    <Particle frame="19" attachNode="Dummy_root" particleName="F_smoke126" useAttach="false" hiddenObj="false" changeEffect="None" scale="4" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Sound frame="19.11" soundFile="swd_blow_critical2"/>
+    <Shockwave frame="21" type="2" intensity="2" frequency="60" duration="0.3" range="1000"/>
+    <Particle frame="21" attachNode="Dummy_effect_skl012_2" particleName="I_swordtrail008_white4" useAttach="false" hiddenObj="false" changeEffect="None" scale="3" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Particle frame="22" attachNode="Bip001 Spine" particleName="F_spread_out050_white" useAttach="false" hiddenObj="false" changeEffect="None" scale="1.5" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Particle frame="22" attachNode="Bip001" particleName="F_ground040_2" useAttach="false" hiddenObj="false" changeEffect="None" scale="2" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <BlendOn frame="23" R="130" G="130" B="150" A="100"/>
+    <BlendOn frame="24" R="80" G="90" B="110" A="100"/>
+    <BlendOn frame="25" R="0" G="0" B="0" A="50"/>
+    <Sound frame="27.78" soundFile="skl_eff_atk_move_m_7"/>
+    <Particle frame="33" attachNode="Dummy_root" particleName="F_smoke126" useAttach="false" hiddenObj="false" changeEffect="None" scale="4" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Sound frame="33.26" soundFile="swd_blow_metal1"/>
+    <Sound frame="34.68" soundFile="swd_blow_critical1"/>
+    <Shockwave frame="35" type="2" intensity="2" frequency="60" duration="0.3" range="1000"/>
+    <Particle frame="35" attachNode="Dummy_effect_skl012_1" particleName="I_swordtrail008_white4" useAttach="false" hiddenObj="false" changeEffect="None" scale="3" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <BlendOn frame="41" R="140" G="140" B="160" A="100"/>
+    <Particle frame="41" attachNode="Bip001 Spine" particleName="F_spread_out050_white" useAttach="false" hiddenObj="false" changeEffect="None" scale="1.5" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Particle frame="41" attachNode="Bip001" particleName="F_ground040_2" useAttach="false" hiddenObj="false" changeEffect="None" scale="2" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <BlendOn frame="42" R="80" G="90" B="110" A="100"/>
+    <BlendOn frame="43" R="0" G="0" B="0" A="50"/>
+    <Particle frame="45" attachNode="Dummy_root" particleName="F_smoke126" useAttach="false" hiddenObj="false" changeEffect="None" scale="4" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Sound frame="47.78" soundFile="boss_swd_blow_flesh1"/>
+    <Shockwave frame="53" type="2" intensity="4" frequency="60" duration="0.5" range="1000"/>
+    <Particle frame="53" attachNode="Dummy_effect_skl012_3" particleName="I_dash014_white1" useAttach="false" hiddenObj="false" changeEffect="None" scale="4.5" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Particle frame="53" attachNode="Dummy_root" particleName="F_smoke126" useAttach="false" hiddenObj="false" changeEffect="None" scale="4" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Sound frame="54.50" soundFile="skl_eff_stone_blow_m"/>
+    <Particle frame="55" attachNode="Bip001 Spine" particleName="F_spread_out050_white" useAttach="false" hiddenObj="false" changeEffect="None" scale="1.5" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Particle frame="55" attachNode="Bip001" particleName="F_ground040_2" useAttach="false" hiddenObj="false" changeEffect="None" scale="2" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <BlendOn frame="57" R="150" G="150" B="170" A="100"/>
+    <Sound frame="57.33" soundFile="skl_eff_atk_move_m_7"/>
+    <BlendOn frame="58" R="80" G="90" B="110" A="100"/>
+    <BlendOn frame="59" R="0" G="0" B="0" A="50"/>
+    <BlendOff frame="60" R="0" G="0" B="0" A="0"/>
+</ActionDesc>

@@ -1020,7 +1020,7 @@ function GET_ITEM_BG_PICTURE_BY_GRADE(rank, needAppraisal, needRandomOption)
 		if flag == 3 then
 			pic = "six_item_bg5"
 		elseif flag == 4 then
-			pic = "six_item_bg_undefined"
+			pic = "six_item_bg5_undefined"
 		end
 	elseif rank == 0 then
 		return "premium_item_bg";
@@ -1140,6 +1140,10 @@ function GET_FULL_NAME(item, useNewLine, isEquiped)
 			ownName = string.format("+%d %s", curLv, ownName);
 		end
 	end
+	
+	if TryGetProp(item, "StringArg", "None") ==	"TOSHeroEquip" or TryGetProp(item, "StringArg", "None") ==	"TOSHeroEquipNeck" then
+		ownName = ClMsg('TOSHeroEquipTooltip_Title')..ownName
+	end
 
 	return ownName;
 end
@@ -1149,6 +1153,10 @@ function GET_NAME_OWNED(item)
 	local legendPrefix = TryGetProp(item, "LegendPrefix")
 	if legendPrefix ~= nil then
 		itemName = GET_LEGEND_PREFIX_ITEM_NAME(item)
+	end
+
+	if TryGetProp(item, "EvolvedItemLv", 0) > TryGetProp(item, "UseLv", 0) then
+		itemName = itemName..' '..ClMsg('EvolvedItem')
 	end
 
 	if item.ItemType == "Equip" and item.IsPrivate == "YES" and item.Equiped == 0 then
@@ -1689,7 +1697,7 @@ function ITEM_EQUIP_EXCEPTION(item)
 	return 1;
 end
 
-function ITEM_EQUIP_MSG(item, slotName)
+function ITEM_EQUIP_MSG(item, slotName)	
 	if 1 ~= ITEM_EQUIP_EXCEPTION(item) then
 		return;
 	end
@@ -1709,12 +1717,45 @@ function ITEM_EQUIP_MSG(item, slotName)
 		slotName = "HELMET";
 	end
 	
-	local strscp = string.format("item.Equip(%d)", item.invIndex);
-	if slotName ~= nil then
-		strscp = string.format("item.Equip(\"%s\", %d)", slotName, item.invIndex);
-	end
+	local item_obj = nil
+	item_obj = GetIES(item:GetObject())
 
-	RunStringScript(strscp);	
+	if item_obj ~= nil and TryGetProp(item_obj, 'EquipActionType', 'None') ~= 'None' then
+		if TryGetProp(item_obj, 'EquipActionType', 'None') == 'EquipCharacterBelonging' and TryGetProp(item_obj, 'CharacterBelonging') == 0 then
+			-- 착용시 캐릭터 귀속
+			local strscp = string.format("item.Equip(%d)", item.invIndex);
+			if slotName ~= nil then
+				strscp = string.format("item.Equip(\"%s\", %d)", slotName, item.invIndex);
+			end
+
+			local guid = GetIESID(item_obj)
+			local msg = ScpArgMsg("WantToEquipCuzCharacterBelonging");
+			WARNINGMSGBOX_FRAME_OPEN_EQUIP_ITEM(msg, strscp, "None", guid, 'char')			
+		elseif TryGetProp(item_obj, 'EquipActionType', 'None') == 'EquipTeamBelonging' and TryGetProp(item_obj, 'TeamBelonging') == 0 then
+			-- 착용시 팀 귀속
+			local strscp = string.format("item.Equip(%d)", item.invIndex);
+			if slotName ~= nil then
+				strscp = string.format("item.Equip(\"%s\", %d)", slotName, item.invIndex);
+			end
+			local msg = ScpArgMsg("WantToEquipCuzTeamBelonging");
+			local guid = GetIESID(item_obj)
+			local msg = ScpArgMsg("WantToEquipCuzCharacterBelonging");
+			WARNINGMSGBOX_FRAME_OPEN_EQUIP_ITEM(msg, strscp, "None", guid, 'team')			
+		else
+			local strscp = string.format("item.Equip(%d)", item.invIndex);
+			if slotName ~= nil then
+				strscp = string.format("item.Equip(\"%s\", %d)", slotName, item.invIndex);
+			end		
+			RunStringScript(strscp);	
+		end
+	else
+		local strscp = string.format("item.Equip(%d)", item.invIndex);
+		if slotName ~= nil then
+			strscp = string.format("item.Equip(\"%s\", %d)", slotName, item.invIndex);
+		end
+	
+		RunStringScript(strscp);	
+	end
 end
 
 function GET_ITEM_EQUIP_INDEX(item)
@@ -3166,6 +3207,13 @@ function SCR_GEM_ITEM_SELECT(argNum, luminItem, frameName)
 	-- get item object
 	local itemobj = GetIES(invitem:GetObject());
 	if itemobj == nil then
+		RELEASE_ITEMTARGET_ICON_GEM();
+		return;
+	end
+	
+	-- equip goddess
+	if TryGetProp(itemobj, "ItemGrade", 0) == 6 then
+		ui.SysMsg(ScpArgMsg("CannotEquipGemGoddess"));
 		RELEASE_ITEMTARGET_ICON_GEM();
 		return;
 	end

@@ -190,6 +190,8 @@ function GET_LV1_VIBORA_NAME(item)
         end
     end
 
+    full_name = GET_PARENT_VIBORA_NAME(full_name)
+
     return full_name, true
 end
 

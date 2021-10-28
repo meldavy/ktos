@@ -1,15 +1,10 @@
 ﻿--사용가능 설정--
 function IS_ANCIENT_ENABLE_MAP(self)
-    if IsServerSection() ~= 1 then
-        self = GetMyPCObject()
-    end
+    if IsServerSection() ~= 1 then self = GetMyPCObject(); end
 
-    local zoneName = 'None'
-    if IsServerSection() == 1 then
-        zoneName = GetZoneName(self);
-    else
-        zoneName = session.GetMapName();
-    end
+    local zoneName = "None";
+    if IsServerSection() == 1 then zoneName = GetZoneName(self);
+    else zoneName = session.GetMapName(); end
     
     local enableMapList = {"onehour_test1", "d_solo_dungeon_2", "d_solo_dungeon"}
     for i = 1, #enableMapList do
@@ -18,23 +13,28 @@ function IS_ANCIENT_ENABLE_MAP(self)
         end
     end
     
-    local clsIndun = nil
+    local indun_cls = nil;
     if IsServerSection() == 1 then
     local cmd = GetMGameCmd(self);
     if cmd ~= nil then
         local mGameName = cmd:GetMGameName();
-            clsIndun = GET_MGAME_CLASS_BY_MGAMENAME(mGameName);
+            indun_cls = GET_MGAME_CLASS_BY_MGAMENAME(mGameName);
         end
     else
-        if IsRaidField() == 1 or IsRaidMap() == 1 then
+        if IsRaidField() == 1 or IsRaidMap() == 1 or session.IsSoloChallengeMap() == true then
             local mGameName = session.mgame.GetCurrentMGameName()
 			if mGameName ~= nil and mGameName ~= 'None' then
-				clsIndun = GetClassByStrProp("Indun", "MGame", mGameName)
+                indun_cls = GetClassByStrProp("Indun", "MGame", mGameName)
 			end
         end
 	end
-    if clsIndun ~= nil and (TryGetProp(clsIndun, "SubType", "None") == "Casual" or TryGetProp(clsIndun, "DungeonType", "None") == "WeeklyRaid" or TryGetProp(clsIndun, "DungeonType", "None") == "FreeDungeon") then
+
+    if indun_cls ~= nil then
+        local sub_type = TryGetProp(indun_cls, "SubType", "None");
+        local dungeon_type = TryGetProp(indun_cls, "DungeonType", "None");
+        if sub_type == "Casual" or dungeon_type == "WeeklyRaid" or dungeon_type == "FreeDungeon" or dungeon_type == "Challenge_Solo" then
         return "YES";
+    end
     end
 
     -- 챌린지 모드 캐주얼 모드

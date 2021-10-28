@@ -3,7 +3,7 @@ function EXCHANGEWEAPONTYPE_ON_INIT(addon, frame)
 	addon:RegisterMsg("MSG_CLEAR_EXCHANGE_EWEAPONTYPE", "EXCHANGEWEAPONTYPE_UI_CLEAR");
 end
 
-function OPEN_EXCHANGE_EWEAPONTYPE()
+function OPEN_EXCHANGE_WEAPONTYPE()
 	ui.OpenFrame("exchangeweapontype");
 end
 
@@ -73,7 +73,7 @@ local function _ADD_ITEM_TO_EXCHANGEWEAPONTYPE_FROM_INV(frame, item, invSlot, in
 			end
 
 			-- 트링켓 아이템은 무기 계열 변경이 불가능 하도록.
-			if item.EqpType == "TRINKET" then
+				if TryGetProp(item, 'ClassType', 'None') == "Trinket" then
 				ui.SysMsg(ScpArgMsg("IMPOSSIBLE_ITEM"));
 				return;
 			end

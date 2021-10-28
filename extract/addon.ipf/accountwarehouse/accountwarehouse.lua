@@ -187,7 +187,7 @@ function GET_WAREHOUSE_INDEX(invItem)
     return itemCnt + 1
 end
 
-function PUT_ACCOUNT_ITEM_TO_WAREHOUSE_BY_INVITEM(frame, invItem, slot, fromFrame)
+function PUT_ACCOUNT_ITEM_TO_WAREHOUSE_BY_INVITEM(frame, invItem, slot, fromFrame)    
     local obj = GetIES(invItem:GetObject())
     if _CHECK_ACCOUNT_WAREHOUSE_SLOT_COUNT_TO_PUT(obj) == false then
         return;
@@ -207,9 +207,14 @@ function PUT_ACCOUNT_ITEM_TO_WAREHOUSE_BY_INVITEM(frame, invItem, slot, fromFram
         ui.MsgBox(ScpArgMsg("IT_ISNT_REINFORCEABLE_ITEM"));
         return;
     end
-
+    
     local enableTeamTrade = TryGetProp(itemCls, "TeamTrade");
     if enableTeamTrade ~= nil and enableTeamTrade == "NO" then
+        ui.SysMsg(ClMsg("ItemIsNotTradable"));
+        return;
+    end
+
+    if TryGetProp(obj, 'BelongingCount', 0) ~= 0 or TryGetProp(obj, 'CharacterBelonging', 0) == 1 then
         ui.SysMsg(ClMsg("ItemIsNotTradable"));
         return;
     end
@@ -240,7 +245,7 @@ function PUT_ACCOUNT_ITEM_TO_WAREHOUSE_BY_INVITEM(frame, invItem, slot, fromFram
             end
 
             -- 여기서 아이템 입고 요청
-            item.PutItemToWarehouse(IT_ACCOUNT_WAREHOUSE, invItem:GetIESID(), tostring(invItem.count), frame:GetUserIValue("HANDLE"), goal_index)
+            item.PutItemToWarehouse(IT_ACCOUNT_WAREHOUSE, invItem:GetIESID(), tostring(invItem.count), frame:GetUserIValue("HANDLE"), goal_index)            
             new_add_item[#new_add_item + 1] = invItem:GetIESID()
 
             if geItemTable.IsStack(obj.ClassID) == 1 then
@@ -395,7 +400,7 @@ function ON_ACCOUNT_WAREHOUSE_ITEM_LIST(frame, msg, argStr, argNum, tab_index)
             local iconImg = GET_ITEM_ICON_IMAGE(itemCls);
 
             if is_new_item(invItem:GetIESID()) == true or is_stack_new_item(obj.ClassID) then
-                slot:SetHeaderImage('new_inventory_icon')
+                slot:SetHeaderImage('new_inventory_icon_s')
             else
                 slot:SetHeaderImage('None')
             end

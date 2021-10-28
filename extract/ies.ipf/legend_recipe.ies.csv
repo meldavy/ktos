@@ -208,20 +208,6 @@ ClassID,DecomposeItemMaxCnt,MaterialItemSlotCnt,MaterialItemCnt_1,MaterialItemRe
 207,0,4,1,10,0,1,10,0,1,0,0,8,0,0,LegendEquipRecipe_Low_Karaliene_12,EP12_BRC05_LOW_006,불완전한 카랄리엔 트리우카스 브레이슬릿,Moth,bg_acc_craft,,불완전한 카랄리엔,Acc,BRC05_011,BRC05_001,misc_low_mothstone,misc_Telharsha_neck
 208,0,4,1,10,0,1,10,0,1,0,0,16,0,0,LegendEquipRecipe_Low_Karaliene_13,EP12_NECK05_LOW_007,불완전한 카랄리엔 프리데티 네클리스,Moth,bg_acc_craft,,불완전한 카랄리엔,Acc,NECK05_008,NECK05_002,misc_mothstone,misc_Telharsha_neck
 209,0,4,1,10,0,1,10,0,1,0,0,8,0,0,LegendEquipRecipe_Low_Karaliene_14,EP12_BRC05_LOW_007,불완전한 카랄리엔 프리데티 브레이슬릿,Moth,bg_acc_craft,,불완전한 카랄리엔,Acc,BRC05_008,BRC05_002,misc_low_mothstone,misc_Telharsha_neck
-210,0,3,1,10,10,2,0,0,144,0,0,0,0,0,LegendEquipRecipe_Luciferi_01,EP12_NECK06_HIGH_001,루시페리 주오다 네클리스,Moth,bg_acc_craft,,루시페리,Acc,EP12_NECK05_HIGH_001,misc_luferium,misc_Telharsha_neck,
-211,0,3,1,10,10,1,0,0,72,0,0,0,0,0,LegendEquipRecipe_Luciferi_02,EP12_BRC06_HIGH_001,루시페리 주오다 브레이슬릿,Moth,bg_acc_craft,,루시페리,Acc,EP12_BRC05_HIGH_001,misc_luferium,misc_Telharsha_neck,
-212,0,3,1,10,10,2,0,0,144,0,0,0,0,0,LegendEquipRecipe_Luciferi_03,EP12_NECK06_HIGH_002,루시페리 이스가리티 네클리스,Moth,bg_acc_craft,,루시페리,Acc,EP12_NECK05_HIGH_002,misc_luferium,misc_Telharsha_neck,
-213,0,3,1,10,10,1,0,0,72,0,0,0,0,0,LegendEquipRecipe_Luciferi_04,EP12_BRC06_HIGH_002,루시페리 이스가리티 브레이슬릿,Moth,bg_acc_craft,,루시페리,Acc,EP12_BRC05_HIGH_002,misc_luferium,misc_Telharsha_neck,
-214,0,3,1,10,10,2,0,0,144,0,0,0,0,0,LegendEquipRecipe_Luciferi_05,EP12_NECK06_HIGH_003,루시페리 칸트리베 네클리스,Moth,bg_acc_craft,,루시페리,Acc,EP12_NECK05_HIGH_003,misc_luferium,misc_Telharsha_neck,
-215,0,3,1,10,10,1,0,0,72,0,0,0,0,0,LegendEquipRecipe_Luciferi_06,EP12_BRC06_HIGH_003,루시페리 칸트리베 브레이슬릿,Moth,bg_acc_craft,,루시페리,Acc,EP12_BRC05_HIGH_003,misc_luferium,misc_Telharsha_neck,
-216,0,3,1,10,10,2,0,0,144,0,0,0,0,0,LegendEquipRecipe_Luciferi_07,EP12_NECK06_HIGH_003,루시페리 칸트리베 네클리스,Moth,bg_acc_craft,,루시페리,Acc,EP12_NECK05_HIGH_004,misc_luferium,misc_Telharsha_neck,
-217,0,3,1,10,10,1,0,0,72,0,0,0,0,0,LegendEquipRecipe_Luciferi_08,EP12_BRC06_HIGH_003,루시페리 칸트리베 브레이슬릿,Moth,bg_acc_craft,,루시페리,Acc,EP12_BRC05_HIGH_004,misc_luferium,misc_Telharsha_neck,
-218,0,3,1,10,10,2,0,0,144,0,0,0,0,0,LegendEquipRecipe_Luciferi_09,EP12_NECK06_HIGH_004,루시페리 피크티스 네클리스,Moth,bg_acc_craft,,루시페리,Acc,EP12_NECK05_HIGH_005,misc_luferium,misc_Telharsha_neck,
-219,0,3,1,10,10,1,0,0,72,0,0,0,0,0,LegendEquipRecipe_Luciferi_10,EP12_BRC06_HIGH_004,루시페리 피크티스 브레이슬릿,Moth,bg_acc_craft,,루시페리,Acc,EP12_BRC05_HIGH_005,misc_luferium,misc_Telharsha_neck,
-220,0,3,1,10,10,2,0,0,144,0,0,0,0,0,LegendEquipRecipe_Luciferi_11,EP12_NECK06_HIGH_005,루시페리 트리우카스 네클리스,Moth,bg_acc_craft,,루시페리,Acc,EP12_NECK05_HIGH_006,misc_luferium,misc_Telharsha_neck,
-221,0,3,1,10,10,1,0,0,72,0,0,0,0,0,LegendEquipRecipe_Luciferi_12,EP12_BRC06_HIGH_005,루시페리 트리우카스 브레이슬릿,Moth,bg_acc_craft,,루시페리,Acc,EP12_BRC05_HIGH_006,misc_luferium,misc_Telharsha_neck,
-222,0,3,1,10,10,2,0,0,144,0,0,0,0,0,LegendEquipRecipe_Luciferi_13,EP12_NECK06_HIGH_006,루시페리 프리데티 네클리스,Moth,bg_acc_craft,,루시페리,Acc,EP12_NECK05_HIGH_007,misc_luferium,misc_Telharsha_neck,
-223,0,3,1,10,10,1,0,0,72,0,0,0,0,0,LegendEquipRecipe_Luciferi_14,EP12_BRC06_HIGH_006,루시페리 프리데티 브레이슬릿,Moth,bg_acc_craft,,루시페리,Acc,EP12_BRC05_HIGH_007,misc_luferium,misc_Telharsha_neck,
 1001,0,3,1,0,0,1,0,0,1,0,0,0,0,0,LegendEquipRecipe_Ark_01,Ark_wind,아크 - 질풍,Ark,bg_ark_craft,,아크,,Legend_Misc_UpHill01,Legend_Misc_Solo01,misc_thierrynium,
 1002,0,3,1,0,0,1,0,0,1,0,0,0,0,0,LegendEquipRecipe_Ark_02,Ark_thunderbolt,아크 - 낙뢰,Ark,bg_ark_craft,,아크,,Legend_Misc_Rift01,Legend_Misc_Week01,misc_thierrynium,
 1003,0,3,1,0,0,1,0,0,1,0,0,0,0,0,LegendEquipRecipe_Ark_03,Ark_storm,아크 - 폭풍,Ark,bg_ark_craft,,아크,,Legend_Misc_Solo01,Legend_Misc_Rift01,misc_thierrynium,

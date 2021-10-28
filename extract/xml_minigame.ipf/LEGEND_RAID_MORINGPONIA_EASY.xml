@@ -686,15 +686,12 @@
                             </ToolScp>
                         </execList>
                     </Event>
-                    <Event execMS="20000" execCount="1" eventName="Clear" execWithStart="0" isEnabled="0">
+                    <Event execMS="3000" execCount="1" eventName="Clear" execWithStart="0" isEnabled="0">
                         <condList>
                             <ToolScp Scp="GAME_ST_EVT_COND_VALUE" Client="NO" UseSleep="NO">
                                 <Str Str="END"/>
                                 <Str Str="=="/>
                                 <Num Num="1"/>
-                            </ToolScp>
-                            <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK_START" Client="NO" UseSleep="NO">
-                                <Num Num="16"/>
                             </ToolScp>
                         </condList>
                         <execList>

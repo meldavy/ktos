@@ -279,18 +279,18 @@ return 3 + obj.Level * 0.5"/>
                     <Str Str="voice_wiz_m_swellbody_shot"/>
                     <Str Str="voice_wiz_swellbody_shot"/>
                 </Scp>
-                <Scp Scp="SKL_SET_TARGET_SQUARE" Client="NO" UseSleep="NO" Time="0">
-                    <Pos Angle="0" Dist="-30" PosType="5"/>
-                    <Num Num="0"/>
+                <Scp Scp="SKL_SET_TARGET_CIRCLE" Client="NO" UseSleep="NO" Time="0">
+                    <Pos Angle="0" Dist="15" PosType="5"/>
                     <Num Num="100"/>
-                    <Num Num="35"/>
-                    <Num Num="0" UseFunc="1" FuncTxt="
+                    <Num Num="5" UseFunc="1" FuncTxt="
 
 return 3 + obj.Level * 0.5"/>
                     <Num Num="1"/>
+                    <Num Num="0"/>
                     <Num Num="1"/>
                     <Num Num="1"/>
                     <Num Num="0"/>
+                    <Num Num="1"/>
                 </Scp>
                 <Scp Scp="MONSKL_C_PLAY_ANIM" Client="YES" UseSleep="NO" Time="0">
                     <Str Str="skl_Resizing"/>
@@ -302,7 +302,7 @@ return 3 + obj.Level * 0.5"/>
                     <Str Str="SwellBody_Abil_Buff"/>
                     <Num Num="1"/>
                     <Num Num="0"/>
-                    <Num Num="60000"/>
+                    <Num Num="1800000"/>
                     <Num Num="1"/>
                     <Num Num="100"/>
                     <Num Num="0"/>
@@ -315,6 +315,20 @@ return 3 + obj.Level * 0.5"/>
                 <Scp Scp="C_SHOW_PARTS_MODEL" Client="YES" UseSleep="NO" Time="400">
                     <Str Str="RH"/>
                     <Num Num="1"/>
+                </Scp>
+                <Scp Scp="EFFECT_POS_ROTATE" Client="NO" UseSleep="NO" Time="450">
+                    <Str_Arg Str="F_circle011_pink" Arg="1.1"/>
+                    <Pos Angle="0" Dist="15" PosType="5"/>
+                    <Num Num="0"/>
+                    <Num Num="0"/>
+                    <Num Num="0"/>
+                    <Num Num="0"/>
+                    <Num Num="0"/>
+                    <Num Num="0"/>
+                    <Num Num="0"/>
+                    <Num Num="0"/>
+                    <Num Num="0"/>
+                    <Num Num="0"/>
                 </Scp>
             </EtcList>
         </MainSkl>

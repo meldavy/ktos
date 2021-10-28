@@ -1,56 +1,36 @@
 ﻿-- buffscp.lua
-
 function ShadowUmbrella_ENTER(actor, obj, buff)
-
     actor:PlayEquipAni(1, "b-master_umbrella_ani.xsm");
-
 end
 
 function ShadowUmbrella_LEAVE(actor, obj, buff)
-
     actor:StopEquipAni(1);
-
 end
 
 function Burrow_ENTER(actor, obj, buff)
-
 end
 
 function Burrow_LEAVE(actor, obj, buff)
-
     actor:GetAnimation():PlayFixAnim("BORN", 1.0, 0);
-
 end
 
 function StopAni_ENTER(actor, obj, buff)
-
     actor:GetEffect():EnableVibrate(1, 0.5, 0.5, 50.0);
-
 end
 
 function StopAni_LEAVE(actor, obj, buff)
-
-    
-
 end
 
 function Petrification_ENTER(actor, obj, buff)
-
     -- actor:GetEffect():EnableVibrate(1, 0.5, 0.5, 50.0); -- 얼굴 깨지는 것 때문에 임시로 주석.
     -- imcSound.PlaySoundItem(cls.Sound);
     -- actor:PlaySound("SOUNDNAME");
-
 end
 
 function Petrification_LEAVE(actor, obj, buff)
-
-    
-
 end
 
-
 function ShieldChargeClientScp_ENTER(actor, obj, buff)
-
     if actor:GetVehicleActor() ~= nil then
         actor:GetAnimation():SetSTDAnim("ASTD_RIDE");
         actor:GetAnimation():SetRUNAnim("SKL_ATAQUE_RUN_RIDE");
@@ -66,9 +46,7 @@ function ShieldChargeClientScp_ENTER(actor, obj, buff)
 end
 
 function ShieldChargeClientScp_LEAVE(actor, obj, buff)
-
     local buffRamMuay = actor:GetBuff():GetBuff('RamMuay_Buff');
-
     if buffRamMuay ~= nil then
         actor:GetAnimation():SetSTDAnim("SKL_NAKMUAY_ASTD");
         actor:GetAnimation():SetRUNAnim("SKL_NAKMUAY_ARUN");actor:GetAnimation():SetRAISEAnim("SKL_NAKMUAY_RAISE");
@@ -80,27 +58,20 @@ function ShieldChargeClientScp_LEAVE(actor, obj, buff)
         actor:GetAnimation():ResetWLKAnim();
         actor:GetAnimation():ResetTURNAnim();
     end
-
     actor:SetAlwaysBattleState(false);
 end
 
-
 function SlitheringClientScp_ENTER(actor, obj, buff)
-
     actor:GetAnimation():SetSTDAnim("SKL_SLITHERING_ASTD");
     actor:GetAnimation():SetRUNAnim("SKL_SLITHERING_AWLK");
     actor:GetAnimation():SetWLKAnim("SKL_SLITHERING_AWLK");
     actor:GetAnimation():SetTURNAnim("None");
-    
     actor:SetAlwaysBattleState(true);
 end
 
 function SlitheringClientScp_LEAVE(actor, obj, buff)
-
     ScpChangeSwordmanStanceAnimationSet(actor, obj, buff)
-    
     actor:SetAlwaysBattleState(false);
-
 end
 
 function PouncingClientScp_ENTER(actor, obj, buff)
@@ -112,7 +83,6 @@ function PouncingClientScp_ENTER(actor, obj, buff)
             actor:GetAnimation():SetWLKAnim("SKL_POUNCING_STAND_ABIL");
             actor:GetAnimation():SetTURNAnim("None");
             actor:GetAnimation():SetSTDAnim("SKL_POUNCING_STAND_ABIL");
-
             if actor:GetVehicleActor() ~= nil then
                 actor:GetAnimation():SetSTDAnim("SKL_POUNCING_ABIL_RIdE");
             else
@@ -122,7 +92,6 @@ function PouncingClientScp_ENTER(actor, obj, buff)
             actor:GetAnimation():SetRUNAnim("SKL_POUNCING");
             actor:GetAnimation():SetWLKAnim("SKL_POUNCING");
             actor:GetAnimation():SetTURNAnim("None");
-        
             if actor:GetVehicleActor() ~= nil then
                 actor:GetAnimation():SetSTDAnim("SKL_POUNCING_RIDE");
             else
@@ -133,21 +102,17 @@ function PouncingClientScp_ENTER(actor, obj, buff)
         actor:GetAnimation():SetRUNAnim("SKL_POUNCING");
         actor:GetAnimation():SetWLKAnim("SKL_POUNCING");
         actor:GetAnimation():SetTURNAnim("None");
-    
         if actor:GetVehicleActor() ~= nil then
             actor:GetAnimation():SetSTDAnim("SKL_POUNCING_RIDE");
         else
             actor:GetAnimation():SetSTDAnim("SKL_POUNCING_STAND");
         end        
     end
-
     actor:SetAlwaysBattleState(true);
 end
 
 function PouncingClientScp_LEAVE(actor, obj, buff)
-
     ScpChangeSwordmanStanceAnimationSet(actor, obj, buff)
-
     actor:SetAlwaysBattleState(false);
 end
 
@@ -156,7 +121,6 @@ function TaglioClientScp_ENTER(actor, obj, buff)
     actor:GetAnimation():SetRUNAnim("SKL_TAGLIO");
     actor:GetAnimation():SetWLKAnim("SKL_TAGLIO");
     actor:GetAnimation():SetTURNAnim("None");
-    
     actor:SetAlwaysBattleState(true);
 end
 
@@ -165,7 +129,6 @@ function TaglioClientScp_LEAVE(actor, obj, buff)
     actor:GetAnimation():ResetRUNAnim();
     actor:GetAnimation():ResetWLKAnim();
     actor:GetAnimation():ResetTURNAnim();
-    
     actor:SetAlwaysBattleState(false);
 end
 
@@ -173,8 +136,6 @@ function LimaconClientScp_ENTER(actor, obj, buff)
 --    actor:GetAnimation():SetSTDAnim("ASTD");
 --    actor:GetAnimation():SetTURNAnim("None");
 --    actor:SetMovingShotAnimation("SKL_LIMACON");
---    
---
 --    actor:SetAlwaysBattleState(true);
     ScpChangeMovingShotAnimationSet(actor, obj, buff);
 end
@@ -211,25 +172,19 @@ function SnipersSerenityClientScp_LEAVE(actor, obj, buff)
 end
 
 function FlutingClientScp_ENTER(actor, obj, buff)
-
     actor:GetAnimation():SetRUNAnim("SKL_PIEDPIPER_FLUTING");
     actor:GetAnimation():SetWLKAnim("SKL_PIEDPIPER_FLUTING");
     actor:SetAlwaysBattleState(true);
 end
 
 function FlutingClientScp_LEAVE(actor, obj, buff)
-
     actor:GetAnimation():ResetRUNAnim();
     actor:GetAnimation():ResetWLKAnim();
     actor:SetAlwaysBattleState(false);
-
 end
 
-
 function Murmillo_ChangeStance_ENTER(actor, obj, buff)
-
     actor:SetAlwaysBattleState(true);
-
     actor:GetAnimation():SetChangeJumpAnim(true);
     actor:GetAnimation():SetTURNAnim("SKL_MURMILLO_ATURN");
     actor:GetAnimation():SetSTDAnim("SKL_MURMILLO_ASTD");
@@ -240,27 +195,19 @@ function Murmillo_ChangeStance_ENTER(actor, obj, buff)
     actor:GetAnimation():SetFALLAnim("SKL_MURMILLO_FALL")
 end
 
-
 function Murmillo_ChangeStance_LEAVE(actor, obj, buff)
-    
     actor:SetAlwaysBattleState(false);
-
     actor:GetAnimation():PlayFixAnim('SKL_MURMILLO_OFF', 1, 0);
     actor:GetAnimation():SetChangeJumpAnim(false);
     actor:GetAnimation():InitJumpAnimation();
     actor:GetAnimation():ResetTURNAnim();
     actor:GetAnimation():ResetSTDAnim();
     actor:GetAnimation():ResetRUNAnim();
-
     ScpChangeSwordmanStanceAnimationSet(actor, obj, buff)
-
 end
 
-
 function Dragoon_ChangeStance_ENTER(actor, obj, buff)
-
     actor:SetAlwaysBattleState(true);
-
 --    actor:GetAnimation():SetChangeJumpAnim(true);
 --    actor:GetAnimation():SetTURNAnim("SKL_MURMILLO_ATURN");
 --    actor:GetAnimation():SetSTDAnim("SKL_MURMILLO_ASTD");
@@ -271,25 +218,19 @@ function Dragoon_ChangeStance_ENTER(actor, obj, buff)
 --    actor:GetAnimation():SetFALLAnim("SKL_MURMILLO_FALL")
 end
 
-
 function Dragoon_ChangeStance_LEAVE(actor, obj, buff)
-    
     actor:SetAlwaysBattleState(false);
-
     actor:GetAnimation():PlayFixAnim('SKL_DRAGOONHELMET_OFF', 1, 0);
 --    actor:GetAnimation():SetChangeJumpAnim(false);
 --    actor:GetAnimation():InitJumpAnimation();
 --    actor:GetAnimation():ResetTURNAnim();
 --    actor:GetAnimation():ResetSTDAnim();
 --    actor:GetAnimation():ResetRUNAnim();
-
 end
-
 
 function BeakMask_ENTER(actor, obj, buff)
     actor:SetAlwaysBattleState(true);
 end
-
 
 function BeakMask_LEAVE(actor, obj, buff)
     local anim = "SKL_BEAKMASK_OFF"
@@ -300,16 +241,12 @@ function BeakMask_LEAVE(actor, obj, buff)
             anim = "SKL_BEAKMASK_OFF_ABIL"
         end
     end
-    
     actor:SetAlwaysBattleState(false);
     actor:GetAnimation():PlayFixAnim(anim, 1, 0);
 end
 
-
 function Finestra_ENTER(actor, obj, buff)
-
     actor:SetAlwaysBattleState(true);
-
     if actor:GetVehicleActor() ~= nil then
     --actor:GetAnimation():SetChangeJumpAnim(true);
     actor:GetAnimation():SetTURNAnim("SKL_FINESTRA_ATURN_RIDE");
@@ -332,21 +269,16 @@ function Finestra_ENTER(actor, obj, buff)
 end
 
 function Finestra_LEAVE(actor, obj, buff)
-
     actor:SetAlwaysBattleState(false);
     actor:GetAnimation():SetChangeJumpAnim(false);
-
     actor:GetAnimation():InitJumpAnimation();
     actor:GetAnimation():ResetTURNAnim();
     actor:GetAnimation():ResetSTDAnim();
     actor:GetAnimation():ResetRUNAnim();
-
     ScpChangeSwordmanStanceAnimationSet(actor, obj, buff)
-
 end
 
 function EpeeGarde_ENTER(actor, obj, buff)
-
     local lhItem = session.GetEquipItemBySpot(item.GetEquipSpotNum("LH"));
     if nil == lhItem then
         return;
@@ -356,29 +288,21 @@ function EpeeGarde_ENTER(actor, obj, buff)
     if nil == lhObj then
         return;
     end
-
     actor:SetAlwaysBattleState(true);
     actor:ShowModelByPart('LH', 0, 0);
     actor:GetAnimation():SetSTDAnim("SKL_EPEEGARDE_ASTD");
 end
 
 function EpeeGarde_LEAVE(actor, obj, buff)
-
     actor:SetAlwaysBattleState(false);
-    
     actor:GetAnimation():ResetSTDAnim();
     actor:ShowModelByPart('LH', 1, 0);
     actor:GetAnimation():UpdateFixAnim();
-
     ScpChangeSwordmanStanceAnimationSet(actor, obj, buff)
-    
 end
 
-
 function HighGuard_ENTER(actor, obj, buff)
-
     actor:SetAlwaysBattleState(true);
-
     if actor:GetVehicleActor() ~= nil then
     actor:GetAnimation():InitJumpAnimation();
     actor:GetAnimation():SetTURNAnim("SKL_HIGHGUARD_ATURN_RIDE");
@@ -393,21 +317,16 @@ function HighGuard_ENTER(actor, obj, buff)
 end
 
 function HighGuard_LEAVE(actor, obj, buff)
-
     actor:SetAlwaysBattleState(false);
-    
     actor:GetAnimation():InitJumpAnimation();
     actor:GetAnimation():ResetTURNAnim();
     actor:GetAnimation():ResetSTDAnim();
     actor:GetAnimation():ResetRUNAnim();
-
     ScpChangeSwordmanStanceAnimationSet(actor, obj, buff)
-
 end
 
 function CamouflageScp_ENTER(actor, obj, buff)
     actor:SetAlwaysBattleState(true);
-    
     actor:GetAnimation():SetTURNAnim("None");
     actor:GetAnimation():SetSTDAnim("HIDE_STD");
     actor:GetAnimation():SetRUNAnim("HIDE_WLK");
@@ -415,14 +334,11 @@ function CamouflageScp_ENTER(actor, obj, buff)
 end
 
 function CamouflageScp_LEAVE(actor, obj, buff)
-
     actor:SetAlwaysBattleState(false);
-
     actor:GetAnimation():ResetTURNAnim();
     actor:GetAnimation():ResetSTDAnim();
     actor:GetAnimation():ResetRUNAnim();
     actor:GetAnimation():ResetWLKAnim();
-
 end
 
 function Proliferation_ENTER(actor, obj, buff)
@@ -500,37 +416,26 @@ function ProliferationRH_LEAVE(actor, obj, buff)
 	actor:PopNodeScale("ProliferationRH6");
 end
 
-
 function Biggle_ENTER(actor, obj, buff, rps, dir)
     actor:SetRotateBillboard(1, 0.5, -1);
 end
+
 function Biggle_LEAVE(actor, obj, buff)
     actor:SetRotateBillboard(0, 0.5, -1);
 end
 
-
-
-
-
-function Medusa_ENTER(actor, obj, buff)
-
+function Vasilissa_ENTER(actor, obj, buff)
     actor:GetEffect():EnableVibrate(1, 1, 0.5, 50.0);
     -- imcSound.PlaySoundItem(cls.Sound);
     -- actor:PlaySound("SOUNDNAME");
-
 end
 
-function Medusa_LEAVE(actor, obj, buff)
-
-    
-
+function Vasilissa_LEAVE(actor, obj, buff)
 end
-
 
 -- 버프이펙트 크기설정
 function CalcBuffEffScale(radius)
     local scale = 1;        -- 기준. 스몰 m_radius = 12
-
     if radius >= 50 then
         scale = 2.5;        -- 엑스라지
     elseif radius >= 20 then
@@ -543,12 +448,10 @@ end
 
 -- 텔레키네시스처럼 FSM으로는 ASTD이지만 실제로는 스킬캐스팅중 인것들 등록. (버프로 캐스팅중인것 확인)
 function IsSkillStateByBuff(isForGuard)
-
   -- 텔레키네시스
   if info.GetMyPcBuff('TeleCast') ~= nil then
     return 1;
   end
-
   -- 임페일러
     if isForGuard == 1 and info.GetMyPcBuff('Impaler_Buff') ~= nil then
       return 1;
@@ -565,18 +468,15 @@ function IsSkillStateOnCompanionByBuff()
   if info.GetMyPcBuff('Impaler_Buff') ~= nil then
     return 1;
   end
-
   return 0;
 end
 
 function TimeReverseClient_ENTER(actor, obj, buff)
-    
     local reserveTime = buff.arg1 / 2000;
     actor:StartTimeReserveCmd(reserveTime);
 end
 
 function TimeReverseClient_LEAVE(actor, obj, buff)
-
 end
 
 function PlantGuard_ENTER(actor, obj, buff)
@@ -624,8 +524,6 @@ function Mokuton_LEAVE(actor, obj, buff)
     actor:GetEffect():SetColorBlink(0,0,0,0,0.5,0.2,0,1, 0 , 1);
 end
 
-
-
 -- 대박버프
 function SuperDrop_Client_ENTER(actor, obj, buff)
     if buff.arg2 == 1 then
@@ -641,13 +539,9 @@ function SuperDrop_Client_LEAVE(actor, obj, buff)
     else
         actor:GetEffect():SetColorBlink(0,0,0,0,1,1,1,1, 0 , 1);
     end
-    
 end
 
-
-
 -- Challenge Mode DKP Monster Buff
-
 function ChallengeMode_Client_ENTER(actor, obj, buff)
     if buff.arg2 == 1 then
         actor:GetEffect():SetColorBlink(0,0,0,0,1,0.8,0.07,1, 1.5, 1);
@@ -662,11 +556,7 @@ function ChallengeMode_Client_LEAVE(actor, obj, buff)
     else
         actor:GetEffect():SetColorBlink(0,0,0,0,1,1,1,1, 0 , 1);
     end
-    
 end
-
-
-
 
 function EliteMonster_ENTER(actor, obj, buff)
     actor:SetAuraInfo("EliteBuff");
@@ -674,7 +564,6 @@ function EliteMonster_ENTER(actor, obj, buff)
 end
 
 function EliteMonster_LEAVE(actor, obj, buff)
-    
 end
 
 function Mythic_Boosting_Morale_ENTER(actor, obj, buff)
@@ -736,6 +625,17 @@ function Mythic_Link_LEAVE(actor, obj, buff)
     actor:SetAuraInfo("");
     actor:GetTitle():UpdateCaption();
 end
+
+function Champion_Buff_ENTER(actor, obj, buff)
+    actor:SetAuraInfo("Champion_Buff");
+    actor:GetTitle():UpdateCaption();
+end
+
+function Champion_Buff_LEAVE(actor, obj, buff)
+    actor:SetAuraInfo("");
+    actor:GetTitle():UpdateCaption();
+end
+
 --반짝이 버프: 대박 버프처럼 반짝거리기만 하는 용도
 function TwinkleBuff_Client_ENTER(actor, obj, buff)
     if buff.arg2 == 1 then
@@ -751,7 +651,6 @@ function TwinkleBuff_Client_LEAVE(actor, obj, buff)
     else
         actor:GetEffect():SetColorBlink(0,0,0,0,1,1,1,1, 0 , 1);
     end
-    
 end
 
 -- 디바인스티그마 디버프 블링크
@@ -762,6 +661,7 @@ end
 function DivineStigma_LEAVE(actor, obj, buff)
     actor:GetEffect():SetColorBlink(0,0,0,0,1,0,0,1, 0 , 1);
 end
+
 --흰색
 function WhiteBlink_ENTER(actor, obj, buff)
     imcSound.PlaySoundEvent("monster_state_1")
@@ -928,7 +828,6 @@ function EMPERORSBANE_STUN_ANI_LEAVE(actor, obj, buff)
     actor:GetAnimation():PlayFixAnim("ASTD", 1.0, 0);
 end
 
-
 function KneelingShot_ENTER(actor, obj, buff)
     --actor:SetLimitMinTargetRange(50);
     actor:GetAnimation():SetSTDAnim("SKL_KNEELINGSHOT_ASTD");
@@ -978,11 +877,6 @@ function AssaultFireScp_LEAVE(actor, obj, buff)
     ScpChangeMovingShotAnimationSet(actor, obj, buff);
 end
 
-
-
-
-
-
 function OutrageScp_ENTER(actor, obj, buff)
     --ScpChangeMovingShotAnimationSet(actor, obj, buff);
 end
@@ -996,9 +890,6 @@ function OutrageScp_LEAVE(actor, obj, buff)
     -- actor:GetAnimation():PlayFixAnim("ASTD", 1, 1);
     -- ScpChangeMovingShotAnimationSet(actor, obj, buff);
 end
-
-
-
 
 function WebFlyObject_ENTER(actor, obj, buff)
   actor:GetEffect():SetColorBlink(0.1,0.1,0.1,0.1,0.3,0.3,0.3,0.3, 1.5, 1);
@@ -1027,7 +918,6 @@ function Arrest_LEAVE(actor, obj, buff)
   actor:GetEffect():SetColorBlink(0,0,0,0,1,0,0,1, 0 , 1);
     local caster = buff:GetHandle();
     hardSkill.LinkToObject(nil, caster, "Warrior_Pull", "Dummy_R_HAND", "Bip01 Spine2");
-
     if actor:GetObjType() == GT_MONSTER then
         local monCls = GetClassByType("Monster", actor:GetType());
         if monCls.MoveType == "Flying" then
@@ -1037,8 +927,6 @@ function Arrest_LEAVE(actor, obj, buff)
 end
 
 function TESTUDO_CLIENT_ENTER(actor, obj, buff)
-
-
       actor:GetAnimation():SetTURNAnim("SKL_TESTUDO_ASTD"); 
         actor:GetAnimation():SetSTDAnim("SKL_TESTUDO_ASTD");
         actor:GetAnimation():SetRUNAnim("SKL_TESTUDO_AWLK");
@@ -1062,39 +950,28 @@ function TESTUDO_CLIENT_ENTER(actor, obj, buff)
         actor:GetSystem():ChangeEquipApperance(ES_LH, defShield.ClassID);
         actor:SetUserValue("TESTUDO_SHIELD", 1);
     end
-    
 end
 
 function TESTUDO_CLIENT_LEAVE(actor, obj, buff) 
-
     actor:GetAnimation():ResetSTDAnim();
     actor:GetAnimation():ResetRUNAnim();
     actor:GetAnimation():ResetWLKAnim();
     actor:GetAnimation():ResetTURNAnim();
   actor:SetAlwaysBattleState(false);
-  
-  
     if actor:GetUserIValue("TESTUDO_SHIELD") == 1 then
         actor:GetSystem():ChangeEquipApperance(ES_LH, 0);
         actor:SetUserValue("TESTUDO_SHIELD", 0);
     end
-    
 end
 
 function SCHILTRON_CLIENT_ENTER(actor, obj, buff)
-
         actor:GetAnimation():SetSTDAnim("SKL_SCHILTRON");
         actor:SetAlwaysBattleState(true);
-
-    
 end
 
 function SCHILTRON_CLIENT_LEAVE(actor, obj, buff)   
-
     actor:GetAnimation():ResetSTDAnim();
     actor:SetAlwaysBattleState(false);
-  
-    
 end
 
 function Burrow_Rogue_CLIENT_ENTER(actor, obj, buff)
@@ -1130,7 +1007,6 @@ function GuildBattleObserve_ENTER(actor, obj, buff)
 end
 
 function GuildBattleObserve_LEAVE(actor, obj, buff)
-
 end
 
 function IronMaiden_ENTER(actor, obj, buff)
@@ -1144,24 +1020,19 @@ function IronMaiden_LEAVE(actor, obj, buff)
 end
 
 function Levitation_ENTER(actor, obj, buff)
-
     actor:SetAlwaysBattleState(true);
-    
     actor:GetAnimation():SetTURNAnim("SKL_LEVITATION_ATURN");
     actor:GetAnimation():SetSTDAnim("SKL_LEVITATION_ASTD");
     actor:GetAnimation():SetRUNAnim("SKL_LEVITATION_ARUN");
     actor:GetAnimation():SetWLKAnim("SKL_LEVITATION_ARUN");
-
 end
 
 function Levitation_LEAVE(actor, obj, buff)
-
     actor:SetAlwaysBattleState(false);
     actor:GetAnimation():ResetTURNAnim();
     actor:GetAnimation():ResetSTDAnim();
     actor:GetAnimation():ResetRUNAnim();
     actor:GetAnimation():ResetWLKAnim();
-
 end
 
 function HoukiBroom_ENTER(actor, obj, buff)
@@ -1181,25 +1052,18 @@ function HoukiBroom_LEAVE(actor, obj, buff)
     actor:GetAnimation():PlayFixAnim("ASTD", 1.0, 0);
 end
 
-
-
 function DashRunBlend_ENTER(actor, obj, buff)
-
     if actor:GetVehicleActor() ~= nil then
         effect.PlayActorEffect(actor, 'I_warrior_dash_run_line2', 'Dummy_emitter_pet', 2.0, 1.7);
     else
         effect.PlayActorEffect(actor, 'I_warrior_dash_run_line2', 'Dummy_emitter', 2.0, 1.7);
     end
-
     actor:GetEffect():SetColorBlend("DashRun", 100, 100, 100, 100, true, 0, true, 0.15);
-
     --local dir = actor:GetHorizonalDir();
     --actor:GetEffect():SetStartDirection("I_warrior_dash_run_line2", -dir.x, 0, -dir.y);
-    
 end
 
 function DashRunBlend_LEAVE(actor, obj, buff)
-
 end
 
 function SlitheringDebuffClient_ENTER(actor, obj, buff)
@@ -1228,7 +1092,11 @@ end
 
 function DoubleGunStance_LEAVE(actor, obj, buff)
     actor:DetachCopiedModel();
-    actor:ChangeEquipNode(EmAttach.eRHand, "Dummy_L_HAND");
+    if tonumber(USE_SCOUT_MAINWEAPON) == 1 then
+        actor:ChangeEquipNode(EmAttach.eLHand, "Dummy_L_HAND");
+    else
+        actor:ChangeEquipNode(EmAttach.eRHand, "Dummy_L_HAND");
+    end
     actor:SetAlwaysBattleState(false);
     actor:GetAnimation():SetChangeJumpAnim(false);
     actor:SetMovingShotAnimation("");
@@ -1286,8 +1154,23 @@ function ScpChangeMovingShotAnimationSet(actor, obj, buff)
     end
 
     if Outrage ~= nil and buffDoubleGunStance ~= nil then
-        actor:ChangeEquipNode(EmAttach.eRHand, "Dummy_Sword");
-        actor:CopyAttachedModel(EmAttach.eLHand, "Dummy_L_HAND");
+        if tonumber(USE_SCOUT_MAINWEAPON) == 1 then
+            actor:CopyAttachedModel(EmAttach.eRHand, "Dummy_L_HAND");
+            local apc = actor:GetPCApc();
+            local lhItemType = apc:GetEquipItem(ES_LH);
+            local lhItemCls = GetClassByType("Item", lhItemType);
+            if lhItemCls ~= nil then
+                local classType = TryGetProp(lhItemCls, "ClassType", "None");
+                if classType == "Sword" then
+                    actor:ChangeEquipNode(EmAttach.eLHand, "Dummy_Sword");
+                elseif classType == "Shield" then
+                    actor:ChangeEquipNode(EmAttach.eLHand, "Dummy_B_Shield");
+                end
+            end
+        else
+            actor:CopyAttachedModel(EmAttach.eLHand, "Dummy_L_HAND");
+            actor:ChangeEquipNode(EmAttach.eRHand, "Dummy_Sword");
+        end
         actor:SetAlwaysBattleState(true);
         actor:SetMovingShotAnimation("DOUBLEGUN_ATKRUN");
         actor:GetAnimation():SetTURNAnim("SKL_DOUBLEGUN_ATURN");
@@ -1304,9 +1187,24 @@ function ScpChangeMovingShotAnimationSet(actor, obj, buff)
         end
         
         -- DoubleGunStance_Buff
-        if buffDoubleGunStance ~= nil then            
-            actor:ChangeEquipNode(EmAttach.eRHand, "Dummy_Sword");
-            actor:CopyAttachedModel(EmAttach.eLHand, "Dummy_L_HAND");
+        if buffDoubleGunStance ~= nil then      
+            if tonumber(USE_SCOUT_MAINWEAPON) == 1 then
+                actor:CopyAttachedModel(EmAttach.eRHand, "Dummy_L_HAND");
+                local apc = actor:GetPCApc();
+                local lhItemType = apc:GetEquipItem(ES_LH);
+                local lhItemCls = GetClassByType("Item", lhItemType);
+                if lhItemCls ~= nil then
+                    local classType = TryGetProp(lhItemCls, "ClassType", "None");
+                    if classType == "Sword" then
+                        actor:ChangeEquipNode(EmAttach.eLHand, "Dummy_Sword");
+                    elseif classType == "Shield" then
+                        actor:ChangeEquipNode(EmAttach.eLHand, "Dummy_B_Shield");
+                    end
+                end
+            else
+                actor:CopyAttachedModel(EmAttach.eLHand, "Dummy_L_HAND");
+                actor:ChangeEquipNode(EmAttach.eRHand, "Dummy_Sword");
+            end
             actor:SetAlwaysBattleState(true);
             actor:SetMovingShotAnimation("DOUBLEGUN_ATKMOVE");
             actor:GetAnimation():SetTURNAnim("SKL_DOUBLEGUN_ATURN");
@@ -1448,7 +1346,6 @@ function GET_BUFF_BY_NAME_C(buffName)
     return info.GetBuff(handle, buffCls.ClassID);
 end
 
-
 -- doll_tiny
 function DOLL_TINY_BUFF_ENTER(actor, obj, buff)
 end
@@ -1479,7 +1376,6 @@ function HalloweenMoon_effect_ENTER(actor, obj, buff)
 end
 
 function HalloweenMoon_effect_LEAVE(actor, obj, buff)
-    
 end
 
 -- doll_gabia
@@ -1560,7 +1456,6 @@ function Bunsin_Mijinhide_Buff_CLIENT_ENTER(actor, obj, buff)
 end
 
 function Bunsin_Mijinhide_Buff_CLIENT_LEAVE(actor, obj, buff)
-
 end
 
 function EP12TACTICAL_EFFECT02_PRE_ENTER(actor, obj, buff)
@@ -1601,7 +1496,8 @@ end
 function FRIEDENSLIED_ABILDANCE_LEAVE(actor, obj, buff)
     actor:GetAnimation():ResetSTDAnim();
     actor:SetAlwaysBattleState(false);
-end-- 끼룩끼룩 갈매기 떼
+end
+-- 끼룩끼룩 갈매기 떼
 function ITEM_EP12FLYINGSEAGULL_EFFECT_PRE_ENTER(actor, obj, buff)
     effect.AddActorEffectByOffset(actor, "I_pc_effectitem_flyingseagull", 1.35, "BOT", true, true);
     actor:SetEquipItemFlagProp("EFFECTCOSTUME", 1);
@@ -1653,6 +1549,90 @@ function DesperateDefenseClientScp_LEAVE(actor, obj, buff)
         actor:GetAnimation():SetWLKAnim("SKL_SNIPERSSERENITY_AWLK");
         actor:GetAnimation():SetRUNAnim("SKL_SNIPERSSERENITY_AWLK");
     end
+end
+
+function EP13STEM_EFFECT_2106_ENTER(actor, obj, buff)
+    effect.AddActorEffectByOffset(actor, "E_effect_ep13stem", 1.2, "MID", false, true);
+end
+
+function EP13STEM_EFFECT_2106_LEAVE(actor, obj, buff)
+    effect.DetachActorEffect(actor, "E_effect_ep13stem", 0.0);
+end
+
+function VASILISSA_BORN_CLIENT_ENTER(actor, obj, buff)
+    actor:GetAnimation():SetSTDAnim("std_spear");
+    actor:GetAnimation():SetRUNAnim("run_spear");
+    actor:GetAnimation():SetWLKAnim("wlk_spear");
+    -- actor:GetAnimation():SetDEADAnim("dead_spear");
+end
+
+function VASILISSA_BORN_CLIENT_LEAVE(actor, obj, buff)
+    actor:GetAnimation():ResetWLKAnim();
+    actor:GetAnimation():ResetRUNAnim();
+    actor:GetAnimation():ResetSTDAnim();
+end
+
+-- 바실리사 창 스탠스 전환 --
+-- stun -> stun_spear
+function Vasilissa_SpearStance_ENTER(actor, obj, buff)
+    local buffSpearStance = actor:GetBuff():GetBuff("VASILISSA_SPEARSTANCE_BUFF");
+    if buffSpearStance ~= nil then
+        actor:GetAnimation():SetSTDAnim("std_spear", "astd_spear");
+        actor:GetAnimation():SetWLKAnim("wlk_spear");
+        actor:GetAnimation():SetRUNAnim("run_spear");
+    end
+end
+
+function Vasilissa_SpearStance_LEAVE(actor, obj, buff)
+    actor:GetAnimation():ResetSTDAnim();
+    actor:GetAnimation():ResetWLKAnim();
+    actor:GetAnimation():ResetRUNAnim();
+end
+
+function ScpChangeVasilissaStanceAnimationSet(actor, obj, buff)
+    local buffSpearStance = actor:GetBuff():GetBuff("VASILISSA_SPEARSTANCE_BUFF");
+    if buffSpearStance ~= nil then
+        actor:GetAnimation():SetSTDAnim("std_spear", "astd_spear");
+        actor:GetAnimation():SetWLKAnim("wlk_spear");
+        actor:GetAnimation():SetRUNAnim("run_spear");
+    end
+end
+
+-- 바실리사 창 스텐스 특정 애니메이션 설정
+function SCR_BUFF_ANIM_CONVERT_boss_Vasilissa(actor, buff_anim)
+    if buff_anim ~= nil and buff_anim ~= "None" then
+        if buff_anim == "STUN" then
+            local stance_buff = actor:GetBuff():GetBuff("VASILISSA_SPEARSTANCE_BUFF");
+            if stance_buff ~= nil then
+                local convert_anim = buff_anim.."_SPEAR";
+                return convert_anim;
+            end
+        end
+    end
+    return buff_anim;
+end
+
+function SCR_BUFF_ANIM_CONVERT_boss_Vasilissa_Auto(actor, buff_anim)
+    if buff_anim ~= nil and buff_anim ~= "None" then
+        if buff_anim == "STUN" then
+            local stance_buff = actor:GetBuff():GetBuff("VASILISSA_SPEARSTANCE_BUFF");
+            if stance_buff ~= nil then
+                local convert_anim = buff_anim.."_SPEAR";
+                return convert_anim;
+            end
+        end
+    end
+    return buff_anim;
+end
+
+-- 바실리사 소환수 석화 버프 --
+-- HitEffect 보이지 않도록 처리.
+function Vasilissa_Petrify_Mon_ENTER(actor, obj, buff)
+    actor:GetEffect():OffShowDamageByBuff();
+end
+
+function Vasilissa_Petrify_Mon_LEAVE(actor, obj, buff)
+    actor:GetEffect():OnShowDamageByBuff();
 end
 
 function EP13STEM_EFFECT_2106_ENTER(actor, obj, buff)

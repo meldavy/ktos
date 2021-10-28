@@ -15,5 +15,7 @@
     <controls>
         <groupbox name="gauge_bg" rect="0 0 300 60" margin="0 0 0 0" layout_gravity="center center" image="" draw="false" hittest="false"/>
         <gauge name="charge_gauge" parent="gauge_bg" rect="0 0 280 40" margin="0 0 0 0" layout_gravity="center center" inverse="false" point="50" maxpoint="100" skin="reinforce_gauge" text1="{@sti1c}{s15}%v / %m{/}{/}" textalign1="center center" textfont1="white_18_ol" textoffset1="0 0"/>
+		<gauge name="charge_gauge_timer" parent="gauge_bg" rect="0 0 280 40" margin="0 0 0 0" hittest="false" layout_gravity="center center" inverse="false" skin="reinforce_gauge"/>
+        <richtext name="charge_gauge_timer_text" rect="0 0 280 40" margin="0 0 0 0" layout_gravity="center center" parent="gauge_bg" format="{@st42b}{ds}{s15}%s:%s{/}" param1="min" param2="sec" param1_def="0" param2_def="0"/>
     </controls>
 </uiframe>

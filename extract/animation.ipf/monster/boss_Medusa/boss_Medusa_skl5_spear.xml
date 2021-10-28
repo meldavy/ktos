@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="EUC-KR"?>
+<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by IMCGames Co., Ltd (IMCGames Co., Ltd) -->
+<ActionDesc>
+    <BlendOn frame="0" R="0" G="0" B="0" A="50"/>
+    <Particle frame="0" attachNode="Dummy_root" particleName="F_smoke198_red_violet" useAttach="false" hiddenObj="false" changeEffect="None" scale="4" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Particle frame="0" attachNode="Point160_po" particleName="I_light019_green_spark2" useAttach="true" hiddenObj="false" changeEffect="None" scale="3" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Particle frame="1" attachNode="Dummy_effect_eye_R" particleName="F_pc_item_ep13cybersoldier01_pistol_light_red" useAttach="true" hiddenObj="false" changeEffect="None" scale="0.1" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Particle frame="1" attachNode="Dummy_effect_eye_L" particleName="F_pc_item_ep13cybersoldier01_pistol_light_red" useAttach="true" hiddenObj="false" changeEffect="None" scale="0.1" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Particle frame="15" attachNode="Dummy_root" particleName="F_smoke198_red_violet" useAttach="false" hiddenObj="false" changeEffect="None" scale="4" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Sound frame="25.56" soundFile="skl_eff_atk_move_m_2"/>
+    <Particle frame="27" attachNode="None" particleName="F_smoke064_grey2" useAttach="false" hiddenObj="false" changeEffect="None" scale="1" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Particle frame="30" attachNode="Dummy_root" particleName="F_smoke198_red_violet" useAttach="false" hiddenObj="false" changeEffect="None" scale="4" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <BlendOn frame="31" R="140" G="140" B="150" A="100"/>
+    <Shockwave frame="32" type="2" intensity="3" frequency="60" duration="0.5" range="1000"/>
+    <BlendOn frame="32" R="0" G="0" B="0" A="50"/>
+    <Particle frame="32" attachNode="Dummy_effect_eye_R" particleName="F_pc_item_ep13cybersoldier01_pistol_light_red" useAttach="true" hiddenObj="false" changeEffect="None" scale="0.1" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Particle frame="32" attachNode="Dummy_effect_eye_L" particleName="F_pc_item_ep13cybersoldier01_pistol_light_red" useAttach="true" hiddenObj="false" changeEffect="None" scale="0.1" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Particle frame="33" attachNode="Point160_po" particleName="I_light019_green_spark2" useAttach="true" hiddenObj="false" changeEffect="None" scale="3" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Particle frame="38" attachNode="Point160_po" particleName="I_light019_green_spark2" useAttach="true" hiddenObj="false" changeEffect="None" scale="3" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Sound frame="45.00" soundFile="skl_eff_atk_move_m_2"/>
+    <Particle frame="45" attachNode="Dummy_root" particleName="F_smoke198_red_violet" useAttach="false" hiddenObj="false" changeEffect="None" scale="4" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Particle frame="52" attachNode="Point160_po" particleName="I_light019_green_spark2" useAttach="true" hiddenObj="false" changeEffect="None" scale="3" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Shockwave frame="53" type="2" intensity="3" frequency="60" duration="0.5" range="1000"/>
+    <BlendOn frame="53" R="80" G="80" B="100" A="100"/>
+    <Particle frame="53" attachNode="Dummy_effect_eye_R" particleName="F_pc_item_ep13cybersoldier01_pistol_light_red" useAttach="true" hiddenObj="false" changeEffect="None" scale="0.1" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Particle frame="53" attachNode="Dummy_effect_eye_L" particleName="F_pc_item_ep13cybersoldier01_pistol_light_red" useAttach="true" hiddenObj="false" changeEffect="None" scale="0.1" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <BlendOn frame="54" R="0" G="0" B="0" A="50"/>
+    <BlendOff frame="56" R="0" G="0" B="0" A="0"/>
+    <Particle frame="57" attachNode="Point160_po" particleName="I_light019_green_spark2" useAttach="true" hiddenObj="false" changeEffect="None" scale="3" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Particle frame="62" attachNode="Point160_po" particleName="I_light019_green_spark2" useAttach="true" hiddenObj="false" changeEffect="None" scale="3" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+</ActionDesc>

@@ -1,13 +1,35 @@
 -- lib_recipe.lua
 
+local _boost_token_material_list = nil
+
+local function make_premium_boost_token_material_list()
+    if _boost_token_material_list ~= nil then
+        return
+    end
+
+    _boost_token_material_list = {}
+    -- StringArg 검사          Premium_boostToken 은 Premium_boostToken02 의 재료
+    _boost_token_material_list['Premium_boostToken'] = 'Premium_boostToken02'
+    _boost_token_material_list['Premium_boostToken02'] = 'Premium_boostToken03'
+    _boost_token_material_list['Premium_boostToken03'] = 'Premium_boostToken06'    
+end
+
+make_premium_boost_token_material_list()
+
+-- 재료를 넣어서 완성품을 가져온다. -- 재료가 아닌경우 nil
+function GET_PREMIUM_BOOSTTOKEN_TARGET(mat)
+    return _boost_token_material_list[mat]
+end
+
 function SCR_GET_RECIPE_ITEM(recipeMaterialCls)
      return GET_INVITEMS_BY_TYPE_WORTH_SORTED('IS_VALID_RECIPE_MATERIAL', recipeMaterialCls.ClassID);
 end
 
-function SCR_GET_RECIPE_ITEM_BOOSTTOKEN(recipeMaterialCls)   
-     return GET_INVITEMS_BY_TYPE_WORTH_SORTED('IS_VALID_RECIPE_MATERIAL_FOR_BOOSTTOKEN', recipeMaterialCls.ClassName);
+function SCR_GET_RECIPE_ITEM_BOOSTTOKEN(recipeMaterialCls)
+    return GET_INVITEMS_BY_TYPE_WORTH_SORTED('IS_VALID_RECIPE_MATERIAL_FOR_BOOSTTOKEN', recipeMaterialCls.ClassName);
 end
 
+-- compareProperty 재료 ClassName
 function GET_INVITEMS_BY_TYPE_WORTH_SORTED(compareScript, compareProperty)
 	local resultlist = {};
 	local invItemList = session.GetInvItemList();
@@ -15,7 +37,7 @@ function GET_INVITEMS_BY_TYPE_WORTH_SORTED(compareScript, compareProperty)
 	FOR_EACH_INVENTORY(invItemList, function(invItemList, invItem, CompareFunction, compareProperty, resultlist)
 		if invItem ~= nil then
 			local itemobj = GetIES(invItem:GetObject());		
-			if CompareFunction(compareProperty, itemobj) then
+            if CompareFunction(compareProperty, itemobj) then                
 				resultlist[#resultlist+1] = invItem;
 			end
 		end
@@ -29,16 +51,7 @@ function IS_VALID_RECIPE_MATERIAL_FOR_BOOSTTOKEN(compareProperty, itemObj, pc)
         return false;
     end
 
-    -- 네이밍 규칙을 통한 검사
-    local itemClassName = itemObj.ClassName;
-    if itemClassName ~= compareProperty and string.find(itemClassName, compareProperty..'_') == nil then
-        return false;
-    end
-    -- 1분짜리 경험의서는 예외처리 해달라고 하셨음
-    if itemClassName == 'Premium_boostToken_test1min' and compareProperty == 'Premium_boostToken' then
-        return false;
-    end
-     -- 기간 지난 것도 안돼
+    -- 기간 지난 것도 안돼
     if itemObj.ItemLifeTimeOver > 0 then
         if pc ~= nil then
             SendSysMsg(pc, 'CannotUseLifeTimeOverItem');
@@ -46,6 +59,23 @@ function IS_VALID_RECIPE_MATERIAL_FOR_BOOSTTOKEN(compareProperty, itemObj, pc)
         return false;
     end
 
+    local string_arg = TryGetProp(itemObj, 'StringArg', 'None')
+    if string_arg ~= 'None' then
+        if compareProperty == string_arg then            
+            return true
+        end
+    end
+
+    -- 네이밍 규칙을 통한 검사
+    local itemClassName = itemObj.ClassName;    
+    if itemClassName ~= compareProperty and string.find(itemClassName, compareProperty..'_') == nil then            
+        return false;
+    end
+    -- 1분짜리 경험의서는 예외처리 해달라고 하셨음
+    if itemClassName == 'Premium_boostToken_test1min' and compareProperty == 'Premium_boostToken' then                
+        return false;
+    end
+    
     return true;
 end
 
@@ -166,6 +196,15 @@ function GET_RECIPE_MATERIAL_INFO(recipeCls, index,pc)
             propCount = '0'
         end
         return recipeItemCnt, propCount,dragRecipeItem,nil,recipeItemLv,nil
+    end
+    
+    if itemName == 'dummy_GabijaCertificate' then -- 여신의 증표(가비야)
+        local aObj = GetMyAccountObj()
+        local propCount = TryGetProp(aObj, 'GabijaCertificate', '0')
+        if propCount == 'None' then
+            propCount = '0'
+        end
+        return recipeItemCnt, propCount, dragRecipeItem, nil,recipeItemLv,nil
     end
 
 	local invItem = nil;

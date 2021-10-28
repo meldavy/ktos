@@ -219,9 +219,14 @@ end
 
 function BUFF_TOOLTIP_TeamLevel(buff, cls)	
 	local advantageText = "";
-	local expBonus = GET_TEAM_LEVEL_EXP_BONUS(buff.arg1);
+	local team_level = buff.arg1
+	local account = session.barrack.GetMyAccount()
+	if account ~= nil then
+		team_level = account:GetTeamLevel()
+	end
+	local expBonus = GET_TEAM_LEVEL_EXP_BONUS(team_level);
 	advantageText = advantageText .. ScpArgMsg("ExpGetAmount") .. " + " .. expBonus .. "%";	
-	return advantageText, ScpArgMsg("TeamLevel") .. " " .. buff.arg1;
+	return advantageText, ScpArgMsg("TeamLevel") .. " " .. team_level;
 end
 
 function BUFF_TOOLTIP_DecreaseHeal_Debuff(buff, cls)

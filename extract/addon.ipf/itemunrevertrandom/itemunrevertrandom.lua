@@ -233,8 +233,13 @@ function ITEM_UNREVERT_RANDOM_EXEC(frame)
 		return;
 	end
 
-	local clmsg = ScpArgMsg("DoUnrevertRandomReset")
-	ui.MsgBox_NonNested(clmsg, frame:GetName(), "_ITEM_UNREVERT_RANDOM_EXEC", "None");
+	local check_no_msgbox = GET_CHILD_RECURSIVELY(frame, 'check_no_msgbox')
+	if check_no_msgbox:IsChecked() == 1 then
+		_ITEM_UNREVERT_RANDOM_EXEC()
+	else
+		local clmsg = ScpArgMsg("DoUnrevertRandomReset")
+		ui.MsgBox_NonNested(clmsg, frame:GetName(), "_ITEM_UNREVERT_RANDOM_EXEC", "None");
+	end
 end
 
 function _ITEM_UNREVERT_RANDOM_EXEC()

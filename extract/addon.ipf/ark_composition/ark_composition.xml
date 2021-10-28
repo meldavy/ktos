@@ -7,7 +7,7 @@
 	<sound opensound="skill_window_open" closesound="skill_window_close"/>
 	<layer layerlevel="92"/>
 	<script OpenScp="ARK_COMPOSITION_OPEN" CloseScp="ARK_COMPOSITION_CLOSE"/>
-	<userconfig ITEM_NAME_TEXT="합성할 아이템을 올려주세요" COMPOSITION_TYPE_EXP="경험치 증가" COMPOSITION_TYPE_LV="레벨 증가" EXP_MATERIAL_COUNT="1" LV_MATERIAL_COUNT="3" COMPOSITION_EFFECT_NAME="UI_item_parts" COMPOSITION_EFFECT_SCALE="4.6" COMPOSITION_EFFECT_DURATION="2" RESULT_EFFECT_NAME="UI_item_parts2_success" RESULT_EFFECT_SCALE="5" RESULT_EFFECT_DURATION="2" COMPOSITION_SOUND_NAME="UI_icor_reinforce"/>
+	<userconfig ITEM_NAME_TEXT="합성할 아이템을 올려주세요" COMPOSITION_TYPE_EXP="경험치 증가" COMPOSITION_TYPE_LV="레벨 증가" EXP_MATERIAL_COUNT="1" LV_MATERIAL_COUNT="3" COMPOSITION_EFFECT_NAME="UI_item_parts" COMPOSITION_EFFECT_SCALE="4.6" COMPOSITION_EFFECT_DURATION="2" RESULT_EFFECT_NAME="UI_item_parts2_success" RESULT_EFFECT_SCALE="5" RESULT_EFFECT_DURATION="1" COMPOSITION_SOUND_NAME="UI_icor_reinforce"/>
 	<controls>
 		<groupbox name="bg2" rect="0 0 450 1000" margin="0 30 0 0" layout_gravity="center top" draw="true" hittestbox="false" resizebyresolution="true" scrollbar="false" skin="test_frame_low"/>
 		<groupbox name="title_gb" rect="0 0 450 60" margin="0 0 0 0" layout_gravity="center top" draw="true" hittestbox="false" resizebyparent="false" scrollbar="false" skin="test_frame_top"/>

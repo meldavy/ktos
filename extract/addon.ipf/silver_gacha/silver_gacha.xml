@@ -46,5 +46,7 @@
 		<button name="auto_okbtn" parent="auto_gb" rect="0 0 160 60" margin="0 190 0 0" image="login_test_button" layout_gravity="center top" stretch="false" caption="{@st43}{s24}중단" oversound="button_cursor_over_3" clicksound="button_click_big" LBtnUpScp="SILVER_GACHA_AUTO_STOP_BTN_CLICK"/>
 		<!-- protection_in -->
 		<groupbox name="protection_gb" rect="0 0 575 730" margin="-320 195 0 0" layout_gravity="center top" skin="protection_in_background" scroll="false"/>
+		<!-- description -->
+		<richtext name="desc_text" rect="0 0 0 0" margin="0 200 30 0" layout_gravity="right top" caption="{@st66b}{s18}* 마신의 유혹은 실버로 이용하는 확률형 콘텐츠입니다.{nl}* 회당 5만 실버가 소모되며, 확률에 따라 월별 신규 코스튬이나{nl}    마신의 유혹 포인트를 획득할 수 있습니다." hittest="false"/>
 	</controls>
 </uiframe>

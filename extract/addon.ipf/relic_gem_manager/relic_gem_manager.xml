@@ -44,6 +44,7 @@
 		<richtext name="r_invmoney_name" parent="rprice_info" rect="0 0 78 20" margin="1 150 0 0" layout_gravity="left top" caption="{@st202}예상 잔액 ▶{/}" textalign="left center"/>
 		<richtext name="r_price" parent="rprice_info" rect="0 0 220 20" margin="0 120 1 0" layout_gravity="right top" format="{@st66d_y}%s {/}{img icon_item_silver 24 24}" param1="value" param1_def="0" spacey="0" textalign="right center"/>
 		<richtext name="r_invmoney" parent="rprice_info" rect="0 0 220 20" margin="0 150 1 0" layout_gravity="right top" format="{@st66d_y}%s {/}{img icon_item_silver 24 24}" param1="value" param1_def="0" spacey="0" textalign="right center"/>
+		<checkbox name="check_no_msgbox" parent="reinforceBg" margin="0 0 0 102" rect="0 0 15 15" clicksound="button_click_big" oversound="button_over" layout_gravity="center bottom" caption="{@st202}확인 창 띄우지 않기"/>
 		<groupbox name="rresult_gb" parent="reinforceBg" rect="0 0 424 270" margin="0 0 0 0" layout_gravity="center top" draw="false" hittestbox="true"/>
 		<picture name="r_success_effect_bg" parent="rresult_gb" rect="0 0 338 210" hittest="false" image="SUCCESS_gold_bg" oversound="button_cursor_over_3" margin="0 0 0 0" stretch="true" layout_gravity="center top"/>
 		<picture name="r_fail_effect_bg" parent="rresult_gb" rect="0 0 338 210" hittest="false" image="None" draw="false" oversound="button_cursor_over_3" margin="0 0 0 0" stretch="true" layout_gravity="center top"/>

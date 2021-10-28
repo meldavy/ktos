@@ -118,14 +118,8 @@ function SCP_GET_RANGE_Wugushi_JincanGu(className, range)
 	if className == nil then 
 		return 0;
 	end
-
-	local abil = session.GetAbilityByName("Wugushi36");
-	if abil ~= nil then
-		local abilObj = GetIES(abil:GetObject());
-		if abilObj.ActiveState == 1 then
-			range = 100
-		end
-	end
+	
+	range = 100
 
 	return range;
 end

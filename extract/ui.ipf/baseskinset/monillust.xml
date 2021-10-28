@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by imc (imc) -->
+<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by imc (imc) -->
 <!-- edited with XMLSpy v2008 sp1 (http://www.altova.com) by MintPC (Mi) -->
 <skinset name="Base">
 	<imagelist category="Monster_icon_boss_02">
@@ -178,6 +178,13 @@
 		<image name="boss_darbas_smasher" file="\icon\monster\boss\boss_darbas_smasher.png" imgrect="0 0 80 80"/>
 		<image name="boss_liepsna_firebug" file="\icon\monster\boss\boss_liepsna_firebug.png" imgrect="0 0 80 80"/>
 		<image name="boss_saugumas_executor" file="\icon\monster\boss\boss_saugumas_executor.png" imgrect="0 0 80 80"/>
+		<image name="TH_boss_BowerKeeper" file="\icon\monster\boss\TH_boss_BowerKeeper.png" imgrect="0 0 80 80"/>
+		<image name="TH_boss_RaganosisCommander" file="\icon\monster\boss\TH_boss_RaganosisCommander.png" imgrect="0 0 80 80"/>
+		<image name="TH_boss_saugumas_executor" file="\icon\monster\boss\TH_boss_saugumas_executor.png" imgrect="0 0 80 80"/>
+		<image name="boss_blackman" file="\icon\monster\boss\boss_blackman.png" imgrect="0 0 80 80"/>
+		<image name="boss_mokslas_valdovas" file="\icon\monster\boss\boss_mokslas_valdovas.png" imgrect="0 0 80 80"/>
+		<image name="boss_insane_marnoks" file="\icon\monster\boss\boss_insane_marnoks.png" imgrect="0 0 80 80"/>
+		<image name="boss_Vasilissa" file="\icon\monster\boss\boss_Vasilissa.png" imgrect="0 0 80 80"/>
 	</imagelist>
 	<imagelist category="Monster_icon_boss_01">
 		<image name="boss_FerretMarauder" file="\icon\monster\boss\boss_FerretMarauder.png" imgrect="0 0 80 80"/>
@@ -1526,6 +1533,7 @@
 		<image name="mon_ShillEclipse" file="\icon\monster\mon\mon_ShillEclipse.png" imgrect="0 0 80 80"/>
 		<image name="mon_WhimEclipse" file="\icon\monster\mon\mon_WhimEclipse.png" imgrect="0 0 80 80"/>
 		<image name="mon_Varnaclipse" file="\icon\monster\mon\mon_Varnaclipse.png" imgrect="0 0 80 80"/>
+		<image name="mon_Deadbornscab_green" file="\icon\monster\mon\mon_Deadbornscab_green.png" imgrect="0 0 80 80"/>
 		<image name="mon_aklaspetal_sword" file="\icon\monster\mon\mon_aklaspetal_sword.png" imgrect="0 0 80 80"/>
 		<image name="mon_Castle_beetle" file="\icon\monster\mon\mon_Castle_beetle.png" imgrect="0 0 80 80"/>
 		<image name="mon_castle_goblin_archer" file="\icon\monster\mon\mon_castle_goblin_archer.png" imgrect="0 0 80 80"/>
@@ -1577,5 +1585,32 @@
 		<image name="saugumas_guardion" file="\icon\monster\mon\saugumas_guardion.png" imgrect="0 0 80 80"/>
 		<image name="saugumas_sentinel" file="\icon\monster\mon\saugumas_sentinel.png" imgrect="0 0 80 80"/>
 		<image name="vynmedis" file="\icon\monster\mon\vynmedis.png" imgrect="0 0 80 80"/>
+		<image name="TH_bower_obstructer_magenta" file="\icon\monster\mon\TH_bower_obstructer_magenta.png" imgrect="0 0 80 80"/>
+		<image name="TH_bower_Gather" file="\icon\monster\mon\TH_bower_Gather.png" imgrect="0 0 80 80"/>
+		<image name="TH_bower_interfere_magenta" file="\icon\monster\mon\TH_bower_interfere_magenta.png" imgrect="0 0 80 80"/>
+		<image name="TH_bower_oblivion_magenta" file="\icon\monster\mon\TH_bower_oblivion_magenta.png" imgrect="0 0 80 80"/>
+		<image name="TH_orsha_catapult" file="\icon\monster\mon\TH_orsha_catapult.png" imgrect="0 0 80 80"/>
+		<image name="TH_GoldMonster" file="\icon\monster\mon\TH_GoldMonster.png" imgrect="0 0 80 80"/>
+		<image name="TH_raganosis_seeker_white" file="\icon\monster\mon\TH_raganosis_seeker_white.png" imgrect="0 0 80 80"/>
+		<image name="TH_raganosis_cannon" file="\icon\monster\mon\TH_raganosis_cannon.png" imgrect="0 0 80 80"/>
+		<image name="TH_raganosis_cannon_white" file="\icon\monster\mon\TH_raganosis_cannon_white.png" imgrect="0 0 80 80"/>
+		<image name="TH_raganosis_guardian_white" file="\icon\monster\mon\TH_raganosis_guardian_white.png" imgrect="0 0 80 80"/>
+		<image name="TH_raganosis_Phalanx" file="\icon\monster\mon\TH_raganosis_Phalanx.png" imgrect="0 0 80 80"/>
+		<image name="TH_raganosis_Phalanx_white" file="\icon\monster\mon\TH_raganosis_Phalanx_white.png" imgrect="0 0 80 80"/>
+		<image name="TH_raganosis_ram_white" file="\icon\monster\mon\TH_raganosis_ram_white.png" imgrect="0 0 80 80"/>
+		<image name="TH_saugumas_sentinel_orange" file="\icon\monster\mon\TH_saugumas_sentinel_orange.png" imgrect="0 0 80 80"/>
+		<image name="TH_saugumas_defender_orange" file="\icon\monster\mon\TH_saugumas_defender_orange.png" imgrect="0 0 80 80"/>
+		<image name="TH_saugumas_guard" file="\icon\monster\mon\TH_saugumas_guard.png" imgrect="0 0 80 80"/>
+		<image name="TH_saugumas_guard_orange" file="\icon\monster\mon\TH_saugumas_guard_orange.png" imgrect="0 0 80 80"/>
+		<image name="TH_saugumas_guardion_orange" file="\icon\monster\mon\TH_saugumas_guardion_orange.png" imgrect="0 0 80 80"/>
+		<image name="mokslas_researcher" file="\icon\monster\mon\mokslas_researcher.png" imgrect="0 0 80 80"/>
+		<image name="mokslas_fumigation" file="\icon\monster\mon\mokslas_fumigation.png" imgrect="0 0 80 80"/>
+		<image name="mokslas_doctor" file="\icon\monster\mon\mokslas_doctor.png" imgrect="0 0 80 80"/>
+		<image name="wendigo_dump" file="\icon\monster\mon\wendigo_dump.png" imgrect="0 0 80 80"/>
+		<image name="wendigo" file="\icon\monster\mon\wendigo.png" imgrect="0 0 80 80"/>
+		<image name="Goblin_sweeper" file="\icon\monster\mon\Goblin_sweeper.png" imgrect="0 0 80 80"/>
+		<image name="Goblin_brandingiron" file="\icon\monster\mon\Goblin_brandingiron.png" imgrect="0 0 80 80"/>
+		<image name="Dumaro" file="\icon\monster\mon\Dumaro.png" imgrect="0 0 80 80"/>
+		<image name="banshee" file="\icon\monster\mon\banshee.png" imgrect="0 0 80 80"/>
 	</imagelist>
 </skinset>

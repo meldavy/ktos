@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="EUC-KR"?>
+<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by IMCGames Co., Ltd (IMCGames Co., Ltd) -->
+<ActionDesc>
+	<Shockwave frame="23" type="2" intensity="2" frequency="60" duration="1" range="1000"/>
+	<BlendOn frame="0" R="0" G="0" B="0" A="50"/>
+	<BlendOn frame="23" R="130" G="130" B="150" A="100"/>
+	<BlendOn frame="24" R="170" G="180" B="190" A="100"/>
+	<BlendOn frame="25" R="140" G="145" B="160" A="100"/>
+	<BlendOn frame="26" R="120" G="120" B="130" A="100"/>
+	<BlendOn frame="27" R="100" G="100" B="100" A="100"/>
+	<BlendOn frame="28" R="80" G="80" B="80" A="100"/>
+	<BlendOn frame="29" R="60" G="60" B="60" A="100"/>
+	<BlendOn frame="30" R="40" G="40" B="40" A="100"/>
+	<BlendOn frame="31" R="20" G="20" B="20" A="100"/>
+	<BlendOn frame="32" R="10" G="10" B="10" A="100"/>
+	<BlendOn frame="33" R="5" G="5" B="5" A="100"/>
+	<BlendOff frame="34" R="0" G="0" B="0" A="0"/>
+	<Particle frame="23" attachNode="Dummy_root" particleName="F_smoke064_grey2" useAttach="false" hiddenObj="false" changeEffect="None" scale="2" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="30" attachNode="Dummy_root" particleName="None" useAttach="false" hiddenObj="false" changeEffect="None" scale="10" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="40" attachNode="Dummy_root" particleName="None" useAttach="false" hiddenObj="false" changeEffect="None" scale="15" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="20" attachNode="Dummy_effect_eye_R" particleName="F_pc_item_ep13cybersoldier01_pistol_light_red" useAttach="true" hiddenObj="false" changeEffect="None" scale="0.2" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="20" attachNode="Dummy_effect_eye_L" particleName="F_pc_item_ep13cybersoldier01_pistol_light_red" useAttach="true" hiddenObj="false" changeEffect="None" scale="0.2" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="0" attachNode="Dummy_root" particleName="F_smoke198_red_violet" useAttach="false" hiddenObj="false" changeEffect="None" scale="4" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="20" attachNode="Dummy_root" particleName="F_smoke198_red_violet" useAttach="false" hiddenObj="false" changeEffect="None" scale="4" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="23" attachNode="Dummy_root" particleName="F_spread_out059" useAttach="false" hiddenObj="false" changeEffect="None" scale="3" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="24" attachNode="Dummy_root" particleName="F_spread_out059" useAttach="false" hiddenObj="false" changeEffect="None" scale="5" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="30" attachNode="Dummy_root" particleName="F_ground183_circle_violet2" useAttach="false" hiddenObj="false" changeEffect="None" scale="10" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="23" attachNode="Dummy_root" particleName="I_spread_out017_ground" useAttach="false" hiddenObj="false" changeEffect="None" scale="7.5" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="23" attachNode="Dummy_root" particleName="None" useAttach="false" hiddenObj="false" changeEffect="None" scale="3" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="23" attachNode="Dummy_root" particleName="None" useAttach="false" hiddenObj="false" changeEffect="None" scale="2.1" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="30" attachNode="Dummy_root" particleName="None" useAttach="false" hiddenObj="false" changeEffect="None" scale="3.8" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="40" attachNode="Dummy_root" particleName="None" useAttach="false" hiddenObj="false" changeEffect="None" scale="6" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="50" attachNode="Dummy_root" particleName="None" useAttach="false" hiddenObj="false" changeEffect="None" scale="7.8" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="23" attachNode="Dummy_root" particleName="None" useAttach="false" hiddenObj="false" changeEffect="None" scale="3" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="23" attachNode="Dummy_root" particleName="F_warrior_ninja_shot_light" useAttach="false" hiddenObj="false" changeEffect="None" scale="0" pause="true" use2DEffect="false" soft2DValue="20"/>
+</ActionDesc>

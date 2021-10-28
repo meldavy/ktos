@@ -783,7 +783,12 @@ function SETEXP_SLOT(gbox, addBuffClsName, isAdd)
         end
     end
 
-    local totalExpUpValueText = GET_CHILD_RECURSIVELY(gbox, 'totalExpUpValueText');
+    local totalExpUpValueText = GET_CHILD_RECURSIVELY(gbox, 'totalExpUpValueText');    
+    if GetExProp(GetMyPCObject(), 'final_multiple_exp_rate') > 0 then
+        local value = GetExProp(GetMyPCObject(), 'final_multiple_exp_rate')
+        totalExpUpValue = math.floor(tonumber(totalExpUpValue) * (1 + value))
+    end
+    
     totalExpUpValueText:SetTextByKey('value', totalExpUpValue);
 end
 
@@ -891,6 +896,9 @@ function STATUS_INFO()
 
     local returnY = STATUS_HIDDEN_JOB_UNLOCK_VIEW(pc, opc, frame, gboxctrl, y);
     if returnY ~= y then y = returnY + 3; end
+    
+    local returnY = STATUS_ITEM_GEAR_SCORE(pc, opc, frame, gboxctrl, y);
+    if returnY ~= y then y = returnY + 3; end
 
     local returnY = STATUS_ATTRIBUTE_VALUE_NEW(pc, opc, frame, gboxctrl, "MHP", y);
     if returnY ~= y then y = returnY + 3; end
@@ -903,8 +911,6 @@ function STATUS_INFO()
 
 
     returnY = STATUS_ATTRIBUTE_VALUE_RANGE_NEW(pc, opc, frame, gboxctrl, "PATK", "MINPATK", "MAXPATK", y);
-    if returnY ~= y then y = returnY + 3; end
-    returnY = STATUS_ATTRIBUTE_VALUE_RANGE_NEW(pc, opc, frame, gboxctrl, "PATK_SUB", "MINPATK_SUB", "MAXPATK_SUB", y);
     if returnY ~= y then y = returnY + 3; end
     returnY = STATUS_ATTRIBUTE_VALUE_RANGE_NEW(pc, opc, frame, gboxctrl, "MATK", "MINMATK", "MAXMATK", y);
     if returnY ~= y then y = returnY + 3; end
@@ -1316,7 +1322,7 @@ function STATUS_ATTRIBUTE_VALUE_RANGE(pc, opc, frame, gboxctrl, attibuteName, mi
     end
 end
 
-function STATUS_ATTRIBUTE_VALUE_RANGE_NEW(pc, opc, frame, gboxctrl, attibuteName, minName, maxName, y)
+function STATUS_ATTRIBUTE_VALUE_RANGE_NEW(pc, opc, frame, gboxctrl, attibuteName, minName, maxName, y)    
     local controlSet = gboxctrl:CreateOrGetControlSet('status_stat', attibuteName, 0, y);
     tolua.cast(controlSet, "ui::CControlSet");
 
@@ -1391,6 +1397,30 @@ function STATUS_HIDDEN_JOB_UNLOCK_VIEW(pc, opc, frame, gboxctrl, y)
     return y
 end
 
+function STATUS_ITEM_GEAR_SCORE(pc, opc, frame, gboxctrl, y)        
+    local score = GET_PLAYER_GEAR_SCORE(pc)
+
+    local controlSet = gboxctrl:CreateOrGetControlSet('status_stat', 'gear_score', 0, y);    
+    tolua.cast(controlSet, "ui::CControlSet");
+    local title = GET_CHILD(controlSet, "title", "ui::CRichText");
+    
+    title:SetText('{@sti8}' .. ScpArgMsg("EquipedItemGearScore"));
+    title:SetTextTooltip(ScpArgMsg("TooltipDescGearScore"))
+
+    local stat = GET_CHILD(controlSet, "stat", "ui::CRichText");
+    title:SetUseOrifaceRect(true)
+    stat:SetUseOrifaceRect(true)
+
+    stat:SetText('{@sti8}' .. score);
+	
+    if title:GetWidth() >= 350 then
+		title:AdjustFontSizeByWidth(350)
+	end
+	
+    controlSet:Resize(controlSet:GetWidth(), stat:GetHeight());
+    return y + controlSet:GetHeight();
+end
+
 local color_attribute = {}
 color_attribute['Cloth_Def'] = 'Cloth_Def_status'
 color_attribute['Leather_Def'] = 'Leather_Def_status'
@@ -1425,6 +1455,8 @@ function STATUS_ATTRIBUTE_VALUE_NEW(pc, opc, frame, gboxctrl, attributeName, y)
     
     if attributeName == 'SR' then
         title:SetTextTooltip(ScpArgMsg("StatusTooltipMsg2"))
+    elseif attributeName == 'BLK' then
+        title:SetTextTooltip(ScpArgMsg("StatusTooltipMsgBlk{value}", "value", pc["BLKABLE"]))    
     elseif attributeName == 'SDR' then
         title:SetTextTooltip(ScpArgMsg("StatusTooltipMsg3"))    
     elseif attributeName == 'LootingChance' then

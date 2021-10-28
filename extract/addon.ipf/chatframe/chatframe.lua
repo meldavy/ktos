@@ -278,7 +278,7 @@ function DRAW_CHAT_MSG_ROOM(groupboxname, startindex, removeChatIDList)
 	if popupframe == nil then
 		return
 	end
-
+	
 	if DRAW_CHAT_MSG(groupboxname, startindex, popupframe, removeChatIDList) ~= 1 then
 		ReserveScript( string.format("DRAW_CHAT_MSG_ROOM(\"%s\",\"%d\")", groupboxname, -1) , 3);
 	end
@@ -299,8 +299,8 @@ function DRAW_CHAT_MSG_DEF(groupboxname, startindex, removeChatIDList)
 	if chatframe == nil then
 		return
 	end
-
-	if DRAW_CHAT_MSG(groupboxname, startindex, chatframe, removeChatIDList) ~= 1 then
+	
+	if DRAW_CHAT_MSG(groupboxname, startindex, chatframe, removeChatIDList) ~= 1 then		
 		ReserveScript( string.format("DRAW_CHAT_MSG_DEF(\"%s\",\"%d\")", groupboxname,-1) , 3);
 		return;
 	end
@@ -376,6 +376,7 @@ function DRAW_CHAT_MSG(groupboxname, startindex, chatframe, removeChatIDList)
 		if chatCtrl == nil then
 			local msgType = clusterinfo:GetMsgType();
 			local commnderName = clusterinfo:GetCommanderName();
+			local toName = clusterinfo:GetToName();
 
 			local colorType = session.chat.GetRoomConfigColorType(clusterinfo:GetRoomID())
 			local colorCls = GetClassByType("ChatColorStyle", colorType)
@@ -417,10 +418,12 @@ function DRAW_CHAT_MSG(groupboxname, startindex, chatframe, removeChatIDList)
 
 			chatCtrl:EnableHitTest(1);
 			chatCtrl:EnableAutoResize(true,false);
-		
-			if commnderName ~= GETMYFAMILYNAME() then
+			
+			
+			if commnderName ~= GETMYFAMILYNAME() then			
 				chatCtrl:SetSkinName("")
 			end
+			
 			local commnderNameUIText = commnderName .. " : "
 			
 			local label = chatCtrl:GetChild('bg');
@@ -491,6 +494,11 @@ function DRAW_CHAT_MSG(groupboxname, startindex, chatframe, removeChatIDList)
 					msgFront = string.format("[%s]", ScpArgMsg("ChatType_8"));		
 
 				elseif msgType == "Whisper" then
+					local from = commnderName
+					local my_msg = false
+					if from == GETMYFAMILYNAME() then
+						my_msg = true
+					end
 
 					chatCtrl:SetEventScript(ui.LBUTTONDOWN, 'CHAT_GBOX_LBTN_DOWN');
 					chatCtrl:SetEventScriptArgString(ui.LBUTTONDOWN, clusterinfo:GetRoomID());
@@ -500,8 +508,12 @@ function DRAW_CHAT_MSG(groupboxname, startindex, chatframe, removeChatIDList)
 					if colorCls ~= nil then
 						fontStyle = "{#"..colorCls.TextColor.."}{ol}"
 					end
-
-					msgFront = string.format("[%s]%s", ScpArgMsg("ChatType_5"), commnderNameUIText);	
+					
+					if my_msg == true then						
+						msgFront = string.format("[%s]%s", ScpArgMsg("ChatType_5"), ScpArgMsg('YouWhisper{to}', 'to', toName));
+					else
+						msgFront = string.format("[%s]%s", ScpArgMsg("ChatType_5"), ScpArgMsg('{from}WhisperToYou', 'from', from));	
+					end
 
 				elseif msgType == "Group" then
 
@@ -554,7 +566,7 @@ function DRAW_CHAT_MSG(groupboxname, startindex, chatframe, removeChatIDList)
 			if spinePic ~= nil then
 				spinePic:SetMargin(txt:GetWidth() - 110, 0, 0, 0);
 			end
-		
+			
 			RESIZE_CHAT_CTRL(groupbox, chatCtrl, label, txt, timeCtrl, offsetX);
 		end																									
 	end
@@ -719,7 +731,7 @@ function CHAT_SET_FONTSIZE_N_COLOR(chatframe)
 						lastChild = chatCtrl;
 					end
 				end
-
+				
 				DRAW_CHAT_MSG(groupBox:GetName(), 0, chatframe, nil);
 
 				if lastChild ~= nil then

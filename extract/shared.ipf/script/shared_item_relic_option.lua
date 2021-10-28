@@ -24,9 +24,9 @@ end
 
 -- 시안 젬 - 수확의 낫
 function get_tooltip_HARVEST_SCYTHE_arg1(pc)
-	local rate = 15000
+	local rate = 3000
 	if IsPVPField(pc) == 1 then
-		rate = 5000
+		rate = 1000
 	end
     return rate, 'RELIC_SKILLFACTOR', 1, 'Percent'
 end
@@ -41,9 +41,9 @@ end
 
 -- 시안 젬 - 거인의 마검
 function get_tooltip_GIANT_EVILSWORD_arg1(pc)
-	local rate = 15000
+	local rate = 3000
 	if IsPVPField(pc) == 1 then
-		rate = 5000
+		rate = 1000
 	end
     return rate, 'RELIC_SKILLFACTOR', 1, 'Percent'
 end
@@ -58,9 +58,9 @@ end
 
 -- 시안 젬 - 혜성의 팔찌
 function get_tooltip_OLDTREE_BRACELET_arg1(pc)
-	local rate = 10000
+	local rate = 2500
 	if IsPVPField(pc) == 1 then
-		rate = 3000
+		rate = 750
 	end
     return rate, 'RELIC_SKILLFACTOR', 1, 'Percent'
 end

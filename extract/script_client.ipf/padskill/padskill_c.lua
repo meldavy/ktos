@@ -90,6 +90,17 @@ function C_PAD_CHANGE_EFFECT(actor, obj, padGuid, padName, range, padStyle, eftN
 	end
 end
 
+function PAD_OWNER_SHOW_PARTS_MODEL_C(actor, obj, padGuid, parts, isShow, refreshSklEnd)
+	if actor == nil then
+		return
+	end
+	
+	if refreshSklEnd == nil then
+        refreshSklEnd = 1;
+    end
+	actor:ShowModelByPart(parts, isShow, refreshSklEnd);
+end
+
 function PAD_PLANT_ATTACK_C(actor, obj, padGuid)
 	-- actor 는 nil 일 수도 있다.
 	geClientPadSkill.SetPadPlantAttack(padGuid);

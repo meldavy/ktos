@@ -79,7 +79,7 @@ function RUN_PARSE_HIDDEN_ABILITY_ITEM()
   end
 
   local idx = 2040001
-  for idx = 2040001, 2040594 do
+  for idx = 2040001, 2040596 do
       local cls = GetClassByType('Item', idx)
       if cls ~= nil then
           local job = TryGetProp(cls, 'AbilityIdspace', 'None')
@@ -145,7 +145,7 @@ function IS_HIDDENABILITY_DECOMPOSE_BOOK_MATERIAL(itemObj)
       return false;
     end
     
-    if string.find(ClassName, 'HiddenAbility_') ~= nil  then
+    if string.find(ClassName, 'HiddenAbility_') ~= nil and string.find(string.lower(ClassName), 'box') == nil  then
         local cls = GetClass('Item', ClassName)
         if cls ~= nil then
             return true
@@ -166,9 +166,9 @@ end
 
 -- 시작의 신비한 서 인가
 function IS_HIDDENABILITY_MASTERPIECE_NOVICE(itemObj)
-  if itemObj.StringArg == "HiddenAbility_MasterPiece_Novice" then
-		return true;
-  end
+  -- if itemObj.StringArg == "HiddenAbility_MasterPiece_Novice" then
+	-- 	return true;
+  -- end
   
   return false;
 end
@@ -196,82 +196,219 @@ end
 
 -- 시작의 미식별 신비한 서로 만들 수 있는 각 직업 별 전집 1~3 calssname list 반환
 function IS_HIDDENABILITY_MASTERPIECE_NOVICE_LIST(ctrlType)
-  local totalList = {};
-  local mainClassName = "HiddenAbility_";
-  if ctrlType == "Warrior" then
-    mainClassName = mainClassName .. "SwordmanPackage";
-  elseif ctrlType == "Wizard" then
-    mainClassName = mainClassName .. "WizardPackage";
-  elseif ctrlType == "Archer" then
-    mainClassName = mainClassName .. "ArcherPackage";
-  elseif ctrlType == "Cleric" then
-    mainClassName = mainClassName .. "ClericPackage";
-  elseif ctrlType == "Scout" then
-    mainClassName = mainClassName .. "ScoutPackage";
-  end
-
-  for index = 1, 3 do
-    totalList[#totalList + 1] = mainClassName..index;
-  end
-
-  return totalList;
-end
-
--- 미식별 신비한 서 아이템인지 확인
-function IS_HIDDENABILITY_MATERIAL_MASTER_PIECE(itemObj)
-  if itemObj.StringArg == "HiddenAbility_MasterPiece" then
-		return true;
-  end
-
-  if itemObj.StringArg == "HiddenAbility_MasterPiece_Novice" then
-		return true;
-  end
-
-  return false;
-end
-
--- 신비한 서 제작에 필요한 미식별 신비한 서 수량
-function HIDDENABILITY_MAKE_NEED_MASTER_PIECE_COUNT()
-  return 1;
-end
-
--- 미식별 신비한 서 갯 수 반환 함수
--- isNovice = 0 or 1, 1일 경우 시작의 미식별 신비한 서 사용
-function GET_TOTAL_HIDDENABILITY_MASTER_PIECE_COUNT(pc, isNovice)
-  local totalCnt = 0;
-  if IsServerObj(pc) == 1 then
-    local invItemList = GetInvItemList(pc);
-    for i = 1, #invItemList do
-      local invItem = invItemList[i];
-      local check = (isNovice == 1 and IS_HIDDENABILITY_MASTERPIECE_NOVICE(invItem) == true) or (isNovice == 0 and IS_HIDDENABILITY_MASTERPIECE_NOVICE(invItem) == false)
-      if check == true and IsFixedItem(invItem) ~= 1 and IS_HIDDENABILITY_MATERIAL_MASTER_PIECE(invItem) == true then
-        local curCnt = GetInvItemCount(pc, invItem.ClassName);
-        totalCnt = totalCnt + curCnt;
-      end
+    local totalList = {};
+    local mainClassName = "HiddenAbility_";
+    if ctrlType == "Warrior" then
+      mainClassName = mainClassName .. "SwordmanPackage";
+    elseif ctrlType == "Wizard" then
+      mainClassName = mainClassName .. "WizardPackage";
+    elseif ctrlType == "Archer" then
+      mainClassName = mainClassName .. "ArcherPackage";
+    elseif ctrlType == "Cleric" then
+      mainClassName = mainClassName .. "ClericPackage";
+    elseif ctrlType == "Scout" then
+      mainClassName = mainClassName .. "ScoutPackage";
     end
 
-    return totalCnt;
-  else
-    local itemList = session.GetInvItemList();
-    local guidList = itemList:GetGuidList();
+    for index = 1, 3 do
+      totalList[#totalList + 1] = mainClassName..index;
+    end
 
-    for i = 0, guidList:Count() - 1 do
-      local guid = guidList:Get(i);
-      local invItem = itemList:GetItemByGuid(guid);
-      if invItem ~= nil and invItem:GetObject() ~= nil and invItem.isLockState == false then
-        local itemObj = GetIES(invItem:GetObject());
-        local check = (isNovice == 1 and IS_HIDDENABILITY_MASTERPIECE_NOVICE(itemObj) == true) or (isNovice == 0 and IS_HIDDENABILITY_MASTERPIECE_NOVICE(itemObj) == false)
-        if check == true and IS_HIDDENABILITY_MATERIAL_MASTER_PIECE(itemObj) == true then
-          if itemObj.MaxStack > 1 then
-            totalCnt = totalCnt + invItem.count;
-          else -- 비스택형 아이템
-            totalCnt = totalCnt + 1;
+    return totalList;
+  end
+
+  -- 미식별 신비한 서 아이템인지 확인
+  function IS_HIDDENABILITY_MATERIAL_MASTER_PIECE(itemObj)
+    if itemObj.StringArg == "HiddenAbility_MasterPiece_Fragment" then
+      return true;
+    end
+
+    -- if itemObj.StringArg == "HiddenAbility_MasterPiece_Novice" then
+    -- 	return true;
+    -- end
+
+    return false;
+  end
+
+  -- 신비한 서 제작에 필요한 미식별 신비한 서 수량
+  function HIDDENABILITY_MAKE_NEED_MASTER_PIECE_COUNT()
+    return 1;
+  end
+
+  -- 미식별 신비한 서 갯 수 반환 함수
+  -- isNovice = 0 or 1, 1일 경우 시작의 미식별 신비한 서 사용
+  function GET_TOTAL_HIDDENABILITY_MASTER_PIECE_COUNT(pc, isNovice)
+    local totalCnt = 0;
+    if IsServerObj(pc) == 1 then
+      local invItemList = GetInvItemList(pc);
+      for i = 1, #invItemList do
+        local invItem = invItemList[i];
+        local check = (isNovice == 1 and IS_HIDDENABILITY_MASTERPIECE_NOVICE(invItem) == true) or (isNovice == 0 and IS_HIDDENABILITY_MASTERPIECE_NOVICE(invItem) == false)
+        if check == true and IsFixedItem(invItem) ~= 1 and IS_HIDDENABILITY_MATERIAL_MASTER_PIECE(invItem) == true then
+          local curCnt = GetInvItemCount(pc, invItem.ClassName);
+          totalCnt = totalCnt + curCnt;
+        end
+      end
+
+      return totalCnt;
+    else
+      local itemList = session.GetInvItemList();
+      local guidList = itemList:GetGuidList();
+
+      for i = 0, guidList:Count() - 1 do
+        local guid = guidList:Get(i);
+        local invItem = itemList:GetItemByGuid(guid);
+        if invItem ~= nil and invItem:GetObject() ~= nil and invItem.isLockState == false then
+          local itemObj = GetIES(invItem:GetObject());
+          local check = (isNovice == 1 and IS_HIDDENABILITY_MASTERPIECE_NOVICE(itemObj) == true) or (isNovice == 0 and IS_HIDDENABILITY_MASTERPIECE_NOVICE(itemObj) == false)
+          if check == true and IS_HIDDENABILITY_MATERIAL_MASTER_PIECE(itemObj) == true then
+            if itemObj.MaxStack > 1 then
+              totalCnt = totalCnt + invItem.count;
+            else -- 비스택형 아이템
+              totalCnt = totalCnt + 1;
+            end
           end
         end
       end
+      return totalCnt;
     end
-    return totalCnt;
-  end
 
-  return 0;
+    return 0;
+end
+
+-- 신비한서 변환
+function MULTIPLE_CONVERT_HIDDEN_ABILITY(pc)
+    local item_list, itemCntList = GetDlgItemList(pc)
+    if #item_list == 0 then return end
+
+    local item = item_list[1]  -- 사용할 아이템
+    local count = itemCntList[1]  -- 사용할 개수
+    if item == nil or count < 1 then
+        return
+    end
+
+    if TryGetProp(item, 'StringArg', 'None') ~= 'HiddenAbility_Piece_Recipe' then
+        return
+    end
+    
+    if IsRunningScript(pc, 'TX_MULTIPLE_CONVERT_HIDDEN_ABILITY') == 1 then        
+        return
+    end
+
+    RunScript('TX_MULTIPLE_CONVERT_HIDDEN_ABILITY', pc)
+end
+function TX_MULTIPLE_CONVERT_HIDDEN_ABILITY(pc)
+    local item_list, itemCntList = GetDlgItemList(pc)
+    if #item_list == 0 then return end
+
+    local item = item_list[1]  -- 사용할 아이템
+    local count = itemCntList[1]  -- 사용할 개수
+    if item == nil or count < 1 then
+        return
+    end
+
+    local take_item_list = {} -- 뺏을 아이템 { 이름 : 개수}
+    take_item_list['HiddenAbility_Piece'] = 2 * count -- 신비한서 낱장
+    take_item_list['Premium_item_transcendence_Stone'] = 5 * count      -- 여신의 축복석
+
+    for k, v in pairs(take_item_list) do
+        local mat_count = GetInvItemCount(pc, k)        
+        if mat_count < v then
+            local cls = GetClass('Item', k)
+            SendAddOnMsg(pc, "NOTICE_Dm_!", ScpArgMsg("{item}NotEnoughMaterial", 'item', cls.Name), 3)  -- 수량 부족            
+            return
+        end
+    end
+
+    local itemCls = GetClass("Item", "HiddenAbility_MasterPiece_Fragment")  -- 지급할 아이템
+    if itemCls == nil then
+        return
+    end
+    
+    local tx = TxBegin(pc)
+    if tx == nil then
+        return
+    end
+    
+    TxGiveItem(tx, itemCls.ClassName, count * 4, 'TX_' .. itemCls.ClassName)    
+    for k, v in pairs(take_item_list) do    
+        if tonumber(v) > 0 then
+            TxTakeItem(tx, k, tonumber(v), "Log_" .. k .. "_Take")
+        end
+    end
+    
+    local ret = TxCommit(tx);
+    if ret == 'SUCCESS' then
+        
+    end
+end
+
+-- 미식별 신비한 서 -> 파편 4개로 분해
+function SCR_MULTIPLE_USE_HIDDEN_ABILITY_FRAGMENT(pc)  
+    local item_list, itemCntList = GetDlgItemList(pc)
+    
+    if #item_list == 0 then return end
+  
+    local item = item_list[1]  -- 사용할 아이템
+    local count = itemCntList[1]  -- 사용할 개수
+    
+    if item == nil then
+        return
+    end
+
+    local string_arg = TryGetProp(item, 'StringArg', 'None')
+
+    if string.format(string_arg, 'HiddenAbility_MasterPiece') == nil then
+        return
+    end
+
+    local precheck_scp = TryGetProp(item, 'PreCheckScp', 'None')
+    
+    if precheck_scp ~= 'None' then
+        local precheck_func = _G[precheck_scp]
+        if precheck_func == nil then
+            return
+        end
+
+        local result = precheck_func(pc)
+        if result == 0 then
+            return
+        end
+    end
+
+    if IsRunningScript(pc, 'TX_SCR_MULTIPLE_USE_HIDDEN_ABILITY_FRAGMENT') == 1 then
+        return
+    end
+
+    RunScript('TX_SCR_MULTIPLE_USE_HIDDEN_ABILITY_FRAGMENT', pc)
+end
+function TX_SCR_MULTIPLE_USE_HIDDEN_ABILITY_FRAGMENT(pc)
+    local item_list, itemCntList = GetDlgItemList(pc)
+    if #item_list == 0 then return end
+
+    local item = item_list[1]  -- 사용할 아이템
+    local count = itemCntList[1]  -- 사용할 개수
+    
+    if item == nil or count == nil or count < 1 then
+        return
+    end
+        
+    local itemCls = GetClass("Item", "HiddenAbility_MasterPiece_Fragment")  -- 지급할 아이템
+    
+    if itemCls == nil then
+        return
+    end
+    
+    local tx = TxBegin(pc)
+    if tx == nil then
+        return
+    end
+    
+    TxTakeItemByObject(tx, item, count, 'TX_' .. itemCls.ClassName)
+    TxGiveItem(tx, itemCls.ClassName, count * 4, 'TX_' .. itemCls.ClassName)
+    
+    local ret = TxCommit(tx);
+    if ret == 'SUCCESS' then
+        
+    end
 end

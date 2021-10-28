@@ -90,6 +90,14 @@ function GET_LEGEND_PREFIX_NEED_MATERIAL_COUNT_BY_NEEDITEM(targetObj, needItemCl
 						count = 1
 					end
 					
+					if TryGetProp(targetObj, 'UseLv', 1) >= 460 then
+						count = 6
+					end
+
+					if TryGetProp(targetObj, 'UseLv', 1) >= 460 and TryGetProp(targetObj, 'LegendPrefix', "None") ~= "None" then
+						count = 2
+					end
+
 					if count <= 1 then
 					    count = 1
 					end
@@ -112,6 +120,14 @@ function GET_LEGEND_PREFIX_NEED_MATERIAL_COUNT_BY_NEEDITEM(targetObj, needItemCl
 					
 					if TryGetProp(targetObj, 'StringArg', 'None') == 'FreePvP' then
 						count = 1
+					end
+
+					if TryGetProp(targetObj, 'UseLv', 1) >= 460 then
+						count = 6
+					end
+
+					if TryGetProp(targetObj, 'UseLv', 1) >= 460 and TryGetProp(targetObj, 'LegendPrefix', "None") ~= "None" then
+						count = 2
 					end
 					
 					if count <= 1 then

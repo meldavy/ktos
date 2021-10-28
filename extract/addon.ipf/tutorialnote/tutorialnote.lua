@@ -90,71 +90,76 @@ function TUTORIALNOTE_PAGE_UPDATE(frame, group)
 		local isCondition = false;
 		local cls = GetClassByIndexFromList(clslist, i);
 		local preScp = TryGetProp(cls, "PreCheckScp", "None");
-		if preScp ~= "None" then
-			local ScrPtr = _G[preScp];
-			if true == ScrPtr(pc, aObj) then
-				isCondition = true;				
-			end
-		else
-			isCondition = true;
-		end
+		local IsHide = TryGetProp(cls, "IsHideCheck", "None");
 
-		local clsGroup = TryGetProp(cls, "Group", "None");
-		if clsGroup == group then
-			local className = TryGetProp(cls, "ClassName", "None");
-			local ctrlSet = note_gb:CreateOrGetControlSet("tutorialnote_block", className, 0, y);
-			ctrlSet:SetGravity(ui.CENTER_HORZ, ui.TOP);
-
-			local main_gb = GET_CHILD(ctrlSet, "main_gb");
-			local check_bg = GET_CHILD(ctrlSet, "check_bg");
-			local clear_bg = GET_CHILD(ctrlSet, "clear_bg");
-			local clear_pic = GET_CHILD(ctrlSet, "clear_pic");
-			
-			check_bg:ShowWindow(0);
-			clear_bg:ShowWindow(0);
-			clear_pic:ShowWindow(0);
-
-			local state = GET_TUTORIALNOTE_STATE(aObj, className);
-			if group == "guide" then -- 가이드
-				if state == "PROGRESS" or state == "POSSIBLE" then
-					isCondition = false;
+		if IsHide ~= "YES" or IsHide == "None" then
+		
+			if preScp ~= "None" then
+				local ScrPtr = _G[preScp];
+				if true == ScrPtr(pc, aObj) then
+					isCondition = true;				
 				end
+			else
+				isCondition = true;
 			end
 
-			if isCondition == false then
-				main_gb:ShowWindow(0);
-				clear_bg:ShowWindow(1);
+			local clsGroup = TryGetProp(cls, "Group", "None");
+			if clsGroup == group then
+				local className = TryGetProp(cls, "ClassName", "None");
+				local ctrlSet = note_gb:CreateOrGetControlSet("tutorialnote_block", className, 0, y);
+				ctrlSet:SetGravity(ui.CENTER_HORZ, ui.TOP);
 
-				local condition_text = GET_CHILD(ctrlSet, "condition_text");
-				condition_text:SetTextByKey("value", TryGetProp(cls, "Title").."{nl} {nl} {nl}"..TryGetProp(cls, "ConditionText", "None"));
-			else
-				TUTORIALNOTE_BLOCK_MAIN_UPDATE(frame, cls, ctrlSet, state);
+				local main_gb = GET_CHILD(ctrlSet, "main_gb");
+				local check_bg = GET_CHILD(ctrlSet, "check_bg");
+				local clear_bg = GET_CHILD(ctrlSet, "clear_bg");
+				local clear_pic = GET_CHILD(ctrlSet, "clear_pic");
+				
+				check_bg:ShowWindow(0);
+				clear_bg:ShowWindow(0);
+				clear_pic:ShowWindow(0);
 
+				local state = GET_TUTORIALNOTE_STATE(aObj, className);
 				if group == "guide" then -- 가이드
-					if state == "Reward" or state == "Clear" then							
-						local main_pic = GET_CHILD(main_gb, "main_pic");
-						main_pic:EnableHitTest(1);					
-						main_pic:SetEventScript(ui.LBUTTONUP, "TUTORIALNOTE_GUIDE_CLICK");
-						main_pic:SetEventScriptArgString(ui.LBUTTONUP, className);
-					end	
-				else -- 미션	
-					if state == "Reward" then
-						check_bg:SetEventScript(ui.LBUTTONUP, "TUTORIALNOTE_MISSION_REWARD_REQUEST");
-						check_bg:SetEventScriptArgString(ui.LBUTTONUP, className);	
-						check_bg:EnableHitTest(1);
+					if state == "PROGRESS" or state == "POSSIBLE" then
+						isCondition = false;
 					end
 				end
-			end
 
-			local question = GET_CHILD(ctrlSet, "question");
-			local helpType = TryGetProp(cls, "HelpType", 0);
-			if helpType == 0 then
-				question:ShowWindow(0);
-			else
-				question:SetEventScriptArgNumber(ui.LBUTTONUP, helpType);
-			end
+				if isCondition == false then
+					main_gb:ShowWindow(0);
+					clear_bg:ShowWindow(1);
 
-			y = y + ctrlSet:GetHeight();
+					local condition_text = GET_CHILD(ctrlSet, "condition_text");
+					condition_text:SetTextByKey("value", TryGetProp(cls, "Title").."{nl} {nl} {nl}"..TryGetProp(cls, "ConditionText", "None"));
+				else
+					TUTORIALNOTE_BLOCK_MAIN_UPDATE(frame, cls, ctrlSet, state);
+
+					if group == "guide" then -- 가이드
+						if state == "Reward" or state == "Clear" then							
+							local main_pic = GET_CHILD(main_gb, "main_pic");
+							main_pic:EnableHitTest(1);					
+							main_pic:SetEventScript(ui.LBUTTONUP, "TUTORIALNOTE_GUIDE_CLICK");
+							main_pic:SetEventScriptArgString(ui.LBUTTONUP, className);
+						end	
+					else -- 미션	
+						if state == "Reward" then
+							check_bg:SetEventScript(ui.LBUTTONUP, "TUTORIALNOTE_MISSION_REWARD_REQUEST");
+							check_bg:SetEventScriptArgString(ui.LBUTTONUP, className);	
+							check_bg:EnableHitTest(1);
+						end
+					end
+				end
+
+				local question = GET_CHILD(ctrlSet, "question");
+				local helpType = TryGetProp(cls, "HelpType", 0);
+				if helpType == 0 then
+					question:ShowWindow(0);
+				else
+					question:SetEventScriptArgNumber(ui.LBUTTONUP, helpType);
+				end
+
+				y = y + ctrlSet:GetHeight();
+			end
 		end
 	end
 end

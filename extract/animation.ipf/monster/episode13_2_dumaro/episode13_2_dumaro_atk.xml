@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by imc (imc) -->
+<ActionDesc>
+	<Sound frame="0.00" soundFile="m_tontulia_atk1_ready"/>
+	<Sound frame="8.00" soundFile="mon_dumaro_atk"/>
+	<Particle frame="9" attachNode="Dummy_emitter" particleName="F_smoke059" useAttach="false" hiddenObj="false" changeEffect="None" scale="1.5" pause="true" use2DEffect="true" targetPos="false"/>
+</ActionDesc>

@@ -12,7 +12,7 @@ function UI_TOGGLE_INDUNINFO_CHAR_UI()
     ui.ToggleFrame('indun_char_status');
 end
 
-function INDUNINFO_CHAR_UI_OPEN(frame, msg, argStr, argNum)
+function INDUNINFO_CHAR_UI_OPEN(frame, msg, argStr, argNum)    
     if nil ~= frame then
         frame:ShowWindow(1);
     else
@@ -48,15 +48,20 @@ function INDUNINFO_CHAR_UI_OPEN(frame, msg, argStr, argNum)
                     local indunGroupBox = charGroupBox:CreateOrGetControl("groupbox", "INDUN_CONTROL_".. indunCls.PlayPerResetType, 0, 0, ctrlWidth, 20)
                     indunGroupBox = tolua.cast(indunGroupBox, "ui::CGroupBox")
                     indunGroupBox:EnableDrawFrame(0)
-                    local indunLabel = indunGroupBox:CreateOrGetControl("richtext", "INDUN_NAME_" .. indunCls.PlayPerResetType, 20, 0, ctrlWidth / 2, 20)
+
+                    local indunLabel = indunGroupBox:CreateOrGetControl("richtext", "INDUN_NAME_" .. indunCls.PlayPerResetType, 20, 0, ctrlWidth - 60, 20)
                     indunLabel = tolua.cast(indunLabel, 'ui::CRichText')
+                    indunLabel:SetTextFixWidth(1);
+                    indunLabel:SetTextFixHeight(true);
+                    indunLabel:SetAutoFontSizeByWidth(indunLabel:GetWidth())
                     indunLabel:SetText('{@st42b}' .. indunCls.Category)
                     indunLabel:SetEnable(0)
+
                     local difficulty = TryGetProp(indunCls, "Difficulty", "None")
                     if difficulty ~= "None" then
                         indunLabel:SetText('{@st42b}' .. indunCls.Category .. ' - ' .. difficulty)
                     end
-                    
+
                     local indunCntLabel = indunGroupBox:CreateOrGetControl("richtext", "INDUN_COUNT_" .. indunCls.PlayPerResetType, 2, 0, ctrlWidth / 2, 20)
                     indunCntLabel:SetGravity(ui.RIGHT, ui.TOP)
                     indunCntLabel:SetEnable(0)
@@ -137,7 +142,7 @@ function INDUNINFO_CHAR_UI_OPEN(frame, msg, argStr, argNum)
     GBOX_AUTO_ALIGN(charListBox, 5, 5, 0, true, true)
 end
 
-function GET_CHAR_INDUN_ENTRANCE_COUNT(cid, resetGroupID)
+function GET_CHAR_INDUN_ENTRANCE_COUNT(cid, resetGroupID)    
     local accountInfo = session.barrack.GetMyAccount();
     local acc_obj = GetMyAccountObj()
 
@@ -170,10 +175,20 @@ function GET_CHAR_INDUN_ENTRANCE_COUNT(cid, resetGroupID)
     if indunCls.WeeklyEnterableCount ~= nil and indunCls.WeeklyEnterableCount ~= "None" and indunCls.WeeklyEnterableCount ~= 0 then
         if indunCls.UnitPerReset == 'PC' then
             return accountInfo:GetBarrackCharEtcProp(cid,'IndunWeeklyEnteredCount_'..resetGroupID)  --매주 남은 횟수
-        else
-            return(acc_obj['IndunWeeklyEnteredCount_'..resetGroupID])                               --매주 남은 횟수
-        end
-        
+        else  -- 'ACCOUNT'            
+            if TryGetProp(indunCls, 'CheckCountName', 'None') ~= 'None' then
+                return acc_obj[TryGetProp(indunCls, 'CheckCountName', 'None')]
+            end
+
+            if indunCls.DungeonType == "Challenge_Auto" or indunCls.DungeonType == "Challenge_Solo" then
+                if string.find(indunCls.ClassName, "Challenge_Division") == nil then
+                    -- 챌린지 자동매칭 남은 횟수
+                    return accountInfo:GetBarrackCharEtcProp(cid,'ChallengeModeCompleteCount')                    
+                end            
+            else
+                return acc_obj['InDunCountType_'..resetGroupID]; --매일 남은 횟수
+            end            
+        end        
     else
         if indunCls.UnitPerReset == 'PC' then
             return accountInfo:GetBarrackCharEtcProp(cid, 'InDunCountType_'..resetGroupID);         --매일 남은 횟수

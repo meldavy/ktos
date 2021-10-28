@@ -10,6 +10,8 @@ ClassID,Value,Value2,ClassName,Desc,UseInScript
 400008,1,0,ENABLE_APPRAISAL_ITEM_MOVE,"0일 경우 감정 아이템의 강화, 초월, 소켓추가, 각성, 1:1거래, 마켓 등록, 구매, 취소, NPC 상점 판매, 개인 및 팀 창고 in/out, 컴패니언 장비 슬롯 장착, 해제 불가",YES
 400009,1,0,ENABLE_RECEIVE_CLIENT_SYSTEM_LOG,1일 경우 클라이언트로부터 시스템 로그 전송받음,NO
 400013,1,0,EMERGENCY_LOG,긴급하게 자동매칭 안되는거 체크용,NO
+400014,1,0,USE_SUBWEAPON_SLOT,자동 스왑 대체 로직 사용 여부,YES
+400015,1,0,USE_SCOUT_MAINWEAPON,스카우트 주장비 로직 사용 여부,YES
 100000,0,0,SHUTDOWN_TEST,셧다운테스트,NO
 100001,0.25,0,MOVE_PKT_TIME,이동동기화패킷전송텀,NO
 100002,0,0,NOT_ZONE_DOWN,존이안떨어지는것을가정한다. 성능에 제한,NO
@@ -84,6 +86,7 @@ ClassID,Value,Value2,ClassName,Desc,UseInScript
 100077,100000,0,MAX_WEEKLY_PVP_MINE_COUNT,일반 유저 용병단 증표 최대 획득량,YES
 100078,100000,0,WEEKLY_PVP_MINE_COUNT_TOKEN_BONUS,토큰 유저 용병단 증표 추가 획득량,YES
 100079,20,0,MAX_GUILD_MEMBER_INFO_COUNT,존서버에서 클라로 최대 보낼 수 있는 길드원 정보 리스트,NO
+100080,2,0,MAX_EQUIPTED_UNIQUE_VIBORA_COUNT,최대 장착 고유 바이보라 개수,YES
 110000,21,0,TEST_VAL_1,테스트용,NO
 110001,0,0,TEST_VAL_2,테스트용,NO
 110002,1,0,TEST_VAL_3,테스트용,NO
@@ -157,6 +160,7 @@ ClassID,Value,Value2,ClassName,Desc,UseInScript
 160008,5,0,RUN_ABIL_MAX_COUNT,pc_nonbattle.xml에 등록되어있는 어빌개수,YES
 160009,3,0,SAGE_PORTAL_BASE_CNT,세이지 포탈 기본 갯수,YES
 170000,25,0,BOARD_SIZE,,YES
+170002,0,0,TEST_CHALLENGE_AUTO_MAP,챌린지 자동매칭 맵 설정 ClassID(테스트용),NO
 180000,50,0,TELE_THROW_HEIGHT,텔레키네시스 높이,NO
 180001,0.4,0,TELE_THROW_TIME,텔레키네시스 던지는 시간,NO
 180002,0.3,0,THROW_SERVER_HOLD_TIME,텔레키네시스 던지기딜레이,NO

@@ -415,6 +415,74 @@ function INDUNENTER_SHOW_WINDOW_REWARDBOX(frame,isVisible)
     reward_box:ShowWindow(isVisible);
 end
 
+function INDUNENTER_SHOW_WINDOW_MAPINFO(frame, indunCls, isVisible)
+
+    -- 몬스터 정보 슬롯셋 제거
+    local monBox = GET_CHILD_RECURSIVELY(frame, "monBox")
+    local monSlotSet = GET_CHILD_RECURSIVELY(monBox, "monSlotSet")
+    local monLeftBtn = GET_CHILD_RECURSIVELY(monBox, "monLeftBtn")
+    local monRightBtn = GET_CHILD_RECURSIVELY(monBox, "monRightBtn")
+    local mon_list_box = GET_CHILD_RECURSIVELY(frame, "monListBtn");
+
+    if isVisible == 1 then
+        monSlotSet:ShowWindow(0)
+        monLeftBtn:ShowWindow(0)
+        monRightBtn:ShowWindow(0)
+        mon_list_box:ShowWindow(1)
+        mon_list_box:SetEventScriptArgString(ui.LBUTTONUP, indunCls.ClassName)
+    else
+        mon_list_box:ShowWindow(0)
+    end
+
+    -- 맵 정보
+    local mapInfoBox = GET_CHILD_RECURSIVELY(frame, "mapInfoBox")
+
+    if isVisible == 1 then
+        local height = 10
+        local infoClass = GetClass("TOSHeroIndunInfo", indunCls.ClassName)
+
+        -- 미션
+        local missionTitle = GET_CHILD_RECURSIVELY(mapInfoBox, "mapInfoMission")
+
+        missionTitle:SetMargin(10, height - 1, 0, 0)
+
+        local missionText = GET_CHILD_RECURSIVELY(mapInfoBox, "mapInfoMissionText")
+
+        missionText:SetTextByKey("text", infoClass.Desc_Mission)
+        missionText:SetMargin(75, height, 0, 0)
+
+        height = height + missionText:GetHeight() + 10
+
+        -- 맵 패턴
+        local patternTitle = GET_CHILD_RECURSIVELY(mapInfoBox, "mapInfoPattern")
+
+        patternTitle:SetMargin(10, height - 1, 0, 0)
+
+        for i = 1, 3 do
+            local patternText = GET_CHILD_RECURSIVELY(mapInfoBox, "mapInfoPatternText"..i)
+            local textData = TryGetProp(infoClass, "Desc_MapPattern"..i, "")
+
+            if textData == "None" then
+                patternText:SetTextByKey("text", "")
+                patternText:SetMargin(75, height, 0, 0)
+            else
+                patternText:SetTextByKey("text", textData)
+                patternText:SetMargin(75, height, 0, 0)
+
+                height = height + patternText:GetHeight() + 5
+            end
+        end
+
+        height = height + 13
+
+        -- 공백용 더미
+        local dummy = GET_CHILD_RECURSIVELY(mapInfoBox, "mapInfoDummy")
+        dummy:SetMargin(mapInfoBox:GetWidth(), height, 0, 0)
+    end
+
+    mapInfoBox:ShowWindow(isVisible)
+end
+
 function INDUNENTER_MAKE_MONLIST(frame, indunCls)
     if frame == nil then
         return;
@@ -425,7 +493,11 @@ function INDUNENTER_MAKE_MONLIST(frame, indunCls)
     local monLeftBtn = GET_CHILD_RECURSIVELY(frame, 'monLeftBtn');
     local monText = GET_CHILD_RECURSIVELY(frame, "monText");
     local monPic = GET_CHILD_RECURSIVELY(frame, "monPic");
-   
+
+    local dungeonType = TryGetProp(indunCls,"DungeonType","None")
+    local is_mythic_dungeon = string.find(dungeonType, "MythicDungeon") == 1
+    local is_toshero_dungeon = string.find(dungeonType, "TOSHero") == 1
+
      -- 챌린지 모드 자동매칭 분열 위치 표시 처리
     if indunCls ~= nil and TryGetProp(indunCls, "PlayPerResetType") == 816 then
         if frame:GetName() == "induninfo" then
@@ -446,8 +518,12 @@ function INDUNENTER_MAKE_MONLIST(frame, indunCls)
 				is_four_buttons = true
 			end
 		end
-        INDUNENTER_SHOW_WINDOW_REWARDBOX(frame, BoolToNumber(is_mythic_dungeon == false and is_four_buttons == false));
+
+        INDUNENTER_SHOW_WINDOW_MONBOX(frame, 1);
+        INDUNENTER_SHOW_WINDOW_REWARDBOX(frame, BoolToNumber(is_mythic_dungeon == false and is_toshero_dungeon == false and is_four_buttons == false));
     end
+
+    INDUNENTER_SHOW_WINDOW_MAPINFO(frame, indunCls, BoolToNumber(is_toshero_dungeon))
 
     -- init
     monSlotSet:ClearIconAll();
@@ -782,6 +858,13 @@ function INDUNENTER_MAKE_MULTI_BOX(frame, indunCls)
     local multipleItemCount = GET_MY_INDUN_MULTIPLE_ITEM_COUNT();
     if viewBOX == false or multipleItemCount == 0 then
         multiBtn:SetEnable(0);
+        if indunCls.DungeonType == "TOSHero" then
+            multiBox:ShowWindow(0);
+            arrow:ShowWindow(0);
+        else
+            multiBox:ShowWindow(1);
+            arrow:ShowWindow(1);
+        end
         return;
     end
 
@@ -855,8 +938,8 @@ function INDUNENTER_MAKE_COUNT_BOX(frame, noPicBox, indunCls)
             nowCount = GET_CURRENT_ENTERANCE_COUNT(resetGroupID);
         end
 
-        if resetGroupID == 817 or resetGroupID == 813 or resetGroupID == 807 then
-            if resetGroupID == 813 or resetGroupID == 807 then 
+        if resetGroupID == 817 or resetGroupID == 813 or resetGroupID == 807 or resetGroupID == 5000 then
+            if resetGroupID == 813 or resetGroupID == 807 or resetGroupID == 5000 then 
                 nowCount = GET_CURRENT_ENTERANCE_COUNT(resetGroupID); 
         end
 

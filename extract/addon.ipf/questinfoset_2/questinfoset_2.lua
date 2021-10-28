@@ -1371,12 +1371,12 @@ function QUESTION_QUEST_WARP(frame, ctrl, argStr, questID)
 		return;
 	end
 	
-	if session.IsAutoChallengeMap() == true then
+	if session.IsAutoChallengeMap() == true or session.IsSoloChallengeMap() == true then
 		ui.SysMsg(ClMsg('WarpQuestDisabled'));
 		return;
 	end
 
-	if session.IsGiltineRaidMap() == true then
+	if session.IsWarpDisabledRaidMap() == true then
 		ui.SysMsg(ClMsg('WarpQuestDisabled'));
 		return 0;
 	end

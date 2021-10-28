@@ -1,6 +1,7 @@
 ﻿-- warningmsgbox_ex.lua
 function WARNINGMSGBOX_EX_ON_INIT(addon, frame)
-	addon:RegisterMsg("DO_OPEN_WARNINGMSGBOX_EX_UI", "WARNINGMSGBOX_EX_FRAME_OPEN")
+	addon:RegisterMsg("DO_OPEN_WARNINGMSGBOX_EX_UI", "WARNINGMSGBOX_EX_FRAME_OPEN");
+	addon:RegisterMsg("DO_UNKNOWN_SANTUARTY_GATE_BUFF_MSG_BOX", "WARNINGMSGBOX_EX_UNKNOWN_SANTUARTY_GATE_BUFF_MSG_BOX");
 end
 
 function WARNINGMSGBOX_EX_FRAME_OPEN(frame, msg, argStr, argNum, option)
@@ -306,4 +307,23 @@ function WARNINGMSGBOX_EX_TRANSCEND_OPEN(transcendFrame)
 	warningbox:Resize(warningbox:GetWidth(), totalHeight)
 	bg:Resize(bg:GetWidth(), totalHeight)
 	frame:Resize(frame:GetWidth(), totalHeight)
+end
+
+function WARNINGMSGBOX_EX_UNKNOWN_SANTUARTY_GATE_BUFF_MSG_BOX(frame, msg, argStr, argNum)
+	if argNum ~= 0 then
+		local msg = ScpArgMsg("UNKNOWN_SANTUARY_GATE_CLMSG_PAY_WARNING_6", "Cost", argNum);
+		local yes_scp = string.format("ON_UNKNOWN_SANTUARTY_GET_BUFF(\"%s\")", argStr);
+		ui.MsgBox(msg, yes_scp, "None");
+	end
+end
+
+function ON_UNKNOWN_SANTUARTY_GET_BUFF(argStr)
+	if argStr == nil or argStr == "" then argStr = "None"; end
+	local arg_str_list = StringSplit(argStr, '/');
+	if arg_str_list ~= nil and #arg_str_list > 1 then
+		local first = arg_str_list[1];
+		local second = arg_str_list[2];
+		print("ON_UNKNOWN_SANTUARTY_GET_BUFF", first, second);
+		ReqUnknownSantuartyBuff(first, second);
+	end
 end

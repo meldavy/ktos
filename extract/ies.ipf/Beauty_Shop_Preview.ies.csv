@@ -1,5 +1,5 @@
 ClassID,Price,PriceRatio,StampCount,ClassName,Category,Gender,ItemClassName,EquipType,JobOnly,SellStartTime,SellEndTime,PackageList,IsPremium,TAG,ItemAddDate,BuyMessage
-1,-1,0,0,EP13_helmet_stem,,M,EP13_helmet_stem,wig,,,,,NO,,,NotBuy_Thema
+1,-1,0,0,EP13_helmet_stem,,,EP13_helmet_stem,wig,,,,,NO,,,NotBuy_Thema
 11,-1,0,0,EP13_costume_Com_090,,M,EP13_costume_Com_090,costume,,,,,NO,,,NotBuy_Thema
 12,-1,0,0,EP13_costume_Com_092,,M,EP13_costume_Com_092,costume,,,,,NO,,,NotBuy_Thema
 13,-1,0,0,EP13_costume_Com_094,,M,EP13_costume_Com_094,costume,,,,,NO,,,NotBuy_Thema

@@ -173,12 +173,12 @@ function ICORRELEASE_CTRL_REG_TARGETITEM(ctrlSet, itemID)
 	local itemCls = GetClassByType('Item', invItemObj.ClassID)
 	if IS_ENABLE_RELEASE_OPTION(invItemObj) ~= true then
 		-- 복원 대상인지 체크
-		ui.SysMsg(ClMsg("IcorNotAdded"))
+		ui.SysMsg(ClMsg("IMPOSSIBLE_ITEM"))
 		return
 	end
-
+	
 	--이벤트 장비인지 체크
-	if SHARED_IS_EVENT_ITEM_CHECK(itemCls, "NoEnchant") == true then
+	if TryGetProp(invItemObj, 'PremiumEquip', 0) == 0 and SHARED_IS_EVENT_ITEM_CHECK(itemCls, "NoEnchant") == true then
 		ui.SysMsg(ClMsg("IcorNotAdded_EP12_CANT1"))
 		return
 	end

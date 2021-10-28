@@ -1,3 +1,32 @@
+local _spot_list_without_sub = {
+	{"RH",{"RH"}},
+	{"LH",{"LH","TRINKET"}},
+	{"Shirt",{"SHIRT"}},
+	{"Pants",{"PANTS"}},
+	{"GLOVES",{"GLOVES"}},
+	{"BOOTS",{"BOOTS"}},
+	{"NECK",{"NECK"}},
+	{"Ring1",{"RING1"}},
+	{"Ring2",{"RING2"}},
+	{"Seal",{"SEAL"}},
+	{"Ark",{"ARK"}}
+}
+local _spot_list_with_sub = {
+	{"RH",{"RH"}},
+	{"LH",{"LH","TRINKET"}},
+	{"RH_SUB",{"RH_SUB"}},
+	{"LH_SUB",{"LH_SUB"}},
+	{"Shirt",{"SHIRT"}},
+	{"Pants",{"PANTS"}},
+	{"GLOVES",{"GLOVES"}},
+	{"BOOTS",{"BOOTS"}},
+	{"NECK",{"NECK"}},
+	{"Ring1",{"RING1"}},
+	{"Ring2",{"RING2"}},
+	{"Seal",{"SEAL"}},
+	{"Ark",{"ARK"}}
+}
+
 function ITEM_EQUIP_HELPER_ON_INIT(addon, frame)
 end
 function ITEM_EQUIP_HELPER_OPEN()
@@ -16,19 +45,10 @@ function INIT_ITEM_EQUIP_HELPER(frame)
 	bg:RemoveAllChild()
 	local spot_count = item.GetEquipSpotCount() - 1;
 	local no_show_item_list = {"NoWeapon","NoOuter","NoShirt"}
-	local spot_list = {
-		{"RH",{"RH"}},
-		{"LH",{"LH","TRINKET"}},
-		{"Shirt",{"SHIRT"}},
-		{"Pants",{"PANTS"}},
-		{"GLOVES",{"GLOVES"}},
-		{"BOOTS",{"BOOTS"}},
-		{"NECK",{"NECK"}},
-		{"Ring1",{"RING1"}},
-		{"Ring2",{"RING2"}},
-		{"Seal",{"SEAL"}},
-		{"Ark",{"ARK"}}
-	}
+	local spot_list = _spot_list_without_sub
+	if tonumber(USE_SUBWEAPON_SLOT) == 1 then
+		spot_list = _spot_list_with_sub
+	end
 	for i = 1,#spot_list do
 		local key = spot_list[i][1]
 		local spots = spot_list[i][2]

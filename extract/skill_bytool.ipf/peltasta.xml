@@ -12,7 +12,8 @@
                     <Num Num="0"/>
                     <Num Num="15000" UseFunc="1" FuncTxt="local value = 15000;
 local isItem = GetExProp(self, &quot;ITEM_GUARDIAN_DURATIONTIMEUP&quot;);
-if isItem == 1 then
+local isItem2 = GetExProp(self, &quot;ITEM_VIBORA_SawbladeShield_Lv4&quot;);
+if isItem == 1 or isItem2 == 1 then
 value = value * 2
 end
 return value"/>
@@ -190,13 +191,6 @@ return value"/>
         </ByCondSkills>
     </Skill>
     <Skill Name="Peltasta_ShieldLob">
-        <EndScripts>
-            <ToolScp Scp="C_SHOW_PARTS_MODEL" Client="YES" UseSleep="NO">
-                <Str Str="LH"/>
-                <Num Num="0"/>
-                <Num Num="1"/>
-            </ToolScp>
-        </EndScripts>
         <MainSkl ScrLock="None" JumpFlee="NO" MSPDToUsePos="0">
             <HitList>
                 <Frame Type="FAN" Time="9999" HitCount="1" TermMin="0" TermMax="0" PosType="0" Dist="0" RandDist="0" RandomPerHit="0" Angle="0" Width="30" Length="30" SklAngle="0.17453299" AniTime="10199" RotAngle="0" ForceATK="0" ScriptIndex="0" ScriptName="" SkillType="0"/>

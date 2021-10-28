@@ -174,7 +174,7 @@ function ICORRELEASE_RANDOM_CTRL_REG_TARGETITEM(ctrlSet, itemID)
 	
 	if IS_ENABLE_RELEASE_OPTION(invItemObj) ~= true then
 		-- 복원 대상인지 체크
-		ui.SysMsg(ClMsg("IcorNotAdded"))
+		ui.SysMsg(ClMsg("IMPOSSIBLE_ITEM"))
 		return
 	end
 	

@@ -102,3 +102,4 @@ ClassID,ClassName,Name,Zone,City,Group,WarpOpenQuest
 11056,WARP_C_KLAIPE_CATHEDRAL_MEDIUM,라이마의 성소,c_klaipe_cathedral_medium,c_Klaipe,성역,EP12_2_D_DCAPITAL_108_MQ18
 11057,WARP_EP13_F_SIAULIAI_4,이사우고티 숲,ep13_f_siauliai_4,c_Klaipe,키렌 지방,EP13_F_SIAULIAI_4_MQ_08
 11058,WARP_EP13_F_SIAULIAI_2,덧댄다리 숲,ep13_f_siauliai_2,c_Klaipe,키렌 지방,EP13_F_SIAULIAI_2_MQ_08
+11059,WARP_EP13_2_D_PRISON_1,아샤크 지하 감옥 1층,ep13_d_prison_1,c_orsha,실험구역,EP13_2_DPRISON3_MQ_8

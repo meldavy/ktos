@@ -232,7 +232,7 @@ function HIDDENABILITY_MAKE_MATERIAL_INIT(frame)
     local matslot_1 = GET_CHILD_RECURSIVELY(frame, "matslot_1");
     matslot_1:ClearIcon();
 
-    local itemCls = GetClass("Item", "HiddenAbility_TotalCube");
+    local itemCls = GetClass("Item", "HiddenAbility_MasterPiece_Fragment");
     local matslot_1_count = GET_CHILD_RECURSIVELY(frame, "matslot_1_count");
     matslot_1_count:ShowWindow(0);
 

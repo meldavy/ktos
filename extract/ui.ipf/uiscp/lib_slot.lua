@@ -79,11 +79,16 @@ function SET_SLOT_ITEM_INFO(slot, itemCls, count, style, x, y)
 	return icon;
 end
 
-
+-- 배럭 장비 슬롯
 function SET_SLOT_ITEM_OBJ(slot, itemCls, gender, isBarrack)
 	local img = GET_ITEM_ICON_IMAGE(itemCls, gender);
 
 	SET_SLOT_IMG(slot, img);
+	local score = GET_GEAR_SCORE(itemCls)
+	if score > 0 then
+		slot:SetText('{s12}{ol}{#FFFFFF}'..score, 'count', ui.RIGHT, ui.TOP, 0, 2)
+	end
+
 	local icon = slot:GetIcon();
 
 	if nil == icon then
@@ -97,7 +102,7 @@ function SET_SLOT_ITEM_OBJ(slot, itemCls, gender, isBarrack)
 		if nil == isBarrack then
 			slot:CopyTooltipData(icon);
 		else
-			SET_SLOT_STYLESET(slot, itemCls)
+			SET_SLOT_STYLESET(slot, itemCls, nil, nil, nil, nil, nil, isBarrack)
 		end
 	end
 end
@@ -268,7 +273,7 @@ function SET_SLOT_COUNT_TEXT(slot, cnt, font, hor, ver, stateX, stateY)
 		slot:SetText(font..cnt, 'count', hor, ver, stateX, stateY);
 end
 
-function SET_SLOT_STYLESET(slot, itemCls, itemGrade_Flag, itemLevel_Flag, itemAppraisal_Flag, itemReinforce_Flag, isInventory)
+function SET_SLOT_STYLESET(slot, itemCls, itemGrade_Flag, itemLevel_Flag, itemAppraisal_Flag, itemReinforce_Flag, isInventory, is_barrack)
 	if slot == nil then
 		return
 	end
@@ -314,7 +319,11 @@ function SET_SLOT_STYLESET(slot, itemCls, itemGrade_Flag, itemLevel_Flag, itemAp
 			elseif TryGetProp(itemCls, 'GroupName', 'None') == 'Ark' then
 				reinforceLv = TryGetProp(itemCls, 'ArkLevel', 1)
 			elseif TryGetProp(itemCls, 'GroupName', 'None') == 'Relic' then
-				reinforceLv = TryGetProp(itemCls, 'Relic_LV', 1)
+				if is_barrack == 1 then
+					reinforceLv = TryGetProp(GetMyAccountObj(), 'Relic_LV', 1)
+				else
+					reinforceLv = TryGetProp(itemCls, 'Relic_LV', 1)
+				end
 			end			
 			SET_SLOT_REINFORCE_LEVEL(slot, reinforceLv);			
 		end
@@ -460,7 +469,7 @@ function SET_SLOT_ITEM_TEXT(slot, invItem, obj)
 end
 
 -- 아이템 카운트 표기
-function SET_SLOT_ITEM_TEXT_USE_INVCOUNT(slot, invItem, obj, count, font)
+function SET_SLOT_ITEM_TEXT_USE_INVCOUNT(slot, invItem, obj, count, font)	
 	local refreshScp = TryGetProp(obj,'RefreshScp')
 
 	if refreshScp ~= "None" and refreshScp ~= nil and obj ~= nil then
@@ -525,6 +534,14 @@ function SET_SLOT_ITEM_TEXT_USE_INVCOUNT(slot, invItem, obj, count, font)
 	if groupName == 'Gem_Relic' then
 		local gem_lv = TryGetProp(obj, 'GemLevel', 1)
 		slot:SetText('{s17}{ol}{#FFFFFF}{b}LV. '..gem_lv, 'count', ui.LEFT, ui.TOP, 3, 2)
+	elseif groupName == "Gem_High_Color" then
+		local gem_lv = TryGetProp(obj, "AetherGemLevel", 1);
+		slot:SetText("{s14}{ol}{#FFFFFF}{b}Lv."..gem_lv, 'count', ui.LEFT, ui.TOP, 3, 2)
+	end
+
+	local score = GET_GEAR_SCORE(obj)
+	if score > 0 then
+		slot:SetText('{s14}{ol}{#FFFFFF}'.. score, 'count', ui.RIGHT, ui.TOP, 0, 2)
 	end
 end
 

@@ -119,7 +119,7 @@ function ABILITY_POINT_RESET_ARTS_C(invItem)
 	local detail = GET_CHILD_RECURSIVELY(frame, "detail");
 	local font = frame:GetUserConfig("FONT_STATCOUNT");
 	
-	local giveItemCls = GetClass("Item", "HiddenAbility_MasterPiece");
+	local giveItemCls = GetClass("Item", "HiddenAbility_MasterPiece_Fragment");
 	local giveItemCount = GetTotalAbilityLevelByJob(GetMyPCObject(), jobName, 1);
 
 	detail:SetTextByKey("value", ScpArgMsg("UseItemToReset{value}Arts", "value", font..GET_COMMAED_STRING(getAbilPoint).."{/}", "name", TryGetProp(giveItemCls, "Name", "None"), "count", font..tostring(giveItemCount).."{/}", "value2", font..GET_COMMAED_STRING(getAbilPoint).."{/}", "value3", font..GET_COMMAED_STRING(curAbilPoint).."{/}"));

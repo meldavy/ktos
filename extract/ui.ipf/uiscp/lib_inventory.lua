@@ -1005,5 +1005,23 @@ function SET_SLOT_ICOR_CATEGORY(slot, item_obj)
 			
 			slot:SetText(msg, 'quickiconfont', ui.CENTER_VERT, ui.CENTER_HORZ, -2, 1);
 		end
+	elseif TryGetProp(item_obj, 'GroupName', 'None') == 'Arcane' then
+		local font = '{s14}{ol}{b}'		
+		local msg = font
+
+		local type = TryGetProp(item_obj, 'Name', 'None')
+		local token = StringSplit(type, '-')
+		local name = ''
+		
+		if #token > 1 then
+			name = TrimString(token[2])
+		end
+		if config.GetServiceNation() == "KOR" then
+			msg = msg .. name
+		else
+			msg = msg .. name
+		end
+		
+		slot:SetText(msg, 'quickiconfont', ui.CENTER_VERT, ui.CENTER_HORZ, -2, 1);
 	end	
 end

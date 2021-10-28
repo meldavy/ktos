@@ -46,8 +46,21 @@ function IS_ENABLE_ENCHANT_OPTION_RELOCATE(dest_Obj, src_Obj)
     local dest_guid = GetIESID(dest_Obj);
     local src_guid = GetIESID(src_Obj);
 
+	local src_grade = TryGetProp(src_Obj, 'ItemGrade', 1)
+	local dest_grade = TryGetProp(dest_Obj, 'ItemGrade', 1)
+
 	if dest_guid == src_guid then
 		return false, 'Same';
+	end
+
+	if src_grade == 6 or dest_grade == 6 then
+		if src_grade ~= dest_grade then
+			return false, 'Grade'
+		end
+
+		if TryGetProp(dest_Obj, "UseLv", 9999) ~= TryGetProp(src_Obj, "UseLv", 9999) then
+			return false, 'Level'
+		end
 	end
 
 	-- dest의 레벨이 src의 레벨보다 낮은 경우에는 불가

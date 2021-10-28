@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by imc (imc) -->
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by asd (IMCGames Co., Ltd) -->
 <SpcItemList>
 	<!--바이보라 Lv2-->
 	<SpcItem Name="SWD04_126_Lv2">
@@ -1405,6 +1405,144 @@
 			</Trigger>
 		</TriggerList>
 	</SpcItem>
+		<SpcItem Name="PST04_122_4_Lv2">
+		<TriggerList Act="UnEquip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="unequip_vibora" Client="NO" UseSleep="NO"/>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="Equip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="equip_vibora" Client="NO" UseSleep="NO"/>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="SkillUsed">
+			<Trigger>
+				<CondList>
+					<ToolScp Scp="skillused_vibora" Client="NO" UseSleep="NO"/>
+				</CondList>
+			</Trigger>
+		</TriggerList>
+	</SpcItem>
+	<SpcItem Name="TBW04_126_2_Lv2">
+		<TriggerList Act="UnEquip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="unequip_vibora" Client="NO" UseSleep="NO"/>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="Equip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="equip_vibora" Client="NO" UseSleep="NO"/>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="SkillUsed">
+			<Trigger>
+				<CondList>
+					<ToolScp Scp="skillused_vibora" Client="NO" UseSleep="NO"/>
+				</CondList>
+			</Trigger>
+		</TriggerList>
+	</SpcItem>
+		<SpcItem Name="DAG04_123_8_Lv2">
+		<TriggerList Act="UnEquip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="unequip_vibora" Client="NO" UseSleep="NO"/>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="Equip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="equip_vibora" Client="NO" UseSleep="NO"/>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="SkillUsed">
+			<Trigger>
+				<CondList>
+					<ToolScp Scp="skillused_vibora" Client="NO" UseSleep="NO"/>
+				</CondList>
+			</Trigger>
+		</TriggerList>
+	</SpcItem>
+		<SpcItem Name="SWD04_126_5_Lv2">
+		<TriggerList Act="UnEquip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="unequip_vibora" Client="NO" UseSleep="NO"/>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="Equip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="equip_vibora" Client="NO" UseSleep="NO"/>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="SkillUsed">
+			<Trigger>
+				<CondList>
+					<ToolScp Scp="skillused_vibora" Client="NO" UseSleep="NO"/>
+				</CondList>
+			</Trigger>
+		</TriggerList>
+	</SpcItem>
+	<SpcItem Name="MAC04_129_3_Lv2">
+		<TriggerList Act="UnEquip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="unequip_vibora" Client="NO" UseSleep="NO"/>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="Equip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="equip_vibora" Client="NO" UseSleep="NO"/>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="SkillUsed">
+			<Trigger>
+				<CondList>
+					<ToolScp Scp="skillused_vibora" Client="NO" UseSleep="NO"/>
+				</CondList>
+			</Trigger>
+		</TriggerList>
+	</SpcItem>
+	<SpcItem Name="TBW04_126_3_Lv2">
+		<TriggerList Act="UnEquip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="unequip_vibora" Client="NO" UseSleep="NO"/>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="Equip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="equip_vibora" Client="NO" UseSleep="NO"/>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="SkillUsed">
+			<Trigger>
+				<CondList>
+					<ToolScp Scp="skillused_vibora" Client="NO" UseSleep="NO"/>
+				</CondList>
+			</Trigger>
+		</TriggerList>
+	</SpcItem>
 	<!--바이보라 Lv3-->
 	<SpcItem Name="SWD04_126_Lv3">
 		<TriggerList Act="UnEquip">
@@ -2509,7 +2647,8 @@
 				</CondList>
 			</Trigger>
 		</TriggerList>
-	</SpcItem>	<SpcItem Name="TSF04_129_5_Lv3">
+	</SpcItem>
+	<SpcItem Name="TSF04_129_5_Lv3">
 		<TriggerList Act="UnEquip">
 			<Trigger>
 				<ExecList>
@@ -2786,6 +2925,144 @@
 		</TriggerList>
 	</SpcItem>
 	<SpcItem Name="MAC04_129_2_Lv3">
+		<TriggerList Act="UnEquip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="unequip_vibora" Client="NO" UseSleep="NO"/>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="Equip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="equip_vibora" Client="NO" UseSleep="NO"/>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="SkillUsed">
+			<Trigger>
+				<CondList>
+					<ToolScp Scp="skillused_vibora" Client="NO" UseSleep="NO"/>
+				</CondList>
+			</Trigger>
+		</TriggerList>
+	</SpcItem>
+	<SpcItem Name="PST04_122_4_Lv3">
+		<TriggerList Act="UnEquip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="unequip_vibora" Client="NO" UseSleep="NO"/>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="Equip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="equip_vibora" Client="NO" UseSleep="NO"/>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="SkillUsed">
+			<Trigger>
+				<CondList>
+					<ToolScp Scp="skillused_vibora" Client="NO" UseSleep="NO"/>
+				</CondList>
+			</Trigger>
+		</TriggerList>
+	</SpcItem>
+	<SpcItem Name="TBW04_126_2_Lv3">
+		<TriggerList Act="UnEquip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="unequip_vibora" Client="NO" UseSleep="NO"/>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="Equip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="equip_vibora" Client="NO" UseSleep="NO"/>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="SkillUsed">
+			<Trigger>
+				<CondList>
+					<ToolScp Scp="skillused_vibora" Client="NO" UseSleep="NO"/>
+				</CondList>
+			</Trigger>
+		</TriggerList>
+	</SpcItem>
+<SpcItem Name="DAG04_123_8_Lv3">
+		<TriggerList Act="UnEquip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="unequip_vibora" Client="NO" UseSleep="NO"/>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="Equip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="equip_vibora" Client="NO" UseSleep="NO"/>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="SkillUsed">
+			<Trigger>
+				<CondList>
+					<ToolScp Scp="skillused_vibora" Client="NO" UseSleep="NO"/>
+				</CondList>
+			</Trigger>
+		</TriggerList>
+	</SpcItem>
+		<SpcItem Name="SWD04_126_5_Lv3">
+		<TriggerList Act="UnEquip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="unequip_vibora" Client="NO" UseSleep="NO"/>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="Equip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="equip_vibora" Client="NO" UseSleep="NO"/>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="SkillUsed">
+			<Trigger>
+				<CondList>
+					<ToolScp Scp="skillused_vibora" Client="NO" UseSleep="NO"/>
+				</CondList>
+			</Trigger>
+		</TriggerList>
+	</SpcItem>
+	<SpcItem Name="MAC04_129_3_Lv3">
+		<TriggerList Act="UnEquip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="unequip_vibora" Client="NO" UseSleep="NO"/>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="Equip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="equip_vibora" Client="NO" UseSleep="NO"/>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="SkillUsed">
+			<Trigger>
+				<CondList>
+					<ToolScp Scp="skillused_vibora" Client="NO" UseSleep="NO"/>
+				</CondList>
+			</Trigger>
+		</TriggerList>
+	</SpcItem>
+	<SpcItem Name="TBW04_126_3_Lv3">
 		<TriggerList Act="UnEquip">
 			<Trigger>
 				<ExecList>
@@ -4212,6 +4489,144 @@
 			</Trigger>
 		</TriggerList>
 	</SpcItem>
+	<SpcItem Name="PST04_122_4_Lv4">
+		<TriggerList Act="UnEquip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="unequip_vibora" Client="NO" UseSleep="NO"/>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="Equip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="equip_vibora" Client="NO" UseSleep="NO"/>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="SkillUsed">
+			<Trigger>
+				<CondList>
+					<ToolScp Scp="skillused_vibora" Client="NO" UseSleep="NO"/>
+				</CondList>
+			</Trigger>
+		</TriggerList>
+	</SpcItem>
+	<SpcItem Name="TBW04_126_2_Lv4">
+		<TriggerList Act="UnEquip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="unequip_vibora" Client="NO" UseSleep="NO"/>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="Equip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="equip_vibora" Client="NO" UseSleep="NO"/>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="SkillUsed">
+			<Trigger>
+				<CondList>
+					<ToolScp Scp="skillused_vibora" Client="NO" UseSleep="NO"/>
+				</CondList>
+			</Trigger>
+		</TriggerList>
+	</SpcItem>
+		<SpcItem Name="DAG04_123_8_Lv4">
+		<TriggerList Act="UnEquip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="unequip_vibora" Client="NO" UseSleep="NO"/>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="Equip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="equip_vibora" Client="NO" UseSleep="NO"/>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="SkillUsed">
+			<Trigger>
+				<CondList>
+					<ToolScp Scp="skillused_vibora" Client="NO" UseSleep="NO"/>
+				</CondList>
+			</Trigger>
+		</TriggerList>
+	</SpcItem>
+		<SpcItem Name="SWD04_126_5_Lv4">
+		<TriggerList Act="UnEquip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="unequip_vibora" Client="NO" UseSleep="NO"/>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="Equip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="equip_vibora" Client="NO" UseSleep="NO"/>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="SkillUsed">
+			<Trigger>
+				<CondList>
+					<ToolScp Scp="skillused_vibora" Client="NO" UseSleep="NO"/>
+				</CondList>
+			</Trigger>
+		</TriggerList>
+	</SpcItem>
+	<SpcItem Name="MAC04_129_3_Lv4">
+		<TriggerList Act="UnEquip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="unequip_vibora" Client="NO" UseSleep="NO"/>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="Equip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="equip_vibora" Client="NO" UseSleep="NO"/>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="SkillUsed">
+			<Trigger>
+				<CondList>
+					<ToolScp Scp="skillused_vibora" Client="NO" UseSleep="NO"/>
+				</CondList>
+			</Trigger>
+		</TriggerList>
+	</SpcItem>
+	<SpcItem Name="TBW04_126_3_Lv4">
+		<TriggerList Act="UnEquip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="unequip_vibora" Client="NO" UseSleep="NO"/>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="Equip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="equip_vibora" Client="NO" UseSleep="NO"/>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="SkillUsed">
+			<Trigger>
+				<CondList>
+					<ToolScp Scp="skillused_vibora" Client="NO" UseSleep="NO"/>
+				</CondList>
+			</Trigger>
+		</TriggerList>
+	</SpcItem>
 	<!-- 마신 -->
 	<SpcItem Name="EP12_EVIL_TOP_Lv2">
 		<TriggerList Act="Equip">
@@ -5382,6 +5797,513 @@
 					<ToolScp Scp="unequip_Relic_Guilty" Client="NO" UseSleep="NO">
           			</ToolScp>
 				</ExecList>
+			</Trigger>
+		</TriggerList>
+	</SpcItem>
+	<!-- 영웅담-->
+	<SpcItem Name="TOSHero_SWORD">
+		<TriggerList Act="Equip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="equip_TOSHero" Client="NO" UseSleep="NO"/>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="UnEquip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="unequip_TOSHero" Client="NO" UseSleep="NO"/>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="SkillUsed">
+			<Trigger>
+				<CondList>
+					<ToolScp Scp="skillused_TOSHero" Client="NO" UseSleep="NO"/>
+				</CondList>
+			</Trigger>
+		</TriggerList>
+	</SpcItem>
+	<SpcItem Name="TOSHero_THSWORD">
+		<TriggerList Act="Equip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="equip_TOSHero" Client="NO" UseSleep="NO"/>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="UnEquip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="unequip_TOSHero" Client="NO" UseSleep="NO"/>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="SkillUsed">
+			<Trigger>
+				<CondList>
+					<ToolScp Scp="skillused_TOSHero" Client="NO" UseSleep="NO"/>
+				</CondList>
+			</Trigger>
+		</TriggerList>
+	</SpcItem>
+	<SpcItem Name="TOSHero_STAFF">
+		<TriggerList Act="Equip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="equip_TOSHero" Client="NO" UseSleep="NO"/>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="UnEquip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="unequip_TOSHero" Client="NO" UseSleep="NO"/>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="SkillUsed">
+			<Trigger>
+				<CondList>
+					<ToolScp Scp="skillused_TOSHero" Client="NO" UseSleep="NO"/>
+				</CondList>
+			</Trigger>
+		</TriggerList>
+	</SpcItem>
+	<SpcItem Name="TOSHero_THBOW">
+		<TriggerList Act="Equip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="equip_TOSHero" Client="NO" UseSleep="NO"/>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="UnEquip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="unequip_TOSHero" Client="NO" UseSleep="NO"/>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="SkillUsed">
+			<Trigger>
+				<CondList>
+					<ToolScp Scp="skillused_TOSHero" Client="NO" UseSleep="NO"/>
+				</CondList>
+			</Trigger>
+		</TriggerList>
+	</SpcItem>
+	<SpcItem Name="TOSHero_BOW">
+		<TriggerList Act="Equip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="equip_TOSHero" Client="NO" UseSleep="NO"/>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="UnEquip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="unequip_TOSHero" Client="NO" UseSleep="NO"/>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="SkillUsed">
+			<Trigger>
+				<CondList>
+					<ToolScp Scp="skillused_TOSHero" Client="NO" UseSleep="NO"/>
+				</CondList>
+			</Trigger>
+		</TriggerList>
+	</SpcItem>
+	<SpcItem Name="TOSHero_MACE">
+		<TriggerList Act="Equip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="equip_TOSHero" Client="NO" UseSleep="NO"/>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="UnEquip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="unequip_TOSHero" Client="NO" UseSleep="NO"/>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="SkillUsed">
+			<Trigger>
+				<CondList>
+					<ToolScp Scp="skillused_TOSHero" Client="NO" UseSleep="NO"/>
+				</CondList>
+			</Trigger>
+		</TriggerList>
+	</SpcItem>
+	<SpcItem Name="TOSHero_THMACE">
+		<TriggerList Act="Equip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="equip_TOSHero" Client="NO" UseSleep="NO"/>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="UnEquip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="unequip_TOSHero" Client="NO" UseSleep="NO"/>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="SkillUsed">
+			<Trigger>
+				<CondList>
+					<ToolScp Scp="skillused_TOSHero" Client="NO" UseSleep="NO"/>
+				</CondList>
+			</Trigger>
+		</TriggerList>
+	</SpcItem>
+	<SpcItem Name="TOSHero_SHIELD">
+		<TriggerList Act="Equip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="equip_TOSHero" Client="NO" UseSleep="NO"/>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="UnEquip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="unequip_TOSHero" Client="NO" UseSleep="NO"/>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="SkillUsed">
+			<Trigger>
+				<CondList>
+					<ToolScp Scp="skillused_TOSHero" Client="NO" UseSleep="NO"/>
+				</CondList>
+			</Trigger>
+		</TriggerList>
+	</SpcItem>
+	<SpcItem Name="TOSHero_SPEAR">
+		<TriggerList Act="Equip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="equip_TOSHero" Client="NO" UseSleep="NO"/>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="UnEquip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="unequip_TOSHero" Client="NO" UseSleep="NO"/>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="SkillUsed">
+			<Trigger>
+				<CondList>
+					<ToolScp Scp="skillused_TOSHero" Client="NO" UseSleep="NO"/>
+				</CondList>
+			</Trigger>
+		</TriggerList>
+	</SpcItem>
+	<SpcItem Name="TOSHero_THSPEAR">
+		<TriggerList Act="Equip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="equip_TOSHero" Client="NO" UseSleep="NO"/>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="UnEquip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="unequip_TOSHero" Client="NO" UseSleep="NO"/>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="SkillUsed">
+			<Trigger>
+				<CondList>
+					<ToolScp Scp="skillused_TOSHero" Client="NO" UseSleep="NO"/>
+				</CondList>
+			</Trigger>
+		</TriggerList>
+	</SpcItem>
+	<SpcItem Name="TOSHero_DAGGER">
+		<TriggerList Act="Equip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="equip_TOSHero" Client="NO" UseSleep="NO"/>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="UnEquip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="unequip_TOSHero" Client="NO" UseSleep="NO"/>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="SkillUsed">
+			<Trigger>
+				<CondList>
+					<ToolScp Scp="skillused_TOSHero" Client="NO" UseSleep="NO"/>
+				</CondList>
+			</Trigger>
+		</TriggerList>
+	</SpcItem>
+	<SpcItem Name="TOSHero_THSTAFF">
+		<TriggerList Act="Equip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="equip_TOSHero" Client="NO" UseSleep="NO"/>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="UnEquip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="unequip_TOSHero" Client="NO" UseSleep="NO"/>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="SkillUsed">
+			<Trigger>
+				<CondList>
+					<ToolScp Scp="skillused_TOSHero" Client="NO" UseSleep="NO"/>
+				</CondList>
+			</Trigger>
+		</TriggerList>
+	</SpcItem>
+	<SpcItem Name="TOSHero_PISTOL">
+		<TriggerList Act="Equip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="equip_TOSHero" Client="NO" UseSleep="NO"/>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="UnEquip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="unequip_TOSHero" Client="NO" UseSleep="NO"/>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="SkillUsed">
+			<Trigger>
+				<CondList>
+					<ToolScp Scp="skillused_TOSHero" Client="NO" UseSleep="NO"/>
+				</CondList>
+			</Trigger>
+		</TriggerList>
+	</SpcItem>
+	<SpcItem Name="TOSHero_RAPIER">
+		<TriggerList Act="Equip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="equip_TOSHero" Client="NO" UseSleep="NO"/>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="UnEquip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="unequip_TOSHero" Client="NO" UseSleep="NO"/>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="SkillUsed">
+			<Trigger>
+				<CondList>
+					<ToolScp Scp="skillused_TOSHero" Client="NO" UseSleep="NO"/>
+				</CondList>
+			</Trigger>
+		</TriggerList>
+	</SpcItem>
+	<SpcItem Name="TOSHero_CANNON">
+		<TriggerList Act="Equip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="equip_TOSHero" Client="NO" UseSleep="NO"/>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="UnEquip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="unequip_TOSHero" Client="NO" UseSleep="NO"/>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="SkillUsed">
+			<Trigger>
+				<CondList>
+					<ToolScp Scp="skillused_TOSHero" Client="NO" UseSleep="NO"/>
+				</CondList>
+			</Trigger>
+		</TriggerList>
+	</SpcItem>
+	<SpcItem Name="TOSHero_MUSKET">
+		<TriggerList Act="Equip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="equip_TOSHero" Client="NO" UseSleep="NO"/>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="UnEquip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="unequip_TOSHero" Client="NO" UseSleep="NO"/>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="SkillUsed">
+			<Trigger>
+				<CondList>
+					<ToolScp Scp="skillused_TOSHero" Client="NO" UseSleep="NO"/>
+				</CondList>
+			</Trigger>
+		</TriggerList>
+	</SpcItem>
+	<SpcItem Name="TOSHero_TRINKET">
+		<TriggerList Act="Equip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="equip_TOSHero" Client="NO" UseSleep="NO"/>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="UnEquip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="unequip_TOSHero" Client="NO" UseSleep="NO"/>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="SkillUsed">
+			<Trigger>
+				<CondList>
+					<ToolScp Scp="skillused_TOSHero" Client="NO" UseSleep="NO"/>
+				</CondList>
+			</Trigger>
+		</TriggerList>
+	</SpcItem>
+	<SpcItem Name="TOSHero_NECK_AS">
+		<TriggerList Act="Equip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="equip_TOSHero" Client="NO" UseSleep="NO"/>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="UnEquip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="unequip_TOSHero" Client="NO" UseSleep="NO"/>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="SkillUsed">
+			<Trigger>
+				<CondList>
+					<ToolScp Scp="skillused_TOSHero" Client="NO" UseSleep="NO"/>
+				</CondList>
+			</Trigger>
+		</TriggerList>
+	</SpcItem>
+	<SpcItem Name="TOSHero_NECK_AA">
+		<TriggerList Act="Equip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="equip_TOSHero" Client="NO" UseSleep="NO"/>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="UnEquip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="unequip_TOSHero" Client="NO" UseSleep="NO"/>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="SkillUsed">
+			<Trigger>
+				<CondList>
+					<ToolScp Scp="skillused_TOSHero" Client="NO" UseSleep="NO"/>
+				</CondList>
+			</Trigger>
+		</TriggerList>
+	</SpcItem>
+	<SpcItem Name="TOSHero_NECK_MB">
+		<TriggerList Act="Equip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="equip_TOSHero" Client="NO" UseSleep="NO"/>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="UnEquip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="unequip_TOSHero" Client="NO" UseSleep="NO"/>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="SkillUsed">
+			<Trigger>
+				<CondList>
+					<ToolScp Scp="skillused_TOSHero" Client="NO" UseSleep="NO"/>
+				</CondList>
+			</Trigger>
+		</TriggerList>
+	</SpcItem>
+	<SpcItem Name="TOSHero_NECK_MS">
+		<TriggerList Act="Equip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="equip_TOSHero" Client="NO" UseSleep="NO"/>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="UnEquip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="unequip_TOSHero" Client="NO" UseSleep="NO"/>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="SkillUsed">
+			<Trigger>
+				<CondList>
+					<ToolScp Scp="skillused_TOSHero" Client="NO" UseSleep="NO"/>
+				</CondList>
+			</Trigger>
+		</TriggerList>
+	</SpcItem>
+	<SpcItem Name="TOSHero_NECK_PT">
+		<TriggerList Act="Equip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="equip_TOSHero" Client="NO" UseSleep="NO"/>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="UnEquip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="unequip_TOSHero" Client="NO" UseSleep="NO"/>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="SkillUsed">
+			<Trigger>
+				<CondList>
+					<ToolScp Scp="skillused_TOSHero" Client="NO" UseSleep="NO"/>
+				</CondList>
 			</Trigger>
 		</TriggerList>
 	</SpcItem>

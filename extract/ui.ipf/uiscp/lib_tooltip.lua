@@ -1,6 +1,6 @@
 -- lib_tooltip.lua --
 
-function MAKE_BALLOON_FRAME(text, x, y, linkText, customName, font, isFixWidth)
+function MAKE_BALLOON_FRAME(text, x, y, linkText, customName, font, isFixWidth, isTailLeft)
 
 	local tframe = ui.CreateNewFrame("balloon", customName);
 	if tframe == nil then
@@ -26,6 +26,10 @@ function MAKE_BALLOON_FRAME(text, x, y, linkText, customName, font, isFixWidth)
 		textCtrl:SetTextByKey("Font", font);
 	end
 	textCtrl:SetTextByKey("Text", setText);
+
+	if isTailLeft == 1 then
+		tframe:SetSkinName("textballoon_reflect")
+	end
 	
 	local width = textCtrl:GetWidth() + 40;
 	local height = textCtrl:GetHeight() + 20;

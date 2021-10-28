@@ -1,0 +1,574 @@
+-- shared_cabinet_item.lua
+
+g_cabinet_required_item_list = nil -- 보관함 등록 및 업그레이드시에 필요한 재료 목록
+
+local luciferi_return_item_list = nil
+local acc_group_list = nil -- acc 그룹 AccountProperty 리스트
+
+local function make_cabinet_required_item_list()
+    if g_cabinet_required_item_list ~= nil then
+        return
+    end
+    g_cabinet_required_item_list = {}
+    acc_group_list = {}
+
+    local category_list = {}
+    category_list['Weapon'] = 4
+    category_list['Armor'] = 3
+    category_list['Accessory'] = 1
+    category_list['Ark'] = 1
+  
+    for k, v in pairs(category_list) do
+        g_cabinet_required_item_list[k] = {} -- 카테고리 생성
+    end
+
+    -- g_cabinet_required_item_list[category][item_name][level][재료] = 개수
+
+    local class_list, cnt = GetClassList('cabinet_weapon')    
+    for i = 0, cnt - 1 do
+        local entry_cls = GetClassByIndexFromList(class_list, i) -- 보관함 목록
+        if entry_cls ~= nil then
+            local item_name = TryGetProp(entry_cls, 'ClassName', 'None')      
+            local max_lv = TryGetProp(entry_cls, 'MaxUpgrade', 1)
+            local item_cls = GetClass('Item', item_name)
+            if item_cls ~= nil and TryGetProp(entry_cls, 'Basic', 0) == 0 then
+                if g_cabinet_required_item_list['Weapon'][item_name] == nil then
+                    g_cabinet_required_item_list['Weapon'][item_name] = {}
+                end
+                local lv = 1
+                for lv = 1, max_lv do
+                    if g_cabinet_required_item_list['Weapon'][item_name][lv] == nil then
+                        g_cabinet_required_item_list['Weapon'][item_name][lv] = {}  -- 레벨별 재료
+                    end
+                    
+                    if lv == 1 or lv == 4 then
+                        g_cabinet_required_item_list['Weapon'][item_name][lv][item_name] = 1 -- 1레벨 바이보라 1개 추가                        
+                    end
+
+                    if TryGetProp(item_cls, 'StringArg', 'None') == 'Vibora' then
+                        if lv == 2 then
+                            g_cabinet_required_item_list['Weapon'][item_name][lv]['EP12_enrich_Vibora_misc'] = 2
+                            g_cabinet_required_item_list['Weapon'][item_name][lv]['GabijaCertificate'] = 20000
+                        elseif lv == 3 then
+                            g_cabinet_required_item_list['Weapon'][item_name][lv]['EP12_enrich_Vibora_misc'] = 5
+                            g_cabinet_required_item_list['Weapon'][item_name][lv]['GabijaCertificate'] = 50000
+                        elseif lv == 4 then
+                            g_cabinet_required_item_list['Weapon'][item_name][lv]['EP12_enrich_Vibora_misc'] = 10
+                            g_cabinet_required_item_list['Weapon'][item_name][lv]['GabijaCertificate'] = 100000
+                        end
+                    end
+                end
+            end
+        end
+    end
+
+    local class_list, cnt = GetClassList('cabinet_armor')    
+    for i = 0, cnt - 1 do
+        local entry_cls = GetClassByIndexFromList(class_list, i) -- 보관함 목록
+        if entry_cls ~= nil then
+            local item_name = TryGetProp(entry_cls, 'ClassName', 'None')
+            local max_lv = TryGetProp(entry_cls, 'MaxUpgrade', 1)
+            local item_cls = GetClass('Item', item_name)
+            if item_cls ~= nil and TryGetProp(entry_cls, 'Basic', 0) == 0 then
+                if g_cabinet_required_item_list['Armor'][item_name] == nil then
+                    g_cabinet_required_item_list['Armor'][item_name] = {}
+                end
+                local lv = 1
+
+                if TryGetProp(item_cls, 'StringArg', 'None') == 'goddess' or TryGetProp(item_cls, 'StringArg', 'None') == 'evil' then                
+                    for lv = 1, max_lv do
+                        if g_cabinet_required_item_list['Armor'][item_name][lv] == nil then
+                            g_cabinet_required_item_list['Armor'][item_name][lv] = {}  -- 레벨별 재료
+                        end
+
+                        if lv == 1 or lv == 3 then
+                            g_cabinet_required_item_list['Armor'][item_name][lv]['misc_archenium_NoTrade'] = 1 -- 아케늄
+                            g_cabinet_required_item_list['Armor'][item_name][lv]['evil_misc'] = 1 -- 검붉은
+                            g_cabinet_required_item_list['Armor'][item_name][lv]['goddess_misc'] = 1 -- 신력                        
+                        end
+
+                        if TryGetProp(item_cls, 'StringArg', 'None') == 'evil' or TryGetProp(item_cls, 'StringArg', 'None') == 'goddess' then
+                            if lv == 2 then
+                                g_cabinet_required_item_list['Armor'][item_name][lv]['EP12_enrich_Goddess_misc'] = 3
+                                g_cabinet_required_item_list['Armor'][item_name][lv]['GabijaCertificate'] = 12500
+                            elseif lv == 3 then
+                                g_cabinet_required_item_list['Armor'][item_name][lv]['EP12_enrich_Goddess_misc'] = 6
+                                g_cabinet_required_item_list['Armor'][item_name][lv]['GabijaCertificate'] = 25000
+                            end
+                        end
+                    end
+                else
+                    if g_cabinet_required_item_list['Armor'][item_name][lv] == nil then
+                        g_cabinet_required_item_list['Armor'][item_name][lv] = {}  -- 레벨별 재료
+                    end
+                    g_cabinet_required_item_list['Armor'][item_name][lv][item_name] = 1
+                end
+            end
+        end
+    end
+    
+    local class_list, cnt = GetClassList('cabinet_accessory')
+    for i = 0, cnt - 1 do
+        local category = 'Accessory'
+        local entry_cls = GetClassByIndexFromList(class_list, i) -- 보관함 목록        
+        if entry_cls ~= nil then
+            local item_name = TryGetProp(entry_cls, 'ClassName', 'None')
+            local max_lv = TryGetProp(entry_cls, 'MaxUpgrade', 1)
+            local item_cls = GetClass('Item', item_name)
+            local group = TryGetProp(entry_cls, 'Group', 0)
+            local acc_prop = TryGetProp(entry_cls, 'AccountProperty', 'None')
+            if item_cls ~= nil and TryGetProp(entry_cls, 'Basic', 0) == 0 and TryGetProp(item_cls, 'StringArg', 'None') == 'Luciferi' then
+                if acc_group_list[group] == nil then
+                    acc_group_list[group] = {}
+                end
+
+                if acc_prop ~= 'None' then
+                    table.insert(acc_group_list[group], acc_prop)                    
+                end
+
+                if g_cabinet_required_item_list[category][item_name] == nil then
+                    g_cabinet_required_item_list[category][item_name] = {}
+                end
+                local lv = 1
+                for lv = 1, max_lv do
+                    if g_cabinet_required_item_list[category][item_name][lv] == nil then
+                        g_cabinet_required_item_list[category][item_name][lv] = {}  -- 레벨별 재료
+                    end
+                    
+                    if item_name == 'EP12_NECK06_HIGH_002' or item_name == 'EP12_BRC06_HIGH_002' then
+                        g_cabinet_required_item_list[category][item_name][lv]['NECK05_012'] = 1
+                        g_cabinet_required_item_list[category][item_name][lv]['BRC05_012__1'] = 1
+                        g_cabinet_required_item_list[category][item_name][lv]['BRC05_012__2'] = 1
+                        g_cabinet_required_item_list[category][item_name][lv]['NECK05_004'] = 1
+                        g_cabinet_required_item_list[category][item_name][lv]['BRC05_004__1'] = 1
+                        g_cabinet_required_item_list[category][item_name][lv]['BRC05_004__2'] = 1
+                    elseif item_name == 'EP12_NECK06_HIGH_001' or item_name == 'EP12_BRC06_HIGH_001' then
+                        g_cabinet_required_item_list[category][item_name][lv]['NECK05_010'] = 1
+                        g_cabinet_required_item_list[category][item_name][lv]['BRC05_010__1'] = 1
+                        g_cabinet_required_item_list[category][item_name][lv]['BRC05_010__2'] = 1
+                        g_cabinet_required_item_list[category][item_name][lv]['NECK05_006'] = 1
+                        g_cabinet_required_item_list[category][item_name][lv]['BRC05_006__1'] = 1
+                        g_cabinet_required_item_list[category][item_name][lv]['BRC05_006__2'] = 1
+                    elseif item_name == 'EP12_NECK06_HIGH_003' or item_name == 'EP12_BRC06_HIGH_003' then
+                        g_cabinet_required_item_list[category][item_name][lv]['NECK05_009'] = 1
+                        g_cabinet_required_item_list[category][item_name][lv]['BRC05_009__1'] = 1
+                        g_cabinet_required_item_list[category][item_name][lv]['BRC05_009__2'] = 1
+                        g_cabinet_required_item_list[category][item_name][lv]['NECK05_007'] = 1
+                        g_cabinet_required_item_list[category][item_name][lv]['BRC05_007__1'] = 1
+                        g_cabinet_required_item_list[category][item_name][lv]['BRC05_007__2'] = 1
+
+                        g_cabinet_required_item_list[category][item_name][lv+1] = {}
+                        g_cabinet_required_item_list[category][item_name][lv+1]['NECK05_009'] = 1  -- 칸트리베만 재료가 2가지
+                        g_cabinet_required_item_list[category][item_name][lv+1]['BRC05_009__1'] = 1
+                        g_cabinet_required_item_list[category][item_name][lv+1]['BRC05_009__2'] = 1
+                        g_cabinet_required_item_list[category][item_name][lv+1]['NECK05_005'] = 1
+                        g_cabinet_required_item_list[category][item_name][lv+1]['BRC05_005__1'] = 1
+                        g_cabinet_required_item_list[category][item_name][lv+1]['BRC05_005__2'] = 1
+                        g_cabinet_required_item_list[category][item_name][lv+1]['misc_luferium_NoTrade'] = 1
+                        g_cabinet_required_item_list[category][item_name][lv+1]['misc_mothstone'] = 1
+                        g_cabinet_required_item_list[category][item_name][lv+1]['misc_Telharsha_neck'] = 72
+                    elseif item_name == 'EP12_NECK06_HIGH_005' or item_name == 'EP12_BRC06_HIGH_005' then
+                        g_cabinet_required_item_list[category][item_name][lv]['NECK05_011'] = 1
+                        g_cabinet_required_item_list[category][item_name][lv]['BRC05_011__1'] = 1
+                        g_cabinet_required_item_list[category][item_name][lv]['BRC05_011__2'] = 1
+                        g_cabinet_required_item_list[category][item_name][lv]['NECK05_001'] = 1
+                        g_cabinet_required_item_list[category][item_name][lv]['BRC05_001__1'] = 1
+                        g_cabinet_required_item_list[category][item_name][lv]['BRC05_001__2'] = 1
+                    elseif item_name == 'EP12_NECK06_HIGH_006' or item_name == 'EP12_BRC06_HIGH_006' then
+                        g_cabinet_required_item_list[category][item_name][lv]['NECK05_008'] = 1
+                        g_cabinet_required_item_list[category][item_name][lv]['BRC05_008__1'] = 1
+                        g_cabinet_required_item_list[category][item_name][lv]['BRC05_008__2'] = 1
+                        g_cabinet_required_item_list[category][item_name][lv]['NECK05_002'] = 1
+                        g_cabinet_required_item_list[category][item_name][lv]['BRC05_002__1'] = 1
+                        g_cabinet_required_item_list[category][item_name][lv]['BRC05_002__2'] = 1
+                    elseif item_name == 'EP12_NECK06_HIGH_004' or item_name == 'EP12_BRC06_HIGH_004' then
+                        g_cabinet_required_item_list[category][item_name][lv]['NECK05_008'] = 1
+                        g_cabinet_required_item_list[category][item_name][lv]['BRC05_008__1'] = 1
+                        g_cabinet_required_item_list[category][item_name][lv]['BRC05_008__2'] = 1
+                        g_cabinet_required_item_list[category][item_name][lv]['NECK05_003'] = 1
+                        g_cabinet_required_item_list[category][item_name][lv]['BRC05_003__1'] = 1
+                        g_cabinet_required_item_list[category][item_name][lv]['BRC05_003__2'] = 1
+                    end
+
+                    g_cabinet_required_item_list[category][item_name][lv]['misc_luferium_NoTrade'] = 1
+                    g_cabinet_required_item_list[category][item_name][lv]['misc_mothstone'] = 1
+                    g_cabinet_required_item_list[category][item_name][lv]['misc_Telharsha_neck'] = 72
+                end
+            end
+        end
+    end
+
+    local class_list, cnt = GetClassList('cabinet_ark')
+    for i = 0, cnt - 1 do
+        local category = 'Ark'
+        local entry_cls = GetClassByIndexFromList(class_list, i) -- 보관함 목록
+        if entry_cls ~= nil then
+            local item_name = TryGetProp(entry_cls, 'ClassName', 'None')
+            local max_lv = TryGetProp(entry_cls, 'MaxUpgrade', 1)
+            local item_cls = GetClass('Item', item_name)
+            local group = TryGetProp(entry_cls, 'Group', 0)
+            local acc_prop = TryGetProp(entry_cls, 'AccountProperty', 'None')
+            if TryGetProp(item_cls, 'StringArg2', 'None') == 'Made_Ark' then
+                if g_cabinet_required_item_list[category][item_name] == nil then
+                    g_cabinet_required_item_list[category][item_name] = {}
+                end
+                local lv = 1
+                for lv = 1, max_lv do
+                    if g_cabinet_required_item_list[category][item_name][lv] == nil then
+                        g_cabinet_required_item_list[category][item_name][lv] = {}  -- 레벨별 재료
+                    end
+                    g_cabinet_required_item_list[category][item_name][lv]['misc_thierrynium_NoTrade'] = 1
+                    g_cabinet_required_item_list[category][item_name][lv]['Piece_LegendMisc'] = 4
+                end
+            end
+        end
+    end
+end
+
+make_cabinet_required_item_list()
+
+function GET_ACC_GROUP_PROPERTY_LIST(group)
+    return acc_group_list[group]
+end
+
+function GET_REGISTER_MATERIAL(category, item_name, lv)
+    if g_cabinet_required_item_list[category] == nil then        
+        return nil
+    end
+
+    if g_cabinet_required_item_list[category][item_name] == nil then        
+        return nil
+    end
+    
+    return g_cabinet_required_item_list[category][item_name][lv]
+end
+
+-- 클라에서 표기용
+function GET_CABINET_ITEM_NAME(cls, acc)
+    if cls == nil or acc == nil then
+        return 'None'
+    end
+
+    if TryGetProp(cls, 'Upgrade', 'None') == 1 then
+        local name = TryGetProp(cls, 'ClassName', 'None')
+        local upgrade_property = TryGetProp(cls, 'UpgradeAccountProperty', 0)
+        local lv = TryGetProp(acc, upgrade_property, 0)
+        if lv <= 1 then
+            return name
+        else
+            name = name .. '_Lv' .. lv
+            return name
+        end
+    else
+        return TryGetProp(cls, 'ClassName', 'None')
+    end
+end
+
+function CHECK_ENCHANT_VALIDATION(target_item, category, type, aObj, pc)
+    if target_item == nil then return end
+    
+    if TryGetProp(target_item, 'ItemGrade', 1) < 6 then        
+        return false, "OnlyEquipGoddessItemOnSlot";
+    end
+
+    if TryGetProp(target_item, 'NeedRandomOption', 1) == 1 then        
+        return false, "NeedAppraisd";
+    end
+
+    if TryGetProp(target_item, 'ClassType', 'None') == 'None' then
+        -- 클래스 타입이 맞지 않음
+        return false, "NotMatchItemClassType";
+    end
+
+    local idspace = 'None'
+    if category == 'Weapon' then
+        idspace = 'cabinet_weapon'
+    elseif category == 'Armor' then
+        idspace = 'cabinet_armor'
+    end    
+    
+    if idspace == 'None' then         
+        return false;
+    end
+
+    local entry_cls = GetClassByType(idspace, type)
+    if entry_cls == nil then        
+        return false;
+    end
+
+    if TryGetProp(entry_cls, 'GetItemFunc', 'None') == 'None' then return false; end
+	
+	local get_name_func = _G[TryGetProp(entry_cls, 'GetItemFunc', 'None')];
+	if get_name_func == nil then return false; end
+
+    local inheritance_item_name = get_name_func(entry_cls, aObj)
+    if inheritance_item_name == 'None' then return false end
+    local inheritance_item_name_cls = GetClass('Item', inheritance_item_name)
+    if inheritance_item_name_cls == nil then return false end
+
+    if TryGetProp(inheritance_item_name_cls, 'ClassType', 'None') == 'None' then
+        return false, "NotMatchItemClassType";
+    end
+
+    if TryGetProp(target_item, 'InheritanceItemName', 'None') == TryGetProp(inheritance_item_name_cls, 'ClassName', 'None') then        
+        return false, "AlreadyPrefixOption";
+    end
+
+    if TryGetProp(inheritance_item_name_cls, 'ClassType', 'None') == 'Arcane' then        
+        local target_class_type = TryGetProp(target_item, 'ClassType', 'None')
+        if IS_WEAPON_TYPE(target_class_type) == false then
+            if IsServerSection() == 1 and pc ~= nil then
+                SendSysMsg(pc, 'OnlyEnchantToWeapon')            
+            end
+            return false, "OnlyEnchantToWeapon"
+        else
+            -- 바이보라 비전을 부여하고자 하는 경우
+            local add_option = TryGetProp(inheritance_item_name_cls, 'AdditionalOption_1', 'None')
+            if add_option ~= 'None' then
+                if IsServerSection() == 1 and pc ~= nil then
+                    local target_guid = GetIESID(target_item)    
+                    local spot = GetItemEquipSpotByGuid(pc, target_guid)                
+                    if spot ~= 'LAST' then
+                        if IS_EQUIP_UNIQUE_VIBORA_BY_OPTION_NAME(pc, spot, add_option) == false then
+                            return false, "OnlyOneUniqueViboraEquip"
+                        end
+                        
+                        if GET_EQUIP_UNIQUE_VIBORA_COUNT_BY_OPTION_NAME(pc, spot, add_option) >= MAX_EQUIPTED_UNIQUE_VIBORA_COUNT then
+                            return false, nil, ScpArgMsg("EquipedMaxUniqueVibora{count}", "count", MAX_EQUIPTED_UNIQUE_VIBORA_COUNT)
+                        end
+                    end
+                end
+            end
+        end        
+    else
+        if category == 'Armor' then -- 갈리미베 방어구 예외처리(모든 방어구 부위에 장착)
+            local target_classtype = TryGetProp(target_item, 'ClassType', 'None')
+            if target_classtype == 'Shirt' or target_classtype == 'Pants' or target_classtype == 'Boots' or target_classtype == 'Gloves' then
+                local str_arg = TryGetProp(inheritance_item_name_cls, 'StringArg', 'None')
+                if str_arg == 'EP13GALIMYBEARMOR' then
+                    return true
+                end
+            end
+        end
+
+        if TryGetProp(target_item, 'ClassType', 'None') ~= TryGetProp(inheritance_item_name_cls, 'ClassType', 'None') then            
+            return false, "NotMatchItemClassType";
+        end
+    end
+
+    return true;
+end
+
+-- 착용한 고유 바이보라 개수를 리턴한다. 
+-- equip_slot_name : 착용 교체시에 착용할 위치를 전달, 교체되는 방식이기 때문에, 해당 부위의 착용여부를 체크하지 않음
+-- equip_slot_name {'LH', 'RH', 'LH_SUB', 'RH_SUB'}
+function GET_EQUIP_UNIQUE_VIBORA_COUNT(pc, equip_slot_name, item)
+    local slot_list = {'LH', 'RH', 'LH_SUB', 'RH_SUB'}
+    
+    if item == nil then
+        return 0
+    end
+
+    local inheritance = TryGetProp(item, 'InheritanceItemName', 'None')
+    if inheritance == 'None' then
+        return 0
+    end
+
+    local cls_1 = GetClass("Item", inheritance)
+
+    if cls_1 == nil then
+        return 0
+    end
+
+    local _add_option = TryGetProp(cls_1, 'AdditionalOption_1', 'None')
+    if _add_option == 'None' then
+        return 0
+    end
+
+    local count = 0    
+    for k, v in pairs(slot_list) do
+        if equip_slot_name ~= v then
+            local itemObj = nil
+            if IsServerSection() == 1 then
+                itemObj = GetEquipItem(pc, v)
+            else
+                local equip_item = session.GetEquipItemBySpot(item.GetEquipSpotNum(v));
+                if equip_item ~= nil then
+                    itemObj = GetIES(equip_item:GetObject())
+                end            
+            end
+
+            if itemObj ~= nil then
+                local inheritance_name = TryGetProp(itemObj, 'InheritanceItemName', 'None')
+                if inheritance_name ~= 'None' then
+                    local cls = GetClass('Item', inheritance_name)
+                    if cls ~= nil then
+                        local add_option = TryGetProp(cls, 'AdditionalOption_1', 'None')
+                        if add_option ~= 'None' then
+                            count = count + 1
+                        end
+                    end
+                end
+            end
+        end
+    end
+
+    return count
+end
+
+function GET_EQUIP_UNIQUE_VIBORA_COUNT_BY_OPTION_NAME(pc, equip_slot_name, option_name)
+    local slot_list = {'LH', 'RH', 'LH_SUB', 'RH_SUB'}
+    
+    local _add_option = option_name
+    if _add_option == 'None' then
+        return 0
+    end
+
+    local count = 0    
+    for k, v in pairs(slot_list) do
+        if equip_slot_name ~= v then
+            local itemObj = nil
+            if IsServerSection() == 1 then
+                itemObj = GetEquipItem(pc, v)
+            else
+                local equip_item = session.GetEquipItemBySpot(item.GetEquipSpotNum(v));
+                if equip_item ~= nil then
+                    itemObj = GetIES(equip_item:GetObject())
+                end            
+            end
+
+            if itemObj ~= nil then
+                local inheritance_name = TryGetProp(itemObj, 'InheritanceItemName', 'None')
+                if inheritance_name ~= 'None' then
+                    local cls = GetClass('Item', inheritance_name)
+                    if cls ~= nil then
+                        local add_option = TryGetProp(cls, 'AdditionalOption_1', 'None')
+                        if add_option ~= 'None' then
+                            count = count + 1
+                        end
+                    end
+                end
+            end
+        end
+    end
+
+    return count
+end
+
+-- 착용할 바이보라가 고유한 바이보라인가
+-- true 인 경우 착용 가능
+function IS_EQUIP_UNIQUE_VIBORA(pc, equip_slot_name, item)
+    local slot_list = {'LH', 'RH', 'LH_SUB', 'RH_SUB' }
+    
+    if item == nil then
+        return false
+    end
+
+    local inheritance = TryGetProp(item, 'InheritanceItemName', 'None')
+    if inheritance == 'None' then
+        return true
+    end
+
+    local cls_1 = GetClass("Item", inheritance)
+    
+    if cls_1 == nil then
+        return false
+    end
+    
+    local _add_option = TryGetProp(cls_1, 'AdditionalOption_1', 'None')
+    if _add_option == 'None' then
+        return true
+    end
+    
+    for k, v in pairs(slot_list) do
+        if equip_slot_name ~= v then
+            local itemObj = nil
+            if IsServerSection() == 1 then
+                itemObj = GetEquipItem(pc, v)
+            else
+                local equip_item = session.GetEquipItemBySpot(item.GetEquipSpotNum(v));
+                if equip_item ~= nil then
+                    itemObj = GetIES(equip_item:GetObject())
+                end            
+            end
+
+            if itemObj ~= nil then
+                local inheritance_name = TryGetProp(itemObj, 'InheritanceItemName', 'None')
+                if inheritance_name ~= 'None' then
+                    local cls = GetClass('Item', inheritance_name)
+                    if cls ~= nil then
+                        local add_option = TryGetProp(cls, 'AdditionalOption_1', 'None')
+                        if add_option == _add_option then
+                            return false
+                        end
+                    end
+                end
+            end
+        end
+    end
+
+    return true
+end
+
+function IS_EQUIP_UNIQUE_VIBORA_BY_OPTION_NAME(pc, equip_slot_name, option_name)
+    local slot_list = {'LH', 'RH', 'LH_SUB', 'RH_SUB' }
+        
+    local _add_option = option_name
+    if _add_option == 'None' then
+        return true
+    end
+
+    for k, v in pairs(slot_list) do
+        if equip_slot_name ~= v then
+            local itemObj = nil
+            if IsServerSection() == 1 then
+                itemObj = GetEquipItem(pc, v)
+            else
+                local equip_item = session.GetEquipItemBySpot(item.GetEquipSpotNum(v));
+                if equip_item ~= nil then
+                    itemObj = GetIES(equip_item:GetObject())
+                end            
+            end
+
+            if itemObj ~= nil then
+                local inheritance_name = TryGetProp(itemObj, 'InheritanceItemName', 'None')
+                if inheritance_name ~= 'None' then
+                    local cls = GetClass('Item', inheritance_name)
+                    if cls ~= nil then
+                        local add_option = TryGetProp(cls, 'AdditionalOption_1', 'None')
+                        if add_option == _add_option then
+                            return false
+                        end
+                    end
+                end
+            end
+        end
+    end
+
+    return true
+end
+
+function IS_ACCOUNT_COIN(name)
+    local cls = GetClass('accountprop_inventory_list', name)
+    if cls == nil then
+        return false
+    else
+        if TryGetProp(cls, 'StringCoin', 'None') == 'YES' then
+            return true
+        else
+            return false
+        end
+    end
+end
+function IS_STRING_COIN(name)
+    local cls = GetClass('accountprop_inventory_list', name)
+    if cls == nil then
+        return false
+    else
+        if TryGetProp(cls, 'StringCoin', 'None') == 'YES' then
+            return true
+        else
+            return false
+        end
+    end
+end

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ActionDesc>
+    <Sound frame="0.00" soundFile="mon_voice_vasilissa_dead_script"/>
+    <Sound frame="0.00" soundFile="skl_eff_atk_move_l_23"/>
+    <Sound frame="3.81" soundFile="swd_blow_critical1---"/>
+    <Sound frame="22.00" soundFile="skl_eff_atk_move_l_21"/>
+    <Sound frame="37.00" soundFile="skl_eff_atk_move_l_7"/>
+    <Sound frame="48.57" soundFile="skl_eff_dead_wood_s"/>
+</ActionDesc>

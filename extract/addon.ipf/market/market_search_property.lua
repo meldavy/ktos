@@ -88,7 +88,6 @@ local MARKET_OPTION_GROUP_PROP_LIST = {
 		"RareOption_CriticalDamage_Rate",
 		"RareOption_PVPDamageRate",
 		"RareOption_BossDamageRate",
-		"RareOption_SubWeaponDamageRate",
 		"RareOption_MainWeaponDamageRate"
 	}
 };

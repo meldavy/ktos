@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ActionDesc>
+    <Sound frame="0.00" soundFile="mon_voice_mouse_4"/>
+    <Sound frame="2.00" soundFile="skl_eff_body_atk_9"/>
+    <Sound frame="9.00" soundFile="skl_eff_move_s_1"/>
+    <Sound frame="13.00" soundFile="skl_eff_move_s_1"/>
+    <Sound frame="18.00" soundFile="skl_eff_move_s_1"/>
+    <Sound frame="24.00" soundFile="skl_eff_move_s_1"/>
+</ActionDesc>

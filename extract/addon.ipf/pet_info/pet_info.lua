@@ -674,6 +674,11 @@ function DROP_PET_EQUIP(parent, slot, str, num)
 		return;
 	end
 
+	if TryGetProp(itemObj, "ItemGrade", 0) > 5 then
+		ui.SysMsg(ClMsg("ThisItemIsNotForCompanion"));
+		return;
+	end
+
 	geClientPet.RequestEquipPet(guid, liftIcon:GetIESID(), typeEnum, slotSpot);
 
 end

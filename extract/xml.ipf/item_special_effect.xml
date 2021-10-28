@@ -1902,34 +1902,34 @@
 		</Layer>
 	</ItemList>
 	<ItemList ItemClassName="wing_ep12honoredrose01">
-		<Layer effect="F_light015_violet_loop3" TargetNode="Dummy_r001" scale="0.6" offset="0;0">
+		<Layer effect="F_light015_violet_loop3" TargetNode="Dummy_r001" scale="1.0" offset="0;0">
 			<Creation>
 				<Property PlayMoment="None">
-					<Option ReinforceValue="0" ReinforceEffectState="None" UseAttach="NO" Use2DEffect="YES" IgnoreAnimEventEffect="YES" SubWeaponPistol="NO"/>
+					<Option ReinforceValue="0" ReinforceEffectState="None" UseAttach="YES" Use2DEffect="YES" IgnoreAnimEventEffect="YES" SubWeaponPistol="NO"/>
 					<Sound SoundName="None" SoundVolume="1"/>
 				</Property>
 			</Creation>
 		</Layer>
-		<Layer effect="F_light015_violet_loop3" TargetNode="Dummy_r002" scale="0.2" offset="0;0">
+		<Layer effect="F_light015_violet_loop3" TargetNode="Dummy_r002" scale="0.6" offset="0;0">
 			<Creation>
 				<Property PlayMoment="None">
-					<Option ReinforceValue="0" ReinforceEffectState="None" UseAttach="NO" Use2DEffect="YES" IgnoreAnimEventEffect="YES" SubWeaponPistol="NO"/>
+					<Option ReinforceValue="0" ReinforceEffectState="None" UseAttach="YES" Use2DEffect="YES" IgnoreAnimEventEffect="YES" SubWeaponPistol="NO"/>
 					<Sound SoundName="None" SoundVolume="1"/>
 				</Property>
 			</Creation>
 		</Layer>
-		<Layer effect="F_light015_violet_loop3" TargetNode="Dummy_l001" scale="0.6" offset="0;0">
+		<Layer effect="F_light015_violet_loop3" TargetNode="Dummy_l001" scale="1.0" offset="0;0">
 			<Creation>
 				<Property PlayMoment="None">
-					<Option ReinforceValue="0" ReinforceEffectState="None" UseAttach="NO" Use2DEffect="YES" IgnoreAnimEventEffect="YES" SubWeaponPistol="NO"/>
+					<Option ReinforceValue="0" ReinforceEffectState="None" UseAttach="YES" Use2DEffect="YES" IgnoreAnimEventEffect="YES" SubWeaponPistol="NO"/>
 					<Sound SoundName="None" SoundVolume="1"/>
 				</Property>
 			</Creation>
 		</Layer>
-		<Layer effect="F_light015_violet_loop3" TargetNode="Dummy_l002" scale="0.2" offset="0;0">
+		<Layer effect="F_light015_violet_loop3" TargetNode="Dummy_l002" scale="0.6" offset="0;0">
 			<Creation>
 				<Property PlayMoment="None">
-					<Option ReinforceValue="0" ReinforceEffectState="None" UseAttach="NO" Use2DEffect="YES" IgnoreAnimEventEffect="YES" SubWeaponPistol="NO"/>
+					<Option ReinforceValue="0" ReinforceEffectState="None" UseAttach="YES" Use2DEffect="YES" IgnoreAnimEventEffect="YES" SubWeaponPistol="NO"/>
 					<Sound SoundName="None" SoundVolume="1"/>
 				</Property>
 			</Creation>

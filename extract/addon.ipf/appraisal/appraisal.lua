@@ -86,6 +86,8 @@ function APPRAISAL_UPDATE_ITEM_LIST(frame, itemGradeList)
 				local itemGrade = TryGetProp(obj, 'ItemGrade');
 				if itemGrade == nil then
 					itemGrade = 0;
+				elseif itemGrade > 5 then
+					itemGrade = 5
 				end
 	
 				local needToShow = true;
@@ -93,7 +95,7 @@ function APPRAISAL_UPDATE_ITEM_LIST(frame, itemGradeList)
 					if itemGradeList[j] == 0 and itemGrade == (j + 1) then	-- j + 1인 이유 ex) itemGradeList[1]일때 j = 1, greade = 2(magic)
 						needToShow = false;
 						break;
-					end					
+					end				
 				end
 
 				if needToShow == true then

@@ -47,66 +47,72 @@ shared_item_ark.get_low_lv_adventage = function(goal_lv, max_lv)
 end
 
 -- 축석 개수, 신비한 서 낱장, 시에라 스톤 순으로 반환
-shared_item_ark.get_require_count_for_next_lv = function(goal_lv, max_lv)    
-    if max_lv == nil or max_lv == 0 then
-        max_lv = 5 -- 레벨이 올라가더라도 해당 수치는 고정
-    else
-        max_lv = 5 -- 레벨이 올라가더라도 해당 수치는 고정
+shared_item_ark.get_require_count_for_next_lv = function(goal_lv, max_lv, is_character_belong)
+    if is_character_belong == nil then
+        is_character_belong = false
     end
 
-    local multiple = tonumber(string.format('%.2f',math.floor(goal_lv * (goal_lv * item_ark_grow_ratio))))    
-    local base_transcend_count = 20  -- 축석 수
-    local base_arcane_count = 7     -- 신비한 서 낱장
-    local base_siera_count = 2      -- 시에라 스톤
+    local space_name = 'item_ark_material'
 
-    local low_lv_adventage = shared_item_ark.get_low_lv_adventage(goal_lv, max_lv)
-    if goal_lv > max_lv then
-        low_lv_adventage = math.min(low_lv_adventage, 0.8)
-    else
-        low_lv_adventage = math.min(low_lv_adventage, 1)
+    if is_character_belong == true then
+        space_name = 'item_ark_material_belong'
     end
-    
-    base_transcend_count = math.max(math.floor(base_transcend_count * multiple * low_lv_adventage), 1)
-    base_arcane_count = math.max(math.floor(base_arcane_count * multiple * low_lv_adventage), 1)
-    base_siera_count = math.max(math.floor(base_siera_count * multiple * low_lv_adventage), 1)
 
-    base_transcend_count = math.min(base_transcend_count, 200)
-    base_arcane_count = math.min(base_arcane_count, 200)
-    base_siera_count = math.min(base_siera_count, 200)
+    local list, cnt = GetClassList(space_name)
+    if list == nil or cnt < 1 then
+        return 99999, 99999, 99999
+    end
 
-    return base_transcend_count, base_arcane_count, base_siera_count
+    if goal_lv - 1 > cnt or goal_lv - 1 < 1 then
+        return 99999, 99999, 99999
+    end
+
+    local cls = GetClassByIndexFromList(list, goal_lv - 1)
+    if cls == nil then
+        return 99999, 99999, 99999
+    end
+
+    local a, b, c = shared_item_ark.get_require_item_list_for_lv()
+    return TryGetProp(cls, a, 99999), TryGetProp(cls, b, 99999), TryGetProp(cls, c, 99999)    
 end
 
 -- 렙업에 필요한 뉴클 가루 수
-shared_item_ark.get_require_count_for_exp_up = function(goal_lv, max_lv)    
-    if max_lv == nil or max_lv == 0 then
-        max_lv = 5 -- 레벨이 올라가더라도 해당 수치는 고정
-    else
-        max_lv = 5 -- 레벨이 올라가더라도 해당 수치는 고정
+shared_item_ark.get_require_count_for_exp_up = function(goal_lv, max_lv, is_character_belong)    
+    if is_character_belong == nil then
+        is_character_belong = false
     end
 
-    local low_lv_adventage = shared_item_ark.get_low_lv_adventage(goal_lv, max_lv)
-    if goal_lv > max_lv then
-        low_lv_adventage = math.min(low_lv_adventage, 0.8)
-    else
-        low_lv_adventage = math.min(low_lv_adventage, 1)
+    local space_name = 'item_ark_material'
+    
+    if is_character_belong == true then
+        space_name = 'item_ark_material_belong'
+end
+
+    local list, cnt = GetClassList(space_name)
+    if list == nil or cnt < 1 then
+        return 10000000
     end
 
-    local multiple = goal_lv * (goal_lv * item_ark_grow_ratio_exp_up)
-    multiple = tonumber(string.format('%.2f', multiple))
-    local base = 100 -- float 연산 오류때문에 분리함 200 * 1000    
-    base = math.floor(base * multiple * low_lv_adventage)  
-    base = base * 1000
-    if base < 10000 then
-        base = 10000
+    if goal_lv - 1 > cnt or goal_lv - 1 < 1 then
+        return 10000000
+    end
+    local cls = GetClassByIndexFromList(list, goal_lv - 1)
+
+    if cls == nil then
+        return 1000000
     end
     
-    return tostring(base)
+    return TryGetProp(cls, shared_item_ark.get_exp_material(), 800000)   
 end
 
 shared_item_ark.is_valid_condition_for_copy = function(item_dest, item_src)
-    local src_max_lv = TryGetProp(item_src, 'MaxArkLv')
-    local dest_max_lv = TryGetProp(item_dest, 'MaxArkLv')
+    if TryGetProp(item_src, 'CharacterBelonging', 0) ~= TryGetProp(item_dest, 'CharacterBelonging', 0) then
+        -- 같은 귀속 상태여야 함
+        return false
+    end
+    
+    local src_max_lv = TryGetProp(item_src, 'MaxArkLv', 10)
+    local dest_max_lv = TryGetProp(item_dest, 'MaxArkLv', 10)
 
     local src_lv = TryGetProp(item_src, 'ArkLevel', 1)
     local dest_lv = TryGetProp(item_dest, 'ArkLevel', 1) 
@@ -156,7 +162,13 @@ shared_item_ark.get_next_lv_exp = function(item)
 
     local max_lv = TryGetProp(item, 'MaxArkLv', 10)    
     local current_lv = TryGetProp(item, 'ArkLevel', 1)
-    local next_exp = shared_item_ark.get_require_count_for_exp_up(current_lv + 1, max_lv)    
+
+    local is_character_belong = false
+    if TryGetProp(item, 'CharacterBelonging', 0) == 1 then
+        is_character_belong = true
+    end
+
+    local next_exp = shared_item_ark.get_require_count_for_exp_up(current_lv + 1, max_lv, is_character_belong)    
     next_exp = tonumber(next_exp)
     if next_exp <= 0 then
         return false, nil
@@ -169,7 +181,13 @@ end
 shared_item_ark.get_current_lv_exp = function(item)    
     local max_lv = TryGetProp(item, 'MaxArkLv', 10)
     local current_lv = TryGetProp(item, 'ArkLevel', 1)    
-    local next_exp = shared_item_ark.get_require_count_for_exp_up(current_lv, max_lv)    
+
+    local is_character_belong = false
+    if TryGetProp(item, 'CharacterBelonging', 0) == 1 then
+        is_character_belong = true
+    end
+
+    local next_exp = shared_item_ark.get_require_count_for_exp_up(current_lv, max_lv, is_character_belong)    
     next_exp = tonumber(next_exp)
     if next_exp <= 0 then
         return false, nil
@@ -177,6 +195,149 @@ shared_item_ark.get_current_lv_exp = function(item)
     
     return true, next_exp
 end
+
+--------------------------------------- 반환 관련 로직 ---------------------------------------
+shared_item_ark.get_return_newcle_count = function(item)
+    if TryGetProp(item, 'CharacterBelonging', 0) == 1 then
+        return 0
+    end
+
+    local ret_count = 0    
+    local max_lv = TryGetProp(item, 'MaxArkLv', 10)
+    local lv = TryGetProp(item, 'ArkLevel', 1)
+    local exp = TryGetProp(item, 'ArkExp', 1)
+
+    for i = 1, lv - 1 do
+        local count = shared_item_ark.get_require_count_for_exp_up(i + 1, 10, false)        
+        ret_count = ret_count + count        
+    end
+
+    ret_count = ret_count + exp
+    return ret_count
+end
+
+shared_item_ark.get_return_material = function(item)
+    if TryGetProp(item, 'CharacterBelonging', 0) == 1 then
+        return {}
+    end
+
+    local max_lv = TryGetProp(item, 'MaxArkLv', 10)
+    local lv = TryGetProp(item, 'ArkLevel', 1)
+    local exp = TryGetProp(item, 'ArkExp', 1)
+
+    local a = 0 -- 여축
+    local b = 0 -- 낱장
+    local c = 0 -- 스톤
+    
+    for i = 1, lv - 1 do
+        local count_1, count_2, count_3 = shared_item_ark.get_require_count_for_next_lv(i + 1, 10, false)
+        a = a + count_1
+        b = b + count_2
+        c = c + count_3        
+    end
+    
+    local ret = {}
+
+    ret['Premium_item_transcendence_Stone'] = a
+    ret['HiddenAbility_Piece'] = b
+    ret['misc_ore23_stone'] = c
+
+    return ret
+end
+
+shared_item_ark.get_final_return_exp = function(item)
+    local ret = {}
+    ret['misc_ore22'] = 0
+    ret['Vis'] = 0
+    local silver = 0
+
+    local newcle_count = shared_item_ark.get_return_newcle_count(item)
+    ret['misc_ore22'] = ret['misc_ore22'] + newcle_count
+    silver = silver + newcle_count
+    
+    local material_ret = shared_item_ark.get_return_material(item) -- 레벨업 비용 반환
+    for k, v in pairs(material_ret) do
+        if ret[k] == nil then
+            ret[k] = 0
+        end
+
+        ret[k] = ret[k] + v
+    end
+
+    if silver > 0 then
+        ret['Vis'] = silver
+    end
+
+    local _ret = {}
+    for k, v in pairs(ret) do
+        if v > 0 then
+            _ret[k] = v
+        end
+    end
+
+    return _ret
+end
+
+shared_item_ark.get_final_return_ark_material_list = function(item)
+    local ret = {}
+    ret['misc_ore22'] = 0
+    local silver = 0
+
+    local newcle_count = shared_item_ark.get_return_newcle_count(item)
+    ret['misc_ore22'] = ret['misc_ore22'] + newcle_count
+    --silver = silver + newcle_count + 10000000 -- 티에리움꺼(온전한 형태로 반환)
+    silver = silver + newcle_count
+
+    local material_ret = shared_item_ark.get_return_material(item) -- 레벨업 비용 반환
+    for k, v in pairs(material_ret) do
+        if ret[k] == nil then
+            ret[k] = 0
+        end
+
+        ret[k] = ret[k] + v
+    end
+
+    local tierium_ret = shared_item_ark.get_return_ark_material() -- 티에리움1, 아키스톤 파편20 반환 
+    for k, v in pairs(tierium_ret) do
+        if ret[k] == nil then
+            ret[k] = 0
+        end
+
+        ret[k] = ret[k] + v
+    end
+
+    if silver > 0 then
+        ret['Vis'] = silver
+    end
+
+    local _ret = {}
+    for k, v in pairs(ret) do
+        if v > 0 then
+            _ret[k] = v
+        end
+    end
+
+    return _ret
+end
+
+-- 티에리움 재료들 + 아키스톤 파편 20개, 실버 10,000,000 지급 필요
+shared_item_ark.get_return_ark_material = function()
+    -- 낱장 10
+    -- 스톤 50
+    -- 여축 50
+    -- 프락 30
+    
+    local ret = {}
+    ret['misc_thierrynium'] = 1
+    -- ret['HiddenAbility_Piece'] = 10  -- 낱장
+    -- ret['misc_ore23_stone'] = 50    -- 스톤
+    -- ret['Premium_item_transcendence_Stone'] = 50 -- 여축
+    -- ret['misc_ore15'] = 30          -- 프락
+    ret['Piece_LegendMisc'] = 20    -- 아키스톤 파편 20
+    return ret
+end
+------------------ end of 반환 관련 로직 ---------------------------------------
+
 
 -- 분해 가능한 마신/여신방어구 인가?
 -- stringArg, NumberArg1 체크
@@ -296,14 +457,14 @@ function get_tooltip_Ark_thunderbolt_arg1()
     return 1, 'STR_INT_BM', 1, 20
 end
 
--- 두번째 옵션 낙뢰 발동은 3레벨당 x씩 확률적으로 발생한다. (정수로 해야 함), 총 16회, 18 + (3 * 16) = 50%
+-- 두번째 옵션 낙뢰 발동시 이동속도가 3초간 증가한다.
 function get_tooltip_Ark_thunderbolt_arg2()
-    return 3, 'ARK_THUNDERBOLT_RATIO', 3, 2, 18
+    return 3, 'ARK_THUNDERBOLT_RATIO', 3, 1, 3, 'ArkOverpowerOptionText{Option}{interval}{addvalue}', ''
 end
 
--- 세번째 옵션 낙뢰 계수는 5레벨당 x씩 오른다. 총 10회, 3500 + (10 * 700) = 10500%
+-- 세번째 옵션 낙뢰 계수는 5레벨당 x씩 오른다. 총 10회, 5250 + (10 * 1050) = 15750%
 function get_tooltip_Ark_thunderbolt_arg3()
-    return 3, 'ARK_THUNDERBOLT_ATTACK', 5, 700, 3500
+    return 3, 'ARK_THUNDERBOLT_ATTACK', 5, 1260, 6300
 end
 
 function get_Ark_thunderbolt_option_active_lv()
@@ -316,14 +477,15 @@ function get_tooltip_Ark_storm_arg1()
     return 1, 'STR_INT_BM', 1, 20
 end
 
--- 두번째 옵션 폭풍 발동은 3레벨당 x씩 확률적으로 발생한다. (정수로 해야 함), 총 16회, 15 + (2 * 16) = 47%
+-- 두번째 옵션 폭풍 대상 수 3레벨당 1
 function get_tooltip_Ark_storm_arg2()
-    return 3, 'ARK_STORM_RATIO', 3, 2, 15
+    return 3, 'ARK_STORM_RATIO', 3, 1, 4, 'ArkOverpowerOptionText{Option}{interval}{addvalue}', ''
 end
 
 -- 세번째 옵션 폭풍 계수는 5레벨당 x씩 오른다. 총 16회, 2400 + (10 * 490) = 7300%
 function get_tooltip_Ark_storm_arg3()
-    return 3, 'ARK_STORM_ATTACK', 5, 490, 2400
+    -- return 3, 'ARK_STORM_ATTACK', 5, 490, 2400
+    return 3, 'ARK_STORM_ATTACK', 5, 980, 4800
 end
 
 function get_Ark_storm_option_active_lv()
@@ -458,11 +620,11 @@ function get_tooltip_Event_Ark_thunderbolt_arg1()
 end
 
 function get_tooltip_Event_Ark_thunderbolt_arg2()
-    return 3, 'ARK_THUNDERBOLT_RATIO', 3, 2, 18
+    return 3, 'ARK_THUNDERBOLT_RATIO', 3, 1, 3, 'ArkOverpowerOptionText{Option}{interval}{addvalue}', ''
 end
 
 function get_tooltip_Event_Ark_thunderbolt_arg3()
-    return 3, 'ARK_THUNDERBOLT_ATTACK', 5, 700, 3500
+    return 3, 'ARK_THUNDERBOLT_ATTACK', 5, 1260, 6300
 end
 
 function get_Ark_thunderbolt_option_active_lv()
@@ -475,11 +637,11 @@ function get_tooltip_Event_Ark_storm_arg1()
 end
 
 function get_tooltip_Event_Ark_storm_arg2()
-    return 3, 'ARK_STORM_RATIO', 3, 2, 15
+    return 3, 'ARK_STORM_RATIO', 3, 1, 4, 'ArkOverpowerOptionText{Option}{interval}{addvalue}', ''
 end
 
 function get_tooltip_Event_Ark_storm_arg3()
-    return 3, 'ARK_STORM_ATTACK', 5, 490, 2400
+    return 3, 'ARK_STORM_ATTACK', 5, 980, 4800
 end
 
 function get_Ark_storm_option_active_lv()

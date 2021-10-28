@@ -508,7 +508,7 @@
     <Skill Name="Arditi_Recupero">
         <EndScripts>
             <ToolScp Scp="C_SHOW_PARTS_MODEL" Client="YES" UseSleep="NO">
-                <Str Str="LH"/>
+                <Str Str="RH"/>
                 <Num Num="1"/>
                 <Num Num="1"/>
             </ToolScp>
@@ -525,7 +525,7 @@
                     <Num Num="0"/>
                 </Scp>
                 <Scp Scp="C_SHOW_PARTS_MODEL" Client="YES" UseSleep="NO" Time="0">
-                    <Str Str="LH"/>
+                    <Str Str="RH"/>
                     <Num Num="0"/>
                     <Num Num="1"/>
                 </Scp>

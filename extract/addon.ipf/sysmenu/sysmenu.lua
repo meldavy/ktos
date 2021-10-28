@@ -744,10 +744,10 @@ function SYSMENU_GUILD_PROMOTE_NOTICE(frame)
 		return;
 	end
 
-	local noticeBallon = MAKE_BALLOON_FRAME(ScpArgMsg("GuildPromoteNotice"), 0, 0, nil, "GuildPromoteNoticeBallon");
+	local noticeBallon = MAKE_BALLOON_FRAME(ScpArgMsg("GuildPromoteNotice"), 0, 0, nil, "GuildPromoteNoticeBallon", nil, nil, 1);
 
 	local margin = parentCtrl:GetMargin();
-	local x = margin.right;
+	local x = margin.right - noticeBallon:GetWidth();
 	local y = margin.bottom;
 
 	x = x + (parentCtrl:GetWidth() / 2);

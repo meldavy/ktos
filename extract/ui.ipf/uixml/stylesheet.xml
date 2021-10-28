@@ -661,4 +661,20 @@
 		<!--relic_text-->
 		<font name="normal" size="16" space="0" color="ff00d8" bold="yes" italic="no" dropshadow="yes" outline="yes" underline="no" centerline="no"/>
 	</style>
+	<style name="st205_stage">
+		<!--hero_stage_number-->
+		<font name="normal" size="90" space="0" color="FFFFFF" bold="yes" italic="no" dropshadow="yes" outline="yes" underline="no" centerline="no" gradation="gradation6"/>
+	</style>
+	<style name="sti1c_shadow">
+		<!--hero_stage_title-->
+		<font name="normal" size="24" space="0" color="FFFFFF" bold="yes" italic="no" dropshadow="yes" outline="yes" underline="no" centerline="no"/>
+	</style>
+	<style name="st44_shadow">
+		<!--UI_window_title-->
+		<font name="normal" size="24" space="0" color="FFFFFF" bold="no" italic="no" dropshadow="yes" outline="yes" underline="no" centerline="no" gradation="gradation2"/>
+	</style>
+	<style name="st55_hero_count">
+		<!--hero_countdown-->
+		<font name="normal" size="24" space="0" color="2b81ff" bold="yes" italic="no" dropshadow="yes" outline="yes" underline="no" centerline="no" gradation="gradation1"/>
+	</style>
 </StyleSheet>

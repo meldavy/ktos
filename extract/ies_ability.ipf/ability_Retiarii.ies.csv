@@ -1,5 +1,6 @@
 ClassID,UnlockArgNum,MaxLevel,Price1,Time1,Price2,Time2,Price3,Time3,Price4,Time4,Price5,Time5,Price6,Time6,Price7,Time7,Price8,Time8,Price9,Time9,Price10,Time10,ClassName,UnlockScr,UnlockArgStr,UnlockDesc,ScrCalcPrice
 1,300,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Retiarii25,UNLOCK_BASE_LEVEL,,캐릭터 300레벨 이상,ABIL_COMMON_PRICE_100LV
+2,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,SpearMastery_Battle,UNLOCK_BASE_LEVEL,,캐릭터 1레벨 이상,ABIL_COMMON_PRICE_1LV
 101,1,100,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Retiarii16,UNLOCK_ABIL_SKILL,Retiarii_FishingNetsDraw,투망 끌기 1레벨 이상,ABIL_REINFORCE_PRICE
 102,100,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Retiarii13,UNLOCK_BASE_LEVEL,,캐릭터 100레벨 이상,ABIL_COMMON_PRICE_100LV
 201,1,100,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Retiarii17,UNLOCK_ABIL_SKILL,Retiarii_ThrowingFishingNet,투망 던지기 1레벨 이상,ABIL_REINFORCE_PRICE

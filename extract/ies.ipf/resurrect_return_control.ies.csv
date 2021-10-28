@@ -1,0 +1,3 @@
+ClassID,SavePoint,SoulCrystal,MainLayer,QuestRestart,ReturnCity,GuildTower,StartPoint,ClassName,Type,ReturnScript
+1,0,0,0,0,0,0,0,Goddess_Raid_Vasilissa,Raid,
+2,0,0,0,0,0,0,1,Goddess_Raid_Vasilissa_Auto,Raid,SCR_GODDESS_RAID_VASILISSA_RESURRECT_START_POINT

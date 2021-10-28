@@ -4,30 +4,49 @@ MAX_GODDESS_LEVEL = 3  -- 현재 여신 마신 최대 레벨
 MATERIAL_COUNT = {300, 450, 750, 1200, 1950, 3150}
 
 g_vibora_weapon_list = nil
+g_skip_vibora_list = nil
+
+local skip_vibora_list = {}
+skip_vibora_list['SWD04_126_3'] = 'TRK04_111'   
+skip_vibora_list['DAG04_123_4'] = 'TRK04_111'   
+skip_vibora_list['SHD04_122_1'] = 'TRK04_111'   
+skip_vibora_list['DAG04_123_6'] = 'SWD04_126'   
+skip_vibora_list['SHD04_122_2'] = 'SWD04_126'   
 
 function make_vibora_list()
     if g_vibora_weapon_list ~= nil then
         return
     end
-
+    
     g_vibora_weapon_list = {}
-
+    g_skip_vibora_list = {}
+    
+    for k , v in pairs(skip_vibora_list) do
+        g_skip_vibora_list[k] = v
+        for i = 2, 4 do
+            g_skip_vibora_list[k .. '_Lv' .. i] = v .. '_Lv' .. i
+        end
+    end
+    
     local xmlList, xmlCount = GetClassList("Item")
     for i = 0, xmlCount - 1 do
-        local cls = GetClassByIndexFromList(xmlList, i)
+        local cls = GetClassByIndexFromList(xmlList, i)        
         if cls ~= nil then
-            local string_arg = TryGetProp(cls, 'StringArg', 'None')
+            local string_arg = TryGetProp(cls, 'StringArg', 'None')            
             local lv = TryGetProp(cls, 'NumberArg1', 0)
-            if string_arg == 'Vibora' and lv >= 1 then
-                if g_vibora_weapon_list[lv] == nil then
-                    g_vibora_weapon_list[lv] = {}                    
-                end
-
-                if g_vibora_weapon_list[lv][cls.ClassType] == nil then
-                    g_vibora_weapon_list[lv][cls.ClassType] = {}
-                end
-                
-                table.insert(g_vibora_weapon_list[lv][cls.ClassType], cls.ClassName)
+            local class_name = TryGetProp(cls, 'ClassName', 'None')
+            if g_skip_vibora_list[class_name] == nil then
+                if string_arg == 'Vibora' and lv >= 1 then                    
+                    if g_vibora_weapon_list[lv] == nil then
+                        g_vibora_weapon_list[lv] = {}                    
+                    end
+                    
+                    if g_vibora_weapon_list[lv][cls.ClassType] == nil then
+                        g_vibora_weapon_list[lv][cls.ClassType] = {}
+                    end
+                    
+                    table.insert(g_vibora_weapon_list[lv][cls.ClassType], cls.ClassName)
+                end            
             end
         end
     end
@@ -40,13 +59,17 @@ function GET_VIBORA_SELECT_LIST(class_type, lv)
     if g_vibora_weapon_list == nil then
         make_vibora_list()        
     end
-
+    class_type = 'Arcane'
     return g_vibora_weapon_list[lv][class_type]
 end
 
 function IS_ENABLE_EXTRACT_OPTION(item)
     if TryGetProp(item,'Extractable', 'No') ~= 'Yes' or TryGetProp(item,'LifeTime', 1) ~= 0 then
         return false;
+    end
+
+    if TryGetProp(item, 'GroupName', 'None') == 'Arcane' then
+        return false
     end
 
     if IS_LEGEND_GROUP_ITEM(item) == false and item.NeedRandomOption == 1 then
@@ -252,12 +275,36 @@ end
 
 -- 아이커 장착 해제 조건 체크, 고정옵션(InheritanceItemName), 랜덤옵션(InheritanceRandomItemName)
 function IS_ENABLE_RELEASE_OPTION(item)   
+    if TryGetProp(item, 'ItemGrade', 0) > 5 then
+        return false
+    end
+
     if TryGetProp(item, 'ItemType', 'None') == 'Equip' then
         if TryGetProp(item, 'InheritanceItemName', 'None') ~= 'None' or TryGetProp(item, 'InheritanceRandomItemName', 'None') ~= 'None' then
             return true        
         end
     end
-    
+
+    return false;
+end;
+
+-- 아이커 장착 해제 조건 체크, 고정옵션(InheritanceItemName), 랜덤옵션(InheritanceRandomItemName)
+function IS_ENABLE_RELEASE_OPTION_2(item)   
+    if TryGetProp(item, 'ItemGrade', 0) > 5 then
+        return false
+    end
+
+    if TryGetProp(item, 'ItemType', 'None') == 'Equip' then
+        local name = TryGetProp(item, 'InheritanceItemName', 'None')
+        if string.find(name, 'Galimybe') ~= nil then
+            return true
+        end
+
+        if TryGetProp(item, 'InheritanceItemName', 'None') ~= 'None' or TryGetProp(item, 'InheritanceRandomItemName', 'None') ~= 'None' then
+            return true        
+        end
+    end
+
     return false;
 end;
 
@@ -284,7 +331,7 @@ end;
 
 -- 아이커가 가능한 랜덤 레전드 아이템인가?
 function IS_ICORABLE_RANDOM_LEGEND_ITEM(item)    
-    if TryGetProp(item, 'NeedRandomOption', 0) == 1 and TryGetProp(item, 'LegendGroup', 'None') ~= 'None' then
+    if TryGetProp(item, 'NeedRandomOption', 0) == 1 and TryGetProp(item, 'LegendGroup', 'None') ~= 'None' and TryGetProp(item, 'ItemGrade', 0) < 6  then
         return true
     else
         return false
@@ -342,10 +389,17 @@ function IS_VIRORA_ITEM(item, lv)
 end
 
 -- Lv1 바이보라 장비 또는 아이커
-function IS_COMPOSABLE_VIRORA(item)
+function IS_COMPOSABLE_VIRORA(item)    
     local group_name = TryGetProp(item, 'GroupName', 'None')
     if group_name == 'None' then
         return false, 'None'
+    end
+
+    if TryGetProp(item, 'TeamBelonging', 0) == 1 then
+        if IsServerSection() ~= 1 then
+            ui.SysMsg(ClMsg('TeamBelongingArcaneCantcomposite'))
+        end
+        return false, 'None' 
     end
 
     if group_name == 'Icor' then
@@ -761,16 +815,26 @@ function IS_DECOMPOSABLE_ARK(item)
         return false, 'decomposeCant'
 	end
 
-	local decomposeAble = TryGetProp(item, 'DecomposeAble')
-    if decomposeAble == nil or decomposeAble == "NO" then
+    if TryGetProp(item, 'CharacterBelonging', 0) == 1 then        
+        return false, "CantExecCuzCharacterBelonging"
+    end
+
+    if TryGetProp(item, 'StringArg2', 'None') ~= 'Made_Ark' and TryGetProp(item, 'StringArg2', 'None') ~= 'Quest_Ark' then
         return false, 'decomposeCant'
 	end
-	
-	local target_lv = TryGetProp(item, 'ArkLevel', 1)
-	local target_exp = TryGetProp(item, 'ArkExp', 0)
-	if target_lv > 1 or target_exp > 0 then
-		return false, 'DecomposeArkCant'
+
+	local decomposeAble = TryGetProp(item, 'DecomposeAble')
+    if decomposeAble == nil or (decomposeAble == "NO" and TryGetProp(item, 'StringArg2', 'None') ~= 'Quest_Ark') then
+        return false, 'decomposeCant'
 	end
+    
+    if TryGetProp(item, 'StringArg2', 'None') == 'Quest_Ark' then
+        local target_lv = TryGetProp(item, 'ArkLevel', 1)
+        local target_exp = TryGetProp(item, 'ArkExp', 0)
+        if target_lv == 1 and target_exp == 0 then
+            return false, 'decomposeCant'
+        end
+    end
 
 	return true, 'None'
 end
@@ -800,34 +864,50 @@ end
 
 function IS_DECOMPOSABLE_ACC_EP12(item)
     if item ~= nil then
+        if TryGetProp(item, 'CharacterBelonging', 0) == 1 then
+            return false, 'CantExecCuzCharacterBelonging'
+        end
+
         local stringArg = TryGetProp(item, 'StringArg', 'None')
-        if stringArg == 'Acc_EP12' then
+        if stringArg == 'None' then
+            return false, 'decomposeCant'
+        end
+
+        if stringArg == 'Luciferi' and TryGetProp(item, 'ExtractProperty', 0) == 0 then
+            return false, 'CheckLuciferiItemStatus'    
+        end
+
+        if stringArg == 'Acc_EP12' or stringArg == 'Luciferi' or stringArg == 'Half_Acc_EP12' then
             return true
         end
     end
 
-    return false
+    return false, 'decomposeCant'
 end
 
 function IS_DECOMPOSABLE_VIBORA(item)
     if item ~= nil then
+        if TryGetProp(item, 'TeamBelonging', 0) == 1 then
+            return false, 'TeamBelongingArcaneCantDecompose';
+        end
+
         if TryGetProp(item, 'GroupName', 'None') == 'Icor' then
             local name = TryGetProp(item, 'InheritanceItemName', 'None')
             local cls = GetClass('Item', name)
             if cls ~= nil then                
                 if TryGetProp(cls, 'StringArg', 'None') == 'Vibora' and TryGetProp(cls, 'NumberArg1', 0) >= 1 then
-                    return true
+                    return true, 'None'
                 end     
             end
         else
             local stringArg = TryGetProp(item, 'StringArg', 'None')
             if stringArg == 'Vibora' and TryGetProp(item, 'NumberArg1', 0) >= 1 then
-                return true
+                return true, 'None'
             end
         end
     end
 
-    return false
+    return false, 'None'
 end
 
 function GET_VIBORA_DECOMPOSE_MISC_COUNT(item)    
@@ -941,4 +1021,53 @@ function IS_EXTRACTABLE_SPECIAL_UNIQUE(item)
     end
 
     return true
+end
+
+function IS_WEAPON_TYPE(classType)
+    if classType == 'Sword' then
+        return true
+    elseif classType == 'THSword' then
+        return true
+    elseif classType == 'Staff' then
+        return true
+    elseif classType == 'THBow' then
+        return true
+    elseif classType == 'Bow' then
+        return true
+    elseif classType == 'Mace' then
+        return true
+    elseif classType == 'THMace' then
+        return true
+    elseif classType == 'Spear' then
+        return true
+    elseif classType == 'THSpear' then
+        return true
+    elseif classType == 'Dagger' then
+        return true
+    elseif classType == 'THStaff' then
+        return true
+    elseif classType == 'Pistol' then
+        return true
+    elseif classType == 'Rapier' then
+        return true
+    elseif classType == 'Cannon' then
+        return true
+    elseif classType == 'Musket' then
+        return true
+    elseif classType == 'Trinket' then
+        return true
+    elseif classType == 'Shield' then
+        return true
+    end
+    
+    return false
+end
+
+-- 협응, 반향 같은 아이템의 일원화
+function GET_PARENT_VIBORA_NAME(name)
+    if g_skip_vibora_list[name] == nil then
+        return name
+    else
+        return g_skip_vibora_list[name]
+    end
 end

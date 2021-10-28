@@ -16,7 +16,8 @@ function get_log_scale(ret)
     return ret
 end
 
--- 서버에서 사용하는 함수
+-- CalcProperty_Skill.cpp, float get_hp_recovery_ratio(imcIES::IObject* pc, float value)
+-- done , 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function get_hp_recovery_ratio(pc, value)
     if pc == nil then
         pc = GetMyPCObject()
@@ -52,27 +53,28 @@ function get_hp_recovery_ratio(pc, value)
     return math.floor(ratio)
 end
 
--- sp 자연회복 가능 여부
-function get_sp_recovery_enable(pc)
-    local buffKeywordList = { "Curse", "Formation", "SpDrain", "UnrecoverableSP", "NoneRecoverableSP" };
-    for i = 1, #buffKeywordList do
-        if GetBuffByProp(pc, 'Keyword', buffKeywordList[i]) ~= nil then
-            return 0
-        end
-    end
+-- sp 자연회복 가능 여부 (사용하지 않음 cpp로 이전됨), void CComponent_Battle_PC::UpdateRSP()
+-- function get_sp_recovery_enable(pc)
+--     local buffKeywordList = { "Curse", "Formation", "SpDrain", "UnrecoverableSP", "NoneRecoverableSP" };
+--     for i = 1, #buffKeywordList do
+--         if GetBuffByProp(pc, 'Keyword', buffKeywordList[i]) ~= nil then
+--             return 0
+--         end
+--     end
 
-    return 1
-end
+--     return 1
+-- end
 
-function get_sp_recovery_time(pc)
-    local value = SCR_GET_RSPTIME(pc)
+-- 사용하지 않음, cpp로 이전됨, void CComponent_Battle_PC::UpdateRSP()
+-- function get_sp_recovery_time(pc)
+--     local value = SCR_GET_RSPTIME(pc)
     
-    if IsBuffApplied(pc, 'ManaAmplify_Debuff') == 'YES' then
-        value = 20000
-    end
+--     if IsBuffApplied(pc, 'ManaAmplify_Debuff') == 'YES' then
+--         value = 20000
+--     end
 
-    return value
-end
+--     return value
+-- end
 
 -- hp 회복력
 function get_RHP_ratio_for_status(value)

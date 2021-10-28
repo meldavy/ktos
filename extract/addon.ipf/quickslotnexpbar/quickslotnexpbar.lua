@@ -403,8 +403,8 @@ function CLEAR_ALL_SKILL_QUICKSLOTBAR()
 		local icon = slot:GetIcon()
 		if icon ~= nil then
 		    tolua.cast(icon, "ui::CIcon")
-            local skill_id = icon:GetTooltipNumArg()
-            if skill_id ~= 0 and GetClassString('Skill', skill_id, 'Icon') ~= 'None' then
+			local skill_id = icon:GetTooltipNumArg()			
+            if skill_id ~= 0 and GetClass('Skill', skill_id) ~= nil and GetClassString('Skill', skill_id, 'Icon') ~= 'None' then
                 icon:SetTooltipNumArg(0)
                 slot:ClearIcon()
                 QUICKSLOT_SET_GAUGE_VISIBLE(slot, 0);
@@ -419,8 +419,8 @@ function CLEAR_ALL_SKILL_QUICKSLOTBAR()
 		local icon = slot:GetIcon()
 		if icon ~= nil then
 		    tolua.cast(icon, "ui::CIcon")
-            local skill_id = icon:GetTooltipNumArg()
-            if skill_id ~= 0 and GetClassString('Skill', skill_id, 'Icon') ~= 'None' then
+			local skill_id = icon:GetTooltipNumArg()			
+            if skill_id ~= 0 and GetClass('Skill', skill_id) ~= nil and GetClassString('Skill', skill_id, 'Icon') ~= 'None' then
                 icon:SetTooltipNumArg(0)
                 slot:ClearIcon()
                 QUICKSLOT_SET_GAUGE_VISIBLE(slot, 0);
@@ -550,10 +550,12 @@ function SET_QUICK_SLOT(frame, slot, category, type, iesID, makeLog, sendSavePac
 		SET_ABILITY_TOGGLE_COLOR(icon, type)
 	elseif category == 'Companion' then
 		local monClass = GetClassByType("Monster", type)
-		imageName = monClass.Icon;
-		icon:SetOnCoolTimeUpdateScp('ICON_UPDATE_COMPANION_COOLDOWN');
-		icon:SetColorTone("FFFFFFFF");
-		icon:ClearText();
+		if monClass ~= nil then
+			imageName = monClass.Icon;
+			icon:SetOnCoolTimeUpdateScp('ICON_UPDATE_COMPANION_COOLDOWN');
+			icon:SetColorTone("FFFFFFFF");
+			icon:ClearText();
+		end
 	elseif category == 'Item' then
 		QUICKSLOT_SET_GAUGE_VISIBLE(slot, 0);	-- 퀵슬롯에 놓는 것이 아이템이면 게이지를 무조건 안보이게 함
 		local itemIES = GetClassByType('Item', type);
@@ -1569,8 +1571,8 @@ function DELETE_SKILLICON_QUICKSLOTBAR(frame, msg, argStr, argNum)
 				if icon ~= nil then
 					tolua.cast(icon, "ui::CIcon");
 					local skill_id = icon:GetTooltipNumArg();
-					if skill_id == id then
-						if skill_id ~= 0 and GetClassString('Skill', skill_id, 'Icon') ~= 'None' then
+					if skill_id == id then						
+						if skill_id ~= 0 and GetClass('Skill', skill_id) ~= nil and GetClassString('Skill', skill_id, 'Icon') ~= 'None' then
 							icon:SetTooltipNumArg(0);
 							slot:ClearIcon();
 							QUICKSLOT_SET_GAUGE_VISIBLE(slot, 0);
@@ -1592,8 +1594,8 @@ function DELETE_SKILLICON_QUICKSLOTBAR(frame, msg, argStr, argNum)
 				if icon ~= nil then
 					tolua.cast(icon, "ui::CIcon")
 					local skill_id = icon:GetTooltipNumArg()
-					if skill_id == id then
-						if skill_id ~= 0 and GetClassString('Skill', skill_id, 'Icon') ~= 'None' then
+					if skill_id == id then						
+						if skill_id ~= 0 and GetClass('Skill', skill_id) ~= nil and GetClassString('Skill', skill_id, 'Icon') ~= 'None' then
 							icon:SetTooltipNumArg(0)
 							jslot:ClearIcon();
 							QUICKSLOT_SET_GAUGE_VISIBLE(jslot, 0);

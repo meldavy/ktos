@@ -176,4 +176,49 @@
 		<Item Script="None" Name="give_ticket_ep13vakarine03_2_m" Count="1" Price="12000" DailyBuyLimit="0" AccountNeedProperty="ContentsTotalShop_2012_12"/>
 		<Item Script="None" Name="give_ticket_ep13vakarine03_2_f" Count="1" Price="12000" DailyBuyLimit="0" AccountNeedProperty="ContentsTotalShop_2012_13"/>
 	</Shop>
+	<Shop Name="TOSHeroTradeShop_TUTO" PointScript="GET_TOSHERO_TRADE_POINT">
+		<Item Script="None" Name="TOSHero_SWORD" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="TOSHero_THSWORD" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="TOSHero_STAFF" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="TOSHero_THBOW" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="TOSHero_BOW" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="TOSHero_MACE" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="TOSHero_THMACE" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="TOSHero_SHIELD" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="TOSHero_SPEAR" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="TOSHero_THSPEAR" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="TOSHero_DAGGER" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="TOSHero_THSTAFF" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="TOSHero_PISTOL" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="TOSHero_RAPIER" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="TOSHero_CANNON" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="TOSHero_MUSKET" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="TOSHero_TRINKET" Count="1" Price="1" DailyBuyLimit="0"/>
+	</Shop>
+	<Shop Name="TOSHeroTradeShop" PointScript="GET_TOSHERO_TRADE_POINT">
+		<Item Script="None" Name="TOSHero_SWORD" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="TOSHero_THSWORD" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="TOSHero_STAFF" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="TOSHero_THBOW" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="TOSHero_BOW" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="TOSHero_MACE" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="TOSHero_THMACE" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="TOSHero_SHIELD" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="TOSHero_SPEAR" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="TOSHero_THSPEAR" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="TOSHero_DAGGER" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="TOSHero_THSTAFF" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="TOSHero_PISTOL" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="TOSHero_RAPIER" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="TOSHero_CANNON" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="TOSHero_MUSKET" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="TOSHero_TRINKET" Count="1" Price="1" DailyBuyLimit="0"/>
+	</Shop>
+	<Shop Name="TOSHeroTradeShop_NECK" PointScript="GET_TOSHERO_TRADE_POINT">
+		<Item Script="None" Name="TOSHero_NECK_AS" Count="1" Price="3" DailyBuyLimit="0"/>
+		<Item Script="None" Name="TOSHero_NECK_AA" Count="1" Price="3" DailyBuyLimit="0"/>
+		<Item Script="None" Name="TOSHero_NECK_MB" Count="1" Price="3" DailyBuyLimit="0"/>
+		<Item Script="None" Name="TOSHero_NECK_MS" Count="1" Price="3" DailyBuyLimit="0"/>
+		<Item Script="None" Name="TOSHero_NECK_PT" Count="1" Price="3" DailyBuyLimit="0"/>
+	</Shop>
 </PropertyShop>

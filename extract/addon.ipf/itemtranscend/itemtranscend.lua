@@ -97,11 +97,17 @@ function ITEM_TRANSCEND_REG_TARGETITEM(frame, itemID)
 	if invItem == nil then
 		return;
 	end
-
+	
 	local obj = GetIES(invItem:GetObject());
 	if IS_TRANSCEND_ABLE_ITEM(obj) == 0 then
 		ui.MsgBox(ScpArgMsg("ThisItemIsNotAbleToTranscend"));
 		return;
+	end
+
+	local grade = TryGetProp(obj, "ItemGrade", 0)
+	if grade == 6 then
+		ui.MsgBox(ScpArgMsg("OnlyGoddessEquipManagement"));
+		return
 	end
 
 	if IS_NEED_APPRAISED_ITEM(obj) == true or IS_NEED_RANDOM_OPTION_ITEM(obj) == true then 
@@ -704,6 +710,12 @@ end
 function ITEMTRANSCEND_INV_RBTN(itemObj, slot)
 	if ui.CheckHoldedUI() == true then
 		return;
+	end
+
+	local grade = TryGetProp(itemObj, "ItemGrade", 0)
+	if grade == 6 then
+		ui.MsgBox(ScpArgMsg("OnlyGoddessEquipManagement"));
+		return
 	end
 
 	local frame = ui.GetFrame("itemtranscend");

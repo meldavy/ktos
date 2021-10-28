@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ActionDesc>
+    <Sound frame="0.23" soundFile="mon_voice_saltistter_7"/>
+    <Sound frame="0.23" soundFile="mon_voice5_l_dead_15"/>
+    <Sound frame="3.00" soundFile="m_kerberos_dead"/>
+    <Sound frame="38.00" soundFile="skl_eff_landing_m"/>
+    <Sound frame="38.00" soundFile="skl_eff_stone_born_l_1_far"/>
+    <Sound frame="40.00" soundFile="mon_voice5_l_dead_8"/>
+</ActionDesc>

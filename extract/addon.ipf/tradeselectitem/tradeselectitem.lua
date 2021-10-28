@@ -678,7 +678,8 @@ function OPEN_TRADE_SELECT_VIBORA(invItem)
 
 	for i = 0, xmlCount -1 do
 		local itemName = TryGetProp(GetClassByIndexFromList(xmlList, i), "ClassName", 'None')
-		if itemName ~= 'None' and itemName ~= nil then
+		local dropable = TryGetProp(GetClassByIndexFromList(xmlList, i), "Dropable", 'NO')
+		if dropable == 'YES' and itemName ~= 'None' and itemName ~= nil then
 			y = CREATE_VIBORA_SELECT_CTRL(box, y, i, itemName, 1, nil, itemobj.ClassName)
 			y = y + 5
 		end

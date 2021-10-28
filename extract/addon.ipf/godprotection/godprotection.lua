@@ -110,6 +110,18 @@ function GODPROTECTION_ITME_LIST_INIT(frame)
 			if itemCls ~= nil then
 				SET_SLOT_IMG(slot, itemCls.Icon);
 				SET_ITEM_TOOLTIP_BY_TYPE(slot:GetIcon(), itemCls.ClassID);
+				local cls = GetClassByType('Item', itemCls.ClassID)
+				local count = 1
+				if cls ~= nil then
+					local class_name = TryGetProp(cls, 'ClassName', 'None')
+					local cls_count = GetClass('fieldboss_worldevent_reward_count', class_name)					
+					if cls_count ~= nil then
+						count = TryGetProp(cls_count, 'Count', 1)		
+					end	
+				end
+				local style = '{s20}{ol}{b}{ds}'					
+				slot:SetText(style..count, 'count', ui.RIGHT, ui.BOTTOM, -5, -5)
+
 				slot:GetIcon():SetTooltipOverlap(1);
 				slot:SetUserValue("ITEM_ID", itemid);
 			end
@@ -137,6 +149,8 @@ function GODPROTECTION_ITME_LIST_UPDATE(frame)
 				SET_ITEM_TOOLTIP_BY_TYPE(slot:GetIcon(), itemCls.ClassID);
 				slot:GetIcon():SetTooltipOverlap(1);							
 				slot:SetUserValue("ITEM_ID", itemid);
+				local style = '{s20}{ol}{b}{ds}'					
+				slot:SetText(style.. '1', 'count', ui.RIGHT, ui.BOTTOM, -5, -5)
 
 				local slot_pic = GET_CHILD_RECURSIVELY(frame, 'slot_'..i..'_pic');
 				if session.GodProtection.GetIsLegendItembyIndex(i) == false then

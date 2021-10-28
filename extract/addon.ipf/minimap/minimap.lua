@@ -70,7 +70,8 @@ function MINIMAP_ON_INIT(addon, frame)
     addon:RegisterMsg('OPEN_COLONY_POINT', 'REQUEST_UPDATE_MINIMAP');
 	addon:RegisterMsg('REMOVE_COLONY_MONSTER', 'ON_REMOVE_COLONY_MONSTER_MINIMAP');
 	addon:RegisterMsg('UPDATE_MGAME_POSITION', 'ON_UPDATE_MINIMAP_MGAME_POSITION');	
-	addon:RegisterMsg('ON_QUEST_UPDATED', 'UPDATE_MINIMAP');	
+	addon:RegisterMsg('ON_QUEST_UPDATED', 'UPDATE_MINIMAP');
+	addon:RegisterMsg("ON_DESTROY_NPC_ICON", "DESTORY_MINIMAP_PIC");
 
 	mini_pos = GET_CHILD_RECURSIVELY(frame, "my");
 	mini_pos:SetOffset(frame:GetWidth() / 2 - mini_pos:GetImageWidth() / 2 , frame:GetHeight() / 2 - mini_pos:GetImageHeight() / 2);
@@ -134,6 +135,10 @@ function REQUEST_UPDATE_MINIMAP(frame, isFirstOpen)
 	SET_MINIMAPSIZE(___cursize);
 end
 
+function DESTORY_MINIMAP_PIC(frame)
+	DESTROY_CHILD_BYNAME(frame, "_NPC_");
+end
+
 function UPDATE_MINIMAP(frame)
 	if session.DontUseMinimap() == true then
 		frame:ShowWindow(0);
@@ -182,8 +187,10 @@ function UPDATE_MINIMAP(frame)
 	DESTROY_CHILD_BY_USERVALUE(npcList, "EXTERN", "None");
 	npcList:Resize(minimapw, minimaph);
 
-    local isColonyMap = session.colonywar.GetIsColonyWarMap();
-	
+	local isColonyMap = session.colonywar.GetIsColonyWarMap();
+	local isAutoChallengeMap = session.IsAutoChallengeMap();
+	local isSoloChallengeMap = session.IsSoloChallengeMap();
+
 	local mongens = mapprop.mongens;
 	if mongens ~= nil then
 		local cnt = mongens:Count();
@@ -203,7 +210,7 @@ function UPDATE_MINIMAP(frame)
 					local ctrlname = GET_GENNPC_NAME(npcList, MonProp);
 
 					local PictureC = npcList:CreateOrGetControl('picture', ctrlname , miniX, miniY, iconW, iconH);
-					tolua.cast(PictureC, "ui::CPicture");		
+					tolua.cast(PictureC, "ui::CPicture");
 				
 					PictureC:SetUserValue("GlobalX", PictureC:GetGlobalX());
 					PictureC:SetUserValue("GlobalY", PictureC:GetGlobalY());
@@ -215,10 +222,16 @@ function UPDATE_MINIMAP(frame)
 
                     if isColonyMap == true then
                         if MonProp:GetClassName() == 'Warp_arrow' or MonProp:GetClassName() == 'dialog_warp_npc_1' then
-                        PictureC:ShowWindow(1);
+                        	PictureC:ShowWindow(1);
                         else
                             PictureC:ShowWindow(0);
                         end
+					end
+
+					if isAutoChallengeMap == true or isSoloChallengeMap == true then
+						if MonProp:GetClassName() == 'Warp_arrow' or string.find(MonProp:GetClassName(), 'dialog_warp_npc') ~= nil or string.find(MonProp:GetClassName(), "statue") ~= nil then
+							PictureC:ShowWindow(0);
+						end
 					end
 				end
 			end
@@ -228,13 +241,11 @@ function UPDATE_MINIMAP(frame)
 	local quemon = mapprop.questmonster;
 	if quemon ~= nil then
 		local quemoncnt = quemon:Count();
-
 		local WorldPos = nil;
 		for i = 0 , quemoncnt - 1 do
 			local quemoninfo = quemon:Element(i);
 			local idx = GET_QUEST_IDX(quemoninfo, questIESlist);
-
-			if idx ~= -1 and statelist[idx] == 'PROGRESS' then
+			if idx ~= -1 and statelist[idx] == 'PROGRESS' and isAutoChallengeMap == false and isSoloChallengeMap == false then
 				local cls = questIESlist[idx];
 				WorldPos = quemoninfo.Pos;
 				local MapPos = mapprop:WorldPosToMinimapPos(WorldPos, minimapw, minimaph);
@@ -245,7 +256,7 @@ function UPDATE_MINIMAP(frame)
 
 				local miniX = MapPos.x - RangeX / 2;
 				local miniY = MapPos.y - RangeY / 2;
-                
+				
 				local ctrlname = "_NPC_MON_MARK" .. quemoninfo.QuestType.. "_" .. i .. "_" ..quemoninfo.MonsterType;
 				local PictureC = npcList:CreateOrGetControl('picture', ctrlname, miniX, miniY, miniX, miniY);
 				SET_MAP_CIRCLE_MARK_UI(PictureC);
@@ -258,7 +269,6 @@ function UPDATE_MINIMAP(frame)
 				PictureC = npcList:CreateOrGetControl('picture', ctrlname, XC, YC, iconW, iconH);
 				tolua.cast(PictureC, "ui::CPicture");
 				SET_PICTURE_BUTTON(PictureC);
-
 				SET_MINIMAP_NPC_ICON(PictureC, WorldPos, idx, statelist, questIESlist)
 			end
 		end
@@ -270,15 +280,13 @@ function UPDATE_MINIMAP(frame)
 		local questprop = geQuestTable.GetPropByIndex(questPropList[i]);
 		local cls = questIESlist[i];
 		local stateidx = STATE_NUMBER(statelist[i]);
-
-		if questprop ~= nil and stateidx ~= -1 then
+		if questprop ~= nil and stateidx ~= -1 and isAutoChallengeMap == false and isSoloChallengeMap == false then
 			local locationlist = questprop:GetLocation(stateidx);
 			if locationlist ~= nil then
 				local loccnt = locationlist:Count();
 				for k = 0 , loccnt - 1 do
 					local locinfo = locationlist:Element(k);
 					if mapname == locinfo:GetMapName() then
-
 						WorldPos = locinfo.point;
 						if WorldPos == nil then
 							local npcFuncName = locinfo:GetNpcName();
@@ -290,7 +298,6 @@ function UPDATE_MINIMAP(frame)
 										WorldPos = GenList:Element(j);
 										local MapPos = mapprop:WorldPosToMinimapPos(WorldPos, minimapw, minimaph);
 										local XC, YC, RangeX, RangeY = GET_MINIMAP_POS_BY_MAPPOS(MapPos, locinfo, mapprop, minimapw, minimaph);
-
 										MAKE_LOC_CLICK_ICON(npcList, i, stateidx, k, XC, YC, RangeX, RangeY, 30);
 										XC, YC = GET_MINI_ICON_POS_BY_MAPPOS(MapPos.x, MapPos.y, iconW, iconH);
 										MAKE_LOC_ICON(npcList, cls, i, stateidx, k, XC, YC, iconW, iconH, WorldPos, statelist, questIESlist);
@@ -300,13 +307,10 @@ function UPDATE_MINIMAP(frame)
 						else
 							local MapPos = mapprop:WorldPosToMinimapPos(WorldPos, minimapw, minimaph);
 							local XC, YC, RangeX, RangeY = GET_MINIMAP_POS_BY_MAPPOS(MapPos, locinfo, mapprop, minimapw, minimaph);
-
 							MAKE_LOC_CLICK_ICON(npcList, i, stateidx, k, XC, YC, RangeX, RangeY, 30)
 							XC, YC = GET_MINI_ICON_POS_BY_MAPPOS(MapPos.x, MapPos.y, iconW, iconH);
 							MAKE_LOC_ICON(npcList, cls, i, stateidx, k, XC, YC, iconW, iconH, WorldPos, statelist, questIESlist)
-
 						end
-
 					end
 				end
 			end
@@ -317,11 +321,10 @@ function UPDATE_MINIMAP(frame)
 	for i = 1 , cnt do
 		local cls = questIESlist[i];
 		local stateidx = STATE_NUMBER(statelist[i]);
-
 		local s_obj = GetClass("SessionObject", cls.Quest_SSN);
 		if s_obj ~= nil then
 			local sobjinfo = session.GetSessionObject(s_obj.ClassID);
-			if sobjinfo ~= nil then
+			if sobjinfo ~= nil and isAutoChallengeMap == false and isSoloChallengeMap == false then
 				local obj = GetIES(sobjinfo:GetIESObject());
 				local roundCount = 0;
 				for k = 1, SESSION_MAX_MAP_POINT_GROUP do
@@ -333,7 +336,6 @@ function UPDATE_MINIMAP(frame)
 						local count = 0;
 						local checkMapName = "None";
 						local x, y, z, range = 0;
-
 						for locationMapName in string.gmatch(mapPointGroupStr, "%S+") do
 							if count == 0 and locationMapName ~= mapname then
 								count = 0;
@@ -368,7 +370,6 @@ function UPDATE_MINIMAP(frame)
 										MAKE_LOC_ICON(npcList, cls, i, stateidx, 'minimapgroup'..roundCount, XC, YC, iconW, iconH, WorldPos, statelist, questIESlist);
 										roundCount = roundCount+1;
 									end
-
 									genName = "None";
 									genType = 0;
 									count = 5;
@@ -402,12 +403,12 @@ function UPDATE_MINIMAP(frame)
 	RUN_FUNC_BY_USRVALUE(npcList, "EXTERN_PIC", "YES", _MONPIC_AUTOUPDATE);
 	MAKE_TOP_QUEST_ICONS(npcList);
 	frame:SetValue(1);
-
+	
 	M_MAP_UPDATE_PARTY(frame, nil, nil, 0);
 	M_MAP_UPDATE_GUILD(frame, nil, nil, 0);
 	MAKE_MY_CURSOR_TOP(frame);
 	DESTROY_CHILD_BYNAME(frame, "_INDIC_");
-	MINIMAP_CHAR_UDT(frame);
+	MINIMAP_CHAR_UDT(frame); 
 	frame:Invalidate();
 end
 
@@ -521,8 +522,10 @@ function MINIMAP_CHAR_UDT(frame, msg, argStr, argNum)
 end
 
 function UPDATE_QUEST_INDICATOR(frame)
-    local isColonyMap = session.colonywar.GetIsColonyWarMap();
-    if isColonyMap == true then
+	local isColonyMap = session.colonywar.GetIsColonyWarMap();
+	local isAutoChallengeMap = session.IsAutoChallengeMap();
+	local isSoloChallengeMap = session.IsSoloChallengeMap();
+    if isColonyMap == true or isAutoChallengeMap == true or isSoloChallengeMap == true then
         return;
     end
     

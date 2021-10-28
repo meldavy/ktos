@@ -668,6 +668,17 @@ function GET_PVP_BATTLE_POINT_C()
 	return point
 end
 
+
+function GET_TOSHERO_TRADE_POINT_C()
+	local item = session.GetInvItemByName('TOSHERO_TRADE_POINT')
+	local point = 0;
+	if item ~= nil then
+		point = item.count
+	end
+	return point
+end
+
+
 function PVP_CARD_GET_ITEM_C()
 	local level = GETMYPCLEVEL();
 	local name, count = GetWorldPVPExpCard(level);

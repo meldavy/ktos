@@ -2,58 +2,57 @@
 function MAP_ON_INIT(addon, frame)
 	map_offsetx = 0;
 	map_offsety = 0;
-
 	map_normalmode = 1;
-
 	map_maxscale = 10;
 
-	addon:RegisterOpenOnlyMsg('MAP_CHARACTER_ADD', 'MAP_ON_MSG');
+	addon:RegisterMsg('GAME_START', 'FIRST_UPDATE_MAP');
 	addon:RegisterMsg('MAP_CHARACTER_UPDATE', 'MAP_CHAR_UPDATE');
+	addon:RegisterMsg('REVEAL_ALL', 'REQUEST_MAP_UPDATE');
+	addon:RegisterOpenOnlyMsg('MAP_CHARACTER_ADD', 'MAP_ON_MSG');
 	addon:RegisterOpenOnlyMsg('MAP_CHARACTER_REMOVE', 'MAP_ON_MSG');
 	addon:RegisterOpenOnlyMsg('ANGLE_UPDATE', 'UPT_ANGLE');
-
 	addon:RegisterOpenOnlyMsg('WIDEAREA_ENTER', 'MAP_ON_MSG');
 	addon:RegisterOpenOnlyMsg('WIDEAREA_LEAVE', 'MAP_ON_MSG');
 	addon:RegisterOpenOnlyMsg('LOCALAREA_ENTER', 'MAP_ON_MSG');
 	addon:RegisterOpenOnlyMsg('LOCALAREA_LEAVE', 'MAP_ON_MSG');
-
-	addon:RegisterMsg('GAME_START', 'FIRST_UPDATE_MAP');
 	addon:RegisterOpenOnlyMsg('QUEST_UPDATE', 'REQUEST_MAP_UPDATE');
 	addon:RegisterOpenOnlyMsg('GET_NEW_QUEST', 'REQUEST_MAP_UPDATE');
-	addon:RegisterMsg('REVEAL_ALL', 'REQUEST_MAP_UPDATE');
 
 	addon:RegisterMsg('NPC_STATE_UPDATE', 'UPDATE_MAP_NPC_STATE');
-
+    addon:RegisterMsg('DESTROY_GUILD_MEMBER_ICON', 'DESTROY_GUILD_MEMBER_ICON')
 	addon:RegisterOpenOnlyMsg('PARTY_INST_UPDATE', 'MAP_UPDATE_PARTY_INST');
 	addon:RegisterOpenOnlyMsg('PARTY_UPDATE', 'MAP_UPDATE_PARTY');
 	addon:RegisterOpenOnlyMsg('GUILD_INFO_UPDATE', 'MAP_UPDATE_GUILD');
-    addon:RegisterMsg('DESTROY_GUILD_MEMBER_ICON', 'DESTROY_GUILD_MEMBER_ICON')
 
 	addon:RegisterMsg('MON_MINIMAP', 'MAP_MON_MINIMAP');
 	addon:RegisterMsg('MON_MINIMAP_END', 'ON_MON_MINIMAP_END');
-			
 	addon:RegisterMsg('CHANGE_CLIENT_SIZE', 'FIRST_UPDATE_MAP');
     addon:RegisterMsg('COLONY_MONSTER', 'MAP_COLONY_MONSTER');
     addon:RegisterMsg('OPEN_COLONY_POINT', 'REQUEST_MAP_UPDATE');
     addon:RegisterMsg('REMOVE_COLONY_MONSTER', 'ON_REMOVE_COLONY_MONSTER');
-	addon:RegisterOpenOnlyMsg('UPDATE_MGAME_POSITION', 'ON_UPDATE_MAP_MGAME_POSITION');
 	addon:RegisterMsg('ON_QUEST_UPDATED', 'UPDATE_MAP');
 	addon:RegisterMsg('QUEST_DELETED', 'REQUEST_MAP_UPDATE');
+	addon:RegisterMsg("VIDEO_CAMERA_OPTION", "MAP_VIDEO_CAMERA_OPTION");
+	addon:RegisterMsg("ON_DESTROY_NPC_ICON", "DESTORY_MAP_PIC");
+	addon:RegisterOpenOnlyMsg('UPDATE_MGAME_POSITION', 'ON_UPDATE_MAP_MGAME_POSITION');
 	
 	frame = ui.GetFrame("map");
 	INIT_MAPUI_INFO(frame);
 	local mapClassName = session.GetMapName();
 	local mapprop = geMapTable.GetMapProp(mapClassName);
 	frame:SetTitleName('{ds}'.. mapprop:GetName());
-
 	map_frame = frame;
 	frame:EnableHideProcess(1);
-
 	INIT_MAP_UI_COMMON(frame, mapClassName);
-
 end
-function REQUEST_MAP_UPDATE(frame)
+
+function MAP_VIDEO_CAMERA_OPTION(frame, msg, argStr, argNum)    
+	if argStr == "hide_minimap_partymember_name" then
+		MAP_OPTION["hide_minimap_partymember_name"] = argNum;	
+	end
+end
 	
+function REQUEST_MAP_UPDATE(frame)
 	local curmapname = session.GetMapName();
 	local mapprop = geMapTable.GetMapProp(curmapname);
 	local mapname = mapprop:GetClassName();
@@ -73,12 +72,10 @@ function MAP_OPEN(frame)
 	if beforeWidth ~= frame:GetWidth() then
 		UPDATE_MAP(frame);
 	end
-
 end
 
 -- 해상도 변경되면 실행시켜줘야됨.
 function INIT_MAPUI_INFO(frame)
-	
 	local width = frame:GetWidth();
 	local ratio = option.GetClientHeight()/option.GetClientWidth();
 	frame:Resize(width,width*ratio);
@@ -90,8 +87,6 @@ function INIT_MAPUI_INFO(frame)
 	INIT_MAPUI_PTR(frame);
 	local mapClassName = session.GetMapName();
 	MAKE_MAP_AREA_INFO(frame, mapClassName)
-	
-    
 end
 
 function INIT_MAPUI_PTR(frame)
@@ -110,7 +105,6 @@ function INIT_MAPUI_PTR(frame)
 		MAP_CHAR_UPDATE(frame, msg, argStr, session.GetMyHandle());
         session.minimap.UpdateChallengeModePortalMark()
 	end
-
 end
 
 function MAP_CLOSE(frame)
@@ -118,7 +112,6 @@ end
 
 function MAKE_MAP_AREA_INFO(frame, mapClassName, font, mapWidth, mapHeight, offsetX, offsetY)
 	INIT_MAPUI_PTR(frame);
-		
 	DESTROY_CHILD_BYNAME(frame, 'MAP_AREA_');
 	if frame:GetName() == "map" then
 		frame = GET_CHILD_RECURSIVELY(frame, "textGbox")
@@ -137,14 +130,11 @@ function MAKE_MAP_AREA_INFO(frame, mapClassName, font, mapWidth, mapHeight, offs
 		end
 		
 		if cls ~= nil and zoneClassName == cls.ZoneClassName then
-
 			local centerX, centerY, centerZ, posCnt = 0, 0, 0, 0;
-			
 			for j = 1, 5 do				
 				if cls['Pos'..j..'_X'] == 0 and cls['Pos'..j..'_Y'] == 0 and cls['Pos'..j..'_Z'] == 0 then
 					break;
 				end
-				
 				centerX = centerX + cls['Pos'..j..'_X'];
 				centerY = centerY + cls['Pos'..j..'_Y'];
 				centerZ = centerZ + cls['Pos'..j..'_Z'];
@@ -154,6 +144,7 @@ function MAKE_MAP_AREA_INFO(frame, mapClassName, font, mapWidth, mapHeight, offs
 			if posCnt == 0 then
 				return;
 			end
+
 			centerX = centerX / posCnt;
 			centerY = centerY / posCnt;
 			centerZ = centerZ / posCnt;
@@ -161,6 +152,7 @@ function MAKE_MAP_AREA_INFO(frame, mapClassName, font, mapWidth, mapHeight, offs
 			if mapWidth == nil then
 				mapWidth = m_mapWidth;
 			end
+
 			if mapHeight == nil then
 				mapHeight = m_mapHeight;
 			end	
@@ -168,16 +160,18 @@ function MAKE_MAP_AREA_INFO(frame, mapClassName, font, mapWidth, mapHeight, offs
 			if offsetX == nil then
 				offsetX = m_offsetX - 100;
 			end
+
 			if offsetY == nil then
 				offsetY = m_offsetY - 30;
 			end
+			
 			local mapPos = info.GetPositionInMap(centerX, centerY, centerZ, mapWidth, mapHeight, mapClassName);
 			if frame:GetName() == "textGbox" then
 				mapPos.x = mapPos.x - 100
 				mapPos.y = mapPos.y - 30
 			else
 				mapPos.x = mapPos.x + offsetX
-				mapPos.y = mapPos.y + offsetY
+				mapPos.y = mapPos.y + offsetY;
 			end
 
 			local areaNameCtrlSet = frame:CreateOrGetControlSet('mapAreaName', 'MAP_AREA_'.. cls.ClassName, mapPos.x, mapPos.y);
@@ -192,9 +186,7 @@ function MAKE_MAP_AREA_INFO(frame, mapClassName, font, mapWidth, mapHeight, offs
 end
 
 function CUSTOM_MAP_INIT(frame, MapName)
-
 	DESTORY_MAP_PIC(frame);
-
 	local mapprop = geMapTable.GetMapProp(MapName);
 	local KorName = GetClassString('Map', MapName, 'Name');
 	frame:SetTitleName('{ds}'..KorName);
@@ -207,13 +199,10 @@ function CUSTOM_MAP_INIT(frame, MapName)
 
 	local mapname = mapprop:GetClassName();
 	UPDATE_MAP_BY_NAME(frame, mapname, GET_CHILD_RECURSIVELY(frame, "map"));
-
 	ui.SetTopMostFrame(frame);
-    
 end
 
 function INIT_MAP_UI_COMMON(frame, mapName)
-
 	local pictureui  = GET_CHILD_RECURSIVELY(frame, 'map');
 	local mappicture = tolua.cast(pictureui, 'ui::CPicture');
 	mappicture:SetImage(mapName .. "_fog");
@@ -238,9 +227,9 @@ function INIT_MAP_UI_COMMON(frame, mapName)
     	local tempMap = GET_CHILD_RECURSIVELY(frame, 'map')
         tempMap:GetChild("monlv"):SetVisible(0)
     end
-	local mapRankObj = GET_CHILD_RECURSIVELY(frame,"mapRank")
 
-	mapRankObj:SetText(GET_STAR_TXT(20,mapCls.MapRank))
+	local mapRankObj = GET_CHILD_RECURSIVELY(frame, "mapRank")
+	mapRankObj:SetText(GET_STAR_TXT(20, mapCls.MapRank));
 end
 
 function MAP_LBTN_DOWN(parent, ctrl)
@@ -275,7 +264,6 @@ function CHECK_MAP_ICON(frame, object, argStr, argNum)
 	local y = pNpcIcon:GetOffsetY() +  pNpcIcon:GetImageHeight() / 2 - myctrl:GetWidth() / 2;
 	myctrl:SetOffset(x, y);
 	myctrl:ShowWindow(1);
-
 end
 
 function UI_TOGGLE_MAP()
@@ -303,12 +291,10 @@ function UI_TOGGLE_MAP()
 	end
 
 	ui.ToggleFrame('map');
-
 end
 
 
 function GET_QUEST_IDX(questmoncls, questlist)
-
 	local type = questmoncls.QuestType;
 	local cnt = #questlist;
 	for i = 1 , cnt do
@@ -320,13 +306,7 @@ function GET_QUEST_IDX(questmoncls, questlist)
 	return -1
 end
 
-
-
-
-
-
 function SHOW_QUEST_NPC(mapname, npcname)
-
 	local mapprop = geMapTable.GetMapProp(mapname);
 	local monnpcprop = mapprop:GetNPCPropByDialog(npcname);
 	local coorlist = monnpcprop.GenList;
@@ -345,50 +325,32 @@ function SHOW_QUEST_NPC(mapname, npcname)
 	end
 
 	CUSTOM_MAP_INIT(frame, mapname);
-
 	local closeBtn =  GET_CHILD_RECURSIVELY(frame, 'colse');
 	closeBtn:SetEventScript(ui.LBUTTONUP, 'ui.CloseFrame("Map_Custom")', true);
-
 	local pNpcIcon = GET_CHILD_RECURSIVELY(frame, "_NPC_"..  monnpcprop:GetType() .. "_0");
 	if pNpcIcon == nil then
 		return;
 	end
 
 	tolua.cast(pNpcIcon, "ui::CPicture");
-
 	local myctrl = GET_CHILD_RECURSIVELY(frame, 'check')
 	tolua.cast(myctrl, "ui::CPicture");
 	myctrl:SetImage("minimap_check");
-
 	local x = pNpcIcon:GetOffsetX() + pNpcIcon:GetImageWidth() / 2 - myctrl:GetImageWidth() / 2;
 	local y = pNpcIcon:GetOffsetY() +  pNpcIcon:GetImageHeight() / 2 - myctrl:GetImageHeight() / 2;
 	myctrl:SetOffset(x, y);
 	myctrl:ShowWindow(1);
-
 end
 
 function DESTORY_MAP_PIC(mapframe)
-
 	DESTROY_CHILD_BYNAME(mapframe, "_NPC_");
-	--[[local count = mapframe:GetChildCount();
-	for  i = 0, count-1 do
-		local child = mapframe:GetChildByIndex(i);
-		if  string.find(child:GetName(), "_NPC_")  ~=  nil  then
-			child:ShowWindow(0);
-		 end
-	 end
-	 ]]
-
 end
 
 function FIRST_UPDATE_MAP(frame, msg)
-	
 	if msg == 'CHANGE_CLIENT_SIZE' then
 		INIT_MAPUI_INFO(frame);
 	end
-
 	UPDATE_MAP(frame);
-
 	local nameframe = ui.GetFrame("mapname");
 	nameframe:SetOpenDuration(2);
 	nameframe:SetDuration(0.1);
@@ -398,10 +360,15 @@ function UPDATE_MAP(frame)
 	local curmapname = session.GetMapName()
 	UPDATE_MAP_BY_NAME(frame, curmapname, GET_CHILD_RECURSIVELY(frame, "map"));
 	RUN_REVEAL_CHECKER(frame, curmapname);
-
 end
 
 function MAKE_MAP_NPC_ICONS(frame, mapname, mapWidth, mapHeight, offsetX, offsetY)
+	local isAutoChallengeMap = session.IsAutoChallengeMap();
+	local isSoloChallengeMap = session.IsSoloChallengeMap();
+	if isAutoChallengeMap == true or isSoloChallengeMap == true then 
+		return; 
+	end
+	
 	local mapprop = geMapTable.GetMapProp(mapname);
 	if mapprop.mongens == nil then
 		return;
@@ -424,8 +391,8 @@ function UPDATE_NPC_STATE_COMMON(frame)
 	local mapprop = session.GetCurrentMapProp();
 	local mongens = mapprop.mongens;
 	local cnt = mongens:Count();
-	
 	local typeCount = {};
+
 	-- MONGEN을 통한 퀘스트 정보 출력
 	for i = 0 , cnt - 1 do
 	local MonProp = mongens:Element(i);
@@ -444,7 +411,6 @@ function UPDATE_NPC_STATE_COMMON(frame)
 
 				local ctrlname = GET_GENNPC_NAME(frame, MonProp);
 				local picture = GET_CHILD_RECURSIVELY(frame, ctrlname, "ui::CPicture");
-
 				if picture ~= nil then
 					SET_MONGEN_NPC_VISIBLE(picture, mapprop, MonProp);
 				end
@@ -458,28 +424,22 @@ function UPDATE_MAP_NPC_STATE(frame)
 end
 
 function SET_PICTURE_QUESTMAP(PictureC, alpha)
-
 	PictureC:SetEnable(1);
 	PictureC:SetEnableStretch(1);
 	PictureC:SetAlpha(60);
 	PictureC:SetImage("questmap");
 	PictureC:ShowWindow(1);
 	PictureC:SetAngleLoop(-3);
-	
 end
 
 function SET_MAP_CTRLSET_TXT(qstctrl, CurState, Icon, iconW, iconH, mylevel, questIES)
-
 	SET_MAP_CTRLSET_TXT_BY_NAME(qstctrl, CurState, Icon, iconW, iconH, mylevel, questIES.Name, questIES.Level);
-
 end
 
 function SET_MAP_CTRLSET_TXT_BY_NAME(qstctrl, CurState, Icon, iconW, iconH, mylevel, name, level)
-
 	local srtext = GET_QUEST_STATE_TXT(CurState);
 	local txt = string.format("{img %s %d %d}{/}{@st45tw}%s{/}", Icon, iconW, iconH, name);
 	tolua.cast(qstctrl, "ui::CControlSet");
-
 	qstctrl:SetLBtnUpScp("CHECK_MAP_ICON");
 	qstctrl:SetImage("all_trans", "all_red", "all_red");
 	qstctrl:SetStretch(1);
@@ -487,13 +447,9 @@ function SET_MAP_CTRLSET_TXT_BY_NAME(qstctrl, CurState, Icon, iconW, iconH, myle
 	qstctrl:SetSelectGroupName('MM_Q')
 	qstctrl:EnableToggle(1);
 	qstctrl:SetTextByKey("text", txt);
-
 end
 
-	
-
 function SET_RIGHT_QUESTLIST(groupCtrl, idx, MonProp, list_y, statelist, questIESlist, Icon, iconW, iconH, mylevel)
-
 	local CurState = statelist[idx];
 	if IS_STATE_PRINT(CurState) == 1 then
 		local ctrlname = "_NPC_GEN_" .. MonProp:GetType();
@@ -506,7 +462,6 @@ function SET_RIGHT_QUESTLIST(groupCtrl, idx, MonProp, list_y, statelist, questIE
 			end
 		end
 	end
-
 	return list_y;
 end
 
@@ -535,6 +490,8 @@ function MAP_MAKE_NPC_LIST(frame, mapprop, npclist, statelist, questIESlist, que
 	
 	-- MONGEN을 통한 퀘스트 정보 출력
     local isColonyMap = session.colonywar.GetIsColonyWarMap();
+	local isAutoChallengeMap = session.IsAutoChallengeMap();
+	local isSoloChallengeMap = session.IsSoloChallengeMap();
 	for i = 0 , cnt - 1 do
 		local MonProp = mongens:Element(i);
 		if MonProp.Minimap >= 1 then
@@ -557,30 +514,38 @@ function MAP_MAKE_NPC_LIST(frame, mapprop, npclist, statelist, questIESlist, que
                         PictureC:ShowWindow(0);
                     end
 				end
+
+				if isAutoChallengeMap == true or isSoloChallengeMap == true then
+					if MonProp:GetClassName() == 'Warp_arrow' or string.find(MonProp:GetClassName(), 'dialog_warp_npc') ~= nil or string.find(MonProp:GetClassName(), "statue") ~= nil then
+						PictureC:ShowWindow(0);
+					end
 			end
 		end
+	end
+	end
+
+	if isAutoChallengeMap == true or isSoloChallengeMap == true then
+		return;
 	end
 
 	-- questprogress의 Location 정보
 	local quemon = mapprop.questmonster;
 	if quemon ~= nil then
-
 		local quemoncnt = quemon:Count();
-
 		local WorldPos = nil;
 		for i = 0 , quemoncnt - 1 do
 			local quemoninfo = quemon:Element(i);
 			local idx = GET_QUEST_IDX(quemoninfo, questIESlist);
-
 			if idx ~= -1 and statelist[idx] == 'PROGRESS'then
 				local cls = questIESlist[idx];
 				WorldPos = quemoninfo.Pos;
-				local MapPos = mapprop:WorldPosToMinimapPos(WorldPos, mapWidth, mapHeight);
 
+				local MapPos = mapprop:WorldPosToMinimapPos(WorldPos, mapWidth, mapHeight);
 				local Range = quemoninfo.GenRange * MINIMAP_LOC_MULTI * mapWidth / WORLD_SIZE;
 				local XC = offsetX + MapPos.x - Range / 2;
 				local YC = offsetY + MapPos.y - Range / 2;
 				local ctrlname = "_NPC_MON_MARK" .. quemoninfo.QuestType.. "_" .. i .. "_" ..quemoninfo.MonsterType;
+
 				local PictureC = frame:CreateOrGetControl('picture', ctrlname, XC, YC, Range, Range);
 				tolua.cast(PictureC, "ui::CPicture");
 				SET_PICTURE_QUESTMAP(PictureC, 0);
@@ -592,7 +557,6 @@ function MAP_MAKE_NPC_LIST(frame, mapprop, npclist, statelist, questIESlist, que
 				PictureC = frame:CreateOrGetControl('picture', ctrlname, XC, YC, iconW, iconH);
 				tolua.cast(PictureC, "ui::CPicture");
 				SET_PICTURE_BUTTON(PictureC);
-
 				SET_MINIMAP_NPC_ICON(PictureC, WorldPos, idx, statelist, questIESlist);
 
 				local CurState = statelist[idx];
@@ -604,24 +568,19 @@ function MAP_MAKE_NPC_LIST(frame, mapprop, npclist, statelist, questIESlist, que
 					if questIES ~= nil then
 						SET_MAP_CTRLSET_TXT(qstctrl, CurState, Icon, iconW, iconH, mylevel, questIES)
 					end
-
 				end
-
-
 			end
 		end
 	end
 
 	-- Location을 통한 퀘스트 정보 출력
 	local allmaptxt = "";
-
 	local mapname = mapprop:GetClassName();
 	local cnt = #questPropList;
 	for i = 1 , cnt do
 		local questprop = geQuestTable.GetPropByIndex(questPropList[i]);
 		local cls = questIESlist[i];
 		local stateidx = STATE_NUMBER(statelist[i]);
-
 		if questprop ~= nil and stateidx ~= -1 then
 			local locationlist = questprop:GetLocation(stateidx);
 			if locationlist ~= nil then
@@ -634,7 +593,6 @@ function MAP_MAKE_NPC_LIST(frame, mapprop, npclist, statelist, questIESlist, que
 							local npcFuncName = locinfo:GetNpcName();
 							if npcFuncName ~= "None" then
 								local GenList = GET_MONGEN_NPCPOS(mapprop, npcFuncName);
-								
 								if GenList ~= nil then
 									local GenCnt = GenList:Count();
 									for j = 0 , GenCnt - 1 do
@@ -663,9 +621,7 @@ function MAP_MAKE_NPC_LIST(frame, mapprop, npclist, statelist, questIESlist, que
 							YC = offsetY + MapPos.y - iconH / 2;
 
 							MAKE_LOC_ICON(frame, cls, i, stateidx, k, XC, YC, iconW, iconH, WorldPos, statelist, questIESlist);
-
 						end
-
 					end
 				end
 			end
@@ -677,7 +633,6 @@ function MAP_MAKE_NPC_LIST(frame, mapprop, npclist, statelist, questIESlist, que
 	for i = 1 , cnt do
 		local cls = questIESlist[i];
 		local stateidx = STATE_NUMBER(statelist[i]);
-
 		local s_obj = GetClass("SessionObject", cls.Quest_SSN);
 		if s_obj ~= nil then
 			local sobjinfo = session.GetSessionObject(s_obj.ClassID);
@@ -693,7 +648,6 @@ function MAP_MAKE_NPC_LIST(frame, mapprop, npclist, statelist, questIESlist, que
 						local genType = 0;
 						local checkMapName = "None";
 						local x, y, z, range = 0;
-
 						for locationMapName in string.gmatch(mapPointGroupStr, "%S+") do
 							if count == 0 and locationMapName ~= mapname then
 								count = 0;
@@ -705,7 +659,6 @@ function MAP_MAKE_NPC_LIST(frame, mapprop, npclist, statelist, questIESlist, que
 
 							if count == 1 then
 								local GenList = GET_MONGEN_NPCPOS(mapprop, locationMapName);
-
 								if GenList == nil then
 									x = tonumber(locationMapName);
 								else
@@ -748,7 +701,6 @@ function MAP_MAKE_NPC_LIST(frame, mapprop, npclist, statelist, questIESlist, que
 								YC = offsetY + MapPos.y - iconH / 2;
 								MAKE_LOC_ICON(frame, cls, i, stateidx, 'group'..k, XC, YC, iconW, iconH, nil, statelist, questIESlist);
 								roundCount = roundCount + 1;
-
 							end
 
 							if count < 4 then
@@ -762,7 +714,6 @@ function MAP_MAKE_NPC_LIST(frame, mapprop, npclist, statelist, questIESlist, que
 			end
 		end
 	end
-
 	frame:Invalidate();
 end
 

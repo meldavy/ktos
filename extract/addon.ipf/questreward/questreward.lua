@@ -1036,6 +1036,8 @@ function CREATE_QUEST_REWARE_CTRL_DIFF_COUNT(box, y, index, ItemName, itemCnt, N
 	local ItemName = ctrlSet:GetChild("ItemName");
 
 	local itemText = string.format("{@st41b}%s x%d", itemCls.Name, itemCnt);
+
+	ItemName:EnableTextOmitByWidth(true);
 	ItemName:SetText(itemText);
 
 	-- 교환 재료

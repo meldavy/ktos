@@ -1,5 +1,5 @@
 ClassID,ConditionArg4,ClassName,UseType,ValueType,PropertyType,ConditionScp,ConditionArg1,ConditionArg2,ConditionArg3,ExecScp,ExecArg1,ExecArg2,ExecArg3,OptionText,OptionTextValue
-1,0,card_Gaigalas,Always,StarCount,,,,,,SCR_CARDEFFECT_STATUS_PLUS,Earth_Atk_BM,Earth_Atk,10,땅 속성 추가 대미지 +{@st66d_y}{s16}[%d]{/},10
+1,0,card_Gaigalas,Always,StarCount,,,,,,SCR_CARDEFFECT_STATUS_ALL_PLUS,Add_Damage_Atk_BM,Add_Damage_Atk,10,추가 대미지 +{@st66d_y}{s16}[%d]{/},10
 2,0,card_GazingGolem,Attacked,StarCount,,SCR_CARDCHECK_NORMAL,,,PainBarrier_Buff,SCR_CARDEFFECT_ADD_BUFF_PC,PainBarrier_Buff,,15000,피격 시 {@st66d_y}{s16}[%d]{/}{/}%% 확률로 페인배리어 사용 (지속시간 15초),1
 3,0,card_Gorgon,Always,StarCount,,,,,,SCR_CARDEFFECT_STATUS_PLUS,DefStrike_BM,DefStrike,10,때리기류 방어력 +{@st66d_y}{s16}[%d]{/}{/},10
 4,0,card_Golem,UseItem,StarCount,,SCR_CARDCHECK_POTION_USE,HPPOTION,100,,SCR_CARDEFFECT_ADD_BUFF_PC_RATE,card_DEF,DEF_RATE_BM,10000,HP 포션 종류 사용 시 10초간 물리 방어력 +{@st66d_y}{s16}[%d]{/}{/}%%,1
@@ -7,7 +7,7 @@ ClassID,ConditionArg4,ClassName,UseType,ValueType,PropertyType,ConditionScp,Cond
 6,0,card_Glass_mole,UseItem,StarCount,,SCR_CARDCHECK_POTION_USE,SPPOTION,100,,SCR_CARDEFFECT_ADD_BUFF_PC_RATE,card_ATK,PATK_RATE_BM,6000,SP 포션 종류 사용 시 6초간 물리 대미지 +{@st66d_y}{s16}[%d]{/}{/}%%,1
 7,0,card_ginklas,BeforeAttack,StarCount,,SCR_CARDCHECK_MONRACE,Iron,100,,SCR_CARDEFFECT_ADD_DAMAGE_RATE_BM,,,0.5,판금 갑옷 대상에게 주는 대미지{@st66d_y}{s16}[%d]{/}{/}%% 증가,0.5
 8,0,card_NetherBovine,Always,StarCount,,,,,,SCR_CARDEFFECT_STATUS_PLUS,STR_ITEM_BM,,1,힘 스탯 +{@st66d_y}{s16}[%d]{/}{/},1
-9,0,card_necrovanter,Always,StarCount,,,,100,,SCR_CARDEFFECT_STATUS_PLUS,Dark_Atk_BM,Dark_Atk,10,어둠 속성 추가 대미지 +{@st66d_y}{s16}[%d]{/}{/},10
+9,0,card_necrovanter,Always,StarCount,,,,100,,SCR_CARDEFFECT_STATUS_ALL_PLUS,Add_Damage_Atk_BM,Add_Damage_Atk,10,추가 대미지 +{@st66d_y}{s16}[%d]{/}{/},10
 10,0,card_deadbone,Always,StarCount,,,,100,,SCR_CARDEFFECT_STATUS_PLUS,CRTATK_BM,CRTATK,20,치명타 공격력 +{@st66d_y}{s16}[%d]{/}{/},20
 11,0,card_Devilglove,BeforeAttack,StarCount,,SCR_CARDCHECK_MONRACE,Paramune,100,,SCR_CARDEFFECT_ADD_DAMAGE_RATE_BM,,,1,변이형 속성 몬스터에게 주는 대미지{@st66d_y}{s16}[%d]{/}{/}%% 증가,1
 12,0,card_Denoptic,Always,StarCount,,,,,,SCR_CARDEFFECT_STATUS_PLUS,MDEF_BM,MDEF,10,마법 방어력 +{@st66d_y}{s16}[%d]{/}{/},10
@@ -53,7 +53,7 @@ ClassID,ConditionArg4,ClassName,UseType,ValueType,PropertyType,ConditionScp,Cond
 52,0,card_Unknocker,Always,StarCount,,,,,,SCR_CARDEFFECT_STATUS_DUAL_PLUS,CON_ITEM_BM/MNA_ITEM_BM,,0.5/0.5,"정신 스탯 +{@st66d_y}{s16}[%d]{/}{/}, 체력 스탯 +{@st66d_y}{s16}[%d]{/}{/}",0.5/0.5
 53,0,card_Achat,BeforeAttack,StarCount,,SCR_CARDCHECK_MONATTRIBUTE,Lightning,100,,SCR_CARDEFFECT_ADD_DAMAGE_RATE_BM,,,1,전기 속성 몬스터에게 주는 대미지{@st66d_y}{s16}[%d]{/}{/}%% 증가,1
 54,0,card_ellaganos,Always,StarCount,,,,100,,SCR_CARDEFFECT_STATUS_PLUS,DEX_ITEM_BM,,1,민첩 스탯 +{@st66d_y}{s16}[%d]{/}{/},1
-55,0,card_yekub,Always,StarCount,,,,,,SCR_CARDEFFECT_STATUS_PLUS,Holy_Atk_BM,Holy_Atk,10,신성 속성 추가 대미지 +{@st66d_y}{s16}[%d]{/}{/},10
+55,0,card_yekub,Always,StarCount,,,,,,SCR_CARDEFFECT_STATUS_ALL_PLUS,Add_Damage_Atk_BM,Add_Damage_Atk,10,추가 대미지 +{@st66d_y}{s16}[%d]{/},10
 56,0,card_yonazolem,Always,StarCount,,,,100,,SCR_CARDEFFECT_STATUS_PLUS,ResHoly_BM,ResHoly,10,신성 속성 저항력 +{@st66d_y}{s16}[%d]{/}{/},10
 57,0,card_werewolf,BeforeAttack,StarCount,,SCR_CARDCHECK_NORMAL,,,,SCR_CARDEFFECT_AS_BACK_ATTACK,,,,공격 시 {@st66d_y}{s16}[%d]{/}{/}%% 확률로 후방 공격 판정,1
 58,0,card_unicorn,BeforeAttack,StarCount,,SCR_CARDCHECK_MONATTRIBUTE,Dark,100,,SCR_CARDEFFECT_ADD_DAMAGE_RATE_BM,,,1,어둠 속성 몬스터에게 주는 대미지{@st66d_y}{s16}[%d]{/}{/}%% 증가,1
@@ -72,7 +72,7 @@ ClassID,ConditionArg4,ClassName,UseType,ValueType,PropertyType,ConditionScp,Cond
 71,0,card_poata,Always,StarCount,,,,100,,SCR_CARDEFFECT_STATUS_PLUS,RHP_BM,,30,HP 회복력 +{@st66d_y}{s16}[%d]{/}{/},30
 72,0,card_Sequoia_blue,Always,StarCount,,,,,,SCR_CARDEFFECT_STATUS_DUAL_PLUS,DEF_BM/MDEF_BM,DEF/MDEF,5/5,"물리 방어력 +{@st66d_y}{s16}[%d]{/}{/}, 마법 방어력 +{@st66d_y}{s16}[%d]{/}{/}",5/5
 73,0,card_Harpeia,Kill,StarCount,,SCR_CARDCHECK_MONATTRIBUTE,Lightning,,,SCR_CARDEFFECT_RECOVER_SP,5,,,전기 속성 몬스터 처치 시 {@st66d_y}{s16}[%d]{/}{/}%% 확률로 SP 5%% 회복,1
-74,0,card_honeypin,Always,StarCount,,,,,,SCR_CARDEFFECT_STATUS_PLUS,Poison_Atk_BM,Poison_Atk,10,독 속성 추가 대미지 +{@st66d_y}{s16}[%d]{/}{/},10
+74,0,card_honeypin,Always,StarCount,,,,,,SCR_CARDEFFECT_STATUS_ALL_PLUS,Add_Damage_Atk_BM,Add_Damage_Atk,10,추가 대미지 +{@st66d_y}{s16}[%d]{/},10
 75,0,card_helgasercle,Always,StarCount,,,,,,SCR_CARDEFFECT_STATUS_PLUS,EQUIP_MATK,MATK,5,마법 공격력 +{@st66d_y}{s16}[%d]{/}{/},5
 76,0,card_Spector_F,Always,StarCount,,,,100,,SCR_CARDEFFECT_STATUS_PLUS,MSP_BM,MSP,30,최대 SP +{@st66d_y}{s16}[%d]{/}{/},30
 77,0,card_hydra,BeforeAttack,StarCount,,,,,,SCR_CARDEFFECT_DAMAGE_RATE_BY_BUFF,Freeze,Keyword,1,결빙 상태 이상에 걸린 대상에게 주는 대미지{@st66d_y}{s16}[%d]{/}{/}%% 증가,1
@@ -103,7 +103,7 @@ ClassID,ConditionArg4,ClassName,UseType,ValueType,PropertyType,ConditionScp,Cond
 102,0,card_Velpede,Attack,StarCount,,SCR_CARDCHECK_ATTACK_RATE,,3,CARD_Haste,SCR_CARDEFFECT_ADD_BUFF_PC_PLUS,CARD_Haste,,6000,공격 시 {@st66d_y}{s16}[%d]{/}{/}%% 확률로 6초간 이동속도 +4,0.34
 103,0,card_Pyroego,Always,StarCount,,,,,,SCR_CARDEFFECT_STATUS_PLUS,INT_ITEM_BM,,1,"지능 스텟 +{@st66d_y}{s16}[%d]{/}{/} ",1
 104,0,card_Mandala,BeforeAttack,StarCount,,SCR_CARDCHECK_MONSTATE,,,,SCR_CARDEFFECT_ADD_DAMAGE_RATE_BM,,,1,넉다운 중인 대상에게 주는 대미지{@st66d_y}{s16}[%d]{/}{/}%% 증가,1
-105,0,card_LithoRex,Always,StarCount,,,,,,SCR_CARDEFFECT_STATUS_PLUS,Lightning_Atk_BM,Lightning_Atk,10,전기 속성 추가 대미지 +{@st66d_y}{s16}[%d]{/}{/},10
+105,0,card_LithoRex,Always,StarCount,,,,,,SCR_CARDEFFECT_STATUS_ALL_PLUS,Add_Damage_Atk_BM,Add_Damage_Atk,10,추가 대미지 +{@st66d_y}{s16}[%d]{/},10
 106,0,card_Nuodai,Always,StarCount,,,,100,,SCR_CARDEFFECT_STATUS_DUAL_IMMUNE,Res_Stun_Debuff_BM/Res_Sleep_Debuff_BM,,1/1,"스턴 상태이상 저항 +{@st66d_y}{s16}[%d]{/}{/}, 수면 상태이상 저항 +{@st66d_y}{s16}[%d]{/}{/} ",1/1
 107,0,card_Centaurus,Always,StarCount,,,,100,,SCR_CARDEFFECT_STATUS_PLUS,SR_BM,SR,0.2,광역 공격 비율 +{@st66d_y}{s16}[%d]{/}{/},0.2
 108,0,card_Yeti,Always,StarCount,,,,100,,SCR_CARDEFFECT_STATUS_PLUS,MHP_BM,MHP,180,최대 HP +{@st66d_y}{s16}[%d]{/}{/},180
@@ -111,10 +111,10 @@ ClassID,ConditionArg4,ClassName,UseType,ValueType,PropertyType,ConditionScp,Cond
 110,0,card_Marionette,Attack,StarCount,,SCR_CARDCHECK_ATTACK_RATE,,3,,SCR_CARDEFFECT_ADD_BUFF_MONSTER,Monster_Slow,,3000,공격 시 {@st66d_y}{s16}[%d]{/}{/}%% 확률로 상대방에게 3초간 슬로우 상태,0.34
 111,15000,card_Canceril,Attacked,StarCount,,SCR_CARDCHECK_MONSIZE_COOLDOWN,M/PC,,,SCR_CARDEFFECT_RECOVER_HP,2,,,중형 대상에게 피격 시 {@st66d_y}{s16}[%d]{/}{/}%% 확률로 HP 2%% 회복,1
 112,0,card_Crabil,Always,StarCount,,,,100,,SCR_CARDEFFECT_STATUS_IMMUNE,Res_Stun_Debuff_BM,,2,스턴 상태이상 저항 +{@st66d_y}{s16}[%d]{/}{/},2
-113,0,card_Genmagnus,Always,StarCount,,,,100,,SCR_CARDEFFECT_SUB_PATK_PLUS,EQUIP_PATK_SUB,PATK_SUB,3,보조 물리 공격력 +{@st66d_y}{s16}[%d]{/}{/},3
-114,0,card_merregina,Always,StarCount,,,,,,SCR_CARDEFFECT_STATUS_PLUS,Ice_Atk_BM,Ice_Atk,10,얼음 속성 추가 대미지 +{@st66d_y}{s16}[%d]{/}{/},10
+113,0,card_Genmagnus,Always,StarCount,,,,100,,SCR_CARDEFFECT_PATK_PLUS,EQUIP_PATK,PATK,3,물리 공격력 +{@st66d_y}{s16}[%d]{/}{/},3
+114,0,card_merregina,Always,StarCount,,,,,,SCR_CARDEFFECT_STATUS_ALL_PLUS,Add_Damage_Atk_BM,Add_Damage_Atk,10,추가 대미지 +{@st66d_y}{s16}[%d]{/},10
 115,0,card_Templeshooter,Always,StarCount,,,,,,SCR_CARDEFFECT_STATUS_DUAL_PLUS,STR_ITEM_BM/MNA_ITEM_BM,,0.5/0.5,"힘 스텟 +{@st66d_y}{s16}[%d]{/}{/}, 정신 스탯 +{@st66d_y}{s16}[%d]{/}{/} ",0.5/0.5
-116,0,card_Fireload,Always,StarCount,,,,,,SCR_CARDEFFECT_STATUS_PLUS,Fire_Atk_BM,Fire_Atk,10,불 속성 추가 대미지 +{@st66d_y}{s16}[%d]{/}{/},10
+116,0,card_Fireload,Always,StarCount,,,,,,SCR_CARDEFFECT_STATUS_ALL_PLUS,Add_Damage_Atk_BM,Add_Damage_Atk,10,추가 대미지 +{@st66d_y}{s16}[%d]{/},10
 117,0,card_Kubas,Always,StarCount,,,,,,SCR_CARDEFFECT_STATUS_DUAL_PLUS,INT_ITEM_BM/MNA_ITEM_BM,,0.5/0.5,"지능 스텟 +{@st66d_y}{s16}[%d]{/}{/}, 정신 스탯 +{@st66d_y}{s16}[%d]{/}{/} ",0.5/0.5
 118,15000,card_Deathweaver,Attacked,StarCount,,SCR_CARDCHECK_MONRANK_SIZE_DUAL_COOLDOWN,L,,,SCR_CARDEFFECT_RECOVER_HP,3,,,대형 몬스터에게 피격 시 {@st66d_y}{s16}[%d]{/}{/}%% 확률로 HP 3%% 회복,1
 119,0,card_Flammidus,Always,StarCount,,,,,,SCR_CARDEFFECT_STATUS_PLUS,ResFire_BM,ResFire,10,불 속성 속성 저항력 +{@st66d_y}{s16}[%d]{/}{/},10
@@ -169,7 +169,7 @@ ClassID,ConditionArg4,ClassName,UseType,ValueType,PropertyType,ConditionScp,Cond
 168,0,card_cyrenia,Always,StarCount,,,,,,SCR_CARDEFFECT_STATUS_ALL_PLUS,MaxSta_BM/MHP_BM,,1/100,"스태미너 +{@st66d_y}{s16}[%d]{/}{/}, 최대 HP +{@st66d_y}{s16}[%d]{/}{/}",1/100
 169,0,Legendcard_bayl,Always,StarCount,,,,,,SCR_CARDEFFECT_ADD_NO_TIME_BUFF_PC_BAYL,CARD_ExpUP_bayl_,ExpUP,10,팀 레벨 50이하 일 때 경험치 흭득량 + {@st66d_y}{s16}[%d]{/}{/}%%,10
 170,0,card_Neringa,Always,StarCount,,,,,,SCR_CARDEFFECT_STATUS_ALL_PLUS,CON_ITEM_BM/MNA_ITEM_BM/INT_ITEM_BM/DEX_ITEM_BM/STR_ITEM_BM,,0.5/0.5/0.5/0.5/0.5,"힘, 체력, 지능, 정신, 민첩 + {@st66d_y}{s16}[%d]{/}{/}",0.5
-171,0,Legendcard_tantaliser,Always,StarCount,,,,,,SCR_CARDEFFECT_STATUS_ALL_PLUS,Fire_Atk_BM/Ice_Atk_BM/Poison_Atk_BM/Lightning_Atk_BM/Soul_Atk_BM/Earth_Atk_BM/Holy_Atk_BM/Dark_Atk_BM,Fire_Atk_BM/Ice_Atk_BM/Poison_Atk_BM/Lightning_Atk_BM/Soul_Atk_BM/Earth_Atk_BM/Holy_Atk_BM/Dark_Atk_BM,50/50/50/50/50/50/50/50,"불, 얼음, 전기, 염, 땅, 독, 신성, 어둠 속성 추가 대미지 + {@st66d_y}{s16}[%d]{/}{/}",50
+171,0,Legendcard_tantaliser,Always,StarCount,,,,,,SCR_CARDEFFECT_STATUS_ALL_PLUS,Add_Damage_Atk_BM,Add_Damage_Atk,400,추가 대미지 + {@st66d_y}{s16}[%d]{/}{/},400
 172,0,Master_card_Boruble,Always,StarCount,,,,,,SCR_CARDEFFECT_STATUS_PLUS,HEAL_PWR_BM,HEAL_PWR,30,치유력 + {@st66d_y}{s16}[%d]{/}{/},30
 173,0,Master_card_MariaLeed,Attacked,StarCount,,SCR_CARDCHECK_NORMAL,,10,CARD_Shield,SCR_CARDEFFECT_SHIELD_PERHP,Shield,,0.005,피격 시 10%% 확률로 10초간 최대 HP의 {@st66d_y}{s16}[%d]{/}{/}%% 실드 생성,0.5
 174,0,Master_card_JuraSwajone,Always,StarCount,,,,,,SCR_CARDEFFECT_STATUS_PLUS,DR_BM,DR,10,회피 +{@st66d_y}{s16}[%d]{/}{/},10
@@ -210,3 +210,4 @@ ClassID,ConditionArg4,ClassName,UseType,ValueType,PropertyType,ConditionScp,Cond
 209,0,Master_card_Pauline,Always,StarCount,,,,,,SCR_CARDEFFECT_ADD_BUFF_STARVALUE_PC,CARD_Cannon_Atk_Buff,,0,캐논 속성 공격 시 대미지 {@st66d_y}{s16}[%d]{/}{/}%% 증가,1
 210,0,Master_card_GeHong,Always,StarCount,,,,,,SCR_CARDEFFECT_ADD_BUFF_STARVALUE_PC,CARD_Lightning_Buff,,0,전기 속성 마법 공격 시 대미지 {@st66d_y}{s16}[%d]{/}{/}%% 증가,1
 211,0,Master_card_PhilipAureolus,Always,StarCount,,,,,,SCR_CARDEFFECT_ADD_BUFF_STARVALUE_PC,CARD_Poison_Buff,,0,독 속성 마법 공격 시 대미지 {@st66d_y}{s16}[%d]{/}{/}%% 증가,1
+212,0,Legend_card_Vasilisa,Always,StarCount,,,,,,SCR_CARDEFFECT_ADD_BUFF_STARVALUE_PC,CARD_VASILISA_PRE_BUFF,,0,"보스를 제외한 몬스터 대상 최종 대미지 증가{@st66d_y}{s16}[%d]{/}{/}%%, 받는 피해 감소{@st66d_y}{s16}[%d]{/}{/}%% ",1.5/1

@@ -170,7 +170,6 @@ function SCR_Get_MON_DEX(self)
     return math.floor(value);
 end
 
-
 function SCR_Get_MON_MHP(self)
     local monHPCount = TryGetProp(self, "HPCount", 0);
     if monHPCount > 0 then
@@ -183,9 +182,6 @@ function SCR_Get_MON_MHP(self)
     end
     
     local lv = TryGetProp(self, "Lv", 1);
-    
-    
-    
     local standardMHP = math.max(30, lv);
     local byLevel = (standardMHP / 4) * lv;
     
@@ -230,6 +226,11 @@ function SCR_Get_MON_MHP(self)
         local rarity = infoCls.Rarity
         local starrank = GetExProp(self,'STARRANK',99)
         value = value * SCR_ANCIENT_INFO_RATE_CALC(rarity,starrank,'HPRate')
+    end
+
+    local TOSHeroHPRate = GetExProp(self, "TOSHeroHPRate", 0)
+    if TOSHeroHPRate > 0 then
+        value = math.floor(value * TOSHeroHPRate)
     end
 
     if value < 1 then

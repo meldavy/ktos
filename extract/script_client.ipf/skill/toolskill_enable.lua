@@ -198,6 +198,20 @@ function CHECK_IS_PVE_C(actor, skl)
     return 1;
 end
 
+function CHECK_IS_NO_CHANGEDROPLIST_C(actor, skl)
+    local mymapname = session.GetMapName();
+    local map = GetClass("Map", mymapname);
+    if nil == map then
+        return 0;
+    end
+
+    if SCR_ZONE_KEYWORD_CHECK(mymapname, "NoChangeDropList") == "YES" then
+        return 0;
+    end
+    
+    return 1;
+end
+
 function CHECK_IS_GUIILDCOLONY_MAP_C(actor, skl)
     local mymapname = session.GetMapName();
     local map = GetClass("Map", mymapname);
@@ -619,12 +633,6 @@ function CHECK_IS_EQUIP_PREFIX_C(actor, skl, prefix)
 	local MaxCnt = TryGetProp(cls, 'MaxOptionCount')
 	local Cnt = 0
 	local slot = {'RH', 'LH', 'SHIRT', 'PANTS', 'GLOVES', 'BOOTS'}
-
-	local TrinketSlot = session.GetEquipItemBySpot(item.GetEquipSpotNum('TRINKET'))
-	local TrinketObj = GetIES(TrinketSlot:GetObject())
-	if TryGetProp(TrinketObj, "ClassType", "None") == 'Trinket' then
-		slot[2] = 'TRINKET'
-	end
 
 	for i = 1, 6 do
 		local equip_item = session.GetEquipItemBySpot(item.GetEquipSpotNum(slot[i]))

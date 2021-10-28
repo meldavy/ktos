@@ -115,6 +115,7 @@ local function _REINFORCE_PRICE_UPDATE(frame, price, discountStone)
 
 	local r_price = GET_CHILD_RECURSIVELY(frame, 'r_price')
 	local r_invmoney = GET_CHILD_RECURSIVELY(frame, 'r_invmoney')
+	local check_no_msgbox = GET_CHILD_RECURSIVELY(frame, 'check_no_msgbox')
 
 	if price ~= nil then
 		price = math.max(tonumber(price), 0)
@@ -129,9 +130,9 @@ local function _REINFORCE_PRICE_UPDATE(frame, price, discountStone)
 		local _, stone_name = shared_item_relic.get_gem_reinforce_mat_name(gem_lv)
 		local stone_cnt = shared_item_relic.get_gem_reinforce_mat_stone(gem_lv)
 
-		if discountStone == stone_cnt then
+		if discountStone == stone_cnt and check_no_msgbox:IsChecked() ~= 1 then
 			local textmsg = string.format("[ %s ]{nl}%s", ClMsg('RELIC_GEM_UPGRADE_TITLE_MSG'), ScpArgMsg("Enough_Relic_Gem_DiscountStone"))
-			ui.MsgBox(textmsg, yesScp, "None")
+			ui.MsgBox(textmsg)
 		end
 
 		if discountStone > 0 then
@@ -162,27 +163,82 @@ local function _REINFORCE_EXEC_BTN_UPDATE(frame)
 	end
 end
 
+local function _CLEAR_ALL_REINFORCE_MATERIAL(frame)
+	local rmat_1 = GET_CHILD_RECURSIVELY(frame, 'rmat_1')
+	local rmat_1_slot = GET_CHILD(rmat_1, 'mat_slot', 'ui::CSlot')
+	REMOVE_RELIC_GEM_REINF_MATERIAL(frame, rmat_1_slot)
+
+	local rmat_2 = GET_CHILD_RECURSIVELY(frame, 'rmat_2')
+	local rmat_2_slot = GET_CHILD(rmat_2, 'mat_slot', 'ui::CSlot')
+	REMOVE_RELIC_GEM_REINF_MATERIAL(frame, rmat_2_slot)
+
+	local discountSet = GET_CHILD_RECURSIVELY(frame, 'rslotlist_discount', 'ui::CSlotSet')
+	for i = 0, discountSet:GetSlotCount() - 1 do
+		frame:SetUserValue('DISCOUNT_MAT_' .. i, 0)
+	end
+end
+
+-- 강화 실패 시의 강화 UI 업데이트
 function UPDATE_RELIC_GEM_MANAGER_REINFORCE(frame)
 	if frame == nil then return end
-	
-	local rmat_inner = GET_CHILD_RECURSIVELY(frame, 'rmat_inner')
-	local rprice_info = GET_CHILD_RECURSIVELY(frame, 'rprice_info')
+
+	local rresult_gb = GET_CHILD_RECURSIVELY(frame, 'rresult_gb')
+	rresult_gb:ShowWindow(0)
+
+	local send_ok_reinforce = GET_CHILD_RECURSIVELY(frame, 'send_ok_reinforce')
+	send_ok_reinforce:ShowWindow(0)
+
 	local do_reinforce = GET_CHILD_RECURSIVELY(frame, 'do_reinforce')
+	do_reinforce:ShowWindow(1)
 
 	local gem_guid = frame:GetUserValue('GEM_GUID')
-	if gem_guid == 'None' then
-		rmat_inner:ShowWindow(0)
-		rprice_info:ShowWindow(0)
-		do_reinforce:SetEnable(0)
+	if gem_guid == 'None' then return end
+	local gem_item = session.GetInvItemByGuid(gem_guid)
+	if gem_item ~= nil then
+		local def_price = frame:GetUserValue('REINFORCE_PRICE')
+		_REINFORCE_PRICE_UPDATE(frame, def_price, 0)
 		
-		return
+		local clear_flag = false
+		
+		local gem_lv = tonumber(frame:GetUserValue('GEM_LV'))
+		local misc_name, stone_name = shared_item_relic.get_gem_reinforce_mat_name(gem_lv)
+		local inv_misc = session.GetInvItemByName(misc_name)
+		local inv_stone = session.GetInvItemByName(stone_name)
+
+		local rmat_1 = GET_CHILD_RECURSIVELY(frame, 'rmat_1')
+		local rmat_1_slot = GET_CHILD(rmat_1, 'mat_slot', 'ui::CSlot')
+		local misc_cnt = rmat_1_slot:GetUserIValue('NEED_COUNT')
+		if misc_cnt > 0 and (inv_misc == nil or inv_misc.count < misc_cnt) then
+			clear_flag = true
+		end
+		
+		local rmat_2 = GET_CHILD_RECURSIVELY(frame, 'rmat_2')
+		local rmat_2_slot = GET_CHILD(rmat_2, 'mat_slot', 'ui::CSlot')
+		local stone_cnt = rmat_2_slot:GetUserIValue('NEED_COUNT')
+		if stone_cnt > 0 and (inv_stone == nil or inv_stone.count < stone_cnt) then
+			clear_flag = true
+		end
+
+		local slotSet = GET_CHILD_RECURSIVELY(frame, 'rslotlist_discount')
+		for i = 0, slotSet:GetSelectedSlotCount() - 1 do
+			local slot = slotSet:GetSelectedSlot(i)
+			local icon = CreateIcon(slot)
+			local iconInfo = icon:GetInfo()
+			local coupon_item = session.GetInvItemByGuid(iconInfo:GetIESID())
+			local prevCnt = frame:GetUserIValue('DISCOUNT_MAT_' .. slot:GetSlotIndex())
+
+			if coupon_item == nil or coupon_item.count < prevCnt then
+				clear_flag = true
+				break
+			end
+		end
+
+		if clear_flag == true then
+			_CLEAR_ALL_REINFORCE_MATERIAL(frame)
+		end
+
+		UPDATE_RELIC_GEM_MANAGER_REINFORCE_DISCOUNT(frame)
 	end
-	
-	rprice_info:ShowWindow(1)
-	local silver_cnt = tonumber(frame:GetUserValue('REINFORCE_PRICE'))
-	_REINFORCE_PRICE_UPDATE(frame, silver_cnt, 0)
-	UPDATE_RELIC_GEM_MANAGER_REINFORCE_DISCOUNT(frame)
-	_REINFORCE_EXEC_BTN_UPDATE(frame)
 end
 
 function UPDATE_RELIC_GEM_MANAGER_REINFORCE_DISCOUNT(frame)
@@ -207,6 +263,7 @@ function UPDATE_RELIC_GEM_MANAGER_REINFORCE_DISCOUNT(frame)
             slot:SetMaxSelectCount(invItem.count)
 			slot:SetUserValue('DISCOUNT_POINT', obj.NumberArg1)
 			slot:SetUserValue('DISCOUNT_STONE', obj.NumberArg2)
+			slot:SetUserValue('DISCOUNT_TYPE', invItem.type)
 
 			local icon = CreateIcon(slot)
             icon:Set(obj.Icon, 'Item', invItem.type, slotindex, invItem:GetIESID(), invItem.count)
@@ -214,9 +271,22 @@ function UPDATE_RELIC_GEM_MANAGER_REINFORCE_DISCOUNT(frame)
 			local class = GetClassByType('Item', invItem.type)
 			SET_SLOT_ITEM_TEXT_USE_INVCOUNT(slot, invItem, obj, invItem.count)
 			ICON_SET_INVENTORY_TOOLTIP(icon, invItem, 'poisonpot', class)
+
+			local prevSelectedCount = frame:GetUserIValue('DISCOUNT_MAT_' .. slotindex)
+			if prevSelectedCount <= invItem.count then
+				slot:Select(1)
+				slot:SetSelectCount(prevSelectedCount)
+				RELIC_GEM_MANAGER_REINFORCE_DISCOUNT_CLICK(discountSet, slot)
+			else
+				slot:SetSelectCount(0)
+				slot:Select(0)
+				frame:SetUserValue('DISCOUNT_MAT_' .. slotindex, 0)
+			end
         end
 
 	end, false, discountSet, materialItemList, discountItemList)
+
+	discountSet:MakeSelectionList()
 end
 
 function RELIC_GEM_MANAGER_REINFORCE_TOTAL_DISCOUNT_PRICE()
@@ -319,15 +389,19 @@ function RELIC_GEM_MANAGER_REINFORCE_DISCOUNT_CLICK(slotSet, slot)
 	end
 
 	-- 선택한게 없으면 포커스 풀어주기
-	if slot:GetSelectCount() == 0 then
+	local selectedCount = slot:GetSelectCount()
+	if selectedCount == 0 then
 		slot:Select(0)
 	end
+
+	local mat_type = slot:GetUserValue('DISCOUNT_TYPE')
+	frame:SetUserValue('DISCOUNT_MAT_' .. slot:GetSlotIndex(), selectedCount)
 
     ui.EnableSlotMultiSelect(1)
 
     -- 초과금액 걷어내기 끝난다음 다시 계산
     local totalPrice = frame:GetUserValue('REINFORCE_PRICE')
-    local discountPrice, discountStone = RELIC_GEM_MANAGER_REINFORCE_TOTAL_DISCOUNT_PRICE()
+	local discountPrice, discountStone = RELIC_GEM_MANAGER_REINFORCE_TOTAL_DISCOUNT_PRICE()
 	_REINFORCE_PRICE_UPDATE(frame, SumForBigNumberInt64(totalPrice, tostring(tonumber(discountPrice) * -1)), discountStone)
 	_REINFORCE_EXEC_BTN_UPDATE(frame)
 end
@@ -336,7 +410,7 @@ function RELIC_GEM_MANAGER_REINFORCE_INV_RBTN(item_obj, slot)
 	local frame = ui.GetFrame('relic_gem_manager')
 	if frame == nil then return end
 
-	local icon = slot:GetIcon()
+	local icon = CreateIcon(slot)
     local icon_info = icon:GetInfo()
 	local guid = icon_info:GetIESID()
 	
@@ -426,10 +500,10 @@ function REMOVE_RELIC_GEM_REINF_MATERIAL(frame, slot)
 
 	slot:SetUserValue('ITEM_GUID', 'None')
 
-    local icon = slot:GetIcon()
+    local icon = CreateIcon(slot)
 	icon:SetColorTone('FFFF0000')
 	
-	UPDATE_RELIC_GEM_MANAGER_REINFORCE(frame)
+	_REINFORCE_EXEC_BTN_UPDATE(frame)
 end
 
 function RELIC_GEM_MANAGER_REINFORCE_REG_GEM(frame, inv_item, item_obj)
@@ -462,6 +536,8 @@ function RELIC_GEM_MANAGER_REINFORCE_REG_GEM(frame, inv_item, item_obj)
 	frame:SetUserValue('GEM_LV', gem_lv)
 	frame:SetUserValue('GEM_GUID', inv_item:GetIESID())
 
+	_CLEAR_ALL_REINFORCE_MATERIAL(frame)
+
 	local rmat_inner = GET_CHILD_RECURSIVELY(frame, 'rmat_inner')
 
 	local misc_name, stone_name = shared_item_relic.get_gem_reinforce_mat_name(gem_lv)
@@ -472,10 +548,16 @@ function RELIC_GEM_MANAGER_REINFORCE_REG_GEM(frame, inv_item, item_obj)
 	
 	local silver_cnt = shared_item_relic.get_gem_reinforce_silver(gem_lv)
 	frame:SetUserValue('REINFORCE_PRICE', silver_cnt)
+	_REINFORCE_PRICE_UPDATE(frame, silver_cnt, 0)
 
 	rmat_inner:ShowWindow(1)
 
-	UPDATE_RELIC_GEM_MANAGER_REINFORCE(frame)
+	local rprice_info = GET_CHILD_RECURSIVELY(frame, 'rprice_info')
+	rprice_info:ShowWindow(1)
+
+	UPDATE_RELIC_GEM_MANAGER_REINFORCE_DISCOUNT(frame)
+
+	_REINFORCE_EXEC_BTN_UPDATE(frame)
 end
 
 local function _REG_REINFORCE_MATERIAL(frame, ctrlset, inv_item, item_obj, itemtype)
@@ -491,12 +573,12 @@ local function _REG_REINFORCE_MATERIAL(frame, ctrlset, inv_item, item_obj, itemt
 	        { Name = 'ClassName', Value = item_obj.ClassName }
 	    }, false)
 	
-	    if cur_cnt < need_cnt then
+		if cur_cnt < need_cnt then
 	        ui.SysMsg(ClMsg('NotEnoughRecipe'))
 	        return
 	    end
 	
-	    local icon = slot:GetIcon()
+	    local icon = CreateIcon(slot)
 	    icon:SetColorTone('FFFFFFFF')
 	
 		local guid = GetIESID(item_obj)
@@ -529,7 +611,7 @@ function RELIC_GEM_MANAGER_REINFORCE_REG_MAT(frame, inv_item, item_obj)
 		ui.SysMsg(ClMsg('IMPOSSIBLE_ITEM'))
 	end
 
-	UPDATE_RELIC_GEM_MANAGER_REINFORCE(frame)
+	_REINFORCE_EXEC_BTN_UPDATE(frame)
 end
 
 function RELIC_GEM_MANAGER_REINFORCE_REG_ITEM(frame, inv_item, item_obj)
@@ -555,14 +637,6 @@ function CONFIRM_RELIC_GEM_MANAGER_REINFORCE()
 		CLEAR_RELIC_GEM_MANAGER_REINFORCE()
 	elseif result == "FAILED" then
 		UPDATE_RELIC_GEM_MANAGER_REINFORCE(frame)
-		local rresult_gb = GET_CHILD_RECURSIVELY(frame, 'rresult_gb')
-		rresult_gb:ShowWindow(0)
-
-		local send_ok_reinforce = GET_CHILD_RECURSIVELY(frame, 'send_ok_reinforce')
-		send_ok_reinforce:ShowWindow(0)
-	
-		local do_reinforce = GET_CHILD_RECURSIVELY(frame, 'do_reinforce')
-		do_reinforce:ShowWindow(1)
 	end
 end
 
@@ -581,6 +655,7 @@ function CLEAR_RELIC_GEM_MANAGER_REINFORCE()
 
 	local do_reinforce = GET_CHILD_RECURSIVELY(frame, 'do_reinforce')
 	do_reinforce:ShowWindow(1)
+	do_reinforce:SetEnable(0)
 	
 	local rgem_slot = GET_CHILD_RECURSIVELY(frame, 'rgem_slot')
 	rgem_slot:ClearIcon()
@@ -594,14 +669,21 @@ function CLEAR_RELIC_GEM_MANAGER_REINFORCE()
 	frame:SetUserValue('GEM_TYPE', 0)
 	frame:SetUserValue('GEM_GUID', 'None')
 
-	UPDATE_RELIC_GEM_MANAGER_REINFORCE(frame)
+	local discountSet = GET_CHILD_RECURSIVELY(frame, 'rslotlist_discount', 'ui::CSlotSet')
+	for i = 0, discountSet:GetSlotCount() - 1 do
+		frame:SetUserValue('DISCOUNT_MAT_' .. i, 0)
+	end
+
+	local rmat_inner = GET_CHILD_RECURSIVELY(frame, 'rmat_inner')
+	rmat_inner:ShowWindow(0)
+
+	local rprice_info = GET_CHILD_RECURSIVELY(frame, 'rprice_info')
+	rprice_info:ShowWindow(0)
 end
 
 function RELIC_GEM_MANAGER_REINFORCE_OPEN(frame)
 	local reinforceBg = GET_CHILD_RECURSIVELY(frame, 'reinforceBg')
 	if reinforceBg:IsVisible() ~= 1 then return end
-
-	UPDATE_RELIC_GEM_MANAGER_REINFORCE(frame)
 end
 
 local function _CHECK_MAT_MATERIAL_STATE(ctrlset)
@@ -620,8 +702,8 @@ local function _CHECK_MAT_MATERIAL_STATE(ctrlset)
 	local need_cnt = mat_slot:GetUserIValue('NEED_COUNT')
 	local cur_cnt = GET_INV_ITEM_COUNT_BY_PROPERTY({
         { Name = 'ClassName', Value = item_obj.ClassName }
-    }, false)
-    if cur_cnt < need_cnt then
+	}, false)
+	if cur_cnt < need_cnt then
         return false, 'NotEnoughRecipe'
 	end
 
@@ -692,17 +774,23 @@ function RELIC_GEM_MANAGER_REINFORCE_EXEC(parent)
 
     for i = 0, discountSet:GetSelectedSlotCount() -1 do
         local slot = discountSet:GetSelectedSlot(i)
-        local Icon = slot:GetIcon()
+        local Icon = CreateIcon(slot)
         local iconInfo = Icon:GetInfo()
-        local cnt = slot:GetSelectCount()
+		local cnt = slot:GetSelectCount()
+		local dis_item = session.GetInvItemByGuid(iconInfo:GetIESID())
         session.AddItemID(iconInfo:GetIESID(), cnt)
     end
 	
-	local gem_name = dic.getTranslatedStr(TryGetProp(gem_obj, 'Name', 'None'))
-	local msg = ScpArgMsg('REALLY_DO_RELIC_GEM_REINFORCE', 'SILVER', silver_cnt, 'NAME', gem_name)
-	local yesScp = '_RELIC_GEM_MANAGER_REINFORCE_EXEC()'
-	local msgbox = ui.MsgBox(msg, yesScp, 'None')
-	SET_MODAL_MSGBOX(msgbox)
+	local check_no_msgbox = GET_CHILD_RECURSIVELY(frame, 'check_no_msgbox')
+	if check_no_msgbox:IsChecked() == 1 then
+		_RELIC_GEM_MANAGER_REINFORCE_EXEC()
+	else
+		local gem_name = dic.getTranslatedStr(TryGetProp(gem_obj, 'Name', 'None'))
+		local msg = ScpArgMsg('REALLY_DO_RELIC_GEM_REINFORCE', 'SILVER', silver_cnt, 'NAME', gem_name)
+		local yesScp = '_RELIC_GEM_MANAGER_REINFORCE_EXEC()'
+		local msgbox = ui.MsgBox(msg, yesScp, 'None')
+		SET_MODAL_MSGBOX(msgbox)
+	end
 end
 
 function _RELIC_GEM_MANAGER_REINFORCE_EXEC()

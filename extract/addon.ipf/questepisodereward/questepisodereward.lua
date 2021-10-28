@@ -14,7 +14,7 @@ function QUESTEPISODEREWARD_INFO(episodeName, xPos, prop)
     local episodeRewardIES = GetClass("Episode_Reward", episodeName);
     local pcObj = GetMyPCObject();
 	local result = SCR_EPISODE_CHECK(pcObj, episodeRewardIES.ClassName)
-	
+
     -- 최신 에피소드 보상 UI 출력 예외 처리
 	if result == 'New' or result == 'Next' then
 	    return
@@ -42,6 +42,7 @@ function QUESTEPISODEREWARD_INFO(episodeName, xPos, prop)
     btnReward:SetEventScriptArgString(ui.LBUTTONUP, episodeRewardIES.ClassName);
     btnReward:SetSkinName("test_red_button");
     btnReward:SetEnable(1)
+
     if result ~= 'Reward' then
         btnReward:SetSkinName("test_gray_button");
         btnReward:SetEnable(0)

@@ -83,6 +83,10 @@ function CLEAR_ITEM_SANDRA_ONELINE_REVERT_RANDOM_UI()
 	local bodyGbox2_1 = GET_CHILD_RECURSIVELY(frame, 'bodyGbox2_1');
 	bodyGbox2_1:RemoveAllChild();
 
+	for i = 1, MAX_RANDOM_OPTION_COUNT do
+		frame:SetUserValue("IS_CHECKED_" .. i, 0)
+	end
+
 	UPDATE_REMAIN_SANDRA_GLASS_ONLINE_COUNT(frame)
 end
 
@@ -110,6 +114,18 @@ function SENDOK_ITEM_SANDRA_ONELINE_REVERT_RANDOM_UI()
 	local bodyGbox1 = GET_CHILD_RECURSIVELY(frame, 'bodyGbox1');
 	bodyGbox1:ShowWindow(1)
 	local bodyGbox1_1 = GET_CHILD_RECURSIVELY(frame, 'bodyGbox1_1');
+	local cnt = frame:GetUserIValue("RANDOM_PROP_CNT");
+	for i = 1, cnt do
+		local controlset = GET_CHILD_RECURSIVELY(bodyGbox1_1, "PROPERTY_CSET_"..i);
+		if controlset ~= nil then
+			local checkbox = GET_CHILD_RECURSIVELY(controlset, "checkbox");	
+			if checkbox:IsChecked() == 1 then
+				frame:SetUserValue("IS_CHECKED_" .. i, 1)
+			else
+				frame:SetUserValue("IS_CHECKED_" .. i, 0)
+			end			
+		end
+	end
 	bodyGbox1_1:RemoveAllChild();
 	bodyGbox1_1:EnableHitTest(1);		-- 체크박스 클릭을 위해 hittest 옵션 켜줌
 
@@ -221,6 +237,12 @@ function ITEM_SANDRA_ONELINE_REVERT_RANDOM_REG_TARGETITEM(frame, itemID)
 			local checkbox = GET_CHILD_RECURSIVELY(itemClsCtrl, "checkbox", "ui::CCheckBox");
 			checkbox:SetEventScript(ui.LBUTTONDOWN, 'ITEM_SANDRA_ONELINE_REVERT_RANDOM_CHECK_BOX_CLICK')
 			checkbox:SetEventScriptArgNumber(ui.LBUTTONDOWN, i);
+			if frame:GetUserIValue("IS_CHECKED_" .. i) == 1 then
+				checkbox:SetCheck(1);
+				ITEM_SANDRA_ONELINE_REVERT_RANDOM_CHECK_BOX_CLICK(frame, checkbox);
+			else
+				checkbox:SetCheck(0);
+			end
 
 			ypos = i * pos_y + propertyList:GetHeight() + 5;			
 			cnt = cnt + 1;
@@ -254,8 +276,13 @@ function ITEM_SANDRA_ONELINE_REVERT_RANDOM_EXEC(frame)
 		return;
 	end
 
-	local clmsg = ScpArgMsg("DoSandraOnelineRandomResetOptionCountNoReset")
-	ui.MsgBox_NonNested(clmsg, frame:GetName(), "_ITEM_SANDRA_ONELINE_REVERT_RANDOM_EXEC", "None");
+	local check_no_msgbox = GET_CHILD_RECURSIVELY(frame, 'check_no_msgbox')
+	if check_no_msgbox:IsChecked() == 1 then
+		_ITEM_SANDRA_ONELINE_REVERT_RANDOM_EXEC()
+	else
+		local clmsg = ScpArgMsg("DoSandraOnelineRandomResetOptionCountNoReset")
+		ui.MsgBox_NonNested(clmsg, frame:GetName(), "_ITEM_SANDRA_ONELINE_REVERT_RANDOM_EXEC", "None");
+	end
 end
 
 function _ITEM_SANDRA_ONELINE_REVERT_RANDOM_EXEC()

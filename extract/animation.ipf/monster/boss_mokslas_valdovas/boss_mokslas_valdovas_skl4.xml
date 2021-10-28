@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by imc (imc) -->
+<ActionDesc>
+    <Sound frame="0.41" soundFile="mon_voice5_l_14"/>
+    <Sound frame="4.00" soundFile="mon_denoptic_skl_4"/>
+    <Sound frame="23.28" soundFile="mon_voice5_l_14"/>
+    <Sound frame="65.00" soundFile="mon_voice_helgasercle_7"/>
+    <Sound frame="68.00" soundFile="mon_hori_warrior_atk"/>
+    <Sound frame="69.00" soundFile="skl_eff_atk_sperad"/>
+    <Shockwave frame="73" type="2" intensity="1" frequency="70" duration="0.3" range="1000"/>
+    <Particle frame="76" attachActor="None" attachNode="Dummy_deadbody" particleName="F_burstup007_smoke_1" hiddenObj="false" useAttach="false" scale="1" pause="true" targetPos="false"/>
+    <AfterImage frame="77" term="0" blendTime="0" r="150" g="150" b="150" a="150"/>
+    <Sound frame="95.15" soundFile="skl_eff_stone_blow_m"/>
+    <Shockwave frame="98" type="2" intensity="7" frequency="50" duration="0.6" range="1000"/>
+</ActionDesc>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="EUC-KR"?>
+<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by IMCGames Co., Ltd (IMCGames Co., Ltd) -->
+<ActionDesc>
+    <BlendOn frame="0" R="0" G="0" B="0" A="50"/>
+    <Particle frame="0" attachNode="Dummy_root" particleName="F_smoke198_red_violet" useAttach="false" hiddenObj="false" changeEffect="None" scale="4" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Particle frame="6" attachNode="Dummy_effect_eye_R" particleName="F_pc_item_ep13cybersoldier01_pistol_light_red" useAttach="true" hiddenObj="false" changeEffect="None" scale="0.1" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Particle frame="6" attachNode="Dummy_effect_eye_L" particleName="F_pc_item_ep13cybersoldier01_pistol_light_red" useAttach="true" hiddenObj="false" changeEffect="None" scale="0.1" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Sound frame="8.89" soundFile="swd_blow_leather1"/>
+    <Sound frame="13.33" soundFile="swd_blow_stone1"/>
+    <Particle frame="15" attachNode="Dummy_root" particleName="F_smoke198_red_violet" useAttach="false" hiddenObj="false" changeEffect="None" scale="4" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Particle frame="15" attachNode="Dummy_effect_skl_smoke" particleName="F_drop_stone001_1_2" useAttach="false" hiddenObj="false" changeEffect="None" scale="1" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Shockwave frame="16" type="2" intensity="2" frequency="60" duration="0.3" range="1000"/>
+    <BlendOn frame="16" R="130" G="130" B="150" A="100"/>
+    <Particle frame="16" attachNode="Dummy_effect_skl1" particleName="F_ground068_smoke2_grey" useAttach="false" hiddenObj="false" changeEffect="None" scale="1" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Particle frame="16" attachNode="Dummy_root" particleName="F_ground071_smoke_grey" useAttach="false" hiddenObj="false" changeEffect="None" scale="0.6" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <BlendOn frame="17" R="80" G="90" B="110" A="100"/>
+    <Particle frame="17" attachNode="Dummy_effect_skl1" particleName="F_scratch001_mint2" useAttach="false" hiddenObj="false" changeEffect="None" scale="1.8" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <BlendOff frame="18" R="0" G="0" B="0" A="0"/>
+</ActionDesc>

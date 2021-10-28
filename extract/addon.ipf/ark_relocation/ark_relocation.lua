@@ -205,6 +205,8 @@ function ARK_RELOCATION_REG_SRC_ITEM(frame, itemID)
 	if enable == false then
 		if reason == 'ItemLock' then
 			ui.SysMsg(ClMsg('MaterialItemIsLock'));
+		elseif reason == 'CantExecCuzCharacterBelonging' then
+			ui.SysMsg(ClMsg('CantExecCuzCharacterBelonging'));
 		end
 		return;
 	end
@@ -279,6 +281,8 @@ function ARK_RELOCATION_REG_DEST_ITEM(frame, itemID)
 			ui.SysMsg(ClMsg('AlreadRegSameItem'));
 		elseif reason == 'ItemLock' then
 			ui.SysMsg(ClMsg('MaterialItemIsLock'));
+		elseif reason == 'CantExecCuzCharacterBelonging' then
+			ui.SysMsg(ClMsg('CantExecCuzCharacterBelonging'));
 		end
 		return;
 	end
@@ -297,7 +301,7 @@ function ARK_RELOCATION_REG_DEST_ITEM(frame, itemID)
 		return		
 	end
 
-    if shared_item_ark.is_valid_condition_for_copy(dest_Obj, src_Obj) == false then
+	if shared_item_ark.is_valid_condition_for_copy(dest_Obj, src_Obj) == false then		
 		ui.SysMsg(ClMsg('DestItemLvHigh'));
         return
     end
@@ -378,6 +382,10 @@ function IS_ENABLE_REG_ARK_ITEM(frame, invItem)
 		return false, 'Same';
 	end
 	
+	if TryGetProp(itemObj, 'CharacterBelonging', 0) == 1 then
+		return false, 'CantExecCuzCharacterBelonging'
+	end
+
 	return true;
 end
 
