@@ -94,6 +94,7 @@ function SET_SLOT_ITEM_OBJ(slot, itemCls, gender, isBarrack)
 		SET_ITEM_TOOLTIP_TYPE(icon, itemCls.ClassID, itemCls);
 	else
 		SET_ITEM_TOOLTIP_ALL_TYPE(icon, itemCls, itemCls.ClassName, "tooltips", itemCls.ClassID, tooltipID);
+		SET_SLOT_STYLESET(slot, itemCls)			
 		if nil == isBarrack then
 			slot:CopyTooltipData(icon);
 		end
@@ -312,7 +313,7 @@ function SET_SLOT_STYLESET(slot, itemCls, itemGrade_Flag, itemLevel_Flag, itemAp
 			elseif TryGetProp(itemCls, 'GroupName', 'None') == 'Ark' then
 				reinforceLv = TryGetProp(itemCls, 'ArkLevel', 1)
 			elseif TryGetProp(itemCls, 'GroupName', 'None') == 'Relic' then
-				reinforceLv = TryGetProp(GetMyAccountObj(), 'Relic_LV', 1)
+				reinforceLv = TryGetProp(itemCls, 'Relic_LV', 1)
 			end			
 			SET_SLOT_REINFORCE_LEVEL(slot, reinforceLv);			
 		end

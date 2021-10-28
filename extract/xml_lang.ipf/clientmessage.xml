@@ -830,7 +830,7 @@
 		<Class ClassID="4271" ClassName="EXCEED_SELECT_COUNT" Data="선택 가능한 최대 개수를 초과하였습니다."/>
 		<Class ClassID="4272" ClassName="DO_NOT_USE_HERE" Data="건물 내부에서 사용할 수 없습니다."/>
 		<Class ClassID="4273" ClassName="GET_MISC_PVP_MINE2{count}" Data="+{count} 용병단 증표"/>
-		<Class ClassID="4274" ClassName="RESULT_MISC_PVP_MINE2" Data="용병단 증표 : {count1} -> {count2}"/>
+		<Class ClassID="4274" ClassName="RESULT_MISC_PVP_MINE2" Data="용병단 증표 : {count1} → {count2}"/>
 		<Class ClassID="4275" ClassName="ITEM_COUNT_SYS_MSG" Data="{#33FF33}[{itemName}]보유량: {count}{/}"/>
 		<Class ClassID="4276" ClassName="DeleteItem{ItemName}{count}" Data="[아이템 삭제] {ItemName} {count}개가 기간 만료로 삭제 됩니다."/>
 		<Class ClassID="4277" ClassName="CantEquipNotYet{second}" Data="{second}초 후 아이템을 장착할 수 있습니다."/>
@@ -1324,7 +1324,7 @@
 		<Class ClassID="10070" Data="인원이 초과되어 입장할 수 없습니다"/>
 		<Class ClassID="10071" Data="%02d회 재접속 시도 중..."/>
 		<Class ClassID="10072" Data="서비스 점검중이거나 특정 사유로{nl}게임 접속이 제한되었습니다.{nl}자세한 사항은 홈페이지 고객센터로{nl}문의해 주세요."/>
-		<Class ClassID="10073" Data="고객님의 캐릭터는 특정 사유로 게임접속이 제한되었습니다{nl}자세한 사항은 홈페이지 내 고객센터->서비스 장애 신고함으로 문의해 주세요"/>
+		<Class ClassID="10073" Data="고객님의 캐릭터는 특정 사유로 게임접속이 제한되었습니다{nl}자세한 사항은 홈페이지 내 고객센터 → 서비스 장애 신고함으로 문의해 주세요"/>
 		<Class ClassID="10074" ClassName="NotEnough{ItemName}Item" Data="{ItemName} 아이템이 부족합니다"/>
 		<Class ClassID="10075" Data="이 위치에는 초식을 사용할 수 없습니다{nl}다른 위치로 이동해 주세요"/>
 		<Class ClassID="10076" Data="{Auto_1}초 후에 {Auto_2}의 회복이 완료됩니다"/>
@@ -10394,7 +10394,7 @@
 		<Class ClassID="102466" ClassName="GuildEventStartNoticeMessage" Data="해당 이벤트의 경우 시작하게 되면 1주일 뒤에 다시 시작할 수 있습니다. 계속 하시겠습니까?"/>
 		<Class ClassID="102467" ClassName="HaveNoPermissions" Data="권한이 없습니다."/>
 		<Class ClassID="102468" ClassName="CantJoinServerGuild{days}{day}{hour}{min}{sec}" Data="TOS 성장 길드 탈퇴 후 {days}일 동안은 TOS 성장 길드에 가입할 수 없습니다.{nl}(가입 가능일 : {day}일 {hour}시간 {min}분 {sec}초 이후)"/>
-		<Class ClassID="102469" ClassName="PleaseLearnTamingSkill" Data="길드 타워 -> 길드 성장 -> 길드 특성에서 테이밍 특성을 습득하세요"/>
+		<Class ClassID="102469" ClassName="PleaseLearnTamingSkill" Data="길드 타워 → 길드 성장 → 길드 특성에서 테이밍 특성을 습득하세요"/>
 		<Class ClassID="102470" ClassName="EVENT_2010_GUILD_REWARD_CONFIRM" Data="보상 수령 시 이후 미션을 더 수행해도 추가 보상 획득이 불가능합니다. 수령하시겠습니까?"/>
 		<Class ClassID="102471" ClassName="guild_event_start{guildEvent}{compareEvent}" Data="길드퀘스트{nl}{#ff0000}{ol}[{guildEvent}]{/}{/}를 시작하시겠습니까?{nl}[{guildEvent}]를 참여하면 해당 주차에{nl}{#ff0000}[{compareEvent}]{/}미션은 참여할 수 없습니다.{nl} {nl}{s16}{#0022ff}※해당 사항은 봉쇄전에서만 적용됩니다.{/}"/>
 		<Class ClassID="102472" ClassName="guild_event_start_guild_member{guildEvent}{compareEvent}" Data="{#ff0000}{ol}[{guildEvent}]{/}{/}를 참여하면 해당 주차에{nl}[{compareEvent}]미션은 참여할 수 없습니다.{nl} {nl}{s16}{#0022ff}※해당 사항은 봉쇄전에서만 적용됩니다.{/}"/>
@@ -12573,7 +12573,7 @@
 		<Class ClassID="136962" ClassName="Auto__InvItem3MonSeuTeouiClassID_=_" Data=" InvItem3몬스터의ClassID = "/>
 		<Class ClassID="136963" ClassName="Auto_ClassName_:_',questIES.Succ_InvItemName4,'_/_ID_:_',GetClassNumber('Item',questIES.Succ_InvItemName4,'ClassID'),'_/_Name_:_',GetClassString('Item',questIES.Succ_InvItemName4,'Name'),_'_/_',questIES.Succ_InvItemCount4,'_Kae_iSang" Data="ClassName : ',questIES.Succ_InvItemName4,' / ID : ',GetClassNumber('Item',questIES.Succ_InvItemName4,'ClassID'),' / Name : ',GetClassString('Item',questIES.Succ_InvItemName4,'Name'), ' / ',questIES.Succ_InvItemCount4,' 개 이상"/>
 		<Class ClassID="136964" ClassName="Auto__InvItem4MonSeuTeouiClassID_=_" Data=" InvItem4몬스터의ClassID = "/>
-		<Class ClassID="136965" ClassName="Auto_KweSeuTeu_SiJag_Si_(JinHaengDaeKi_->_JinHaengJung)" Data="퀘스트 시작 시 (진행대기 -> 진행 중)"/>
+		<Class ClassID="136965" ClassName="Auto_KweSeuTeu_SiJag_Si_(JinHaengDaeKi_->_JinHaengJung)" Data="퀘스트 시작 시 (진행대기 → 진행 중)"/>
 		<Class ClassID="136966" ClassName="Auto_NPCwa_DaeHwa_Si_wanLyoDaeKi_SangTaeLo_ByeonKyeong" Data="NPC와 대화 시 완료대기 상태로 변경"/>
 		<Class ClassID="136967" ClassName="Auto_KweSeuTeu_wanLyo_CheoLiKkaJi_Han_Beone_SiKim(KweSeuTeu_BoSangeul_BatKo_KweSeuTeu_wanLyo)" Data="퀘스트 완료 처리까지 한 번에 시킴(퀘스트 보상을 받고 퀘스트 완료)"/>
 		<Class ClassID="136968" ClassName="Auto_ClassName_:_',quest_autoIES.Possible_ItemName1,'_/_ID_:_',GetClassNumber('Item',quest_autoIES.Possible_ItemName1,'ClassID'),'_/_Name_:_',GetClassString('Item',quest_autoIES.Possible_ItemName1,'Name'),_'_/_',quest_autoIES.Possible_ItemCount1,'_Kae_',_'" Data="ClassName : ',quest_autoIES.Possible_ItemName1,' / ID : ',GetClassNumber('Item',quest_autoIES.Possible_ItemName1,'ClassID'),' / Name : ',GetClassString('Item',quest_autoIES.Possible_ItemName1,'Name'), ' / ',quest_autoIES.Possible_ItemCount1,' 개 ', '"/>
@@ -12589,7 +12589,7 @@
 		<Class ClassID="136978" ClassName="Auto_ClassName_:_',quest_autoIES.Progress_TakeItemName2,'_/_ID_:_',GetClassNumber('Item',quest_autoIES.Progress_TakeItemName2,'ClassID'),'_/_Name_:_',GetClassString('Item',quest_autoIES.Progress_TakeItemName2,'Name'),_'_/_',quest_autoIES.Progress_TakeItemCount2,'_Kae_',_'" Data="ClassName : ',quest_autoIES.Progress_TakeItemName2,' / ID : ',GetClassNumber('Item',quest_autoIES.Progress_TakeItemName2,'ClassID'),' / Name : ',GetClassString('Item',quest_autoIES.Progress_TakeItemName2,'Name'), ' / ',quest_autoIES.Progress_TakeItemCount2,' 개 ', '"/>
 		<Class ClassID="136979" ClassName="Auto_ClassName_:_',quest_autoIES.Progress_TakeItemName3,'_/_ID_:_',GetClassNumber('Item',quest_autoIES.Progress_TakeItemName3,'ClassID'),'_/_Name_:_',GetClassString('Item',quest_autoIES.Progress_TakeItemName3,'Name'),_'_/_',quest_autoIES.Progress_TakeItemCount3,'_Kae_',_'" Data="ClassName : ',quest_autoIES.Progress_TakeItemName3,' / ID : ',GetClassNumber('Item',quest_autoIES.Progress_TakeItemName3,'ClassID'),' / Name : ',GetClassString('Item',quest_autoIES.Progress_TakeItemName3,'Name'), ' / ',quest_autoIES.Progress_TakeItemCount3,' 개 ', '"/>
 		<Class ClassID="136980" ClassName="Auto_ClassName_:_',quest_autoIES.Progress_TakeItemName4,'_/_ID_:_',GetClassNumber('Item',quest_autoIES.Progress_TakeItemName4,'ClassID'),'_/_Name_:_',GetClassString('Item',quest_autoIES.Progress_TakeItemName4,'Name'),_'_/_',quest_autoIES.Progress_TakeItemCount4,'_Kae_',_'" Data="ClassName : ',quest_autoIES.Progress_TakeItemName4,' / ID : ',GetClassNumber('Item',quest_autoIES.Progress_TakeItemName4,'ClassID'),' / Name : ',GetClassString('Item',quest_autoIES.Progress_TakeItemName4,'Name'), ' / ',quest_autoIES.Progress_TakeItemCount4,' 개 ', '"/>
-		<Class ClassID="136981" ClassName="Auto_KweSeuTeu_Si(wanLyoDaeKi_->_wanLyo)" Data="퀘스트 시(완료대기 -> 완료)"/>
+		<Class ClassID="136981" ClassName="Auto_KweSeuTeu_Si(wanLyoDaeKi_->_wanLyo)" Data="퀘스트 시(완료대기 → 완료)"/>
 		<Class ClassID="136982" ClassName="Auto_ClassName_:_',quest_autoIES.Success_ItemName1,'_/_ID_:_',GetClassNumber('Item',quest_autoIES.Success_ItemName1,'ClassID'),'_/_Name_:_',GetClassString('Item',quest_autoIES.Success_ItemName1,'Name'),_'_/_',quest_autoIES.Success_ItemCount1,'_Kae_',_'" Data="ClassName : ',quest_autoIES.Success_ItemName1,' / ID : ',GetClassNumber('Item',quest_autoIES.Success_ItemName1,'ClassID'),' / Name : ',GetClassString('Item',quest_autoIES.Success_ItemName1,'Name'), ' / ',quest_autoIES.Success_ItemCount1,' 개 ', '"/>
 		<Class ClassID="136983" ClassName="Auto_ClassName_:_',quest_autoIES.Success_ItemName2,'_/_ID_:_',GetClassNumber('Item',quest_autoIES.Success_ItemName2,'ClassID'),'_/_Name_:_',GetClassString('Item',quest_autoIES.Success_ItemName2,'Name'),_'_/_',quest_autoIES.Success_ItemCount2,'_Kae_',_'" Data="ClassName : ',quest_autoIES.Success_ItemName2,' / ID : ',GetClassNumber('Item',quest_autoIES.Success_ItemName2,'ClassID'),' / Name : ',GetClassString('Item',quest_autoIES.Success_ItemName2,'Name'), ' / ',quest_autoIES.Success_ItemCount2,' 개 ', '"/>
 		<Class ClassID="136984" ClassName="Auto_ClassName_:_',quest_autoIES.Success_ItemName3,'_/_ID_:_',GetClassNumber('Item',quest_autoIES.Success_ItemName3,'ClassID'),'_/_Name_:_',GetClassString('Item',quest_autoIES.Success_ItemName3,'Name'),_'_/_',quest_autoIES.Success_ItemCount3,'_Kae_',_'" Data="ClassName : ',quest_autoIES.Success_ItemName3,' / ID : ',GetClassNumber('Item',quest_autoIES.Success_ItemName3,'ClassID'),' / Name : ',GetClassString('Item',quest_autoIES.Success_ItemName3,'Name'), ' / ',quest_autoIES.Success_ItemCount3,' 개 ', '"/>
@@ -13117,7 +13117,7 @@
 		<Class ClassID="137509" ClassName="Auto_MoDuBoKi" Data="모두보기"/>
 		<Class ClassID="137510" ClassName="Auto_LoKeuLeul_ipLyeogHaSeyo" Data="로그를 입력하세요"/>
 		<Class ClassID="137511" ClassName="Auto_LoKeuLeul_ipLyeogHaeJuSeyo" Data="로그를 입력해주세요"/>
-		<Class ClassID="137512" ClassName="Auto_JagSeongJa_:_{Auto_1}{nl}NalJja_:_{Auto_2}{nl}[{Auto_3}{Auto_4}{/}]Kapeul{nl}[{Auto_5}{Auto_6}{/}]->[{Auto_7}{Auto_8}{/}]Lo_ByeonKyeong{nl}{nl}{#FFFF00}LoKeu{/}{nl}{Auto_9}" Data="작성자 : {Auto_1}{nl}날짜 : {Auto_2}{nl}[{Auto_3}{Auto_4}{/}]값을{nl}[{Auto_5}{Auto_6}{/}]->[{Auto_7}{Auto_8}{/}]로 변경{nl}{nl}{#FFFF00}로그{/}{nl}{Auto_9}"/>
+		<Class ClassID="137512" ClassName="Auto_JagSeongJa_:_{Auto_1}{nl}NalJja_:_{Auto_2}{nl}[{Auto_3}{Auto_4}{/}]Kapeul{nl}[{Auto_5}{Auto_6}{/}]->[{Auto_7}{Auto_8}{/}]Lo_ByeonKyeong{nl}{nl}{#FFFF00}LoKeu{/}{nl}{Auto_9}" Data="작성자 : {Auto_1}{nl}날짜 : {Auto_2}{nl}[{Auto_3}{Auto_4}{/}]값을{nl}[{Auto_5}{Auto_6}{/}]→[{Auto_7}{Auto_8}{/}]로 변경{nl}{nl}{#FFFF00}로그{/}{nl}{Auto_9}"/>
 		<Class ClassID="137513" ClassName="Auto__Kaeui_Kapeul_JeoJangHayeossSeupNiDa." Data=" 개의 값을 저장하였습니다."/>
 		<Class ClassID="137514" ClassName="Auto_KeotKiSogDo" Data="걷기속도"/>
 		<Class ClassID="137515" ClassName="Auto_TtwiKiSogDo" Data="뛰기속도"/>
@@ -16640,16 +16640,6 @@
 		<Class ClassID="599050" ClassName="EVENT_2009_FULLMOON_GIVE_RICECAKE_LIMIT4" Data="보유한 송편의 개수를 초과하여 입력하실 수 없습니다."/>
 		<Class ClassID="599051" ClassName="EVENT_2009_FULLMOON_INFO_MSG" Data="달맞이 주화 획득 현황{nl}일일 총 획득량 ({COIN}/300개){nl}일일 누적 접속 시간 ({TIME}분){nl}{#FF0000}※접속 시간으로 획득한 [이벤트] 달맞이 주화는 일일 총 획득량에 포함됩니다.{/}{nl}{#FF0000}※누적 접속 시간 1시간마다 [이벤트] 달맞이 주화 10개, 달맞이 포인트 3을 획득하실 수 있습니다.{/}"/>
 	</Category>
-	<Category Name="SilverGacha">
-		<Class ClassID="599201" ClassName="SilverGacha_AddMileage" Data="마신의 유혹 포인트가 증가하였습니다.{nl} {nl}{@st66d_y}{s18}현재 포인트: {COUNT}"/>
-		<Class ClassID="599202" ClassName="SilverGachaShopName" Data="마신의 유혹 포인트 상점"/>
-		<Class ClassID="599203" ClassName="SilverGachaShopResult" Data="마신의 유혹 포인트 : {count1} -> {count2}"/>
-		<Class ClassID="599204" ClassName="SilverGachaNoEvent" Data="현재 진행중인 마신의 유혹 이벤트가 없습니다."/>
-		<Class ClassID="599205" ClassName="SilverGachaToAll" Data="축하합니다! {TEAMNAME} 님이 마신의 유혹 이벤트에서 {ITEMNAME}을 획득하셨습니다."/>
-		<Class ClassID="599206" ClassName="Mileage_SilverGacha_extract" Data="마신의 유혹 포인트 변환"/>
-		<Class ClassID="599207" ClassName="Mileage_SilverGacha_extract_tooltip" Data="마신의 유혹에서 획득하신 아이템을 마신의 유혹 포인트로 변환하실 수 있습니다."/>
-		<Class ClassID="599208" ClassName="SilverGachaMaxVal" Data="∞"/>
-	</Category>
 	<Category Name="EVENT_2010_HALLOWEEN">
 		<Class ClassID="599101" ClassName="EVENT_2010_HALLOWEEN_SEL_1" Data="{#003399}[할로윈]{/} 코스튬 랜덤 박스 무료 지급"/>
 		<Class ClassID="599102" ClassName="EVENT_2010_HALLOWEEN_SEL_2" Data="{#003399}[할로윈]{/} 코스튬 랜덤 박스 교환"/>
@@ -16661,6 +16651,16 @@
 		<Class ClassID="599108" ClassName="EVENT_2010_HALLOWEEN_SEL_7" Data="{ITEMNAME}을 영구제로 교환 하시겠습니까?"/>
 		<Class ClassID="599109" ClassName="EVENT_2010_HALLOWEEN_UI_HELP" Data="{s16}{#ffbf00}[할로윈] 행운 뽑기{/}{/}{nl}- 보유한 {#ffbf00}[이벤트] 특제 캔디{/} 10개를 사용하여 뽑기를 이용할 수 있습니다.{nl}- 주차보상은 매 주 목요일마다 갱신됩니다.{nl}- 코스튬 영구제 교환권은 팀당 1회만 획득할 수 있습니다.{nl}- 보상 '[할로윈] 용병단 증표 쿠폰'사용 시 '용병단 증표' 500개가 지급됩니다.{nl}[주차 보상 갱신]{nl}-2차: 2020-10-29 06:00 ~ 2020-11-05 05:59{nl}-3차: 2020-11-05 06:00 ~ 2020-11-12 05:59{nl}-4차: 2020-11-12 06:00 ~ 2020-11-19 06:00{nl}-5차: 2020-11-19 06:00 ~ 2020-11-26 점검 전{nl}※자세한 이벤트 보상 목록은 이벤트 페이지에서 확인할 수 있습니다."/>
 		<Class ClassID="599110" ClassName="EVENT_2010_HALLOWEEN_MSG_2" Data="{#ff0000}영구제 교환 대상 코스튬과 '코스튬 영구제 교환권' 아이템이 필요합니다.{/}"/>
+	</Category>
+	<Category Name="SilverGacha">
+		<Class ClassID="599201" ClassName="SilverGacha_AddMileage" Data="마신의 유혹 포인트가 증가하였습니다.{nl} {nl}{@st66d_y}{s18}현재 포인트: {COUNT}"/>
+		<Class ClassID="599202" ClassName="SilverGachaShopName" Data="마신의 유혹 포인트 상점"/>
+		<Class ClassID="599203" ClassName="SilverGachaShopResult" Data="마신의 유혹 포인트 : {count1} → {count2}"/>
+		<Class ClassID="599204" ClassName="SilverGachaNoEvent" Data="현재 진행중인 마신의 유혹 이벤트가 없습니다."/>
+		<Class ClassID="599205" ClassName="SilverGachaToAll" Data="축하합니다! {TEAMNAME} 님이 마신의 유혹 이벤트에서 {ITEMNAME}을 획득하셨습니다."/>
+		<Class ClassID="599206" ClassName="Mileage_SilverGacha_extract" Data="마신의 유혹 포인트 변환"/>
+		<Class ClassID="599207" ClassName="Mileage_SilverGacha_extract_tooltip" Data="마신의 유혹에서 획득하신 아이템을 마신의 유혹 포인트로 변환하실 수 있습니다."/>
+		<Class ClassID="599208" ClassName="SilverGachaMaxVal" Data="∞"/>
 	</Category>
 	<Category Name="RaidPatternName">
 		<Class ClassID="1003000" ClassName="Giltine_Lumberjack" Data="종언의 나무"/>
@@ -16702,7 +16702,7 @@
 		<Class ClassID="1006009" ClassName="ReputationPointExtractWeeklyLimit" Data="남은 주간 명성도: "/>
 		<Class ClassID="1006010" ClassName="DoReputationPointExtract{POINT}" Data="선택한 아이템들을 증여하여 {@st66d_y}{POINT}{/}명성도를 획득하시겠습니까?"/>
 		<Class ClassID="1006011" ClassName="DoReputationPointExtractWithLimit{LIMIT}{POINT}" Data="남은 주간 명성도가 증여하려는 명성도보다 낮아{@st66d_y}{LIMIT}{/}명성도가 소멸됩니다.{nl}선택한 아이템들을 증여하여 {@st66d_y}{POINT}{/}명성도를 획득하시겠습니까?"/>
-		<Class ClassID="1006012" ClassName="REPUTATION_COIN_USE_SUCCESS{ITEMNAME}{BEFORE}{AFTER}" Data="{ITEMNAME}: {BEFORE} -> {AFTER}"/>
+		<Class ClassID="1006012" ClassName="REPUTATION_COIN_USE_SUCCESS{ITEMNAME}{BEFORE}{AFTER}" Data="{ITEMNAME}: {BEFORE} → {AFTER}"/>
 		<Class ClassID="1006013" ClassName="REPUTATION_COIN_LIMIT_MSG{DAILY}{WEEKLY}" Data="{#FF6D00}- 필드 / 챌린지로 획득 가능한 명성도 아이템 -{/}{nl}일일 획득량{#FF0000}({DAILY}/60){/}{nl}주간 획득량{#FF0000}({WEEKLY}/300){/}{nl}{nl}　{nl}{#FF6D00}- 획득처 정보 -{/}{nl}Episode13 일반 필드{nl}Episode13 지역 챌린지 모드 3단 이상(10개){nl}Episode13 지역 챌린지 모드 : 분열 특이점(10개)"/>
 		<Class ClassID="1006014" ClassName="REPUTATION_POSSIBLEQUEST{QUESTNAME}{ZONE}" Data="{#FF0000}※ 경고 ※{/}{nl}선택하신 콘텐츠와 관련한 명성 퀘스트가 있습니다.{nl}시작 가능한 퀘스트 : {#003399}{QUESTNAME}{/}{nl}시작 위치 : {#003399}{ZONE}{/}"/>
 	</Category>
