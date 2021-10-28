@@ -318,7 +318,7 @@
                     <Num Num="100" />
                     <Num Num="0" />
                 </Scp>
-                <Scp Client="NO" Scp="SKL_RUN_SCRIPT" Time="1400" UseSleep="NO">
+                <Scp Client="NO" Scp="SKL_RUN_SCRIPT" Time="1000" UseSleep="NO">
                     <Str Str="REMOVE_BUNSHIN_BY_MijinNoJutsu" />
                 </Scp>
             </EtcList>

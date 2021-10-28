@@ -1,4 +1,7 @@
 ClassID,StartTimeYYYYMM,StartTimeDDHHMM,NewTimeYYYYMM,NewTimeDDHHMM,EndTimeYYYYMM,EndTimeDDHHMM,DeadlineTimeYYYYMM,DeadlineTimeDDHHMM,ExchangeTimeYYYYMM,ExchangeTimeDDHHMM,ClassName,Name,ImagePath,url,UserCommand1,UserCommand2,UserCommand3,ShowType
+997210,202102,10000,202102,60000,202103,10000,202102,230000,0,0,event2102_DevilsTemptation,마신의 유혹 - 2월,event2102_DevilsTemptation,http://tos.nexon.com/news/events/view.aspx?n4ArticleSN=310&n4ArticleCategorySN=1,,,,
+997220,202102,10000,202102,60000,202103,10000,202102,230000,0,0,2102Burning,주말 앤 버닝 - 2월,2102Burning,http://tos.nexon.com/news/events/view.aspx?n4ArticleSN=309&n4ArticleCategorySN=1,,,,
+997230,202102,10000,202102,60000,202103,10000,202102,230000,0,0,2102VaivoraReward,바이보라 출석 - 2월,2102VaivoraReward,http://tos.nexon.com/news/events/view.aspx?n4ArticleSN=308&n4ArticleCategorySN=1,,,,
 997240,202101,70900,202101,120000,202112,310700,202112,260000,0,0,EP12_1_reward,에피소드 12-1 보상 추가,EP12_1_reward,,,,,
 997250,202101,70900,202101,120000,202102,180700,202102,130000,0,0,event210107_luckybox,신년 행운박스 축제,event210107_luckybox,http://tos.nexon.com/news/events/view.aspx?n4ArticleSN=307&n4ArticleCategorySN=1,,,,
 997260,202101,10000,202101,60000,202102,10000,202101,260000,0,0,event2101_DevilsTemptation,마신의 유혹 - 1월,event2101_DevilsTemptation,http://tos.nexon.com/news/events/view.aspx?n4ArticleSN=306&n4ArticleCategorySN=1,,,,

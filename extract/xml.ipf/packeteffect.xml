@@ -262,6 +262,8 @@
         <Effect Name="boss_misrus_circlewave"/>
         <Effect Name="SnowRolling_Buff"/>
         <Effect Name="Crusader_DivineHammer"/>
+        <Effect Name="Crusader_DivineHammer2"/>
+        <Effect Name="Crusader_DivineHammer3"/>
     </Category>
     <Category ID="187">
         <Effect Name="F_bg_boil002"/>

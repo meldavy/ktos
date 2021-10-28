@@ -6282,6 +6282,96 @@ return 40000 + obj.Level * 10000"/>
             </ToolScp>
         </updateEvent>
     </PadSkill>
+    <PadSkill Name="Crusader_DivineHammer2" CheckerType="1" deadProcess="1" Range="15" InnerRange="15" UpdateTerm="50" ApplyFlyMon="1" AllowOverlap="1">
+        <createEvent>
+            <ToolScp Scp="PAD_ATTACH_EQUIP" Client="NO" UseSleep="NO">
+                <Str Str="cleric_f_"/>
+                <Str Str="RH"/>
+                <Pos Angle="0" Dist="0"/>
+                <Num Num="22"/>
+                <Num Num="0"/>
+                <Str_Arg Str="I_force018_trail_fire_blue2" Arg="1"/>
+                <Num Num="90"/>
+                <Num Num="0"/>
+                <Num Num="0"/>
+                <Num Num="0"/>
+                <Num Num="-1"/>
+                <Num Num="0.5"/>
+                <Num Num="0"/>
+            </ToolScp>
+            <ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
+                <Num Num="20000"/>
+                <Num Num="5"/>
+            </ToolScp>
+        </createEvent>
+        <enterEvent>
+            <ToolScp Scp="PAD_TGT_DAMAGE" Client="NO" UseSleep="NO">
+                <Str Str="ENEMY"/>
+                <Num Num="1"/>
+                <Num Num="0"/>
+                <Num Num="0"/>
+            </ToolScp>
+        </enterEvent>
+        <updateEvent>
+            <ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
+                <Num Num="-50"/>
+                <Num Num="0"/>
+            </ToolScp>
+            <ToolScp Scp="PAD_MOVE_CIRCLE_OWNER" Client="NO" UseSleep="NO">
+                <Num Num="1000"/>
+                <Num Num="0"/>
+                <Num Num="0"/>
+                <Num Num="1.5"/>
+                <Num Num="60"/>
+                <Num Num="120"/>
+            </ToolScp>
+        </updateEvent>
+    </PadSkill>
+    <PadSkill Name="Crusader_DivineHammer3" CheckerType="1" deadProcess="1" Range="15" InnerRange="15" UpdateTerm="50" ApplyFlyMon="1" AllowOverlap="1">
+        <createEvent>
+            <ToolScp Scp="PAD_ATTACH_EQUIP" Client="NO" UseSleep="NO">
+                <Str Str="cleric_f_"/>
+                <Str Str="RH"/>
+                <Pos Angle="0" Dist="0"/>
+                <Num Num="22"/>
+                <Num Num="0"/>
+                <Str_Arg Str="I_force018_trail_fire_blue2" Arg="1"/>
+                <Num Num="90"/>
+                <Num Num="0"/>
+                <Num Num="0"/>
+                <Num Num="0"/>
+                <Num Num="-1"/>
+                <Num Num="0.5"/>
+                <Num Num="0"/>
+            </ToolScp>
+            <ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
+                <Num Num="20000"/>
+                <Num Num="5"/>
+            </ToolScp>
+        </createEvent>
+        <enterEvent>
+            <ToolScp Scp="PAD_TGT_DAMAGE" Client="NO" UseSleep="NO">
+                <Str Str="ENEMY"/>
+                <Num Num="1"/>
+                <Num Num="0"/>
+                <Num Num="0"/>
+            </ToolScp>
+        </enterEvent>
+        <updateEvent>
+            <ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
+                <Num Num="-50"/>
+                <Num Num="0"/>
+            </ToolScp>
+            <ToolScp Scp="PAD_MOVE_CIRCLE_OWNER" Client="NO" UseSleep="NO">
+                <Num Num="1000"/>
+                <Num Num="0"/>
+                <Num Num="0"/>
+                <Num Num="1.5"/>
+                <Num Num="60"/>
+                <Num Num="-120"/>
+            </ToolScp>
+        </updateEvent>
+    </PadSkill>
     <PadSkill Name="Crusader_ProtectionOfGoddess_DamagePad1" CheckerType="0" Range="80" ApplyFlyMon="1" AllowOverlap="1">
         <createEvent>
             <ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
@@ -11758,7 +11848,7 @@ return GET_ABIL_LEVEL(self, &quot;Fletcher6&quot;) * 10"/>
             </ToolScp>
         </updateEvent>
     </PadSkill>
-    <PadSkill Name="Giltine_Auto_Raid_HellFire" CheckerType="1" Dist="363.05344" Angle="-2.9734213" Range="70" InnerRange="400" UpdateTerm="1000" ApplyFlyMon="1" AllowOverlap="1">
+    <PadSkill Name="Giltine_Auto_Raid_HellFire" CheckerType="1" Dist="363.05344" Angle="-2.9734213" Range="70" InnerRange="70" UpdateTerm="1000" ApplyFlyMon="1" AllowOverlap="1">
         <createEvent>
             <ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
                 <Num Num="60000"/>
@@ -11766,7 +11856,7 @@ return GET_ABIL_LEVEL(self, &quot;Fletcher6&quot;) * 10"/>
             </ToolScp>
             <ToolScp Scp="C_PAD_EFFECT_POS_ANGLE" Client="YES" UseSleep="NO">
                 <Str_Arg Str="E_giltine_hellfire" Arg="1.5"/>
-                <Pos Angle="0" Dist="3.8255448e-43" PosType="11"/>
+                <Pos Angle="0" Dist="3.8255448e-43" PosType="0"/>
                 <Num Num="0"/>
                 <Num Num="1"/>
                 <Num Num="0"/>
@@ -12267,7 +12357,7 @@ return GET_ABIL_LEVEL(self, &quot;Fletcher6&quot;) * 10"/>
             </ToolScp>
         </updateEvent>
     </PadSkill>
-    <PadSkill Name="Giltine_Raid_HellFire" CheckerType="1" Dist="363.05344" Angle="-2.9734213" Range="70" InnerRange="400" UpdateTerm="1000" ApplyFlyMon="1" AllowOverlap="1">
+    <PadSkill Name="Giltine_Raid_HellFire" CheckerType="1" Dist="363.05344" Angle="-2.9734213" Range="70" InnerRange="70" UpdateTerm="1000" ApplyFlyMon="1" AllowOverlap="1">
         <createEvent>
             <ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
                 <Num Num="60000"/>
@@ -12275,7 +12365,7 @@ return GET_ABIL_LEVEL(self, &quot;Fletcher6&quot;) * 10"/>
             </ToolScp>
             <ToolScp Scp="C_PAD_EFFECT_POS_ANGLE" Client="YES" UseSleep="NO">
                 <Str_Arg Str="E_giltine_hellfire" Arg="1.5"/>
-                <Pos Angle="0" Dist="3.8255448e-43" PosType="11"/>
+                <Pos Angle="0" Dist="3.8255448e-43" PosType="0"/>
                 <Num Num="0"/>
                 <Num Num="1"/>
                 <Num Num="0"/>

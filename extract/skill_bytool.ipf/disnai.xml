@@ -4,6 +4,9 @@
 	<Skill Name="Disnai_Sauk">
 		<EnableScripts>
 			<ToolScp Scp="CHECK_IS_PVE" Client="BOTH" UseSleep="NO"/>
+			<ToolScp Scp="CHECK_IS_EQUIP_PREFIX" Client="BOTH" UseSleep="NO">
+				<Str Str="Set_Sauk"/>
+			</ToolScp>
 		</EnableScripts>
 		<MainSkl ScrLock="None" JumpFlee="NO" MSPDToUsePos="0">
 			<HitList>
@@ -43,6 +46,9 @@
 	<Skill Name="Disnai_Ezera">
 		<EnableScripts>
 			<ToolScp Scp="CHECK_IS_PVP" Client="BOTH" UseSleep="NO"/>
+			<ToolScp Scp="CHECK_IS_EQUIP_PREFIX" Client="BOTH" UseSleep="NO">
+				<Str Str="Set_Ezera"/>
+			</ToolScp>
 		</EnableScripts>
 		<MainSkl ScrLock="None" JumpFlee="NO" MSPDToUsePos="0">
 			<HitList>
@@ -71,6 +77,9 @@
 	<Skill Name="Disnai_Karys">
 		<EnableScripts>
 			<ToolScp Scp="CHECK_IS_PVP" Client="BOTH" UseSleep="NO"/>
+			<ToolScp Scp="CHECK_IS_EQUIP_PREFIX" Client="BOTH" UseSleep="NO">
+				<Str Str="Set_Karys"/>
+			</ToolScp>
 		</EnableScripts>
 		<MainSkl ScrLock="None" JumpFlee="NO" MSPDToUsePos="0">
 			<HitList>
@@ -113,6 +122,9 @@
 		</EndScripts>
 		<EnableScripts>
 			<ToolScp Scp="CHECK_IS_PVE" Client="BOTH" UseSleep="NO"/>
+			<ToolScp Scp="CHECK_IS_EQUIP_PREFIX" Client="BOTH" UseSleep="NO">
+				<Str Str="Set_Svirti"/>
+			</ToolScp>
 		</EnableScripts>
 		<KeyInput>
 			<ToolScp Scp="SKL_KEY_DYNAMIC_CASTING" Client="YES" UseSleep="NO">
@@ -197,6 +209,11 @@
 		<MainSkl ScrLock="None" JumpFlee="NO" MSPDToUsePos="0"/>
 	</Skill>
 	<Skill Name="Disnai_Lydeti">
+		<EnableScripts>
+			<ToolScp Scp="CHECK_IS_EQUIP_PREFIX" Client="BOTH" UseSleep="NO">
+				<Str Str="Set_Lydeti"/>
+			</ToolScp>
+		</EnableScripts>
 		<KeyInput>
 			<ToolScp Scp="SKL_PARTY_TARGET_BY_KEY" Client="YES" UseSleep="NO">
 				<Num Num="1"/>

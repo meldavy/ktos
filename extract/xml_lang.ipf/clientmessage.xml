@@ -911,6 +911,7 @@
 		<Class ClassID="4369" ClassName="IfLimitOver_misc_pvp_mine2" Data="사용 시 주간 용병단 증표 획득량을 초과합니다.{nl} {nl}정말 사용하시겠습니까?{nl}(초과된 개수는 지급되지 않습니다.)"/>
 		<Class ClassID="4370" ClassName="Use_misc_pvp_mine2_Coupon" Data="사용 시 주간 용병단 증표 획득량이 증가합니다.{nl}정말 사용하시겠습니까?"/>
  		<Class ClassID="4371" ClassName="SelectCostumeSilverGacha{ITEM}" Data="{@st66d_y}{s20}{ITEM}{/}{/} {nl}코스튬을 정말 선택하시겠습니까?{nl} {nl}코스튬은 팀 창고 이동을 제외한{nl}개인 및 마켓 거래가 불가능합니다."/>
+		<Class ClassID="4372" ClassName="BEFORE_APPLIED_YESSCP_OPEN_DO_NOT_TRADE_MSG" Data="{nl} {nl}사용으로 획득한 아이템은 되돌릴 수 없습니다.{nl} {nl}{#ff0000}획득한 아이템은 거래가 불가능합니다.{/}{/}{nl}{@st66d_y}{s20}{nl} {nl}정말 사용하시겠습니까?"/>
        </Category>
 	<Category Name="ItemTooltip">
 		<Class ClassID="5001" ClassName="CoolDown : {Sec} Sec" Data="재사용 대기시간 : {Sec}초"/>
@@ -11474,6 +11475,7 @@
 		<Class ClassID="134100" ClassName="SoloBuffCannotBeSelected" Data="해당 버프를 선택할 수 없습니다.{nl}해당 버프를 선택한 파티원이 존재합니다."/>
 		<Class ClassID="134101" ClassName="MythicAutoHardEntranceTicketUseLimit" Data="성물 레이드 : 자동 매칭(Hard)의 입장 횟수가 이미 최대 횟수 입니다."/>
 		<Class ClassID="134102" ClassName="MythicAutoHardEntranceCountLimit" Data="성물 레이드 : 자동 매칭(Hard) 입장 횟수가 부족합니다."/>
+		<Class ClassID="134105" ClassName="MultipleRewardEnteredCountLimit" Data="입장 횟수를 초과하여 배수권을 사용할 수 없습니다."/>		
 	</Category>
 	<Category Name="AchieveReward">
 		<Class ClassID="135001" ClassName="GainAchieveHairBefore" Data="이미 업적 보상을 받았습니다."/>
@@ -16365,6 +16367,7 @@
 		<Class ClassID="1007006" ClassName="REPUTATION_QUEST_BOARD_POSSIBLEQUEST" Data="명성 일일 퀘스트 일괄 수령하기"/>
 		<Class ClassID="1007007" ClassName="REPUTATION_QUEST_BOARD_COMPLETE" Data="{#FFFF00}{COUNT}개{/}의 명성 일일 퀘스트를 시작합니다"/>
 		<Class ClassID="1007008" ClassName="REPUTATION_QUEST_BOARD_NO_QUEST" Data="수령 가능한 명성 일일 퀘스트가 없습니다"/>
+		<Class ClassID="1007009" ClassName="REPUTATION_QUEST_BOARD_SEARCH" Data="진행 가능한 명성 일일 퀘스트를 검색 중입니다..."/>
 	</Category>
 	<Category Name="relic_ui">
 		<Class ClassID="1008001" ClassName="NO_EQUIP_RELIC" Data="성물을 착용 후 이용 가능합니다."/>

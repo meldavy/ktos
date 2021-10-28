@@ -262,7 +262,9 @@
                 </StageEvents>
             </Stage>
             <Stage Name="SUCCESS">
-                <ObjList/>
+                <ObjList>
+                    <Obj Type="Monster" MonType="160065" Pos="1680.52#165.15#-1207.74" genCount="1" genTime="20000" objectKey="1"/>
+                </ObjList>
                 <StageEvents>
                     <Event execCount="1" eventName="Clear">
                         <condList>
@@ -273,6 +275,10 @@
                             </ToolScp>
                         </condList>
                         <execList>
+                            <ToolScp Scp="MGAME_EXEC_REVIVE" Client="NO" UseSleep="NO"/>
+                            <ToolScp Scp="MGAME_EXEC_SETPOS" Client="NO" UseSleep="NO">
+                                <AbsPosRange X="1660.1985" Y="165.15172" Z="-1103.0411"/>
+                            </ToolScp>
                             <ToolScp Scp="MGAME_MSG_ICON" Client="YES" UseSleep="NO">
                                 <Str Str="잠시 후 입장했던 곳으로 돌아갑니다."/>
                                 <Str Str="Clear"/>
@@ -306,7 +312,7 @@
                     <Event execCount="1" eventName="존으로돌아가기">
                         <condList>
                             <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK" Client="NO" UseSleep="NO">
-                                <Num Num="5"/>
+                                <Num Num="60"/>
                             </ToolScp>
                         </condList>
                         <execList>

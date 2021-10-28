@@ -49,20 +49,24 @@ function ADVENTURE_BOOK_MONSTER.FILL_MONSTER_LIST()
 	monster_list = filter_func(monster_list, sort_opt_list:GetSelItemIndex(), grade_opt_list:GetSelItemIndex(), race_opt_list:GetSelItemIndex(), search_editbox:GetText())
 	ADVENTURE_BOOK_MONSTER.CUR_LIST_COUNT = (#monster_list)
 	local firstIndex, lastIndex = ADVENTURE_BOOK_MONSTER.CUR_GROUP_INDICES()
+	local idx = 1
 	for i=1, lastIndex do
 		local clsID = monster_list[i]
 		local info =  monster_info_func(clsID);
-		local height = frame:GetUserConfig("MONSTER_ELEM_HEIGHT")
-		local ctrlSet = list_box:CreateOrGetControlSet("adventure_book_monster_elem", "list_mon_" .. i, ui.LEFT, ui.TOP, 0, (i-1)*height, 0, 0);
-		local icon = GET_CHILD(ctrlSet, "icon_pic", "ui::CPicture");
-		icon:SetImage(info['icon']);
-		if info['is_found'] == 0 then
-            local SIHOUETTE_COLOR_TONE = frame:GetUserConfig('SIHOUETTE_COLOR_TONE');
-			ctrlSet:SetColorTone(SIHOUETTE_COLOR_TONE);
+		if info['cls_name'] == info['journal'] then
+			local height = frame:GetUserConfig("MONSTER_ELEM_HEIGHT")
+			local ctrlSet = list_box:CreateOrGetControlSet("adventure_book_monster_elem", "list_mon_" .. idx, ui.LEFT, ui.TOP, 0, (idx-1)*height, 0, 0);
+			local icon = GET_CHILD(ctrlSet, "icon_pic", "ui::CPicture");
+			icon:SetImage(info['icon']);
+			if info['is_found'] == 0 then
+            	local SIHOUETTE_COLOR_TONE = frame:GetUserConfig('SIHOUETTE_COLOR_TONE');
+				ctrlSet:SetColorTone(SIHOUETTE_COLOR_TONE);
+			end
+			SET_TEXT(ctrlSet, "name_text", "value", info['name'])        
+			ctrlSet:SetUserValue('BtnArg', clsID);
+			ADVENTURE_BOOK_MONSTER_SET_GAUGE_AND_POINT(ctrlSet);
+			idx = idx + 1
 		end
-		SET_TEXT(ctrlSet, "name_text", "value", info['name'])        
-		ctrlSet:SetUserValue('BtnArg', clsID);
-        ADVENTURE_BOOK_MONSTER_SET_GAUGE_AND_POINT(ctrlSet);
 	end
 end
 function ADVENTURE_BOOK_MONSTER.INCREASE_GROUP_INDEX()

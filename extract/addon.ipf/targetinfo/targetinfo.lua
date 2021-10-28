@@ -292,12 +292,20 @@ function TARGETINFO_ON_MSG(frame, msg, argStr, argNum)
 			fontStyle = "";
 		end
 		
-		if hp >= 10000 then 
-			-- 100% 일때 계산필요 없이 100%
+		if hp >= 10000 then -- 100% 일때 계산필요 없이 100% 
 			strHPValue = fontStyle.."100%";	
 		else
-			
-			strHPValue = string.format("%s%3.2f%%",fontStyle, hp/100.0);
+			local hp_percent = hp * 0.01;
+			if hp_percent < 0 then
+				local targetinfo = info.GetTargetInfo(handle);
+				if targetinfo ~= nil and targetinfo.TargetWindow ~= 0 then
+					local stat = targetinfo.stat;
+					if stat ~= nil then
+						hp_percent = stat.HP * 0.01;
+					end
+				end
+			end
+			strHPValue = string.format("%s%3.2f%%", fontStyle, hp_percent);
 		end
 	end
 	return strHPValue;

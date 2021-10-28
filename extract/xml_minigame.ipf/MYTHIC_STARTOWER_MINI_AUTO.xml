@@ -256,7 +256,15 @@
 				</StageEvents>
 			</Stage>
 			<Stage Name="SUCCESS">
-				<ObjList/>
+                <StartScpList>
+                    <ToolScp Scp="MGAME_SUCCESS_STAGE_SCP" Client="NO" UseSleep="NO">
+                        <Str Str="Mythic"/>
+                    </ToolScp>
+                </StartScpList>
+                <ObjList>
+                    <Obj Type="Monster" MonType="160064" Pos="-1897.76#-106.10#-1469.64" genCount="1" genTime="20000" objectKey="0"/>
+                    <Obj Type="Monster" MonType="160065" Pos="-2022.13#-106.10#-1402.93" genCount="1" genTime="20000" objectKey="1"/>
+                </ObjList>
 				<StageEvents>
 					<Event execCount="1" eventName="Clear">
 						<condList>
@@ -267,6 +275,14 @@
 							</ToolScp>
 						</condList>
 						<execList>
+                            <ToolScp Scp="MGAME_EXEC_REVIVE" Client="NO" UseSleep="NO"/>
+                            <ToolScp Scp="MGAME_EXEC_SETPOS" Client="NO" UseSleep="NO">
+                                <AbsPosRange X="-1886.8519" Y="-106.10431" Z="-1431.7228"/>
+                            </ToolScp>
+                            <ToolScp Scp="MGAME_EVT_MULTIPLE_REWARD" Client="NO" UseSleep="NO">
+                                <Str Str="Multiple_Token_MythicAuto"/>
+                                <Str Str="MYTHIC_DUNGEON_CLEAR_MULTIPLE"/>
+                            </ToolScp>
 							<ToolScp Scp="MGAME_MSG_ICON" Client="YES" UseSleep="NO">
 								<Str Str="잠시 후 입장했던 곳으로 돌아갑니다."/>
 								<Str Str="Clear"/>
@@ -300,7 +316,7 @@
 					<Event execCount="1" eventName="존으로돌아가기">
 						<condList>
 							<ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK" Client="NO" UseSleep="NO">
-								<Num Num="5"/>
+                                <Num Num="60"/>
 							</ToolScp>
 						</condList>
 						<execList>

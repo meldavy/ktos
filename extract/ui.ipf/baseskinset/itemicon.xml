@@ -8189,6 +8189,8 @@
 		<image name="icon_item_selectbox_ep13toswinter01_2" file="\icon\payment\icon_item_selectbox_ep13toswinter01_2.png" imgrect="0 0 256 256"/>
 		<image name="icon_item_selectbox_ep13toswinter02_1" file="\icon\payment\icon_item_selectbox_ep13toswinter02_1.png" imgrect="0 0 256 256"/>
 		<image name="icon_item_selectbox_ep13toswinter03_1" file="\icon\payment\icon_item_selectbox_ep13toswinter03_1.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_MultipleToken_Mythic" file="\icon\payment\icon_item_MultipleToken_Mythic.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_relic_exp_token_box_50" file="\icon\payment\icon_item_relic_exp_token_box_50.png" imgrect="0 0 128 128"/>
 	</imagelist>
 	<imagelist category="seal">
 		<image name="icon_seal_yellow_cc_A1" file="\icon\seal\seal_yellow_cc_A1.tga" imgrect="0 0 80 80"/>

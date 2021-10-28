@@ -151,6 +151,8 @@ function ADVENTURE_BOOK_MONSTER_CONTENT.MONSTER_INFO(monClsID)
 	retTable['desc'] = TryGetProp(monCls, "Desc");
 	retTable['kill_count'] = ADVENTURE_BOOK_MONSTER_CONTENT.MONSTER_KILL_COUNT(monClsID)
 	retTable['is_found']=ADVENTURE_BOOK_MONSTER_CONTENT.EXIST_IN_HISTORY(monClsID)
+	retTable['journal'] = TryGetProp(monCls, "Journal");
+	retTable['cls_name'] = TryGetProp(monCls, "ClassName");
 	return retTable;
 end
 

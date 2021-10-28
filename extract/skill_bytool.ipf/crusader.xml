@@ -873,20 +873,13 @@ return &quot;F_cleric_Retaliation_ground_explosion_red&quot;, 1;
                         <Frame Type="SQUARE" Time="300" HitCount="1" TermMin="0" TermMax="0" PosType="0" Dist="0" RandDist="0" RandomPerHit="0" Angle="0" SklAngle="0.17453292" AniTime="500" RotAngle="0" ForceATK="0" ScriptIndex="0" ScriptName="" SkillType="0"/>
                     </HitList>
                     <EtcList>
-                        <Scp Scp="MONSKL_C_PLAY_ANIM" Client="YES" UseSleep="NO" Time="0">
-                            <Str Str="SKL_CONDEMN_LOOP"/>
-                            <Num Num="1"/>
-                            <Num Num="1"/>
-                            <Num Num="0"/>
-                        </Scp>
                         <Scp Scp="C_VOICE_SOUND" Client="YES" UseSleep="NO" Time="0">
                             <Str Str="voice_cleric_m_condemn_b_shot"/>
                             <Str Str="voice_cleric_f_condemn_b_shot"/>
                         </Scp>
-                        <Scp Scp="MONSKL_C_STOP_ANIM" Client="YES" UseSleep="NO" Time="450"/>
-                        <Scp Scp="MONSKL_C_PLAY_ANIM" Client="YES" UseSleep="NO" Time="500">
+                        <Scp Scp="MONSKL_C_PLAY_ANIM" Client="YES" UseSleep="NO" Time="0">
                             <Str Str="SKL_CONDEMN_SHOT"/>
-                            <Num Num="1.5"/>
+                            <Num Num="1"/>
                             <Num Num="1"/>
                             <Num Num="0"/>
                         </Scp>
@@ -909,12 +902,6 @@ return &quot;F_cleric_Retaliation_ground_explosion_red&quot;, 1;
                         <Frame Type="SQUARE" Time="300" HitCount="1" TermMin="0" TermMax="0" PosType="0" Dist="0" RandDist="0" RandomPerHit="0" Angle="0" SklAngle="0.17453292" AniTime="500" RotAngle="0" ForceATK="0" ScriptIndex="0" ScriptName="" SkillType="0"/>
                     </HitList>
                     <EtcList>
-                        <Scp Scp="MONSKL_C_PLAY_ANIM" Client="YES" UseSleep="NO" Time="0">
-                            <Str Str="SKL_CONDEMN_LOOP"/>
-                            <Num Num="1"/>
-                            <Num Num="1"/>
-                            <Num Num="0"/>
-                        </Scp>
                         <Scp Scp="C_VOICE_SOUND" Client="YES" UseSleep="NO" Time="0">
                             <Str Str="voice_cleric_m_condemn_p_shot" UseFunc="1" FuncTxt="
                             local random = IMCRandom(1, 2)
@@ -931,19 +918,18 @@ return &quot;F_cleric_Retaliation_ground_explosion_red&quot;, 1;
                                 return &quot;voice_cleric_f_condemn_p_shot&quot;
                             end"/>
                         </Scp>
-                        <Scp Scp="MONSKL_C_STOP_ANIM" Client="YES" UseSleep="NO" Time="450"/>
-                        <Scp Scp="MONSKL_C_PLAY_ANIM" Client="YES" UseSleep="NO" Time="500">
+                        <Scp Scp="MONSKL_C_PLAY_ANIM" Client="YES" UseSleep="NO" Time="0">
                             <Str Str="SKL_CONDEMN_SHOT"/>
-                            <Num Num="1.5"/>
+                            <Num Num="1"/>
                             <Num Num="1"/>
                             <Num Num="0"/>
                         </Scp>
-                        <Scp Scp="MONSKL_CRE_PAD" Client="NO" UseSleep="NO" Time="800">
+                        <Scp Scp="MONSKL_CRE_PAD" Client="NO" UseSleep="NO" Time="300">
                             <Pos Angle="0" Dist="50"/>
                             <Angle Angle="1.5707964"/>
                             <Str Str="Crusader_Condemn_Damage_Pad"/>
                         </Scp>
-                        <Scp Scp="MONSKL_CRE_PAD" Client="NO" UseSleep="NO" Time="800">
+                        <Scp Scp="MONSKL_CRE_PAD" Client="NO" UseSleep="NO" Time="300">
                             <Pos Angle="0" Dist="50"/>
                             <Angle Angle="1.5707964"/>
                             <Str Str="Crusader_Condemn_Heal_Pad"/>
@@ -1168,22 +1154,22 @@ return &quot;F_cleric_RingOfLight_circle_explosion_end_red&quot;, 2.5;
 							<Num Num="1"/>
 							<Num Num="0"/>
 						</Scp>
-						<Scp Client="NO" Scp="MONSKL_CRE_PAD_BY_ABILITY" Time="300" UseSleep="NO">
-							<Pos Angle="0" Dist="60" PosType="0"/>
+                        <Scp Scp="MONSKL_CRE_PAD_BY_ABILITY" Client="NO" UseSleep="NO" Time="800">
+							<Pos Angle="0" Dist="60" />
 							<Angle Angle="0"/>
 							<Str Str="Crusader_DivineHammer"/>
 							<Str Str="Crusader22"/>
 						</Scp>
-						<Scp Client="NO" Scp="MONSKL_CRE_PAD_BY_ABILITY" Time="800" UseSleep="NO">
-							<Pos Angle="0" Dist="60" PosType="0"/>
+						<Scp Scp="MONSKL_CRE_PAD_BY_ABILITY" Client="NO" UseSleep="NO" Time="800" >
+							<Pos Angle="0" Dist="60" />
 							<Angle Angle="0"/>
-							<Str Str="Crusader_DivineHammer"/>
+                            <Str Str="Crusader_DivineHammer2"/>
 							<Str Str="Crusader22"/>
 						</Scp>
-						<Scp Client="NO" Scp="MONSKL_CRE_PAD_BY_ABILITY" Time="1300" UseSleep="NO">
-							<Pos Angle="0" Dist="60" PosType="0"/>
+                        <Scp Scp="MONSKL_CRE_PAD_BY_ABILITY" Client="NO" UseSleep="NO" Time="800">
+							<Pos Angle="0" Dist="60" />
 							<Angle Angle="0"/>
-							<Str Str="Crusader_DivineHammer"/>
+                            <Str Str="Crusader_DivineHammer3"/>
 							<Str Str="Crusader22"/>
 						</Scp>
 					</EtcList>

@@ -613,3 +613,38 @@ function SCR_RINGOFLIGHT_CHECK_ABIL_WEAPON_C(actor, skl)
         return 1
     end
 end
+
+function CHECK_IS_EQUIP_PREFIX_C(actor, skl, prefix)
+	local cls = GetClass('LegendSetItem', prefix)
+	local MaxCnt = TryGetProp(cls, 'MaxOptionCount')
+	local Cnt = 0
+	local slot = {'RH', 'LH', 'SHIRT', 'PANTS', 'GLOVES', 'BOOTS'}
+
+	local TrinketSlot = session.GetEquipItemBySpot(item.GetEquipSpotNum('TRINKET'))
+	local TrinketObj = GetIES(TrinketSlot:GetObject())
+	if TryGetProp(TrinketObj, "ClassType", "None") == 'Trinket' then
+		slot[2] = 'TRINKET'
+	end
+
+	for i = 1, 6 do
+		local equip_item = session.GetEquipItemBySpot(item.GetEquipSpotNum(slot[i]))
+	    if equip_item == nil then
+	        return 0
+	    end
+
+		local item_obj = GetIES(equip_item:GetObject())
+		if item_obj == nil or IS_NO_EQUIPITEM(item_obj) == 1 then
+			return 0
+	    end
+
+		if TryGetProp(item_obj, 'LegendPrefix', 'None') == prefix then
+			Cnt = Cnt + 1
+		end
+	end
+
+    if Cnt < MaxCnt then
+        return 0
+    end
+    
+    return 1
+end

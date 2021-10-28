@@ -1000,8 +1000,8 @@
 		<Level Level="1" PropList_TopLeg="OptDesc/디바인 스티그마 스킬 레벨 +1" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="None" PropList_HandOrFoot_Penalty="None"/>
 	</Item>
 	<Item Name="Gem_Kriwi_Melstis">
-		<Level Level="0" PropList_TopLeg="OptDesc/멜스티스 스킬 레벨 +1" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="None" PropList_HandOrFoot_Penalty="None"/>
-		<Level Level="1" PropList_TopLeg="OptDesc/멜스티스 스킬 레벨 +1" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="None" PropList_HandOrFoot_Penalty="None"/>
+		<Level Level="0" PropList_TopLeg="OptDesc/파이어티 스킬 레벨 +1" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="None" PropList_HandOrFoot_Penalty="None"/>
+		<Level Level="1" PropList_TopLeg="OptDesc/파이어티 스킬 레벨 +1" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="None" PropList_HandOrFoot_Penalty="None"/>
 	</Item>
 	<Item Name="Gem_Bokor_Hexing">
 		<Level Level="0" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/쇠약의 저주 스킬 레벨 +1" PropList_HandOrFoot_Penalty="None"/>
