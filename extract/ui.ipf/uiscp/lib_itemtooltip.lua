@@ -854,7 +854,11 @@ function SET_REINFORCE_TEXT(gBox, invitem, yPos, isEquiped, basicProp)
 		local reinforceValue = 0;
 
 		if invitem.GroupName == "Armor" then
-			reinforceValue = GET_REINFORCE_ADD_VALUE(basicProp, invitem, ignoreReinf, bonusReinf + overReinf);
+			if invitem.ClassType == 'Neck' or invitem.ClassType == 'Ring' then
+				reinforceValue = GET_REINFORCE_ADD_VALUE_ATK(invitem, ignoreReinf, bonusReinf + overReinf, basicProp);
+			else
+				reinforceValue = GET_REINFORCE_ADD_VALUE(basicProp, invitem, ignoreReinf, bonusReinf + overReinf);
+			end
 		elseif invitem.GroupName == "Weapon" then
 			reinforceValue = GET_REINFORCE_ADD_VALUE_ATK(invitem, ignoreReinf, bonusReinf + overReinf, basicProp);
 		elseif invitem.GroupName == "SubWeapon" then

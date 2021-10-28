@@ -17,6 +17,7 @@ function SYSMENU_ON_INIT(addon, frame)
 	addon:RegisterMsg("PREMIUM_NEXON_PC", "SYSMENU_ON_MSG");
 	addon:RegisterMsg("ENABLE_PCBANG_SHOP", "SYSMENU_ON_MSG");
 	addon:RegisterMsg("NEW_USER_REQUEST_GUILD_JOIN", "SYSMENU_ON_MSG");
+	addon:RegisterMsg("GUILD_PROMOTE_NOTICE", "SYSMENU_GUILD_PROMOTE_NOTICE");
 	frame:EnableHideProcess(1);
 end
 
@@ -731,7 +732,6 @@ function SYSMENU_GUILD_PROMOTE_NOTICE_CHECK()
 	local maxCnt = GET_GUILD_PROMOTE_NOTICE_MAX_COUNT();
 
 	if cnt < maxCnt then
-		SYSMENU_GUILD_PROMOTE_NOTICE(frame);
         control.CustomCommand("REQ_GUILD_PROMOTE_NOTICE_COUNT", 0);
 	end
 end

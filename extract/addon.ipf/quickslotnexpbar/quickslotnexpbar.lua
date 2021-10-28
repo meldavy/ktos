@@ -7,8 +7,6 @@ QUICKSLOT_OVERHEAT_GAUGE = "overheat_gauge";
 function QUICKSLOTNEXPBAR_ON_INIT(addon, frame)
 	QUICKSLOTNEXPBAR_UPDATE_HOTKEYNAME(frame);
 	
-	QUICKSLOTNEXPBAR_Frame = frame;
-	
 	addon:RegisterMsg('GAME_START', 'QUICKSLOTNEXPBAR_ON_MSG');
 	addon:RegisterMsg('QUICKSLOT_LIST_GET', 'QUICKSLOTNEXPBAR_ON_MSG');
 	
@@ -1296,9 +1294,14 @@ function QUICKSLOT_REFRESH(curCnt)
 	if curCnt % 10 ~= 0 then
 		curCnt = 20;
 	end
+	
+	local frame = ui.GetFrame('quickslotnexpbar');
+	if frame == nil then
+		return 0;
+	end
 
 	for i = 0, MAX_QUICKSLOT_CNT-1 do
-		local slot = QUICKSLOTNEXPBAR_Frame:GetChild("slot"..i+1);
+		local slot = frame:GetChild("slot"..i+1);
 		tolua.cast(slot, "ui::CSlot");
 		if i < curCnt then
 			slot:ShowWindow(1);
@@ -1307,13 +1310,13 @@ function QUICKSLOT_REFRESH(curCnt)
 		end		
 	end
 
-	local add = QUICKSLOTNEXPBAR_Frame:GetChild("slot_add");
+	local add = frame:GetChild("slot_add");
 	if curCnt >= 40 then
 		add:SetEnable(0);
 	else
 		add:SetEnable(1);
 	end
-	local del = QUICKSLOTNEXPBAR_Frame:GetChild("slot_del");	
+	local del = frame:GetChild("slot_del");	
 	if curCnt <= 20 then		
 		del:SetEnable(0);
 	else

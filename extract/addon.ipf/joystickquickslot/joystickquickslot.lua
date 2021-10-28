@@ -24,8 +24,6 @@ function JOYSTICKQUICKSLOT_ON_INIT(addon, frame)
 	setButton_onSkin = frame:GetUserConfig("SET_BUTTON_ONSKIN")
 	setButton_offSkin = frame:GetUserConfig("SET_BUTTON_OFFSKIN")
 
-	JOYSTICK_QUICKSLOTNEXPBAR_Frame = frame;
-
 	for i = 0, MAX_SLOT_CNT-1 do
 		local slot 			= frame:GetChildRecursively("slot"..i+1);
 		tolua.cast(slot, "ui::CSlot");
@@ -205,9 +203,14 @@ function JOYSTICK_QUICKSLOT_REFRESH(curCnt)
 	if curCnt % 10 ~= 0 then
 		curCnt = 20;
 	end
+	
+	local frame = ui.GetFrame('joystickquickslot');
+	if frame == nil then
+		return 0;
+	end
 
 	for i = 0, MAX_QUICKSLOT_CNT-1 do
-		local slot 	= GET_CHILD_RECURSIVELY(JOYSTICK_QUICKSLOTNEXPBAR_Frame, "slot"..i+1, "ui::CSlot");
+		local slot 	= GET_CHILD_RECURSIVELY(frame, "slot"..i+1, "ui::CSlot");
 		tolua.cast(slot, "ui::CSlot");
 		if i < curCnt then
 			slot:ShowWindow(1);
