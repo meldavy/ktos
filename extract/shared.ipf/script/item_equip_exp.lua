@@ -132,6 +132,11 @@ function GET_MORE_EVENT_EXP(pc)
 	sumExp = sumExp + IsBuffAppliedEXP(pc, 'EVENT_2006_SALTY_ZONGZI'); -- 2006 짠쫑즈 --
 	sumExp = sumExp + IsBuffAppliedEXP(pc, 'Event_Kor_New_World_Buff'); -- 스팀 시즌 서버 혜택
 	sumExp = sumExp + IsBuffAppliedEXP(pc, 'EVENT_2008_OBON_FULLMOON_BUFF'); -- jpn 추석 이벤트 보름달 버프
+	sumExp = sumExp + IsBuffAppliedEXP(pc, 'event_RiceCake_Buff_1'); -- 가레떡 1단계 이벤트 버프
+	sumExp = sumExp + IsBuffAppliedEXP(pc, 'event_RiceCake_Buff_2'); -- 가레떡 2단계 이벤트 버프
+	sumExp = sumExp + IsBuffAppliedEXP(pc, 'event_RiceCake_Buff_3'); -- 가레떡 3단계 이벤트 버프
+	sumExp = sumExp + IsBuffAppliedEXP(pc, 'event_RiceCake_Buff_4'); -- 가레떡 4단계 이벤트 버프
+	sumExp = sumExp + IsBuffAppliedEXP(pc, 'event_RiceCake_Buff_5'); -- 가레떡 5단계 이벤트 버프
 	if  TryGetProp(pc, 'Lv', 0) < 450 then
 	    sumExp = sumExp + IsBuffAppliedEXP(pc, 'ITEM_BUFF_2020ArborDay_ExpUP'); --2020 근본--
 	end
