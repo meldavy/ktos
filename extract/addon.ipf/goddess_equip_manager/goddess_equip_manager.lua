@@ -3401,7 +3401,7 @@ function GODDESS_MGR_SOCKET_GEM_ITEM_DROP(parent, slot, arg_str, arg_num)
 			local gem_prop = geItemTable.GetProp(item_obj.ClassID)
 			local penalty_prop = gem_prop:GetSocketPropertyByLevel(0)
 			local penalty_add = penalty_prop:GetPropPenaltyAddByIndex(0, 0) -- 스킬 젬인지 검사
-			if penalty_add ~= nil and TryGetProp(item_obj, 'GemRoastingLv', 0) > TryGetProp(item_obj, 'GemLevel', 0) then
+			if penalty_add ~= nil and TryGetProp(item_obj, 'GemRoastingLv', 0) < TryGetProp(item_obj, 'GemLevel', 0) then
 				ui.SysMsg(ClMsg('OnlyRoastedGemEquipableToGoddess'))
 			else
 				GODDESS_MGR_SOCKET_NORMAL_GEM_EQUIP(parent, slot, inv_item, item_obj)

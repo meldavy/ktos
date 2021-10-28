@@ -3,6 +3,8 @@
 <!-- edited with XMLSpy v2008 sp1 (http://www.altova.com) by MintPC (Mi) -->
 <skinset name="Base">
 	<imagelist category="eventbanner">
+		<image name="event2107_DevilsTemptation" file="\event_banner\event2107_DevilsTemptation.jpg" imgrect="0 0 480 180"/>
+		<image name="event2107_goddesscube" file="\event_banner\event2107_goddesscube.png" imgrect="0 0 480 180"/>
 		<image name="event210708_update" file="\event_banner\event210708_update.jpg" imgrect="0 0 480 180"/>
 		<image name="event210708_specialedition" file="\event_banner\event210708_specialedition.jpg" imgrect="0 0 480 180"/>
 		<image name="event210708_report" file="\event_banner\event210708_report.jpg" imgrect="0 0 480 180"/>

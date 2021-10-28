@@ -1,4 +1,6 @@
 ClassID,StartTimeYYYYMM,StartTimeDDHHMM,NewTimeYYYYMM,NewTimeDDHHMM,EndTimeYYYYMM,EndTimeDDHHMM,DeadlineTimeYYYYMM,DeadlineTimeDDHHMM,ExchangeTimeYYYYMM,ExchangeTimeDDHHMM,ClassName,Name,ImagePath,url,UserCommand1,UserCommand2,UserCommand3,ShowType
+996850,202107,150900,202107,200000,202108,120700,202108,70000,0,0,event2107_goddesscube,축복받은 여신의 큐브 - 7월,event2107_goddesscube,http://tos.nexon.com/news/update/view.aspx?n4ArticleSN=2448&n4CategorySN=0,,,,
+996860,202107,150900,202107,200000,202108,120700,202108,70000,0,0,event2107_DevilsTemptation,마신의 유혹 - 트캉스,event2107_DevilsTemptation,http://tos.nexon.com/news/events/view.aspx?n4ArticleSN=337&n4ArticleCategorySN=1,,,,
 996870,202107,80900,202107,130000,202108,50700,202107,310000,0,0,event210708_specialedition,개편한 세상 특판,event210708_specialedition,http://tos.nexon.com/news/update/view.aspx?n4ArticleSN=2429,,,,
 996880,202107,80900,202107,130000,202108,190700,202108,140000,0,0,event210708_update,개편한 세상,event210708_update,http://tos.nexon.com/events/20210708/index.aspx,,,,
 996890,202107,80900,202107,130000,202108,190700,202108,140000,0,0,event210708_Event,개편한 세상 이벤트,event210708_Event,http://tos.nexon.com/news/events/view.aspx?n4ArticleSN=334&n4ArticleCategorySN=1,,,,

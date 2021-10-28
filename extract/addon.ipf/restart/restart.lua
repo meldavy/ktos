@@ -131,7 +131,12 @@ function AUTORESIZE_RESTART(frame)
 		return;
 	end
 	campGroup:RemoveAllChild();	
-	campGroup:SetOffset(campGroup:GetX(), ctrly);	
+	campGroup:SetOffset(campGroup:GetX(), ctrly);
+
+	if IsBuffApplied(GetMyPCObject(), 'BountyHunt_BUFF') == 'YES' then
+		frame:Resize(frame:GetWidth(), maxy + 40);
+		return;
+	end
 
 	-- 파티원이 존재 할 때
 	if 0 < count then

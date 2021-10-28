@@ -266,7 +266,7 @@ local maxR = sklObj.MaxR
                             <Str Str="Dummy_body"/>
                             <Num Num="0.5"/>
                         </Scp>
-                        <Scp Scp="SKL_SET_TARGET_CLIENT_TARGETTING" Client="NO" UseSleep="NO" Time="400" LoopTime="500" TimeSync="0">
+                        <Scp Scp="SKL_SET_TARGET_CLIENT_TARGETTING" Client="NO" UseSleep="NO" Time="400" TimeSync="0">
                             <Num Num="1"/>
                             <Num Num="100" UseFunc="1" FuncTxt="return obj.MaxR"/>
                         </Scp>
@@ -379,7 +379,7 @@ local maxR = sklObj.MaxR
                             <PosDist Angle="0" Dist="0" PosType="1"/>
                             <PosDist Angle="0" Dist="0" PosType="4"/>
                         </Scp>
-                        <Scp Scp="SKL_SET_TARGET_CLIENT_TARGETTING" Client="NO" UseSleep="NO" Time="950" LoopTime="650">
+                        <Scp Scp="SKL_SET_TARGET_CLIENT_TARGETTING" Client="NO" UseSleep="NO" Time="950">
                             <Num Num="1"/>
                             <Num Num="100" UseFunc="1" FuncTxt="return obj.MaxR"/>
                         </Scp>

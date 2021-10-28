@@ -236,7 +236,7 @@ function NOT_ROASTING_GEM_EQUIP_WARNINGMSGBOX_FRAME_OPEN(itemGuid, argNum)
 	tolua.cast(noBtn, "ui::CButton");
 
 	noBtn:SetEventScript(ui.LBUTTONUP, '_WARNINGMSGBOX_FRAME_OPEN_NO');
-	noBtn:SetEventScriptArgString(ui.LBUTTONUP, "None");
+	noBtn:SetEventScriptArgString(ui.LBUTTONUP, "");
 
 	local buttonMargin = noBtn:GetMargin();
 	local warningbox = GET_CHILD_RECURSIVELY(frame, 'warningbox');
