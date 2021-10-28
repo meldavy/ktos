@@ -14839,8 +14839,8 @@
 		<Class ClassID="302311" ClassName="EVENT_2101_SUPPLY_Shop4" Data="{#003399}[EP-12]{/} 아이템 스크롤 상점"/>
 		<Class ClassID="302312" ClassName="EVENT_2101_SUPPLY_Shop4_2" Data="{#0033FF}[EP-12]{/} 아이템 스크롤 상점 열기"/>
 		<Class ClassID="302313" ClassName="EVENT_2101_SUPPLY_COMPOSITION_VIBORA_TITLE" Data="재건단의 바이보라 합성점"/>
-		<Class ClassID="302314" ClassName="EVENT_2101_SUPPLY_COMPOSITION_VIBORA_NEED_ITEM" Data="LV1 바이보라 무기 혹은 아이커 2개{nl}[이벤트] 바이보라 합성권 1개"/>
-		<Class ClassID="302315" ClassName="EVENT_2101_SUPPLY_COMPOSITION_VIBORA_TIP_TEXT" Data="보유한 LV1 바이보라 무기를 이벤트 아이템과 합성하여 무작위 바이보라 무기를 획득합니다.{nl}확률에 따라 합성 재료로 사용한 LV1 바이보라 무기와 동일한 무기를 획득할 수 있습니다.{nl} {nl}LV2 이상 바이보라 장비는 합성이 불가능 합니다."/>
+		<Class ClassID="302314" ClassName="EVENT_2101_SUPPLY_COMPOSITION_VIBORA_NEED_ITEM" Data="LV1 바이보라 장비 혹은 아이커 2개{nl}[이벤트] 바이보라 합성권 1개"/>
+		<Class ClassID="302315" ClassName="EVENT_2101_SUPPLY_COMPOSITION_VIBORA_TIP_TEXT" Data="보유한 LV1 바이보라 장비를 이벤트 아이템과 합성하여 무작위 바이보라 장비를 획득합니다.{nl}확률에 따라 합성 재료로 사용한 LV1 바이보라 장비와 동일한 장비를 획득할 수 있습니다.{nl} {nl}LV2 이상 바이보라 장비는 합성이 불가능 합니다."/>
 		<Class ClassID="302316" ClassName="EVENT_2101_SUPPLY_CHAT_1" Data="이런 곳에서 만나는 것도 인연이군!"/>
 		<Class ClassID="302317" ClassName="EVENT_2101_SUPPLY_CHAT_2" Data="무엇이 필요한지 말해보게나."/>
 		<Class ClassID="302318" ClassName="EVENT_2101_SUPPLY_CHAT_3" Data="만나서 반가워요."/>
