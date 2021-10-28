@@ -369,6 +369,26 @@ function INIT_GRAPHIC_CONFIG(frame)
 	if Check_Enable_Daylight ~= nil then
 		Check_Enable_Daylight:SetCheck(config.GetEnableDayLight());
 	end
+	
+	local performance_limit_text = GET_CHILD_RECURSIVELY(frame, "performance_limit_text");
+	if performance_limit_text ~= nil then
+		if imc.Is64BitWindows() == true then
+			performance_limit_text:ShowWindow(1);
+			performance_limit_text:SetTextByKey("opValue", config.GetPerformanceLimit());
+		else
+			performance_limit_text:ShowWindow(0);
+		end
+	end
+
+	local performance_limit_slide = GET_CHILD_RECURSIVELY(frame, "performance_limit_slide");
+	if performance_limit_slide ~= nil then
+		if imc.Is64BitWindows() == true then
+			performance_limit_slide:ShowWindow(1);
+			performance_limit_slide:SetLevel(config.GetPerformanceLimit());
+		else
+			performance_limit_slide:ShowWindow(0);
+		end
+	end
 end
 
 function INIT_GAMESYS_CONFIG(frame)
@@ -473,6 +493,14 @@ end
 function SHOW_PERFORMANCE_VALUE(frame)
 	local flag = config.GetXMLConfig("ShowPerformanceValue")
 	SHOW_FPS_FRAME(flag)
+end
+
+function SET_PERFORMANCE_LIMIT(frame, ctrl, str, num)
+	tolua.cast(ctrl, "ui::CSlideBar");
+	config.SetPerformanceLimit(ctrl:GetLevel());
+	
+	local txt = GET_CHILD_RECURSIVELY(frame, "performance_limit_text", "ui::CRichText");
+	txt:SetTextByKey("opValue", ctrl:GetLevel());
 end
 
 function APPLY_SCREEN(frame)

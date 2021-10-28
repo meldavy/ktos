@@ -151,7 +151,7 @@ function EVENT_PROGRESS_CHECK_ACQUIRE_STATE_OPEN(frame, type)
 		local clear_text = GET_CHILD(ctrlSet, "clear_text");
 		
 		local npc_pos_btn = GET_CHILD(ctrlSet, "btn");
-		if npclist[i] ~= "None" then
+		if npclist[i] ~= "None" and npclist[i] ~= nil then
 			npc_pos_btn:ShowWindow(1);
 			npc_pos_btn:SetEventScript(ui.LBUTTONUP, "EVENT_PROGRESS_NPC_POS_BTN_CLICK");
 			npc_pos_btn:SetEventScriptArgString(ui.LBUTTONUP, npclist[i]);

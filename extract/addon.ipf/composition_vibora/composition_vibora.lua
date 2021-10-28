@@ -416,9 +416,10 @@ function EVENT_2011_5TH_SPECIAL_VIBORA_BTN_CLLICK()
 
 	local frame = ui.GetFrame("composition_vibora");
 	session.ResetItemList();
-	for i = 1, 1 do 
+	for i = 1, 3 do 
 		local slot = GET_CHILD(frame, "slot_"..i);
 		if slot:GetIcon() == nil then
+			ui.SysMsg(ClMsg("NotEnoughCompositionNeedItem"));
 			return;
 		end
 
@@ -433,11 +434,11 @@ function EVENT_2011_5TH_SPECIAL_VIBORA_BTN_CLLICK()
 			local guid = slot:GetUserValue("GUID");
 			session.AddItemID(guid, 1);
 		elseif i == 2 then
-			if itemObj.ClassName ~= "Event_Roulette_Coin_2" then
+			if itemObj.ClassName ~= "Event_2011_TOS_Coin" then
 				return;
 			end
 		elseif i == 3 then
-			if itemObj.ClassName ~= "Event_Roulette_Coin_2" then
+			if itemObj.ClassName ~= "Event_2011_5th_Coin" then
 				return;
 			end
 		end
