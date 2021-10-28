@@ -103,7 +103,7 @@ local function ADD_SUB_CATEGORY(detailBox, parentCategory, subCategoryList)
 		if category == nil then
 			category = 'ShowAll';
 		end
-		if parentCategory == 'Gem' and category ~= 'Relic' then
+		if category ~= 'Relic' then
 			local subCateCtrlset = subCateBox:CreateControl('groupbox', 'SUB_CATE_'..category, 0, 0, detailBox:GetWidth(), 20);
 			AUTO_CAST(subCateCtrlset);
 			subCateCtrlset:SetSkinName('None');
