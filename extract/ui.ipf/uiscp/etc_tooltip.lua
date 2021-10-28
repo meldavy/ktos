@@ -461,6 +461,10 @@ function UPDATE_INDUN_INFO_TOOLTIP(tooltipframe, cidStr, param1, param2, actor)
 			indunLabel = tolua.cast(indunLabel, 'ui::CRichText')
 			indunLabel:SetText('{@st42b}' .. indunCls.Category)
 			indunLabel:SetEnable(0)
+			local difficulty = TryGetProp(indunCls, "Difficulty", "None")
+            if difficulty ~= "None" then
+                indunLabel:SetText('{@st42b}' .. indunCls.Category .. ' - ' .. difficulty)
+            end
 		
 			local indunCntLabel = indunGroupBox:CreateOrGetControl("richtext", "INDUN_COUNT_" .. indunCls.PlayPerResetType, 0, 0, ctrlWidth / 2, ctrlHeight)
 			indunCntLabel:SetGravity(ui.RIGHT, ui.TOP)

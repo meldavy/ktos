@@ -39,12 +39,6 @@ function INDUNINFO_CHAR_UI_OPEN(frame, msg, argStr, argNum)
             nameLabel:SetText('{@st42b}Lv.' .. pcInfo:GetLevel() .. " " .. pcName)
 
             local playPerRestTypeTable={}
-
-            --기본 인던들 추가
-
-            for i=1, #g_indunCategoryList do
-                charGroupBox:CreateOrGetControl("groupbox", "INDUN_CONTROL_".. g_indunCategoryList[i], 0, 0, ctrlWidth, 20)
-            end
             
             -- 기본 인던 내용 
             for j = 0, indunCount - 1 do
@@ -58,6 +52,10 @@ function INDUNINFO_CHAR_UI_OPEN(frame, msg, argStr, argNum)
                     indunLabel = tolua.cast(indunLabel, 'ui::CRichText')
                     indunLabel:SetText('{@st42b}' .. indunCls.Category)
                     indunLabel:SetEnable(0)
+                    local difficulty = TryGetProp(indunCls, "Difficulty", "None")
+                    if difficulty ~= "None" then
+                        indunLabel:SetText('{@st42b}' .. indunCls.Category .. ' - ' .. difficulty)
+                    end
                     
                     local indunCntLabel = indunGroupBox:CreateOrGetControl("richtext", "INDUN_COUNT_" .. indunCls.PlayPerResetType, 2, 0, ctrlWidth / 2, 20)
                     indunCntLabel:SetGravity(ui.RIGHT, ui.TOP)
