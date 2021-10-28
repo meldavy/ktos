@@ -17928,7 +17928,7 @@ end"/>
             </ToolScp>
         </updateEvent>
     </PadSkill>
-    <PadSkill Name="Murmillo_FrenziedBurst_Arena" CheckerType="0" Range="100" ApplyFlyMon="1" AllowOverlap="1">
+    <PadSkill Name="Murmillo_FrenziedBurst_Arena" CheckerType="0" Range="100" ApplyFlyMon="1" AllowOverlap="1"EnableSearch="0" IsMagicType="0" IsMineType="0">
         <createEvent>
             <ToolScp Scp="C_PAD_EFFECT_POS" Client="YES" UseSleep="NO">
                 <Str_Arg Str="F_scout_replica_ground_light_loop2" Arg="3.0999999"/>

@@ -3753,6 +3753,7 @@
         <Effect Name="skl_eff_voice_luchador_announce_m_joy"/>
         <Effect Name="F_buff_basic059"/>
         <Effect Name="voice_luchador_m_martinete_shot"/>
+        <Effect Name="SKL_BUTTERFLY"/>
     </Category>
     <Category ID="84">
         <Effect Name="M_PAST_FLIBRARY_1"/>

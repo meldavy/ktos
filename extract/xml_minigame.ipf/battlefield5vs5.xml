@@ -498,7 +498,7 @@
                         </condList>
                         <execList>
                             <ToolScp Scp="MGAME_COUNTDOWN_TEAM_BATTLE" Client="NO" UseSleep="YES">
-                                <Num Num="20"/>
+                                <Num Num="10"/>
                             </ToolScp>
                             <ToolScp Scp="MGAME_EVT_SCRIPT" Client="NO" UseSleep="NO">
                                 <Str Str="ON_TEAM_BATTLE_LEAGUE_CHARACTER_CHANGE"/>
@@ -626,7 +626,7 @@
                     <Event execCount="1" eventName="setui">
                         <execList>
                             <ToolScp Scp="MGAME_COUNTDOWN_TEAM_BATTLE" Client="NO" UseSleep="YES">
-                                <Num Num="20"/>
+                                <Num Num="10"/>
                             </ToolScp>
                         </execList>
                     </Event>
@@ -711,7 +711,7 @@
                         <execList>
                             <ToolScp Scp="GAME_ST_EVT_EXEC_VALUE" Client="NO" UseSleep="NO">
                                 <Str Str="character_change_time"/>
-                                <Num Num="20000"/>
+                                <Num Num="10000"/>
                             </ToolScp>
                             <ToolScp Scp="MGAME_EVT_SCRIPT" Client="NO" UseSleep="NO">
                                 <Str Str="ON_TEAM_BATTLE_LEAGUE_CHARACTER_CHANGE"/>
@@ -732,7 +732,7 @@
                         <execList>
                             <ToolScp Scp="GAME_ST_EVT_EXEC_VALUE" Client="NO" UseSleep="NO">
                                 <Str Str="character_change_time"/>
-                                <Num Num="20000"/>
+                                <Num Num="10000"/>
                             </ToolScp>
                         </execList>
                     </Event>

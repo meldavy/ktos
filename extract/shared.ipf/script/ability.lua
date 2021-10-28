@@ -3349,11 +3349,11 @@ function SCR_ABIL_SHIELDSTRIKE_INACTIVE(self, ability)
 end
 
 function SCR_ABIL_Luchador18_ACTIVE(self, ability)
-    SetExProp(self, "IS_DASH_ABIL", 1);
+
 end
 
 function SCR_ABIL_Luchador18_INACTIVE(self, ability)
-    DelExProp(self, "IS_DASH_ABIL");
+
 end
 
 function SCR_ABIL_Luchador12_ACTIVE(self, ability)

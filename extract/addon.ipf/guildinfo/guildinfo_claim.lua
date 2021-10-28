@@ -602,9 +602,7 @@ function SEARCH_GUILD_MEMBER_MATCH_NAME(name, cap)
 		return true
 	end
 
-	local tempcap = string.lower(cap);
-
-	if string.find(name, tempcap) ~= nil then
+	if string.find(name, cap) ~= nil then
 		return true;
 	end
 
