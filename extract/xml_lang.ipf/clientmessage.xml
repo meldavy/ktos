@@ -321,6 +321,7 @@
 		<Class ClassID="2146" ClassName="NeedRegisterForCardCopy" Data="복사할 카드를 먼저 등록해야합니다."/>
 		<Class ClassID="2147" ClassName="OnlyRoastedGemEquipableToGoddess" Data="가디스 장비에는 로스팅 레벨이 낮은 컬러 젬을 장착할 수 없습니다."/>
 		<Class ClassID="2148" ClassName="MaterialCardLvHighThanGoddessReinforceCard" Data="강화 재료 아이템에 강화하는 카드보다{nl}{#FE7E00}높은 레벨의 카드{/}가 등록되어 있습니다.{nl} {nl}여신 카드 강화 시 복구가 불가능합니다.{nl}정말 강화하겠습니까? "/>
+		<Class ClassID="2149" ClassName="CantUseInThisArea" Data="현재 지역에서는 사용할 수 없습니다."/>
 	</Category>
 	<Category Name="ItemContents">
 		<Class ClassID="2200" ClassName="ClickSocketTargetItem" Data="소켓을 추가 할 아이템을 선택해주세요"/>

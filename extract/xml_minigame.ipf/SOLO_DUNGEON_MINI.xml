@@ -194,6 +194,10 @@ return value"/>
                             <ToolScp Scp="MGAME_EXEC_ACTORSCP_MAIN" Client="NO" UseSleep="NO">
                                 <Str Str="SCR_SOLO_DUNGEON_AETHER_GEM_SETTING"/>
                             </ToolScp>
+                            <ToolScp Scp="GAME_ST_EVT_EXEC_VALUE" Client="NO" UseSleep="NO">
+                                <Str Str="TIMER_START_TIME"/>
+                                <Num Num="0"/>
+                            </ToolScp>
                         </execList>
                     </Event>
                     <Event eventName="end_game_timer_start">

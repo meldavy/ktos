@@ -2803,10 +2803,6 @@ function SCR_Get_SDR(self)
         byItem = 0;
     end
 
-    if IsPVPServer(self) == 1 then
-        byItem = 0;
-    end
-    
     local byBuff = TryGetProp(self, "SDR_BM")
     if byBuff == nil then
         byBuff = 0;
@@ -2819,7 +2815,7 @@ function SCR_Get_SDR(self)
     end
     
     if IsPVPServer(self) == 1 then
-        value = 2
+        value = 2 + byBuff;
     elseif IsPVPField(self) == 1 and value > 4 then
         value = math.floor((math.max(0, value-4)^0.5))+math.min(4, value)
     end
