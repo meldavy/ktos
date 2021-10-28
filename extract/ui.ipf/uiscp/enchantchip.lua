@@ -21,32 +21,32 @@ function CLIENT_ENCHANTCHIP(invItem)
 		return;
 	end
 	
+	-- check life time of enchant item
+	if TryGetProp(obj, "LifeTime") > 0 and TryGetProp(obj, "ItemLifeTimeOver") > 0 then
+		return
+	end
+
 	HAIRENCHANT_UI_RESET();
 
 	local enchantFrame = ui.GetFrame("hairenchant");
 	local invframe = ui.GetFrame("inventory");
+	invframe:ShowWindow(1);
 	enchantFrame:ShowWindow(1);
-	enchantFrame:SetOffset(invframe:GetX() - enchantFrame:GetWidth(), enchantFrame:GetY());
+	enchantFrame:SetMargin(0, 65, invframe:GetWidth(), 0);
 	enchantFrame:SetUserValue("Enchant", invItem:GetIESID());
 	local cnt = enchantFrame:GetChild("scrollCnt");
 	cnt:SetTextByKey("value", tostring(invItem.count));
 	
 	ui.SetEscapeScp("CANCEL_ENCHANTCHIP()");
 
-	SET_SLOT_APPLY_FUNC(invframe, "CHECK_ENCHANTCHIP_TARGET_ITEM");
+	SET_SLOT_APPLY_FUNC(invframe, "CHECK_ENCHANTCHIP_TARGET_ITEM", nil, "Equip");
+	local tab = GET_CHILD_RECURSIVELY(invframe, "inventype_Tab");
+	tolua.cast(tab, "ui::CTabControl");
+	tab:SelectTab(1);
+
 	SET_INV_LBTN_FUNC(invframe, "ENCHANTCHIP_LBTN_CLICK");
 	ui.GuideMsg("SelectItem");
 	CHANGE_MOUSE_CURSOR("MORU", "MORU_UP", "CURSOR_CHECK_ENCHANTCHIP");
-
-	local inventoryGbox = invframe:GetChild("inventoryGbox");
-	local treeGbox = inventoryGbox:GetChild("treeGbox");
-	local tree = GET_CHILD(treeGbox,"inventree");
-	tree:CloseNodeAll();
-
-	local treegroup = tree:FindByValue("Premium");
-	tree:ShowTreeNode(treegroup, 1);
-	treegroup = tree:FindByValue("EquipGroup");
-	tree:ShowTreeNode(treegroup, 1);
 end
 
 
