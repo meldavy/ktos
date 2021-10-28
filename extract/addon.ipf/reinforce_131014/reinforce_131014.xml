@@ -15,6 +15,7 @@
 		<richtext name="t_fromItem" rect="0 0 200 20" margin="-77 130 0 0" layout_gravity="center top" caption="{@st41b}대상 아이템"/>
         <slot name="fromMoruSlot" rect="0 0 128 128" margin="80 -5 0 0" layout_gravity="center top" DropScp="DROP_UPGRADE2_MORU" dropsound="icon_get_down" movepop="false" oversound="button_cursor_over_3" picksound="icon_pick_up" image="skilltooltip_skill_image_slot"/>
 		<slot name="fromItemSlot" rect="0 0 128 128" margin="-80 -5 0 0" layout_gravity="center top" DropScp="DROP_UPGRADE2_SLOT" dropsound="icon_get_down" movepop="false" oversound="button_cursor_over_3" picksound="icon_pick_up" draw="true" image="skilltooltip_skill_image_slot"/>
+        <richtext name="t_fromItemPR" parent="fromItemSlot" rect="0 0 200 20" margin="0 0 0 10" layout_gravity="center bottom" format="{@st41b}{%s}포텐셜 %s" param1="color" param1_def="#1212ff" param2="value" param2_def="0" textalign="center center"/>
         <richtext name="t_fromMoru" rect="0 0 200 20" margin="80 130 0 0" layout_gravity="center top" caption="{@st41b}대상 모루" textalign="center center"/>
 		<labelline name="boardLine 1" rect="0 0 340 4" margin="0 165 0 0" layout_gravity="center top" skin="None" visible="true"/>
 		<labelline name="boardLine 2" rect="0 0 340 4" margin="0 250 0 0" layout_gravity="center top" skin="None" visible="true"/>

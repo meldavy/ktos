@@ -225,3 +225,101 @@ function SCR_ENABLE_GET_SKILL_Crusader_RingOfLight(pc, skillClsName)
 	return true;
 end
 
+function SCR_ENABLE_GET_SKILL_Bulletmarker_RestInPeace(pc, skillClsName)
+	local palmstrikeSkl = nil;
+	if IsServerObj(pc) == 1 then
+		palmstrikeSkl = GetSkill(pc, 'Bulletmarker_DoubleGunStance');
+	else
+		palmstrikeSkl = session.GetSkillByName('Bulletmarker_DoubleGunStance');
+	end
+
+	if palmstrikeSkl == nil then
+		return false;
+	end
+	return true;
+end
+
+function SCR_ENABLE_GET_SKILL_Bulletmarker_BloodyOverdrive(pc, skillClsName)
+	local palmstrikeSkl = nil;
+	if IsServerObj(pc) == 1 then
+		palmstrikeSkl = GetSkill(pc, 'Bulletmarker_DoubleGunStance');
+	else
+		palmstrikeSkl = session.GetSkillByName('Bulletmarker_DoubleGunStance');
+	end
+
+	if palmstrikeSkl == nil then
+		return false;
+	end
+	return true;
+end
+
+function SCR_ENABLE_GET_SKILL_Bulletmarker_TracerBullet(pc, skillClsName)
+	local palmstrikeSkl = nil;
+	if IsServerObj(pc) == 1 then
+		palmstrikeSkl = GetSkill(pc, 'Bulletmarker_DoubleGunStance');
+	else
+		palmstrikeSkl = session.GetSkillByName('Bulletmarker_DoubleGunStance');
+	end
+
+	if palmstrikeSkl == nil then
+		return false;
+	end
+	return true;
+end
+
+function SCR_ENABLE_GET_SKILL_Bulletmarker_MozambiqueDrill(pc, skillClsName)
+	local palmstrikeSkl = nil;
+	if IsServerObj(pc) == 1 then
+		palmstrikeSkl = GetSkill(pc, 'Bulletmarker_DoubleGunStance');
+	else
+		palmstrikeSkl = session.GetSkillByName('Bulletmarker_DoubleGunStance');
+	end
+
+	if palmstrikeSkl == nil then
+		return false;
+	end
+	return true;
+end
+
+function SCR_ENABLE_GET_SKILL_Bulletmarker_FreezeBullet(pc, skillClsName)
+	local palmstrikeSkl = nil;
+	if IsServerObj(pc) == 1 then
+		palmstrikeSkl = GetSkill(pc, 'Bulletmarker_DoubleGunStance');
+	else
+		palmstrikeSkl = session.GetSkillByName('Bulletmarker_DoubleGunStance');
+	end
+
+	if palmstrikeSkl == nil then
+		return false;
+	end
+	return true;
+end
+
+function SCR_ENABLE_GET_SKILL_Bulletmarker_Outrage(pc, skillClsName)
+	local palmstrikeSkl = nil;
+	if IsServerObj(pc) == 1 then
+		palmstrikeSkl = GetSkill(pc, 'Bulletmarker_DoubleGunStance');
+	else
+		palmstrikeSkl = session.GetSkillByName('Bulletmarker_DoubleGunStance');
+	end
+
+	if palmstrikeSkl == nil then
+		return false;
+	end
+	return true;
+end
+
+function SCR_ENABLE_GET_SKILL_Bulletmarker_NapalmBullet(pc, skillClsName)
+	local palmstrikeSkl = nil;
+	if IsServerObj(pc) == 1 then
+		palmstrikeSkl = GetSkill(pc, 'Bulletmarker_DoubleGunStance');
+	else
+		palmstrikeSkl = session.GetSkillByName('Bulletmarker_DoubleGunStance');
+	end
+
+	if palmstrikeSkl == nil then
+		return false;
+	end
+	return true;
+end
+

@@ -44,10 +44,14 @@ function QUESTDETAIL_BOX_CREATE_RICH_CONTROLSET(baseCtrl, x, y, width, height, n
 end
 
 -- 태그 텍스트 컨트롤
-function QUESTDETAIL_MAKE_ITEM_TAG_TEXT_CTRL(baseCtrl, x, y, name, itemName, itemCount, index, prop) 
+function QUESTDETAIL_MAKE_ITEM_TAG_TEXT_CTRL(baseCtrl, x, y, name, itemName, itemCount, index, prop, is_multi, multiple_rate)
 	local cls = GetClass("Item", itemName);
 	if cls == nil then
 		return 0;
+	end
+
+	if is_multi == nil then
+		is_multi = false
 	end
 
 	local height = 0;
@@ -86,7 +90,11 @@ function QUESTDETAIL_MAKE_ITEM_TAG_TEXT_CTRL(baseCtrl, x, y, name, itemName, ite
 	    if itemName ~= 'Vis' then
 			itemText = ScpArgMsg("{Auto_1}ItemName{Auto_2}NeedCount","Auto_1", itemCls.Name, "Auto_2",GetCommaedText(itemCount));
 		else
-    		itemText = ScpArgMsg("QuestRewardMoneyText", "Auto_1", GetCommaedText(itemCount));
+    		if is_multi == true then
+				itemText = ScpArgMsg("QuestRewardMoneyTextWithBonus", "Auto_1", GetCommaedText(itemCount), "Rate", multiple_rate);
+			else
+				itemText = ScpArgMsg("QuestRewardMoneyText", "Auto_1", GetCommaedText(itemCount));
+			end
     	end
     end
 	itemNameCtrl:SetText(itemText);
@@ -359,8 +367,24 @@ function QUESTDETAIL_MAKE_REWARD_MONEY_CTRL(gbBody, x, y, questIES)
 		end
 	end
 	
-    if count > 0 then
-		height = height + QUESTDETAIL_MAKE_ITEM_TAG_TEXT_CTRL(gbBody, x, y + height, "reward_item", 'Vis', count, 1);
+	if count > 0 then
+		local is_multi = false
+		local multiple_rate = 1
+		local acc_obj = GetMyAccountObj()
+		local ep_cls = GetClassByNumProp('Episode_Quest', 'QuestID', questIES.ClassID)
+		if acc_obj ~= nil and ep_cls ~= nil then
+			local ep_name = TryGetProp(ep_cls, 'EpisodeName', 'None')
+			local check_name = 'FirstQuestClear_' .. ep_name .. '_' .. questIES.ClassID
+			local first_clear = TryGetProp(acc_obj, check_name, 0)
+			local ep_reward_cls = GetClass('Episode_Reward', ep_name)
+			if first_clear == 0 and ep_reward_cls ~= nil then
+				multiple_rate = TryGetProp(ep_reward_cls, 'FirstClearSilver', 1)
+				count = count * multiple_rate
+				is_multi = true
+			end
+		end
+
+		height = height + QUESTDETAIL_MAKE_ITEM_TAG_TEXT_CTRL(gbBody, x, y + height, "reward_item", 'Vis', count, 1, nil, is_multi, multiple_rate);
 	end
 	
 	return height;

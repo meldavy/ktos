@@ -110,3 +110,11 @@ end
 function UPDATE_MAINTAIN_TARGETEDSKILL_UI(value)
 	config.MaintainTargetedSkillUI(tonumber(value));
 end
+
+function UPDATE_SHOW_COIN_GET_GAUGE(value)
+	if tonumber(value) == 1 then
+		ui.OpenFrame('coin_get_gauge')
+	else
+		ui.CloseFrame('coin_get_gauge')
+	end
+end

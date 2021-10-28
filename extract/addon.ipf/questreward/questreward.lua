@@ -1,4 +1,4 @@
-MAX_QUEST_TAKEITEM = 4;
+﻿MAX_QUEST_TAKEITEM = 4;
 MAX_QUEST_SELECTITEM = 8;
 QUESTREWARD_SELECT = 1;
 MAX_SIZE_HEIGT_FRAME_EMPTY_VALUE = 100;
@@ -127,7 +127,7 @@ function QUEST_REWARD_TEST(frame, questID)
     if #reward_result > 0 then
         y = y + 20;
     	y = BOX_CREATE_RICHTEXT(box, "t_addreward", y, 20, ScpArgMsg("Auto_{@st41}BoSang"));
-    	y = MAKE_BASIC_REWARD_MONEY_CTRL(box, cls, y);
+    	y = MAKE_BASIC_REWARD_MONEY_CTRL_WITH_BONUS(box, cls, y);
     	y = MAKE_BASIC_REWARD_BUFF_CTRL(box, cls, y);
     	y = MAKE_BASIC_REWARD_HONOR_CTRL(box, cls, y);
     	y = MAKE_BASIC_REWARD_PCPROPERTY_CTRL(box, cls, y);
@@ -338,12 +338,16 @@ function MAKE_MONEY_TAG_TEXT_CTRL(y, box, ctrlNameHead, itemCount, index)
 	return y;
 end
 
-function MAKE_ITEM_TAG_TEXT_CTRL(y, box, ctrlNameHead, itemName, itemCount, index)
+function MAKE_ITEM_TAG_TEXT_CTRL(y, box, ctrlNameHead, itemName, itemCount, index, is_multi, multiple_rate)
 	local cls = GetClass("Item", itemName);
 	if cls == nil then
 		return y;
 	end
-    
+
+	if is_multi == nil then
+		is_multi = false
+	end
+
 	local icon = GET_ITEM_ICON_IMAGE(cls);
 	    
     y = y + 5
@@ -382,7 +386,11 @@ function MAKE_ITEM_TAG_TEXT_CTRL(y, box, ctrlNameHead, itemName, itemCount, inde
 	    if itemName ~= 'Vis' then
 			itemText = ScpArgMsg("{Auto_1}ItemName{Auto_2}NeedCount","Auto_1", itemCls.Name, "Auto_2",GetCommaedText(itemCount));
 		else
-    		itemText = ScpArgMsg("QuestRewardMoneyText", "Auto_1", GetCommaedText(itemCount));
+			if is_multi == true then
+				itemText = ScpArgMsg("QuestRewardMoneyTextWithBonus", "Auto_1", GetCommaedText(itemCount), "Rate", multiple_rate);
+			else
+				itemText = ScpArgMsg("QuestRewardMoneyText", "Auto_1", GetCommaedText(itemCount));
+			end
     	end
     end
 	itemNameCtrl:SetText(itemText);
@@ -798,6 +806,41 @@ function MAKE_BASIC_REWARD_MONEY_CTRL(box, cls, y)
     
     if count > 0 then
         y = MAKE_ITEM_TAG_TEXT_CTRL(y, box, "reward_item", 'Vis', count, 1);
+    end
+	return y;
+end
+
+function MAKE_BASIC_REWARD_MONEY_CTRL_WITH_BONUS(box, cls, y)
+	local count = 0;
+
+	if cls.Success_ItemName1 ~= "None" then
+		for i = 1 , MAX_QUEST_TAKEITEM do
+			local propName = "Success_ItemName" .. i;
+			if cls[propName] ~= "None" and cls[propName] == 'Vis' then
+				count = count + tonumber(cls["Success_ItemCount" .. i])
+			end
+		end
+	end
+    
+	if count > 0 then
+		local is_multi = false
+		local multiple_rate = 1
+		local acc_obj = GetMyAccountObj()
+		local ep_cls = GetClassByNumProp('Episode_Quest', 'QuestID', cls.ClassID)
+		if acc_obj ~= nil and ep_cls ~= nil then
+			local ep_name = TryGetProp(ep_cls, 'EpisodeName', 'None')
+			local _RewardGroup = TryGetProp(ep_cls, 'RewardGroup', 'None')
+			local check_name = 'FirstQuestClear_' .. _RewardGroup .. '_' .. cls.ClassID
+			local first_clear = TryGetProp(acc_obj, check_name, 0)
+			local ep_reward_cls = GetClass('Episode_Reward', ep_name)
+			if first_clear == 0 and ep_reward_cls ~= nil then
+				multiple_rate = TryGetProp(ep_reward_cls, 'FirstClearSilver', 1)
+				count = count * multiple_rate
+				is_multi = true
+			end
+		end
+
+        y = MAKE_ITEM_TAG_TEXT_CTRL(y, box, "reward_item", 'Vis', count, 1, is_multi, multiple_rate);
     end
 	return y;
 end

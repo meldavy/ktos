@@ -1,6 +1,6 @@
 ClassID,UnlockArgNum,MaxLevel,Price1,Time1,Price2,Time2,Price3,Time3,Price4,Time4,Price5,Time5,Price6,Time6,Price7,Time7,Price8,Time8,Price9,Time9,Price10,Time10,ClassName,UnlockScr,UnlockArgStr,UnlockDesc,ScrCalcPrice
-1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Fletching,UNLOCK_BASE_LEVEL,,캐릭터 1레벨 이상,ABIL_COMMON_PRICE_1LV
 2,1,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Fletcher26,UNLOCK_BASE_LEVEL,,캐릭터 1레벨 이상,ABIL_COMMON_PRICE_1LV
+3,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Fletcher35,UNLOCK_BASE_LEVEL,,캐릭터 300레벨 이상,ABIL_COMMON_PRICE_300LV
 101,1,100,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Fletcher11,UNLOCK_ABIL_SKILL,Fletcher_BroadHead,브로드 헤드 1레벨 이상,ABIL_REINFORCE_PRICE
 201,1,100,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Fletcher14,UNLOCK_ABIL_SKILL,Fletcher_BodkinPoint,보드킨 포인트 1레벨 이상,ABIL_REINFORCE_PRICE
 301,1,100,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Fletcher17,UNLOCK_ABIL_SKILL,Fletcher_BarbedArrow,바브드 애로우 1레벨 이상,ABIL_REINFORCE_PRICE

@@ -178,6 +178,31 @@ shared_item_ark.get_current_lv_exp = function(item)
     return true, next_exp
 end
 
+-- 분해 가능한 마신/여신방어구 인가?
+-- stringArg, NumberArg1 체크
+function ENABLE_DECOMPOSE_EVIL_GODDESS_ITEM(item)    
+    if TryGetProp(item, 'GroupName', 'None') == 'Icor' then  -- 아이커인 경우
+        local inheritance_name = TryGetProp(item, 'InheritanceItemName', 'None')
+        if inheritance_name ~= 'None' then
+            local item_obj = GetClass('Item', inheritance_name)
+            if item_obj == nil then
+                return false
+            end
+            local string_arg = TryGetProp(item_obj, 'StringArg', 'None')
+            if (string_arg == 'evil' or string_arg == 'goddess') and TryGetProp(item_obj, 'NumberArg1', 0) == 1 then
+                return true    
+            end
+        end
+    else
+        local string_arg = TryGetProp(item, 'StringArg', 'None')
+        if (string_arg == 'evil' or string_arg == 'goddess') and TryGetProp(item, 'NumberArg1', 0) == 1 then
+            return true    
+        end
+    end
+
+    return false
+end
+
 ------------------------------------ 아크 툴팁 관련 ----
 -- 반환값 : tooptip_type, option, level, value
 

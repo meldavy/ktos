@@ -521,7 +521,7 @@
 	<Code Code="ERROR_TEAM_BATTLE" Team="PROGRAM" Category="ERROR" SubCategory="" Logger="root" Enabled="YES" CallStack="NO" Desc="팀배틀리그 관련 에러"/>
 	<Code Code="NOTICE_HEALTH_STATE" Team="tos_team" Category="HEALTH" SubCategory="" Logger="root" Enabled="YES" CallStack="NO" Desc="상태 정보"/>
 	<Code Code="ERROR_CHALLENGE_MODE" Team="PROGRAM" Category="ERROR" SubCategory="" Logger="root" Enabled="YES" CallStack="NO" Desc="챌린지모드 관련 에러"/>
-	<Code Code="INFO_CHALLENGE_MODE" Team="PROGRAM" Category="ERROR" SubCategory="" Logger="root" Enabled="YES" CallStack="NO" Desc="챌린지모드 관련 정보"/>
+	<Code Code="INFO_CHALLENGE_MODE" Team="PROGRAM" Category="ERROR" SubCategory="" Logger="root" Enabled="NO" CallStack="NO" Desc="챌린지모드 관련 정보"/>
 	<Code Code="LOGGING_ABILITY_CHECK" Team="PROGRAM" Category="ERROR" SubCategory="" Logger="root" Enabled="YES" CallStack="NO" Desc="어빌리티 적용 여부 확인을 위한 로그"/>
 	<Code Code="ERROR_DAMAGE_MESSAGE" Team="PROGRAM" Category="ERROR" SubCategory="" Logger="root" Enabled="YES" CallStack="NO" Desc="대미지 메세지화 관련 에러로그"/>
 	<Code Code="INFO_DAMAGE_MESSAGE" Team="PROGRAM" Category="ERROR" SubCategory="" Logger="root" Enabled="YES" CallStack="NO" Desc="대미지 메세지화 관련 정보"/>
@@ -619,7 +619,7 @@
 	<Code Code="ERROR_RIFT_DUNGEON" Team="PROGRAM" Category="ERROR" SubCategory="" Logger="root" Enabled="YES" CallStack="NO" Desc="균열 던전 관련 에러"/>
 	<Code Code="INFO_RIFT_DUNGEON" Team="PROGRAM" Category="ERROR" SubCategory="" Logger="root" Enabled="YES" CallStack="NO" Desc="균열 던전 관련 정보"/>
 	<Code Code="WARNING_HACK_POS" Team="tos_team" Category="LOGIC" SubCategory="" Logger="root" Enabled="YES" CallStack="NO" Desc="Hack Pos 감지"/>
-  <Code Code="INFO_TRACE_GUILD_MISSION" Team="tos_team" Category="INFO" SubCategory="" Logger="root" Enabled="YES" CallStack="NO" Desc="개발용 정보"/>
+  <Code Code="INFO_TRACE_GUILD_MISSION" Team="tos_team" Category="INFO" SubCategory="" Logger="root" Enabled="NO" CallStack="NO" Desc="개발용 정보"/>
   <Code Code="ERROR_TRACE_FACTION" Team="tos_team" Category="ERROR" SubCategory="" Logger="root" Enabled="YES" CallStack="NO" Desc="개발용 정보"/>
   <Code Code="INFO_TRACE_TEAMBATTLE" Team="tos_team" Category="INFO" SubCategory="" Logger="root" Enabled="YES" CallStack="NO" Desc="개발용 정보"/>
   <Code Code="ERROR_RAID_RANKING_ADD_FAIL" Team="tos_team" Category="ERROR" SubCategory="" Logger="root" Enabled="YES" CallStack="NO" Desc="개발용 정보"/>  
@@ -630,5 +630,7 @@
 	<Code Code="WARNING_NETSTREAM_REFCNT" Team="tos_team" Category="PROGRAM" SubCategory="" Logger="root" Enabled="YES" CallStack="NO" Desc="StreamDisconnected 오류 원인 추적용"/>
   <Code Code="INFO_OTP" Team="tos_team" Category="SYSTEM" SubCategory="" Logger="root" Enabled="NO" CallStack="NO" Desc="OTP 관련 로그"/>
   <Code Code="INFO_PROTECT" Team="tos_team" Category="SYSTEM" SubCategory="" Logger="root" Enabled="NO" CallStack="NO" Desc="OTP 관련 로그"/>
+<Code Code="WARNING_MEMORY_CHAT" Team="tos_team" Category="INFO" SubCategory="" Logger="root" Enabled="YES" CallStack="NO" Desc="메모리 디버그 정보"/>
   <Code Code="ERROR_BORUTA" Team="tos_team" Category="SYSTEM" SubCategory="" Logger="root" Enabled="YES" CallStack="NO" Desc="보루타 랭킹 관련 에러"/>
+  <Code Code="WARNING_MEMORY_ZONE" Team="tos_team" Category="INFO" SubCategory="" Logger="root" Enabled="YES" CallStack="NO" Desc="메모리 디버그 정보"/>
 </imcErrorCode>

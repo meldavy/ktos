@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by imc (imc) -->
+<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by asdasd (IMCGames Co., Ltd) -->
 <packeteffects>
     <Category ID="163">
         <Effect Name="F_archer_bodkinpoint_hit_explosion#Dummy001"/>
@@ -15,7 +15,30 @@
         <Effect Name="LEGEND_RAID_GLACIER_HARD"/>
         <Effect Name="LEGEND_RAID_GLACIER_NORMAL"/>
         <Effect Name="Chaplain_MagnusExorcismus_Abil"/>
+        <Effect Name="F_ground004_darkblue_loop"/>
+        <Effect Name="EP12_2_F_CASTLE_101_MQ_03_1_MINI"/>
+        <Effect Name="F_buff_basic015_orange"/>
+        <Effect Name="F_buff_basic008_white"/>
         <Effect Name="I_force018_trail_chain"/>
+        <Effect Name="F_buff_basic032_blue_white"/>
+        <Effect Name="UNIQUE_RAID_GLACIER_SOLO"/>
+        <Effect Name="LEGEND_RAID_MORINGPONIA_SOLO"/>
+        <Effect Name="LEGEND_RAID_GLACIER_SOLO"/>
+        <Effect Name="LEGEND_RAID_MORINGPONIA_HARD_SOLO"/>
+        <Effect Name="F_buff_basic058_violet_debuff"/>
+        <Effect Name="F_buff_basic058_violet_debuff"/>
+        <Effect Name="crystal_red"/>
+        <Effect Name="item_drop_crystal_light"/>
+        <Effect Name="skl_eff_rune_light"/>
+        <Effect Name="EP12_2_F_CASTLE_101_MQ05_MINI"/>
+        <Effect Name="I_archer_canon_force4#Dummy_effect_canon"/>
+        <Effect Name="F_burstup057_yellow"/>
+        <Effect Name="F_spread_in002_violet"/>
+        <Effect Name="F_buff_Wizard_Wild_buff"/>
+        <Effect Name="I_archer_wildshot_arrow"/>
+        <Effect Name="I_arrow009_yellow_ranger01_3_light"/>
+        <Effect Name="I_arrow015_mash"/>
+        <Effect Name="F_archer_CannonShot_explosion2"/>
     </Category>
     <Category ID="132">
         <Effect Name="I_arrow005_mash2_red#Dummy_back_arrow04"/>
@@ -55,7 +78,7 @@
         <Effect Name="SLITHERING_Abil"/>
         <Effect Name="Dummy_Shield"/>
         <Effect Name="Finestra_Abil"/>
-    <Effect Name="Crusader_movingRing_1"/>
+        <Effect Name="Crusader_movingRing_1"/>
         <Effect Name="Crusader_movingRing_2"/>
         <Effect Name="Crusader_movingRing_3"/>
         <Effect Name="Crusader_movingRing_4"/>
@@ -80,6 +103,18 @@
         <Effect Name="skl_eff_exorcist_entity_body_abil"/>
         <Effect Name="skl_eff_pyromancer_hellbreath_abil"/>
         <Effect Name="I_emo_badword"/>
+        <Effect Name="I_warp_arrow_mash"/>
+        <Effect Name="F_hit021_2"/>
+        <Effect Name="F_archer_Zenith"/>
+        <Effect Name="F_archer_Zenith_light"/>
+        <Effect Name="FIELD_BOSS_RAID_EARTH"/>
+        <Effect Name="FIELD_BOSS_RAID_FIRE"/>
+        <Effect Name="EP12_2_F_CASTLE_101_MQ02_MINI"/>
+        <Effect Name="FIELD_BOSS_RAID_ICE"/>
+        <Effect Name="FIELD_BOSS_RAID_HOLY"/>
+        <Effect Name="CASUAL_PVP_MINE"/>
+        <Effect Name="I_buff_003_red2"/>
+        <Effect Name="FIELD_BOSS_RAID_POISON"/>
     </Category>
     <Category ID="70">
         <Effect Name="EVENT_2001_NEWYEAR_INIT_PAD"/>
@@ -326,6 +361,13 @@
         <Effect Name="weekly_boss_frosterRoad_ice_age"/>
         <Effect Name="weekly_ShadowGaoler_circlewave"/>
         <Effect Name="weekly_warpulis_windpad"/>
+        <Effect Name="LEGEND_RAID_MORINGPONIA_SOLO"/>
+        <Effect Name="LEGEND_RAID_MORINGPONIA_HARD_SOLO"/>
+        <Effect Name="UNIQUE_RAID_GLACIER_SOLO"/>
+        <Effect Name="LEGEND_RAID_GLACIER_SOLO"/>
+        <Effect Name="Tantaliser_Hard_Solo_Debuff_Pad"/>
+        <Effect Name="Moringponia_Hard_Solo_Curse"/>
+        <Effect Name="Moringponia_Hard_Solo_Poison"/>
     </Category>
     <Category ID="146">
         <Effect Name="beginner"/>
@@ -564,11 +606,14 @@
         <Effect Name="LEGEND_RAID_GLACIER_HARD"/>
         <Effect Name="LEGEND_RAID_GLACIER_EASY"/>
         <Effect Name="Pattern_Reigning"/>
-    <Effect Name="GUILD_COLONY_F_FARM_47_2_2"/>
+        <Effect Name="GUILD_COLONY_F_FARM_47_2_2"/>
         <Effect Name="F_levitation039_red_event"/>
         <Effect Name="F_levitation039_red_event"/>
         <Effect Name="F_levitation039_yellow"/>
         <Effect Name="boom_fuse"/>
+        <Effect Name="F_levitation039_yellow_event"/>
+        <Effect Name="F_levitation039_green_event"/>
+        <Effect Name="F_levitation039_red_event_1"/>
     </Category>
     <Category ID="144">
         <Effect Name="F_pc_CardBook_ground_dark"/>
@@ -2765,7 +2810,7 @@
         <Effect Name="F_archer_Matross_CanisterShot_finish"/>
         <Effect Name="Appraiser_Blindside_HiddenAbil"/>
         <Effect Name="Exorcist_Entity_Abil"/>
-    <Effect Name="Archer_JincanGu_Abil"/>
+        <Effect Name="Archer_JincanGu_Abil"/>
         <Effect Name="friedenslied_dance_abil"/>
         <Effect Name="Friedenslied_Abil_Pad"/>
         <Effect Name="F_archer_explosiontrap_hit_explosion2"/>
@@ -2781,10 +2826,10 @@
         <Effect Name="LEGEND_RAID_MORINGPONIA_HARD_SOLO"/>
         <Effect Name="UNIQUE_RAID_GLACIER_SOLO"/>
         <Effect Name="skl_eff_piedpiper_friedenslied_melody_abil"/>
-    <Effect Name="SKL_POUNCING_ABIL_RIDE"/>
-		<Effect Name="FRIEDENSLIED_DANCE_RIDE"/>
-		<Effect Name="FRIEDENSLIED_DANCE_ABIL_RIDE"/>
-	<Effect Name="SKL_POUNCING_STAND_ABIL"/>
+        <Effect Name="SKL_POUNCING_ABIL_RIDE"/>
+        <Effect Name="FRIEDENSLIED_DANCE_RIDE"/>
+        <Effect Name="FRIEDENSLIED_DANCE_ABIL_RIDE"/>
+        <Effect Name="SKL_POUNCING_STAND_ABIL"/>
         <Effect Name="None##1.5"/>
         <Effect Name="E_Dynamite#Bip001 R Finger01"/>
         <Effect Name="F_spread_in032_dark_loop##1.2"/>
@@ -3594,7 +3639,7 @@
         <Effect Name="StormDust_Abil_Pad"/>
         <Effect Name="TerraMancer_SandWall_Terramancer19"/>
         <Effect Name="lachrymator_pad_Rogue26"/>
-    <Effect Name="E_archer_CannonBlast_shot_fire"/>
+        <Effect Name="E_archer_CannonBlast_shot_fire"/>
         <Effect Name="Annihilation_Assassin23_Pad"/>
         <Effect Name="HangmansKnot_Pad_Linker21"/>
         <Effect Name="Annihilation_Assassin23_Pad"/>
@@ -5480,7 +5525,7 @@
         <Effect Name="I_smoke013_dark_blue##0.5"/>
         <Effect Name="I_smoke013_blue_smoke"/>
         <Effect Name="Legend_Pbeta_shot"/>
-    <Effect Name="SKL_MODAFINIL"/>
+        <Effect Name="SKL_MODAFINIL"/>
         <Effect Name="ALGIZ_CAST"/>
         <Effect Name="ALGIZ_SHOT"/>
         <Effect Name="TIWAZ_LOOP"/>
@@ -5580,7 +5625,7 @@
         <Effect Name="Druid_HengeStone"/>
         <Effect Name="deadparts_Force"/>
         <Effect Name="MAKE"/>
-    <Effect Name="F_spread_out028_blue"/>
+        <Effect Name="F_spread_out028_blue"/>
         <Effect Name="JIANGSHI"/>
         <Effect Name="DANCECLAP"/>
         <Effect Name="EXERCISE"/>
@@ -8620,6 +8665,12 @@
         <Effect Name="Legend_Glacier_SnowCloud_HardMode"/>
         <Effect Name="I_policeline001_mesh"/>
         <Effect Name="Disnai_Svirti_PAD"/>
+        <Effect Name="TOWER"/>
+        <Effect Name="LEGEND_RAID_MORINGPONIA_SOLO"/>
+        <Effect Name="LEGEND_RAID_GLACIER_SOLO"/>
+        <Effect Name="UNIQUE_RAID_GLACIER_SOLO"/>
+        <Effect Name="LEGEND_RAID_MORINGPONIA_HARD_SOLO"/>
+        <Effect Name="Solo_Unique_Glacier_ColdBlast"/>
     </Category>
     <Category ID="19">
         <Effect Name="I_fallen_statue_atk002_mash"/>
@@ -14370,7 +14421,7 @@
         <Effect Name="Mon_PoleofAgony"/>
         <Effect Name="voice_cleric_m_pearofanguish_shot"/>
         <Effect Name="실패조건"/>
-    <Effect Name="E_archer_CannonBlast_shot_fire#Dummy_emitter##1"/>
+        <Effect Name="E_archer_CannonBlast_shot_fire#Dummy_emitter##1"/>
         <Effect Name="Annihilation_Assassin23_Pad"/>
         <Effect Name="F_explosion123_red"/>
         <Effect Name="I_archer_pistol_atk3#Dummy_effect_pistol_R2"/>
@@ -23178,11 +23229,11 @@
     </Category>
     <Category ID="300">
         <Effect Name="DefClass123"/>
-	<Effect Name="I_anvil_dead002_mash"/>
-	<Effect Name="I_anvil_dead003_mesh_ruby"/>
-	<Effect Name="I_anvil_dead003_mesh_diamond"/>
-	<Effect Name="I_anvil_dead003_mesh_gold"/>
-	<Effect Name="I_anvil_dead003_mesh_platinum"/>
+        <Effect Name="I_anvil_dead002_mash"/>
+        <Effect Name="I_anvil_dead003_mesh_ruby"/>
+        <Effect Name="I_anvil_dead003_mesh_diamond"/>
+        <Effect Name="I_anvil_dead003_mesh_gold"/>
+        <Effect Name="I_anvil_dead003_mesh_platinum"/>
     </Category>
     <Category ID="130">
         <Effect Name="E_Cleric_StoneShower"/>
@@ -23370,7 +23421,7 @@
         <Effect Name="Exorcist_Katadikazo_Vibora"/>
         <Effect Name="F_circle035_loop_blue"/>
         <Effect Name="F_bg_firetower_teleport1"/>
-    <Effect Name="[mon]AmissDog"/>
+        <Effect Name="[mon]AmissDog"/>
         <Effect Name="F_bg_candle010_blue"/>
         <Effect Name="F_bg_candle010_blue#Bip01 Xtra01"/>
         <Effect Name="F_bg_candle010_blue#Dummy_bufficon"/>
@@ -23413,5 +23464,5 @@
         <Effect Name="skl7p"/>
         <Effect Name="skl5_cast"/>
         <Effect Name="[mon]StackBuff"/>
-	</Category>
+    </Category>
 </packeteffects>

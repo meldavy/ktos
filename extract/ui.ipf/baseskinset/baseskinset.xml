@@ -4450,6 +4450,39 @@
 			<img name="bottomcore" imgrect="147 891 54 35"/>
 			<img name="bottomright" imgrect="202 891 60 35"/>
 		</skin>
+		<skin name="test_skill_skin3_ver02" texture="\skin\stamp_tour.tga">
+			<img name="topleft" imgrect="1204 340 66 35"/>
+			<img name="topcore" imgrect="1271 340 110 35"/>
+			<img name="topright" imgrect="1382 340 65 35"/>
+			<img name="bodyleft" imgrect="1204 376 66 50"/>
+			<img name="bodycore" imgrect="1271 376 110 50"/>
+			<img name="bodyright" imgrect="1382 376 65 50"/>
+			<img name="bottomleft" imgrect="1204 427 66 35"/>
+			<img name="bottomcore" imgrect="1271 427 110 35"/>
+			<img name="bottomright" imgrect="1382 427 65 35"/>
+		</skin>
+		<skin name="test_paper_bg_ver02" texture="\skin\stamp_tour.tga">
+			<img name="topleft" imgrect="0 1157 277 145"/>
+			<img name="topcore" imgrect="278 1157 149 145"/>
+			<img name="topright" imgrect="428 1157 277 145"/>
+			<img name="bodyleft" imgrect="0 1303 277 60"/>
+			<img name="bodycore" imgrect="278 1303 149 60"/>
+			<img name="bodyright" imgrect="428 1303 277 60"/>
+			<img name="bottomleft" imgrect="0 1364 277 145"/>
+			<img name="bottomcore" imgrect="278 1364 149 145"/>
+			<img name="bottomright" imgrect="428 1364 277 145"/>
+		</skin>
+		<skin name="your_master_title" texture="\skin\stamp_tour.tga">
+			<img name="topleft" imgrect="1251 890 200 1"/>
+			<img name="topcore" imgrect="1452 890 30 1"/>
+			<img name="topright" imgrect="1483 890 200 1"/>
+			<img name="bodyleft" imgrect="1251 892 200 76"/>
+			<img name="bodycore" imgrect="1452 892 30 76"/>
+			<img name="bodyright" imgrect="1483 892 200 76"/>
+			<img name="bottomleft" imgrect="1251 969 200 1"/>
+			<img name="bottomcore" imgrect="1452 969 30 1"/>
+			<img name="bottomright" imgrect="1483 969 200 1"/>
+		</skin>
 	</skinlist>
 	<skinlist category="testje2_buttons">
 		<skin name="test_brown_btn" texture="\skin\housing.tga">
@@ -6320,6 +6353,14 @@
 			<img name="barmiddle" imgrect="895 723 55 55"/>
 			<img name="barbottom" imgrect="895 712 55 0"/>
 		</skin>
+		<skin name="your_master_gauges" texture="\skin\stamp_tour.tga">
+			<img name="bgleft" imgrect="1005 1313 1 10"/>
+			<img name="bgmiddle" imgrect="1006 1313 330 10"/>
+			<img name="bgright" imgrect="1336 1313 1 10"/>
+			<img name="barleft" imgrect="1005 1313 1 10"/>
+			<img name="barmiddle" imgrect="1004 1324 332 10"/>
+			<img name="barright" imgrect="1336 1313 1 10"/>
+		</skin>
 	</skinlist>
 	<skinlist category="labellines">
 		<skin name="labelline_def_5" texture="\skin\tooltip_skin_3.tga">
@@ -7895,6 +7936,10 @@
 		<image name="toketmon_result" file="\skin\tocket_monsters.tga" imgrect="807 506 163 218" CMM_Caption="트켓몬 결과"/>
 		<image name="context_preface_block" file="\skin\pip_test_item.tga" imgrect="845 1025 18 18" CMM_Caption="컨텍스트_머리말 차단"/>
 		<image name="context_preface_remove" file="\skin\pip_test_item.tga" imgrect="864 1025 18 18" CMM_Caption="컨텍스트_머리말 차단 해제"/>
+		<image name="your_master_title_deco" file="\skin\stamp_tour.tga" imgrect="727 1273 276 125" CMM_Caption="당신의 마스터 타이틀 데코"/>
+		<image name="your_master_ranking01" file="\skin\stamp_tour.tga" imgrect="1004 1273 39 39" CMM_Caption="당신의 마스터 순위_01"/>
+		<image name="your_master_ranking02" file="\skin\stamp_tour.tga" imgrect="1044 1273 39 39" CMM_Caption="당신의 마스터 순위_02"/>
+		<image name="your_master_ranking03" file="\skin\stamp_tour.tga" imgrect="1084 1273 39 39" CMM_Caption="당신의 마스터 순위_03"/>
 		<image name="icecream_balloon_direction" file="\skin\say_balloon.tga" imgrect="0 609 83 75" CMM_Caption="아이스크림 말풍선_말꼬리"/>
 		<image name="cherry_icecream_balloon_deco1" file="\skin\say_balloon.tga" imgrect="263 650 52 43" CMM_Caption="체리아이스크림_데코"/>
 		<image name="cherry_icecream_balloon_deco2" file="\skin\say_balloon.tga" imgrect="316 650 39 34"/>
@@ -8425,6 +8470,14 @@
 		<image name="volunteer_scramble_btn" file="\skin\PVP_skin.tga" imgrect="904 662 67 69" CMM_Caption="자원쟁탈전 팝업 버튼"/>
 		<image name="volunteer_scramble_btn_cursoron" file="\skin\PVP_skin.tga" imgrect="972 662 67 69"/>
 		<image name="volunteer_scramble_btn_clicked" file="\skin\PVP_skin.tga" imgrect="1040 662 67 69"/>
+		<image name="your_master_vote_btn" file="\skin\stamp_tour.tga" imgrect="727 1399 72 72" CMM_Caption="당신의 마스터_투표하기 버튼"/>
+		<image name="your_master_vote_btn_cursoron" file="\skin\stamp_tour.tga" imgrect="800 1399 72 72"/>
+		<image name="your_master_vote_btn_clicked" file="\skin\stamp_tour.tga" imgrect="873 1399 72 72"/>
+		<image name="your_master_gauges_L" file="\skin\stamp_tour.tga" imgrect="1004 1313 1 10" CMM_Caption="당신의 마스터 게이지_좌"/>
+		<image name="your_master_gauges_R" file="\skin\stamp_tour.tga" imgrect="1337 1313 1 10" CMM_Caption="당신의 마스터 게이지_우"/>
+		<image name="your_master_activity_btn" file="\skin\stamp_tour.tga" imgrect="727 1199 72 72" CMM_Caption="당신의 마스터 ui 활성화 버튼"/>
+		<image name="your_master_activity_btn_cursoron" file="\skin\stamp_tour.tga" imgrect="800 1199 72 72"/>
+		<image name="your_master_activity_btn_clicked" file="\skin\stamp_tour.tga" imgrect="873 1199 72 72"/>
 	</imagelist>
 	<imagelist category="yiseul_button">
 		<image name="pvpmine_shop_btn" file="\skin\pip_test.tga" imgrect="2049 61 66 59" CMM_Caption="용병단 증표 ui 버튼"/>
@@ -10329,6 +10382,7 @@
 		<image name="minimap_personal_house" file="\icon\minimap_icon3.tga" imgrect="257 672 80 80 "/>
 		<image name="minimap_kedora" file="\icon\minimap_icon3.tga" imgrect="328 882 84 84"/>
 		<image name="minimap_elevator" file="\icon\minimap_icon3.tga" imgrect="432 977 80 80"/>
+		<image name="Acient_party" file="\icon\minimap_icon3.tga" imgrect="257 753 30 30"/>
 	</imagelist>
 	<imagelist category="quest_tags">
 		<image name="quest_tag_1_MAIN" file="\icon\minimap_icon.tga" imgrect="61 31 16 16"/>
@@ -11187,6 +11241,7 @@
 		<image name="icon_arch_Coursingabil" file="\icon\buff_icon3.tga" imgrect="768 1664 128 128" CMM_Caption="피의 얼룩 디버프"/>
 		<image name="icon_pet_cadet_armadillo_buff" file="\icon\buff_icon3.tga" imgrect="896 1664 128 128" CMM_Caption="사관생도 아르마딜로"/>
 		<image name="icon_Provoke_fury" file="\icon\buff_icon3.tga" imgrect="128 1792 128 128" CMM_Caption="프로보크-격노"/>
+		<image name="icon_arch_Arrowhead" file="\icon\buff_icon3.tga" imgrect="256 1920 128 128" CMM_Caption="화살촉 연마"/>
 	</imagelist>
 	<imagelist category="housing_bufficon">
 		<image name="icon_Weapon_Klaida" file="\icon\icon_hosing_buff.tga" imgrect="0 0 128 128"/>

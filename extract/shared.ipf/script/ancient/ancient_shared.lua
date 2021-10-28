@@ -9,9 +9,10 @@ function IS_ANCIENT_ENABLE_MAP(self)
     local enableMapList = {"onehour_test1", "d_solo_dungeon_2", "d_solo_dungeon"}
     for i = 1, #enableMapList do
         if zoneName == enableMapList[i] then
-            return "YES"
+            return "YES";
         end
     end
+
     local cmd = GetMGameCmd(self);
     if cmd ~= nil then
         local mGameName = cmd:GetMGameName();
@@ -20,10 +21,22 @@ function IS_ANCIENT_ENABLE_MAP(self)
             local mGameName = cmd:GetMGameName();
             local clsIndun = GET_MGAME_CLASS_BY_MGAMENAME(mGameName);
             if clsIndun ~= nil and (TryGetProp(clsIndun, "SubType", "None") == "Casual" or TryGetProp(clsIndun, "DungeonType", "None") == "WeeklyRaid") then
-                return "YES"
+                return "YES";
             end
         end
     end
+
+    -- 챌린지 모드 캐주얼 모드
+    local isChallengeModePlaying = IsChallengeModePlaying(self);
+	if isChallengeModePlaying == 1 then
+		local partyObj = GetPartyObj(self);
+		if partyObj ~= nil then
+			local selectedLevel = GetExProp(partyObj, "ChallengeMode_SelectedLevel");
+			if selectedLevel == 2 then
+				return "YES";
+			end
+		end
+	end
     
     return "NO"
 end

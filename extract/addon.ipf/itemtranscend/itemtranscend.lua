@@ -611,7 +611,17 @@ function ITEMTRANSCEND_EXEC(frame)
 		return;
 	end
 
+	local transcend = itemObj.Transcend;
+	local transcendCls = GetClass("ItemTranscend", transcend + 1);
+	if transcendCls == nil then
+		return;
+	end
+	local materialCount = slot_material:GetIcon():GetInfo().count;
+	local materialObj = GetIES(materialItem:GetObject());
+	local successRatio = GET_TRANSCEND_SUCCESS_RATIO(itemObj, transcendCls, materialCount);
+
 	local clmsg = ScpArgMsg("ReallyExecTranscend_PR_ZERO");
+	local yesScp = "_ITEMTRANSCEND_EXEC";
 	if potential ~= nil and potential > 0  then
 		clmsg = ScpArgMsg("ReallyExecTranscend");
 	end
@@ -625,9 +635,16 @@ function ITEMTRANSCEND_EXEC(frame)
 		clmsg = ClMsg('LegendItemCannotBreakOrRemove');
 	end	
 
+	if successRatio < 100 then
+		clmsg = ScpArgMsg('ProcessTranscendBy{P}Percent', 'P', successRatio)
+		if potential <= 0 then
+			yesScp = 'TRANSCEND_WARNING'
+		end
+	end
+
 	imcSound.PlaySoundEvent(frame:GetUserConfig("TRANS_BTN_OK_SOUND"));
 	--ui.MsgBox_NonNested(clmsg, frame:GetName(), "_ITEMTRANSCEND_EXEC", "_ITEMTRANSCEND_CANCEL");	
-	WARNINGMSGBOX_FRAME_OPEN(clmsg, "_ITEMTRANSCEND_EXEC", "_ITEMTRANSCEND_CANCEL")		
+	WARNINGMSGBOX_FRAME_OPEN(clmsg, yesScp, "_ITEMTRANSCEND_CANCEL")		
 end
 
 function _ITEMTRANSCEND_CANCEL()
@@ -966,4 +983,9 @@ function ITEMTRANSCEND_LOCK_ITEM(guid)
 	local invframe = ui.GetFrame("inventory");
 	invframe:SetUserValue("ITEM_GUID_IN_TRANSCEND", guid);
 	INVENTORY_ON_MSG(invframe, 'UPDATE_ITEM_REPAIR');
+end
+
+function TRANSCEND_WARNING()
+	local frame = ui.GetFrame("itemtranscend")
+	WARNINGMSGBOX_EX_TRANSCEND_OPEN(frame)
 end

@@ -4,38 +4,6 @@ function CHALLENGE_MODE_ON_INIT(addon, frame)
 	addon:RegisterMsg("EVENT_DUNGEON_KILL_COUNT", "ON_EVENT_DUNGEON_KILL_COUNT");
 end
 
-function DIALOG_ACCEPT_CHALLENGE_MODE(handle)
-	local yes = "ACCEPT_CHALLENGE_MODE(" .. tostring(handle) .. ", 1)";
-	local no = "ACCEPT_CHALLENGE_MODE(" .. tostring(handle) .. ", 0)";
-	ui.MsgBox(ClMsg("AcceptChallengeMode"), yes, no);
-end
-
-function DIALOG_ACCEPT_CHALLENGE_MODE_RE_JOIN(handle)
-	local yes = "ACCEPT_CHALLENGE_MODE(" .. tostring(handle) .. ", 1)";
-	local no = "ACCEPT_CHALLENGE_MODE(" .. tostring(handle) .. ", 0)";
-	ui.MsgBox(ClMsg("AcceptChallengeMode_ReJoin"), yes, no);
-end
-
-function DIALOG_ACCEPT_CHALLENGE_MODE_PCBANG(handle)
-	local yes = "ACCEPT_CHALLENGE_MODE_BY_PCBANG(" .. tostring(handle) .. ", 1)";
-	local no = "ACCEPT_CHALLENGE_MODE_BY_PCBANG(" .. tostring(handle) .. ", 0)";
-	ui.MsgBox(ClMsg("AcceptChallengeMode_PCBang"), yes, no);
-end
-
-function DIALOG_ACCEPT_CHALLENGE_MODE_HARD_MODE(handle)
-	local yes = "ACCEPT_CHALLENGE_MODE(" .. tostring(handle) .. ", 1)";
-	local no = "ACCEPT_CHALLENGE_MODE(" .. tostring(handle) .. ", 0)";
-	ui.MsgBox(ClMsg("AcceptChallengeMode_HardMode"), yes, no);
-end
-
-function ACCEPT_CHALLENGE_MODE(handle, select)
-	packet.AcceptChallengeMode(handle, select);
-end
-
-function ACCEPT_CHALLENGE_MODE_BY_PCBANG(handle, select)
-	packet.AcceptChallengeModeByPCBang(handle, select);
-end
-
 function DIALOG_ACCEPT_NEXT_LEVEL_CHALLENGE_MODE(handle)
 	ui.MsgBox(ClMsg("AcceptNextLevelChallengeMode"), "ACCEPT_NEXT_LEVEL_CHALLENGE_MODE(" .. tostring(handle) .. ")", "None");
 end
@@ -182,8 +150,8 @@ function UPDATE_CHALLENGE_MODE_MINIMAP_MARK(x, y, z, isAlive, isHardMode)
 
 	if isAlive == 1 then
 		session.minimap.AddIconInfo(msg, "trasuremapmark", x, y, z, ClMsg(msg), true, nil, 1.5);
-	--else
-	--	session.minimap.RemoveIconInfo(msg);
+	else
+		session.minimap.RemoveIconInfo(msg);
 	end
 end
 

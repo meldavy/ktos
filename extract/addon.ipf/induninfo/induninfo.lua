@@ -43,7 +43,11 @@ function INDUNINFO_CHAT_OPEN(frame, msg, argStr, argNum)
     end
 end
 
-function INDUNINFO_UI_OPEN(frame)
+function INDUNINFO_UI_OPEN(frame, index)
+    if index == nil then
+        index = 0
+    end
+
     if session.GetWasBarrack() == true then
         session.barrack.RequestCharacterIndunInfo();
     end
@@ -63,14 +67,10 @@ function INDUNINFO_UI_OPEN(frame)
         boruta.RequestBorutaNowWeekNum();
     end
     
-    local tab = GET_CHILD_RECURSIVELY(frame, "tab");
-	if tab ~= nil then
-		tab:SelectTab(0);
-	end
-    
     INDUNINFO_RESET_USERVALUE(frame);
 	INDUNINFO_CREATE_CATEGORY(frame);
-	local tab = GET_CHILD(frame, "tab");
+    local tab = GET_CHILD_RECURSIVELY(frame, "tab");
+    tab:SelectTab(index);
 	local index = tab:GetSelectItemIndex();
 	TOGGLE_INDUNINFO(frame,index)
 end
@@ -86,7 +86,7 @@ end
 function TOGGLE_INDUNINFO(frame,type)
 	--indun
 	do
-		local isShow = BoolToNumber(0 == type)
+		local isShow = BoolToNumber(0 == type or 1 == type)
 		local indunbox = GET_CHILD_RECURSIVELY(frame,'indunbox')
 		indunbox:ShowWindow(isShow)
 		local lvAscendRadio = GET_CHILD_RECURSIVELY(frame,'lvAscendRadio')
@@ -98,31 +98,31 @@ function TOGGLE_INDUNINFO(frame,type)
 	end
 	--weeklyboss rank
 	do
-		local isShow = BoolToNumber(1 == type)
+		local isShow = BoolToNumber(2 == type)
 		local WeeklyBossbox = GET_CHILD_RECURSIVELY(frame, 'WeeklyBossbox')
 		WeeklyBossbox:ShowWindow(isShow)
 	end
 	--raid rank
 	do
-		local isShow = BoolToNumber(2 == type)
+		local isShow = BoolToNumber(3 == type)
 		local raidrankingBox = GET_CHILD_RECURSIVELY(frame, 'raidrankingBox');
 		raidrankingBox:ShowWindow(isShow);
 	end
 	--boruta rank
 	do
-		local isShow = BoolToNumber(3 == type)
+		local isShow = BoolToNumber(4 == type)
 		local boruta_box = GET_CHILD_RECURSIVELY(frame, 'boruta_box')
 		boruta_box:ShowWindow(isShow)
 	end
 	--pvp
 	do
-		local isShow = BoolToNumber(4 == type)
+		local isShow = BoolToNumber(5 == type)
 		local pvpBox = GET_CHILD_RECURSIVELY(frame,'pvpbox')
 		pvpBox:ShowWindow(isShow)
 	end
 	--pvp and indun common
 	do
-		local isShow = BoolToNumber(4 == type or 0 == type)
+		local isShow = BoolToNumber(5 == type or 0 == type or 1 == type)
 		local categoryBox = GET_CHILD_RECURSIVELY(frame, 'categoryBox')
 		categoryBox:ShowWindow(isShow)
 		local contentBox = GET_CHILD_RECURSIVELY(frame, 'contentBox')
@@ -155,8 +155,15 @@ function INDUNINFO_CREATE_CATEGORY(frame)
     local SCROLL_WIDTH = 20;
     local categoryBtnWidth = categoryBox:GetWidth() - SCROLL_WIDTH;
     local firstBtn = nil;
-    resetGroupTable = {};
+    local resetGroupTable = {};
     local missionIndunSet = {};
+
+    local tab = GET_CHILD_RECURSIVELY(frame, "tab")
+    local isRaidTab = (tab:GetSelectItemIndex() == 1)
+    local enableCreate = function(dungeonType)
+        local isRaid = (dungeonType == 'UniqueRaid' or dungeonType == 'Raid' or dungeonType == 'GTower')
+        return ((isRaid == true and isRaidTab == true) or (isRaid == false and isRaidTab == false))
+    end
 
     local createCategory = function(resetGroupID,cls)
         local categoryCtrl = categoryBox:GetChild('CATEGORY_CTRL_'..resetGroupID);
@@ -190,7 +197,7 @@ function INDUNINFO_CREATE_CATEGORY(frame)
     local indunClsList, cnt = GetClassList('Indun');
     for i = 0, cnt - 1 do
         local indunCls = GetClassByIndexFromList(indunClsList, i);
-        if indunCls ~= nil and indunCls.Category ~= 'None' then            
+        if indunCls ~= nil and indunCls.Category ~= 'None' and enableCreate(indunCls.DungeonType) == true then
             local resetGroupID = indunCls.PlayPerResetType;
             if indunCls.DungeonType == 'MissionIndun' then
                 INDUNINFO_ADD_COUNT(missionIndunSet,resetGroupID)
@@ -205,19 +212,21 @@ function INDUNINFO_CREATE_CATEGORY(frame)
         INDUNINFO_ADD_COUNT(resetGroupTable,key)
     end
     -- 인던 외 컨텐츠 표시를 일단 인던과 같이 하는데, 나중에 탭 형식으로 변경 필요함
-    local contentsClsList, count = GetClassList('contents_info')
-    for i = 0, count - 1 do
-        local contentsCls = GetClassByIndexFromList(contentsClsList, i)
-        if contentsCls ~= nil and contentsCls.Category ~='None' then
-            local resetGroupID = contentsCls.ResetGroupID
-            INDUNINFO_ADD_COUNT(resetGroupTable,resetGroupID)
-            
-            INDUNINFO_PUSH_BACK_TABLE(g_contentsCategoryList,resetGroupID);
-            local function contents_sort(a, b)
-                return a > b
+    if isRaidTab == false then
+        local contentsClsList, count = GetClassList('contents_info')
+        for i = 0, count - 1 do
+            local contentsCls = GetClassByIndexFromList(contentsClsList, i)
+            if contentsCls ~= nil and contentsCls.Category ~='None' then
+                local resetGroupID = contentsCls.ResetGroupID
+                INDUNINFO_ADD_COUNT(resetGroupTable,resetGroupID)
+                
+                INDUNINFO_PUSH_BACK_TABLE(g_contentsCategoryList,resetGroupID);
+                local function contents_sort(a, b)
+                    return a > b
+                end
+                table.sort(g_contentsCategoryList, contents_sort)
+                createCategory(resetGroupID,contentsCls)
             end
-            table.sort(g_contentsCategoryList, contents_sort)
-            createCategory(resetGroupID,contentsCls)
         end
     end
     -- set the number of indun
@@ -658,7 +667,7 @@ function INDUNINFO_DETAIL_LBTN_CLICK(parent, detailCtrl, clicked)
     indunListBox:SetUserValue('SELECTED_DETAIL', indunClassID);
     -- 인스턴스 던전 정보 처리를 위한 임시 처리 끝 --
     local resetGroupID = topFrame:GetUserIValue('SELECT')
-    if index ~= 0 then
+    if index == 5 then
         PVP_INDUNINFO_MAKE_DETAIL_INFO_BOX(topFrame, indunClassID);
     elseif resetGroupID < 0 then
         INDUNINFO_MAKE_DETAIL_INFO_BOX_OTHER(topFrame, indunClassID)
@@ -1264,7 +1273,10 @@ function INDUNINFO_SORT_BY_LEVEL(parent, ctrl)
     end
     local tab = GET_CHILD(topFrame, "tab");
     local index = tab:GetSelectItemIndex();
-    local SCROLL_WIDTH = 20 * (1-index)
+    local SCROLL_WIDTH = 20
+    if index == 5 then
+        SCROLL_WIDTH = 0
+    end
     local MARGIN = 18
     local indunListBox = GET_CHILD_RECURSIVELY(topFrame, 'INDUN_LIST_BOX');    
     local firstChild = indunListBox:GetChild('DETAIL_CTRL_'..indunListBox:GetUserValue('FIRST_INDUN_ID'));
@@ -1354,17 +1366,17 @@ end
 
 function INDUNINFO_TAB_CHANGE(parent, ctrl)
 	local frame = parent:GetTopParentFrame();
-	local tab = GET_CHILD(frame, "tab");
-	local index = tab:GetSelectItemIndex();
-	if index == 0 then
-		INDUNINFO_UI_OPEN(frame);
-    elseif index == 1 then
-        WEEKLYBOSSINFO_UI_OPEN(frame);
+	local tab = GET_CHILD_RECURSIVELY(frame, "tab");
+    local index = tab:GetSelectItemIndex();
+    if index == 0 or index == 1 then
+		INDUNINFO_UI_OPEN(frame, index);
     elseif index == 2 then
+        WEEKLYBOSSINFO_UI_OPEN(frame);
+    elseif index == 3 then
         RAID_RANKING_UI_OPEN(frame);
-	elseif index == 3 then
+	elseif index == 4 then
         BORUTA_RANKING_UI_OPEN(frame);
-    elseif index == 4 then
+    elseif index == 5 then
         PVP_INDUNINFO_UI_OPEN(frame);
 	end
 	TOGGLE_INDUNINFO(frame,index)

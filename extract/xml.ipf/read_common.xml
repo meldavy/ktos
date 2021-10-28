@@ -281,4 +281,5 @@
 	<ReadXml Name="item_IncreaseCost"/>		
 	<ReadXml Name="pvp_indun"/>
 	<ReadXml Name="pvp_mine_rule"/>
+	<ReadXml Name="event_ranking_data"/>
 </Category>

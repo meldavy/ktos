@@ -2,6 +2,7 @@
 --  type =   1 : 정규 여신의 룰렛 
 --           2 : 시즌 서버 여신의 룰렛
 --           3 : 메데이나 flex box
+--           4 : 당신의 마스터
 
 function GET_EVENT_PROGRESS_CHECK_TITLE(type)
     local table = 
@@ -9,6 +10,43 @@ function GET_EVENT_PROGRESS_CHECK_TITLE(type)
         [1] = "GODDESS_ROULETTE",
         [2] = "GODDESS_ROULETTE",
         [3] = "EVENT_2007_FLEX_BOX_DESC",
+        [4] = "EVENT_YOUR_MASTER_TITLE",
+    }
+
+    return table[type];
+end
+
+function GET_EVENT_PROGRESS_CHECK_DESC(type)
+    local table = 
+    {
+        [1] = {"Acquire_State", "STAMP_TOUR", "Auto_KeonTenCheu"},
+        [2] = {"Acquire_State", "STAMP_TOUR", "Auto_KeonTenCheu"},
+        [3] = {"Acquire_State", "TOS_VACANCE", "Auto_KeonTenCheu"},
+        [4] = {"EVENT_YOUR_MASTER_DESC", "prev_ranking", "AccVoteReward"},
+    }
+
+    return table[type];
+end
+
+function GET_EVENT_PROGRESS_CHECK_TITLE_SKIN(type)
+    local table = 
+    {
+        [1] = "test_h_redribbon_skin",
+        [2] = "test_h_redribbon_skin",
+        [3] = "test_h_redribbon_skin",
+        [4] = "your_master_title",
+    }
+
+    return table[type];
+end
+
+function GET_EVENT_PROGRESS_CHECK_TITLE_DECO(type)
+    local table = 
+    {
+        [1] = "",
+        [2] = "",
+        [3] = "",
+        [4] = "your_master_title_deco",
     }
 
     return table[type];
@@ -42,6 +80,7 @@ function GET_EVENT_PROGRESS_CHECK_TAB_TITLE(type)
         [1] = {"Acquire_State", "STAMP_TOUR", "Auto_KeonTenCheu"},
         [2] = {"Acquire_State", "STAMP_TOUR", "Auto_KeonTenCheu"},
         [3] = {"Acquire_State", "TOS_VACANCE", "Auto_KeonTenCheu"},
+        [4] = {"now_ranking", "prev_ranking", "AccVoteReward"},
     }
 
     return table[type];
@@ -64,6 +103,7 @@ function GET_EVENT_PROGRESS_CHECK_TIP_TEXT(type)
         [1] = {"EVENT_NEW_SEASON_SERVER_stamp_tour_tip_text", "EVENT_NEW_SEASON_SERVER_stamp_tour_tip_text", "None"},
         [2] = {"EVENT_NEW_SEASON_SERVER_stamp_tour_tip_text", "EVENT_NEW_SEASON_SERVER_stamp_tour_tip_text", "None"},
         [3] = {"EVENT_2007_FLEX_BOX_CHECK_TIP_TEXT_1", "EVENT_2007_FLEX_BOX_CHECK_TIP_TEXT_1", "None"},
+        [4] = {"EVENT_YOUR_MASTER_TOOLTIP_WEEK_", "EVENT_YOUR_MASTER_TOOLTIP_WEEK_", "None"},
     }
 
     return table[type];
@@ -235,4 +275,66 @@ function CREATE_EVENT_PROGRESS_CHECK_CONTENTS_MISSION_CLEAR_COUNT()
 	end
 
 	return curCount;
+end
+
+------------------- 당신의 마스터 -------------------
+function GET_EVENT_YOUR_MASTER_VOTE_MATERIAL()
+    return "Event_2008_Master_Vote_86";
+end
+
+function GET_EVENT_YOUR_MASTER_VOTE_COIN()
+    return "Event_2008_Master_Badge";
+end
+
+function GET_EVENT_YOUR_MASTER_VOTE_COIN_PLAY_TIME_COUNT()
+    return 20;
+end
+
+function GET_EVENT_YOUR_MASTER_ACCRUE_REWARD_TABLE()
+    local table = 
+    {
+        -- 누적 보상 카운트/아이템 ClassName/제공 수량
+        [1] = "5;Event_Ability_Point_Stone_10000_5/1;",
+        [2] = "10;Event_Ability_Point_Stone_10000_5/1;",
+        [3] = "15;Event_Ability_Point_Stone_10000_5/2;EVENT_2008_Master_Vote_86_BOX/1;",
+        [4] = "20;Event_Ability_Point_Stone_10000_5/2;EVENT_2008_Master_Vote_86_BOX/1;",
+        [5] = "25;Event_Ability_Point_Stone_10000_5/3;EVENT_2008_Master_Vote_86_BOX/2;Event_HiddenAbility_MasterPiece/1;",
+        [6] = "30;Event_Ability_Point_Stone_10000_5/3;EVENT_2008_Master_Vote_86_BOX/2;Event_HiddenAbility_MasterPiece/1;",
+        [7] = "35;Event_Ability_Point_Stone_10000_5/3;EVENT_2008_Master_Vote_86_BOX/2;Event_HiddenAbility_MasterPiece/1;",
+        [8] = "40;Event_Ability_Point_Stone_10000_5/4;EVENT_2008_Master_Vote_86_BOX/3;Event_HiddenAbility_MasterPiece/1;",
+        [9] = "45;Event_Ability_Point_Stone_10000_5/4;EVENT_2008_Master_Vote_86_BOX/3;Event_HiddenAbility_MasterPiece/1;",
+        [10] = "50;Event_Ability_Point_Stone_10000_5/5;EVENT_2008_Master_Vote_86_BOX/5;EVENT_2008_costume/1;",
+    }
+
+    return table;
+end
+
+function GET_EVENT_YOUR_MASTER_VOTE_COUNT(accObj, npc)
+    local ret_vote, ret_accvotr = 0, 0;
+    local org_npc_list, cnt  = GetClassList("event_ranking_data");
+    
+    local curvotelistStr = TryGetProp(accObj, "EVENT_YOUR_MASTER_VOTE_LIST", 0);
+    local votelist = StringSplit(curvotelistStr, "/");
+
+    local accvotelistStr = TryGetProp(accObj, "EVENT_YOUR_MASTER_TOTAL_VOTE_LIST", 0);
+    local accvotelist = StringSplit(accvotelistStr, "/");
+    for i = 0, cnt - 1 do 
+		local cls = GetClassByIndexFromList(org_npc_list, i);
+        local npcClsName = TryGetProp(cls, "ClassName", "None");
+
+        if npc ==  npcClsName then
+            ret_vote = votelist[i+1];
+            ret_accvotr = accvotelist[i+1];
+        end
+    end
+
+    if ret_vote == nil then
+        ret_vote = 0;
+    end
+
+    if ret_accvotr == nil then
+        ret_accvotr = 0;
+    end 
+
+    return ret_vote, ret_accvotr;
 end

@@ -1370,7 +1370,9 @@ function SCR_PRE_CHATHEDRAL53_MQ03_ITEM(self, argstring, argnum1, argnum2)
             end
         end
     elseif GetZoneName(self) == 'd_cathedral_54' then
-        if result3 == "COMPLETE" then
+        if result4 == "POSSIBLE" then
+            return 1
+        elseif result3 == "COMPLETE" then
             return 0
         elseif result2 == 'COMPLETE' then
             if GetLayer(self) == 0 then

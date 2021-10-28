@@ -102,6 +102,32 @@ function REINFORCE_ABLE_131014(item)
     return 1;
 end
 
+function REINFORCE_ABLE_BY_USE_LEVEL(moru, item)
+    if moru == nil or item == nil then
+        return false
+    end
+
+    if moru.ClassName == 'Moru_Diamond_14d_Team_Lv400' then
+        if item.UseLv > 400 then
+            return false
+        end
+    end
+    
+    if moru.ClassName == 'Moru_Diamond_14d_Team_Lv430' then
+        if item.UseLv > 440 then
+            return false
+        end
+    end
+
+    if moru.ClassName == 'Moru_Diamond_30d_Team_Lv440' then
+        if item.UseLv > 440 then
+            return false
+        end
+    end
+
+    return true
+end
+
 function GET_REINFORCE_PRICE(fromItem, moruItem, pc)
     local reinforcecount = TryGetProp(fromItem, "Reinforce_2");
     if reinforcecount == nil then

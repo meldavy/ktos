@@ -79,6 +79,7 @@
 		<button name="showCharIndunState" parent="bottomBox" rect="0 0 5 5" margin="20 0 0 3" layout_gravity="left center" image="indun_count_btn" clicksound="button_click_big" oversound="button_over" LBtnUpScp="UI_TOGGLE_INDUNINFO_CHAR_UI" isEnabled="0"/>
 		<tab name="tab" rect="0 0 1000 40" margin="10 60 0 0" layout_gravity="left top" LBtnDownScp="INDUNINFO_TAB_CHANGE" MouseOffAnim="btn_mouseoff" MouseOnAnim="btn_mouseover" clicksound="inven_arrange" fixwidth="true" itemspc="0" oversound="button_cursor_over_2" skin="tab2"/>
 		<tabitem name="Itembox1" parent="tab" caption="{@st66b}던전{/}" width="150" layout_gravity="left top"/>
+		<tabitem name="Itembox2" parent="tab" caption="{@st66b}레이드{/}" width="150" layout_gravity="left top"/>
 		<tabitem name="Itembox3" parent="tab" caption="{@st66b}주간 보스 레이드" width="150" layout_gravity="left top"/>
 		<tabitem name="Itembox4" parent="tab" caption="{@st66b}콘텐츠 랭킹" width="150" layout_gravity="left top"/>
 		<tabitem name="Itembox5" parent="tab" caption="{@st66b}봉쇄전" width="150" layout_gravity="left top"/>

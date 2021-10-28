@@ -1,17 +1,24 @@
 function EVENT_PROGRESS_CHECK_ON_INIT(addon, frame)
 	addon:RegisterMsg("EVENT_PROGRESS_CHECK_OPEN_COMMAND", "EVENT_PROGRESS_CHECK_OPEN_COMMAND");
-
 	addon:RegisterMsg("EVENT_PROGRESS_CHECK_DAILY_PLAY_TIME_UPDATE", "EVENT_PROGRESS_CHECK_DAILY_PLAY_TIME_UPDATE");
+
+	addon:RegisterMsg("EVENT_YOUR_MASTER_OPEN", "EVENT_YOUR_MASTER_OPEN");
 end
 
 function EVENT_PROGRESS_CHECK_OPEN_COMMAND(frame, msg, argStr, type)
 	EVENT_PROGRESS_CHECK_OPEN(type);
 end
 
+local your_master_type = 4;
 function EVENT_PROGRESS_CHECK_OPEN(type)
 	local frame = ui.GetFrame("event_progress_check");
 
-	EVENT_PROGRESS_CHECK_INIT(frame, type)
+	if type == your_master_type then
+		control.CustomCommand("REQ_EVENT_YOUR_MASTER_OPEN", 0);
+		return;
+	end
+
+	EVENT_PROGRESS_CHECK_INIT(frame, type);
 	EVENT_PROGRESS_CHECK_TAB_CLICK(frame, nil, "", type);
 
 	frame:ShowWindow(1);
@@ -31,58 +38,92 @@ function EVENT_PROGRESS_CHECK_INIT(frame, type)
 	tab:SetEventScriptArgNumber(ui.LBUTTONUP, type);
 
 	local tabtitlelist = GET_EVENT_PROGRESS_CHECK_TAB_TITLE(type);
-	for i = 1, 3 do 
+	for i = 1, #tabtitlelist do
 		tab:ChangeCaption(i - 1, "{@st66b}{s18}"..ClMsg(tabtitlelist[i]), false);
 	end
-	
+
+	EVENT_PROGRESS_TAB_TOGGLE(frame, 1);
+
 	local notebtn = GET_CHILD_RECURSIVELY(frame, "notebtn");
 	notebtn:SetTextByKey("value", ClMsg(GET_EVENT_PROGRESS_CHECK_NOTE_NAME(type)));
 	notebtn:SetEventScript(ui.LBUTTONUP, GET_EVENT_PROGRESS_CHECK_NOTE_BTN(type));
+
+	local titlegb = GET_CHILD(frame, "titlegb");
+	titlegb:SetSkinName(GET_EVENT_PROGRESS_CHECK_TITLE_SKIN(type));
+
+	local title_deco = GET_CHILD(frame, "title_deco");
+	title_deco:SetImage(GET_EVENT_PROGRESS_CHECK_TITLE_DECO(type));
+	
+	local loadingtext = GET_CHILD_RECURSIVELY(frame, "loadingtext");
+	loadingtext:ShowWindow(0);
 end
 
 function EVENT_PROGRESS_CHECK_TAB_CLICK(parent, ctrl, argStr, type)
-	local tab = GET_CHILD(parent:GetTopParentFrame(), "tab");
+	local frame = parent:GetTopParentFrame();
+	local tab = GET_CHILD(frame, "tab");
 	local index = tab:GetSelectItemIndex();
 
-	if index == 0 then
-		EVENT_PROGRESS_CHECK_ACQUIRE_STATE_OPEN(parent:GetTopParentFrame(), type);
-	elseif index == 1 then
-        EVENT_PROGRESS_CHECK_STAMP_TOUR_STATE_OPEN(parent:GetTopParentFrame(), type);
-    elseif index == 2 then
-        EVENT_PROGRESS_CHECK_CONTENTS_STATE_OPEN(parent:GetTopParentFrame(), type);
-	end
-end
-
-------------------------- 획득 현황 -------------------------
-function EVENT_PROGRESS_CHECK_ACQUIRE_STATE_OPEN(frame, type)
-	local tabtitlelist = GET_EVENT_PROGRESS_CHECK_TAB_TITLE(type);
-	local nametext = GET_CHILD_RECURSIVELY(frame, "nametext");
-	nametext:SetTextByKey('value', ClMsg(tabtitlelist[1]));
-
 	local listgb = GET_CHILD(frame, "listgb");
+    listgb:SetScrollPos(0);
 	listgb:RemoveAllChild();
 	
 	local notebtn = GET_CHILD_RECURSIVELY(frame, "notebtn");
 	notebtn:ShowWindow(0);
-		
+	notebtn:Resize(100, 36);
+
 	local overtext = GET_CHILD(frame, "overtext");
 	overtext:ShowWindow(0);
 
 	local tiptext = GET_CHILD(frame, "tiptext");
 	tiptext:ShowWindow(0);
 
+	local comming_soon_pic = GET_CHILD_RECURSIVELY(frame, "comming_soon_pic");
+	comming_soon_pic:ShowWindow(0);
+
+	if index == 0 then
+		EVENT_PROGRESS_CHECK_ACQUIRE_STATE_OPEN(frame, type);
+	elseif index == 1 then
+        EVENT_PROGRESS_CHECK_STAMP_TOUR_STATE_OPEN(frame, type);
+    elseif index == 2 then
+        EVENT_PROGRESS_CHECK_CONTENTS_STATE_OPEN(parent:GetTopParentFrame(), type);
+	end
+end
+
+function EVENT_PROGRESS_TAB_TOGGLE(frame, toggle)
+	local tab = GET_CHILD(frame, "tab");
+	local tab2 = GET_CHILD(frame, "tab2");
+
+	local listgb = GET_CHILD(frame, "listgb");
+	local tab2_listgb1 = GET_CHILD(frame, "tab2_listgb1");
+	local tab2_listgb2 = GET_CHILD(frame, "tab2_listgb2");
+	local tab2_listgb3 = GET_CHILD(frame, "tab2_listgb3");
+
+	tab:ShowWindow(toggle);
+	tab2:ShowWindow(1-toggle);
+	
+	listgb:ShowWindow(toggle);
+	tab2_listgb1:ShowWindow(1-toggle);
+	tab2_listgb2:ShowWindow(1-toggle);
+	tab2_listgb3:ShowWindow(1-toggle);
+end
+
+------------------------- 획득 현황 -------------------------
+function EVENT_PROGRESS_CHECK_ACQUIRE_STATE_OPEN(frame, type)
+	local desclist = GET_EVENT_PROGRESS_CHECK_DESC(type);
+	local nametext = GET_CHILD_RECURSIVELY(frame, "nametext");
+	nametext:SetTextByKey('value', ClMsg(desclist[1]));
+
+	local tiptext = GET_CHILD(frame, "tiptext");
 	local tiptextlist = GET_EVENT_PROGRESS_CHECK_TIP_TEXT(type);
 	if tiptextlist[1] ~= "None" then
 		tiptext:SetTextByKey("value", ClMsg(tiptextlist[1]));
 		tiptext:ShowWindow(1);
 	end
 
-	local comming_soon_pic = GET_CHILD_RECURSIVELY(frame, "comming_soon_pic");
-	comming_soon_pic:ShowWindow(0);
-
 	local accObj = GetMyAccountObj();
 	if accObj == nil then return; end
 
+	local listgb = GET_CHILD(frame, "listgb");
 	local curlist = GET_EVENT_PROGRESS_CHECK_CUR_VALUE(type, accObj);
 	local eventstatelist = GET_EVENT_PROGRESS_CHECK_EVENT_STATE(type);
 	local iconlist = GET_EVENT_PROGRESS_CHECK_ACQUIRE_STATE_ICON(type);    
@@ -194,44 +235,34 @@ end
 
 ------------------------- 스탬프 -------------------------
 function EVENT_PROGRESS_CHECK_STAMP_TOUR_STATE_OPEN(frame, type)
-	local tabtitlelist = GET_EVENT_PROGRESS_CHECK_TAB_TITLE(type);
+	local desclist = GET_EVENT_PROGRESS_CHECK_DESC(type);
 	local nametext = GET_CHILD_RECURSIVELY(frame, "nametext");
-	nametext:SetTextByKey('value', ClMsg(tabtitlelist[2]));
+	nametext:SetTextByKey('value', ClMsg(desclist[2]));
     
-	local listgb = GET_CHILD(frame, "listgb");
-	listgb:RemoveAllChild();
-	
-	local notebtn = GET_CHILD_RECURSIVELY(frame, "notebtn");
-	notebtn:ShowWindow(0);
-
-	local overtext = GET_CHILD(frame, "overtext");
-	overtext:ShowWindow(0);
-
 	local tiptext = GET_CHILD(frame, "tiptext");
-	tiptext:ShowWindow(0);
-
 	local tiptextlist = GET_EVENT_PROGRESS_CHECK_TIP_TEXT(type);
 	if tiptextlist[2] ~= "None" then
 		tiptext:SetTextByKey("value", ClMsg(tiptextlist[2]));
 		tiptext:ShowWindow(1);
 	end
-
-	local comming_soon_pic = GET_CHILD_RECURSIVELY(frame, "comming_soon_pic");
-	comming_soon_pic:ShowWindow(0);
 	
 	local eventstatelist = GET_EVENT_PROGRESS_CHECK_EVENT_STATE(type);
 	if eventstatelist[3] == "pre" then
+		local comming_soon_pic = GET_CHILD_RECURSIVELY(frame, "comming_soon_pic");
 		comming_soon_pic:ShowWindow(1);
 	elseif eventstatelist[3] == "end" then
+		local listgb = GET_CHILD(frame, "listgb");
 		local ctrl = listgb:CreateControl("richtext", "tos_vacance_tip_text", 500, 100, ui.CENTER_HORZ, ui.CENTER_VERT, 0, 0, 0, 0);
 		ctrl:SetTextFixWidth(1);
 		ctrl:SetTextAlign("center", "top");
 		ctrl:SetFontName("black_24");
 		ctrl:SetText(ClMsg("EndEventMessage"));	
 	else
+		local listgb = GET_CHILD(frame, "listgb");
 		local accObj = GetMyAccountObj();
 		local stampTourCheck = TryGetProp(accObj, "REGULAR_EVENT_STAMP_TOUR");
 		if stampTourCheck == 1 then
+			local notebtn = GET_CHILD_RECURSIVELY(frame, "notebtn");
 			notebtn:ShowWindow(1);
 	
 			local y = 0;
@@ -333,41 +364,30 @@ end
 
 ------------------------- 콘텐츠 -------------------------
 function EVENT_PROGRESS_CHECK_CONTENTS_STATE_OPEN(frame, type)
-	local tabtitlelist = GET_EVENT_PROGRESS_CHECK_TAB_TITLE(type);
+	local desclist = GET_EVENT_PROGRESS_CHECK_DESC(type);
 	local nametext = GET_CHILD_RECURSIVELY(frame, "nametext");
-	nametext:SetTextByKey('value', ClMsg(tabtitlelist[3]));
+	nametext:SetTextByKey('value', ClMsg(desclist[3]));
     
-	local listgb = GET_CHILD(frame, "listgb");
-	listgb:RemoveAllChild();
-	
-	local notebtn = GET_CHILD_RECURSIVELY(frame, "notebtn");
-	notebtn:ShowWindow(0);
-
-	local overtext = GET_CHILD(frame, "overtext");
-	overtext:ShowWindow(0);
-
 	local tiptext = GET_CHILD(frame, "tiptext");
-	tiptext:ShowWindow(0);
-
 	local tiptextlist = GET_EVENT_PROGRESS_CHECK_TIP_TEXT(type);
 	if tiptextlist[3] ~= "None" then
 		tiptext:SetTextByKey("value", ClMsg(tiptextlist[3]));
 		tiptext:ShowWindow(1);
 	end
-
-	local comming_soon_pic = GET_CHILD_RECURSIVELY(frame, "comming_soon_pic");
-	comming_soon_pic:ShowWindow(0);
-
+	
 	local eventstatelist = GET_EVENT_PROGRESS_CHECK_EVENT_STATE(type);
 	if eventstatelist[4] == "pre" then
+		local comming_soon_pic = GET_CHILD_RECURSIVELY(frame, "comming_soon_pic");
 		comming_soon_pic:ShowWindow(1);
 	elseif eventstatelist[4] == "end" then
+		local listgb = GET_CHILD(frame, "listgb");
 		local ctrl = listgb:CreateControl("richtext", "contents_tip_text", 500, 100, ui.CENTER_HORZ, ui.CENTER_VERT, 0, 0, 0, 0);
 		ctrl:SetTextFixWidth(1);
 		ctrl:SetTextAlign("center", "top");
 		ctrl:SetFontName("black_24");
 		ctrl:SetText(ClMsg("EndEventMessage"));	
 	else
+		local listgb = GET_CHILD(frame, "listgb");
 		local accObj = GetMyAccountObj();
 		local maxlist = GET_EVENT_PROGRESS_CHECK_ACQUIRE_STATE_MAX_VALUE(type);
 		local curlist = GET_EVENT_PROGRESS_CHECK_CUR_VALUE(type, accObj);
@@ -464,6 +484,7 @@ function ENABLE_EVENT_PROGRESS_CONTENTS_DAILY(missionCls, itemClassName)
 
 	return false;
 end
+
 ------------------------- NPC -------------------------
 function EVENT_PROGRESS_NPC_POS_BTN_CLICK(frame, msg, argStr)
 	local context = ui.CreateContextMenu("flex_box_npc_pos", "", 0, 0, 120, 120);
@@ -481,4 +502,466 @@ end
 
 function EVENT_PROGRESS_NPC_POS_MINIMAP(mapname, x, z)	
 	SCR_SHOW_LOCAL_MAP(mapname, true, x, z)	;
+end
+
+------------------------- YOUR_MASTER -------------------------
+local json = require "json_imc";
+local curPage = 1;
+local infolistY = 0;
+local scrolledTime = 0;
+local finishedLoading = false;
+local all_ranking_score_sum = 0;
+function EVENT_YOUR_MASTER_OPEN(frame, msg, argStr)
+	local strList = StringSplit(argStr, "/");
+    local state = strList[1];
+    local week = tonumber(strList[2]);
+	local curcnt = strList[3];
+	local nextcnt = strList[4];
+
+	EVENT_YOUR_MASTER_INIT(frame, state, week, curcnt, nextcnt);
+	EVENT_YOUR_MATER_TAB_CLICK(frame, nil, state, week);
+	frame:ShowWindow(1);
+end
+
+function EVENT_YOUR_MASTER_INIT(frame, state, week, curcnt, nextcnt)
+	local title = GET_CHILD_RECURSIVELY(frame, "title");
+	title:SetTextByKey("value", ClMsg(GET_EVENT_PROGRESS_CHECK_TITLE(your_master_type)));
+
+	local tab2 = GET_CHILD(frame, "tab2");	
+	tab2:SelectTab(0);
+	tab2:SetEventScript(ui.LBUTTONUP, "EVENT_YOUR_MATER_TAB_CLICK");
+
+	local tab2_listgb1 = GET_CHILD(frame, "tab2_listgb1");
+	tab2_listgb1:SetUserValue("STATE", state);
+	tab2_listgb1:SetUserValue("WEEK", week);
+	tab2_listgb1:SetUserValue("CUR_COUNT", curcnt);
+	tab2_listgb1:SetUserValue("NEXT_COUNT", nextcnt);
+
+	local tab2_listgb2 = GET_CHILD(frame, "tab2_listgb2");
+	tab2_listgb2:SetUserValue("WEEK", week - 1);
+
+	local tabtitlelist = GET_EVENT_PROGRESS_CHECK_TAB_TITLE(your_master_type);
+	for i = 1, #tabtitlelist do
+		tab2:ChangeCaption(i - 1, "{@st66b}{s18}"..ClMsg(tabtitlelist[i]), false);
+	end
+
+	EVENT_PROGRESS_TAB_TOGGLE(frame, 0);
+
+	local notebtn = GET_CHILD_RECURSIVELY(frame, "notebtn");
+	notebtn:SetTextByKey("value", ClMsg(GET_EVENT_PROGRESS_CHECK_NOTE_NAME(your_master_type)));
+	notebtn:SetEventScript(ui.LBUTTONUP, GET_EVENT_PROGRESS_CHECK_NOTE_BTN(your_master_type));
+
+	local titlegb = GET_CHILD(frame, "titlegb");
+	titlegb:SetSkinName(GET_EVENT_PROGRESS_CHECK_TITLE_SKIN(your_master_type));
+
+	local title_deco = GET_CHILD(frame, "title_deco");
+	title_deco:SetImage(GET_EVENT_PROGRESS_CHECK_TITLE_DECO(your_master_type));	
+
+	local loadingtext = GET_CHILD(frame, "loadingtext");
+	loadingtext:ShowWindow(0);
+end
+
+function EVENT_PROGRESS_TAB_UNFREEZE()
+	local frame = ui.GetFrame("event_progress_check");
+	local tab2 = GET_CHILD(frame, "tab2");
+	tab2:EnableHitTest(1);
+	finishedLoading = true;
+end
+
+function EVENT_YOUR_MASTER_TAB_INIT(index)
+	local frame = ui.GetFrame("event_progress_check");
+
+	local tab2 = GET_CHILD(frame, "tab2");
+	if index == nil then
+		index = tab2:GetSelectItemIndex();
+	end
+		
+	local tab2_listgb1 = GET_CHILD(frame, "tab2_listgb1");
+	local tab2_listgb2 = GET_CHILD(frame, "tab2_listgb2");
+	local tab2_listgb3 = GET_CHILD(frame, "tab2_listgb3");
+	if index == 0 then
+		tab2_listgb1:ShowWindow(1);
+		tab2_listgb2:ShowWindow(0);
+		tab2_listgb3:ShowWindow(0);
+
+		tab2_listgb1:SetEventScript(ui.SCROLL, "None");
+		tab2_listgb1:SetScrollPos(0);
+		tab2_listgb1:RemoveAllChild();
+	elseif index == 1 then
+		tab2_listgb1:ShowWindow(0);
+		tab2_listgb2:ShowWindow(1);
+		tab2_listgb3:ShowWindow(0);
+
+		tab2_listgb2:SetEventScript(ui.SCROLL, "None");
+		tab2_listgb2:SetScrollPos(0);
+		tab2_listgb2:RemoveAllChild();
+	else
+		tab2_listgb1:ShowWindow(0);
+		tab2_listgb2:ShowWindow(0);
+		tab2_listgb3:ShowWindow(1);
+
+		tab2_listgb3:SetEventScript(ui.SCROLL, "None");
+		tab2_listgb3:SetScrollPos(0);
+		tab2_listgb3:RemoveAllChild();
+	end
+
+    infolistY = 0;
+    curPage = 1;
+	scrolledTime = imcTime.GetAppTime();
+	finishedLoading = false;
+	all_ranking_score_sum = 0;
+end
+
+function EVENT_YOUR_MATER_TAB_CLICK(parent, ctrl)
+	local frame = parent:GetTopParentFrame();
+	local tab2 = GET_CHILD(frame, "tab2");
+	tab2:EnableHitTest(0);
+	ReserveScript("EVENT_PROGRESS_TAB_UNFREEZE()", 1.5);
+
+	local index = tab2:GetSelectItemIndex();
+
+	local notebtn = GET_CHILD_RECURSIVELY(frame, "notebtn");
+	notebtn:ShowWindow(0);
+	notebtn:Resize(100, 36);
+
+	local overtext = GET_CHILD(frame, "overtext");
+	overtext:ShowWindow(0);
+
+	local tiptext = GET_CHILD(frame, "tiptext");
+	tiptext:ShowWindow(0);
+
+	local comming_soon_pic = GET_CHILD_RECURSIVELY(frame, "comming_soon_pic");
+	comming_soon_pic:ShowWindow(0);
+
+	local desclist = GET_EVENT_PROGRESS_CHECK_DESC(your_master_type);
+	local nametext = GET_CHILD_RECURSIVELY(frame, "nametext");
+	nametext:SetTextByKey('value', ClMsg(desclist[index + 1]));
+	
+	EVENT_YOUR_MASTER_TAB_INIT(index);
+
+	if index < 2 then
+		local gbname = "tab2_listgb"..(index+1);
+		local listgb = GET_CHILD(frame, gbname);
+		listgb:SetEventScript(ui.SCROLL, "EVENT_YOUR_MASTER_RANKING_SCROLL");
+		local week = listgb:GetUserIValue("WEEK");
+		if week < 1 then
+			comming_soon_pic:ShowWindow(1)
+			return;
+		end
+
+		local tiptext = GET_CHILD(frame, "tiptext");
+		local tiptextlist = GET_EVENT_PROGRESS_CHECK_TIP_TEXT(your_master_type);
+		if tiptextlist[index + 1] ~= "None" then
+			if index == 0 then
+				tiptext:SetTextByKey("value", ClMsg(tiptextlist[index + 1]..week)..ClMsg("RankingUpdateTime10Min"));
+			else
+				tiptext:SetTextByKey("value", ClMsg(tiptextlist[index + 1]..week));
+			end
+			tiptext:ShowWindow(1);
+		end
+
+		local state = listgb:GetUserValue("STATE");
+		if state == "prev" then
+			comming_soon_pic:ShowWindow(1);
+			return;
+		end
+
+		local loadingtext = GET_CHILD(frame, "loadingtext");
+		loadingtext:ShowWindow(1);
+		
+		local sort = GET_RANKING_SORT_TYPE(index, state);
+		GetRaidRankingSumScore("EVENT_YOUR_MASTER_SUM_SCORE_UPDATE", "EVENT_2008_YOUR_MASTER:EVENT_2008_YOUR_MASTER_"..week, sort);
+	elseif index == 2 then
+		EVENT_YOUR_MASTER_ACCRUE_REWARD_INIT(frame);
+	end
+end
+
+function EVENT_YOUR_MASTER_SUM_SCORE_UPDATE(code, retValue)
+    if code ~= 200 then
+        if code == 500 then
+            ui.SysMsg(ScpArgMsg('CantExecInThisArea'));
+        end
+
+		ui.SysMsg(ScpArgMsg("GuildJointInvTryLater"));
+		EVENT_YOUR_MASTER_TAB_INIT();
+        return;
+    end
+	
+	all_ranking_score_sum = retValue;
+
+	ReserveScript("EVENT_YOUR_MASTER_UPDATE()", 1);
+end
+
+function EVENT_YOUR_MASTER_UPDATE()
+	local frame = ui.GetFrame("event_progress_check");	
+	local tab2 = GET_CHILD(frame, "tab2");
+	local tabindex = tab2:GetSelectItemIndex();
+
+	local gbname = "tab2_listgb"..(tabindex + 1);
+	local listgb = GET_CHILD(frame, gbname);
+	local week = listgb:GetUserIValue("WEEK");
+	local state = listgb:GetUserValue("STATE");
+
+	local sort = GET_RANKING_SORT_TYPE(tabindex, state);
+	GetRaidRanking("_EVENT_YOUR_MASTER_UPDATE", "EVENT_2008_YOUR_MASTER:EVENT_2008_YOUR_MASTER_"..week, curPage, sort);
+end
+
+function _EVENT_YOUR_MASTER_UPDATE(code, ret_json)
+	finishedLoading = true;
+    if code ~= 200 then
+        if code == 500 then
+            ui.SysMsg(ScpArgMsg('CantExecInThisArea'));
+        end
+
+		ui.SysMsg(ScpArgMsg("GuildJointInvTryLater"));
+		EVENT_YOUR_MASTER_TAB_INIT();
+        return;
+    end
+
+    local parsed = json.decode(ret_json);
+    local count = parsed['count'];
+    if tonumber(count) == 0 then
+        return;
+    end
+	
+	local frame = ui.GetFrame("event_progress_check");
+
+	local loadingtext = GET_CHILD(frame, "loadingtext");
+	loadingtext:ShowWindow(0);
+
+	local tab2 = GET_CHILD(frame, "tab2");
+	local tabindex = tab2:GetSelectItemIndex();
+
+	local gbname = "tab2_listgb"..(tabindex+1);
+	local listgb = GET_CHILD(frame, gbname);
+	
+	local state = listgb:GetUserValue("STATE");
+	local curCnt = listgb:GetUserValue("CUR_COUNT");
+
+	local sort = GET_RANKING_SORT_TYPE(tabindex, state);
+	local npclist = {};
+	local list = parsed['list'];
+	for k, v in pairs(list) do
+		local member = v["member"];
+		local score = v["score"];
+		local rank = v["rank"]
+		if sort == "asc" then
+			rank = curCnt - rank + 1;
+		end
+
+		local npc_cls = GetClass("event_ranking_data", member);
+		if npc_cls ~= nil then
+			infolistY = EVENT_YOUR_MASTER_LIST_CREATE(listgb, infolistY, rank, member, score, tabindex);
+		end
+	end   
+end
+
+function EVENT_YOUR_MASTER_LIST_CREATE(gb, y, rank, member, score, tabindex)
+	local npc_cls = GetClass("event_ranking_data", member);
+	if npc_cls == nil or gb == nil then
+		return y; 
+	end
+
+	local ctrlSet = gb:CreateOrGetControlSet("event_ranking_list", "LIST"..rank, 0, y);	
+	if ctrlSet == nil then
+		return y; 
+	end
+	
+	local btn = GET_CHILD(ctrlSet, "btn");
+	local btn_text = GET_CHILD(ctrlSet, "btn_text");
+	local blackbg = GET_CHILD(ctrlSet, "blackbg");
+    local text_ctrl = GET_CHILD(ctrlSet, "text");
+    text_ctrl:SetTextByKey("value", npc_cls.Name);
+
+    local rank_ctrl = GET_CHILD(ctrlSet, "rank");
+	rank_ctrl:SetTextByKey("value", rank);
+	
+    local rankingimg = GET_CHILD(ctrlSet, "rankingimg");
+	if rank <= 3 then
+		rankingimg:SetImage("your_master_ranking0"..rank);
+	end
+	
+	local percent = "0.00";
+	all_ranking_score_sum = tonumber(all_ranking_score_sum)
+	if all_ranking_score_sum ~= 0 then
+		percent = string.format("%.2f", math.floor(score/all_ranking_score_sum*10000)/100);
+	end
+
+	local percent_ctrl = GET_CHILD(ctrlSet, "percent");
+	percent_ctrl:SetTextByKey("value", percent);
+	
+    local gauge_ctrl = GET_CHILD(ctrlSet, "gauge");
+	gauge_ctrl:SetPoint(score, all_ranking_score_sum);
+
+	if tabindex == 1 then
+		btn:SetEnable(0);
+		btn_text:SetEnable(0);
+
+		blackbg:ShowWindow(1);
+		blackbg:SetAlpha(60);
+		
+		y = y + ctrlSet:GetHeight();
+		return y;
+	end
+	
+	local state = gb:GetUserValue("STATE");
+	local cnt = gb:GetUserIValue("NEXT_COUNT");
+	blackbg:ShowWindow(0);
+
+	if state == "end" then
+		btn:SetEnable(0);
+		btn_text:SetEnable(0);
+		
+		if score == 0 or (cnt < rank) then
+			local prev_ctrl_name = "LIST"..(rank-1);
+			local prev_ctrl = GET_CHILD_RECURSIVELY(gb, prev_ctrl_name);
+			local prev_percent = GET_CHILD(prev_ctrl, "percent");
+			local prev_blackbg = GET_CHILD(prev_ctrl, "blackbg");
+			local prev_percentText = prev_percent:GetTextByKey("value");
+
+			if prev_percentText ~= percent or prev_blackbg:IsVisible() == 1 then
+				blackbg:ShowWindow(1);
+				blackbg:SetAlpha(60);
+			end
+		end
+	else		
+		btn:SetEventScript(ui.LBUTTONUP, "EVENT_YOUR_MASTER_LIST_CLICK");
+		btn:SetEventScriptArgString(ui.LBUTTONUP, npc_cls.ClassID);
+		btn:ShowWindow(1);
+		btn_text:ShowWindow(1);
+	end
+
+    y = y + ctrlSet:GetHeight();
+    return y;
+end
+
+function EVENT_YOUR_MASTER_RANKING_SCROLL(parent, ctrl)
+	local week = ctrl:GetUserValue("WEEK");
+	if week == "None" then
+		return;
+	end
+
+	local frame = ui.GetFrame("event_progress_check");
+	
+	local tab2 = GET_CHILD(frame, "tab2");
+	if tab2 == nil then
+		return;
+	end
+
+	local index = tab2:GetSelectItemIndex();
+
+    if ctrl:IsScrollEnd() == true and finishedLoading == true then
+        local now = imcTime.GetAppTime();
+        local dif = now - scrolledTime;
+
+		if 2 < dif then
+			curPage = curPage + 1;
+
+			local state = ctrl:GetUserValue("STATE")
+			local sort = GET_RANKING_SORT_TYPE(index, state);
+			GetRaidRanking("_EVENT_YOUR_MASTER_UPDATE", "EVENT_2008_YOUR_MASTER:EVENT_2008_YOUR_MASTER_"..week, curPage, sort);
+			
+            scrolledTime = now;
+			finishedLoading = false;
+			
+			local tab2 = GET_CHILD(frame, "tab2");
+			tab2:EnableHitTest(0);
+			ReserveScript("EVENT_PROGRESS_TAB_UNFREEZE()", 1.5);
+        end
+    end
+
+end
+
+function EVENT_YOUR_MASTER_LIST_CLICK(parent, ctrl, npcClassID)
+    if ui.CheckHoldedUI() == true then
+        return;
+    end
+
+	local npc_cls = GetClassByType("event_ranking_data", npcClassID);
+    if npc_cls == nil then
+        return;
+	end
+	
+	local mapprop = session.GetCurrentMapProp();
+	local mapCls = GetClassByType("Map", mapprop.type);	
+	if IS_TOWN_MAP(mapCls) == false then
+		ui.SysMsg(ClMsg("OnlyVoteInTown"));
+        return;
+    end
+
+	local mat_ClassName = GET_EVENT_YOUR_MASTER_VOTE_MATERIAL();
+    local curCnt = GET_INV_ITEM_COUNT_BY_PROPERTY({{Name = "ClassName", Value = mat_ClassName}}, false);
+    if curCnt <= 0 then
+		ui.SysMsg(ClMsg("NotEnoughVoteMaterial"));
+        return;
+    end
+
+    control.CustomCommand("REQ_EVENT_YOUR_MASTER_VOTE_CLICK", npcClassID);
+end
+
+function EVENT_YOUR_MASTER_ACCRUE_REWARD_INIT(frame)
+	local listgb = GET_CHILD(frame, gbname);
+
+	local tab2_listgb3 = GET_CHILD_RECURSIVELY(frame, "tab2_listgb3");
+	tab2_listgb3:RemoveAllChild();
+	
+	local table = GET_EVENT_YOUR_MASTER_ACCRUE_REWARD_TABLE();
+
+    for i = 1, #table do
+        local tablelist = StringSplit(table[i], ";");
+
+		local rewardText = "";
+		local accCount = tablelist[1];
+		for i = 2, #tablelist do
+			local rewradStrlist = StringSplit(tablelist[i], "/");
+			local itemClassName = rewradStrlist[1];
+			local itemCount = rewradStrlist[2];
+
+			local itemCls = GetClass("Item", itemClassName);
+			if itemCls ~= nil then
+				local str = string.format("%s %d%s {nl}", itemCls.Name, itemCount, ClMsg("Piece"));
+				rewardText = rewardText..str;
+			end
+		end
+
+		local ctrl = tab2_listgb3:CreateOrGetControlSet("reward_item_list", "LIST_"..i, 0, 0);
+		ctrl:Resize(500, 90)
+		local icon = GET_CHILD(ctrl, "icon");
+		icon:ShowWindow(0);
+		
+        local listtext = GET_CHILD(ctrl, "listtext");
+		listtext:SetTextByKey("value", rewardText);
+		
+        local count = GET_CHILD(ctrl, "count");
+		count:ShowWindow(0);
+
+        local text = GET_CHILD(ctrl, "text");
+		text:SetTextByKey("value", accCount..ClMsg("Piece2"));
+		
+		local accObj = GetMyAccountObj();
+		local curAccCnt = TryGetProp(accObj, "EVENT_YOUR_MASTER_TOTAL_VOTE_COUNT", 0);
+		if tonumber(accCount) <= curAccCnt then
+			local blackbg = ctrl:CreateOrGetControl("picture", "blackbg", 0, 0, 488, 80);
+			AUTO_CAST(blackbg);			
+			blackbg:SetGravity(ui.CENTER_HORZ, ui.CENTER_VERT);
+			blackbg:SetImage("fullblack");
+			blackbg:SetEnableStretch(1);
+			blackbg:SetAlpha(90);
+
+			local acquire_text = ctrl:CreateOrGetControl("richtext", "acquire_text", 0, 0, 488, 80);
+			AUTO_CAST(acquire_text);
+			acquire_text:SetGravity(ui.CENTER_HORZ, ui.CENTER_VERT);					
+			acquire_text:SetText("{@st43b}{s20}"..ClMsg("AcquireRewardMessage"));
+		end
+    end
+    
+    GBOX_AUTO_ALIGN(tab2_listgb3, 0, -5, 0, true, false);
+end
+
+function GET_RANKING_SORT_TYPE(tabindex, state)
+	if tabindex == 0 and state == "cur" then
+		return "asc";
+	end
+
+	return "des";
 end

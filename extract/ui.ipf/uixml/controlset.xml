@@ -460,7 +460,7 @@
 		</controls>
 	</controlset>
 	<controlset name="tooltip_equip_cannot_reinforce" hittest="true" width="410" height="50">
-		<userconfig BOTTOM_MARGIN="10" TEXT_FONT="{#62100c}" REINFORCE_TEXT="강화 불가" TRANSCEND_TEXT="초월 불가" EXTRACT_TEXT="추출 불가" SOCKET_TEXT="소켓 추출 불가" BRIQUET_TEXT="외형 변경 불가" EXCHANGE_TEXT="{#00fec5}{ol}계열 변경 가능(1월 24일까지){/}" AWAKEN_TEXT="각성 불가" DECOMPOSEABLE_TEXT="분해 불가"ENCHANT_TEXT="인챈트 불가"/>
+		<userconfig BOTTOM_MARGIN="10" TEXT_FONT="{#62100c}" REINFORCE_TEXT="강화 불가" TRANSCEND_TEXT="초월 불가" EXTRACT_TEXT="아이커 추출 불가" SOCKET_TEXT="소켓 추출 불가" BRIQUET_TEXT="외형 변경 추출 불가" EXCHANGE_TEXT="{#00fec5}{ol}계열 변경 가능(1월 24일까지){/}" AWAKEN_TEXT="각성 불가" DECOMPOSEABLE_TEXT="분해 불가" ENCHANT_TEXT="인챈트 불가" BRIQUET_VALID_TEXT="외형 변경 적용 불가"/>
 		<controls>
 			<labelline name="labelline" margin="-2 0 0 0" rect="0 0 390 3" skin="labelline_def_2" layout_gravity="center top"/>
 			<richtext name="socket_text" layout_gravity="left top" rect="0 0 390 45" margin="17 7 0 0" fixwidth="true" format="" hittest="false" textalign="left center" fontname="brown_16"/>
@@ -5285,6 +5285,7 @@
 			<picture name="grade" rect="0 0 92 44" margin="25 0 0 0" layout_gravity="left center" imagealign="center center"/>
 			<picture name="icon" rect="0 0 60 60" margin="140 0 0 0" layout_gravity="left center" image="icon_item_Event_Roulette_Coin" stretch="true" imagealign="center center"/>
 			<richtext name="name" rect="0 0 270 40" margin="220 0 0 0" layout_gravity="left center" fontname="black_18_b" format="%s" param1="name" fixwidth="true" hittest="false" textalign="center center"/>
+			<richtext name="listtext" rect="0 0 320 40" margin="130 0 0 0" layout_gravity="left center" fontname="black_18_b" format="%s" param1="value" fixwidth="true" hittest="false" textalign="left center"/>
 			<richtext name="count" rect="0 0 60 40" margin="0 0 20 0" layout_gravity="right center" fontname="black_18_b" format="%s개" param1="count" fixwidth="true" hittest="false" textalign="right center"/>
 			<richtext name="text" rect="0 0 100 40" margin="25 0 0 0" layout_gravity="left center" format="{@st66b}{s20}%s" param1="value" fixwidth="true" hittest="false" textalign="center center" draw="false"/>
 		</controls>
@@ -5362,7 +5363,7 @@
 	<controlset name="simple_check_list" hittest="true" width="470" height="30" draw="false" hittestset="false" skin="">
 		<controls>
 			<checkbox name="checkbox" rect="0 0 24 24" margin="0 1 0 0" layout_gravity="left center" clicksound="button_click_big" oversound="button_over"/>
-			<richtext name="text" rect="0 0 300 50" margin="30 0 0 0" layout_gravity="left center" hittest="true" fontname="black_16_b" format="{@st42b}{s18}{ds}%s" param1="value" fixwidth="true"/>
+			<richtext name="text" rect="0 0 420 50" margin="30 0 0 0" layout_gravity="left center" hittest="true" fontname="black_16_b" format="{@st42b}{s18}{ds}%s" param1="value" fixwidth="true"/>
 		</controls>
 	</controlset>
 	<!-- 개인 하우징 홍보 게시판 끝 -->
@@ -5558,6 +5559,19 @@
 	<controlset name="tooltip_item_prop_richtxt_narrow" toggle="false" hittest="false" width="300" height="25">
 		<controls>
 			<richtext name="text" rect="0 0 270 25" margin="17 0 0 0" fixwidth="true" hittest="false" fontname="brown_16"/>
+		</controls>
+	</controlset>
+	<controlset name="event_ranking_list" hittest="true" width="500" height="99" hittestset="false" draw="true" skin="test_skill_skin3">
+		<controls>
+			<groupbox name="gb" rect="0 0 500 80" margin="0 0 0 0" layout_gravity="center center" scrollbar="false" draw="false"/>
+			<richtext name="rank" rect="0 0 100 30" margin="20 0 0 0" layout_gravity="left center" fontname="black_18_b" format="{@st42b}{ds}{s30}%s" param1="value"/>
+			<richtext name="text" rect="0 0 97 74" margin="65 -10 0 0" layout_gravity="left center" textalign="center center" fontname="black_18_b" format="%s" param1="value"/>
+			<gauge name="gauge" rect="0 0 332 10" margin="-20 14 0 0"  layout_gravity="center center" skin="your_master_gauges" />
+			<richtext name="percent" rect="0 0 500 100" margin="120 -8 0 0" layout_gravity="center center" format="{@st66b}{s14}%s%s" param1="value" param2="percent" param2_def="%"/>
+			<picture name="rankingimg" rect="0 0 39 39" margin="4 4 0 0" layout_gravity="left top" stretch="true" draw="false"/>
+			<button name="btn" rect="0 0 72 72" margin="0 0 14 0" layout_gravity="right center" image="your_master_vote_btn" oversound="button_cursor_over_3" clicksound="button_click_big"/>
+			<richtext name="btn_text" rect="0 0 500 100" margin="0 25 18 0" layout_gravity="right center" format="%s" fontname="white_16_b_ol" param1="value" param1_def="투표하기"/>
+			<picture name="blackbg" rect="0 0 488 87" margin="0 0 0 0" layout_gravity="center center" stretch="true" draw="false" image="fullblack"/>
 		</controls>
 	</controlset>
 </controlsetlist>

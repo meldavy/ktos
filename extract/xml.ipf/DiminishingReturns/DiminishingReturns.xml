@@ -51,6 +51,9 @@
 			<Class Name="KnockDown" SkillID="900000" Desc="넉다운은 스킬이 아니기 때문에, 900000번으로 할당하기로 정한다."/>
 			<Class Name="KnockBack" SkillID="900001" Desc="넉백은 스킬이 아니기 때문에, 900001번으로 할당하기로 정한다."/>
 			<Class Name="HeadShot" SkillID="31202" Desc="머스킷티어 헤드샷 스핀"/>
+			<Class Name="NakMuay_TeTrong" SkillID="11804" Desc="때트롱 스핀"/>
+			<Class Name="Rodelero_Montano" SkillID="10502" Desc="몬타노 스핀"/>
+			<Class Name="Corsair_DustDevil" SkillID="50405" Desc="더스트 데빌 스핀"/>
 		</Category>
 	</Category>
 	<Category Name="Group_2">
@@ -98,6 +101,7 @@
 			<Class Name="ObliqueFire_Debuff" BuffID="421" Desc="BuffID에 buff.xml에 있는 buff의 ClassID가 들어간다."/>
 			<Class Name="ParaclitusTime_Debuff" BuffID="424" Desc="BuffID에 buff.xml에 있는 buff의 ClassID가 들어간다."/>
 			<Class Name="Common_ShieldDesrption" BuffID="160010" Desc="BuffID에 buff.xml에 있는 buff의 ClassID가 들어간다."/>
+			<Class Name="DeathVerdict_Slow_Debuff" BuffID="1118" Desc="BuffID에 buff.xml에 있는 buff의 ClassID가 들어간다."/>
 		</Category>
 	</Category>
 	<!-- ############################################################################################################################################################### -->
@@ -108,7 +112,12 @@
 		<Category Name="Buff">
 			<Class Name="Cryomancer_FrostPillar" BuffID="301" Desc="BuffID에 buff.xml에 있는 buff의 ClassID가 들어간다."/>
 		</Category>
-		<Category Name="Skill"/>
+		<Category Name="Skill">
+			<Class Name="HeadShot" SkillID="31202" Desc="머스킷티어 헤드샷 스핀"/>
+			<Class Name="NakMuay_TeTrong" SkillID="11804" Desc="때트롱 스핀"/>
+			<Class Name="Rodelero_Montano" SkillID="10502" Desc="몬타노 스핀"/>
+			<Class Name="Corsair_DustDevil" SkillID="50405" Desc="더스트 데빌 스핀"/>
+		</Category>
 	</Category>
 	<Category Name="IgnoreMinimumDurationList">
 		<!-- 최소 버프 지속 유지시간을 적용시키지 않을 버프 및 스킬 목록 -->

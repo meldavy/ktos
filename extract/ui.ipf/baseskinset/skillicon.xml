@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by imc (imc) -->
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by imc (imc) -->
 <!-- edited with XMLSpy v2008 sp1 (http://www.altova.com) by MintPC (Mi) -->
 <skinset name="Base">
 	<imagelist category="wizard_skillicon">
@@ -806,6 +806,12 @@
 		<image name="Icon_common_Acient_move_hold" file="\icon\skill\common\Icon_common_Acient_move_hold.png" imgrect="0 0 128 128" CMM_Caption="어시스터 홀드"/>
 		<image name="icon_common_catagnan" file="\icon\skill\common\icon_common_catagnan.png" imgrect="0 0 128 128" CMM_Caption="고양이 변신"/>
 		<image name="Icon_common_Disnai_Svirti" file="\icon\skill\common\Icon_common_Disnai_Svirti.png" imgrect="0 0 128 128" CMM_Caption="스비어티"/>
+		<image name="Icon_common_skill_1" file="\icon\skill\common\Icon_common_skill_1.png" imgrect="0 0 128 128" CMM_Caption="숫자 1"/>
+		<image name="Icon_common_skill_2" file="\icon\skill\common\Icon_common_skill_2.png" imgrect="0 0 128 128" CMM_Caption="숫자 2"/>
+		<image name="Icon_common_skill_3" file="\icon\skill\common\Icon_common_skill_3.png" imgrect="0 0 128 128" CMM_Caption="숫자 3"/>
+		<image name="Icon_common_skill_4" file="\icon\skill\common\Icon_common_skill_4.png" imgrect="0 0 128 128" CMM_Caption="숫자 4"/>
+		<image name="Icon_common_skill_5" file="\icon\skill\common\Icon_common_skill_5.png" imgrect="0 0 128 128" CMM_Caption="숫자 5"/>
+		<image name="Icon_common_Acient_use_skill" file="\icon\skill\common\Icon_common_Acient_use_skill.png" imgrect="0 0 128 128" CMM_Caption="어시스터 스킬 사용"/>
 	</imagelist>
 	<imagelist category="restquickslot_icon">
 		<image name="icon_rest_arrow" file="\icon\rest_mode_icon.tga" imgrect="0 0 128 128" CMM_Caption="화살제작"/>
@@ -1462,6 +1468,7 @@
 		<image name="ability_Warrior_Highlander43" file="\icon\icon_ability_warrior09.tga" imgrect="768 640 128 128" CMM_Caption="스카이라이너: 퓨리"/>
 		<image name="ability_Warrior_Hackapell23" file="\icon\icon_ability_warrior09.tga" imgrect="896 640 128 128" CMM_Caption="하카펠: 엘리트기병"/>
 		<image name="ability_Warrior_Hoplite40" file="\icon\icon_ability_warrior09.tga" imgrect="0 768 128 128" CMM_Caption="양손찌르기: 중형"/>
+		<image name="ability_Warrior_Highlander44" file="\icon\icon_ability_warrior09.tga" imgrect="128 768 128 128" CMM_Caption="크로스가드: 오버 드라이브"/>
 	</imagelist>
 	<imagelist category="abilityicon_wizard">
 		<image name="ability_Wizard_Wizard1" file="\icon\icon_ability_wizard01.tga" imgrect="0 0 128 128" CMM_Caption="슬리프-단잠"/>
@@ -2474,6 +2481,8 @@
 		<image name="ability_archer_Fletcher34" file="\icon\icon_ability_archer09.tga" imgrect="0 0 128 128" CMM_Caption="신기전: 연쇄 폭발"/>
 		<image name="ability_archer_Hunter21" file="\icon\icon_ability_archer09.tga" imgrect="128 0 128 128" CMM_Caption="코싱"/>
 		<image name="ability_archer_QuarrelShooter36" file="\icon\icon_ability_archer09.tga" imgrect="256 0 128 128" CMM_Caption="블록 앤드 샷: 상급강화"/>
+		<image name="ability_archer_Fletcher35" file="\icon\icon_ability_archer09.tga" imgrect="384 0 128 128" CMM_Caption="플레쳐: 화살촉 연마"/>
+		<image name="ability_archer_Mergen25" file="\icon\icon_ability_archer09.tga" imgrect="512 0 128 128" CMM_Caption="메르겐: 상처 파열"/>
 	</imagelist>
 	<imagelist category="abilityicon_cleric">
 		<image name="ability_cleric_Cleric1" file="\icon\icon_ability_cleric01.tga" imgrect="0 0 128 128" CMM_Caption="큐어-도트시간감소"/>
@@ -3142,6 +3151,9 @@
 		<image name="ability_scout_Outlaw26" file="\icon\icon_ability_scout03.tga" imgrect="384 640 128 128" CMM_Caption="벽돌 깨기: 격파"/>
 		<image name="ability_scout_Assassin23" file="\icon\icon_ability_scout03.tga" imgrect="512 640 128 128" CMM_Caption="이브아다탄: 고속"/>
 		<image name="ability_scout_Corsair30" file="\icon\icon_ability_scout03.tga" imgrect="640 640 128 128" CMM_Caption="럭키 코인"/>
+		<image name="ability_scout_Arditi19" file="\icon\icon_ability_scout03.tga" imgrect="768 640 128 128" CMM_Caption="탈리오: 집념"/>
+		<image name="ability_scout_Arditi20" file="\icon\icon_ability_scout03.tga" imgrect="896 640 128 128" CMM_Caption="그라나다: 겨냥"/>
+		<image name="ability_scout_Arditi21" file="\icon\icon_ability_scout03.tga" imgrect="0 768 128 128" CMM_Caption="트레 그라나다: 겨냥"/>
 	</imagelist>
 	<imagelist category="abilityicon">
 		<image name="icon_abil_1_1" file="\icon\ability_icon.tga" imgrect="0 0 64 64" CMM_Caption="절단"/>

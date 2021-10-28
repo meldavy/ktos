@@ -188,7 +188,7 @@ function DIALOGSELECT_QUEST_REWARD_ADD(frame, argStr)
     local reward_result = QUEST_REWARD_CHECK(argStr)
     if #reward_result > 0 then
     	y = BOX_CREATE_RICHTEXT(questRewardBox, "t_addreward", y, 50, ScpArgMsg("DialogSelectRewardTxt"));
-    	y = MAKE_BASIC_REWARD_MONEY_CTRL(questRewardBox, cls, y);
+    	y = MAKE_BASIC_REWARD_MONEY_CTRL_WITH_BONUS(questRewardBox, cls, y);
     	y = MAKE_BASIC_REWARD_BUFF_CTRL(questRewardBox, cls, y);
     	y = MAKE_BASIC_REWARD_HONOR_CTRL(questRewardBox, cls, y);
     	y = MAKE_BASIC_REWARD_PCPROPERTY_CTRL(questRewardBox, cls, y);

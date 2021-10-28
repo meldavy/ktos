@@ -97,19 +97,7 @@ end
 
 function SlitheringClientScp_LEAVE(actor, obj, buff)
 
-    local buffRamMuay = actor:GetBuff():GetBuff('RamMuay_Buff');
-
-    if buffRamMuay ~= nil then
-        actor:GetAnimation():SetSTDAnim("SKL_NAKMUAY_ASTD");
-        actor:GetAnimation():SetRUNAnim("SKL_NAKMUAY_ARUN");actor:GetAnimation():SetRAISEAnim("SKL_NAKMUAY_RAISE");
-        actor:GetAnimation():SetOnAIRAnim("SKL_NAKMUAY_ONAIR");
-        actor:GetAnimation():SetFALLAnim("SKL_NAKMUAY_FALL");   
-    else
-        actor:GetAnimation():ResetSTDAnim();
-        actor:GetAnimation():ResetRUNAnim();
-        actor:GetAnimation():ResetWLKAnim();
-        actor:GetAnimation():ResetTURNAnim();
-    end
+    ScpChangeSwordmanStanceAnimationSet(actor, obj, buff)
     
     actor:SetAlwaysBattleState(false);
 
@@ -129,7 +117,7 @@ function PouncingClientScp_ENTER(actor, obj, buff)
     actor:GetAnimation():SetTURNAnim("None");
 
     if actor:GetVehicleActor() ~= nil then
-        actor:GetAnimation():SetSTDAnim("SKL_POUNCING");
+        actor:GetAnimation():SetSTDAnim("SKL_POUNCING_RIDE");
     else
         actor:GetAnimation():SetSTDAnim("SKL_POUNCING_STAND");
     end
@@ -139,19 +127,7 @@ end
 
 function PouncingClientScp_LEAVE(actor, obj, buff)
 
-    local buffRamMuay = actor:GetBuff():GetBuff('RamMuay_Buff');
-
-    if buffRamMuay ~= nil then
-        actor:GetAnimation():SetSTDAnim("SKL_NAKMUAY_ASTD");
-        actor:GetAnimation():SetRUNAnim("SKL_NAKMUAY_ARUN");actor:GetAnimation():SetRAISEAnim("SKL_NAKMUAY_RAISE");
-        actor:GetAnimation():SetOnAIRAnim("SKL_NAKMUAY_ONAIR");
-        actor:GetAnimation():SetFALLAnim("SKL_NAKMUAY_FALL");   
-    else
-        actor:GetAnimation():ResetSTDAnim();
-        actor:GetAnimation():ResetRUNAnim();
-        actor:GetAnimation():ResetWLKAnim();
-        actor:GetAnimation():ResetTURNAnim();
-    end
+    ScpChangeSwordmanStanceAnimationSet(actor, obj, buff)
 
     actor:SetAlwaysBattleState(false);
 end
@@ -255,6 +231,8 @@ function Murmillo_ChangeStance_LEAVE(actor, obj, buff)
     actor:GetAnimation():ResetSTDAnim();
     actor:GetAnimation():ResetRUNAnim();
 
+    ScpChangeSwordmanStanceAnimationSet(actor, obj, buff)
+
 end
 
 
@@ -342,6 +320,8 @@ function Finestra_LEAVE(actor, obj, buff)
     actor:GetAnimation():ResetSTDAnim();
     actor:GetAnimation():ResetRUNAnim();
 
+    ScpChangeSwordmanStanceAnimationSet(actor, obj, buff)
+
 end
 
 function EpeeGarde_ENTER(actor, obj, buff)
@@ -368,6 +348,8 @@ function EpeeGarde_LEAVE(actor, obj, buff)
     actor:GetAnimation():ResetSTDAnim();
     actor:ShowModelByPart('LH', 1, 0);
     actor:GetAnimation():UpdateFixAnim();
+
+    ScpChangeSwordmanStanceAnimationSet(actor, obj, buff)
     
 end
 
@@ -392,11 +374,13 @@ end
 function HighGuard_LEAVE(actor, obj, buff)
 
     actor:SetAlwaysBattleState(false);
-
+    
     actor:GetAnimation():InitJumpAnimation();
     actor:GetAnimation():ResetTURNAnim();
     actor:GetAnimation():ResetSTDAnim();
     actor:GetAnimation():ResetRUNAnim();
+
+    ScpChangeSwordmanStanceAnimationSet(actor, obj, buff)
 
 end
 
@@ -1201,6 +1185,8 @@ function RamMuay_LEAVE(actor, obj, buff)
     actor:GetAnimation():ResetTURNAnim();
     actor:GetAnimation():ResetSTDAnim();
     actor:GetAnimation():ResetRUNAnim();
+
+    ScpChangeSwordmanStanceAnimationSet(actor, obj, buff)
 end
 
 function ScpChangeMovingShotAnimationSet(actor, obj, buff)
@@ -1279,6 +1265,69 @@ function ScpChangeMovingShotAnimationSet(actor, obj, buff)
         actor:GetAnimation():SetTURNAnim("None");
         actor:GetAnimation():PlayFixAnim("SKL_WILDSHOT_LOOP_STD_RIDE", 1, 1);
         actor:SetAlwaysBattleState(true);
+    end
+end
+
+function ScpChangeSwordmanStanceAnimationSet(actor, obj, buff)
+    local buffRamMuay = actor:GetBuff():GetBuff('RamMuay_Buff');
+    local buffHighGuard = actor:GetBuff():GetBuff('HighGuard_Buff');
+    local buffHighGuard_abil = actor:GetBuff():GetBuff('HighGuard_Abil_Buff');
+    local buffFinestra= actor:GetBuff():GetBuff('Finestra_Buff');
+    local buffEpeeGarde = actor:GetBuff():GetBuff('EpeeGarde_Buff');
+    local buffHelmet = actor:GetBuff():GetBuff('murmillo_helmet');
+    
+    if buffRamMuay ~= nil then
+        actor:GetAnimation():SetSTDAnim("SKL_NAKMUAY_ASTD");
+        actor:GetAnimation():SetRUNAnim("SKL_NAKMUAY_ARUN");
+        actor:GetAnimation():SetRAISEAnim("SKL_NAKMUAY_RAISE");
+        actor:GetAnimation():SetOnAIRAnim("SKL_NAKMUAY_ONAIR");
+        actor:GetAnimation():SetFALLAnim("SKL_NAKMUAY_FALL");
+    elseif buffHighGuard ~= nil or buffHighGuard_abil ~= nil then
+        if actor:GetVehicleActor() ~= nil then
+            actor:GetAnimation():InitJumpAnimation();
+            actor:GetAnimation():SetTURNAnim("SKL_HIGHGUARD_ATURN_RIDE");
+            actor:GetAnimation():SetSTDAnim("SKL_HIGHGUARD_ASTD_RIDE");
+            actor:GetAnimation():SetRUNAnim("SKL_HIGHGUARD_ARUN_RIDE");
+        else
+            actor:GetAnimation():InitJumpAnimation();
+            actor:GetAnimation():SetTURNAnim("SKL_HIGHGUARD_ATURN");
+            actor:GetAnimation():SetSTDAnim("SKL_HIGHGUARD_ASTD");
+            actor:GetAnimation():SetRUNAnim("SKL_HIGHGUARD_ARUN");
+        end
+    elseif buffFinestra ~= nil then
+        if actor:GetVehicleActor() ~= nil then
+            actor:GetAnimation():SetTURNAnim("SKL_FINESTRA_ATURN_RIDE");
+            actor:GetAnimation():SetSTDAnim("SKL_FINESTRA_ASTD_RIDE");
+            actor:GetAnimation():SetRUNAnim("SKL_FINESTRA_ARUN_RIDE");
+            actor:GetAnimation():SetLANDAnim("SKL_FINESTRA_LAND_RIDE")
+            actor:GetAnimation():SetRAISEAnim("SKL_FINESTRA_RAISE_RIDE")
+            actor:GetAnimation():SetOnAIRAnim("SKL_FINESTRA_ONAIR_RIDE")
+            actor:GetAnimation():SetFALLAnim("SKL_FINESTRA_FALL_RIDE")
+        else
+            actor:GetAnimation():SetTURNAnim("SKL_FINESTRA_ATURN");
+            actor:GetAnimation():SetSTDAnim("SKL_FINESTRA_ASTD");
+            actor:GetAnimation():SetRUNAnim("SKL_FINESTRA_ARUN");
+            actor:GetAnimation():SetLANDAnim("SKL_FINESTRA_LAND")
+            actor:GetAnimation():SetRAISEAnim("SKL_FINESTRA_RAISE")
+            actor:GetAnimation():SetOnAIRAnim("SKL_FINESTRA_ONAIR")
+            actor:GetAnimation():SetFALLAnim("SKL_FINESTRA_FALL")
+        end
+    elseif buffEpeeGarde ~= nil then
+        actor:GetAnimation():SetSTDAnim("SKL_EPEEGARDE_ASTD");
+    elseif buffHelmet ~= nil then
+        actor:GetAnimation():SetChangeJumpAnim(true);
+        actor:GetAnimation():SetTURNAnim("SKL_MURMILLO_ATURN");
+        actor:GetAnimation():SetSTDAnim("SKL_MURMILLO_ASTD");
+        actor:GetAnimation():SetRUNAnim("SKL_MURMILLO_ARUN");
+        actor:GetAnimation():SetLANDAnim("SKL_MURMILLO_LAND")
+        actor:GetAnimation():SetRAISEAnim("SKL_MURMILLO_RAISE")
+        actor:GetAnimation():SetOnAIRAnim("SKL_MURMILLO_ONAIR")
+        actor:GetAnimation():SetFALLAnim("SKL_MURMILLO_FALL")
+    else
+        actor:GetAnimation():ResetSTDAnim();
+        actor:GetAnimation():ResetRUNAnim();
+        actor:GetAnimation():ResetWLKAnim();
+        actor:GetAnimation():ResetTURNAnim();
     end
 end
 

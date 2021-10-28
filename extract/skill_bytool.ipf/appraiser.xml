@@ -176,6 +176,46 @@
         </MainSkl>
     </Skill>
     <Skill Name="Appraiser_Blindside">
+        <KeyInput>
+			<ToolScp Scp="SKL_KEY_DYNAMIC_CASTING" Client="YES" UseSleep="NO">
+				<Num Num="0"/>
+				<Num Num="0"/>
+				<Num Num="1.5" UseFunc="1" FuncTxt="local value = 0
+local self = GetMyPCObject()
+local abil = GetAbility(self, 'Appraiser7')
+if abil ~= nil and TryGetProp(abil, 'ActiveState', 0) == 1 then
+    value = 2
+end
+return value"/>
+				<Num Num="1"/>
+				<Num Num="0"/>
+				<Num Num="0"/>
+				<Num Num="1"/>
+				<Num Num="0"/>
+				<Num Num="0"/>
+				<Num Num="0"/>
+				<Num Num="1"/>
+				<Num Num="0"/>
+				<Str_Arg Str="None" Arg="1"/>
+				<Str Str="None"/>
+				<Num Num="0"/>
+				<Num Num="0"/>
+				<Num Num="0"/>
+				<Num Num="0"/>
+				<Num Num="0"/>
+				<Num Num="0"/>
+				<Num Num="0"/>
+				<Num Num="0"/>
+			</ToolScp>
+		</KeyInput>
+		<KeyInputEnd>
+			<ToolScp Client="NO" Scp="SKL_CANCEL_CANCEL" UseSleep="NO"/>
+			<ToolScp Scp="MONSKL_C_STOP_ANIM" Client="YES" UseSleep="NO"/>
+		</KeyInputEnd>
+		<KeyCancelScp>
+			<ToolScp Client="NO" Scp="SKL_CANCEL_CANCEL" UseSleep="NO"/>
+			<ToolScp Scp="MONSKL_C_STOP_ANIM" Client="YES" UseSleep="NO"/>
+		</KeyCancelScp>
         <MainSkl JumpFlee="NO" MSPDToUsePos="0" ScrLock="None">
             <HitList>
                 <Frame Angle="0" AniTime="200" Dist="0" ForceATK="1" HitCount="1" PosType="0" RandDist="0" RandomPerHit="0" RotAngle="0" SklAngle="0.17453292" TermMax="0" TermMin="0" Time="0" Type="FAN"/>
@@ -187,6 +227,13 @@
                 <Scp Client="YES" Scp="C_VOICE_SOUND" Time="120" UseSleep="NO">
                     <Str Str="voice_archer_atk"/>
                     <Str Str="voice_archer_f_atk"/>
+                </Scp>
+                <Scp Scp="SKL_SET_TARGET_CLIENT_TARGETTING" Client="NO" UseSleep="NO" Time="250">
+					<Num Num="1"/>
+					<Num Num="130"/>
+				</Scp>
+                <Scp Scp="SKL_TGT_DMG" Client="NO" UseSleep="NO" Time="250">
+                    <Num Num="1"/>
                 </Scp>
                 <Scp Client="NO" Scp="SKL_SET_TARGET_CIRCLE" Time="250" UseSleep="NO">
                     <Pos Angle="0" Dist="0" PosType="1"/>

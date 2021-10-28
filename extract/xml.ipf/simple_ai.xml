@@ -12653,17 +12653,17 @@
 		</StartList>
 	</AI>
 	<AI Name="EVENT_FLEX_BOX_NPC_AI" UpdateMS="60000" ActiveMessageMapInBattle="1">
-        <StartList>
-            <ToolScp Scp="SAI_FUNC2_DIRECT" Client="NO" UseSleep="NO">
-                <Str Str="SCR_EVENT_FLEX_BOX_NPC_AI_BORN"/>
-            </ToolScp>
-        </StartList>
-        <List>
-            <ToolScp Scp="SAI_FUNC_DIRECT" Client="NO" UseSleep="NO">
-                <Str Str="SCR_EVENT_FLEX_BOX_NPC_AI_UPDATE"/>
-            </ToolScp>
-        </List>
-    </AI>
+		<StartList>
+			<ToolScp Scp="SAI_FUNC2_DIRECT" Client="NO" UseSleep="NO">
+				<Str Str="SCR_EVENT_FLEX_BOX_NPC_AI_BORN"/>
+			</ToolScp>
+		</StartList>
+		<List>
+			<ToolScp Scp="SAI_FUNC_DIRECT" Client="NO" UseSleep="NO">
+				<Str Str="SCR_EVENT_FLEX_BOX_NPC_AI_UPDATE"/>
+			</ToolScp>
+		</List>
+	</AI>
 	<AI Name="EVENT_GODDESS_ROULETTE_NPC_AI" UpdateMS="60000" ActiveMessageMapInBattle="1">
 		<List>
 			<ToolScp Scp="SAI_FUNC_DIRECT" Client="NO" UseSleep="NO">
@@ -14910,6 +14910,14 @@ if self.HP == 0 then return 1; else return 0; end;">
 			</ToolScp>
 		</List>
 	</AI>
+	<AI Name="MORINGPONIA_HARD_SOLO_POISON_AI" UpdateMS="5000" ActiveMessageMapInBattle="1">
+		<List>
+			<ToolScp Scp="S_AI_CUSTOM_SCRIPT" Client="NO" UseSleep="YES">
+				<Str Str="SCR_MORINGPONIA_HARD_SOLO_POISON_AI"/>
+				<Num Num="0"/>
+			</ToolScp>
+		</List>
+	</AI>
 	<AI Name="MOVE_SOLDIER" ActiveMessageMapInBattle="1">
 		<List>
 			<ToolScp Scp="SAI_FUNC_DIRECT" Client="NO" UseSleep="NO">
@@ -14979,6 +14987,40 @@ if self.HP == 0 then return 1; else return 0; end;">
 		</StartList>
 	</AI>
 	<AI Name="Mon_\Worg" ActiveMessageMapInBattle="1"/>
+	<AI Name="Moringponia_Raid_Obj" ActiveMessageMapInBattle="1">
+		<List>
+			<ToolScp Scp="SAI_FUNC_DIRECT" Client="NO" UseSleep="NO">
+				<Str Str="SCR_Moringponia_Raid_Obj_UPDATE"/>
+			</ToolScp>
+		</List>
+		<EnterList>
+			<ToolScp Scp="SAI_DEAD_FUNC2_DIRECT" Client="NO" UseSleep="NO">
+				<Str Str="SCR_Moringponia_Raid_Obj_ENTER"/>
+			</ToolScp>
+		</EnterList>
+		<LeaveList>
+			<ToolScp Scp="SAI_DEAD_FUNC2_DIRECT" Client="NO" UseSleep="NO">
+				<Str Str="SCR_Moringponia_Raid_Obj_ENTER"/>
+			</ToolScp>
+		</LeaveList>
+	</AI>
+	<AI Name="Moringponia_Raid_Obj_Red" ActiveMessageMapInBattle="1">
+		<List>
+			<ToolScp Scp="SAI_FUNC_DIRECT" Client="NO" UseSleep="NO">
+				<Str Str="SCR_Moringponia_Raid_Obj_Red_UPDATE"/>
+			</ToolScp>
+		</List>
+		<EnterList>
+			<ToolScp Scp="SAI_DEAD_FUNC2_DIRECT" Client="NO" UseSleep="NO">
+				<Str Str="SCR_Moringponia_Raid_Obj_Red_ENTER"/>
+			</ToolScp>
+		</EnterList>
+		<LeaveList>
+			<ToolScp Scp="SAI_DEAD_FUNC2_DIRECT" Client="NO" UseSleep="NO">
+				<Str Str="SCR_Moringponia_Raid_Obj_Red_LEAVE"/>
+			</ToolScp>
+		</LeaveList>
+	</AI>
 	<AI Name="NECRO_DIRTYWALL" ActiveMessageMapInBattle="1">
 		<HitList>
 			<ToolScp Scp="SAI_HIT_DIRECT_RUN" Client="NO" UseSleep="NO">

@@ -15591,6 +15591,7 @@ ClassID,ClassName,Mesh,Path,ArmbandInfo,UseAlpha,IsJiggleBoneHair
 811071,boss_BowerKeeper,char_hi\monster\boss_BowerKeeper_set.xac,char_texture\monster\boss_BowerKeeper\,,NO,
 811072,cleric_f_plaguedoctor_helmet_red,item_hi\pc_item\weapon\cleric_plaguedoctor_helmet.xac,item_texture\red\,,NO,
 811073,cleric_f_plaguedoctor_helmet_white,item_hi\pc_item\weapon\cleric_plaguedoctor_helmet.xac,item_texture\white\,,NO,
+811082,3cmlake_riddle_device_red,char_hi\npc\3cmlake_riddle_device\3cmlake_riddle_device_set.xac,\char_texture\npc\3cmlake_riddle_device\red\,,NO,
 850000,npc_pajauta_body,char_hi\npc\npc_pajauta\npc_pajauta_set.xac,char_texture\npc\npc_pajauta\,,NO,
 850001,npc_pajauta_hair,char_hi\npc\npc_pajauta\npc_pajauta_hair_std.xac,char_texture\npc\npc_pajauta\,,NO,
 850002,npc_MasterSheriff_body,char_hi\npc\npc_SRF_master\npc_sheriff_master_set.xac,char_texture\npc\npc_SRF_master\,,NO,

@@ -52,18 +52,29 @@ function REINFORCE_131014_UPDATE_MORU_COUNT(frame)
 	local fromItem, fromMoru = REINFORCE_131014_GET_ITEM(frame);
 	local hitCountDesc = frame:GetChild("hitCountDesc");
 	local hitPriceDesc = GET_CHILD(frame, "hitPriceDesc", "ui::CRichText")
+	local fromPRTxt = GET_CHILD_RECURSIVELY(frame, "t_fromItemPR", "ui::CRichText")
 	if fromItem == nil or fromMoru == nil then
 		hitCountDesc:ShowWindow(0);
 		hitPriceDesc:ShowWindow(0);
+		fromPRTxt:ShowWindow(0);
 		return;
 	end
 
 	hitCountDesc:ShowWindow(1);
 	hitPriceDesc:ShowWindow(1);
+	fromPRTxt:ShowWindow(1);
 	local fromItemObj = GetIES(fromItem:GetObject());
 	local toItemObj = GetIES(fromMoru:GetObject());
 	local hitCount = GET_REINFORCE_HITCOUNT(fromItemObj, toItemObj);
 	hitCountDesc:SetTextByKey("hitcount", hitCount);
+
+	local fromItemPR = TryGetProp(fromItemObj, 'PR', 0)
+	local prColor = '#00c4c6'
+	if fromItemPR == 0 then
+		prColor = '#ff1212'
+	end
+	fromPRTxt:SetTextByKey('color', prColor)
+	fromPRTxt:SetTextByKey('value', fromItemPR)
 
 	local moruObj = GetIES(fromMoru:GetObject());
 	local pc = GetMyPCObject()
@@ -131,7 +142,9 @@ function REINFORCE_131014_MSGBOX(frame)
 	local fromItem, fromMoru = GET_REINFORCE_TARGET_AND_MORU(frame);
 	local fromItemObj = GetIES(fromItem:GetObject());
 	local curReinforce = fromItemObj.Reinforce_2;
+	local curPR = fromItemObj.PR;
 	local moruObj = GetIES(fromMoru:GetObject());
+	local isDanger = (curPR == 0 and IS_MORU_NOT_DESTROY_TARGET_ITEM(moruObj) == false and IS_MORU_NOT_DESTROY_TARGET_UNIQUE_ITEM(moruObj) == false)
 	local pc = GetMyPCObject();
 	local price = GET_REINFORCE_PRICE(fromItemObj, moruObj, pc)	
 	local retPrice, retCouponList = SCR_REINFORCE_COUPON_PRECHECK(pc, price)	
@@ -142,37 +155,24 @@ function REINFORCE_131014_MSGBOX(frame)
 	
 	local classType = TryGetProp(fromItemObj,"ClassType");
     DISABLE_BUTTON_DOUBLECLICK("reinforce_131014","exec", 1)
-    --if moruObj.ClassName ~= "Moru_Potential" and moruObj.ClassName ~= "Moru_Potential14d" then
-    if fromItemObj.GroupName == 'Weapon' or (fromItemObj.GroupName == 'SubWeapon' and  classType ~= 'Shield') then
-    	if curReinforce >= 5 then
-               	if IS_MORU_NOT_DESTROY_TARGET_ITEM(moruObj) == true or IS_MORU_NOT_DESTROY_TARGET_UNIQUE_ITEM(moruObj) == true  then
-                    ui.MsgBox(ScpArgMsg("GOLDMORUdontbrokenitemProcessReinforce?", "Auto_1", 3), "REINFORCE_131014_EXEC", "None");
-                   	return;
-               	else
-    		WARNINGMSGBOX_FRAME_OPEN(ScpArgMsg("WeaponWarningMSG", "Auto_1", 5), "REINFORCE_131014_EXEC", "None")
-    		return;
-    	end
-        	end
-    else
-        if curReinforce >= 5 then
-               	if IS_MORU_NOT_DESTROY_TARGET_ITEM(moruObj) == true or IS_MORU_NOT_DESTROY_TARGET_UNIQUE_ITEM(moruObj) == true then
-                    ui.MsgBox(ScpArgMsg("GOLDMORUdontbrokenitemProcessReinforce?", "Auto_1", 3), "REINFORCE_131014_EXEC", "None");
-                   	return;
-               	else
-    	--	ui.MsgBox(ScpArgMsg("Over_+{Auto_1}_ReinforceItemCanBeBroken_ProcessReinforce?", "Auto_1", 5), "REINFORCE_131014_EXEC", "None");
-    		WARNINGMSGBOX_FRAME_OPEN(ScpArgMsg("Over_+{Auto_1}_ReinforceItemCanBeBroken_ProcessReinforce?", "Auto_1", 5), "REINFORCE_131014_EXEC", "None")
-    		return;
-    	end
-    end
+    
+	if curReinforce >= 5 then
+		local yesScp = 'REINFORCE_131014_EXEC'
+		if isDanger == true then
+			yesScp = 'REINFORCE_131014_WARNING'
+		end
+
+		ui.MsgBox(ScpArgMsg("ProcessReinforceBy{Name}Moru", "Name", moruObj.Name), yesScp, "None");
+		
+		return;
 	end
-	--end
 	
 	REINFORCE_131014_EXEC();
 end
 
 function REINFORCE_131014_EXEC(checkReuildFlag)
 	local frame = ui.GetFrame("reinforce_131014");
-	local fromItem, fromMoru = REINFORCE_131014_GET_ITEM(frame);	
+	local fromItem, fromMoru = REINFORCE_131014_GET_ITEM(frame);
 	if fromItem ~= nil and fromMoru ~= nil then
 		if checkReuildFlag ~= false then
 			local fromItemObj = GetIES(fromItem:GetObject());
@@ -205,4 +205,12 @@ function GET_REINFORCE_TARGET_AND_MORU(frame)
 	local fromItem = GET_SLOT_ITEM(fromItemSlot);
 	local fromMoru = GET_SLOT_ITEM(fromMoruSlot);
 	return fromItem, fromMoru;
+end
+
+function REINFORCE_131014_WARNING()
+	local frame = ui.GetFrame("reinforce_131014")
+	local fromItem, fromMoru = REINFORCE_131014_GET_ITEM(frame)
+	if fromItem ~= nil and fromMoru ~= nil then
+		WARNINGMSGBOX_EX_REINFORCE_OPEN(frame)
+	end
 end

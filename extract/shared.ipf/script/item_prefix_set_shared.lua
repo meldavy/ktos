@@ -78,8 +78,8 @@ function GET_LEGEND_PREFIX_NEED_MATERIAL_COUNT_BY_NEEDITEM(targetObj, needItemCl
 					if IS_SEASON_SERVER() == "YES" then
                         count = math.floor(count*0.5)
                         
-					else
-						count = math.floor(count*0.7)
+					-- else
+					-- 	count = math.floor(count*0.7)
 					end
 					-- PvP 전용 아이템 재료 1
 					if TryGetProp(targetObj, 'StringArg', 'None') == 'FreePvP' then
@@ -91,8 +91,8 @@ function GET_LEGEND_PREFIX_NEED_MATERIAL_COUNT_BY_NEEDITEM(targetObj, needItemCl
 					--EVENT_SEASON_SERVER
 					if IS_SEASON_SERVER() == "YES" then
 						count = math.floor(count*0.5)
-					else
-						count = math.floor(count*0.7)
+					-- else
+					-- 	count = math.floor(count*0.7)
 					end
 					-- PvP 전용 아이템 재료 1
 					if TryGetProp(targetObj, 'StringArg', 'None') == 'FreePvP' then

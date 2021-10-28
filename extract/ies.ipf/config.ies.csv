@@ -145,3 +145,4 @@ ClassID,DefNumValue,ClassName,Type,DefStrValue,ClientScp
 151,1,ShowGuildInColonyPartyBuff,Number,,
 152,0,ShowGuildInColonyGuildBuff,Number,,
 153,0,ShowGuildInColonyEnemyBuff,Number,,
+155,1,ShowCoinGetGauge,Number,,UPDATE_SHOW_COIN_GET_GAUGE

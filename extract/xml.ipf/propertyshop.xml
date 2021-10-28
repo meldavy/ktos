@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by IMC (IMCGames Co., Ltd) -->
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by imc (imc) -->
 <PropertyShop>
 	<Shop Name="PVPShop" PointScript="GET_PVP_POINT">
 		<Item Script="None" Name="misc_pvp_mine2" Count="14" Price="1" DailyBuyLimit="0"/>
@@ -99,6 +99,7 @@
 	</Shop>
 	<Shop Name="GUILD_MILEAGE_SHOP" PointScript="GET_GUILD_MILEAGE_POINT">
 		<Item Script="None" Name="GuildQuestEnterCount_1add" Count="1" Price="5000" DailyBuyLimit="0"/>
+		<Item Script="None" Name="Guild_RESET_GUILD_ABILITY" Count="1" Price="2000" DailyBuyLimit="0"/>
 	</Shop>
 	<Shop Name="CONTENTS_TOTAL_SHOP" PointScript="GET_CONTENTS_TOTAL_POINT">
 		<Item Script="None" Name="balloon_skin_icecream_01_90d" Count="1" Price="1200" DailyBuyLimit="0" AccountNeedProperty="ContentsTotalShop_2006_1"/>

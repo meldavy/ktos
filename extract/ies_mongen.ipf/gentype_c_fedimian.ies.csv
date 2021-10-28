@@ -57,3 +57,4 @@ ClassID,GenType,Lv,Range,GenRange,RespawnTime,MaxPop,Minimap,Hide,UseAIOufOfPC,A
 5212,5212,1,1,1,1,1,0,0,0,0,0,0,HiddenTrigger,[이벤트] 여신의 룰렛,,,,,,EVENT_GODDESS_ROULETTE_NPC_AI,EVENT_GODDESS_ROULETTE_NPC,,,NO,YES,NO,Neutral,,,,
 5215,5215,1,1,1,60000,1,0,0,0,0,0,0,HiddenTrigger,[이벤트] 큐폴,,,,,,EVENT_FLEX_BOX_NPC_AI,EVENT_FLEX_BOX_NPC,,,NO,YES,NO,Neutral,,,,
 5216,5216,1,40,1,1,1,2,0,0,0,0,0,npc_fedimian_merchant_5,[테리아베리스의 수제자]{nl}나우요베스,,,,,,,FEDIMIAN_NAUJOVES,,,NO,YES,NO,Neutral,,,,
+5221,5221,1,40,-1,60000,1,2,0,0,0,0,0,Board3_Event,이벤트 게시판,,,,MON_DUMMY,,,EVENT_YOUR_MASTER_NPC,,,NO,YES,NO,Neutral,,,,

@@ -21,7 +21,7 @@
 		<labelline name="labelline2" parent="housinginfo" rect="0 0 472 2" margin="0 360 0 0" layout_gravity="center top" skin="labelline_def_3"/>
 		<button name="housing_warp_btn" parent="housinginfo" rect="0 0 354 64" margin="-40 370 0 0" layout_gravity="center top" MouseOnAnim="btn_mouseover" caption="{@st41b}{s16}하우징으로 이동" skin="test_brown_btn" LBtnUpScp="HOUSING_PROMOTE_POST_WARP_HOUSE"/>
 		<button name="edit_btn" parent="housinginfo" rect="0 0 64 64" margin="180 370 80 0" layout_gravity="center top" MouseOnAnim="btn_mouseover" image="btn_housing_editmode" LBtnUpScp="HOUSING_PROMOTE_POST_EDIT" texttooltip="게시글을 편집합니다"/>
-		<richtext name="edit_label" parent="housinginfo" rect="0 0 120 30" margin="180 414 98 0" layout_gravity="center top" format="{@st43}{s16}%s" param1="value" param1_def="편집" textalign="center center"/>
+		<richtext name="edit_label" parent="housinginfo" rect="0 0 120 30" margin="181 414 98 0" layout_gravity="center top" format="{@st43}{s16}%s" param1="value" param1_def="편집" textalign="center center"/>
 		<!-- SOCIAL INFO -->
 		<groupbox name="socialinfo_bg" rect="0 0 500 170" margin="38 544 0 0" layout_gravity="left top" draw="true" skin="test_frame_midle"/>
 		<richtext name="socialinfo_lable" parent="socialinfo_bg" rect="0 0 200 30" margin="10 8 0 0" layout_gravity="left top" caption="{@st43b}{s20}소셜 정보" fontname="black_18_b"/>

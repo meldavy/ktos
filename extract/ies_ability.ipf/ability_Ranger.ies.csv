@@ -1,9 +1,10 @@
 ClassID,UnlockArgNum,MaxLevel,Price1,Time1,Price2,Time2,Price3,Time3,Price4,Time4,Price5,Time5,Price6,Time6,Price7,Time7,Price8,Time8,Price9,Time9,Price10,Time10,ClassName,UnlockScr,UnlockArgStr,UnlockDesc,ScrCalcPrice
+1,1,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Ranger46,UNLOCK_BASE_LEVEL,,캐릭터 1레벨 이상,ABIL_COMMON_PRICE_1LV
 101,1,100,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Ranger11,UNLOCK_ABIL_SKILL,Ranger_Barrage,배라지 1레벨 이상,ABIL_REINFORCE_PRICE
 102,5,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Ranger1,UNLOCK_ABIL_SKILL,Ranger_Barrage,배라지 5레벨 이상,ABIL_ABOVE_NORMAL_PRICE
 201,1,100,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Ranger12,UNLOCK_ABIL_SKILL,Ranger_HighAnchoring,하이 앵커링 1레벨 이상,ABIL_REINFORCE_PRICE
-202,250,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Ranger34,UNLOCK_BASE_LEVEL,,캐릭터 250레벨 이상,ABIL_COMMON_PRICE_250LV
 301,1,100,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Ranger14,UNLOCK_ABIL_SKILL,Ranger_SteadyAim,스테디 에임 1레벨 이상,ABIL_REINFORCE_PRICE
+302,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Ranger47,UNLOCK_ABIL_SKILL,Ranger_SteadyAim,스테디 에임 1레벨 이상,ABIL_REINFORCE_PRICE
 401,1,100,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Ranger25,UNLOCK_ABIL_SKILL,Ranger_CriticalShot,크리티컬 샷 1레벨 이상,ABIL_REINFORCE_PRICE
 501,1,100,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Ranger30,UNLOCK_ABIL_SKILL,Ranger_SpiralArrow,스파이럴 애로우 1레벨 이상,ABIL_REINFORCE_PRICE
 601,1,100,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Ranger13,UNLOCK_ABIL_SKILL,Ranger_BounceShot,바운스 샷 1레벨 이상,ABIL_REINFORCE_PRICE

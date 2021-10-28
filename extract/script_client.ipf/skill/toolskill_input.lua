@@ -288,9 +288,13 @@ end
 
 function SKL_KEY_GROUND_EVENT_ABIL(actor, obj, dik, checkAbil, chargeTime, autoShot, shotCasting, lookTargetPos, selRange, upAbleSec, useDynamicLevel, isVisivle, isFullCharge, effectName, scale, nodeName, lifeTime, shockWave, shockPower, shockTime, shockFreq, shockAngle, onlyMouseMode, quickCast, hitCancel, buffName, abilName)
 	local abil = session.GetAbilityByName(checkAbil);
-	if abil ~= nil then
+	if abil == nil then
+		return 0;
+	else
 		local abilObj = GetIES(abil:GetObject());
-		if abilObj.ActiveState == 1 then
+		if abilObj.ActiveState == 0 then
+			return 0;
+		else
 			if buffName ~= nil and type(buffName) == 'string' and buffName ~= 'None' then
 				local buff = info.GetBuffByName(session.GetMyHandle(), buffName);
 				if buff ~= nil then

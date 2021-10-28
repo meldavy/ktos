@@ -665,7 +665,7 @@ return value"/>
                         </Scp>
                         <Scp Scp="SKL_SET_TARGET_CLIENT_TARGETTING" Client="NO" UseSleep="NO" Time="0" LoopTime="170">
                             <Num Num="1"/>
-                            <Num Num="200"/>
+                            <Num Num="200" UseFunc="1" FuncTxt="return obj.MaxR"/>
                         </Scp>
                         <Scp Scp="C_FORCE_EFT" Client="YES_Time" UseSleep="NO" Time="0" LoopTime="550">
                             <Str_Arg Str="I_wizard_hellbreath_fireforce_abil#Dummy_Force##1" Arg="0.2"/>

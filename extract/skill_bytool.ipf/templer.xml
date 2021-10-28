@@ -403,11 +403,56 @@ end
                 <Str Str="ENABLE_FORGE_CHECK"/>
             </ToolScp>
         </EnableScripts>
+        <KeyInput>
+            <ToolScp Scp="SKL_KEY_DYNAMIC_CASTING_HAVE_ABIL" Client="YES" UseSleep="NO">
+                <Num Num="0"/>
+                <Num Num="0"/>
+                <Num Num="1"/>
+                <Num Num="1"/>
+                <Num Num="0"/>
+                <Num Num="0"/>
+                <Num Num="0"/>
+                <Num Num="0"/>
+                <Num Num="0"/>
+                <Num Num="0"/>
+                <Num Num="1"/>
+                <Num Num="1"/>
+                <Str_Arg Str="None" Arg="1"/>
+                <Str Str="None"/>
+                <Num Num="0"/>
+                <Num Num="0"/>
+                <Num Num="5"/>
+                <Num Num="1"/>
+                <Num Num="45"/>
+                <Num Num="0"/>
+                <Num Num="0"/>
+                <Num Num="1"/>
+                <Str Str="None"/>
+                <Str Str="Templar11"/>
+            </ToolScp>
+        </KeyInput>
+        <KeyInputStart>
+            <ToolScp Scp="MONSKL_C_PLAY_ANIM" Client="YES" UseSleep="NO">
+                <Str Str="skl_buildforge"/>
+                <Num Num="1"/>
+                <Num Num="1"/>
+                <Num Num="0"/>
+            </ToolScp>
+        </KeyInputStart>
+        <KeyInputEnd>
+            <ToolScp Scp="MONSKL_C_STOP_ANIM" Client="YES" UseSleep="NO"/>
+        </KeyInputEnd>
         <MainSkl ScrLock="None" JumpFlee="NO" MSPDToUsePos="0">
             <HitList>
                 <Frame Type="FAN" Time="9799" HitCount="1" TermMin="0" TermMax="0" PosType="0" Dist="0" RandDist="0" RandomPerHit="0" Angle="0" AniTime="9999" RotAngle="0" ForceATK="0" ScriptIndex="0" ScriptName="" SkillType="0"/>
             </HitList>
             <EtcList>
+                <Scp Scp="MONSKL_C_PLAY_ANIM" Client="YES" UseSleep="NO" Time="0">
+                    <Str Str="skl_buildforge"/>
+                    <Num Num="1"/>
+                    <Num Num="1"/>
+                    <Num Num="0"/>
+                </Scp>
                 <Scp Scp="MONSKL_KILL_FOL_EXPROP" Client="NO" UseSleep="NO" Time="0">
                     <Str Str="EXIST_MON"/>
                     <Num Num="1"/>
@@ -431,6 +476,42 @@ end
                 <Scp Scp="MONSKL_C_STOP_ANIM" Client="YES" UseSleep="NO" Time="1700"/>
             </EtcList>
         </MainSkl>
+        <ByCondSkills>
+            <SubSkl>
+                <Cond>
+                    <ToolScp Scp="SKL_SELECT_ABIL" Client="NO" UseSleep="NO">
+                        <Str Str="Templar11"/>
+                    </ToolScp>
+                </Cond>
+                <Skill ScrLock="None" JumpFlee="NO" MSPDToUsePos="0">
+                    <HitList>
+                        <Frame Type="FAN" Time="9799" HitCount="1" TermMin="0" TermMax="0" PosType="0" Dist="0" RandDist="0" RandomPerHit="0" Angle="0" AniTime="9999" RotAngle="0" ForceATK="0" ScriptIndex="0" ScriptName="" SkillType="0"/>
+                    </HitList>
+                    <EtcList>
+                        <Scp Scp="MONSKL_KILL_FOL_EXPROP" Client="NO" UseSleep="NO" Time="0">
+                            <Str Str="EXIST_MON"/>
+                            <Num Num="1"/>
+                        </Scp>
+                        <Scp Scp="MONSKL_CRE_MON_SCR" Client="NO" UseSleep="NO" Time="100">
+                            <Str Str="Forge"/>
+                            <Pos Angle="-0.070860364" Dist="13.83"/>
+                            <Angle Angle="0"/>
+                            <Str Str="포지"/>
+                            <Str Str="PC_Summon_Holding_Forge"/>
+                            <Num Num="0"/>
+                            <Num Num="90" UseFunc="1" FuncTxt="local value = 50 + obj.Level * 2; if IsPVPServer(self) == 1 then return value * 0.5 else  return value end"/>
+                            <Str Str="None"/>
+                            <MonProp/>
+                            <Str Str="FORGE_RECALL"/>
+                        </Scp>
+                        <Scp Scp="SKL_SET_TGT_EXPROP_RECENT" Client="NO" UseSleep="NO" Time="120">
+                            <Str Str="EXIST_MON"/>
+                            <Num Num="1"/>
+                        </Scp>
+                    </EtcList>
+                </Skill>
+            </SubSkl>
+        </ByCondSkills>
     </Skill>
     <Skill Name="Templer_BuildShieldCharger">
         <MainSkl JumpFlee="NO" MSPDToUsePos="0" ScrLock="None">

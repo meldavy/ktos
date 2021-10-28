@@ -70,63 +70,6 @@
                 </ToolScp>
             </ResultList>
         </MainSkl>
-        <ByCondSkills>
-            <SubSkl>
-                <Cond>
-                    <ToolScp Scp="SKL_SELECT_ABIL" Client="NO" UseSleep="NO">
-                        <Str Str="Hackapell23"/>
-                    </ToolScp>
-                </Cond>
-                <Skill ScrLock="None" JumpFlee="NO" MSPDToUsePos="0">
-                    <HitList>
-                        <Frame Type="SQUARE" Time="9799" HitCount="1" TermMin="0" TermMax="0" PosType="0" Dist="0" RandDist="0" RandomPerHit="0" Angle="0" Width="35" Length="150" AniTime="9999" RotAngle="0" ForceATK="0" ScriptIndex="0" ScriptName="" SkillType="0"/>
-                    </HitList>
-                    <EtcList>
-                        <Scp Scp="SKL_SET_IMMUNE_STATE" Client="NO" UseSleep="NO" Time="0">
-                            <Str Str="Skill_SuperArmor_Buff"/>
-                            <Num Num="100"/>
-                        </Scp>
-                        <Scp Scp="C_SOUND" Client="YES" UseSleep="NO" Time="0">
-                            <Str Str="skl_eff_hackapell_infiniteassault"/>
-                        </Scp>
-                        <Scp Scp="MONSKL_C_PLAY_ANIM" Client="YES" UseSleep="NO" Time="0">
-                            <Str Str="SKL_INFINITEASSAULT_SHOT_RIDE"/>
-                            <Num Num="4"/>
-                            <Num Num="0"/>
-                            <Num Num="0"/>
-                        </Scp>
-                        <Scp Scp="C_VOICE_SOUND" Client="YES" UseSleep="NO" Time="200">
-                            <Str Str="voice_archer_m_infiniteassault_shot"/>
-                            <Str Str="voice_archer_f_infiniteassault_shot"/>
-                        </Scp>
-                        <Scp Scp="SKL_SET_TARGET_CLIENT_TARGETTING" Client="NO" UseSleep="NO" Time="200">
-                            <Num Num="1"/>
-                            <Num Num="140"/>
-                        </Scp>
-                        <Scp Scp="SKL_SET_DIR_TO_TGT" Client="NO" UseSleep="NO" Time="200"/>
-                        <Scp Scp="SKL_TGT_DMG" Client="NO" UseSleep="NO" Time="200">
-                            <Num Num="1"/>
-                            <Num Num="0"/>
-                            <Num Num="0"/>
-                        </Scp>
-                        <Scp Scp="SKL_BUFF" Client="NO" UseSleep="NO" Time="200">
-                            <Str Str="InfiniteAssault_Buff"/>
-                            <Num Num="0" UseFunc="1" FuncTxt="return obj.Level;"/>
-                            <Num Num="0"/>
-                            <Num Num="3000"/>
-                            <Num Num="1"/>
-                            <Num Num="100"/>
-                            <Num Num="0"/>
-                        </Scp>
-                    </EtcList>
-                    <ResultList>
-                        <ToolScp Scp="C_SR_SOUND" Client="YES" UseSleep="NO">
-                            <Str Str="skl_eff_special_hit_3"/>
-                        </ToolScp>
-                    </ResultList>
-                </Skill>
-            </SubSkl>
-        </ByCondSkills>
     </Skill>
     <Skill Name="Hackapell_GrindCutter">
         <MainSkl JumpFlee="NO" MSPDToUsePos="0" ScrLock="None">
@@ -307,8 +250,15 @@ return value' Num="15000" UseFunc="1"/>
                     <Num Num="100"/>
                     <Num Num="0"/>
                 </Scp>
-		<Scp Client="NO" Scp="SKL_RUN_SCRIPT" Time="0" UseSleep="NO">
-                    <Str Str="SCR_HAKKAPALLE_HIDDEN_ABIL"/>
+		<Scp Scp="SKL_BUFF_ABIL" Client="NO" UseSleep="NO"Time="0">
+                    <Str Str="Hackapell16"/>
+                    <Str Str="HakkaPalle_Abil_Buff"/>
+                    <Num Num="1"/>
+                    <Num Num="0"/>
+                    <Num Num="45000"/>
+                    <Num Num="1"/>
+                    <Num Num="100"/>
+                    <Num Num="1"/>
                 </Scp>
                 <Scp Client="YES" Scp="C_VOICE_SOUND" Time="100" UseSleep="NO">
                     <Str Str="voice_archer_m_HakkaPalle_cast"/>

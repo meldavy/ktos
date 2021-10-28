@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by imc (imc) -->
+<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by imc (imc) -->
 <!-- edited with XMLSpy v2008 sp1 (http://www.altova.com) by MintPC (Mi) -->
 <skinset name="Base">
 	<fontlist category="Default Font">
@@ -90,6 +90,7 @@
 		<font name="white_18_b" filename="ORIGINAL" size="18" color="#FFFFFF" space="0" underline="no" bold="yes" dropshadow="no" italic="no" outline="no" outlinecolor="#333333"/>
 		<font name="white_18_ol" filename="ORIGINAL" size="18" color="#FFFFFF" space="0" underline="no" bold="no" dropshadow="no" italic="no" outline="yes" outlinecolor="#333333"/>
 		<font name="white_18_b_ol" filename="ORIGINAL" size="18" color="#FFFFFF" space="0" underline="no" bold="yes" dropshadow="no" italic="no" outline="yes" outlinecolor="#333333"/>
+		<font name="white_20_b_ol" filename="ORIGINAL" size="20" color="#FFFFFF" space="0" underline="no" bold="yes" dropshadow="no" italic="no" outline="yes" outlinecolor="#333333"/>
 		<font name="white_18_grayol" filename="ORIGINAL" size="18" color="#FFFFFF" space="0" underline="no" bold="no" dropshadow="no" italic="no" outline="yes" outlinecolor="#333333"/>
 		<font name="white_18_b_ds" filename="ORIGINAL" size="18" color="#FFFFFF" space="0" underline="no" bold="yes" dropshadow="yes" italic="no" outline="no" outlinecolor="#333333"/>
 		<font name="white_18_b_ds_ol" filename="ORIGINAL" size="18" color="#FFFFFF" space="0" underline="no" bold="yes" dropshadow="yes" italic="no" outline="yes" outlinecolor="#333333"/>

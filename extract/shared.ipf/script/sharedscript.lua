@@ -3227,3 +3227,7 @@ function RANDOM_SHUFFLE(tbl)
     end
     return tbl
 end
+
+function CLMSG_DIALOG_CONVERT(npc,msg)
+	return string.format("%s*@*%s",npc.Name,msg)
+end

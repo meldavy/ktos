@@ -47,10 +47,12 @@
 		<Class ClassID="50" ClassName="/summer" Alias="/여름" ConvertWhenSend="1"/>
 		<Class ClassID="51" ClassName="/watermelon" Alias="/수박" ConvertWhenSend="1"/>
 		<!-- <Class ClassID="53" ClassName="/tcance" Alias="/트캉스" ConvertWhenSend="1"/> -->
-		<Class ClassID="54" ClassName="/gold" Alias="/골드" ConvertWhenSend="1"/>
+		<!-- <Class ClassID="54" ClassName="/gold" Alias="/골드" ConvertWhenSend="1"/> -->
 		<Class ClassID="49" ClassName="/bamboo" Alias="/죽엽" ConvertWhenSend="1"/>
 		<Class ClassID="55" ClassName="/ticket" Alias="/티켓" ConvertWhenSend="1"/>
 		<Class ClassID="56" ClassName="/tokenwarp" Alias="/토큰이동" ConvertWhenSend="1"/>
 		<Class ClassID="58" ClassName="/maxLevel" Alias="/만렙" ConvertWhenSend="1"/>
+		<Class ClassID="60" ClassName="/vote" Alias="/투표" ConvertWhenSend="1"/>
+		<Class ClassID="61" ClassName="/master" Alias="/마스터" ConvertWhenSend="1"/>
 	</Category>
 </idspace>

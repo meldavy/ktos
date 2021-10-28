@@ -5,6 +5,7 @@ ClassID,UnlockArgNum,MaxLevel,Price1,Time1,Price2,Time2,Price3,Time3,Price4,Time
 202,3,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Highlander28,UNLOCK_ABIL_SKILL,Highlander_CartarStroke,카타 스트로크 3레벨 이상,ABIL_ABOVE_NORMAL_PRICE
 301,1,100,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Highlander12,UNLOCK_ABIL_SKILL,Highlander_Crown,크라운 1레벨 이상,ABIL_REINFORCE_PRICE
 401,1,100,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Highlander15,UNLOCK_ABIL_SKILL,Highlander_CrossGuard,크로스 가드 3레벨 이상,ABIL_REINFORCE_PRICE
+402,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Highlander43,UNLOCK_ABIL_SKILL,Highlander_CrossGuard,크로스 가드 1레벨 이상,ABIL_REINFORCE_PRICE
 501,1,100,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Highlander14,UNLOCK_ABIL_SKILL,Highlander_Moulinet,뮬리넷 1레벨 이상,ABIL_REINFORCE_PRICE
 601,1,100,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Highlander29,UNLOCK_ABIL_SKILL,Highlander_SkyLiner,스카이 라이너 1레벨 이상,ABIL_REINFORCE_PRICE
 701,1,100,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Highlander30,UNLOCK_ABIL_SKILL,Highlander_CrossCut,크로스컷 1레벨 이상,ABIL_REINFORCE_PRICE

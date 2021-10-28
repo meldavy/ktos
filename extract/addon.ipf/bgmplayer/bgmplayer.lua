@@ -320,20 +320,78 @@ function BGMPLAYER_MUSIC_SET_ALL_LIST(frame, mode, option, isChange)
     if frame == nil then return; end
     local musicinfo_gb = GET_CHILD_RECURSIVELY(frame, "musicinfo_gb");
     if musicinfo_gb == nil then return; end
+    local dlcbgmTitleList = GetDlcBgmTitleList();
     local bgmTitleList = GetBgmTitleList(mode, option);
     local favoTitleList = GetFavoritesTitleList(mode, option);
     
     local start_x = 3;
     if mode == 1 and option == 0 then
-        if bgmTitleList == nil then return; end
-        listCnt = #bgmTitleList;
-
-        for i = 1, listCnt do
+        if dlcbgmTitleList == nil then return; end
+        -- dlc
+        for i = 1, #dlcbgmTitleList do
             local musicInfoCtrlSet = musicinfo_gb:CreateOrGetControlSet("bgmplayer_musicinfo", "MUSICINFO_"..i, start_x, (i - 1) * 25);
             if musicInfoCtrlSet ~= nil then
                 local musicselect_gb = GET_CHILD_RECURSIVELY(musicInfoCtrlSet, "musicselect_gbox");
                 musicselect_gb:SetVisible(0);
-                    
+                
+                if (isChange ~= nil and isChange == true) or isChange == nil then
+                    if i % 2 ~= 0 then
+                        musicInfoCtrlSet:SetSkinName("chat_window_2");
+                    end
+                elseif isChange ~= nil and isChange == false then
+                    if i % 2 ~= 0 then
+                        musicInfoCtrlSet:SetSkinName("simple_title_divide");
+                    end
+                end
+
+                local btn = GET_CHILD_RECURSIVELY(musicInfoCtrlSet, "heart_btn");
+                if btn ~= nil then
+                    if isChange ~= nil and isChange == false then
+                        local simple_image = frame:GetUserConfig("HEARTBTN_SIMPLE_IMG_NAME");
+                        btn:SetImage(simple_image);
+                    elseif isChange == nil or (isChange ~= nil and isChange == true) then
+                        local classic_image = frame:GetUserConfig("HEARTBTN_CALSSIC_IMG_NAME");
+                        btn:SetImage(classic_image);
+                    end
+
+                    local prvImageName = btn:GetImageName();
+                    if IsFavoritesedByTitle(dlcbgmTitleList[i]) == 1 then 
+                        local imageName = "";
+                        if string.find(prvImageName, "_clicked") ~= nil then
+                            imageName = prvImageName;
+                        else
+                            imageName = prvImageName.."_clicked";
+                        end
+                        btn:SetImage(imageName);
+                    end
+                end
+                
+                local musictitle_txt = GET_CHILD_RECURSIVELY(musicInfoCtrlSet, "musictitle_text");
+                if musictitle_txt ~= nil and btn ~= nil then
+                    local titletxt = "";
+                    titletxt = string.format("{#ffc03a}%d. %s", i, dlcbgmTitleList[i]);
+                    musictitle_txt:SetTextByKey("value", titletxt);
+                end
+
+                local musictime_txt = GET_CHILD_RECURSIVELY(musicInfoCtrlSet, "musictotaltime_text");
+                if musictime_txt ~= nil then
+                    local totalTime = GetBgmTotalTimeByTitleName(dlcbgmTitleList[i], 1);
+                    musictime_txt:SetTextByKey("value", totalTime);
+                end
+                musicInfoCtrlSet:SetUserValue("CTRLSET_NAME", "MUSICINFO_"..i);
+            end
+        end
+
+        -- normal
+        local index_offset = #dlcbgmTitleList;
+        if bgmTitleList == nil then return; end
+        listCnt = #bgmTitleList;
+        for i = 1, listCnt do
+            local musicInfoCtrlSet = musicinfo_gb:CreateOrGetControlSet("bgmplayer_musicinfo", "MUSICINFO_"..i + index_offset, start_x, ((i + index_offset) - 1) * 25);
+            if musicInfoCtrlSet ~= nil then
+                local musicselect_gb = GET_CHILD_RECURSIVELY(musicInfoCtrlSet, "musicselect_gbox");
+                musicselect_gb:SetVisible(0);
+                
                 if (isChange ~= nil and isChange == true) or isChange == nil then
                     if i % 2 ~= 0 then
                         musicInfoCtrlSet:SetSkinName("chat_window_2");
@@ -369,29 +427,28 @@ function BGMPLAYER_MUSIC_SET_ALL_LIST(frame, mode, option, isChange)
                 local musictitle_txt = GET_CHILD_RECURSIVELY(musicInfoCtrlSet, "musictitle_text");
                 if musictitle_txt ~= nil and btn ~= nil then
                     local titletxt = "";
-                    titletxt = string.format("%d. %s", i, bgmTitleList[i]);
+                    titletxt = string.format("%d. %s", i + index_offset, bgmTitleList[i]);
                     musictitle_txt:SetTextByKey("value", titletxt);
                 end
 
                 local musictime_txt = GET_CHILD_RECURSIVELY(musicInfoCtrlSet, "musictotaltime_text");
                 if musictime_txt ~= nil then
-                    local totalTime = GetBgmTotalTimeByTitleName(bgmTitleList[i]);
+                    local totalTime = GetBgmTotalTimeByTitleName(bgmTitleList[i], 0);
                     musictime_txt:SetTextByKey("value", totalTime);
                 end
-
-                musicInfoCtrlSet:SetUserValue("CTRLSET_NAME", "MUSICINFO_"..i);
+                musicInfoCtrlSet:SetUserValue("CTRLSET_NAME", "MUSICINFO_"..i + index_offset);
             end
         end
     elseif mode == 0 and option == 1 then
+        -- favo
         if favoTitleList == nil then return; end
         listCnt = #favoTitleList;
-
         for i = 1, listCnt do
             local musicInfoCtrlSet = musicinfo_gb:CreateOrGetControlSet("bgmplayer_musicinfo", "MUSICINFO_"..i, start_x, (i - 1) * 25);
             if musicInfoCtrlSet ~= nil then
                 local musicselect_gb = GET_CHILD_RECURSIVELY(musicInfoCtrlSet, "musicselect_gbox");
                 musicselect_gb:SetVisible(0);
-                    
+                
                 if (isChange ~= nil and isChange == true) or isChange == nil then
                     if i % 2 ~= 0 then
                         musicInfoCtrlSet:SetSkinName("chat_window_2");
@@ -427,16 +484,20 @@ function BGMPLAYER_MUSIC_SET_ALL_LIST(frame, mode, option, isChange)
                 local musictitle_txt = GET_CHILD_RECURSIVELY(musicInfoCtrlSet, "musictitle_text");
                 if musictitle_txt ~= nil and btn ~= nil then
                     local titletxt = "";
-                    titletxt = string.format("%d. %s", i, favoTitleList[i]);
-                    musictitle_txt:SetTextByKey("value", titletxt);
+                    if IsDlcBgmByTitleName(favoTitleList[i]) == 1 then
+                        titletxt = string.format("{#ffc03a}%d. %s", i, favoTitleList[i]);
+                        musictitle_txt:SetTextByKey("value", titletxt);
+                    else
+                        titletxt = string.format("%d. %s", i, favoTitleList[i]);
+                        musictitle_txt:SetTextByKey("value", titletxt);
+                    end
                 end
 
                 local musictime_txt = GET_CHILD_RECURSIVELY(musicInfoCtrlSet, "musictotaltime_text");
                 if musictime_txt ~= nil then
-                    local totalTime = GetBgmTotalTimeByTitleName(bgmTitleList[i]);
+                    local totalTime = GetBgmTotalTimeByTitleName(favoTitleList[i], IsDlcBgmByTitleName(favoTitleList[i]));
                     musictime_txt:SetTextByKey("value", totalTime);
                 end
-
                 musicInfoCtrlSet:SetUserValue("CTRLSET_NAME", "MUSICINFO_"..i);
             end
         end
@@ -590,13 +651,18 @@ function BGMPLAYER_SEARCH_BY_MODE(frame, mode, option, isChange)
 
             local musictitle_txt = GET_CHILD_RECURSIVELY(musicInfoCtrlSet, "musictitle_text");
             if musictitle_txt ~= nil then
-                local titletxt = string.format("%d. %s", i, searchList[i]);
-                musictitle_txt:SetTextByKey("value", titletxt);
+                if IsDlcBgmByTitleName(searchList[i]) == 1 then
+                    local titletxt = string.format("{#ffc03a}%d. %s", i, searchList[i]);
+                    musictitle_txt:SetTextByKey("value", titletxt);
+                else
+                    local titletxt = string.format("%d. %s", i, searchList[i]);
+                    musictitle_txt:SetTextByKey("value", titletxt);
+                end
             end
 
             local musictime_txt = GET_CHILD_RECURSIVELY(musicInfoCtrlSet, "musictotaltime_text");
             if musictime_txt ~= nil then
-                local totalTime = GetBgmTotalTimeByTitleName(searchList[i]);
+                local totalTime = GetBgmTotalTimeByTitleName(searchList[i], IsDlcBgmByTitleName(searchList[i]));
                 musictime_txt:SetTextByKey("value", totalTime);
             end
         end
@@ -863,6 +929,12 @@ function BGMPLAYER_PLAY_RANDOM(frame, curIndex)
 
             local index = title_txt:GetTextByKey("value");
             index = StringSplit(index, '. ');
+
+            local find_start, find_end = string.find(index[1], "{#ffc03a}");
+            if find_start ~= nil and find_end then
+                index[1] = string.sub(index[1], find_end + 1, string.len(index[1]));
+            end
+
             if tonumber(index[1]) == curIndex then
                 if bgmType == 1 then 
                     SetBgmCurIndex(curIndex, 1);
@@ -932,6 +1004,12 @@ function BGMPLAYER_PLAY_PREVIOUS_BGM(frame, btn)
 
             local musicIndex = titleText:GetTextByKey("value");
             musicIndex = StringSplit(musicIndex, '. ');
+
+            local dlcSize = GetDlcBgmListSize();
+            if i < dlcSize + 1 then
+                local find_start, find_end = string.find(musicIndex[1], "{#ffc03a}");
+                musicIndex[1] = string.sub(musicIndex[1], find_end + 1, string.len(musicIndex[1]));
+            end
 
             if curIndex - 1 == 0 then
                 curIndex = childCnt;
@@ -1006,7 +1084,13 @@ function BGMPLAYER_PLAY_NEXT_BGM(frame, btn)
 
             local musicIndex = titleText:GetTextByKey("value");
             musicIndex = StringSplit(musicIndex, '. ');
-            
+
+            local dlcSize = GetDlcBgmListSize();
+            if i < dlcSize + 1 then
+                local find_start, find_end = string.find(musicIndex[1], "{#ffc03a}");
+                musicIndex[1] = string.sub(musicIndex[1], find_end + 1, string.len(musicIndex[1]));
+            end
+
             if curIndex + 1 == childCnt then
                 curIndex = 0;
             end

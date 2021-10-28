@@ -414,9 +414,16 @@ function LEGEND_CRAFT_EXECUTE(parent, ctrl)
 			session.AddItemID(guid_list[i], 1);
 		end
 		local resultlist = session.GetItemIDList();
-    	item.DialogTransaction("SPECIAL_MISC_CRAFT", resultlist, "", nameList);    
+    	item.DialogTransaction("SPECIAL_MISC_CRAFT", resultlist, "", nameList);
 	else
-		pc.ReqExecuteTx_Item2("LEGEND_CRAFT", guid_list[1], guid_list[2], guid_list[3], argList);
+		local nameList = NewStringList();
+    	nameList:Add(recipeCls.ClassID)    
+	    session.ResetItemList();
+		for i = 1, maxMaterialCnt do
+			session.AddItemID(guid_list[i], 1);
+		end
+		local resultlist = session.GetItemIDList();
+    	item.DialogTransaction("LEGEND_CRAFT", resultlist, "", nameList);		
 
 	end
 end

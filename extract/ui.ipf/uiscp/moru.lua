@@ -208,16 +208,8 @@ function MORU_LBTN_CLICK(frame, invItem)
 		return;
 	end
 
-    if moruObj.ClassName == 'Moru_Diamond_14d_Team_Lv400' then
-        if obj.UseLv > 400 then
-        return
-        end
-    end
-    
-    if moruObj.ClassName == 'Moru_Diamond_14d_Team_Lv430' then
-        if obj.UseLv > 440 then
-        return
-        end
+    if REINFORCE_ABLE_BY_USE_LEVEL(moruObj, obj) == false then
+        return;
     end
 
 	upgradeitem_2:ShowWindow(1);

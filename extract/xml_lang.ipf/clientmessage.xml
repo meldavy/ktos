@@ -149,6 +149,7 @@
 		<Class ClassID="1141" ClassName="Grade" Data="등급"/>
 		<Class ClassID="1142" ClassName="TradeOption" Data="거래 옵션"/>
 		<Class ClassID="1143" ClassName="SearchResult" Data="검색 결과"/>
+		<Class ClassID="1144" ClassName="Piece2" Data="장"/>
 	</Category>
 	<Category Name="Reinforce">
 		<Class ClassID="2001" ClassName="NotEnoughReinforcePotential" Data="강화에 필요한 포텐셜이 부족합니다"/>
@@ -253,6 +254,12 @@
 		<Class ClassID="2100" ClassName="NotRoastingGemEquip" Data="{#fe7e00}로스팅 되지 않은 젬입니다.{/}{nl}정말 장착하시겠습니까?{nl}장착하시려면 숫자 [0000] 을 입력해주세요."/>
 		<Class ClassID="2102" ClassName="ReallyDecomposeArk" Data="정말 해당 아크 아이템을 분해하시겠습니까?"/>
 		<Class ClassID="2103" ClassName="DecomposeArkCant" Data="레벨 1, 경험치 보유량 0인 아크만 분해가 가능합니다."/>
+		<Class ClassID="2104" ClassName="ProcessReinforceBy{Name}Moru" Data="{s20}{#0606ff}{Name}{/}로{nl}아이템을 강화하시겠습니까?{nl} {nl}{/}{s16}+5 이상부터는 강화에 실패할 수 있으며, 실패 시 포텐셜이 하락합니다.{nl}포텐셜이 0인 상태에서 실패 시, 아이템이 파괴됩니다.{/}"/>
+		<Class ClassID="2105" ClassName="ProcessDangerReinforceBy{Name}Moru" Data="{s20}포텐셜 0인 아이템에 {@st66d_y}{s22}{Name}{/}{/}를 사용중이며,{nl}강화 실패 시 {@st66d_y}{s22}아이템이 파괴{/}{/}됩니다.{nl} {nl}파괴된 아이템은 {@st66d_y}{s22}복구가 불가능{/}{/}합니다.{nl}정말로 강화하시려면 단어 [강화]를 입력해주세요."/>
+		<Class ClassID="2106" ClassName="ProcessTranscendBy{P}Percent" Data="{s20}{@st66d_y}{s22}성공률 {P}%{/}{/}로 정말 초월을 진행하시겠습니까?{nl} {nl}* 초월된 아이템은 거래가 불가능합니다.{nl}* 초월에 실패하면 포텐셜이 하락합니다."/>
+		<Class ClassID="2107" ClassName="ProcessDangerTranscendBy{P}Percent" Data="{s20}{@st66d_y}{s22}포텐셜 0{/}{/}인 아이템을{nl}{@st66d_y}{s22}성공률 {P}%{/}{/}로 초월하려 하며,{nl}초월 실패 시 {@st66d_y}{s22}아이템이 파괴{/}{/}됩니다.{nl} {nl}파괴된 아이템은 {@st66d_y}{s22}복구가 불가능{/}{/}합니다.{nl}정말로 초월하시려면 단어 [초월]을 입력해주세요."/>
+		<Class ClassID="2108" ClassName="OnlyLv1GoddessEvilCanDecompose" Data="1레벨 여신/마신 장비만 분해 가능합니다."/>
+		<Class ClassID="2109" ClassName="ReallyDecomposeEvilGoddess" Data="정말 해당 여신/마신 장비를 분해하시겠습니까?"/>
 	</Category>
 	<Category Name="ItemContents">
 		<Class ClassID="2200" ClassName="ClickSocketTargetItem" Data="소켓을 추가 할 아이템을 선택해주세요"/>
@@ -393,6 +400,8 @@
 		<Class ClassID="2340" ClassName="MustAddIcorToSlot" Data="장착할 아이커를 등록해야 합니다."/>
 		<Class ClassID="2341" ClassName="ExceedItemGetLimit" Data="획득 가능한 아이템 최대 수량을 초과 하였습니다."/>
 <Class ClassID="2352" ClassName="GlobalCool{num}" Data="무적에 관련된 특성이나 기능은 {num}초 뒤 ON/OFF가 가능 합니다."/>
+    <Class ClassID="2356" ClassName="ExceedWeeklyMaxMiscPvPMine{count}{count1}" Data="용병단 증표 지급 중 주간 최대 획득 개수[{count}]를 초과하여 {count1}개가 소멸되었습니다."/>
+    <Class ClassID="2357" ClassName="ExceedWeeklyMaxMiscPvPMine{count}{count1}{count2}" Data="용병단 증표 {count}개 지급 중 주간 획득 개수를 초과하여 {count1}개가 제외된 {count2}개가 지급되었습니다."/>
 	</Category>
 	<Category Name="ClassContents">
 		<Class ClassID="2500" ClassName="FullWeeklyGainClassResetExp" Data="주간 획득 가능한 클래스 변경 포인트를 모두 달성하였습니다."/>
@@ -414,6 +423,13 @@
 		<Class ClassID="2606" ClassName="CannotGetSkillMessage_Crusader_Retaliation" Data="[스킬] 찬트 1레벨 이상 필요"/>
 		<Class ClassID="2607" ClassName="CannotGetSkillMessage_Crusader_Condemn" Data="[스킬] 찬트 1레벨 이상 필요"/>
 		<Class ClassID="2608" ClassName="CannotGetSkillMessage_Crusader_RingOfLight" Data="[스킬] 찬트 1레벨 이상 필요"/>
+		<Class ClassID="2609" ClassName="CannotGetSkillMessage_Bulletmarker_RestInPeace" Data="[스킬] 더블 건 스탠스 1레벨 이상 필요"/>
+		<Class ClassID="2610" ClassName="CannotGetSkillMessage_Bulletmarker_BloodyOverdrive" Data="[스킬] 더블 건 스탠스 1레벨 이상 필요"/>
+		<Class ClassID="2611" ClassName="CannotGetSkillMessage_Bulletmarker_TracerBullet" Data="[스킬] 더블 건 스탠스 1레벨 이상 필요"/>
+		<Class ClassID="2612" ClassName="CannotGetSkillMessage_Bulletmarker_MozambiqueDrill" Data="[스킬] 더블 건 스탠스 1레벨 이상 필요"/>
+		<Class ClassID="2613" ClassName="CannotGetSkillMessage_Bulletmarker_FreezeBullet" Data="[스킬] 더블 건 스탠스 1레벨 이상 필요"/>
+		<Class ClassID="2614" ClassName="CannotGetSkillMessage_Bulletmarker_Outrage" Data="[스킬] 더블 건 스탠스 1레벨 이상 필요"/>
+		<Class ClassID="2615" ClassName="CannotGetSkillMessage_Bulletmarker_NapalmBullet" Data="[스킬] 더블 건 스탠스 1레벨 이상 필요"/>
 	</Category>
 	<Category Name="Manufacture">
 		<Class ClassID="3001" ClassName="CONTINUE_MIXING_USING_S" Data="{Auto_1} 아이템을 사용하여 제작을 시작합니다. 계속하시겠습니까?"/>
@@ -471,6 +487,7 @@
 		<Class ClassID="3054" ClassName="transferseal" Data="인장 교환"/>
 		<Class ClassID="3055" ClassName="composition_vibora" Data="바이보라 합성"/>
 		<Class ClassID="3056" ClassName="upgrade_vibora" Data="바이보라 연성"/>
+		<Class ClassID="3057" ClassName="uniquedecompose" Data="여신/마신 장비 분해"/>
 	</Category>
 	<Category Name="ItemPuzzle">
 		<Class ClassID="3501" ClassName="WouldYouSelectThisCombinationAsAlchemystryTarget?" Data="이 조합을 연금 대상으로 선택합니까?"/>
@@ -619,7 +636,7 @@
 		<Class ClassID="4141" ClassName="ThisIsEndedEvent" Data="종료 기한이 지난 이벤트입니다."/>
 		<Class ClassID="4142" ClassName="THMace" Data="양손둔기"/>
 		<Class ClassID="4143" ClassName="Event_Select_Acc_Box_Title" Data="슈페리어 브레이슬릿(15일) 상자"/>
-		<Class ClassID="4144" ClassName="LeticiaGacha{CONSUME}" Data="큐브 개봉시{nl}{CONSUME}  소모됩니다.{nl}정말 개봉하시겠습니까?"/>
+		<Class ClassID="4144" ClassName="LeticiaGacha{CONSUME}" Data="큐브 개봉시{nl}{CONSUME}  소모됩니다.{nl}정말 개봉하시겠습니까?{nl} {nl}{@st66d_y}{s20}현재 개봉 횟수{nl}{COUNT}{/}{/}"/>
 		<Class ClassID="4145" ClassName="SelectCostume{ITEM}" Data="{@st66d_y}{s20}{ITEM}{/}{/} {nl}코스튬을 정말 선택하시겠습니까?{nl} {nl}선택 후에는 다른 코스튬으로{nl}교환할 수 없습니다."/>
 		<Class ClassID="4146" ClassName="Card_Summon_Check_god" Data="여신상 주변에서는 사용하실 수 없습니다."/>
 		<Class ClassID="4147" ClassName="Card_Summon_check_Boss" Data="보스 몬스터 주변에서는 사용하실 수 없습니다."/>
@@ -1380,7 +1397,8 @@
 		<Class ClassID="10571" ClassName="KOR_MaxSilverLimitOverDaily" Data="넥슨 ID 보안서비스에 가입하지 않아, 더 이상 사냥을 통해 실버를 획득할 수 없습니다. 넥슨 ID 보안 서비스에 가입하여 주세요.{nl} {nl}보안서비스 가입 후 재접속하여 주세요."/>
 		<Class ClassID="10572" ClassName="GLOBAL_MaxSilverLimitOverDaily" Data="Your account is currently under the daily limit of acquiring silver in the field. If you wish to lift the daily limit, register your account in Steam Guard."/>
 		<Class ClassID="10573" ClassName="GLOBAL_JP_MaxSilverLimitOverDaily" Data="当アカウントは現在フィールドで獲得可能なシルバーの一日獲得数が制限されております。解除したい場合はアカウントをSTEAMガードに登録してください。"/>
-	</Category>
+		<Class ClassID="10569" ClassName="WeeklyMaxPvpMineCountOver" Data="주간 최대 획득량에 도달하여 더 이상 용병단 주화를 획득하실 수 없습니다."/>
+		</Category>
 	<Category Name="FoodTable">
 		<Class ClassID="20001" ClassName="IncreaseHP{Value}For{Time}Minute" Data="{Time}분 동안 HP가 {Value}% 증가합니다."/>
 		<Class ClassID="20002" ClassName="IncreaseSP{Value}For{Time}Minute" Data="{Time}분 동안 SP가 {Value}% 증가합니다."/>
@@ -5470,6 +5488,7 @@
 		<Class ClassID="28361" ClassName="EVENT_1906_TOTAL_SHOP_COIN" Data="오늘 주화를 총 {@st66d_y}{s18}{GET}{/}{/}개 획득하였습니다.{nl}{@st66d_y}{s18}{REMAIN}{/}{/}개의 주화를 더 획득할 수 있습니다."/>
 		<Class ClassID="28362" ClassName="EVENT_1906_GUILD_JOIN_REWARD_COIN_MSG" Data="길드 가입 보상을 수령한다"/>
 		<Class ClassID="28363" ClassName="NEWUSER_BUFFSTONE_GET_MSG" Data="신규/복귀 버프 활성화 스크롤을 수령했습니다.{nl}인벤토리를 확인해보세요!"/>
+		<Class ClassID="28364" ClassName="QuestRewardMoneyTextWithBonus" Data="{@st45w3}{s18}{Auto_1} 실버 {nl}{#00ff00}(첫 클리어 보너스 x {Rate}){/}{/}"/>
 		<Class ClassID="30001" ClassName="CASTLE_20_3_OBJ_3_MSG1" Data="은은한 붉은 빛이 도는 액체가 담긴 병이 가득 있습니다"/>
 		<Class ClassID="30002" ClassName="CASTLE_20_3_OBJ_4_MSG1" Data="별다른 것은 없는 것 같습니다"/>
 		<Class ClassID="30003" ClassName="CASTLE_20_3_SQ_3_MSG1" Data="살펴보는 중"/>
@@ -7201,6 +7220,10 @@
 		<Class ClassID="66032" ClassName="GM_BK_BROADCAST_BATTLE_START_1" Data="[ {PC_NAME} ] 님이 미션을 시작했습니다"/>
 		<Class ClassID="66033" ClassName="GM_BK_BROADCAST_RESET_SUCCESS" Data="[ {PC_NAME} ] 님이 봉쇄전 기록을 초기화했습니다"/>
 		<Class ClassID="66034" ClassName="GM_BK_BROADCAST_DEAD_RECORED_1" Data="길드원들이 드래곤 보루타를 제압했습니다{nl}봉쇄전 기록 : {MIN} 분 {SEC} 초"/>
+		<Class ClassID="66035" ClassName="CS_Guild_abl_reset_cant_msg1" Data="길드 마스터 권한이 있어야 사용할 수 있습니다."/>
+		<Class ClassID="66036" ClassName="CS_Guild_abl_reset_cant_msg2" Data="사용한 길드 특성 포인트가 없습니다."/>
+		<Class ClassID="66037" ClassName="CS_Guild_abl_reset_cant_msg3" Data="최대 인원 증가 특성은 초기화할 수 없습니다."/>
+		<Class ClassID="66038" ClassName="CS_Guild_abl_reset_done_msg1" Data="길드 마스터 [ {PC_NAME} ]님이 길드 특성을 초기화 했습니다."/>
 		<Class ClassID="66100" ClassName="RVR_BK_WORLD_MSG_BOSS_BORN_1" Data="슬리비나스 레어의 드래곤 보루타가{nl}다시 나타났습니다"/>
 		<Class ClassID="66105" ClassName="RVR_BK_WORLD_MSG_BOSS_DEAD_1" Data="슬리비나스 레어의 드래곤 보루타가{nl}구원자들에게 제압 당했습니다!"/>
 		<Class ClassID="66106" ClassName="BK_MGAME_BORUTA_CANCLE_WARP_IN" Data="결속 강화 효과를 얻었습니다."/>
@@ -9245,7 +9268,28 @@
 		<Class ClassID="91033" ClassName="F_TABLELAND_28_2_NPC_CRU_17" Data="끼익끽!"/>
 		<Class ClassID="91034" ClassName="F_TABLELAND_28_2_NPC_CRU_18" Data="떨어져 있는 주머니에서 의문의 지령서를 발견했습니다."/>
 		<Class ClassID="91038" ClassName="MOVE_TO_SPACEBAR" Data="스페이스 바를 눌러 이동하세요."/>
-	</Category>
+	    <Class ClassID="91056" ClassName="Select_Legend_Boss_Moringponia" Data="나비목 접선지: 레전드(5인)"/>
+		<Class ClassID="91057" ClassName="Select_Legend_Boss_Moringponia_Solo" Data="나비목 접선지: 레전드(1인)"/>
+		<Class ClassID="91058" ClassName="Casual_Legend_Boss_Moringponia_TYPE1" Data="나비목 접선지: 레전드(1인) 진입"/>
+		<Class ClassID="91059" ClassName="Casual_Legend_Boss_Moringponia_TYPE2" Data="나비목 접선지: 레전드(1인) 진입"/>
+	   <Class ClassID="91062" ClassName="Legend_Boss_Glacier_Solo" Data="하얀 마녀의 숲 : 레전드 레이드 (1인)"/>
+<Class ClassID="91070" ClassName="MORINGPONIA_HARD_SOLO_ORBITEM_GIVE_MSG1" Data="1단계"/>
+		<Class ClassID="91071" ClassName="MORINGPONIA_HARD_SOLO_ORBITEM_GIVE_MSG2" Data="2단계"/>
+		<Class ClassID="91072" ClassName="MORINGPONIA_HARD_SOLO_ORBITEM_GIVE_MSG3" Data="3단계"/>
+		<Class ClassID="91073" ClassName="MORINGPONIA_HARD_SOLO_ORBITEM_GIVE_MSG4" Data="4단계"/>
+		<Class ClassID="91074" ClassName="MORINGPONIA_HARD_SOLO_ORBITEM_GIVE_MSG5" Data="5단계"/>
+		<Class ClassID="91075" ClassName="MORINGPONIA_HARD_SOLO_CHRONOMANCER_MSG1" Data="도움이 될만한 게 있는지 묻는다."/>
+		<Class ClassID="91076" ClassName="MORINGPONIA_HARD_SOLO_CHRONOMANCER_MSG2" Data="결전을 위한 준비는 끝났다고 말한다."/>
+		<Class ClassID="91077" ClassName="MORINGPONIA_HARD_SOLO_STEP_MSG1" Data="변이 스킬이 제거되었습니다."/>
+		<Class ClassID="91078" ClassName="MORINGPONIA_HARD_SOLO_STEP_MSG2" Data="빅 그리바 소환이 제거되었습니다."/>
+		<Class ClassID="91079" ClassName="MORINGPONIA_HARD_SOLO_STEP_MSG3" Data="주시 마법진 패턴이 제거되었습니다."/>
+		<Class ClassID="91080" ClassName="MORINGPONIA_HARD_SOLO_STEP_MSG4" Data="리타스원트 소환이 제거되었습니다."/>
+		<Class ClassID="91081" ClassName="MORINGPONIA_HARD_SOLO_STEP_MSG5" Data="저주 패턴이 제거되었습니다."/>
+		<Class ClassID="91082" ClassName="BuyCube" Data="큐브 구매"/>
+		<Class ClassID="91083" ClassName="GetBonusReward" Data="회차보상 받기"/>
+		<Class ClassID="92007" ClassName="MORINGPONIA_SOLO_RAID_MSG1" Data="정화석이 파괴되었습니다! 주기적으로 [독 내성] 버프 중첩이 차감됩니다."/>
+		<Class ClassID="92008" ClassName="MORINGPONIA_SIMULTANEITY_MSG" Data="탄타이저가 모링포니아에게 [보호막] 버프를 부여하였습니다.{nl}해당 상태에서 모링포니아의 피격 대미지가 감소합니다."/>
+        </Category>
 	<Category Name="BattleText">
 		<Class ClassID="100001" ClassName="ADD_DAMAGE_{Auto_1}!" Data="추가 대미지 {Auto_1}!"/>
 		<Class ClassID="100002" ClassName="ADD_BUFF_{Auto_1}!" Data="{Auto_1}!"/>
@@ -9311,7 +9355,7 @@
 		<Class ClassID="100062" ClassName="Hold_Immune" Data="이동불가 면역!"/>
 		<Class ClassID="100063" ClassName="SnowRolling_Immune" Data="스노우롤링 면역!"/>
 		<Class ClassID="100064" ClassName="Raise_Immune" Data="레이즈 면역!"/>
-		<Class ClassID="100065" ClassName="HeadShot_Spin_Immune" Data="헤드 샷 스핀 면역!"/>
+		<Class ClassID="100065" ClassName="{Auto_1}_Spin_Immune" Data="{Auto_1} 스핀 면역!"/>
 		<Class ClassID="100066" ClassName="ID_ENDTER_DIALOG_1" Data="성당 지하 (권장 레벨:50)"/>
 		<Class ClassID="100067" ClassName="ID_ENDTER_DIALOG_2" Data="폐허 유적지 (권장 레벨:120)"/>
 		<Class ClassID="100068" ClassName="ID_ENDTER_DIALOG_3" Data="염원의 비석로 (권장 레벨:180)"/>
@@ -10864,6 +10908,7 @@
 		<Class ClassID="134075" ClassName="Ancient_Dungeon_Reward_Info" Data="{@st66b}일일 보상{nl}어시스터 던전에서 등장하는 보스 몬스터 처치 시 1일 1회 {#003399}어시스터 카드첩 : 선택{/}를 획득할 수 있습니다.{nl}보스 몬스터는 5 스테이지마다 출현합니다.{nl}{#8e0000}※ 일일 보상은 매일 오전 12시에 초기화됩니다.{/}{nl}{nl} {nl}{@st66b}주간 보상{/}{nl}매주 스테이지 첫 클리어 시 보상을 획득할 수 있습니다.{nl}{#8e0000}※ 주간 보상은 매주 월요일 6시에 초기화됩니다.{/}{nl} {nl}{@st66b}추가 보상{/}{nl}특정 스테이지 클리어 시 어시스터 코스트를 확장시킬 수 있습니다.{nl}{#8e0000}※ 추가 보상은 팀 당 1회만 받을 수 있습니다.{/}{nl} {nl} {nl} {nl} {nl} {nl}모든 보상은 어시스터 던전 종료 시 일괄 지급됩니다."/>
 		<Class ClassID="134076" ClassName="PVP_Mine_Reward_Info" Data="{@st66b}자원 쟁탈전에서는 쟁탈전 종료 시 승패 결과와 함께 보상으로 {#003399}용병단 증표{/}를 지급합니다.{nl} {nl}승리 팀에 2250개, 패배팀은 450개를 지급하며{nl}자신의 [광산 포인트 x 3]만큼{nl}{#003399}용병단 증표{/}를 추가로 획득할 수 있습니다.(최대 2250개){nl} {nl}MVP 보너스{nl}자원 쟁탈전 내에서 '킬 포인트' 또는 '광산 포인트'가 팀 내 5위안으로 도달했을 경우 추가로 용병단 증표를 지급됩니다.{nl} {nl}{nl}유니폼 모드에서는 {#003399}경험치 카드{/}를 추가로 지급합니다. 지급되는 경험치 카드는 플레이어의 레벨에 따라 차등 지급됩니다.{nl}Lv329이하 : Lv14 경험치 카드 x10{nl}Lv339이하 : Lv15 경험치 카드 x10{nl}Lv400이상 : Lv16 경험치 카드 x7{nl} {nl} {nl}{#8e0000}※단, 수정 반납 개수가 10개 미만인 경우에는 보상을 획득할 수 없습니다.{/}"/>
 		<Class ClassID="134077" ClassName="TEAM_BATTLE_Reward_Info" Data="{@st66b}팀 배틀 리그 참여 시{nl}{#003399}용병단 증표{/} 300개를 팀 당 1일 3회 획득할 수 있습니다.{nl} {nl}팀 배틀 리그는 매주 월요일 오전 6시 기준 순위 합산 1,2,3위에게 칭호가 부여되며 7일 기간제 코스튬이 지급됩니다.{nl} {nl}순위 보상은 [모험 일지] - [팀배틀리그 랭킹] -[보상받기]를 통해 획득할 수 있습니다.{nl} {nl}{#8e0000}※칭호 효과는 다음 시즌 초기화 전까지 유지됩니다.{/}"/>
+		<Class ClassID="134078" ClassName="AlreadyBelongToIndun" Data="이미 진행 중인 인던이 있습니다."/>
 	</Category>
 	<Category Name="AchieveReward">
 		<Class ClassID="135001" ClassName="GainAchieveHairBefore" Data="이미 업적 보상을 받았습니다."/>
@@ -14062,17 +14107,23 @@
 		<Class ClassID="302153" ClassName="EVENT_2007_LUCKY_TICKET_SEL_MSG1" Data="{#003399}[모아라 행운의 티켓]{/} 이벤트 안내"/>
 		<Class ClassID="302154" ClassName="EVENT_2007_LUCKY_TICKET_SEL_MSG2" Data="{#003399}[모아라 행운의 티켓]{/} 이벤트 상점"/>
 		<Class ClassID="302155" ClassName="luckyShop2007" Data="모아라 행운의 티켓 이벤트 상점"/>
-		<Class ClassID="302164" ClassName="EVENT_SEASON_SERVER_REWARD_PROGRESS" Data="450레벨 달성 보상 ({State1}){nl}440레벨 달성 보상 ({State2}){nl}이벤트 기간: 8월 6일 ~ 10월 22일 점검 전"/>
+		<Class ClassID="302164" ClassName="EVENT_SEASON_SERVER_REWARD_PROGRESS" Data="440레벨 달성 보상 ({State1}){nl}450레벨 달성 보상 ({State2}){nl}이벤트 기간: 8월 6일 ~ 10월 22일 점검 전"/>
 		<Class ClassID="302165" ClassName="EVENT_SEASON_SERVER_REWARD_DONE" Data="이미 만랩 달성 보상을 획득하였습니다."/>
-		
 		<Class ClassID="302173" ClassName="EVENT_2007_GUILD_MSG1" Data="조건을 충족하지 못하였습니다."/>
 		<Class ClassID="302174" ClassName="EVENT_2007_GUILD_MSG2" Data="버프를 활성화 했습니다. (24시간){nl}6시간 후 다시 버프를 활성화할 수 있습니다."/>
 		<Class ClassID="302175" ClassName="EVENT_2007_GUILD_MSG3" Data="이미 버프 효과를 받고있습니다."/>
 		<Class ClassID="302176" ClassName="EVENT_2007_GUILD_DLG1" Data="촉망받는 길드 버프를 활성화를 위해서는 다음과 같은 조건이 만족되어야 합니다.{nl}1. 길드 마스터의 레벨이 440LV 이상{nl}2. 길드원이 길드 마스터 포함 10명 이상{np}길드 버프 활성화는 모든 길드원이 가능합니다.{nl}버프 활성화는 24시간 동안 유지되며, 6시간의 쿨타임이 있습니다.{nl} 버프는 맵 이동 시에 적용됩니다."/>
-		
 		<Class ClassID="302182" ClassName="Recieved" Data="수령"/>
 		<Class ClassID="302183" ClassName="NotRecieved" Data="미수령"/>
 		<Class ClassID="302184" ClassName="EVENT_2007_GUILD_MSG4" Data="버프가 활성화 되었습니다. 맵 이동 혹은 재 접속 시 버프가 적용됩니다."/>
+		<Class ClassID="302185" ClassName="EVENT_YOUR_MASTER_VOTE_DLG" Data="선택한 마스터에게 보유한 투표권을 사용하실 수 있습니다.{nl}이번주 해당 마스터에게 {#0000FF}{CNT}{/}개의 투표권을 사용하였습니다. {nl} {nl} {nl}해당 마스터에게 사용한 전체 누적 투표권 : {#0000FF}{ACC}{/}개 {nl} 투표는 10분마다 반영됩니다"/>
+		<Class ClassID="302186" ClassName="EVENT_YOUR_MASTER_CHECK_MSG" Data="[이벤트] 당신의 마스터{nl}마스터 뱃지 ({CNT}/{MAXCNT}){nl}1시간 접속 시 투표권 1장 획득({TIME}/{MAXTIME}분){nl}*일일 획득량은 매일 오전 6시 초기화됩니다."/>
+		<Class ClassID="302187" ClassName="EVENT_YOUR_MASTER_NPC_DIALOG_MSG1" Data="{#003399}[당신의 마스터]{/}이벤트 설명"/>
+		<Class ClassID="302188" ClassName="EVENT_YOUR_MASTER_NPC_DIALOG_MSG2" Data="{#003399}[당신의 마스터]{/}투표하기"/>
+		<Class ClassID="302189" ClassName="EVENT_SEASON_SERVER_GUILD_MSG1" Data="길드 창고에 보상이 지급되었습니다."/>
+		<Class ClassID="302190" ClassName="EVENT_YOUR_MASTER_NPC_DIALOG_MSG3" Data="{#003399}[당신의 마스터]{/}이벤트 상점"/>
+		<Class ClassID="302191" ClassName="EVENT_YOUR_MASTER_Shop2008" Data="당신의 마스터 이벤트 상점"/>
+		<Class ClassID="302192" ClassName="Event_STM_APPRAISER_SEL" Data="산드라의 반짝이는 보석"/>
 	</Category>
 	<Category Name="Account">
 		<Class ClassID="303001" ClassName="MaxAccountWarehouseCount" Data="팀 창고"/>
@@ -14127,10 +14178,11 @@
 		<Class ClassID="501010" ClassName="Wihte_Select3_1" Data="{WHITECOUNT}회 완료하셨습니다."/>
 		<Class ClassID="501011" ClassName="LevelUp_Event_Desc01" Data="{REWARD}회 보상을 수령하였습니다."/>
 		<Class ClassID="501012" ClassName="LevelUp_Event_Desc02" Data="{NEXTLV}레벨을 달성하면 보상을 받을 수 있습니다."/>
-		<Class ClassID="501013" ClassName="Steam_VerUP_Select01" Data="'레벨업 보상 상자' 받기"/>
+		<Class ClassID="501013" ClassName="Steam_VerUP_Select01" Data="'레벨업 보상 상자' 받기"/>  
 		<Class ClassID="501014" ClassName="Steam_VerUP_Select02" Data="'330 Level 보상' 받기"/>
 		<Class ClassID="501015" ClassName="Steam_VerUP_Select03" Data="목표레벨 확인"/>
 		<Class ClassID="501072" ClassName="Event_Nru2_Guide_2" Data="장비 선택"/>
+		<Class ClassID="501280" ClassName="GLOBAL_LETICIA_GACHA1" Data="{s20}큐브 구매하고 {@st66d_y}회차 보상{/} 받으세요!{nl}- 큐브 {@st66d_y}낱개{/} 구매 시 회차 보상 카운트가 {@st66d}{#0088FA}1회{/}{/} 증가합니다.{nl}- 큐브 {@st66d_y}10+1{/} 구매 시 회차 보상 카운트가 {@st66d}{#0088FA}10회{/}{/} 증가합니다.{/}"/>
 	</Category>
 	<Category Name="Npc_Equip_Shop_270_315">
 		<Class ClassID="510200" ClassName="NPC_SHOP_WEAPON_NORMAL_270_315" Data="무기"/>
@@ -14807,6 +14859,9 @@
 		<Class ClassID="1000029" ClassName="CantRejoinRewardMode" Data="보상 지급 단계에서는 입장하실 수 없습니다."/>
 		<Class ClassID="1000030" ClassName="CantRejoinCuzPlayingNormalMode" Data="챌린지 일반 모드를 진행하시는 동안은 분열 특이점에 입장하실 수 없습니다."/>
 		<Class ClassID="1000031" ClassName="CantRejoinCuzPlayingHardMode" Data="챌린지 모드 : 분열 특이점을 진행하시는 동안은 일반 챌린지 모드에 입장하실 수 없습니다."/>
+		<Class ClassID="1000032" ClassName="ChallengeModePartyEnter" Data="챌린지 모드 입장(파티)"/>
+		<Class ClassID="1000033" ClassName="ChallengeModeCasualEnter" Data="챌린지 모드 입장(1인)"/>
+		<Class ClassID="1000034" ClassName="CnatJoinChallengeCasualMode" Data="파티원이 2명이상인 상태에서는 챌린지 모드(1인)에 입장하실 수 없습니다."/>
 	</Category>
 	<Category Name="RankReset">
 		<Class ClassID="1001000" ClassName="CannotChangeJobBecauseJobLevel" Data="클래스 레벨이 최대 레벨일 때에만 가능합니다."/>
@@ -15043,6 +15098,12 @@
 		<Class ClassID="514055" ClassName="LEGEND_PBETA_BATTLE_FIELD_THIRD_VICTORY_NOTICE_MSG" Data="[프베타 3승]{nl}보스의 공격력/방어력이 200% 추가로 증가하며{nl}보스에게 받는 데미지가 30% 증가 합니다."/>
 		<Class ClassID="514056" ClassName="LEGEND_GLACIER_SUMMON_MONSTER_NOTICE_MSG" Data="[60초 마다 몬스터가 생성됩니다.]"/>
 		<Class ClassID="514057" ClassName="LEGEND_GLACIER_STUN_MSG" Data="글레이시어가, 혼란에 빠집니다."/>
+		<Class ClassID="514058" ClassName="TANTALISER_SOLO_PATTERN_DEBUFF_MSG" Data="탄타이저가 {Name}에게 {#ff6d00}마력 응축{/} 디버프를 부여합니다.{/}"/>
+		<Class ClassID="514059" ClassName="MORINGPONIA_SOLO_CURSE_PATTERN_MSG" Data="모링포니아가 {#ff6d00}{NAME}{/}에게 저주를 부여합니다. 저주로 인해 생성된 마법진에서 벗어날 경우 피해를 받습니다.{/}"
+/>
+		<Class ClassID="514060" ClassName="MORINGPONIA_SOLO_STEP_MSG" Data="난이도 {STEP}단계를 선택하였습니다."/>
+		<Class ClassID="514061" ClassName="MORINGPONIA_SOLO_MONSTER_MSG1" Data="모링포니아가 {#ff6d00}{NAME}{/}을(를) 주시합니다.{/}"/>
+	    <Class ClassID="514062" ClassName="MORINGPONIA_SOLO_SUMMON_MSG_02" Data="모링포니아가 {#ff6d00}리타스워트{/}를 소환 중입니다.{nl}소환 포탈을 찾아 암흑 디버프를 해제하고 {#ff6d00}리타스워트{/}를 처치하십시오.{/}"/>
 	</Category>
 	<Category Name="SoloDungeon">
 		<Class ClassID="513001" ClassName="SoloDungeonStageMSG" Data="스테이지의 몬스터가 몰려옵니다. 모두 처치해 주세요!"/>
@@ -15293,7 +15354,7 @@
 		<Class ClassID="590000" ClassName="Weekly_Total_Point_Get_Fail_Msg" Data="이번주 통합 포인트를 더이상 획득할 수 없습니다."/>
 		<Class ClassID="590001" ClassName="Weekly_Total_Point_Get_Success_Msg{Point}{NowPoint}{MaxPoint}{TotalPoint}" Data="{#33FF33}{Point}의 통합 포인트를 획득했습니다.{nl}(주간 획득 가능한 통합 포인트 : {NowPoint}/{MaxPoint}){nl}(현재 누적된 통합 포인트 : {TotalPoint}){/}"/>
 		<Class ClassID="590002" ClassName="CONTENTS_TOTAL_SHOP" Data="콘텐츠 통합 상점"/>
-		<Class ClassID="590003" ClassName="CONTENTS_TOTAL_SHOP_Tooltip" Data="다양한 콘텐츠를 클리어해 통합 포인트를 획득할 수 있습니다.{nl}- 레벨 던전 : 10{nl}- 유니크 레이드 : 20{nl}- 유니크 레이드(캐주얼) : 20{nl}- 레전드 레이드 : 85{nl} *벨코퍼의 둥지, 대지의 탑 콘텐츠 : 250{nl}- 레전드 레이드(캐주얼) : 30{nl}- 업힐 디펜스 미션(보통 10단계 이상) : 5{nl}- 업힐 디펜스 미션(어려움 5단계 이상) : 20{nl}- 업힐 디펜스 미션(매우 어려움 5단계 이상) : 50{nl}- 챌린지 모드(5단계 이상) : 5{nl}- 챌린지 모드(6단계 이상) : 20{nl}- 챌린지 모드(7단계 이상) : 30{nl}* 통합 포인트는 주간 최대 2000 포인트까지 팀 단위로 누적됩니다.{nl}* 주간 누적량은 매주 월요일 오전 6시에 초기화됩니다.{nl}* 누적된 통합 포인트는 3개월 단위로 초기화됩니다."/>
+		<Class ClassID="590003" ClassName="CONTENTS_TOTAL_SHOP_Tooltip" Data="다양한 콘텐츠를 클리어해 통합 포인트를 획득할 수 있습니다.{nl}- 레벨 던전 : 10{nl}- 유니크 레이드 : 20{nl}- 유니크 레이드(1인) : 20{nl}- 레전드 레이드 : 85{nl} *벨코퍼의 둥지, 대지의 탑 콘텐츠 : 250{nl}- 레전드 레이드(1인) : 30{nl}- 업힐 디펜스 미션(보통 10단계 이상) : 5{nl}- 업힐 디펜스 미션(어려움 5단계 이상) : 20{nl}- 업힐 디펜스 미션(매우 어려움 5단계 이상) : 50{nl}- 챌린지 모드(5단계 이상) : 5{nl}- 챌린지 모드(6단계 이상) : 20{nl}- 챌린지 모드(7단계 이상) : 30{nl}* 통합 포인트는 주간 최대 2000 포인트까지 팀 단위로 누적됩니다.{nl}* 주간 누적량은 매주 월요일 오전 6시에 초기화됩니다.{nl}* 누적된 통합 포인트는 3개월 단위로 초기화됩니다."/>
 		<Class ClassID="590004" ClassName="Weekly_Total_Point_Get_Success_Msg_command" Data="{#33FF33}현재 누적된 통합 포인트 : {TotalPoint}{nl}(주간 획득 가능한 통합 포인트 : {NowPoint}/{MaxPoint}){/}"/>
 	</Category>
 	<Category Name="RiftDungeon">
@@ -15382,5 +15443,21 @@
 		<Class ClassID="596004" ClassName="Note" Data="수첩"/>
 		<Class ClassID="596005" ClassName="Acquire_State" Data="획득 현황"/>
 		<Class ClassID="596006" ClassName="STAMP_TOUR" Data="스탬프 투어"/>
+		<Class ClassID="596007" ClassName="EVENT_YOUR_MASTER_TITLE" Data="당신의 마스터"/>
+		<Class ClassID="596008" ClassName="EVENT_YOUR_MASTER_DESC" Data="투표하기"/>
+		<Class ClassID="596009" ClassName="now_ranking" Data="순위 현황"/>
+		<Class ClassID="596010" ClassName="prev_ranking" Data="지난 투표 결과"/>
+		<Class ClassID="596011" ClassName="AccVoteReward" Data="누적 투표 보상"/>
+		<Class ClassID="596012" ClassName="EVENT_YOUR_MASTER_TOOLTIP_WEEK_1" Data="1주차: 8월 20일 점검 후 ~ 8월 27일 오전 00시 {nl}"/>
+		<Class ClassID="596013" ClassName="EVENT_YOUR_MASTER_TOOLTIP_WEEK_2" Data="2주차: 8월 27일 오전 06시 ~ 9월 3일 오전 00시 {nl}"/>
+		<Class ClassID="596014" ClassName="EVENT_YOUR_MASTER_TOOLTIP_WEEK_3" Data="3주차: 9월 3일 오전 06시 ~ 9월  10일 오전 00시 {nl}"/>
+		<Class ClassID="596015" ClassName="EVENT_YOUR_MASTER_TOOLTIP_WEEK_4" Data="4주차: 9월 10일 오전 06시 ~ 9월 17일 점검 전 {nl}"/>
+		<Class ClassID="596016" ClassName="RankingUpdateTime10Min" Data="(순위는 10분마다 갱신됩니다.)"/>
+		<Class ClassID="596017" ClassName="AcquireRewardMessage" Data="보상을 획득하였습니다."/>
+		<Class ClassID="596018" ClassName="NotVoteTime" Data="투표 가능한 시간이 아닙니다."/>
+		<Class ClassID="596019" ClassName="OnlyVoteInTown" Data="마을에서만 투표할 수 있습니다."/>
+		<Class ClassID="596020" ClassName="NotEnoughVoteMaterial" Data="투표권이 없습니다."/>
+		<Class ClassID="596021" ClassName="ImpossibleVoteObj" Data="투표가능한 대상이 아닙니다."/>
+		<Class ClassID="596022" ClassName="OnlyInputNumberText" Data="숫자만 입력해주세요"/>
 	</Category>
 </idspace>

@@ -5,10 +5,10 @@ ClassID,UnlockClassLevel,MaxLevel,ClassName,Type,SkillName
 10104,1,5,Char1_1_4,Skill,Swordman_Bear
 10105,1,5,Char1_1_5,Skill,Swordman_PainBarrier
 10106,1,1,Char1_1_6,Skill,Swordman_Liberate
-10201,1,15,Char1_2_1,Skill,Highlander_WagonWheel
+10201,1,1,Char1_2_1,Skill,Highlander_WagonWheel
 10202,1,15,Char1_2_2,Skill,Highlander_CartarStroke
-10203,1,15,Char1_2_3,Skill,Highlander_Crown
-10204,1,15,Char1_2_4,Skill,Highlander_CrossCut
+10203,1,10,Char1_2_3,Skill,Highlander_Crown
+10204,1,5,Char1_2_4,Skill,Highlander_CrossCut
 10205,16,10,Char1_2_5,Skill,Highlander_CrossGuard
 10206,16,10,Char1_2_6,Skill,Highlander_SkyLiner
 10207,31,5,Char1_2_7,Skill,Highlander_Moulinet
@@ -300,7 +300,7 @@ ClassID,UnlockClassLevel,MaxLevel,ClassName,Type,SkillName
 30307,31,5,Char3_3_7,Skill,QuarrelShooter_BlockAndShoot
 30401,1,15,Char3_4_1,Skill,Ranger_Barrage
 30402,1,15,Char3_4_2,Skill,Ranger_HighAnchoring
-30403,1,15,Char3_4_3,Skill,Ranger_SteadyAim
+30403,1,5,Char3_4_3,Skill,Ranger_SteadyAim
 30404,16,10,Char3_4_4,Skill,Ranger_CriticalShot
 30405,16,10,Char3_4_5,Skill,Ranger_SpiralArrow
 30406,31,5,Char3_4_6,Skill,Ranger_BounceShot
@@ -321,7 +321,7 @@ ClassID,UnlockClassLevel,MaxLevel,ClassName,Type,SkillName
 30607,16,10,Char3_6_6,Skill,Wugushi_WideMiasma
 30608,31,5,Char3_6_7,Skill,Wugushi_CrescendoBane
 31101,1,15,Char3_11_1,Skill,Fletcher_BroadHead
-31102,1,15,Char3_11_2,Skill,Fletcher_BodkinPoint
+31102,1,5,Char3_11_2,Skill,Fletcher_BodkinPoint
 31103,1,15,Char3_11_3,Skill,Fletcher_BarbedArrow
 31104,16,10,Char3_11_4,Skill,Fletcher_CrossFire
 31105,16,10,Char3_11_5,Skill,Fletcher_Singijeon

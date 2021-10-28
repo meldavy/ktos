@@ -225,7 +225,7 @@ function SCR_ABIL_HIGHLANDER9_ACTIVE(self, ability)
     end
     
     local rItem  = GetEquipItem(self, 'RH');
-    if rItem.ClassType == "THSword" then
+    if rItem.ClassType == "THSword" or rItem.ClassType == "Sword" then
         AddBuff(self, self, "Highlander9_Buff");
     end
 end
@@ -1254,41 +1254,41 @@ function SCR_ABIL_Murmillo28_INACTIVE(self, ability)
 end
 
 function SCR_ABIL_Highlander42_ACTIVE(self, ability)
-    local skill = GetSkill(self, "Highlander_SkyLiner");
-    if skill ~= nil then
-        local shootTime = TryGetProp(skill, "ShootTime", 0)
-        local cancelTime = TryGetProp(skill, "CancelTime", 0)
+    -- local skill = GetSkill(self, "Highlander_SkyLiner");
+    -- if skill ~= nil then
+    --     local shootTime = TryGetProp(skill, "ShootTime", 0)
+    --     local cancelTime = TryGetProp(skill, "CancelTime", 0)
 
-        SetExProp(ability, "Highlander42_shootTime", shootTime)
-        SetExProp(ability, "Highlander42_cancelTime", cancelTime)
+    --     SetExProp(ability, "Highlander42_shootTime", shootTime)
+    --     SetExProp(ability, "Highlander42_cancelTime", cancelTime)
 
-        skill.ShootTime = 30000
-        skill.CancelTime = 30000
-        skill.CastingCategory = "channeling"
+    --     skill.ShootTime = 30000
+    --     skill.CancelTime = 30000
+    --     skill.CastingCategory = "channeling"
 
-        SetSkillOverHeat(self, TryGetProp(skill, "ClassName", "None"), 0, 1);
-        RequestResetOverHeat(self, "SkyLiner_OH")
+    --     SetSkillOverHeat(self, TryGetProp(skill, "ClassName", "None"), 0, 1);
+    --     RequestResetOverHeat(self, "SkyLiner_OH")
 
-        InvalidateSkill(self, skill.ClassName);
-        SendSkillProperty(self, skill);
-    end 
+    --     InvalidateSkill(self, skill.ClassName);
+    --     SendSkillProperty(self, skill);
+    -- end 
 end
 
 function SCR_ABIL_Highlander42_INACTIVE(self, ability)
-    local skill = GetSkill(self, "Highlander_SkyLiner");
-    if skill ~= nil then
-        local shootTime = GetExProp(ability, "Highlander42_shootTime")
-        local cancelTime = GetExProp(ability, "Highlander42_cancelTime")
+    -- local skill = GetSkill(self, "Highlander_SkyLiner");
+    -- if skill ~= nil then
+    --     local shootTime = GetExProp(ability, "Highlander42_shootTime")
+    --     local cancelTime = GetExProp(ability, "Highlander42_cancelTime")
 
-        skill.ShootTime = shootTime
-        skill.CancelTime = cancelTime
-        skill.CastingCategory = "instant"
+    --     skill.ShootTime = shootTime
+    --     skill.CancelTime = cancelTime
+    --     skill.CastingCategory = "instant"
 
-        SetSkillOverHeat(self, TryGetProp(skill, "ClassName", "None"), 5, 1);
-        RequestResetOverHeat(self, "SkyLiner_OH")
-        InvalidateSkill(self, skill.ClassName);
-        SendSkillProperty(self, skill)
-    end
+    --     SetSkillOverHeat(self, TryGetProp(skill, "ClassName", "None"), 5, 1);
+    --     RequestResetOverHeat(self, "SkyLiner_OH")
+    --     InvalidateSkill(self, skill.ClassName);
+    --     SendSkillProperty(self, skill)
+    -- end
 end
 
 function SCR_ABIL_Rodelero41_ACTIVE(self, ability)
@@ -1414,6 +1414,11 @@ function SCR_ABIL_Appraiser7_ACTIVE(self, ability)
         skill.Attribute = "Fire";
         SetExProp_Str(self, "Appraiser7_Attribute", attribute);
         SetSkillOverHeat(self, skill.ClassName, 0, 1);
+
+        skill.CastingCategory = "channeling"
+
+        InvalidateSkill(self, skill.ClassName);
+        SendSkillProperty(self, skill);
     end
 end
 
@@ -1423,6 +1428,11 @@ function SCR_ABIL_Appraiser7_INACTIVE(self, ability)
         local attribute = GetExProp_Str(self, "Appraiser7_Attribute");
         skill.Attribute = attribute;
         SetSkillOverHeat(self, skill.ClassName, 3, 1);
+
+        skill.CastingCategory = "instant"
+
+        InvalidateSkill(self, skill.ClassName);
+        SendSkillProperty(self, skill);
     end
 end
 
@@ -1759,7 +1769,15 @@ function SCR_ABIL_Fletcher34_ACTIVE(self, ability)
     local skill = GetSkill(self, "Fletcher_Singijeon");
     if skill ~= nil then
         AddBuff(self, self, "Singijeon_Hidden_Buff");
-        SetSkillOverHeat(self, skill.ClassName, 0, 1);
+        local shootTime = TryGetProp(skill, "ShootTime", 0)
+        local cancelTime = TryGetProp(skill, "CancelTime", 0)
+        SetExProp(ability, "Mergen24_shootTime", shootTime)
+        SetExProp(ability, "Mergen24_cancelTime", cancelTime)
+        skill.ShootTime = 500
+        skill.CancelTime = 500
+        skill.CastingCategory = "instant"
+        InvalidateSkill(self, skill.ClassName);
+        SendSkillProperty(self, skill);
     end
 end
 
@@ -1767,7 +1785,13 @@ function SCR_ABIL_Fletcher34_INACTIVE(self, ability)
     local skill = GetSkill(self, "Fletcher_Singijeon");
     if skill ~= nil then
         RemoveBuff(self, "Singijeon_Hidden_Buff");
-        SetSkillOverHeat(self, skill.ClassName, 3, 1);
+        local shootTime = GetExProp(ability, "Mergen24_shootTime")
+        local cancelTime = GetExProp(ability, "Mergen24_cancelTime")
+        skill.ShootTime = shootTime
+        skill.CancelTime = cancelTime
+        skill.CastingCategory = "channeling"
+        InvalidateSkill(self, skill.ClassName);
+        SendSkillProperty(self, skill);
     end
 end
 
@@ -2437,6 +2461,7 @@ function SCR_ABIL_Pyromancer38_ACTIVE(self, ability)
     if skill ~= nil then
         skill.UseType = "FORCE"
         skill.Target = "Actor"
+        skill.MaxRValue = 200
         
         InvalidateSkill(self, skill.ClassName);
         SendSkillProperty(self, skill);
@@ -2448,6 +2473,10 @@ function SCR_ABIL_Pyromancer38_INACTIVE(self, ability)
     if skill ~= nil then
         skill.UseType = "MELEE_GROUND"
         skill.Target = "Front"
+        skill.MaxRValue = 100
+        
+        InvalidateSkill(self, skill.ClassName);
+        SendSkillProperty(self, skill);
     end
 end
 
@@ -2624,8 +2653,6 @@ end
 function SCR_ABIL_Mergen24_ACTIVE(self, ability)
     local skill = GetSkill(self, "Mergen_DownFall");
     if skill ~= nil then
-        SetSkillOverHeat(self, skill.ClassName, 0)
-        RequestResetOverHeat(self, "DownFall_OH")
         local shootTime = TryGetProp(skill, "ShootTime", 0)
         local cancelTime = TryGetProp(skill, "CancelTime", 0)
         SetExProp(ability, "Mergen24_shootTime", shootTime)
@@ -2643,8 +2670,6 @@ end
 function SCR_ABIL_Mergen24_INACTIVE(self, ability)
     local skill = GetSkill(self, "Mergen_DownFall");
     if skill ~= nil then
-        SetSkillOverHeat(self, skill.ClassName, 2)
-        RequestResetOverHeat(self, "DownFall_OH")
         local shootTime = GetExProp(ability, "Mergen24_shootTime")
         local cancelTime = GetExProp(ability, "Mergen24_cancelTime")
         skill.ShootTime = shootTime
@@ -2821,6 +2846,51 @@ function SCR_ABIL_Thaumaturge23_INACTIVE(self, ability)
     if skill ~= nil then
         SetSkillOverHeat(self, skill.ClassName, 2)
         RequestResetOverHeat(self, "ShrinkBody_OH")
+        InvalidateSkill(self, skill.ClassName);
+        SendSkillProperty(self, skill);
+    end
+end
+
+function SCR_ABIL_Ranger47_ACTIVE(self, ability)
+    local skill = GetSkill(self, "Ranger_SteadyAim");
+    if skill ~= nil then
+        RemoveBuff(self, "SteadyAim_Buff");
+    end
+end
+
+function SCR_ABIL_Ranger47_INACTIVE(self, ability)
+    local skill = GetSkill(self, "Ranger_SteadyAim");
+    if skill ~= nil then
+        RemoveBuff(self, "SteadyAim_Buff");
+    end
+end
+
+function SCR_ABIL_Templar11_ACTIVE(self, ability)
+    local skill = GetSkill(self, "Templer_BuildForge");
+    if skill ~= nil then
+        local shootTime = TryGetProp(skill, "ShootTime", 0)
+        local cancelTime = TryGetProp(skill, "CancelTime", 0)
+
+        SetExProp(ability, "Mergen24_shootTime", shootTime)
+        SetExProp(ability, "Mergen24_cancelTime", cancelTime)
+
+        skill.ShootTime = 200
+        skill.CancelTime = 200
+
+        InvalidateSkill(self, skill.ClassName);
+        SendSkillProperty(self, skill);
+    end
+end
+
+function SCR_ABIL_Templar11_INACTIVE(self, ability)
+    local skill = GetSkill(self, "Templer_BuildForge");
+    if skill ~= nil then
+        local shootTime = GetExProp(ability, "Mergen24_shootTime")
+        local cancelTime = GetExProp(ability, "CancelTime")
+
+        skill.ShootTime = shootTime
+        skill.CancelTime = cancelTime
+
         InvalidateSkill(self, skill.ClassName);
         SendSkillProperty(self, skill);
     end

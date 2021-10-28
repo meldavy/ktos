@@ -1734,6 +1734,7 @@ function DRAW_CANNOT_REINFORCE(tooltipframe, invitem, yPos, mainframename)
 	local extract_flag = 0
 	local socket_flag = 0
 	local briquet_flag = 0;
+	local briquet_Valid_flag = 0
 	local exchange_flag = TryGetProp(invitem, 'Rebuildchangeitem', 0);
 	local text = ""
 
@@ -1764,6 +1765,11 @@ function DRAW_CANNOT_REINFORCE(tooltipframe, invitem, yPos, mainframename)
 		extract_flag = 1
 	end
 
+    if TryGetProp(itemClass, "BriquetingAble", "No") == "No" or TryGetProp(itemClass, "StringArg", "None") == "WoodCarving" then
+        briquet_Valid_flag = 1
+    end
+    
+    if invitem.MaxSocket > 100 then invitem.MaxSocket = 0 end
 	if invitem.MaxSocket == 0 then
 		socket_flag = 1
 	end
@@ -1797,7 +1803,7 @@ function DRAW_CANNOT_REINFORCE(tooltipframe, invitem, yPos, mainframename)
 
 		local _text = text..targetText;
 		if appendComma ~= false then
-			_text = _text..',';
+			_text = _text..', ';
 		end
 		return _text;
 	end
@@ -1809,12 +1815,13 @@ function DRAW_CANNOT_REINFORCE(tooltipframe, invitem, yPos, mainframename)
 	text = _APPEND_LIMITATION_TEXT(extract_flag, text, CSet:GetUserConfig("EXTRACT_TEXT"));
 	text = _APPEND_LIMITATION_TEXT(socket_flag, text, CSet:GetUserConfig("SOCKET_TEXT"));
 	text = _APPEND_LIMITATION_TEXT(briquet_flag, text, CSet:GetUserConfig("BRIQUET_TEXT"));
+	text = _APPEND_LIMITATION_TEXT(briquet_Valid_flag, text, CSet:GetUserConfig("BRIQUET_VALID_TEXT"));
 	text = _APPEND_LIMITATION_TEXT(exchange_flag, text, CSet:GetUserConfig("EXCHANGE_TEXT"));
 	text = _APPEND_LIMITATION_TEXT(awaken_flag, text, CSet:GetUserConfig("AWAKEN_TEXT"));
 	text = _APPEND_LIMITATION_TEXT(enchant_flag, text, CSet:GetUserConfig("ENCHANT_TEXT"))
 
-	if text:sub(-#',') == ',' then
-		text = text:sub(0, text:len() - 1);
+	if text:sub(-#', ') == ', ' then
+		text = text:sub(0, text:len() - 2);
 	end
 
 	socket_text:SetText(text);
