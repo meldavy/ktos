@@ -4293,9 +4293,6 @@ function ON_UPDATE_TRUST_POINT(frame, msg, argStr, trustPoint)
 	trustPointText:SetTextByKey("trustPoint", trustPoint - 1);
 	trustPointGbox:SetTooltipType('trust_point');
 	trustPointGbox:SetTooltipOverlap(1);
-	if config.GetServiceNation() == "GLOBAL" then
-		trustPointGbox:SetTooltipType("trust_point_global");
-	end
 end
 
 function SELECT_INVENTORY_TAB(frame, tabIndex)
