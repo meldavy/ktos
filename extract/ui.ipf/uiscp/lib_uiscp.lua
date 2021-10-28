@@ -21,14 +21,38 @@ function INIT_MAP_PICTURE_UI(pic, mapName, hitTest)
 
 end
 
-function DISABLE_BUTTON_DOUBLECLICK(framename,buttonname)
+function DISABLE_BUTTON_DOUBLECLICK_WITH_CHILD(framename,childname,buttonname)
 
+	local frame = ui.GetFrame(framename)
+	local child = GET_CHILD_RECURSIVELY(frame,childname)
+	local btn = GET_CHILD_RECURSIVELY(child,buttonname)
+
+	local strScp = string.format("ENABLE_BUTTON_DOUBLECLICK_WITH_CHILD(\"%s\",\"%s\", \"%s\")", framename, childname, buttonname);
+
+	ReserveScript(strScp, 5);
+	btn:SetEnable(0)
+end
+
+function ENABLE_BUTTON_DOUBLECLICK_WITH_CHILD(framename,childname,buttonname)
+
+	local frame = ui.GetFrame(framename)
+	local child = GET_CHILD_RECURSIVELY(frame,childname)
+	local btn = GET_CHILD_RECURSIVELY(child,buttonname)
+	btn:SetEnable(1)
+
+end
+
+function DISABLE_BUTTON_DOUBLECLICK(framename,buttonname, sec)
+	local delay = 5;
+	if sec ~= nil then
+		delay = sec;
+	end
 	local frame = ui.GetFrame(framename)
 	local btn = GET_CHILD_RECURSIVELY(frame,buttonname)
 
 	local strScp = string.format("ENABLE_BUTTON_DOUBLECLICK(\"%s\", \"%s\")", framename, buttonname);
 
-	ReserveScript(strScp, 5);
+	ReserveScript(strScp, delay);
 	btn:SetEnable(0)
 end
 
@@ -286,7 +310,7 @@ function SET_MAP_MONGEN_NPC_INFO(picture, mapprop, WorldPos, MonProp, mapNpcStat
 
 	local cheat = string.format("//setpos %d %d %d", WorldPos.x, WorldPos.y, WorldPos.z);
 	local scpstr = string.format( "ui.Chat(\"%s\")", cheat);
-	picture:SetEventScript(ui.LBUTTONUP, scpstr);
+	picture:SetEventScript(ui.LBUTTONUP, scpstr, true);
 
 	local idx = GET_NPC_STATE(MonProp:GetDialog(), statelist, npclist, questIESlist);
 	local Icon, state, questclsid, iconState = GET_NPC_ICON(idx, statelist, questIESlist);
@@ -445,6 +469,7 @@ function GET_QUEST_NPC_NAMES(mapname, npclist, statelist, questIESList, questPro
 	local pc = GetMyPCObject();
 	local questIES = nil;
 	local cnt = GetClassCount('QuestProgressCheck')
+	local subQuestZoneList = {}
 	for i = 0, cnt - 1 do
 		questIES = GetClassByIndex('QuestProgressCheck', i);
 		if questIES.ClassName ~= 'None' then
@@ -466,8 +491,9 @@ function GET_QUEST_NPC_NAMES(mapname, npclist, statelist, questIESList, questPro
     				    flag = 1
     				end
     		    end
-    		    
-    		    if result == "POSSIBLE" and SCR_POSSIBLE_UI_OPEN_CHECK(pc, questIES) == "HIDE" then
+    		    local result2
+    		    result2, subQuestZoneList = SCR_POSSIBLE_UI_OPEN_CHECK(pc, questIES, subQuestZoneList, 'ZoneMap')
+    		    if result == "POSSIBLE" and result2 == "HIDE" then
     		        flag = 0
     		    end
     		    
@@ -488,4 +514,40 @@ function GET_QUEST_NPC_NAMES(mapname, npclist, statelist, questIESList, questPro
 		end
 	end
 
+end
+
+function GET_JOB_ICON(job)
+
+	local cls = GetClassByType("Job", job);
+	if cls == nil then
+		return "None";
+	end
+
+	return cls.Icon;
+
+end
+
+
+function GET_MON_ILLUST(monCls)
+
+	if monCls == nil then
+		return "unknown_monster";
+	end
+
+	local name = monCls.Journal;
+	if ui.IsImageExist(name) == true then
+		return name;
+	end
+	
+	name = "mon_"..name
+	if ui.IsImageExist(name) == true then
+		return name;
+	end
+
+	name = monCls.Icon;
+	if ui.IsImageExist(name) == true then
+		return name;
+	end
+	
+	return "unknown_monster";
 end
