@@ -399,8 +399,12 @@ function INDUNENTER_MAKE_MONLIST(frame, indunCls)
    
      -- 챌린지 모드 자동매칭 분열 위치 표시 처리
     if indunCls ~= nil and TryGetProp(indunCls, "PlayPerResetType") == 816 then
-        INDUNENTER_MAKE_CHALLENGE_DIVISION_HELP_TEXT(frame, indunCls);
-        return;
+        if frame:GetName() == "induninfo" then
+            INDUNENTER_MAKE_CHALLENGE_DIVISION_HELP_TEXT(frame, indunCls);
+            return;
+        else
+            INDUNENTER_SHOW_WINDOW_MONBOX(frame, 1);
+        end
     else
         INDUNENTER_SHOW_WINDOW_MONBOX_AND_REWARDBOX(frame, 1);
     end
