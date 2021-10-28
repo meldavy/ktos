@@ -4525,6 +4525,54 @@
         <Key Name="dress_toswinter_5" Value="108105"/>
         <Key Name="dress_toswinter_6" Value="108110"/>
         <Key Name="toswinter_thema" Value="108097"/>
+        <Key Name="EVENT_LUCKYBREAK_REINFORCE_TIME" Value="108117"/>
+        <Key Name="EVENT_LUCKYBREAK_REINFORCE_TRY_COUNT" Value="108116"/>
+        <Key Name="EVENT_LUCKYBREAK_REINFORCE_VALUE" Value="108118"/>
+        <Key Name="EVENT_LUCKYBREAK_DT_COUNT" Value="108134"/>
+        <Key Name="EVENT_LUCKYBREAK_IS_GET_ANVIL" Value="108148"/>
+        <Key Name="EVENT_LUCKYBREAK_IS_GET_ANVIL_LIMIT" Value="108129"/>
+        <Key Name="EVENT_LUCKYBREAK_IS_GET_Equipment" Value="108142"/>
+        <Key Name="EVENT_LUCKYBREAK_MAXIMUM_RECORD" Value="108151"/>
+        <Key Name="Temporary_Num_1" Value="108156"/>
+        <Key Name="Temporary_Num_10" Value="108158"/>
+        <Key Name="Temporary_Num_11" Value="108132"/>
+        <Key Name="Temporary_Num_12" Value="108160"/>
+        <Key Name="Temporary_Num_13" Value="108149"/>
+        <Key Name="Temporary_Num_14" Value="108136"/>
+        <Key Name="Temporary_Num_15" Value="108150"/>
+        <Key Name="Temporary_Num_16" Value="108120"/>
+        <Key Name="Temporary_Num_17" Value="108126"/>
+        <Key Name="Temporary_Num_18" Value="108121"/>
+        <Key Name="Temporary_Num_19" Value="108130"/>
+        <Key Name="Temporary_Num_2" Value="108140"/>
+        <Key Name="Temporary_Num_20" Value="108135"/>
+        <Key Name="Temporary_Num_21" Value="108137"/>
+        <Key Name="Temporary_Num_22" Value="108122"/>
+        <Key Name="Temporary_Num_23" Value="108144"/>
+        <Key Name="Temporary_Num_24" Value="108154"/>
+        <Key Name="Temporary_Num_25" Value="108153"/>
+        <Key Name="Temporary_Num_26" Value="108147"/>
+        <Key Name="Temporary_Num_27" Value="108157"/>
+        <Key Name="Temporary_Num_28" Value="108163"/>
+        <Key Name="Temporary_Num_29" Value="108123"/>
+        <Key Name="Temporary_Num_3" Value="108143"/>
+        <Key Name="Temporary_Num_30" Value="108159"/>
+        <Key Name="Temporary_Num_31" Value="108155"/>
+        <Key Name="Temporary_Num_32" Value="108133"/>
+        <Key Name="Temporary_Num_33" Value="108161"/>
+        <Key Name="Temporary_Num_34" Value="108127"/>
+        <Key Name="Temporary_Num_35" Value="108125"/>
+        <Key Name="Temporary_Num_36" Value="108138"/>
+        <Key Name="Temporary_Num_37" Value="108119"/>
+        <Key Name="Temporary_Num_38" Value="108128"/>
+        <Key Name="Temporary_Num_39" Value="108131"/>
+        <Key Name="Temporary_Num_4" Value="108145"/>
+        <Key Name="Temporary_Num_40" Value="108146"/>
+        <Key Name="Temporary_Num_5" Value="108139"/>
+        <Key Name="Temporary_Num_6" Value="108162"/>
+        <Key Name="Temporary_Num_7" Value="108124"/>
+        <Key Name="Temporary_Num_8" Value="108152"/>
+        <Key Name="Temporary_Num_9" Value="108141"/>
     </KeyIDSpc>
     <KeyIDSpc Name="PCEtc">
         <Key Name="Kill_boss_Clymen_Q2" Value="7788"/>

@@ -2214,3 +2214,17 @@ function IS_EXIST_CLASSNAME_IN_LIST(list, value)
     end
     return false;
 end
+
+function IS_INDUN_AUTOMATCH_WAITING()
+    local frame = ui.GetFrame('indunenter')
+    if frame ~= nil then
+        local waiting = frame:GetUserValue('AUTOMATCH_MODE')
+        local with_party = frame:GetUserValue('WITHMATCH_MODE')
+        local finded = frame:GetUserValue('AUTOMATCH_FIND')
+        if waiting == 'YES' or with_party == 'YES' or finded == 'YES' then
+            return true
+        end
+    end
+
+    return false
+end

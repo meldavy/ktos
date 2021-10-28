@@ -415,9 +415,6 @@ function DRAW_EQUIP_COMMON_TOOLTIP_SMALL_IMG(tooltipframe, invitem, mainframenam
 		legendTitle:ShowWindow(1)
 	end
 
-	local gradeName = GET_CHILD_RECURSIVELY(equipCommonCSet, "gradeName")
-	gradeName:SetText(gradeText)
-
 	-- 아이템 배경 이미지 : grade기준
 	local item_bg = GET_CHILD(equipCommonCSet, "item_bg", "ui::CPicture");
 	local needAppraisal = TryGetProp(invitem, "NeedAppraisal");
@@ -500,6 +497,19 @@ function DRAW_EQUIP_COMMON_TOOLTIP_SMALL_IMG(tooltipframe, invitem, mainframenam
 	nameChild:SetText(fullname);
 	nameChild:AdjustFontSizeByWidth(nameChild:GetWidth());		-- 폰트 사이즈를 조정
 	nameChild:SetTextAlign("center","center");				-- 중앙 정렬
+	
+	-- 아이템 등급 세팅
+	local gradeName = GET_CHILD_RECURSIVELY(equipCommonCSet, "gradeName")
+	if 0 < itemClass.ItemGrade then 
+		gradeName:SetText(gradeText)
+		gradeName:ShowWindow(1);
+
+		nameChild:SetMargin(0, 23, 0, 0);
+	else
+		gradeName:ShowWindow(0);
+
+		nameChild:SetMargin(0, 7, 0, 0);
+	end	
 	
 	gBox:Resize(gBox:GetWidth(),gBox:GetHeight()+equipCommonCSet:GetHeight())
 

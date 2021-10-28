@@ -4158,6 +4158,11 @@ function DO_WEAPON_SWAP(frame, index)
 	if pc == nil then
 		return;
 	end
+
+	if IS_INDUN_AUTOMATCH_WAITING() == true then
+		ui.SysMsg(ClMsg('EscapeDisabledDuringMatching'))
+		return;
+	end
 	
 	if IsBuffApplied(pc, 'Instrument_Use_Buff') == 'YES' then
 		return;

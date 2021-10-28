@@ -5744,7 +5744,7 @@ end
 
 -- done , 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_GET_DivineMight_BuffTime(skill)
-    local value = 20
+    local value = 20 + skill.Level * 0.5
     local pc = GetSkillOwner(skill)
 
     local abilOracle20 = GetAbility(pc, "Oracle20");
@@ -14741,6 +14741,8 @@ function SCR_COMMON_COOLDOWN_DECREASE(pc, skill, basicCoolDown)
     --     end
     -- end
     
+    -- 여신 방어구 체크
+    if IsPVPField(pc) ~= 1 and IsPVPServer(pc) ~= 1 then
     local tempskill = GetSkill(pc, TryGetProp(skill, "ClassName", "None"))
 -- 바카리네 방어구
     if tempskill ~= nil and GetExProp(pc, 'ep12_vakarine_leather_stack') > 0 and IsShieldSkill(TryGetProp(tempskill, 'ClassName', 'None')) == 1 and TryGetProp(tempskill, 'ValueType', 'None') == 'Attack' then 
@@ -14762,6 +14764,7 @@ function SCR_COMMON_COOLDOWN_DECREASE(pc, skill, basicCoolDown)
         elseif TryGetProp(tempskill, 'CastingCategory', 'None') == 'dynamic_casting' and TryGetProp(tempskill, 'ValueType', 'None') == 'Attack' then
             basicCoolDown = basicCoolDown * (1 - (0.05 * 0.75 * stack)) -- 부위당 3.75%
         end
+    end
     end
     
 	-- 2021 근본 인장
@@ -16111,4 +16114,15 @@ function SCR_Get_Zhendu_Ratio3(skill)
     local value = (15*pcLv) + (sklLv*pcLv*3.3)
     value = value * SCR_REINFORCEABILITY_TOOLTIP(skill)
     return math.floor(value)
+end
+
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
+function SCR_Get_SkillFactor_Matador_Muleta_Faena(skill)
+    local value = 100
+    local pc = GetSkillOwner(skill)
+    local faena_skill = GetSkill(pc, 'Matador_Faena')
+    if faena_skill ~= nil then
+        value = TryGetProp(faena_skill, 'SkillFactor', 100)
+    end
+    return value
 end

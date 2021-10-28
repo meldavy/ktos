@@ -63,6 +63,8 @@ function REINFORCE_131014_UPDATE_MORU_COUNT(frame)
 	hitCountDesc:ShowWindow(1);
 	hitPriceDesc:ShowWindow(1);
 	fromPRTxt:ShowWindow(1);
+
+	local moruObj = GetIES(fromMoru:GetObject());
 	local fromItemObj = GetIES(fromItem:GetObject());
 	local toItemObj = GetIES(fromMoru:GetObject());
 	local hitCount = GET_REINFORCE_HITCOUNT(fromItemObj, toItemObj);
@@ -74,9 +76,15 @@ function REINFORCE_131014_UPDATE_MORU_COUNT(frame)
 		prColor = '#ff1212'
 	end
 	fromPRTxt:SetTextByKey('color', prColor)
-	fromPRTxt:SetTextByKey('value', fromItemPR)
+	fromPRTxt:SetTextByKey('value', ClMsg("PR").." "..fromItemPR)
+	REINFORCE_SKIP_OPTION_DRAW(frame, 1);
 
-	local moruObj = GetIES(fromMoru:GetObject());
+	-- Event_LuckyBreak
+	if ENABLE_EVENT_LUCKYBREAK_REINFOCE(fromItemObj, TryGetProp(moruObj, "StringArg", "None")) == true then
+		fromPRTxt:SetTextByKey('value', ClMsg("SHOWLIST_ITEM_TYPE_4"))
+		REINFORCE_SKIP_OPTION_DRAW(frame, 0);
+	end
+	
 	local pc = GetMyPCObject()
 	local price = GET_REINFORCE_PRICE(fromItemObj, moruObj, pc);
 	local msg = GET_COMMAED_STRING(price)
@@ -137,17 +145,25 @@ function REINFORCE_131014_IS_ABLE(frame)
 	return true;
 end
 
-function REINFORCE_131014_MSGBOX(frame)
-    
+function REINFORCE_131014_MSGBOX(frame)    
 	local fromItem, fromMoru = GET_REINFORCE_TARGET_AND_MORU(frame);
 	local fromItemObj = GetIES(fromItem:GetObject());
+	local moruObj = GetIES(fromMoru:GetObject());
+	
+	-- Event_LuckyBreak
+	if ENABLE_EVENT_LUCKYBREAK_REINFOCE(fromItemObj, TryGetProp(moruObj, "StringArg", "None")) == true then
+		REINFORCE_131014_EXEC();
+		return;
+	end
+
 	local curReinforce = fromItemObj.Reinforce_2;
 	local curPR = fromItemObj.PR;
-	local moruObj = GetIES(fromMoru:GetObject());
+
 	local not_destory, moru_type = IS_MORU_NOT_DESTROY_TARGET_ITEM(moruObj)
     local isDanger = (curPR == 0 and not_destory == false)
     local skipWarning = REINFORCE_131014_SKIP_OVER5_INFO()
 	local pc = GetMyPCObject();
+
 	local price = GET_REINFORCE_PRICE(fromItemObj, moruObj, pc)	
     local retPrice, retCouponList = SCR_REINFORCE_COUPON_PRECHECK(pc, price)
 	if IsGreaterThanForBigNumber(retPrice, GET_TOTAL_MONEY_STR()) == 1 then
@@ -159,7 +175,6 @@ function REINFORCE_131014_MSGBOX(frame)
     DISABLE_BUTTON_DOUBLECLICK("reinforce_131014","exec", 1)
 
     if curReinforce >= 5 then
-
         -- 5강 이상 강화 안내문을 스킵할 경우
         if skipWarning == true then
             if isDanger == true then
@@ -228,14 +243,26 @@ end
 
 function REINFORCE_131014_SKIP_OVER5_INFO()
     local frame = ui.GetFrame("reinforce_131014")
-    local checkbox = AUTO_CAST(frame:GetChild("skipOver5"))
+    local checkbox = AUTO_CAST(GET_CHILD_RECURSIVELY(frame, "skipOver5"))
 
     return checkbox:IsChecked() == 1
 end
 
 function REINFORCE_131014_SKIP_COUPON_INFO()
     local frame = ui.GetFrame("reinforce_131014")
-    local checkbox = AUTO_CAST(frame:GetChild("skipCouponInfo"))
+    local checkbox = AUTO_CAST(GET_CHILD_RECURSIVELY(frame, "skipCouponInfo"))
 
     return checkbox:IsChecked() == 1
+end
+
+function REINFORCE_SKIP_OPTION_DRAW(frame, isValue)
+	local skip_gb = GET_CHILD(frame, "skip_gb");
+	skip_gb:ShowWindow(isValue);
+
+	if isValue == 1 then
+		frame:Resize(420, 460);
+	else
+		frame:Resize(420, 350);
+	end
+
 end

@@ -823,6 +823,8 @@
         <Effect Name="F_ground174_darkRed"/>
         <Effect Name="F_line002_dark_red"/>
         <Effect Name="F_rize004_dark_damballa"/>
+        <Effect Name="F_moru_5"/>
+        <Effect Name="F_moru_4"/>
     </Category>
     <Category ID="144">
         <Effect Name="F_pc_CardBook_ground_dark"/>

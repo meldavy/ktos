@@ -602,12 +602,17 @@ return obj.Level;"/>
 					<Num Num="0"/>
 					<Angle Angle="0"/>
 					<Str Str="None" UseFunc="1" FuncTxt="local value = 'lachrymator_pad'
-local abil = GetAbility(self, 'Rogue26')
-if abil ~= nil then
+                        local abil = GetAbility(self, 'Rogue26')
+                        if abil ~= nil then
     value = 'lachrymator_pad_Rogue26'
-end
-return value"/>
-					<Str Str="remove_buff"/>
+                        end
+                        return value"/>
+                    <Str Str="None" UseFunc="1" FuncTxt="local value = 'remove_buff'
+                        local abil = GetAbility(self, 'Rogue26')
+                        if abil ~= nil and TryGetProp(abil, 'ActiveState', 0) == 1 then
+                            value = 'None'
+                        end
+                        return value"/>
 				</Scp>
 			</EtcList>
 		</MainSkl>
@@ -636,19 +641,38 @@ return value"/>
                             <Str Str="voice_war_atk_medium"/>
                             <Str Str="voice_atk_medium_war_f"/>
                         </Scp>
-                        <Scp Scp="MONSKL_CRE_PAD" Client="NO" UseSleep="NO" Time="450">
+                        <Scp Scp="MSL_PAD_THROW" Client="NO" UseSleep="YES" Time="450">
+                            <Str_Arg Str="I_archer_Lachrymator_force_mash#Bip01 R Hand" Arg="0.60000002"/>
+                            <Str_Arg Str="I_bomb003_dark" Arg="1"/>
+                            <Str_Arg Str="None" Arg="1"/>
                             <Pos Angle="0" Dist="0" PosType="5"/>
+                            <Num Num="0"/>
+                            <Num Num="0"/>
+                            <Num Num="0"/>
+                            <Num Num="50"/>
+                            <Num Num="1"/>
+                            <Num Num="200"/>
+                            <Num Num="0"/>
+                            <Str_Arg Str="None" Arg="1"/>
+                            <Num Num="0"/>
+                            <Num Num="0"/>
                             <Angle Angle="0"/>
                             <Str Str="None" UseFunc="1" FuncTxt="local value = 'lachrymator_pad'
-local abil1 = GetAbility(self, 'Rogue26')
-local abil2 = GetAbility(self, 'Rogue9')
-if abil1 ~= nil then
+                                local abil1 = GetAbility(self, 'Rogue26')
+                                local abil2 = GetAbility(self, 'Rogue9')
+                                if abil1 ~= nil then
     value = 'lachrymator_pad_Rogue26'
-end
-if abil2 ~= nil then
+                                end
+                                if abil2 ~= nil then
     value = 'Rogue_Lachrymator_abil'
-end
-return value"/>
+                                end
+                                return value"/>
+                            <Str Str="None" UseFunc="1" FuncTxt="local value = 'remove_buff'
+                                local abil = GetAbility(self, 'Rogue26')
+                                if abil ~= nil and TryGetProp(abil, 'ActiveState', 0) == 1 then
+                                    value = 'None'
+                                end
+                                return value"/>
                         </Scp>
                     </EtcList>
                 </Skill>

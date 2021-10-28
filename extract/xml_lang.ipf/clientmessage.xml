@@ -9777,6 +9777,7 @@
 		<Class ClassID="92083" ClassName="GILTINE_START_MSG" Data="보스 등장."/>
 		<Class ClassID="92084" ClassName="GACHA_SITEM_GET_ALLMSG_8" Data="{s24}축하드립니다!{nl}{PC} 님이 신년 복주머니 큐브에서{nl}{ITEMNAME} 를(을) 획득하셨습니다!"/>
 		<Class ClassID="92085" ClassName="Relic_Spend_RP_Down_Buff_MSG" Data="[성물 제어] 버프가 부여됩니다.{nl}성물 해방에 필요한 마력 소모량이 감소합니다."/>
+		<Class ClassID="92086" ClassName="GACHA_SITEM_GET_ALLMSG_9" Data="{s24}축하드립니다!{nl}{PC} 님이 웹가챠 회차보상 보너스 큐브에서{nl}{ITEMNAME} 를(을) 획득하셨습니다!"/>
 		<Class ClassID="92087" ClassName="Orgel_MSG5" Data="악기 연주 도중에는 사용할 수 없습니다."/>
 		<Class ClassID="92088" ClassName="Instrument_MSG" Data="악기 사용이 불가능한 상태입니다."/>
 		<Class ClassID="92089" ClassName="Instrument_MSG2" Data="악기 연주 도중에는 친선 대결이 불가능합니다."/>
@@ -10824,6 +10825,7 @@
 		<Class ClassID="111268" ClassName="Ark_wind_desc{base1}{base2}" Data="[질풍] 근접 기본 공격시 3연타 / 원거리 기본 공격시 2연타{nl}3레벨 달성시 기본 공격 대미지 +{base1}%{nl}5레벨 달성시 질풍 발동확률 +{base2}%"/>
 		<Class ClassID="111269" ClassName="Ark_storm_desc{base1}{base2}" Data="[폭풍] 최대 7명의 대상에게 전기 속성 광역 마법 피해{nl}[폭풍 발동] 입힌 피해 또는 스킬 계수에 비례하여 최대 발동확률까지 증가{nl}3레벨 달성시 최대 폭풍 발동 확률 +{base1}%{nl}3레벨 달성시 폭풍 계수 +{base2}%"/>
 		<Class ClassID="111270" ClassName="Ark_thunderbolt_desc{base1}{base2}" Data="[낙뢰] 단일 대상에게 전기 속성 마법 피해{nl}[낙뢰 발동] 입힌 피해 또는 스킬 계수에 비례하여 최대 발동확률까지 증가{nl}3레벨 달성시 최대 낙뢰 발동 확률 +{base1}%{nl}3레벨 달성시 낙뢰 계수 +{base2}%"/>
+		<Class ClassID="111271" ClassName="Ark_pc_storm_desc{base1}{base2}" Data="[폭풍] 최대 7명의 대상에게 전기 속성 광역 피해{nl}[폭풍 발동] 입힌 피해에 비례하여 최대 발동확률까지 증가{nl}3레벨 달성시 최대 폭풍 발동 확률 +{base1}%{nl}3레벨 달성시 폭풍 계수 +{base2}%"/>
 		<Class ClassID="111272" ClassName="Arrow_Atk" Data="활 대미지 증가"/>
 		<Class ClassID="111273" ClassName="Cannon_Atk" Data="캐논 대미지 증가"/>
 		<Class ClassID="111274" ClassName="Gun_Atk" Data="총기 대미지 증가"/>
@@ -10883,6 +10885,13 @@
 		<Class ClassID="111328" ClassName="DECREASE_ATK" Data="공격력 감소"/>
 		<Class ClassID="111329" ClassName="RelicOptionEnableEquipGemLevel" Data="{@st66d}{s16}[장착 가능한 성물 젬 레벨] {@st66d_y}{s15}{value}{/}{/}"/>
 		<Class ClassID="111330" ClassName="RelicGem_OMEN_EDGEWISE_DescText" Data="전방 150 범위 대상 5명에게 대미지를 주고 4초 동안 디버프를 부여합니다. 자신이 디버프 대상에게 주는 대미지가 증가합니다."/>
+		<Class ClassID="111332" ClassName="Event_Ark_wind_desc{base1}{base2}" Data="[질풍] 근접 기본 공격시 3연타 / 원거리 기본 공격시 2연타{nl}3레벨 달성시 기본 공격 대미지 +{base1}%{nl}5레벨 달성시 질풍 발동확률 +{base2}%"/>
+		<Class ClassID="111333" ClassName="Event_Ark_storm_desc{base1}{base2}" Data="[폭풍] 최대 7명의 대상에게 전기 속성 광역 마법 피해{nl}[폭풍 발동] 입힌 피해 또는 스킬 계수에 비례하여 최대 발동확률까지 증가{nl}3레벨 달성시 최대 폭풍 발동 확률 +{base1}%{nl}3레벨 달성시 폭풍 계수 +{base2}%"/>
+		<Class ClassID="111334" ClassName="Event_Ark_thunderbolt_desc{base1}{base2}" Data="[낙뢰] 단일 대상에게 전기 속성 마법 피해{nl}[낙뢰 발동] 입힌 피해 또는 스킬 계수에 비례하여 최대 발동확률까지 증가{nl}3레벨 달성시 최대 낙뢰 발동 확률 +{base1}%{nl}3레벨 달성시 낙뢰 계수 +{base2}%"/>
+		<Class ClassID="111335" ClassName="Event_Ark_punishment_desc{base1}{base2}" Data="[천벌효과] 10초내 시전하는 다음 일반 스킬의 3회 타격은 입힌 피해의 천벌공격 계수 만큼의 추가 물리 피해를 발생시킴(천벌효과중엔 천벌효과가 발생하지 않음, 맵 이동시에 사라짐){nl}[천벌 발동] 공격 스킬 계수에 비례하여 최대 발동확률까지 증가{nl}3레벨 달성시 최대 천벌효과 발동 확률 +{base1}%{nl}3레벨 달성시 천벌공격 계수 +{base2}%"/>
+		<Class ClassID="111336" ClassName="Event_Ark_dispersion_desc{base1}{base2}" Data="[분산] 받는 피해의 일정 비율을 일정 시차에 걸쳐 나누어 받음{nl}3레벨 달성시 분산 시간 +{base1}초{nl}3레벨 달성시 받는 피해 +{base2}%만큼 분산"/>
+		<Class ClassID="111337" ClassName="Event_Ark_overpower_desc{base1}{base2}" Data="3레벨 달성시 방패를 착용한 캐릭터를 대상으로 블록 관통에 성공할 때마다 대상에게 연체이자 비율만큼 [연체이자] 디버프 부여{nl}[연체이자] 디버프 지속시간 20초{nl}3레벨 달성시 명중/블록 관통 +{base1}{nl}3레벨 달성시 연체이자 비율 +{base2}%{nl}[연체이자] 디버프가 걸린 대상은 적에게 가하는 대미지의 50%가 연체이자만큼 감소하며, 감소한 양만큼 연체이자가 차감.{nl}연체이자는 20초가 지나거나 맵을 이동하면 사라지지만, 사라지기 이전에 연체이자가 쌓이게 되면 이전 누적분의 지속시간이 갱신됨"/>
+		<Class ClassID="111338" ClassName="Event_Ark_healingwave_desc{base1}{base2}" Data="힐 시전시 아군에게 [치유의 물결] 버프를 남겨, 다음 피해를 입을 때 [치유의 물결] 계수만큼 회복시킵니다.{nl}이후 [치유의 물결]은 200거리의 파티원에게 전달되며 전달될 때마다 치유 계수가 20% 감소됩니다.{nl}[치유의 물결]은 15초의 재사용 대기시간을 가집니다.{nl}이미 [치유의 물결]효과를 가진 대상에겐 발동하지 않으며 재사용 대기시간을 발생시키지 않습니다. {nl}3레벨 달성시 [치유의 물결] 계수 {base1}%{nl}3레벨 달성시 [치유의 물결] 전달 횟수 {base2}회"/>
 	</Category>
 	<Category Name="Quest">
 		<Class ClassID="112001" ClassName="VeryEasy" Data="매우 쉬움"/>
@@ -14860,6 +14869,17 @@
 		<Class ClassID="302322" ClassName="Event_2102_CHOCO_CHECK_MESSAGE{DAY}{TOTAL}" Data="{#0033FF}[발렌타인 이벤트]{/}{nl}로잘리야에게 초콜렛을 받은 횟수{nl}전체 ({TOTAL}/7번){nl}일일 ({DAY}번){nl}{#FF0000}※이벤트 기간 : 2월 8일 오전 06시 ~ 15일 오전 06시 까지{/}"/>
 		<Class ClassID="302326" ClassName="EVENT_2101_SUPPLY_CHAT_7" Data="이미 대화를 진행하였습니다."/>
 		<Class ClassID="302358" ClassName="EVENT_2011_5TH_Special_Vibora_Shop_Material" Data="바이보라 무기 1개 {nl}[이벤트] TOS 주화 1000개{nl}[이벤트] 5주년 기념 주화 50개"/>
+		<Class ClassID="302365" ClassName="Event_LuckyBreak_Reinforce_Success_World_Msg{TEAMNAME}{COUNT}" Data="{TEAMNAME} 님이 [럭키브레이크]럭키 네잎클로버{nl} + {COUNT} 강화에 성공했습니다!"/>
+		<Class ClassID="302366" ClassName="Event_Item_Use_Map_Limit_Msg" Data="이벤트 아이템은 도시 지역에서만 사용할 수 있습니다.{nl}클라페다/오르샤/페디미안"/>
+		<Class ClassID="302367" ClassName="Event_LuckyBreak_Reinforce_CMD_MSG_1" Data="{#00BFFF}[럭키브레이크]럭키 브레이크{/} 진행 정보{nl}강화 시도 횟수 : {#00BFFF}( {COUNT} 회 ){/}{nl}금일 [럭키브레이크]럭키 모루 획득 수 : {#00BFFF}( {MORU} / 24 ){/}{nl}다음 [럭키브레이크]럭키 모루 획득까지 남은 시간 :  {MIN} 분"/>
+		<Class ClassID="302368" ClassName="Event_LuckyBreak_Reinforce_CMD_MSG_2" Data="{#00BFFF}[럭키브레이크]럭키 브레이크{/} 진행 정보{nl}강화 시도 횟수 : {#00BFFF}( {COUNT} 회 ){/}{nl}금일 [럭키브레이크]럭키 모루 획득 수 : {#00BFFF}( {MORU} / 24 ){/}{nl}다음 [럭키브레이크]럭키 모루 획득까지 남은 시간 : 모두 획득"/>
+		<Class ClassID="302369" ClassName="EVENT_LUCKYBREAK_REMAIN_DATE_MSG1" Data="{#003399}[럭키브레이크]럭키 브레이크{/}안내"/>
+		<Class ClassID="302370" ClassName="EVENT_LUCKYBREAK_IS_GET_EQP_MSG1" Data="[럭키브레이크]럭키 네잎클로버 수령"/>
+		<Class ClassID="302371" ClassName="EVENT_LUCKYBREAK_IS_GET_EQP_MSG2" Data="이벤트 순위를 확인한다"/>
+		<Class ClassID="302372" ClassName="EVENT_LUCKYBREAK_IS_GET_NORMAL_REWARDS_1" Data="강화 수치 달성 보상을 획득한다"/>
+		<Class ClassID="302373" ClassName="EVENT_LUCKYBREAK_SHOW_RANKING_1" Data="{RANK} 위 : [ {TEAM} ] +{INFO} 강화  ( {MM}월 {DD}일 {HH}:{MIN} )"/>
+		<Class ClassID="302374" ClassName="EVENT_LUCKYBREAK_GET_ABIL_REWARD_CANT_MSG_1" Data="획득 가능한 보상이 없습니다.{nl}마지막으로 획득한 강화 수치 보상 : + {MAX} 강화 보상"/>
+		<Class ClassID="302375" ClassName="EVENT_LUCKYBREAK_GET_ABIL_REWARD_CANT_MSG_2" Data="획득 가능한 보상이 없습니다.{nl}최소 강화를 +1 강화 이상 진행 후 다시 확인해주세요"/>
 	</Category>
 	<Category Name="Account">
 		<Class ClassID="303001" ClassName="MaxAccountWarehouseCount" Data="팀 창고"/>

@@ -330,6 +330,23 @@ function get_Ark_storm_option_active_lv()
     return 3
 end
 
+----------------------------------------------------------------------------------------------
+--------------- 아크(pc방) - 폭풍 -----------------
+function get_tooltip_Ark_pc_storm_arg1()
+    return 1, 'STR_INT_BM', 1, 20
+end
+
+-- 두번째 옵션 폭풍 발동은 3레벨당 x씩 확률적으로 발생한다. (정수로 해야 함)
+function get_tooltip_Ark_pc_storm_arg2()
+    return 3, 'ARK_STORM_RATIO', 3, 2, 10
+end
+
+-- 세번째 옵션 폭풍 계수는 5레벨당 x씩 오른다. 
+function get_tooltip_Ark_pc_storm_arg3()
+    return 3, 'ARK_STORM_ATTACK', 5, 175, 840
+end
+
+
 -------------- 아크 - 분산 ----------------
 -- 첫번째 옵션 체력은 1레벨당 20씩 오른다.
 function get_tooltip_Ark_dispersion_arg1()
@@ -415,3 +432,124 @@ function get_Ark_healingwave_option_active_lv()
     return 3
 end
 
+
+------------------------------ 이벤트 아크 7종 툴팁 ----------------------------
+
+-------------- [이벤트] 아크 - 질풍 ----------------
+function get_tooltip_Event_Ark_wind_arg1()
+    return 1, 'STR_DEX_INT_BM', 1, 20
+end
+
+function get_tooltip_Event_Ark_wind_arg2()
+    return 3, 'ARK_BASIC_ATTACK', 3, 20, 100
+end
+
+function get_tooltip_Event_Ark_wind_arg3()
+    return 3, 'ARK_UNLEASH_WIND', 5, 5, 10
+end
+
+function get_Event_Ark_wind_option_active_lv()
+    return 5
+end
+
+-------------- [이벤트] 아크 - 낙뢰 ----------------
+function get_tooltip_Event_Ark_thunderbolt_arg1()
+    return 1, 'STR_INT_BM', 1, 20
+end
+
+function get_tooltip_Event_Ark_thunderbolt_arg2()
+    return 3, 'ARK_THUNDERBOLT_RATIO', 3, 2, 18
+end
+
+function get_tooltip_Event_Ark_thunderbolt_arg3()
+    return 3, 'ARK_THUNDERBOLT_ATTACK', 5, 700, 3500
+end
+
+function get_Ark_thunderbolt_option_active_lv()
+    return 3
+end
+
+-------------- [이벤트] 아크 - 폭풍 ----------------
+function get_tooltip_Event_Ark_storm_arg1()
+    return 1, 'STR_INT_BM', 1, 20
+end
+
+function get_tooltip_Event_Ark_storm_arg2()
+    return 3, 'ARK_STORM_RATIO', 3, 2, 15
+end
+
+function get_tooltip_Event_Ark_storm_arg3()
+    return 3, 'ARK_STORM_ATTACK', 5, 490, 2400
+end
+
+function get_Ark_storm_option_active_lv()
+    return 3
+end
+
+-------------- [이벤트] 아크 - 분산 ----------------
+function get_tooltip_Event_Ark_dispersion_arg1()
+    return 1, 'CON_BM', 1, 20
+end
+
+function get_tooltip_Event_Ark_dispersion_arg2()
+    return 3, 'ARK_DISPERSION_TIME', 3, 1, 5, 'ArkDispersionOptionText{Option}{interval}{addvalue}', ScpArgMsg('UI_Sec')
+end
+
+function get_tooltip_Event_Ark_dispersion_arg3()
+    return 3, 'ARK_DISPERSION_RATIO', 5, 5, 25
+end
+
+function get_Ark_dispersion_option_active_lv()
+    return 3
+end
+
+-------------- [이벤트] 아크 - 천벌 ----------------
+function get_tooltip_Event_Ark_punishment_arg1()
+    return 1, 'STR_INT_BM', 1, 20
+end
+
+function get_tooltip_Event_Ark_punishment_arg2()
+    return 3, 'ARK_PUNISHMENT_RATIO', 3, 2, 30
+end
+
+function get_tooltip_Event_Ark_punishment_arg3()
+    return 3, 'ARK_PUNISHMENT_ATTACK', 5, 5, 70
+end
+
+function get_Ark_punishment_option_active_lv()
+    return 3
+end
+
+-------------- [이벤트] 아크 - 제압 ----------------
+function get_tooltip_Event_Ark_overpower_arg1()
+    return 1, 'STR_INT_BM', 1, 20
+end
+
+function get_tooltip_Event_Ark_overpower_arg2()
+    return 3, 'HR_BLK_BREAK_BM', 3, 100, 200, 'ArkOverpowerOptionText{Option}{interval}{addvalue}', ''
+end
+
+function get_tooltip_Event_Ark_overpower_arg3()
+    return 4, 'ARK_OVERPOWER_OVERDUE', 5, 4, 10, 'Ark_overpower_desc{base1}'
+end
+
+function get_Ark_overpower_option_active_lv()
+    return 3
+end
+
+-------------- [이벤트] 아크 - 치유의 물결 ----------------
+function get_tooltip_Event_Ark_healingwave_arg1()
+    return 1, 'MNA_CON_BM', 1, 20
+end
+
+function get_tooltip_Event_Ark_healingwave_arg2()
+    return 3, 'ARK_HEALINGWAVE_HEALPWR', 3, 100, 900, 'ArkHealingwaveOptionText{Option}{interval}{addvalue}', '%'
+end
+
+function get_tooltip_Event_Ark_healingwave_arg3()
+    return 3, 'ARK_HEALINGWAVE_COUNT', 5, 1, 5, 'ArkHealingwaveOptionText1{Option}{interval}{addvalue}', ScpArgMsg('NumberOfThings')
+end
+
+function get_Ark_healingwave_option_active_lv()
+    return 3
+end

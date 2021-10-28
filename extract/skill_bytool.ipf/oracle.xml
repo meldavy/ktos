@@ -386,7 +386,7 @@
                     <Str Str="DivineMight_Buff" UseFunc="1" FuncTxt="local abilOracle23 = GetAbility(self, &apos;Oracle23&apos;); if abilOracle23 ~= nil and TryGetProp(abilOracle23, &apos;ActiveState&apos;) ==1 then return &apos;None&apos;; end return &apos;DivineMight_Buff&apos;"/>
                     <Num FuncTxt="return obj.Level;" Num="1" UseFunc="1"/>
                     <Num Num="0"/>
-                    <Num Num="20000" UseFunc="1" FuncTxt="local time = 20000;
+                    <Num Num="20000" UseFunc="1" FuncTxt="local time = 20000 + obj.Level * 500;
                     local abilOracle20 = GetAbility(self, &apos;Oracle20&apos;); if abilOracle20 ~= nil and TryGetProp(abilOracle20, &apos;ActiveState&apos;) == 1 then
                     time = time + TryGetProp(abilOracle20, &apos;Level&apos;) * 1000
                     end

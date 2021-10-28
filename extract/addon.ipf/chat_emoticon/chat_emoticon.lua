@@ -41,8 +41,8 @@ end
 function CHAT_EMOTICON_MAKELIST(frame)
 
 	local emoticons = GET_CHILD_RECURSIVELY(frame, "emoticons", "ui::CSlotSet");
-	local cnt = emoticons:GetSlotCount();
-	local etc = GetMyEtcObject();
+	local cnt = emoticons:GetSlotCount();	
+	local acc = GetMyAccountObj();		
 	local index = 0;
 	local list, listCnt = GetClassList("chat_emoticons");
 
@@ -54,6 +54,7 @@ function CHAT_EMOTICON_MAKELIST(frame)
 	end
 
 	for i = 0 , listCnt - 1 do
+		acc = GetMyAccountObj()
 		local slot = emoticons:GetSlotByIndex(index);
 		slot:SetEventScript(ui.MOUSEMOVE, "CHAT_EMOTICON_ADDDURATION");	
 		slot:SetOverSound("button_over")
@@ -61,10 +62,16 @@ function CHAT_EMOTICON_MAKELIST(frame)
 		if index < cnt then
 			local cls = GetClassByIndexFromList(list, i);
 
+			if TryGetProp(cls, 'HaveUnit', 'None') == 'PC' then
+				acc = GetMyEtcObject()
+			else
+				acc = GetMyAccountObj()
+			end
+
 			if cls.IconGroup == iconGroup then
 				if cls.CheckServer == 'YES' then
 					-- check session emoticons
-					local haveEmoticon = TryGetProp(etc, 'HaveEmoticon_' .. cls.ClassID);
+					local haveEmoticon = TryGetProp(acc, 'HaveEmoticon_' .. cls.ClassID);
 					if haveEmoticon > 0 then
 						local icon = CreateIcon(slot);
 						local namelist = StringSplit(cls.ClassName, "motion_");
@@ -177,9 +184,15 @@ function CHAT_CHECK_EMOTICON(szIconTokken, imageName)
 	editCtrl:SetText(tempMsg);
 
 	local cls = GetClass("chat_emoticons", imageName);
-	if cls.CheckServer == 'YES' then
-		local etc = GetMyEtcObject();
-		local haveEmoticon = TryGetProp(etc, 'HaveEmoticon_' .. cls.ClassID);
+	if cls.CheckServer == 'YES' then		
+		local acc = GetMyAccountObj();
+		if TryGetProp(cls, 'HaveUnit', 'None') == 'PC' then
+			acc = GetMyEtcObject();
+		else
+			acc = GetMyAccountObj();
+		end
+
+		local haveEmoticon = TryGetProp(acc, 'HaveEmoticon_' .. cls.ClassID);
 		if haveEmoticon <= 0 then
 			return;
 		end
