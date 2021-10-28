@@ -216,6 +216,17 @@ function FISHING_ITEM_BAG_SET_COUNT_BOX(frame, msg, argStr, argNum)
     countText:SetTextByKey('current', curSuccessCount);
     countText:SetTextByKey('max', maxSuccessCount);
     countBox:ShowWindow(1);
+
+    if msg == 'FISHING_SUCCESS_COUNT' then
+        local itemSlotset = GET_CHILD(frame, 'itemSlotset');    
+        if itemSlotset ~= nil then
+            local slotIndex = imcSlot:GetFilledSlotCount(itemSlotset);
+            local max_count = SCR_GET_MAX_FISHING_SUCCESS_COUNT(GetMyPCObject());            
+            if slotIndex ~= nil and slotIndex >= math.floor(max_count * 0.5) then
+                Fishing.ReqGetFishingItem();
+            end
+        end
+    end
 end
 
 function FISHING_ITEM_BAG_ENABLE_EXIT_BTN(enable)
