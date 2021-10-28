@@ -57,7 +57,3 @@ function SCR_BRACKEN631_RP_1_OBJ_PRE_DIALOG(pc, dialog)
     end
     return 'NO'
 end
-
-function SCR_BRACKEN631_DOG_PRE_DIALOG(pc, dialog)
-    return 'NO'
-end
