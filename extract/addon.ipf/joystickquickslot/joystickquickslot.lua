@@ -1,8 +1,8 @@
 --joystickquickslot.lua
 
---±âÁ¸ÀÇ Äü½½·Ô°ú °°Àº ÇÔ¼ö´Â ±×´ë·Î »ç¿ëÇÏ·Á°í ÇÏ¿´À¸³ª,
---Æ¯Á¤ °æ¿ìÀÇ ÇÇ¾¾ È¯°æ¿¡¼­´Â ÇÔ¼ö¸¦ Ã£À» ¼ö ¾ø´Ù´Â ¿¡·¯¸Ş½ÃÁö¸¦ ¶ç¿ö¼­
---±×³É ±âÁ¸ÀÇ ÇÔ¼öÀÇ ÀÌ¸§À» º¯°æÇÏ¿© »ç¿ëÇÏ±â·Î ÇÔ.
+--ê¸°ì¡´ì˜ í€µìŠ¬ë¡¯ê³¼ ê°™ì€ í•¨ìˆ˜ëŠ” ê·¸ëŒ€ë¡œ ì‚¬ìš©í•˜ë ¤ê³  í•˜ì˜€ìœ¼ë‚˜,
+--íŠ¹ì • ê²½ìš°ì˜ í”¼ì”¨ í™˜ê²½ì—ì„œëŠ” í•¨ìˆ˜ë¥¼ ì°¾ì„ ìˆ˜ ì—†ë‹¤ëŠ” ì—ëŸ¬ë©”ì‹œì§€ë¥¼ ë„ì›Œì„œ
+--ê·¸ëƒ¥ ê¸°ì¡´ì˜ í•¨ìˆ˜ì˜ ì´ë¦„ì„ ë³€ê²½í•˜ì—¬ ì‚¬ìš©í•˜ê¸°ë¡œ í•¨.
 
 MAX_SLOT_CNT = 40;
 SLOT_NAME_INDEX = 0;
@@ -14,7 +14,11 @@ function JOYSTICKQUICKSLOT_ON_INIT(addon, frame)
 	addon:RegisterMsg('JOYSTICK_QUICKSLOT_LIST_GET', 'JOYSTICK_QUICKSLOT_ON_MSG');
 	addon:RegisterMsg('JOYSTICK_INPUT', 'JOYSTICK_INPUT');
 
-
+	addon:RegisterMsg('JUNGTAN_SLOT_UPDATE', 'JOYSTICK_JUNGTAN_SLOT_ON_MSG');
+	addon:RegisterMsg('EXP_ORB_ITEM_ON', 'JOYSTICK_EXP_ORB_SLOT_ON_MSG');
+	addon:RegisterMsg('EXP_ORB_ITEM_OFF', 'JOYSTICK_EXP_ORB_SLOT_ON_MSG');
+	addon:RegisterMsg('TOGGLE_ITEM_SLOT_ON', 'JOYSTICK_TOGGLE_ITEM_SLOT_ON_MSG');
+	addon:RegisterMsg('TOGGLE_ITEM_SLOT_OFF', 'JOYSTICK_TOGGLE_ITEM_SLOT_ON_MSG');
 
 	addon:RegisterMsg('JOYSTICK_RESTQUICKSLOT_OPEN', 'JOYSTICK_ON_RESTQUICKSLOT_OPEN');
 	addon:RegisterMsg('JOYSTICK_RESTQUICKSLOT_CLOSE', 'ON_JOYSTICK_RESTQUICKSLOT_CLOSE');
@@ -55,6 +59,8 @@ function JOYSTICKQUICKSLOT_ON_INIT(addon, frame)
 	timer:SetUpdateScript("UPDATE_JOYSTICK_QUICKSLOT_OVERHEAT");
 	timer:Start(0.1);
 
+	JOYSTICKQUICKSLOT_TOGGLE_ITEM_LIST={}
+
 end
 
 function  JOYSTICK_QUICKSLOT_MAKE_GAUGE(slot)
@@ -74,10 +80,10 @@ function UPDATE_JOYSTICK_QUICKSLOT_OVERHEAT(frame, ctrl, num, str, time)
 
 	UPDATE_JOYSTICK_INPUT(frame)
 
-	--[[¶«»§ÄÚµåÀÔ´Ï´Ù.
-	´ÙÀÌ¾ó·Î±×¸¦ ¿­ ¶§¸¶´Ù Á¶ÀÌ½ºÆ½¸ğµå¿¡¼­ Æ¯Á¤ Á¶°Ç¿¡
-	±×³É Äü½½·ÔÀÌ °°ÀÌ ¿­¸®´Â °æ¿ì°¡ ÀÖ¾î¼­ ±×³É ¿©±â¼­ °­Á¦·Î ²¨¹ö¸²
-	³Ø½¼ Å×½ºÆ® ´ëºñ ¶«»§ÀÌ°í Ã£¾Æ¼­ °íÃÄ¾ßÇÔ.
+	--[[ë•œë¹µì½”ë“œì…ë‹ˆë‹¤.
+	ë‹¤ì´ì–¼ë¡œê·¸ë¥¼ ì—´ ë•Œë§ˆë‹¤ ì¡°ì´ìŠ¤í‹±ëª¨ë“œì—ì„œ íŠ¹ì • ì¡°ê±´ì—
+	ê·¸ëƒ¥ í€µìŠ¬ë¡¯ì´ ê°™ì´ ì—´ë¦¬ëŠ” ê²½ìš°ê°€ ìˆì–´ì„œ ê·¸ëƒ¥ ì—¬ê¸°ì„œ ê°•ì œë¡œ êº¼ë²„ë¦¼
+	ë„¥ìŠ¨ í…ŒìŠ¤íŠ¸ ëŒ€ë¹„ ë•œë¹µì´ê³  ì°¾ì•„ì„œ ê³ ì³ì•¼í•¨.
 	]]--
 
 	local quickSlotFrame = ui.GetFrame("quickslotnexpbar");
@@ -105,6 +111,7 @@ function UPDATE_JOYSTICK_SLOT_OVERHEAT(slot)
 	skl = GetIES(skl:GetObject());
 	local useOverHeat = skl.UseOverHeat;
 	local curHeat = session.GetSklOverHeat(sklType);
+	curHeat = curHeat + useOverHeat - 1;
 	local maxOverHeat = session.GetSklMaxOverHeat(sklType);
 	local gauge = slot:GetSlotGauge();
 
@@ -159,7 +166,7 @@ function JOYSTICK_QUICKSLOT_ON_MSG(frame, msg, argStr, argNum)
 	]]--
 	--tolua.cast(slot, "ui::CSlot");
 	--print(msg)
--- ½ºÅ³°ú ÀÎº¥Åä¸® Á¤º¸¸¦ °¡Áö°í ¿Â´Ù.
+-- ìŠ¤í‚¬ê³¼ ì¸ë²¤í† ë¦¬ ì •ë³´ë¥¼ ê°€ì§€ê³  ì˜¨ë‹¤.
 	local skillList 		= session.GetSkillList();
 	local skillCount 		= skillList:Count();
 	local invItemList 		= session.GetInvItemList();
@@ -172,33 +179,12 @@ function JOYSTICK_QUICKSLOT_ON_MSG(frame, msg, argStr, argNum)
 	if msg == 'GAME_START' then
 		--ON_PET_SELECT(frame);
 	end
-
-	if msg == 'JOYSTICK_QUICKSLOT_LIST_GET' or msg == 'GAME_START' or msg == 'EQUIP_ITEM_LIST_GET' or msg == 'PC_PROPERTY_UPDATE' then
-		local quickSlotList = session.GetQuickSlotList();
-		for i = 0, MAX_SLOT_CNT-1 do
-			local quickSlotInfo 	= quickSlotList:Element(i);			
-			if quickSlotInfo.category  ~=  'NONE' then
-				local slot 			= frame:GetChildRecursively("slot"..i+1);
-				tolua.cast(slot, "ui::CSlot");
-				SET_QUICK_SLOT(slot, quickSlotInfo.category, quickSlotInfo.type, quickSlotInfo:GetIESID(), 0, false);
-			end
-		end
+	
+	if msg == 'JOYSTICK_QUICKSLOT_LIST_GET' or msg == 'GAME_START' or msg == 'EQUIP_ITEM_LIST_GET' or msg == 'PC_PROPERTY_UPDATE' 
+	or  msg == 'INV_ITEM_ADD' or msg == 'INV_ITEM_POST_REMOVE' or msg == 'INV_ITEM_CHANGE_COUNT' then
+		DebounceScript("JOYSTICK_QUICKSLOT_UPDATE_ALL_SLOT", 0.1);
 	end
-
-	-- ¾ÆÀÌÅÛ ½½·Ô ºñÈ°¼º¿¡ ´ëÇØ¼­ Ã¼Å© ÇÑ´Ù
-	if msg == 'INV_ITEM_ADD' or msg == 'INV_ITEM_REMOVE' or msg == 'INV_ITEM_CHANGE_COUNT'then
-		-- Äü½½·ÔÀÇ Icon Á¤º¸¸¦ È®ÀÎÇÏ°í Category°¡ 'Item'ÀÎ ¸ñ·ÏÀ» Ã£¾Æ °³¼ö¸¦ ÆÄ¾Ç ÇÑ´Ù.
-		local quickSlotList = session.GetQuickSlotList();		-- Äü½½·Ô ¸®½ºÆ® Á¤º¸¸¦ °¡Áö°í ¿Â´Ù
-		for i = 0, MAX_QUICKSLOT_CNT-1 do
-			local quickSlotInfo 	= quickSlotList:Element(i);	-- Äü½½·Ô Á¤º¸¸¦ °¡Áö°í ¿Â´Ù
-			if quickSlotInfo.category  ~=  'NONE' then
-				local slot = frame:GetChildRecursively("slot"..i+1);
-				tolua.cast(slot, "ui::CSlot");
-				SET_QUICK_SLOT(slot, quickSlotInfo.category, quickSlotInfo.type, quickSlotInfo:GetIESID(), 0, 0);
-			end
-		end
-	end
-
+	
 	if msg == 'CHANGE_INVINDEX' then
 		local toInvIndex = tonumber(argStr);
 		local fromInvIndex = argNum;
@@ -215,7 +201,7 @@ function JOYSTICK_QUICKSLOT_ON_MSG(frame, msg, argStr, argNum)
 				if fromInvIndex == 0 then
 					if iconInfo.type == invenItemInfo.type then
 						iconInfo.ext = toInvIndex;
-						session.SetQuickSlotInfo(slot:GetSlotIndex(), iconInfo.category, iconInfo.type, iconInfo.ext, 0);
+						quickslot.SetInfo(slot:GetSlotIndex(), iconInfo.category, iconInfo.type, iconInfo.ext);
 					end
 				else
 					if iconInfo.ext == toInvIndex then
@@ -231,18 +217,13 @@ function JOYSTICK_QUICKSLOT_ON_MSG(frame, msg, argStr, argNum)
 			QUICKSLOTNEXPBAR_CHANGE_INVINDEX(quickslot, fromQuickIndex, toInvIndex);
 		end
 	end
-
-	local quickSlotList = session.GetQuickSlotList();
-	local curCnt = quickSlotList:GetQuickSlotActiveCnt();	
+	
+	local curCnt = quickslot.GetActiveSlotCnt();
 
 	curCnt = 40;
 
 	JOYSTICK_QUICKSLOT_REFRESH(curCnt);
-
-	--UI_MODE_CHANGE()
-
 end
-
 
 function JOYSTICK_QUICKSLOT_REFRESH(curCnt)
 	if curCnt < 20 or curCnt > 40 then
@@ -280,10 +261,33 @@ function JOYSTICK_QUICKSLOT_REFRESH(curCnt)
 end
 
 
+function JOYSTICK_QUICKSLOT_UPDATE_ALL_SLOT()
+	local frame = ui.GetFrame('joystickquickslot');
+	local sklCnt = frame:GetUserIValue('SKL_MAX_CNT');	
+	for i = 0, MAX_SLOT_CNT - 1 do
+		local quickSlotInfo = quickslot.GetInfoByIndex(i);
+		local updateslot = true;
+
+		if sklCnt > 0 then
+			if  quickSlotInfo.category == 'Skill' then
+				updateslot = false;
+			end
+
+			if i <= sklCnt then
+				updateslot = false;
+			end
+		end
+
+		if true == updateslot and quickSlotInfo.category ~= 'NONE' then
+			local slot = frame:GetChildRecursively("slot"..i+1);
+			tolua.cast(slot, "ui::CSlot");
+			SET_QUICK_SLOT(slot, quickSlotInfo.category, quickSlotInfo.type, quickSlotInfo:GetIESID(), 0, false);
+		end
+	end
+end
 
 
 function JOYSTICK_QUICKSLOT_EXECUTE(slotIndex)
-
 	local quickFrame = ui.GetFrame('joystickquickslot')
 	local Set1 = GET_CHILD_RECURSIVELY(quickFrame,'Set1','ui::CGroupBox');
 	local Set2 = GET_CHILD_RECURSIVELY(quickFrame,'Set2','ui::CGroupBox');
@@ -337,17 +341,27 @@ end
 
 
 function JOYSTICK_QUICKSLOT_ON_DROP(frame, control, argStr, argNum)
-
-	-- ¾ÆÀÌÄÜ ¼Â
+	
+	-- ì•„ì´ì½˜ ì…‹
 	-- imcSound.PlaySoundItem('ui_item_drop');
 
 	local liftIcon 					= ui.GetLiftIcon();
+	local liftIconiconInfo	 		= liftIcon:GetInfo();
 	local iconParentFrame 			= liftIcon:GetTopParentFrame();
 	local slot 						= tolua.cast(control, 'ui::CSlot');
 	slot:SetEventScript(ui.RBUTTONUP, 'QUICKSLOTNEXPBAR_SLOT_USE');
+	
+	local iconCategory = 0;
+	local iconType = 0;
+	local iconGUID = "";
+	if nil ~= liftIconiconInfo then
+		iconCategory = liftIconiconInfo.category;
+		iconType = liftIconiconInfo.type;
+		iconGUID = liftIconiconInfo:GetIESID();
+	end
 
 	if iconParentFrame:GetName() == 'joystickquickslot' then
-		-- NOTE : Äü½½·ÔÀ¸·Î ºÎÅÍ ÆËµÈ ¾ÆÀÌÄÜÀÎ °æ¿ì ±âÁ¸ ¾ÆÀÌÄÜ°ú ±³È¯ ÇÕ´Ï´Ù.
+		-- NOTE : í€µìŠ¬ë¡¯ìœ¼ë¡œ ë¶€í„° íŒëœ ì•„ì´ì½˜ì¸ ê²½ìš° ê¸°ì¡´ ì•„ì´ì½˜ê³¼ êµí™˜ í•©ë‹ˆë‹¤.
 		local popSlotObj 		  = liftIcon:GetParent();
 		if popSlotObj:GetName()  ~=  slot:GetName() then
 			local popSlot = tolua.cast(popSlotObj, "ui::CSlot");
@@ -364,8 +378,9 @@ function JOYSTICK_QUICKSLOT_ON_DROP(frame, control, argStr, argNum)
 		STATUS_EQUIP_SLOT_SET(iconParentFrame);
 		return;
 	end
-
-	QUICKSLOTNEXPBAR_SETICON(slot, liftIcon, 1, true);
+	
+	--QUICKSLOTNEXPBAR_SETICON(slot, liftIcon, 1, true);
+	QUICKSLOTNEXPBAR_NEW_SETICON(slot, iconCategory, iconType, iconGUID);
 end
 
 
@@ -386,30 +401,6 @@ end
 
 function CLOSE_JOYSTICK_QUICKSLOT(frame)
 end
-
---[[
-function QUICKSLOTNEXPBAR_EXECUTE(slotIndex)
---print(slotIndex)
-	-- ÈŞ½Ä¸ğµå ?½½·Ô Ã³¸®
-	local restFrame = ui.GetFrame('restquickslot')
-	if restFrame:IsVisible() == 1 then
-		REST_SLOT_USE(restFrame, slotIndex);
-		return;
-	end	
-	local input_r = keyboard.IsKeyDown("RIGHT");
-	print("zzzz")
-	local input_r2  = joystick.IsKeyPressed("JOY_BTN_1")
-
-	print(input_r2)
-
-	local quickslotFrame = ui.GetFrame('quickslotnexpbar');
-	local slot = GET_CHILD(quickslotFrame, "slot"..slotIndex+1, "ui::CSlot");
-	QUICKSLOTNEXPBAR_SLOT_USE(quickSlotFrame, slot, 'None', 0);	
-
-end
-]]--
-
-
 
 function UPDATE_JOYSTICK_INPUT(frame)
 
@@ -461,7 +452,7 @@ function UPDATE_JOYSTICK_INPUT(frame)
 	if input_L1 == 1 and input_R1 == 0 then
 		local gbox = frame:GetChildRecursively("L1_slot_Set"..setIndex);
 		if joystick.IsKeyPressed("JOY_L1L2") == 0 then
-		gbox:SetSkinName(padslot_onskin);
+			gbox:SetSkinName(padslot_onskin);
 		end
 	elseif input_L1 == 0 or input_L1 == 1 and input_R1 == 1 then
 		local gbox = frame:GetChildRecursively("L1_slot_Set"..setIndex);
@@ -471,7 +462,7 @@ function UPDATE_JOYSTICK_INPUT(frame)
 	if input_R1 == 1 and input_L1 == 0 then
 		local gbox = frame:GetChildRecursively("R1_slot_Set"..setIndex);
 		if joystick.IsKeyPressed("JOY_R1R2") == 0 then
-		gbox:SetSkinName(padslot_onskin);
+			gbox:SetSkinName(padslot_onskin);
 		end
 	elseif input_R1 == 0 or input_L1 == 1 and input_R1 == 1 then
 		local gbox = frame:GetChildRecursively("R1_slot_Set"..setIndex);
@@ -481,7 +472,13 @@ function UPDATE_JOYSTICK_INPUT(frame)
 	if input_L2 == 1 and input_R2 == 0 then
 		local gbox = frame:GetChildRecursively("L2_slot_Set"..setIndex);
 		if joystick.IsKeyPressed("JOY_L1L2") == 0 then
-		gbox:SetSkinName(padslot_onskin);
+---------------------------------------------------------------------
+-- sysmenu ì¡°ì‘ ë¼ì›Œë„£ìŒ
+			if SYSMENU_JOYSTICK_IS_OPENED() == 1 then
+				SYSMENU_JOYSTICK_MOVE_LEFT();
+			end
+			gbox:SetSkinName(padslot_onskin);
+---------------------------------------------------------------------
 		end
 	elseif input_L2 == 0 then
 		local gbox = frame:GetChildRecursively("L2_slot_Set"..setIndex);
@@ -491,7 +488,13 @@ function UPDATE_JOYSTICK_INPUT(frame)
 	if input_R2 == 1 and input_L2 == 0 then
 		local gbox = frame:GetChildRecursively("R2_slot_Set"..setIndex);
 		if joystick.IsKeyPressed("JOY_R1R2") == 0 then
-		gbox:SetSkinName(padslot_onskin);
+---------------------------------------------------------------------
+-- sysmenu ì¡°ì‘ ë¼ì›Œë„£ìŒ
+			if SYSMENU_JOYSTICK_IS_OPENED() == 1 then
+				SYSMENU_JOYSTICK_MOVE_RIGHT();
+			end
+			gbox:SetSkinName(padslot_onskin);
+---------------------------------------------------------------------
 		end
 	elseif input_R2 == 0 then
 		local gbox = frame:GetChildRecursively("R2_slot_Set"..setIndex);
@@ -539,4 +542,319 @@ function QUICKSLOT_INIT(frame, msg, argStr, argNum)
 	end
 end
 
+function JOYSTICK_EXP_ORB_SLOT_ON_MSG(frame, msg, str, num)
+	local timer = GET_CHILD(frame, "exporbtimer", "ui::CAddOnTimer");
+	if msg == "EXP_ORB_ITEM_OFF" then
+		frame:SetUserValue("EXP_ORB_EFFECT", 0);
+		timer:Stop();
+		imcSound.PlaySoundEvent('sys_booster_off');
+	elseif msg == "EXP_ORB_ITEM_ON" then
+		frame:SetUserValue("EXP_ORB_EFFECT", str);
+		timer:SetUpdateScript("UPDATE_JOYSTICKQUICKSLOT_EXP_ORB");
+		timer:Start(1);
+		imcSound.PlaySoundEvent('sys_atk_booster_on');
+	end
+	DebounceScript("JOYSTICK_QUICKSLOT_UPDATE_ALL_SLOT", 0.1);
+end
 
+--í† ê¸€
+function JOYSTICK_TOGGLE_ITEM_SLOT_ON_MSG(frame, msg, argstr, argnum)
+	if msg == "TOGGLE_ITEM_SLOT_ON" then
+		JOYSTICKQUICKSLOT_TOGGLE_ITEM_LIST[argnum] = 1;
+		imcSound.PlaySoundEvent('sys_atk_booster_on');
+	elseif msg == "TOGGLE_ITEM_SLOT_OFF" then
+		JOYSTICKQUICKSLOT_TOGGLE_ITEM_LIST[argnum] = nil;
+		imcSound.PlaySoundEvent('sys_booster_off');
+	end
+
+	local cnt = 0;
+	for k, v in pairs(JOYSTICKQUICKSLOT_TOGGLE_ITEM_LIST) do
+		cnt = cnt + 1;
+	end
+	
+	if cnt > 0 then
+		frame:RunUpdateScript("UPDATE_JOYSTICKQUICKSLOT_TOGGLE_ITEM", 1.0);
+	else
+		frame:StopUpdateScript("UPDATE_JOYSTICKQUICKSLOT_TOGGLE_ITEM");
+	end
+end
+
+--ì—…ë°ì´íŠ¸
+function UPDATE_JOYSTICKQUICKSLOT_TOGGLE_ITEM(frame)
+	for k, v in pairs(QUICKSLOT_TOGGLE_ITEM_LIST) do
+		PLAY_JOYSTICKQUICKSLOT_UIEFFECT(frame, k);
+	end
+	return 1
+end
+
+function JOYSTICK_JUNGTAN_SLOT_ON_MSG(frame, msg, str, itemType)
+
+	-- atk jungtan
+	if str == 'JUNGTAN_OFF' then
+
+		frame:SetUserValue("JUNGTAN_EFFECT", 0);
+		local timer = GET_CHILD(frame, "jungtantimer", "ui::CAddOnTimer");
+		timer:Stop();
+		imcSound.PlaySoundEvent('sys_booster_off');
+
+	elseif str == 'JUNGTAN_ON' then
+
+		frame:SetUserValue("JUNGTAN_EFFECT", itemType);
+		local timer = GET_CHILD(frame, "jungtantimer", "ui::CAddOnTimer");
+		timer:SetUpdateScript("UPDATE_JOYSTICKQUICKSLOT_JUNGTAN");
+		timer:Start(1);
+		imcSound.PlaySoundEvent('sys_atk_booster_on');
+
+	-- def jungtan
+	elseif str == 'JUNGTANDEF_OFF' then
+
+		frame:SetUserValue("JUNGTANDEF_EFFECT", 0);
+		local timer = GET_CHILD(frame, "jungtandeftimer", "ui::CAddOnTimer");
+		timer:Stop();
+		imcSound.PlaySoundEvent('sys_booster_off');
+
+	elseif str == 'JUNGTANDEF_ON' then
+
+		frame:SetUserValue("JUNGTANDEF_EFFECT", itemType);
+		local timer = GET_CHILD(frame, "jungtandeftimer", "ui::CAddOnTimer");
+		timer:SetUpdateScript("UPDATE_JOYSTICKQUICKSLOT_JUNGTANDEF");
+		timer:Start(1);
+		imcSound.PlaySoundEvent('sys_def_booster_on');
+
+	-- dispel magic
+	elseif str == 'DISPELDEBUFF_OFF' then
+
+		frame:SetUserValue("DISPELDEBUFF_EFFECT", 0);
+		local timer = GET_CHILD(frame, "dispeldebufftimer", "ui::CAddOnTimer");
+		timer:Stop();
+		imcSound.PlaySoundEvent('sys_booster_off');
+
+	elseif str == 'DISPELDEBUFF_ON' then
+
+		frame:SetUserValue("DISPELDEBUFF_EFFECT", itemType);
+		local timer = GET_CHILD(frame, "dispeldebufftimer", "ui::CAddOnTimer");
+		timer:SetUpdateScript("UPDATE_JOYSTICKQUICKSLOT_DISPEL_DEBUFF");
+		timer:Start(1);
+		imcSound.PlaySoundEvent('sys_def_booster_on');
+	
+	end
+	
+end
+
+function UPDATE_JOYSTICKQUICKSLOT_EXP_ORB(frame, ctrl, num, str, time)
+	if frame:IsVisible() == 0 then
+		return;
+	end
+
+	local expOrb = frame:GetUserValue("EXP_ORB_EFFECT");
+	if expOrb ~= nil and expOrb ~= "None" then
+		PLAY_JOYSTICKQUICKSLOT_UIEFFECT_BY_GUID(frame, expOrb);
+	end
+end
+
+function UPDATE_JOYSTICKQUICKSLOT_JUNGTAN(frame, ctrl, num, str, time)
+	if frame:IsVisible() == 0 then
+		return;
+	end
+
+	local jungtanID = tonumber( frame:GetUserValue("JUNGTAN_EFFECT") );
+	if jungtanID > 0 then
+		PLAY_JOYSTICKQUICKSLOT_UIEFFECT(frame, jungtanID);
+	end
+end
+
+function UPDATE_JOYSTICKQUICKSLOT_JUNGTANDEF(frame, ctrl, num, str, time)
+
+	if frame:IsVisible() == 0 then
+		return;
+	end
+
+	local jungtanDefID = tonumber( frame:GetUserValue("JUNGTANDEF_EFFECT") );
+	if jungtanDefID > 0 then
+		PLAY_JOYSTICKQUICKSLOT_UIEFFECT(frame, jungtanDefID);
+	end
+
+end
+
+function UPDATE_JOYSTICKQUICKSLOT_DISPEL_DEBUFF(frame, ctrl, num, str, time)
+	if frame:IsVisible() == 0 then
+		return;
+	end
+
+	local dispelmagicID = tonumber( frame:GetUserValue("DISPELDEBUFF_EFFECT") );
+	if dispelmagicID > 0 then
+		PLAY_JOYSTICKQUICKSLOT_UIEFFECT(frame, dispelmagicID);
+	end
+
+end
+
+function PLAY_JOYSTICKQUICKSLOT_UIEFFECT_BY_GUID(frame, guid)
+	local slotlist = {};
+	for i = 0, MAX_QUICKSLOT_CNT-1 do
+		local quickSlotInfo = quickslot.GetInfoByIndex(i);
+		if quickSlotInfo ~= nil then
+			if quickSlotInfo:GetIESID() == guid then
+				slotlist[#slotlist + 1] = GET_CHILD_RECURSIVELY(frame, "slot"..i+1, "ui::CSlot");
+			end
+		end
+	end
+
+	for i=1, #slotlist do
+		local slot = slotlist[i];
+		if slot ~= nil then
+			local posX, posY = GET_SCREEN_XY(slot);
+			if CHECK_SLOT_ON_ACTIVEJOYSTICKSLOTSET(frame, i) == true then
+				movie.PlayUIEffect('I_sys_item_slot', posX, posY, 0.7); 
+			end
+		end
+	end
+end
+
+function PLAY_JOYSTICKQUICKSLOT_UIEFFECT(frame, itemID)
+	for i = 0, MAX_QUICKSLOT_CNT - 1 do
+		local quickSlotInfo = quickslot.GetInfoByIndex(i);
+		if quickSlotInfo ~= nil then
+			if quickSlotInfo.type == itemID then
+				local slot = GET_CHILD_RECURSIVELY(frame, "slot"..i+1, "ui::CSlot");
+				if slot ~= nil then
+					local posX, posY = GET_SCREEN_XY(slot);
+					if CHECK_SLOT_ON_ACTIVEJOYSTICKSLOTSET(frame, i) == true then
+						-- ìŠ¤ì¼€ì¼ì´ ë„ˆë¬´ í¬ê²Œ ë‚˜ì™€ì„œ ì¡°ê¸ˆ ì¤„ì„. í‚¤ë³´ë“œëª¨ë“œì™€ëŠ” ë‹¤ë¥´ê²Œ ì¡°ì´íŒ¨ë“œê°€ ì¡°ê¸ˆë” ì‘ë‹¤.
+						movie.PlayUIEffect('I_sys_item_slot', posX, posY, 0.7); 
+					end
+				end
+			end
+		end
+	end
+end
+
+-- í˜„ì¬ í™œì„±í™”ëœ ì¡°ì´íŒ¨ë“œ ìŠ¬ë¡¯ì…‹ì— ì†í•˜ëŠ” SlotNumber(ì‹¤ì œ ìŠ¬ë¡¯ ë²ˆí˜¸ê°€ ë„˜ì–´ì˜´)ì¸ì§€ í™•ì¸
+function CHECK_SLOT_ON_ACTIVEJOYSTICKSLOTSET(frame, slotNumber)
+	local Set1 = GET_CHILD_RECURSIVELY(frame,'Set1','ui::CGroupBox');
+	local Set2 = GET_CHILD_RECURSIVELY(frame,'Set2','ui::CGroupBox');
+
+	-- Set1ì´ í™œì„±í™” ë˜ì—ˆì„ë•ŒëŠ” ìŠ¬ë¡¯ë²ˆí˜¸ë¥¼ 0~19ê¹Œì§€ ê²€ì‚¬í•œë‹¤. (Slotì˜ ì‹¤ì œ NumberëŠ” 0ë¶€í„° ì‹œì‘í•¨)
+	if Set1:IsVisible() == 1 and slotNumber >= 0 and slotNumber < 20 then
+		return true;
+	-- Set2ì´ í™œì„±í™” ë˜ì—ˆì„ë•ŒëŠ” ìŠ¬ë¡¯ë²ˆí˜¸ë¥¼ 20~39ê¹Œì§€ ê²€ì‚¬í•œë‹¤. 
+	elseif Set2:IsVisible() == 1 and slotNumber >= 20 and slotNumber < 40 then
+		return true;
+	end
+	return false;
+end
+
+
+-- ì¡°ì´íŒ¨ë“œ í•«í‚¤ ë¬¸ìì—´ì„ X A Y B + ê¸°ëŠ¥ í‚¤(L1,L2,R1,R2)ì˜ ì¡°í•©ìœ¼ë¡œ ë³€ê²½.
+function JOYSTICK_QUICKSLOT_REPLACE_HOTKEY_STRING(isFunctionKeyUse, hotKeyString)
+	local hotKey = hotKeyString;
+	
+	-- ì´ ë•œë¹µì„ ì–´ì°Œí•´ì•„ í•˜ë‚˜? ì œì¼ ì¢‹ì€ê±´ hotkey_joystic.xmlì˜ Key, PressedKeyë¥¼ ì˜ˆì˜ê²Œ ì •ë¦¬í•˜ëŠ” ê²ƒì´ë‹¤.
+	hotKey = string.gsub(hotKey, "JOY_BTN_1", "X");
+	hotKey = string.gsub(hotKey, "JOY_BTN_2", "A");
+	hotKey = string.gsub(hotKey, "JOY_BTN_3", "B");
+	hotKey = string.gsub(hotKey, "JOY_BTN_4", "Y");
+
+	-- ê¸°ëŠ¥í‚¤ê¹Œì§€ ë³´ì—¬ì¤¬ìœ¼ë©´ í• ë•Œ	
+	if isFunctionKeyUse == true then
+		hotKey = string.gsub(hotKey, "JOY_BTN_5", "L1");
+		hotKey = string.gsub(hotKey, "JOY_BTN_6", "R1"); 
+		hotKey = string.gsub(hotKey, "JOY_BTN_7", "L2");
+		hotKey = string.gsub(hotKey, "JOY_BTN_8", "R2"); 
+	else -- ê¸°ëŠ¥í‚¤ë¥¼ ì œê±°
+		hotKey = string.gsub(hotKey, "+", ""); -- +ë„ ì œê±°í•´ì¤€ë‹¤.
+		hotKey = string.gsub(hotKey, "JOY_BTN_5", "");
+		hotKey = string.gsub(hotKey, "JOY_BTN_6", ""); 
+		hotKey = string.gsub(hotKey, "JOY_BTN_7", "");
+		hotKey = string.gsub(hotKey, "JOY_BTN_8", ""); 
+	end
+
+	return hotKey;
+end
+
+
+function JOYSTICK_QUICKSLOT_MY_MONSTER_SKILL(isOn, monName, buffType)
+	
+	local frame = ui.GetFrame('joystickquickslot')
+	-- ON ì¼ë•Œ.
+	if isOn == 1 then
+		local monCls = GetClass("Monster", monName);
+		local list = GetMonsterSkillList(monCls.ClassID);
+		for i = 0, list:Count() - 1 do
+			local sklName = list:Get(i);
+			local sklCls = GetClass("Skill", sklName);
+			local slot = GET_CHILD_RECURSIVELY(frame, "slot"..i+1, "ui::CSlot");
+			tolua.cast(slot, "ui::CSlot");	
+			local icon = slot:GetIcon();
+			if icon ~= nil then
+				local iconInfo = icon:GetInfo();
+				slot:SetUserValue('ICON_CATEGORY', iconInfo.category);
+				slot:SetUserValue('ICON_TYPE', iconInfo.type);
+			end
+			CLEAR_SLOT_ITEM_INFO(slot);
+			local slotString 	= 'QuickSlotExecute'..(i+1);
+			local hotKey		= hotKeyTable.GetHotKeyString(slotString, 1); -- ì¡°ì´íŒ¨ë“œ í•«í‚¤
+			hotKey = JOYSTICK_QUICKSLOT_REPLACE_HOTKEY_STRING(false , hotKey);
+			slot:SetText('{s14}{#f0dcaa}{b}{ol}'..hotKey, 'default', 'left', 'top', 2, 1);
+			local type = sklCls.ClassID;
+			local icon = CreateIcon(slot);
+			local imageName = 'icon_' .. sklCls.Icon;
+			icon:Set(imageName, "Skill", type, 0);
+			icon:SetOnCoolTimeUpdateScp('ICON_UPDATE_SKILL_COOLDOWN');
+			icon:SetEnableUpdateScp('MONSTER_ICON_UPDATE_SKILL_ENABLE');
+			icon:SetColorTone("FFFFFFFF");
+			quickslot.OnSetSkillIcon(slot, type);
+			SET_QUICKSLOT_OVERHEAT(slot);
+
+			slot:EnableDrag(0);
+		end
+
+		local lastSlot = GET_CHILD_RECURSIVELY(frame, "slot"..list:Count() +1, "ui::CSlot");
+		local icon = lastSlot:GetIcon();
+		if icon ~= nil then
+			local iconInfo = icon:GetInfo();
+			lastSlot:SetUserValue('ICON_CATEGORY', iconInfo.category);
+			lastSlot:SetUserValue('ICON_TYPE', iconInfo.type);
+		end
+
+		CLEAR_SLOT_ITEM_INFO(lastSlot);
+		local icon = CreateIcon(lastSlot);
+		local slotString 	= 'QuickSlotExecute'..(list:Count() +1);
+		local hotKey		= hotKeyTable.GetHotKeyString(slotString, 1); -- ì¡°ì´íŒ¨ë“œ í•«í‚¤
+		hotKey = JOYSTICK_QUICKSLOT_REPLACE_HOTKEY_STRING(false , hotKey);
+		lastSlot:SetText('{s14}{#f0dcaa}{b}{ol}'..hotKey, 'default', 'left', 'top', 2, 1);
+		local lastSlotIconName = "druid_del_icon";
+		if monName == "Colony_Siege_Tower" then
+			lastSlotIconName = "Icon_common_get_off";
+		end	
+		icon:SetImage(lastSlotIconName);
+		lastSlot:EnableDrag(0);
+		SET_QUICKSLOT_OVERHEAT(lastSlot);
+		frame:SetUserValue('SKL_MAX_CNT',list:Count() + 1)
+		return;
+	end
+
+	-- OFF ì¼ë•Œ(ë³µêµ¬)
+	local sklCnt = frame:GetUserIValue('SKL_MAX_CNT');
+	for i = 1, sklCnt do
+		local slot = GET_CHILD_RECURSIVELY(frame, "slot"..i, "ui::CSlot");		
+		CLEAR_QUICKSLOT_SLOT(slot);
+		local slotString = 'QuickSlotExecute'..i;
+		local hotKey = hotKeyTable.GetHotKeyString(slotString, 1); -- ì¡°ì´íŒ¨ë“œ í•«í‚¤
+		hotKey = JOYSTICK_QUICKSLOT_REPLACE_HOTKEY_STRING(false , hotKey);
+		slot:SetText('{s14}{#f0dcaa}{b}{ol}'..hotKey, 'default', 'left', 'top', 2, 1);
+		local cate = slot:GetUserValue('ICON_CATEGORY');
+		if 'None' ~= cate then        
+			SET_QUICK_SLOT(slot, cate, slot:GetUserIValue('ICON_TYPE'),  "", 0, 0);
+		end
+		slot:SetUserValue('ICON_CATEGORY', 'None');
+		slot:SetUserValue('ICON_TYPE', 0);
+		SET_QUICKSLOT_OVERHEAT(slot)
+
+	end
+	frame:SetUserValue('SKL_MAX_CNT',0)
+end
+
+function JOYSTICKQUICKSLOT_DRAW()
+    JOYSTICK_QUICKSLOT_UPDATE_ALL_SLOT();
+    JOYSTICK_QUICKSLOT_REFRESH(40);
+end

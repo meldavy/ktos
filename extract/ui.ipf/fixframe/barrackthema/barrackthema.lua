@@ -13,10 +13,6 @@ function BARRACKTHEMA_ACCOUNT_PROP_UPDATE(frame)
 	BARRACK_THEMA_UPDATE(frame);
 end
 
-function THEMA_BUY_SUCCESS()
-	barrack.ToMyBarrack();
-end
-
 function BARRACK_THEMA_UPDATE(frame)
 	if frame == nil then
 		return;
@@ -28,8 +24,7 @@ function BARRACK_THEMA_UPDATE(frame)
 	local account = GetMyAccountObj();
 	local mynxp = bg:GetChild("mynxp");
 	local accountObj = GetMyAccountObj();
-	mynxp:SetTextByKey("value", accountObj.GiftMedal);
-	mynxp:SetTextByKey("value2", accountObj.GiftMedal + accountObj.PremiumMedal);
+	mynxp:SetTextByKey("value", accountObj.GiftMedal + accountObj.PremiumMedal);
 	local bg_1 = frame:GetChild("nxp_bg_1");
 	local mynxp_1 = bg_1:GetChild("mynxp_1");
 	mynxp_1:SetTextByKey("value", accountObj.Medal);
@@ -55,8 +50,6 @@ function BARRACK_THEMA_UPDATE(frame)
 		skinName:SetTextByKey("value", cls.Name);
 
 		local charCntBox = ctrlSet:GetChild("charCnt");
-		local charCnt = charCntBox:GetChild("count");
-		charCnt:SetTextByKey("value", cls.BaseSlot);
 		local cashCnt = charCntBox:GetChild("cashCnt");
 		cashCnt:SetTextByKey("value", cls.MaxCashPC);
 
@@ -81,17 +74,17 @@ function BARRACK_THEMA_UPDATE(frame)
 	
 		local preViewBtn = ctrlSet:GetChild("preViewBtn");
 		local previewScp = string.format("BARRACKTHEMA_PREVIEW(\'%s\')", cls.ClassName);
-		preViewBtn:SetEventScript(ui.LBUTTONUP, previewScp);
+		preViewBtn:SetEventScript(ui.LBUTTONUP, previewScp, true);
 
 		local have = barrack.HaveThame(mapCls.ClassID, cls.Price);
 
-		if true == have then -- ÇöÀç Å×¸¶¸¦ °¡Áö°í ÀÖÀ» ¶§
+		if true == have then -- ï¿½ï¿½ï¿½ï¿½ ï¿½×¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 			local appliedScp = string.format("BARRACKTHEMA_APPLIED(\'%s\')", cls.ClassName);
-			changeBtn:SetEventScript(ui.LBUTTONUP, appliedScp);
+			changeBtn:SetEventScript(ui.LBUTTONUP, appliedScp, true);
 			changeBtn:ShowWindow(1);
 			buyBtn:ShowWindow(0);
 
-			if mapCls.ClassID == curID then -- ÇöÀç Àû¿ëÁßÀÌ¶ó¸é
+			if mapCls.ClassID == curID then -- ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¶ï¿½ï¿½
 				preViewBtn:ShowWindow(0);
 				state:SetTextByKey("value", ClMsg("IsApplied"));
 				changeBtn:SetEnable(0);
@@ -100,7 +93,7 @@ function BARRACK_THEMA_UPDATE(frame)
 			end
 		else
 			local buyScp = string.format("BARRACK_BUY(\'%s\')", cls.ClassName);
-			buyBtn:SetEventScript(ui.LBUTTONUP, buyScp);
+			buyBtn:SetEventScript(ui.LBUTTONUP, buyScp, true);
 		end
 
 
@@ -124,7 +117,7 @@ function BARRACKTHEMA_APPLIED(themaName)
 end
 
 function BARRACKTHEMA_CANCEL_PREVIEW(parent, ctrl)
-	if barrack.isPreviewMode() == true then
+	if barrack.IsPreviewMode() == true then
 		barrack.ToMyBarrack();
 	else
 		ui.CloseFrame("barrackthema")
@@ -150,12 +143,7 @@ end
 function BARRACK_BUY(buyMap)
 	local cls = GetClass("BarrackMap", buyMap);
 
-	local msgBoxStr = ClMsg("ReallyBuy?") .. "{nl}" .. cls.Price .. " " .. ScpArgMsg("iCoin");
-	if config.GetServiceNation() == "KOR" then
-		msgBoxStr = ClMsg("ReallyBuy?") .. "{nl}" .. cls.Price .. " " .. ScpArgMsg("NXP");
-	elseif config.GetServiceNation() == "JP" then
-		msgBoxStr = ClMsg("ReallyBuy?") .. "{nl}" .. cls.Price .. " " .. ScpArgMsg("JNxp");
-	end
+	local msgBoxStr = ClMsg("ReallyBuy?") .. "{nl}" .. cls.Price .. " " .. ScpArgMsg("NXP");
 
 	local yesScp = string.format("EXEC_BUY_BARRACK(\"%s\")", buyMap);
 	if GET_CASH_TOTAL_POINT_C() < cls.Price then

@@ -1,11 +1,16 @@
 --- link.lua
 
-
 function GET_ITEM_FULLNAME_BY_TAG_INFO(props, clsID)
 
 	local newobj = CreateIESByID("Item", clsID);
 	if props ~= 'nullval' then
-		SetModifiedProperiesString(newobj, props);
+		SetModifiedPropertiesString(newobj, props);
+	end
+
+	if newobj.ClassName == "Scroll_SkillItem" then
+		local skillType, level = GetSkillScrollProperty(props);
+		newobj.SkillType = skillType
+		newobj.SkillLevel = level
 	end
 
 	local ret = GET_FULL_NAME(newobj);
@@ -16,31 +21,47 @@ end
 
 function SLI(props, clsID)
 
-	local tooltipType = GET_ITEM_TOOLTIP_TYPE(clsID);
+	local itemFrame = ui.GetFrame("wholeitem_link");
+	if itemFrame == nil then
+		itemFrame = ui.GetNewToolTip("wholeitem_link", "wholeitem_link");
+	else
+		CLOSE_LINK_TOOLTIP(itemFrame)
+	end
 
-	local tframe = nil ;
-	
+	local skillFrame = ui.GetFrame("skill_link");
+	if skillFrame == nil then
+		skillFrame = ui.GetNewToolTip("skill", "skill_link");
+	else
+		CLOSE_LINK_TOOLTIP(skillFrame)
+	end
+
+	tolua.cast(itemFrame, 'ui::CTooltipFrame');
+	tolua.cast(skillFrame, 'ui::CTooltipFrame');
+
+	local currentFrame = nil;
+
 	if 910001 ~= clsID then -- 스킬 스크롤이 아니면
-		tframe = ui.CreateToolTip('wholeitem_link', "item_link");
 		local newobj = CreateIESByID("Item", clsID);
 		if props ~= 'nullval' then
-			SetModifiedProperiesString(newobj, props);
+			SetModifiedPropertiesString(newobj, props);
 		end
 
-		tframe:SetTooltipType('wholeitem')
+		itemFrame:SetTooltipType('wholeitem')
 		local pobj = tolua.cast(newobj, "imcIES::IObject");
-		tframe:SetToolTipObject(pobj);
+		itemFrame:SetToolTipObject(pobj);
+		
+		currentFrame = itemFrame;
 	else
 		local skillType, level = GetSkillScrollProperty(props);
-		tframe = ui.CreateToolTip('skill_link', "skil_link");
-		tframe:SetTooltipType('skill');
-		tframe:SetTooltipArg("Level", skillType, level);
+		skillFrame:SetTooltipType('skill');
+		skillFrame:SetTooltipArg("Level", skillType, level);
+		currentFrame = skillFrame;
 	end
-	tframe:RefreshTooltip();
-	tframe:ShowWindow(1);
 
-	ui.ToCenter(tframe);
+	currentFrame:RefreshTooltip();
+	currentFrame:ShowWindow(1);
 
+	ui.ToCenter(currentFrame);
 end
 
 function SLM(infoString)
@@ -53,8 +74,7 @@ function SLM(infoString)
 	SCR_SHOW_LOCAL_MAP(mapCls.ClassName, true, x, z);
 end
 
-function CLOSE_LINK_TOOLTIP(frame, slot)
-	
+function CLOSE_LINK_TOOLTIP(frame)
 	frame:ShowWindow(0)
 end
 
@@ -90,7 +110,7 @@ function LINK_ITEM_TEXT(invitem)
 
 	local chatFrame = GET_CHATFRAME();
 	local edit = chatFrame:GetChild('mainchat');
-	local imgheight = edit:GetHeight();
+	local imgheight = edit:GetOriginalHeight();
 
 	local itemobj = GetIES(invitem:GetObject());
 
@@ -108,9 +128,9 @@ function LINK_ITEM_TEXT(invitem)
 		itemName = itemName .. "(" .. sklCls.Name ..")";
 		properties = GetSkillItemProperiesString(itemobj);
 	else
-		properties = GetModifiedProperiesString(itemobj);
+		properties = GetModifiedPropertiesString(itemobj);
 	end
-
+	
 	if properties == "" then
 		properties = 'nullval'
 	end
@@ -128,6 +148,21 @@ function MAKE_LINK_MAP_TEXT(mapName, x, z)
 
 end
 
+function MAKE_LINK_MAP_TEXT_NO_POS(mapName, x, z)
+
+	local mapprop = geMapTable.GetMapProp(mapName);
+	return string.format("{a SLM %d#%d#%d}{#0000FF}{img link_map 24 24}%s{/}{/}{/}", mapprop.type, x, z, mapprop:GetName());	
+
+end
+
+function MAKE_LINK_MAP_TEXT_NO_POS_NO_FONT(mapName, x, z)
+
+	local mapprop = geMapTable.GetMapProp(mapName);
+	return string.format("{a SLM %d#%d#%d}{img link_map 24 24}%s{/}{/}{/}", mapprop.type, x, z, mapprop:GetName());	
+
+end
+
+
 function LINK_MAP_POS(mapName, x, z)
 
 	local linkstr = MAKE_LINK_MAP_TEXT(mapName, x, z);
@@ -135,10 +170,32 @@ function LINK_MAP_POS(mapName, x, z)
 
 end
 
+function SLC(linktext)
+
+	local sstart, send = string.find(linktext,"@@@")
+
+	if sstart == nil or send == nil then
+		return;
+	end
+
+	local aid = string.sub(linktext,0,sstart -1)
+	local roomid = string.sub(linktext,send + 1)
+
+	ui.GroupChatEnterRoomByTag(roomid,aid)
+
+end
+
+
 function SLP(partyID)
 	local pcparty = session.party.GetPartyInfo();
 	if pcparty ~= nil then
-		ui.SysMsg( ClMsg("HadMyParty") );
+		if pcparty.info ~= nil then 
+			if pcparty.info:GetPartyID() == partyID then
+				ui.SysMsg(ClMsg("HadMyPartySame"));
+			else
+				ui.SysMsg(ClMsg("HadMyPartyOther"));
+			end
+		end
 		return;
 	end
 

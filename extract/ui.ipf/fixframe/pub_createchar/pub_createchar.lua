@@ -1,4 +1,7 @@
-﻿
+﻿MAX_BARRACK_LAYER = 3
+MAX_BARRACK_LAYER_CHAR = 16
+
+
 function PUB_CREATECHAR_ON_INIT(addon, frame)
 	
 	addon:RegisterMsg("BARRACK_NEWCHARACTER", "PUB_BARRACK_NEWCHARACTER");
@@ -8,7 +11,6 @@ end
 function PUB_CANCEL_CREATECHAR(frame)
 
 	frame:ShowWindow(0);
-	selectMap = 0;
 	GetBarrackPub():EnableFocusChar(false);
 
 end
@@ -44,22 +46,7 @@ function PUB_CHARFRAME_UPDATE(frame, actor)
 	job_desc:SetTextByKey("value", jobCls.Caption1);
 
 	SET_HEAD_NAME(frame, gender, headType);
-	--SET_HEAD_COLOR_NAME(frame, gender, headType);
-
-
-	if selectMap == 0 then
-		local KlaipeBtn_mark = GET_CHILD_RECURSIVELY(frame, "KlaipeBtn_mark", "ui::CPicture");
-		local OrshaBtn_mark = GET_CHILD_RECURSIVELY(frame, "OrshaBtn_mark", "ui::CPicture");
-		KlaipeBtn_mark:ShowWindow(0);
-		OrshaBtn_mark:ShowWindow(0);
-
-		local klaipeBtn = GET_CHILD_RECURSIVELY(frame, "KlaipeBtn")
-		local orshaBtn = GET_CHILD_RECURSIVELY(frame, "OrshaBtn")
-		klaipeBtn:SetEnable(1);
-		orshaBtn:SetEnable(1);
-	end
-
-	
+	--SET_HEAD_COLOR_NAME(frame, gender, headType);	
 end
 
 function SET_HEAD_COLOR_NAME(frame, gender, headType)
@@ -331,21 +318,8 @@ function PUB_BARRACK_NEWCHARACTER(frame)
 	local input_name = GET_CHILD(frame, "input_name", "ui::CEditControl");
 	input_name:ClearText();
 end
-selectMap = 0;
 
 function OPEN_PUB_CREATECHAR(frame)
-
-	local OrshaBtn_mark = GET_CHILD_RECURSIVELY(frame, "OrshaBtn_mark")
-	local KlaipeBtn_mark = GET_CHILD_RECURSIVELY(frame, "KlaipeBtn_mark")
-
-	KlaipeBtn_mark:ShowWindow(0);
-	OrshaBtn_mark:ShowWindow(0);
-
-	local klaipeBtn = GET_CHILD_RECURSIVELY(frame, "KlaipeBtn")
-	local orshaBtn = GET_CHILD_RECURSIVELY(frame, "OrshaBtn")
-	klaipeBtn:SetEnable(1);
-	orshaBtn:SetEnable(1);
-	selectMap = 0;
 
 end
 
@@ -353,60 +327,39 @@ function CLOSE_PUB_CREATECHAR(frame)
 
 end
 
-function PUB_EXEC_CREATECHAR(parent, ctrl)
+function IS_FULL_SLOT_CURRENT_LAYER()
+    local frame = ui.GetFrame("barrack_charlist")
+    local child = GET_CHILD(frame, 'scrollBox')
+    local char_cnt = child:GetChildCount() - 1
+    if char_cnt >= MAX_BARRACK_LAYER_CHAR then        
+        return true
+    end
+    return false
+end
 
-	if selectMap == 0 then
-		ui.SysMsg(ClMsg("NotChooseStartMap"));
-		return;
-	end
 
+function PUB_EXEC_CREATECHAR(parent, ctrl)    
 	local accountInfo = session.barrack.GetMyAccount();
 	if accountInfo:GetPCCount() > 0 then
-		
 		local msg = ScpArgMsg("WillYouSeeOpeningAgain?");
 		ui.MsgBox(msg, "_PUB_EXEC_CREATECHAR(1)", "_PUB_EXEC_CREATECHAR(0)");
-
 	else
 		_PUB_EXEC_CREATECHAR(1)
 	end
 end
 
-function _PUB_EXEC_CREATECHAR(viewOpening)
-
-	local frame = ui.GetFrame("pub_createchar");
-
+function _PUB_EXEC_CREATECHAR(viewOpening)    
+	local frame = ui.GetFrame("pub_createchar");    
 	local input_name = GET_CHILD(frame, "input_name", "ui::CEditControl");
 	local text = input_name:GetText();
 
+    local make_layer = current_layer
+    if make_layer < 1 or make_layer > 3 then
+        make_layer = 1
+    end
+
 	local actor = GetBarrackPub():GetSelectedActor();
-	barrack.RequestCreateCharacter(text, actor, selectMap);
-	GetBarrackPub():EnablePlayOpening(viewOpening, selectMap);
-	selectMap = 0;
+	barrack.RequestCreateCharacter(text, actor, make_layer);
+	GetBarrackPub():EnablePlayOpening(viewOpening);
 
-end
-
-function SELECT_START_MAP_KLAIPE(parent, ctrl)
-	ctrl:SetEnable(0);
-	local KlaipeBtn_mark = parent:GetChild("KlaipeBtn_mark");
-	local OrshaBtn_mark = parent:GetChild("OrshaBtn_mark");
-	
-	OrshaBtn_mark:ShowWindow(0);
-	KlaipeBtn_mark:ShowWindow(1);
-
-	local orshaBtn = parent:GetChild("OrshaBtn");
-	orshaBtn:SetEnable(1);
-	selectMap = 1;
-end
-
-function SELECT_START_MAP_ORSHA(parent, ctrl)
-	ctrl:SetEnable(0);
-	local OrshaBtn_mark = parent:GetChild("OrshaBtn_mark");
-	local KlaipeBtn_mark = parent:GetChild("KlaipeBtn_mark");
-
-	KlaipeBtn_mark:ShowWindow(0);
-	OrshaBtn_mark:ShowWindow(1);
-
-	local klaipeBtn = parent:GetChild("KlaipeBtn");
-	klaipeBtn:SetEnable(1);
-	selectMap = 2;
 end
