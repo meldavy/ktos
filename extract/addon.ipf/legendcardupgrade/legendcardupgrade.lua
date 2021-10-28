@@ -19,6 +19,11 @@ function CLOSE_LEGENDCARD_REINFORCE(frame)
 	ui.CloseFrame("legendcardupgrade");	
 end
 
+-- clearType
+-- 1: 성공
+-- 2: 실패
+-- 3: 파괴
+-- 0:
 function LEGENDCARD_UPGRADE_SLOT_CLEAR(frame, clearType)
 	local frame = ui.GetFrame('legendcardupgrade')
 	
@@ -58,6 +63,12 @@ function LEGENDCARD_UPGRADE_SLOT_CLEAR(frame, clearType)
 	local resultGbox2 = GET_CHILD_RECURSIVELY(frame, "resultGbox2")
 	resultGbox2:ShowWindow(0)
 	INV_APPLY_TO_ALL_SLOT(_G["LEGENDCARD_REINFORCE_RECOVER_ICON"])
+
+	if legendCardSlot ~= nil then
+		local legendSlotGuid = LEGENDCARD_REINFORCE_GET_GUID_BY_SLOT(legendCardSlot)
+		local legendSlotItem = session.GetInvItemByGuid(legendSlotGuid);
+		LEGENDCARD_REINFORCE_INV_RBTN(legendSlotItem, legendCardSlot)
+	end
 	CALC_UPGRADE_PERCENTS(frame)
 end
 --메인카드 레벨 세팅
@@ -79,28 +90,14 @@ function MATERIAL_CARD_SLOT_RBTNUP_ITEM_INFO(parent, slot, argStr, argNum)
 	if frame == nil then
 		return
 	end
-	local guid = LEGENDCARD_REINFORCE_GET_GUID_BY_SLOT(slot)
-	if guid == 0 then
-		return
-	end
-	slot:ClearIcon();
-	slot:SetText("");
 	
 	if slot:GetName() == 'LEGcard_slot' then
 		LEGENDCARD_UPGRADE_SLOT_CLEAR(frame, 3)
 	else
+		LEGENDCARD_REINFORCE_RECOVER_INVICON(slot)
+		slot:ClearIcon();
+		slot:SetText("");
 		CALC_UPGRADE_PERCENTS(frame)
-		-- 카드 탭
-		local invenSlot = INV_GET_SLOT_BY_ITEMGUID(guid)
-		local invenIcon = invenSlot:GetIcon();
-		invenSlot:SetUserValue("LEGENDCARD_REINFORCE_SELECTED", 0);
-		invenIcon:SetColorTone("FFFFFFFF");
-
-		-- 모두 보기 탭
-		local invenSlot_All = INV_GET_SLOT_BY_ITEMGUID(guid, nil, 1)
-		local invenIcon_All = invenSlot_All:GetIcon();
-		invenSlot_All:SetUserValue("LEGENDCARD_REINFORCE_SELECTED", 0);
-		invenIcon_All:SetColorTone("FFFFFFFF");
 	end
 end
 
@@ -133,6 +130,15 @@ function MATERIAL_CARD_SLOT_DROP(frame, slot, argStr, argNum)
 end
 	
 function LEGENDCARD_SET_SLOT(slot, invItem)
+	local frame = ui.GetFrame('legendcardupgrade');
+	if frame == nil then return end
+
+	-- 업그레이드 이후 결과가 나오고 있을 때에는 Set Slot을 하지 않음
+	local isVisibleResult = frame:GetUserIValue("IsVisibleResult")
+	if isVisibleResult == 1 then
+		return
+	end		
+
 	local obj = GetIES(invItem:GetObject());
 
 	if TryGetProp(obj, "ClassName", "None") == 'Legendcard_Leticia' then
@@ -157,11 +163,8 @@ function LEGENDCARD_SET_SLOT(slot, invItem)
 		ui.SysMsg(ClMsg("CanNotEnchantMore"));
 		return
 	end
-	local frame = ui.GetFrame("legendcardupgrade")
+	
 	local invFrame = ui.GetFrame("inventory");
-	if frame == nil then
-		return
-	end
 	if LEGENDCARD_UPGRADE_ALREADY_REGISTER(frame,invItem:GetIESID()) == true then
 		return
 	end
@@ -171,6 +174,9 @@ function LEGENDCARD_SET_SLOT(slot, invItem)
 	legendCardNameGbox:ShowWindow(1)
 	local legendCardNameText = GET_CHILD_RECURSIVELY(frame, "legendcard_name_text")
 	legendCardNameText:SetTextByKey("value", obj.Name)
+
+	--set old inven slot
+	LEGENDCARD_REINFORCE_RECOVER_INVICON(slot)
 
 	--set slot
 	slot:SetText("")
@@ -196,6 +202,15 @@ function LEGENDCARD_SET_SLOT(slot, invItem)
 end
 
 function LEGENDCARD_MATERIAL_SET_SLOT(slot, invItem)
+	local frame = ui.GetFrame('legendcardupgrade');
+	if frame == nil then return end
+
+	-- 업그레이드 이후 결과가 나오고 있을 때에는 Set Slot을 하지 않음
+	local isVisibleResult = frame:GetUserIValue("IsVisibleResult")
+	if isVisibleResult == 1 then
+		return
+	end		
+	
 	local obj = GetIES(invItem:GetObject());
 	if obj.GroupName ~= "Card" then
 		return
@@ -205,9 +220,8 @@ function LEGENDCARD_MATERIAL_SET_SLOT(slot, invItem)
 		return;
 	end
 
-	local frame = ui.GetFrame("legendcardupgrade")
 	if frame:GetUserValue("LEGcard_slot") == "None" then
-		ui.SysMsg(ClMsg("AdvancedCardReinforce_Need_LegCard"));
+		ui.SysMsg(ClMsg("AdvancedCardReinforce_Need_LegCard")); -- 강화할 고급 카드를 먼저 등록해 주시기 바랍니다.
 		return
 	end
 	if LEGENDCARD_UPGRADE_ALREADY_REGISTER(frame,invItem:GetIESID()) == true then
@@ -217,13 +231,19 @@ function LEGENDCARD_MATERIAL_SET_SLOT(slot, invItem)
 	local legendSlot = GET_CHILD_RECURSIVELY(frame, "LEGcard_slot")
 	local legendSlotGuid = LEGENDCARD_REINFORCE_GET_GUID_BY_SLOT(legendSlot)
 	local legendSlotItem = session.GetInvItemByGuid(legendSlotGuid);
-	local namespace = LEGENDCARD_REINFORCE_GET_MATERIAL_CARD_NAMESPACE(GetIES(legendSlotItem:GetObject()),obj)
+	local legendSlotItemObj = legendSlotItem:GetObject()
+	local legendSlotItemIES = GetIES(legendSlotItemObj)
+	local namespace = LEGENDCARD_REINFORCE_GET_MATERIAL_CARD_NAMESPACE(legendSlotItemIES, obj)
 	if namespace == nil then
-		ui.SysMsg(ClMsg("WrongDropItem"));
+		ui.SysMsg(ClMsg("WrongDropItem")); -- 기간이 만료된 아이템이거나 등록할 수 없는 아이템입니다.
 		return
 	end
+
 	local cls = LEGENDCARD_GET_REINFORCE_CLASS(legendCardLv,obj.Reinforce_Type,namespace)
 	LEGENDCARD_SET_MATERIAL_ITEM(frame,cls,obj)
+
+	--set old inven slot
+	LEGENDCARD_REINFORCE_RECOVER_INVICON(slot)
 
 	--set slot
 	slot:SetText("")
@@ -297,18 +317,19 @@ end
 function DO_LEGENDCARD_UPGRADE_LBTNUP(frame, slot, argStr, argNum)
 	local frame = ui.GetFrame('legendcardupgrade');
 	local isVisibleResult = frame:GetUserIValue("IsVisibleResult")
-	--확인 버튼
+
+	-- 업그레이드 이후 결과가 나왔을 때 확인 버튼
 	if isVisibleResult == 1 then
 		LEGENDCARD_UPGRADE_SLOT_CLEAR(frame, 1)
 		LEGENDCARD_UPGRADE_MAINSLOT_UPDATE(frame)
 		return
 	end		
 
-	local legendCardSlot = GET_CHILD_RECURSIVELY(frame, 'LEGcard_slot')
+	local legendCardSlot = GET_CHILD_RECURSIVELY(frame, 'LEGcard_slot') -- 강화할 메인 카드
 	local legendCardSlotIcon = legendCardSlot:GetIcon()
 
 	if legendCardSlotIcon == nil then
-		ui.SysMsg(ClMsg("AdvancedCardReinforce_Need_LegCard"));
+		ui.SysMsg(ClMsg("AdvancedCardReinforce_Need_LegCard")); -- 강화할 고급 카드를 먼저 등록해 주시기 바랍니다
 		return
 	end
 	local legendCardSlotID = LEGENDCARD_REINFORCE_GET_GUID_BY_SLOT(legendCardSlot)
@@ -330,6 +351,7 @@ function DO_LEGENDCARD_UPGRADE_LBTNUP(frame, slot, argStr, argNum)
 	-- 4를 빼놓자
 	local isSlotEmpty = 1
 	local materialCardObjList = {}
+	local materialCardLvMax = 0
 	for i = 1, 4 do
 		local materialCardSlot = GET_CHILD_RECURSIVELY(frame, 'material_slot'..i)
 		local materialCardID = LEGENDCARD_REINFORCE_GET_GUID_BY_SLOT(materialCardSlot)
@@ -340,12 +362,16 @@ function DO_LEGENDCARD_UPGRADE_LBTNUP(frame, slot, argStr, argNum)
 				isSlotEmpty = 0
 				local materialCardObj = GetIES(materialCardInvItem:GetObject());
 				table.insert(materialCardObjList,materialCardObj)
+				local materialCardLv = GET_ITEM_LEVEL(materialCardObj)
+				if materialCardLvMax < materialCardLv then
+					materialCardLvMax = materialCardLv
+				end
 			end
 		end
 	end
 
 	if isSlotEmpty == 1 then
-		ui.SysMsg(ClMsg("AdvancedCardReinforce_Need_Card"));
+		ui.SysMsg(ClMsg("AdvancedCardReinforce_Need_Card")); -- 제물로 사용될 카드를 등록해 주시기 바랍니다
 		return
 	end
 	
@@ -353,6 +379,10 @@ function DO_LEGENDCARD_UPGRADE_LBTNUP(frame, slot, argStr, argNum)
 	local needReinforceItemCount = 0;
 	local legendCardObj = GetIES(legendCardInvItem:GetObject())
 	local legendCardLv = GET_ITEM_LEVEL(legendCardObj)
+	local levelWarning = false
+	if legendCardLv < materialCardLvMax then
+		levelWarning = true;
+	end
 
 	local namespace = LEGENDCARD_REINFORCE_GET_MAIN_CARD_NAMESPACE(legendCardObj)
 	if namespace ~= nil then
@@ -371,20 +401,35 @@ function DO_LEGENDCARD_UPGRADE_LBTNUP(frame, slot, argStr, argNum)
 
 	local needInvItem = session.GetInvItemByName(needReinforceItem)
 	if needInvItem == nil or needInvItem.count < needReinforceItemCount then
-		ui.SysMsg(ClMsg("AdvancedCardReinforce_NeedItem"));
+		ui.SysMsg(ClMsg("AdvancedCardReinforce_NeedItem")); -- 고급 카드 강화 재료가 부족합니다.
 		return
 	end
 
 	if TryGetProp(legendCardObj,"Reinforce_Type") == "GoddessCard" then
 		local successPercent,_,_,needPoint, totalGivePoint = CALC_LEGENDCARD_REINFORCE_PERCENTS(legendCardObj,materialCardObjList)
 		if needPoint > totalGivePoint then
-			ui.SysMsg(ClMsg("GoddessCardReinforcePointNeed"));
+			ui.SysMsg(ClMsg("GoddessCardReinforcePointNeed")); -- 강화에 필요한 경험치가 부족합니다
 		else
 			LEGENDCARD_REINFORCE_EXEC()
 		end
 	else
-		ui.MsgBox_NonNested(ClMsg("AdvancedCardReinforce_OK"), frame:GetName(), "LEGENDCARD_REINFORCE_EXEC", "None");			
+		-- Request #97447 / 재료 카드의 레벨이 강화할 카드의 레벨보다 높을 때 주의 추가 팝업
+		if levelWarning == true then
+			WARNINGMSGBOX_FRAME_OPEN(ClMsg("MaterialCardLvHighThanGoddessReinforceCard"), "LEGENDCARD_REINFORCE_REINFORCE_OK_MSGBOX", "None")
+		else
+			LEGENDCARD_REINFORCE_REINFORCE_OK_MSGBOX()
+		end
+		-- if levelWarning == true then
+		-- 	ui.MsgBox_NonNested(ClMsg("AdvancedCardReinforce_OK"), frame:GetName(), "LEGENDCARD_REINFORCE_REINFORCE_OK_MSGBOX", "None");
+		-- else
+		-- 	ui.MsgBox_NonNested(ClMsg("AdvancedCardReinforce_OK"), frame:GetName(), "LEGENDCARD_REINFORCE_EXEC", "None");
+		-- end
 	end
+end
+
+function LEGENDCARD_REINFORCE_REINFORCE_OK_MSGBOX()
+	ui.MsgBox_NonNested(ClMsg("AdvancedCardReinforce_OK"), frame:GetName(), "LEGENDCARD_REINFORCE_EXEC", "None");
+	-- WARNINGMSGBOX_FRAME_OPEN(ClMsg("MaterialCardLvHighThanGoddessReinforceCard"), "LEGENDCARD_REINFORCE_EXEC", "None")
 end
 
 function LEGENDCARD_REINFORCE_EXEC()
@@ -504,11 +549,16 @@ function LEGENDCARD_UPGRADE_EFFECT_UI_EXEC(frame, beforeLv, afterLv, reinforceTy
 end
 
 function LEGENDCARD_REINFORCE_INV_RBTN(invitem, slot)
+	if invitem == nil then return end
+	if slot == nil then return end
+
 	local nowselectedcount = slot:GetUserIValue("LEGENDCARD_REINFORCE_SELECTED")
 	if nowselectedcount < invitem.count then
 		-- 카드탭
 		local slot = INV_GET_SLOT_BY_ITEMGUID(invitem:GetIESID())
+		if slot == nil then return end
 		local icon = slot:GetIcon();
+		if icon == nil then return end
 
 		-- 모두 보기 탭
 		local slot_All = INV_GET_SLOT_BY_ITEMGUID(invitem:GetIESID(), nil, 1)
@@ -526,7 +576,25 @@ function LEGENDCARD_REINFORCE_INV_RBTN(invitem, slot)
 	end
 end
 
+-- 받은 slot의 guid를 받고, 인벤토리에서 guid로 인벤토리의 슬롯을 찾아 RECOVER
+function LEGENDCARD_REINFORCE_RECOVER_INVICON(slot)
+	if slot == nil then return end
+	
+	local guid = LEGENDCARD_REINFORCE_GET_GUID_BY_SLOT(slot)
+	if guid == 0 then return end
+
+	-- 카드 탭
+	local invenSlot = INV_GET_SLOT_BY_ITEMGUID(guid)
+	LEGENDCARD_REINFORCE_RECOVER_ICON(invenSlot)
+
+	-- 모두 보기 탭
+	local invenSlot_All = INV_GET_SLOT_BY_ITEMGUID(guid, nil, 1)
+	LEGENDCARD_REINFORCE_RECOVER_ICON(invenSlot_All)
+end
+
 function LEGENDCARD_REINFORCE_RECOVER_ICON(slot)
+	if slot == nil then return end
+
 	local icon = slot:GetIcon();
 	if icon ~= nil then
 		slot:SetUserValue("LEGENDCARD_REINFORCE_SELECTED", 0);

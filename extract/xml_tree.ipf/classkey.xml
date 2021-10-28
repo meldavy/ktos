@@ -5297,8 +5297,46 @@
         <Key Name="EP12_NECK06_HIGH_004_cabinet_upgrade" Value="109444"/>
         <Key Name="EP12_NECK06_HIGH_005_cabinet_upgrade" Value="109449"/>
         <Key Name="EP12_NECK06_HIGH_006_cabinet_upgrade" Value="109451"/>
+        <Key Name="EVENT_2107_FISHING_BAIT_RECEIVED" Value="109437"/>
+        <Key Name="EVENT_2107_FISHING_EP12_SHOP_1" Value="109429"/>
+        <Key Name="EVENT_2107_FISHING_EP12_SHOP_2" Value="109435"/>
+        <Key Name="EVENT_2107_FISHING_EP12_SHOP_3" Value="109438"/>
+        <Key Name="EVENT_2107_FISHING_EP12_SHOP_4" Value="109428"/>
+        <Key Name="EVENT_2107_FISHING_EP12_SHOP_5" Value="109427"/>
+        <Key Name="EVENT_2107_FISHING_EP12_SHOP_6" Value="109434"/>
+        <Key Name="EVENT_2107_FISHING_EP12_SHOP_7" Value="109432"/>
+        <Key Name="EVENT_2107_FISHING_EP12_SHOP_8" Value="109430"/>
+        <Key Name="EVENT_2107_FISHING_EP12_SHOP_9" Value="109426"/>
+        <Key Name="EVENT_2107_FISHING_TRADE_COUNT" Value="109433"/>
+        <Key Name="EVENT_2107_FISHINH_PLAY_TIME" Value="109431"/>
+        <Key Name="EVENT_2107_FISHINH_WEEK_REWARD" Value="109436"/>
+        <Key Name="REGULAR_BURNING_EVENT_MYTHIC_AUTO_RESET" Value="109457"/>
         <Key Name="USE_RELIC_IN_BOSS_COOP_LAST_DATE" Value="109455"/>
         <Key Name="USE_RELIC_IN_GUILD_RAID_LAST_DATE" Value="109456"/>
+        <Key Name="EVENT_2107_FISHING_BAIT_RECEIVED_KR" Value="109469"/>
+        <Key Name="EVENT_2107_FISHING_COUNT" Value="109465"/>
+        <Key Name="EVENT_2107_FISHING_KR_SHOP_1" Value="109462"/>
+        <Key Name="EVENT_2107_FISHING_KR_SHOP_10" Value="109470"/>
+        <Key Name="EVENT_2107_FISHING_KR_SHOP_11" Value="109461"/>
+        <Key Name="EVENT_2107_FISHING_KR_SHOP_12" Value="109472"/>
+        <Key Name="EVENT_2107_FISHING_KR_SHOP_13" Value="109458"/>
+        <Key Name="EVENT_2107_FISHING_KR_SHOP_2" Value="109459"/>
+        <Key Name="EVENT_2107_FISHING_KR_SHOP_3" Value="109467"/>
+        <Key Name="EVENT_2107_FISHING_KR_SHOP_4" Value="109468"/>
+        <Key Name="EVENT_2107_FISHING_KR_SHOP_5" Value="109471"/>
+        <Key Name="EVENT_2107_FISHING_KR_SHOP_6" Value="109466"/>
+        <Key Name="EVENT_2107_FISHING_KR_SHOP_7" Value="109460"/>
+        <Key Name="EVENT_2107_FISHING_KR_SHOP_8" Value="109473"/>
+        <Key Name="EVENT_2107_FISHING_KR_SHOP_9" Value="109463"/>
+        <Key Name="EVENT_2107_FISHING_ROD_RECEIVED_KR" Value="109464"/>
+        <Key Name="UITUTO_EQUIPCACABINET1" Value="109480"/>
+        <Key Name="UITUTO_EQUIPCACABINET2" Value="109475"/>
+        <Key Name="UITUTO_EQUIPCACABINET3" Value="109474"/>
+        <Key Name="UITUTO_GLASS1" Value="109476"/>
+        <Key Name="UITUTO_GLASS2" Value="109479"/>
+        <Key Name="UITUTO_GLASS3" Value="109478"/>
+        <Key Name="UITUTO_GODDESSEQUIP1" Value="109481"/>
+        <Key Name="UITUTO_GODDESSEQUIP2" Value="109477"/>
     </KeyIDSpc>
     <KeyIDSpc Name="PCEtc">
         <Key Name="Kill_boss_Clymen_Q2" Value="7788"/>
@@ -14371,6 +14409,7 @@
         <Key Name="Kill_boss_Bounty02" Value="109441"/>
         <Key Name="Kill_boss_Bounty03" Value="109439"/>
         <Key Name="Kill_boss_Bounty04" Value="109442"/>
+        <Key Name="Kill_boss_Vasilissa_Solo" Value="109483"/>
     </KeyIDSpc>
     <KeyIDSpc Name="GuildMember">
         <Key Name="Name" Value="9011"/>
@@ -23234,6 +23273,7 @@
         <Key Name="EP13_F_SIAULIAI_RAID_1" Value="109096"/>
         <Key Name="MG_Last_F_BRACKEN_UNIQUE_MQ1_MGAME" Value="109094"/>
         <Key Name="MG_Last_F_NICOPOLIS_UNIQUE_MQ1_MGAME" Value="109095"/>
+        <Key Name="MG_Last_Goddess_Raid_Vasilissa_Solo" Value="109482"/>
     </KeyIDSpc>
     <KeyIDSpc Name="Monster">
         <Key Name="MaxHate" Value="6671"/>

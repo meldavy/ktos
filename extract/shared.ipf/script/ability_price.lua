@@ -827,7 +827,12 @@ function GET_ABILITY_POINT_BY_NAME(pc, name)
             local group_name = 'Ability_' .. suffix
             local shop_info = GetClass(group_name, name)
             if shop_info ~= nil then
-                local abil = GetAbility(pc, TryGetProp(shop_info, 'ClassName', 'None'))
+                local abil = nil
+                if IsServerSection() == 1 then
+                    abil = GetAbilityIESObject(pc, TryGetProp(shop_info, 'ClassName', 'None'))
+                else
+                    abil = GetAbility(pc, TryGetProp(shop_info, 'ClassName', 'None'))
+                end
                 local level = TryGetProp(abil, 'Level', 0)                
                 local func_name = TryGetProp(shop_info, 'ScrCalcPrice', 'None')
                 local max_level = TryGetProp(shop_info, 'MaxLevel', 100)                
@@ -843,13 +848,13 @@ function GET_ABILITY_POINT_BY_NAME(pc, name)
                         end
                     end
                 end
-
+                
                 if func_name ~= 'None' and flag == true then
                     local func = _G[func_name]                    
                     if func ~= nil then
-                        local point = 0
+                        local point = 0                        
                         for j = 1, level do
-                            local add = func(pc, name, j, max_level)                            
+                            local add = func(pc, name, j, max_level)
                             point = point + add                            
                         end
                         return point

@@ -286,6 +286,8 @@ function ADVENTURE_BOOK_ITEM_CONTENT.FILTER_LIST(list, sortOption, categoryOptio
 			list = ADVENTURE_BOOK_EQUAL_PROP_BY_CLASSID_FROM_LIST(list, "Item", "ClassType", "Rapier")
 		elseif subCategoryOption == 12 then
 			list = ADVENTURE_BOOK_EQUAL_PROP_BY_CLASSID_FROM_LIST(list, "Item", "ClassType", "Musket")
+		elseif subCategoryOption == 13 then
+			list = ADVENTURE_BOOK_EQUAL_PROP_BY_CLASSID_FROM_LIST(list, "Item", "ClassType", "Cannon")	
 		end
 	elseif categoryOption == 2 then
 		if subCategoryOption == 1 then
@@ -301,10 +303,6 @@ function ADVENTURE_BOOK_ITEM_CONTENT.FILTER_LIST(list, sortOption, categoryOptio
 		elseif subCategoryOption == 6 then
 			list = ADVENTURE_BOOK_EQUAL_PROP_BY_CLASSID_FROM_LIST(list, "Item", "ClassType", "Ring")
 		elseif subCategoryOption == 7 then
-			list = ADVENTURE_BOOK_EQUAL_PROP_BY_CLASSID_FROM_LIST(list, "Item", "ClassType", "Shield")
-		elseif subCategoryOption == 8 then
-			list = ADVENTURE_BOOK_EQUAL_PROP_BY_CLASSID_FROM_LIST(list, "Item", "ClassType", "Outer")
-		elseif subCategoryOption == 9 then
 			list = ADVENTURE_BOOK_EQUAL_PROP_BY_CLASSID_FROM_LIST(list, "Item", "ClassType", "Hat")
 		end
 	elseif categoryOption == 3 then
@@ -313,7 +311,7 @@ function ADVENTURE_BOOK_ITEM_CONTENT.FILTER_LIST(list, sortOption, categoryOptio
 		elseif subCategoryOption == 2 then
 			list = ADVENTURE_BOOK_EQUAL_PROP_BY_CLASSID_FROM_LIST(list, "Item", "ClassType", "Pistol")
 		elseif subCategoryOption == 3 then
-			list = ADVENTURE_BOOK_EQUAL_PROP_BY_CLASSID_FROM_LIST(list, "Item", "ClassType", "Cannon")
+			list = ADVENTURE_BOOK_EQUAL_PROP_BY_CLASSID_FROM_LIST(list, "Item", "ClassType", "Shield")
 		elseif subCategoryOption == 4 then
 			list = ADVENTURE_BOOK_EQUAL_PROP_BY_CLASSID_FROM_LIST(list, "Item", "ClassType", "Artefact")
 		end

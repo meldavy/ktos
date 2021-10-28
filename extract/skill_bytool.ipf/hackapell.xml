@@ -439,20 +439,20 @@
                     <Num Num="0"/>
                 </Scp>
                 <Scp Scp="SKL_SET_TARGET_SQUARE_SR" Client="NO" UseSleep="NO" Time="0">
-                    <Pos Angle="0" Dist="0"/>
+                    <Pos Angle="0" Dist="30"/>
                     <Num Num="0"/>
-                    <Num Num="200"/>
+                    <Num Num="170"/>
                     <Num Num="35"/>
                     <Num Num="2"/>
                     <Num Num="0"/>
                     <Num Num="0"/>
                     <Num Num="0"/>
                 </Scp>
-                <Scp Scp="SKL_LOOK_TGT" Client="NO" UseSleep="NO" Time="0"/>
                 <Scp Scp="SKL_TGT_MOVE" Client="NO" UseSleep="YES" Time="0">
                     <Num Num="0"/>
                     <Num Num="200"/>
-                    <Num Num="0"/>
+                    <Num Num="0"UseFunc="1" FuncTxt="local angle = GetDirection(self)
+					return angle"/>
                     <Num Num="0.15000001"/>
                     <Num Num="0.070000008"/>
                     <Num Num="1"/>

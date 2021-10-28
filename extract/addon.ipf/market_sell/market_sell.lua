@@ -494,31 +494,33 @@ function MARKET_SELL_REGISTER(parent, ctrl)
 
 	local count = tonumber(edit_count:GetText());
     local price = GET_NOT_COMMAED_NUMBER(edit_price:GetText());
-	if price < 100 then
-		ui.SysMsg(ClMsg("SellPriceMustOverThen100Silver"));		
+	if price < MIN_REGISTER_MARKET_PRICE then
+		ui.SysMsg(ClMsg("SellPriceMustOverThen10Silver"));		
 		return;
 	end
+	
+	local pivot_length = string.len(tostring(MIN_REGISTER_MARKET_PRICE))
 
 	local limitMoneyStr = GET_REMAIN_MARKET_TRADE_AMOUNT_STR();
 	if limitMoneyStr == nil then
 		ui.SysMsg(ClMsg('LoadingTradeLimitAmount'));
 		return;
 	end
+	
+	local total_price = math.mul_int_for_lua(price, count)
 
-	local a, b, c = math.mul_int_for_lua(price, count)
-
-	if IsGreaterThanForBigNumber(a, limitMoneyStr) == 1 then
+	if IsGreaterThanForBigNumber(total_price, limitMoneyStr) == 1 then
 		ui.SysMsg(ScpArgMsg('MarketMaxSilverLimit{LIMIT}Over', 'LIMIT', GET_COMMAED_STRING(limitMoneyStr)));
 		return;
 	end
 
 	local strprice = tostring(price);
-	if string.len(strprice) < 3 then
+	if string.len(strprice) < pivot_length then
 		return
 	end
 
-	local floorprice = strprice.sub(strprice, 0, 2);
-	for i = 0 , string.len(strprice) - 3 do
+	local floorprice = strprice.sub(strprice, 0, pivot_length - 1);
+	for i = 0 , string.len(strprice) - pivot_length do
 		floorprice = floorprice .. "0"
 	end
 	
@@ -536,7 +538,7 @@ function MARKET_SELL_REGISTER(parent, ctrl)
 		ui.SysMsg(ClMsg("SellCountMustOverThenZeo"));		
 		return;
 	end
-
+	
 	local isPrivate = GET_CHILD_RECURSIVELY(groupbox, "isPrivate", "ui::CCheckBox");
 	local itemGuid = invitem:GetIESID();
 	local obj = GetIES(invitem:GetObject());
@@ -555,9 +557,9 @@ function MARKET_SELL_REGISTER(parent, ctrl)
 		ui.SysMsg(ClMsg("Auto_SilBeoKa_BuJogHapNiDa."));
 		return;
 	end
-
+	
 	UPDATE_FEE_INFO(frame, free, count, price)
-
+	
 	local sellPriceGbox = GET_CHILD_RECURSIVELY(groupbox, "sellPriceGbox");
 
 	local down = sellPriceGbox:GetChild("minPrice");
@@ -578,7 +580,7 @@ function MARKET_SELL_REGISTER(parent, ctrl)
 			return;
 		end
 	end
-
+	
 	if obj.ClassName == "PremiumToken" and iPrice < tonumber(TOKEN_MARKET_REG_LIMIT_PRICE) then
     	ui.SysMsg(ScpArgMsg("PremiumRegMinPrice{Price}","Price", TOKEN_MARKET_REG_LIMIT_PRICE));
     	return;
@@ -587,7 +589,7 @@ function MARKET_SELL_REGISTER(parent, ctrl)
     	ui.SysMsg(ScpArgMsg("PremiumRegMaxPrice{Price}","Price", TOKEN_MARKET_REG_MAX_PRICE));
     	return;
 	end
-
+	
 	if true == invitem.isLockState then
 		ui.SysMsg(ClMsg("MaterialItemIsLock"));
 		return false;

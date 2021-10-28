@@ -10,3 +10,4 @@ ClassID,GenType,Lv,Range,GenRange,RespawnTime,MaxPop,Minimap,Hide,UseAIOufOfPC,A
 9,9,1,300,-1,1000,1,0,0,0,1,0,0,HiddenTrigger_CantGen300,UnvisibleName,,,,,,,,,,NO,YES,NO,Neutral,,,,
 10,10,1,40,-1,60000,1,1,0,0,1,0,0,npc_austeja_goddess,여신 아우스테야,,,,,,,CASTLE102_AUSTEJA_01,,,NO,YES,NO,Neutral,,,,
 12,12,1,50,-1,60000,1,1,0,0,1,0,0,npc_raima_wheel,라이마의 물레,,,,MON_DUMMY,,CASTLE102_WHEEL_DIR_AI,CASTLE102_RAIMA_WHEEL,,,NO,YES,NO,Neutral,Anim/loop,,,
+13,13,1,20,1,60000,1,0,0,0,1,0,0,HiddenTrigger4,UnvisibleName,,,,,,,,EXPLORER_MISLE36,,NO,YES,NO,Neutral,,,,

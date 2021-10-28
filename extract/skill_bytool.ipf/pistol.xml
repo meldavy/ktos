@@ -6,7 +6,7 @@
 				<Scp Scp="C_FORCE_EFT" Client="YES_Time" UseSleep="NO" Time="100" >
 					<Str_Arg Str="None" Arg="0.5" />
 					<Str Str="None"/>
-					<Str_Arg Str="I_archer_pistol_atk_smoke" Arg="1" />
+					<Str_Arg Str="None" Arg="1" />
 					<Str Str="arrow_blow"/>
 					<Str Str="DEAD"/>
 					<Num Num="300"/>
@@ -59,10 +59,13 @@ end"/>
 				</Cond>
 				<Skill ScrLock="None" JumpFlee="NO" MSPDToUsePos="0">
 					<EtcList>
+						<Scp Scp="SKL_RUN_SCRIPT" Client="NO" UseSleep="NO" Time="0">
+							<Str Str="SCR_VIBORA_PISTOL_Pistol_Attack2"/>
+						</Scp>
 						<Scp Scp="C_FORCE_EFT" Client="YES_Time" UseSleep="NO" Time="100">
 							<Str_Arg Str="None" Arg="0.5"/>
 							<Str Str="None"/>
-                            <Str_Arg Str="None" Arg="1"/>
+							<Str_Arg Str="None" Arg="1"/>
 							<Str Str="arrow_blow"/>
 							<Str Str="DEAD"/>
 							<Num Num="300"/>
@@ -138,7 +141,7 @@ end"/>
 				<Scp Scp="C_FORCE_EFT" Client="YES_Time" UseSleep="NO" Time="100" >
 					<Str_Arg Str="None" Arg="0.5" />
 					<Str Str="None"/>
-					<Str_Arg Str="I_archer_pistol_atk_smoke" Arg="1" />
+					<Str_Arg Str="None" Arg="1" />
 					<Str Str="arrow_blow"/>
 					<Str Str="DEAD"/>
 					<Num Num="300"/>

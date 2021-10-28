@@ -24,3 +24,4 @@ ClassID,GenType,Lv,Range,GenRange,RespawnTime,MaxPop,Minimap,Hide,UseAIOufOfPC,A
 23,23,1,40,200,20000,23,0,0,0,1,0,0,rootcrystal_04,,,,,MON_TORCH,,,,,,NO,YES,NO,RootCrystal,,,,
 24,24,0,300,1,60000,1,0,0,0,0,0,0,HiddenTrigger_CantGen300,,,,,,,,,,,NO,YES,NO,Neutral,,,,
 25,25,0,250,1,60000,1,0,0,0,0,0,0,HiddenTrigger_CantGen250,,,,,,,,,,,NO,YES,NO,Neutral,,,,
+26,26,1,20,1,60000,1,0,0,0,1,0,0,HiddenTrigger4,UnvisibleName,,,,,,,,EXPLORER_MISLE31,,NO,YES,NO,Neutral,,,,

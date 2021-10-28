@@ -116,6 +116,66 @@ function HIDDENABILITY_DECOMPOSE_SET_MATERIAL(frame, invitem)
     HIDDENABILITY_DECOMPOSE_SET_SLOT(matslot, itemobj);
 end
 
+function HIDDENABILITY_DECOMPOSE_ONCE_COUNT_RESET(frame)
+    local edit = GET_CHILD_RECURSIVELY(frame, "once_edit");
+    edit:SetText("1");
+end
+
+function HIDDENABILITY_DECOMPOSE_ONCE_COUNT_TYPING(parent, ctrl)
+    local frame = parent:GetTopParentFrame()
+    local mat_guid = frame:GetUserValue("MATERIAL_GUID");
+    if mat_guid == 'None' then return end
+
+    local mat_item = session.GetInvItemByGuid(mat_guid);
+    if mat_item == nil then return end
+
+    if ctrl:GetText() == "" then
+        return;
+    end
+
+    local curCnt = tonumber(ctrl:GetText());
+    if curCnt > mat_item.count then
+        curCnt = mat_item.count
+    end
+
+    if curCnt < 1 then
+        curCnt = 1;
+    end
+
+    ctrl:SetText(curCnt);
+end
+
+function HIDDENABILITY_DECOMPOSE_ONCE_COUNT_UP_CLICK(parent, ctrl)
+    local frame = parent:GetTopParentFrame()
+    local mat_guid = frame:GetUserValue("MATERIAL_GUID");
+    if mat_guid == 'None' then return end
+
+    local mat_item = session.GetInvItemByGuid(mat_guid);
+    if mat_item == nil then return end
+
+    local edit = GET_CHILD(parent, "once_edit");
+    local curCnt = tonumber(edit:GetText());
+    local upCnt = curCnt + 1;
+
+    if upCnt > mat_item.count then
+        upCnt = mat_item.count
+    end
+
+    edit:SetText(upCnt);
+end
+
+function HIDDENABILITY_DECOMPOSE_ONCE_COUNT_DOWN_CLICK(parent, ctrl)
+    local edit = GET_CHILD(parent, "once_edit");
+
+    local curCnt = tonumber(edit:GetText());
+    local downCnt = curCnt - 1;
+    if downCnt < 1 then
+        downCnt = 1;
+    end
+
+    edit:SetText(downCnt);
+end
+
 -- 분해 완료 후 결과 
 function HIDDENABILITY_DECOMPOSE_SET_RESULT(frame, msg, resultstr)
     local frame = ui.GetFrame("hiddenability_decompose");
@@ -124,22 +184,21 @@ function HIDDENABILITY_DECOMPOSE_SET_RESULT(frame, msg, resultstr)
     
     local itemclassnamelist = StringSplit(resultstr, "/");
     local resultcnt = #itemclassnamelist;
-    
-    for i = 1, 1 do
-        local slot = GET_CHILD_RECURSIVELY(frame, "slot_"..i);
-        slot:ShowWindow(1);
-        local slottext = GET_CHILD(slot, "slot_"..i.."_text");
 
-        if i <= resultcnt then            
-            local token = StringSplit(itemclassnamelist[i], ';')
-            local class_name = token[1]             -- 획득한 아이템 class_name
-            local give_count = tonumber(token[2])  -- 획득한 아이템 개수            
-            local itemobj = GetClass("Item", class_name);
-            HIDDENABILITY_DECOMPOSE_SET_SLOT(slot, itemobj);
-        
-            slottext:SetTextByKey("value", give_count);
-            slottext:ShowWindow(1);
-        end
+    local result_gb = GET_CHILD_RECURSIVELY(frame, "result_gb")
+    result_gb:RemoveAllChild()
+    for i = 1, resultcnt do
+        local ctrlset = result_gb:CreateOrGetControlSet('hiddenabil_decompose_result', 'RESULT_ITEM_' .. i, 0, 150 * (i - 1))
+        local slot = GET_CHILD(ctrlset, "slot")
+        local slottext = GET_CHILD(slot, "slot_text")
+        local token = StringSplit(itemclassnamelist[i], ';')
+        local class_name = token[1]            -- 획득한 아이템 class_name
+        local give_count = tonumber(token[2])  -- 획득한 아이템 개수
+        local itemobj = GetClass("Item", class_name)
+        HIDDENABILITY_DECOMPOSE_SET_SLOT(slot, itemobj)
+    
+        slottext:SetTextByKey("value", give_count)
+        slottext:ShowWindow(1)
     end
 
     local text_bg = GET_CHILD_RECURSIVELY(frame, "text_bg");
@@ -199,9 +258,16 @@ function HIDDENABILITY_DECOMPOST_BUTTON_CLLICK(frame, ctrl)
         return;
     end
 
+    local edit = GET_CHILD_RECURSIVELY(frame, "once_edit");
+    local decompose_cnt = tonumber(edit:GetText());
+    if decompose_cnt > invitem.count then
+        ui.SysMsg(ClMsg('NotEnoughRecipe'));
+        return;
+    end
+
     -- 분해하기 로직 추가
     session.ResetItemList();
-    session.AddItemID(guid, 1);
+    session.AddItemID(guid, decompose_cnt);
 	local resultlist = session.GetItemIDList()
     item.DialogTransaction("HIDDENABILITY_DECOMPOSE", resultlist)
 
@@ -225,20 +291,19 @@ function HIDDENABILITY_DECOMPOSE_RESET_MATERIAL(frame)
 end
 
 function HIDDENABILITY_DECOMPOSE_RESET_RESULT(frame)
-    for i = 1, 1 do
-        local slot = GET_CHILD_RECURSIVELY(frame, "slot_"..i);
-        slot:ClearIcon();
-        slot:ShowWindow(0);
-    end
-
+    local result_gb = GET_CHILD_RECURSIVELY(frame, "result_gb")
+    result_gb:RemoveAllChild()
+    
     local text_bg = GET_CHILD_RECURSIVELY(frame, "text_bg");
     text_bg:ShowWindow(0);
-
+    
     local ok_btn = GET_CHILD_RECURSIVELY(frame, "ok_btn");
     ok_btn:ShowWindow(0);
     
     local matslot = GET_CHILD_RECURSIVELY(frame, "matslot");
     matslot:EnableDrop(1);
     matslot:EnablePop(1);
-	matslot:EnableDrag(1);
+    matslot:EnableDrag(1);
+    
+    HIDDENABILITY_DECOMPOSE_ONCE_COUNT_RESET(frame);
 end

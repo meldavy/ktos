@@ -9,6 +9,7 @@ function LOGGING_ABILITY_CHECK(isEnableLogging, abilityName, logMsg)
     end
 end
 
+-- CAbilityList::CheckAbilityLock(imcIES::ClassID abilID)
 function CHECK_ABILITY_LOCK(pc, ability, isEnableLogging)    
     if IsServerSection(pc) == 1 then
         if IS_REAL_PC(pc) == 'NO' then  -- 진짜 PC가 ??니??--

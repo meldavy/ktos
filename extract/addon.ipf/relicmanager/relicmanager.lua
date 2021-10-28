@@ -5,6 +5,7 @@ function RELICMANAGER_ON_INIT(addon, frame)
 	addon:RegisterMsg('MSG_SUCCESS_RELIC_EXP', 'RELICMANAGER_EXP_UP_END')
 	addon:RegisterMsg('MSG_SUCCESS_RELIC_SOCKET', 'SUCCESS_RELIC_SOCKET')
 	addon:RegisterMsg('UPDATE_RELIC_EQUIP', 'UPDATE_RELICMANAGER_VISIBLE')
+	addon:RegisterMsg('GAME_START', 'RELIC_AUTO_CHARGE');
 end
 
 function ON_OPEN_DLG_RELICMANAGER(frame)
@@ -480,6 +481,50 @@ function _RELICMANAGER_CHARGE_EXEC()
 
 	item.DialogTransaction('RELIC_CHARGE_RP', result_list)
 	CloneTempObj('RELIC_RP_TEMPOBJ', acc_obj)
+end
+
+function RELIC_AUTO_CHARGE()
+	if config.GetRelicAutoCharge() == 0 then
+		return
+	end
+
+	local pc = GetMyPCObject()
+	if IsBuffApplied(pc, 'Colony_Limit_Relic_Release_Buff') == 'YES' or IsBuffApplied(pc, 'GuildRaid_Limit_Relic_Release_Buff') == 'YES' then		
+		return
+	end
+
+	local zoneName = GetZoneName()
+	local map = GetClass("Map",zoneName)		
+	if TryGetProp(map, "MapType", "None") ~= "City" then
+		return
+	end
+
+	local relic_item, relic_obj = RELICMANAGER_GET_EQUIP_RELIC()
+	if relic_item == nil or relic_obj == nil then		
+		return
+	end
+	
+	local cur_rp, max_rp = shared_item_relic.get_rp(pc)
+	if cur_rp == max_rp then
+		return
+	end
+	
+	local mat_item = session.GetInvItemByName('misc_Ectonite')
+	if mat_item == nil then return end
+
+	if mat_item.isLockState == true then		
+		return
+	end
+
+	session.ResetItemList()
+	local item_idx = mat_item:GetIESID()
+	local cur_count = mat_item.count
+	
+	if cur_count ~= nil and cur_count > 0 then
+		session.AddItemID(item_idx, cur_count)
+		local result_list = session.GetItemIDList()
+		item.DialogTransaction('RELIC_CHARGE_RP', result_list)
+	end
 end
 
 function RELICMANAGER_RP_UP_END(frame, msg, argStr, argNum)

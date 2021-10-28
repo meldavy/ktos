@@ -89,7 +89,12 @@
                     <Num Num="0"/>
                 </Scp>
                 <Scp Scp="SKL_BUFF" Client="NO" UseSleep="NO" Time="0">
-                    <Str Str="Finestra_Buff"/>
+                    <Str Str="Finestra_Buff" UseFunc="1" FuncTxt=" 
+                    local weapon = GetEquipItem(self, 'RH')
+                    if weapon ~= nil and weapon.ClassType2 == &quot;Spear&quot; then
+                        return &quot;Finestra_Buff&quot;
+                    end
+                    return &quot;None&quot;"/>
                     <Num Num="1" UseFunc="1" FuncTxt="return obj.Level"/>
                     <Num Num="0"/>
                     <Num Num="0" UseFunc="1" FuncTxt=" return 1800000;"/>
@@ -99,11 +104,21 @@
                 </Scp>
                 <Scp Scp="SKL_CHANGE_SKLSUBANIM" Client="NO" UseSleep="NO" Time="0">
                     <Str Str="Normal_Attack"/>
-                    <Str Str="SKL_FINESTRA_ATK"/>
+                    <Str Str="SKL_FINESTRA_ATK" UseFunc="1" FuncTxt=" 
+                    local weapon = GetEquipItem(self, 'RH')
+                    if weapon ~= nil and weapon.ClassType2 == &quot;Spear&quot; then
+                        return &quot;SKL_FINESTRA_ATK&quot;
+                    end
+                    return &quot;None&quot;"/>
                 </Scp>
                 <Scp Scp="SKL_CHANGE_SKLSUBANIM" Client="NO" UseSleep="NO" Time="0">
                     <Str Str="Normal_Attack_TH"/>
-                    <Str Str="SKL_FINESTRA_ATK"/>
+                    <Str Str="SKL_FINESTRA_ATK" UseFunc="1" FuncTxt=" 
+                    local weapon = GetEquipItem(self, 'RH')
+                    if weapon ~= nil and weapon.ClassType2 == &quot;Spear&quot; then
+                        return &quot;SKL_FINESTRA_ATK&quot;
+                    end
+                    return &quot;None&quot;"/>
                 </Scp>
                 <Scp Scp="C_VOICE_SOUND" Client="YES" UseSleep="NO" Time="0">
                     <Str Str="voice_archer_m_pavise_shot"/>

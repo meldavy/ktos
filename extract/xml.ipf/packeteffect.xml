@@ -568,6 +568,7 @@
         <Effect Name="Crusader_DivineHammer"/>
         <Effect Name="Crusader_DivineHammer2"/>
         <Effect Name="Crusader_DivineHammer3"/>
+        <Effect Name="FoodTable"/>
     </Category>
     <Category ID="187">
         <Effect Name="F_bg_boil002"/>
@@ -10234,6 +10235,7 @@
         <Effect Name="F_ground085_circle"/>
         <Effect Name="skl12_spear"/>
         <Effect Name="I_subzeroshield_shot_obj_mash"/>
+        <Effect Name="Goddess_Raid_Vasilissa_Solo"/>
     </Category>
     <Category ID="19">
         <Effect Name="I_fallen_statue_atk002_mash"/>

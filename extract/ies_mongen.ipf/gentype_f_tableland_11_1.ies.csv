@@ -50,3 +50,4 @@ ClassID,GenType,Lv,Range,GenRange,RespawnTime,MaxPop,Minimap,Hide,UseAIOufOfPC,A
 5004,5004,1,40,1,1,1,0,0,0,0,0,0,id_gate_npc,UnvisibleName,,,,,,,BORUTOSKAPAS_GO_GUILDMISSION,BORUTOSKAPAS_GO_GUILDMISSION,,NO,YES,NO,Neutral,,,,
 5005,5005,1,40,1,1,1,2,0,0,0,0,0,npc_elevator,수레 관리자,,,,,,,,,,NO,YES,NO,Neutral,,,,
 5006,5006,1,40,1,1,1,2,0,0,0,0,0,npc_elevator,수레 도착 지점,,,,,,,,,,NO,YES,NO,Neutral,,,,
+5007,5007,1,20,1,60000,1,0,0,0,1,0,0,HiddenTrigger4,UnvisibleName,,,,,,,,EXPLORER_MISLE33,,NO,YES,NO,Neutral,,,,

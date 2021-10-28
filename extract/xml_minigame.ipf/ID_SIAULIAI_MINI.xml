@@ -254,13 +254,13 @@
             <Stage Name="st3" AutoStart="0">
                 <StartScpList>
                     <ToolScp Scp="MGAME_SET_TIMEOUT" Client="NO" UseSleep="NO">
-                        <Num Num="120"/>
+                        <Num Num="60"/>
                     </ToolScp>
                     <ToolScp Scp="MGAME_MSG" Client="YES" UseSleep="NO">
-                        <Str Str="2분간 횃불을 지키면 길이 열립니다"/>
+                        <Str Str="1분간 횃불을 지키면 길이 열립니다"/>
                     </ToolScp>
                     <ToolScp Scp="MGAME_SET_QUEST_NAME" Client="NO" UseSleep="NO">
-                        <Str Str="2분간 횃불을 지키세요!"/>
+                        <Str Str="1분간 횃불을 지키세요!"/>
                     </ToolScp>
                 </StartScpList>
                 <ObjList>
@@ -294,7 +294,7 @@
                     <Event execMS="5000" eventName="normalGen" execWithStart="0">
                         <condList>
                             <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK_START" Client="NO" UseSleep="NO">
-                                <Num Num="6"/>
+                                <Num Num="3"/>
                             </ToolScp>
                         </condList>
                         <execList>
@@ -308,7 +308,7 @@
                     <Event execMS="5000" eventName="normalGen2" execWithStart="0" isEnabled="0">
                         <condList>
                             <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK_START" Client="NO" UseSleep="NO">
-                                <Num Num="15"/>
+                                <Num Num="7"/>
                             </ToolScp>
                         </condList>
                         <execList>
@@ -322,7 +322,7 @@
                     <Event eventName="normalGen2_before">
                         <condList>
                             <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK" Client="NO" UseSleep="NO">
-                                <Num Num="20"/>
+                                <Num Num="10"/>
                             </ToolScp>
                         </condList>
                         <execList>
@@ -335,7 +335,7 @@
                     <Event eventName="stSuccess" execWithStart="0">
                         <condList>
                             <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK" Client="NO" UseSleep="NO">
-                                <Num Num="120"/>
+                                <Num Num="60"/>
                             </ToolScp>
                             <ToolScp Scp="MGAME_EVT_COND_MONCNT_OVER" Client="NO" UseSleep="NO">
                                 <MGameObj List="st3/0"/>
@@ -453,7 +453,7 @@
                     <Event execMS="5000" execCount="2" eventName="bossGen" execWithStart="0">
                         <condList>
                             <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK" Client="NO" UseSleep="NO">
-                                <Num Num="40"/>
+                                <Num Num="20"/>
                             </ToolScp>
                         </condList>
                         <execList>

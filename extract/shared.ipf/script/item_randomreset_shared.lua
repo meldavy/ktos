@@ -249,6 +249,19 @@ function IS_HAVE_RANDOM_OPTION(item)
 	return false;
 end
 
+function GET_MAX_RANDOMOPTION_COUNT(item)
+	if item == nil then
+		return 0
+	end
+
+	local max_count = 4
+	if TryGetProp(item, 'DBLHand', 'None') == 'YES' and TryGetProp(item, 'UseLv', 0) < 460 then
+		max_count = max_count + 2
+	end
+
+	return max_count
+end
+
 function GET_RANDOM_OPTION_COUNT(itemObj)
 	if itemObj == nil then
 		return 0;

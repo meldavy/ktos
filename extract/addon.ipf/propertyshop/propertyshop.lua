@@ -116,7 +116,7 @@ function OPEN_PROPERTY_SHOP(shopName)
 		tab:ChangeCaption(1, "{@st66b}" .. "            " .. ClMsg("Mileage_Name") .. "            ");
 	
 		title:SetTextByKey("value", ClMsg("GUILD_CONTRIBUTION_SHOP"));
-	elseif shopName == "CONTENTS_TOTAL_SHOP" or shopName == "SEASONOFF_CONTENTS_TOTAL_SHOP" then
+	elseif shopName == "CONTENTS_TOTAL_SHOP" or shopName == "SEASONOFF_CONTENTS_TOTAL_SHOP" or shopName == "CLASS_COSTUME_TOTAL_SHOP" then
 		t_mymoney:SetTextByKey("text", ScpArgMsg("TotalHavePoint"));
 		t_totalprice:SetTextByKey("text", ScpArgMsg("TotalBuyPoint"));
 		t_remainprice:ShowWindow(0);
@@ -168,9 +168,43 @@ function OPEN_PROPERTY_SHOP(shopName)
 			ctrlSet = tolua.cast(ctrlSet, "ui::CControlSet");
 			ctrlSet:SetUserValue('REAL_INDEX',i)
 			ctrlSet:EnableHitTestSet(0);
+
+			-- 코스튬은 남녀공용, 남자PC는 남자 코스튬 툴팁이미지, 여자PC는 여자 코스튬 툴팁이미지가 보임
 			local pic = GET_CHILD_RECURSIVELY(ctrlSet, "pic");
-			pic:SetImage(itemCls.Icon);
+			local imageName = itemCls.Icon
+			if TryGetProp(itemCls, "ClassType", "None") == 'Outer' or TryGetProp(itemCls, "ClassType", "None") == 'SpecialCostume' then
+				local gender = 0;
+				if GetMyPCObject() ~= nil then
+					local pc = GetMyPCObject();
+					gender = pc.Gender;
+				else
+					gender = barrack.GetSelectedCharacterGender();
+				end
+	
+				local tempiconname = ''
+				local origin = itemCls.TooltipImage;
+				local reverseIconName = origin:reverse();
+	
+				local underBarIndex = string.find(reverseIconName, '_');
+				if underBarIndex ~= nil then
+					tempiconname = string.sub(reverseIconName, 0, underBarIndex-1);
+					tempiconname = tempiconname:reverse();
+				end
+				
+				if tempiconname == "both" then
+					local bothIndex = string.find(origin, '_both');
+					imageName = string.sub(imageName, 0, bothIndex - 1);
+				elseif tempiconname ~= "m" and tempiconname ~= "f" then
+					if gender == 1 then
+						imageName = imageName.."_m"
+					else
+						imageName = imageName.."_f"
+					end
+				end
+			end
+			pic:SetImage(imageName);
 			SET_ITEM_TOOLTIP_BY_TYPE(pic, itemCls.ClassID);
+
 			local count = ctrlSet:GetChild("count");
 			count:SetTextByKey("value", itemCount);
 			local name = ctrlSet:GetChild("name");
@@ -226,7 +260,10 @@ function OPEN_PROPERTY_SHOP(shopName)
 	end
 
 	itemlist:RealignItems();
-	
+	local gb = itemlist:GetGroupBox();	
+	tolua.cast(gb, "ui::CGroupBox")  
+	gb:SetScrollPos(0)
+
 	PROPERTYSHOP_CHANGE_COUNT(frame);
 
 	if shopName == "GUILD_CONTRIBUTION_SHOP" then
@@ -344,8 +381,12 @@ function OPEN_PVP_PROPERTY_SHOP(shopName)
 		end
 
 	end
-
+	
 	itemlist:RealignItems();
+	local gb = itemlist:GetGroupBox();	
+	tolua.cast(gb, "ui::CGroupBox")  
+	gb:SetScrollPos(0)
+
 	PROPERTYSHOP_CHANGE_COUNT(frame);
 	local t_mymoney = GET_CHILD_RECURSIVELY(bg, "t_mymoney");
 	t_mymoney:SetTextByKey("value", GET_COMMAED_STRING(GET_PROPERTY_SHOP_MY_POINT(frame)));
@@ -405,8 +446,20 @@ function PROPERTY_SHOP_BUY(parent, ctrl)
             ui.SysMsg(ClMsg("OnlyLeaderAbleToDoThis"));
             return;
         end
-    end
+	end
 
+	if shopName == "CLASS_COSTUME_TOTAL_SHOP" then
+		local yesscp = string.format('CLASS_COSTUME_TOTAL_SHOP_BUY("%s", "%s")', parent, shopName);
+		ui.MsgBox(ClMsg('Buy_ClassCostumeTotalShop'), yesscp, 'None');
+		return ;
+	end
+
+	propertyShop.ReqBuyPropertyShopItem(shopName);
+	frame:ShowWindow(0)
+end
+
+function CLASS_COSTUME_TOTAL_SHOP_BUY(parent, shopName)
+	local frame = ui.GetFrame('propertyshop');
 	propertyShop.ReqBuyPropertyShopItem(shopName);
 	frame:ShowWindow(0)
 end

@@ -15,4 +15,5 @@ ClassID,GenType,Lv,Range,GenRange,RespawnTime,MaxPop,Minimap,Hide,UseAIOufOfPC,A
 14,14,1,200,1,0,1,0,0,0,0,0,0,ep13_2_d_prison_1_EyeEffect_hiddennpc,,,,,,,ep13_2_d_prison_1_EffectMonAI,,EP13_2_DPRISON1_EFFECT,,NO,YES,NO,Neutral,,,,
 15,15,1,50,1,0,1,2,0,0,1,0,0,Warp_arrow,아샤크 지하 감옥 격리 구역,,,,MON_DUMMY,,,,WARP_EP13_2_D_PRISON_1_TO_EP13_2_D_PRISON_3,,NO,YES,NO,Neutral,,,,
 16,16,1,40,-1,1,1,2,0,0,0,0,0,statue_vakarine,여신 바카리네의 상,,,,,,,WARP_EP13_2_D_PRISON_1,STOUP_CAMP,STOUP_CAMP,NO,YES,NO,Neutral,,,,
+17,17,1,20,1,60000,1,0,0,0,1,0,0,HiddenTrigger4,UnvisibleName,,,,,,,,EXPLORER_MISLE13,,NO,YES,NO,Neutral,,,,
 18,18,1,40,100,20000,22,0,0,0,1,0,0,rootcrystal_01,나무뿌리 수정,,,,MON_TORCH,,,,,,NO,YES,NO,RootCrystal,,,,

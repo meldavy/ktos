@@ -8900,16 +8900,76 @@ end
 
 -- done , 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_Get_SpellShop_Ratio(skill)
-    local value = 6 * skill.Level
+    local value = 9 * skill.Level
     
     local pc = GetSkillOwner(skill);
     
     local abil = GetAbility(pc, "Pardoner4")
     if abil ~= nil and 1 == abil.ActiveState then
-        value = value + (abil.Level * 2);
+        value = value + (abil.Level * 3);
 end
 
     return value
+end
+
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
+function SCR_Get_Squire_Food_Salad_Ratio(skill)
+    local pc = GetSkillOwner(skill);
+    local time = 45
+
+	local abil = GetAbility(pc, "Squire5")
+    time = time + (TryGetProp(abil, "Level", 0) * 1.5)
+    
+    return time
+end
+
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
+function SCR_Get_Squire_Food_Sandwich_Ratio(skill)
+    local pc = GetSkillOwner(skill);
+    local time = 45
+
+	local abil = GetAbility(pc, "Squire6")
+    time = time + (TryGetProp(abil, "Level", 0) * 1.5)
+    
+    return time
+end
+
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
+function SCR_Get_Squire_Food_Soup_Ratio(skill)
+    local pc = GetSkillOwner(skill);
+    local time = 45
+
+	local abil = GetAbility(pc, "Squire7")
+    time = time + (TryGetProp(abil, "Level", 0) * 1.5)
+    
+    return time
+end
+
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
+function SCR_Get_Squire_Food_Yogurt_Ratio(skill)
+    local pc = GetSkillOwner(skill);
+    local time = 45
+
+	local abil = GetAbility(pc, "Squire8")
+    time = time + (TryGetProp(abil, "Level", 0) * 1.5)
+    
+    return time
+end
+
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
+function SCR_Get_Squire_Food_BBQ_Ratio(skill)
+    local pc = GetSkillOwner(skill);
+    local time = 60
+    
+    return time
+end
+
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
+function SCR_Get_Squire_Food_champagne_Ratio(skill)
+    local pc = GetSkillOwner(skill);
+    local time = 60
+    
+    return time
 end
 
 -- done , 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.

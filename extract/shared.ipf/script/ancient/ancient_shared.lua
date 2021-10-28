@@ -34,7 +34,12 @@ function IS_ANCIENT_ENABLE_MAP(self)
         local dungeon_type = TryGetProp(indun_cls, "DungeonType", "None");
         if sub_type == "Casual" or dungeon_type == "WeeklyRaid" or dungeon_type == "FreeDungeon" or dungeon_type == "Challenge_Solo" then
         return "YES";
-    end
+        end
+
+        local class_name = TryGetProp(indun_cls, "ClassName", "None");
+        if class_name == "Goddess_Raid_Vasilissa_Solo" then
+            return "YES";
+        end
     end
 
     -- 챌린지 모드 캐주얼 모드

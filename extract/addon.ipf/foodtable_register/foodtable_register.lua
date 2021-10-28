@@ -17,60 +17,68 @@ function FOODTABLE_SKILL_INIT(frame, skillName, sklLevel)
 
 	frame:SetUserValue("SKILL_NAME", skillName);
 	frame:SetUserValue("SKILL_LEVEL", sklLevel);
+	frame:SetUserValue("GROUP_NAME", "FoodTable");
+
+	-- local silver = FOODTABLE_NEED_PRICE(skillName, sklLevel);
+	-- local silver_text = GET_CHILD_RECURSIVELY(frame, "silver_text");
+	-- silver_text:SetTextByKey("value", GET_MONEY_IMG(20) .. " " .. silver);
 	
-	local pc = GetMyPCObject();
+	local selectBox = GET_CHILD_RECURSIVELY(frame, "selectBox");
+	selectBox:RemoveAllChild();
 
-	local gbox = GET_CHILD(frame, "gbox");	
-
-	local silver, itemList = FOODTABLE_NEED_PRICE(skillName, sklLevel);
-	local silver_text = GET_CHILD(gbox, "silver_text");
-	silver_text:SetTextByKey("value", GET_MONEY_IMG(20) .. " " .. silver);
-
-	local gbox_material = GET_CHILD(gbox, "gbox_material");
-	gbox_material:RemoveAllChild();
-
-	for i = 1 , #itemList / 2 do
-		local itemName = itemList[ i * 2 - 1];
-		local itemCount = itemList[ i * 2  ];
-		local ctrlSet = gbox_material:CreateControlSet('camp_register_item', "MATERIAL" .. i, 0, 0);
-		local itemCls = GetClass("Item", itemName);
-		local slot = GET_CHILD(ctrlSet, "slot");
-		SET_SLOT_ITEM_CLS(slot, itemCls);
-		local itemname = GET_CHILD(ctrlSet, "itemname");
-		itemname:SetTextByKey("value", itemCls.Name);
-		local count = GET_CHILD(ctrlSet, "count");
-		count:SetTextByKey("value", itemCount .. " " .. ClMsg("CountOfThings"));
+	local myObj = GetMyPCObject();
+	local tableSkl = GetSkill(myObj, skillName);
+	local clslist, cnt  = GetClassList("FoodTable");
+	for i = 0 , cnt - 1 do
+		local cls = GetClassByIndexFromList(clslist, i);
+		-- 음식 제작의 필요 스킬레벨이 pc의 스킬 레벨 이하일때 출력
+		if cls.SkillLevel <= sklLevel then
+			local ctrlSet = selectBox:CreateControlSet('table_food_register', "FOOD_" .. cls.ClassName, 5, 0);
+			local abilLevel = 0;
+			local abilName = TryGetProp(cls, 'Ability', 'None');
+			if abilName ~= nil and abilName ~= 'None' then
+				local abil = GetAbility(myObj, abilName);
+				if abil ~= nil then
+					abilLevel = TryGetProp(abil, 'Level', 0);
+				end
+			end
+			SET_FOOD_TABLE_BASE_INFO(ctrlSet, cls, sklLevel, abilLevel);
+			SET_FOOD_TABLE_MATAERIAL_INFO(ctrlSet, cls);
+		end
 	end
-	
-	GBOX_AUTO_ALIGN(gbox_material, 15, 3, 10, true, false);
+
+	GBOX_AUTO_ALIGN(selectBox, 5, 3, 10, true, false);
+end
+
+function FOODTABLE_CHECK_FOR_SELL(ctrlset, ctrl)
+	if ctrl:IsChecked() == 1 then
+		local pc = GetMyPCObject();
+		local type = ctrlset:GetUserIValue("FOOD_TYPE");
+		local cls = GetClassByType("FoodTable", type);
+		local list = StringSplit(cls.Material, "/");
+		for i = 1, #list / 2 do
+			local itemName = list[2 * i - 1];
+			local itemCount = tonumber(list[2 * i]);
+			local invCount = GetInvItemCount(pc, itemName);
+			if invCount < itemCount then
+				ui.SysMsg(ClMsg('NotEnoughMaterial'));
+				ctrl:SetCheck(0);
+				return;
+			end
+		end
+	end
 end
 
 function FOODTABLE_REG_EXEC(parent, ctrl)
-
 	local frame = parent:GetTopParentFrame();
 	local skillName = frame:GetUserValue("SKILL_NAME");
 	local sklLevel = frame:GetUserIValue("SKILL_LEVEL");
 	local pc = GetMyPCObject();
-	local silver, itemList = FOODTABLE_NEED_PRICE(skillName, sklLevel);
-	if IsGreaterThanForBigNumber(silver, GET_TOTAL_MONEY_STR()) == 1 then
-		ui.SysMsg(ClMsg('NotEnoughMoney'));
-		return;
-	end
-
-	for i = 1 , #itemList / 2 do
-		local itemName = itemList[ i * 2 - 1];
-		local itemCount = itemList[ i * 2  ];
-		local invItem = session.GetInvItemByName(itemName);
-		if invItem == nil or invItem.count < itemCount then
-			ui.SysMsg(ClMsg('NotEnoughRecipe'));
-			return;
-		end		
-
-		if true == invItem.isLockState then
-			ui.SysMsg(ClMsg("MaterialItemIsLock"));
-			return;
-		end
-	end
+	-- local silver = FOODTABLE_NEED_PRICE(skillName, sklLevel);
+	-- if IsGreaterThanForBigNumber(silver, GET_TOTAL_MONEY_STR()) == 1 then
+	-- 	ui.SysMsg(ClMsg('NotEnoughMoney'));
+	-- 	return;
+	-- end
 
 	local x, y, z = GetPos(pc);
 	if 0 == IsFarFromNPC(pc, x, y, z, 70) then
@@ -90,9 +98,9 @@ end
 function _FOODTABLE_REG_EXEC()
 	local frame = ui.GetFrame("foodtable_register");
 	local skillName = frame:GetUserValue("SKILL_NAME");
+	local sklLevel = frame:GetUserIValue("SKILL_LEVEL");
 	local sklCls = GetClass("Skill", skillName);
-	local tableInfo = session.camp.GetCurrentTableInfo();
-    local shared = tableInfo:GetSharedFood();
+    local shared = frame:GetUserIValue("SHARED_VALUE");
 	local title = "";
 	if shared == 1 then
 		local ctrlSet_guild = GET_CHILD_RECURSIVELY(frame, 'check_guild');
@@ -109,10 +117,47 @@ function _FOODTABLE_REG_EXEC()
 		return
 	end
 
-    session.camp.RequestBuildFoodTable(sklCls.ClassID, shared, title);
+	local groupName = frame:GetUserValue("GROUP_NAME");
+	session.autoSeller.ClearGroup(groupName);
+	local selectBox = GET_CHILD_RECURSIVELY(frame, 'selectBox');
+	local childCount = selectBox:GetChildCount();
+	local pc = GetMyPCObject();
+	local selectCount = 0;
+	for i = 0, childCount - 1 do
+		local child = selectBox:GetChildByIndex(i);
+		if string.find(child:GetName(), 'FOOD_') ~= nil then
+			local selectCheck = GET_CHILD(child, 'selectCheck');
+			if selectCheck:IsChecked() == 1 then
+				local type = child:GetUserIValue("FOOD_TYPE");
+				local cls = GetClassByType("FoodTable", type);
+				local list = StringSplit(cls.Material, "/");
+				for i = 1, #list / 2 do
+					local itemName = list[2 * i - 1];
+					local itemCount = tonumber(list[2 * i]);
+					local invCount = GetInvItemCount(pc, itemName);
+					if invCount < itemCount then
+						return;
+					end
+				end
+				
+				local info = session.autoSeller.CreateToGroup(groupName);
+				info.classID = cls.ClassID;
+				info.level = sklLevel;
+				selectCount = selectCount + 1;
+			end
+		end
+	end
+
+	if selectCount <= 0 then
+		return
+	end
+
+    session.autoSeller.RequestRegister(groupName, groupName, title, skillName, shared);
 end
 
 function OPEN_FOODTABLE_REGISTER(frame)
+	frame:SetUserValue("SHARED_VALUE", 0);
+
 	local optionBox = GET_CHILD_RECURSIVELY(frame, 'optionBox');
 	
 	local ctrlSet_guild = optionBox:CreateOrGetControlSet('food_check_party', "check_guild", 15, 0);
@@ -140,13 +185,13 @@ function OPEN_FOODTABLE_REGISTER(frame)
 	checkBox_all:SetEventScript(ui.LBUTTONUP, 'FOODTABLE_CHECK_BOX_FOR_ALL');
 	checkBox_all:SetCheck(0);
 	checkBox_all:ShowWindow(1);
-    FOODTABLE_CHECK_BOX_FOR_ALL(ctrlSet_all, checkBox_all);
+	FOODTABLE_CHECK_BOX_FOR_ALL(ctrlSet_all, checkBox_all);
 end
 
 function FOODTABLE_CHECK_BOX(parent, ctrl)
-	local tableInfo = session.camp.GetCurrentTableInfo();
+	local frame = parent:GetTopParentFrame();
 	local share = ctrl:IsChecked();
-	tableInfo:SetSharedFood(share);
+	frame:SetUserValue("SHARED_VALUE", share);
 
 	local titleBox = GET_CHILD(parent, "gBox", "ui::CGroupBox");
 	titleBox:SetVisible(share);
@@ -154,7 +199,6 @@ end
 
 function FOODTABLE_CHECK_BOX_FOR_GUILD(parent, ctrl)
 	local topParent = parent:GetTopParentFrame();
-	local tableInfo = session.camp.GetCurrentTableInfo();
 
 	local checked_guild = ctrl:IsChecked();
 	local share = 0;
@@ -179,7 +223,7 @@ function FOODTABLE_CHECK_BOX_FOR_GUILD(parent, ctrl)
 		ctrlSet_all:SetMargin(15, 30, 0, 0);
 	end
 
-	tableInfo:SetSharedFood(share);
+	topParent:SetUserValue("SHARED_VALUE", share);
 
 	local titleBox = GET_CHILD(parent, "gBox", "ui::CGroupBox");
 	titleBox:SetVisible(isVisible);
@@ -187,7 +231,6 @@ end
 
 function FOODTABLE_CHECK_BOX_FOR_ALL(parent, ctrl)
 	local topParent = parent:GetTopParentFrame();
-	local tableInfo = session.camp.GetCurrentTableInfo();
 
 	local checked_all = ctrl:IsChecked();
 	local share = 0;
@@ -209,7 +252,7 @@ function FOODTABLE_CHECK_BOX_FOR_ALL(parent, ctrl)
 		isVisible = 1;
 	end
 
-	tableInfo:SetSharedFood(share);
+	topParent:SetUserValue("SHARED_VALUE", share);
 
 	local titleBox = GET_CHILD(parent, "gBox", "ui::CGroupBox");
 	titleBox:SetVisible(isVisible);

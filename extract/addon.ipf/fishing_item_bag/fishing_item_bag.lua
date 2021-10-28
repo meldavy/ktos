@@ -201,6 +201,18 @@ function FISHING_ITEM_BAG_SET_COUNT_BOX(frame, msg, argStr, argNum)
         countBox:ShowWindow(0);
         return;
     end
+
+    local countInfoText = GET_CHILD_RECURSIVELY(frame, "countInfoText");
+    if argNum == 1 then
+        local count_info_text = string.format("{@sti1}%s{/}", ClMsg("FishingItemBag_EventCountText"));
+        countInfoText:SetText(count_info_text);
+        curSuccessCount = string.format("{#00ddff}%s{/}", curSuccessCount);
+        maxSuccessCount = 500;
+    else
+        local count_info_text = string.format("{@sti1}%s{/}", ClMsg("FishingItemBag_NormalCountText"));
+        countInfoText:SetText(count_info_text);
+    end
+
     countText:SetTextByKey('current', curSuccessCount);
     countText:SetTextByKey('max', maxSuccessCount);
     countBox:ShowWindow(1);

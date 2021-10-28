@@ -358,6 +358,11 @@ end
 function ADVENTURE_BOOK_EQUAL_PROP_BY_CLASSID_FUNC(clsID, idSpace, propName, targetPropValue)
 	local cls = GetClassByType(idSpace, clsID)
 	local prop = TryGetProp(cls, propName);
+	
+	if TryGetProp(cls, "ClassType", "None") == 'Shield' and propName == 'GroupName' then
+		prop = 'SubWeapon'
+	end
+
 	if prop == targetPropValue then
 		return true
 	else

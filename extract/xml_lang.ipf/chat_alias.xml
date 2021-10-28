@@ -82,5 +82,8 @@
 		<Class ClassID="94" ClassName="/flex" Alias="/플렉스" ConvertWhenSend="1"/>
 		<Class ClassID="95" ClassName="/explorer" Alias="/개척자" ConvertWhenSend="1"/>
 		<Class ClassID="96" ClassName="/next" Alias="/개편" ConvertWhenSend="1"/>
+		<Class ClassID="97" ClassName="/fishingcat" Alias="/수박" ConvertWhenSend="1"/>
+		<Class ClassID="98" ClassName="/fishingcheck" Alias="/주말접속" ConvertWhenSend="1"/>
+		<Class ClassID="99" ClassName="/goldfish" Alias="/황금낚시" ConvertWhenSend="1"/>
 	</Category>
 </idspace>

@@ -75,6 +75,9 @@ function SlitheringClientScp_LEAVE(actor, obj, buff)
 end
 
 function PouncingClientScp_ENTER(actor, obj, buff)
+    actor:SetAlwaysBattleState(true);
+    actor:GetAnimation():ResetSTDAnim();
+
     local abil = session.GetAbilityByName("Barbarian41");
     if abil ~= nil then
         local abilObj = GetIES(abil:GetObject());
@@ -108,10 +111,10 @@ function PouncingClientScp_ENTER(actor, obj, buff)
             actor:GetAnimation():SetSTDAnim("SKL_POUNCING_STAND");
         end        
     end
-    actor:SetAlwaysBattleState(true);
 end
 
 function PouncingClientScp_LEAVE(actor, obj, buff)
+    actor:GetAnimation():ResetSTDAnim();
     ScpChangeSwordmanStanceAnimationSet(actor, obj, buff)
     actor:SetAlwaysBattleState(false);
 end

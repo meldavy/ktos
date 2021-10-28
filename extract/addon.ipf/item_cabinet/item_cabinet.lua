@@ -6,9 +6,19 @@ function ITEM_CABINET_ON_INIT(addon, frame)
 	addon:RegisterMsg('UPDATE_ITEM_CABINET_LIST', 'ITEM_CABINET_CREATE_LIST');
 	addon:RegisterMsg('ITEM_CABINET_SUCCESS_ENCHANT', 'ITEM_CABINET_SUCCESS_GODDESS_ENCHANT');
 
+	addon:RegisterMsg('ON_UI_TUTORIAL_NEXT_STEP', 'ITEM_CABINET_UI_TUTORIAL_CHECK')
 end
 
 function ITEM_CABINET_OPEN(frame)
+	ui.CloseFrame('goddess_equip_manager')
+	for i = 1, #revertrandomitemlist do
+		local revert_name = revertrandomitemlist[i]
+		local revert_frame = ui.GetFrame(revert_name)
+		if revert_frame ~= nil and revert_frame:IsVisible() == 1 then
+			ui.CloseFrame(revert_name)
+		end
+	end
+
 	GET_CHILD_RECURSIVELY(frame, "cabinet_tab"):SelectTab(0);
 	GET_CHILD_RECURSIVELY(frame, "upgrade_tab"):SelectTab(0);
 	GET_CHILD_RECURSIVELY(frame, "equipment_tab"):SelectTab(0);
@@ -21,6 +31,244 @@ function ITEM_CABINET_CLOSE(frame)
 	local edit = GET_CHILD_RECURSIVELY(frame, "ItemSearch");
 	edit:SetText("");
 	INVENTORY_SET_CUSTOM_RBTNDOWN("None");
+	TUTORIAL_TEXT_CLOSE(frame)
+end
+
+function ITEM_CABINET_VIBORA_TUTORIAL_OPEN(frame, open_flag)
+	local acc = GetMyAccountObj()
+	if acc == nil then return end
+
+	local prop_name = "UITUTO_EQUIPCACABINET1"
+	frame:SetUserValue('TUTO_PROP', prop_name)
+	local tuto_step = GetUITutoProg(prop_name)
+	if tuto_step >= 100 then return end
+
+	local tuto_cls = GetClass('UITutorial', prop_name .. '_' .. tuto_step + 1)
+	if tuto_cls == nil then
+		tuto_cls = GetClass('UITutorial', prop_name .. '_100')
+		if tuto_cls == nil then return end
+	end
+
+	local ctrl_name = TryGetProp(tuto_cls, 'ControlName', 'None')
+	local title = dic.getTranslatedStr(TryGetProp(tuto_cls, 'Title', 'None'))
+	local text = dic.getTranslatedStr(TryGetProp(tuto_cls, 'Note', 'None'))
+	local ctrl = GET_CHILD_RECURSIVELY(frame, ctrl_name)
+	if ctrl == nil then return end
+
+	if open_flag == true then
+		local category = ITEM_CABINET_GET_CATEGORY(frame)
+		local id_space = 'cabinet_' .. string.lower(category)
+		local itemList, itemListCnt = GetClassList(id_space)
+		local itemgbox = GET_CHILD_RECURSIVELY(frame, 'itemgbox')
+		local upgrade_tab = GET_CHILD_RECURSIVELY(frame, 'upgrade_tab')
+		if tuto_step < 6 then
+			if tuto_step >= 1 then
+				local ctrlset = nil
+				for i = 0, itemListCnt - 1 do
+					local _ctrlset = GET_CHILD_RECURSIVELY(itemgbox, 'ITEM_TAB_CTRL_' .. i)
+					if _ctrlset ~= nil then
+						local available = _ctrlset:GetUserIValue('AVAILABLE')
+						if available == 0 then
+							ctrlset = _ctrlset
+							break
+						end
+					end
+				end
+		
+				if ctrlset ~= nil then
+					local btn = GET_CHILD_RECURSIVELY(ctrlset, 'itemBtn')
+					ITEM_CABINET_SELECT_ITEM(ctrlset, btn)
+				end
+			end
+		
+			if tuto_step >= 2 then
+				upgrade_tab:SelectTab(1)
+				ITEM_CABINET_UPGRADE_TAB(frame)
+			end
+		else
+			if tuto_step >= 6 then
+				local ctrlset = GET_CHILD_RECURSIVELY(itemgbox, 'ITEM_TAB_CTRL_0')
+				for i = 0, itemListCnt - 1 do
+					local _ctrlset = GET_CHILD_RECURSIVELY(itemgbox, 'ITEM_TAB_CTRL_' .. i)
+					if _ctrlset ~= nil then
+						local available = _ctrlset:GetUserIValue('AVAILABLE')
+						if available == 1 then
+							ctrlset = _ctrlset
+							break
+						end
+					else
+						break
+					end
+				end
+		
+				if ctrlset ~= nil then
+					local btn = GET_CHILD_RECURSIVELY(ctrlset, 'itemBtn')
+					ITEM_CABINET_SELECT_ITEM(ctrlset, btn)
+				end
+			end
+		
+			if tuto_step >= 7 then
+				upgrade_tab:SelectTab(0)
+				ITEM_CABINET_UPGRADE_TAB(frame)
+			end
+		end
+	end
+
+	TUTORIAL_TEXT_OPEN(ctrl, title, text, prop_name)
+end
+
+function ITEM_CABINET_ETC_ARMOR_TUTORIAL_OPEN(frame, open_flag)
+	local prop_name = "UITUTO_EQUIPCACABINET2"
+	frame:SetUserValue('TUTO_PROP', prop_name)
+	local tuto_step = GetUITutoProg(prop_name)
+	if tuto_step >= 100 then return end
+
+	local tuto_cls = GetClass('UITutorial', prop_name .. '_' .. tuto_step + 1)
+	if tuto_cls == nil then
+		tuto_cls = GetClass('UITutorial', prop_name .. '_100')
+		if tuto_cls == nil then return end
+	end
+
+	local ctrl_name = TryGetProp(tuto_cls, 'ControlName', 'None')
+	local title = dic.getTranslatedStr(TryGetProp(tuto_cls, 'Title', 'None'))
+	local text = dic.getTranslatedStr(TryGetProp(tuto_cls, 'Note', 'None'))
+	local ctrl = GET_CHILD_RECURSIVELY(frame, ctrl_name)
+	if ctrl == nil then return end
+
+	if open_flag == true then
+		local category = ITEM_CABINET_GET_CATEGORY(frame)
+		local id_space = 'cabinet_' .. string.lower(category)
+		local itemList, itemListCnt = GetClassList(id_space)
+		local itemgbox = GET_CHILD_RECURSIVELY(frame, 'itemgbox')
+		local upgrade_tab = GET_CHILD_RECURSIVELY(frame, 'upgrade_tab')
+		if tuto_step >= 1 then
+			local ctrlset = nil
+			for i = 0, itemListCnt - 1 do
+				local _ctrlset = GET_CHILD_RECURSIVELY(itemgbox, 'ITEM_TAB_CTRL_' .. i)
+				if _ctrlset ~= nil then
+					local available = _ctrlset:GetUserIValue('AVAILABLE')
+					if available == 1 then
+						ctrlset = _ctrlset
+						break
+					end
+				end
+			end
+	
+			if ctrlset ~= nil then
+				local btn = GET_CHILD_RECURSIVELY(ctrlset, 'itemBtn')
+				ITEM_CABINET_SELECT_ITEM(ctrlset, btn)
+			end
+		end
+		
+		if tuto_step >= 2 then
+			upgrade_tab:SelectTab(0)
+			ITEM_CABINET_UPGRADE_TAB(frame)
+		end
+	end
+
+	TUTORIAL_TEXT_OPEN(ctrl, title, text, prop_name)
+end
+
+function ITEM_CABINET_ETC_WEAPON_TUTORIAL_OPEN(frame, open_flag)
+	local prop_name = "UITUTO_EQUIPCACABINET3"
+	frame:SetUserValue('TUTO_PROP', prop_name)
+	local tuto_step = GetUITutoProg(prop_name)
+	if tuto_step >= 100 then return end
+
+	local tuto_cls = GetClass('UITutorial', prop_name .. '_' .. tuto_step + 1)
+	if tuto_cls == nil then
+		tuto_cls = GetClass('UITutorial', prop_name .. '_100')
+		if tuto_cls == nil then return end
+	end
+
+	local ctrl_name = TryGetProp(tuto_cls, 'ControlName', 'None')
+	local title = dic.getTranslatedStr(TryGetProp(tuto_cls, 'Title', 'None'))
+	local text = dic.getTranslatedStr(TryGetProp(tuto_cls, 'Note', 'None'))
+	local ctrl = GET_CHILD_RECURSIVELY(frame, ctrl_name)
+	if ctrl == nil then return end
+
+	if open_flag == true then
+		local category = ITEM_CABINET_GET_CATEGORY(frame)
+		local id_space = 'cabinet_' .. string.lower(category)
+		local itemList, itemListCnt = GetClassList(id_space)
+		local itemgbox = GET_CHILD_RECURSIVELY(frame, 'itemgbox')
+		local upgrade_tab = GET_CHILD_RECURSIVELY(frame, 'upgrade_tab')
+		if tuto_step >= 1 then
+			local ctrlset = nil
+			for i = 0, itemListCnt - 1 do
+				local _ctrlset = GET_CHILD_RECURSIVELY(itemgbox, 'ITEM_TAB_CTRL_' .. i)
+				if _ctrlset ~= nil then
+					local available = _ctrlset:GetUserIValue('AVAILABLE')
+					if available == 1 then
+						ctrlset = _ctrlset
+						break
+					end
+				end
+			end
+	
+			if ctrlset ~= nil then
+				local btn = GET_CHILD_RECURSIVELY(ctrlset, 'itemBtn')
+				ITEM_CABINET_SELECT_ITEM(ctrlset, btn)
+			end
+		end
+	
+		if tuto_step >= 2 then
+			upgrade_tab:SelectTab(0)
+			ITEM_CABINET_UPGRADE_TAB(frame)
+		end
+	end
+
+	TUTORIAL_TEXT_OPEN(ctrl, title, text, prop_name)
+end
+
+function ITEM_CABINET_UI_TUTORIAL_CHECK(frame, msg, arg_str, arg_num)
+	if frame == nil or frame:IsVisible() == 0 then return end
+
+	if session.shop.GetEventUserType() == 0 then return end
+
+	if arg_num == 100 then
+		if arg_str == 'UITUTO_EQUIPCACABINET1' then
+			local tuto_icon_1 = GET_CHILD_RECURSIVELY(frame, "UITUTO_ICON_1")
+			tuto_icon_1:ShowWindow(0)
+		elseif arg_str == 'UITUTO_EQUIPCACABINET2' or arg_str == 'UITUTO_EQUIPCACABINET3' then
+			local tuto_icon_2 = GET_CHILD_RECURSIVELY(frame, "UITUTO_ICON_2")
+			tuto_icon_2:ShowWindow(0)
+		end
+
+		TUTORIAL_TEXT_CLOSE(frame)
+		return
+	end
+
+	local open_flag = false
+	if msg == nil then
+		open_flag = true
+	end
+
+	local cabinet_tab = GET_CHILD_RECURSIVELY(frame, "cabinet_tab")
+	local cabinet_index = cabinet_tab:GetSelectItemIndex()
+	local equipment_tab = GET_CHILD_RECURSIVELY(frame, "equipment_tab")
+	local equipment_index = equipment_tab:GetSelectItemIndex()
+	if cabinet_index == 0 then
+		if equipment_index == 0 then
+			ITEM_CABINET_VIBORA_TUTORIAL_OPEN(frame, open_flag)
+		elseif equipment_index == 1 then
+			ITEM_CABINET_ETC_WEAPON_TUTORIAL_OPEN(frame, open_flag)
+		else
+			TUTORIAL_TEXT_CLOSE(frame)
+		end
+	elseif cabinet_index == 1 then
+		if equipment_index == 1 then
+			ITEM_CABINET_ETC_ARMOR_TUTORIAL_OPEN(frame, open_flag)
+		else
+			TUTORIAL_TEXT_CLOSE(frame)
+		end
+	else
+		TUTORIAL_TEXT_CLOSE(frame)
+	end
+end
+
+function ITEM_CABINET_UI_TUTO_ACTION_CHECK(frame, ctrl)
+
 end
 
 function ITEM_CABINET_CHANGE_TAB(frame)
@@ -41,17 +289,46 @@ function ITEM_CABINET_CREATE_LIST(frame)
 	local equipTab = GET_CHILD_RECURSIVELY(frame, "equipment_tab");
 	local edit = GET_CHILD_RECURSIVELY(frame, "ItemSearch");
 	local cap = edit:GetText();
+
 	if category == "Weapon" or category == "Armor" then
 		equipTab:ShowWindow(1);
 		local equipTabIndex = equipTab:GetSelectItemIndex();
 		local equipTxt = GET_CHILD_RECURSIVELY(frame, "equipmenttxt");
-		if equipTabIndex == 0 then
-			if category == "Weapon" then
+		
+		if category == "Weapon" then
+			if equipTabIndex == 0 then		
 				group = "VIBORA";
-				equipTab:ChangeCaptionOnly(0,"{@st66b}{s16}"..ClMsg("Vibora"),false)
-			elseif category == "Armor" then
+			end
+			equipTab:ChangeCaptionOnly(0,"{@st66b}{s16}"..ClMsg("Vibora"),false)
+
+			local tuto_icon_1 = GET_CHILD_RECURSIVELY(frame, "UITUTO_ICON_1")
+			local tuto_icon_2 = GET_CHILD_RECURSIVELY(frame, "UITUTO_ICON_2")
+			local Is_UITUTO_Prog1 = GetUITutoProg("UITUTO_EQUIPCACABINET1")
+			if Is_UITUTO_Prog1 == 100 then
+				tuto_icon_1:ShowWindow(0);
+			else
+				tuto_icon_1:ShowWindow(1);
+			end
+			local Is_UITUTO_Prog3 = GetUITutoProg("UITUTO_EQUIPCACABINET3")
+			if Is_UITUTO_Prog3 == 100 then
+				tuto_icon_2:ShowWindow(0);
+			else
+				tuto_icon_2:ShowWindow(1);
+			end
+		elseif category == "Armor" then
+			if equipTabIndex == 0 then		
 				group = "GODDESS_EVIL";
-				equipTab:ChangeCaptionOnly(0,"{@st66b}{s16}"..ClMsg("GoddessEvil"),false)
+			end
+			equipTab:ChangeCaptionOnly(0,"{@st66b}{s16}"..ClMsg("GoddessEvil"),false)
+
+			local tuto_icon_1 = GET_CHILD_RECURSIVELY(frame, "UITUTO_ICON_1")
+			local tuto_icon_2 = GET_CHILD_RECURSIVELY(frame, "UITUTO_ICON_2")
+			tuto_icon_1:ShowWindow(0);
+			local Is_UITUTO_Prog2 = GetUITutoProg("UITUTO_EQUIPCACABINET2")
+			if Is_UITUTO_Prog2 == 100 then
+				tuto_icon_2:ShowWindow(0);
+			else
+				tuto_icon_2:ShowWindow(1);
 			end
 		end
 	else
@@ -62,6 +339,7 @@ function ITEM_CABINET_CREATE_LIST(frame)
 	local ctrlIndex = 0;
 	local aObj = GetMyAccountObj();
 	itemgbox:RemoveAllChild();
+
 	for i = 0, itemListCnt - 1 do
 		local listCls = GetClassByIndexFromList(itemList, i);
 		local available = TryGetProp(aObj, listCls.AccountProperty, 0);				
@@ -72,6 +350,7 @@ function ITEM_CABINET_CREATE_LIST(frame)
 				if available == 1 then
 					local itemTabCtrl = itemgbox:CreateOrGetControlSet('item_cabinet_tab', 'ITEM_TAB_CTRL_'..ctrlIndex, 0, ctrlIndex * 90);					
 					ITEM_CABINET_ITEM_TAB_INIT(listCls, itemTabCtrl);
+					itemTabCtrl:SetUserValue('AVAILABLE', 1)
 					GET_CHILD(itemTabCtrl, 'shadow'):ShowWindow(0);
 					ctrlIndex = ctrlIndex + 1;
 				else
@@ -80,13 +359,17 @@ function ITEM_CABINET_CREATE_LIST(frame)
 			end
 		end
 	end
+
 	for i = 1, #unavailabeList do		
 		local listCls = unavailabeList[i];
 		local itemTabCtrl = itemgbox:CreateOrGetControlSet('item_cabinet_tab', 'ITEM_TAB_CTRL_'..ctrlIndex, 0, ctrlIndex * 90);
 		GET_CHILD(itemTabCtrl, 'shadow'):ShowWindow(1);
 		ITEM_CABINET_ITEM_TAB_INIT(listCls, itemTabCtrl);
+		itemTabCtrl:SetUserValue('AVAILABLE', 0)
 		ctrlIndex = ctrlIndex + 1;
 	end
+
+	ITEM_CABINET_UI_TUTORIAL_CHECK(frame)
 end
 
 function ITEM_CABINET_SHOW_UPGRADE_UI(frame, isShow)
@@ -127,7 +410,6 @@ function ITEM_CABINET_ITEM_TAB_INIT(listCls, itemTabCtrl)
 	local itemCls = GetClass('Item', itemClsName);
 	if itemCls == nil then return; end
 
-	
 	local add_str = ''	
 	if TryGetProp(itemCls, 'AdditionalOption_1', 'None') ~= 'None' then		
 		add_str = '(' ..  ClMsg('Unique1') .. ')'
@@ -213,7 +495,6 @@ function ITEM_CABINET_SELECT_ITEM(parent, self)
 	frame:SetUserValue("ITEM_TYPE", itemType);
 	frame:SetUserValue("TARGET_LV", curLv + 1);
 
-
 	ITEM_CABINET_CLOSE_SUCCESS(frame);
 	ITEM_CABINET_SELECT_TAB(frame, parent);
 	ITEM_CABINET_REGISTER_SECTION(frame, category, itemType, curLv);
@@ -221,6 +502,21 @@ function ITEM_CABINET_SELECT_ITEM(parent, self)
 	ITEM_CABINET_SELECTED_ITEM_CLEAR();
 	ITEM_CABINET_SHOW_UPGRADE_UI(frame, 1);
 	ITEM_CABINET_ICOR_SECTION(frame, self, itemCls);
+
+	local tuto_prop = frame:GetUserValue('TUTO_PROP')
+	if tuto_prop ~= 'None' then
+		local tuto_flag = false
+		local tuto_value = GetUITutoProg(tuto_prop)
+		if tuto_value == 0 then
+			tuto_flag = true
+		elseif tuto_prop == 'UITUTO_EQUIPCACABINET1' and tuto_value == 5 then
+			tuto_flag = true
+		end
+
+		if tuto_flag == true then
+			pc.ReqExecuteTx('SCR_UI_TUTORIAL_NEXT_STEP', tuto_prop)
+		end
+	end
 end
 
 function ITEM_CABINET_ICOR_SECTION(frame, self, entry_cls)
@@ -305,7 +601,7 @@ function ITEM_CABINET_GET_CATEGORY(frame)
 	return category;
 end
 
-function ITEM_CABINET_UPGRADE_TAB(parent)
+function ITEM_CABINET_UPGRADE_TAB(parent, ctrl)
 	local frame = parent:GetTopParentFrame();
 	local tab = GET_CHILD_RECURSIVELY(frame, "upgrade_tab");
 	local index = tab:GetSelectItemIndex();
@@ -364,6 +660,23 @@ function ITEM_CABINET_UPGRADE_TAB(parent)
 		ITEM_CABINET_SELECTED_ITEM_CLEAR();
 	end
 	ITEM_CABINET_CLEAR_SLOT();
+
+	if ctrl ~= nil then
+		local tuto_prop = frame:GetUserValue('TUTO_PROP')
+		if tuto_prop ~= 'None' then
+			local tuto_flag = false
+			local tuto_value = GetUITutoProg(tuto_prop)
+			if tuto_value == 1 then
+				tuto_flag = true
+			elseif tuto_prop == 'UITUTO_EQUIPCACABINET1' and tuto_value == 6 then
+				tuto_flag = true
+			end
+
+			if tuto_flag == true then
+				pc.ReqExecuteTx('SCR_UI_TUTORIAL_NEXT_STEP', tuto_prop)
+			end
+		end
+	end
 end
 
 function ITEM_CABINET_REGISTER_SECTION(frame, category, itemType, curLv)
@@ -617,6 +930,13 @@ function ITEM_CABINET_REG_MATERIAL(frame, slot)
 				if curCount == 0 then
 					ITEM_CABINET_MATERIAL_CNT_UPDATE(index, 1, itemID);				
 					ITEM_CABINET_SET_SLOT_ITEM(slot, 1, index);				
+					local tuto_prop = frame:GetUserValue('TUTO_PROP')
+					if tuto_prop ~= 'None' then
+						local tuto_value = GetUITutoProg(tuto_prop)
+						if tuto_prop == 'UITUTO_EQUIPCACABINET1' and tuto_value == 2 then
+							pc.ReqExecuteTx('SCR_UI_TUTORIAL_NEXT_STEP', tuto_prop)
+						end
+					end
 					return
 				end
 			end			
@@ -792,6 +1112,21 @@ function ITEM_CABINET_REG_ADD_ITEM(frame, itemID)
 	SET_SLOT_ITEM(slot, invItem);
 	session.ResetItemList();
 	session.AddItemID(itemID, 1); 
+
+	local tuto_prop = frame:GetUserValue('TUTO_PROP')
+	if tuto_prop ~= 'None' then
+		local tuto_flag = false
+		local tuto_value = GetUITutoProg(tuto_prop)
+		if tuto_prop == 'UITUTO_EQUIPCACABINET1' and tuto_value == 7 then
+			tuto_flag = true
+		elseif (tuto_prop == 'UITUTO_EQUIPCACABINET2' or tuto_prop == 'UITUTO_EQUIPCACABINET3') and tuto_value == 2 then
+			tuto_flag = true
+		end
+
+		if tuto_flag == true then
+			pc.ReqExecuteTx('SCR_UI_TUTORIAL_NEXT_STEP', tuto_prop)
+		end
+	end
 end
 
 
@@ -818,11 +1153,41 @@ function ITEM_CABINET_SUCCESS_GODDESS_ENCHANT(frame, msg, argStr, argNum)
 	imcSound.ReleaseSoundEvent("sys_transcend_success");
 	imcSound.PlaySoundEvent("sys_transcend_success");
 	GET_CHILD_RECURSIVELY(frame,"successBgBox"):ShowWindow(1);
+
+	local tuto_prop = frame:GetUserValue('TUTO_PROP')
+	if tuto_prop ~= 'None' then
+		local tuto_flag = false
+		local tuto_value = GetUITutoProg(tuto_prop)
+		if tuto_value == 3 then
+			tuto_flag = true
+		elseif tuto_prop == 'UITUTO_EQUIPCACABINET1' and tuto_value == 8 then
+			tuto_flag = true
+		end
+
+		if tuto_flag == true then
+			pc.ReqExecuteTx('SCR_UI_TUTORIAL_NEXT_STEP', tuto_prop)
+		end
+	end
 end
 
 function ITEM_CABINET_CLOSE_SUCCESS(frame)
 	local frame = frame:GetTopParentFrame();
 	GET_CHILD_RECURSIVELY(frame, "successBgBox"):ShowWindow(0);
+
+	local tuto_prop = frame:GetUserValue('TUTO_PROP')
+	if tuto_prop ~= 'None' then
+		local tuto_flag = false
+		local tuto_value = GetUITutoProg(tuto_prop)
+		if tuto_value == 4 then
+			tuto_flag = true
+		elseif tuto_prop == 'UITUTO_EQUIPCACABINET1' and tuto_value == 9 then
+			tuto_flag = true
+		end
+
+		if tuto_flag == true then
+			pc.ReqExecuteTx('SCR_UI_TUTORIAL_NEXT_STEP', tuto_prop)
+		end
+	end
 end
 
 local function ITEM_CABINET_CREATE_ARK_LV(gBox, ypos, step, class_name, curlv)

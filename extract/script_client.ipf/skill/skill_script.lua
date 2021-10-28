@@ -224,6 +224,20 @@ function FOODTABLE_SKILL(skillType)
 		return 0;
 	end
 
+	-- NPC 옆에 설치 막기
+	local pc = GetMyPCObject();
+	local x, y, z = GetPos(pc);
+	if 0 == IsFarFromNPC(pc, x, y, z, 60) then
+		ui.SysMsg(ClMsg("TooNearFromNPC"));	
+		return 0;
+	end
+	
+	local zoneName = session.GetMapName();
+	if SCR_ZONE_KEYWORD_CHECK(zoneName, "NoShop") == "YES" then
+		ui.SysMsg(ClMsg('DontOpenThisAria'));
+		return 0;
+	end
+	
 	local obj = GetIES(skill:GetObject());
 	local frame = ui.GetFrame("foodtable_register");
 	if nil == frame then

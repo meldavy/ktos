@@ -2293,6 +2293,12 @@ function INDUN_ALREADY_PLAYING()
     ui.MsgBox(ClMsg("IndunAlreadyPlaying_AreYouGiveUp"), yesScp, noScp);
 end
 
+function INDUN_ALREADY_PLAYING_PARTY()
+    local yes_scp = string.format("AnsGiveUpPrevPlayingIndunParty(%d)", 1);
+    local no_scp = string.format("AnsGiveUpPrevPlayingIndunParty(%d)", 0);
+    ui.MsgBox(ClMsg("IndunAlreadyPlaying_AreYouGiveUp"), yes_scp, no_scp);
+end
+
 function IS_EXIST_CLASSNAME_IN_LIST(list, value)
     for i =1, #list do
         if list[i].ClassName == value then

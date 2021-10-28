@@ -265,9 +265,13 @@ function SHOP_BUTTON_SELL(frame, slot, argStr, argNum)
 			local invItem = session.GetInvItemByGuid(itemID);
 			if invItem ~= nil then
 				local invSlot = GET_SLOT_BY_ITEMID(nil, itemID);
-				invSlot:Select(0);
+				if invSlot ~= nil then
+					invSlot:Select(0);
+				end
 				local invSlot_All = GET_SLOT_BY_ITEMID(nil, itemID, 1);
-				invSlot_All:Select(0);
+				if invSlot_All ~= nil then
+					invSlot_All:Select(0);
+				end
 			end
 
 			item.AddToSellList(itemID, slot:GetUserIValue("SELL_CNT"));

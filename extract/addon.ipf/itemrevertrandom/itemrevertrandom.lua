@@ -138,6 +138,11 @@ function ITEM_REVERT_RANDOM_DROP(frame, icon, argStr, argNum)
 		return;
 	end
 
+	local frame = ui.GetFrame("itemrevertrandom");
+	if frame == nil then
+		return
+	end
+
 	if isCloseable == 0 then
 		ui.SysMsg(ClMsg("CannotCloseRandomReset"));
 		return

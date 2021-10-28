@@ -831,6 +831,11 @@
 		<image name="icon_item_ep13vakarine03_2_m" file="\icon\equip\icon_item_ep13vakarine03_2_m.png" imgrect="0 0 256 256"/>
 		<image name="icon_item_ep13vakarine03_f" file="\icon\equip\icon_item_ep13vakarine03_f.png" imgrect="0 0 256 256"/>
 		<image name="icon_item_ep13vakarine03_m" file="\icon\equip\icon_item_ep13vakarine03_m.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_SpecialCostume_arquebusier01" file="\icon\equip\icon_item_SpecialCostume_arquebusier01.png" imgrect="0 0 256 256" CMM_Caption="아퀴버지어_태슬"/>
+		<image name="icon_item_SpecialCostume_arquebusier02" file="\icon\equip\icon_item_SpecialCostume_arquebusier02.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_SpecialCostume_clown_f_01" file="\icon\equip\icon_item_SpecialCostume_clown_f_01.png" imgrect="0 0 256 256" CMM_Caption="클로운_어깨견장"/>
+		<image name="icon_item_SpecialCostume_clown_m_01" file="\icon\equip\icon_item_SpecialCostume_clown_m_01.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_SpecialCostume_clown02" file="\icon\equip\icon_item_SpecialCostume_clown02.png" imgrect="0 0 256 256"/>
 		<image name="item_icon_helmet_twnpanda" file="\icon\equip\item_icon_helmet_twnpanda.png" imgrect="0 0 256 256" CMM_Caption="2021_2월 대만 판다 테마"/>
 		<image name="item_icon_costume_twnpanda_f" file="\icon\equip\item_icon_costume_twnpanda_f.png" imgrect="0 0 256 256"/>
 		<image name="item_icon_costume_twnpanda_m" file="\icon\equip\item_icon_costume_twnpanda_m.png" imgrect="0 0 256 256"/>
@@ -864,6 +869,18 @@
 		<image name="icon_item_medusa_leather_gloves" file="\icon\equip\icon_item_medusa_leather_gloves.png" imgrect="0 0 256 256"/>
 		<image name="icon_item_medusa_leather_pants" file="\icon\equip\icon_item_medusa_leather_pants.png" imgrect="0 0 256 256"/>
 		<image name="icon_item_medusa_leather_shoes" file="\icon\equip\icon_item_medusa_leather_shoes.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_SpecialCostume_blossomblader_m" file="\icon\equip\icon_item_warrior_MeahwaBlader01SP.png" imgrect="0 0 256 256" CMM_Caption="매화검수_스페셜코스튬"/>
+		<image name="icon_item_SpecialCostume_blossomblader_f" file="\icon\equip\icon_item_warrior_MeahwaBlader01SP.png" imgrect="0 0 256 256" CMM_Caption="매화검수_스페셜코스튬"/>
+		<image name="icon_item_SpecialCostume_terramancer_m" file="\icon\equip\icon_item_mage_terramancer01sp.png" imgrect="0 0 256 256" CMM_Caption="테라맨서_스페셜코스튬"/>
+		<image name="icon_item_SpecialCostume_terramancer_f" file="\icon\equip\icon_item_mage_terramancer01sp.png" imgrect="0 0 256 256" CMM_Caption="테라맨서_스페셜코스튬"/>
+		<image name="icon_item_SpecialCostume_arbalester_m" file="\icon\equip\icon_item_Arbalester01_sp.png" imgrect="0 0 256 256" CMM_Caption="아발리스터_스페셜코스튬"/>
+		<image name="icon_item_SpecialCostume_arbalester_f" file="\icon\equip\icon_item_Arbalester01_sp.png" imgrect="0 0 256 256" CMM_Caption="아발리스터_스페셜코스튬"/>
+		<image name="icon_item_SpecialCostume_arquebusier_m" file="\icon\equip\icon_item_SpecialCostume_arquebusier01.png" imgrect="0 0 256 256" CMM_Caption="아퀴버지어_스페셜코스튬"/>
+		<image name="icon_item_SpecialCostume_arquebusier_f" file="\icon\equip\icon_item_SpecialCostume_arquebusier01.png" imgrect="0 0 256 256" CMM_Caption="아퀴버지어_스페셜코스튬"/>
+		<image name="icon_item_SpecialCostume_crusader_m" file="\icon\equip\icon_item_Crusader01_sp.png" imgrect="0 0 256 256" CMM_Caption="크루세이더_스페셜코스튬"/>
+		<image name="icon_item_SpecialCostume_crusader_f" file="\icon\equip\icon_item_Crusader01_sp.png" imgrect="0 0 256 256" CMM_Caption="크루세이더_스페셜코스튬"/>
+		<image name="icon_item_SpecialCostume_clown_m" file="\icon\equip\icon_item_SpecialCostume_clown_f_01.png" imgrect="0 0 256 256" CMM_Caption="클로운_스페셜코스튬"/>
+		<image name="icon_item_SpecialCostume_clown_f" file="\icon\equip\icon_item_SpecialCostume_clown_f_01.png" imgrect="0 0 256 256" CMM_Caption="클로운_스페셜코스튬"/>
 	</imagelist>
 	<imagelist category="256_costume_icons">
 		<image name="icon_item_Alchemist_f" file="\icon\equip\Alchemist_f_icon.png" imgrect="0 0 256 256" CMM_Caption="알케미스트"/>
@@ -6546,6 +6563,7 @@
 		<image name="icon_item_repairkit_460" file="\icon\item\icon_item_repairkit_460.png" imgrect="0 0 256 256" CMM_Caption="[460]가디스 장비 긴급 수리 키트"/>
 		<image name="icon_item_empty_partis_460" file="\icon\item\icon_item_empty_partis_460.png" imgrect="0 0 256 256" CMM_Caption="[460]파르티스 시약_empty"/>
 		<image name="icon_item_full_partis2_460" file="\icon\item\icon_item_full_partis2_460.png" imgrect="0 0 256 256" CMM_Caption="[460]파르티스 시약_full"/>
+		<image name="icon_item_GabijaCertificateCoin_10p" file="\icon\item\icon_item_GabijaCertificateCoin_10p.png" imgrect="0 0 256 256" CMM_Caption="여신의 증표_가비야_10p"/>
 		<image name="icon_item_Free_ItemRandomReset_Ticket" file="\icon\item\icon_item_Free_ItemRandomReset_Ticket.png" imgrect="0 0 128 128" CMM_Caption="재감정 1회 무료 쿠폰"/>
 	</imagelist>
 	<imagelist category="housing">
@@ -8623,6 +8641,7 @@
 		<image name="icon_item_toy_ep13tcance01" file="\icon\payment\icon_item_toy_ep13tcance01.png" imgrect="0 0 256 256"/>
 		<image name="icon_item_toy_ep13tcance02" file="\icon\payment\icon_item_toy_ep13tcance02.png" imgrect="0 0 256 256"/>
 		<image name="icon_item_wing_ep13tcance" file="\icon\payment\icon_item_wing_ep13tcance.png" imgrect="0 0 256 256"/>
+		<image name="item_icon_ep13_costume_twnocelot" file="\icon\payment\item_icon_ep13_costume_twnocelot.png" imgrect="0 0 256 256" CMM_Caption="5주년 대만 오셀롯 코스튬"/>
 	</imagelist>
 	<imagelist category="seal">
 		<image name="icon_seal_yellow_cc_A1" file="\icon\seal\seal_yellow_cc_A1.tga" imgrect="0 0 80 80"/>

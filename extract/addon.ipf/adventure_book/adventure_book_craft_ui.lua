@@ -229,6 +229,7 @@ function ADVENTURE_BOOK_CRAFT.DROPDOWN_LIST_UPDATE_SUB()
 		sub_category_opt_list:AddItem(9, ClMsg('THSpear'));
 		sub_category_opt_list:AddItem(10, ClMsg('Rapier'));
 		sub_category_opt_list:AddItem(11, ClMsg('Musket'));
+		sub_category_opt_list:AddItem(12, ClMsg('Cannon'));
 	elseif categoryOption == 2 then
 		sub_category_opt_list:SetEnable(1);
 		sub_category_opt_list:AddItem(1, ClMsg('Shirt'));
@@ -237,14 +238,13 @@ function ADVENTURE_BOOK_CRAFT.DROPDOWN_LIST_UPDATE_SUB()
 		sub_category_opt_list:AddItem(4, ClMsg('Gloves'));
 		sub_category_opt_list:AddItem(5, ClMsg('Neck'));
 		sub_category_opt_list:AddItem(6, ClMsg('Ring'));
-		sub_category_opt_list:AddItem(7, ClMsg('Shield'));
 		sub_category_opt_list:AddItem(8, ClMsg('Outer'));
 		sub_category_opt_list:AddItem(9, ClMsg('Hat'));
 	elseif categoryOption == 3 then
 		sub_category_opt_list:SetEnable(1);
 		sub_category_opt_list:AddItem(1, ClMsg('Dagger'));
 		sub_category_opt_list:AddItem(2, ClMsg('Pistol'));
-		sub_category_opt_list:AddItem(3, ClMsg('Cannon'));
+		sub_category_opt_list:AddItem(3, ClMsg('Shield'));
 		sub_category_opt_list:AddItem(4, ClMsg('ETC'));
 	else
 		sub_category_opt_list:SetEnable(0);

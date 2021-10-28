@@ -403,8 +403,10 @@ function ON_MANU_END(frame, msg, madeItemID)
 		local item = itemList[i]["Item"];
 		local popcnt = itemList[i]["Used"];
 		local slot = GET_SLOT_BY_ITEMID(slotSet, item:GetIESID())
-		slot:SetUserValue("_POP_COUNT", popcnt);
-		UI_PLAYFORCE(slot, "manu_slot_pop", x, y);
+		if slot ~= nil then
+			slot:SetUserValue("_POP_COUNT", popcnt);
+			UI_PLAYFORCE(slot, "manu_slot_pop", x, y);
+		end
 	end
 
 	frame:Invalidate();

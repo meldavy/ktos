@@ -340,5 +340,6 @@
 	<ReadXml Name="fieldboss_worldevent_reward_count"/>
 	<ReadXml Name="itemdecompose_mistake"/>
 	<ReadXml Name="resurrect_return_control"/>
-	<ReadXml Name="ability_point_score"/>	
+	<ReadXml Name="ability_point_score"/>
+	<ReadXml Name="ui_tutorial"/>
 </Category>

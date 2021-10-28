@@ -1393,7 +1393,7 @@ function CHECK_GEAR_SCORE_FOR_CONTENTS(pc, indun_cls)
 	local gear_score = GET_PLAYER_GEAR_SCORE(pc);
 	local ablity_score = GET_PLAYER_ABILITY_SCORE(pc)
 	local acc = GetAccountObj(pc)
-
+	
 	if TryGetProp(indun_cls, 'UnitPerReset', 'None') == 'ACCOUNT' and TryGetProp(indun_cls, 'TicketingType', 'None') == 'Entrance_Ticket' and TryGetProp(indun_cls, 'CheckCountName', 'None') ~= 'None' then
 		local remain_count = TryGetProp(acc, TryGetProp(indun_cls, 'CheckCountName', 'None'), 0)
 		if remain_count < 1 then
@@ -1443,6 +1443,16 @@ function CHECK_GEAR_SCORE_FOR_CONTENTS(pc, indun_cls)
 				end
 				-- 특성 달성률 제한
 				if tonumber(ablity_score) < 100 then
+					SendSysMsg(pc, "LowAblityPointScore");
+					return false;
+				end
+			elseif indun_cls.ClassName == "Goddess_Raid_Vasilissa_Solo" then
+				if gear_score < 420 then
+					SendSysMsg(pc, "LowEquipedItemGearScore");
+					return false;
+				end
+				-- 특성 달성률 제한
+				if tonumber(ablity_score) < 59.99 then
 					SendSysMsg(pc, "LowAblityPointScore");
 					return false;
 				end

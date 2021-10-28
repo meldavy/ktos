@@ -6167,4 +6167,42 @@
 			<richtext name="cost_value" rect="0 0 220 20" margin="0 10 5 0" layout_gravity="right top" format="{@st66d_y}{s22}%s {/}{/}{img %s 24 24}" param1="value" param1_def="0" param2="pic" param2_def="icon_item_silver" spacey="0" textalign="right center"/>
 		</controls>
 	</controlset>
+	<controlset name="table_food_register" hittest="true" width="452" height="185" hittestset="true" draw="true" skin="test_skin_01" stateskin="false">
+		<controls>
+			<slot name="slot" layout_gravity="left top" margin="11 18 0 0" rect="0 0 70 70"/>
+			<richtext name="itemname" margin="88 15 0 0" rect="0 0 320 27" format="%s" param1="value" param1_def="음식 이름" textalign="left center" resizebytext="false" spacey="0" maxwidth="0" fontname="brown_18_b" fixwidth="true" updateparent="false" drawbackground="false" slideshow="false" layout_gravity="left top"/>
+			<richtext name="itemdesc" margin="88 45 0 0" rect="0 0 320 45" format="%s" param1="value" param1_def="음식 효능" textalign="left top" resizebytext="false" spacey="0" maxwidth="0" fontname="brown_16_b" fixwidth="true" updateparent="false" drawbackground="false" slideshow="false" layout_gravity="left top"/>
+			<labelline name="labelline_1" margin="10 97 0 0" rect="0 0 432 4" skin="none" layout_gravity="left top"/>
+			<button name="button_1" margin="13 102 0 0" rect="0 0 20 20" layout_gravity="left top" clicksound="button_click_3" oversound="button_cursor_over_2" image="btn_numdown"/>
+			<richtext name="richtext_1_1" margin="36 101 0 0" rect="0 0 120 24" caption="소비 재료" textalign="left top" resizebytext="true" spacey="0" maxwidth="0" fontname="brown_16_b" fixwidth="false" updateparent="false" drawbackground="false" slideshow="false" layout_gravity="left top"/>
+			<groupbox name="materials" margin="42 129 0 0" rect="0 0 346 45" hittestbox="false" skin="none" layout_gravity="left top"/>
+			<checkbox name="selectCheck" rect="0 0 30 30" margin="0 0 80 12" layout_gravity="right bottom" texttooltip="판매 목록에 포함시킵니다." caption="판매하기" fontname="brown_16_b" LBtnDownScp="FOODTABLE_CHECK_FOR_SELL"/>
+		</controls>
+	</controlset>
+	<controlset name="itembuff_ctrlset" hittest="true" width="455" height="185" hittestset="true" skin="test_frame_low" draw="true" stateskin="false">
+		<controls>
+			<slot name="slot" rect="0 0 120 120" margin="15 15 0 0" layout_gravity="left top" skin="invenslot2" stretch="true" enabledrop="false" enabledrag="false" enablepop="false"/>
+			<richtext name="item_name" margin="15 142 0 0" rect="0 0 120 40" format="{@st41}%s{/}" param1="name" param1_def="없음" textalign="center center" fontname="white_20_ol" layout_gravity="left top"/>
+			<picture name="titlepicture" rect="0 0 265 120" margin="0 17 45 0" layout_gravity="right top" image="squaier_itembuff" stretch="true"/>
+			<groupbox name="optionGbox_0" rect="0 0 265 120" margin="0 17 45 0" layout_gravity="right top" draw="true" hittestbox="false" resizebyparent="false" resizebyresolution="false" scrollbar="true" skin="test_Item_tooltip_bg"/>
+			<groupbox name="optionGbox_1" rect="0 0 265 120" margin="0 0 0 0" parent="optionGbox_0" layout_gravity="center top" draw="false" hittestbox="false" resizebyparent="false" resizebyresolution="false" scrollbar="false"/>
+			<richtext name="time" parent="optionGbox_0" rect="0 0 200 24" margin="5 0 0 5" layout_gravity="left bottom" caption="지속 시간" fontname="white_16_ol" textalign="left top"/>
+			<richtext name="timestr" parent="optionGbox_0" rect="0 0 343 24" margin="0 0 5 5" layout_gravity="right bottom" drawbackground="false" fixwidth="false" fontname="white_16_ol" format="%s" maxwidth="0" param1="txt" resizebytext="true" slideshow="false" spacey="0"/>
+			<checkbox name="checkbox" margin="0 0 10 0" rect="0 0 15 15" LBtnUpArgStr="click" LBtnUpScp="SQUIRE_BUFF_EQUIP_SELECT" clicksound="button_click_big" oversound="button_over" layout_gravity="right center"/>
+		</controls>
+	</controlset>
+	<controlset name="basic_property_set_narrow" hittest="false" width="255" height="40">
+		<controls>
+			<richtext name="minPowerStr" rect="0 0 120 24" margin="0 0 0 0" layout_gravity="left top" drawbackground="false" fixwidth="false" format="{@st41}{s16}%s{/}{/}" param1="txt" resizebytext="true" slideshow="false" textalign="left top" updateparent="false"/>
+			<richtext name="minPower" rect="0 0 120 24" margin="0 0 0 0" layout_gravity="right top" drawbackground="false" fixwidth="false" format="{@st41}{s16}%s{/}{/}" param1="txt" resizebytext="true" slideshow="false" textalign="left top" updateparent="false"/>
+			<richtext name="maxPowerStr" rect="0 0 120 24" margin="0 20 0 0" layout_gravity="left top" drawbackground="false" fixwidth="false" format="{@st41}{s16}%s{/}{/}" param1="txt" resizebytext="true" slideshow="false" textalign="left top" updateparent="false"/>
+			<richtext name="maxPower" rect="0 0 120 24" margin="0 20 0 0" layout_gravity="right top" drawbackground="false" fixwidth="false" format="{@st41}{s16}%s{/}{/}" param1="txt" resizebytext="true" slideshow="false" textalign="left top" updateparent="false"/>
+		</controls>
+	</controlset>
+	<controlset name="hiddenabil_decompose_result" hittest="false" width="350" height="150">
+		<controls>
+			<slot name="slot" rect="0 0 140 140" margin="0 0 0 0" layout_gravity="center top" draw="true" skin="invenslot2" movepop="false" enabledrag="false" enabledrop="false" enablepop="false"/> 
+			<richtext name="slot_text" parent="slot" rect="0 0 120 20" margin="0 0 10 10" layout_gravity="right bottom" draw="false" format="{@st43}{s30} %s" param1="value" param1_def="0" textalign="center center" maxwidth="0" resizebytext="true"/>
+		</controls>
+	</controlset>
 </controlsetlist>

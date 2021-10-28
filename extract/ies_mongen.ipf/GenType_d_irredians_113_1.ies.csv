@@ -23,3 +23,4 @@ ClassID,GenType,Lv,Range,GenRange,RespawnTime,MaxPop,Minimap,Hide,UseAIOufOfPC,A
 22,22,1,40,1,60000,1,1,0,0,0,0,0,dialog_warp_npc_1,어미스독[포탈],,,,,,IRREDIAN1131_CENTER_RIGHT_PORTAL_AI,IRREDIAN1131_CRP_NPC,,,NO,YES,NO,Neutral,,,,
 27,27,1,40,1,60000,1,1,0,0,0,0,0,npc_Irredians_TelHarsha,텔하르샤,,,,,,,RAID_TELHARSHA_ENTER,,,NO,YES,NO,Neutral,,,,
 28,28,1,300,1,60000,1,1,0,0,0,0,0,HiddenTrigger_CantGen300,CantGen,,,,,,,,,,NO,YES,NO,Neutral,,,,
+29,29,1,20,1,60000,1,0,0,0,1,0,0,HiddenTrigger4,UnvisibleName,,,,,,,,EXPLORER_MISLE16,,NO,YES,NO,Neutral,,,,

@@ -1015,21 +1015,21 @@
 			<Motion Name="ASTD_RIDE">
 				<Job Name="All">
 					<Event>
-						<Particle frame="0" attachNode="Bip01 R Clavicle twist2" particleName="F_fire045_retiarii" useAttach="true" hiddenObj="false" scale="1.5" pause="true" use2DEffect="true" soft2DValue="0"/>
+						<Particle frame="0" attachNode="Bip01 R Clavicle twist2" particleName="F_fire045_retiarii" useAttach="true" hiddenObj="false" scale="1.25" pause="true" use2DEffect="true" soft2DValue="0"/>
 					</Event>
 				</Job>
 			</Motion>
 			<Motion Name="STD_RIDE">
 				<Job Name="All">
 					<Event>
-						<Particle frame="0" attachNode="Bip01 R Clavicle twist2" particleName="F_fire045_retiarii" useAttach="true" hiddenObj="false" scale="1.5" pause="true" use2DEffect="true" soft2DValue="0"/>
+						<Particle frame="0" attachNode="Bip01 R Clavicle twist2" particleName="F_fire045_retiarii" useAttach="true" hiddenObj="false" scale="1.25" pause="true" use2DEffect="true" soft2DValue="0"/>
 					</Event>
 				</Job>
 			</Motion>
 			<Motion Name="STD">
 				<Job Name="All">
 					<Event>
-						<Particle frame="0" attachNode="Bip01 R Clavicle twist2" particleName="F_fire045_retiarii" useAttach="true" hiddenObj="false" scale="1.5" pause="true" use2DEffect="true" soft2DValue="0"/>
+						<Particle frame="0" attachNode="Bip01 R Clavicle twist2" particleName="F_fire045_retiarii" useAttach="true" hiddenObj="false" scale="1.25" pause="true" use2DEffect="true" soft2DValue="0"/>
 					</Event>
 				</Job>
 			</Motion>
@@ -1047,21 +1047,21 @@
 			<Motion Name="ASTD_RIDE">
 				<Job Name="All">
 					<Event>
-						<Particle frame="0" attachNode="Bip01 R Clavicle twist2" particleName="F_fire045_retiarii" useAttach="true" hiddenObj="false" scale="1.5" pause="true" use2DEffect="true" soft2DValue="0"/>
+						<Particle frame="0" attachNode="Bip01 R Clavicle twist2" particleName="F_fire045_retiarii" useAttach="true" hiddenObj="false" scale="1.25" pause="true" use2DEffect="true" soft2DValue="0"/>
 					</Event>
 				</Job>
 			</Motion>
 			<Motion Name="STD_RIDE">
 				<Job Name="All">
 					<Event>
-						<Particle frame="0" attachNode="Bip01 R Clavicle twist2" particleName="F_fire045_retiarii" useAttach="true" hiddenObj="false" scale="1.5" pause="true" use2DEffect="true" soft2DValue="0"/>
+						<Particle frame="0" attachNode="Bip01 R Clavicle twist2" particleName="F_fire045_retiarii" useAttach="true" hiddenObj="false" scale="1.25" pause="true" use2DEffect="true" soft2DValue="0"/>
 					</Event>
 				</Job>
 			</Motion>
 			<Motion Name="STD">
 				<Job Name="All">
 					<Event>
-						<Particle frame="0" attachNode="Bip01 R Clavicle twist2" particleName="F_fire045_retiarii" useAttach="true" hiddenObj="false" scale="1.5" pause="true" use2DEffect="true" soft2DValue="0"/>
+						<Particle frame="0" attachNode="Bip01 R Clavicle twist2" particleName="F_fire045_retiarii" useAttach="true" hiddenObj="false" scale="1.25" pause="true" use2DEffect="true" soft2DValue="0"/>
 					</Event>
 				</Job>
 			</Motion>
@@ -1079,21 +1079,21 @@
 			<Motion Name="ASTD_RIDE">
 				<Job Name="All">
 					<Event>
-						<Particle frame="0" attachNode="Bip01 R Clavicle twist2" particleName="F_fire045_retiarii" useAttach="true" hiddenObj="false" scale="1.5" pause="true" use2DEffect="true" soft2DValue="0"/>
+						<Particle frame="0" attachNode="Bip01 R Clavicle twist2" particleName="F_fire045_retiarii" useAttach="true" hiddenObj="false" scale="1.25" pause="true" use2DEffect="true" soft2DValue="0"/>
 					</Event>
 				</Job>
 			</Motion>
 			<Motion Name="STD_RIDE">
 				<Job Name="All">
 					<Event>
-						<Particle frame="0" attachNode="Bip01 R Clavicle twist2" particleName="F_fire045_retiarii" useAttach="true" hiddenObj="false" scale="1.5" pause="true" use2DEffect="true" soft2DValue="0"/>
+						<Particle frame="0" attachNode="Bip01 R Clavicle twist2" particleName="F_fire045_retiarii" useAttach="true" hiddenObj="false" scale="1.25" pause="true" use2DEffect="true" soft2DValue="0"/>
 					</Event>
 				</Job>
 			</Motion>
 			<Motion Name="STD">
 				<Job Name="All">
 					<Event>
-						<Particle frame="0" attachNode="Bip01 R Clavicle twist2" particleName="F_fire045_retiarii" useAttach="true" hiddenObj="false" scale="1.5" pause="true" use2DEffect="true" soft2DValue="0"/>
+						<Particle frame="0" attachNode="Bip01 R Clavicle twist2" particleName="F_fire045_retiarii" useAttach="true" hiddenObj="false" scale="1.25" pause="true" use2DEffect="true" soft2DValue="0"/>
 					</Event>
 				</Job>
 			</Motion>
@@ -1111,21 +1111,21 @@
 			<Motion Name="ASTD_RIDE">
 				<Job Name="All">
 					<Event>
-						<Particle frame="0" attachNode="Bip01 R Clavicle twist2" particleName="F_fire045_retiarii" useAttach="true" hiddenObj="false" scale="1.5" pause="true" use2DEffect="true" soft2DValue="0"/>
+						<Particle frame="0" attachNode="Bip01 R Clavicle twist2" particleName="F_fire045_retiarii" useAttach="true" hiddenObj="false" scale="1.25" pause="true" use2DEffect="true" soft2DValue="0"/>
 					</Event>
 				</Job>
 			</Motion>
 			<Motion Name="STD_RIDE">
 				<Job Name="All">
 					<Event>
-						<Particle frame="0" attachNode="Bip01 R Clavicle twist2" particleName="F_fire045_retiarii" useAttach="true" hiddenObj="false" scale="1.5" pause="true" use2DEffect="true" soft2DValue="0"/>
+						<Particle frame="0" attachNode="Bip01 R Clavicle twist2" particleName="F_fire045_retiarii" useAttach="true" hiddenObj="false" scale="1.25" pause="true" use2DEffect="true" soft2DValue="0"/>
 					</Event>
 				</Job>
 			</Motion>
 			<Motion Name="STD">
 				<Job Name="All">
 					<Event>
-						<Particle frame="0" attachNode="Bip01 R Clavicle twist2" particleName="F_fire045_retiarii" useAttach="true" hiddenObj="false" scale="1.5" pause="true" use2DEffect="true" soft2DValue="0"/>
+						<Particle frame="0" attachNode="Bip01 R Clavicle twist2" particleName="F_fire045_retiarii" useAttach="true" hiddenObj="false" scale="1.25" pause="true" use2DEffect="true" soft2DValue="0"/>
 					</Event>
 				</Job>
 			</Motion>

@@ -310,6 +310,7 @@ function RESTART_ON_MSG(frame, msg, argStr, argNum)
 					restart1btn:ShowWindow(0);
 				end
 
+				-- start point restart
 				local use_start_point = 1;
 				if argStr ~= "" then
 					local restart_class = GetClass("resurrect_return_control", argStr);
@@ -324,6 +325,24 @@ function RESTART_ON_MSG(frame, msg, argStr, argNum)
 						restart10btn:ShowWindow(1);
 					else
 						restart10btn:ShowWindow(0);
+					end
+				end
+
+				-- return city restart
+				local use_save_point = 0;
+				if argStr ~= "" then
+					local restart_class = GetClass("resurrect_return_control", argStr);
+					if restart_class ~= nil then
+						use_save_point = TryGetProp(restart_class, "SavePoint", 0);
+					end
+				end
+
+				local restart1btn = GET_CHILD(frame, "restart1btn", "ui::CButton");
+				if restart1btn ~= nil then
+					if use_save_point == 1 then
+						restart1btn:ShowWindow(1);
+					else
+						restart1btn:ShowWindow(0);
 					end
 				end
 			end

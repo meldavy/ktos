@@ -16,7 +16,6 @@ function MANAGEGEM_MSG(frame, msg, argStr, argNum)
 		local richtext_howmuch = GET_CHILD_RECURSIVELY(frame, 'richtext_howmuch')
 		CLEAR_MANAGEGEM_UI()
 		SET_COLONY_TAX_RATE_TEXT(richtext_howmuch, "add_tax_rate")
-		SET_COLONY_TAX_RATE_TEXT(richtext_howmuch, "remove_tax_rate")
 	end
 end
 
@@ -78,10 +77,8 @@ function CLEAR_MANAGEGEM_UI()
 
 	local richtext_howmuch = GET_CHILD_RECURSIVELY(frame, 'richtext_howmuch', 'ui::CRichText')
 	richtext_howmuch:SetTextByKey("add",'--')
-	richtext_howmuch:SetTextByKey("remove",'--')
 	
 	SET_COLONY_TAX_RATE_TEXT(richtext_howmuch, "add_tax_rate", false)
-	SET_COLONY_TAX_RATE_TEXT(richtext_howmuch, "remove_tax_rate", false)
 	
 	frame:SetUserValue("NOW_SELECT_INDEX",0);
 
@@ -255,10 +252,8 @@ function ADD_ITEM_TO_MANAGEGEM_FROM_INV(item)
 	    return 0;
 	end
 	richtext_howmuch:SetTextByKey("add",GET_COMMAED_STRING(GET_MAKE_SOCKET_PRICE(lv, grade ,nextSlotIdx, GET_COLONY_TAX_RATE_CURRENT_MAP())));
-	richtext_howmuch:SetTextByKey("remove",GET_COMMAED_STRING(GET_REMOVE_GEM_PRICE(lv, GET_COLONY_TAX_RATE_CURRENT_MAP())));
 
 	SET_COLONY_TAX_RATE_TEXT(richtext_howmuch, "add_tax_rate")
-	SET_COLONY_TAX_RATE_TEXT(richtext_howmuch, "remove_tax_rate")
 	
 	richtext_howmuch:ShowWindow(1)
 	frame:SetUserValue("TEMP_IESID", id);
@@ -293,25 +288,10 @@ function CLICK_REMOVE_GEM_BUTTON(frame, slot, argStr, argNum)
 		return;
 	end
 	
-	local startTimeStr = "2021-04-22 09:00:00"
-	local endTimeStr = "2021-07-22 08:59:59"
-	local nowTime = date_time.get_lua_now_datetime_str()
-	local isBeforeTime = date_time.is_later_than(nowTime, startTimeStr)
-	local isAfterTime = date_time.is_later_than(nowTime, endTimeStr)
-	local isGemRemoveCare = false
-	if isBeforeTime == true and isAfterTime == false then
-		isGemRemoveCare = true
-	end
-
 	local itemname = argStr;
 	local yesScp = string.format("EXEC_REMOVE_GEM()");
 
-
-	if isGemRemoveCare == true then
-        	ui.MsgBox( "'"..itemname ..ScpArgMsg("Auto_'_SeonTaeg")..ScpArgMsg("ReallyRemoveGem_Care"), yesScp, "None");
-    	else
-		ui.MsgBox( "'"..itemname ..ScpArgMsg("Auto_'_SeonTaeg")..ScpArgMsg("ReallyRemoveGem"), yesScp, "None");
-	end
+	ui.MsgBox( "'"..itemname ..ScpArgMsg("Auto_'_SeonTaeg")..ScpArgMsg("ReallyRemoveGem"), yesScp, "None");
 end
 
 function EXEC_REMOVE_GEM()
@@ -337,27 +317,7 @@ function EXEC_REMOVE_GEM()
 		return 0;
 	end
 
-	local startTimeStr = "2021-04-22 09:00:00"
-	local endTimeStr = "2021-07-22 08:59:59"
-	local nowTime = date_time.get_lua_now_datetime_str()
-	local isBeforeTime = date_time.is_later_than(nowTime, startTimeStr)
-	local isAfterTime = date_time.is_later_than(nowTime, endTimeStr)
-	local isGemRemoveCare = false
-	if isBeforeTime == true and isAfterTime == false then
-		isGemRemoveCare = true
-	end
-
-	local price = GET_REMOVE_GEM_PRICE(lv, GET_COLONY_TAX_RATE_CURRENT_MAP())
-	local GreaterThanForBigNumber = IsGreaterThanForBigNumber(price, GET_TOTAL_MONEY_STR())
-
-	if isGemRemoveCare == true then
-		GreaterThanForBigNumber = 0 
-	end
-
-	if GreaterThanForBigNumber == 1 then
-		ui.MsgBox(ScpArgMsg("NOT_ENOUGH_MONEY"))
-		return;
-	end
+	local price = 0
 
 	session.ResetItemList();
 	session.AddItemID(tempiesid);	

@@ -407,6 +407,7 @@ function LEGEND_CRAFT_EXECUTE(parent, ctrl)
 
 		if silver < silvercost then
 			ui.SysMsg(ScpArgMsg("REQUEST_TAKE_SILVER"));		
+			ui.SetHoldUI(false);
 			return;
 		end
 

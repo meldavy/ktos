@@ -1,6 +1,7 @@
 -- 신비한 돋보기
 function ITEMUNREVERTRANDOM_ON_INIT(addon, frame)
 	addon:RegisterMsg("MSG_SUCCESS_UNREVERT_RANDOM_OPTION", "SUCCESS_UNREVERT_RANDOM_OPTION");
+	addon:RegisterMsg("ON_UI_TUTORIAL_NEXT_STEP", "UNREVERT_RANDOM_TUTO_CHECK");
 end
 
 function OPEN_UNREVERT_RANDOM(invItem)
@@ -34,6 +35,8 @@ function ITEM_UNREVERT_RANDOM_OPEN(frame)
 	tab:SelectTab(0);
 
 	INVENTORY_SET_CUSTOM_RBTNDOWN("ITEM_UNREVERT_RANDOM_INV_RBTN")
+
+	UNREVERT_RANDOM_TUTO_CHECK(frame)
 end
 
 function ITEM_UNREVERT_RANDOM_CLOSE(frame)
@@ -43,6 +46,46 @@ function ITEM_UNREVERT_RANDOM_CLOSE(frame)
 	INVENTORY_SET_CUSTOM_RBTNDOWN("None");
 	frame:ShowWindow(0);
 	control.DialogOk();
+	TUTORIAL_TEXT_CLOSE(frame);
+end
+
+function UNREVERT_RANDOM_TUTO_CHECK(frame, msg, arg_str, arg_num)
+	if frame == nil or frame:IsVisible() == 0 then return end
+
+	if session.shop.GetEventUserType() == 0 then return end
+
+	if arg_num == 100 then
+		TUTORIAL_TEXT_CLOSE(frame)
+		return
+	end
+
+	local open_flag = false
+	if msg == nil then
+		open_flag = true
+	end
+
+	local prop_name = "UITUTO_GLASS1"
+	frame:SetUserValue('TUTO_PROP', prop_name)
+	local tuto_step = GetUITutoProg(prop_name)
+	if tuto_step >= 100 then return end
+
+	local tuto_cls = GetClass('UITutorial', prop_name .. '_' .. tuto_step + 1)
+	if tuto_cls == nil then
+		tuto_cls = GetClass('UITutorial', prop_name .. '_100')
+		if tuto_cls == nil then return end
+	end
+
+	local ctrl_name = TryGetProp(tuto_cls, 'ControlName', 'None')
+	local title = dic.getTranslatedStr(TryGetProp(tuto_cls, 'Title', 'None'))
+	local text = dic.getTranslatedStr(TryGetProp(tuto_cls, 'Note', 'None'))
+	local ctrl = GET_CHILD_RECURSIVELY(frame, ctrl_name)
+	if ctrl == nil then return end
+
+	if open_flag == true then
+		
+	end
+
+	TUTORIAL_TEXT_OPEN(ctrl, title, text, prop_name)
 end
 
 function UNREVERT_RANDOM_UPDATE(isSuccess)
@@ -120,7 +163,20 @@ function SENDOK_ITEM_UNREVERT_RANDOM_UI()
 	local bodyGbox2_1 = GET_CHILD_RECURSIVELY(frame, 'bodyGbox2_1');
 	bodyGbox2_1:RemoveAllChild();
 
-	ITEM_UNREVERT_RANDOM_REG_TARGETITEM(frame, iconInfo:GetIESID())
+	local reset_flag = frame:GetUserValue('RESET_FLAG')
+	if reset_flag == 'YES' then
+		CLEAR_ITEM_UNREVERT_RANDOM_UI()
+	else
+		ITEM_UNREVERT_RANDOM_REG_TARGETITEM(frame, iconInfo:GetIESID())
+	end
+
+	local tuto_prop = frame:GetUserValue('TUTO_PROP')
+	if tuto_prop == 'UITUTO_GLASS1' then
+		local tuto_value = GetUITutoProg(tuto_prop)
+		if tuto_value == 2 then
+			pc.ReqExecuteTx('SCR_UI_TUTORIAL_NEXT_STEP', tuto_prop)
+		end
+	end
 end
 
 function ITEM_UNREVERT_RANDOM_DROP(frame, icon, argStr, argNum)
@@ -210,6 +266,14 @@ function ITEM_UNREVERT_RANDOM_REG_TARGETITEM(frame, itemID)
 
 	local slot = GET_CHILD_RECURSIVELY(frame, "slot");
 	SET_SLOT_ITEM(slot, invItem);
+
+	local tuto_prop = frame:GetUserValue('TUTO_PROP')
+	if tuto_prop == 'UITUTO_GLASS1' then
+		local tuto_value = GetUITutoProg(tuto_prop)
+		if tuto_value == 0 then
+			pc.ReqExecuteTx('SCR_UI_TUTORIAL_NEXT_STEP', tuto_prop)
+		end
+	end
 end
 
 function ITEM_UNREVERT_RANDOM_EXEC(frame)
@@ -287,6 +351,8 @@ function SUCCESS_UNREVERT_RANDOM_OPTION(frame, msg, argStr, argNum)
 	if pic_bg == nil then
 		return;
 	end
+
+	frame:SetUserValue('RESET_FLAG', argStr)
 	
 	pic_bg:PlayUIEffect(RESET_SUCCESS_EFFECT_NAME, EFFECT_SCALE, 'RESET_SUCCESS_EFFECT');
 
@@ -377,6 +443,14 @@ function _SUCCESS_UNREVERT_RANDOM_OPTION()
 	bodyGbox2:ShowWindow(1)
 
 	UPDATE_REMAIN_MYSTIC_GLASS_COUNT(frame)
+
+	local tuto_prop = frame:GetUserValue('TUTO_PROP')
+	if tuto_prop == 'UITUTO_GLASS1' then
+		local tuto_value = GetUITutoProg(tuto_prop)
+		if tuto_value == 1 then
+			pc.ReqExecuteTx('SCR_UI_TUTORIAL_NEXT_STEP', tuto_prop)
+		end
+	end
 end
 
 function UPDATE_REMAIN_MYSTIC_GLASS_COUNT(frame)

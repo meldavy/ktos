@@ -37,3 +37,4 @@ ClassID,GenType,Lv,Range,GenRange,RespawnTime,MaxPop,Minimap,Hide,UseAIOufOfPC,A
 40,40,1,200,1,60000,1,0,0,0,0,0,0,noshadow_npc,UnvisibleName,,,,,,,F_CASTLE_99_MQ_05_OBJ_6,F_CASTLE_99_MQ_05_OBJ_CHECK,,NO,YES,NO,Neutral,Effect/F_light069_red/0.7/1.5,,,
 41,41,1,200,1,60000,1,0,0,0,0,0,0,noshadow_npc,UnvisibleName,,,,,,,F_CASTLE_99_MQ_05_OBJ_7,F_CASTLE_99_MQ_05_OBJ_CHECK,,NO,YES,NO,Neutral,Effect/F_light069_red/0.7/1.5,,,
 42,42,1,40,200,20000,45,0,0,0,1,0,0,rootcrystal_02,,,,,MON_TORCH,,,,,,NO,YES,NO,RootCrystal,,,,
+43,43,1,20,1,60000,1,0,0,0,1,0,0,HiddenTrigger4,UnvisibleName,,,,,,,,EXPLORER_MISLE19,,NO,YES,NO,Neutral,,,,

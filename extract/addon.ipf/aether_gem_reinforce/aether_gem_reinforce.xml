@@ -10,7 +10,7 @@
 	<animation frameOpenAnim="chat_balloon_start" frameCloseAnim="chat_balloon_end" margin="-100 -100 0 0"/>
 	<layer layerlevel="92" topmostlayerbyclick="true"/>
 	<script OpenScp="AETHER_GEM_REINFORCE_OPEN" CloseScp="AETHER_GEM_REINFORCE_CLOSE"/>
-	<userconfig DO_RESULT_SOUND="sys_transcend_success" DO_RESULT_EFFECT="UI_item_parts2" DO_SUCCESS_SOUND="sys_transcend_success" DO_SUCCESS_EFFECT="UI_item_parts2_success" DO_FAIL_SOUND="sys_transcend_success" DO_FAIL_EFFECT="UI_item_parts2_fail" SUCCESS_EFFECT_SCALE="7" SUCCESS_EFFECT_DURATION="1" FAIL_EFFECT_SCALE="4" FAIL_EFFECT_DURATION="1"/>
+	<userconfig DO_RESULT_SOUND="sys_transcend_success" DO_RESULT_EFFECT="UI_item_parts2" DO_SUCCESS_SOUND="sys_transcend_success" DO_SUCCESS_EFFECT="UI_item_parts_violet" DO_FAIL_SOUND="sys_transcend_success" DO_FAIL_EFFECT="UI_item_parts_violet" SUCCESS_EFFECT_SCALE="5" SUCCESS_EFFECT_DURATION="0.5" FAIL_EFFECT_SCALE="5" FAIL_EFFECT_DURATION="0.5"/>
 	<controls>
 		<!-- 상단 -->
 		<groupbox name="bg" rect="0 0 448 824" margin="0 10 0 0" layout_gravity="center top" draw="true" hittestbox="false" resizebyparent="false" resizebyresolution="false" scrollbar="false" skin="test_frame_low" stretch="true"/>
@@ -21,7 +21,8 @@
 		<picture name="help" rect="0 0 35 35" margin="10 15 0 0" layout_gravity="left top" oversound="button_over" MouseOffAnim="btn_mouseoff" MouseOnAnim="btn_mouseover" image="testquesten_button" texttooltip="{@st59}착용 중인 가디스 장비 소켓에 장착 중이거나, 인벤토리에 보유 중인 {@st66d_y}{s18}에테르 젬{/}{/}을 강화합니다.{/}{nl} {nl}{@st66d_y}{s18}에테르 젬{/}{@st59}의 레벨과 {@st204_purple}{s18}클리어 스테이지 단계에 따라 강화 성공 확률이 차등 적용{/}{@st59}됩니다.{nl}{@st66d_y}{s18}에테르 젬{/}{@st59} 강화는 최대 5회까지 진행 가능하며, 젬 강화에 소모되는 비용이 없습니다.{nl}강화 시 1레벨당 각 {@st66d_y}{s18}에테르 젬{/}{@st59}의 지정된 능력치(힘, 지능, 민첩, 정신, 체력)가 +2 상승합니다.{nl} {nl}※ 에테르 젬은 바운티 헌트를 통해 획득할 수 있습니다."/>
 		<groupbox name="reinforce_gb" parent="bg" rect="0 0 424 755" margin="0 25 0 0" layout_gravity="center top" draw="false" hittestbox="false" resizebyparent="false" resizebyresolution="false" scrollbar="false" skin="relic_frame_bg"/>
 		<groupbox name="reinforceslot_gb" parent="reinforce_gb" rect="0 0 424 350" margin="0 0 0 0" layout_gravity="center top" draw="false" hittestbox="true" resizebyparent="false" resizebyresolution="false" scrollbar="false"/>
-		<groupbox name="clear_stage_gb" parent="bg" rect="0 0 400 50" margin="0 310 0 0" layout_gravity="center top" draw="false" hittestbox="false" resizebyparent="false" resizebyresolution="false" scrollbar="false"/>
+		<picture name="gem_slot_back_pic" parent="reinforceslot_gb" rect="0 0 300 300" margin="0 30 0 0" layout_gravity="center top" changecursor="false" hittest="true" image="aether_circle" stretch="true"/>
+		<groupbox name="clear_stage_gb" parent="bg" rect="0 0 400 60" margin="0 310 0 0" layout_gravity="center top" draw="true" skin="monster_skill_bg" hittestbox="false" resizebyparent="false" resizebyresolution="false" scrollbar="false"/>
 		<groupbox name="reinforce_ratio_gb" parent="bg" rect="0 0 400 70" margin="0 630 0 0" layout_gravity="center top" draw="true" hittestbox="false" resizebyparent="false" resizebyresolution="false" scrollbar="false" skin="monster_skill_bg"/>
 		<richtext name="select_gem_text" parent="reinforceslot_gb" rect="0 0 30 24" margin="0 0 0 0" layout_gravity="center center" format="{@sti1c}{s18}%s{/}{/}" param1="value" param1_def="젬을 선택하세요" resizebytext="true" textalign="left center"/>
 		<richtext name="select_gem_name_text" parent="reinforceslot_gb" rect="0 0 30 24" margin="0 65 0 0" layout_gravity="center top" format="{@sti1c}{s18}%s{/}{/}" param1="value" param1_def="젬이름" resizebytext="true" textalign="left center"/>

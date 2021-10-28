@@ -1044,8 +1044,26 @@ function SET_PM_MAPPOS(frame, controlset, instInfo, mapprop)
 	SET_MINIMAP_CTRLSET_POS(frame, controlset, worldPos, mapprop);
 end
 
+local function is_my_guild_member(aidx)
+	local list = session.party.GetPartyMemberList(PARTY_GUILD);
+	local count = list:Count();
 
-function MAP_UPDATE_PARTY_INST(frame, msg, str, partyType)
+	if count > 150 then
+		return false
+	end
+
+	for i = 0, count - 1 do
+		local pcInfo = list:Element(i);		
+		if tostring(pcInfo:GetAID()) == aidx then
+			return true
+		end
+	end
+
+	return false
+end
+
+
+function MAP_UPDATE_PARTY_INST(frame, msg, str, partyType)	
 	local mapprop = session.GetCurrentMapProp();
 	local myInfo = session.party.GetMyPartyObj(partyType);
 
@@ -1057,8 +1075,13 @@ function MAP_UPDATE_PARTY_INST(frame, msg, str, partyType)
 		header = "GM_";
 	end    
 	for i = 0 , count - 1 do
-		local pcInfo = list:Element(i);
+		local skip = false
+		local pcInfo = list:Element(i);		
 		if myInfo ~= pcInfo then
+			if is_my_guild_member(pcInfo:GetAID()) then
+				DESTROY_GUILD_MEMBER_ICON(frame, msg, pcInfo:GetAID())
+			end
+
 			local instInfo = pcInfo:GetInst();            
 			local name = header .. pcInfo:GetAID();
 			local pic = GET_CHILD_RECURSIVELY(frame, name);            
@@ -1069,7 +1092,7 @@ function MAP_UPDATE_PARTY_INST(frame, msg, str, partyType)
 				SET_PM_MAPPOS(frame, pic, instInfo, mapprop)
 			else
 				local mapFrame = ui.GetFrame('map');
-                MAP_UPDATE_PARTY(mapFrame, "PARTY_UPDATE", nil, 0);
+				MAP_UPDATE_PARTY(mapFrame, "PARTY_UPDATE", nil, 0);
 				return;
 			end
 		end
@@ -1307,7 +1330,7 @@ function ON_REMOVE_COLONY_MONSTER(frame, msg, handlePosStr, monID)
 end
 
 function DESTROY_GUILD_MEMBER_ICON(frame, msg, guild_member_aid)    
-    local frame = ui.GetFrame('map')
+	local frame = ui.GetFrame('map')
     if frame == nil then return end
     local searchname = 'GM_'
     if guild_member_aid ~= nil then

@@ -319,6 +319,7 @@
 		<Class ClassID="2145" ClassName="OnlySameCardType" Data="같은 종류의 카드만 가능합니다."/>
 		<Class ClassID="2146" ClassName="NeedRegisterForCardCopy" Data="복사할 카드를 먼저 등록해야합니다."/>
 		<Class ClassID="2147" ClassName="OnlyRoastedGemEquipableToGoddess" Data="가디스 장비에는 로스팅 레벨이 낮은 컬러 젬을 장착할 수 없습니다."/>
+		<Class ClassID="2148" ClassName="MaterialCardLvHighThanGoddessReinforceCard" Data="강화 재료 아이템에 강화하는 카드보다{nl}{#FE7E00}높은 레벨의 카드{/}가 등록되어 있습니다.{nl} {nl}여신 카드 강화 시 복구가 불가능합니다.{nl}정말 강화하겠습니까? "/>
 	</Category>
 	<Category Name="ItemContents">
 		<Class ClassID="2200" ClassName="ClickSocketTargetItem" Data="소켓을 추가 할 아이템을 선택해주세요"/>
@@ -1036,6 +1037,10 @@
 		<Class ClassID="4411" ClassName="ClassMisc" Data="전용 재료"/>
 		<Class ClassID="4412" ClassName="CantInheritIcorEquip" Data="아이커가 장착되어 있는 아이템은 계승할 수 없습니다.{nl}아이커 장착 해제 후 다시 시도해주세요."/>
 		<Class ClassID="4413" ClassName="ItemDecomposeMistakeWarningPropMessage" Data="{#FE7E00}{s25}분해 실수 발생 가능성 높음{nl}{/}{/}{s18}분해 실수가 잦은 아이템이 포함되어 있습니다.{nl} {nl}{#FE7E00}{ITEMLIST}{/}{/}{nl} {nl}{DEFAULTMSG}"/>
+		<Class ClassID="4419" ClassName="SelectBuffItemPlz" Data="손질할 아이템을 선택해 주세요."/>
+		<Class ClassID="4420" ClassName="AlreadyMaxOptionValue" Data="이미 최대 수치에 도달한 옵션입니다."/>
+		<Class ClassID="4423" ClassName="{use}ectonite{get}" Data="엑토나이트 [{#33FF33}{use}{/}]개를 소모해 [{#33FF33}{get}{/}]의 마력을 충전했습니다."/>
+		<Class ClassID="4424" ClassName="EquipMainWeaponFirst" Data="주 장비를 먼저 착용해야 합니다."/>
 		</Category>
 	<Category Name="ItemTooltip">
 		<Class ClassID="5001" ClassName="CoolDown : {Sec} Sec" Data="재사용 대기시간 : {Sec}초"/>
@@ -1820,6 +1825,7 @@
 		<Class ClassID="10587" ClassName="CanNotUseItemLv" Data="장비의 레벨이 알맞지 않습니다."/>
 		<Class ClassID="10588" ClassName="{num}SilverLimitOver" Data="실버를 {num} 이상 소지시 사용이 불가능합니다."/>
 		<Class ClassID="10589" ClassName="LuciferiExtract_Help" Data="루시페리 계열 액세서리의 강화/초월/포텐셜을 추출하여 속성이 저장된 2장의 스크롤을 생성합니다{nl}{nl}해당 스크롤은 캐릭터 귀속된 같은 종류의 루시페리 계열 액세서리에 사용 가능합니다.{nl}속성이 추출된 액세서리만 액세서리 분해가 가능합니다."/>
+		<Class ClassID="10593" ClassName="TooManyItemBuy{name}{count}" Data="정말로 [{#0054FF}{name}{/}] [{#FF0000}{count}{/}]개를 구매하시겠습니까?"/>
 	</Category>
 	<Category Name="FoodTable">
 		<Class ClassID="20001" ClassName="IncreaseHP{Value}For{Time}Minute" Data="{Time}분 동안 HP가 {Value}% 증가합니다."/>
@@ -10027,6 +10033,17 @@
 		<Class ClassID="92101" ClassName="Vasilissa_PER_MSG" Data="{#FF3333}※ EP13-2 퀘스트 '설교자 쫓기(11)'를 완료 후 사용 가능합니다.{/}"/>
 		<Class ClassID="92102" ClassName="AbilityPointScore" Data="특성 달성률"/>
 		<Class ClassID="92103" ClassName="TooltipDescAbilityPointScore" Data="습득한 특성 포인트 달성률입니다."/>
+		<Class ClassID="92104" ClassName="Goddess_Raid_Vasilissa_Solo" Data="성자의 기도소: 가디스 레이드 (1인)"/>
+		<Class ClassID="92105" ClassName="CantEnter_Goddess_Raid_Vasilissa_Solo" Data="성자의 기도소: 가디스 레이드 (1인) 입장 횟수가 초과되었습니다."/>
+		<Class ClassID="92106" ClassName="ReallySkip{Name}Tutorial" Data="{Name} 튜토리얼을 종료하시겠습니까?"/>
+		<Class ClassID="92107" ClassName="UITUTO_EQUIPCACABINET1" Data="바이보라 비전 등록 및 적용"/>
+		<Class ClassID="92108" ClassName="UITUTO_EQUIPCACABINET2" Data="갈리미베 아머 비전 적용"/>
+		<Class ClassID="92109" ClassName="UITUTO_EQUIPCACABINET3" Data="갈리미베 웨폰 비전 적용"/>
+		<Class ClassID="92110" ClassName="UITUTO_GODDESSEQUIP1" Data="가디스 장비 강화"/>
+		<Class ClassID="92111" ClassName="UITUTO_GODDESSEQUIP2" Data="가디스 장비 인챈트"/>
+		<Class ClassID="92112" ClassName="UITUTO_GLASS1" Data="신비한 돋보기 사용"/>
+		<Class ClassID="92113" ClassName="UITUTO_GLASS2" Data="산드라의 감정 돋보기 사용"/>
+		<Class ClassID="92114" ClassName="UITUTO_GLASS3" Data="산드라의 미세 감정 돋보기 사용"/>
 	</Category>
 	<Category Name="BattleText">
 		<Class ClassID="100001" ClassName="ADD_DAMAGE_{Auto_1}!" Data="추가 대미지 {Auto_1}!"/>
@@ -10761,6 +10778,7 @@
 		<Class ClassID="106130" ClassName="IcorWeaponTrinket" Data="아이커 - 무기장식"/>
 		<Class ClassID="106131" ClassName="RegMarketItem{Price}" Data="{#ff0000}{s20}판매가 : 개당 {Price}실버{/}{/}{nl} {nl}"/>
 		<Class ClassID="106132" ClassName="MARKET_ENCHANT" Data="인챈트"/>
+		<Class ClassID="106133" ClassName="SellPriceMustOverThen10Silver" Data="개당 판매가격은 10실버 이상이여야 합니다."/>
 	</Category>
 	<Category Name="AutoSeller">
 		<Class ClassID="107001" ClassName="InputPriceMoreThanOne" Data="가격을 1이상 입력해주세요."/>
@@ -11151,11 +11169,11 @@
 		<Class ClassID="111329" ClassName="RelicOptionEnableEquipGemLevel" Data="{@st66d}{s16}[장착 가능한 성물 젬 레벨] {@st66d_y}{s15}{value}{/}{/}"/>
 		<Class ClassID="111330" ClassName="RelicGem_OMEN_EDGEWISE_DescText" Data="전방 150 범위 대상 5명에게 대미지를 주고 4초 동안 디버프를 부여합니다. 자신이 디버프 대상에게 주는 대미지가 증가합니다."/>
 		<Class ClassID="111332" ClassName="Event_Ark_wind_desc{base1}{base2}" Data="[질풍] 근접 기본 공격시 3연타 / 원거리 기본 공격시 2연타{nl}3레벨 달성시 기본 공격 대미지 +{base1}%{nl}5레벨 달성시 질풍 발동확률 +{base2}%"/>
-		<Class ClassID="111333" ClassName="Event_Ark_storm_desc{base1}{base2}" Data="[폭풍] 최대 7명의 대상에게 전기 속성 광역 마법 피해{nl}[폭풍 발동] 입힌 피해 또는 스킬 계수에 비례하여 최대 발동확률까지 증가{nl}3레벨 달성시 최대 폭풍 발동 확률 +{base1}%{nl}3레벨 달성시 폭풍 계수 +{base2}%"/>
-		<Class ClassID="111334" ClassName="Event_Ark_thunderbolt_desc{base1}{base2}" Data="[낙뢰] 단일 대상에게 전기 속성 마법 피해{nl}[낙뢰 발동] 입힌 피해 또는 스킬 계수에 비례하여 최대 발동확률까지 증가{nl}3레벨 달성시 최대 낙뢰 발동 확률 +{base1}%{nl}3레벨 달성시 낙뢰 계수 +{base2}%"/>
-		<Class ClassID="111335" ClassName="Event_Ark_punishment_desc{base1}{base2}" Data="[천벌효과] 10초내 시전하는 다음 일반 스킬의 3회 타격은 입힌 피해의 천벌공격 계수 만큼의 추가 물리 피해를 발생시킴(천벌효과중엔 천벌효과가 발생하지 않음, 맵 이동시에 사라짐){nl}[천벌 발동] 공격 스킬 계수에 비례하여 최대 발동확률까지 증가{nl}3레벨 달성시 최대 천벌효과 발동 확률 +{base1}%{nl}3레벨 달성시 천벌공격 계수 +{base2}%"/>
+		<Class ClassID="111333" ClassName="Event_Ark_storm_desc{base1}{base2}" Data="[폭풍] 스킬 적중시 다수의 대상에게 전기 속성 광역 마법 피해{nl}3레벨 달성시 폭풍 적용 대상수 +{base1}{nl}3레벨 달성시 폭풍 계수 +{base2}%{nl}*발동 대기시간 1초(소환수에 의한 발동도 대기시간을 공유함)"/>
+		<Class ClassID="111334" ClassName="Event_Ark_thunderbolt_desc{base1}{base2}" Data="[낙뢰] 단일 대상에게 전기 속성 마법 피해{nl}[낙뢰 발동] 스킬로 적에게 피해를 입히면 3초간 이동속도 증가{nl}3레벨 달성시 이동속도 +{base1}{nl}3레벨 달성시 낙뢰 계수 +{base2}%{nl}*발동 대기시간 1초(소환수에 의한 발동도 대기시간을 공유함)"/>
+		<Class ClassID="111335" ClassName="Event_Ark_punishment_desc{base1}{base2}" Data="[천벌효과] 10초내 시전하는 다음 일반 스킬의 3회 타격은 입힌 피해의 천벌공격 계수 만큼의 추가 물리 피해를 발생시킴(맵 이동시에 사라짐){nl}3레벨 달성시 천벌효과 발동 확률 +{base1}%{nl}3레벨 달성시 천벌공격 계수 +{base2}%{nl}*발동 대기시간 1초(소환수에 의한 발동도 대기시간을 공유함)"/>
 		<Class ClassID="111336" ClassName="Event_Ark_dispersion_desc{base1}{base2}" Data="[분산] 받는 피해의 일정 비율을 일정 시차에 걸쳐 나누어 받음{nl}3레벨 달성시 분산 시간 +{base1}초{nl}3레벨 달성시 받는 피해 +{base2}%만큼 분산"/>
-		<Class ClassID="111337" ClassName="Event_Ark_overpower_desc{base1}{base2}" Data="3레벨 달성시 방패를 착용한 캐릭터를 대상으로 블록 관통에 성공할 때마다 대상에게 연체이자 비율만큼 [연체이자] 디버프 부여{nl}[연체이자] 디버프 지속시간 20초{nl}3레벨 달성시 명중/블록 관통 +{base1}{nl}3레벨 달성시 연체이자 비율 +{base2}%{nl}[연체이자] 디버프가 걸린 대상은 적에게 가하는 대미지의 50%가 연체이자만큼 감소하며, 감소한 양만큼 연체이자가 차감.{nl}연체이자는 20초가 지나거나 맵을 이동하면 사라지지만, 사라지기 이전에 연체이자가 쌓이게 되면 이전 누적분의 지속시간이 갱신됨"/>
+		<Class ClassID="111337" ClassName="Event_Ark_overpower_desc{base1}{base2}" Data="3레벨 달성시 캐릭터를 대상으로 치명타 발생시 대상에게 입힌 피해의 [연체이자 비율]만큼 20초간 지속되는 [연체이자] 디버프 부여{nl}3레벨 달성시 명중/블록 관통 +{base1}{nl}3레벨 달성시 연체이자 비율 +{base2}%{nl}[연체이자] 디버프가 걸린 대상은 이동속도가 10 감소하며, 적에게 가하는 피해가 누적된 연체이자만큼 최대 50%까지 감소하며, 감소한 양만큼 연체이자가 차감됨{nl}연체이자는 20초가 지나거나 맵을 이동하면 사라지지만, 사라지기 이전에 연체이자가 쌓이게 되면 지속시간이 갱신됨"/>
 		<Class ClassID="111338" ClassName="Event_Ark_healingwave_desc{base1}{base2}" Data="힐 시전시 아군에게 [치유의 물결] 버프를 남겨, 다음 피해를 입을 때 [치유의 물결] 계수만큼 회복시킵니다.{nl}이후 [치유의 물결]은 200거리의 파티원에게 전달되며 전달될 때마다 치유 계수가 20% 감소됩니다.{nl}[치유의 물결]은 15초의 재사용 대기시간을 가집니다.{nl}이미 [치유의 물결]효과를 가진 대상에겐 발동하지 않으며 재사용 대기시간을 발생시키지 않습니다. {nl}3레벨 달성시 [치유의 물결] 계수 {base1}%{nl}3레벨 달성시 [치유의 물결] 전달 횟수 {base2}회"/>
 		<Class ClassID="111339" ClassName="EQUIP_PATK" Data="물리 공격력"/>
 		<Class ClassID="111340" ClassName="EQUIP_MATK" Data="마법 공격력"/>
@@ -15392,9 +15410,29 @@
 		<Class ClassID="302574" ClassName="KUPOLE_TESTSERVER3_NAME" Data="[큐폴]{nl}테스트 서버 아이템 상점 2"/>
 		<Class ClassID="302575" ClassName="KUPOLE_TESTSERVER4_NAME" Data="[큐폴]{nl}테스트 서버 아이템 상점 3"/>
 		<Class ClassID="302576" ClassName="EVENT_2107_NEXT_GR_MSG5" Data="{#FF0000}}※ 460미만 캐릭터만 참여 가능합니다.{/}"/>
+		<Class ClassID="302577" ClassName="EVENT_2107_FISHING_SEL_MSG1" Data="{#0033FF}[수박 낚시]{/} 이벤트 안내"/>
+		<Class ClassID="302578" ClassName="EVENT_2107_FISHING_SEL_MSG2" Data="{#0033FF}[수박 낚시]{/} 문어발 미끼 수령하기"/>
+		<Class ClassID="302579" ClassName="EVENT_2107_FISHING_SHOP" Data="{#0033FF}[수박 낚시]{/} 이벤트 상점"/>
+		<Class ClassID="302580" ClassName="EVENT_2107_FISHING_CAT_MSG2" Data="소지하고 있는 {#0033FF}[이벤트] 수박 물고기{/}가 없습니다."/>
+		<Class ClassID="302581" ClassName="EVENT_2107_FISHING_CHECK_MESSAGE1{BAIT}{TRADE}" Data="{#0033FF}[돌아온 수박 낚시]{/}{nl}[이벤트] 문어발 미끼 일일 수령 횟수 {#0033FF}({BAIT}/1회){/}{nl}이벤트 기간 중 [수박 낚시] 시원한 수박 교환 횟수 {#0033FF}({TRADE}/150회){/}{nl}{#FF3333}※일일 수령 횟수는 매일 오전 6시 초기화 됩니다.{nl}※이벤트 기간 중 [수박 낚시] 시원한 수박의 최대 교환 교환 횟수는 150개 이며, 이후 교환 시 버프만 획득 가능합니다.{/}"/>
+		<Class ClassID="302582" ClassName="EVENT_2107_FISHING_CHECK_MESSAGE2{TIME}{CHECK}" Data="{#0033FF}[돌아온 수박 낚시 출석 이벤트]{/}{nl}토요일, 일요일 1시간 접속 시 마다 '시원한 수박' 지급!{nl}일일 수령 횟수 {#0033FF}({CHECK}/2){/}{nl}접속 시간 {#0033FF}({TIME}/120분){/}{nl}{#FF3333}※일일 제한은 매일 오전 06시에 초기화 됩니다.{/}"/>
 		<Class ClassID="302583" ClassName="NEWUSER_BUFF_MSG" Data="{#FF0000}※신규/복귀 유저 지원 버프가 종료되었습니다. 스크롤을 다시 사용해주세요.{/}"/>
 		<Class ClassID="302599" ClassName="EP13CARE_TRADE4" Data="온전한 신력의 조각 / 검붉은 영혼석 교환"/>
 		<Class ClassID="302600" ClassName="GoddessCare_UniqueMaterial" Data="여신 / 마신 방어구 재료 교환"/>
+		<Class ClassID="302601" ClassName="REGULAR_BURNING_EVENT_MYTHIC_AUTO_RESET_SUCCESS" Data="성공적으로 입장횟수를 초기화했습니다!"/>
+		<Class ClassID="302602" ClassName="REGULAR_BURNING_EVENT_MYTHIC_AUTO_RESET_FAIL" Data=" 입장횟수를 초기화에 실패하였습니다."/>
+		<Class ClassID="302603" ClassName="EP13CARE_TRADE5" Data="신비한 서, 뉴클 / 시에라 가루"/>
+		<Class ClassID="302604" ClassName="GoddessCare_HiddenAbility" Data="신비한 서, 뉴클 / 시에라 가루"/>
+		<Class ClassID="302605" ClassName="EVENT_2107_FISHING_KR_SEL_MSG1" Data="{#0033FF}[황금 낚시]{/} 이벤트 안내"/>
+		<Class ClassID="302606" ClassName="EVENT_2107_FISHING_KR_SEL_MSG2" Data="{#0033FF}[황금 낚시]{/} 문어발 미끼 수령하기"/>
+		<Class ClassID="302607" ClassName="EVENT_2107_FISHING_KR_SHOP" Data="{#0033FF}[황금 낚시]{/} 이벤트 상점"/>
+		<Class ClassID="302608" ClassName="EVENT_2107_FISHING_KOR_CHECK_MESSAGE1" Data="{#0066FF}[황금 낚시] 이벤트 현황{/}{nl}[이벤트] 문어발 미끼 일일 수령 횟수 ({#0066FF}{BAIT}{/}/1회){nl}일일 낚시 성공 횟수 ({#0066FF}{COUNT}{/}/500회){nl}이벤트 기간 중 [이벤트] 낚싯대 수령 횟수 ({#0066FF}{ROD}{/}/1회){nl}{#FF3333}※일일 횟수 제한은 매일 오전 6시 초기화 됩니다.{/}"/>
+		<Class ClassID="302609" ClassName="EVENT_2107_FISHING_KR_SEL_MSG3" Data="{#0033FF}[황금 낚시]{/} 이벤트 낚싯대 수령 하기"/>
+		<Class ClassID="302610" ClassName="EVENT_2107_FISHING_KR_BAIT_MSG" Data="{#FF3333}※ 해당 낚싯대는 '[이벤트] 문어발 미끼' 아이템을 이용한 낚시에 사용 가능합니다.{/}"/>
+		<Class ClassID="302611" ClassName="EVENT_2107_FISHING_KR_ROD_MSG" Data="{#FF3333}※ 해당 미끼는 '[이벤트] 이벤트 낚싯대' 아이템을 이용한 낚시에 사용 가능합니다.{/}"/>
+		<Class ClassID="302612" ClassName="EVENT_2107_FISHING_KR_WORLD_MSG" Data='축하합니다!{nl}"{TIMENAME}"님이 황금 낚시 이벤트에서 "{ITEM}"을(를) 획득하였습니다!'/>
+		<Class ClassID="302613" ClassName="EP13CARE_TRADE6" Data="[2021] 바이보라 스크롤"/>
+		<Class ClassID="302614" ClassName="GoddessCare_Vibora" Data="[2021] 바이보라 스크롤"/>
 		</Category>
 	<Category Name="Account">
 		<Class ClassID="303001" ClassName="MaxAccountWarehouseCount" Data="팀 창고"/>
@@ -15615,6 +15653,8 @@
 		<Class ClassID="510343" ClassName="FISHING_MANAGER_RUBBING_INPY_DLG_1" Data="은빛 물고기 {COUNT} 마리가 있으시군요.{nl}한 마리에 한 번씩, 최대 100번까지 탁본을 도와드릴 수 있어요.{nl}몇 번 진행하시겠어요?"/>
 		<Class ClassID="510344" ClassName="FISHING_MANAGER_RUBBING_INPY_DLG_2" Data="은빛 물고기 {COUNT} 마리가 있으시군요.{nl}한 마리에 한 번씩, 최대 {COUNT} 번 탁본을 도와드릴 수 있어요.{nl}몇 번 진행하시겠어요?"/>
 		<Class ClassID="510345" ClassName="GabijaCertificate_shop" Data="여신의 증표(가비야) 상점"/>
+		<Class ClassID="510346" ClassName="FishingItemBag_EventCountText" Data="이벤트 낚시 횟수"/>
+		<Class ClassID="510347" ClassName="FishingItemBag_NormalCountText" Data="낚시 횟수"/>
 	</Category>
 	<Category Name="FieldBossMessage">
 		<Class ClassID="510500" ClassName="FieldBoss{Name}WillAppear" Data="잠시 후 필드 보스가 등장합니다 : {Name}"/>
@@ -16750,6 +16790,8 @@
 		<Class ClassID="590006" ClassName="SEASONOFF_CONTENTS_TOTAL_SHOP" Data="시즌오프 콘텐츠 통합 상점"/>
 		<Class ClassID="590007" ClassName="CONTENTS_TOTAL_POINT_extract_tooltip" Data="아이템을 교환하여 콘텐츠 통합 포인트를 획득할 수 있습니다{nl} - 그을린 텔하르샤의 의장품 1개 = 300포인트{nl} - 정제된 글레이시어 심장 1개 = 300포인트{nl} - 정제된 모스 탈크 파우더 1개 = 300포인트{nl} - 브리키나이트 1개 = 300포인트{nl} - 마정석 1개 = 200포인트{nl} - 신비한 서 낱장 1개 = 200포인트{nl} - 프락토늄 1개 = 200포인트{nl} - 축복받은 조각 1개 = 20포인트 {nl} - 여신의 축복석 1개 = 200포인트{nl} - 스키아클립스 깃털 1개 = 20포인트{nl} - 대지의 파편 1개 = 1포인트{nl} - 대지의 탑 몬스터 정수 1개 = 4포인트{nl} - 벨코퍼 영혼 조각 1개 = 20포인트{nl} - 모스 파우더 1개 = 35포인트"/>
 		<Class ClassID="590008" ClassName="EP13_Point_Get_Success_Msg{Name}{Point}{TotalPoint}" Data="포인트를 획득했습니다: [{#33FF33}{Name}{/}]x{#33FF33}{Point}{/}"/>
+		<Class ClassID="590009" ClassName="CLASS_COSTUME_TOTAL_SHOP" Data="클래스 코스튬 상점"/>
+		<Class ClassID="590010" ClassName="Buy_ClassCostumeTotalShop" Data="코스튬은 현재 전직된 클래스가 아니면 착용 되지 않습니다. 또한 스페셜 코스튬은 착용은 가능하나, 해당하는 클래스의 전용 코스튬과 같이 착용해야 보입니다.{nl} {nl}{#33FF33}{ol}{s20}구매하시겠습니까?{/}{/}{/}"/>
 	</Category>
 	<Category Name="RiftDungeon">
 		<Class ClassID="591000" ClassName="Rift_Dungeon_Select_Level" Data="{Level} 단계 차원 붕괴 입장"/>

@@ -38,3 +38,4 @@ ClassID,GenType,Lv,Range,GenRange,RespawnTime,MaxPop,Minimap,Hide,UseAIOufOfPC,A
 116,116,1,220,1,60000,1,0,0,0,0,0,0,HiddenTrigger6,UnvisibleName,,,,,,,,LOWLV_EYEOFBAIGA_SQ_30_MON3,,NO,YES,NO,Neutral,,,,
 117,117,1,220,1,60000,1,0,0,0,0,0,0,HiddenTrigger6,UnvisibleName,,,,,,,,LOWLV_EYEOFBAIGA_SQ_30_MON4,,NO,YES,NO,Neutral,,,,
 118,118,1,220,1,60000,1,0,0,0,0,0,0,HiddenTrigger6,UnvisibleName,,,,,,,,LOWLV_EYEOFBAIGA_SQ_30_MON5,,NO,YES,NO,Neutral,,,,
+119,119,1,20,1,60000,1,0,0,0,1,0,0,HiddenTrigger4,UnvisibleName,,,,,,,,EXPLORER_MISLE41,,NO,YES,NO,Neutral,,,,

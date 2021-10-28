@@ -15,7 +15,7 @@
 		<!-- seller box -->
 		<groupbox name="mainBox" rect="0 0 450 1500" margin="0 0 0 0" layout_gravity="left top" draw="false" tabname="sellerTabItem" tabchangescp="ITEMDUNGEON_UPDATE_SELLER"/>
 		<groupbox name="bg2" parent="mainBox" rect="0 0 450 1000" margin="0 30 0 0" layout_gravity="center top" draw="true" hittestbox="false" resizebyparent="false" resizebyresolution="true" skin="test_frame_low"/>
-		<groupbox name="bg3" parent="mainBox" rect="0 0 430 480" margin="0 450 0 0" layout_gravity="center top" draw="true" hittestbox="false" resizebyparent="false" resizebyresolution="true" skin="test_frame_midle"/>
+		<groupbox name="bg3" parent="mainBox" rect="0 0 430 450" margin="0 450 0 0" layout_gravity="center top" draw="true" hittestbox="false" resizebyparent="false" resizebyresolution="true" skin="test_frame_midle"/>
 		<groupbox name="pip4" rect="0 0 450 61" margin="0 0 0 0" layout_gravity="center top" draw="true" hittestbox="false" resizebyparent="false" scrollbar="false" skin="pipwin_top_wizard"/>
 		<groupbox name="bodyGbox" parent="mainBox" rect="0 0 453 960" margin="0 61 0 0" layout_gravity="center top" draw="false" hittestbox="false" resizebyparent="false" resizebyresolution="true" scrollbar="false" skin="gem_socket_bg"/>
 		<richtext name="slotName" parent="mainBox" rect="0 0 343 48" margin="0 350 0 0" layout_gravity="center top" drawbackground="false" fixwidth="false" fontname="" format="{@st41}%s" maxwidth="0" param1="value" resizebytext="true" slideshow="false" spacey="0"/>
@@ -37,6 +37,7 @@
 		<richtext name="abrasiveInfoText" parent="buyerBox" rect="0 0 300 30" margin="110 145 0 0" layout_gravity="left top" caption="{@st66d_y}각성 연마재를 추가해주세요.{/}"/>
 		<richtext name="abrasiveNameText" parent="buyerBox" rect="0 0 270 30" margin="110 145 0 0" layout_gravity="left top" format="{@st41b}%s" param1="name" param1_def="각성 연마재 아이템 이름" fixwidth="true"/>
 		<richtext name="abrasiveCountText" parent="buyerBox" rect="0 0 300 30" margin="0 145 20 0" layout_gravity="right top" format="{@st41b}%s/1" param1="cur" param1_def="0"/>
+		<checkbox name="check_no_msgbox" parent="mainBox" margin="0 920 0 0" rect="0 0 15 15" LBtnUpScp="None" clicksound="button_click_big" oversound="button_over" layout_gravity="center top" caption="{@st41b}{s18}확인 창 생략{/}{/}"/>
 		<groupbox name="buyerBtnBox" rect="0 0 450 90" margin="0 0 0 50" layout_gravity="center bottom" draw="false"/>
 		<button name="closeShopBtn" parent="buyerBtnBox" rect="0 0 140 50" margin="0 0 75 0" layout_gravity="right center" LBtnUpScp="ITEMDUNGEON_CLOSE_SHOP" caption="{@st42}폐 점" clicksound="button_click_3" oversound="button_cursor_over_2" skin="test_gray_button"/>
 		<button name="buyBtn" parent="buyerBtnBox" rect="0 0 140 50" margin="65 20 0 0" layout_gravity="left top" LBtnUpScp="ITEMDUNGEON_BUY_ITEM" caption="{@st42}각 성" clicksound="button_click_3" oversound="button_cursor_over_2" skin="test_red_button"/>

@@ -38,6 +38,8 @@ function SYSTEMOPTION_CREATE(frame)
 	SET_QUESTINFOSET_TRANSPARENCY(frame);
 	SET_COOLDOWN_DECIMAL_POINT_SEC(frame);
 	SET_ENABLE_AUTO_CASTING(frame)
+	SET_POPUP_PICK_ITEM(frame)
+	SET_PICK_ITEM_MESSAGE(frame)
 	SHOW_COLONY_BATTLEMESSAGE(frame);		
 	SYSTEMOPTION_INIT_TAB(frame);
 end
@@ -1071,6 +1073,7 @@ function SET_ENABLE_DAYLIGHT_OPTION(frame, ctrl, str, num)
     config.SetEnableDayLight(isEnable);
 	config.SaveConfig();
 end
+
 function CONFIG_COOLDOWN_DECIMAL_POINT_SEC(frame, ctrl, str, num)
 	tolua.cast(ctrl, "ui::CSlideBar")
 	config.SetCoolDownDecimalPointSec(ctrl:GetLevel())
@@ -1111,5 +1114,42 @@ function SET_ENABLE_AUTO_CASTING(frame)
 	local Check_EnableAutoCasting = GET_CHILD_RECURSIVELY(frame, "Check_EnableAutoCasting", "ui::CCheckBox")
 	if Check_EnableAutoCasting ~= nil then
 		Check_EnableAutoCasting:SetCheck(config.GetEnableAutoCasting())
+	end
+end
+
+-- 아이템 획득 팝업
+function CONFIG_POPUP_PICK_ITEM(parent, ctrl)
+	local enable = ctrl:IsChecked()		
+	config.SetPopupPickItem(enable)
+	config.SaveConfig()
+end
+function SET_POPUP_PICK_ITEM(frame)
+	local Check_PopupPickItem = GET_CHILD_RECURSIVELY(frame, "Check_PopupPickItem", "ui::CCheckBox")
+	if Check_PopupPickItem ~= nil then
+		Check_PopupPickItem:SetCheck(config.GetPopupPickItem())
+	end
+end
+-- 아이템 획득 메시지
+function CONFIG_PICK_ITEM_MESSAGE(parent, ctrl)
+	local enable = ctrl:IsChecked()		
+	config.SetPickItemMessage(enable)
+	config.SaveConfig()
+end
+function SET_PICK_ITEM_MESSAGE(frame)		
+	local Check_PickItemMessage = GET_CHILD_RECURSIVELY(frame, "Check_PickItemMessage", "ui::CCheckBox")
+	if Check_PickItemMessage ~= nil then
+		Check_PickItemMessage:SetCheck(config.GetPickItemMessage())
+	end
+end
+-- 성물(마력) 자동 충전
+function CONFIG_RELIC_AUTO_CHARGE(parent, ctrl)
+	local enable = ctrl:IsChecked()		
+	config.SetRelicAutoCharge(enable)
+	config.SaveConfig()
+end
+function SET_RELIC_AUTO_CHARGE(frame)
+	local Check_RelicAutoCharge = GET_CHILD_RECURSIVELY(frame, "Check_RelicAutoCharge", "ui::CCheckBox")
+	if Check_RelicAutoCharge ~= nil then
+		Check_RelicAutoCharge:SetCheck(config.GetRelicAutoCharge())
 	end
 end

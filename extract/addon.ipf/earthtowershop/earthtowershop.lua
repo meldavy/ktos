@@ -1365,6 +1365,19 @@ function EARTH_TOWER_SHOP_EXEC(parent, ctrl)
         end
     end
     
+    if shopType == 'PVPMine' and resultCount >= 10 then
+        local target_item = GetClass('Item', TryGetProp(recipecls, 'TargetItem', 'None'))
+        local name = TryGetProp(target_item, 'Name', 'None')
+        if recipecls==nil or recipecls["Item_2_1"] ~='None' then                 
+            local msg = ScpArgMsg("TooManyItemBuy{name}{count}", "name", name, "count", resultCount);
+            local yesscp = string.format('YES_SCP_BUY_SHOP_EXEC_1(%d)', resultCount);
+            ui.MsgBox_NonNested(msg, frame:GetName(), yesscp, 'None');
+        else            
+            local msg = ScpArgMsg("TooManyItemBuy{name}{count}", "name", name, "count", resultCount);
+            local yesscp = string.format('YES_SCP_BUY_SHOP_EXEC_2(%d)', resultCount);
+            ui.MsgBox_NonNested(msg, frame:GetName(), yesscp, 'None');
+        end
+    else
     if recipecls==nil or recipecls["Item_2_1"] ~='None' then        
         if g_account_prop_shop_table[shopType] ~= nil then
             AddLuaTimerFuncWithLimitCountEndFunc("ACCOUNT_PROPERTY_SHOP_TRADE_ENTER", 100, resultCount - 1, "EARTH_TOWER_SHOP_TRADE_LEAVE");            
@@ -1380,6 +1393,24 @@ function EARTH_TOWER_SHOP_EXEC(parent, ctrl)
         end
     end
 end
+end
+
+function YES_SCP_BUY_SHOP_EXEC_1(resultCount)    
+    if g_account_prop_shop_table['PVPMine'] ~= nil then            
+        AddLuaTimerFuncWithLimitCountEndFunc("ACCOUNT_PROPERTY_SHOP_TRADE_ENTER", 100, resultCount - 1, "EARTH_TOWER_SHOP_TRADE_LEAVE");
+    else
+        AddLuaTimerFuncWithLimitCountEndFunc("EARTH_TOWER_SHOP_TRADE_ENTER", 100, resultCount - 1, "EARTH_TOWER_SHOP_TRADE_LEAVE");
+    end
+end
+
+function YES_SCP_BUY_SHOP_EXEC_2(resultCount)    
+    if g_account_prop_shop_table['PVPMine'] ~= nil  then                    
+        AddLuaTimerFuncWithLimitCountEndFunc("ACCOUNT_PROPERTY_SHOP_TRADE_ENTER", 100, 0, "");
+    else        
+        AddLuaTimerFuncWithLimitCountEndFunc("EARTH_TOWER_SHOP_TRADE_ENTER", 100, 0, "EARTH_TOWER_SHOP_TRADE_LEAVE");
+    end
+end
+
 
 function EARTH_TOWER_SHOP_TRADE_ENTER()
 	local frame = ui.GetFrame(s_earth_shop_frame_name);

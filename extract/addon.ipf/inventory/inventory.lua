@@ -30,7 +30,7 @@ local invenTitleName = nil
 local clickedLockItemSlot = nil
 
 g_shopList = {"companionshop", "housing_shop", "shop", "exchange", "oblation_sell"};
-g_invenTypeStrList = {"All", "Equip", "Consume", "Recipe", "Card", "Etc", "Gem", "Premium", "Housing"};
+g_invenTypeStrList = {"All", "Equip", "Consume", "Recipe", "Card", "Etc", "Gem", "Premium", "Housing", "Quest"};
 
 local _invenCatOpenOption = {}; -- key: cid, value: {key: CategoryName, value: IsToggle}
 local _invenTreeOpenOption = {}; -- key: cid, value: {key: TreegroupName, value: IsToggle}
@@ -126,8 +126,6 @@ function CHECK_INVENTORY_OPTION_ETC(itemCls)
 	local optionConfig = 0
 	if itemCategory == "Misc_Usual" or itemCategory == "Misc_MiscSkill" then
 		optionConfig = config.GetXMLConfig("InvOption_Etc_Usual")
-	elseif itemCategory == "Misc_Quest" then
-		optionConfig = config.GetXMLConfig("InvOption_Etc_Quest")
 	elseif itemCategory == "Misc_Special" or itemCategory == "OPTMisc_IcorWeapon" or itemCategory == "OPTMisc_IcorArmor" then
 		optionConfig = config.GetXMLConfig("InvOption_Etc_Special")
 	elseif itemCategory == "Misc_Collect" then
@@ -227,11 +225,13 @@ end
 
 function IS_SHOP_FRAME_OPEN()
 	for i = 1, #g_shopList do
-		if ui.GetFrame(g_shopList[i]):IsVisible() == 1 then
-			return true;
+		local frame = ui.GetFrame(g_shopList[i])
+	 	if frame ~= nil then
+			  if frame:IsVisible() == 1 then
+	 	 		return true;
+	 	 	end
 		end
 	end
-
 	return false;
 end
 
@@ -445,6 +445,8 @@ function INVENTORY_CLOSE()
 	ui.CloseFrame("accountprop_inventory")
 	ui.CloseFrame("relicmanager")
 	ui.CloseFrame("item_equip_helper")
+	ui.CloseFrame("warehouse")
+	ui.CloseFrame("accountwarehouse")
 end
 
 function INVENTORY_FRONT_IMAGE_CLEAR(frame)
@@ -1466,7 +1468,7 @@ function INVENTORY_TOTAL_LIST_GET(frame, setpos, isIgnorelifticon, invenTypeStr)
 	local i_cnt = 0	
 	for i = 1, #invenTitleName do
 		local category = invenTitleName[i]
-		for j = 1 , #invItemList do			
+		for j = 1 , #invItemList do 
 			local invItem = invItemList[j];
 			if invItem ~= nil then
 				local itemCls = GetIES(invItem:GetObject())
@@ -1518,18 +1520,18 @@ function INVENTORY_TOTAL_LIST_GET(frame, setpos, isIgnorelifticon, invenTypeStr)
 							end						
 
 							if makeSlot == true and viewOptionCheck == 1 then
-								
-						
 								if invItem.count > 0 and baseidcls.ClassName ~= 'Unused' then -- Unused로 설정된 것은 안보임
 									if invenTypeStr == nil or invenTypeStr == typeStr then
 										local tree_box = GET_CHILD_RECURSIVELY(group, 'treeGbox_'.. typeStr,'ui::CGroupBox')
 										local tree = GET_CHILD_RECURSIVELY(tree_box, 'inventree_'.. typeStr,'ui::CTreeControl')								
 										INSERT_ITEM_TO_TREE(frame, tree, invItem, itemCls, baseidcls);
 									end
-
-									local tree_box_all = GET_CHILD_RECURSIVELY(group, 'treeGbox_All','ui::CGroupBox')
-									local tree_all = GET_CHILD_RECURSIVELY(tree_box_all, 'inventree_All','ui::CTreeControl')	
-									INSERT_ITEM_TO_TREE(frame, tree_all, invItem, itemCls, baseidcls);
+									-- Request #95788 / 퀘스트 항목은 모두 보기 탭에서 보이지 않도록 함
+									if typeStr ~= "Quest" then
+										local tree_box_all = GET_CHILD_RECURSIVELY(group, 'treeGbox_All','ui::CGroupBox')
+										local tree_all = GET_CHILD_RECURSIVELY(tree_box_all, 'inventree_All','ui::CTreeControl')	
+										INSERT_ITEM_TO_TREE(frame, tree_all, invItem, itemCls, baseidcls);
+									end
 								end
 							else
 								if customFunc ~= nil then
@@ -1545,14 +1547,15 @@ function INVENTORY_TOTAL_LIST_GET(frame, setpos, isIgnorelifticon, invenTypeStr)
 									if invenTypeStr == nil or invenTypeStr == typeStr then
 										local tree_box = GET_CHILD_RECURSIVELY(group, 'treeGbox_'.. typeStr,'ui::CGroupBox');
 										local tree = GET_CHILD_RECURSIVELY(tree_box, 'inventree_'.. typeStr,'ui::CTreeControl');
-		
 										EMPTY_TREE_INVENTORY_OPTION_TEXT(baseidcls, tree);		-- 해당 아이템이 속한 탭
 									end
 	
-									local tree_box_all = GET_CHILD_RECURSIVELY(group, 'treeGbox_All','ui::CGroupBox');
-									local tree_all = GET_CHILD_RECURSIVELY(tree_box_all, 'inventree_All','ui::CTreeControl');
-	
-									EMPTY_TREE_INVENTORY_OPTION_TEXT(baseidcls, tree_all);	-- ALL 탭 
+									-- Request #95788 / 퀘스트 항목은 모두 보기 탭에서 보이지 않도록 함
+									if typeStr ~= "Quest" then
+										local tree_box_all = GET_CHILD_RECURSIVELY(group, 'treeGbox_All','ui::CGroupBox');
+										local tree_all = GET_CHILD_RECURSIVELY(tree_box_all, 'inventree_All','ui::CTreeControl');
+										EMPTY_TREE_INVENTORY_OPTION_TEXT(baseidcls, tree_all);	-- ALL 탭 
+									end
 								end
 							end
 						end

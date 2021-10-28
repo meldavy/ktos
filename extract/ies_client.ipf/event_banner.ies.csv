@@ -1,4 +1,7 @@
 ClassID,StartTimeYYYYMM,StartTimeDDHHMM,NewTimeYYYYMM,NewTimeDDHHMM,EndTimeYYYYMM,EndTimeDDHHMM,DeadlineTimeYYYYMM,DeadlineTimeDDHHMM,ExchangeTimeYYYYMM,ExchangeTimeDDHHMM,ClassName,Name,ImagePath,url,UserCommand1,UserCommand2,UserCommand3,ShowType
+996820,202107,290900,202108,30000,202108,120700,202108,70000,0,0,event2107_fishing,낚시 이벤트,event2107_fishing,http://tos.nexon.com/news/events/view.aspx?n4ArticleSN=341&n4ArticleCategorySN=1,,,,
+996830,202108,10000,202108,60000,202109,10000,202108,260000,0,0,event2108_Burning,주말 앤 버닝 - 8월,event2108_Burning,http://tos.nexon.com/news/events/view.aspx?n4ArticleSN=340&n4ArticleCategorySN=1,,,,
+996840,202108,10000,202108,60000,202109,10000,202108,260000,0,0,event2108_VaivoraReward,바이보라 출석 - 8월,event2108_VaivoraReward,http://tos.nexon.com/news/events/view.aspx?n4ArticleSN=339&n4ArticleCategorySN=1,,,,
 996850,202107,150900,202107,200000,202108,120700,202108,70000,0,0,event2107_goddesscube,축복받은 여신의 큐브 - 7월,event2107_goddesscube,http://tos.nexon.com/news/update/view.aspx?n4ArticleSN=2448&n4CategorySN=0,,,,
 996860,202107,150900,202107,200000,202108,120700,202108,70000,0,0,event2107_DevilsTemptation,마신의 유혹 - 트캉스,event2107_DevilsTemptation,http://tos.nexon.com/news/events/view.aspx?n4ArticleSN=337&n4ArticleCategorySN=1,,,,
 996870,202107,80900,202107,130000,202108,50700,202107,310000,0,0,event210708_specialedition,개편한 세상 특판,event210708_specialedition,http://tos.nexon.com/news/update/view.aspx?n4ArticleSN=2429,,,,

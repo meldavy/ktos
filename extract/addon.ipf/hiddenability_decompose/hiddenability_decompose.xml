@@ -18,16 +18,18 @@
 		<picture name="bg_pic" rect="0 0 436 895" margin="0 90 0 0" layout_gravity="center top" changecursor="false" hittest="false" image="mystic_note_decomposition" stretch="true" draw="false"/>
 		<!-- material -->
 		<groupbox name="mat_gb" rect="0 0 500 220" margin="0 220 0 0" layout_gravity="center top" draw="false" scrollbar="false"/>
-		<slot name="matslot" parent="mat_gb" rect="0 0 141 141" margin="0 0 0 0" layout_gravity="center top" draw="false" DropScp="HIDDENABILITY_DECOMPOSE_ITEM_DROP" PopScp="HIDDENABILITY_DECOMPOSE_ITEM_POP" dropsound="icon_get_down"/> 
+		<slot name="matslot" parent="mat_gb" rect="0 0 141 141" margin="0 0 0 0" layout_gravity="center top" draw="false" DropScp="HIDDENABILITY_DECOMPOSE_ITEM_DROP" PopScp="HIDDENABILITY_DECOMPOSE_ITEM_POP" RBtnUpScp="HIDDENABILITY_DECOMPOSE_ITEM_POP" dropsound="icon_get_down"/> 
 		<richtext name="mat_text" parent="mat_gb" rect="0 0 320 20" margin="0 175 0 0" layout_gravity="center top" draw="false" format="{@st66b}{s18} %s" param1="value" param1_def="아이템 이름" textalign="center center" maxwidth="0" resizebytext="false"/>
+		<groupbox name="once_gb" rect="0 0 200 40" margin="0 432 0 0" layout_gravity="center top" draw="false" hittest="true"/>
+		<edit name="once_edit" parent="once_gb" rect="0 0 120 35" margin="0 0 0 0" layout_gravity="center center" numbermode="true" minnumber="0" skin="test_weight_skin" caption="0" textalign="center center" fontname="white_18_ol" typingscp="HIDDENABILITY_DECOMPOSE_ONCE_COUNT_TYPING"/>
+		<button name="once_up" parent="once_gb" rect="0 0 35 35" margin="75 0 0 0" layout_gravity="center center" LBtnUpScp="HIDDENABILITY_DECOMPOSE_ONCE_COUNT_UP_CLICK" image="buff_sale_right" stretch="true"/>
+		<button name="once_down" parent="once_gb" rect="0 0 35 35" margin="-75 0 0 0" layout_gravity="center center" LBtnUpScp="HIDDENABILITY_DECOMPOSE_ONCE_COUNT_DOWN_CLICK" image="buff_sale_left" stretch="true"/>
 		<!-- center ui -->
 		<groupbox name="text_bg" rect="0 0 490 100" margin="0 420 0 0" layout_gravity="center top" draw="false"/>
 		<picture name="pic" parent="text_bg" rect="0 0 490 92" margin="-6 0 0 0" layout_gravity="center center" hittest="false" image="BnYellow_skin" draw="true"/>
 		<richtext name="text" parent="text_bg" rect="0 0 200 50" margin="0 3 0 0" layout_gravity="center center" format="{@st43}{#ffcc33}{s18}%s" param1="value" param1_def="분해 완료" textalign="center center" />
 		<!-- result -->
 		<groupbox name="result_gb" rect="0 0 350 320" margin="0 550 0 0" layout_gravity="center top" draw="false" scrollbar="false" skin="test_frame_top"/>
-		<slot name="slot_1" parent="result_gb" rect="0 0 140 140" margin="0 130 0 0" layout_gravity="center top" draw="true" skin="invenslot2" movepop="false" enabledrag="false" enabledrop="false" enablepop="false"/> 
-		<richtext name="slot_1_text" parent="slot_1" rect="0 0 120 20" margin="0 0 10 10" layout_gravity="right bottom" draw="false" format="{@st43}{s30} %s" param1="value" param1_def="0" textalign="center center" maxwidth="0" resizebytext="true"/>
 		<!-- button -->
 		<button name="decompose_btn" rect="0 0 180 50" margin="0 0 0 60" layout_gravity="center bottom" skin="test_red_button" caption="{@st41b}{s18}분해 하기" LBtnUpScp="HIDDENABILITY_DECOMPOST_BUTTON_CLLICK" oversound="button_cursor_over_3"/>
 		<button name="ok_btn" rect="0 0 180 50" margin="0 0 0 60" layout_gravity="center bottom" skin="test_red_button" caption="{@st41b}{s18}확인" LBtnUpScp="HIDDENABILITY_DECOMPOST_OK_CLLICK" oversound="button_cursor_over_3"/>

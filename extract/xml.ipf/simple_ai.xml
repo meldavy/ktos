@@ -11091,6 +11091,11 @@
                 <Str_Arg Str="F_lineup021_alpha" Arg="1"/>
                 <Str Str="BOT"/>
             </ToolScp>
+            <ToolScp Scp="S_AI_EFFECT_ATTACH" Client="NO" UseSleep="NO">
+                <Num Num="0"/>
+                <Str_Arg Str="F_sys_treasurebox_light" Arg="1"/>
+                <Str Str="MID"/>
+            </ToolScp>
         </StartList>
     </AI>
     <AI Name="GELE574_NEPENTHES" ActiveMessageMapInBattle="1">
@@ -25583,6 +25588,13 @@ if self.HP == 0 then return 1; else return 0; end;">
             </ToolScp>
         </List>
     </AI>
+        <AI Name="companion_pet_twnocelot" ActiveMessageMapInBattle="1">
+		<List>
+			<ToolScp Scp="SAI_FUNC2_DIRECT_SLEEP" Client="NO" UseSleep="YES">
+				<Str Str="PET_LOOP_AI"/>
+			</ToolScp>
+		</List>
+	</AI>
     <AI Name="companion_pet_goro_suit2" ActiveMessageMapInBattle="1">
         <List>
             <ToolScp Scp="SAI_FUNC2_DIRECT_SLEEP" Client="NO" UseSleep="YES">

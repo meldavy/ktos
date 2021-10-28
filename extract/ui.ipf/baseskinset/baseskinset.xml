@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by imc (imc) -->
+<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by imc (imc) -->
 <!-- edited with XMLSpy v2008 sp1 (http://www.altova.com) by MintPC (Mi) -->
 <skinset name="Base">
 	<skinlist category="frames">
@@ -4659,6 +4659,28 @@
 			<img name="bottomcore" imgrect="1631 1221 10 32"/>
 			<img name="bottomright" imgrect="1642 1221 45 32"/>
 		</skin>
+	<skin name="alchemist_ui_slotframe_9patch" texture="\skin\glimoire_skin.tga">
+			<img name="topleft" imgrect="594 416 20 20"/>
+			<img name="topcore" imgrect="615 416 20 20"/>
+			<img name="topright" imgrect="636 416 20 20"/>
+			<img name="bodyleft" imgrect="594 437 20 20"/>
+			<img name="bodycore" imgrect="615 437 20 20"/>
+			<img name="bodyright" imgrect="636 437 20 20"/>
+			<img name="bottomleft" imgrect="594 458 20 20"/>
+			<img name="bottomcore" imgrect="615 458 20 20"/>
+			<img name="bottomright" imgrect="636 458 20 20"/>
+		</skin>
+		<skin name="alchemist_ui_slotframe_9patch02" texture="\skin\glimoire_skin.tga">
+			<img name="topleft" imgrect="657 416 20 20"/>
+			<img name="topcore" imgrect="678 416 20 20"/>
+			<img name="topright" imgrect="699 416 20 20"/>
+			<img name="bodyleft" imgrect="657 437 20 20"/>
+			<img name="bodycore" imgrect="678 437 20 20"/>
+			<img name="bodyright" imgrect="699 437 20 20"/>
+			<img name="bottomleft" imgrect="657 458 20 20"/>
+			<img name="bottomcore" imgrect="678 458 20 20"/>
+			<img name="bottomright" imgrect="699 458 20 20"/>
+		</skin>
 	</skinlist>
 	<skinlist category="testje2_buttons">
 		<skin name="test_brown_btn" texture="\skin\housing.tga">
@@ -8862,6 +8884,7 @@
 		<image name="token_skin3" file="\skin\paid_skin.tga" imgrect="1320 802 316 165" CMM_Caption="각인 슬롯 확장권 팝업스킨"/>
 		<image name="inventory_weight_pic" file="\skin\pip_test2.tga" imgrect="964 171 27 27" CMM_Caption="무게 아이콘"/>
 		<image name="inventory_coin_gabia_pic" file="\skin\pip_test2.tga" imgrect="992 171 27 27" CMM_Caption="여신의 증표(가비아)"/>
+		<image name="aether_circle" file="\skin\Appraiser_skin.tga" imgrect="0 505 312 312" CMM_Caption="에테르 젬 마법진"/>
 	</imagelist>
 	<imagelist category="je_button">
 		<image name="menu_guild_info" file="\skin\guild_skin.tga" imgrect="165 298 45 45" CMM_Caption="길드 정보"/>
@@ -9454,6 +9477,9 @@
 		<image name="inventory_ark_cursoron" file="\skin\pip_test2.tga" imgrect="78 637 38 61"/>
 		<image name="inventory_ark_clicked" file="\skin\pip_test2.tga" imgrect="0 637 38 61"/>
 		<image name="journey_career_btn_mark" file="\skin\pip_test.tga" imgrect="1792 1025 26 29" CMM_Caption="장비보관함 버튼"/>
+		<image name="inventory_quest" file="\skin\pip_test2.tga" imgrect="39 699 38 61" CMM_Caption="인벤토리_퀘스트"/>
+		<image name="inventory_quest_cursoron" file="\skin\pip_test2.tga" imgrect="78 699 38 61"/>
+		<image name="inventory_quest_clicked" file="\skin\pip_test2.tga" imgrect="0 699 38 61"/>
 	</imagelist>
 	<imagelist category="yiseul_button">
 		<image name="pvpmine_shop_btn" file="\skin\pip_test.tga" imgrect="2049 61 66 59" CMM_Caption="용병단 증표 ui 버튼"/>

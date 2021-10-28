@@ -8,15 +8,14 @@ function ITEMBUFF_SET_SKILLTYPE(frame, skillName, skillLevel, titleName)
 	frame:SetUserValue("SKILLNAME", skillName)
 	frame:SetUserValue("SKILLLEVEL", skillLevel)
 
-	local title = frame:GetChild("title");
+	local title = GET_CHILD_RECURSIVELY(frame, "title");
 	title:SetTextByKey("txt", titleName);
 end
 
 function ITEMBUFF_REFRESH_LIST(frame)
-	local reqitembox = frame:GetChild("Material");
-	local reqitemtext = reqitembox:GetChild("reqitemCount");
-	local reqitemName = reqitembox:GetChild("reqitemName");
-	local reqitemStr = reqitembox:GetChild("reqitemStr");
+	local reqitemtext = GET_CHILD_RECURSIVELY(frame, "reqitemCount");
+	local reqitemName = GET_CHILD_RECURSIVELY(frame, "reqitemName");
+	local reqitemStr = GET_CHILD_RECURSIVELY(frame, "reqitemStr");
 	local pc = GetMyPCObject();
 	local invItemList = session.GetInvItemList();
 	local checkFunc = _G["ITEMBUFF_STONECOUNT_" .. frame:GetUserValue("SKILLNAME")];
@@ -197,11 +196,10 @@ function GEMROASTING_HIDE_UI(frame)
 end
 
 function SQUIRE_HIDE_UI(frame)
-	local log = frame:GetChild("statusTab");
+	local log = GET_CHILD_RECURSIVELY(frame, "statusTab");
 	log:SetVisible(0);
-	local repairBox = frame:GetChild("repair");
 
-	local material = repairBox:GetChild("materialGbox");
+	local material = GET_CHILD_RECURSIVELY(frame, "materialGbox");
 	material:SetVisible(0);
 end
 
@@ -217,7 +215,7 @@ function OPEN_ITEMBUFF_UI_COMMON(groupName, sellType, handle)
 	open:ShowWindow(1);
 	open:SetUserValue("GroupName", groupName);
 
-	local statusTab = open:GetChild('statusTab');
+	local statusTab = GET_CHILD_RECURSIVELY(open, 'statusTab');
 	ITEMBUFF_SHOW_TAB(statusTab, handle);
 
 	local sklName = GetClassByType("Skill", groupInfo.classID).ClassName;	
@@ -225,12 +223,12 @@ function OPEN_ITEMBUFF_UI_COMMON(groupName, sellType, handle)
 	open:SetUserValue("SKILLLEVEL", groupInfo.level);
 	open:SetUserValue("HANDLE", handle);
 
-	local repairBox = open:GetChild("repair");
+	local repairBox = GET_CHILD_RECURSIVELY(open, "repair");
 
 	if session.GetMyHandle() == handle then
-		local money = repairBox:GetChild("reqitemMoney");
+		local money = GET_CHILD_RECURSIVELY(open, "reqitemMoney");
 		money:SetTextByKey("txt", groupInfo.price);
-		local effectGbox = repairBox:GetChild("effectGbox");
+		local effectGbox = GET_CHILD_RECURSIVELY(open, "effectGbox");
 	end
 
 	-- 아츠 특성 표시
@@ -248,11 +246,10 @@ function OPEN_ITEMBUFF_UI_COMMON(groupName, sellType, handle)
 	
 	open:SetUserValue("PRICE", groupInfo.price)
 	
-	local tabObj = open:GetChild('statusTab');
-	local itembox_tab = tolua.cast(tabObj, "ui::CTabControl");
+	local itembox_tab = GET_CHILD_RECURSIVELY(open, 'statusTab');
 	itembox_tab:SelectTab(0);
-	SQIORE_BUFF_VIEW(open);
-	SQUTE_UI_RESET(open);
+	SQUIRE_BUFF_VIEW(open);
+	SQUIRE_UI_RESET(open);
 	SQUIRE_UPDATE_MATERIAL(open);
 	ui.OpenFrame("inventory");
 end
