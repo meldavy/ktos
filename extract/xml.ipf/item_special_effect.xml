@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by imc (imc) -->
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by imc (imc) -->
 <List>
 	<ItemList ItemClassName="wing_redlight_balloon">
 		<Layer effect="F_light165_red_loop" TargetNode="wing_Dummy_effect" scale="1.1" offset="0;0">
@@ -2596,7 +2596,7 @@
 				</Property>
 			</Creation>
 		</Layer>
-		<Layer effect="E_wing_boruta" TargetNode="Dummy_wing" scale="1.2" offset="0;0">
+		<Layer effect="E_wing_boruta" TargetNode="Dummy_wing" scale="0.7" offset="0;0">
 			<Creation>
 				<Property PlayMoment="None">
 					<Option ReinforceValue="0" ReinforceEffectState="None" UseAttach="NO" IgnoreAnimEventEffect="NO" SubWeaponPistol="NO" AlwaysVisible="YES"/>
