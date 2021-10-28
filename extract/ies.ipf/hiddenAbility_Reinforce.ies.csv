@@ -380,6 +380,11 @@ ClassID,FactorByLevel,AddFactor,ClassName,HiddenReinforceAbil,CMM_Caption
 412,1.25,0,Appraiser_LargeMagnifyingGlass,Appraiser11,[아츠] 대형 돋보기: 상급 강화
 413,1.25,0,Appraiser_TripletLens,Appraiser14,[아츠] 트리플렛 렌즈: 상급 강화
 414,1.25,0,Appraiser_Devaluation,Appraiser15,[아츠] 평가절하: 상급 강화
+427,1.25,0,Luchador_Chop,Luchador13,[아츠] 쵸프: 상급 강화
+428,1.25,0,Luchador_Golpear,Luchador14,[아츠] 골페아르: 상급 강화
+429,1.25,0,Luchador_LuchaDeSilla,Luchador15,[아츠] 루차 데 시야: 상급 강화
+430,1.25,0,Luchador_Chocar,Luchador16,[아츠] 쵸카르: 상급 강화
+431,1.25,0,Luchador_Martinete,Luchador17,[아츠] 마르티네테: 상급 강화
 10001,0,0,Barbarian35,Barbarian35,[아츠] 가죽 마스터리: 야수성
 10002,0,0,Sadhu26,Sadhu26,[아츠] 사두: 고행
 10003,0,0,Exorcist20,Exorcist20,[아츠] 루브릭: 타락

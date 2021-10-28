@@ -6058,6 +6058,9 @@
 		<Class ClassID="28364" ClassName="QuestRewardMoneyTextWithBonus" Data="{@st45w3}{s18}{Auto_1} 실버 {nl}{#00ff00}(첫 클리어 보너스 x {Rate}){/}{/}"/>
 		<Class ClassID="28365" ClassName="RH_SUB" Data="왼손 보조"/>
 		<Class ClassID="28366" ClassName="LH_SUB" Data="오른손 보조"/>
+		<Class ClassID="28367" ClassName="TargetJobIsLocked" Data="{#FFFF00}{s24}클래스 변경으로 사라지는 클래스의{nl}해금이 완료되어 있지 않습니다.{/}{/}"/>
+		<Class ClassID="28368" ClassName="ReallyWantChangeJobPlzInputNextStr" Data="{nl}다시 해당 클래스로 전직하려면 해금을 완료해야 합니다.{nl}클래스를 변경하려면 다음 문구를 입력해 주세요{nl}　{nl}"/>
+		<Class ClassID="28369" ClassName="CantRollbackThisChangeJob" Data="클래스 변경"/>
 		<Class ClassID="30001" ClassName="CASTLE_20_3_OBJ_3_MSG1" Data="은은한 붉은 빛이 도는 액체가 담긴 병이 가득 있습니다"/>
 		<Class ClassID="30002" ClassName="CASTLE_20_3_OBJ_4_MSG1" Data="별다른 것은 없는 것 같습니다"/>
 		<Class ClassID="30003" ClassName="CASTLE_20_3_SQ_3_MSG1" Data="살펴보는 중"/>
@@ -10395,6 +10398,7 @@
 		<Class ClassID="101148" ClassName="GuildMemberJoinAutoLimit" Data="길드 가입이 제한된 유저입니다."/>
 		<Class ClassID="101149" ClassName="OnlyPartyLeaderStartIndunMatching" Data="파티 리더만 최초 [파티원과 자동매칭] 신청을 시작할 수 있습니다."/>
 		<Class ClassID="101150" ClassName="OnlyPartyLeaderRegisterIndunMatching" Data="파티 리더만 [현재 모인 멤버로 자동매칭]을 시작할 수 있습니다."/>
+		<Class ClassID="101153" ClassName="GrowthSupportGuildJoinPartyMemberCheck" Data="성장 지원 길드원과 현재 모인 맴버로 자동매칭시에는 5명으로 참여하여야 합니다."/>
 	</Category>
 	<Category Name="Guild">
 		<Class ClassID="102001" ClassName="GuildMember{Cur}/{Max}People,OnLine{On}People" Data="길드원 ( {Cur} / {Max} 명, 온라인 {On} 명 )"/>
@@ -10718,6 +10722,8 @@
 		<Class ClassID="102502" ClassName="SuccessJoinedNewbieGuild" Data="성장 지원길드에 가입되었습니다."/>
 		<Class ClassID="102503" ClassName="{StartMap}DoYouWantMove" Data="[{#003399}{StartMap}{/}]{nl}이동하시겠습니까?"/>
 		<Class ClassID="102504" ClassName="CopiedToClipboard" Data="클립보드에 복사되었습니다"/>
+		<Class ClassID="102505" ClassName="AccountCantParticipateColonyWar{date}" Data="해당 계정은 {date} 까지 콜로니전에 참가할 수 없습니다."/>
+		<Class ClassID="102506" ClassName="GuildCantParticipateColonyWar{date}" Data="해당 길드는 {date} 까지 콜로니전에 참가할 수 없습니다."/>
 </Category>
 	<Category Name="EqupClasses">
 		<Class ClassID="103001" ClassName="THSword" Data="양손검"/>
@@ -15627,6 +15633,44 @@
 		<Class ClassID="302651" ClassName="EVENT_2109_MOON_RABBIT_CHECK_MSG3" Data="{#0066FF}[추석 이벤트 출석체크]{/}{nl}3시간 접속 시 보상 획득 ({#0066FF}{TIME}{/}/180분){nl}{#0066FF}※보상 획득 기간{/}{nl}09월18일 오전 06시 ~ 09월23일 오전 05시 59분 까지 총 5회"/>
 		<Class ClassID="302654" ClassName="GoddessCare_Etc" Data="기타"/>
 		<Class ClassID="302655" ClassName="EP13CARE_TRADE7" Data="기타"/>
+		<Class ClassID="302656" ClassName="EVENT_2110_KLAPEDA_GHOST_SEL1" Data="{#003399}[할로윈]{/}이벤트 설명"/>
+		<Class ClassID="302657" ClassName="EVENT_2110_KLAPEDA_GHOST_SEL2" Data="{#003399}[할로윈]{/}유령 소녀의 부탁"/>
+		<Class ClassID="302658" ClassName="EVENT_2110_KLAPEDA_GHOST_SHOP" Data="{#003399}[할로윈]{/}이벤트 상점"/>
+		<Class ClassID="302659" ClassName="EVENT_2110_KLAPEDA_GHOST_POT_TRADE" Data="최대 교환 개수 {#003399}0~{MAX}{/}"/>
+		<Class ClassID="302660" ClassName="EVENT_2110_KLAPEDA_GHOST_POT_SP_1_1" Data="{#003399}많이{/}"/>
+		<Class ClassID="302661" ClassName="EVENT_2110_KLAPEDA_GHOST_POT_SP_1_2" Data="{#003399}적당히{/}"/>
+		<Class ClassID="302662" ClassName="EVENT_2110_KLAPEDA_GHOST_POT_SP_1_3" Data="{#003399}조금{/}"/>
+		<Class ClassID="302663" ClassName="EVENT_2110_KLAPEDA_GHOST_POT_SP_3_1" Data="{#003399}크게{/}"/>
+		<Class ClassID="302664" ClassName="EVENT_2110_KLAPEDA_GHOST_POT_SP_3_2" Data="{#003399}보통{/}"/>
+		<Class ClassID="302665" ClassName="EVENT_2110_KLAPEDA_GHOST_POT_SP_3_3" Data="{#003399}작게{/}"/>
+		<Class ClassID="302666" ClassName="EVENT_2110_KLAPEDA_GHOST_POT_SP_4_1" Data="{#003399}진하게{/}"/>
+		<Class ClassID="302667" ClassName="EVENT_2110_KLAPEDA_GHOST_POT_SP_4_2" Data="{#003399}적당히{/}"/>
+		<Class ClassID="302668" ClassName="EVENT_2110_KLAPEDA_GHOST_POT_SP_4_3" Data="{#003399}연하게{/}"/>
+		<Class ClassID="302669" ClassName="EVENT_2110_KLAPEDA_GHOST_POT_SP_5_1" Data="{#003399}강하게{/}"/>
+		<Class ClassID="302670" ClassName="EVENT_2110_KLAPEDA_GHOST_POT_SP_5_2" Data="{#003399}적당히{/}"/>
+		<Class ClassID="302671" ClassName="EVENT_2110_KLAPEDA_GHOST_POT_SP_5_3" Data="{#003399}약하게{/}"/>
+		<Class ClassID="302672" ClassName="EVENT_2110_KLAPEDA_GHOST_POT_FIRE1" Data="완벽하게 불을 붙였습니다!"/>
+		<Class ClassID="302673" ClassName="EVENT_2110_KLAPEDA_GHOST_POT_FIRE2" Data="불 붙이기에 성공하였습니다."/>
+		<Class ClassID="302674" ClassName="EVENT_2110_KLAPEDA_GHOST_POT_FIRE3" Data="불 붙이기에 애를 먹었습니다."/>
+		<Class ClassID="302675" ClassName="EVENT_2110_KLAPEDA_GHOST_POT_FIRE4" Data="불 붙이는 중"/>
+		<Class ClassID="302676" ClassName="EVENT_2110_KLAPEDA_GHOST_POT_TAKE_ITEM" Data="아이템을 {#003399}{TAKECOUNT} 개{/} 사용하였습니다."/>
+		<Class ClassID="302677" ClassName="EVENT_2110_KLAPEDA_GHOST_POT_1_Ani" Data="물 넣는중"/>
+		<Class ClassID="302678" ClassName="EVENT_2110_KLAPEDA_GHOST_POT_3_Ani" Data="재료 손질하는 중"/>
+		<Class ClassID="302679" ClassName="EVENT_2110_KLAPEDA_GHOST_POT_4_Ani" Data="양념하는 중"/>
+		<Class ClassID="302680" ClassName="EVENT_2110_KLAPEDA_GHOST_POT_5_Ani" Data="스튜를 젓는 중"/>
+		<Class ClassID="302681" ClassName="EVENT_2110_KLAPEDA_GHOST_POT_POINT" Data="완성도 점수{#003399}{POINT} 점{/} 획득! 현재 누적 완성도 {#003399}{TOTAL}{/} 점"/>
+		<Class ClassID="302682" ClassName="EVENT_2110_KLAPEDA_GHOST_POT_SP_COUNT1" Data="{#FF3333}완성된 호박 스튜의 개수가 2배 증가할 확률이 높아졌습니다!{/}"/>
+		<Class ClassID="302683" ClassName="EVENT_2110_KLAPEDA_GHOST_POT_SP_COUNT2" Data="{#FF3333}완성된 호박 스튜의 등급 상승 확률이 높아졌습니다!{/}"/>
+		<Class ClassID="302684" ClassName="EVENT_2110_KLAPEDA_GHOST_POT_POINTEVENT_2110_KLAPEDA_GHOST_POT_SP1" Data="아이템을 {#003399}{TAKECOUNT} 개{/} 사용하였습니다.{nl}{#FF3333}완성된 호박 스튜의 개수가 2배 증가하였습니다!{/}"/>
+		<Class ClassID="302685" ClassName="EVENT_2110_KLAPEDA_GHOST_POT_POINTEVENT_2110_KLAPEDA_GHOST_POT_SP2" Data="아이템을 {#003399}{TAKECOUNT} 개{/} 사용하였습니다.{nl}{#FF3333}완성된 모든 '[이벤트] 엉성한 호박 스튜 ★'가 '[이벤트] 호박 스튜 ★★' 로 등급이 상승되었습니다!{/}"/>
+		<Class ClassID="302686" ClassName="EVENT_2110_KLAPEDA_GHOST_POT_FINISH" Data="최종 완성도 점수 {#003399}{POINT} 점{/} 획득! 요리가 종료됩니다. {/}"/>
+		<Class ClassID="302687" ClassName="EVENT_2110_KLAPEDA_GHOST_POT_CHAT1" Data="{#FF0000}}'[이벤트] 요리 재료 상자'가 부족합니다.{/}"/>
+		<Class ClassID="302688" ClassName="EVENT_2110_KLAPEDA_GHOST_POT_CHAT2" Data="{#FF0000}}※ 보유하신 호박 스튜 아이템이 없습니다.{/}"/>
+		<Class ClassID="302689" ClassName="EVENT_2110_KLAPEDA_GHOST_POT_TRADE2" Data="}- [이벤트] 엉성한 호박 스튜 ★ {#003399}1개{/} =  [이벤트] 할로윈 사탕 바구니 {#003399}10개{/}{nl}- [이벤트] 호박 스튜 ★★ {#003399}1개{/} =  [이벤트] 할로윈 사탕 바구니 {#003399}30개{/}{nl}- [이벤트] 완벽한 호박 스튜 ★★★ {#003399}1개{/} =  [이벤트] 할로윈 사탕 바구니 {#003399}90개{/}{nl}최대 교환 개수 {#003399}0~{MAX}{/}"/>
+		<Class ClassID="302690" ClassName="EVENT_2110_KLAPEDA_GHOST_STEW_TRADE1" Data="{#003399}[이벤트] 엉성한 호박 스튜 ★{/} 주기"/>
+		<Class ClassID="302691" ClassName="EVENT_2110_KLAPEDA_GHOST_STEW_TRADE2" Data="{#003399}[이벤트] 호박 스튜 ★★{/} 주기"/>
+		<Class ClassID="302692" ClassName="EVENT_2110_KLAPEDA_GHOST_STEW_TRADE3" Data="{#003399}[이벤트] 완벽한 호박 스튜 ★★★{/} 주기"/>
+		<Class ClassID="302693" ClassName="EVENT_2110_KLAPEDA_GHOST_CHECK_MSG" Data="{#0066FF}[할로윈 - 유령 소녀의 부탁]{/} 이벤트 현황{nl}접속 시간 ({#0066FF}{TIME}{/}분){nl}일일 요리 재료 상자 현황 ({#0066FF}{COIN}{/}/{MAX}){nl}누적 할로윈 사탕 바구니 획득 현황 ({#0066FF}{TOTAL}{/}){nl}{#FF3333}※일일 제한은 매일 오전 06시 초기화 됩니다.{/}"/>
 	</Category>
 	<Category Name="Account">
 		<Class ClassID="303001" ClassName="MaxAccountWarehouseCount" Data="팀 창고"/>

@@ -3105,19 +3105,19 @@ function JOB_LUCHADOR_PRE_CHECK(pc, jobCount)
         jobCount = GetTotalJobCount(pc);
     end
     if jobCount >= 2 then
-        -- local aObj
-        -- if IsServerSection() == 0 then
-        --     aObj = GetMyAccountObj();
-        -- else
-        --     aObj = GetAccountObj(pc);
-        -- end
+        local aObj
+        if IsServerSection() == 0 then
+            aObj = GetMyAccountObj();
+        else
+            aObj = GetAccountObj(pc);
+        end
         
-        -- if aObj ~= nil then
-        --     local value = TryGetProp(aObj, 'UnlockQuest_Char1_23', 0)
-        --     if value == 1 or IS_KOR_TEST_SERVER() == true then
+        if aObj ~= nil then
+            local value = TryGetProp(aObj, 'UnlockQuest_Char1_23', 0)
+            if value == 1 or IS_KOR_TEST_SERVER() == true then
                 return 'YES'
-            -- end
-        -- end
+            end
+        end
     end
 
     return 'NO'

@@ -12873,6 +12873,8 @@
 		<image name="icon_TOSHero_Scatter" file="\icon\buff_icon5.tga" imgrect="128 1152 128 128" CMM_Caption="산개"/>
 		<image name="icon_buff_luchador2" file="\icon\buff_icon5.tga" imgrect="384 1152 128 128" CMM_Caption="엔마스카라도: 부세안도 버프"/>
 		<image name="icon_buff_luchador3" file="\icon\buff_icon5.tga" imgrect="512 1152 128 128" CMM_Caption="엔마스카라도: 로단도 버프"/>
+		<image name="icon_Event_Buff_Stew" file="\icon\buff_icon5.tga" imgrect="896 1152 128 128" CMM_Caption="할로윈 이벤트 스튜"/>
+		<image name="icon_ridepet_noblepopo_buff" file="\icon\buff_icon5.tga" imgrect="0 1280 128 128" CMM_Caption="노블포포"/>
 	</imagelist>
 	<imagelist category="housing_bufficon">
 		<image name="icon_Weapon_Klaida" file="\icon\icon_hosing_buff.tga" imgrect="0 0 128 128"/>
@@ -13732,6 +13734,7 @@
 		<image name="ridepet_NautilusSnail" file="\icon\ridepet.tga" imgrect="240 0 80 80" CMM_Caption="앵무달풍"/>
 		<image name="ridepet_PolarReindeer" file="\icon\ridepet.tga" imgrect="320 0 80 80" CMM_Caption="북극순록"/>
 		<image name="ridepet_ep13raincoat" file="\icon\ridepet.tga" imgrect="400 0 80 80" CMM_Caption="금붕어"/>
+		<image name="ridepet_noblepopo" file="\icon\ridepet.tga" imgrect="480 0 80 80" CMM_Caption="노블포포"/>
 	</imagelist>
 	<effectimagelist category="effectlist">
 		<image name="blue_orb" file="\icon\blue_orb.tga" imgrect="0 0 256 256"/>

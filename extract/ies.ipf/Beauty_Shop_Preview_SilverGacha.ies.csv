@@ -1,20 +1,11 @@
 ClassID,Price,PriceRatio,StampCount,ClassName,Category,Gender,ItemClassName,EquipType,JobOnly,SellStartTime,SellEndTime,PackageList,IsPremium,TAG,ItemAddDate,BuyMessage
-1,-1,0,0,EP13_helmet_m_raincoat_01_2,,M,EP13_helmet_m_raincoat_01_2,wig,,2021-08-12 09:00:00,2021-09-09 08:59:59,,NO,,,NotBuy_Thema4
-2,-1,0,0,EP13_helmet_m_raincoat_02_2,,M,EP13_helmet_m_raincoat_02_2,wig,,2021-08-12 09:00:00,2021-09-09 08:59:59,,NO,,,NotBuy_Thema4
-3,-1,0,0,EP13_helmet_m_raincoat_03_2,,M,EP13_helmet_m_raincoat_03_2,wig,,2021-08-12 09:00:00,2021-09-09 08:59:59,,NO,,,NotBuy_Thema4
-4,-1,0,0,EP13_helmet_f_raincoat_01_2,,F,EP13_helmet_f_raincoat_01_2,wig,,2021-08-12 09:00:00,2021-09-09 08:59:59,,NO,,,NotBuy_Thema4
-5,-1,0,0,EP13_helmet_f_raincoat_02_2,,F,EP13_helmet_f_raincoat_02_2,wig,,2021-08-12 09:00:00,2021-09-09 08:59:59,,NO,,,NotBuy_Thema4
-6,-1,0,0,EP13_helmet_f_raincoat_03_2,,F,EP13_helmet_f_raincoat_03_2,wig,,2021-08-12 09:00:00,2021-09-09 08:59:59,,NO,,,NotBuy_Thema4
-11,-1,0,0,EP13_costume_Com_138,,M,EP13_costume_Com_138,costume,,2021-08-12 09:00:00,2021-09-09 08:59:59,,NO,,,NotBuy_Thema4
-12,-1,0,0,EP13_costume_Com_140,,M,EP13_costume_Com_140,costume,,2021-08-12 09:00:00,2021-09-09 08:59:59,,NO,,,NotBuy_Thema4
-13,-1,0,0,EP13_costume_Com_142,,M,EP13_costume_Com_142,costume,,2021-08-12 09:00:00,2021-09-09 08:59:59,,NO,,,NotBuy_Thema4
 15,-1,0,0,EP13_costume_Com_156,,M,EP13_costume_Com_156,costume,,2021-09-09 09:00:00,2021-10-14 08:59:59,,NO,,,NotBuy_Thema4
-21,-1,0,0,EP13_costume_Com_139,,F,EP13_costume_Com_139,costume,,2021-08-12 09:00:00,2021-09-09 08:59:59,,NO,,,NotBuy_Thema4
-22,-1,0,0,EP13_costume_Com_141,,F,EP13_costume_Com_141,costume,,2021-08-12 09:00:00,2021-09-09 08:59:59,,NO,,,NotBuy_Thema4
-23,-1,0,0,EP13_costume_Com_143,,F,EP13_costume_Com_143,costume,,2021-08-12 09:00:00,2021-09-09 08:59:59,,NO,,,NotBuy_Thema4
 25,-1,0,0,EP13_costume_Com_157,,F,EP13_costume_Com_157,costume,,2021-09-09 09:00:00,2021-10-14 08:59:59,,NO,,,NotBuy_Thema4
-51,-1,0,0,wing_ep13raincoat01,,Both,wing_ep13raincoat01,wing,,2021-08-12 09:00:00,2021-09-09 08:59:59,,NO,,,NotBuy_Thema4
+41,-1,0,0,Doll_vakarine,,Both,Doll_vakarine,doll,,2021-10-14 09:00:00,2021-11-25 08:59:59,,NO,,,NotBuy_Thema4
 52,-1,0,0,wing_ep13retro,,Both,wing_ep13retro,wing,,2021-09-09 09:00:00,2021-10-14 08:59:59,,NO,,,NotBuy_Thema4
-53,-1,0,0,wing_ep13raincoat02,,Both,wing_ep13raincoat02,wing,,2021-08-12 09:00:00,2021-09-09 08:59:59,,NO,,,NotBuy_Thema4
+54,-1,0,0,wing_ep12musical,,Both,wing_ep12musical,wing,,2021-10-14 09:00:00,2021-11-25 08:59:59,,NO,,,NotBuy_Thema4
+55,-1,0,0,wing_ep12demonlord,,Both,wing_ep12demonlord,wing,,2021-10-14 09:00:00,2021-11-25 08:59:59,,NO,,,NotBuy_Thema4
+56,-1,0,0,wing_goddessLaima,,Both,wing_goddessLaima,wing,,2021-10-14 09:00:00,2021-11-25 08:59:59,,NO,,,NotBuy_Thema4
 61,-1,0,0,Effect_ep13retro,,Both,Effect_ep13retro,effect_costume,,2021-09-09 09:00:00,2021-10-14 08:59:59,,NO,,,NotBuy_Thema4
-62,-1,0,0,Effect_ep13raincoat,,Both,Effect_ep13raincoat,effect_costume,,2021-08-12 09:00:00,2021-09-09 08:59:59,,NO,,,NotBuy_Thema4
+63,-1,0,0,Effect_ep12musical,,Both,Effect_ep12musical,effect_costume,,2021-10-14 09:00:00,2021-11-25 08:59:59,,NO,,,NotBuy_Thema4
+64,-1,0,0,Effect_ep12demonlord,,Both,Effect_ep12demonlord,effect_costume,,2021-10-14 09:00:00,2021-11-25 08:59:59,,NO,,,NotBuy_Thema4

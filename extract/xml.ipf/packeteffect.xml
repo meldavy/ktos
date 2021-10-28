@@ -3413,6 +3413,9 @@
         <Effect Name="skl_eff_stormdust_loop"/>
         <Effect Name="skl_eff_elementalist_elementalessence_cast"/>
     <Effect Name="voice_luchador_m_golpear_huracan"/>
+    <Effect Name="MYTHIC_STARTOWER_MINI_AUTO_SOLO"/>
+        <Effect Name="MYTHIC_CASTLE_MINI_AUTO_SOLO"/>
+        <Effect Name="MYTHIC_FIRETOWER_MINI_AUTO_SOLO"/>
     </Category>
     <Category ID="171">
         <Effect Name="MISSION_UPHILL_DEFFENSE_EVENT2"/>

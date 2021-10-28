@@ -1463,7 +1463,7 @@ function INDUNINFO_SET_RESTRICT_ITEM(frame,indunCls)
     end
 end
 
-function INDUNINFO_SET_BUTTONS_FIND_CLASS(indunCls)
+function INDUNINFO_SET_BUTTONS_FIND_CLASS(indunCls, subTypeCompare)
     local btnInfoCls = nil;
     if indunCls ~= nil then
         local dungeonType = TryGetProp(indunCls, "DungeonType", "None");
@@ -1485,6 +1485,14 @@ function INDUNINFO_SET_BUTTONS_FIND_CLASS(indunCls)
                     if dungeon_type ~= nil and dungeon_type ~= "None" and (dungeon_type == dungeonType or subType == "MoveEnterNPC" or dungeonType == "GTower") then
                         local sub_type = TryGetProp(cls, "SubType", "None");
                         if sub_type ~= nil and sub_type ~= "None" and sub_type == subType then
+                            btnInfoCls = cls;
+                            break;
+                        end
+                    end
+
+                    if subTypeCompare == true then
+                        local sub_type = TryGetProp(cls, "SubType", "None");
+                        if dungeon_type == dungeonType and sub_type == subType then
                             btnInfoCls = cls;
                             break;
                         end
@@ -1530,6 +1538,8 @@ function INDUNINFO_SET_BUTTONS(frame, indunCls)
             return;
         end
         btnInfoCls = INDUNINFO_SET_BUTTONS_FIND_CLASS(indunCls);
+    elseif string.find(dungeonType, "MythicDungeon") ~= nil then
+        btnInfoCls = INDUNINFO_SET_BUTTONS_FIND_CLASS(indunCls, true);
     end
 
     local type = 0

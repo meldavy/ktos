@@ -1154,10 +1154,27 @@ function OPEN_TRADE_SELECT_SKILL_GEM(frame)
 		local skltcls = GetClassByIndexFromList(cls, i)
 		local sklname = TryGetProp(skltcls, "SkillName", "None")
 
-		if string.find(sklname, job..'_') ~= nil  then
+		-- 스킬 이름이 job과 매칭되지 않은 사항 처리
+		-- 추가해야 하는 경우는 직접 추가하고, 제거해야 하는 경우는 exceptionCase을 1로 셋팅
+		local exceptionCase = 0
+		
+		if sklname == "Peltasta_ButterFly" then
+			if job == "Murmillo" then
+				local skillgem_cls = GetClassByStrProp('Item', 'SkillName', sklname)
+				SkillList[#SkillList + 1] = skillgem_cls
+			end
+
+			if job == "Peltasta" then
+				exceptionCase = 1
+			end
+		end
+		
+		-----------------------------------------------
+
+		if string.find(sklname, job..'_') ~= nil and exceptionCase == 0 then
 			local skillgem_cls = GetClassByStrProp('Item', 'SkillName', sklname)
 			SkillList[#SkillList + 1] = skillgem_cls
-        end
+		end
     end
 
 	if SkillList[1] == nil then return end

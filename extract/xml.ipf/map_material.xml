@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by IMC (IMCGames Co., Ltd) -->
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by imc (imc) -->
 <Map_materials>
 	<Material ID="1" Name="grass" KorName="풀밭" MaterialItem="misc_grass">
 		<Anim Name="LAND">
@@ -638,9 +638,12 @@
 			<Particle From="F_pc_run_blank_dummy" To="F_pc_effectitem_catagnan_ride" Scale="1" ForceConvert="NO"/>
 			<Sound From="walk_left" To="step_soil"/>
 		</Anim>
-		<Anim Name="RUN_DASH">
+		<Anim Name="RUN_DASH_RIDE">
 			<Particle From="F_pc_run_blank_dummy" To="F_pc_effectitem_catagnan_ride" Scale="1" ForceConvert="NO"/>
 			<Sound From="walk_left" To="step_soil"/>
+		</Anim>
+		<Anim Name="RUN_NOBLEPOPO">
+			<Particle From="F_pc_run_blank_dummy" To="F_pc_effectitem_catagnan_ride" Scale="1" ForceConvert="NO"/>
 		</Anim>
 	</Material>
 </Map_materials>

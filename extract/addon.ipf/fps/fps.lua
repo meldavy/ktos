@@ -87,9 +87,15 @@ function RTT_ON_MSG(frame, msg, argStr, argNum)
 end
 
 
-function FRKPTCL_ON_MSG(frame, msg, argstr, argnum)
-	local text = GET_CHILD_RECURSIVELY(frame, "particletext")
-	text:SetText("{#ff9900}{s16}{ol}FrkPtcl : " .. argstr)
+function FRKPTCL_ON_MSG(frame, msg, cnt2, cnt1)
+	local text
+	
+	text = GET_CHILD_RECURSIVELY(frame, "particletext")
+	text:SetText("{#ff9900}{s16}{ol}FrkPtcl : " .. cnt1)
+	text:ShowWindow(1)
+
+	text = GET_CHILD_RECURSIVELY(frame, "particletext2")
+	text:SetText("{#ff9900}{s16}{ol}FrkPtclSys : " .. cnt2)
 	text:ShowWindow(1)
 end
 

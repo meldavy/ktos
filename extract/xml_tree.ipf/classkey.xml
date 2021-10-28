@@ -5521,6 +5521,47 @@
         <Key Name="ContentsAlert8" Value="109713"/>
         <Key Name="ContentsAlert9" Value="109714"/>
         <Key Name="CONTENTS_ALERT_RECEIVE" Value="109715"/>
+        <Key Name="EVENT_2110_KLAPEDA_GHOST_COIN_COUNT" Value="109726"/>
+        <Key Name="EVENT_2110_KLAPEDA_GHOST_COIN_GIVE" Value="109746"/>
+        <Key Name="EVENT_2110_KLAPEDA_GHOST_PLAY_TIME" Value="109732"/>
+        <Key Name="EVENT_2110_KLAPEDA_GHOST_SHOP_1" Value="109742"/>
+        <Key Name="EVENT_2110_KLAPEDA_GHOST_SHOP_10" Value="109730"/>
+        <Key Name="EVENT_2110_KLAPEDA_GHOST_SHOP_11" Value="109748"/>
+        <Key Name="EVENT_2110_KLAPEDA_GHOST_SHOP_12" Value="109728"/>
+        <Key Name="EVENT_2110_KLAPEDA_GHOST_SHOP_13" Value="109721"/>
+        <Key Name="EVENT_2110_KLAPEDA_GHOST_SHOP_14" Value="109741"/>
+        <Key Name="EVENT_2110_KLAPEDA_GHOST_SHOP_15" Value="109723"/>
+        <Key Name="EVENT_2110_KLAPEDA_GHOST_SHOP_16" Value="109731"/>
+        <Key Name="EVENT_2110_KLAPEDA_GHOST_SHOP_17" Value="109743"/>
+        <Key Name="EVENT_2110_KLAPEDA_GHOST_SHOP_18" Value="109738"/>
+        <Key Name="EVENT_2110_KLAPEDA_GHOST_SHOP_19" Value="109717"/>
+        <Key Name="EVENT_2110_KLAPEDA_GHOST_SHOP_2" Value="109751"/>
+        <Key Name="EVENT_2110_KLAPEDA_GHOST_SHOP_20" Value="109719"/>
+        <Key Name="EVENT_2110_KLAPEDA_GHOST_SHOP_21" Value="109750"/>
+        <Key Name="EVENT_2110_KLAPEDA_GHOST_SHOP_22" Value="109737"/>
+        <Key Name="EVENT_2110_KLAPEDA_GHOST_SHOP_23" Value="109729"/>
+        <Key Name="EVENT_2110_KLAPEDA_GHOST_SHOP_24" Value="109716"/>
+        <Key Name="EVENT_2110_KLAPEDA_GHOST_SHOP_25" Value="109736"/>
+        <Key Name="EVENT_2110_KLAPEDA_GHOST_SHOP_26" Value="109720"/>
+        <Key Name="EVENT_2110_KLAPEDA_GHOST_SHOP_27" Value="109722"/>
+        <Key Name="EVENT_2110_KLAPEDA_GHOST_SHOP_28" Value="109734"/>
+        <Key Name="EVENT_2110_KLAPEDA_GHOST_SHOP_3" Value="109740"/>
+        <Key Name="EVENT_2110_KLAPEDA_GHOST_SHOP_4" Value="109727"/>
+        <Key Name="EVENT_2110_KLAPEDA_GHOST_SHOP_5" Value="109745"/>
+        <Key Name="EVENT_2110_KLAPEDA_GHOST_SHOP_6" Value="109744"/>
+        <Key Name="EVENT_2110_KLAPEDA_GHOST_SHOP_7" Value="109725"/>
+        <Key Name="EVENT_2110_KLAPEDA_GHOST_SHOP_8" Value="109735"/>
+        <Key Name="EVENT_2110_KLAPEDA_GHOST_SHOP_9" Value="109749"/>
+        <Key Name="EVENT_2110_KLAPEDA_GHOST_TOTAL_COIN" Value="109752"/>
+        <Key Name="EVENT_2111_POT_DATA" Value="109747"/>
+        <Key Name="EVENT_2111_POT_POINT" Value="109733"/>
+        <Key Name="EVENT_2111_POT_SEL_1" Value="109718"/>
+        <Key Name="EVENT_2111_POT_SEL_3" Value="109739"/>
+        <Key Name="EVENT_2111_POT_TRADECOUNT" Value="109724"/>
+        <Key Name="RidePet_8" Value="109753"/>
+        <Key Name="TeamBattleLeagueShop_3" Value="109757"/>
+        <Key Name="EVENT_2110_KLAPEDA_GHOST_SHOP_29" Value="109758"/>
+        <Key Name="EVENT_2110_KLAPEDA_GHOST_SHOP_30" Value="109759"/>
     </KeyIDSpc>
     <KeyIDSpc Name="PCEtc">
         <Key Name="Kill_boss_Clymen_Q2" Value="7788"/>
@@ -23506,6 +23547,9 @@
         <Key Name="MG_Last_battlefield5vs5" Value="109576"/>
         <Key Name="UQ_Char1_23_PRE1" Value="109705"/>
         <Key Name="UQ_Char1_23_PRE2" Value="109704"/>
+        <Key Name="MG_Last_MYTHIC_CASTLE_MINI_AUTO_SOLO" Value="109756"/>
+        <Key Name="MG_Last_MYTHIC_FIRETOWER_MINI_AUTO_SOLO" Value="109754"/>
+        <Key Name="MG_Last_MYTHIC_STARTOWER_MINI_AUTO_SOLO" Value="109755"/>
     </KeyIDSpc>
     <KeyIDSpc Name="Monster">
         <Key Name="MaxHate" Value="6671"/>

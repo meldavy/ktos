@@ -1,7 +1,8 @@
 -- recordscrollread.lua
 
 function RECORDSCROLLREAD_ON_INIT(addon, frame)
-	addon:RegisterMsg('READ_RECORD_SCROLL', 'ON_READ_RECORD_SCROLL')
+    addon:RegisterMsg('READ_RECORD_SCROLL', 'ON_READ_RECORD_SCROLL')
+    addon:RegisterMsg('READ_RECORD_SKIP', 'ON_RECORD_SCROLL_SKIP')
 end
 
 function ON_READ_RECORD_SCROLL(frame, msg, dialog, argNum)
@@ -121,8 +122,8 @@ function RECORD_SCROLL_VIEW_PAGE(frame, page)
         end
     end
 
-    local textObj = GET_CHILD(frame, "text", "ui::CFlowText");
-    local pageObj = GET_CHILD(frame, "page", "ui::CRichText");
+    local textObj = GET_CHILD_RECURSIVELY(frame, "text");
+    local pageObj = GET_CHILD_RECURSIVELY(frame, "page");
 
     textObj:SetText(text)
     textObj:SetFontName('bookfont')
@@ -131,4 +132,18 @@ function RECORD_SCROLL_VIEW_PAGE(frame, page)
     pageObj:SetTextByKey("value", page.."/"..maxPage)
 
     frame:SetUserValue("PAGE", page)
+end
+
+function ON_RECORD_SCROLL_SKIP(frame, msg, argStr, argNum)
+    if frame:IsVisible() == 1 then
+        local textObj = GET_CHILD_RECURSIVELY(frame, "text");
+        if textObj:IsFlowed() == 1 and textObj:IsNextPage() == 1 then
+            textObj:SetNextPage(0);
+        elseif textObj:IsFlowed() == 1 and textObj:IsNextPage() == 0 then
+            textObj:SetNextPage(1);
+            RECORD_SCROLL_NEXT_PAGE(frame)
+        else
+            ui.SysMsg(ScpArgMsg("ShowBookItemLastPage"))
+        end
+    end
 end

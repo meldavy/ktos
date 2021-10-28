@@ -1462,6 +1462,8 @@ function CHECK_GEAR_SCORE_FOR_CONTENTS(pc, indun_cls)
 	end
 
 	local dungeon_type = TryGetProp(indun_cls, "DungeonType", "None");
+	local sub_type = TryGetProp(indun_cls, "SubType", "None");
+	
 	if dungeon_type == "Raid" then
 		-- moringponia auto
 		if indun_cls.ClassName == "Legend_Raid_boss_Moringponia_Easy" then
@@ -1528,6 +1530,7 @@ function CHECK_GEAR_SCORE_FOR_CONTENTS(pc, indun_cls)
 		if dungeon_type == "MythicDungeon_Auto" or dungeon_type == "MythicDungeon_Auto_Hard" then
 			local mythic_number = GetCurrentMythicSeason();
 			local mythic_schedule_cls = GetClassByType("mythic_dungeon_schedule", mythic_number);
+
 			if mythic_schedule_cls ~= nil then
 				if TryGetProp(mythic_schedule_cls, "MGameName_1") == indun_cls.ClassName then
 					-- normal
@@ -1538,6 +1541,12 @@ function CHECK_GEAR_SCORE_FOR_CONTENTS(pc, indun_cls)
 				elseif TryGetProp(mythic_schedule_cls, "MGameName_2") == indun_cls.ClassName then
 					-- hard
 					if gear_score < 430 then
+						SendSysMsg(pc, "LowEquipedItemGearScore");
+						return false;
+					end
+				elseif TryGetProp(mythic_schedule_cls, "MGameName_4") ~= nil and sub_type == "Casual" then
+					-- normal solo
+					if gear_score < 410 then
 						SendSysMsg(pc, "LowEquipedItemGearScore");
 						return false;
 					end

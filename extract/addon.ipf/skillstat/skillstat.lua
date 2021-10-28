@@ -98,9 +98,11 @@ end
 function SKILLSTAT_SELEC_CANCLE(frame, ctrl)
 	-- 아츠 초기화 포션쪽에서 마진 변경하기 때문에 닫을 때 초기화해준다
 	local detail = GET_CHILD_RECURSIVELY(frame, "detail");
-	local curMargin = detail:GetMargin();
-	local originTop = frame:GetUserConfig("DETAIL_TOP");
-	detail:SetMargin(curMargin.left, originTop, curMargin.right, curMargin.bottom);
+	if detail ~= nil then
+		local curMargin = detail:GetMargin();
+		local originTop = frame:GetUserConfig("DETAIL_TOP");
+		detail:SetMargin(curMargin.left, originTop, curMargin.right, curMargin.bottom);
+	end
 
 	frame:ShowWindow(0);
 end

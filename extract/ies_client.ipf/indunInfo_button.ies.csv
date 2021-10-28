@@ -7,10 +7,11 @@ ClassID,ClassName,DungeonType,SubType,RedButtonText,RedButtonScp,Button1Text,But
 7,MythicRaid,MythicDungeon,,입장하기,REQ_MYTHIC_DUNGEON,,,,,순위/보상 안내,OPEN_MYTHIC_DUNGEON_INFO
 8,ChallengeAutoMode,Challenge_Auto,,자동매칭,REQ_CHALLENGE_AUTO_UI_OPEN,,,,,,
 9,RaidAutoMode,Raid,Auto,자동매칭,REQ_RAID_AUTO_UI_OPEN,,,,,,
-10,MythicRaidAutoMode,MythicDungeon_Auto,,자동매칭,REQ_RAID_AUTO_UI_OPEN,,,,,,
-11,MythicRaidAutoHardMode,MythicDungeon_Auto_Hard,,자동매칭,REQ_RAID_AUTO_UI_OPEN,,,,,,
+10,MythicRaidAutoMode,MythicDungeon_Auto,Auto,자동매칭,REQ_RAID_AUTO_UI_OPEN,,,,,,
+11,MythicRaidAutoHardMode,MythicDungeon_Auto_Hard,Auto,자동매칭,REQ_RAID_AUTO_UI_OPEN,,,,,,
 12,RaidMoveEnterNPC,Raid_MoveEnterNPC,MoveEnterNPC,이동,INDUNINFO_MOVE_TO_ENTER_NPC,,,,,,
 13,TOSHero,TOSHero,,입장하기,REQ_TOSHERO_ENTER,,,,,순위별 보상 확인,TOSHERO_REWARD_CLICK
 14,GTower,GTower,MoveEnterNPC,이동,INDUNINFO_MOVE_TO_ENTER_NPC,,,,,,
 15,ChallengeSoloMode,Challenge_Solo,,입장하기,REQ_CHALLENGE_AUTO_UI_OPEN,,,,,,
 16,RaidSoloMode,Raid,Casual,입장하기,REQ_RAID_SOLO_UI_OPEN,,,,,,
+17,MythicSoloMode,MythicDungeon_Auto,Casual,입장하기,REQ_RAID_SOLO_UI_OPEN,,,,,,

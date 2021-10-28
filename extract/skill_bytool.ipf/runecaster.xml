@@ -507,12 +507,6 @@ return value"/>
 					<Str Str="voice_atk_long_war_f"/>
                 </Scp>
                 <Scp Scp="C_EFFECT_POS" Client="YES" UseSleep="NO" Time="100">
-                    <Str_Arg Str="F_buff_basic059_ground_green###1" Arg="1"/>
-                    <Pos Angle="0" Dist="0" PosType="3"/>
-                    <Num Num="0"/>
-                    <Str Str="None"/>
-                </Scp>
-                <Scp Scp="C_EFFECT_POS" Client="YES" UseSleep="NO" Time="100">
                     <Str_Arg Str="I_stone001_mesh" Arg="0.9"/>
                     <Pos Angle="0.39269909" Dist="-20" PosType="3"/>
                     <Num Num="0"/>

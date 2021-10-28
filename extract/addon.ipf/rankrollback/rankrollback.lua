@@ -178,7 +178,13 @@ function RANKROLLBACK_ITEM_USE_BUTTON_CLICK(frame, ctrl)
     if CHECK_INVENTORY_HAS_RANK_CARD() == true then
         ui.MsgBox_NonNested(ClMsg('YouHaveRankCardReallyRankReset?'), 0x00000000, frame:GetName(), 'None', 'None');
         return;
-    end
+	end
+	
+	if CHECK_CURRENT_JOB_UNLOCK_STATE() == false then
+		local opt = { CompareTextDesc = ClMsg('ReallyWantChangeJobPlzInputNextStr') }
+		WARNINGMSGBOX_EX_FRAME_OPEN(frame, 'None', 'TargetJobIsLocked;CantRollbackThisChangeJob/RANKROLLBACK_REQUEST_RANK_RESET', 0, opt)
+		return;
+	end
     
     RANKROLLBACK_REQUEST_RANK_RESET();
 end
@@ -231,4 +237,23 @@ function OPEN_RANKROLLBACK_UI_BY_SYSMENU()
 	ui.CloseFrame('inventory')
     ui.OpenFrame('changejob');
     CHANGEJOB_SHOW_RANKROLLBACK();
+end
+
+function CHECK_CURRENT_JOB_UNLOCK_STATE()
+	local frame = ui.GetFrame('rankrollback');
+	local targetJobID = frame:GetUserIValue('TARGET_JOB_CLASS_ID');
+	local targetJobClass = GetClassByType('Job', targetJobID)
+	if targetJobClass ~= nil then
+		local funcStr = TryGetProp(targetJobClass, 'PreFunction', 'None')
+		local preFunc = _G[funcStr]
+		if preFunc ~= nil then
+			local pc = GetMyPCObject();
+			local jobCount = GetTotalJobCount(pc) - 1;
+			local result = preFunc(pc, jobCount);
+            if result == 'NO' then
+                return false;
+            end
+        end
+	end
+	return true;
 end

@@ -87,5 +87,6 @@
 		<Class ClassID="99" ClassName="/goldfish" Alias="/황금낚시" ConvertWhenSend="1"/>
 		<Class ClassID="100" ClassName="/relic" Alias="/유물" ConvertWhenSend="1"/>
 		<Class ClassID="101" ClassName="/festival" Alias="/전야제" ConvertWhenSend="1"/>
+		<Class ClassID="102" ClassName="/halloween" Alias="/할로윈" ConvertWhenSend="1"/>
 	</Category>
 </idspace>

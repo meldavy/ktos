@@ -214,7 +214,7 @@ function UPDATE_FRIEND_LIST(frame)
 	local cnt = session.friends.GetFriendCount(FRIEND_LIST_COMPLETE);
 
 	for i = 0 , cnt - 1 do
-		local f = session.friends.GetFriendByIndex(FRIEND_LIST_COMPLETE, i);		
+		local f = session.friends.GetFriendByIndex(FRIEND_LIST_COMPLETE, i);				
 		local groupname = f:GetGroupName()
 
 		if groupname ~= nil and groupname ~= "" and groupname ~= "None" and groupnamelist[groupname] == nil then
@@ -479,6 +479,7 @@ function SORTED_FRIEND_LIST(sortType, listType)
 	return list
 end
 
+-- 친구 삭제
 function CONFIRM_FRIEND_STATE(parent, ctrl, str, num)
 	local aid = parent:GetUserValue("AID");
 	if tonumber(aid) > 0 then
@@ -595,8 +596,11 @@ function UPDATE_FRIEND_CONTROLSET_BY_PCINFO(ctrlSet, mapID, channel, info, drawN
 			map_name_channel_text:SetColorTone(0);
 			map_name_channel_text:SetTextByKey("name", mapCls.Name)
 			map_name_channel_text:SetTextByKey("channel", channel+1)
-
-			map_name_channel_text:ShowWindow(1)
+			if session.colonywar.GetProgressState() == true then
+				map_name_channel_text:ShowWindow(0)
+			else
+				map_name_channel_text:ShowWindow(1)
+			end
 			map_name_text:ShowWindow(0)
 		end
 
@@ -760,8 +764,12 @@ function ON_FRIEND_SESSION_CHANGE(frame, msg, aid, listType)
 				map_name_channel_text:SetColorTone(0)
 				map_name_channel_text:SetTextByKey("name", mapCls.Name)
 				map_name_channel_text:SetTextByKey("channel", f.channel+1)
-	
-				map_name_channel_text:ShowWindow(1)
+				
+				if session.colonywar.GetProgressState() == true then
+					map_name_channel_text:ShowWindow(0)
+				else
+					map_name_channel_text:ShowWindow(1)
+				end
 				map_name_text:ShowWindow(0)
 			end
 

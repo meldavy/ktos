@@ -520,6 +520,10 @@ function GUILDMEMBER_LIST_CREATE(frame, page)
     local list = session.party.GetPartyMemberListbyPage(PARTY_GUILD, page)
     local count = list:Count()
 
+    if count == 0 then
+        return;
+    end
+
     local edit = GET_CHILD_RECURSIVELY(frame, "memberSearch");
     local cap = edit:GetText();
 
@@ -574,6 +578,11 @@ function GUILDMEMBER_LIST_CREATE(frame, page)
     end
 
     GBOX_AUTO_ALIGN(memberList, 0, 0, 45, true, false, true)
+
+    if  memberList:IsScrollBarVisible() == false then
+        curPage = curPage + 1
+        GUILDMEMBER_LIST_CREATE(frame, curPage)
+    end
 end
 
 function GUILDMEMBER_LIST_GET_SCROLL(parent, ctrl)
