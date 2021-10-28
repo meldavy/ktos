@@ -12,12 +12,25 @@ end
 
 function RESTART_ON_RESSURECT_HERE(frame)
 	local cristal = GetClass("Item", "RestartCristal");
+	local cristal_14d = GetClass("Item", "RestartCristal_14d");
+	local cristal_recycle = GetClass("Item", "RestartCristal_Recycle");
 	local item = session.GetInvItemByName(cristal.ClassName);
-	if item == nil then
+
+	local item_14d = nil
+	if cristal_14d ~= nil then
+		item_14d = session.GetInvItemByName(cristal_14d.ClassName);
+	end
+	
+	local item_recycle = nil
+	if cristal_recycle ~= nil then
+		item_recycle = session.GetInvItemByName(cristal_recycle.ClassName);
+	end
+   
+	if (item == nil) and (item_14d == nil) and (item_recycle == nil) then
 		ui.SysMsg(ScpArgMsg("NotEnough{ItemName}Item","ItemName", cristal.Name));
 		return;
-
 	end
+
 	restart.SendRestartHereMsg();
 end
 
@@ -39,6 +52,11 @@ function RESTART_ON_RESSURECT_RETRY(frame)
 	restart.Send(5);
 	frame:ShowWindow(0);
 
+end
+
+function RESTART_ON_COLONY_WAR_RETURN_CITY(frame)
+	restart.Send(12);
+	frame:ShowWindow(0);
 end
 
 
@@ -76,6 +94,11 @@ function AUTORESIZE_RESTART(frame)
 			end
 		end
 	end
+
+	if session.colonywar.GetIsColonyWarMap() == true then
+		return;
+	end
+
 	local list = session.party.GetPartyMemberList(PARTY_NORMAL);
 	local count = list:Count();
 
@@ -84,7 +107,7 @@ function AUTORESIZE_RESTART(frame)
 		return;
 	end
 	campGroup:RemoveAllChild();
-	-- ∆ƒ∆ºø¯¿Ã ¡∏¿Á «“ ∂ß
+	-- ÌååÌã∞ÏõêÏù¥ Ï°¥Ïû¨ Ìï† Îïå
 	if 0 < count then
 		local y = 0;
 		for i = 0 , count - 1 do
@@ -149,6 +172,11 @@ end
 
 function RESTART_ON_MSG(frame, msg, argStr, argNum)
 
+	local minigameover = ui.GetFrame('minigameover');	
+	if minigameover:IsVisible() == 1 then
+		return;
+	end
+
 	if msg == 'RESTART_HERE' then
 		for i = 1 , 5 do
 			local btnName = "restart" .. i .. "btn";
@@ -156,6 +184,17 @@ function RESTART_ON_MSG(frame, msg, argStr, argNum)
 			local isBit = BitGet(argNum, i);
 			
 			resButtonObj:ShowWindow(isBit);
+		end
+
+		--ÏΩúÎ°úÎãàÏ†Ñ Î∂ÄÌôúÏö©
+		local resButtonObj	= GET_CHILD(frame, "restart6btn", 'ui::CButton');
+		resButtonObj:ShowWindow(0);
+		if 1 == BitGet(argNum, 12) then
+			local btnName = "restart6btn";
+			local resButtonObj	= GET_CHILD(frame, btnName, 'ui::CButton');
+			resButtonObj:ShowWindow(1);
+			frame:RunUpdateScript("COLONY_WAR_RESTART_UPDATE",1,0,0,1);
+			frame:SetUserValue("COUNT", 30);
 		end
 
 		AUTORESIZE_RESTART(frame);
@@ -189,4 +228,16 @@ function RESTARTSELECT_ITEM_SELECT(frame)
 
 	mouse.SetPos(x,y);
 	mouse.SetHidable(0);
+end
+
+
+--frame:RunUpdateScript("ASDAFSASD",1,0,0,1);
+function COLONY_WAR_RESTART_UPDATE(frame)
+	local btnName = "restart6btn";
+	local resButtonObj	= GET_CHILD(frame, btnName, 'ui::CButton');
+	local sec = frame:GetUserIValue("COUNT")
+	frame:SetUserValue("COUNT",  sec - 1);
+	local text = "{@st66b}"..ScpArgMsg("ReturnCity{SEC}", "SEC", sec).."{/}"
+	resButtonObj:SetText(text);
+	return 1;
 end
