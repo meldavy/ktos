@@ -7,32 +7,42 @@ function SHOP_ON_INIT(addon, frame)
 	addon:RegisterMsg('ESCAPE_PRESSED', 'SHOP_ON_MSG');
 	addon:RegisterMsg('SOLD_ITEM_LIST', 'ON_SOLD_ITEM_LIST');
 	addon:RegisterMsg('FAIL_SHOP_BUY', 'ON_FAIL_SHOP_BUY');
-
+	addon:RegisterOpenOnlyMsg('NOTICE_Dm_invenfull', 'INVENTORY_DM_INVENFULL');
 	addon:RegisterMsg('COMMON_SHOP_ITEM_LIST_GET', 'SHOP_ON_MSG');
+	addon:RegisterOpenOnlyMsg('UPDATE_COLONY_TAX_RATE_SET', 'SHOP_ON_MSG');
 
-	FINALPRICE = GET_TOTAL_MONEY();
+	FINALPRICE = GET_TOTAL_MONEY_STR();
 	NOWPAGENUM = 1;
 	TOTALPAGENUM = 1;
 	BUYSLOTCOUNT = {};
 end
 
 function SHOP_UI_OPEN(frame)
+	if frame == nil then
+		frame = ui.GetFrame('shop');
+	end
 
 	--HIDE_OR_SHOW_REPAIR_BUTTON(frame)
 	OPEN_SHOPUI_COMMON();
-
-	--jansori.lua ¿« «‘ºˆ
-	JS_SHOP_OPEN(frame)
 	ui.EnableSlotMultiSelect(1);
-
-	FINALPRICE = GET_TOTAL_MONEY();
+	FINALPRICE = GET_TOTAL_MONEY_STR();
+	
+	local shopName = session.GetCurrentShopName()
+	local buy_itemtext = GET_CHILD_RECURSIVELY(frame, "buy_itemtext")
+	SET_COLONY_TAX_RATE_TEXT(buy_itemtext, "tax_rate", IS_COLONY_TAX_SHOP_NAME(GET_COLONY_TAX_CURRENT_CITY_NAME(), shopName))
 
 	return 1;
 end
 
+function INVENTORY_DM_INVENFULL(frame, msg, argStr, argNum)
+	FINALPRICE = GET_TOTAL_MONEY_STR();
+	SHOP_UPDATE_BUY_PRICE(frame);
+end
 
 function HIDE_OR_SHOW_REPAIR_BUTTON(frame)
-
+	if frame == nil then
+		frame = ui.GetFrame('shop');
+	end
 	local repairbutton = GET_CHILD_RECURSIVELY(frame,"repair","ui::CButton")
 
 	local test = IS_REPAIRABLE_SHOP() 
@@ -64,31 +74,42 @@ function IS_REPAIRABLE_SHOP()
 end
 
 function SHOP_UI_CLOSE(frame, obj, argStr, argNum)
+	if frame == nil then
+		frame = ui.GetFrame('shop');
+	end
 	control.DialogOk()
-
-	--jansori.lua ¿« «‘ºˆ
-	JS_SHOP_CLOSE(frame)
 	ui.EnableSlotMultiSelect(0);
 	SHOP_SELECT_ITEM_LIST = {}
 
 	local invenFrame = ui.GetFrame('inventory');
 	INVENTORY_UPDATE_ICONS(invenFrame);
+	INVENTORY_CLEAR_SELECT(invenFrame);
 	if invenFrame:IsVisible() == 1 then
 		invenFrame:ShowWindow(0);
 	end
+
+	-- ÏÉÅÏ†êÎßàÎã§ ÌéòÏù¥ÏßÄ Îã§Î•º Ïàò ÏûàÏñ¥ÏÑú ÌéòÏù¥ÏßÄ ÎÑòÎ≤Ñ Ï¥àÍ∏∞ÌôîÌï®
+	NOWPAGENUM = 1
 end
 
 function SHOP_SLOT_RBTNDOWN_2(frame, slotList, argStr, argNum)
+	if frame == nil then
+		frame = ui.GetFrame('shop');
+	end
+	local ConSetBySlot = slotList:GetChild('slot');
+	local slot = tolua.cast(ConSetBySlot, "ui::CSlot");
 
-	local ConSetBySlot 	= slotList:GetChild('slot');
-	local slot			= tolua.cast(ConSetBySlot, "ui::CSlot");
-
-	SHOP_SLOT_RBTNDOWN(frame, slot, argStr, argNum)
+	SHOP_SLOT_RBTNDOWN(frame, slot, argStr, argNum);
 end
 
 function SHOP_SLOT_RBTNDOWN(frame, slot, argStr, argNum)
-
-	local frame     = ui.GetFrame("shop");
+	if frame == nil then
+		frame = ui.GetFrame('shop');
+	end
+	local frame = frame:GetTopParentFrame();
+	if frame:GetName() == 'companionshop' then
+		frame = frame:GetChild('foodBox');
+	end
 	local clsID = GET_SHOP_SLOT_CLSID(slot);
 	if clsID == 0 then
 		return;
@@ -96,37 +117,54 @@ function SHOP_SLOT_RBTNDOWN(frame, slot, argStr, argNum)
 
 	local shopItem	= geShopTable.GetByClassID(clsID);
 
-	if keyboard.IsPressed(KEY_SHIFT) == 1 then
+	if keyboard.IsKeyPressed("LSHIFT") == 1 then
 		local remainPrice = frame:GetUserIValue("EXPECTED_REMAIN_ZENY");
 		local maxStack = GET_SHOP_ITEM_MAXSTACK(shopItem);
 		if -1 == maxStack then
-			SHOP_BUY(clsID, shopItem.count);
-			SHOP_UPDATE_BUY_PRICE();
+			SHOP_BUY(clsID, shopItem.count, frame);
+			SHOP_UPDATE_BUY_PRICE(frame);
 			return;
 		end
 
 		local itemPrice = shopItem.price * shopItem.count;
+
+        local shopName = session.GetCurrentShopName()
+        if IS_COLONY_TAX_SHOP_NAME(GET_COLONY_TAX_CURRENT_CITY_NAME(), shopName) == true then
+            local taxRate = GET_COLONY_TAX_RATE_CURRENT_MAP()
+            if taxRate ~= nil then
+                itemPrice = tonumber(CALC_PRICE_WITH_TAX_RATE(itemPrice, taxRate))
+            end
+        end
+
 		local buyableCnt = math.floor(remainPrice / itemPrice);
 
 		local titleText = ScpArgMsg("INPUT_CNT_D_D", "Auto_1", 1, "Auto_2", buyableCnt);
-		INPUT_NUMBER_BOX(frame, titleText, "EXEC_SHOP_SLOT_BUY", 1, 1, buyableCnt, nil, nil, 1);
+		INPUT_NUMBER_BOX(frame:GetTopParentFrame(), titleText, "EXEC_SHOP_SLOT_BUY", 1, 1, buyableCnt, nil, nil, 1);
 		frame:SetUserValue("BUY_CLSID", clsID);
 		return;
 	end
 
-	SHOP_BUY(clsID, shopItem.count);
-	SHOP_UPDATE_BUY_PRICE();
+	SHOP_BUY(clsID, shopItem.count, frame);
+	SHOP_UPDATE_BUY_PRICE(frame);
 end
 
 function ON_FAIL_SHOP_BUY(frame)
-	local MyMoney = GET_TOTAL_MONEY();
+	if frame == nil then
+		frame = ui.GetFrame('shop');
+	end
+
 	local TotalPrice = GET_TOTAL_BUY_PRICE(frame);
-	FINALPRICE = MyMoney + TotalPrice;
-	SHOP_UPDATE_BUY_PRICE();
+	FINALPRICE = SumForBigNumberInt64(GET_TOTAL_MONEY_STR(), TotalPrice);
+	SHOP_UPDATE_BUY_PRICE(frame);
 end
 
 function EXEC_SHOP_SLOT_BUY(frame, ret)
-
+	if frame == nil then
+		frame = ui.GetFrame('shop');
+	end
+	if frame:GetName() == 'companionshop' then
+		frame = frame:GetChild('foodBox');
+	end
 	ret = tonumber(ret);
 	local remainPrice = frame:GetUserIValue("EXPECTED_REMAIN_ZENY");
 	local clsID = frame:GetUserIValue("BUY_CLSID");
@@ -134,15 +172,18 @@ function EXEC_SHOP_SLOT_BUY(frame, ret)
 	local shopItem	= geShopTable.GetByClassID(clsID);
 	local itemCount = ret * shopItem.count;
 
-	SHOP_BUY(clsID, itemCount);
-	SHOP_UPDATE_BUY_PRICE();
+	SHOP_BUY(clsID, itemCount, frame);
+	SHOP_UPDATE_BUY_PRICE(frame);
 
 end
 
 function SHOP_BUTTON_BUYSELL(frame, slot, argStr, argNum)
-	local MyMoney = GET_TOTAL_MONEY();
+	if frame == nil then
+		frame = ui.GetFrame('shop');
+	end
+	
 	local TotalPrice = GET_TOTAL_BUY_PRICE(frame);
-	if -TotalPrice > MyMoney then
+	if IsGreaterThanForBigNumber(-TotalPrice, GET_TOTAL_MONEY_STR()) == 1 then
 		ui.AddText("SystemMsgFrame", ClMsg('NotEnoughMoney'));
 		return;
 	end
@@ -157,17 +198,19 @@ function SHOP_BUTTON_BUYSELL(frame, slot, argStr, argNum)
 	elseif isSellSound == true then
 		imcSound.PlaySoundEvent("market_sell");
 	end
-
-	FINALPRICE = MyMoney + TotalPrice;
-	SHOP_UPDATE_BUY_PRICE();
+	FINALPRICE = SumForBigNumber(GET_TOTAL_MONEY_STR(), TotalPrice);
+	SHOP_UPDATE_BUY_PRICE(frame);
 
 	SHOP_SELECT_ITEM_LIST = {}
 	
 end
 
 function SHOP_BUTTON_BUY(frame, slot, argStr, argNum)
-	-- æ∆¿Ã≈€ ±∏¿‘
-	local frame     = ui.GetFrame("shop");
+	if frame == nil then
+		frame = ui.GetFrame('shop');
+	end
+	
+	-- ÏïÑÏù¥ÌÖú Íµ¨ÏûÖ
 	local groupbox  = frame:GetChild('buyitemslot');
 	local buyslotSet	= tolua.cast(groupbox, 'ui::CSlotSet');
 	local slotCount = buyslotSet:GetSlotCount();
@@ -196,8 +239,10 @@ function SHOP_BUTTON_BUY(frame, slot, argStr, argNum)
 end
 
 function SHOP_BUTTON_SELL(frame, slot, argStr, argNum)
-	-- æ∆¿Ã≈€ ∆«∏≈
-	local frame     = ui.GetFrame("shop");
+	if frame == nil then
+		frame = ui.GetFrame('shop');
+	end
+	-- ÏïÑÏù¥ÌÖú ÌåêÎß§
 	local groupbox  = frame:GetChild('sellitemslot');
 	local sellslotSet	= tolua.cast(groupbox, 'ui::CSlotSet');
 	local slotCount = sellslotSet:GetSlotCount();
@@ -209,9 +254,20 @@ function SHOP_BUTTON_SELL(frame, slot, argStr, argNum)
 		if slotIcon ~= nil then
 			local slot  = sellslotSet:GetSlotByIndex(i);
 			local itemID = slot:GetUserValue("SLOT_ITEM_ID");
+
+			--ÌåêÎß§Îêú ÏïÑÏù¥ÌÖúÏùò Ï≤¥ÌÅ¨ Ïù¥ÎØ∏ÏßÄÎ•º ÏóÜÏï§Îã§
+			local invItem = session.GetInvItemByGuid(itemID);
+			if invItem ~= nil then
+				local invSlot = GET_SLOT_BY_ITEMID(nil, itemID);
+				invSlot:Select(0);
+				local invSlot_All = GET_SLOT_BY_ITEMID(nil, itemID, 1);
+				invSlot_All:Select(0);
+			end
+
 			item.AddToSellList(itemID, slot:GetUserIValue("SELL_CNT"));
 			CLEAR_SELL_SLOT(slot);
 			isSound = true;
+
 		end
 	end
 	item.SellList();
@@ -220,8 +276,11 @@ function SHOP_BUTTON_SELL(frame, slot, argStr, argNum)
 	return isSound;
 end
 
-function IS_SHOP_SELL(invitem, maxStack)
-	local frame     = ui.GetFrame("shop");
+function IS_SHOP_SELL(invitem, maxStack, frame)
+	if frame == nil then
+		frame = ui.GetFrame('shop');
+	end
+
 	local groupbox  = frame:GetChild('sellitemslot');
 	local slotSet  	= tolua.cast(groupbox, 'ui::CSlotSet');
 	local slotCount = slotSet:GetSlotCount();
@@ -245,7 +304,9 @@ function IS_SHOP_SELL(invitem, maxStack)
 end
 
 function SHOP_GET_SELL_SLOT_BY_ITEM_ID(frame, itemID)
-
+	if frame == nil then
+		frame = ui.GetFrame('shop');
+	end
 	local groupbox  = frame:GetChild('sellitemslot');
 	local slotSet  	= tolua.cast(groupbox, 'ui::CSlotSet');
 	local slotCount = slotSet:GetSlotCount();
@@ -264,7 +325,9 @@ function SHOP_GET_SELL_SLOT_BY_ITEM_ID(frame, itemID)
 end
 
 function GET_USABLE_SLOTSET(frame, invitem)
-
+	if frame == nil then
+		frame = ui.GetFrame('shop');
+	end
 	local groupbox  = frame:GetChild('sellitemslot');
 	local slotSet  	= tolua.cast(groupbox, 'ui::CSlotSet');
 	local slot = SHOP_GET_SELL_SLOT_BY_ITEM_ID(frame, invitem:GetIESID());
@@ -283,47 +346,57 @@ function GET_USABLE_SLOTSET(frame, invitem)
 end
 
 function SHOP_SELL_DROP(frame, ctrl)
+	if frame == nil then
+		frame = ui.GetFrame('shop');
+	end
+	local liftIcon = ui.GetLiftIcon();
+	local FromFrame = liftIcon:GetTopParentFrame();
+	local toFrame = frame:GetTopParentFrame();
+	if toFrame:GetName() == 'companionshop' then
+		toFrame = toFrame:GetChild('foodBox');
+	end
 
-	local liftIcon 				= ui.GetLiftIcon();
-	local FromFrame 			= liftIcon:GetTopParentFrame();
-	local toFrame				= frame:GetTopParentFrame();
 	if ctrl:GetClassName() ~= "slot" then
 		return;
 	end
 
 	local iconInfo = liftIcon:GetInfo();
 	local iesID = liftIcon:GetTooltipIESID();
-
 	local invItem = session.GetInvItemByGuid(iesID);
+	if invItem == nil then
+		return;
+	end
 
-	SHOP_SELL(invItem, invItem.count);
+	SHOP_SELL(invItem, invItem.count, toFrame);
 
 end
 
 
-function SHOP_SELL(invitem, sellCount, setTotalCount)
+function SHOP_SELL(invitem, sellCount, frame, setTotalCount)
+	if frame == nil then
+		frame = ui.GetFrame('shop');
+	end
+
 	if true == invitem.isLockState then
 		ui.SysMsg(ClMsg("MaterialItemIsLock"));
 		return;
 	end
-
 	local itemobj = GetIES(invitem:GetObject());
-	if itemobj.ShopTrade ~= 'YES' then
+	local itemProp = geItemTable.GetPropByName(itemobj.ClassName);
+	if itemProp:IsEnableShopTrade() == false then
 		ui.SysMsg(ClMsg("CannoTradeToNPC"));
 		return;
 	end
-
-	local frame     = ui.GetFrame("shop");
-
+	
 	imcSound.PlaySoundEvent('button_inven_click_item');
 	local slot = GET_USABLE_SLOTSET(frame, invitem);
 	slot:SetUserValue("SLOT_ITEM_ID", invitem:GetIESID());
 	local icon = CreateIcon(slot);
-	local imageName = itemobj.Icon;
+	local imageName = GET_EQUIP_ITEM_IMAGE_NAME(itemobj, 'Icon')
 	icon:Set(imageName, 'SELLITEMITEM', 0, 0, invitem:GetIESID());
 
 	SET_ITEM_TOOLTIP_ALL_TYPE(icon, invitem, itemobj.ClassName,'buy', invitem.type, invitem:GetIESID());
-	
+
 	slot:SetEventScript(ui.RBUTTONDOWN, "CANCEL_SELL");
 
 	local curCnt = slot:GetUserIValue("SELL_CNT");
@@ -353,19 +426,21 @@ function SHOP_SELL(invitem, sellCount, setTotalCount)
 	slot:SetUserValue("SELL_CNT", curCnt);
 
 	if itemobj.MaxStack > 1 then
-		slot:SetText('{s18}{b}{ol}'..curCnt, 'count', 'right', 'bottom', -2, 1);
+		slot:SetText('{s18}{b}{ol}'..curCnt, 'count', ui.RIGHT, ui.BOTTOM, -2, 1);
 	end
 
 	SHOP_SELECT_ITEM_LIST[invitem:GetIESID()] = curCnt;
 
 	SHOP_ITEM_LIST_GET(frame);
-	SHOP_UPDATE_BUY_PRICE();
+	SHOP_UPDATE_BUY_PRICE(frame);
 
 	INVENTORY_UPDATE_ICON_BY_INVITEM(ui.GetFrame('inventory'), invitem);
-
 end
 
 function GET_SHOP_TOTAL_USED_POINT(frame, shopItem)
+	if frame == nil then
+		frame = ui.GetFrame('shop');
+	end
 	local buygroupbox  = frame:GetChild('buyitemslot');
 	local buyslotSet   = GET_CHILD(frame, "buyitemslot", "ui::CSlotSet");
 	local buyslotCount = buyslotSet:GetSlotCount();
@@ -435,13 +510,6 @@ function GET_SHOP_ITEM_MY_CNT(shopItem)
 		end
 
 		return item.count;
-	elseif shopItem:GetIDSpace() == "Wiki" then
-		local wiki = GetWiki(shopItem.type);
-		if wiki == nil then
-			return 0;
-		end
-
-		return 1;
 	end
 
 
@@ -449,18 +517,17 @@ function GET_SHOP_ITEM_MY_CNT(shopItem)
 
 end
 
-function SHOP_BUY(clsID, buyCnt)
+function SHOP_BUY(clsID, buyCnt, frame)
+	if frame == nil then
+		frame = ui.GetFrame('shop');
+	end
 
-	local MyMoney = GET_TOTAL_MONEY();
-	local TotalPrice = GET_TOTAL_BUY_PRICE(ui.GetFrame("shop"));
+	local TotalPrice = GET_TOTAL_BUY_PRICE(frame);
 	if clsID == nil then
 		return;
 	end
 
 	local shopItem	= geShopTable.GetByClassID(clsID);
-
-	local frame     = ui.GetFrame("shop");
-
 	if shopItem:GetPropName() ~= "None" then
 		local used = GET_SHOP_TOTAL_USED_POINT(frame, shopItem);
 		local remain = GET_SHOP_HAVE_POINT(shopItem);
@@ -469,8 +536,17 @@ function SHOP_BUY(clsID, buyCnt)
 			return;
 		end
 	end
+	
+    local itemPrice = shopItem.price
+    local shopName = session.GetCurrentShopName()
+    if IS_COLONY_TAX_SHOP_NAME(GET_COLONY_TAX_CURRENT_CITY_NAME(), shopName) == true then
+        local taxRate = GET_COLONY_TAX_RATE_CURRENT_MAP()
+        if taxRate ~= nil then
+            itemPrice = tonumber(CALC_PRICE_WITH_TAX_RATE(itemPrice, taxRate))
+        end
+    end
 
-	if shopItem.price > MyMoney + TotalPrice then
+	if IsGreaterThanForBigNumber(itemPrice + (-1 * TotalPrice), GET_TOTAL_MONEY_STR()) == 1 then
 		ui.AddText("SystemMsgFrame", ClMsg('NotEnoughMoney'));
 		return;
 	end
@@ -502,7 +578,7 @@ function SHOP_BUY(clsID, buyCnt)
 				if GET_SHOP_ITEM_MAXSTACK(shopItem) >= BUYSLOTCOUNT[i] + buyCnt  then
 					BUYSLOTCOUNT[i] = BUYSLOTCOUNT[i] + buyCnt;
 					local slotIcon	= slotSet:GetIconByIndex(i);
-					slot:SetText('{s18}{ol}{b}'..BUYSLOTCOUNT[i], 'count', 'right', 'bottom', -2, 1);
+					slot:SetText('{s18}{ol}{b}'..BUYSLOTCOUNT[i], 'count', ui.RIGHT, ui.BOTTOM, -2, 1);
 					slot:Invalidate();
 					SHOP_ITEM_LIST_GET(frame);
 					return;
@@ -531,7 +607,7 @@ function SHOP_BUY(clsID, buyCnt)
 			slot:SetEventScript(ui.RBUTTONDOWN, "CANCEL_BUY");
 			slot:SetEventScriptArgNumber(ui.RBUTTONDOWN, i);
 			BUYSLOTCOUNT[i] = buyCnt;
-			slot:SetText('{s18}{ol}{b}'..BUYSLOTCOUNT[i], 'count', 'right', 'bottom', -2, 1);
+			slot:SetText('{s18}{ol}{b}'..BUYSLOTCOUNT[i], 'count', ui.RIGHT, ui.BOTTOM, -2, 1);
 			SHOP_ITEM_LIST_GET(frame);
 			return;
 		end
@@ -539,7 +615,13 @@ function SHOP_BUY(clsID, buyCnt)
 end
 
 function CANCEL_BUY(frame, ctrl, argstr, argnum)
-	local frame     = ui.GetFrame("shop");
+	if frame == nil then
+		frame = ui.GetFrame('shop');
+	end	
+	local frame     = frame:GetTopParentFrame();
+	if frame:GetName() == 'companionshop' then
+		frame = frame:GetChild('foodBox');
+	end
 	local groupbox  = frame:GetChild('buyitemslot');
 	local slotSet  	= tolua.cast(groupbox, 'ui::CSlotSet');
 	local slotCount = slotSet:GetSlotCount();
@@ -549,7 +631,7 @@ function CANCEL_BUY(frame, ctrl, argstr, argnum)
 		BUYSLOTCOUNT[argnum] = 0;
 		slot:ClearText();
 		slot:ClearIcon();
-		SHOP_UPDATE_BUY_PRICE();
+		SHOP_UPDATE_BUY_PRICE(frame);
 		SHOP_ITEM_LIST_GET(frame);
 	end
 	imcSound.PlaySoundEvent("inven_unequip");
@@ -563,7 +645,10 @@ function CLEAR_SELL_SLOT(slot)
 end
 
 function CANCEL_SELL(frame, ctrl, argstr, argnum)
-	local frame     = ui.GetFrame("shop");
+	local frame     = frame:GetTopParentFrame();
+	if frame:GetName() == 'companionshop' then
+		frame = frame:GetChild('foodBox');
+	end
 	local groupbox  = frame:GetChild('sellitemslot');
 	local slotSet  	= tolua.cast(groupbox, 'ui::CSlotSet');
 	local slotCount = slotSet:GetSlotCount();
@@ -573,23 +658,25 @@ function CANCEL_SELL(frame, ctrl, argstr, argnum)
 		slot = tolua.cast(ctrl, "ui::CSlot");
 	end
 
-	-- ¿Œ∫•¿∏∑Œ æ∆¿Ã≈€ ∫π±Õ
+	-- Ïù∏Î≤§ÏúºÎ°ú ÏïÑÏù¥ÌÖú Î≥µÍ∑Ä
 	local itemID = slot:GetUserValue("SLOT_ITEM_ID");
 	local invitem = session.GetInvItemByGuid(itemID);
 
 	SHOP_SELECT_ITEM_LIST[itemID] = nil
-	INVENTORY_UPDATE_ICONS(ui.GetFrame("inventory"));
+	INVENTORY_SLOT_UNCHECK(ui.GetFrame("inventory"), itemID);
 
 	CLEAR_SELL_SLOT(slot);
-	SHOP_UPDATE_BUY_PRICE();
+	SHOP_UPDATE_BUY_PRICE(frame);
 	SHOP_ITEM_LIST_GET(frame);
 
 	imcSound.PlaySoundEvent("inven_unequip");
 end
 
 function GET_TOTAL_BUY_PRICE(frame)
-
-	-- ±∏¿‘ √— ±›æ◊ ∞ËªÍ
+	if frame == nil then
+		frame = ui.GetFrame('shop');
+	end
+	-- Íµ¨ÏûÖ Ï¥ù Í∏àÏï° Í≥ÑÏÇ∞
 	local buygroupbox  = frame:GetChild('buyitemslot');
 	local buyslotSet   = tolua.cast(buygroupbox, 'ui::CSlotSet');
 	local buyslotCount = buyslotSet:GetSlotCount();
@@ -602,10 +689,15 @@ function GET_TOTAL_BUY_PRICE(frame)
 		if icon ~= nil then
 			local clsid = icon:GetUserIValue("SHOPCLSID");
 			local shopItem = geShopTable.GetByClassID(clsid);
+            local unitPrice = shopItem.price
+            local shopName = session.GetCurrentShopName()
+            if IS_COLONY_TAX_SHOP_NAME(GET_COLONY_TAX_CURRENT_CITY_NAME(), shopName) == true then
+                unitPrice = GET_SHOP_PRICE_WITH_TAX(shopItem.price, GET_COLONY_TAX_RATE_CURRENT_MAP())
+            end
 			if BUYSLOTCOUNT[i] ~= nil then
-				buyprice = buyprice - shopItem.price * BUYSLOTCOUNT[i];
+				buyprice = buyprice - unitPrice * BUYSLOTCOUNT[i];
 			else
-				buyprice = buyprice - shopItem.price;
+				buyprice = buyprice - unitPrice
 			end
 		end
 	end
@@ -613,7 +705,7 @@ function GET_TOTAL_BUY_PRICE(frame)
 	local buypricetext = frame:GetChild('buy_price');
 	buypricetext:SetText("{@st41b}" .. tostring(buyprice));
 
-	-- ∆«∏≈  √— ±›æ◊ ∞ËªÍ
+	-- ÌåêÎß§  Ï¥ù Í∏àÏï° Í≥ÑÏÇ∞
 	local sellgroupbox  = frame:GetChild('sellitemslot');
 	if sellgroupbox == nil then
 		return buyprice;
@@ -646,33 +738,39 @@ function GET_TOTAL_BUY_PRICE(frame)
 	return sellprice + buyprice;
 end
 
-function SHOP_UPDATE_BUY_PRICE()
-	local frame     = ui.GetFrame("shop");
+function SHOP_UPDATE_BUY_PRICE(frame)
+	if frame == nil then
+		frame = ui.GetFrame('shop');
+	end
 	local price = GET_TOTAL_BUY_PRICE(frame);
-	local txt = frame:GetChild("pricetxt");
+	local txt = frame:GetChild("pricetxt");	
 	if price >= 0 then
-		txt:SetText("{@st41}" ..COLOR_YELLOW .. price);
+		txt:SetTextByKey("text", price);
 	else
-		txt:SetText("{@st41}" ..COLOR_RED .. price);
+		txt:SetTextByKey("text", "{@st41}" ..COLOR_RED .. price);
 	end
 
 	local invenZeny = FINALPRICE;
-	local totaltext = frame:GetChild("finalprice");
-	local totalprice = invenZeny + price;
-
-	totaltext:SetText("{@st41}"..COLOR_YELLOW .. totalprice);
+	local totaltext = frame:GetChild("finalprice");	
+	local totalprice = SumForBigNumberInt64(invenZeny, price);	
+	totaltext:SetTextByKey("text", totalprice);
 	frame:SetUserValue("EXPECTED_REMAIN_ZENY", totalprice);
 
 	return totalprice;
 end
 
-function SHOP_UPDATE_PAGE_NUMBER()
-	local frame     = ui.GetFrame("shop");
+function SHOP_UPDATE_PAGE_NUMBER(frame)
+	if frame == nil then
+		frame = ui.GetFrame('shop');
+	end	
 	local txt = frame:GetChild("pagetxt");
 	txt:SetText("{@st66b}" .. NOWPAGENUM .. " / " .. TOTALPAGENUM);
 end
 
 function SHOP_ON_MSG(frame, msg, argStr, argNum)
+	if frame == nil then
+		frame = ui.GetFrame('shop');
+	end	
 	local shopItemList = session.GetShopItemList();
 	local shopItemCount = 0;
 	if shopItemList ~= nil then
@@ -680,10 +778,9 @@ function SHOP_ON_MSG(frame, msg, argStr, argNum)
 	end
 
 	if  msg == 'SHOP_ITEM_LIST_GET' or msg == 'COMMON_SHOP_ITEM_LIST_GET' then
-		
 		SHOP_ITEM_LIST_GET(frame);
 		SHOP_ITEM_SLOT_INIT(frame);
-		--UPDATE_SOLD_ITEM_LIST(frame);
+		UPDATE_SOLD_ITEM_LIST(frame);
 
 		frame:ShowWindow(1);
 		ui.CloseFrame('notice');
@@ -691,11 +788,26 @@ function SHOP_ON_MSG(frame, msg, argStr, argNum)
 
 	if msg == 'INV_ITEM_POST_REMOVE' or msg == 'INV_ITEM_CHANGE_COUNT' then
 		SHOP_ITEM_LIST_GET(frame);
+		UPDATE_SOLD_ITEM_LIST(frame);
+	end
+
+	if msg == 'UPDATE_COLONY_TAX_RATE_SET' then
+		SHOP_ITEM_LIST_GET(frame);
+		SHOP_ITEM_SLOT_INIT(frame);
+		UPDATE_SOLD_ITEM_LIST(frame);
+
+		local buy_itemtext = GET_CHILD_RECURSIVELY(frame, "buy_itemtext")
+		SET_COLONY_TAX_RATE_TEXT(buy_itemtext, "tax_rate", IS_COLONY_TAX_SHOP_NAME(GET_COLONY_TAX_CURRENT_CITY_NAME(), session.GetCurrentShopName()))
 	end
 
 	if  msg == 'DIALOG_CLOSE' or msg == 'ESCAPE_PRESSED' then
-		local frame     = ui.GetFrame("shop");
-		if frame:IsVisible() == 0 then
+		local topFrame = frame;
+		if argStr == 'Klapeda_Companion' then
+			topFrame = ui.GetFrame('companionshop');
+			frame = topFrame:GetChild('foodBox');
+		end
+
+		if topFrame:IsVisible() == 0 then
 			return;
 		end
 
@@ -726,8 +838,7 @@ function SHOP_ON_MSG(frame, msg, argStr, argNum)
 			end
 		end
 		sellslotSet:ClearIconAll();
-
-		frame:ShowWindow(0);
+		topFrame:ShowWindow(0);
 		
 		RIGHT_PAGEBUTTON_ENABLE(frame, 1);
 		LEFT_PAGEBUTTON_ENABLE(frame, 0);
@@ -740,7 +851,10 @@ function SHOP_REPAIR_ITEM(frame)
 end
 
 function SHOP_ITEM_SLOT_INIT(frame)
-	-- ±∏¿‘ ΩΩ∑‘ √ ±‚»≠
+	if frame == nil then
+		frame = ui.GetFrame('shop');
+	end	
+	-- Íµ¨ÏûÖ Ïä¨Î°Ø Ï¥àÍ∏∞Ìôî
 	local groupbox  = frame:GetChild('buyitemslot');
 	local slotSet   = tolua.cast(groupbox, 'ui::CSlotSet');
 	local slotCount = slotSet:GetSlotCount();
@@ -755,7 +869,7 @@ function SHOP_ITEM_SLOT_INIT(frame)
 
 	--slotSet:ClearIconAll();
 
-	-- ∆«∏≈ ΩΩ∑‘ √ ±‚»≠ ( ∆«∏≈¥¬ ¿Œ∫•¬ ¿∏∑Œ æ∆¿Ã≈€¿ª ∫π±Õ Ω√ƒ—¡‡æﬂ «—¥Ÿ )
+	-- ÌåêÎß§ Ïä¨Î°Ø Ï¥àÍ∏∞Ìôî ( ÌåêÎß§Îäî Ïù∏Î≤§Ï™ΩÏúºÎ°ú ÏïÑÏù¥ÌÖúÏùÑ Î≥µÍ∑Ä ÏãúÏºúÏ§òÏïº ÌïúÎã§ )
 	groupbox  = frame:GetChild('sellitemslot');
 	slotSet   = tolua.cast(groupbox, 'ui::CSlotSet');
 	slotCount = slotSet:GetSlotCount();
@@ -779,23 +893,36 @@ function SHOP_ITEM_SLOT_INIT(frame)
 		INVENTORY_UPDATE_ICONS(ui.GetFrame("inventory"));
 	end
 
-	SHOP_UPDATE_BUY_PRICE();
-	SHOP_UPDATE_PAGE_NUMBER();
+	SHOP_UPDATE_BUY_PRICE(frame);
+	SHOP_UPDATE_PAGE_NUMBER(frame);
 	SHOP_ITEM_LIST_GET(frame);
 end
 
 function SHOP_ITEM_LIST_GET(frame)
-
+	if frame == nil then
+		frame = ui.GetFrame('shop');
+	end
+	
 	local ShopItemGroupBox 	= frame:GetChild('shop');
 	local SHOPITEM_listSet	= tolua.cast(ShopItemGroupBox, "ui::CGroupBox");
+
 	SHOPITEM_listSet:DeleteAllControl();
-	local grid = SHOPITEM_listSet:CreateOrGetControl('grid', 'grid', 0, 0, ui.NONE_HORZ, ui.NONE_VERT, 30, 15, 30, 8)
+	local byCompanionShop = false;
+	if frame:GetTopParentFrame():GetName() == 'companionshop' then
+		byCompanionShop = true;
+	end
+	local grid = nil;
+	if byCompanionShop == true then
+		grid = SHOPITEM_listSet:CreateOrGetControl('grid', 'grid', 0, 0, ui.NONE_HORZ, ui.NONE_VERT, 10, 10, 0, 0);
+	else
+		grid = SHOPITEM_listSet:CreateOrGetControl('grid', 'grid', 0, 0, ui.NONE_HORZ, ui.NONE_VERT, 30, 15, 30, 8);
+	end
 
 	local shopgrid	= tolua.cast(grid, "ui::CGrid");
-	shopgrid:SetSlotSize(460, 50)
+	shopgrid:SetSlotSize(460, 50);
 	shopgrid:SetSlotSpace(0, 0)
 
-	-- ªÛ¡°ø° ∆ƒ¥¬ æ∆¿Ã≈€ ∞≥ºˆ ∆ƒæ«
+	-- ÏÉÅÏ†êÏóê ÌååÎäî ÏïÑÏù¥ÌÖú Í∞úÏàò ÌååÏïÖ
 	local shopItemList = session.GetShopItemList();
 	if shopItemList == nil then
 		return;
@@ -803,16 +930,12 @@ function SHOP_ITEM_LIST_GET(frame)
 	local shopItemCount = shopItemList:Count();
 	local SHOPITEMLIST_prevItem = nil;
 
-	-- ªÛ¡°ø° ∆ƒ¥¬ æ∆¿Ã≈€¿Ã 10∞≥∞° ≥—¿ª Ω√
+	TOTALPAGENUM = math.floor(shopItemCount / 8) + 1;
+	if shopItemCount % 8 == 0 then
+		TOTALPAGENUM = TOTALPAGENUM - 1;
+	end
+
 	if shopItemCount - shopItemCount % 8 > 0 then
-		if shopItemCount % 8 == 0 then
-			TOTALPAGENUM = shopItemCount / 8;
-		else
-			local total = shopItemCount / 8;
-			TOTALPAGENUM = total - total % 1 + 1;
-		end
-
-
 		local pageEndCount = NOWPAGENUM * 8 - 1;
 		if pageEndCount > shopItemCount then
 			pageEndCount = shopItemCount - 1;
@@ -822,13 +945,12 @@ function SHOP_ITEM_LIST_GET(frame)
 			SHOP_ITEM_LIST_UPDATE(frame, i, shopItemCount);
 		end
 	else
-
 		for i = 0, shopItemCount - 1 do
 			SHOP_ITEM_LIST_UPDATE(frame, i, shopItemCount);
 		end
 	end
 
-	SHOP_UPDATE_PAGE_NUMBER();
+	SHOP_UPDATE_PAGE_NUMBER(frame);
 end
 
 function GET_SHOPITEM_TXT(shopItem, class)
@@ -846,24 +968,30 @@ function GET_SHOPITEM_TXT(shopItem, class)
 end
 
 function GET_SHOPITEM_PRICE_TXT(shopItem, class)
+    local unitPrice = shopItem.price
+    
+    local shopName = session.GetCurrentShopName()
+    if IS_COLONY_TAX_SHOP_NAME(GET_COLONY_TAX_CURRENT_CITY_NAME(), shopName) == true then
+        unitPrice = GET_SHOP_PRICE_WITH_TAX(shopItem.price, GET_COLONY_TAX_RATE_CURRENT_MAP())
+    end
 
 	local needProp = shopItem:GetPropName();
 	if needProp == "None" then
-		return shopItem.price * shopItem.count;
+		return GET_COMMAED_STRING(unitPrice * shopItem.count);
 	end
 
 	local availCnt = GET_SHOP_PROP_POINT(needProp);
 
 	local limitedTxt = ScpArgMsg("{Auto_1}_Count_Limited", "Auto_1", availCnt);
-	return string.format("%d {@st45r14}(%s)", shopItem.price * shopItem.count, limitedTxt);
+	return string.format("%d {@st45r14}(%s)", GET_COMMAED_STRING(unitPrice * shopItem.count), limitedTxt);
 
 end
 
 function IS_SHOPITEM_BUYABLE(shopItem)
 	if shopItem:GetIDSpace() == "Item" then
 		if shopItem.ItemType == "Equip" then
-		return CHECK_EQUIPABLE(shopItem.type);
-	end
+			return CHECK_EQUIPABLE(shopItem.type);
+		end
 	end
 
 	return "OK";
@@ -882,7 +1010,10 @@ function SET_SHOP_ITEM_TOOLTIP(icon, shopItem)
 end
 
 function SHOP_ITEM_LIST_UPDATE(frame, ShopItemData, ShopItemCount)
-	-- ªÛ¡°ø° ∆ƒ¥¬ æ∆¿Ã≈€ ∞≥ºˆ ∆ƒæ«
+	if frame == nil then
+		frame = ui.GetFrame('shop');
+	end	
+	-- ÏÉÅÏ†êÏóê ÌååÎäî ÏïÑÏù¥ÌÖú Í∞úÏàò ÌååÏïÖ
 	local shopItemList = session.GetShopItemList();
 
 	local shopItemList = session.GetShopItemList();
@@ -892,7 +1023,7 @@ function SHOP_ITEM_LIST_UPDATE(frame, ShopItemData, ShopItemCount)
 
 	local shopItem	= shopItemList:PtrAt(ShopItemData);
 
-	-- ªÛ¡°ø° ∆ƒ¥¬ æ∆¿Ã≈€ ±◊∑Ïº≥¡§
+	-- ÏÉÅÏ†êÏóê ÌååÎäî ÏïÑÏù¥ÌÖú Í∑∏Î£πÏÑ§Ï†ï
 	local ShopItemGroupBox 	= frame:GetChild('shop');
 	local SHOPITEM_listSet	= tolua.cast(ShopItemGroupBox, "ui::CGroupBox");
 	local ShopItemName		= 'SHOPITEMLLIST_' .. ShopItemData;
@@ -903,14 +1034,14 @@ function SHOP_ITEM_LIST_UPDATE(frame, ShopItemData, ShopItemCount)
 		ui.MsgBox(ShopItemData)
 	end
 
-	-- ªÛ¡° æ∆¿Ã≈€ ∏ÆΩ∫∆Æ∏¶ ¿‘∑¬«—¥Ÿ
+	-- ÏÉÅÏ†ê ÏïÑÏù¥ÌÖú Î¶¨Ïä§Ìä∏Î•º ÏûÖÎ†•ÌïúÎã§
 	local ShopItemCountObj		= grid:CreateControlSet('shopitemset_Type', ShopItemName, 0, 0);
 	local ShopItemCountCtrl		= tolua.cast(ShopItemCountObj, "ui::CControlSet");
+	local foodInfoBox = ShopItemCountCtrl:GetChild('foodInfoBox');
 	ShopItemCountCtrl:SetEnableSelect(1);
 	ShopItemCountCtrl:SetSelectGroupName("ShopItemList");
 
-
-	-- Sort∏¶ ¿ß«— ∞≥ºˆ ∞™¿ª ∞ËªÍ«œ∂Û
+	-- SortÎ•º ÏúÑÌïú Í∞úÏàò Í∞íÏùÑ Í≥ÑÏÇ∞ÌïòÎùº
 	--[[
 	ui.MsgBox(ShopItemData)
 	if ShopItemData % 8 == 0 then
@@ -921,14 +1052,14 @@ function SHOP_ITEM_LIST_UPDATE(frame, ShopItemData, ShopItemCount)
 		end
 
 	end
-	]]
+	]]--
 
 
-		-- ªÛ¡° æ∆¿Ãƒ‹ º≥¡§ π◊ ±‚≈∏ º≥¡§µÈ¿ª «—¥Ÿ
+	-- ÏÉÅÏ†ê ÏïÑÏù¥ÏΩò ÏÑ§Ï†ï Î∞è Í∏∞ÌÉÄ ÏÑ§Ï†ïÎì§ÏùÑ ÌïúÎã§
 	local ConSetBySlot 	= ShopItemCountCtrl:GetChild('slot');
 	local slot			= tolua.cast(ConSetBySlot, "ui::CSlot");
 	local icon = CreateIcon(slot);
-
+	
 	local class 		= GetClassByType(shopItem:GetIDSpace(), shopItem.type);
 	local imageName 	= shopItem:GetIcon();
 
@@ -947,14 +1078,21 @@ function SHOP_ITEM_LIST_UPDATE(frame, ShopItemData, ShopItemCount)
 	slot:SetEventScriptArgString(ui.RBUTTONDOWN, imageName);
 	slot:SetEventScriptArgNumber(ui.RBUTTONDOWN, ShopItemData);
 
-	-- π≠¿Ωæ∆¿Ã≈€ ºˆ∑Æ «•Ω√
+	-- Ïª¥Ìå®ÏÉÅÏ†êÏù∏ Í≤ΩÏö∞ÏóêÎäî Î®πÎäî Ïª¥Ìå®ÎãàÏñ∏ÎèÑ ÌëúÏãúÌï¥Ï£ºÏûê	
+	if frame:GetName() == 'foodBox' then
+		--COMPANIONSHOP_ADD_COMPANION_INFO(ShopItemCountCtrl, tostring(class.NumberArg2));
+		foodInfoBox:ShowWindow(1);
+	else
+		foodInfoBox:ShowWindow(0);
+	end
+
+	-- Î¨∂ÏùåÏïÑÏù¥ÌÖú ÏàòÎüâ ÌëúÏãú
 	if shopItem.count > 1 then
-		slot:SetText(shopItem.count,  'quickiconfont', 'right', 'bottom', 0, 0);
+		slot:SetText(shopItem.count,  'quickiconfont', ui.RIGHT, ui.BOTTOM, 0, 0);
 	end
 
 	SET_SHOP_ITEM_TOOLTIP(icon, shopItem);
-
-	-- ¬¯øÎ ∫“∞°¥¬ ªˆ ∏∂Ω∫≈© √≥∏Æ
+	-- Ï∞©Ïö© Î∂àÍ∞ÄÎäî ÏÉâ ÎßàÏä§ÌÅ¨ Ï≤òÎ¶¨
 	local result = IS_SHOPITEM_BUYABLE(shopItem);
 
 
@@ -970,22 +1108,25 @@ function SHOP_ITEM_LIST_UPDATE(frame, ShopItemData, ShopItemCount)
 
 end
 
--- ªÛ¡° ∆‰¿Ã¡ˆ ">" ">>" ∏¶ ¥≠∑∂¿ª∂ß √≥∏Æ
--- ∆‰¿Ã¡ˆø° ∏¬∞‘ ªÛ¡°∏ÆΩ∫∆Æµµ ∞ªΩ≈√≥∏Æ
--- ">>" ∏¶ ¥≠∑∂¿ª∂ß¥¬ argnumø°º≠ 1¿ª ≥—±Ë
+-- ÏÉÅÏ†ê ÌéòÏù¥ÏßÄ ">" ">>" Î•º ÎàåÎ†ÄÏùÑÎïå Ï≤òÎ¶¨
+-- ÌéòÏù¥ÏßÄÏóê ÎßûÍ≤å ÏÉÅÏ†êÎ¶¨Ïä§Ìä∏ÎèÑ Í∞±Ïã†Ï≤òÎ¶¨
+-- ">>" Î•º ÎàåÎ†ÄÏùÑÎïåÎäî argnumÏóêÏÑú 1ÏùÑ ÎÑòÍπÄ
 function SHOP_PAGE_RIGHT(frame, ctrl, argstr, argnum)
+	if frame == nil then
+		frame = ui.GetFrame('shop');
+	end	
 	if ctrl:IsEnable() == 1 then
 		if argnum == 1 then
 			NOWPAGENUM = TOTALPAGENUM;
 
-			SHOP_UPDATE_PAGE_NUMBER();
+			SHOP_UPDATE_PAGE_NUMBER(frame);
 			SHOP_ITEM_LIST_GET(frame);
 			RIGHT_PAGEBUTTON_ENABLE(frame, 0);
 			LEFT_PAGEBUTTON_ENABLE(frame, 1);
 		else
 			if NOWPAGENUM < TOTALPAGENUM then
 				NOWPAGENUM = NOWPAGENUM + 1;
-				SHOP_UPDATE_PAGE_NUMBER();
+				SHOP_UPDATE_PAGE_NUMBER(frame);
 				SHOP_ITEM_LIST_GET(frame);
 
 				if NOWPAGENUM == TOTALPAGENUM then
@@ -1001,22 +1142,25 @@ function SHOP_PAGE_RIGHT(frame, ctrl, argstr, argnum)
 	end
 end
 
--- ªÛ¡° ∆‰¿Ã¡ˆ "<" "<<" ∏¶ ¥≠∑∂¿ª∂ß √≥∏Æ
--- ∆‰¿Ã¡ˆø° ∏¬∞‘ ªÛ¡°∏ÆΩ∫∆Æµµ ∞ªΩ≈√≥∏Æ
--- "<<" ∏¶ ¥≠∑∂¿ª∂ß¥¬ argnumø°º≠ 1¿ª ≥—±Ë
+-- ÏÉÅÏ†ê ÌéòÏù¥ÏßÄ "<" "<<" Î•º ÎàåÎ†ÄÏùÑÎïå Ï≤òÎ¶¨
+-- ÌéòÏù¥ÏßÄÏóê ÎßûÍ≤å ÏÉÅÏ†êÎ¶¨Ïä§Ìä∏ÎèÑ Í∞±Ïã†Ï≤òÎ¶¨
+-- "<<" Î•º ÎàåÎ†ÄÏùÑÎïåÎäî argnumÏóêÏÑú 1ÏùÑ ÎÑòÍπÄ
 function SHOP_PAGE_LEFT(frame, ctrl, argstr, argnum)
+	if frame == nil then
+		frame = ui.GetFrame('shop');
+	end	
 	if ctrl:IsEnable() == 1 then
 		if argnum == 1 then
 			NOWPAGENUM = 1;
 
-			SHOP_UPDATE_PAGE_NUMBER();
+			SHOP_UPDATE_PAGE_NUMBER(frame);
 			SHOP_ITEM_LIST_GET(frame);
 			RIGHT_PAGEBUTTON_ENABLE(frame, 1);
 			LEFT_PAGEBUTTON_ENABLE(frame, 0);
 		else
 			if NOWPAGENUM > 1 then
 				NOWPAGENUM = NOWPAGENUM - 1;
-				SHOP_UPDATE_PAGE_NUMBER();
+				SHOP_UPDATE_PAGE_NUMBER(frame);
 				SHOP_ITEM_LIST_GET(frame);
 
 				if NOWPAGENUM == 1 then
@@ -1033,6 +1177,9 @@ function SHOP_PAGE_LEFT(frame, ctrl, argstr, argnum)
 end
 
 function RIGHT_PAGEBUTTON_ENABLE(frame, argNum)
+	if frame == nil then
+		frame = ui.GetFrame('shop');
+	end	
 	local pageRight = frame:GetChild('pageright');
 	local pageEnd	= frame:GetChild('pageend');
 
@@ -1041,6 +1188,9 @@ function RIGHT_PAGEBUTTON_ENABLE(frame, argNum)
 end
 
 function LEFT_PAGEBUTTON_ENABLE(frame, argNum)
+	if frame == nil then
+		frame = ui.GetFrame('shop');
+	end	
 	local pageLeft  = frame:GetChild('pageleft');
 	local pageStart	= frame:GetChild('pagestart');
 
@@ -1049,100 +1199,133 @@ function LEFT_PAGEBUTTON_ENABLE(frame, argNum)
 end
 
 function ON_SOLD_ITEM_LIST(frame, msg, str, num)
+	if str == 'companion' then
+		frame = ui.GetFrame('companionshop');
+		frame = frame:GetChild('foodBox');
+	end
 
 	UPDATE_SOLD_ITEM_LIST(frame);
-
 end
 
 function UPDATE_SOLD_ITEM_LIST(frame)
+	if frame == nil then
+		frame = ui.GetFrame('shop');
+	end	
 	local slotSet = GET_CHILD(frame, "solditemslot", "ui::CSlotSet");
 	CLEAR_SOLD_ITEM_LIST(slotSet);
 
 	local list = session.GetSoldItemList();
-	local i = list:Tail();
-	local idx = 0;
-	while 1 do
-		if i == list:InvalidIndex() then
-			break;
-		end
-
+	FOR_EACH_INVENTORY(list, function(invItemList, info, slotSet)		
+		local idx = imcSlot:GetEmptySlotIndex(slotSet);
 		local slot = slotSet:GetSlotByIndex(idx);
 		if slot == nil then
-			break;
+			return 'break';
 		end
-		local info = list:Element(i);
-		local obj = GetIES(info:GetObject());
-		local info = list:Element(i);
-		SOLD_SLOT_SET(slot, i, info);
-
-		idx = idx + 1;
-		i = list:Prev(i);
-	end
+		local obj = GetIES(info:GetObject());		
+		SOLD_SLOT_SET(slot, idx, info);
+	end, true, slotSet);
 
 	slotSet:Invalidate();
+	FINALPRICE = GET_TOTAL_MONEY_STR();
 
-
-	local MyMoney = GET_TOTAL_MONEY();
-	local TotalPrice = GET_TOTAL_BUY_PRICE(frame);
-	FINALPRICE = MyMoney + TotalPrice;
-
-	SHOP_UPDATE_BUY_PRICE();
-
-
+	SHOP_UPDATE_BUY_PRICE(frame);
 end
 
 function SOLD_SLOT_SET(slot, index, info)
-
 	local obj = GetIES(info:GetObject());
-	--local icon = SET_SLOT_ITEM_INFO(slot, obj, info.count);
-
 	local icon = CreateIcon(slot);
 	icon:EnableHitTest(0);
-	icon:SetImage(obj.Icon);
+	local imageName = GET_EQUIP_ITEM_IMAGE_NAME(obj, 'Icon')
+	icon:Set(imageName, 'SOLDITEMITEM', 0, 0, info:GetIESID());
 
-	--SET_ITEM_TOOLTIP_TYPE(icon, obj.ClassID, obj);
-	SET_ITEM_TOOLTIP_ALL_TYPE(icon, info, obj.ClassName, 'soldItem', info.type, index);
+	SET_ITEM_TOOLTIP_ALL_TYPE(icon, info, obj.ClassName, 'soldItem', info.type, info:GetIESID());
 
 	if IS_EQUIP(obj) == false then
-		slot:SetText('{s18}{ol}{b}'..info.count, 'count', 'right', 'bottom', -2, 1);
+		slot:SetText('{s18}{ol}{b}'..info.count, 'count', ui.RIGHT, ui.BOTTOM, -2, 1);
 	end
-   -- icon:SetTooltipArg('soldItem', info.type, index);
 
+	local price = 0;
+	local itemProp = geItemTable.GetPropByName(obj.ClassName);
+	if itemProp ~= nil then
+		price = geItemTable.GetSellPrice(itemProp);
+	end
+	slot:SetUserValue('SOLDITEMPRICE', price * info.count);
 	slot:SetEventScript(ui.RBUTTONUP, "CONTEXT_SOLD_ITEM");
-	slot:SetEventScriptArgNumber(ui.RBUTTONUP, index);
-
+	slot:SetEventScriptArgString(ui.RBUTTONUP, info:GetIESID());
 end
 
-function CONTEXT_SOLD_ITEM(frame, slot, str, num)
-
+function CONTEXT_SOLD_ITEM(frame, slot, guid)
+	if frame == nil then
+		frame = ui.GetFrame('shop');
+	end
 	local list = session.GetSoldItemList();
-	if list:IsValidIndex(num) == 0 then
+	local info = list:GetItemByGuid(guid);
+	if info == nil then
 		return;
 	end
-
-	local info = list:Element(num);
 	local obj = GetIES(info:GetObject());
 
-
+	local topFrame = frame:GetTopParentFrame();
 	local context = ui.CreateContextMenu("SOLD_ITEM_CONTEXT", "{@st41}".. GET_FULL_NAME(obj).. "{@st42b}..",0, 0, 100, 100);
-	local strScp = string.format("SHOP_REQ_CANCEL_SELL(%d)", num);
---	ui.AddContextMenuItem(context, ScpArgMsg("Auto_{@st42b}JaeMaeip"), strScp);
-	strScp = string.format("SHOP_REQ_DELETE_SOLDITEM(%d)", num);
---	ui.AddContextMenuItem(context, ScpArgMsg("Auto_{@st42b}yeongKuJeKeo"), strScp);
---	ui.AddContextMenuItem(context, ScpArgMsg("Auto_{@st42b}ChwiSo"), "SHOP_SOLDED_CANCEL");
---	ui.OpenContextMenu(context);
+	local strScp = string.format("SHOP_REQ_CANCEL_SELL('%s', '%s')", guid, topFrame:GetName());
+
+	ui.AddContextMenuItem(context, ScpArgMsg("Auto_{@st42b}JaeMaeip"), strScp);
+	strScp = string.format("SHOP_REQ_DELETE_SOLDITEM('%s', '%s')", guid, topFrame:GetName());
+	ui.AddContextMenuItem(context, ScpArgMsg("Auto_{@st42b}yeongKuJeKeo"), strScp);
+	ui.AddContextMenuItem(context, ScpArgMsg("Auto_{@st42b}ChwiSo"), "SHOP_SOLDED_CANCEL");
+	ui.OpenContextMenu(context);
 end
+
 function SHOP_SOLDED_CANCEL()
 	imcSound.PlaySoundEvent("button_click");
 end
-function SHOP_REQ_CANCEL_SELL(index)
+
+function SHOP_REQ_CANCEL_SELL(guid, frameName)
+	local frame = ui.GetFrame(frameName);
+	if frame == nil then
+		return;
+	end
+	if frame:GetName() == 'companionshop' then
+		frame = frame:GetChild('foodBox');
+	end
+
 	imcSound.PlaySoundEvent("button_click");
-	item.ReqCancelSell(index);
+	local slotSet = GET_CHILD(frame, "solditemslot", "ui::CSlotSet");
+	local slot;
+	for i = 0, slotSet:GetSlotCount() - 1 do
+		local child = slotSet:GetSlotByIndex(i);
+		local icon = child:GetIcon();
+		if icon ~= nil and icon:GetInfo() ~= nil then
+			if icon:GetInfo():GetIESID() == guid then
+				slot = child;
+				break;
+			end
+		end
+	end
+	if slot == nil then
+		return;
+	end
+	
+	local price = slot:GetUserIValue('SOLDITEMPRICE');
+	if IsGreaterThanForBigNumber(price, GET_TOTAL_MONEY_STR()) == 1 then
+		ui.AddText("SystemMsgFrame", ClMsg('NotEnoughMoney'));
+		return;
+	end
+
+	item.ReqCancelSell(guid);
 end
 
-function SHOP_REQ_DELETE_SOLDITEM(index)
+function SHOP_REQ_DELETE_SOLDITEM(guid, frameName)
+	local frame = ui.GetFrame(frameName);
+	if frame == nil then
+		return;
+	end
+	if frame:GetName() == 'companionshop' then
+		frame = frame:GetChild('foodBox');
+	end
+	
 	imcSound.PlaySoundEvent("inven_arrange");
-	item.ReqDeleteSoldItem(index);
+	item.ReqDeleteSoldItem(guid);
 end
 
 function CLEAR_SOLD_ITEM_LIST(slotSet)
@@ -1162,3 +1345,14 @@ function SHOP_SLOT_CLEAR(slot)
 
 end
 
+function GET_SHOP_FRAME()
+	local shop = ui.GetFrame('shop');
+	local companionshop = ui.GetFrame('companionshop');
+	if companionshop:IsVisible() == 1 then
+		return companionshop:GetChild('foodBox');
+	end
+	return shop;
+end
+function GET_SHOP_PRICE_WITH_TAX(shopItemPrice, taxRate)
+	return tonumber(CALC_PRICE_WITH_TAX_RATE(shopItemPrice, taxRate))
+end
