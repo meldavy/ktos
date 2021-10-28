@@ -54,12 +54,12 @@ end
 
 
 function _FRAME_AUTOPOS(frame)
-
+	
 	local handle = frame:GetUserIValue("_AT_OFFSET_HANDLE");
 	local offsetX = frame:GetUserIValue("_AT_OFFSET_X");
 	local offsetY = frame:GetUserIValue("_AT_OFFSET_Y");
 	local offsetType = frame:GetUserIValue("_AT_OFFSET_TYPE");
-	local pos = info.GetPositionInUI(	handle , offsetType);
+	local pos = info.GetPositionInUI(handle , offsetType);
 		
 	if nil == world.GetActor(handle) then	
 		local autoDestroy = frame:GetUserIValue("_AT_AUTODESTROY");
@@ -83,7 +83,7 @@ function _FRAME_AUTOPOS_BY_FRAMEPOS(frame)
 	local offsetX = frame:GetUserIValue("_AT_OFFSET_X");
 	local offsetY = frame:GetUserIValue("_AT_OFFSET_Y");
 	local offsetType = frame:GetUserIValue("_AT_OFFSET_TYPE");
-	local pos = info.GetPositionInScreen(	handle , offsetType);
+	local pos = info.GetPositionVectorInScreen(	handle , offsetType);
 		
 	if nil == world.GetActor(handle) then	
 		local autoDestroy = frame:GetUserIValue("_AT_AUTODESTROY");
@@ -95,10 +95,10 @@ function _FRAME_AUTOPOS_BY_FRAMEPOS(frame)
 		return 1;
 	end
 
-	local x = pos.x + offsetX;
-	local y = pos.y + offsetY;
 	AUTO_CAST(frame);
-	local pt = frame:ScreenPosToFramePos(x, y);
+	local pt = frame:ScreenPosToFramePosVector(pos.x, pos.y);
+	pt.x = pt.x + offsetX;
+	pt.y = pt.y + offsetY;
 	frame:MoveFrame(pt.x, pt.y);
 	return 1;
 end

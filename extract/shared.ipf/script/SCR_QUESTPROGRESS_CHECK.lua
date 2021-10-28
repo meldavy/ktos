@@ -6,15 +6,27 @@ function QT(pc)
 end
 
 function QC(pc, questname)
+    if IsServerSection(pc) ~= 1 and pc == nil then
+        pc = GetMyPCObject()
+    end
     local result1, result2 = SCR_QUEST_CHECK(pc,questname, nil)
-    Chat(pc,questname..' = '..result1)
+    if IsServerSection(pc) == 1 then
+        Chat(pc,'IsServer : '..IsServerSection(pc)..' / '..questname..' = '..result1)
+    else
+        ui.Chat('Client SCR_QUEST_CHECK / '..questname..' = '..result1)
+        
+        local result3 = SCR_QUEST_CHECK_C(pc, questname)
+        ui.Chat('Client SCR_QUEST_CHECK_C / '..questname..' = '..result3)
+    end
     if result2 ~= nil then
         print('result1',result1,table.concat(result2,' : '))
     else
         print('result1',result1)
     end
     
-    
+    if IsServerSection(pc) == 1 then
+        ExecClientScp(pc, 'QC(nil,"'..questname..'")');
+    end
 end
 
 function SCR_QUESTPROGRESS_CHECK( pc, quest_list, quest_name, npcquestcount_list)
@@ -78,8 +90,8 @@ function SCR_QUESTPROGRESS_CHECK( pc, quest_list, quest_name, npcquestcount_list
     return quest_count , quest_check, quest_succ, quest_progress, lvImpossibleList;
 end
 
-function SCR_QUEST_CHECK(pc,questname,npcquestcount_list)
-	
+function SCR_QUEST_CHECK(pc,questname,npcquestcount_list)    
+    
 	if pc == nil then
 		return;
 	end
@@ -133,6 +145,7 @@ function SCR_QUEST_CHECK(pc,questname,npcquestcount_list)
         local req_Script = 'No';
         local req_PartyProp = 'No';
         local req_Repeat = 'No';
+        local req_JournalMonKill = 'No';
         
         local req_invitem_check = 0;
         local req_eqitem_check = 0;
@@ -143,7 +156,6 @@ function SCR_QUEST_CHECK(pc,questname,npcquestcount_list)
         local sObj = GetSessionObject(pc, 'ssn_klapeda');
         
         if sObj == nil then
---            print(ScpArgMsg("Auto__PCe_"),'ssn_klapeda',ScpArgMsg("Auto__SeSyeon_oBeuJegTeuKa_eopSeupNiDa."))
             quest_reason[1] = ScpArgMsg("Auto_Mein_MaeNiJeo_SeSyeoni_eopeum")
             return 'IMPOSSIBLE', quest_reason;
         elseif sObj[questIES.QuestPropertyName] >= CON_QUESTPROPERTY_MAX and sObj[questIES.QuestPropertyName] < CON_QUESTPROPERTY_END then
@@ -167,12 +179,15 @@ function SCR_QUEST_CHECK(pc,questname,npcquestcount_list)
                 local Succ_req_MapFogSearch = 'NO';
                 local Succ_req_SessionObject = 'No';
                 local Succ_req_Script = 'No';
+                local Succ_req_JournalMonKill = 'No';
                 
                 
                 local Succ_req_eqitem_check = 0;
                 local Succ_req_buff_check = 0;
                 local Succ_req_skill_check = 0;
                 local Succ_req_script_check = 0;
+                
+                local noSuccessPropertyChangeFlag = 0
                 
 --                if sObj ~= nil then
 --                    if sObj[questIES.QuestPropertyName] >= CON_QUESTPROPERTY_END then
@@ -260,6 +275,9 @@ function SCR_QUEST_CHECK(pc,questname,npcquestcount_list)
                         end
                         if succ_count >= max then
                             Succ_req_SessionObject = 'YES'
+                            if succ_count > 0 then
+                                noSuccessPropertyChangeFlag = 1
+                            end
                         end
                     end
                 end
@@ -290,6 +308,7 @@ function SCR_QUEST_CHECK(pc,questname,npcquestcount_list)
                         end
                         if Succ_req_buff_check == questIES.Succ_Check_Buff then
                             Succ_req_Buff = 'YES';
+                            noSuccessPropertyChangeFlag = 1
                         end
                     end
                 elseif questIES.Succ_Buff_Condition == 'OR' then
@@ -298,16 +317,17 @@ function SCR_QUEST_CHECK(pc,questname,npcquestcount_list)
                         for i = 1, questIES.Succ_Check_Buff do
                             if IsBuffApplied(pc, questIES['Succ_BuffName'..i]) == 'YES' then
                                 Succ_req_Buff = 'YES';
+                                noSuccessPropertyChangeFlag = 1
                                 break
                             end
                         end
                     end
                 end
                 
-        
-        	    Succ_req_InvItem = SCR_QUEST_SUCC_CHECK_MODULE_INVITEM(pc, questIES)
+                local shortfall_1
+        	    Succ_req_InvItem, shortfall_1, noSuccessPropertyChangeFlag = SCR_QUEST_SUCC_CHECK_MODULE_INVITEM(pc, questIES, noSuccessPropertyChangeFlag)
         	    
-        	    Succ_req_SSNInvItem, ssnInvItemCheck = SCR_QUEST_SUCC_CHECK_MODULE_SSNINVITEM(pc, questIES, sObj_quest)
+        	    Succ_req_SSNInvItem, ssnInvItemCheck, noSuccessPropertyChangeFlag = SCR_QUEST_SUCC_CHECK_MODULE_SSNINVITEM(pc, questIES, sObj_quest, noSuccessPropertyChangeFlag)
     
                 
                 
@@ -418,7 +438,7 @@ function SCR_QUEST_CHECK(pc,questname,npcquestcount_list)
                     Succ_req_Quest = SCR_QUEST_SUCC_CHECK_MODULE_QUEST(pc, questIES, sObj)
                 end
                 
-                
+                local shortfall
                 Succ_req_MonKill, shortfall, ssnMonCheck = SCR_QUEST_SUCC_CHECK_MODULE_MONKILL(pc, questIES)
                 
                 
@@ -478,6 +498,7 @@ function SCR_QUEST_CHECK(pc,questname,npcquestcount_list)
                         end
                         if Succ_req_eqitem_check == questIES.Succ_Check_EqItem then
                             Succ_req_EqItem = 'YES';
+                            noSuccessPropertyChangeFlag = 1
                         end
                     end
                 elseif questIES.Succ_EqItem_Condition == 'OR' then
@@ -492,6 +513,7 @@ function SCR_QUEST_CHECK(pc,questname,npcquestcount_list)
                             if Succ_EqItem ~= nil then
                                 if Succ_EqItem.ClassName == questIES['Succ_EqItemName'..i] then
                                     Succ_req_EqItem = 'YES';
+                                    noSuccessPropertyChangeFlag = 1
                                     break
                                 end
                             end
@@ -519,6 +541,7 @@ function SCR_QUEST_CHECK(pc,questname,npcquestcount_list)
                         
                         if Succ_req_script_check == questIES.Succ_Check_Script then
                             Succ_req_Script = 'YES';
+                            noSuccessPropertyChangeFlag = 1
                         end
                     end
                 elseif questIES.Succ_Script_Condition == 'OR' then
@@ -532,6 +555,7 @@ function SCR_QUEST_CHECK(pc,questname,npcquestcount_list)
                                     local result = func(pc, questname,scriptInfo);
                                     if result == 'YES' then
                                         Succ_req_Script = 'YES'
+                                        noSuccessPropertyChangeFlag = 1
                                         break
                                     end
                                 end
@@ -540,9 +564,11 @@ function SCR_QUEST_CHECK(pc,questname,npcquestcount_list)
                     end
                 end
                 
+                Succ_req_JournalMonKill = SCR_JOURNALMONKILL_SUCC_CHECK_MODULE_QUEST(pc, questIES)
+                
         --        print('Succ_req_InvItem',Succ_req_InvItem,'Succ_req_EqItem',Succ_req_EqItem,'Succ_req_Buff',Succ_req_Buff,'req_end',req_end, 'Succ_req_Lv',Succ_req_Lv,'Succ_req_MonKill',Succ_req_MonKill)
-                if Succ_req_InvItem == 'YES' and Succ_req_SSNInvItem == 'YES' and Succ_req_EqItem == 'YES' and Succ_req_Buff == 'YES' and Succ_req_Lv == 'YES' and Succ_req_MonKill == 'YES' and Succ_req_OverKill == 'YES' and Succ_req_Skill == 'YES' and Succ_req_Quest == 'YES' and Succ_req_Atkup == 'YES' and Succ_req_Defup == 'YES' and Succ_req_Mhpup == 'YES' and Succ_req_HonorPoint == 'YES' and Succ_req_MapFogSearch == 'YES' and Succ_req_SessionObject == 'YES' and Succ_req_Script == 'YES' then
-                    if questIES.Succ_Check_Buff == 0 and questIES.Succ_Check_EqItem == 0 and questIES.Succ_Check_InvItem == 0 and ssnInvItemCheck == false and ssnMonCheck == false and questIES.Succ_Lv == 0 and questIES.Succ_Check_MonKill == 0 and questIES.Succ_Check_OverKill == 0 and questIES.Succ_Check_Skill == 0 and questIES.Succ_Check_QuestCount == 0 and questIES.Succ_Atkup == 0 and questIES.Succ_Defup == 0 and questIES.Succ_Mhpup == 0 and questIES.Succ_HonorPoint == 'None' and questIES.Succ_MapFogSearch == 'None' and (questIES.Quest_SSN == 'None' or (questIES.Quest_SSN ~= 'None' and SCR_SESSIONOBJ_INFO_CHECK(questIES.Quest_SSN) == 'NO')) and questIES.Succ_Check_Script == 0 then
+                if Succ_req_InvItem == 'YES' and Succ_req_SSNInvItem == 'YES' and Succ_req_EqItem == 'YES' and Succ_req_Buff == 'YES' and Succ_req_Lv == 'YES' and Succ_req_MonKill == 'YES' and Succ_req_OverKill == 'YES' and Succ_req_Skill == 'YES' and Succ_req_Quest == 'YES' and Succ_req_Atkup == 'YES' and Succ_req_Defup == 'YES' and Succ_req_Mhpup == 'YES' and Succ_req_HonorPoint == 'YES' and Succ_req_MapFogSearch == 'YES' and Succ_req_SessionObject == 'YES' and Succ_req_Script == 'YES' and Succ_req_JournalMonKill == 'YES' then
+                    if questIES.Succ_Check_Buff == 0 and questIES.Succ_Check_EqItem == 0 and questIES.Succ_Check_InvItem == 0 and ssnInvItemCheck == false and ssnMonCheck == false and questIES.Succ_Lv == 0 and questIES.Succ_Check_MonKill == 0 and questIES.Succ_Check_OverKill == 0 and questIES.Succ_Check_Skill == 0 and questIES.Succ_Check_QuestCount == 0 and questIES.Succ_Atkup == 0 and questIES.Succ_Defup == 0 and questIES.Succ_Mhpup == 0 and questIES.Succ_HonorPoint == 'None' and questIES.Succ_MapFogSearch == 'None' and (questIES.Quest_SSN == 'None' or (questIES.Quest_SSN ~= 'None' and SCR_SESSIONOBJ_INFO_CHECK(questIES.Quest_SSN) == 'NO')) and questIES.Succ_Check_Script == 0 and (GetPropType(questIES,'Succ_Check_JournalMonKillCount') == nil or questIES.Succ_Check_JournalMonKillCount == 0) then
                         quest_reason[1] = ScpArgMsg("Auto_DaLeun_wanLyo_JoKeon_eopeum_")..questIES.QuestPropertyName..ScpArgMsg("Auto__PeuLoPeoTi_Kapi_")..CON_QUESTPROPERTY_MAX..ScpArgMsg("Auto__ieoya_Ham")
                         return 'PROGRESS', quest_reason;
                     else
@@ -618,6 +644,15 @@ function SCR_QUEST_CHECK(pc,questname,npcquestcount_list)
                         if questIES.Succ_Check_Script > 0 then
                             quest_reason[x] = 'Succ_Check_Script'
                             x = x + 1
+                        end
+                        
+                        if (GetPropType(questIES,'Succ_Check_JournalMonKillCount') ~= nil and questIES.Succ_Check_JournalMonKillCount > 0) then
+                            quest_reason[x] = 'Succ_Check_JournalMonKillCount'
+                            x = x + 1
+                        end
+                        
+                        if noSuccessPropertyChangeFlag == 0 and IsServerSection(pc) == 1 then
+                            RunScript('SCR_QUEST_CHECK_SUB_SUCCESS_PROPERTY_CHANGE', pc, sObj, questIES)
                         end
                         
                         return 'SUCCESS', quest_reason;
@@ -696,6 +731,11 @@ function SCR_QUEST_CHECK(pc,questname,npcquestcount_list)
                         x = x + 1
                     end
                     
+                    if Succ_req_JournalMonKill ~= 'YES' then
+                        quest_reason[x] = 'Succ_Check_JournalMonKillCount'
+                        x = x + 1
+                    end
+                    
                     return 'PROGRESS', quest_reason;
                 end
             else
@@ -707,29 +747,43 @@ function SCR_QUEST_CHECK(pc,questname,npcquestcount_list)
                         if #succCheckList > 0 then
                             local i
                             local retCount = 0
+                            local successPropertyChangeFlag = 0
+                            
                             for i = 1, #succCheckList do
                                 local succCheck = succCheckList[i]
                                 if succCheck == 'Succ_Lv' then
                                     if pc.Lv >= questIES.Succ_Lv then
                                         retCount = retCount + 1
+                                        if questIES.Succ_Lv > 0 then
+                                            successPropertyChangeFlag = 1
+                                        end
                                     else
                                         quest_reason[#quest_reason + 1] = succCheck
                                     end
                                 elseif succCheck == 'Succ_Atkup' then
                                     if pc.MAXPATK >= questIES.Succ_Atkup or pc.MAXMATK >= questIES.Succ_Atkup then
                                         retCount = retCount + 1
+                                        if questIES.Succ_Atkup > 0 then
+                                            successPropertyChangeFlag = 1
+                                        end
                                     else
                                         quest_reason[#quest_reason + 1] = succCheck
                                     end
                                 elseif succCheck == 'Succ_Defup' then
                                     if pc.DEF >= questIES.Succ_Defup then
                                         retCount = retCount + 1
+                                        if questIES.Succ_Defup > 0 then
+                                            successPropertyChangeFlag = 1
+                                        end
                                     else
                                         quest_reason[#quest_reason + 1] = succCheck
                                     end
                                 elseif succCheck == 'Succ_Mhpup' then
                                     if pc.MHP >= questIES.Succ_Mhpup then
                                         retCount = retCount + 1
+                                        if questIES.Succ_Mhpup > 0 then
+                                            successPropertyChangeFlag = 1
+                                        end
                                     else
                                         quest_reason[#quest_reason + 1] = succCheck
                                     end
@@ -743,6 +797,7 @@ function SCR_QUEST_CHECK(pc,questname,npcquestcount_list)
                                             local honor_point = GetAchievePoint(pc, honor_name)
                                             if honor_point >= tonumber(point_value) then
                                                 retCount = retCount + 1
+                                                successPropertyChangeFlag = 1
                                             else
                                                 quest_reason[#quest_reason + 1] = succCheck
                                             end
@@ -773,6 +828,7 @@ function SCR_QUEST_CHECK(pc,questname,npcquestcount_list)
                                         
                                         if flag == true then
                                             retCount = retCount + 1
+                                            successPropertyChangeFlag = 1
                                         else
                                             quest_reason[#quest_reason + 1] = succCheck
                                         end
@@ -834,6 +890,7 @@ function SCR_QUEST_CHECK(pc,questname,npcquestcount_list)
                                             local skl = GetSkill(pc, skillname)
                                             if skl ~= nil and skl.Level >= tonumber(skill_req) then
                                                 retCount = retCount + 1
+                                                successPropertyChangeFlag = 1
                                             else
                                                 quest_reason[#quest_reason + 1] = succCheck
                                             end
@@ -848,6 +905,11 @@ function SCR_QUEST_CHECK(pc,questname,npcquestcount_list)
                                     if num ~= nil then
                                         if GetInvItemCount(pc, questIES['Succ_InvItemName'..num]) >= questIES['Succ_InvItemCount'..num] then
                                             retCount = retCount + 1
+                                            local itemIES = GetClass('Item',questIES['Succ_InvItemName'..num])
+                                            if itemIES.GroupName == 'Quest' and itemIES.Destroyable == 'NO' and itemIES.TeamTrade == 'NO' and itemIES.ShopTrade == 'NO' and itemIES.MarketTrade == 'NO' and itemIES.UserTrade == 'NO' and itemIES.Consumable == 'NO' then
+                                                successPropertyChangeFlag = 1
+                                            end
+                                            
                                         else
                                             quest_reason[#quest_reason + 1] = succCheck
                                         end
@@ -881,6 +943,7 @@ function SCR_QUEST_CHECK(pc,questname,npcquestcount_list)
                                             local ret = SCR_QUEST_SUCC_CHECK_MODULE_QUEST_SUB(pc, questIES, sObj, num)
                                             if ret == 'YES' then
                                                 retCount = retCount + 1
+                                                successPropertyChangeFlag = 1
                                             else
                                                 quest_reason[#quest_reason + 1] = succCheck
                                             end
@@ -897,6 +960,7 @@ function SCR_QUEST_CHECK(pc,questname,npcquestcount_list)
                                         if questIES['Succ_MonKillName'..num] ~= 'None' and questIES['Succ_MonKill_ItemGive'..num] == 'None' then
                                             if monkill_sObj['KillMonster'..num] >= questIES['Succ_MonKillCount'..num] and questIES['Succ_MonKillCount'..num] > 0 then
                                                 retCount = retCount + 1
+                                                successPropertyChangeFlag = 1
                                             else
                                                 quest_reason[#quest_reason + 1] = succCheck
                                             end
@@ -913,6 +977,7 @@ function SCR_QUEST_CHECK(pc,questname,npcquestcount_list)
                                         if questIES['Succ_OverKillName'..num] ~= 'None' and questIES['Succ_OverKill_ItemGive'..num] == 'None' then
                                             if overkill_sObj['OverKill'..num] >= questIES['Succ_OverKillCount'..num] and questIES['Succ_OverKillCount'..num] > 0 then
                                                 retCount = retCount + 1
+                                                successPropertyChangeFlag = 1
                                             else
                                                 quest_reason[#quest_reason + 1] = succCheck
                                             end
@@ -940,10 +1005,42 @@ function SCR_QUEST_CHECK(pc,questname,npcquestcount_list)
                                     else
                                         quest_reason[#quest_reason + 1] = succCheck
                                     end
+                                elseif string.find(succCheck,'Succ_Journal_MonKillName') ~= nil then
+                                    --revisioom function--                                    
+                                    local num = tonumber(string.gsub(succCheck,'Succ_Journal_MonKillName',''))
+                                    if GetPropType(questIES,'Succ_Journal_MonKillName'..num) ~= nil and  questIES['Succ_Journal_MonKillName'..num] ~= 'None' and questIES['Succ_Journal_MonKillName'..num] ~= '' then
+                                        local killCount = nil;
+                                        local monIDList = GetAdventureBookMonList(pc);
+                                        if IsServerSection(pc) == 1 then
+                                            if table.find(monIDList, questIES['Succ_Journal_MonKillName'..num]) > 0 then
+                                                killCount = GetMonKillCount(pc, questIES['Succ_Journal_MonKillName'..num]);
+                                            end
+                                        else
+                                            if table.find(monIDList, questIES['Succ_Journal_MonKillName'..num]) > 0 then
+                                                killCount = GetMonKillCount(pc, questIES['Succ_Journal_MonKillName'..num]);
+                                            end
+                                        end
+                                        if killCount ~= nil then
+                                            if killCount >= questIES['Succ_Journal_MonKillCount'..num] then
+                                                retCount = retCount + 1
+                                                successPropertyChangeFlag = 1
+                                            else
+                                                quest_reason[#quest_reason + 1] = succCheck
+                                            end
+                                        else
+                                            quest_reason[#quest_reason + 1] = succCheck
+                                        end
+                                    else
+                                        quest_reason[#quest_reason + 1] = succCheck
+                                    end
+                                    --
                                 end
                             end
                             
                             if retCount >= #succCheckList then
+                                if successPropertyChangeFlag == 1 and IsServerSection(pc) == 1 then
+                                    RunScript('SCR_QUEST_CHECK_SUB_SUCCESS_PROPERTY_CHANGE', pc, sObj, questIES)
+                                end
                                 return 'SUCCESS', quest_reason, succConditionList[index]
                             end
                         end
@@ -957,9 +1054,7 @@ function SCR_QUEST_CHECK(pc,questname,npcquestcount_list)
         else 
             if sObj ~= nil then
                 req_startarea = 'YES';
-            end
-            
-            if sObj ~= nil then
+                
                 if sObj[questIES.QuestPropertyName] >= CON_QUESTPROPERTY_END then
                     req_end = 'NO'
                     return 'COMPLETE'
@@ -1092,65 +1187,9 @@ function SCR_QUEST_CHECK(pc,questname,npcquestcount_list)
                 
             end
             
-            if questIES.JobLvup == 'None' then
-                req_joblvup = 'YES'
-            else
-                local jobinfo = SCR_STRING_CUT(questIES.JobLvup)
-                local job_name = jobinfo[1]
-                local jobCircleTarget = tonumber(jobinfo[2])
-                local jobCircle, jobRank
-                
-                if IsServerSection(pc) == 1 then
-                    jobCircle, jobRank = GetJobGradeByName(pc, job_name);
-                else
-                    local jobIES = GetClass('Job', job_name)
-                    jobCircle = session.GetJobGrade(jobIES.ClassID);
-                end
-                
-                if jobinfo[3] == '>=' then
-                    if jobCircle ~= nil and jobCircle >= tonumber(jobCircleTarget) then
-                        req_joblvup = 'YES'
-                    end
-                elseif jobinfo[3] == '<=' then
-                    if jobCircle ~= nil and jobCircle <= tonumber(jobCircleTarget) then
-                        req_joblvup = 'YES'
-                    end
-                elseif jobinfo[3] == '==' then
-                    if jobCircle ~= nil and jobCircle == tonumber(jobCircleTarget) then
-                        req_joblvup = 'YES'
-                    end
-                end
-            end
-            
-            if questIES.JobLvdown == 'None' then
-                req_joblvdown = 'YES'
-            else
-                local jobinfo = SCR_STRING_CUT(questIES.JobLvdown)
-                local job_name = jobinfo[1]
-                local jobCircleTarget = tonumber(jobinfo[2])
-                local jobCircle, jobRank
-                
-                if IsServerSection(pc) == 1 then
-                    jobCircle, jobRank = GetJobGradeByName(pc, job_name);
-                else
-                    local jobIES = GetClass('Job', job_name)
-                    jobCircle = session.GetJobGrade(jobIES.ClassID);
-                end
-                
-                if jobinfo[3] == '>=' then
-                    if jobCircle ~= nil and jobCircle >= tonumber(jobCircleTarget) then
-                        req_joblvdown = 'YES'
-                    end
-                elseif jobinfo[3] == '<=' then
-                    if jobCircle ~= nil and jobCircle <= tonumber(jobCircleTarget) then
-                        req_joblvdown = 'YES'
-                    end
-                elseif jobinfo[3] == '==' then
-                    if jobCircle ~= nil and jobCircle == tonumber(jobCircleTarget) then
-                        req_joblvdown = 'YES'
-                    end
-                end
-            end
+            req_joblvup = SCR_QUEST_CHECK_MODULE_JOBLVUP(pc, questIES)
+
+            req_joblvdown = SCR_QUEST_CHECK_MODULE_JOBLVDOWN(pc, questIES)
             
             if questIES.Atkup == 0 then
                 req_atkup = 'YES';
@@ -1289,6 +1328,8 @@ function SCR_QUEST_CHECK(pc,questname,npcquestcount_list)
             req_quest = SCR_QUEST_CHECK_MODULE_QUEST(pc, questIES, sObj)
             
             req_PartyProp = SCR_PARTY_QUEST_CHECK_MODULE_QUEST(pc, questIES)
+            
+            req_JournalMonKill = SCR_JOURNALMONKILL_CHECK_MODULE_QUEST(pc, questIES)
             
             if questIES.Check_Location == 'NO' then
                 req_Location = 'YES'
@@ -2268,8 +2309,34 @@ function SCR_QUEST_CHECK(pc,questname,npcquestcount_list)
                 SendAddOnMsg(pc, "NOTICE_Dm_!", txt, 5);
             end
             
+            --에피소드 서브퀘스트 언락조건
+            --SubQuest_UnLock_Check--
+            local req_episode = 'YES'
+            if questIES.QuestMode == 'SUB' then
+                local accountObj = nil
+                if IsServerObj(pc) == 1 then
+            		accountObj =  GetAccountObj(pc);
+            	else
+		            accountObj = GetMyAccountObj();
+                end
+                if accountObj ~= nil then
+                    local episodeCheck = TryGetProp(accountObj, "Episode_10_Clear", 0)
+                    if episodeCheck ~= 1 then
+                        local myLevel = 1
+                        if IsServerObj(pc) == 1 then
+                    		myLevel =  TryGetProp(pc, 'Lv', 1);
+                    	else
+        		            myLevel = GETMYPCLEVEL();
+                        end
+                        if myLevel < 390 then
+                            req_episode = 'NO'
+                        end
+                    end
+                end
+            end
+            
             if questIES.Check_Condition == 'AND' then
-                if req_lvup == 'YES' and req_lvdown == 'YES' and req_joblvup == 'YES' and req_joblvdown == 'YES' and req_atkup == 'YES' and req_atkdown == 'YES' and req_defup == 'YES' and req_defdown == 'YES' and req_mhpup == 'YES' and req_mhpdown == 'YES' and req_quest == 'YES' and req_PartyProp == 'YES' and req_tribe == 'YES' and req_job == 'YES' and req_Gender == 'YES' and req_InvItem == 'YES' and req_EqItem == 'YES' and req_Buff == 'YES' and req_end == 'YES' and req_Location == 'YES' and req_Period == 'YES' and req_ReenterTime =='YES'and req_Skill =='YES' and req_SkillLv =='YES' and req_AOSLine == 'YES' and req_NPCQuestCount == 'YES' and req_HonorPointUp == 'YES' and req_HonorPointDown == 'YES' and req_Script == 'YES' and req_jobstep == 'YES' and req_Repeat == 'YES' then
+                if req_episode == 'YES' and req_lvup == 'YES' and req_lvdown == 'YES' and req_joblvup == 'YES' and req_joblvdown == 'YES' and req_atkup == 'YES' and req_atkdown == 'YES' and req_defup == 'YES' and req_defdown == 'YES' and req_mhpup == 'YES' and req_mhpdown == 'YES' and req_quest == 'YES' and req_PartyProp == 'YES' and req_JournalMonKill == 'YES' and req_tribe == 'YES' and req_job == 'YES' and req_Gender == 'YES' and req_InvItem == 'YES' and req_EqItem == 'YES' and req_Buff == 'YES' and req_end == 'YES' and req_Location == 'YES' and req_Period == 'YES' and req_ReenterTime =='YES'and req_Skill =='YES' and req_SkillLv =='YES' and req_AOSLine == 'YES' and req_NPCQuestCount == 'YES' and req_HonorPointUp == 'YES' and req_HonorPointDown == 'YES' and req_Script == 'YES' and req_jobstep == 'YES' and req_Repeat == 'YES' then
                     local x = 1
                     
                     if questIES.QuestMode == 'REPEAT' then
@@ -2285,7 +2352,7 @@ function SCR_QUEST_CHECK(pc,questname,npcquestcount_list)
                         quest_reason[x] = 'Lvdown'
                         x = x + 1
                     end
-                    if questIES.JobStep ~= 'None' then
+                    if questIES.JobStep > 0 then
                         quest_reason[x] = 'JobStep'
                         x = x + 1
                     end
@@ -2455,6 +2522,12 @@ function SCR_QUEST_CHECK(pc,questname,npcquestcount_list)
                             quest_reason[x] = 'Check_PartyPropCount'
                             x = x + 1
                         end
+                        
+                        if req_JournalMonKill ~= 'YES' then
+                            quest_reason[x] = 'Check_JournalMonKillCount'
+                            x = x + 1
+                        end
+                        
                         if req_tribe ~= 'YES' then
                             quest_reason[x] = 'Check_Tribe'
                             x = x + 1
@@ -2532,10 +2605,12 @@ function SCR_QUEST_CHECK(pc,questname,npcquestcount_list)
                 if req_end == 'NO' then
                     quest_reason[1] = questIES.QuestPropertyName..ScpArgMsg("Auto__PeuLoPeoTi_Kapi_")..CON_QUESTPROPERTY_END..ScpArgMsg("Auto__Kwa_KatDa.")
                     return 'COMPLETE', quest_reason;
+                elseif req_episode == "NO" then
+                    return 'IMPOSSIBLE', quest_reason
                 elseif req_ReenterTime =='NO' then
                     quest_reason[1] = ScpArgMsg("Auto_ReenterTime_KulTaimeul_ManJogHaJi_MosHam")
                     return 'IMPOSSIBLE', quest_reason;
-                elseif (req_lvup == 'YES' and req_lvdown == 'YES' and questIES.Lvup > 0 and  questIES.Lvdown > 0) or (req_lvup == 'YES' and questIES.Lvup > 0 and questIES.Lvdown <= 0) or (req_lvdown == 'YES' and  questIES.Lvdown > 0 and questIES.Lvup <= 0) or (req_joblvup == 'YES' and req_joblvdown == 'YES' and questIES.JobLvup ~= 'None' and  questIES.JobLvdown ~= 'None') or (req_joblvup == 'YES' and questIES.JobLvup ~= 'None' and questIES.JobLvdown == 'None') or (req_joblvdown == 'YES' and  questIES.JobLvdown ~= 'None' and questIES.JobLvup == 'None') or (req_atkup == 'YES' and req_atkdown == 'YES' and questIES.Atkup > 0 and  questIES.Atkdown > 0) or (req_atkup == 'YES' and questIES.Atkup > 0 and questIES.Atkdown <= 0) or (req_atkdown == 'YES' and  questIES.Atkdown > 0 and questIES.Atkup <= 0) or (req_defup == 'YES' and req_defdown == 'YES' and questIES.Defup > 0 and  questIES.Defdown > 0) or (req_defup == 'YES' and questIES.Defup > 0 and questIES.Defdown <= 0) or (req_defdown == 'YES' and  questIES.Defdown > 0 and questIES.Defup <= 0) or (req_mhpup == 'YES' and req_mhpdown == 'YES' and questIES.Mhpup > 0 and  questIES.Mhpdown > 0) or (req_mhpup == 'YES' and questIES.Mhpup > 0 and questIES.Mhpdown <= 0) or (req_mhpdown == 'YES' and  questIES.Mhpdown > 0 and questIES.Mhpup <= 0) or (req_quest == 'YES' and questIES.Check_QuestCount > 0) or (req_PartyProp == 'YES' and questIES.Check_PartyPropCount > 0) or (req_tribe == 'YES' and questIES.Check_Tribe > 0) or (req_job == 'YES' and questIES.Check_Job > 0) or (req_Gender == 'YES' and questIES.Gender > 0) or (req_InvItem == 'YES' and questIES.Check_InvItem > 0) or (req_EqItem == 'YES' and questIES.Check_EqItem > 0) or (req_Buff == 'YES' and questIES.Check_Buff > 0) or (req_Location == 'YES' and questIES.Check_Location ~= 'NO') or (req_Period == 'YES' and questIES.Check_PeriodType ~= 'None') or (req_Skill == 'YES' and questIES.Check_Skill > 0) or (req_SkillLv == 'YES' and questIES.SkillLv ~= 'None' ) or (req_AOSLine == 'YES' and questIES.AOSLine ~= 'None') or (req_NPCQuestCount == 'YES' and questIES.NPCQuestCount ~= 'None') or (req_HonorPointUp =='YES' and questIES.HonorPointUp ~= 'None') or (req_HonorPointDown =='YES' and questIES.HonorPointDown ~= 'None') or (req_Script == 'YES' and questIES.Check_Script > 0) or (req_jobstep == 'YES' and questIES.JobStep > 0) or (req_Repeat =='YES' and questIES.QuestMode == 'REPEAT') then
+                elseif (req_lvup == 'YES' and req_lvdown == 'YES' and questIES.Lvup > 0 and  questIES.Lvdown > 0) or (req_lvup == 'YES' and questIES.Lvup > 0 and questIES.Lvdown <= 0) or (req_lvdown == 'YES' and  questIES.Lvdown > 0 and questIES.Lvup <= 0) or (req_joblvup == 'YES' and req_joblvdown == 'YES' and questIES.JobLvup ~= 'None' and  questIES.JobLvdown ~= 'None') or (req_joblvup == 'YES' and questIES.JobLvup ~= 'None' and questIES.JobLvdown == 'None') or (req_joblvdown == 'YES' and  questIES.JobLvdown ~= 'None' and questIES.JobLvup == 'None') or (req_atkup == 'YES' and req_atkdown == 'YES' and questIES.Atkup > 0 and  questIES.Atkdown > 0) or (req_atkup == 'YES' and questIES.Atkup > 0 and questIES.Atkdown <= 0) or (req_atkdown == 'YES' and  questIES.Atkdown > 0 and questIES.Atkup <= 0) or (req_defup == 'YES' and req_defdown == 'YES' and questIES.Defup > 0 and  questIES.Defdown > 0) or (req_defup == 'YES' and questIES.Defup > 0 and questIES.Defdown <= 0) or (req_defdown == 'YES' and  questIES.Defdown > 0 and questIES.Defup <= 0) or (req_mhpup == 'YES' and req_mhpdown == 'YES' and questIES.Mhpup > 0 and  questIES.Mhpdown > 0) or (req_mhpup == 'YES' and questIES.Mhpup > 0 and questIES.Mhpdown <= 0) or (req_mhpdown == 'YES' and  questIES.Mhpdown > 0 and questIES.Mhpup <= 0) or (req_quest == 'YES' and questIES.Check_QuestCount > 0) or (req_PartyProp == 'YES' and questIES.Check_PartyPropCount > 0)or (req_JournalMonKill == 'YES' and GetPropType(questIES, 'Check_JournalMonKillCount') ~= nil and questIES.Check_JournalMonKillCount > 0) or (req_tribe == 'YES' and questIES.Check_Tribe > 0) or (req_job == 'YES' and questIES.Check_Job > 0) or (req_Gender == 'YES' and questIES.Gender > 0) or (req_InvItem == 'YES' and questIES.Check_InvItem > 0) or (req_EqItem == 'YES' and questIES.Check_EqItem > 0) or (req_Buff == 'YES' and questIES.Check_Buff > 0) or (req_Location == 'YES' and questIES.Check_Location ~= 'NO') or (req_Period == 'YES' and questIES.Check_PeriodType ~= 'None') or (req_Skill == 'YES' and questIES.Check_Skill > 0) or (req_SkillLv == 'YES' and questIES.SkillLv ~= 'None' ) or (req_AOSLine == 'YES' and questIES.AOSLine ~= 'None') or (req_NPCQuestCount == 'YES' and questIES.NPCQuestCount ~= 'None') or (req_HonorPointUp =='YES' and questIES.HonorPointUp ~= 'None') or (req_HonorPointDown =='YES' and questIES.HonorPointDown ~= 'None') or (req_Script == 'YES' and questIES.Check_Script > 0) or (req_jobstep == 'YES' and questIES.JobStep > 0) or (req_Repeat =='YES' and questIES.QuestMode == 'REPEAT') then
                     local x = 1
                     
                     if req_Repeat =='YES' and questIES.QuestMode == 'REPEAT' then
@@ -2609,6 +2684,11 @@ function SCR_QUEST_CHECK(pc,questname,npcquestcount_list)
                     end
                     if req_PartyProp == 'YES' and questIES.Check_PartyPropCount > 0 then
                         quest_reason[x] = 'Check_PartyPropCount'
+                        x = x + 1
+                    end
+                    
+                    if req_JournalMonKill == 'YES' and GetPropType(questIES, 'Check_JournalMonKillCount') ~= nil and questIES.Check_JournalMonKillCount > 0 then
+                        quest_reason[x] = 'Check_JournalMonKillCount'
                         x = x + 1
                     end
                     if req_tribe == 'YES' and questIES.Check_Tribe > 0 then
@@ -2781,6 +2861,10 @@ function SCR_QUEST_CHECK(pc,questname,npcquestcount_list)
                     end
                     if req_PartyProp ~= 'YES' and questIES.Check_PartyPropCount > 0 then
                         quest_reason[x] = 'Check_PartyPropCount'
+                        x = x + 1
+                    end
+                    if req_JournalMonKill ~= 'YES' and GetPropType(questIES, 'Check_JournalMonKillCount') ~= nil and questIES.Check_JournalMonKillCount > 0 then
+                        quest_reason[x] = 'Check_JournalMonKillCount'
                         x = x + 1
                     end
                     if req_tribe ~= 'YES' and questIES.Check_Tribe > 0 then
@@ -3173,11 +3257,16 @@ function SCR_QUEST_STATE_COMPARE(pc_quest_state, target_quest_state)
 end
 
 
-function GET_QUEST_NPC_STATE(questIES, result)
+function GET_QUEST_NPC_STATE(questIES, result, pc)
 	if result == 'POSSIBLE' then
         if questIES.POSSI_WARP == 'YES' and questIES.StartNPC ~= 'None' then
             return 'Start';
         end
+        
+        if pc ~= nil and SCR_MAIN_QUEST_WARP_CHECK(pc, result, questIES, questIES.ClassName) == 'YES' then
+            return 'Start';
+        end
+        
     elseif result == 'PROGRESS' and questIES.ProgNPC ~= 'None' then
         if questIES.PROG_WARP == 'YES' then
             return 'Prog';
@@ -3240,7 +3329,7 @@ function SCR_QUEST_SUCC_CHECK_MODULE_MONKILL(pc, questIES)
     if monkill_sObj ~= nil and GetPropType(monkill_sObj, 'SSNMonKill') ~= nil and monkill_sObj.SSNMonKill ~= 'None' then
         ssnMonCheck = true
         local monInfo = SCR_STRING_CUT(monkill_sObj.SSNMonKill, ":")
-        if #monInfo >= 3 and #monInfo % 3 == 0 then
+        if #monInfo >= 3 and #monInfo % 3 == 0 and monInfo[1] ~= 'ZONEMONKILL' then
             local ssnMonListCount = #monInfo / 3
             local flag = 0
             for i = 1, QUEST_MAX_MON_CHECK do
@@ -3256,6 +3345,24 @@ function SCR_QUEST_SUCC_CHECK_MODULE_MONKILL(pc, questIES)
             end
             
             if flag >= ssnMonListCount then
+                Succ_req_MonKill = 'YES'
+            end
+        elseif monInfo[1] == 'ZONEMONKILL'  then
+            local flag = 0
+            for i = 1, QUEST_MAX_MON_CHECK do
+                if #monInfo - 1 >= i then
+                    local index = i + 1
+                    local zoneMonInfo = SCR_STRING_CUT(monInfo[index])
+                    local needCount = tonumber(zoneMonInfo[2])
+                    local nowCount = monkill_sObj['KillMonster'..i]
+                    if nowCount >= needCount then
+                        flag = flag + 1
+                    end
+                else
+                    break
+                end
+            end
+            if flag >= #monInfo - 1 then
                 Succ_req_MonKill = 'YES'
             end
         end
@@ -3509,7 +3616,7 @@ function SCR_QUEST_SUCC_CHECK_MODULE_OVERKILL(pc, questIES)
     return Succ_req_OverKill, shortfall
 end
 
-function SCR_QUEST_SUCC_CHECK_MODULE_SSNINVITEM(pc, questIES, sObj_quest)
+function SCR_QUEST_SUCC_CHECK_MODULE_SSNINVITEM(pc, questIES, sObj_quest, noSuccessPropertyChangeFlag)
     local Succ_req_SSNInvItem = 'NO'
     local flag = true
     local ssnInvItemCheck = false
@@ -3528,14 +3635,18 @@ function SCR_QUEST_SUCC_CHECK_MODULE_SSNINVITEM(pc, questIES, sObj_quest)
     
     if flag == true then
         Succ_req_SSNInvItem = 'YES'
+        if ssnInvItemCheck == true then
+            noSuccessPropertyChangeFlag = 1
+        end
     end
     
-    return Succ_req_SSNInvItem, ssnInvItemCheck
+    return Succ_req_SSNInvItem, ssnInvItemCheck, noSuccessPropertyChangeFlag
 end
-function SCR_QUEST_SUCC_CHECK_MODULE_INVITEM(pc, questIES)
+function SCR_QUEST_SUCC_CHECK_MODULE_INVITEM(pc, questIES, noSuccessPropertyChangeFlag)
     local Succ_req_InvItem = 'NO'
     local Succ_req_invitem_check = 0;
     local shortfall = {}
+    local questItemFlag = 0
     
     if questIES.Succ_Check_InvItem == 0 then
         Succ_req_InvItem = 'YES';
@@ -3547,6 +3658,10 @@ function SCR_QUEST_SUCC_CHECK_MODULE_INVITEM(pc, questIES)
                 else
                     if GetInvItemCount(pc, questIES.Succ_InvItemName4) >= questIES.Succ_InvItemCount4 then
                         Succ_req_invitem_check = Succ_req_invitem_check + 1;
+                        local itemIES = GetClass('Item',questIES.Succ_InvItemName4)
+                        if itemIES.GroupName == 'Quest' and itemIES.Destroyable == 'NO' and itemIES.TeamTrade == 'NO' and itemIES.ShopTrade == 'NO' and itemIES.MarketTrade == 'NO' and itemIES.UserTrade == 'NO' and itemIES.Consumable == 'NO' then
+                            questItemFlag = questItemFlag + 1
+                        end
                     else
                         shortfall[#shortfall + 1] = 4
                     end
@@ -3558,6 +3673,10 @@ function SCR_QUEST_SUCC_CHECK_MODULE_INVITEM(pc, questIES)
                 else
                     if GetInvItemCount(pc, questIES.Succ_InvItemName3) >= questIES.Succ_InvItemCount3 then
                         Succ_req_invitem_check = Succ_req_invitem_check + 1;
+                        local itemIES = GetClass('Item',questIES.Succ_InvItemName3)
+                        if itemIES.GroupName == 'Quest' and itemIES.Destroyable == 'NO' and itemIES.TeamTrade == 'NO' and itemIES.ShopTrade == 'NO' and itemIES.MarketTrade == 'NO' and itemIES.UserTrade == 'NO' and itemIES.Consumable == 'NO' then
+                            questItemFlag = questItemFlag + 1
+                        end
                     else
                         shortfall[#shortfall + 1] = 3
                     end
@@ -3569,6 +3688,10 @@ function SCR_QUEST_SUCC_CHECK_MODULE_INVITEM(pc, questIES)
                 else
                     if GetInvItemCount(pc, questIES.Succ_InvItemName2) >= questIES.Succ_InvItemCount2 then
                         Succ_req_invitem_check = Succ_req_invitem_check + 1;
+                        local itemIES = GetClass('Item',questIES.Succ_InvItemName2)
+                        if itemIES.GroupName == 'Quest' and itemIES.Destroyable == 'NO' and itemIES.TeamTrade == 'NO' and itemIES.ShopTrade == 'NO' and itemIES.MarketTrade == 'NO' and itemIES.UserTrade == 'NO' and itemIES.Consumable == 'NO' then
+                            questItemFlag = questItemFlag + 1
+                        end
                     else
                         shortfall[#shortfall + 1] = 2
                     end
@@ -3580,6 +3703,10 @@ function SCR_QUEST_SUCC_CHECK_MODULE_INVITEM(pc, questIES)
                 else
                     if GetInvItemCount(pc, questIES.Succ_InvItemName1) >= questIES.Succ_InvItemCount1 then
                         Succ_req_invitem_check = Succ_req_invitem_check + 1;
+                        local itemIES = GetClass('Item',questIES.Succ_InvItemName1)
+                        if itemIES.GroupName == 'Quest' and itemIES.Destroyable == 'NO' and itemIES.TeamTrade == 'NO' and itemIES.ShopTrade == 'NO' and itemIES.MarketTrade == 'NO' and itemIES.UserTrade == 'NO' and itemIES.Consumable == 'NO' then
+                            questItemFlag = questItemFlag + 1
+                        end
                     else
                         shortfall[#shortfall + 1] = 1
                     end
@@ -3588,6 +3715,9 @@ function SCR_QUEST_SUCC_CHECK_MODULE_INVITEM(pc, questIES)
             
             if Succ_req_invitem_check == questIES.Succ_Check_InvItem then
                 Succ_req_InvItem = 'YES';
+                if questItemFlag ~= Succ_req_invitem_check then
+                    noSuccessPropertyChangeFlag = 1
+                end
             end
         end
     elseif questIES.Succ_InvItem_Condition == 'OR' then
@@ -3600,16 +3730,23 @@ function SCR_QUEST_SUCC_CHECK_MODULE_INVITEM(pc, questIES)
                     else
                         if GetInvItemCount(pc, questIES['Succ_InvItemName'..i]) >= questIES['Succ_InvItemCount'..i] then
                             Succ_req_InvItem = 'YES';
+                            local itemIES = GetClass('Item',questIES['Succ_InvItemName'..i])
+                            if itemIES.GroupName == 'Quest' and itemIES.Destroyable == 'NO' and itemIES.TeamTrade == 'NO' and itemIES.ShopTrade == 'NO' and itemIES.MarketTrade == 'NO' and itemIES.UserTrade == 'NO' and itemIES.Consumable == 'NO' then
+                                questItemFlag = questItemFlag + 1
+                            end
                         else
                             shortfall[#shortfall + 1] = i
                         end
                     end
                 end
             end
+            if Succ_req_InvItem == 'YES' and questItemFlag == 0 then
+                noSuccessPropertyChangeFlag = 1
+            end
         end
     end
     
-    return Succ_req_InvItem, shortfall
+    return Succ_req_InvItem, shortfall, noSuccessPropertyChangeFlag
 end
 
 function SCR_QUEST_SUCC_CHECK_MODULE_QUEST(pc, questIES, sObj)
@@ -4174,6 +4311,153 @@ function SCR_QUEST_CHECK_MODULE_QUEST(pc, questIES, sObj)
     return req_quest
 end
 
+function SCR_JOURNALMONKILL_SUCC_CHECK_MODULE_QUEST(pc, questIES)
+    local Succ_req_JournalMonKill = "NO"
+    local checkCount = {}
+    
+    if GetPropType(questIES, 'Succ_Check_JournalMonKillCount') == nil or questIES.Succ_Check_JournalMonKillCount == 0 then
+        return 'YES'
+    end
+    
+    if GetPropType(questIES, 'Succ_Check_JournalMonKillCount') ~= nil and GetPropType(questIES, 'Succ_Journal_MonKill_Condition') ~= nil then
+        if questIES.Succ_Journal_MonKill_Condition == 'OR' then
+            for i = 1, questIES.Succ_Check_JournalMonKillCount do
+                if GetPropType(questIES, 'Succ_Journal_MonKillName'..i) ~= nil and GetPropType(questIES, 'Succ_Journal_MonKillCount'..i) ~= nil then
+                    if questIES['Succ_Journal_MonKillName'..i] ~= 'None' and questIES['Succ_Journal_MonKillName'..i] ~= '' then
+                        checkCount[#checkCount+1] = {i,"NO"}
+                        local killCount = nil;
+                        --[[ hs_comment: 개편될 함수로 교체해주세요~
+                        if IsServerSection(pc) == 1 then
+                            local wiki = GetWikiByName(pc, questIES['Succ_Journal_MonKillName'..i])
+                            if wiki ~= nil then
+                                killCount = GetWikiIntProp(wiki, "KillCount")
+                            end
+                        else
+                            local wiki = GetWikiByName(questIES['Succ_Journal_MonKillName'..i])
+                            if wiki ~= nil then
+                                killCount = GetWikiIntProp(wiki, "KillCount");
+                            end
+                        end
+                        if killCount ~= nil then
+                            if killCount >= questIES['Succ_Journal_MonKillCount'..i] then
+                                checkCount[#checkCount][2] = "YES"
+                                return 'YES', checkCount
+                            end
+                        end
+                        ]]--
+                    end
+                end
+            end
+        else
+            local succCount = 0
+            for i = 1, questIES.Succ_Check_JournalMonKillCount do
+                if GetPropType(questIES, 'Succ_Journal_MonKillName'..i) ~= nil and GetPropType(questIES, 'Succ_Journal_MonKillCount'..i) ~= nil then
+                    if questIES['Succ_Journal_MonKillName'..i] ~= 'None' and questIES['Succ_Journal_MonKillName'..i] ~= '' then
+                        checkCount[#checkCount+1] = {i,"NO"}
+                        local killCount
+                        --[[ hs_comment: 개편된 함수로 교체해주세요~
+                        if IsServerSection(pc) == 1 then
+                            local wiki = GetWikiByName(pc, questIES['Succ_Journal_MonKillName'..i])
+                            if wiki ~= nil then
+                                killCount = GetWikiIntProp(wiki, "KillCount")
+                            end
+                        else
+                            local wiki = GetWikiByName(questIES['Succ_Journal_MonKillName'..i])
+                            if wiki ~= nil then
+                                killCount = GetWikiIntProp(wiki, "KillCount");
+                            end
+                        end
+                        if killCount ~= nil then
+                            if killCount >= questIES['Succ_Journal_MonKillCount'..i] then
+                                checkCount[#checkCount][2] = "YES"
+                                succCount = succCount + 1
+                            end
+                        end
+                        ]]--
+                    end
+                end
+            end
+            if #checkCount <= succCount then
+                return "YES", checkCount
+            end
+        end
+    end
+    return "NO", checkCount
+end
+
+function SCR_JOURNALMONKILL_CHECK_MODULE_QUEST(pc, questIES)
+    local req_JournalMonKill = "NO"
+    local checkCount = {}
+    
+    if GetPropType(questIES, 'Check_JournalMonKillCount') == nil or questIES.Check_JournalMonKillCount == 0 then
+        return 'YES'
+    end
+    
+    if GetPropType(questIES, 'Check_JournalMonKillCount') ~= nil and GetPropType(questIES, 'Journal_MonKill_Condition') ~= nil then
+        if questIES.Journal_MonKill_Condition == 'OR' then
+            for i = 1, questIES.Check_JournalMonKillCount do
+                if GetPropType(questIES, 'Journal_MonKillName'..i) ~= nil and GetPropType(questIES, 'Journal_MonKillCount'..i) ~= nil then
+                    if questIES['Journal_MonKillName'..i] ~= 'None' and questIES['Journal_MonKillName'..i] ~= '' then
+                        checkCount[#checkCount+1] = {i,"NO"}
+                        local killCount
+                        --[[ hs_comment: 개편된 함수로 교체해주세요~
+                        if IsServerSection(pc) == 1 then
+                            local wiki = GetWikiByName(pc, questIES['Journal_MonKillName'..i])
+                            if wiki ~= nil then
+                                killCount = GetWikiIntProp(wiki, "KillCount")
+                            end
+                        else
+                            local wiki = GetWikiByName(questIES['Journal_MonKillName'..i])
+                            if wiki ~= nil then
+                                killCount = GetWikiIntProp(wiki, "KillCount");
+                            end
+                        end
+                        if killCount ~= nil then
+                            if killCount >= questIES['Journal_MonKillCount'..i] then
+                                checkCount[#checkCount][2] = "YES"
+                                return 'YES', checkCount
+                            end
+                        end
+                        ]]--
+                    end
+                end
+            end
+        else
+            local succCount = 0
+            for i = 1, questIES.Check_JournalMonKillCount do
+                if GetPropType(questIES, 'Journal_MonKillName'..i) ~= nil and GetPropType(questIES, 'Journal_MonKillCount'..i) ~= nil then
+                    if questIES['Journal_MonKillName'..i] ~= 'None' and questIES['Journal_MonKillName'..i] ~= '' then
+                        checkCount[#checkCount+1] = {i,"NO"}
+                        local killCount
+                        --[[ hs_comment: 개편된 함수로 교체해주세요~
+                        if IsServerSection(pc) == 1 then
+                            local wiki = GetWikiByName(pc, questIES['Journal_MonKillName'..i])
+                            if wiki ~= nil then
+                                killCount = GetWikiIntProp(wiki, "KillCount")
+                            end
+                        else
+                            local wiki = GetWikiByName(questIES['Journal_MonKillName'..i])
+                            if wiki ~= nil then
+                                killCount = GetWikiIntProp(wiki, "KillCount");
+                            end
+                        end
+                        if killCount ~= nil then
+                            if killCount >= questIES['Journal_MonKillCount'..i] then
+                                checkCount[#checkCount][2] = "YES"
+                                succCount = succCount + 1
+                            end
+                        end
+                        ]]--
+                    end
+                end
+            end
+            if #checkCount <= succCount then
+                return "YES", checkCount
+            end
+        end
+    end
+    return "NO", checkCount
+end
 
 function SCR_PARTY_QUEST_CHECK_MODULE_QUEST(pc, questIES)
     local req_PartyProp = "NO"
@@ -4452,4 +4736,217 @@ function SCR_QUEST_POSSIBLE_DIALOG_CHECK_SUB(pc, questname, argmsg)
     elseif string.find(argmsg, '/') == nil or string.find(argmsg, ';') == nil then
         return 'YES'
     end
+end
+
+-- 퀘스트 조건 체크
+function SCR_QUEST_CHECK_MODULE_JOBLVUP(pc, questIES)
+    local req_joblvup = 'NO'
+    
+    if questIES.JobLvup == 'None' then
+        req_joblvup = 'YES'
+    else
+        local jobinfo = SCR_STRING_CUT(questIES.JobLvup)
+        local job_name = jobinfo[1]
+        local jobCircleTarget = tonumber(jobinfo[2])
+        local jobCircle = 0
+                
+        jobCircle = GetJobGradeByName(pc, job_name);        
+                
+        if jobinfo[3] == '>=' then
+            if jobCircle ~= nil and jobCircle >= tonumber(jobCircleTarget) then
+                req_joblvup = 'YES'
+            end
+        elseif jobinfo[3] == '<=' then
+            if jobCircle ~= nil and jobCircle <= tonumber(jobCircleTarget) then
+                req_joblvup = 'YES'
+            end
+        elseif jobinfo[3] == '==' then
+            if jobCircle ~= nil and jobCircle == tonumber(jobCircleTarget) then
+                req_joblvup = 'YES'
+            end
+        end
+    end
+    return req_joblvup
+end
+
+function SCR_QUEST_CHECK_MODULE_JOBLVDOWN(pc, questIES)
+    local req_joblvdown = 'NO'
+    
+    if questIES.JobLvdown == 'None' then
+        req_joblvdown = 'YES'
+    else
+        local jobinfo = SCR_STRING_CUT(questIES.JobLvdown)
+        local job_name = jobinfo[1]
+        local jobCircleTarget = tonumber(jobinfo[2])
+        local jobCircle, jobRank
+        
+        if IsServerSection(pc) == 1 then
+            jobCircle, jobRank = GetJobGradeByName(pc, job_name);
+        else
+            local jobIES = GetClass('Job', job_name)
+            jobCircle = session.GetJobGrade(jobIES.ClassID);
+        end
+        
+        if jobinfo[3] == '>=' then
+            if jobCircle ~= nil and jobCircle >= tonumber(jobCircleTarget) then
+                req_joblvdown = 'YES'
+            end
+        elseif jobinfo[3] == '<=' then
+            if jobCircle ~= nil and jobCircle <= tonumber(jobCircleTarget) then
+                req_joblvdown = 'YES'
+            end
+        elseif jobinfo[3] == '==' then
+            if jobCircle ~= nil and jobCircle == tonumber(jobCircleTarget) then
+                req_joblvdown = 'YES'
+            end
+        end
+    end
+    return req_joblvdown
+end
+
+function SCR_QUEST_CHECK_MODULE_STEPREWARD_FUNC(self, questName)
+    local maxRewardIndex
+    local questIES = GetClass('QuestProgressCheck', questName)
+    local quest_auto = GetClass('QuestProgressCheck_Auto', questName)
+    local duplicate = TryGetProp(quest_auto, 'StepRewardDuplicatePayments')
+    local lastReward
+    local lastRewardList
+    local sObj = GetSessionObject(self, 'ssn_klapeda');
+    if duplicate == 'NODUPLICATE' then
+        lastRewardList = TryGetProp(sObj, questIES.QuestPropertyName..'_SRL')
+        if lastRewardList ~= nil and lastRewardList ~= 'None' then
+            lastReward = SCR_STRING_CUT(lastRewardList)
+        end
+    end
+    
+    for index = 1, 10 do
+        if table.find(lastReward, index) == 0 then
+            local stepRewardFuncList = TryGetProp(quest_auto, 'StepRewardFunc'..index)
+            if stepRewardFuncList ~= nil and stepRewardFuncList ~= 'None' then
+                stepRewardFuncList = SCR_STRING_CUT(stepRewardFuncList)
+                local stepRewardFunc = _G[stepRewardFuncList[1]]
+                if stepRewardFunc ~= nil then
+                    local result = stepRewardFunc(self, stepRewardFuncList)
+                    if result == 'YES' then
+                        maxRewardIndex = index
+                    end
+                end
+            end
+        end
+    end
+    return maxRewardIndex
+end
+
+function SCR_QUEST_CHECK_SUB_SUCCESS_PROPERTY_CHANGE(pc, sObj, questIES)
+    if pc ~= nil and sObj ~= nil and questIES ~= nil then
+        if questIES.QuestEndMode ~= 'SYSTEM' then
+            if sObj[questIES.QuestPropertyName] >= CON_QUESTPROPERTY_MIN and sObj[questIES.QuestPropertyName] < CON_QUESTPROPERTY_MAX then
+                local tx = TxBegin(pc);
+            	TxEnableInIntegrate(tx);
+            	TxSetIESProp(tx, sObj, questIES.QuestPropertyName, CON_QUESTPROPERTY_MAX)
+            	local ret = TxCommit(tx);
+            end
+        end
+    end
+end
+
+-- episode
+local s_episdoe_list  = nil
+local function GET_EPISODE_QUEST_LIST(episodeNumberStr)
+    if s_episdoe_list == nil then
+        s_episdoe_list = {}
+
+        local clsList, cnt = GetClassList("Episode_Quest");
+        for i = 0, cnt -1 do
+            local episodeCls = GetClassByIndexFromList(clsList, i);
+            if episodeCls ~= nil then
+                local episodeNameProp = TryGetProp(episodeCls, "EpisodeName");
+                local questIDProp= TryGetProp(episodeCls, "QuestID");
+                if episodeNameProp ~= nil and questIDProp ~= nil then
+                    if s_episdoe_list[episodeNameProp] == nil then
+                        s_episdoe_list[episodeNameProp] ={}
+                    end
+                    table.insert(s_episdoe_list[episodeNameProp],questIDProp);
+                end
+            end 
+        end
+    end
+
+    if s_episdoe_list[episodeNumberStr] == nil then
+        return nil
+    end
+
+    return s_episdoe_list[episodeNumberStr]
+end
+
+function SCR_EPISODE_CHECK(pc, episodeRewardClassName)
+  
+    if pc == nil then
+        return "Error"
+    end
+    
+    local episodeRewardIES = GetClass('Episode_Reward', episodeRewardClassName)
+    if episodeRewardIES == nil then
+        return "Error"
+    end
+    
+    local episodeNumberStrProp = TryGetProp(episodeRewardIES, "ClassName")
+    if episodeNumberStrProp == nil then
+        return "Error"
+    end
+
+    local unLockGroup = TryGetProp(episodeRewardIES, "EpisodeUnLockGroup")
+    if unLockGroup == nil then
+        return "Error"
+    end
+   
+    local accountObj = nil;
+	if IsServerObj(pc) == 1 then
+		accountObj =  GetAccountObj(pc);
+	else
+		accountObj = GetMyAccountObj();
+    end
+
+    if accountObj == nil then
+        return "Error"
+    end
+
+    -- 1. Lock 검사
+    if unLockGroup ~= nil and unLockGroup ~= "None" then
+        local unLockGroupPropName = "Episode_Unlock_" .. unLockGroup ;
+        local unLockGroupProp = TryGetProp(accountObj, unLockGroupPropName)
+        if unLockGroupProp ~= 1 then
+            return "Locked"; 
+        end
+    end
+
+    -- 2. Account 프로퍼티에 1이 있는 경우 Clear
+    local clearPropName = episodeRewardClassName .. "_Clear";
+    local clearProp = TryGetProp(accountObj, clearPropName)
+    if clearProp == 1 then
+        return "Clear"; -- 이미 받아감.
+    end
+    
+    -- 3. 에피소드의 모든 퀘스트 검사.
+    local list = GET_EPISODE_QUEST_LIST(episodeNumberStrProp)
+    if list == nil then
+        return "Error"
+    end
+    
+    for _notUse , questID in pairs(list) do
+        local questIES = GetClassByType('QuestProgressCheck', questID);
+        if questIES == nil then
+            return "Error"
+        end
+        local questName = TryGetProp(questIES, "ClassName")
+        if questName == nil then
+            return "Error"
+        end
+        local state = SCR_QUEST_CHECK(pc, questName )
+        if state ~= "COMPLETE" then
+            return "Progress";
+        end
+    end
+    
+    return "Reward";
 end
