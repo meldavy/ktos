@@ -2,182 +2,52 @@
 
 function GUILDBATTLE_RANKING_ON_INIT(addon, frame)
 
-	addon:RegisterMsg("PREV_GUILD_RANK_INFO", "ON_UPDATE_PREV_GUILD_RANK_INFO");
-	addon:RegisterMsg("ALL_SEASON_TOP_RANK_INFO", "ON_UPDATE_ALL_SEASON_TOP_RANK_INFO");
+	addon:RegisterMsg("FIRST_GUILD_RANK_INFO", "UPDATE_FIRST_RANKING_GUILD");
 
 end
 
-function ON_UPDATE_PREV_GUILD_RANK_INFO(frame)
-	UPDATE_PREV_RANKING_GUILD(frame);
-	UPDATE_GET_REWARD_BUTTON(frame);
-end
+function UPDATE_FIRST_RANKING_GUILD(frame)
 
-function ON_UPDATE_ALL_SEASON_TOP_RANK_INFO(frame)
-	UPDATE_ALL_SEASON_TOP_RANKING_GUILD(frame);
-end
-
-function UPDATE_ALL_SEASON_TOP_RANKING_GUILD(frame)
-	
-	local page = session.worldPVP.GetRankProp("AS_Page");
-	local totalCount = session.worldPVP.GetRankProp("AS_TotalCount");
-
-	local rankingpage = frame:GetChild("rankingpage");
-	local gbox_ctrls = rankingpage:GetChild("gbox_ctrls");
-	gbox_ctrls:RemoveAllChild();
-
-	local cnt = session.worldPVP.GetAllSeasonTopRankInfoCount();
-
-	for i = 0 , cnt - 1 do
-		local info = session.worldPVP.GetAllSeasonTopRankInfoByIndex(i);
-		local ctrlSet = gbox_ctrls:CreateControlSet("guildbattle_rank_ctrl", "CTRLSET_" .. i,  ui.LEFT, ui.TOP, 0, 0, 0, 0);
-
-		UPDATE_GUILDBATTLE_RANKING_CONTROL(ctrlSet, info, 0);
-
-	end
-
-	GBOX_AUTO_ALIGN(gbox_ctrls, 0, 0, 0, true, false);
-
-	local totalPage = math.floor(((totalCount - 1) + WORLDPVP_RANK_PER_PAGE)/ WORLDPVP_RANK_PER_PAGE);
-	local control = GET_CHILD(rankingpage, 'control', 'ui::CPageController')
-	control:SetMaxPage(totalPage);
-	control:SetCurPage(page - 1);
-
-end
-
-function UPDATE_PREV_RANKING_GUILD(frame)
-	
-	local cnt = session.worldPVP.GetPrevRankInfoCount();
-
-	local first_info = session.worldPVP.GetPrevRankInfoByIndex(0);
+	local firstRankGuildInfo = session.worldPVP.GetFirstRankGuildInfo();
 
 	local first_rank = frame:GetChild("first_rank");
 	local first_server = frame:GetChild("first_server");
 	local first_name = frame:GetChild("first_name");
 	local first_winlose = frame:GetChild("first_winlose");
 	local first_point = frame:GetChild("first_point");
-	local first_guild_award = frame:GetChild("first_guild_award");
 
-	frame = frame:GetTopParentFrame();
-	local prevRank = frame:GetChild("prev_rank");
-	prevRank:RemoveAllChild();
-
-	if cnt < 1 then
+	if firstRankGuildInfo:GetCID() == "0" then
 		first_rank:ShowWindow(0);
 		first_server:SetTextByKey("value", "");
 		first_name:SetTextByKey("value", "");
 		first_winlose:SetTextByKey("value", "");
 		first_point:SetTextByKey("value", "");
-		first_guild_award:SetTextByKey("value", "");
 	else
-		if first_info:GetCID() ~= "0" then
-			first_rank:ShowWindow(1);
-			local serverName = GetServerNameByGroupID(first_info.groupID);
-			first_server:SetTextByKey("value", "[" .. serverName .. "]");
-			first_name:SetTextByKey("value", first_info:GetIconInfo():GetFamilyName());
-			first_winlose:SetTextByKey("value", ScpArgMsg("Win{Win}Lose{Lose}", "Win", first_info.win, "Lose", first_info.lose));
-			first_point:SetTextByKey("value", ScpArgMsg("{Point}Point", "Point", first_info.point));
 
-			first_guild_award:SetTextByKey("value", "");
+		first_rank:ShowWindow(1);
+		local serverName = GetServerNameByGroupID(firstRankGuildInfo.groupID);
+		first_server:SetTextByKey("value", "[" .. serverName .. "]");
+		first_name:SetTextByKey("value", firstRankGuildInfo:GetIconInfo():GetFamilyName());
+		first_winlose:SetTextByKey("value", ScpArgMsg("Win{Win}Lose{Lose}", "Win", firstRankGuildInfo.win, "Lose", firstRankGuildInfo.lose));
+		first_point:SetTextByKey("value", ScpArgMsg("{Point}Point", "Point", firstRankGuildInfo.point));
 
-		end	
-		for i = 1, cnt - 1 do
-			local info = session.worldPVP.GetPrevRankInfoByIndex(i);
-			local ctrlSet = prevRank:CreateControlSet("guildbattle_prev_rank_ctrl", "CTRLSET_PREV_" .. i - 1,  ui.LEFT, ui.TOP, 0, 0, 0, 0);
-
-			UPDATE_PREV_RANKING_CTRL(ctrlSet, info);
-		end
 	end
 	
-	GBOX_AUTO_ALIGN(prevRank, 0, 0, 0, true, false);
-	end
-
-function UPDATE_PREV_RANKING_CTRL(ctrlSet, info)
-	
-	local txt_servername = ctrlSet:GetChild("txt_servername");
-	local txt_rank = ctrlSet:GetChild("txt_rank");
-	local txt_guildname = ctrlSet:GetChild("txt_guildname");
-	local txt_win = ctrlSet:GetChild("txt_win");
-	local txt_point = ctrlSet:GetChild("txt_point");
-	
-	local serverName = GetServerNameByGroupID(info.groupID);
-	txt_servername:SetTextByKey("value", serverName);
-	txt_rank:SetTextByKey("value", ScpArgMsg("Rank{Value}", "Value", info.ranking + 1));
-	txt_guildname:SetTextByKey("value", info:GetIconInfo():GetFamilyName());
-	txt_point:SetTextByKey("value", info.point);
-
-end
-
-function UPDATE_GET_REWARD_BUTTON(frame)	
-	
-	local btn = frame:GetChild("btn_get_reward");
-	btn:ShowWindow(0);
-
-end	
-			
-function REQ_GET_GUILD_BATTLE_REWARD(frame, ctrl)
-
-	local type = session.worldPVP.GetRankProp("Type");
-	worldPVP.RequestGetWorldPVPReward(type);
-
-	DISABLE_BUTTON_DOUBLECLICK("guildbattle_ranking",ctrl:GetName())
-
 end
 
 function GUILDBATTLE_RANKING_TAB_CHANGE(frame)
-	local topFrame = frame:GetTopParentFrame();
-	local tab = GET_CHILD_RECURSIVELY(topFrame, "tab", "ui::CTabControl");
-	local nTabIdx = tab:GetSelectItemIndex();
 
-	if nTabIdx == 0 then
 	GUILDBATTLE_RANKING_REQUEST_RANK(frame, 1, 0);
-	elseif nTabIdx == 1 then
-		GUILDBATTLE_RANKING_REQUEST_ALL_SEASON_TOP_RANKER(frame, 1);
-	end
 
-end
-
-function GUILDBATTLE_RANKING_REQUEST_ALL_SEASON_TOP_RANKER(frame, page)
-
-	frame = frame:GetTopParentFrame();
-	local rankingpage = frame:GetChild("rankingpage");
-	local gbox_ctrls = rankingpage:GetChild("gbox_ctrls");
-	local control = GET_CHILD(rankingpage, 'control', 'ui::CPageController')
-	local input_findname = rankingpage:GetChild("input_findname");
-	gbox_ctrls:RemoveAllChild();
-
-	local pvpType = 210 --frame:GetUserIValue("PVP_TYPE");
-
-	worldPVP.RequestAllSeasonTopPVPRanking(pvpType, page, input_findname:GetText());
-
-end
-
-function OPEN_GUILDBATTLE_RANKING_FRAME(openPage)
-	if openPage == nil then
-		openPage = 0;
-	end
-
-		local guildbattle_ranking = ui.GetFrame("guildbattle_ranking");
-		guildbattle_ranking:ShowWindow(1);
-		if 1 ~= openPage then
-			local tab = GET_CHILD_RECURSIVELY(guildbattle_ranking, "tab", "ui::CTabControl");
-			local nTabIdx = tab:GetSelectItemIndex();
-		
-			if nTabIdx == 0 then
-				GUILDBATTLE_RANKING_UPDATE(guildbattle_ranking);
-			elseif nTabIdx == 1 then
-				UPDATE_ALL_SEASON_TOP_RANKING_GUILD(guildbattle_ranking);
-			end
-		end
-		UPDATE_PREV_RANKING_GUILD(guildbattle_ranking);
 end
 
 function OPEN_GUILDBATTLE_RANKING(frame)
 
 	local type = session.worldPVP.GetRankProp("Type");
-	worldPVP.RequestGuildBattlePrevSeasonRanking(type);
-	UPDATE_PREV_RANKING_GUILD(frame);
-	UPDATE_GET_REWARD_BUTTON(frame);
-	UPDATE_GUILDBATTLE_RANK_MYRANK(frame);
+	worldPVP.RequestGuildBattlePrevSeasonTop(type);
+	UPDATE_FIRST_RANKING_GUILD(frame);
+	UPDATE_GUILD_REWARD_TEXTS(frame);
+
 end
 
 function GET_GUILD_BATTLE_REWARD_BY_CLS(cls)
@@ -186,70 +56,33 @@ function GET_GUILD_BATTLE_REWARD_BY_CLS(cls)
 
 end
 
+function UPDATE_GUILD_REWARD_TEXTS(frame)
 
-function GUILDBATTLE_RANKING_SELECT(parent, ctrl)
-	local frame = parent:GetTopParentFrame();
-	local rankpage = frame:GetChild("rankingpage");
-	local control = GET_CHILD(rankpage, "control", 'ui::CPageController')
-	
-	local tab = GET_CHILD_RECURSIVELY(frame, "tab", "ui::CTabControl");
-	local nTabIdx = tab:GetSelectItemIndex();
+	local first_reward = frame:GetChild("first_reward");
+	local txt_rewardlist = frame:GetChild("txt_rewardlist");
+	local gbox_guild_rewards = frame:GetChild("gbox_guild_rewards");
 
-	if nTabIdx == 0 then
-		GUILDBATTLE_RANKING_REQUEST_RANK(frame, control:GetCurPage() + 1, 0);
-	elseif nTabIdx == 1 then
-		GUILDBATTLE_RANKING_REQUEST_ALL_SEASON_TOP_RANKER(frame, control:GetCurPage() + 1);
+	local clsList, cnt = GetClassList("GuildBattleReward");
+	local firstCls = GetClassByIndexFromList(clsList, 0);
+	local firsttxt = "GuildReward{nl}";
+	firsttxt = firsttxt .. ScpArgMsg("{Rank}Rank", "Rank", "1") .. " : " .. GET_GUILD_BATTLE_REWARD_BY_CLS(firstCls);
+	firsttxt = firsttxt .. "{nl}" .. ScpArgMsg("FirstRankServerReward") .. "{nl}"
+	firsttxt = firsttxt .. ScpArgMsg("ForTheNextRankingRefreshFreeTPPlus{Value}", "Value", GUILD_BATTLE_FIRSTSERVER_FREETP);		
+	first_reward:SetTextByKey("value", firsttxt);
+
+	gbox_guild_rewards:RemoveAllChild();
+	for i = 0 , cnt - 1 do
+		local cls = GetClassByIndexFromList(clsList, i);
+		local ctrlSet = gbox_guild_rewards:CreateControlSet("text_guild_battle_ranker_reward", "CTRLSET_" .. i,  ui.CENTER_HORZ, ui.TOP, 0, 0, 0, 0);
+		local txt_rank = ctrlSet:GetChild("txt_rank");
+		txt_rank:SetTextByKey("value", ScpArgMsg("{Rank}Rank", "Rank", i + 1));
+		local text = ctrlSet:GetChild("text");
+		text:SetTextByKey("value", GET_GUILD_BATTLE_REWARD_BY_CLS(cls));
 	end
 
-	ui.DisableForTime(control, 0.5);
-end
+	GBOX_AUTO_ALIGN(gbox_guild_rewards, 0, 0, 0, true, false);
 
-function GUILDBATTLE_RANKING_SELECT_NEXT(parent, ctrl)
 
-	local frame = parent:GetTopParentFrame();
-	local rankpage = frame:GetChild("rankingpage");
-	local control = GET_CHILD(rankpage, "control", 'ui::CPageController')
-	local page = control:GetUserIValue("PAGE");
-
-	if page >= control:GetMaxPage() then
-		control:SetCurPage(control:GetMaxPage() - 1);
-		return;
-	end
-	
-	local tab = GET_CHILD_RECURSIVELY(frame, "tab", "ui::CTabControl");
-	local nTabIdx = tab:GetSelectItemIndex();
-
-	if nTabIdx == 0 then
-		GUILDBATTLE_RANKING_REQUEST_RANK(frame, control:GetCurPage() + 1, 0);
-	elseif nTabIdx == 1 then
-		GUILDBATTLE_RANKING_REQUEST_ALL_SEASON_TOP_RANKER(frame, control:GetCurPage() + 1);
-	end
-
-	ui.DisableForTime(control, 0.5);
-end
-
-function GUILDBATTLE_RANKING_SELECT_PREV(parent, ctrl)
-
-	local frame = parent:GetTopParentFrame();
-	local rankpage = frame:GetChild("rankingpage");
-	local control = GET_CHILD(rankpage, "control", 'ui::CPageController')
-	local page = control:GetUserIValue("PAGE");
-
-	if page < 2 then
-		control:SetCurPage(0);
-		return;
-	end
-	
-	local tab = GET_CHILD_RECURSIVELY(frame, "tab", "ui::CTabControl");
-	local nTabIdx = tab:GetSelectItemIndex();
-
-	if nTabIdx == 0 then
-		GUILDBATTLE_RANKING_REQUEST_RANK(frame, control:GetCurPage() + 1, 0);
-	elseif nTabIdx == 1 then
-		GUILDBATTLE_RANKING_REQUEST_ALL_SEASON_TOP_RANKER(frame, control:GetCurPage() + 1);
-	end
-
-	ui.DisableForTime(control, 0.5);
 end
 
 function GUILDBATTLE_RANKING_REQUEST_RANK(frame, page, findMyRanking)
@@ -259,21 +92,29 @@ function GUILDBATTLE_RANKING_REQUEST_RANK(frame, page, findMyRanking)
 	local gbox_ctrls = rankingpage:GetChild("gbox_ctrls");
 	local control = GET_CHILD(rankingpage, 'control', 'ui::CPageController')
 	local input_findname = rankingpage:GetChild("input_findname");
-	gbox_ctrls:RemoveAllChild();
 
-	local pvpType = 210 --frame:GetUserIValue("PVP_TYPE");
-	worldPVP.RequestPVPRanking(pvpType, 0, -1, page, findMyRanking, input_findname:GetText());
+	local pvpType = frame:GetUserIValue("PVP_TYPE");
+	local seasonOffset = 0;
+	local tab = GET_CHILD(frame, "tab");
+	local tabIndex = tab:GetSelectItemIndex();
+	if tabIndex == 1 then
+		seasonOffset = -1;
+	end
+
+	worldPVP.RequestPVPRanking(pvpType, seasonOffset, -1, page, findMyRanking, input_findname:GetText());
 
 end
 
 function GUILDBATTLE_RANK_REMAINTIME_UPDATE(frame)
-	local startDay = session.worldPVP.GetGuildPVPStartDay();
-	local endDay = session.worldPVP.GetGuildPVPEndDay();
-	local msgString = ScpArgMsg("GuildPVPStart{sYear}{sMonth}{sDay}GuildPVPEnd{eYear}{eMonth}{eDay}", "sYear", startDay.year, "sMonth", startDay.month, "sDay", startDay.day, "eYear", endDay.year, "eMonth", endDay.month, "eDay", endDay.day);
 
+	local remainSec = session.worldPVP.GetRemainSecondToNextSeason();
+
+	local timeText = GET_TIME_TXT_DHM(remainSec);
+	local msgString = ScpArgMsg("{Time}WeeklyRankingRefresh", "Time", timeText);
+	
 	local txt_nextseason = frame:GetChild("txt_nextseason");
 	txt_nextseason:SetTextByKey("value", msgString);
-
+	
 	return 1;
 end
 
@@ -297,18 +138,19 @@ function UPDATE_GUILDBATTLE_RANK_MYRANK(frame)
 		if rank > 0 then
 			txt_title_myrank:ShowWindow(1);
 			txt_myrank:ShowWindow(1);
-			txt_myrank:SetTextByKey("value", rank);
+			txt_myrank:SetTexxtByKey("value", rank);
 		end
 	end
 	
 end
 
 function GUILDBATTLE_RANKING_UPDATE(frame)
+
 	frame:RunUpdateScript("GUILDBATTLE_RANK_REMAINTIME_UPDATE", 10);
 	GUILDBATTLE_RANK_REMAINTIME_UPDATE(frame);
 
 	local type = session.worldPVP.GetRankProp("Type");
-	frame:SetUserValue("PVP_TYPE", 210);
+	frame:SetUserValue("PVP_TYPE", type);
 	local league = session.worldPVP.GetRankProp("League");
 	local page = session.worldPVP.GetRankProp("Page");
 	local totalCount = session.worldPVP.GetRankProp("TotalCount");
@@ -320,15 +162,15 @@ function GUILDBATTLE_RANKING_UPDATE(frame)
 	local cnt = session.worldPVP.GetRankInfoCount();
 	for i = 0 , cnt - 1 do
 		local info = session.worldPVP.GetRankInfoByIndex(i);
-		local ctrlSet = gbox_ctrls:CreateControlSet("guildbattle_rank_ctrl", "CTRLSET_" .. i,  ui.LEFT, ui.TOP, 0, 0, 0, 0);
+		local ctrlSet = gbox_ctrls:CreateControlSet("guildbattle_rank_ctrl", "CTRLSET_" .. i,  ui.CENTER_HORZ, ui.TOP, 0, 0, 0, 0);
 
-		UPDATE_GUILDBATTLE_RANKING_CONTROL(ctrlSet, info, 1);
+		UPDATE_GUILDBATTLE_RANKING_CONTROL(ctrlSet, info);
 
 	end
 
 	GBOX_AUTO_ALIGN(gbox_ctrls, 0, 0, 0, true, false);
 
-	local totalPage = math.floor(((totalCount - 1) + WORLDPVP_RANK_PER_PAGE)/ WORLDPVP_RANK_PER_PAGE) ;
+	local totalPage = math.floor((totalCount + WORLDPVP_RANK_PER_PAGE)/ WORLDPVP_RANK_PER_PAGE) ;
 	local control = GET_CHILD(rankingpage, 'control', 'ui::CPageController')
 	control:SetMaxPage(totalPage);
 	control:SetCurPage(page - 1);
@@ -338,7 +180,7 @@ function GUILDBATTLE_RANKING_UPDATE(frame)
 
 end
 
-function UPDATE_GUILDBATTLE_RANKING_CONTROL(ctrlSet, info, showUpDown)
+function UPDATE_GUILDBATTLE_RANKING_CONTROL(ctrlSet, info)
 
 	local txt_servername = ctrlSet:GetChild("txt_servername");
 	local txt_rank = ctrlSet:GetChild("txt_rank");
@@ -353,45 +195,5 @@ function UPDATE_GUILDBATTLE_RANKING_CONTROL(ctrlSet, info, showUpDown)
 	txt_win:SetTextByKey("value", ScpArgMsg("Win{Win}Lose{Lose}", "Win", info.win, "Lose", info.lose));
 	txt_point:SetTextByKey("value", info.point);
 	
-	if showUpDown == 1 then
-		local txt_rank_updown = ctrlSet:GetChild("txt_rank_updown");
-		local imgUpDown = GET_CHILD(ctrlSet, "pic_updown");
-
-		local nUpDown = info.lastRank - info.ranking;
-		local newRanker = false;
-		if info.lastRank < 0 then
-			newRanker = true;
-		end
-				
-		if newRanker == true then
-			txt_rank_updown:SetTextByKey("value", "New");
-			imgUpDown:SetImage("green_up_arrow");
-		else
-			if nUpDown == 0 then
-				txt_rank_updown:SetTextByKey("value", "");
-			elseif nUpDown < 0 then
-				txt_rank_updown:SetTextByKey("value", nUpDown);
-			else
-				local str = "+" .. nUpDown;
-				txt_rank_updown:SetTextByKey("value", str);
-			end					
-			
-			if nUpDown < 0 then
-				imgUpDown:SetImage("red_down_arrow");
-				txt_rank_updown:SetColorTone("FFED1C24");
-			elseif nUpDown > 0 then
-				imgUpDown:SetImage("green_up_arrow");
-				txt_rank_updown:SetColorTone("FF14672D");
-			else
-				imgUpDown:SetImage("blue_none_arrow");
-				txt_rank_updown:SetColorTone("FF000000");
-			end
-		end
-	else
-		local txt_rank_updown = ctrlSet:GetChild("txt_rank_updown");
-		local imgUpDown = GET_CHILD(ctrlSet, "pic_updown");
-		txt_rank_updown:SetVisible(0);
-		imgUpDown:SetVisible(0);
-	end
 end
 
