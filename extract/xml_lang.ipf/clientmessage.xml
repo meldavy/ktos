@@ -15261,6 +15261,8 @@
 		<Class ClassID="1002057" ClassName="DesigncutDyeWarning" Data="디자인 컷 착용 후  {#FF0900}인벤토리 내 가발 슬롯 좌측 화살표를 클릭하면 지정된 색상 중 원하는 색으로 변경{/}하실 수 있습니다.{nl} {nl}* 지정된 색상 외의 염색약 적용이 불가능합니다."/>
 		<Class ClassID="1002058" ClassName="PREVIEW_LETICIA" Data="레티샤 상품 입어보기"/>
 		<Class ClassID="1002059" ClassName="PREVIEW_SILVERGACHA" Data="마신의 유혹 상품 입어보기"/>
+		<Class ClassID="1002060" ClassName="NotBuy_Thema3" Data="해당 상품은 개별 구매가 불가능하며,{nl}{@st66d_y}레티샤의 시크릿 큐브에서 {nl}확률적으로 획득할 수 있는 아이템입니다.{/}"/>
+		<Class ClassID="1002061" ClassName="NotBuy_Thema4" Data="해당 상품은 개별 구매가 불가능하며,{nl}{@st66d_y}마신의 유혹에서 {nl}확률적으로 획득할 수 있는 아이템입니다.{/}"/>
 	</Category>
 	<Category Name="WebService">
 		<Class ClassID="1999998" ClassName="WebService_" Data="서버에 접속이 원활하지 않습니다."/>
