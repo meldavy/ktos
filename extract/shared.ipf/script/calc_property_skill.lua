@@ -9394,7 +9394,7 @@ function SCR_Get_BroadHead_Bufftime(skill)
 end
 
 function SCR_Get_CrossFire_Ratio(skill)
-    return 70 + skill.Level * 10;
+    return 75 + skill.Level * 5;
 end
 
 

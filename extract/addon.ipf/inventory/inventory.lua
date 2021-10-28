@@ -566,7 +566,7 @@ function GET_SLOT_FROMSLOTSET_BY_IESID(slotset, itemGuid)
 	for i = 0 , count - 1 do
 		local slot = slotset:GetChildByIndex(i);
 		AUTO_CAST(slot);
-		local tooltipIESID = slot:GetIcon():GetTooltipIESID();
+		local tooltipIESID = slot:GetIcon():GetInfo():GetIESID();
 		if tooltipIESID == itemGuid then
 			return slot;
 		end
