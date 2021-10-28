@@ -1,45 +1,139 @@
+-- quest_custom.lua
+
+local customQuestList = nil;
+
+local function _GET_CUSTOM_QUEST_LIST()
+
+	if customQuestList == nil then
+		customQuestList = {}
+	end
+
+	return customQuestList;
+end
 
 
-
-function ON_CUSTOM_QUEST_DELETE(frame, msg, keyName, argNum)
-	local groupbox = frame:GetChild('questGbox');
+local function _REMOVE_CUSTOM_QUEST_INFO(keyName)
+	local list = _GET_CUSTOM_QUEST_LIST()
+	if list == nil then
+		return nil
+	end
 	
-	local ctrlName = "_Q_CUSTOM_" .. keyName;
-	groupbox:RemoveChild(ctrlName);
-	ALIGN_QUEST_CTRLS(groupbox);
+	for id=#list, 1, -1 do
+		local customQuestInfo = list[id]
+		if customQuestInfo.Key == keyName then
+			table.remove(list, id);
+		end
+	end
+
+end
+
+local function _GET_CUSTOM_QUEST_INFO(keyName)
+	local list = _GET_CUSTOM_QUEST_LIST()
+	if list == nil then
+		return nil
+	end
+
+	for index,customQuestInfo in pairs(list) do
+		if customQuestInfo.Key == keyName then
+			return customQuestInfo;
+		end
+	end
+
+	return nil;
+end
+
+local function _SET_CUSTOM_QUEST_INFO(keyName)
+	local list = _GET_CUSTOM_QUEST_LIST()
+	if list == nil then
+		return
+	end
+
+	-- ì´ë¯¸ ìžˆìœ¼ë©´ ê·¸ëƒ¥ ë¦¬í„´.
+	for index, questInfo in pairs(list) do
+		if questInfo.Key == keyName then
+			return
+		end
+	end
+	
+	-- ì—†ìœ¼ë©´ ëì— ì¶”ê°€.
+	local questIndex = #list;
+	list[questIndex + 1] = { Key = keyName}
+	
+end
+
+-- ì»¤ìŠ¤í…€ í€˜ìŠ¤íŠ¸ ê·¸ë¦¬ê¸°.
+function DRAW_CUSTOM_QUEST_LIST(frame, y)	
+	if frame == nil then
+		frame = ui.GetFrame('quest')
+	end
+
+	local bgCtrl = GET_CHILD_RECURSIVELY(frame, 'questGbox');
+	local questList = _GET_CUSTOM_QUEST_LIST()
+	local height = 0;
+	for notUse, customQuestInfo in pairs(questList) do
+		height = height + DRAW_CUSTOM_QUEST_CTRL(bgCtrl, customQuestInfo, y + height)
+	end
+
+	return height;
+end
+
+function DRAW_CUSTOM_QUEST_CTRL(bgCtrl, customQuestInfo, y)
+	if bgCtrl == nil then
+		return 0;
+	end
+
+	local customQuest = geQuest.GetCustomQuest(customQuestInfo.Key);
+	if customQuest == nil then
+		_REMOVE_CUSTOM_QUEST_INFO(customQuestInfo.Key)
+		return 0;
+	end
 
 	local frame2 = ui.GetFrame("questinfoset_2");
+	local key = customQuest:GetKey();
+	local ctrlName = "_Q_CUSTOM_" .. key;
+	local quest_ctrl = bgCtrl:CreateOrGetControlSet('custom_quest_list', ctrlName, 0, 0);
+	local ret = CUSTOM_CONTROLSET_UPDATE(quest_ctrl, customQuest);
+	if ret == -1 then
+		bgCtrl:RemoveChild(ctrlName);
+		
+		local GroupCtrl = GET_CHILD(frame2, "member", "ui::CGroupBox");
+		GroupCtrl:RemoveChild(ctrlName);
+		return 0; -- ì§€ë ¹ì°½ì—ë§Œ í‘œì‹œí•˜ëŠ” ì»¤ìŠ¤í…€ ì»¨íŠ¸ë¡¤ì´ë¯€ë¡œ 0ì„ ë¦¬í„´.
+	end
+
+	return quest_ctrl:GetHeight()
+end
+
+	
+function ON_CUSTOM_QUEST_DELETE(frame, msg, keyName, argNum)
+	_REMOVE_CUSTOM_QUEST_INFO(keyName)
+
+	DRAW_QUEST_LIST(frame)
+
+	-- INFOSET
+	local frame2 = ui.GetFrame("questinfoset_2");    
 	local GroupCtrl = GET_CHILD(frame2, "member", "ui::CGroupBox");
 	GroupCtrl:RemoveChild(ctrlName);
 	QUESTINFOSET_2_MAKE_CUSTOM(frame2, true);
 end
 
 function ON_CUSTOM_QUEST_UPDATE(frame, msg, keyName, argNum)
-	
 	local customQuest = geQuest.GetCustomQuest(keyName);
 	if customQuest == nil then
-		return;
+		_REMOVE_CUSTOM_QUEST_INFO(keyName)
+		return 
 	end
 
-	local groupbox = frame:GetChild('questGbox');
-	local frame2 = ui.GetFrame("questinfoset_2");
 	if customQuest.useMainUI == 1 then
-		local key = customQuest:GetKey();
-		local ctrlName = "_Q_CUSTOM_" .. key;
-		local quest_ctrl = groupbox:CreateOrGetControlSet('quest_list', ctrlName, 45, 0);
-		local ret = CUSTOM_CONTROLSET_UPDATE(quest_ctrl, customQuest);
-		if ret == -1 then
-			groupbox:RemoveChild(ctrlName);
-			
-			local GroupCtrl = GET_CHILD(frame2, "member", "ui::CGroupBox");
-			GroupCtrl:RemoveChild(ctrlName);
-		end
+		_SET_CUSTOM_QUEST_INFO(keyName)
 	end
 
-	ALIGN_QUEST_CTRLS(groupbox);
+	DRAW_QUEST_LIST(frame);
+
+	-- INFOSET
+	local frame2 = ui.GetFrame("questinfoset_2");	
 	QUESTINFOSET_2_MAKE_CUSTOM(frame2, true);
 	frame2:ShowWindow(1);
-
 end
 
 function CUSTOM_CONTROLSET_UPDATE(quest_ctrl, quest)
@@ -56,8 +150,6 @@ function QUESTINFOSET_2_MAKE_CUSTOM(frame, updateSize)
 		local customQuest = geQuest.GetCustomQuestByIndex(i);
 		local key = customQuest:GetKey();
 		local ctrlName = "_Q_CUSTOM_" .. key;
-		-- ¿©±â¼­ °°Àº ÀÌ¸§À¸·Î Ã£°í »ý¼ºÇÏ´Ï µ¤¾î¾º¾îÁü
-		--local ctrlset = GroupCtrl:CreateOrGetControlSet('emptyset2', ctrlName, 0, 0);
 		local ctrlset = GroupCtrl:CreateOrGetControlSet('emptyset2', ctrlName.."_"..i, 0, 0);
 		ctrlset:Resize(GroupCtrl:GetWidth() - 20, ctrlset:GetHeight());
 		CUSTOM_CONTROLSET_UPDATE(ctrlset, customQuest)
@@ -69,8 +161,7 @@ function QUESTINFOSET_2_MAKE_CUSTOM(frame, updateSize)
 end
 
 function ATTACH_QUEST_CTRLSET_TEXT(ctrlset, key, text, startx, y)
-
-	local content = ctrlset:CreateOrGetControl('richtext', key, startx, y, ctrlset:GetWidth(), 10);
+	local content = ctrlset:CreateOrGetControl('richtext', key, startx, y, ctrlset:GetWidth() - 60, 10);
 	tolua.cast(content, "ui::CRichText");
 	content:EnableSplitBySpace(0);
 	content:EnableHitTest(0);
@@ -84,7 +175,7 @@ end
 function MIN_LV_NOTIFY_UPDATE(ctrlset, strArg, minLv)
 	local name = GET_CHILD(ctrlset, "name", "ui::CRichText");
 	if name == nil then
-		name = ctrlset:CreateOrGetControl('richtext', 'name', 50, 0, ctrlset:GetWidth() - 10, 30);
+		name = ctrlset:CreateOrGetControl('richtext', 'name', 10, 0, ctrlset:GetWidth() - 10, 30);
 		name = tolua.cast(name, "ui::CRichText");
 	end
 
@@ -95,7 +186,7 @@ end
 
 
 function MGAME_QUEST_UPDATE(ctrlset)
-	
+
 	local stageList = session.mgame.GetStageQuestList();
 	local stageCnt = stageList:size();
 	if stageCnt == 0 then
@@ -104,18 +195,16 @@ function MGAME_QUEST_UPDATE(ctrlset)
 
 	local name = GET_CHILD(ctrlset, "name", "ui::CRichText");
 	if name == nil then
-		name = ctrlset:CreateOrGetControl('richtext', 'name', 10, 10, ctrlset:GetWidth() - 10, 100);
+		name = ctrlset:CreateOrGetControl('richtext', 'name', 40, 10, ctrlset:GetWidth() - 10, 100);
 		name = tolua.cast(name, "ui::CRichText");
 	end
-
-	name:SetText(ScpArgMsg("Auto_{@st43}MiSyeon_SuHaeng"));
-	
+		
 	DESTROY_CHILD_BYNAME(ctrlset, 'ITEM_');
 			
 	local nameTxt = "{@st42}";
-	local startx = 20;
-	local y = 40;
-
+	local startx = 25;
+	local y = 20;
+    
 	local stageList = session.mgame.GetStageQuestList();
 	local stageCnt = stageList:size();
 	if stageCnt == 0 then
@@ -124,7 +213,8 @@ function MGAME_QUEST_UPDATE(ctrlset)
 
 	for j = 0 , stageCnt - 1 do
 		local stageInfo = stageList:at(j);
-		local stageInstInfo = session.mgame.GetStageInst(stageInfo:GetStageName());
+		local stageName = stageInfo:GetStageName();
+		local stageInstInfo = session.mgame.GetStageInst(stageName);
 		if stageInstInfo ~= nil and 0 == stageInstInfo.isCompleted then
 			local monList = stageInfo:GetMonsterList();
 			local timeOut = stageInfo.timeOut;
@@ -142,13 +232,13 @@ function MGAME_QUEST_UPDATE(ctrlset)
 
 				local titleName = stageInfo:GetTitleName();
 				if titleName ~= "" then
-					y = ATTACH_QUEST_CTRLSET_TEXT(ctrlset, "ITEM_TITLE_" .. j, "{@st41_yellow} ".. titleName, 10, y);
+					y = ATTACH_QUEST_CTRLSET_TEXT(ctrlset, "ITEM_TITLE_" .. j, "{@st41_yellow} ".. titleName, startx, y);
 				end
 
 				if timeOut > 0 and stageInstInfo ~= nil then
 					local serverTime = GetServerAppTime();
 					local remainSec = timeOut - serverTime;
-					y = ATTACH_TIME_CTRL_EX(ctrlset, "ITEM_TIME_" .. j , remainSec, 10, y);
+					y = ATTACH_TIME_CTRL_EX(ctrlset, "ITEM_TIME_" .. j , remainSec, 50, y);
 				end
 
 				for i = 0 ,  monList:size() - 1 do
@@ -179,7 +269,23 @@ function MGAME_QUEST_UPDATE(ctrlset)
 		end
 	end
 	
-	ctrlset:Resize(ctrlset:GetWidth(), y + 10);
+	local avandonquest_try = ctrlset:GetChild("avandonquest_try")
+	if avandonquest_try ~= nil then
+	    avandonquest_try:ShowWindow(0)
+	end
+	local dialogReplay = ctrlset:GetChild("dialogReplay")
+	if dialogReplay ~= nil then
+	    dialogReplay:ShowWindow(0)
+	end
+	local abandon = ctrlset:GetChild("abandon")
+	if abandon ~= nil then
+	    abandon:ShowWindow(0)
+	end
+	local save = ctrlset:GetChild("save")
+	if save ~= nil then
+	    save:ShowWindow(0)
+	end
+	ctrlset:Resize(ctrlset:GetWidth(), y + 20);
 	return y;
 
 end

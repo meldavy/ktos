@@ -8,19 +8,76 @@ function SQIORE_SLOT_POP(parent, ctrl)
 	SQUTE_UI_RESET(frame);
 end
 
+local function _GET_SOCKET_ADD_VALUE(item, invItem, i)    
+	
+    if invItem:IsAvailableSocket(i) == false then
+        return;
+	end
+	
+	local gem = invItem:GetEquipGemID(i);
+    if gem == 0 then
+        return;
+    end
+    
+	local gemExp = invItem:GetEquipGemExp(i);
+	local roastingLv = invItem:GetEquipGemRoastingLv(i);
+    local props = {};
+    local gemclass = GetClassByType("Item", gem);
+    local lv = GET_ITEM_LEVEL_EXP(gemclass, gemExp);
+    local prop = geItemTable.GetProp(gem);
+    local socketProp = prop:GetSocketPropertyByLevel(lv);
+    local type = item.ClassID;
+    local benefitCnt = socketProp:GetPropCountByType(type);
+    for i = 0 , benefitCnt - 1 do
+        local benefitProp = socketProp:GetPropAddByType(type, i);
+        props[#props + 1] = {benefitProp:GetPropName(), benefitProp.value}
+    end
+    
+    local penaltyCnt = socketProp:GetPropPenaltyCountByType(type);
+    local penaltyLv = lv - roastingLv;
+    if 0 > penaltyLv then
+        penaltyLv = 0;
+    end
+    local socketPenaltyProp = prop:GetSocketPropertyByLevel(penaltyLv);
+    for i = 0 , penaltyCnt - 1 do
+        local penaltyProp = socketPenaltyProp:GetPropPenaltyAddByType(type, i);
+        local value = penaltyProp.value
+        penaltyProp:GetPropName()
+        props[#props + 1] = {penaltyProp:GetPropName(), penaltyProp.value}
+    end
+    return props;
+end
+
+local function _GET_ITEM_SOCKET_ADD_VALUE(targetPropName, item)
+	local invItem, where = GET_INV_ITEM_BY_ITEM_OBJ(item);
+
+    local value = 0;
+    local sockets = {};
+    if item.MaxSocket > 100 then item.MaxSocket = 0 end
+    for i=0, item.MaxSocket - 1 do
+        sockets[#sockets + 1] = _GET_SOCKET_ADD_VALUE(item, invItem, i);
+    end
+
+    for i = 1, #sockets do
+        local props = sockets[i];
+        for j = 1, #props do
+            local prop = props[j]
+            if prop[1] == targetPropName then                
+                value = value + prop[2];
+            end
+        end
+    end
+    return value;
+end
+
 function SQIORE_SLOT_DROP(parent, ctrl)
-	local frame				= parent:GetTopParentFrame();
-	local liftIcon 			= ui.GetLiftIcon();
-	local slot 			    = tolua.cast(ctrl, 'ui::CSlot');
-	local iconInfo			= liftIcon:GetInfo();
+	local frame = parent:GetTopParentFrame();
+	local liftIcon = ui.GetLiftIcon();
+	local slot = tolua.cast(ctrl, 'ui::CSlot');
+	local iconInfo = liftIcon:GetInfo();
 	local invItem = GET_PC_ITEM_BY_GUID(iconInfo:GetIESID());
 	
 	if nil == invItem then
-		return;
-	end
-
-	if nil == session.GetInvItemByType(invItem.type) then
-		ui.SysMsg(ClMsg("CannotDropItem"));
 		return;
 	end
 
@@ -45,12 +102,12 @@ function SQIORE_SLOT_DROP(parent, ctrl)
 	local checkFunc = _G["ITEMBUFF_NEEDITEM_" .. frame:GetUserValue("SKILLNAME")];
 	local name, cnt = checkFunc(pc, obj);
 
-	-- ÀÌ¹ÌÁö¸¦ ³Ö°í
-	SET_SLOT_ITEM_IMANGE(slot, invItem);
+	-- ì´ë¯¸ì§€ë¥¼ ë„£ê³ 
+	SET_SLOT_ITEM_IMAGE(slot, invItem);
 	
 	local repairbox = frame:GetChild("repair");
 	local slotNametext = repairbox:GetChild("slotName");
-	-- ÀÌ¸§°ú °­È­ ¼öÄ¡¸¦ Ç¥½ÃÇÑ´Ù.
+	-- ì´ë¦„ê³¼ ê°•í™” ìˆ˜ì¹˜ë¥¼ í‘œì‹œí•œë‹¤.
 	slotNametext:SetTextByKey("txt", obj.Name);
 
 	local skillLevel = frame:GetUserIValue("SKILLLEVEL");
@@ -64,43 +121,69 @@ function SQIORE_SLOT_DROP(parent, ctrl)
 		refreshScp(nextObj);
 	end	
 
+	-- íš¨ê³¼ë¥¼ í‘œì‹œí•œë‹¤.
 	local nameList, fromList, toList = ExtractDiffProperty(obj, nextObj);
-	-- È¿°ú¸¦ Ç¥½ÃÇÑ´Ù.
 	local effectBox = repairbox:GetChild("effectGbox");
-	local maxtextStr = effectBox:GetChild("maxpower");
-	local mintextStr = effectBox:GetChild("minpower");
-	
-	local prop1, prop2 = GET_ITEM_PROPERT_STR(obj);
-
-	maxtextStr:SetTextByKey("txt",  prop1);
-	mintextStr:SetTextByKey("txt", prop2);
-	local maxtext = effectBox:GetChild("maxpowerstr");
-	local mintext = effectBox:GetChild("minpowerstr");
 	local timestr = effectBox:GetChild("timestr");
-
-	if obj.GroupName == "Weapon" or obj.GroupName == "SubWeapon" then
-		if obj.BasicTooltipProp == "ATK" then -- ÃÖ´ë, ÃÖ¼Ò °ø°Ý·Â
-			maxtext:SetTextByKey("txt", obj.MAXATK .." > ".. nextObj.MAXATK);
-			mintext:SetTextByKey("txt", obj.MINATK .." > ".. nextObj.MINATK);
-		elseif obj.BasicTooltipProp == "MATK" then -- ¸¶¹ý°ø°Ý·Â
-			maxtext:SetTextByKey("txt", obj.MATK .." > ".. nextObj.MATK);
-			mintext:SetTextByKey("txt", "");
-		end
-	else
-		if obj.BasicTooltipProp == "DEF" then -- ¹æ¾î
-			maxtext:SetTextByKey("txt", obj.DEF .." > ".. nextObj.DEF);
-		elseif obj.BasicTooltipProp == "MDEF" then -- ¾Ç¼¼»ç¸®
-			maxtext:SetTextByKey("txt", obj.MDEF .." > ".. nextObj.MDEF);
-		elseif  obj.BasicTooltipProp == "HR" then -- ¸íÁß
-			maxtext:SetTextByKey("txt", obj.HR .." > ".. nextObj.HR);
-		elseif  obj.BasicTooltipProp == "DR" then -- È¸ÇÇ
-			maxtext:SetTextByKey("txt", obj.DR .." > ".. nextObj.DR);
-		elseif  obj.BasicTooltipProp == "MHR" then -- ¸¶¹ý°üÅë
-			maxtext:SetTextByKey("txt", obj.MHR .." > ".. nextObj.MHR);
-		end
-		mintext:SetTextByKey("txt", "");
-	end
 	timestr:SetTextByKey("txt", string.format("{img %s %d %d}", "squaier_buff", 25, 25) .." ".. validSec/3600 .. ClMsg("QuestReenterTimeH"));
+
+    local basicPropBox = GET_CHILD_RECURSIVELY(frame, 'basicPropBox');
+    basicPropBox:RemoveAllChild();
+    local basicPropList = StringSplit(obj.BasicTooltipProp, ';');
+    for i = 1 , #basicPropList do
+        local basicTooltipProp = basicPropList[i];
+        local propertyCtrl = basicPropBox:CreateOrGetControlSet('basic_property_set', 'BASIC_PROP_'..i, 20, 0);
+
+	    -- ìµœëŒ€, ìµœì†Œë¥¼ ìž‘ì„±í•˜ê³ ìž í•´ë‹¹ í•­ëª©ì˜ ì†ì„±ì„ ê°€ì§€ê³  ì˜µë‹ˆë‹¤.
+	    local mintextStr = propertyCtrl:GetChild("minPowerStr");
+	    local maxtextStr = propertyCtrl:GetChild("maxPowerStr");
+        local maxtext = propertyCtrl:GetChild("maxPower");
+	    local mintext = propertyCtrl:GetChild("minPower");
+	
+	    local prop1, prop2 = GET_ITEM_PROPERT_STR(obj, basicTooltipProp);
+
+        if  basicTooltipProp ~= "ATK" then
+            local temp = prop1;
+            prop1 = prop2;
+            prop2 = temp;
+        end
+
+	    maxtextStr:SetTextByKey("txt", prop1);
+	    mintextStr:SetTextByKey("txt", prop2);
+
+	    if obj.GroupName == "Weapon" or obj.GroupName == "SubWeapon" then
+		    if basicTooltipProp == "ATK" then -- ìµœëŒ€, ìµœì†Œ ê³µê²©ë ¥
+			    maxtext:SetTextByKey("txt", obj.MAXATK .." > ".. nextObj.MAXATK);
+			    mintext:SetTextByKey("txt", obj.MINATK .." > ".. nextObj.MINATK);
+			elseif basicTooltipProp == "MATK" then -- ë§ˆë²•ê³µê²©ë ¥
+				local socketaddvalue =  _GET_ITEM_SOCKET_ADD_VALUE(basicTooltipProp, obj)
+			    mintext:SetTextByKey("txt", obj.MATK - socketaddvalue .." > ".. nextObj.MATK + socketaddvalue);
+			    maxtext:SetTextByKey("txt", "");
+                propertyCtrl:Resize(propertyCtrl:GetWidth(), mintext:GetHeight());
+		    end
+	    else
+		    if basicTooltipProp == "DEF" then -- ë°©ì–´
+			    mintext:SetTextByKey("txt", obj.DEF .." > ".. nextObj.DEF);
+		    elseif basicTooltipProp == "MDEF" then -- ì•…ì„¸ì‚¬ë¦¬
+			    mintext:SetTextByKey("txt", obj.MDEF .." > ".. nextObj.MDEF);
+		    elseif  basicTooltipProp == "HR" then -- ëª…ì¤‘
+			    mintext:SetTextByKey("txt", obj.HR .." > ".. nextObj.HR);
+		    elseif  basicTooltipProp == "DR" then -- íšŒí”¼
+			    mintext:SetTextByKey("txt", obj.DR .." > ".. nextObj.DR);
+		    elseif  basicTooltipProp == "CRTMATK" then -- ë§ˆë²•ê´€í†µ
+			    mintext:SetTextByKey("txt", obj.CRTMATK .." > ".. nextObj.CRTMATK);
+		    elseif  basicTooltipProp == "ADD_FIRE" then -- í™”ì—¼
+			    mintext:SetTextByKey("txt", obj.FIRE .." > ".. nextObj.FIRE);
+		    elseif  basicTooltipProp == "ADD_ICE" then -- ë¹™í•œ
+			    mintext:SetTextByKey("txt", obj.ICE .." > ".. nextObj.ICE);
+		    elseif  basicTooltipProp == "ADD_LIGHTNING" then -- ì „ê²©
+			    mintext:SetTextByKey("txt", obj.LIGHTNING .." > ".. nextObj.LIGHTNING);
+		    end
+		    maxtext:SetTextByKey("txt", "");
+            propertyCtrl:Resize(propertyCtrl:GetWidth(), mintext:GetHeight());
+	    end
+    end
+    GBOX_AUTO_ALIGN(basicPropBox, 0, 0, 0, true, false, true);
 	DestroyIES(nextObj);
 
 	SQUIRE_UPDATE_MATERIAL(frame, cnt, iconInfo:GetIESID());
@@ -127,7 +210,7 @@ function SQUIRE_BUFF_CENCEL_CHECK(frame)
 	local handle = frame:GetUserIValue("HANDLE");
 	local skillName = frame:GetUserValue("SKILLNAME");
 
-	-- ±×·³ ÀÌ°ÍÀº ÆÇ¸ÅÀÚ
+	-- ê·¸ëŸ¼ ì´ê²ƒì€ íŒë§¤ìž
 	if handle == session.GetMyHandle() then
 		if "Squire_Repair" == skillName then
 			SQIORE_REPAIR_CENCEL();
@@ -135,7 +218,7 @@ function SQUIRE_BUFF_CENCEL_CHECK(frame)
 		end
 	end
 
-	-- À¯Àú
+	-- ìœ ì €
 	session.autoSeller.BuyerClose(AUTO_SELL_SQUIRE_BUFF, handle);
 end
 
@@ -148,22 +231,18 @@ function SQUTE_UI_RESET(frame)
 	local slot  = repairbox:GetChild("slot");
 	slot  = tolua.cast(slot, 'ui::CSlot');
 	slot:ClearIcon();
+	slot:EnableDrag(1);
+	slot:EnableDrop(1);
 
 	local slotNametext = repairbox:GetChild("slotName");
 	slotNametext:SetTextByKey("txt", "");
 
 	local effectBox = repairbox:GetChild("effectGbox");
-	local maxtext = effectBox:GetChild("maxpowerstr");
-	local mintext = effectBox:GetChild("minpowerstr");
 	local timestr = effectBox:GetChild("timestr");
-
-	local maxtextStr = effectBox:GetChild("maxpower");
-	local mintextStr = effectBox:GetChild("minpower");
-	maxtextStr:SetTextByKey("txt",  "");
-	mintextStr:SetTextByKey("txt", "");
-	maxtext:SetTextByKey("txt", "");
-	mintext:SetTextByKey("txt", "");
 	timestr:SetTextByKey("txt", "");
+
+    local basicPropBox = GET_CHILD_RECURSIVELY(frame, 'basicPropBox');
+    basicPropBox:RemoveAllChild();
 end
 
 function SQIORE_BUFF_EXCUTE(parent, ctrl)
@@ -178,8 +257,12 @@ function SQIORE_BUFF_EXCUTE(parent, ctrl)
 	if "" ==  guid:GetTextByKey("guid") then
 		return;
 	end
+	local slot  = targetbox:GetChild("slot");
+	slot  = tolua.cast(slot, 'ui::CSlot');
+	slot:EnableDrag(0);
+	slot:EnableDrop(0);
 	session.autoSeller.BuySquireBuff(handle, AUTO_SELL_SQUIRE_BUFF, skillName, guid:GetTextByKey("guid"));
-
+		
 end
 
 function SQIORE_TAP_CHANGE(frame)
@@ -197,6 +280,12 @@ end
 function SQIORE_BUFF_VIEW(frame)
 	local gboxctrl = frame:GetChild("repair");
 	gboxctrl:ShowWindow(1);
+
+    local basicPropBox = GET_CHILD_RECURSIVELY(frame, 'basicPropBox');
+    if basicPropBox ~= nil then
+        basicPropBox:ShowWindow(1);
+    end
+
 	local gboxctrl = frame:GetChild("log");
 	gboxctrl:ShowWindow(0);
 end
@@ -204,6 +293,12 @@ end
 function SQIORE_LOG_VIEW(frame)
 	local gboxctrl = frame:GetChild("repair");
 	gboxctrl:ShowWindow(0);
+    
+    local basicPropBox = GET_CHILD_RECURSIVELY(frame, 'basicPropBox');
+    if basicPropBox ~= nil then
+        basicPropBox:ShowWindow(0);
+    end
+
 	local gboxctrl = frame:GetChild("log");
 	gboxctrl:ShowWindow(1);
 end
@@ -291,24 +386,31 @@ function ITEMBUFF_UPDATE_HISTORY(frame)
 		local itemname = ctrlSet:GetChild("itemName");
 		itemname:SetTextByKey("value", itemCls.Name);
 		
+	    local propValues = sList[3];
+	    local propToken = StringSplit(propValues, "@");
+        
 		local propStr = "";
-		for j = 3 , #sList do
-			local propNameValue = sList[j];
-			local propToken = StringSplit(propNameValue, "@");
-			local strBuf = string.format("%s %s -> %s", propToken[1] , propToken[2], propToken[3]);
-			if 3 < #propToken then -- ¹«±â¼ö¸®ÇÒ ¶§ ¿À¹ÙµÊ
-				strBuf = strBuf .. "{nl}" .. string.format("%s %s -> %s", propToken[4] , propToken[5], propToken[6]);
-			end
-			if j > 3 then
-				propStr = propStr .. "{nl}";
-			end
-			propStr = propStr .. strBuf;
+        local tokenIndex = 1;
+        for i = 1, #propToken do
+            if i == tokenIndex then
+                local propertyClMsg = "";
+                local token = propToken[i];
+                if token == 'MATK' then
+                    propertyClMsg = ClMsg('Magic_Atk');
+                else
+                    propertyClMsg = ClMsg(token);
+                end
+			    local strBuf = string.format("%s %s -> %s", propertyClMsg , propToken[i+1], propToken[i+2]);			
+			    if i > 3 then
+				    propStr = propStr .. "{nl}";
+			    end
+			    propStr = propStr .. strBuf;
+                tokenIndex = tokenIndex + 3;
+            end
 		end
-	
-		local property = ctrlSet:GetChild("Property");
-		property:SetTextByKey("value", propStr);
-
-	end
+	    local property = ctrlSet:GetChild("Property");
+	    property:SetTextByKey("value", propStr);
+    end
 
 	GBOX_AUTO_ALIGN(log_gbox, 20, 3, 10, true, false);
 end
