@@ -2870,10 +2870,10 @@ function FIELD_BOSS_DATA_REQUEST_DAY()
 	rank_gb:EnableHitTest(0);
 	ReserveScript("HOLD_FIELDBOSS_RANKUI_UNFREEZE()", 1);
 
+	FIELD_BOSS_RESET_RANKING_INFO(frame)
 	local field_date =  GET_FIELD_BOSS_DATE();
 	field_boss.RequestFieldBossPatternInfo(field_date);
 	field_boss.RequestFieldBossRankingInfo(field_date);
-	FIELD_BOSS_RESET_RANKING_INFO(frame)
 end
 
 function FIELD_BOSS_DATA_REQUEST_HOUR()
@@ -2883,9 +2883,9 @@ function FIELD_BOSS_DATA_REQUEST_HOUR()
 	rank_gb:EnableHitTest(0);
 	ReserveScript("HOLD_FIELDBOSS_RANKUI_UNFREEZE()", 1);
 	
+	FIELD_BOSS_RESET_RANKING_INFO(frame)
 	local field_date =  GET_FIELD_BOSS_DATE();
 	field_boss.RequestFieldBossRankingInfo(field_date);
-	FIELD_BOSS_RESET_RANKING_INFO(frame)
 end
 
 function FIELD_BOSS_RESET_RANKING_INFO(frame)
