@@ -397,13 +397,14 @@ function UPDATE_PARTY_SEARCH_LIST(frame, msg, str, page)
 		local avglevel = 0;
 		local loginMemberCnt = 0
 		local partyMemberCnt = eachpartymemberlist:Count();
-
+		local joinParty = GET_CHILD(set,'joinParty')
+		joinParty:SetEventScript(ui.LBUTTONDOWN, 'LCLICK_PARTY_LIST')
 		for j = 0 , partyMemberCnt - 1 do
 
 			local eachpartymember = eachpartymemberlist:Element(j);
 			avglevel = avglevel + eachpartymember:GetLevel();
 			loginMemberCnt = loginMemberCnt + 1
-	
+			joinParty:SetEventScriptArgString(ui.LBUTTONDOWN, eachpartymember:GetName());
 			--[[
 			local memberinfoset = set:CreateOrGetControlSet('partyfound_member_info', 'foundeachmember_'..j, 5+(j*127), 180);
 			
@@ -544,16 +545,17 @@ function LCLICK_PARTY_LIST(frame, ctrl, familyName, argNum)
 		return;
 	end
 
+	local joinerAid = session.loginInfo.GetAID();
 	local str = ScpArgMsg("AreYouWantJoinTheParty");
-	local yesScp = string.format("REQUEST_JOIN_FOUND_PARTY(\"%s\")", familyName);
+	local yesScp = string.format("REQUEST_JOIN_FOUND_PARTY(\"%s\", \"%s\")", familyName, joinerAid);
 	ui.MsgBox(str, yesScp, "None");
 
 end
 
-function REQUEST_JOIN_FOUND_PARTY(familyName)
+function REQUEST_JOIN_FOUND_PARTY(familyName, fAid)
 
 	session.party.ClearFoundPartyList(PARTY_NORMAL);
-	party.AcceptInvite(0, familyName, 1)
+	party.AcceptInvite(0, fAid, familyName, 1)
 	REQUEST_TO_FIND_PARTY_LIST()
 	ui.CloseFrame('party_search');
 

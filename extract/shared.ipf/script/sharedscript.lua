@@ -1341,13 +1341,16 @@ function SCR_POSSIBLE_UI_OPEN_CHECK(pc, questIES, subQuestCount, chType)
     local abandonCheck = QUEST_ABANDON_RESTARTLIST_CHECK(questIES, sobjIES)
     local result = SCR_QUEST_CHECK_C(pc,questIES.ClassName)
     
-    if (chType == 'ZoneMap' or chType == 'NPCMark') and abandonCheck == 'ABANDON/LIST' then
+    if chType == 'Set2' then
+        ret = "OPEN"
+        return ret, subQuestCount
+    elseif (chType == 'ZoneMap' or chType == 'NPCMark') and abandonCheck == 'ABANDON/LIST' then
         ret = "OPEN"
         return ret, subQuestCount
     elseif questIES.QuestMode ~= "MAIN" and subQuestCount == 0 and result == 'POSSIBLE' and (questIES.StartMap == GetZoneName(pc) or table.find(SCR_STRING_CUT(questIES.StartMapListUI), GetZoneName(pc)) > 0) then
         ret = "OPEN"
         return ret, subQuestCount + 1
-    elseif questIES.QuestMode ~= "MAIN" and questIES.Check_QuestCount > 0 then
+    elseif questIES.QuestMode ~= "MAIN" and questIES.Check_QuestCount > 0 and LINKZONECHECK(GetZoneName(pc), questIES.StartMap) == 'YES' then
         local sObj = GetSessionObject(pc, "ssn_klapeda")
         local result1 = SCR_QUEST_CHECK_MODULE_QUEST(pc, questIES, sObj)
         if result1 == "YES" then
