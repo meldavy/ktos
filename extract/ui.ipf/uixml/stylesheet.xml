@@ -1,5 +1,5 @@
 <?xml version="1.0" standalone="yes"?>
-<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by imc (imc) -->
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by imc (imc) -->
 <StyleSheet>
 	<style name="sti1">
 		<!--item_equip_normal-->
@@ -375,7 +375,7 @@
 	</style>
 	<style name="st65">
 		<!--notice_screen-->
-		<font name="normal" size="16" space="0" color="1f100b" bold="yes" italic="no" dropshadow="no" outline="no" underline="no" centerline="no"/>
+		<font name="normal" size="15" space="0" color="1f100b" bold="no" italic="no" dropshadow="no" outline="no" underline="no" centerline="no"/>
 	</style>
 	<style name="st66">
 		<!--notice_screen-->
@@ -405,9 +405,21 @@
 		<!--UI_button_big-->
 		<font name="normal" size="18" space="0" color="FFFFFF" bold="no" italic="no" dropshadow="yes" outline="yes" outlinecolor="563300" underline="no" centerline="no"/>
 	</style>
+	<style name="st66d_y">
+		<!--UI_button_big-->
+		<font name="normal" size="18" space="0" color="ffba00" bold="no" italic="no" dropshadow="yes" outline="yes" outlinecolor="563300" underline="no" centerline="no"/>
+	</style>
+	<style name="st66_y">
+		<!--UI_button_big-->
+		<font name="normal" size="16" space="0" color="ffba00" bold="no" outline="yes" outlinecolor="563300" italic="no"/>
+	</style>
 	<style name="st66e">
 		<!--UI_button_big-->
 		<font name="normal" size="16" space="0" color="FFFFFF" bold="no" italic="no" dropshadow="yes" outline="yes" outlinecolor="563300" underline="no" centerline="no"/>
+	</style>
+	<style name="st66e_g">
+		<!--UI_button_big-->
+		<font name="normal" size="14" space="0" color="2c980b" bold="no" italic="no" dropshadow="yes" outline="yes" outlinecolor="154a04" underline="no" centerline="no"/>
 	</style>
 	<style name="st67">
 		<!--notice_screen-->
@@ -421,25 +433,196 @@
 		<!--notice_screen-->
 		<font name="normal" size="16" space="0" color="000000" bold="no" italic="no" dropshadow="no" outline="no" underline="no" centerline="no"/>
 	</style>
-  <style name="st69b_36">
-    <!--mon_pcskill-->
-    <font name="book" size="36" space="0" color="3C270D" bold="yes" italic="no" dropshadow="no" outline="no" outlinecolor="222222" underline="no" centerline="no" gradation="gradation2"/>
-  </style>
-  <style name="st70_d">
+	<style name="st69b_36">
+		<!--mon_pcskill-->
+		<font name="book" size="36" space="0" color="3C270D" bold="yes" italic="no" dropshadow="no" outline="no" outlinecolor="222222" underline="no" centerline="no" gradation="gradation2"/>
+	</style>
+	<style name="st70_d">
 		<!--quest_day_text-->
-		<font name="normal" size="14" space="0" color="00a800" bold="yes" italic="no" dropshadow="no" outline="yes" underline="no" centerline="no" gradation="no"/>
+		<font name="normal" size="14" space="0" color="00a800" bold="yes" italic="no" dropshadow="no" outline="yes" underline="no" centerline="no"/>
 	</style>
 	<style name="st70_s">
 		<!--quest_sub_text-->
-		<font name="normal" size="14" space="0" color="004bb2" bold="yes" italic="no" dropshadow="no" outline="yes" underline="no" centerline="no" gradation="no"/>
+		<font name="normal" size="14" space="0" color="004bb2" bold="yes" italic="no" dropshadow="no" outline="yes" underline="no" centerline="no"/>
 	</style>
 	<style name="st70_m">
 		<!--quest_main_text-->
-		<font name="normal" size="14" space="0" color="f46200" bold="yes" italic="no" dropshadow="no" outline="yes" underline="no" centerline="no" gradation="no"/>
+		<font name="normal" size="14" space="0" color="f46200" bold="yes" italic="no" dropshadow="no" outline="yes" underline="no" centerline="no"/>
 	</style>
 	<style name="st69_100">
-    <!--mon_pcskill-->
-    <font name="book" size="100" space="0" color="3C270D" bold="yes" italic="no" dropshadow="no" outline="no" outlinecolor="222222" underline="no" centerline="no" gradation="gradation2"/>
-  </style>
-
+		<!--mon_pcskill-->
+		<font name="book" size="100" space="0" color="3C270D" bold="yes" italic="no" dropshadow="no" outline="no" outlinecolor="222222" underline="no" centerline="no" gradation="gradation2"/>
+	</style>
+	<style name="st71orbd16">
+		<!--equiptooltip-->
+		<font name="normal" size="16" space="0" color="f09427" bold="yes" italic="no" dropshadow="yes" outline="yes" outlinecolor="000000" underline="no" centerline="no"/>
+	</style>
+	<style name="st71orbd18">
+		<!--equiptooltip-->
+		<font name="normal" size="18" space="0" color="f09427" bold="yes" italic="no" dropshadow="yes" outline="yes" outlinecolor="000000" underline="no" centerline="no"/>
+	</style>
+	<style name="st72gb16">
+		<!--equiptooltipset-->
+		<font name="normal" size="16" space="0" color="88f030" bold="yes" italic="no" dropshadow="no" outline="yes" outlinecolor="6a6a6a" underline="no" centerline="no"/>
+	</style>
+	<style name="st72gbd16">
+		<!--equiptooltipset-->
+		<font name="normal" size="16" space="0" color="88f030" bold="yes" italic="no" dropshadow="yes" outline="yes" outlinecolor="6a6a6a" underline="no" centerline="no"/>
+	</style>
+	<style name="st72gbd18">
+		<!--equiptooltipset-->
+		<font name="normal" size="18" space="0" color="88f030" bold="yes" italic="no" dropshadow="yes" outline="yes" outlinecolor="6a6a6a" underline="no" centerline="no"/>
+	</style>
+	<style name="st77gr_dol18">
+		<!--equiptooltip-->
+		<font name="normal" size="18" space="0" color="b1b1b1" bold="no" italic="no" dropshadow="yes" outline="yes" outlinecolor="686868" underline="no" centerline="no"/>
+	</style>
+	<style name="st77b_dol18">
+		<!--equiptooltip-->
+		<font name="normal" size="18" space="0" color="00a7de" bold="no" italic="no" dropshadow="yes" outline="yes" outlinecolor="007297" underline="no" centerline="no"/>
+	</style>
+	<style name="st99gr16">
+		<!--equiptooltip-->
+		<font name="normal" size="16" space="0" color="2b2b2b" bold="no" italic="no" dropshadow="no" outline="no" underline="no" centerline="no"/>
+	</style>
+	<style name="stToolTip_Red">
+		<!--text_tooltip_style-->
+		<font name="normal" size="18" space="0" color="FF0000" bold="yes" italic="no" dropshadow="no" outline="yes" underline="no" centerline="no"/>
+	</style>
+	<style name="st99w16">
+		<!--notice-->
+		<font name="normal" size="16" space="0" color="ffffff" bold="yes" italic="no" dropshadow="no" outline="yes" underline="no" centerline="no"/>
+	</style>
+	<style name="st99y16">
+		<!--notice-->
+		<font name="normal" size="16" space="0" color="ffd563" bold="yes" italic="no" dropshadow="no" outline="yes" underline="no" centerline="no"/>
+	</style>
+	<style name="st99gre16">
+		<!--notice-->
+		<font name="normal" size="16" space="0" color="00eaff" bold="yes" italic="no" dropshadow="no" outline="no" underline="yes" centerline="no"/>
+	</style>
+	<style name="st100white_24">
+		<!--worldmapicon-->
+		<font name="normal" size="24" space="0" color="ffffff" bold="yes" italic="no" dropshadow="yes" outline="yes" underline="no" centerline="no"/>
+	</style>
+	<style name="st100white_18">
+		<!--worldmapicon_s-->
+		<font name="normal" size="18" space="0" color="ffffff" bold="yes" italic="no" dropshadow="yes" outline="yes" underline="no" centerline="no"/>
+	</style>
+	<style name="st100white_16">
+		<!--worldmapicon_s-->
+		<font name="normal" size="16" space="0" color="ffffff" bold="yes" italic="no" dropshadow="yes" outline="yes" underline="no" centerline="no"/>
+	</style>
+	<style name="st100white_14">
+		<!--worldmapicon_s-->
+		<font name="normal" size="14" space="0" color="ffffff" bold="yes" italic="no" dropshadow="no" outline="no" underline="no" centerline="no"/>
+	</style>
+	<style name="st100gray_14">
+		<!--worldmapicon_s-->
+		<font name="normal" size="14" space="0" color="a0a0a0" bold="no" italic="no" dropshadow="yes" outline="yes" underline="no" centerline="no"/>
+	</style>
+	<style name="st100green_14">
+		<!--worldmapicon_s-->
+		<font name="normal" size="14" space="0" color="4eff00" bold="no" italic="no" dropshadow="yes" outline="yes" underline="no" centerline="no"/>
+	</style>
+	<style name="st100green_16">
+		<!--worldmapicon_s-->
+		<font name="normal" size="16" space="0" color="4eff00" bold="no" italic="no" dropshadow="yes" outline="yes" underline="no" centerline="no"/>
+	</style>
+	<style name="st100cream_24">
+		<!--worldmapicon-->
+		<font name="normal" size="24" space="0" color="e4c998" bold="yes" italic="no" dropshadow="yes" outline="yes" underline="no" centerline="no"/>
+	</style>
+	<style name="st100cream_18">
+		<!--worldmapicon-->
+		<font name="normal" size="18" space="0" color="e4c998" bold="no" italic="no" dropshadow="yes" outline="yes" underline="no" centerline="no"/>
+	</style>
+	<style name="st100cream_16">
+		<!--worldmapicon-->
+		<font name="normal" size="16" space="0" color="e4c998" bold="no" italic="no" dropshadow="yes" outline="yes" underline="no" centerline="no"/>
+	</style>
+	<style name="st100lg_16">
+		<!--worldmapicon-->
+		<font name="normal" size="16" space="0" color="dddddd" bold="no" italic="no" dropshadow="yes" outline="yes" underline="no" centerline="no"/>
+	</style>
+	<style name="st100ly_16">
+		<!--worldmapicon-->
+		<font name="normal" size="16" space="0" color="fffe99" bold="no" italic="no" dropshadow="yes" outline="yes" underline="no" centerline="no"/>
+	</style>
+	<style name="st100orange_16">
+		<!--worldmapicon-->
+		<font name="normal" size="16" space="0" color="ff7a04" bold="no" italic="no" dropshadow="yes" outline="yes" underline="no" centerline="no"/>
+	</style>
+	<style name="st100red_16">
+		<!--worldmapicon-->
+		<font name="normal" size="16" space="0" color="ff0000" bold="no" italic="no" dropshadow="yes" outline="yes" underline="no" centerline="no"/>
+	</style>
+	<style name="st100gray_16">
+		<!--worldmapicon-->
+		<font name="normal" size="16" space="0" color="747474" bold="no" italic="no" dropshadow="yes" outline="yes" underline="no" centerline="no"/>
+	</style>
+	<style name="st100brown_16">
+		<!--worldmapicon-->
+		<font name="normal" size="16" space="0" color="e4c998" bold="no" italic="no" dropshadow="yes" outline="yes" underline="no" centerline="no"/>
+	</style>
+	<style name="st100lblue_16">
+		<!--worldmapicon_s-->
+		<font name="normal" size="16" space="0" color="c9edff" bold="yes" italic="no" dropshadow="yes" outline="yes" underline="no" centerline="no"/>
+	</style>
+	<style name="st101lightbrown_16">
+		<!--worldmap_cate-->
+		<font name="normal" size="16" space="0" color="f6e8de" bold="yes" italic="no" dropshadow="yes" outline="yes" underline="no" centerline="no"/>
+	</style>
+	<style name="st102_14">
+		<!--worldmap_search-->
+		<font name="normal" size="14" space="0" color="c1b297" bold="no" italic="no" dropshadow="no" outline="no" underline="no" centerline="no"/>
+	</style>
+	<style name="st102_16">
+		<!--worldmap_search-->
+		<font name="normal" size="16" space="0" color="c1b297" bold="yes" italic="no" dropshadow="no" outline="no" underline="no" centerline="no"/>
+	</style>
+	<style name="st102_16_nobold">
+		<!--worldmap_search-->
+		<font name="normal" size="16" space="0" color="c1b297" bold="no" italic="no" dropshadow="no" outline="no" underline="no" centerline="no"/>
+	</style>
+	<style name="st103green_14">
+		<!--worldmap_search-->
+		<font name="normal" size="14" space="0" color="1abb71" bold="no" italic="no" dropshadow="no" outline="no" underline="no" centerline="no"/>
+	</style>
+	<style name="st103green_16">
+		<!--worldmap_search-->
+		<font name="normal" size="16" space="0" color="1abb71" bold="no" italic="no" dropshadow="no" outline="no" underline="no" centerline="no"/>
+	</style>
+	<style name="st104bright_14">
+		<!--worldmap_search-->
+		<font name="normal" size="14" space="0" color="f6e8de" bold="no" italic="no" dropshadow="no" outline="no" underline="no" centerline="no"/>
+	</style>
+	<style name="st104bright_16">
+		<!--worldmap_search-->
+		<font name="normal" size="16" space="0" color="f6e8de" bold="no" italic="no" dropshadow="no" outline="no" underline="no" centerline="no"/>
+	</style>
+	<style name="st104gold_14">
+		<!--worldmap_search-->
+		<font name="normal" size="14" space="0" color="ae7c43" bold="yes" italic="no" dropshadow="no" outline="no" underline="no" centerline="no"/>
+	</style>
+	<style name="st105_y_16">
+		<!--worldmap_que_main-->
+		<font name="normal" size="16" space="0" color="FFCC66" bold="yes" italic="no" dropshadow="yes" outline="yes" underline="no" centerline="no"/>
+	</style>
+	<style name="st105_b_16">
+		<!--worldmap_que_sub-->
+		<font name="normal" size="16" space="0" color="43baff" bold="yes" italic="no" dropshadow="yes" outline="yes" underline="no" centerline="no"/>
+	</style>
+	<style name="st70_d_16">
+		<!--quest_day_text-->
+		<font name="normal" size="16" space="0" color="76c239" bold="yes" italic="no" dropshadow="no" outline="yes" underline="no" centerline="no"/>
+	</style>
+	<style name="st70_s_16">
+		<!--quest_sub_text-->
+		<font name="normal" size="16" space="0" color="004bb2" bold="yes" italic="no" dropshadow="no" outline="yes" underline="no" centerline="no"/>
+	</style>
+	<style name="st70_m_16">
+		<!--quest_main_text-->
+		<font name="normal" size="16" space="0" color="f46200" bold="yes" italic="no" dropshadow="no" outline="yes" underline="no" centerline="no"/>
+	</style>
 </StyleSheet>

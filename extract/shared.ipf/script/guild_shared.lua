@@ -213,15 +213,25 @@ function GET_GUILD_ABILITY_LEVEL(guildObj, abilName)
 end
 
 function GET_GUILD_MAKE_PRICE()
-
 	return 1000000;
-
 end
 
 function GET_REMAIN_TICKET_COUNT(guildObj)
-	local guildLevel = guildObj.Level;
-	return guildLevel - guildObj.UsedTicketCount;
+	local TicketCount = guildObj.GuildEventTicketCount
+	return TicketCount - guildObj.UsedTicketCount;
 end
 
+function IS_ENABLE_GUILD_NEUTRALITY(guildObj)
+    if guildObj == nil then
+        return false;
+    end    
+    if guildObj.Level < MIN_LEVEL_FOR_GUILD_NEUTRALITY then
+        return false;
+    end
+    return true;
+end
 
-
+function GET_GUILD_NEUTRALITY_COST(guildObj)
+    local guildLevel = guildObj.Level;
+    return 0;
+end
