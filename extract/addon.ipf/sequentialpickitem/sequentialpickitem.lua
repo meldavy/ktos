@@ -12,6 +12,9 @@ function SEQUENTIALPICKITEM_ON_INIT(addon, frame)
 end
 
 function SEQUENTIAL_PICKITEMON_MSG(frame, msg, arg1, type, class)
+    if IS_IN_EVENT_MAP() == true then
+        return;
+    end
 
 	if msg == 'INV_ITEM_ADD' then
 		if arg1 == 'UNEQUIP' then
@@ -52,7 +55,7 @@ function SEQUENTIAL_PICKITEMON_MSG(frame, msg, arg1, type, class)
 			if msg == "GUILDWAREHOUSE_ITEM_IN" then
 				addMsg = ScpArgMsg("GetItemToGuildWareHouse");
 			end
-			ADD_SEQUENTIAL_PICKITEM(frame, msg, "", type, class, tablekey, false, addMsg)
+			ADD_SEQUENTIAL_PICKITEM(frame, msg, nil, type, class, tablekey, false, addMsg)
 		end
 	end
 
@@ -60,7 +63,6 @@ function SEQUENTIAL_PICKITEMON_MSG(frame, msg, arg1, type, class)
 end
 
 function SEQUENTIALPICKITEM_OPEN(frame)
-
 	local index = string.find(frame:GetName(), "SEQUENTIAL_PICKITEM_");
 	local frameindex = string.sub(frame:GetName(), index + string.len("SEQUENTIAL_PICKITEM_"), string.len(frame:GetName()))
 	local nowcount = tonumber(frameindex);
@@ -92,8 +94,6 @@ function ADD_SEQUENTIAL_PICKITEM(frame, msg, itemGuid, itemCount, class, tableke
 		return
 	end
 
-	local wiki = GetWikiByName(class.ClassName);
-
 	SEQUENTIALPICKITEM_openCount = SEQUENTIALPICKITEM_openCount + 1;
 	local frameName = "SEQUENTIAL_PICKITEM_"..tostring(SEQUENTIALPICKITEM_openCount);
 
@@ -108,10 +108,8 @@ function ADD_SEQUENTIAL_PICKITEM(frame, msg, itemGuid, itemCount, class, tableke
 	frame:SetUserValue("ITEMGUID_N_COUNT",tablekey)
 	
 	local duration = tonumber(frame:GetUserConfig("POPUP_DURATION"))
-
-
 	local PickItemGropBox	= GET_CHILD(frame,'pickitem')
-	PickItemGropBox:RemoveAllChild();
+	--PickItemGropBox:RemoveAllChild();  -- 여기서 자식들을 죽여서 자식으로 넣은 픽쳐가 안나왔음.
 
 	-- ControlSet 이름 설정
 	local img = GET_ITEM_ICON_IMAGE(class);
@@ -123,12 +121,18 @@ function ADD_SEQUENTIAL_PICKITEM(frame, msg, itemGuid, itemCount, class, tableke
 	local ConSetBySlot 	= PickItemCountCtrl:GetChild('slot');
 	local slot			= tolua.cast(ConSetBySlot, "ui::CSlot");
 	local icon = CreateIcon(slot);
-	local iconName = img;
-
-	icon:Set(iconName, 'PICKITEM', itemCount, 0);
 
 	-- 아이템 이름과 획득량 출력
-	local printName	 = '{@st41}' ..GET_FULL_NAME(class);
+	local invItem = session.GetInvItemByGuid(itemGuid);
+	local nameObj = class;
+	local iconName = img;
+	if invItem ~= nil and invItem:GetObject() ~= nil then
+		nameObj = GetIES(invItem:GetObject());
+		iconName = GET_ITEM_ICON_IMAGE(nameObj);
+	end	
+	icon:Set(iconName, 'PICKITEM', itemCount, 0);
+
+	local printName	 = '{@st41}' ..GET_FULL_NAME(nameObj);
 	local printCount = '{@st41b}'..ScpArgMsg("GetByCount{Count}", "Count", itemCount);
 
 	PickItemCountCtrl:SetTextByKey('ItemName', printName);
@@ -136,11 +140,10 @@ function ADD_SEQUENTIAL_PICKITEM(frame, msg, itemGuid, itemCount, class, tableke
 	
 	local AddWiki = GET_CHILD(PickItemCountCtrl,'AddWiki')
 	if addMsg == nil then
-		if wiki ~= nil and false == fromWareHouse then	
+		if class.Journal == 'TRUE' and IsExistItemInAdventureBook(pc, class.ClassID) == 'YES' and false == fromWareHouse then
 
-			local total = GetWikiIntProp(wiki, "Total");
+			local total = GetItemObtainCount(pc, class.ClassID);
 			if total ~= nil then
-
 				local totalCount = total;
 
 				if totalCount > 1 then
@@ -154,25 +157,24 @@ function ADD_SEQUENTIAL_PICKITEM(frame, msg, itemGuid, itemCount, class, tableke
 			end
 
 		else
-			AddWiki:ShowWindow(1)
+			AddWiki:ShowWindow(0)
 		end
 	else
 		AddWiki:SetTextByKey("value", addMsg);
 		AddWiki:ShowWindow(1);
 	end
 
-
 	-- 아이템이름 너무길때 짤려서 resize 일단 셋팅.
-	--PickItemGropBox:Resize(250, 120);
-	--frame:Resize(250, 120);
-	local textLen = string.len(printName);
-	local rate = 6;
-	if textLen < 20 then
-		rate = 2;
+	local itemName = GET_CHILD(PickItemCountCtrl,'ItemName');
+	-- 리사이즈 하려는 사이즈가 원래 프레임 사이즈보다 작으면 리사이즈 하지 않음.
+	local newWidth =itemName:GetX()+itemName:GetTextWidth()+ 20;
+	if newWidth > frame:GetOriginalWidth() then
+		frame:Resize(newWidth,  frame:GetOriginalHeight());
+		PickItemGropBox:Resize(newWidth, PickItemGropBox:GetOriginalHeight());
+		PickItemCountCtrl:Resize(newWidth, PickItemCountCtrl:GetOriginalHeight());		
 	end
-	--PickItemGropBox:Resize(PickItemGropBox:GetWidth() + (textLen*rate), PickItemGropBox:GetHeight());
-	--frame:Resize(PickItemGropBox:GetWidth() + (textLen*rate), PickItemGropBox:GetHeight());
 
+		
 	PickItemGropBox:UpdateData();
 	PickItemGropBox:Invalidate();
 

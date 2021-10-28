@@ -1,11 +1,9 @@
-
-function GUILDGROWTH_ON_INIT(addon, frame)
-	
+﻿function GUILDGROWTH_ON_INIT(addon, frame)
 	addon:RegisterMsg("OPEN_DLG_GUILDGROWTH", "ON_OPEN_DLG_GUILDGROWTH");		
 	addon:RegisterOpenOnlyMsg("GUILD_PROPERTY_UPDATE", "GUILDGROWTH_GUILD_PROPERTY_UPDATE");
+	addon:RegisterOpenOnlyMsg("GUILD_SKILL_UPDATE", "GUILDGROWTH_UPDATE_SKIL");
 	addon:RegisterOpenOnlyMsg("GUILD_MEMBER_PROP_UPDATE", "GUILDGROWTH_GUILD_PROPERTY_UPDATE");
-	
-
+	addon:RegisterMsg("GUILD_AGIT_INFO_RECEIVE", "ON_GUILD_AGIT_INFO_RECEIVE");
 end
 
 function ON_OPEN_DLG_GUILDGROWTH(frame)
@@ -15,15 +13,14 @@ end
 function GUILDGROWTH_UPDATE_ABILITY(frame, guildObj)
 
 	local abilities = GET_CHILD(frame, "abilities");
-
-	local txt_current_point = GET_CHILD(abilities, "txt_current_point");
+	local gbox_ability = GET_CHILD(abilities, 'gbox_ability');
+	local txt_current_point = GET_CHILD(gbox_ability, "txt_current_point");
 	local used = guildObj.UsedAbilStat;
 	local current = GET_GUILD_ABILITY_POINT(guildObj);
 	local ablePoint = current - used;
 	local ablePointText = ScpArgMsg("UsableAbilityPoint") .. " : " .. ablePoint;	
 	txt_current_point:SetTextByKey("value", ablePointText);
-	
-	local gbox_ability = abilities:GetChild("gbox_ability");
+
 	local gbox_list = gbox_ability:GetChild("gbox_list");
 	gbox_list:RemoveAllChild();
 	
@@ -35,8 +32,6 @@ function GUILDGROWTH_UPDATE_ABILITY(frame, guildObj)
 	end
 
 	GBOX_AUTO_ALIGN(gbox_list, 10, 10, 10, true, false);
-	
-
 end
 
 function UPDATE_GUILD_ABILITY_CTRLSET(ctrlSet, cls, guildObj)
@@ -72,7 +67,6 @@ function UPDATE_GUILD_ABILITY_CTRLSET(ctrlSet, cls, guildObj)
 end
 
 function GUILD_ABILITY_UP(parent, ctrl)
-
 	local clsID = parent:GetUserIValue("CLASSID");
 	local yesScp = string.format("_EXEC_GUILD_ABILITY_UP(%d)", clsID);
 	ui.MsgBox( ScpArgMsg("ExecLearnAbility"), yesScp, "None");
@@ -98,12 +92,18 @@ function _EXEC_GUILD_ABILITY_UP(clsID)
 end
 
 function GUILDGROWTH_OPEN(frame)
-
+	if frame == nil then
+		frame = ui.GetFrame('guildgrowth');
+	end
+	
 	local pcGuild = session.party.GetPartyInfo(PARTY_GUILD);
 	if pcGuild == nil then
 		--frame:ShowWindow(0);
 		--return;
 	end
+	
+	housing.RequestGuildAgitInfo("GUILD_AGIT_INFO_RECEIVE");
+	ON_GUILD_AGIT_INFO_RECEIVE(frame);
 
 	local guildObj = GetIES(pcGuild:GetObject());
 	local lv = guildObj.Level;
@@ -124,20 +124,7 @@ function GUILDGROWTH_OPEN(frame)
 	local currentExp = guildObj.Exp;
 	local curLevelCls = GetClass("GuildExp", lv);
 	local nextLevelCls = GetClass("GuildExp", nextLv);
-	local preLevelCls = GetClass("GuildExp", lv - 1);
-
-	local curExp = 0;
-	local curLevelClsExp = curLevelCls.Exp
-	local nextLevelClsExp = nextLevelCls.Exp
-	local preLevelClsExp = 0
-
-	if preLevelCls ~= nil then
-		curExp = currentExp - preLevelCls.Exp;
-		preLevelClsExp = preLevelCls.Exp
-	else
-		curExp = currentExp
-		preLevelClsExp = 0;
-	end
+	local curExp = currentExp - curLevelCls.Exp;
 
 	local gbox_exp = ctrlset_growth:GetChild("gbox_exp");
 	local gauge = GET_CHILD(gbox_exp, "gauge");
@@ -148,7 +135,7 @@ function GUILDGROWTH_OPEN(frame)
 	if nextLevelCls ~= nil then
 		local text = ScpArgMsg("NextGuildTower") .. " Lv. "  ..nextLv;
 		txt_nextlv:SetTextByKey("value", text);
-		gauge:SetPoint(curExp, curLevelClsExp - preLevelClsExp);
+		gauge:SetPoint(curExp, nextLevelCls.Exp - curLevelCls.Exp);
 		txt_lv_next:SetTextByKey("value", nextLv);
 		txt_lv_next:ShowWindow(1);
 	else
@@ -159,6 +146,48 @@ function GUILDGROWTH_OPEN(frame)
 
 	GUILDGROWTH_UPDATE_CONTRIBUTION(frame, guildObj)
 	GUILDGROWTH_UPDATE_ABILITY(frame, guildObj);
+end
+
+function GUILD_SKILL_UP(frame, ctrl)
+	local isLeader = AM_I_LEADER(PARTY_GUILD);
+	if isLeader == 0 then
+		ui.MsgBox(ScpArgMsg("OnlyGuildLeader"));
+		return;
+	end
+
+	local sklName = frame:GetUserValue("SKLNAME");
+	local yesScp = string.format("_EXEC_GUILD_SKILL_UP(\'%s\')", sklName);
+	ui.MsgBox( ScpArgMsg("LearnGuildSKil"), yesScp, "None");
+end
+
+function _EXEC_GUILD_SKILL_UP(sklName)
+	local skl = session.GetSkillByName(sklName)
+	if skl == nil then
+		ui.MsgBox(ScpArgMsg("NotEnoughPoint"));
+		return;
+	end
+
+	local pcGuild = session.party.GetPartyInfo(PARTY_GUILD);
+	local guildObj = GetIES(pcGuild:GetObject());
+
+	local obj = GetIES(skl:GetObject());	
+	local level = TryGetProp(guildObj, sklName .. '_Lv');
+	if nil == level then
+		level = 0;
+	end
+
+	if level > obj.Level then
+		ui.MsgBox(ScpArgMsg("NotEnoughPoint"));
+		return;
+	end
+
+	if false == HAS_GUILDGROWTH_SKL_OBJ(guildObj, sklName, obj.Level) then
+		ui.MsgBox(ScpArgMsg("DestoryBuilding"));
+		return;
+	end
+
+	local scpString = string.format("/learnguildskl %s", sklName);
+	ui.Chat(scpString);
 
 end
 
@@ -187,13 +216,17 @@ function GUILDGROWTH_UPDATE_CONTRIBUTION(frame, guildObj)
 			local t_name = GET_CHILD(ctrlSet, "t_name");
 			t_name:SetTextByKey("value", partyMemberInfo:GetName());
 			if currentExp > 0 then
-				local percent = curContribution * 100 / currentExp;
-				local t_percent = GET_CHILD(ctrlSet, "t_percent");
-				t_percent:SetTextByKey("value", percent);
-				local gauge = GET_CHILD(ctrlSet, "gauge");
-				gauge:SetPoint(curContribution, currentExp);
+--				local percent = curContribution * 100 / currentExp;
+--				local percentStr = string.format('%.2f', percent);
+--				local t_percent = GET_CHILD(ctrlSet, "t_percent");
+--                              t_percent:SetTextByKey("value", percentStr);
+--                              local gauge = GET_CHILD(ctrlSet, "gauge");
+--                              gauge:SetPoint(curContribution, currentExp);
+				local value = GET_CHILD(ctrlSet, "t_value");
+				value:SetTextByKey("value", curContribution);
 			end
-			
+
+
 		end
 
 
@@ -214,13 +247,20 @@ function DROP_GUILDGROWTH_TALT(parent, ctrl)
 	local invItem = GET_DRAG_INVITEM_INFO();
 
 	local dropItemCls = GetClassByType("Item", invItem.type);
-	local itemName = GET_GUILD_EXPUP_ITEM_INFO();
-	local taltCls = GetClass("Item", itemName);
-	if itemName ~= dropItemCls.ClassName then
-		local text = ScpArgMsg("DropItem{Name}ForGuildExpUp", "Name", taltCls.Name);
+	local itemGuildCheck = TryGetProp(dropItemCls, "StringArg")
+	if itemGuildCheck ~= "Guild_EXP" then
+	    local text = ScpArgMsg("ItemOnlyForGuildExpUpPlz");
 		ui.SysMsg(text);
 		return;
 	end
+	
+--	local itemName = GET_GUILD_EXPUP_ITEM_INFO();
+--	local taltCls = GetClass("Item", itemName);
+--	if itemName ~= dropItemCls.ClassName then
+--		local text = ScpArgMsg("DropItem{Name}ForGuildExpUp", "Name", taltCls.Name);
+--		ui.SysMsg(text);
+--		return;
+--	end
 
 	local frame = parent:GetTopParentFrame();
 	INPUT_NUMBER_BOX(frame, ScpArgMsg("InputCount"), "EXEC_DROP_GUILDTALT", invItem.count, 1, invItem.count);
@@ -245,6 +285,14 @@ end
 
 function EXEC_GUILD_GROWTH_TALT(parent, ctrl)
 
+	local pic = GET_CHILD(parent, "pic");
+
+	local item = GET_SLOT_ITEM(pic);
+	if nil == item then
+		ui.SysMsg(ClMsg('NoTaltinTheSlot'));
+		return;
+	end;
+
 	local yesScp = "_EXEC_GUILD_GROWTH_TALT()";
 	ui.MsgBox(ScpArgMsg('REALLY_DO'), yesScp, "None");
 
@@ -266,12 +314,107 @@ function _EXEC_GUILD_GROWTH_TALT()
 end
 
 function GUILDGROWTH_GUILD_PROPERTY_UPDATE(frame)
-
-	GUILDGROWTH_OPEN(frame);	
+	GUILDGROWTH_OPEN(frame);
 
 end
 
+function EXEC_GUILD_AGIT_EXTENSION(parent, ctrl)
+	local extensionLevel = 1;
 
+	local guildAgit = housing.GetGuildAgitInfo();
+	if guildAgit ~= nil then
+		if guildAgit.extensionLevel >= 5 then
+			ui.MsgBox(ClMsg("MaxSkillLevel"));
+			return;
+		else
+			extensionLevel = guildAgit.extensionLevel;
+		end
+	end
+    
+    
+    local frame = ui.GetFrame('guildgrowth');
+    local index = frame:GetUserIValue('ACCEPT_MSGBOX_INDEX');    
+    ui.CloseMsgBoxByIndex(index);
+    
+	local class = GetClass("guild_housing", "guild_agit_extension" .. extensionLevel + 1);
+	if class == nil then
+		ui.MsgBox(ClMsg("MaxSkillLevel"));
+		return;
+	end
 
+	local needSilver = TryGetProp(class, "ExtensionNeedSilver");
+	local needMileage = TryGetProp(class, "ExtensionNeedMileage");
 
+    local clmsg = ScpArgMsg('Housing_Really_Agit_Extension{LEVEL}{GUILD_MONEY}{GUILD_MILEAGE}', 'LEVEL', extensionLevel + 1, 'GUILD_MONEY', GET_COMMAED_STRING(needSilver), 'GUILD_MILEAGE', GET_COMMAED_STRING(needMileage));
+	if extensionLevel <= 1 then
+	    clmsg = ScpArgMsg('Housing_Really_Agit_Extension_First{LEVEL}{GUILD_MONEY}{GUILD_MILEAGE}', 'LEVEL', extensionLevel + 1, 'GUILD_MONEY', GET_COMMAED_STRING(needSilver), 'GUILD_MILEAGE', GET_COMMAED_STRING(needMileage));
+	end
+	local yesScp = "_EXEC_GUILD_AGIT_EXTENSION()";
 
+	local acceptMsgBox = ui.MsgBox(clmsg, yesScp, "None");
+    acceptMsgBox = tolua.cast(acceptMsgBox, 'ui::CMessageBoxFrame');
+    frame:SetUserValue('ACCEPT_MSGBOX_INDEX', acceptMsgBox:GetIndex());
+    
+end
+
+function _EXEC_GUILD_AGIT_EXTENSION()
+	housing.RequestGuildAgitExtension("GUILD_AGIT_INFO_RECEIVE");
+end
+
+function ON_GUILD_AGIT_INFO_RECEIVE(frame)
+	local extensionLevel = 1;
+
+	local guildAgit = housing.GetGuildAgitInfo();
+	if guildAgit ~= nil then
+		extensionLevel = guildAgit.extensionLevel;
+	end
+
+	local pic_agit_level = GET_CHILD_RECURSIVELY(frame, "pic_agit_level");
+	pic_agit_level:SetImage("housing_level_icon_0" .. extensionLevel);
+
+	local txt_extension_level = GET_CHILD_RECURSIVELY(frame, "txt_extension_level");
+	txt_extension_level:SetTextByKey("level", extensionLevel);
+
+	local class = GetClass("guild_housing", "guild_agit_extension" .. extensionLevel + 1);
+	
+	local needLevel = TryGetProp(class, "ExtensionNeedGuildLevel");
+	local txt_extension_need_level = GET_CHILD_RECURSIVELY(frame, "txt_extension_need_level");
+	txt_extension_need_level:SetTextByKey("value", GET_COMMAED_STRING(needLevel));
+	
+	local needSilver = TryGetProp(class, "ExtensionNeedSilver");
+	local txt_extension_need_silver = GET_CHILD_RECURSIVELY(frame, "txt_extension_need_silver");
+	txt_extension_need_silver:SetTextByKey("value", GET_COMMAED_STRING(needSilver));
+	
+	local needMileage = TryGetProp(class, "ExtensionNeedMileage");
+	local txt_extension_need_mileage = GET_CHILD_RECURSIVELY(frame, "txt_extension_need_mileage");
+	txt_extension_need_mileage:SetTextByKey("value", GET_COMMAED_STRING(needMileage));
+
+	local function SET_EXTENSION_LEVEL_INFO(frame, level)
+		local txt_extension_level_info = GET_CHILD_RECURSIVELY(frame, "txt_extension_level_info_lv" .. level);
+
+		local class = GetClass("guild_housing", "guild_agit_extension" .. level);
+		local caption = TryGetProp(class, "Caption1");
+		txt_extension_level_info:SetTextByKey("value", caption);
+	end
+	
+	for i = 1, 5 do
+		SET_EXTENSION_LEVEL_INFO(frame, i);
+	end
+	
+	local pcGuild = session.party.GetPartyInfo(PARTY_GUILD);
+	local guildObj = GetIES(pcGuild:GetObject());
+	
+	local btn_extension_exec = GET_CHILD_RECURSIVELY(frame, "btn_extension_exec");
+	btn_extension_exec:SetClickSound('button_click_big')
+	btn_extension_exec:SetOverSound('button_over');
+	if needLevel ~= nil then
+        if guildObj.Level >= needLevel then
+    
+    		btn_extension_exec:SetEnable(1);
+    	else
+    		btn_extension_exec:SetEnable(0);
+    	end
+    else
+		btn_extension_exec:SetEnable(0);
+    end
+end

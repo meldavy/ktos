@@ -1,7 +1,11 @@
 --- mgame_action.lua --
 
-function MGAME_MSG(actor, msgStr)
-    addon.BroadMsg("NOTICE_Dm_!", msgStr, 3);
+function MGAME_MSG(actor, msgStr, msgDuration)
+    if msgDuration == nil or msgDuration <= 0 then
+        msgDuration = 3;
+    end
+    
+    addon.BroadMsg("NOTICE_Dm_!", msgStr, msgDuration);
 end
 
 function SHOW_SIMPLE_MSG(msgStr)
@@ -10,7 +14,17 @@ function SHOW_SIMPLE_MSG(msgStr)
 	pvpmsg:ShowWindow(1);
 	local text = pvpmsg:GetChild("text");
 	text:SetTextByKey("font", "");
+	local sList = StringSplit(msgStr, "}");
+	local number = 0;
+	if #sList > 1 then
+		number = tonumber(sList[2]);
+	end
+
+	if number > 0 then
 	text:SetTextByKey("text", msgStr);
+	else
+		text:SetTextByKey("text", "");
+	end
 	pvpmsg:SetDuration(120);
 
 end
