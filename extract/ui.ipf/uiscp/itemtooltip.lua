@@ -463,10 +463,14 @@ function SET_ITEM_TOOLTIP_ALL_TYPE(icon, invitem, className, strType, itemType, 
 end
 
 function SET_ITEM_TOOLTIP_TYPE(prop, itemID, itemCls, tooltipType)
-	local customTooltipScp = TryGetProp(itemCls, "CustomToolTip");
+	local customTooltipScp = TryGetProp(itemCls, "CustomToolTip");	
 	if customTooltipScp ~= nil and customTooltipScp ~= "None" then
-		customTooltipScp = _G[customTooltipScp];
-		customTooltipScp(prop, itemCls, nil, tooltipType);
+		customTooltipScp = _G[customTooltipScp];		
+		if customTooltipScp ~= nil then
+			customTooltipScp(prop, itemCls, nil, tooltipType);
+		else
+			prop:SetTooltipType('wholeitem');	
+		end
 	else
 		prop:SetTooltipType('wholeitem');
 	end	
