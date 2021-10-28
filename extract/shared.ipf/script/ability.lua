@@ -3240,3 +3240,4 @@ end
 function SCR_ABIL_Schwarzereiter18_INACTIVE(self, ability)
     StartCoolTime(self, 'Schwarzereiter_Limacon')
 end
+

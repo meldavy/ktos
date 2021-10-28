@@ -182,7 +182,66 @@ function DRAW_ETC_DESC_TOOLTIP(tooltipframe, invitem, yPos, mainframename)
 		end
 	end
 
-	if false == customSet then
+	-------- 확률 공개 큐브일 경우 reward_ratio_open_list.xml에서 툴팁을 불러온다
+	if false == customSet and (TryGetProp(invitem, "GroupName", "None") == "Cube" or TryGetProp(invitem, "GroupName", "None") == "Premium" or TryGetProp(invitem, "GroupName", "None") == "Misc" or TryGetProp(invitem, "GroupName", "None") == "Drug") then
+		local Desc = ClMsg('tooltip_reward_ratio_open_list')
+		local cls_list, cls_cnt = GetClassList("reward_ratio_open_list")
+        local TableGroup = TryGetProp(invitem, 'StringArg', 'None')
+  		local Tablelist = {}
+		local RatioSum = 0
+
+		if TryGetProp(invitem, "ClassName", "None") == "Piece_BorutaSeal" or TryGetProp(invitem, "ClassName", "None") == "Piece_LegendMisc" then
+			Desc = ScpArgMsg("tooltip_reward_ratio_open_list_spendcount", "COUNT", 10)
+		end
+
+		local itemcls = GetClass('Item', invitem.ClassName)
+		local clsName = itemcls.ClassName
+
+		local equalRatioCheck = 0
+		local isEqualRatio = 1
+        for i = 0, cls_cnt - 1 do
+            local cls = GetClassByIndexFromList(cls_list, i)
+			if TryGetProp(cls, 'Group', 'None') == TableGroup then
+				local ItemName = GetClass('Item', TryGetProp(cls, "ItemName", "None")).Name
+                local Count = tostring(TryGetProp(cls, 'Count', 1))
+				local Ratio = TryGetProp(cls, 'Ratio', '')
+				Tablelist[#Tablelist + 1] = '{nl} - '..ItemName..' x'..Count..' '..'{@st45ty}{s14}['..Ratio..']{/}{/}'
+				
+				-- 확률 합계가 100이 되는지 검사
+				local RatioNum = string.gsub(Ratio,'%%','')
+				RatioSum = RatioSum + tonumber(RatioNum)
+
+				-- -- 균등확률인지 검사
+				if equalRatioCheck ~= 0 and tonumber(RatioNum) ~= tonumber(equalRatioCheck) then
+					isEqualRatio = 0
+				end
+
+				equalRatioCheck = RatioNum
+			end
+		end
+
+		if isEqualRatio == 1 then
+			Desc = ClMsg('tooltip_reward_ratio_open_list3')
+		end
+		
+		-- 합계가 100이 안되면 경고 메시지 삽입. 소숫점 7자리까지 오차 범위 허용
+		if RatioSum < 99.9999999 or RatioSum > 100.0000009 then
+			Desc = Desc.."{#ff0000}!!!!!!!!!!! Wrong Ratio Sum !!!!!!!!!!!!!!{/}{/}"
+		end
+
+		if #Tablelist > 0 and #Tablelist <= 40 then
+			for i = 1, #Tablelist do
+				Desc = Desc..Tablelist[i]
+			end
+		elseif #Tablelist > 40 then
+			Desc = invitem.Desc..ClMsg('tooltip_reward_ratio_open_list2')
+		else
+			Desc = invitem.Desc
+		end
+
+		descRichtext:SetText(Desc)
+
+	elseif false == customSet then
 		descRichtext:SetText(invitem.Desc);
 	end
 

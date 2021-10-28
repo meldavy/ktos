@@ -2248,49 +2248,49 @@
 	<ItemList ItemClassName="EP13_Artefact_000">
 		<Layer effect="None" TargetNode="Dummy_effect_atk_pet" scale="1" offset="0;0">
 			<Creation>
-				<Property PlayMoment="None">
+				<Property PlayMoment="GiveAttackFrom">
 					<Option ReinforceValue="0" ReinforceEffectState="None" UseAttach="YES" Use2DEffect="YES" IgnoreAnimEventEffect="YES" SubWeaponPistol="NO"/>
-					<Sound SoundName="None" SoundVolume="1"/>
+					<Sound SoundName="skl_ep13cybersoldier_pistol Copy 2" SoundVolume="20"/>
 				</Property>
 			</Creation>
 		</Layer>
 		<Layer effect="None" TargetNode="Dummy_effect_atk" scale="1" offset="0;0">
 			<Creation>
-				<Property PlayMoment="None">
+				<Property PlayMoment="GiveAttackFrom">
 					<Option ReinforceValue="0" ReinforceEffectState="None" UseAttach="YES" Use2DEffect="YES" IgnoreAnimEventEffect="YES" SubWeaponPistol="NO"/>
-					<Sound SoundName="None" SoundVolume="1"/>
+					<Sound SoundName="skl_ep13cybersoldier_pistol Copy 2" SoundVolume="20"/>
 				</Property>
 			</Creation>
 		</Layer>
 		<Layer effect="None" TargetNode="Dummy_effect_atk1_pet" scale="1" offset="0;0">
 			<Creation>
-				<Property PlayMoment="None">
+				<Property PlayMoment="GiveAttackFrom">
 					<Option ReinforceValue="0" ReinforceEffectState="None" UseAttach="YES" Use2DEffect="YES" IgnoreAnimEventEffect="YES" SubWeaponPistol="NO"/>
-					<Sound SoundName="None" SoundVolume="1"/>
+					<Sound SoundName="skl_ep13cybersoldier_pistol Copy 2" SoundVolume="20"/>
 				</Property>
 			</Creation>
 		</Layer>
 		<Layer effect="None" TargetNode="Dummy_effect_atk1" scale="1" offset="0;0">
 			<Creation>
-				<Property PlayMoment="None">
+				<Property PlayMoment="GiveAttackFrom">
 					<Option ReinforceValue="0" ReinforceEffectState="None" UseAttach="YES" Use2DEffect="YES" IgnoreAnimEventEffect="YES" SubWeaponPistol="NO"/>
-					<Sound SoundName="None" SoundVolume="1"/>
+					<Sound SoundName="skl_ep13cybersoldier_pistol Copy 2" SoundVolume="20"/>
 				</Property>
 			</Creation>
 		</Layer>
 		<Layer effect="None" TargetNode="Dummy_effect_atk2_pet" scale="1" offset="0;0">
 			<Creation>
-				<Property PlayMoment="None">
+				<Property PlayMoment="GiveAttackFrom">
 					<Option ReinforceValue="0" ReinforceEffectState="None" UseAttach="YES" Use2DEffect="YES" IgnoreAnimEventEffect="YES" SubWeaponPistol="NO"/>
-					<Sound SoundName="None" SoundVolume="1"/>
+					<Sound SoundName="skl_ep13cybersoldier_pistol Copy 2" SoundVolume="20"/>
 				</Property>
 			</Creation>
 		</Layer>
 		<Layer effect="None" TargetNode="Dummy_effect_atk2" scale="1" offset="0;0">
 			<Creation>
-				<Property PlayMoment="None">
+				<Property PlayMoment="GiveAttackFrom">
 					<Option ReinforceValue="0" ReinforceEffectState="None" UseAttach="YES" Use2DEffect="YES" IgnoreAnimEventEffect="YES" SubWeaponPistol="NO"/>
-					<Sound SoundName="None" SoundVolume="1"/>
+					<Sound SoundName="skl_ep13cybersoldier_pistol Copy 2" SoundVolume="20"/>
 				</Property>
 			</Creation>
 		</Layer>
@@ -2306,7 +2306,7 @@
 			<Creation>
 				<Property PlayMoment="GiveAttackFrom">
 					<Option ReinforceValue="0" UseAttach="YES" Use2DEffect="YES" IgnoreAnimEventEffect="YES" SubWeaponPistol="NO"/>
-					<Sound SoundName="skl_ep13cybersoldier_pistol Copy 2" SoundVolume="15"/>
+					<Sound SoundName="None" SoundVolume="0"/>
 				</Property>
 			</Creation>
 		</Layer>
@@ -2314,49 +2314,49 @@
 	<ItemList ItemClassName="EP13_Artefact_001">
 		<Layer effect="None" TargetNode="Dummy_effect_atk_pet" scale="1" offset="0;0">
 			<Creation>
-				<Property PlayMoment="None">
+				<Property PlayMoment="GiveAttackFrom">
 					<Option ReinforceValue="0" ReinforceEffectState="None" UseAttach="YES" Use2DEffect="YES" IgnoreAnimEventEffect="YES" SubWeaponPistol="NO"/>
-					<Sound SoundName="None" SoundVolume="1"/>
+					<Sound SoundName="skl_ep13cybersoldier_pistol Copy 2" SoundVolume="20"/>
 				</Property>
 			</Creation>
 		</Layer>
 		<Layer effect="None" TargetNode="Dummy_effect_atk" scale="1" offset="0;0">
 			<Creation>
-				<Property PlayMoment="None">
+				<Property PlayMoment="GiveAttackFrom">
 					<Option ReinforceValue="0" ReinforceEffectState="None" UseAttach="YES" Use2DEffect="YES" IgnoreAnimEventEffect="YES" SubWeaponPistol="NO"/>
-					<Sound SoundName="None" SoundVolume="1"/>
+					<Sound SoundName="skl_ep13cybersoldier_pistol Copy 2" SoundVolume="20"/>
 				</Property>
 			</Creation>
 		</Layer>
 		<Layer effect="None" TargetNode="Dummy_effect_atk1_pet" scale="1" offset="0;0">
 			<Creation>
-				<Property PlayMoment="None">
+				<Property PlayMoment="GiveAttackFrom">
 					<Option ReinforceValue="0" ReinforceEffectState="None" UseAttach="YES" Use2DEffect="YES" IgnoreAnimEventEffect="YES" SubWeaponPistol="NO"/>
-					<Sound SoundName="None" SoundVolume="1"/>
+					<Sound SoundName="skl_ep13cybersoldier_pistol Copy 2" SoundVolume="20"/>
 				</Property>
 			</Creation>
 		</Layer>
 		<Layer effect="None" TargetNode="Dummy_effect_atk1" scale="1" offset="0;0">
 			<Creation>
-				<Property PlayMoment="None">
+				<Property PlayMoment="GiveAttackFrom">
 					<Option ReinforceValue="0" ReinforceEffectState="None" UseAttach="YES" Use2DEffect="YES" IgnoreAnimEventEffect="YES" SubWeaponPistol="NO"/>
-					<Sound SoundName="None" SoundVolume="1"/>
+					<Sound SoundName="skl_ep13cybersoldier_pistol Copy 2" SoundVolume="20"/>
 				</Property>
 			</Creation>
 		</Layer>
 		<Layer effect="None" TargetNode="Dummy_effect_atk2_pet" scale="1" offset="0;0">
 			<Creation>
-				<Property PlayMoment="None">
+				<Property PlayMoment="GiveAttackFrom">
 					<Option ReinforceValue="0" ReinforceEffectState="None" UseAttach="YES" Use2DEffect="YES" IgnoreAnimEventEffect="YES" SubWeaponPistol="NO"/>
-					<Sound SoundName="None" SoundVolume="1"/>
+					<Sound SoundName="skl_ep13cybersoldier_pistol Copy 2" SoundVolume="20"/>
 				</Property>
 			</Creation>
 		</Layer>
 		<Layer effect="None" TargetNode="Dummy_effect_atk2" scale="1" offset="0;0">
 			<Creation>
-				<Property PlayMoment="None">
+				<Property PlayMoment="GiveAttackFrom">
 					<Option ReinforceValue="0" ReinforceEffectState="None" UseAttach="YES" Use2DEffect="YES" IgnoreAnimEventEffect="YES" SubWeaponPistol="NO"/>
-					<Sound SoundName="None" SoundVolume="1"/>
+					<Sound SoundName="skl_ep13cybersoldier_pistol Copy 2" SoundVolume="20"/>
 				</Property>
 			</Creation>
 		</Layer>
@@ -2372,7 +2372,7 @@
 			<Creation>
 				<Property PlayMoment="GiveAttackFrom">
 					<Option ReinforceValue="0" UseAttach="YES" Use2DEffect="YES" IgnoreAnimEventEffect="YES" SubWeaponPistol="NO"/>
-					<Sound SoundName="skl_ep13cybersoldier_pistol Copy 2" SoundVolume="15"/>
+					<Sound SoundName="None" SoundVolume="0"/>
 				</Property>
 			</Creation>
 		</Layer>

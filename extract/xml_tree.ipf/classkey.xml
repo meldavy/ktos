@@ -4737,6 +4737,47 @@
         <Key Name="HAIRACC_CUBE_OPEN_LAST_DATE" Value="108336"/>
         <Key Name="REPUTATION_REST_POINT" Value="108344"/>
         <Key Name="REST_POINT_LAST_PLAY_TIME" Value="108345"/>
+        <Key Name="EVENT_2105_CAMPING_AXQUEST" Value="108372"/>
+        <Key Name="EVENT_2105_CAMPING_CAMPFIRE_COUNT" Value="108375"/>
+        <Key Name="EVENT_2105_CAMPING_CHECK_POINT" Value="108359"/>
+        <Key Name="EVENT_2105_CAMPING_COIN4_COIN_COUNT" Value="108362"/>
+        <Key Name="EVENT_2105_CAMPING_GAMBLE_COUNT" Value="108357"/>
+        <Key Name="EVENT_2105_CAMPING_JUMP_POEN_BAG1" Value="108371"/>
+        <Key Name="EVENT_2105_CAMPING_JUMP_POEN_BAG2" Value="108368"/>
+        <Key Name="EVENT_2105_CAMPING_JUMP_POEN_BAG3" Value="108349"/>
+        <Key Name="EVENT_2105_CAMPING_JUMP_POEN_BAG4" Value="108358"/>
+        <Key Name="EVENT_2105_CAMPING_JUMP_POEN_BAG_COUNT" Value="108366"/>
+        <Key Name="EVENT_2105_CAMPING_PLAY_TIME" Value="108352"/>
+        <Key Name="EVENT_2105_CAMPING_REWARD_DAY_COUNT" Value="108370"/>
+        <Key Name="EVENT_2105_CAMPING_SHOP_1" Value="108360"/>
+        <Key Name="EVENT_2105_CAMPING_SHOP_10" Value="108367"/>
+        <Key Name="EVENT_2105_CAMPING_SHOP_11" Value="108374"/>
+        <Key Name="EVENT_2105_CAMPING_SHOP_12" Value="108373"/>
+        <Key Name="EVENT_2105_CAMPING_SHOP_13" Value="108361"/>
+        <Key Name="EVENT_2105_CAMPING_SHOP_14" Value="108354"/>
+        <Key Name="EVENT_2105_CAMPING_SHOP_15" Value="108363"/>
+        <Key Name="EVENT_2105_CAMPING_SHOP_2" Value="108376"/>
+        <Key Name="EVENT_2105_CAMPING_SHOP_3" Value="108356"/>
+        <Key Name="EVENT_2105_CAMPING_SHOP_4" Value="108369"/>
+        <Key Name="EVENT_2105_CAMPING_SHOP_5" Value="108350"/>
+        <Key Name="EVENT_2105_CAMPING_SHOP_6" Value="108351"/>
+        <Key Name="EVENT_2105_CAMPING_SHOP_7" Value="108355"/>
+        <Key Name="EVENT_2105_CAMPING_SHOP_8" Value="108348"/>
+        <Key Name="EVENT_2105_CAMPING_SHOP_9" Value="108364"/>
+        <Key Name="EVENT_CANPING_BEFORE_ZONE" Value="108353"/>
+        <Key Name="HadVisited_11240" Value="108365"/>
+        <Key Name="FAVORITE_INDUN_1" Value="108385"/>
+        <Key Name="FAVORITE_INDUN_10" Value="108386"/>
+        <Key Name="FAVORITE_INDUN_2" Value="108384"/>
+        <Key Name="FAVORITE_INDUN_3" Value="108381"/>
+        <Key Name="FAVORITE_INDUN_4" Value="108378"/>
+        <Key Name="FAVORITE_INDUN_5" Value="108377"/>
+        <Key Name="FAVORITE_INDUN_6" Value="108380"/>
+        <Key Name="FAVORITE_INDUN_7" Value="108383"/>
+        <Key Name="FAVORITE_INDUN_8" Value="108382"/>
+        <Key Name="FAVORITE_INDUN_9" Value="108379"/>
+        <Key Name="EVENT_2105_CAMPING_SHOP_16" Value="108387"/>
+        <Key Name="USE_RELIC_IN_COLONY_LAST_DATE" Value="108388"/>
     </KeyIDSpc>
     <KeyIDSpc Name="PCEtc">
         <Key Name="Kill_boss_Clymen_Q2" Value="7788"/>
@@ -13379,6 +13420,7 @@
         <Key Name="Pose_CHEER" Value="108290"/>
         <Key Name="Pose_SHOOTDANCE" Value="108284"/>
         <Key Name="Hide_3247" Value="108346"/>
+        <Key Name="HadVisited_11240" Value="108347"/>
     </KeyIDSpc>
     <KeyIDSpc Name="GuildMember">
         <Key Name="Name" Value="9011"/>

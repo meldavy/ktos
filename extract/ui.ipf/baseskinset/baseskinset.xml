@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by imc (imc) -->
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by imc (imc) -->
 <!-- edited with XMLSpy v2008 sp1 (http://www.altova.com) by MintPC (Mi) -->
 <skinset name="Base">
 	<skinlist category="frames">
@@ -4571,6 +4571,61 @@
 			<img name="bottomcore" imgrect="471 1141 20 12"/>
 			<img name="bottomright" imgrect="492 1141 20 12"/>
 		</skin>
+		<skin name="guild_community_tab_line" texture="\skin\guild_community.tga">
+			<img name="topleft" imgrect="275 51 1 10"/>
+			<img name="topcore" imgrect="277 51 1 10"/>
+			<img name="topright" imgrect="279 51 1 10"/>
+			<img name="bodyleft" imgrect="275 62 1 10"/>
+			<img name="bodycore" imgrect="277 62 1 10"/>
+			<img name="bodyright" imgrect="279 62 1 10"/>
+			<img name="bottomleft" imgrect="275 73 1 10"/>
+			<img name="bottomcore" imgrect="277 73 1 10"/>
+			<img name="bottomright" imgrect="279 73 1 10"/>
+		</skin>
+		<skin name="guild_community_notice" texture="\skin\guild_community.tga">
+			<img name="topleft" imgrect="217 51 20 20"/>
+			<img name="topcore" imgrect="238 51 15 20"/>
+			<img name="topright" imgrect="254 51 20 20"/>
+			<img name="bodyleft" imgrect="217 72 20 4"/>
+			<img name="bodycore" imgrect="238 72 15 4"/>
+			<img name="bodyright" imgrect="254 72 20 4"/>
+			<img name="bottomleft" imgrect="217 77 20 20"/>
+			<img name="bottomcore" imgrect="238 77 15 20"/>
+			<img name="bottomright" imgrect="254 77 20 20"/>
+		</skin>
+		<skin name="guild_community_notice_label" texture="\skin\guild_community.tga">
+			<img name="topleft" imgrect="279 42 15 1"/>
+			<img name="topcore" imgrect="295 42 15 1"/>
+			<img name="topright" imgrect="311 42 15 1"/>
+			<img name="bodyleft" imgrect="279 44 15 1"/>
+			<img name="bodycore" imgrect="295 44 15 1"/>
+			<img name="bodyright" imgrect="311 44 15 1"/>
+			<img name="bottomleft" imgrect="279 46 15 1"/>
+			<img name="bottomcore" imgrect="295 46 15 1"/>
+			<img name="bottomright" imgrect="311 46 15 1"/>
+		</skin>
+		<skin name="base_btn_shadow" texture="\skin\guild_community.tga">
+			<img name="topleft" imgrect="282 48 29 15"/>
+			<img name="topcore" imgrect="312 48 30 15"/>
+			<img name="topright" imgrect="343 48 29 15"/>
+			<img name="bodyleft" imgrect="282 64 29 5"/>
+			<img name="bodycore" imgrect="312 64 30 5"/>
+			<img name="bodyright" imgrect="343 64 29 5"/>
+			<img name="bottomleft" imgrect="282 70 29 15"/>
+			<img name="bottomcore" imgrect="312 70 30 15"/>
+			<img name="bottomright" imgrect="343 70 29 15"/>
+		</skin>
+		<skin name="guild_community_notice_select" texture="\skin\guild_community.tga">
+			<img name="topleft" imgrect="446 0 17 17"/>
+			<img name="topcore" imgrect="464 0 17 17"/>
+			<img name="topright" imgrect="482 0 17 17"/>
+			<img name="bodyleft" imgrect="446 18 17 5"/>
+			<img name="bodycore" imgrect="464 18 17 5"/>
+			<img name="bodyright" imgrect="482 18 17 5"/>
+			<img name="bottomleft" imgrect="446 24 17 17"/>
+			<img name="bottomcore" imgrect="464 24 17 17"/>
+			<img name="bottomright" imgrect="482 24 17 17"/>
+		</skin>
 	</skinlist>
 	<skinlist category="testje2_buttons">
 		<skin name="test_brown_btn" texture="\skin\housing.tga">
@@ -4638,6 +4693,72 @@
 			<img name="bottomleft" imgrect="1029 1059 20 1"/>
 			<img name="bottomcore" imgrect="1050 1059 30 1"/>
 			<img name="bottomright" imgrect="1081 1059 20 1"/>
+		</skin>
+		<skin name="guild_community_tab" texture="\skin\guild_community.tga">
+			<img name="topleft" imgrect="0 0 30 1"/>
+			<img name="topcore" imgrect="31 0 30 1"/>
+			<img name="topright" imgrect="62 0 30 1"/>
+			<img name="bodyleft" imgrect="0 2 30 46"/>
+			<img name="bodycore" imgrect="31 2 30 46"/>
+			<img name="bodyright" imgrect="62 2 30 46"/>
+			<img name="bottomleft" imgrect="0 49 30 1"/>
+			<img name="bottomcore" imgrect="31 49 30 1"/>
+			<img name="bottomright" imgrect="62 49 30 1"/>
+		</skin>
+		<skin name="guild_community_tab_cursoron" texture="\skin\guild_community.tga">
+			<img name="topleft" imgrect="93 0 30 1"/>
+			<img name="topcore" imgrect="124 0 30 1"/>
+			<img name="topright" imgrect="155 0 30 1"/>
+			<img name="bodyleft" imgrect="93 2 30 46"/>
+			<img name="bodycore" imgrect="124 2 30 46"/>
+			<img name="bodyright" imgrect="155 2 30 46"/>
+			<img name="bottomleft" imgrect="93 49 30 1"/>
+			<img name="bottomcore" imgrect="124 49 30 1"/>
+			<img name="bottomright" imgrect="155 49 30 1"/>
+		</skin>
+		<skin name="guild_community_tab_clicked" texture="\skin\guild_community.tga">
+			<img name="topleft" imgrect="186 0 30 1"/>
+			<img name="topcore" imgrect="217 0 30 1"/>
+			<img name="topright" imgrect="248 0 30 1"/>
+			<img name="bodyleft" imgrect="186 2 30 46"/>
+			<img name="bodycore" imgrect="217 2 30 46"/>
+			<img name="bodyright" imgrect="248 2 30 46"/>
+			<img name="bottomleft" imgrect="186 49 30 1"/>
+			<img name="bottomcore" imgrect="217 49 30 1"/>
+			<img name="bottomright" imgrect="248 49 30 1"/>
+		</skin>
+		<skin name="beige_button" texture="\skin\guild_community.tga">
+			<img name="topleft" imgrect="374 48 15 18"/>
+			<img name="topcore" imgrect="390 48 15 18"/>
+			<img name="topright" imgrect="406 48 15 18"/>
+			<img name="bodyleft" imgrect="374 67 15 4"/>
+			<img name="bodycore" imgrect="390 67 15 4"/>
+			<img name="bodyright" imgrect="406 67 15 4"/>
+			<img name="bottomleft" imgrect="374 72 15 6"/>
+			<img name="bottomcore" imgrect="390 72 15 6"/>
+			<img name="bottomright" imgrect="406 72 15 6"/>
+		</skin>
+		<skin name="beige_button_cursoron" texture="\skin\guild_community.tga">
+			<img name="topleft" imgrect="422 48 15 18"/>
+			<img name="topcore" imgrect="438 48 15 18"/>
+			<img name="topright" imgrect="454 48 15 18"/>
+			<img name="bodyleft" imgrect="422 67 15 4"/>
+			<img name="bodycore" imgrect="438 67 15 4"/>
+			<img name="bodyright" imgrect="454 67 15 4"/>
+			<img name="bottomleft" imgrect="422 72 15 6"/>
+			<img name="bottomcore" imgrect="438 72 15 6"/>
+			<img name="bottomright" imgrect="454 72 15 6"/>
+		</skin>
+		<skin name="beige_button_clicked" texture="\skin\guild_community.tga">
+			<img name="topleft" imgrect="470 48 15 18"/>
+			<img name="topcore" imgrect="486 48 15 18"/>
+			<img name="topright" imgrect="502 48 15 18"/>
+			<img name="bodyleft" imgrect="470 67 15 4"/>
+			<img name="bodycore" imgrect="486 67 15 4"/>
+			<img name="bodyright" imgrect="502 67 15 4"/>
+			<img name="bottomleft" imgrect="470 72 15 6"/>
+			<img name="bottomcore" imgrect="486 72 15 6"/>
+			<img name="bottomright" imgrect="502 72 15 6"/>
 		</skin>
 	</skinlist>
 	<skinlist category="yiseul_frames">
@@ -8361,6 +8482,20 @@
 		<image name="reputation_arrow" file="\skin\goddess_card.tga" imgrect="0 336 77 48" CMM_Caption="인망 상점 화살표"/>
 		<image name="tutorial_file_bg" file="\skin\tutorial_notebook.tga" imgrect="0 0 624 828" CMM_Caption="튜토리얼 수첩 bg"/>
 		<image name="tutorial_notify" file="\skin\tutorial_notebook.tga" imgrect="738 0 14 14" CMM_Caption="튜토리얼 수첩 알림"/>
+		<image name="guild_community_lock" file="\skin\guild_community.tga" imgrect="279 0 14 22" CMM_Caption="길드 탭 잠금"/>
+		<image name="guild_community_newmassage" file="\skin\guild_community.tga" imgrect="279 23 18 18" CMM_Caption="길드 신규 메세지"/>
+		<image name="guild_community_notice_open" file="\skin\guild_community.tga" imgrect="298 23 32 15" CMM_Caption="길드 공지 열기"/>
+		<image name="guild_community_notice_close" file="\skin\guild_community.tga" imgrect="331 23 32 15" CMM_Caption="길드 공지 닫기"/>
+		<image name="guild_community_notice_pin" file="\skin\guild_community.tga" imgrect="366 0 32 32" CMM_Caption="길드 공지 고정 아이콘"/>
+		<image name="guild_community_notice_sign" file="\skin\guild_community.tga" imgrect="399 0 25 26" CMM_Caption="길드 메시지 원본 공지 핀"/>
+		<image name="memory_4" file="\skin\guild_community.tga" imgrect="425 0 20 20" CMM_Caption="오프라인"/>
+		<image name="guild_community_bakarine_emotion14" file="\skin\guild_community.tga" imgrect="0 181 128 128" CMM_Caption="안내 이모티콘"/>
+		<image name="context_chat_goout" file="\skin\guild_community.tga" imgrect="217 98 17 16" CMM_Caption="커뮤니티 나가기"/>
+		<image name="context_setting" file="\skin\guild_community.tga" imgrect="235 98 16 16" CMM_Caption="셋팅"/>
+		<image name="context_chat_delete" file="\skin\guild_community.tga" imgrect="252 98 18 16" CMM_Caption="채팅 나가기"/>
+		<image name="context_roomchief" file="\skin\guild_community.tga" imgrect="271 98 18 14" CMM_Caption="방장 위임"/>
+		<image name="context_conversation_delete" file="\skin\guild_community.tga" imgrect="217 115 18 17" CMM_Caption="대화 나가기"/>
+		<image name="context_notice" file="\skin\guild_community.tga" imgrect="217 133 20 23" CMM_Caption="공지 지정"/>
 	</imagelist>
 	<imagelist category="yiseul_image">
 		<image name="AbillityReset_skin" file="\skin\paid_skin_title.tga" imgrect="0 330 316 165" CMM_Caption="특성 초기화"/>
@@ -8427,6 +8562,7 @@
 		<image name="wedge_icon_s_goal" file="\skin\pip_test.tga" imgrect="226 1173 16 19" CMM_Caption="쐐기 던전_목표 아이콘"/>
 		<image name="wedge_icon_s_pattern" file="\skin\pip_test.tga" imgrect="243 1173 16 19" CMM_Caption="쐐기 던전_패턴 아이콘_s"/>
 		<image name="2021_flex_box" file="\skin\2021flexbox.tga" imgrect="0 0 510 714" CMM_Caption="[2021 신년맞이] 플렉스 박스"/>
+		<image name="card_reinforce_COMPLETE" file="\skin\monstercard.tga" imgrect="997 803 330 133" CMM_Caption="레전드 카드 합성 결과_complete"/>
 	</imagelist>
 	<imagelist category="je_button">
 		<image name="menu_guild_info" file="\skin\guild_skin.tga" imgrect="165 298 45 45" CMM_Caption="길드 정보"/>
@@ -9000,6 +9136,12 @@
 		<image name="ep13_event_btn_small" file="\skin\button_small.tga" imgrect="0 124 64 64"/>
 		<image name="ep13_event_btn_small_cursoron" file="\skin\button_small.tga" imgrect="65 124 64 64"/>
 		<image name="ep13_event_btn_small_clicked" file="\skin\button_small.tga" imgrect="130 124 64 64"/>
+		<image name="guild_community_tab_add" file="\skin\guild_community.tga" imgrect="0 51 216 42" CMM_Caption="길드 커뮤니티 방 만들기"/>
+		<image name="guild_community_tab_add_cursoron" file="\skin\guild_community.tga" imgrect="0 94 216 42"/>
+		<image name="guild_community_tab_add_clicked" file="\skin\guild_community.tga" imgrect="0 137 216 42"/>
+		<image name="guild_community_favorite" file="\skin\guild_community.tga" imgrect="294 0 23 21" CMM_Caption="길드 커뮤니티 즐겨찾기"/>
+		<image name="guild_community_favorite_cursoron" file="\skin\guild_community.tga" imgrect="318 0 23 21"/>
+		<image name="guild_community_favorite_clicked" file="\skin\guild_community.tga" imgrect="342 0 23 21"/>
 	</imagelist>
 	<imagelist category="yiseul_button">
 		<image name="pvpmine_shop_btn" file="\skin\pip_test.tga" imgrect="2049 61 66 59" CMM_Caption="용병단 증표 ui 버튼"/>
@@ -12200,6 +12342,8 @@
 		<image name="038_LufasKehel" file="\skin\npccard\038_LufasKehel.tga" imgrect="0 0 330 440"/>
 		<image name="039_VisavaldasBlack" file="\skin\npccard\039_VisavaldasBlack.tga" imgrect="0 0 330 440"/>
 		<image name="040_Pauline" file="\skin\npccard\040_Pauline.tga" imgrect="0 0 330 440"/>
+		<image name="041_GeHong" file="\skin\npccard\041_GeHong.tga" imgrect="0 0 330 440"/>
+		<image name="042_PhilipAureolus" file="\skin\npccard\042_PhilipAureolus.tga" imgrect="0 0 330 440"/>
 	</imagelist>
 	<imagelist category="bosscard2">
 		<image name="001_boss_poata" file="\skin\bosscard\001_boss_poata.tga" imgrect="0 0 330 440"/>
@@ -12536,6 +12680,7 @@
 		<image name="plate_achieve_Giltine_auto_clear" file="\skin\user_title_skin.tga" imgrect="430 283 214 34" CMM_Caption="길티네_자동매칭 클리어"/>
 		<image name="plate_achieve_Giltine_clear_2" file="\skin\user_title_skin.tga" imgrect="0 364 214 34" CMM_Caption="길티네 개편_클리어"/>
 		<image name="plate_achieve_Giltine_first_kill_2" file="\skin\user_title_skin.tga" imgrect="215 364 214 34" CMM_Caption="길티네 개편_퍼스트"/>
+		<image name="plate_achieve_contest_Event" file="\skin\user_title_skin.tga" imgrect="430 364 214 34" CMM_Caption="일본 서버 일러스트 공모전 보상"/>
 		<image name="plate_achieve_Giltine_clear_2_01" file="\skin\user_title_skin.tga" imgrect="0 399 214 34" CMM_Caption="길티네 개편_클리어 동"/>
 		<image name="plate_achieve_Giltine_clear_2_02" file="\skin\user_title_skin.tga" imgrect="215 399 214 34" CMM_Caption="길티네 개편_클리어 은"/>
 	</imagelist>

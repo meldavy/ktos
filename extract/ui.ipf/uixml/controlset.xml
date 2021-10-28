@@ -3182,7 +3182,8 @@
 		<userconfig SELECTED_BTN_SKIN="baseyellow_btn" NOT_SELECTED_BTN_SKIN="base_btn"/>
 		<controls>
 			<button name="button" hittest="true" margin="0 0 0 0" rect="0 0 350 60" layout_gravity="left top" skin="base_btn" textalign="center center" LBtnUpScp="INDUNINFO_CATEGORY_LBTN_CLICK"/>
-			<richtext name="name" hittest="false" margin="10 0 0 0" rect="0 0 230 35" fixwidth="true" textalign="left center" omitbywidth="true" layout_gravity="left center" format="{#000000}%s (%s){/}" param1="value" param1_def="던전" param2="cnt" param2_def="0"/>
+			<picture name="favorite" margin="10 4 0 0" rect="0 0 30 30" image="star_out_arrow" layout_gravity="left center" LBtnUpScp="INDUNINFO_FAVORITE_BUTTON" oversound="button_over" clicksound="button_click_big"/>
+			<richtext name="name" hittest="false" margin="35 0 0 0" rect="0 0 230 35" fixwidth="true" textalign="left center" omitbywidth="true" layout_gravity="left center" format="{#000000}%s (%s){/}" param1="value" param1_def="던전" param2="cnt" param2_def="0"/>
 			<richtext name="countText" margin="0 0 30 0" rect="0 0 80 35" fixwidth="true" textalign="right center" omitbywidth="true" layout_gravity="right center" format="{#000000}(%s/%s){/}" param1="current" param1_def="0" param2="max" param2_def="2"/>
 			<picture name="cycleCtrlPic" margin="0 4 70 0" rect="0 0 41 30" image="indun_icon_day_s" layout_gravity="right center"/>
 		</controls>

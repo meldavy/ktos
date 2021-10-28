@@ -406,11 +406,16 @@
                     <Num Num="200"/>
                     <Str Str="None"/>
                     <Num Num="1"/>
-                    <Str Str="Linker_blue"/>
+                    <Str Str="Linker_blue2"/>
                     <Num Num="1"/>
                     <Num Num="0.30000001"/>
-                    <Str_Arg Str="F_archer_bodkinpoint_finish" Arg="1"/>
+                    <Str_Arg Str="I_scout_linker_blue2" Arg="1"/>
                     <Str Str="None"/>
+                </Scp>
+            <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="100">
+                    <Str_Arg Str="F_buff_basic050" Arg="1.5"/>
+                    <Str Str="Bip01"/>
+                    <Num Num="0"/>
                 </Scp>
             </EtcList>
         </MainSkl>

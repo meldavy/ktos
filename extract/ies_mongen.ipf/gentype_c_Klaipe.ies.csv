@@ -80,5 +80,5 @@ ClassID,GenType,Lv,Range,GenRange,RespawnTime,MaxPop,Minimap,Hide,UseAIOufOfPC,A
 5258,10095,1,40,1,1,1,2,0,0,0,0,0,npc_huevill_female_1_Ev,[5주년] 특별한 케도라 상인,,,,,,,EVENT_2011_5TH_NPC,,,NO,YES,NO,Neutral,,,,
 5263,5263,1,40,1,1,1,2,0,0,0,0,0,Ev_Npc_baby_marnoks,[신년맞이 이벤트] 말순이,,,,,,,EVENT_2101_NEW_YEAR_NPC,,,NO,YES,NO,Neutral,,,,
 5265,10101,1,40,1,1,1,2,0,0,0,0,0,reputation_Board1,[왕국 재건단] 게시판,,,,,,,REPUTATION_QUEST_BOARD_01,,,NO,YES,NO,Neutral,,,,
-5272,10108,1,40,1,1,1,2,0,0,0,0,0,npc_kupole_3_event,[식목일]{nl}큐폴 잘리아스,,,,,,,EVENT_2103_ARBOR_DAY_NPC,,,NO,YES,NO,Neutral,,,,
 5275,5275,1,40,-1,60000,1,0,0,1,0,0,1,HiddenTrigger6,UnvisibleName,,,,LETICIA_ALARM,,,,,,NO,YES,NO,Neutral,,,,
+5276,10111,1,40,1,1,1,2,0,0,0,0,0,Event_Camping_npc,[이벤트] 봄 캠핑{nl}여행자,,,,,,,EVENT_2105_CAMPING_TRAVEL_NPC,,,NO,YES,NO,Netual,,,,

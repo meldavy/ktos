@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by imc (imc) -->
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by imc (imc) -->
 <!-- edited with XMLSpy v2008 sp1 http://www.altova.com by MintPC Mi -->
 <skinset name="Base">
 	<imagelist category="item_tooltip_icon">
@@ -3394,7 +3394,7 @@
 		<image name="icon_item_Artefact_Giltine_thmace" file="\icon\weapon\icon_item_Artefact_Giltine_thmace.png" imgrect="0 0 256 256"/>
 		<image name="icon_item_Artefact_Giltine_thsepar" file="\icon\weapon\icon_item_Artefact_Giltine_thsepar.png" imgrect="0 0 256 256"/>
 		<image name="icon_item_Artefact_Giltine_thsword" file="\icon\weapon\icon_item_Artefact_Giltine_thsword.png" imgrect="0 0 256 256"/>
-                <image name="icon_item_ep13dessert_mace" file="\icon\weapon\icon_item_ep13dessert_mace.png" imgrect="0 0 256 256" CMM_Caption="2021.04 테마_3종"/>
+		<image name="icon_item_ep13dessert_mace" file="\icon\weapon\icon_item_ep13dessert_mace.png" imgrect="0 0 256 256" CMM_Caption="2021.04 테마_3종"/>
 		<image name="icon_item_ep13dessert_dagger" file="\icon\weapon\icon_item_ep13dessert_dagger.png" imgrect="0 0 256 256"/>
 		<image name="icon_item_ep13dessert_rod" file="\icon\weapon\icon_item_ep13dessert_rod.png" imgrect="0 0 256 256"/>
 	</imagelist>
@@ -6399,9 +6399,17 @@
 		<image name="icon_item_2020ArborDay_necklace_Upgrade" file="\icon\item\icon_item_2020ArborDay_necklace_Upgrade.png" imgrect="0 0 256 256" CMM_Caption="2020 근본 네클리스 업그레이드 스크롤"/>
 		<image name="icon_item_2020ArborDay_bracelet_Upgrade" file="\icon\item\icon_item_2020ArborDay_bracelet_Upgrade.png" imgrect="0 0 256 256" CMM_Caption="2020 근본 브레이슬릿 업그레이드 스크롤"/>
 		<image name="icon_item_defensive_potion_lv2" file="\icon\item\icon_item_defensive_potion_lv2.png" imgrect="0 0 128 128" CMM_Caption="[주간 보스 레이드] 레티샤 특제 포션 Lv.2"/>
+		<image name="icon_iten_wing_chick_balloon" file="\icon\item\icon_iten_wing_chick_balloon.png" imgrect="0 0 256 256" CMM_Caption="병아리 풍선"/>
 		<image name="icon_item_misc_Giltine_Raid_HARD" file="\icon\item\icon_item_misc_Giltine_Raid_HARD.png" imgrect="0 0 80 80" CMM_Caption="길티네 깃털"/>
 		<image name="icon_item_Package_Giltine_Auto_Enter" file="\icon\item\icon_item_Package_Giltine_Auto_Enter.png" imgrect="0 0 256 256" CMM_Caption="마신의 성소(자동 매칭) 패키지"/>
+		<image name="icon_item_fire_stone_piece" file="\icon\item\icon_item_fire_stone_piece.png" imgrect="0 0 128 128" CMM_Caption="[이벤트] 불의 조각"/>
 		<image name="icon_item_Giltine_Auto_Enter_box_50ea" file="\icon\item\icon_item_Giltine_Auto_Enter_box_50ea.png" imgrect="0 0 256 256" CMM_Caption="마신의 성소(자동 매칭) 입장권 50장 상자"/>
+		<image name="icon_item_Event_scissors" file="\icon\item\icon_item_Event_scissors.png" imgrect="0 0 80 80" CMM_Caption="[이벤트] 가위"/>
+		<image name="icon_item_Event_rock" file="\icon\item\icon_item_Event_rock.png" imgrect="0 0 80 80" CMM_Caption="[이벤트] 바위"/>
+		<image name="icon_item_Event_paper" file="\icon\item\icon_item_Event_paper.png" imgrect="0 0 80 80" CMM_Caption="[이벤트] 보자기"/>
+		<image name="icon_item_misc_ore15_and_misc_0530" file="\icon\item\icon_item_misc_ore15_and_misc_0530.png" imgrect="0 0 128 128" CMM_Caption="프락토늄 마정석 번들"/>
+		<image name="icon_item_relic_growth_bundle" file="\icon\item\icon_item_relic_growth_bundle.png" imgrect="0 0 128 128" CMM_Caption="성물 성장 번들"/>
+		<image name="icon_item_relic_growth_10cnt_box" file="\icon\item\icon_item_relic_growth_10cnt_box.png" imgrect="0 0 256 256" CMM_Caption="여신의 가호 성물 성장 상자"/>
 	</imagelist>
 	<imagelist category="housing">
 		<image name="icon_item_h_bigplant_set_01_green" file="\icon\housing\icon_item_h_bigplant_set_01_green.png" imgrect="0 0 256 256" CMM_Caption="[길드 하우징] 화단_01(초록색)"/>
@@ -8337,6 +8345,12 @@
 		<image name="icon_item_wing_ep13dessert" file="\icon\payment\icon_item_wing_ep13dessert.png" imgrect="0 0 256 256"/>
 		<image name="item_icon_pet_ep13dessert" file="\icon\payment\item_icon_pet_ep13dessert.png" imgrect="0 0 256 256"/>
 		<image name="icon_item_wing_Guilty_Raid" file="\icon\payment\icon_item_wing_Guilty_Raid.png" imgrect="0 0 256 256" CMM_Caption="길티네 날개 색배리"/>
+		<image name="icon_item_2021_0505_Package_GrowthA" file="\icon\payment\icon_item_2021_0505_Package_GrowthA.png" imgrect="0 0 256 256" CMM_Caption="2021 5월 특판"/>
+		<image name="icon_item_2021_0505_Package_GrowthB" file="\icon\payment\icon_item_2021_0505_Package_GrowthB.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_2021_0505_Package_BattleA" file="\icon\payment\icon_item_2021_0505_Package_BattleA.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_2021_0505_Package_BattleB" file="\icon\payment\icon_item_2021_0505_Package_BattleB.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_2021_0505_Package_BattleC" file="\icon\payment\icon_item_2021_0505_Package_BattleC.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_2021_0505_Package_All" file="\icon\payment\icon_item_2021_0505_Package_All.png" imgrect="0 0 256 256"/>
 	</imagelist>
 	<imagelist category="seal">
 		<image name="icon_seal_yellow_cc_A1" file="\icon\seal\seal_yellow_cc_A1.tga" imgrect="0 0 80 80"/>

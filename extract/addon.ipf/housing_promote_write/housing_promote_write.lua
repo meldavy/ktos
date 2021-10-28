@@ -193,6 +193,11 @@ function HOUSING_PROMOTE_WRITE_REG_POST(parent, ctrl)
         return;
     end
 
+    if IsValidItemName(title_text) == 0 then
+        ui.MsgBox(ClMsg("HadFobbidenWord"));
+        return;
+    end
+
     local desc_ctrl = GET_CHILD(frame, "desc_text");
     local desc_text = desc_ctrl:GetText();
     

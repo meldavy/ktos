@@ -268,7 +268,15 @@
         </EndScripts>
         <KeyInput>
             <ToolScp Scp="SKL_KEY_DYNAMIC_CASTING" Client="YES" UseSleep="NO">
-                <Num Num="1"/>
+                <Num Num="0" UseFunc="1" FuncTxt="    local able = 1
+    local abil = session.GetAbilityByName(&quot;Barbarian41&quot;)
+    if abil ~= nil then
+        local abil_obj = GetIES(abil:GetObject())
+        if abil_obj.ActiveState == 1 then
+            able = 0
+        end
+    end
+    return able"/>
                 <Num Num="0"/>
                 <Num Num="3.5"/>
                 <Num Num="1"/>

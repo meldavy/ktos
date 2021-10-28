@@ -1,4 +1,6 @@
 ClassID,StartTimeYYYYMM,StartTimeDDHHMM,NewTimeYYYYMM,NewTimeDDHHMM,EndTimeYYYYMM,EndTimeDDHHMM,DeadlineTimeYYYYMM,DeadlineTimeDDHHMM,ExchangeTimeYYYYMM,ExchangeTimeDDHHMM,ClassName,Name,ImagePath,url,UserCommand1,UserCommand2,UserCommand3,ShowType
+997020,202105,60900,202105,110000,202105,270700,202105,220000,0,0,210506_family_SpecialGiftBox,가정의달 패키지,210506_family_SpecialGiftBox,http://tos.nexon.com/news/update/view.aspx?n4ArticleSN=2364&n4CategorySN=0,,,,
+997030,202105,60900,202105,110000,202106,100700,202106,50000,0,0,210506_TOS_CAMPING_EVENT,TOS 봄 캠핑 이벤트,210506_TOS_CAMPING_EVENT,http://tos.nexon.com/news/events/view.aspx?n4ArticleSN=325&n4ArticleCategorySN=1,,,,
 997040,202104,261100,202105,10000,202105,170000,202105,110000,0,0,210416_next_event,NEXT 프로젝트,210416_next_event,http://tos.nexon.com/news/tosnotice/view.aspx?n4ArticleSN=2348,,,,
 997050,202105,10000,202105,60000,202106,10000,202105,260000,0,0,event_2105Burning,주말 앤 버닝 - 5월,event_2105Burning,http://tos.nexon.com/news/events/view.aspx?n4ArticleSN=324&n4ArticleCategorySN=1,,,,
 997060,202105,10000,202105,60000,202106,10000,202105,260000,0,0,event2105_VaivoraReward,바이보라 출석 - 5월,event2105_VaivoraReward,http://tos.nexon.com/news/events/view.aspx?n4ArticleSN=323&n4ArticleCategorySN=1,,,,

@@ -27574,4 +27574,26 @@ return GET_RATE_MHP(self, damage) * 100"/>
 			</ToolScp>
 		</StartList>
 	</AI>
+	<AI Name="EVENT_VIVID_WALL_BORN_AI" ActiveMessageMapInBattle="1">
+		<List>
+			<ToolScp Scp="S_AI_ATTACK_NEAR" Client="NO" UseSleep="NO">
+				<Num Num="100"/>
+			</ToolScp>
+		</List>
+		<DeadList>
+			<ToolScp Scp="SAI_DEAD_SOBJ" Client="NO" UseSleep="NO">
+				<Str Str="ssn_mission"/>
+				<Str Str="Step1"/>
+				<Num Num="11"/>
+			</ToolScp>
+		</DeadList>
+		<HitList>
+			<ToolScp Scp="SAI_DAMAGE_SOBJ" Client="NO" UseSleep="NO">
+				<Num Num="2"/>
+				<Str Str="ssn_mission"/>
+				<Str Str="Step1"/>
+				<Num Num="11"/>
+			</ToolScp>
+		</HitList>
+	</AI>
 </AIList>

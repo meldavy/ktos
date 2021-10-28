@@ -312,4 +312,6 @@
 	<ReadXml Name="ancient_slot_extend"/>
 	<ReadXml Name="instrument_scale"/>
 <ReadXml Name="explorer_quiz"/>
+	<ReadXml Name="reward_ratio_open_list"/>
+	<ReadXml Name="gamble_prop_list"/>
 </Category>

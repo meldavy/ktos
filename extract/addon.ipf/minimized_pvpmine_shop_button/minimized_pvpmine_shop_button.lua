@@ -9,6 +9,15 @@ function MINIMIZED_PVPMINE_SHOP_BUTTON_OPEN_CHECK(frame, msg, argStr, argNum)
         frame:ShowWindow(0);
     else
     	frame:ShowWindow(1);
+
+		local mapprop = session.GetCurrentMapProp();
+		local mapCls = GetClassByType("Map", mapprop.type);
+	
+		local housingPlaceClass = GetClass("Housing_Place", mapCls.ClassName);
+		if housingPlaceClass ~= nil then
+			local margin = frame:GetMargin()
+			frame:SetMargin(margin.left, 163, margin.right, margin.bottom)
+		end
     end
 end
 

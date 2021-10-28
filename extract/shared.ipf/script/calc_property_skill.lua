@@ -121,7 +121,6 @@ function SCR_Get_SpendSP(skill)
     local basicSP = skill.BasicSP;
 --    local lv = skill.Level;
 --    local lvUpSpendSp = skill.LvUpSpendSp;
-    local decsp = 0;
     local bylvCorrect = 0
 
     local pc = GetSkillOwner(skill);
@@ -161,28 +160,30 @@ function SCR_Get_SpendSP(skill)
 --  value = basicsp + (lv - 1) * lvUpSpendSpRound;
     value = math.floor(value) + math.floor(value * abilAddSP);
    
+    local decByZemina = 0
     local zeminaSP = GetExProp(pc, "ZEMINA_BUFF_SP");
     if zeminaSP ~= 0 then
-        decsp = value * zeminaSP
+        decByZemina = value * zeminaSP
     end
-    value = value - decsp;
+    value = value - decByZemina;
     
     --burning_event
+    local decByBuff = 0
     if IsBuffApplied(pc, "Event_Cooldown_SPamount_Decrease") == "YES" then
-        decsp = SCR_COOLDOWN_SPAMOUNT_DECREASE(pc, "SpendSP", value)
+        decByBuff = SCR_COOLDOWN_SPAMOUNT_DECREASE(pc, "SpendSP", value)
     elseif IsBuffApplied(pc, "FIELD_SP_FULL_BUFF") == "YES" then
-        decsp = SCR_FIELD_DUNGEON_CONSUME_DECREASE(pc, "SpendSP", value)
+        decByBuff = SCR_FIELD_DUNGEON_CONSUME_DECREASE(pc, "SpendSP", value)
     elseif IsBuffApplied(pc, 'premium_seal_2021_buff') == 'YES' and IsBuffApplied(pc, 'Event_Cooldown_SPamount_Decrease') == 'NO' and SCR_IS_LEVEL_DUNGEON(pc) == 'YES' then
-		decsp = value * 0.5
+		decByBuff = value * 0.5
 	else
         if IsBuffApplied(pc, "Gymas_Buff") == "YES" then -- 기마스
             local ratio = 0.5;
-            decsp = value * ratio
+            decByBuff = value * ratio
         end
     end
-	
+    value = value - decByBuff;
     ----------
-    value = value - decsp;
+	
     if value < 1 then
         value = 0
     end
@@ -10005,6 +10006,7 @@ end
 
 -- done , 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_Get_Circling_Ratio(skill)
+    local pc = GetSkillOwner(skill)
     local value = skill.Level
     local abil = GetAbility(pc, "Falconer11");
     if abil ~= nil and 1 == abil.ActiveState then

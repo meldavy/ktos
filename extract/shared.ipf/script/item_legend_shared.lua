@@ -815,13 +815,13 @@ function IS_DECOMPOSABLE_VIBORA(item)
             local name = TryGetProp(item, 'InheritanceItemName', 'None')
             local cls = GetClass('Item', name)
             if cls ~= nil then                
-                if TryGetProp(cls, 'StringArg', 'None') == 'Vibora' and TryGetProp(cls, 'NumberArg1', 0) == 1 then
+                if TryGetProp(cls, 'StringArg', 'None') == 'Vibora' and TryGetProp(cls, 'NumberArg1', 0) >= 1 then
                     return true
                 end     
             end
         else
             local stringArg = TryGetProp(item, 'StringArg', 'None')
-            if stringArg == 'Vibora' and TryGetProp(item, 'NumberArg1', 0) == 1 then
+            if stringArg == 'Vibora' and TryGetProp(item, 'NumberArg1', 0) >= 1 then
                 return true
             end
         end

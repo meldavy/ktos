@@ -189,13 +189,13 @@ function ENABLE_DECOMPOSE_EVIL_GODDESS_ITEM(item)
                 return false
             end
             local string_arg = TryGetProp(item_obj, 'StringArg', 'None')
-            if (string_arg == 'evil' or string_arg == 'goddess') and TryGetProp(item_obj, 'NumberArg1', 0) == 1 then
+            if (string_arg == 'evil' or string_arg == 'goddess') and TryGetProp(item_obj, 'NumberArg1', 0) >= 1 then
                 return true    
             end
         end
     else
         local string_arg = TryGetProp(item, 'StringArg', 'None')
-        if (string_arg == 'evil' or string_arg == 'goddess') and TryGetProp(item, 'NumberArg1', 0) == 1 then
+        if (string_arg == 'evil' or string_arg == 'goddess') and TryGetProp(item, 'NumberArg1', 0) >= 1 then
             return true    
         end
     end

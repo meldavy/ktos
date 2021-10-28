@@ -1,2 +1,8 @@
-ClassID,Price,JobGrade,Itemdate,AccountLimitCount,ClassName,Category,SubCategory,ItemClassName,Job,SellStartTime,SellEndTime,WarningMsg
-1,49,0,181213,1,ClassName1,TP_Premium,TP_Useable,PremiumToken_New_Return,,,,NO
+ClassID,Price,JobGrade,Itemdate,AccountLimitCount,BonusItemCnt,ClassName,Category,SubCategory,ItemClassName,Job,SellStartTime,SellEndTime,WarningMsg,BonusItemName,BonusOnlySeasonServer
+1,111,0,210506,1,0,ClassName1,TP_Premium,TP_Package,2021_0505_PACKAGE_GrowthA_Newbie,,2021-05-06 09:00:00,2021-05-27 08:00:00,NO,,NO
+2,174,0,210505,1,0,ClassName2,TP_Premium,TP_Package,2021_0505_PACKAGE_GrowthB_Newbie,,2021-05-06 09:00:00,2021-05-27 08:00:00,NO,,NO
+3,74,0,210504,1,0,ClassName3,TP_Premium,TP_Package,2021_0505_PACKAGE_BattleA_Newbie,,2021-05-06 09:00:00,2021-05-27 08:00:00,NO,,NO
+4,99,0,210503,1,0,ClassName4,TP_Premium,TP_Package,2021_0505_PACKAGE_BattleB_Newbie,,2021-05-06 09:00:00,2021-05-27 08:00:00,NO,,NO
+5,63,0,210502,1,0,ClassName5,TP_Premium,TP_Package,2021_0505_PACKAGE_BattleC_Newbie,,2021-05-06 09:00:00,2021-05-27 08:00:00,NO,,NO
+6,388,0,210501,1,0,ClassName6,TP_Premium,TP_Package,2021_0505_PACKAGE_All_Newbie,,2021-05-06 09:00:00,2021-05-27 08:00:00,NO,,NO
+10,49,0,181213,1,0,ClassName10,TP_Premium,TP_Useable,PremiumToken_New_Return,,,,NO,,

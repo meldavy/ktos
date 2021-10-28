@@ -70,3 +70,4 @@ ClassID,GenType,Lv,Range,GenRange,RespawnTime,MaxPop,Minimap,Hide,UseAIOufOfPC,A
 1054,1044,1,40,1,60000,1,0,0,0,0,0,0,liepsna_spreader,,,,,,,,,,,NO,YES,NO,Monster,,,,
 1055,1045,1,40,1,60000,1,0,0,0,0,0,0,liepsna_spreader,,,,,,,,,,,NO,YES,NO,Monster,,,,
 1056,1046,1,40,1,60000,1,0,0,0,0,0,0,liepsna_spreader,,,,,,,,,,,NO,YES,NO,Monster,,,,
+1059,1049,1,40,1,1,1,1,0,0,0,0,0,Event_Camping_Ax_Man_npc,,,,,,,,EVENT_2105_CAMPING_AX_MAN_NPC,,,NO,YES,NO,Netual,,,,

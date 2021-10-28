@@ -1984,8 +1984,8 @@
 		<Level Level="1" PropList_TopLeg="OptDesc/난도질 스킬 레벨 + 1" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="None" PropList_HandOrFoot_Penalty="None"/>
 	</Item>
 	<Item Name="GEM_Corsair_ImpaleDagger">
-		<Level Level="0" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="OptDesc/임페일 대거 스킬 레벨 + 1" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="None" PropList_HandOrFoot_Penalty="None"/>
-		<Level Level="1" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="OptDesc/임페일 대거 스킬 레벨 + 1" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="None" PropList_HandOrFoot_Penalty="None"/>
+		<Level Level="0" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="OptDesc/임페일 소드 스킬 레벨 + 1" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="None" PropList_HandOrFoot_Penalty="None"/>
+		<Level Level="1" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="OptDesc/임페일 소드 스킬 레벨 + 1" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="None" PropList_HandOrFoot_Penalty="None"/>
 	</Item>
 	<Item Name="GEM_Shinobi_Kunai">
 		<Level Level="0" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/쿠나이 스킬 레벨 + 1" PropList_HandOrFoot_Penalty="None"/>

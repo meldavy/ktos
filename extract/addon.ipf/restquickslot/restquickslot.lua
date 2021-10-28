@@ -419,19 +419,21 @@ function QSLOT_VISIBLE_CRAFT_SPELL_BOOK()
 end
 
 function QSLOT_VISIBLE_ICOR_MANAGE_DLG()
-	if session.loginInfo.IsPremiumState(ITEM_TOKEN) == true then
+	if session.loginInfo.IsPremiumState(ITEM_TOKEN) == true or IsBuffApplied(GetMyPCObject(), 'Premium_Nexon') == 'YES' then
 		if IsPVPField() == 1 or IsPVPServer() == 1 or session.world.IsIntegrateServer() == true or session.colonywar.GetIsColonyWarMap() == true then
 			return 0
 		end
+		return 1
 	end
-	return 1
+	return 0
 end
 
 function QSLOT_ENABLE_ICOR_MANAGE_DLG()
-	if session.loginInfo.IsPremiumState(ITEM_TOKEN) == true then
+	if session.loginInfo.IsPremiumState(ITEM_TOKEN) == true or IsBuffApplied(GetMyPCObject(), 'Premium_Nexon') == 'YES' then
 		if IsPVPField() == 1 or IsPVPServer() == 1 or session.world.IsIntegrateServer() == true or session.colonywar.GetIsColonyWarMap() == true then
 			return 0
 		end
+		return 1
 	end
-	return 1
+	return 0
 end

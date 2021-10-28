@@ -3,6 +3,8 @@
 <!-- edited with XMLSpy v2008 sp1 (http://www.altova.com) by MintPC (Mi) -->
 <skinset name="Base">
 	<imagelist category="eventbanner">
+		<image name="210506_family_SpecialGiftBox" file="\event_banner\210506_family_SpecialGiftBox.jpg" imgrect="0 0 480 180"/>
+		<image name="210506_TOS_CAMPING_EVENT" file="\event_banner\210506_TOS_CAMPING_EVENT.png" imgrect="0 0 480 180"/>
 		<image name="210416_next_event" file="\event_banner\210416_next_event.jpg" imgrect="0 0 480 180"/>
 		<image name="event_2105Burning" file="\event_banner\event_2105Burning.jpg" imgrect="0 0 480 180"/>
 		<image name="event2105_VaivoraReward" file="\event_banner\event2105_VaivoraReward.jpg" imgrect="0 0 480 180"/>

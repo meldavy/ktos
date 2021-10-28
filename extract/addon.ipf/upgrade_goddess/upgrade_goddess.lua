@@ -151,10 +151,16 @@ function UPGRADE_GODDESS_MATERIAL_UI_RESET()
 	local matrial_count = GET_CHILD_RECURSIVELY(frame, "matrial_silver_count");
 	matrial_count:ShowWindow(0);
 
+	local matrial_upbtn = GET_CHILD_RECURSIVELY(frame, "upBtn");
+	local matrial_downbtn = GET_CHILD_RECURSIVELY(frame, "downBtn");
+	matrial_upbtn:ShowWindow(0);
+	matrial_downbtn:ShowWindow(0);
+	matrial_upbtn:SetEnable(1);
+	matrial_downbtn:SetEnable(1);
 	-- local gauge = GET_CHILD_RECURSIVELY(frame, "refine_gauge");
 	-- gauge:SetPoint(0, 100)
 	-- gauge:ShowWindow(0)
-
+	frame:SetUserValue("Upgrade_Cnt", 1);
 	UPGRADE_GODDESS_MATERIAL_INIT();
 end
 
@@ -402,6 +408,11 @@ function UPGRADE_GODDESS_MATERIAL_REG(guid)
 	
 	local matrial_slot = GET_CHILD_RECURSIVELY(frame, "matrial_slot_" .. tostring(dic_index[material_class_name]));
 	SET_SLOT_ITEM(matrial_slot, invItem);
+
+	local matrial_upbtn = GET_CHILD_RECURSIVELY(frame, "upBtn");
+	local matrial_downbtn = GET_CHILD_RECURSIVELY(frame, "downBtn");
+	matrial_upbtn:ShowWindow(1);
+	matrial_downbtn:ShowWindow(1);
 end
 
 function UPGRADE_GODDESS_MATERIAL_DROP(parent, ctrl)
@@ -471,6 +482,11 @@ function UPGRADE_GODDESS_BTN_CLICK(parent, ctrl)
 	
 	local dic_misc, dic_size, dic_index = GET_UPGRADE_GODDESS_MISC_LIST(goal_lv)		
 	local idx = 1
+
+	local upgrade_count = frame:GetUserIValue("Upgrade_Cnt");
+	-- 입력된 값을 가져온다.
+
+
 	for idx = 1 , dic_size do
 		local matrial_slot = GET_CHILD_RECURSIVELY(frame, "matrial_slot_" .. tostring(idx));			
 		local matrial_slot_invItem = GET_SLOT_ITEM(matrial_slot);				
@@ -479,7 +495,7 @@ function UPGRADE_GODDESS_BTN_CLICK(parent, ctrl)
 			
 			local curCnt = GET_INV_ITEM_COUNT_BY_PROPERTY({{Name = "ClassName", Value = matrial_slot_itemobj.ClassName}}, false);
 			local need_count = dic_misc[matrial_slot_itemobj.ClassName]			
-			if curCnt < need_count then
+			if curCnt < (need_count * upgrade_count) then
 				ui.SysMsg(ClMsg('NotEnoughRecipe'));
 				return;
 			end
@@ -491,14 +507,21 @@ function UPGRADE_GODDESS_BTN_CLICK(parent, ctrl)
 		end
 	end
 
-	local required_silver = GET_UPGRADE_GODDESS_SILVER_COST(goal_lv)
+	local required_silver = GET_UPGRADE_GODDESS_SILVER_COST(goal_lv) * upgrade_count
 	if IsGreaterThanForBigNumber(required_silver, GET_TOTAL_MONEY_STR()) == 1 then
 		ui.SysMsg(ClMsg('Auto_SilBeoKa_BuJogHapNiDa.'));
 		return;
 	end
 
+	local matrial_upbtn = GET_CHILD_RECURSIVELY(frame, "upBtn");
+	local matrial_downbtn = GET_CHILD_RECURSIVELY(frame, "downBtn");
+	matrial_upbtn:SetEnable(0);
+	matrial_downbtn:SetEnable(0);
+
+	local countList = NewStringList();
+	countList:Add(upgrade_count) 
 	local resultlist = session.GetItemIDList();
-	item.DialogTransaction("UPGRADE_EVIL_GODDESS", resultlist);		
+	item.DialogTransaction("UPGRADE_EVIL_GODDESS", resultlist, '', countList);		
 	
 	PLAY_EXEC_EFFECT_GODDESS()
 end
@@ -517,6 +540,7 @@ function UPGRADE_EVIL_GODDESS_SUCCESS(frame, msg, guid)
 
 	show_windows('successPic', false)	
 	show_windows('successItem', true)
+	show_windows('completeTextPic', false)
 
 	local invItem = session.GetInvItemByGuid(guid);
 	local successItem = GET_CHILD_RECURSIVELY(frame, "successItem");
@@ -532,15 +556,6 @@ end
 function UPGRADE_EVIL_GODDESS_FAIL(frame, msg, guid, count)			
 	local frame = ui.GetFrame("upgrade_goddess");	
 	local reinfResultBox = GET_CHILD(frame, "reinfResultBox");
-	local successPic = GET_CHILD_RECURSIVELY(frame, 'successPic')
-	if count == 1 then
-		successPic:SetImage('vibora_upgrade_1plus')
-	else
-		successPic:SetImage('vibora_upgrade_2plus')
-	end
-
-	local successBgBox = GET_CHILD_RECURSIVELY(frame, 'successBgBox')
-	successBgBox:SetImage('SUCCESS_gold_bg')
 
 	reinfResultBox:ShowWindow(1);
 
@@ -550,28 +565,22 @@ function UPGRADE_EVIL_GODDESS_FAIL(frame, msg, guid, count)
 	local resetBtn = GET_CHILD(frame, "resetBtn");
 	resetBtn:ShowWindow(1);
 
-	show_windows('successPic', true)
+	show_windows('successPic', false)
+	show_windows('completeTextPic', true)
 	show_windows('successTextPic', false)
-	show_windows('successItem', false)
 
-	local slot = GET_CHILD_RECURSIVELY(frame, "slot_1");
-	if slot ~= nil and slot:GetIcon() ~= nil then
-		local iconInfo = slot:GetIcon():GetInfo()
-		if iconInfo ~= nil then
-			local RESULT_EFFECT = 'None'
-			if count == 1 then
-				RESULT_EFFECT = 'None'
-			elseif count == 2 then
-				RESULT_EFFECT = 'I_gacha_end03_velcoffer'
-			end
-			
-			if RESULT_EFFECT ~= 'None' then
-				local successItem = GET_CHILD_RECURSIVELY(frame, "successItem");				
-				successItem:PlayUIEffect(RESULT_EFFECT, 5, "RESULT_EFFECT", true);		
-				ReserveScript('release_ui_effect_for_goddess()', 1);		
-			end
-		end
-	end
+	local invItem = session.GetInvItemByGuid(guid);
+	local successItem = GET_CHILD_RECURSIVELY(frame, "successItem");
+	SET_SLOT_ITEM(successItem, invItem);	
+
+	show_windows('successItem', true)
+
+	local RESULT_EFFECT = frame:GetUserConfig("RESULT_EFFECT");
+	local successItem = GET_CHILD_RECURSIVELY(reinfResultBox, "successItem");				
+	successItem:PlayUIEffect(RESULT_EFFECT, 5, "RESULT_EFFECT", true);		
+
+	ReserveScript('release_ui_effect_for_goddess()', 1);		
+	
 end
 
 function IS_CHECK_UPGRADE_GODDESS_RESULT()
@@ -583,4 +592,100 @@ function IS_CHECK_UPGRADE_GODDESS_RESULT()
 	end
 
 	return false;
+end
+
+function UPGRADE_GODDESS_UP_BTN(parent)
+	local frame = parent:GetTopParentFrame();
+	local upgradecnt = frame:GetUserIValue("Upgrade_Cnt");
+	local matrial_slot = GET_CHILD_RECURSIVELY(frame, "slot_1");	
+	local matrial_slot_invItem = GET_SLOT_ITEM(matrial_slot);	
+	if matrial_slot_invItem ~= nil then		
+		local matrial_slot_itemobj = GetIES(matrial_slot_invItem:GetObject());
+		local now = TryGetProp(matrial_slot_itemobj, 'UPGRADE_GODDESS_TRY_COUNT', 0)
+		local ret, ret_classname, cur_lv = CAN_UPGRADE_GODDESS(matrial_slot_itemobj);
+		if ret == false then
+			return;
+		end
+		local max_count = GET_UPGRADE_GODDESS_MAX_COUNT(cur_lv + 1)		
+		if now + upgradecnt + 1 > max_count then
+			ui.SysMsg(ClMsg('BeExceedMaxUpgrade'))
+			UPGRADE_GODDESS_UPDATE_MISC_SILVER_CNT(frame);
+			return		
+		end
+	end
+	frame:SetUserValue("Upgrade_Cnt", upgradecnt + 1);
+	UPGRADE_GODDESS_UPDATE_MISC_SILVER_CNT(frame);
+end
+
+function UPGRADE_GODDESS_DOWN_BTN(parent)
+	local frame = parent:GetTopParentFrame();
+	local upgradecnt = frame:GetUserIValue("Upgrade_Cnt");
+	if upgradecnt ~= 1 then
+		frame:SetUserValue("Upgrade_Cnt", upgradecnt - 1);
+		UPGRADE_GODDESS_UPDATE_MISC_SILVER_CNT(frame);
+	end
+end
+
+function UPGRADE_GODDESS_UPDATE_MISC_SILVER_CNT(frame)
+	local goal_lv = 0;
+	local slot_count = GET_UPGRADE_VIROBA_SOURCE_COUNT();
+
+	for i = 1, slot_count do 
+		local slot = GET_CHILD_RECURSIVELY(frame, "slot_"..i);
+		if slot:GetIcon() == nil then
+			ui.SysMsg(ClMsg("REQUEST_TAKE_ITEM"));
+			return;
+		end
+
+		local slot_invItem = GET_SLOT_ITEM(slot);
+		local slot_itemobj = GetIES(slot_invItem:GetObject());
+		local ret, ret_classname, cur_lv = CAN_UPGRADE_GODDESS(slot_itemobj);
+		if ret == false then
+			return;
+		end
+		
+		goal_lv = cur_lv + 1;
+	end
+	local dic_misc, dic_size, dic_index = GET_UPGRADE_GODDESS_MISC_LIST(goal_lv)	
+	local idx = 1
+	
+	local upgrade_count = frame:GetUserIValue("Upgrade_Cnt");
+
+	for idx = 1 , dic_size do
+		local matrial_slot = GET_CHILD_RECURSIVELY(frame, "matrial_slot_" .. tostring(idx));			
+		local matrial_slot_invItem = GET_SLOT_ITEM(matrial_slot);				
+		if matrial_slot_invItem ~= nil then
+			local matrial_slot_itemobj = GetIES(matrial_slot_invItem:GetObject());
+			local curCnt = GET_INV_ITEM_COUNT_BY_PROPERTY({{Name = "ClassName", Value = matrial_slot_itemobj.ClassName}}, false);
+			local need_count = dic_misc[matrial_slot_itemobj.ClassName]
+			
+			if curCnt < (need_count * upgrade_count) then
+				ui.SysMsg(ClMsg('NotEnoughRecipe'));
+				frame:SetUserValue("Upgrade_Cnt", upgrade_count - 1);
+				return;
+			end
+		end
+	end
+
+	local required_silver = GET_UPGRADE_GODDESS_SILVER_COST(goal_lv) * upgrade_count
+	if IsGreaterThanForBigNumber(required_silver, GET_TOTAL_MONEY_STR()) == 1 then
+		ui.SysMsg(ClMsg('Auto_SilBeoKa_BuJogHapNiDa.'));
+		frame:SetUserValue("Upgrade_Cnt", upgrade_count - 1);
+		return;
+	end
+
+	for idx = 1 , dic_size do
+		local matrial_slot = GET_CHILD_RECURSIVELY(frame, "matrial_slot_" .. tostring(idx));			
+		local matrial_slot_invItem = GET_SLOT_ITEM(matrial_slot);				
+		if matrial_slot_invItem ~= nil then
+			local matrial_slot_itemobj = GetIES(matrial_slot_invItem:GetObject());
+			local curCnt = GET_INV_ITEM_COUNT_BY_PROPERTY({{Name = "ClassName", Value = matrial_slot_itemobj.ClassName}}, false);
+			local need_count = dic_misc[matrial_slot_itemobj.ClassName]
+			local matrial_count = GET_CHILD_RECURSIVELY(frame, "matrial_count_" .. tostring(dic_index[matrial_slot_itemobj.ClassName]));
+			matrial_count:SetTextByKey("cur", curCnt);
+			matrial_count:SetTextByKey("need", need_count * upgrade_count);
+		end
+	end
+	local material_count = GET_CHILD_RECURSIVELY(frame, "matrial_silver_count")			
+	material_count:SetTextByKey("value", GetCommaedText(required_silver));
 end

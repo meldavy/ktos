@@ -142,6 +142,40 @@ function COMMON_GAMBLE_INIT(frame, gamble_type)
 
 	local auto_text = GET_CHILD_RECURSIVELY(frame, "auto_text");
 	auto_text:ShowWindow(1);
+
+
+	-- 확률 데이터 가져온다
+	local RatioCls = TryGetProp(GetClassByType('gamble_prop_list', 1), 'RewardItemProp', 'None')
+	if RatioCls == 'None' then
+		return
+	end
+	local Cut = SCR_STRING_CUT(RatioCls, ';')
+	local RatioTable = {}
+
+	for i = 1, #Cut do
+		RatioTable[#RatioTable + 1] = Cut[i]
+	end
+	
+	local RatioSum = 0 
+	for i = 1, #RatioTable do
+		RatioSum = RatioSum + RatioTable[i]
+	end
+
+	if RatioSum == 0 then
+		return
+	end
+
+	-- 슬롯 별 확률 표기
+	for i = 0, #Cut - 1 do
+		local slotratio = GET_CHILD(slot_gb, "slot"..i..'_ratio')
+		if slotratio == nil and RatioTable[i+1] == nil or RatioTable[i+1] == 0 then
+			return
+		end
+		if slotratio ~= nil and RatioTable[i+1] ~= nil or RatioTable[i+1] ~= 0 then
+			slotratio:SetTextByKey('value'..i, '          '..RatioTable[i+1] / RatioSum * 100 .. '%')
+		end
+	end
+
 end
 
 function COMMON_GAMBLE_OK_BTN_CLICK(parent, ctrl, argStr, gamble_type)

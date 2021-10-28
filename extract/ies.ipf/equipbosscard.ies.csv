@@ -208,3 +208,5 @@ ClassID,ConditionArg4,ClassName,UseType,ValueType,PropertyType,ConditionScp,Cond
 207,0,Master_card_LufasKehel,Always,StarCount,,,,,,SCR_CARDEFFECT_ADD_BUFF_STARVALUE_PC,CARD_Magic_Melee_Buff,,0,무 속성 마법 공격 시 대미지 {@st66d_y}{s16}[%d]{/}{/}%% 증가,1
 208,0,Master_card_VisavaldasBlack,Always,StarCount,,,,,,SCR_CARDEFFECT_ADD_BUFF_STARVALUE_PC,CARD_Arrow_Atk_Buff,,0,활 속성 공격 시 대미지 {@st66d_y}{s16}[%d]{/}{/}%% 증가,1
 209,0,Master_card_Pauline,Always,StarCount,,,,,,SCR_CARDEFFECT_ADD_BUFF_STARVALUE_PC,CARD_Cannon_Atk_Buff,,0,캐논 속성 공격 시 대미지 {@st66d_y}{s16}[%d]{/}{/}%% 증가,1
+210,0,Master_card_GeHong,Always,StarCount,,,,,,SCR_CARDEFFECT_ADD_BUFF_STARVALUE_PC,CARD_Lightning_Buff,,0,전기 속성 마법 공격 시 대미지 {@st66d_y}{s16}[%d]{/}{/}%% 증가,1
+211,0,Master_card_PhilipAureolus,Always,StarCount,,,,,,SCR_CARDEFFECT_ADD_BUFF_STARVALUE_PC,CARD_Poison_Buff,,0,독 속성 마법 공격 시 대미지 {@st66d_y}{s16}[%d]{/}{/}%% 증가,1

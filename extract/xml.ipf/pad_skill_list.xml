@@ -1239,11 +1239,6 @@ return value"/>
                 <Str Str="GM_MGAME_BORUTA_REVENGE_FEVER_BORN"/>
             </ToolScp>
         </createEvent>
-        <destroyEvent>
-            <ToolScp Scp="PAD_FUNC_UPDATE_DIRECT" Client="NO" UseSleep="NO">
-                <Str Str="GM_MGAME_BORUTA_REVENGE_FEVER_REVERSE_CREATE"/>
-            </ToolScp>
-        </destroyEvent>
         <updateEvent>
             <ToolScp Scp="PAD_FUNC_UPDATE_DIRECT" Client="NO" UseSleep="NO">
                 <Str Str="GM_MGAME_BORUTA_REVENGE_FEVER_UPDATE"/>
@@ -3158,7 +3153,7 @@ return lifeTime;"/>
             <ToolScp Scp="PAD_TGT_DAMAGE" Client="NO" UseSleep="NO">
                 <Str Str="ENEMY"/>
                 <Num Num="1"/>
-                <Num Num="-200"/>
+                <Num Num="0"/>
                 <Num Num="0"/>
             </ToolScp>
         </enterEvent>
@@ -12794,7 +12789,7 @@ return GET_ABIL_LEVEL(self, &quot;Fletcher6&quot;) * 10"/>
             </ToolScp>
         </updateEvent>
     </PadSkill>
-    <PadSkill Name="Giltine_Raid_ElectricEel" CheckerType="1" PadHeight="1" Range="30" InnerRange="500" UpdateTerm="1000" ApplyFlyMon="1" AllowOverlap="1" IsMagicType="0">
+    <PadSkill Name="Giltine_Raid_ElectricEel" CheckerType="1" PadHeight="1" Range="30" InnerRange="500" UpdateTerm="1000" AllowOverlap="1" IsMagicType="0">
         <createEvent>
             <ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
                 <Num Num="13000"/>

@@ -915,6 +915,7 @@ ClassID,OverHeatResetTime,ClassName,IsOverHeat,ReducePlayOnly,ForceReset
 1966,0,LargeMagnifyingGlass,NO,FALSE,YES
 1967,0,HighMagnifyingGlass,NO,FALSE,YES
 1968,0,TripletLens,NO,FALSE,YES
+1970,0,ArquebusierWeapon,NO,FALSE,YES
 2001,10000,Bash_OH,YES,FALSE,YES
 2002,25000,Conviction_OH,YES,FALSE,YES
 2004,6000,VerticalBreak_OH,YES,FALSE,YES
@@ -1445,3 +1446,5 @@ ClassID,OverHeatResetTime,ClassName,IsOverHeat,ReducePlayOnly,ForceReset
 4191,5000,ChainGrip,NO,FALSE,NO
 4192,30000,IronHook_OH,NO,FALSE,NO
 4193,30000,Keelhauling_OH,NO,FALSE,NO
+4195,6000,HookSwing,NO,FALSE,NO
+4196,35000,HookSwing_OH,NO,FALSE,NO

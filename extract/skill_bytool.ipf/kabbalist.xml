@@ -117,9 +117,6 @@
                 <Str_Arg Arg="1" Str="F_cleric_ausirine_shot_ground"/>
                 <Num Num="0.5"/>
             </ToolScp>
-            <ToolScp Scp="C_SKL_LOCK_ROTATE" Client="YES" UseSleep="NO">
-                <Num Num="1"/>
-            </ToolScp>
         </KeyInputEnd>
         <MainSkl JumpFlee="NO" MSPDToUsePos="0" ScrLock="None">
             <EtcList>

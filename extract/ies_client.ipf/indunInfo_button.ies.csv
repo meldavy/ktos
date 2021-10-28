@@ -8,5 +8,5 @@ ClassID,ClassName,SubType,RedButtonText,RedButtonScp,Button1Text,Button1Scp,Butt
 8,Challenge_Auto,Auto,자동매칭,REQ_CHALLENGE_AUTO_UI_OPEN,,,,,,
 9,Raid,Auto,자동매칭,REQ_RAID_AUTO_UI_OPEN,,,,,,
 10,MythicDungeon_Auto,,자동매칭,REQ_RAID_AUTO_UI_OPEN,,,,,,
-11,MythicDungeon_Auto_Hard,,바로입장,REQ_RAID_AUTO_UI_OPEN,,,,,,
+11,MythicDungeon_Auto_Hard,,자동매칭,REQ_RAID_AUTO_UI_OPEN,,,,,,
 12,Raid_MoveEnterNPC,MoveEnterNPC,이동,INDUNINFO_MOVE_TO_ENTER_NPC,,,,,,

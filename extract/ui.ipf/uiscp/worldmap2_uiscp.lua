@@ -345,7 +345,7 @@ end
 
 -- 토큰이동 로직
 function WORLDMAP2_TOKEN_WARP(mapName)
-    if session.loginInfo.IsPremiumState(ITEM_TOKEN) == false then
+    if session.loginInfo.IsPremiumState(ITEM_TOKEN) == false and IsBuffApplied(GetMyPCObject(), 'Premium_Nexon') ~= 'YES' then
         return
     end
 

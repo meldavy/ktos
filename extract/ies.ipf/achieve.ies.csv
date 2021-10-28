@@ -320,5 +320,5 @@ ClassID,NeedCount,ClassName,Group,Category,Name,Desc,Icon,Hidden,DescTitle,Rewar
 110008,20,Ancient_8,AchievePoint,어시스터 코스트,광부,[자원 쟁탈전]에서 20회 승리하였습니다.,icon_item_Misc_00021,NO,자원 쟁탈전 20회 승리,,True,Ancient_8,YES,,,,ACHIEVE_REWARD_ANCIENT_COST,NO,YES,
 110009,20,Ancient_9,AchievePoint,어시스터 코스트,배틀 비기너,[팀 배틀 리그]에서 20회 승리하였습니다.,icon_item_Misc_00021,NO,팀 배틀 리그 20회 승리,,True,Ancient_9,YES,,,,ACHIEVE_REWARD_ANCIENT_COST,NO,YES,
 110010,50,Ancient_10,AchievePoint,어시스터 코스트,피규어 수집가,[주간 보스 레이드]에 50회 참여하였습니다.,icon_item_Misc_00021,NO,주간 보스 레이드 50회 참여,,True,Ancient_10,YES,,,,ACHIEVE_REWARD_ANCIENT_COST,NO,YES,
-110011,30,Ancient_11,AchievePoint,어시스터 코스트,끝없는 성장,[성물 레이드 : 파티(Hard)]를 30회 클리어하였습니다.,icon_item_Misc_00021,NO,성물 레이드 : 파티(Hard) 30회 클리어,,True,Ancient_11,YES,,,,ACHIEVE_REWARD_ANCIENT_COST,NO,YES,
+110011,30,Ancient_11,AchievePoint,어시스터 코스트,끝없는 성장,[성물 레이드 : 자동 매칭(Hard)]를 30회 클리어하였습니다.,icon_item_Misc_00021,NO,성물 레이드 : 자동 매칭(Hard) 30회 클리어,,True,Ancient_11,YES,,,,ACHIEVE_REWARD_ANCIENT_COST,NO,YES,
 110012,50,Ancient_12,AchievePoint,어시스터 코스트,레이드 숙련자,"[나비목 접선지 : Hard, 하얀 마녀의 숲 : Hard, 마신의 성소 : 파티]을 총50회 클리어하였습니다.",icon_item_Misc_00021,NO,특정 레전드 레이드 50회 클리어,,True,Ancient_12,YES,,,,ACHIEVE_REWARD_ANCIENT_COST,NO,YES,

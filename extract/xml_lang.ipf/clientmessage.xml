@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by IMC (IMCGames Co., Ltd) -->
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by imc (imc) -->
 <idspace id="ClientMessage">
 	<Category Name="ErrorMsg">
 		<Class ClassID="1" Data="DirectX 9.0c 이상의 버전이 설치되어 있어야 합니다"/>
@@ -442,6 +442,8 @@
 		<Class ClassID="2373" ClassName="Vibora_Weapon_Trade_Msg2" Data="같은 바이보라 무기로 교환할 수 없습니다."/>
 		<Class ClassID="2374" ClassName="Vibora_Weapon_Trade_help" Data="보유한 [Lv4] 바이보라 무기를{nl}다른 종류의 [Lv4] 바이보라 무기로 교환할 수 있습니다.{nl}교환에는 재료로 소모될 [Lv2] 바이보라 유니크 무기 4개가 필요하며{nl}주 재료로 투입한 [Lv4] 바이보라 무기가 부 재료로 투입한 [Lv2] 바이보라 무기로 변경됩니다.{nl}부 재료로 투입되는 [Lv2] 바이보라 무기 4개는 모두 동일한 종류의 아이템만 가능합니다.{nl} - 교환 주 재료 및 부 재료는 아이커도 사용할 수 있습니다."/>
 		<Class ClassID="2375" ClassName="CantCraftCuzInvalidWordInName" Data="이름에 사용할 수 없는 문자가 포함되어 있습니다."/>
+		<Class ClassID="2382" ClassName="CantDecomposition" Data="분해할 수 없는 대상입니다."/>
+		<Class ClassID="2383" ClassName="BeExceedMaxUpgrade" Data="연성 최대 수치를 초과하게 됩니다."/>
 	</Category>
 	<Category Name="ClassContents">
 		<Class ClassID="2500" ClassName="FullWeeklyGainClassResetExp" Data="주간 획득 가능한 클래스 변경 포인트를 모두 달성하였습니다."/>
@@ -530,11 +532,11 @@
 		<Class ClassID="3056" ClassName="upgrade_vibora" Data="바이보라 연성"/>
 		<Class ClassID="3057" ClassName="uniquedecompose" Data="여신/마신 장비 분해"/>
 		<Class ClassID="3058" ClassName="CanGetMiscWhenDecomposeArk" Data="- 아크 분해 시 재료로 사용된 아키스톤을 획득합니다."/>
-		<Class ClassID="3059" ClassName="CanGetMiscWhenDecomposeUnique" Data="- 여신/마신 장비 분해 시 아케늄 1개를 획득합니다."/>
+		<Class ClassID="3059" ClassName="CanGetMiscWhenDecomposeUnique" Data="- [여신/마신 장비] 또는 [여신/마신 아이커]를 분해하여 위의 아이템을 획득합니다."/>
 		<Class ClassID="3060" ClassName="CanGetMiscWhenDecomposeMiscLegend" Data="아키스톤 분해 시 아키스톤 파편 10개를 획득합니다"/>
 		<Class ClassID="3061" ClassName="CanGetMiscWhenDecomposeAccEp12" Data="카랄리엔 액세서리 분해 시 재료로 사용된 바이올렛틴 크리스탈을 획득합니다."/>
 		<Class ClassID="3062" ClassName="SpecialDecompose" Data="특수 아이템 분해"/>
-		<Class ClassID="3067" ClassName="CanGetMiscWhenDecomposeVibora" Data="[Lv1] 바이보라 무기 또는 [Lv1] 바이보라 아이커를 분해하여 연성제 500개를 획득합니다."/>
+		<Class ClassID="3067" ClassName="CanGetMiscWhenDecomposeVibora" Data="[바이보라 무기] 또는 [바이보라 아이커]를 분해하여 위의 아이템들을 획득합니다."/>
 		<Class ClassID="3068" ClassName="ExceedCountDecomposeViboraMisc" Data="바이보라 분해시 획득하는 아이템의 최대 소유 한도를 초과하였습니다."/>
 		<Class ClassID="3069" ClassName="NotEnoughCompositionNeedItem" Data="합성에 필요한 아이템이 부족합니다."/>
 		<Class ClassID="3070" ClassName="CannotCompositionItem" Data="합성에 필요한 아이템이 아닙니다."/>
@@ -925,9 +927,14 @@
 		<Class ClassID="4373" ClassName="IfLimitOver_misc_pvp_mine2_MAX" Data="주간 용병단 증표 획득량이 최대치에 도달하여 사용할 수 없습니다."/>
 		<Class ClassID="4374" ClassName="IfLimitOver_misc_pvp_mine2_OVERUSE" Data="입력한 수량이{nl}주간 용병단 증표 최대 획득량을 초과하여{nl}용병단 증표 쿠폰이 {#ff0000}{COUNT}{/}{/}개만 소비됩니다.{/}{/}{nl}{@st66d_y}{s20}{nl} {nl}정말 사용하시겠습니까?"/>
 		<Class ClassID="4376" ClassName="HairAccCubeOpen{COUNT}" Data="정말 개봉하시겠습니까?{nl} {nl}{@st66d_y}{s20}현재 개봉 횟수{nl}{COUNT}{/}{/}{nl} {nl}30회 개봉마다 추가 보상을 획득하실 수 있습니다."/>
+		<Class ClassID="4382" ClassName="tooltip_reward_ratio_open_list" Data="사용 시 아래 아이템 중 한 종류를 표기된 확률에 따라 획득합니다.{nl}"/>
 		<Class ClassID="4383" ClassName="GET_CONTENTS_TOTAL_POINT{count}" Data="+{count} 콘텐츠 통합 포인트"/>
+		<Class ClassID="4384" ClassName="tooltip_reward_ratio_open_list_spendcount" Data="사용 시 {COUNT}개를 소비하고 아래 아이템 중 한 종류를 표기된 균등 확률에 따라 획득합니다.{nl}"/>
 		<Class ClassID="4385" ClassName="Enough_Relic_Gem_DiscountStone" Data="여신의 축복석 요구 수량이 0 입니다.{nl}더 이상 할인 쿠폰을 투입하여도 여신의 축복석 할인은 적용되지 않습니다."/>
 		<Class ClassID="4386" ClassName="HairAccCubeBonus{COUNT}" Data="여신의 큐브 {COUNT}회차 추가보상이 지급되었습니다."/>
+		<Class ClassID="4387" ClassName="tooltip_reward_ratio_open_list2" Data="{nl}{@st45ty}{s14}항목에 대한 확률은 공식 홈페이지 [확률형 아이템] 페이지에서 확인하실 수 있습니다.{/}{/}"/>
+		<Class ClassID="4388" ClassName="tooltip_reward_ratio_open_list3" Data="사용 시 아래 아이템 중 한 종류를 표기된 균등 확률에 따라 획득합니다.{nl}"/>
+		<Class ClassID="4389" ClassName="multiple_trade_select_item" Data="선택 아이템 교환 수량 입력 ({Auto_1} ~ {Auto_2})"/>
 	</Category>
 	<Category Name="ItemTooltip">
 		<Class ClassID="5001" ClassName="CoolDown : {Sec} Sec" Data="재사용 대기시간 : {Sec}초"/>
@@ -5217,7 +5224,7 @@
 		<Class ClassID="27186" ClassName="GACHA_SITEM_GET_ALLMSG_5" Data="{s24}{PC} 님이 {MAP} 챌린지 모드에서 {ITEMNAME}를(을) 획득하셨습니다!"/>
 		<Class ClassID="27187" ClassName="GACHA_SITEM_GET_ALLMSG_6" Data="{s24}{PC} 님이 차원 붕괴 지점에서 {ITEMNAME}를(을) 획득하셨습니다!"/>
 		<Class ClassID="27188" ClassName="GACHA_SITEM_GET_ALLMSG_COUNT" Data="{s24}축하드립니다!{nl}{PC} 님이 레티샤의 시크릿 큐브에서{nl}{ITEMNAME} 를(을) {COUNT}개 획득하셨습니다!"/>
-                <Class ClassID="27200" ClassName="MOLE_BINGO_MSG1" Data="{SEC}초 안에 빙고를 맞춰 {POINT}점을 달성하세요!"/>
+		<Class ClassID="27200" ClassName="MOLE_BINGO_MSG1" Data="{SEC}초 안에 빙고를 맞춰 {POINT}점을 달성하세요!"/>
 		<Class ClassID="27201" ClassName="MOLE_BINGO_MSG2" Data="{POINT}점 달성!{nl}보상{ITEM}"/>
 		<Class ClassID="27202" ClassName="MOLE_BINGO_MSG3" Data="두더지 잡기 빙고가 종료됩니다{nl}점수 : {POINT} 달성{nl}팀 최고점수 : {MAXPOINT}"/>
 		<Class ClassID="27203" ClassName="MOLE_BINGO_MSG4" Data="{PCNAME}의 몬스터"/>
@@ -11549,14 +11556,14 @@
 		<Class ClassID="134092" ClassName="TooLowLevelAccessoriesEquipToAutoMatch" Data="장착한 장신구의 레벨이 낮아서 자동 매칭을 신청할 수 없습니다.(2020근본 장신구 제외)"/>
 		<Class ClassID="134093" ClassName="ExceptEquipArkToAutoMatch" Data="장착한 아크가 올바른 장비가 아니기 때문에 자동 매칭을 신청할 수 없습니다."/>
 		<Class ClassID="134094" ClassName="TooLowLevelArkEquipToAutoMatch" Data="장착한 아크의 레벨이 낮아서 자동 매칭을 신청할 수 없습니다."/>
-		<Class ClassID="134095" ClassName="EnterAutoHardMatching" Data="[성물 레이드: 파티(Hard)] 입장하기"/>
+		<Class ClassID="134095" ClassName="EnterAutoHardMatching" Data="[성물 레이드: 자동 매칭(Hard)] 입장하기"/>
 		<Class ClassID="134096" ClassName="ChooseMythicDungeonToEnter" Data="입장하실 던전을 선택하세요."/>
 		<Class ClassID="134097" ClassName="MythicAutoHardAfterSelectDialog" Data="[{#003399}성물 레이드: 파티(Hard) - {ID_NAME}{/}]은 {ID_LV} 레벨 이상 입장 가능하며, 특정 등급 이상의 아이템을 착용해야 입장 가능합니다."/>
 		<Class ClassID="134098" ClassName="MythicTimeAttackMsg" Data="{Name}의 사망으로 제한 시간이 {Time}초 감소합니다."/>
 		<Class ClassID="134099" ClassName="MythicPortalMsg" Data="포탈이 생성되었습니다."/>
 		<Class ClassID="134100" ClassName="SoloBuffCannotBeSelected" Data="해당 버프를 선택할 수 없습니다.{nl}해당 버프를 선택한 파티원이 존재합니다."/>
-		<Class ClassID="134101" ClassName="MythicAutoHardEntranceTicketUseLimit" Data="성물 레이드 : 파티(Hard)의 입장 횟수가 이미 최대 횟수 입니다."/>
-		<Class ClassID="134102" ClassName="MythicAutoHardEntranceCountLimit" Data="성물 레이드 : 파티(Hard) 입장 횟수가 부족합니다."/>
+		<Class ClassID="134101" ClassName="MythicAutoHardEntranceTicketUseLimit" Data="성물 레이드 : 자동 매칭(Hard)의 입장 횟수가 이미 최대 횟수 입니다."/>
+		<Class ClassID="134102" ClassName="MythicAutoHardEntranceCountLimit" Data="성물 레이드 : 자동 매칭(Hard) 입장 횟수가 부족합니다."/>
 		<Class ClassID="134103" ClassName="Mgame_Return_Players" Data="입장했던 곳으로 돌아가기"/>
 		<Class ClassID="134104" ClassName="Mgame_Return_Players_Check" Data="입장했던 곳으로 돌아가시겠습니까?"/>
 		<Class ClassID="134105" ClassName="MultipleRewardEnteredCountLimit" Data="입장 횟수를 초과하여 배수권을 사용할 수 없습니다."/>
@@ -13988,7 +13995,6 @@
 		<Class ClassID="138420" ClassName="Auto_Dont_Have_Upgrade_scroll" Data="업그레이드 스크롤을 가지고 있지 않습니다."/>
 		<Class ClassID="138421" ClassName="RaidEnableCountUp" Data="레이드 입장 가능 횟수가 1 증가했습니다."/>
 		<Class ClassID="138422" ClassName="SSN_REMAIN38_MQ07_MON_3" Data="인프로버크 화염으로 달궈진 화살촉을 제작 할 수 있습니다."/>
-		<Class ClassID="138423" ClassName="MythicDungeonPartyHardEnableCountUp" Data="성물 레이드 : 파티(Hard) 입장 가능 횟수가 1 증가했습니다."/>
 	</Category>
 	<Category Name="SkillMsg">
 		<Class ClassID="200001" ClassName="DontBuildCampThisAria" Data="해당 지역에서는 거점을 설치할 수 없습니다."/>
@@ -15037,6 +15043,53 @@
 		<Class ClassID="302439" ClassName="EVENT_2103_WHITEDAY_CANDY_GO_14" Data="드루이드 마스터"/>
 		<Class ClassID="302440" ClassName="EVENT_2103_WHITEDAY_CANDY_GO_15" Data="슈바르츠라이터 마스터"/>
 		<Class ClassID="302441" ClassName="EVENT_2103_WHITEDAY_CANDY_GO_16" Data="도사 마스터"/>
+		<Class ClassID="302442" ClassName="EVENT_2103_ARBOR_DAY_MSG6" Data="기존 유저는 해당 이벤트 시작 후 생성한 캐릭터만 참여 가능합니다."/>
+		<Class ClassID="302443" ClassName="2105_CAMPING_JUMP_BAG_SEL1" Data="{#003399}짐가방을 확인해본다{/}"/>
+		<Class ClassID="302444" ClassName="2105_CAMPING_JUMP_BAG_SEL2" Data="{#003399}마을로 돌아간다{/}"/>
+		<Class ClassID="302445" ClassName="EVENT_2105_TOS_CAMPING_MSG1" Data="{#FF3333}해당 가방은 이미 확인해봤습니다.{nl}매일 오전 06시 초기화 됩니다.{/}"/>
+		<Class ClassID="302446" ClassName="EVENT_2105_TOS_CAMPING_MSG2" Data="{#FF3333}체크 포인트로 이동하였습니다.{nl}체크 포인트는 매일 오전 06시 초기화 됩니다.{/}"/>
+		<Class ClassID="302447" ClassName="2105_CAMPING_TRAVEL_SEL1" Data="{#003399}[봄 캠핑]{/} 이벤트 안내 "/>
+		<Class ClassID="302448" ClassName="2105_CAMPING_TRAVEL_SEL2" Data="{#003399}[봄 캠핑]{/} 이벤트 상점 "/>
+		<Class ClassID="302449" ClassName="2105_CAMPING_TRAVEL_SEL3" Data="{#003399}[봄 캠핑]{/} 여행자의 부탁 "/>
+		<Class ClassID="302450" ClassName="2105_CAMPING_TRAVEL_SEL4" Data="{#003399}[봄 캠핑]{/} 수첩 전달하기 "/>
+		<Class ClassID="302451" ClassName="2105_CAMPING_TRAVEL_SEL5" Data="{#003399}게으른 나무꾼에게 이동하기{/} "/>
+		<Class ClassID="302452" ClassName="EVENT_2105_CAMPING_EP12_SHOP" Data="{#003399}[EP 12-1]스크롤 상점{/}"/>
+		<Class ClassID="302453" ClassName="2105_CAMPING_TRAVEL_SEL7" Data="{#003399}[봄 캠핑]{/} 장작 전달하기"/>
+		<Class ClassID="302454" ClassName="2105_CAMPING_TRAVEL_SEL8" Data="잃어버린 수첩을 찾아줘서 감사합니다!{/}{nl} 교환 가능 개수 [1~{MAX}]"/>
+		<Class ClassID="302455" ClassName="EVENT_2105_CAMPING_SHOP" Data="{#003399}[봄 캠핑]이벤트 상점{/}"/>
+		<Class ClassID="302456" ClassName="2105_CAMPING_AX_SEL1" Data="{#003399}[봄 캠핑]{/}마을로 돌아간다"/>
+		<Class ClassID="302457" ClassName="2105_CAMPING_AX_SEL2" Data="{#003399}[봄 캠핑]{/}게으른 나무꾼의 부탁"/>
+		<Class ClassID="302458" ClassName="2105_CAMPING_AX_SEL3" Data="{#003399}[봄 캠핑]{/} 나무꾼의 내기 제안"/>
+		<Class ClassID="302459" ClassName="2105_CAMPING_AX_MSG_1" Data="{#FF3333}일일 참여 횟수를 초과하셨습니다.{nl}매일 오전 06시 초기화 됩니다.{/}"/>
+		<Class ClassID="302460" ClassName="EVENT_2105_CAMPING_CHAT_1" Data="고마워!"/>
+		<Class ClassID="302461" ClassName="2105_CAMPING_AX_GAMBLE_SEL1" Data="{#003399}가위{/}를 낸다."/>
+		<Class ClassID="302462" ClassName="2105_CAMPING_AX_GAMBLE_SEL2" Data="{#003399}바위{/}를 낸다."/>
+		<Class ClassID="302463" ClassName="2105_CAMPING_AX_GAMBLE_SEL3" Data="{#003399}보자기{/}를 낸다."/>
+		<Class ClassID="302464" ClassName="EVENT_2105_CAMPING_CHAT_2" Data="다시 승부를 내보자고!"/>
+		<Class ClassID="302465" ClassName="EVENT_2105_CAMPING_CHAT_3" Data="어..라?"/>
+		<Class ClassID="302466" ClassName="EVENT_2105_CAMPING_CHAT_4" Data="하하핫!"/>
+		<Class ClassID="302467" ClassName="2105_CAMPING_AX_MSG_2" Data="{#FF3333}'[이벤트] 잔가지'의 개수가 부족합니다.{/}"/>
+		<Class ClassID="302468" ClassName="{TeamName}_bonfire_Event" Data="{TeamName}의 캠프파이어"/>
+		<Class ClassID="302469" ClassName="EVENT_2105_CAMPING_CAMPFIRE_JOIN{TIME}" Data="{#003399}참여 가능{/} / 남은 시간 : {TIME}초"/>
+		<Class ClassID="302470" ClassName="EVENT_2105_CAMPING_CAMPFIRE_PLAY{TIME}" Data="{#FF3333}진행중{/} / 남은 시간 : {TIME}초"/>
+		<Class ClassID="302471" ClassName="2105_CAMPING_CAMPFIRE_SEL1" Data="{#003399}[봄 캠핑]{/}캠프파이어 설명"/>
+		<Class ClassID="302472" ClassName="2105_CAMPING_CAMPFIRE_SEL2" Data="{#003399}[봄 캠핑]{/}캠프파이어 참여하기"/>
+		<Class ClassID="302473" ClassName="2105_CAMPING_CAMPFIRE_SEL3" Data="{#003399}[봄 캠핑]{/}캠프파이어 포인트 쌓기"/>
+		<Class ClassID="302474" ClassName="2105_CAMPING_CAMPFIRE_SEL4" Data="{#003399}[이벤트] 불의 돌{/} 사용"/>
+		<Class ClassID="302475" ClassName="2105_CAMPING_CAMPFIRE_SEL5" Data="{#003399}[이벤트] 불의 조각{/} 사용"/>
+		<Class ClassID="302476" ClassName="2105_CAMPING_CAMPFIRE_SEL6" Data="{#003399}[이벤트] 품질 좋은 장작{/} 사용"/>
+		<Class ClassID="302477" ClassName="2105_CAMPING_CAMPFIRE_SEL7" Data="{#003399}[이벤트] 잔가지{/} 사용"/>
+		<Class ClassID="302478" ClassName="2105_CAMPING_CAMPFIRE_SEL8" Data="이벤트 아이템을 사용해 캠프파이어 포인트를 획득합니다.{nl}본인의 캠프파이어 포인트에 따라 보상 획득 확률이 상승합니다.{nl}'[이벤트] 잔가지' 1개 = 1 포인트{nl}'[이벤트] 품질 좋은 장작' 1개 = 4 포인트{nl}'[이벤트] 불의 조각' 1개 = 20 포인트{nl}'[이벤트] 불의 돌' 1개 = 200 포인트{nl}{nl} 교환 가능 개수 [0~{MAX}]"/>
+		<Class ClassID="302479" ClassName="2105_CAMPING_CAMPFIRE_MSG1" Data="{#FF3333}이미 캠프파이어에 참여중입니다.{/}(한개의 캠프파이어만 참여 가능합니다.)"/>
+		<Class ClassID="302480" ClassName="2105_CAMPING_CAMPFIRE_MSG2" Data="{#003399}캠프파이어에 참여하였습니다.{/}"/>
+		<Class ClassID="302481" ClassName="EVENT_2105_CAMPING_CAMPFIRE_PLAY{POINT}1" Data="{#003399}{POINT}포인트 적립되었습니다.{/}"/>
+		<Class ClassID="302482" ClassName="EVENT_2105_CAMPING_CAMPFIRE_PLAY{POINT}2" Data="현재 포인트 : {POINT}P/500"/>
+		<Class ClassID="302483" ClassName="2105_CAMPING_CAMPFIRE_MSG3" Data="{#FF3333}해당 캠프파이어에는 더 이상 참여할 수 없습니다.{/}"/>
+		<Class ClassID="302484" ClassName="EVENT_2105_CAMPING_CAMPFIRE_PLAY_READY" Data="캠프파이어에 참여하였습니다."/>
+		<Class ClassID="302485" ClassName="2105_CAMPING_CAMPFIRE_MSG4" Data="캠프파이어가 시작되었습니다.{nl}캠프파이와 대화하여 '캠프파이어 포인트' 를 쌓으세요!"/>
+		<Class ClassID="302486" ClassName="2105_CAMPING_CAMPFIRE_MSG5" Data="모든 참여자가 보상을 획득하여 캠프파이어가 종료됩니다."/>
+		<Class ClassID="302487" ClassName="EVENT_2105_CAMPING_CHECK_MESSAGE{COIN1}{COIN2}{COIN3}{FIRE}{BAG}{AXQ}{AXG}" Data="{#0066FF}[TOS 봄 캠핑 이벤트 현황]{/}{nl}[이벤트] 잔가지 일일 획득 {#0066FF}({COIN1}/100){/}{nl}[이벤트] 모닥불 일일 획득 {#0066FF}({COIN2}/3){/}{nl}캠프파이어 일일 참여 {#0066FF}({FIRE}/5){/}{nl}[이벤트] 여행자의 수첩(3일) 일일 획득 {#0066FF}({COIN3}/1){/}{nl}[이벤트] 여행자의 짐꾸러미 일일 개봉 횟수 {#0066FF}({BAG}/4){/}{nl}나무꾼의 부탁 일일 참여 {#0066FF}({AXQ}/1){/}{nl}나무꾼의 내기 제안 {#0066FF}({AXG}/5){/}{nl}{#FF3333}※ 일일 획득량 및 참여 제한은 매일 오전 06시 초기화 됩니다.{/}{nl}'[이벤트] 모닥불'은 60분 접속 시 마다 1개 획득 가능합니다."/>
+		<Class ClassID="302488" ClassName="2105_CAMPING_AX_MSG_3" Data="'나무꾼의 부탁'을 완료 후 진행할 수 있습니다."/>
 	</Category>
 	<Category Name="Account">
 		<Class ClassID="303001" ClassName="MaxAccountWarehouseCount" Data="팀 창고"/>
@@ -16638,5 +16691,6 @@
 		<Class ClassID="1008021" ClassName="PLZ_EQUIP_RELIC_WHEN_RELIC_GEM_REINFORCE" Data="성물 젬 강화를 시도하려면 성물을 장착해야 합니다."/>
 		<Class ClassID="1008022" ClassName="DO_NOT_REINFORCE_RELIC_GEM_ENABLE_RELIC_LV" Data="성물의 레벨이 낮아 강화할 수 없습니다."/>
 		<Class ClassID="1008023" ClassName="RELIC_GEM_UPGRADE_TITLE_MSG" Data="성물 젬 강화"/>
+		<Class ClassID="1008024" ClassName="DO_NOT_CHARGE_RP_COLONY_LIMIT" Data="콜로니전이 종료될 때까지 마력을 충전할 수 없습니다."/>
 	</Category>
 </idspace>
