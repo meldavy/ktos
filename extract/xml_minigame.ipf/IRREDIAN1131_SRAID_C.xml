@@ -327,9 +327,6 @@
                                 <Str Str="Reward"/>
                                 <Num Num="1"/>
                             </ToolScp>
-                            <ToolScp Scp="MGAME_ADD_INDUN_COUNT" Client="NO" UseSleep="NO">
-                                <Str Str="Raid_boss_TelHarsha_Easy"/>
-                            </ToolScp>
                         </execList>
                     </Event>
                 </StageEvents>
