@@ -8831,6 +8831,7 @@
 		<image name="retro_long_regent" file="\icon\payment\retro_long_regent.png" imgrect="0 0 256 256" CMM_Caption="레트로 롱 리젠트"/>
 		<image name="retro_long_regent_test" file="\icon\payment\retro_long_regent_test.png" imgrect="0 0 256 256" CMM_Caption="디자인 컷_레트로 롱 리젠트"/>
 		<image name="icon_item_newbie_and_returner_complete_pack" file="\icon\payment\icon_item_newbie_and_returner_complete_pack.png" imgrect="0 0 256 256" CMM_Caption="2021 하반기 성장 패키지"/>
+		<image name="icon_item_box_equip_misc_460" file="\icon\payment\icon_item_box_equip_misc_460.png" imgrect="0 0 128 128"/>
 	</imagelist>
 	<imagelist category="seal">
 		<image name="icon_seal_yellow_cc_A1" file="\icon\seal\seal_yellow_cc_A1.tga" imgrect="0 0 80 80"/>
