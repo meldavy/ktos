@@ -163,7 +163,7 @@ function get_tooltip_Klaida_Atk_GEM_LEGEND_arg1()
     return 762, 'Klaida_Atk', 1, 'ValueUp'
 end
 function get_tooltip_Klaida_Atk_GEM_GODDESS_arg1()
-    return 496, 'Klaida_Atk', 1, 'ValueUp'
+    return 992, 'Klaida_Atk', 1, 'ValueUp'
 end
 
 -- 블랙 젬 - 악마형 대상 공격력
