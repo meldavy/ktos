@@ -1509,7 +1509,7 @@ function CHECK_GEAR_SCORE_FOR_CONTENTS(pc, indun_cls)
 		-- challenge solo & auto
 		if dungeon_type == "Challenge_Solo" or dungeon_type == "Challenge_Auto" then
 			if indun_cls.ClassName == "Challenge_Normal_Solo" then -- solo
-				if gear_score < 430 then
+				if gear_score < 420 then
 					SendSysMsg(pc, "LowEquipedItemGearScore");
 					return false;
 				end
