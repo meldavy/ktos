@@ -2788,17 +2788,17 @@ function ON_FIELD_BOSS_RANKING_UPDATE(frame,msg,argStr,argNum)
 	elseif argList[1] == 'damage' then
 		myDamage = argList[2]
 	end
-	local totalcnt = session.fieldboss.GetTotalRankCount(time);    -- 계열별 전체 도전 유저
+	local totalcnt = session.fieldboss.GetTotalRankCount(time);	-- 계열별 전체 도전 유저
 	local myrank_p = (myrank/totalcnt) * 100;
-    myrank_p = string.format("%.2f",myrank_p)
-    if totalcnt <= 0 then
-        myrank_p = 0;
+	myrank_p = string.format("%.2f",myrank_p)
+	if totalcnt <= 0 then
+		myrank_p = 0;
 	end
 	local ctrlSet = GET_CHILD_RECURSIVELY(frame,"field_boss_my_rank_control")
 	local battle_info_attr = GET_CHILD_RECURSIVELY(ctrlSet, "battle_info_attr", "ui::CControlSet");
-    SET_TEXT(battle_info_attr, "attr_value_text_1", "rank", myrank);
-    SET_TEXT(battle_info_attr, "attr_value_text_1", "rank_p", myrank_p);
-    SET_TEXT(battle_info_attr, "attr_value_text_2", "value", STR_KILO_CHANGE(myKillTime));
+	SET_TEXT(battle_info_attr, "attr_value_text_1", "rank", myrank);
+	SET_TEXT(battle_info_attr, "attr_value_text_1", "rank_p", myrank_p);
+	SET_TEXT(battle_info_attr, "attr_value_text_2", "value", STR_KILO_CHANGE(myKillTime));
 	SET_TEXT(battle_info_attr, "attr_value_text_3", "value", STR_KILO_CHANGE(myDamage));
 	
 	FIELD_BOSS_RANKING_LIST_UPDATE(frame)
@@ -2809,9 +2809,9 @@ function FIELD_BOSS_RANKING_LIST_UPDATE(frame)
 	local ctrlSet = GET_CHILD_RECURSIVELY(frame,"field_boss_ranking_control")
 	local rankbox = GET_CHILD_RECURSIVELY(ctrlSet,"rankbox")
 	local Width = rankbox:GetWidth()
-	local totalcnt = session.fieldboss.GetTotalRankCount(time);    -- 계열별 전체 도전 유저
-    if totalcnt >= 6 then
-        Width = Width - 20
+	local totalcnt = session.fieldboss.GetTotalRankCount(time);	-- 계열별 전체 도전 유저
+	if totalcnt >= 6 then
+		Width = Width - 20
 	end
 	local rankListBox = GET_CHILD_RECURSIVELY(ctrlSet, "rankListBox", "ui::CGroupBox");
 	rankListBox:RemoveAllChild()
@@ -2864,26 +2864,41 @@ function FIELD_BOSS_RANKING_LIST_UPDATE(frame)
 end
 
 function FIELD_BOSS_DATA_REQUEST_DAY()
-    local frame = ui.GetFrame("induninfo")
-    local ctrlSet = GET_CHILD_RECURSIVELY(frame, "field_boss_ranking_control");
-    local rank_gb = GET_CHILD_RECURSIVELY(ctrlSet, "rank_gb");
-    rank_gb:EnableHitTest(0);
-    ReserveScript("HOLD_FIELDBOSS_RANKUI_UNFREEZE()", 1);
+	local frame = ui.GetFrame("induninfo")
+	local ctrlSet = GET_CHILD_RECURSIVELY(frame, "field_boss_ranking_control");
+	local rank_gb = GET_CHILD_RECURSIVELY(ctrlSet, "rank_gb");
+	rank_gb:EnableHitTest(0);
+	ReserveScript("HOLD_FIELDBOSS_RANKUI_UNFREEZE()", 1);
 
 	local field_date =  GET_FIELD_BOSS_DATE();
 	field_boss.RequestFieldBossPatternInfo(field_date);
 	field_boss.RequestFieldBossRankingInfo(field_date);
+	FIELD_BOSS_RESET_RANKING_INFO(frame)
 end
 
 function FIELD_BOSS_DATA_REQUEST_HOUR()
 	local frame = ui.GetFrame("induninfo")
 	local ctrlSet = GET_CHILD_RECURSIVELY(frame,"field_boss_ranking_control")
-    local rank_gb = GET_CHILD_RECURSIVELY(ctrlSet, "rank_gb");
-    rank_gb:EnableHitTest(0);
-    ReserveScript("HOLD_FIELDBOSS_RANKUI_UNFREEZE()", 1);
-
+	local rank_gb = GET_CHILD_RECURSIVELY(ctrlSet, "rank_gb");
+	rank_gb:EnableHitTest(0);
+	ReserveScript("HOLD_FIELDBOSS_RANKUI_UNFREEZE()", 1);
+	
 	local field_date =  GET_FIELD_BOSS_DATE();
 	field_boss.RequestFieldBossRankingInfo(field_date);
+	FIELD_BOSS_RESET_RANKING_INFO(frame)
+end
+
+function FIELD_BOSS_RESET_RANKING_INFO(frame)
+	local ctrlSet_list = GET_CHILD_RECURSIVELY(frame,"field_boss_ranking_control")
+	local rankListBox = GET_CHILD_RECURSIVELY(ctrlSet_list, "rankListBox", "ui::CGroupBox");
+	rankListBox:RemoveAllChild()
+
+	local ctrlSet_my = GET_CHILD_RECURSIVELY(frame,"field_boss_my_rank_control")
+	local battle_info_attr = GET_CHILD_RECURSIVELY(ctrlSet_my, "battle_info_attr", "ui::CControlSet");
+	SET_TEXT(battle_info_attr, "attr_value_text_1", "rank", 0);
+	SET_TEXT(battle_info_attr, "attr_value_text_1", "rank_p", 0);
+	SET_TEXT(battle_info_attr, "attr_value_text_2", "value", 0);
+	SET_TEXT(battle_info_attr, "attr_value_text_3", "value", 0);
 end
 
 function FIELD_BOSS_ENTER_TIMER_SETTING(ctrlSet)
