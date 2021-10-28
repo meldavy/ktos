@@ -491,12 +491,19 @@ function WARP_GUILD_MEMBER_EXEC(aid)
             return;
         end
         local mapID = memberInfo:GetMapID()
-        if mapID == 9996 or mapID == 9997 or mapID == 9998 then
+        if mapID == 9993 or mapID == 9994 or mapID == 9995 or mapID == 9996 or mapID == 9997 or mapID == 9998 then
             local aObj = GetMyAccountObj();
             local lastGuildOutDay = TryGetProp(aObj, "LastGuildOutDay")
             if lastGuildOutDay ~= "None" then
                 local lastTime = imcTime.GetSysTimeByStr(lastGuildOutDay)
                 local addTime = AFTER_GUILD_OUT_COLONY_WAR_PARTICIPATE_PERIOD_DELAY
+
+                --200827_SEASON
+                local IsSeasonSvr = IS_SEASON_SERVER()
+                if IsSeasonSvr == "YES" then
+                    addTime = 720
+                end
+
                 local enterEnableTime = imcTime.AddSec(lastTime, (addTime*60));
                 local nowTime = session.GetDBSysTime();
                 local difSec = imcTime.GetDifSec(enterEnableTime, nowTime);
