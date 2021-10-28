@@ -20,7 +20,7 @@ function KEYCONFIG_UPDATE_KEY_TEXT(txt_key)
 	local useCtrl = txt_key:GetUserValue("UseCtrl");
 	local key = txt_key:GetUserValue("Key");
 	local pressedKey = txt_key:GetUserValue("PressedKey");
-	
+
 	local txt = "";
 	if useShift == "YES" then
 		txt = txt .. "SHIFT + ";
@@ -39,38 +39,10 @@ function KEYCONFIG_UPDATE_KEY_TEXT(txt_key)
 	end
 
 	txt = txt .. key;
-
 	txt_key:SetTextByKey("value", txt);
-	local hotkeyID = txt_key:GetParent():GetUserValue("ID");
-	if hotkeyID == 'QuestItemUse' then
-		local questItemUse = ui.GetFrame('questitemuse')
-		if questItemUse ~= nil and questItemUse:IsVisible() == 1 then
-			local title = questItemUse:GetChild('title')
-			title:SetText('{@st43}' .. txt ..  '{/}')
-		end
-	end
-	
-	if hotkeyID == "PartyMemberInfo" then
-		SUMMONSINFO_BUTTON_TOOLTIP_CHANGE(txt);
-	end
-end
-function KEYCONFIG_RESTORE_KEY_TEXT(txt_key)
-	local parent = txt_key:GetParent();
-	local id = parent:GetUserValue("ID");
-	local idx = config.GetHotKeyElementIndex("ID", id);
 
-	local useShift = config.GetHotKeyElementAttributeForConfig(idx, "UseShift");
-	local useAlt = config.GetHotKeyElementAttributeForConfig(idx, "UseAlt");
-	local useCtrl = config.GetHotKeyElementAttributeForConfig(idx, "UseCtrl");
-	local key = config.GetHotKeyElementAttributeForConfig(idx, "Key");
-	
-	txt_key:SetUserValue("UseShift", useShift);
-	txt_key:SetUserValue("UseAlt", useAlt);
-	txt_key:SetUserValue("UseCtrl", useCtrl);
-	txt_key:SetUserValue("Key", key);	
-	
-	KEYCONFIG_UPDATE_KEY_TEXT(txt_key);
 end
+
 function KEYCONFIG_OPEN_CATEGORY(frame, fileName, category)
 
 	frame:SetUserValue("FILENAME", fileName);
@@ -86,7 +58,6 @@ function KEYCONFIG_OPEN_CATEGORY(frame, fileName, category)
 	end
 
 	local cnt = config.CreateHotKeyElementsForConfig(fileName, category);
-
 	for i = 0 , cnt - 1 do
 		local id = config.GetHotKeyElementAttributeForConfig(i, "ID");
 		local key = config.GetHotKeyElementAttributeForConfig(i, "Key");
@@ -112,6 +83,7 @@ function KEYCONFIG_OPEN_CATEGORY(frame, fileName, category)
 		txt_key:SetUserValue("UseAlt", useAlt);
 		txt_key:SetUserValue("UseCtrl", useCtrl);
 		KEYCONFIG_UPDATE_KEY_TEXT(txt_key);
+
 	end
 
 	GBOX_AUTO_ALIGN(bg_keylist, 0, 0, 0, true, true);
@@ -144,9 +116,13 @@ function KEYCONFIG_EDIT_START(parent, ctrl, str, num)
 	ctrl:SetSkinName("baseyellow_btn");
 	
 	KEYCONFIG_UPDATE_KEY_TEXT(ctrl);
+
+	
+
 end
 
 function KEYCONFIG_SAVE_INPUT(frame)
+
 	if frame:GetUserValue("EDITING") ~= "YES" then
 		return;
 	end
@@ -174,9 +150,8 @@ function KEYCONFIG_SAVE_INPUT(frame)
 		local useShift = txt_key:GetUserValue("UseShift");
 		local useAlt = txt_key:GetUserValue("UseAlt");
 		local useCtrl = txt_key:GetUserValue("UseCtrl");
-		local key = txt_key:GetUserValue("Key");        
+		local key = txt_key:GetUserValue("Key");
 		if key == "" then
-			KEYCONFIG_RESTORE_KEY_TEXT(txt_key);
 			return;
 		end
 
@@ -187,90 +162,13 @@ function KEYCONFIG_SAVE_INPUT(frame)
 		end
 		config.SetHotKeyElementAttributeForConfig(idx, "UseAlt", useAlt);
 		config.SetHotKeyElementAttributeForConfig(idx, "UseCtrl", useCtrl);
-		config.SetHotKeyElementAttributeForConfig(idx, "UseShift", useShift);	
+		config.SetHotKeyElementAttributeForConfig(idx, "UseShift", useShift);
 		
-		KEYCONFIG_UPDATE_KEY_TEXT(txt_key);
+		
 		config.SaveHotKey(fileName);
 		
-		KEYCONFIG_ALERT_DUPLICATED_KEY(frame, id);
-	end
-end
-
-function KEYCONFIG_ALERT_DUPLICATED_KEY(frame, newKey_id)
-	if frame == nil or newKey_id == nil then
-		return;
 	end
 
-	local fileName =  frame:GetUserValue("FILENAME");
-	local currentCategory = frame:GetUserValue("CATEGORY");
-	if fileName == nil or currentCategory == nil then
-		return;
-	end
-
-	local newKey = {}
-	newKey.id = newKey_id;
-	newKey.idx = config.GetHotKeyElementIndex("ID", newKey_id);
-	newKey.useShift = config.GetHotKeyElementAttributeForConfig(newKey.idx, "UseShift");
-	newKey.useAlt = config.GetHotKeyElementAttributeForConfig(newKey.idx, "UseAlt");
-	newKey.useCtrl = config.GetHotKeyElementAttributeForConfig(newKey.idx, "UseCtrl");
-	newKey.key = config.GetHotKeyElementAttributeForConfig(newKey.idx, "Key");
-
-	local result = false;
-	result = KEYCONFIG_ALERT_DUPLICATED_KEY_IN_CATEGORY(fileName, "BASIC", newKey)
-	
-	if result == false then
-		result = KEYCONFIG_ALERT_DUPLICATED_KEY_IN_CATEGORY(fileName, "BATTLE", newKey)
-	end
-	
-	if result == false then
-		result = KEYCONFIG_ALERT_DUPLICATED_KEY_IN_CATEGORY(fileName, "SYSTEM", newKey)
-	end
-
-	config.CreateHotKeyElementsForConfig(fileName, currentCategory);
-end
-
-function KEYCONFIG_ALERT_DUPLICATED_KEY_IN_CATEGORY(fileName, category, newKey)
-	if fileName == nil or category == nil or newKey == nil then
-		return false;
-	end
-
-	if newKey.id == nil or newKey.idx == nil or newKey.useShift == nil or newKey.useAlt == nil or newKey.useCtrl == nil or newKey.key == nil then
-		return false;
-	end
-	
-	local count = config.CreateHotKeyElementsForConfig(fileName, category);
-	if count <= 0 then
-		return false;
-	end
-	for keyIDX = 0, count -1 do
-		local id = config.GetHotKeyElementAttributeForConfig(keyIDX, "ID");
-		if newKey.id ~= id then
-			local useShift = config.GetHotKeyElementAttributeForConfig(keyIDX, "UseShift");
-			local useAlt = config.GetHotKeyElementAttributeForConfig(keyIDX, "UseAlt");
-			local useCtrl = config.GetHotKeyElementAttributeForConfig(keyIDX, "UseCtrl");
-			local key = config.GetHotKeyElementAttributeForConfig(keyIDX, "Key");
-	
-			if newKey.key == key and newKey.useShift == useShift and newKey.useAlt == useAlt and newKey.useCtrl == useCtrl then
-				local name_new = GET_HOTKEY_TITLE_STR(newKey.id)
-				local name = GET_HOTKEY_TITLE_STR(id)
-				local keyCombination = ""
-				if useCtrl == "YES" then
-					keyCombination = keyCombination .. "Ctrl + "
-				end				
-				if useAlt == "YES" then
-					keyCombination = keyCombination .. "Alt + "
-				end				
-				if useShift == "YES" then
-					keyCombination = keyCombination .. "Shift + "
-				end				
-				keyCombination = keyCombination .. key;
-
-				ui.SysMsg(ScpArgMsg("AlertDuplicatedKeys{Key1}And{Key2}Are{Key}", "Key1", name_new, "Key2", name, "Key", keyCombination));
-				return true;
-			end
-		end
-	end	
-	return false;
 end
 
 function KEYCONFIG_END_INPUT(frame)
@@ -304,28 +202,26 @@ function KEYCONFIG_CHECKING_INPUT(frame)
 		KEYCONFIG_END_INPUT(frame);
 		return 0;
 	end
-
-	local downKey = nil;
-	local joyStickMode;
-	if string.find(fileName, "joystick") ~= nil then
+	 
+	 local downKey = nil;
+	 local joyStickMode;
+	 if string.find(fileName, "joystick") ~= nil then
 		downKey = joystick.GetDownJoyStickBtn();
 		joyStickMode = true;
-	else
+	 else
 		downKey = keyboard.GetDownKey();
-		if downKey == "MOUSELEFT" or downKey == "MOUSERIGHT" then
-			downKey = nil;
-		end
 		joyStickMode = false;
-	end
+	 end
 
 	local id = frame:GetUserValue("ID");
 	if downKey ~= nil then
+		
 		local bg_key = GET_CHILD(frame, "bg_key");
 		local bg_keylist = GET_CHILD(bg_key, "bg_keylist");
 		local ctrlSet = GET_CHILD_BY_USERVALUE(bg_keylist, "ID", id);
 		if ctrlSet ~= nil then
 			local txt_key = GET_CHILD(ctrlSet, "txt_key");
-
+			
 			local normalKey = true;
 			if downKey == "LALT" or downKey == "RALT" then
 				txt_key:SetUserValue("UseAlt", "YES");
@@ -355,6 +251,10 @@ function KEYCONFIG_CHECKING_INPUT(frame)
 					txt_key:SetUserValue("Key", downKey);
 				end
 			end
+
+			
+			
+			
 
 			KEYCONFIG_UPDATE_KEY_TEXT(txt_key);
 		end
@@ -399,8 +299,7 @@ function KEYCONFIG_TREE_CLICK(parent, ctrl, str, num)
 
 	local frame = parent:GetTopParentFrame();
 	frame:SetUserValue("FILENAME", fileName);
-	frame:SetUserValue("CATEGORY", categoryName);
-	KEYCONFIG_OPEN_CATEGORY(frame, fileName, categoryName);
+	KEYCONFIG_OPEN_CATEGORY(frame, fileName, categoryName);	
 	
 end
 
@@ -424,10 +323,6 @@ function OPEN_KEYCONFIG(frame)
 	-- KEYCONFIG_INSERT_CATEGORY_ITEM(tree, "joypad", "Battle", "hotkey_joystick.xml", "System");
 
 	tree:OpenNodeAll();
-end
-
-function CLOSE_KEYCONFIG(frame)
-	keyboard.EnableHotKey(true);
 end
 
 function GET_HOTKEY_TITLE_STR(id)
@@ -457,23 +352,18 @@ function KEYCONFIG_RESTORE_DEFAULT(parent)
 	local frame = parent:GetTopParentFrame();
 	local bg_key = GET_CHILD(frame, "bg_key");
 	local bg_keylist = GET_CHILD(bg_key, "bg_keylist");
-	bg_keylist:RemoveAllChild();
+	bg_keylist:RemoveAllChild();	
 
 	config.RestoreHotKey("hotkey.xml");
 	config.RestoreHotKey("hotkey_mousemode.xml");
 	config.RestoreHotKey("hotkey_joystick.xml");
 	ReloadHotKey();
-	local keyFrame = ui.GetFrame("quickslotnexpbar");
-	QUICKSLOTNEXPBAR_UPDATE_HOTKEYNAME(keyFrame);
-	keyFrame:Invalidate();
+	
 
-	local fileName = frame:GetUserValue("FILENAME");
-	local categoryName = frame:GetUserValue("CATEGORY");
-	KEYCONFIG_OPEN_CATEGORY(frame, fileName, categoryName);
 
-	ui.SysMsg(ClMsg("ResetKeyConfig"));
+	
+	
 end
-
 
 
 
