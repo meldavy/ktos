@@ -520,10 +520,8 @@ function ITEM_CABINET_MATERIAL_INV_BTN(itemObj, slot)
 	end
 end
 
-local selected_slot = nil
 
 function ITEM_CABINET_REG_MATERIAL(frame, slot)	
-	selected_slot = nil
 	local icon = slot:GetIcon();
 	local iconInfo = icon:GetInfo();
 	local itemID = iconInfo:GetIESID();
@@ -594,16 +592,25 @@ function ITEM_CABINET_INPUT_MATERIAL_CNT_BOX(invItem, index, guid, slot)
     local inputstringframe = ui.GetFrame("inputstring");
 	inputstringframe:SetUserValue("CTRL_INDEX", index);
 	inputstringframe:SetUserValue("GUID", guid);
-	selected_slot = slot
+	inputstringframe:SetUserValue("SLOT_CATE", slot:GetParent():GetName());
+	inputstringframe:SetUserValue("SLOT_NAME", slot:GetName());
+
 	INPUT_NUMBER_BOX(inputstringframe, titleText, "ITEM_CABINET_INPUT_MATERIAL_CONFIRM", 1, 1, invItem.count, 1);	
 end
 
 function ITEM_CABINET_INPUT_MATERIAL_CONFIRM(parent, count)
 	local index = parent:GetUserValue("CTRL_INDEX");
 	local guid = parent:GetUserValue("GUID"); 
+	local slotCate = parent:GetUserValue("SLOT_CATE")
+	local slotName = parent:GetUserValue("SLOT_NAME"); 
 	ITEM_CABINET_MATERIAL_CNT_UPDATE(index, count, guid);
-	if selected_slot ~= nil then
-		ITEM_CABINET_SET_SLOT_ITEM(selected_slot, 1, index);		
+	
+	local frame = ui.GetFrame("inventory")
+	local slotParent = GET_CHILD_RECURSIVELY(frame, slotCate)
+	local slot = GET_CHILD_RECURSIVELY(slotParent, slotName)
+
+	if slot ~= nil then
+		ITEM_CABINET_SET_SLOT_ITEM(slot, 1, index);		
 	end
 end
 

@@ -13,9 +13,17 @@ function GET_EQUIP_ITEM_IMAGE_NAME(invitem, imageType, gender)
 			 changeItemcls = GetClassByType('Item', faceID)
 		end
 
+		-- vibora vision
+		if TryGetProp(changeItemcls, "ClassType", "None") == "Arcane" and TryGetProp(changeItemcls, "StringArg", "None") == "Vibora" then
+			local filename = TryGetProp(changeItemcls, "FileName", "None")
+			local vibora_cls = GetClassByStrProp2('Item', "FileName", filename, "StringArg", "WoodCarving")
+			return vibora_cls.TooltipImage;
+		end
+
 		if nil ~= changeItemcls then
 			return changeItemcls.TooltipImage;
 		end
+
 		local imageName = TryGetProp(invitem, imageType);
 		if nil ~= imageName then
 			return tostring(imageName)

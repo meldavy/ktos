@@ -460,6 +460,17 @@ function DRAW_EQUIP_COMMON_TOOLTIP_SMALL_IMG(tooltipframe, invitem, mainframenam
 		itemPicture:SetColorTone("FF111111");
 	end
 
+	-- 바이보라 비전
+	local faceID = TryGetProp(invitem, 'BriquettingIndex')
+	if faceID > 0 then
+	local bri_cls = GetClassByType('Item', faceID)
+	if TryGetProp(bri_cls, "ClassType", "None") == "Arcane" and TryGetProp(bri_cls, "StringArg", "None") == "Vibora" then
+		local filename = TryGetProp(bri_cls, "FileName", "None")
+		local vibora_cls = GetClassByStrProp2('Item', "FileName", filename, "StringArg", "WoodCarving")
+		invitem.TooltipImage  = vibora_cls.TooltipImage
+	end
+	end
+
 	if invitem.TooltipImage ~= nil and invitem.TooltipImage ~= 'None' then
 	
     	if invitem.ClassType ~= 'Outer' and invitem.ClassType ~= 'SpecialCostume' then

@@ -570,6 +570,13 @@ function GET_ITEM_ICON_IMAGE(itemCls, gender)
 			 if nil ~= cls then
 				iconImg = cls.Icon;
 			 end
+
+			-- vibora vision
+			if TryGetProp(cls, "ClassType", "None") == "Arcane" and TryGetProp(cls, "StringArg", "None") == "Vibora" then
+				local filename = TryGetProp(cls, "FileName", "None")
+				local vibora_cls = GetClassByStrProp2('Item', "FileName", filename, "StringArg", "WoodCarving")
+				iconImg = vibora_cls.Icon
+		end
 		end
 	elseif itemCls.GroupName == "ExpOrb" or itemCls.GroupName == "SubExpOrb" then
 		local exp = TryGetProp(itemCls, "ItemExpString");

@@ -15385,7 +15385,9 @@
 		<Class ClassID="302575" ClassName="KUPOLE_TESTSERVER4_NAME" Data="[큐폴]{nl}테스트 서버 아이템 상점 3"/>
 		<Class ClassID="302576" ClassName="EVENT_2107_NEXT_GR_MSG5" Data="{#FF0000}}※ 460미만 캐릭터만 참여 가능합니다.{/}"/>
 		<Class ClassID="302583" ClassName="NEWUSER_BUFF_MSG" Data="{#FF0000}※신규/복귀 유저 지원 버프가 종료되었습니다. 스크롤을 다시 사용해주세요.{/}"/>
-		</Category>
+		<Class ClassID="302599" ClassName="EP13CARE_TRADE4" Data="온전한 신력의 조각 / 검붉은 영혼석 교환"/>
+		<Class ClassID="302600" ClassName="GoddessCare_UniqueMaterial" Data="여신 / 마신 방어구 재료 교환"/>
+	</Category>
 	<Category Name="Account">
 		<Class ClassID="303001" ClassName="MaxAccountWarehouseCount" Data="팀 창고"/>
 		<Class ClassID="303002" ClassName="AccountUse2MoreRank" Data="실버 입금 및 출금은 15레벨 이상 가능합니다."/>
