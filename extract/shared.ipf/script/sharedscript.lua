@@ -197,10 +197,14 @@ function GET_RANDOM_OPTION_VALUE_VER2(item, option_name)
 
     if g_random_option_range_table[item_lv] == nil then
         return nil, nil
+    elseif g_random_option_range_table[item_lv][option_name] == nil then
+        return nil, nil
+    elseif g_random_option_range_table[item_lv][option_name][equip_group] == nil then
+        return nil, nil
     else
         local item_grade = TryGetProp(item, 'ItemGrade', 1)
         local grade_ratio = get_item_grade_ratio(item_grade)  -- 아이템 등급에 따른 min 비율
-        local max = g_random_option_range_table[item_lv][option_name][equip_group][2]     
+        local max = g_random_option_range_table[item_lv][option_name][equip_group][2]
         local min = math.ceil(max * grade_ratio)
         return min, max
     end

@@ -10408,6 +10408,7 @@
 		<Class ClassID="102475" ClassName="GuildEventNotExist" Data="현재 진행중인 길드 이벤트가 취소되었습니다."/>
 		<Class ClassID="102476" ClassName="OverCountGuildEventParticipants" Data="길드 이벤트의 참여 최대 인원을 초과했습니다."/>
 		<Class ClassID="102478" ClassName="bosscoopshop" Data="보스 협동전 훈장 상점"/>
+		<Class ClassID="102479" ClassName="CS_Indun_NoEnter" Data="입장이 불가능합니다"/>
 	</Category>
 	<Category Name="EqupClasses">
 		<Class ClassID="103001" ClassName="THSword" Data="양손검"/>
