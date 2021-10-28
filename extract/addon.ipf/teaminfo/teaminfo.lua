@@ -1,25 +1,36 @@
 
 function TEAMINFO_ON_INIT(addon, frame)
-
 	
 end
 
 function TEAMINFO_OPEN(frame)
+	
+	local account = session.barrack.GetCurrentAccount();
+	local charCount = account:GetTotalSlotCount();
+	local petCount = account:GetTotalPetCount();
+	
+	local AddY = 0;
+	
+	-- 팀 정보 표시
+	local gbox_mid =  GET_CHILD_RECURSIVELY(frame,"gb_mid");
+	if gbox_mid ~= nil then
+		gbox_mid:SetOffset(gbox_mid:GetOriginalX(), gbox_mid:GetOriginalY() + AddY)	
+	end
 
-	local gbox_buff = frame:GetChild("gbox_buff");
+	local gbox_buff = GET_CHILD_RECURSIVELY(frame,"gbox_buff");
 	local gbox_abil_list = gbox_buff:GetChild("gbox_abil_list");
 	gbox_abil_list:RemoveAllChild();
 
-	local account = session.barrack.GetCurrentAccount();
+	
 	local lv = account:GetTeamLevel();
 	local curExp = account:GetTeamLevelCurExp();
 	local maxExp = account:GetTeamLevelMaxExp();
 
-	local gauge_exp = GET_CHILD(frame, "gauge_exp");
+	local gauge_exp = GET_CHILD_RECURSIVELY(frame, "gauge_exp");
 	gauge_exp:SetPoint(curExp, maxExp);
-	local txt_percent = GET_CHILD(frame, "txt_percent");
+	local txt_percent = GET_CHILD_RECURSIVELY(frame, "txt_percent");
 	txt_percent:SetTextByKey("value", math.floor(curExp * 100 / maxExp));
-    local txt_lv = frame:GetChild("txt_lv");
+    local txt_lv = GET_CHILD_RECURSIVELY(frame,"txt_lv");
 	txt_lv:SetTextByKey("value", lv);
 
 	local cls = GetClassByType("XP_TeamLevel", lv);
@@ -36,3 +47,10 @@ function TEAMINFO_OPEN(frame)
 
 end
 
+function TEAM_DELETE(frame, ctrl, arg1, arg2)
+	
+end
+
+function _EXEC_DELETE_TEAM()
+	
+end
