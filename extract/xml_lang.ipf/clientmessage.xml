@@ -429,7 +429,7 @@
 		<Class ClassID="2307" ClassName="ReallyUseAbilityPointResetItem_arts" Data="사용시 해당 직업의 모든 아츠 특성을 초기화 하며 특성 포인트 및 [보상용] 미식별 신비한 서 가 환급됩니다.{nl}계속 진행하시겠습니까?"/>
 		<Class ClassID="2308" ClassName="DontHaveThatJob" Data="해당 직업을 보유하고 있지 않습니다."/>
 		<Class ClassID="2309" ClassName="CantUseCuzStackItemInAdditionalTab" Data="추가 창고에 같은 종류의 스택형 아이템이 존재하기 때문에 이용하실 수 없습니다. 추가 창고에서 스택형 아이템을 모두 찾으신 후 이용 가능합니다."/>
-		<Class ClassID="2310" ClassName="ReallyUseAbilityPointResetItem_OneAbility" Data="사용시 해당 특성을 초기화 하며 특성 포인트 및 [보상용] 미식별 신비한 서 가 환급됩니다.{nl}계속 진행하시겠습니까?"/>
+		<Class ClassID="2310" ClassName="ReallyUseAbilityPointResetItem_OneAbility" Data="사용시 해당 특성을 초기화 하며 특성 포인트 및 [신비한 서]가 환급됩니다.{nl}계속 진행하시겠습니까?"/>
 		<Class ClassID="2311" ClassName="ExceedAdditionalAccountwarehouse" Data="확장 가능한 기본 창고 슬롯이 최대치에 도달하였습니다."/>
 		<Class ClassID="2312" ClassName="ExceedAdditionalAccountwarehouse2" Data="해당 아이템 사용 시, 확장 가능한 기본 창고 슬롯의 최대치를 초과하게 되어 사용이 불가능합니다."/>
 		<Class ClassID="2313" ClassName="ItemRandomOptionCheckFail{OPTIONNAME}" Data="{OPTIONNAME} 옵션은 비정상 옵션입니다."/>
@@ -533,7 +533,7 @@
 		<Class ClassID="2516" ClassName="AskCharacterRegist" Data="{slot_index}번 슬롯에 등록하시겠습니까?"/>
 		<Class ClassID="2517" ClassName="AskCharacterDeRegist" Data="{slot_index}번 슬롯을 해제하시겠습니까?"/>
 		<Class ClassID="2518" ClassName="CantChangeCharacterTime" Data="캐릭터를 변경할 수 없는 시간입니다."/>
-		<Class ClassID="2519" ClassName="CantChangeCharacterState" Data="캐릭터 변경을 할 수 없는 상태입니다."/>		
+		<Class ClassID="2519" ClassName="CantChangeCharacterState" Data="캐릭터 변경을 할 수 없는 상태입니다."/>
 	</Category>
 	<Category Name="CannotGetSkillMessage">
 		<Class ClassID="2600" ClassName="CannotGetSkillMessage_Doppelsoeldner_Zucken" Data="[스킬] 존하우 1레벨 이상 필요"/>
@@ -1857,10 +1857,14 @@
 		<Class ClassID="10587" ClassName="CanNotUseItemLv" Data="장비의 레벨이 알맞지 않습니다."/>
 		<Class ClassID="10588" ClassName="{num}SilverLimitOver" Data="실버를 {num} 이상 소지시 사용이 불가능합니다."/>
 		<Class ClassID="10589" ClassName="LuciferiExtract_Help" Data="루시페리 계열 액세서리의 강화/초월/포텐셜을 추출하여 속성이 저장된 2장의 스크롤을 생성합니다{nl}{nl}해당 스크롤은 캐릭터 귀속된 같은 종류의 루시페리 계열 액세서리에 사용 가능합니다.{nl}속성이 추출된 액세서리만 액세서리 분해가 가능합니다."/>
+		<Class ClassID="10590" ClassName="pvp_mine_already_request" Data="이미 지역 이동을 대기중입니다."/>
+		<Class ClassID="10591" ClassName="retry_zone_move" Data="지역 이동이 지연되고 있습니다. 다시 시도해 주시기 바랍니다."/>
+		<Class ClassID="10592" ClassName="ExceedColonyGuildMemberCount" Data="현재 콜로니 지역에 입장 가능한 길드원 수를 초과하였습니다."/>
 		<Class ClassID="10593" ClassName="TooManyItemBuy{name}{count}" Data="정말로 [{#0054FF}{name}{/}] [{#FF0000}{count}{/}]개를 구매하시겠습니까?"/>
 		<Class ClassID="10594" ClassName="NotEnoughMasterPiece" Data="아츠 습득 비용이 부족합니다.{nl}현재 보유한 신비한 서 개수를 확인하세요."/>
 		<Class ClassID="10595" ClassName="ReallyDecompose" Data="정말 분해하시겠습니까?"/>
 		<Class ClassID="10596" ClassName="DontDecomposeNoTrade" Data="거래 불가 아이템은 분해할 수 없습니다."/>
+		<Class ClassID="10597" ClassName="OccupiedByAnohterUser" Data="다른 플레이어가 아미 사용중입니다."/>
 	</Category>
 	<Category Name="FoodTable">
 		<Class ClassID="20001" ClassName="IncreaseHP{Value}For{Time}Minute" Data="{Time}분 동안 HP가 {Value}% 증가합니다."/>
@@ -10081,6 +10085,7 @@
 		<Class ClassID="92114" ClassName="UITUTO_GLASS3" Data="산드라의 미세 감정 돋보기 사용"/>
 		<Class ClassID="92115" ClassName="MustUseWeeklyCount" Data="소모한 주간 교환 횟수가 없어 사용할 수 없습니다."/>
 		<Class ClassID="92116" ClassName="RECYCLE_NEWCHARACTER_MSG" Data="캐릭터 슬롯이 모두 개방되어 있어 리사이클 메달 66개가 지급됩니다"/>
+		<Class ClassID="92118" ClassName="Mileage_SilverGacha_USE{BEFORE}{AFTER}" Data="마신의 유혹 포인트 : {BEFORE} → {AFTER}"/>
 	</Category>
 	<Category Name="BattleText">
 		<Class ClassID="100001" ClassName="ADD_DAMAGE_{Auto_1}!" Data="추가 대미지 {Auto_1}!"/>
@@ -10658,9 +10663,11 @@
 		<Class ClassID="102497" ClassName="CantJoinKickedChannel" Data="추방당한 채팅방은 다시 입장할 수 없습니다."/>
 		<Class ClassID="102498" ClassName="EntrustHead" Data="방장 위임"/>
 		<Class ClassID="102499" ClassName="KickConfirm" Data="정말 추방하시겠습니까?{nl}이 유저가 보냈던 모든 메시지가 삭제되며, 다시는 이 채팅방에 들어올 수 없습니다."/>
+		<Class ClassID="102500" ClassName="LockStateColonySpotCuzGuildMaster" Data="해당 지역은 길드마스터의 요청으로 인해 현재 입장 불가 상태입니다."/>
 		<Class ClassID="102501" ClassName="MaxChannelExceed" Data="더 이상 채팅방을 만들 수 없습니다."/>
 		<Class ClassID="102502" ClassName="SuccessJoinedNewbieGuild" Data="성장 지원길드에 가입되었습니다."/>
 		<Class ClassID="102503" ClassName="{StartMap}DoYouWantMove" Data="[{#003399}{StartMap}{/}]{nl}이동하시겠습니까?"/>
+		<Class ClassID="102504" ClassName="CopiedToClipboard" Data="클립보드에 복사되었습니다"/>
 </Category>
 	<Category Name="EqupClasses">
 		<Class ClassID="103001" ClassName="THSword" Data="양손검"/>
@@ -15545,6 +15552,27 @@
 		<Class ClassID="302629" ClassName="EVENT_2108_JP_EVE_FESTIVAL_MSG1" Data="{#0066FF}이벤트 아이템이 지급되었습니다.{/}"/>
 		<Class ClassID="302630" ClassName="EVENT_2108_JP_EVE_FESTIVAL_MSG2" Data="{#0066FF}[전야제 이벤트 현황]{/}{nl}일일 1시간 접속 시 보상 지급 ({#0066FF}{TIME}{/}/60분){nl}{#FF3333}※이벤트 기간 : 8월 25일 ~ 9월 1일 오전 05시 59분{nl}※ 하루는 당일 오전 06시 부터 익일 오전 05시 59분 까지 입니다.{/}"/>
 		<Class ClassID="302631" ClassName="EVENT_2107_NEXT_SEL6" Data="HotWeek 보상 수령하기"/>
+		<Class ClassID="302632" ClassName="EP13_PERSONAL_REPUTATUIN_ADD_ALL_MSG1" Data="EP13 지역의 모든 명성 상점에 {#0066FF}{POINT}{/}만큼 명성도가 증가하였습니다.{nl}렘파라사 연못 : {#0066FF}{POINT1}{/}/{MAX}{nl}덧댄다리 숲 : {#0066FF}{POINT2}{/}/{MAX}{nl}파우피스 나루 : {#0066FF}{POINT3}{/}/{MAX}{nl}이사우고티 숲 : {#0066FF}{POINT4}{/}/{MAX}{nl}키르티마스 숲 : {#0066FF}{POINT5}{/}/{MAX}"/>
+		<Class ClassID="302633" ClassName="EP13_PERSONAL_REPUTATUIN_ADD_ALL_MSG3" Data="사용하고자 하는 아이템 개수를 입력해주세요.{nl}'에피소드 13'에 포함된 모든 지역의 명성도가 증가합니다.{nl}사용 가능 개수 : {#0066FF}0~{MAX}{/}{nl}{#FF3333}명성도는 최대치 이상 증가하지 않습니다.{/}"/>
+		<Class ClassID="302634" ClassName="EP13_PERSONAL_REPUTATUIN_ADD_ALL_MSG_OVER" Data="{#FF3333}※모든 지역의 명성도가 최대치에 도달하였습니다.{/}"/>
+		<Class ClassID="302636" ClassName="EP13_PERSONAL_REPUTATUIN_ADD_ALL_MSG_ITEM_COUNT" Data="{#FF3333}※보유한 아이템 개수를 다시 확인해주세요.{/}"/>
+		<Class ClassID="302637" ClassName="EVENT_2109_MOON_RABBIT_ITEM_CHECK" Data="{#FF3333}※보유한 아이템 개수를 다시 확인해주세요.{/}"/>
+		<Class ClassID="302638" ClassName="EVENT_2109_MOON_RABBIT_WISH_OVER" Data="{#FF3333}※소원 횟수 100회를 모두 사용하였습니다.{/}"/>
+		<Class ClassID="302639" ClassName="EVENT_2109_MOON_RABBIT_BUFF_OVER" Data="{#FF3333}※이벤트 버프는 팀당 일일 3회 수령할 수 있습니다.(매일 오전 06시 초기화){/}"/>
+		<Class ClassID="302640" ClassName="EVENT_2109_MOON_RABBIT_BUFF_CHAT_1" Data="황금 달맞이 주화가 부족해!"/>
+		<Class ClassID="302641" ClassName="EVENT_2109_MOON_RABBIT_BUFF_CHAT_2" Data="소원을 모두 빌어서 더이상은 불가능해!"/>
+		<Class ClassID="302642" ClassName="EVENT_2109_MOON_RABBIT_BUFF_CHAT_3" Data="소원아 이뤄져라!"/>
+		<Class ClassID="302643" ClassName="EVENT_2109_MOON_RABBIT_BUFF_CHAT_4" Data="선물을 준비했어!"/>
+		<Class ClassID="302644" ClassName="EVENT_2109_MOON_RABBIT_BUFF_CHAT_5" Data="보름달이 네 소원을 이뤄줄거야!"/>
+		<Class ClassID="302645" ClassName="EVENT_2109_MOON_RABBIT_SEL1" Data="{#003399}[달토끼]{/}이벤트 설명"/>
+		<Class ClassID="302646" ClassName="EVENT_2109_MOON_RABBIT_SEL2" Data="{#003399}[달토끼]{/}소원 빌기"/>
+		<Class ClassID="302647" ClassName="EVENT_2109_MOON_RABBIT_SHOP" Data="{#003399}[달토끼]{/}이벤트 상점"/>
+		<Class ClassID="302648" ClassName="EVENT_2109_MOON_RABBIT_EP12_SHOP" Data="{#003399}[EP-12] 아이템 스크롤 상점{/}"/>
+		<Class ClassID="302649" ClassName="EVENT_2109_MOON_RABBIT_CHECK_MSG" Data="{#0066FF}[소원을 이뤄주는 달토끼]{/} 이벤트 현황{nl}접속 시간({#0066FF}{TIME}{/}분){nl}일일 달맞이 주화 현황 ({#0066FF}{COINDAY}{/}/{DAYMAX}){nl}일일 황금 달맞이 주화 현황 ({#0066FF}{GOLD}{/}/100){nl}전체 황금 달맞이 주화 현황 ({#0066FF}{TOTAL}{/}/3000){nl}일일 한가위의 기운 버프 받기({#0066FF}{BUFF}{/}/3){nl}전체 소원 빌기 참여 현황({#0066FF}{WISH}{/}/100){nl}{#FF3333}※일일 제한은 매일 오전 06시 초기화 됩니다.{/}"/>
+		<Class ClassID="302650" ClassName="EVENT_2109_MOON_RABBIT_CHECK_MSG2" Data="{#0066FF}[추석 이벤트 출석체크]{/}{nl}3시간 접속 시 보상 획득 ({#0066FF}{TIME}{/}/180분){nl}신규/복귀 정착 지원상자 수령 현황 ({#0066FF}{COUNT}{/}){nl}{#0066FF}※보상 획득 기간{/}{nl}09월18일 오전 06시 ~ 09월23일 오전 05시 59분 까지 총 5회"/>
+		<Class ClassID="302651" ClassName="EVENT_2109_MOON_RABBIT_CHECK_MSG3" Data="{#0066FF}[추석 이벤트 출석체크]{/}{nl}3시간 접속 시 보상 획득 ({#0066FF}{TIME}{/}/180분){nl}{#0066FF}※보상 획득 기간{/}{nl}09월18일 오전 06시 ~ 09월23일 오전 05시 59분 까지 총 5회"/>
+		<Class ClassID="302654" ClassName="GoddessCare_Etc" Data="기타"/>
+		<Class ClassID="302655" ClassName="EP13CARE_TRADE7" Data="기타"/>
 	</Category>
 	<Category Name="Account">
 		<Class ClassID="303001" ClassName="MaxAccountWarehouseCount" Data="팀 창고"/>
@@ -15959,7 +15987,7 @@
 		<Class ClassID="801067" ClassName="ColonyPaymentItemTooManyInGuildWare" Data="길드보관함에 점령 보상 아이템이 너무 많습니다. {nl}길드 보관함을 정리해주세요."/>
 		<Class ClassID="801068" ClassName="ColonyPaymentItemCountIsZero" Data="지급될 점령 보상 아이템이 없습니다."/>
 		<Class ClassID="801069" ClassName="CanNotSetBuildingHere" Data="설치할 수 없는 위치입니다."/>
-		<Class ClassID="801070" ClassName="ColonyOccupied" Data="점령중"/>
+		<Class ClassID="801070" ClassName="ColonyOccupied" Data="점령 중"/>
 		<Class ClassID="801071" ClassName="MysticCristalCoolDown" Data="신비한 크리스탈 재사용 대기시간 입니다."/>
 		<Class ClassID="801072" ClassName="ColonyWarIsNotInProgress" Data="콜로니전 진행중이 아닙니다."/>
 		<Class ClassID="801073" ClassName="UseAvailableColonyWarParticipate" Data="콜로니전에 참가하지 않아 사용하실 수 없습니다."/>
@@ -16065,7 +16093,16 @@
 		<Class ClassID="801175" ClassName="PRE_Challenge_RepeatHealPotion2" Data="이미 효과가 활성화 중입니다."/>
 		<Class ClassID="801176" ClassName="PRE_Only_ChallengeMode" Data="챌린지 모드 또는 분열 특이점에서만 사용 가능합니다."/>
 		<Class ClassID="801177" ClassName="UsingOtherPotion" Data="같은 효과의 다른 아이템이 적용 중 입니다."/>
-		<Class ClassID="801182" ClassName="CantUsePlace" Data="사용할 수 없는 지역입니다."/>
+		
+<Class ClassID="801178" ClassName="CantUseColonyItem_reason_test_msg1" Data="현재 해당 아이템은 다음과 같은 사유로 사용할 수 없습니다.{nl}- 길드 콜로니전 개편에 의한 일시적 사용 불가"/>
+<Class ClassID="801182" ClassName="CantUsePlace" Data="사용할 수 없는 지역입니다."/>
+		<Class ClassID="801179" ClassName="CantCapture_this_tower_reason_Sameguild_msg_1" Data="소속된 길드가 이미 해당 지역을 점령했습니다."/>
+		<Class ClassID="801180" ClassName="CantCapture_this_tower_reason_Sameguild_msg_2" Data="점령 활성화까지 남은 시간{nl}{#ff0000}[ {SEC} 초 ]{/}"/>
+		<Class ClassID="801181" ClassName="GuildColony_Warring_TowerBeCapturing_msg_1" Data="[{MAP}]지역에 타 길드의 점령 시도가 있습니다."/>
+		<Class ClassID="801183" ClassName="ReallyRetreatGuildMemberFrom{Zone}To{City}" Data="{#0000ff}{Zone} {/}지역에 진입한 모든 길드 구성원들을 {#ff0000}{City} {/}지역으로 이동시킵니다.{nl} {nl}실행하시겠습니까?"/>
+		<Class ClassID="801184" ClassName="CantCapture_this_tower_reason_Sameguild_msg_3" Data="은신 상태에서는 점령시도를 할 수 없습니다"/>
+		<Class ClassID="801185" ClassName="CantCapture_this_tower_reason_Sameguild_msg_4" Data="점령 시도를 방해받았습니다"/>
+		<Class ClassID="801186" ClassName="CantCapture_this_tower_reason_Sameguild_msg_5" Data="[파나티시즘: 순교] 적용 상태에서는 점령을 시도할 수 없습니다"/>
 	</Category>
 	<Category Name="ColonyTax">
 		<Class ClassID="810000" ClassName="ColonyTaxRateDetail{Default}{Min}{Max}{ModifyDelay}{DisableModifyDelay1}{DisableModifyDelay2}" Data="- 챔피언스 리그 지역을 최종 점령한 길드는 각 도시의 적립요율을 조정할 수 있습니다.({Min}% ~ {Max}%) {nl}- 도시 적립요율은 기본적으로 표준 요율({Default}%)이 적용되어 있습니다.{nl}- 도시 적립요율 조정은 길드 마스터 또는 해당 권한을 가진 일원만 가능합니다.{nl}- 도시 적립요율은 조정 후, {ModifyDelay}시간 뒤에 재조정이 가능합니다.{nl}- 콜로니전 시작 {DisableModifyDelay1}시간 전부터 종료 {DisableModifyDelay2}분 후까지 도시 적립요율 조정이 제한됩니다.{nl}- 매 콜로니전 종료 후, 챔피언스 리그 지역의 최종 점령 길드가 지난번 점령 길드와 다른 경우 도시 적립요율은 표준 요율({Default}%)로 조정됩니다.{nl}- 챔피언스 리그 지역의 최종 점령 길드에 가입된 인원들은 해당 적립요율 적용 도시에 한해 최소 요율({Min}%)로 고정되어 적용됩니다.{nl}- 적립금 누적 기간 동안 [적립요율 적용 항목]의 실버 소비 시, 적용된 요율에 따라 적립금이 누적됩니다.{nl}   (적립금 누적 기간 : 콜로니전 종료 5분 후 시각을 기점으로 다음 콜로니전 종료 시 까지){nl}- 적립금 누적 기간이 끝나면 [적립금 분배] 탭에서 수령된 적립금을 길드원에게 분배할 수 있습니다."/>
@@ -16173,7 +16210,7 @@
 		<Class ClassID="815057" ClassName="Guild_Housing_Tab_Landscape" Data="{@st66b}조경"/>
 		<Class ClassID="815058" ClassName="GuildAssetLog_HousingClearFurniture" Data="가구 철거"/>
 		<Class ClassID="815059" ClassName="GuildAssetLog_UnknownSantuary_Activate" Data="미지의 성역 활성화"/>
-		<Class ClassID="815060" ClassName="Guild_Housing_Dungon_Lab_Enter" Data="다음 미지의 성역 관문을 활성화 합니다.{nl}활성화 하시겠습니까?{nl}{#ff0000}{Name}{/}{#ff0000}{nl}※길드 자금 25,000,000실버가 소모됩니다{/}"/>
+		<Class ClassID="815060" ClassName="Guild_Housing_Dungon_Lab_Enter" Data="다음 미지의 성역 관문을 활성화 합니다.{nl}활성화 하시겠습니까?{nl}{#ff0000}{Name}{/}{#ff0000}{nl}※길드 자금 {SILVER}실버가 소모됩니다{/}"/>
 		<Class ClassID="815061" ClassName="WorldPVP_JoinCheck_UnknownSantuaryPCBuff" Data="{#ff0000}성역의 가호{/}는 팀 배틀리그 참여시 사라지게 됩니다. 참여 하시겠습니까?"/>
 	</Category>
 	<Category Name="PersonalHousing">
@@ -17329,6 +17366,7 @@
 		<Class ClassID="1040019" ClassName="UNKNOWN_SANTUARY_GATE_CLMSG_PAY_WARNING_5" Data="해당 지역의 미지의 성역을 관리할 권한이 없습니다."/>
 		<Class ClassID="1040020" ClassName="UNKNOWN_SANTUARY_GATE_CLMSG_PAY_WARNING_6" Data="[성역의 가호] 효과를 획득하기 위해 {Cost}실버가 소모됩니다. 효과를 획득하시겠습니까?"/>
 		<Class ClassID="1040021" ClassName="UNKNOWN_SANTUARY_GATE_CLMSG_BUFF_CHECK_1" Data="보유중인 [성역의 가호] 버프가 없습니다. {nl}[성역의 가호]버프를 보유한 상태여야 입장이 가능합니다."/>
+		<Class ClassID="1040022" ClassName="UNKNOWN_SANTUARY_CLMSG_BUFF_CHECK_2" Data="보유중인 [성역의 가호] 버프가 없습니다. {nl}[성역의 가호] 버프를 보유하고 있지 않다면, 5분 뒤 현재 맵에서 자동으로 퇴장합니다."/>
 	</Category>
 	<Category Name="RidePet">
 		<Class ClassID="1041000" ClassName="RidePet_Regedit_Success_Msg_1" Data="탈 것 탑승 스킬이 등록되었습니다.{nl}스킬과 특성(F3)의 공용탭에 탈 것 탑승 스킬이 추가되었습니다."/>

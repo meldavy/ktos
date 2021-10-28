@@ -13,8 +13,13 @@ end
 function WROLDPVP_RESULT_DETAIL_CREATE_LIST(frame)
 	if frame == nil then return; end
 	local my_team_id = session.teambattleleauge.GetTeamBattleLeagueResultMyTeamID();
-	WROLDPVP_RESULT_DETAIL_MY_TEAM_CREATE_LIST(frame, my_team_id);
-	WORLDPVP_RESULT_DETAIL_OTHER_TEAM_CREATE_LIST(frame, my_team_id);
+	if my_team_id ~= 0 then
+		WROLDPVP_RESULT_DETAIL_MY_TEAM_CREATE_LIST(frame, my_team_id);
+		WORLDPVP_RESULT_DETAIL_OTHER_TEAM_CREATE_LIST(frame, my_team_id);
+	elseif my_team_id == 0 then
+		WROLDPVP_RESULT_DETAIL_MY_TEAM_CREATE_LIST(frame, 1);
+		WORLDPVP_RESULT_DETAIL_OTHER_TEAM_CREATE_LIST(frame, 1);
+	end
 
 	-- mvp
 	local mvp_aid = session.teambattleleauge.GetTeamBattleLeaugeResultMVPAID();

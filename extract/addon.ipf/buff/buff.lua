@@ -482,7 +482,7 @@ function COMMON_BUFF_MSG(frame, msg, buffType, handle, buff_ui, buffIndex)
 	end
 
     ARRANGE_BUFF_SLOT(frame, buff_ui);
-    COLONY_POINT_INFO_DRAW_BUFF_ICON();
+    COLONY_BATTLE_INFO_DRAW_BUFF_ICON();
 end
 
 function REMOVE_BUFF_COUNT_SLOT_SUB(frame, buff_ui, buffType, buffIndex, colcnt, ApplyLimitCountBuff)

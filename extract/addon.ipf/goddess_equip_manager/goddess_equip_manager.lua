@@ -2120,7 +2120,7 @@ function _GODDESS_MGR_MAKE_RANDOM_OPTION_TEXT(gBox, item_obj, option_list)
 	local property_gbox = GET_CHILD(tooltip_equip_property_CSet, 'property_gbox', 'ui::CGroupBox')
 	
 	tooltip_equip_property_CSet:Resize(gBox:GetWidth(), tooltip_equip_property_CSet:GetHeight())
-	property_gbox:Resize(gBox:GetWidth(), property_gbox:GetHeight())
+	property_gbox:Resize(gBox:GetWidth() + 5, property_gbox:GetHeight())
 
 	local inner_yPos = 0
 	if item_obj == nil then

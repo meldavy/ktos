@@ -129,12 +129,12 @@ local indun_cls = GetClassByType("Indun", indunType);
     local nowAdmissionItemCount
 
     local pc = GetMyPCObject()
---    if  SCR_RAID_EVENT_20190102(nil, false) and admissionItemName == "Dungeon_Key01" then
-    -- if IsBuffApplied(pc,"Event_Steam_New_World_Buff") == "YES" and admissionItemName == "Dungeon_Key01" then
+--    if  SCR_RAID_EVENT_20190102(nil, false) and admissionItemName == "Dungeon_Key01_NoTrade" then
+    -- if IsBuffApplied(pc,"Event_Steam_New_World_Buff") == "YES" and admissionItemName == "Dungeon_Key01_NoTrade" then
 	--     nowAdmissionItemCount = 1
-	if IsBuffApplied(pc, "Event_Unique_Raid_Bonus") == "YES" and admissionItemName == "Dungeon_Key01" then
+	if IsBuffApplied(pc, "Event_Unique_Raid_Bonus") == "YES" and admissionItemName == "Dungeon_Key01_NoTrade" then
         nowAdmissionItemCount = admissionItemCount
-    elseif IsBuffApplied(pc, "Event_Unique_Raid_Bonus_Limit") == "YES" and admissionItemName == "Dungeon_Key01" then
+    elseif IsBuffApplied(pc, "Event_Unique_Raid_Bonus_Limit") == "YES" and admissionItemName == "Dungeon_Key01_NoTrade" then
         local accountObject = GetMyAccountObj()
         if TryGetProp(accountObject, "EVENT_UNIQUE_RAID_BONUS_LIMIT") > 0 then
             nowAdmissionItemCount = admissionItemCount
@@ -1012,9 +1012,9 @@ function INDUNENTER_MAKE_COUNT_BOX(frame, noPicBox, indunCls)
                 countData2:ShowWindow(0);
     
                 if indunCls.DungeonType == 'UniqueRaid' then
-                    if IsBuffApplied(pc, "Event_Unique_Raid_Bonus") == "YES"and admissionItemName == "Dungeon_Key01" then
+                    if IsBuffApplied(pc, "Event_Unique_Raid_Bonus") == "YES"and admissionItemName == "Dungeon_Key01_NoTrade" then
                         cycleCtrlPic:ShowWindow(1);
-                    elseif IsBuffApplied(pc, "Event_Unique_Raid_Bonus_Limit") == "YES" and admissionItemName == "Dungeon_Key01" then
+                    elseif IsBuffApplied(pc, "Event_Unique_Raid_Bonus_Limit") == "YES" and admissionItemName == "Dungeon_Key01_NoTrade" then
                         local accountObject = GetMyAccountObj(pc)
                         if TryGetProp(accountObject, "EVENT_UNIQUE_RAID_BONUS_LIMIT") > 0 then
                             cycleCtrlPic:ShowWindow(1);
@@ -1058,9 +1058,9 @@ function INDUNENTER_MAKE_COUNT_BOX(frame, noPicBox, indunCls)
 
             local pc = GetMyPCObject()
             if indunCls.DungeonType == 'UniqueRaid' then
-                if IsBuffApplied(pc, "Event_Unique_Raid_Bonus") == "YES" and admissionItemName == "Dungeon_Key01"then
+                if IsBuffApplied(pc, "Event_Unique_Raid_Bonus") == "YES" and admissionItemName == "Dungeon_Key01_NoTrade"then
                     cycleCtrlPic:ShowWindow(1);
-                elseif IsBuffApplied(pc, "Event_Unique_Raid_Bonus_Limit") == "YES" and admissionItemName == "Dungeon_Key01" then
+                elseif IsBuffApplied(pc, "Event_Unique_Raid_Bonus_Limit") == "YES" and admissionItemName == "Dungeon_Key01_NoTrade" then
                     local accountObject = GetMyAccountObj(pc)
                     if TryGetProp(accountObject, "EVENT_UNIQUE_RAID_BONUS_LIMIT") > 0 then
                         cycleCtrlPic:ShowWindow(1);
@@ -2217,12 +2217,12 @@ function INDUNENTER_CHECK_ADMISSION_ITEM(frame, matchType, indunInfoIndunType)
         local addCount = math.floor((nowCount - indunCls.WeeklyEnterableCount) * admissionPlayAddItemCount)
         local nowAdmissionItemCount = admissionItemCount + addCount - isTokenState
 
---        if SCR_RAID_EVENT_20190102(nil , false) and admissionItemName == "Dungeon_Key01" then
-        -- if IsBuffApplied(user,"Event_Steam_New_World_Buff") == "YES" and admissionItemName == "Dungeon_Key01" then
+--        if SCR_RAID_EVENT_20190102(nil , false) and admissionItemName == "Dungeon_Key01_NoTrade" then
+        -- if IsBuffApplied(user,"Event_Steam_New_World_Buff") == "YES" and admissionItemName == "Dungeon_Key01_NoTrade" then
 		--     nowAdmissionItemCount = 1
-		if IsBuffApplied(user, "Event_Unique_Raid_Bonus") == "YES" and admissionItemName == "Dungeon_Key01" then
+		if IsBuffApplied(user, "Event_Unique_Raid_Bonus") == "YES" and admissionItemName == "Dungeon_Key01_NoTrade" then
             nowAdmissionItemCount = admissionItemCount
-        elseif IsBuffApplied(user, "Event_Unique_Raid_Bonus_Limit") == "YES" and admissionItemName == "Dungeon_Key01" then
+        elseif IsBuffApplied(user, "Event_Unique_Raid_Bonus_Limit") == "YES" and admissionItemName == "Dungeon_Key01_NoTrade" then
             local accountObject = GetMyAccountObj()
             if TryGetProp(accountObject, "EVENT_UNIQUE_RAID_BONUS_LIMIT") > 0 then
                 nowAdmissionItemCount = admissionItemCount

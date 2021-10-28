@@ -101,16 +101,17 @@ function GET_COLONY_ENHANCER_CLASS_NAME()
 end
 
 function GET_COLONY_MARKET_PERCENTAGE_LIST()
-    local grade_A = COLONY_TAX_MARKET_RATE_A
-    local grade_B = COLONY_TAX_MARKET_RATE_B
+    local grade_A = tonumber(string.format('%.1f', COLONY_TAX_MARKET_RATE_A / 10))
+    local grade_B = tonumber(string.format('%.1f', COLONY_TAX_MARKET_RATE_B / 10))
+    local grade_C = tonumber(string.format('%.1f', COLONY_TAX_MARKET_RATE_C / 10))
 
-    local gradeList = { {"A", grade_A}, {"B", grade_B} }
+    local gradeList = { {"A", grade_A}, {"B", grade_B}, {"C", grade_C} }
     local clslist, cnt = GetClassList('guild_colony');
     local list = {}
 	for i = 0 , cnt - 1 do
 		local cls = GetClassByIndexFromList(clslist, i);
         if cls.ID == 1 then
-            local zoneGrade = TryGetProp(cls, "ZoneGrade")
+            local zoneGrade = TryGetProp(cls, "ZoneGrade", 'None')
             for j = 1, #gradeList do
                 local grade = table.find(gradeList[j], zoneGrade)
                 if grade ~= 0 then

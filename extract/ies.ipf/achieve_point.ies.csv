@@ -245,6 +245,7 @@ ClassID,ClassName,Name,UseDaily,UseWeekly
 6164,TITLE_Event_2108_Relic_B,칭호 - 은 나와라 뚝딱,NO,NO
 6165,TITLE_Event_2108_Relic_C,칭호 - 동 나와라 뚝딱,NO,NO
 6166,TITLE_Event_2108_Relic_D,칭호 - 명예 고고학 협회 회원,NO,NO
+6167,EVENT_Prank_Title,칭호 - Apolonija's Prank,NO,NO
 7001,PardonerAbility,기부 레벨,NO,NO
 7002,TaxAbility,세금 납부 레벨,NO,NO
 8001,FreeDungeon_under_68_1,시카리오스 기믹,NO,NO

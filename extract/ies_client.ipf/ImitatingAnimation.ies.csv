@@ -98,6 +98,10 @@ ClassID,Delay,ClassName,ObjectAnim,IsLoop
 101,0,guilty_wipe_ride,wipe,YES
 102,0,guilty_wlk,wlk,YES
 103,0,guilty_wlk_ride,wlk,YES
+104,0,guilty_rustledance,rustledance,YES
+105,0,guilty_cheer,cheer,YES
+106,0,guilty_shootdance,shootdance,YES
+107,0,guilty_clockworkdance,clockworkdance,YES
 201,0,doll_tiny_arun,run,YES
 202,0,doll_tiny_arun_ride,run,YES
 203,0,doll_tiny_astd,std,YES
@@ -197,6 +201,10 @@ ClassID,Delay,ClassName,ObjectAnim,IsLoop
 301,0,doll_tiny_wipe_ride,wipe,YES
 302,0,doll_tiny_wlk,run,YES
 303,0,doll_tiny_wlk_ride,run,YES
+304,0,doll_tiny_rustledance,rustledance,YES
+305,0,doll_tiny_cheer,cheer,YES
+306,0,doll_tiny_shootdance,shootdance,YES
+307,0,doll_tiny_clockworkdance,clockworkdance,YES
 401,0,doll_gabia_arun,arun,YES
 402,0,doll_gabia_arun_ride,arun,YES
 403,0,doll_gabia_astd,astd,YES
@@ -296,6 +304,10 @@ ClassID,Delay,ClassName,ObjectAnim,IsLoop
 501,0,doll_gabia_wipe_ride,wipe,YES
 502,0,doll_gabia_wlk,run,YES
 503,0,doll_gabia_wlk_ride,run,YES
+504,0,doll_gabia_rustledance,rustledance,YES
+505,0,doll_gabia_cheer,cheer,YES
+506,0,doll_gabia_shootdance,shootdance,YES
+507,0,doll_gabia_clockworkdance,clockworkdance,YES
 601,0,doll_hauberk_arun,arun,YES
 602,0,doll_hauberk_arun_ride,arun,YES
 603,0,doll_hauberk_astd,astd,YES
@@ -395,6 +407,10 @@ ClassID,Delay,ClassName,ObjectAnim,IsLoop
 701,0,doll_hauberk_wipe_ride,wipe,YES
 702,0,doll_hauberk_wlk,run,YES
 703,0,doll_hauberk_wlk_ride,run,YES
+704,0,doll_hauberk_rustledance,rustledance,YES
+705,0,doll_hauberk_cheer,cheer,YES
+706,0,doll_hauberk_shootdance,shootdance,YES
+707,0,doll_hauberk_clockworkdance,clockworkdance,YES
 801,0,doll_lucy_arun,arun,YES
 802,0,doll_lucy_arun_ride,arun,YES
 803,0,doll_lucy_astd,astd,YES
@@ -494,6 +510,10 @@ ClassID,Delay,ClassName,ObjectAnim,IsLoop
 901,0,doll_lucy_wipe_ride,wipe,YES
 902,0,doll_lucy_wlk,run,YES
 903,0,doll_lucy_wlk_ride,run,YES
+904,0,doll_lucy_rustledance,rustledance,YES
+905,0,doll_lucy_cheer,cheer,YES
+906,0,doll_lucy_shootdance,shootdance,YES
+907,0,doll_lucy_clockworkdance,clockworkdance,YES
 1001,0,doll_vakarine_arun,arun,YES
 1002,0,doll_vakarine_arun_ride,arun,YES
 1003,0,doll_vakarine_astd,astd,YES
@@ -594,6 +614,10 @@ ClassID,Delay,ClassName,ObjectAnim,IsLoop
 1102,0,doll_vakarine_wlk,run,YES
 1103,0,doll_vakarine_wlk_ride,run,YES
 1104,0,doll_vakarine_homerun,homerun,NO
+1105,0,doll_vakarine_rustledance,rustledance,YES
+1106,0,doll_vakarine_cheer,cheer,YES
+1107,0,doll_vakarine_shootdance,shootdance,YES
+1108,0,doll_vakarine_clockworkdance,clockworkdance,YES
 1201,1.2,effect_ep13raincoat_arun,run,YES
 1202,1.2,effect_ep13raincoat_arun_ride,run,YES
 1203,0,effect_ep13raincoat_astd,std,YES
@@ -726,3 +750,7 @@ ClassID,Delay,ClassName,ObjectAnim,IsLoop
 1330,1.2,effect_ep13raincoat_aturn_ride,run,YES
 1331,1.2,effect_ep13raincoat_awlk,run,YES
 1332,1.2,effect_ep13raincoat_awlk_ride,run,YES
+1333,0,effect_ep13raincoat_rustledance,std,YES
+1334,0,effect_ep13raincoat_cheer,std,YES
+1335,0,effect_ep13raincoat_shootdance,std,YES
+1336,0,effect_ep13raincoat_clockworkdance,std,YES

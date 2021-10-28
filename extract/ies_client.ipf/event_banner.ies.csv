@@ -1,4 +1,7 @@
 ClassID,StartTimeYYYYMM,StartTimeDDHHMM,NewTimeYYYYMM,NewTimeDDHHMM,EndTimeYYYYMM,EndTimeDDHHMM,DeadlineTimeYYYYMM,DeadlineTimeDDHHMM,ExchangeTimeYYYYMM,ExchangeTimeDDHHMM,ClassName,Name,ImagePath,url,UserCommand1,UserCommand2,UserCommand3,ShowType
+996730,202109,90900,202109,140000,202110,140900,202110,90000,0,0,event210909goddesscube,축복받은 여신의 큐브 - 9월,event210909goddesscube,http://tos.nexon.com/news/update/view.aspx?n4ArticleSN=2497&n4CategorySN=0,,,,
+996740,202109,90900,202109,140000,202110,140900,202110,90000,0,0,event210909moonrabbit,소원을 이뤄주는 달토끼,event210909moonrabbit,http://tos.nexon.com/news/events/view.aspx?n4ArticleSN=347&n4ArticleCategorySN=1,,,,
+996750,202109,90900,202109,140000,202110,140900,202110,90000,0,0,event2109_DevilsTemptation,마신의 유혹 - 9월,event2109_DevilsTemptation,http://tos.nexon.com/news/events/view.aspx?n4ArticleSN=346&n4ArticleCategorySN=1,,,,
 996760,202109,10000,202109,60000,202110,10000,202109,250000,0,0,event2109_Burning,주말 앤 버닝 - 9월,event2109_Burning,http://tos.nexon.com/news/events/view.aspx?n4ArticleSN=345&n4ArticleCategorySN=1,,,,
 996770,202109,10000,202109,60000,202110,10000,202109,250000,0,0,event2109_VaivoraReward,바이보라 출석 - 9월,event2109_VaivoraReward,http://tos.nexon.com/news/events/view.aspx?n4ArticleSN=344&n4ArticleCategorySN=1,,,,
 996780,202108,120900,202108,170000,202109,20700,202108,280000,0,0,event2108_summer_specialedition,핫서머 패키지,event2108_summer_specialedition,http://tos.nexon.com/news/update/view.aspx?n4ArticleSN=2473&n4CategorySN=0,,,,

@@ -67,6 +67,11 @@ function GCM_MARK_CHANNEL_AS_READ(channel, is_read)
     end
 end
 
+function GCM_COPY_MESSAGE(parent, panel)
+    ui.WriteClipboardText(panel:GetNormalText())
+    ui.MsgBox(ClMsg("CopiedToClipboard"))
+end
+
 function GCM_ON_WHEEL_MSGPANEL(parent, panel, argstr, wheel)
     if current_channel == "" then return end
 

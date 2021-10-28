@@ -769,10 +769,10 @@ function EARTH_TOWER_INIT(frame, shopType)
         if cls.ShopType == shopType then
             if EARTH_TOWER_IS_ITEM_SELL_TIME(cls) == true then
                 local isExchangeEnable = true;
-                if checkExchangeEnable == 1 and EXCHANGE_COUNT_CHECK(cls) == 0 then
-                    isExchangeEnable = false;
+                if checkExchangeEnable == 1 and EXCHANGE_COUNT_CHECK(cls) <= 0 then
+                    isExchangeEnable = false;                    
                 end
-
+                
                 local haveM = CRAFT_HAVE_MATERIAL(cls);
                 if checkHaveMaterial == 1 then
                     if haveM == 1 then
@@ -820,11 +820,21 @@ function EARTH_TOWER_IS_ITEM_SELL_TIME(recipeCls)
 end
 
 function EXCHANGE_COUNT_CHECK(cls)
-    local recipecls = GetClass('ItemTradeShop', cls.ClassName);
+    local recipecls = GetClass('ItemTradeShop', cls.ClassName);    
 
     if recipecls.AccountNeedProperty ~= 'None' then
         local aObj = GetMyAccountObj()
-        local sCount = TryGetProp(aObj, recipecls.AccountNeedProperty);
+        local sCount = TryGetProp(aObj, recipecls.AccountNeedProperty, 0);
+                
+        if sCount <= 0 then
+            local overbuy_prop = TryGetProp(recipecls, 'OverBuyProperty', 'None')
+            if overbuy_prop ~= 'None' then
+                local now = TryGetProp(aObj, overbuy_prop, 0)
+                local max = TryGetProp(recipecls, 'MaxOverBuyCount', 10000)                
+                return max - now
+            end
+        end
+
         return sCount;
     end
 
@@ -834,7 +844,7 @@ function EXCHANGE_COUNT_CHECK(cls)
         return sCount;
     end
 
-    return "None";
+    return 1
 end
 
 function INSERT_ITEM(cls, tree, slotHeight, haveMaterial, shopType)    

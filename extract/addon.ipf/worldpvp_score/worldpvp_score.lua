@@ -1,7 +1,8 @@
--- worldpvp_scroe
+﻿-- worldpvp_scroe
 function WORLDPVP_SCORE_ON_INIT(addon, frame)
 	addon:RegisterOpenOnlyMsg("LAYER_PC_LIST_UPDATE", "WORLDPVP_SCORE_LAYER_PC_UPDATE");
 	addon:RegisterOpenOnlyMsg("MGAME_VALUE_UPDATE", "WORLDPVP_SCORE_MGAME_VALUE_UPDATE");
+	addon:RegisterMsg("WORLDPVP_TIME_UPDATE", "PVP_BATTLE_TIME_UPDATE")
 end
 
 function SET_TARGETINFO_TO_PVP_POS()
@@ -136,6 +137,11 @@ function _WORLDPVP_SCORE_UPDATE_ICON_COLOR(groupBox, teamID)
 			end
 		end
 	end
+end
+
+function PVP_BATTLE_TIME_UPDATE(frame)
+	local pc = GetMyPCObject();
+	if pc ~= nil then PVP_BATTLE_START_C(pc); end
 end
 
 function PVP_BATTLE_START_C(actor)

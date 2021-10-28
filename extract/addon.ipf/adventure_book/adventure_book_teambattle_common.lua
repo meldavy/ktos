@@ -227,8 +227,9 @@ function WORLDPVP_PUBLIC_GAME_LIST(frame, msg, argStr, argNum)
 	local game_index_list = WORLDPVP_PUBLIC_GAME_LIST_BY_TYPE(is_guild_pvp);
 
 	local ctrl_set_y = 0;
-	local max_count = 3;
-	local cnt = math.min(#game_index_list, max_count);
+	--local max_count = 3;
+	--local cnt = math.min(#game_index_list, max_count);
+	local cnt = #game_index_list;
 	for i = 1, cnt do
 		local index = game_index_list[i];
 		if index ~= nil then

@@ -285,6 +285,7 @@ function ITEM_OPTIONADD_REG_ADD_ITEM(frame, itemID)
 		local obj = tempItem
 		local obj_add = item
 		if (TryGetProp(obj, 'InheritanceItemName', 'None') ~= 'None' and TryGetProp(obj_add, 'InheritanceItemName', 'None') ~= 'None')
+		or (TryGetProp(obj, 'InheritanceItemName', 'None') ~= 'None' and TryGetProp(obj_add, 'GroupName', 'None') == 'Arcane')
 		or TryGetProp(obj, 'InheritanceRandomItemName', 'None') ~= 'None' and TryGetProp(obj_add, 'InheritanceRandomItemName', 'None') ~= 'None' then
 			ui.SysMsg(ClMsg("AlearyIcorAdded"))
 			return
@@ -571,6 +572,7 @@ function ITEMOPTIONADD_EXEC(frame)
 	local obj_add = GetIES(invItem_add:GetObject());
 
 	if (TryGetProp(obj, 'InheritanceItemName', 'None') ~= 'None' and TryGetProp(obj_add, 'InheritanceItemName', 'None') ~= 'None')
+	or (TryGetProp(obj, 'InheritanceItemName', 'None') ~= 'None' and TryGetProp(obj_add, 'GroupName', 'None') == 'Arcane')
 		or TryGetProp(obj, 'InheritanceRandomItemName', 'None') ~= 'None' and TryGetProp(obj_add, 'InheritanceRandomItemName', 'None') ~= 'None' then 
 		ui.SysMsg(ClMsg("AlearyIcorAdded"));
 		return;
@@ -871,6 +873,7 @@ function ITEMOPTIONADD_INV_RBTN(itemObj, slot)
 	if tempItem ~= nil then		
 		local obj_add = tempItem
 		if (TryGetProp(obj, 'InheritanceItemName', 'None') ~= 'None' and TryGetProp(obj_add, 'InheritanceItemName', 'None') ~= 'None')
+		or (TryGetProp(obj, 'InheritanceItemName', 'None') ~= 'None' and TryGetProp(obj_add, 'GroupName', 'None') == 'Arcane')
 		or TryGetProp(obj, 'InheritanceRandomItemName', 'None') ~= 'None' and TryGetProp(obj_add, 'InheritanceRandomItemName', 'None') ~= 'None' then
 			ui.SysMsg(ClMsg("AlearyIcorAdded"))
 			return

@@ -8,11 +8,14 @@ function GUILDINFO_COLONY_INIT(frame, colonyBox)
         showRewardBtn = 1;
     end
 
-    local colonyRewardBtnSection_FirstLeague = GET_CHILD_RECURSIVELY(colonyBox, "colonyRewardBtnSection_FirstLeague");
-    colonyRewardBtnSection_FirstLeague:ShowWindow(showRewardBtn);
+    -- local colonyRewardBtnSection_FirstLeague = GET_CHILD_RECURSIVELY(colonyBox, "colonyRewardBtnSection_FirstLeague");
+    -- colonyRewardBtnSection_FirstLeague:ShowWindow(showRewardBtn);
 
-    local colonyRewardBtnSection_SecondLeague = GET_CHILD_RECURSIVELY(colonyBox, "colonyRewardBtnSection_SecondLeague");
-    colonyRewardBtnSection_SecondLeague:ShowWindow(showRewardBtn);
+    -- local colonyRewardBtnSection_SecondLeague = GET_CHILD_RECURSIVELY(colonyBox, "colonyRewardBtnSection_SecondLeague");
+    -- colonyRewardBtnSection_SecondLeague:ShowWindow(showRewardBtn);
+
+    local colonyTaxBtn = GET_CHILD_RECURSIVELY(colonyBox, 'colonyTaxBtn')
+    colonyTaxBtn:ShowWindow(showRewardBtn)
 end
 
 function GUILDINFO_COLONY_HELP_CLICK(parent, ctrl)
@@ -315,7 +318,14 @@ function GUILDINFO_COLONY_SET_OCCUPY_INFO_CTRLSET(infoCtrlSet, mapCls, isColonyW
                 taxRateIconStr = TAX_RATE_ICON
                 totalAmountStr = GET_COMMAED_STRING(taxRateInfo:GetCachedTotalTax())
                 local colonyCls = GET_COLONY_CLASS(mapCls.ClassName)
-                marketTaxStr = ScpArgMsg('ColonyTaxCityMarketWeekly{Percent}', 'Percent', taxRateInfo:GetMarketRate())
+                marketTaxStr = ScpArgMsg('ColonyTaxCityMarketWeekly{Percent}', 'Percent', taxRateInfo:GetMarketRate() / 10)
+            end
+        end
+    elseif colonyLeague == 2 then
+        if isColonyWarState == false then
+            local taxRateInfo = session.colonytax.GetColonyTaxRate(cityMapCls.ClassID)
+            if taxRateInfo ~= nil then
+                marketTaxStr = ScpArgMsg('ColonyTaxCityMarketWeekly{Percent}', 'Percent', taxRateInfo:GetMarketRate() / 10)
             end
         end
     end

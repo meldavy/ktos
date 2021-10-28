@@ -2061,6 +2061,10 @@ function SCR_Get_RHP(self)
     end
     
     local value = defaultValue + byItem + byBuff;
+
+    if IsPVPServer(self) == 1 then
+        value = value / 2
+    end
     
     if value < 0 then
         value = 0;

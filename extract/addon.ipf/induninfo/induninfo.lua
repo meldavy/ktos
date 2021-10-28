@@ -6,7 +6,8 @@ function INDUNINFO_ON_INIT(addon, frame)
     addon:RegisterMsg('FIELD_BOSS_RANKING_UPDATE', 'ON_FIELD_BOSS_RANKING_UPDATE');
     addon:RegisterMsg('BORUTA_RANKING_UI_UPDATE', 'BORUTA_RANKING_UI_UPDATE');
     addon:RegisterMsg("PVP_STATE_CHANGE", "INDUNINFO_TEAM_BATTLE_STATE_CHANGE");
-    addon:RegisterMsg("FAVORITE_CHANGE","INDUN_INFO_UPDATE_FAVORITE")
+    addon:RegisterMsg("FAVORITE_CHANGE","INDUN_INFO_UPDATE_FAVORITE");
+    addon:RegisterMsg("PVP_PC_INFO", "INDUNINFO_UPDATE_PVP_RESULT");
 	g_selectedIndunTable = {};
 end
 
@@ -1213,9 +1214,9 @@ function PVP_INDUNINFO_MAKE_DETAIL_INFO_BOX(frame, indunClassID)
 end
 
 ---------------start draw indun tab detail ui---------------------
-function INDUNINVO_SET_PVP_RESULT(frame,pvpCls)
+function INDUNINVO_SET_PVP_RESULT(frame, pvpCls)
 	local pvpObj = GET_PVP_OBJECT_FOR_TYPE(pvpCls)
-	local pvpInfoSet = GET_CHILD_RECURSIVELY(frame, 'pvpInfoBox');
+    local pvpInfoSet = GET_CHILD_RECURSIVELY(frame, 'pvpInfoBox');
 	if pvpObj ~= nil then
 		local pvpInfo = GET_CHILD(pvpInfoSet,'pvpInfoValue')
 		local pvpScore = GET_CHILD(pvpInfoSet,'pvpScoreValue')
@@ -1233,6 +1234,37 @@ function INDUNINVO_SET_PVP_RESULT(frame,pvpCls)
 		pvpScore:SetTextByKey('score',propValue)
 	end
 	pvpInfoSet:ShowWindow(1)
+end
+
+function INDUNINFO_UPDATE_PVP_RESULT(frame, msg, arg_str, arg_num)
+    local pvp_name = arg_str;
+    local pvp_cls = GetClass("PVPIndun", pvp_name);
+    if pvp_cls ~= nil then
+        local world_pvp_type = TryGetProp(pvp_cls, "WorldPVPType", 0);
+        local world_pvp_cls = GetClassByType("WorldPVPType", world_pvp_type);
+        if world_pvp_cls ~= nil then
+            local pvp_obj = GET_PVP_OBJECT_FOR_TYPE(world_pvp_cls);
+            if pvp_obj ~= nil then
+                local pvp_info_set = GET_CHILD_RECURSIVELY(frame, "pvpInfoBox");
+                local pvp_info = GET_CHILD_RECURSIVELY(pvp_info_set, "pvpInfoValue");
+                local pvp_score = GET_CHILD_RECURSIVELY(pvp_info_set, "pvpScoreValue");
+                local world_pvp_cls_name = TryGetProp(world_pvp_cls, "ClassName", "None");
+                if world_pvp_cls_name ~= "None" then
+                    local win = pvp_obj:GetPropValue(world_pvp_cls_name.."_WIN", 0);
+                    pvp_info:SetTextByKey("win", win);
+                    
+                    local lose = pvp_obj:GetPropValue(world_pvp_cls_name.."LOSE", 0);
+                    pvp_info:SetTextByKey("lose", lose);
+                    
+                    local prop_value = win + lose;
+                    pvp_info:SetTextByKey("total", prop_value);
+
+                    prop_value = pvp_obj:GetPropValue(world_pvp_cls_name.."_RP", 0);
+                    pvp_score:SetTextByKey("scroe", prop_value);
+                end
+            end
+        end
+    end
 end
 
 function INDUNINFO_MAKE_DETAIL_COMMON_INFO(frame, indunCls, resetGroupID)

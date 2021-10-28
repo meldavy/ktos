@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by imc (imc) -->
+<!-- edited with XMLSpy v2008 sp1 (http://www.altova.com) by tachyon (EMBRACE) -->
+<ActionDesc>
+    <Particle frame="0" attachNode="Dummy_emitter" particleName="I_toy_ep13retro_light" useAttach="true" hiddenObj="false" changeEffect="None" scale="1.73" pause="true" targetPos="false"/>
+    <Particle frame="0" attachNode="Dummy_music001" particleName="F_levitation041_music2_loop2" useAttach="true" hiddenObj="false" changeEffect="None" scale="3" pause="true" targetPos="false"/>
+    <Particle frame="0" attachNode="Dummy_light001" particleName="F_light070_loop_event" useAttach="true" hiddenObj="false" changeEffect="None" scale="1" pause="true" targetPos="false"/>
+    <Particle frame="0" attachNode="Dummy_light001" particleName="F_spread_out067_light" useAttach="true" hiddenObj="false" changeEffect="None" scale="1" pause="true" targetPos="false"/>
+    <Particle frame="0" attachNode="Dummy_light003" particleName="F_light015_violet_loop2" useAttach="true" hiddenObj="false" changeEffect="None" scale="2" pause="true" targetPos="false"/>
+    <Particle frame="0" attachNode="Dummy_light005" particleName="F_light015_violet_loop2" useAttach="true" hiddenObj="false" changeEffect="None" scale="2" pause="true" targetPos="false"/>
+    <Particle frame="0" attachNode="Dummy_light002" particleName="F_light197_violet_loop" useAttach="true" hiddenObj="false" changeEffect="None" scale="1" pause="true" targetPos="false"/>
+    <Particle frame="0" attachNode="Dummy_light003" particleName="F_light197_yellow_loop" useAttach="true" hiddenObj="false" changeEffect="None" scale="2" pause="true" targetPos="false"/>
+    <Particle frame="0" attachNode="Dummy_light004" particleName="F_light197_violet_loop" useAttach="true" hiddenObj="false" changeEffect="None" scale="1" pause="true" targetPos="false"/>
+    <Particle frame="0" attachNode="Dummy_light005" particleName="F_light197_yellow_loop" useAttach="true" hiddenObj="false" changeEffect="None" scale="1" pause="true" targetPos="false"/>
+    <Sound frame="0.08" soundFile="skl_eff_jukebox_born"/>
+    <Particle frame="10" attachNode="Dummy_music002" particleName="F_levitation041_music2_loop3" useAttach="true" hiddenObj="false" changeEffect="None" scale="2" pause="true" targetPos="false"/>
+</ActionDesc>

@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by imc (imc) -->
 <ActionDesc>
-	<AttachModel frame="0" XAC="archer_f_arrow_01" node="Dummy_arrow" isAttach="true" autoDetach="false" index="0" anim="None"/>
 	<Sound frame="0.00" soundFile="skl_eff_murmillo_jump"/>
-	<Sound frame="10.00" soundFile="arrow_shot_skl"/>
-	<Sound frame="14.00" soundFile="arrow_shot_skl"/>
-	<Sound frame="19.00" soundFile="arrow_shot_skl"/>
 	<Sound frame="27.00" soundFile="skl_eff_murmillo_landing"/>
 	<Sound frame="27.00" soundFile="skl_eff_born_landing_s_3"/>
 </ActionDesc>

@@ -3,7 +3,9 @@
     <Game Name="battlefield5vs5" useWorldChat="1" minLv="0" maxLv="0" mapName="pvp_tournament_5vs5" playerCountCheckDestroy="1">
         <StageList>
             <Stage Name="DefGroup" AutoStart="0">
-                <ObjList/>
+                <ObjList>
+                    <Obj Type="Monster" MonType="160098" Pos="24.57#1.40#-21.20" genCount="1" genTime="20000" objectKey="0"/>
+                </ObjList>
                 <StageEvents>
                     <Event execCount="1" eventName="BattleWaitBuff" execWithStart="0">
                         <execList>
@@ -192,22 +194,15 @@
             <Stage Name="battle" AutoStart="0">
                 <ObjList/>
                 <StageEvents>
-                    <Event eventName="HiddenMonsterCreate">
-                        <execList>
-                            <ToolScp Scp="MGAME_EVT_SCRIPT" Client="NO" UseSleep="NO">
-                                <Str Str="CREATE_PVP_HIDDEN_MONSTER"/>
-                            </ToolScp>
-                        </execList>
-                    </Event>
                     <Event execMS="0" execCount="1" eventName="setsimpleAI">
                         <execList>
                             <ToolScp Scp="MGAME_SET_TIMER" Client="NO" UseSleep="NO">
                                 <Str Str="Battle"/>
-                                <Num Num="180"/>
+                                <Num Num="90"/>
                             </ToolScp>
                             <ToolScp Scp="GAME_ST_EVT_EXEC_VALUE" Client="NO" UseSleep="NO">
                                 <Str Str="RoundMaxTime"/>
-                                <Num Num="180"/>
+                                <Num Num="90"/>
                             </ToolScp>
                             <ToolScp Scp="MGAME_EVT_SCRIPT_CLIENT" Client="YES" UseSleep="NO">
                                 <Str Str="PVP_BATTLE_START_C"/>
@@ -230,7 +225,14 @@
                             </ToolScp>
                         </listExec>
                     </Event>
-                    <Event execMS="180000" execCount="1" eventName="checktimer_team_win" execWithStart="0">
+                    <Event eventName="record_round_time">
+                        <execList>
+                            <ToolScp Scp="MGAME_EVT_SCRIPT" Client="NO" UseSleep="NO">
+                                <Str Str="WORLDPVP_ROUND_PLAY_TIME_RECORD"/>
+                            </ToolScp>
+                        </execList>
+                    </Event>
+                    <Event execMS="90000" execCount="1" eventName="checktimer_team_win" execWithStart="0">
                         <condList>
                             <ToolScp Scp="MGAME_EVT_COND_SCRIPT" Client="NO" UseSleep="NO">
                                 <Str Str="CHECK_TEAM_MORE_DEAL"/>
@@ -323,6 +325,9 @@
                                 <Num Num="5"/>
                             </ToolScp>
                             <ToolScp Scp="MGAME_EVT_SCRIPT" Client="NO" UseSleep="NO">
+                                <Str Str="WORLDPVP_ROUND_LOG"/>
+                            </ToolScp>
+                            <ToolScp Scp="MGAME_EVT_SCRIPT" Client="NO" UseSleep="NO">
                                 <Str Str="MGAME_WORLDPVP_RESULT"/>
                             </ToolScp>
                             <ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
@@ -352,6 +357,10 @@
                                 <Str Str="Team2_Score"/>
                                 <Num Num="1"/>
                             </ToolScp>
+                            <ToolScp Scp="GAME_ST_EVT_EXEC_VALUE" Client="NO" UseSleep="NO">
+                                <Str Str="each_round_win_team"/>
+                                <Num Num="2"/>
+                            </ToolScp>
                             <ToolScp Scp="MGAME_MSG_SIMPLE" Client="YES" UseSleep="NO">
                                 <Str Str="{@st55_a}"/>
                                 <Str Str="2팀 승리"/>
@@ -370,6 +379,10 @@
                         <execList>
                             <ToolScp Scp="GAME_ST_EVT_ADD_VALUE" Client="NO" UseSleep="NO">
                                 <Str Str="Team1_Score"/>
+                                <Num Num="1"/>
+                            </ToolScp>
+                            <ToolScp Scp="GAME_ST_EVT_EXEC_VALUE" Client="NO" UseSleep="NO">
+                                <Str Str="each_round_win_team"/>
                                 <Num Num="1"/>
                             </ToolScp>
                             <ToolScp Scp="MGAME_MSG_SIMPLE" Client="YES" UseSleep="NO">
@@ -396,6 +409,9 @@
                     <Event execCount="1" eventName="battle_end" execWithStart="0" isEnabled="0">
                         <execList>
                             <ToolScp Scp="MLIST_ST_FULLFIL_END_CONDITION" Client="NO" UseSleep="NO"/>
+                            <ToolScp Scp="MGAME_EVT_SCRIPT" Client="NO" UseSleep="NO">
+                                <Str Str="WORLDPVP_ROUND_LOG"/>
+                            </ToolScp>
                             <ToolScp Scp="GAME_ST_EVT_ADD_VALUE" Client="NO" UseSleep="NO">
                                 <Str Str="Round"/>
                                 <Num Num="1"/>
@@ -416,7 +432,9 @@
                 </StageEvents>
             </Stage>
             <Stage Name="tonextbattle" AutoStart="0">
-                <ObjList/>
+                <ObjList>
+                    <Obj Type="Monster" MonType="160098" Pos="24.57#1.40#-21.20" genCount="1" genTime="20000" objectKey="0"/>
+                </ObjList>
                 <StageEvents>
                     <Event execCount="1" eventName="on_pvp_battle_end">
                         <execList>
@@ -551,7 +569,9 @@
                         <Str Str="None"/>
                     </ToolScp>
                 </StartScpList>
-                <ObjList/>
+                <ObjList>
+                    <Obj Type="Monster" MonType="160098" Pos="24.57#1.40#-21.20" genCount="1" genTime="20000" objectKey="0"/>
+                </ObjList>
                 <StageEvents>
                     <Event execCount="1" eventName="wait" execWithStart="0">
                         <execList>
@@ -753,6 +773,10 @@
             </ToolScp>
             <ToolScp Scp="MGAME_PC_LIST_UPDATE" Client="NO" UseSleep="NO">
                 <Num Num="1"/>
+            </ToolScp>
+            <ToolScp Scp="MGAME_ZONELEAVE_SCRIPT" Client="NO" UseSleep="NO">
+                <Num Num="2"/>
+                <Str Str="WORLDPVP_LEAVE_ZONE"/>
             </ToolScp>
         </LeaveList>
         <WorldInitList>

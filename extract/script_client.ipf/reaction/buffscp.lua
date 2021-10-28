@@ -1640,10 +1640,12 @@ end
 
 function EP13STEM_EFFECT_2106_ENTER(actor, obj, buff)
     effect.AddActorEffectByOffset(actor, "E_effect_ep13stem", 1.2, "MID", false, true);
+    actor:SetEquipItemFlagProp("EFFECTCOSTUME", 1);
 end
 
 function EP13STEM_EFFECT_2106_LEAVE(actor, obj, buff)
     effect.DetachActorEffect(actor, "E_effect_ep13stem", 0.0);
+    actor:SetEquipItemFlagProp("EFFECTCOSTUME", 0);
 end
 
 -- 둥실 둥실 오리 가족
@@ -1661,4 +1663,18 @@ end
 function TOSHero_Buff_Overwhelm_ClientScp_ENTER(actor, obj, buff)
     print(actor, obj, buff)
     actor:GetEffect():ActorColorBlend(0, 0, 0, 0, 1, 1);
+end
+
+function EP13RETRO_EFFECT_ENTER(actor, obj, buff)
+    effect.AddActorEffectByOffset(actor, "I_Effect_ep13retro_mesh", 1, "Dummy_emitter", true, true);
+    effect.AddActorEffectByOffset(actor, "F_light195_loop", 1, "Dummy_emitter", true, true);
+    effect.AddActorEffectByOffset(actor, "F_light196_loop", 1, "Dummy_emitter", true, true);
+    actor:SetEquipItemFlagProp("EFFECTCOSTUME", 1);
+end
+
+function EP13RETRO_EFFECT_LEAVE(actor, obj, buff)
+    effect.DetachActorEffect(actor, "I_Effect_ep13retro_mesh", 0.2);
+    effect.DetachActorEffect(actor, "F_light195_loop", 0.2);
+    effect.DetachActorEffect(actor, "F_light196_loop", 0.2);
+    actor:SetEquipItemFlagProp("EFFECTCOSTUME", 0);
 end

@@ -1005,7 +1005,7 @@
                     <Event eventName="Map_Pattern_1">
                         <condList>
                             <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK_START" Client="NO" UseSleep="NO">
-                                <Num Num="2"/>
+                                <Num Num="4"/>
                             </ToolScp>
                         </condList>
                         <execList>
@@ -1328,7 +1328,7 @@
                     <Event eventName="Map_Pattern_1">
                         <condList>
                             <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK_START" Client="NO" UseSleep="NO">
-                                <Num Num="2"/>
+                                <Num Num="4"/>
                             </ToolScp>
                         </condList>
                         <execList>
@@ -1651,7 +1651,7 @@
                     <Event eventName="Map_Pattern_1">
                         <condList>
                             <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK_START" Client="NO" UseSleep="NO">
-                                <Num Num="2"/>
+                                <Num Num="4"/>
                             </ToolScp>
                         </condList>
                         <execList>

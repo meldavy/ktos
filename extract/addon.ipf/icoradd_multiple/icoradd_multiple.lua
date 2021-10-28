@@ -130,7 +130,7 @@ function ICORADD_CTRL_REG_MAIN_ITEM(ctrlSet, itemID)
 	if invItem == nil then
 		return
 	end
-
+	
 	local max_count = GET_ICOR_MULTIPLE_MAX_COUNT()
 	for i = 1, max_count do
 		local temp = GET_CHILD_RECURSIVELY(frame, 'ctrlset_' .. i)
@@ -203,6 +203,7 @@ function ICORADD_CTRL_REG_MAIN_ITEM(ctrlSet, itemID)
 	end
 end
 
+-- 아이커 장착
 function ICORADD_CTRL_REG_ADD_ITEM(ctrlSet, itemID)
 	if ui.CheckHoldedUI() == true then
 		return
@@ -266,7 +267,7 @@ function ICORADD_CTRL_REG_ADD_ITEM(ctrlSet, itemID)
     
 	--아이커의 atk 과 slot 의 atk 이 맞아야만 장착가능
 	local targetItem = GetClass('Item', itemObj.InheritanceItemName)
-
+	
 	if itemObj.GroupName == 'Icor' then
         if TryGetProp(targetItem, 'StringArg', 'None') == 'Vibora' then				
 			ui.SysMsg(ClMsg('NowCantViboraIcorToWeapon'))
@@ -297,10 +298,11 @@ function ICORADD_CTRL_REG_ADD_ITEM(ctrlSet, itemID)
 		return
 	end
 	
-	if tempItem ~= nil then
+	if tempItem ~= nil then		
 		local obj = tempItem
 		local obj_add = itemObj
 		if (TryGetProp(obj, 'InheritanceItemName', 'None') ~= 'None' and TryGetProp(obj_add, 'InheritanceItemName', 'None') ~= 'None')
+		or (TryGetProp(obj, 'InheritanceItemName', 'None') ~= 'None' and TryGetProp(obj_add, 'GroupName', 'None') == 'Arcane')
 		or TryGetProp(obj, 'InheritanceRandomItemName', 'None') ~= 'None' and TryGetProp(obj_add, 'InheritanceRandomItemName', 'None') ~= 'None' then
 			ui.SysMsg(ClMsg("AlearyIcorAdded"))
 			return
@@ -534,6 +536,7 @@ function ICORADD_MULTIPLE_EXEC(frame)
 				local obj = GetIES(invItem:GetObject())
 				local obj_add = GetIES(invItem_add:GetObject())
 				if (TryGetProp(obj, 'InheritanceItemName', 'None') ~= 'None' and TryGetProp(obj_add, 'InheritanceItemName', 'None') ~= 'None')
+				or (TryGetProp(obj, 'InheritanceItemName', 'None') ~= 'None' and TryGetProp(obj_add, 'GroupName', 'None') == 'Arcane')
 				or TryGetProp(obj, 'InheritanceRandomItemName', 'None') ~= 'None' and TryGetProp(obj_add, 'InheritanceRandomItemName', 'None') ~= 'None' then
 					ui.SysMsg(ClMsg("AlearyIcorAdded"))
 					return
@@ -589,6 +592,7 @@ function _ICORADD_MULTIPLE_EXEC(checkRebuildFlag)
 			local obj = GetIES(mainInvItem:GetObject())
 			local obj_add = GetIES(addInvItem:GetObject())
 			if (TryGetProp(obj, 'InheritanceItemName', 'None') ~= 'None' and TryGetProp(obj_add, 'InheritanceItemName', 'None') ~= 'None')
+			or (TryGetProp(obj, 'InheritanceItemName', 'None') ~= 'None' and TryGetProp(obj_add, 'GroupName', 'None') == 'Arcane')
 			or TryGetProp(obj, 'InheritanceRandomItemName', 'None') ~= 'None' and TryGetProp(obj_add, 'InheritanceRandomItemName', 'None') ~= 'None' then
 				ui.SysMsg(ClMsg("AlearyIcorAdded"))
 				return

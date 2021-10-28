@@ -682,6 +682,15 @@ function SCR_SKL_CHECK_BATTLESTATE_C(actor, skl)
     return 0;
 end
 
+function SCR_SKL_CHECK_BATTLESTATE_AND_MOVING_C(actor, skl)
+    local pc = GetMyPCObject()
+    if IsBattleState(pc) == 0 and control.IsMoving(false) == 0 then
+        return 1;
+    end
+
+    return 0;
+end
+
 function SCR_CHECK_MAINCARD_SUMMON_STATE_C(actor, skl)
     local pc = GetMyPCObject()
     if GetExProp(pc, 'SUMMON_MAINCARD') == 1 then

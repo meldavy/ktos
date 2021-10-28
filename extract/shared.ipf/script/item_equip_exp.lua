@@ -355,6 +355,8 @@ function SCR_BUFF_ENTER_Premium_boostToken(self, buff, arg1, arg2, over)
 			local before = GetExProp(self, 'Premium_boostToken_rate')
 			SetExProp(self, 'Premium_boostToken_rate', before + rate)
 		end
+
+		self.RSta_BM = self.RSta_BM + 500;
 	end
 end
 function SCR_BUFF_LEAVE_Premium_boostToken(self, buff, arg1, arg2, over)
@@ -370,8 +372,16 @@ function SCR_BUFF_LEAVE_Premium_boostToken(self, buff, arg1, arg2, over)
 			end
 			SetExProp(self, 'Premium_boostToken_rate', after)
 		end
+
+    	self.RSta_BM = self.RSta_BM - 500;
+		
+    	if GetBuffRemainTime(buff) <= 0 then
+    	    SendSysMsg(self, "Premium_boostToken_EndMsg");
+    	    PremiumItemMongoLog(self, "BoostToken", "End", 0);        
+    	end
 	end
 end
+
 -- 4배
 function SCR_BUFF_ENTER_Premium_boostToken02(self, buff, arg1, arg2, over)
 	local id = TryGetProp(buff, 'ClassID', 0)
@@ -382,6 +392,8 @@ function SCR_BUFF_ENTER_Premium_boostToken02(self, buff, arg1, arg2, over)
 			local before = GetExProp(self, 'Premium_boostToken_rate')
 			SetExProp(self, 'Premium_boostToken_rate', before + rate)
 		end
+
+		self.RSta_BM = self.RSta_BM + 2000;
 	end
 end
 function SCR_BUFF_LEAVE_Premium_boostToken02(self, buff, arg1, arg2, over)
@@ -397,8 +409,17 @@ function SCR_BUFF_LEAVE_Premium_boostToken02(self, buff, arg1, arg2, over)
 			end
 			SetExProp(self, 'Premium_boostToken_rate', after)
 		end
+
+    	self.RSta_BM = self.RSta_BM - 2000;
+		
+    	if GetBuffRemainTime(buff) <= 0 then
+    	    SendSysMsg(self, "Premium_boostToken_EndMsg");
+    	    PremiumItemMongoLog(self, "BoostToken", "End", 0);
+    	    ReqConsumePremiumBuff(self, 'Premium_boostToken02', 5);
+    	end
 	end
 end
+
 -- 8배
 function SCR_BUFF_ENTER_Premium_boostToken03(self, buff, arg1, arg2, over)
 	local id = TryGetProp(buff, 'ClassID', 0)
@@ -409,6 +430,8 @@ function SCR_BUFF_ENTER_Premium_boostToken03(self, buff, arg1, arg2, over)
 			local before = GetExProp(self, 'Premium_boostToken_rate')
 			SetExProp(self, 'Premium_boostToken_rate', before + rate)
 		end
+
+		self.RSta_BM = self.RSta_BM + 4000;
 	end
 end
 function SCR_BUFF_LEAVE_Premium_boostToken03(self, buff, arg1, arg2, over)
@@ -424,6 +447,14 @@ function SCR_BUFF_LEAVE_Premium_boostToken03(self, buff, arg1, arg2, over)
 			end
 			SetExProp(self, 'Premium_boostToken_rate', after)
 		end
+		 
+		self.RSta_BM = self.RSta_BM - 4000;
+
+		if buff ~= nil and GetBuffRemainTime(buff) <= 0 then    
+			SendSysMsg(self, "Premium_boostToken_EndMsg");
+			PremiumItemMongoLog(self, "BoostToken", "End", 0);
+			ReqConsumePremiumBuff(self, 'Premium_boostToken03', 5);
+		end
 	end
 end
 
@@ -436,6 +467,8 @@ function SCR_BUFF_ENTER_Premium_boostToken04(self, buff, arg1, arg2, over)
 			local before = GetExProp(self, 'Premium_boostToken_rate')
 			SetExProp(self, 'Premium_boostToken_rate', before + rate)
 		end
+		
+		self.RSta_BM = self.RSta_BM + 500
 	end
 end
 function SCR_BUFF_LEAVE_Premium_boostToken04(self, buff, arg1, arg2, over)
@@ -451,8 +484,16 @@ function SCR_BUFF_LEAVE_Premium_boostToken04(self, buff, arg1, arg2, over)
 			end
 			SetExProp(self, 'Premium_boostToken_rate', after)
 		end
+		
+		self.RSta_BM = self.RSta_BM - 500;
+    
+		if GetBuffRemainTime(buff) <= 0 then
+			SendSysMsg(self, "Premium_boostToken_EndMsg");
+			PremiumItemMongoLog(self, "BoostToken", "End", 0);
+		end
 	end
 end
+
 -- 16배
 function SCR_BUFF_ENTER_Premium_boostToken05(self, buff, arg1, arg2, over)
 	local id = TryGetProp(buff, 'ClassID', 0)
@@ -463,6 +504,8 @@ function SCR_BUFF_ENTER_Premium_boostToken05(self, buff, arg1, arg2, over)
 			local before = GetExProp(self, 'Premium_boostToken_rate')
 			SetExProp(self, 'Premium_boostToken_rate', before + rate)
 		end
+		
+		self.RSta_BM = self.RSta_BM + 4000;
 	end
 end
 function SCR_BUFF_LEAVE_Premium_boostToken05(self, buff, arg1, arg2, over)
@@ -478,8 +521,17 @@ function SCR_BUFF_LEAVE_Premium_boostToken05(self, buff, arg1, arg2, over)
 			end
 			SetExProp(self, 'Premium_boostToken_rate', after)
 		end
+		
+		self.RSta_BM = self.RSta_BM - 4000;
+
+		if buff ~= nil and GetBuffRemainTime(buff) <= 0 then    
+			SendSysMsg(self, "Premium_boostToken_EndMsg");
+			PremiumItemMongoLog(self, "BoostToken", "End", 0);
+			ReqConsumePremiumBuff(self, 'Premium_boostToken05', 5);
+		end
 	end
 end
+
 -- 32배
 function SCR_BUFF_ENTER_Premium_boostToken06(self, buff, arg1, arg2, over)
 	local id = TryGetProp(buff, 'ClassID', 0)
@@ -490,6 +542,8 @@ function SCR_BUFF_ENTER_Premium_boostToken06(self, buff, arg1, arg2, over)
 			local before = GetExProp(self, 'Premium_boostToken_rate')
 			SetExProp(self, 'Premium_boostToken_rate', before + rate)
 		end
+		
+		self.RSta_BM = self.RSta_BM + 4000;
 	end
 end
 function SCR_BUFF_LEAVE_Premium_boostToken06(self, buff, arg1, arg2, over)
@@ -504,6 +558,14 @@ function SCR_BUFF_LEAVE_Premium_boostToken06(self, buff, arg1, arg2, over)
 				after = 0
 			end
 			SetExProp(self, 'Premium_boostToken_rate', after)
+		end
+		
+		self.RSta_BM = self.RSta_BM - 4000;
+
+		if buff ~= nil and GetBuffRemainTime(buff) <= 0 then    
+			SendSysMsg(self, "Premium_boostToken_EndMsg");
+			PremiumItemMongoLog(self, "BoostToken", "End", 0);
+			ReqConsumePremiumBuff(self, 'Premium_boostToken06', 5);
 		end
 	end
 end

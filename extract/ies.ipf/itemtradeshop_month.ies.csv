@@ -100,3 +100,6 @@ ClassID,Arg1,Arg2,RecipeTime,SuccessRatio,LevelByFail,TargetItemCnt,SellLimitCnt
 264,5,0,8,0,0,1,0,34560,0,0,0,0,0,0,0,0,0,0,SilverGachaShop_64,SilverGachaShop,,Recipe,,Drag,Action,Drag,Drag,,,,CRAFT,wing_ep13raincoat01,,,2021-08-12 09:00:00,2022-01-31 23:59:59,misc_silver_gacha_mileage,,,,,
 265,5,0,8,0,0,1,0,34560,0,0,0,0,0,0,0,0,0,0,SilverGachaShop_65,SilverGachaShop,,Recipe,,Drag,Action,Drag,Drag,,,,CRAFT,wing_ep13raincoat02,,,2021-08-12 09:00:00,2022-01-31 23:59:59,misc_silver_gacha_mileage,,,,,
 266,5,0,8,0,0,1,0,34560,0,0,0,0,0,0,0,0,0,0,SilverGachaShop_66,SilverGachaShop,,Recipe,,Drag,Action,Drag,Drag,,,,CRAFT,Effect_ep13raincoat,,,2021-08-12 09:00:00,2022-01-31 23:59:59,misc_silver_gacha_mileage,,,,,
+267,5,0,8,0,0,1,0,3456,0,0,0,0,0,0,0,0,0,0,SilverGachaShop_67,SilverGachaShop,,Recipe,,Drag,Action,Drag,Drag,,,,CRAFT,not_trade_selectbox_ep13retro01_2,,,2021-09-09 09:00:00,2022-02-28 23:59:59,misc_silver_gacha_mileage,,,,,
+268,5,0,8,0,0,1,0,34560,0,0,0,0,0,0,0,0,0,0,SilverGachaShop_68,SilverGachaShop,,Recipe,,Drag,Action,Drag,Drag,,,,CRAFT,wing_ep13retro,,,2021-09-09 09:00:00,2022-02-28 23:59:59,misc_silver_gacha_mileage,,,,,
+269,5,0,8,0,0,1,0,34560,0,0,0,0,0,0,0,0,0,0,SilverGachaShop_69,SilverGachaShop,,Recipe,,Drag,Action,Drag,Drag,,,,CRAFT,Effect_ep13retro,,,2021-09-09 09:00:00,2022-02-28 23:59:59,misc_silver_gacha_mileage,,,,,

@@ -517,11 +517,8 @@
 												<layoutsection name="colonyInfoTextLayout">
 													<richtext name="colonyInfoText" caption="ⓘ 스팟 점령 길드는 참가로 고정됩니다.{nl}ⓘ 참가 여부 옵션은 길드 마스터만 변경할 수 있으며, '참가'로 변경 시 길드 마스터 위임이 불가능합니다.{nl}ⓘ 참가 여부 옵션은 길드 콜로니전 시작 5분 전 부터 종료 1분 후까지 변경할 수 없습니다.{nl}ⓘ 참가 여부 옵션은 길드 타워의 설치 유무와 상관없이 변경할 수 있습니다.{nl}ⓘ 이전 길드 탈퇴일을 기점으로 7일 미만인 길드원은 길드 콜로니전에 참가할 수 없습니다." margin="5 5 0 0" fixwidth="true" fontname="black_16"/>
 												</layoutsection>
-												<layoutsection name="colonyRewardBtnSection_FirstLeague" size="10%">
-													<button name="FirstLeague_colonyRewardBtn" margin="0 50 0 50" caption="{@st41b}{s16}{b}챔피언스 리그" skin="test_red_button" LBtnUpScp="ui.OpenFrame(&apos;colony_tax_board&apos;)" MouseOffAnim="btn_mouseoff" MouseOnAnim="btn_mouseover" clicksound="button_click_big" image="testclose_button" oversound="button_over"/>
-												</layoutsection>
-												<layoutsection name="colonyRewardBtnSection_SecondLeague" size="10%">
-													<button name="SecondLeague_colonyRewardBtn" margin="0 50 0 50" caption="{@st41b}{s16}{b}챌린저스 리그" skin="test_red_button" LBtnUpScp="ui.OpenFrame(&apos;colony_reward_board&apos;)" MouseOffAnim="btn_mouseoff" MouseOnAnim="btn_mouseover" clicksound="button_click_big" image="testclose_button" oversound="button_over"/>
+												<layoutsection name="colonyTaxBtnSection" size="10%">
+													<button name="colonyTaxBtn" margin="0 50 0 50" caption="{@st41b}{s16}{b}적립금 분배" skin="test_red_button" LBtnUpScp="ui.OpenFrame(&apos;colony_tax_board&apos;)" MouseOffAnim="btn_mouseoff" MouseOnAnim="btn_mouseover" clicksound="button_click_big" image="testclose_button" oversound="button_over"/>
 												</layoutsection>
 											</layout>
 										</layoutsection>

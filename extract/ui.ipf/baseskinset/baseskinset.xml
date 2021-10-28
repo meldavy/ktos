@@ -4747,6 +4747,17 @@
 			<img name="bottomcore" imgrect="678 458 20 20"/>
 			<img name="bottomright" imgrect="699 458 20 20"/>
 		</skin>
+		<skin name="Chat_Balloon_chuseok" texture="\skin\say_balloon.tga">
+			<img name="topleft" imgrect="86 1073 30 65"/>
+			<img name="topcore" imgrect="117 1073 30 65"/>
+			<img name="topright" imgrect="148 1073 30 65"/>
+			<img name="bodyleft" imgrect="86 1139 30 5"/>
+			<img name="bodycore" imgrect="117 1139 30 5"/>
+			<img name="bodyright" imgrect="148 1139 30 5"/>
+			<img name="bottomleft" imgrect="86 1145 30 15"/>
+			<img name="bottomcore" imgrect="117 1145 30 15"/>
+			<img name="bottomright" imgrect="148 1145 30 15"/>
+		</skin>
 	</skinlist>
 	<skinlist category="testje2_buttons">
 		<skin name="test_brown_btn" texture="\skin\housing.tga">
@@ -8912,6 +8923,9 @@
 		<image name="1200percent_image2" file="\skin\paid_skin.tga" imgrect="938 664 100 45" CMM_Caption="경험의 서 1200"/>
 		<image name="class_tree_mark" file="\skin\class_tree.tga" imgrect="1 824 159 158" CMM_Caption="클래식 전직 마크"/>
 		<image name="plus_button_plusimag" file="\skin\pip_test.tga" imgrect="2049 328 31 31" CMM_Caption="플러스 버튼의 플러스 이미지만 뗌"/>
+		<image name="Chat_Balloon_chuseok_direction" file="\skin\say_balloon.tga" imgrect="1 837 82 75" CMM_Caption="추석 옥토끼 말풍선 꼬리"/>
+		<image name="Chat_Balloon_chuseok_deco1" file="\skin\say_balloon.tga" imgrect="179 1073 93 75" CMM_Caption="추석 옥토끼 데코01"/>
+		<image name="Chat_Balloon_chuseok_deco2" file="\skin\say_balloon.tga" imgrect="273 1073 20 19" CMM_Caption="추석 옥토끼 데코02"/>
 	</imagelist>
 	<imagelist category="yiseul_image">
 		<image name="AbillityReset_skin" file="\skin\paid_skin_title.tga" imgrect="0 330 316 165" CMM_Caption="특성 초기화"/>
@@ -9591,6 +9605,9 @@
 		<image name="bgm_cancel_simple_black" file="\skin\bgm_player.tga" imgrect="530 476 13 14" CMM_Caption="캔슬 버튼 배리"/>
 		<image name="bgm_cancel_simple_black_cursoron" file="\skin\bgm_player.tga" imgrect="544 476 13 14"/>
 		<image name="bgm_cancel_simple_black_clicked" file="\skin\bgm_player.tga" imgrect="558 476 13 14"/>
+		<image name="GuildColony_MemberCheck_btn" file="\skin\PVP_skin.tga" imgrect="1013 737 67 63" CMM_Caption="콜로니전 길드원 배치 현황 버튼"/>
+		<image name="GuildColony_MemberCheck_btn_cursoron" file="\skin\PVP_skin.tga" imgrect="1081 737 67 63"/>
+		<image name="GuildColony_MemberCheck_btn_clicked" file="\skin\PVP_skin.tga" imgrect="1149 737 67 63"/>
 	</imagelist>
 	<imagelist category="yiseul_button">
 		<image name="pvpmine_shop_btn" file="\skin\pip_test.tga" imgrect="2049 61 66 59" CMM_Caption="용병단 증표 ui 버튼"/>
@@ -13511,6 +13528,7 @@
 		<image name="plate_achieve_topwarrior_SILVER" file="\skin\user_title_skin.tga" imgrect="645 854 214 34"/>
 		<image name="plate_achieve_topwarrior_BRONZE" file="\skin\user_title_skin.tga" imgrect="860 854 214 34"/>
 		<image name="plate_achieve_Master_of_kannushi" file="\skin\user_title_skin.tga" imgrect="1075 854 214 34"/>
+		<image name="plate_achieve_Prank_of_Apolonija" file="\skin\user_title_skin.tga" imgrect="0 889 214 34" CMM_Caption="스팀_성별이 바뀐 npc 보상"/>
 		<image name="plate_achieve_weeklyrank_17" file="\skin\user_title_skin.tga" imgrect="215 889 214 34" CMM_Caption="주간보스_아시오메이지"/>
 	</imagelist>
 	<imagelist category="skin_hair">

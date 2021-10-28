@@ -6703,6 +6703,7 @@
         <Effect Name="I_complete_kruvina_dead"/>
         <Effect Name="I_hit003_red"/>
         <Effect Name="I_buff_002_red1"/>
+        <Effect Name="skl_eff_jukebox_loop"/>
         <Effect Name="skl_eff_toy_bubble_pipe"/>
         <Effect Name="skl_eff_mon_water_jump"/>
         <Effect Name="ridepet_nautilussnail_born"/>
@@ -10254,6 +10255,8 @@
         <Effect Name="battlefield5vs5"/>
         <Effect Name="toy_ep13tcance"/>
         <Effect Name="Goddess_Raid_Vasilissa_Solo"/>
+        <Effect Name="Lose"/>
+        <Effect Name="Win"/>
     </Category>
     <Category ID="19">
         <Effect Name="I_fallen_statue_atk002_mash"/>
