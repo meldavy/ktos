@@ -604,14 +604,11 @@
             </Stage>
             <Stage Name="SUCCESS" AutoStart="0">
                 <StartScpList>
-                    <ToolScp Scp="MGAME_SUCCESS_STAGE_SCP" Client="NO" UseSleep="NO">
-                        <Str Str="Level"/>
-                    </ToolScp>
                     <ToolScp Scp="MGAME_SET_QUEST_NAME" Client="NO" UseSleep="NO">
-                        <Str Str="성공 : 60초 후 원래 존으로 돌아갑니다"/>
+                        <Str Str="성공 : 10초 후 원래 존으로 돌아갑니다"/>
                     </ToolScp>
                     <ToolScp Scp="MGAME_SET_TIMEOUT" Client="NO" UseSleep="NO">
-                        <Num Num="60"/>
+                        <Num Num="10"/>
                     </ToolScp>
                 </StartScpList>
                 <ObjList/>
@@ -619,7 +616,7 @@
                     <Event eventName="Return">
                         <condList>
                             <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK" Client="NO" UseSleep="NO">
-                                <Num Num="60"/>
+                                <Num Num="10"/>
                             </ToolScp>
                         </condList>
                         <execList>
@@ -633,7 +630,7 @@
                     <Event execCount="1" eventName="successMsg">
                         <execList>
                             <ToolScp Scp="MGAME_MSG_ICON" Client="YES" UseSleep="NO">
-                                <Str Str="성공!!{np}60초 후 입구로 돌아갑니다"/>
+                                <Str Str="성공!!{np}10초 후 입구로 돌아갑니다"/>
                                 <Str Str="Clear"/>
                                 <Num Num="10"/>
                             </ToolScp>

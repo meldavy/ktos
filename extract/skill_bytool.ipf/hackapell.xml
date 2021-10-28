@@ -72,46 +72,84 @@
         </MainSkl>
     </Skill>
     <Skill Name="Hackapell_GrindCutter">
-        <MainSkl JumpFlee="NO" MSPDToUsePos="0" ScrLock="None">
+        <KeyInput>
+            <ToolScp Scp="SKL_KEY_DYNAMIC_CASTING" Client="YES" UseSleep="NO">
+                <Num Num="1"/>
+                <Num Num="0"/>
+                <Num Num="2"/>
+                <Num Num="0"/>
+                <Num Num="0"/>
+                <Num Num="0"/>
+                <Num Num="1"/>
+                <Num Num="0"/>
+                <Num Num="0"/>
+                <Num Num="0"/>
+                <Num Num="1"/>
+                <Num Num="0"/>
+                <Str_Arg Str="None" Arg="1"/>
+                <Str Str="None"/>
+                <Num Num="0"/>
+                <Num Num="0"/>
+                <Num Num="5"/>
+                <Num Num="1"/>
+                <Num Num="45"/>
+                <Num Num="0"/>
+                <Num Num="0"/>
+                <Num Num="0"/>
+                <Str Str="None"/>
+                <Str Str="None"/>
+            </ToolScp>
+        </KeyInput>
+        <MainSkl ScrLock="None" JumpFlee="NO" MSPDToUsePos="0">
             <HitList>
-                <Frame Angle="0" AniTime="50" Dist="0" ForceATK="0" HitCount="1" Length="60" PosType="0" RandDist="0" RandomPerHit="0" RotAngle="0" SklAngle="0.17453292" TermMax="0" TermMin="0" Time="0" Type="SQUARE" Width="35"/>
-                <Frame Angle="0" AniTime="250" Dist="0" ForceATK="0" HitCount="1" Length="60" PosType="0" RandDist="0" RandomPerHit="0" RotAngle="0" SklAngle="0.17453292" TermMax="0" TermMin="0" Time="50" Type="SQUARE" Width="35"/>
-                <Frame Angle="0" AniTime="450" Dist="0" ForceATK="0" HitCount="1" Length="60" PosType="0" RandDist="0" RandomPerHit="0" RotAngle="0" SklAngle="0.17453292" TermMax="0" TermMin="0" Time="250" Type="SQUARE" Width="35"/>
+                <Frame Type="FAN" Time="99799" HitCount="1" TermMin="0" TermMax="0" PosType="0" Dist="0" RandDist="0" RandomPerHit="0" Angle="0" Width="30" Length="30" SklAngle="0.17453292" AniTime="99999" RotAngle="0" ForceATK="0" ScriptIndex="0" ScriptName="" SkillType="0"/>
             </HitList>
             <EtcList>
-                <Scp Client="YES" Scp="C_VOICE_SOUND" Time="100" UseSleep="NO">
+                <Scp Scp="MONSKL_C_PLAY_ANIM" Client="YES" UseSleep="NO" Time="0" LoopTime="800">
+                    <Str Str="skl_grindcutter"/>
+                    <Num Num="1"/>
+                    <Num Num="1"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="SKL_SET_TARGET_SQUARE_SR" Client="NO" UseSleep="NO" Time="0" LoopTime="100">
+                    <Pos Angle="0" Dist="10" PosType="5"/>
+                    <Num Num="0"/>
+                    <Num Num="70"/>
+                    <Num Num="30"/>
+                    <Num Num="2"/>
+                    <Num Num="0"/>
+                    <Num Num="0"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="C_VOICE_SOUND" Client="YES" UseSleep="NO" Time="100">
                     <Str Str="voice_war_atk_long_shot"/>
                     <Str Str="voice_atk_long_war_f"/>
+                </Scp>
+                <Scp Scp="SKL_TGT_DMG" Client="NO" UseSleep="NO" Time="200" LoopTime="250">
+                    <Num Num="1"/>
+                    <Num Num="1"/>
+                    <Num Num="0"/>
                 </Scp>
             </EtcList>
         </MainSkl>
     </Skill>
     <Skill Name="Hackapell_StormBolt">
-        <MainSkl JumpFlee="NO" MSPDToUsePos="0" ScrLock="None">
+        <MainSkl ScrLock="None" JumpFlee="NO" MSPDToUsePos="0">
             <HitList>
-                <Frame Angle="0" AniTime="250" Dist="0" ForceATK="0" HitCount="1" Length="70" PosType="0" RandDist="0" RandomPerHit="0" RotAngle="0" SklAngle="0.17453292" TermMax="0" TermMin="0" Time="50" Type="SQUARE" Width="20"/>
+                <Frame Type="SQUARE" Time="50" HitCount="1" TermMin="0" TermMax="0" PosType="0" Dist="0" RandDist="0" RandomPerHit="0" Angle="0" Width="20" Length="70" SklAngle="0.17453292" AniTime="250" RotAngle="0" ForceATK="0" ScriptIndex="0" ScriptName="" SkillType="0"/>
             </HitList>
             <EtcList>
-                <Scp Client="YES" Scp="C_VOICE_SOUND" Time="250" UseSleep="NO">
+                <Scp Scp="C_VOICE_SOUND" Client="YES" UseSleep="NO" Time="250">
                     <Str Str="voice_war_atk_medium"/>
                     <Str Str="voice_atk_medium_war_f"/>
                 </Scp>
             </EtcList>
             <ResultList>
-                <ToolScp Client="NO" Scp="S_R_TGT_Decrease_heal_debuff" UseSleep="NO">
-                    <Str FuncTxt="local func_name = 'get_decrease_heal_debuff_tooltip_' .. TryGetProp(skill, 'ClassName', 'None')
+                <ToolScp Scp="S_R_TGT_Decrease_heal_debuff" Client="NO" UseSleep="NO">
+                    <Str Str="0" UseFunc="1" FuncTxt="local func_name = 'get_decrease_heal_debuff_tooltip_' .. TryGetProp(skill, 'ClassName', 'None')
                local func = _G[func_name]
                if func == nil then return end
-               return func(skill.Level)" Str="0" UseFunc="1"/>
-                </ToolScp>
-                <ToolScp Client="NO" Scp="S_R_TGTBUFF" UseSleep="NO">
-                    <Str Str="SaberAries_Debuff"/>
-                    <Num Num="1"/>
-                    <Num Num="0"/>
-                    <Num Num="10000"/>
-                    <Num Num="1"/>
-                    <Num Num="100"/>
-                    <Num Num="-1"/>
+               return func(skill.Level)"/>
                 </ToolScp>
             </ResultList>
         </MainSkl>
@@ -233,19 +271,13 @@
         </MainSkl>
     </Skill>
     <Skill Name="Hackapell_HakkaPalle">
-        <MainSkl JumpFlee="NO" MSPDToUsePos="0" ScrLock="None">
+        <MainSkl ScrLock="None" JumpFlee="NO" MSPDToUsePos="0">
             <EtcList>
-                <Scp Client="NO" Scp="SKL_BUFF" Time="0" UseSleep="NO">
+                <Scp Scp="SKL_BUFF" Client="NO" UseSleep="NO" Time="0">
                     <Str Str="HakkaPalle_Buff"/>
-                    <Num FuncTxt="return obj.Level;" Num="0" UseFunc="1"/>
+                    <Num Num="0" UseFunc="1" FuncTxt="return obj.Level;"/>
                     <Num Num="0"/>
-                    <Num FuncTxt="local value = 15000
-
-if GetExProp(self, &quot;ITEM_VIBORA_SWORD_Hackapell&quot;) > 0 then
-    value = value + GetExProp(self, &quot;ITEM_VIBORA_SWORD_Hackapell&quot;)
-end
-
-return value" Num="15000" UseFunc="1"/>
+                    <Num Num="20000"/>
                     <Num Num="1"/>
                     <Num Num="100"/>
                     <Num Num="0"/>
@@ -255,12 +287,12 @@ return value" Num="15000" UseFunc="1"/>
                     <Str Str="HakkaPalle_Abil_Buff"/>
                     <Num Num="1"/>
                     <Num Num="0"/>
-                    <Num Num="45000"/>
+                    <Num Num="20000"/>
                     <Num Num="1"/>
                     <Num Num="100"/>
-                    <Num Num="1"/>
+                    <Num Num="0"/>
                 </Scp>
-                <Scp Client="YES" Scp="C_VOICE_SOUND" Time="100" UseSleep="NO">
+                <Scp Scp="C_VOICE_SOUND" Client="YES" UseSleep="NO" Time="100">
                     <Str Str="voice_archer_m_HakkaPalle_cast"/>
                     <Str Str="voice_archer_HakkaPalle_cast"/>
                 </Scp>
@@ -385,10 +417,6 @@ return value" Num="15000" UseFunc="1"/>
             </ToolScp>
         </KeyInputEnd>
         <MainSkl ScrLock="None" JumpFlee="NO" MSPDToUsePos="0">
-            <MoveList>
-                <Frame Time="40" Dist="0" Angle="0" Accel="1" Height="0" MoveType="0" Gravity="600" JumpPower="300"/>
-                <Frame Time="140" Dist="177.43427" Angle="-0.018456114" Accel="1" Height="0" MoveType="0" Gravity="600" JumpPower="300"/>
-            </MoveList>
             <HitList>
                 <Frame Type="SQUARE" Time="9799" HitCount="1" TermMin="0" TermMax="0" PosType="0" Dist="0" RandDist="0" RandomPerHit="0" Angle="0" Width="35" Length="90" AniTime="9999" RotAngle="3.1415927" ForceATK="0" ScriptIndex="0" ScriptName="" SkillType="0"/>
             </HitList>
@@ -404,6 +432,28 @@ return value" Num="15000" UseFunc="1"/>
                     <Str_Arg Str="I_dash022_1" Arg="1.5"/>
                     <Str Str="Dummy_emitter_pet2"/>
                     <Num Num="0"/>
+                </Scp>
+                <Scp Scp="SKL_SET_TARGET_SQUARE_SR" Client="NO" UseSleep="NO" Time="0">
+                    <Pos Angle="0" Dist="0"/>
+                    <Num Num="0"/>
+                    <Num Num="200"/>
+                    <Num Num="35"/>
+                    <Num Num="2"/>
+                    <Num Num="0"/>
+                    <Num Num="0"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="SKL_LOOK_TGT" Client="NO" UseSleep="NO" Time="0"/>
+                <Scp Scp="SKL_TGT_MOVE" Client="NO" UseSleep="YES" Time="0">
+                    <Num Num="0"/>
+                    <Num Num="200"/>
+                    <Num Num="0"/>
+                    <Num Num="0.15000001"/>
+                    <Num Num="0.070000008"/>
+                    <Num Num="1"/>
+                    <Num Num="0.1"/>
+                    <Num Num="1"/>
+                    <Num Num="1"/>
                 </Scp>
                 <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="50">
                     <Str_Arg Str="I_warrior_dash_run_line2" Arg="1.5"/>
@@ -425,21 +475,6 @@ return value" Num="15000" UseFunc="1"/>
                     <Num Num="60"/>
                     <Num Num="999"/>
                 </Scp>
-                <Scp Scp="SKL_SET_TARGET_SQUARE_SR" Client="NO" UseSleep="NO" Time="140">
-                    <Pos Angle="0" Dist="0"/>
-                    <Num Num="0"/>
-                    <Num Num="200"/>
-                    <Num Num="35"/>
-                    <Num Num="2"/>
-                    <Num Num="0"/>
-                    <Num Num="0"/>
-                    <Num Num="0"/>
-                </Scp>
-                <Scp Scp="SKL_TGT_DMG" Client="NO" UseSleep="NO" Time="140">
-                    <Num Num="1"/>
-                    <Num Num="1"/>
-                    <Num Num="0"/>
-                </Scp>
                 <Scp Scp="SKL_BUFF_ABIL" Client="NO" UseSleep="NO" Time="140">
                     <Str Str="Hackapell23"/>
                     <Str Str="CavalryCharge_Abil_Buff"/>
@@ -459,24 +494,20 @@ return value" Num="15000" UseFunc="1"/>
                     <Num Num="0"/>
                     <Num Num="1"/>
                 </Scp>
-            </EtcList>
-            <ResultList>
-                <ToolScp Scp="S_R_TGTBUFF" Client="NO" UseSleep="NO">
-                    <Str Str="Common_Shock"/>
+                <Scp Scp="SKL_TGT_DMG" Client="NO" UseSleep="NO" Time="300">
+                    <Num Num="1"/>
                     <Num Num="1"/>
                     <Num Num="0"/>
-                    <Num Num="10000"/>
-                    <Num Num="1"/>
-                    <Num Num="100"/>
-                    <Num Num="-1"/>
-                </ToolScp>
+                </Scp>
+            </EtcList>
+            <ResultList>
                 <ToolScp Scp="S_R_TGT_REMOVE_BUFF" Client="NO" UseSleep="NO">
                     <Str Str="0" UseFunc="1" FuncTxt="local func_name = 'get_remove_buff_tooltip_' .. TryGetProp(skill, 'ClassName', 'None')
                local func = _G[func_name]
                if func == nil then return end
                return func(skill.Level)"/>
                 </ToolScp>
-            </ResultList>
+                </ResultList>
         </MainSkl>
     </Skill>
     <Skill Name="Hackapell_Skarphuggning">

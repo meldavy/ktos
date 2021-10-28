@@ -24,7 +24,18 @@ function LIKE_FAILED()
 
 end
 
-function REQUEST_LIKE_STATE(familyName)
+function UNLIKE_FAILED()
+	if ui.IsFrameVisible("compare") == 0 then
+		return;
+	end
+
+	local frame = ui.GetFrame("compare");
+	local likeCheck = GET_CHILD_RECURSIVELY(frame,"likeCheck")
+	likeCheck:SetCheck(1);
+
+end
+
+function REQUEST_LIKE_STATE(familyName)	
 	local otherpcinfo = session.otherPC.GetByFamilyName(familyName);
 	
 	local frame = ui.GetFrame("compare");

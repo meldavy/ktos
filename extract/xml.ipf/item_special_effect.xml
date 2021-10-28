@@ -2541,7 +2541,7 @@
 		<Layer effect="F_light173_loop_red" TargetNode="wing_Dummy_eff001" scale="1" offset="0;0">
 			<Creation>
 				<Property PlayMoment="None">
-					<Option ReinforceValue="0" ReinforceEffectState="None" UseAttach="NO" IgnoreAnimEventEffect="YES" SubWeaponPistol="NO"/>
+					<Option ReinforceValue="0" ReinforceEffectState="None" UseAttach="NO" IgnoreAnimEventEffect="YES" SubWeaponPistol="NO" AlwaysVisible="YES"/>
 					<Sound SoundName="None" SoundVolume="1"/>
 				</Property>
 			</Creation>
@@ -2549,7 +2549,7 @@
 		<Layer effect="F_pc_item_cherryblossom_bow_leaf_scale" TargetNode="wing_Dummy_eff001" scale="1" offset="0;0">
 			<Creation>
 				<Property PlayMoment="None">
-					<Option ReinforceValue="0" ReinforceEffectState="None" UseAttach="NO" IgnoreAnimEventEffect="YES" SubWeaponPistol="NO"/>
+					<Option ReinforceValue="0" ReinforceEffectState="None" UseAttach="NO" IgnoreAnimEventEffect="YES" SubWeaponPistol="NO" AlwaysVisible="YES"/>
 					<Sound SoundName="None" SoundVolume="1"/>
 				</Property>
 			</Creation>
@@ -2557,7 +2557,7 @@
 		<Layer effect="F_light173_loop_red" TargetNode="wing_Dummy_eff002" scale="1" offset="0;0">
 			<Creation>
 				<Property PlayMoment="None">
-					<Option ReinforceValue="0" ReinforceEffectState="None" UseAttach="NO" IgnoreAnimEventEffect="YES" SubWeaponPistol="NO"/>
+					<Option ReinforceValue="0" ReinforceEffectState="None" UseAttach="NO" IgnoreAnimEventEffect="YES" SubWeaponPistol="NO" AlwaysVisible="YES"/>
 					<Sound SoundName="None" SoundVolume="1"/>
 				</Property>
 			</Creation>
@@ -2565,7 +2565,7 @@
 		<Layer effect="F_pc_item_cherryblossom_bow_leaf2" TargetNode="Point002" scale="1" offset="0;0">
 			<Creation>
 				<Property PlayMoment="None">
-					<Option ReinforceValue="0" ReinforceEffectState="None" UseAttach="NO" IgnoreAnimEventEffect="YES" SubWeaponPistol="NO"/>
+					<Option ReinforceValue="0" ReinforceEffectState="None" UseAttach="NO" IgnoreAnimEventEffect="YES" SubWeaponPistol="NO" AlwaysVisible="YES"/>
 					<Sound SoundName="None" SoundVolume="1"/>
 				</Property>
 			</Creation>
@@ -2573,7 +2573,7 @@
 		<Layer effect="F_light173_loop_red" TargetNode="wing_Dummy_eff003" scale="1" offset="0;0">
 			<Creation>
 				<Property PlayMoment="None">
-					<Option ReinforceValue="0" ReinforceEffectState="None" UseAttach="NO" IgnoreAnimEventEffect="YES" SubWeaponPistol="NO"/>
+					<Option ReinforceValue="0" ReinforceEffectState="None" UseAttach="NO" IgnoreAnimEventEffect="YES" SubWeaponPistol="NO" AlwaysVisible="YES"/>
 					<Sound SoundName="None" SoundVolume="1"/>
 				</Property>
 			</Creation>
@@ -2581,7 +2581,25 @@
 		<Layer effect="F_pc_item_cherryblossom_bow_leaf_scale" TargetNode="wing_Dummy_eff003" scale="1" offset="0;0">
 			<Creation>
 				<Property PlayMoment="None">
-					<Option ReinforceValue="0" ReinforceEffectState="None" UseAttach="NO" IgnoreAnimEventEffect="YES" SubWeaponPistol="NO"/>
+					<Option ReinforceValue="0" ReinforceEffectState="None" UseAttach="NO" IgnoreAnimEventEffect="YES" SubWeaponPistol="NO" AlwaysVisible="YES"/>
+					<Sound SoundName="None" SoundVolume="1"/>
+				</Property>
+			</Creation>
+		</Layer>
+	</ItemList>
+	<ItemList ItemClassName="wing_botruta">
+		<Layer effect="I_boss_boruta_wing_mash" TargetNode="Dummy_wing" scale="1" offset="0;0">
+			<Creation>
+				<Property PlayMoment="None">
+					<Option ReinforceValue="0" ReinforceEffectState="None" UseAttach="NO" IgnoreAnimEventEffect="NO" SubWeaponPistol="NO" AlwaysVisible="YES"/>
+					<Sound SoundName="None" SoundVolume="1"/>
+				</Property>
+			</Creation>
+		</Layer>
+		<Layer effect="E_wing_boruta" TargetNode="Dummy_wing" scale="1.2" offset="0;0">
+			<Creation>
+				<Property PlayMoment="None">
+					<Option ReinforceValue="0" ReinforceEffectState="None" UseAttach="NO" IgnoreAnimEventEffect="NO" SubWeaponPistol="NO" AlwaysVisible="YES"/>
 					<Sound SoundName="None" SoundVolume="1"/>
 				</Property>
 			</Creation>
@@ -2611,5 +2629,6 @@ ReinforceEffectState : PlayMoment 값이 None 일 떄 Effect 보여주고 싶은
  - "STD" : 비공격시에만 생성.
  - "ANIM/AnimationName" : 특정 애니메이션에서만 생성.
  - "None" : 사용하지 않음.
--->
+AlwaysVisible : 제스쳐에 상관 없이 무조건 보여야할 이펙트 설정 "YES" 인 경우에는 무조건 보인다.
+ -->
 <!-- edited with XMLSpy v2008 sp1 (http://www.altova.com) by MinstFaith (EMBRACE) -->

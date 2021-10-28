@@ -158,6 +158,7 @@
         <Effect Name="F_hit009_fire_puple"/>
         <Effect Name="F_smoke169_shockwave_red_2"/>
         <Effect Name="F_hit012_dark"/>
+        <Effect Name="ThrouwingSpear_Hoplite33_Pad"/>
     </Category>
     <Category ID="132">
         <Effect Name="I_arrow005_mash2_red#Dummy_back_arrow04"/>

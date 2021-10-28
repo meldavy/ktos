@@ -31,10 +31,11 @@ function EXCHANGEWEAPONTYPE_UI_INIT_SETTING(frame)
 			help_pic:SetTextTooltip(tooltip_text);
 			help_pic:Invalidate();
 		end
+		GET_CHILD_RECURSIVELY(frame, "title"):SetUserValue("IsLuciferi",0);
 	end
 end
 
-local function _ADD_ITEM_TO_EXCHANGEWEAPONTYPE_FROM_INV(frame, item, invSlot, invItemGuid, slotNum)
+local function _ADD_ITEM_TO_EXCHANGEWEAPONTYPE_FROM_INV(frame, item, invSlot, invItemGuid, slotNum, isLuciferi)
 	local invItem = session.GetInvItemByGuid(invItemGuid);
 	if true == invItem.isLockState then
 		ui.SysMsg(ClMsg("MaterialItemIsLock"));
@@ -43,41 +44,46 @@ local function _ADD_ITEM_TO_EXCHANGEWEAPONTYPE_FROM_INV(frame, item, invSlot, in
 
 	if slotNum == 1 then
 		local group = TryGetProp(item, "ExchangeGroup", "None");
-		local isExchange = IS_EXCHANGE_WEAPONTYPE(group, item.ClassName);
-		if isExchange == false then
+		if group ~= "Luciferi_Neck" and group ~= "Luciferi_Ring" and isLuciferi == true then
 			ui.SysMsg(ScpArgMsg("IMPOSSIBLE_ITEM"))
 			return;
-		end
-		
-	-- 미감정 아이템 체크.
-	local needAppraisal = TryGetProp(item, "NeedAppraisal");
-	local needRandomOption = TryGetProp(item, "NeedRandomOption");
-	if needAppraisal == 1 or needRandomOption == 1 then
-		ui.SysMsg(ScpArgMsg("NoAppraiseExchangeWeaponType"));
-		return;
-	end
+		elseif isLuciferi == false then
+			local isExchange = IS_EXCHANGE_WEAPONTYPE(group, item.ClassName);
+			if isExchange == false or group == "Luciferi_Neck" or group == "Luciferi_Ring" then
+				ui.SysMsg(ScpArgMsg("IMPOSSIBLE_ITEM"))
+				return;
+			end
 
-	-- 아이커가 장착된 아이템은 무기 계열 변경이 불가능 하도록
-	if item.ItemType == "Equip" then
-		if IS_ENABLE_RELEASE_OPTION(item) == true then
-			ui.SysMsg(ScpArgMsg("IMPOSSIBLE_ITEM"));
+			-- 미감정 아이템 체크.
+			local needAppraisal = TryGetProp(item, "NeedAppraisal");
+			local needRandomOption = TryGetProp(item, "NeedRandomOption");
+			if needAppraisal == 1 or needRandomOption == 1 then
+				ui.SysMsg(ScpArgMsg("NoAppraiseExchangeWeaponType"));
+				return;
+			end
+
+			-- 아이커가 장착된 아이템은 무기 계열 변경이 불가능 하도록
+			if item.ItemType == "Equip" then
+				if IS_ENABLE_RELEASE_OPTION(item) == true then
+					ui.SysMsg(ScpArgMsg("IMPOSSIBLE_ITEM"));
+					return;
+				end
+			else 
+				return;
+			end
+
+			-- 트링켓 아이템은 무기 계열 변경이 불가능 하도록.
+			if item.EqpType == "TRINKET" then
+				ui.SysMsg(ScpArgMsg("IMPOSSIBLE_ITEM"));
+				return;
+			end
+		end
+
+		-- 포텐셜 체크.
+		if item.PR ~= 0 then
+			ui.SysMsg(ScpArgMsg("NoNeedPRExchangeWeaponType"));
 			return;
 		end
-	else 
-		return;
-	end
-
-	-- 트링켓 아이템은 무기 계열 변경이 불가능 하도록.
-	if item.EqpType == "TRINKET" then
-		ui.SysMsg(ScpArgMsg("IMPOSSIBLE_ITEM"));
-		return;
-	end
-
-	-- 포텐셜 체크.
-	if item.PR ~= 0 then
-		ui.SysMsg(ScpArgMsg("NoNeedPRExchangeWeaponType"));
-		return;
-	end
 
 		EXCHANGEWEAPONTYPE_CREATE_LIST(frame, item, invItemGuid);
 	end
@@ -257,7 +263,7 @@ function EXCHANGEWEAPONTYPE_SHOW_RESULT_ITEM(frame, itemId)
 	if item == nil then 
 		return; 
 	end
-
+	
 	if EXCHANGEWEAPONTYPE_CHANGE_ITEM_CHECK(frame, item) == false then
 		return;
 	end
@@ -266,6 +272,13 @@ function EXCHANGEWEAPONTYPE_SHOW_RESULT_ITEM(frame, itemId)
 	if resultSlot ~= nil then
 		resultSlot:SetUserValue("SELECTED_ID", itemId);
 	end
+	
+	local targetIcon = resultSlot:GetIcon();
+	if targetIcon == nil then
+		targetIcon = CreateIcon(resultSlot);
+	end
+	targetIcon:SetTooltipType('wholeitem');
+	targetIcon:SetTooltipArg("None", itemId);
 
 	local resultSlotPicture = GET_CHILD_RECURSIVELY(frame, "item_pic_2", "ui::CPicture");
 	if resultSlotPicture ~= nil then
@@ -330,7 +343,8 @@ function EXCHANGEWEAPONTYPE_DROP(frame, icon)
 		local guid = iconInfo:GetIESID();
 		local invItem = GET_ITEM_BY_GUID(guid);
 		local obj = GetIES(invItem:GetObject());
-		_ADD_ITEM_TO_EXCHANGEWEAPONTYPE_FROM_INV(frame, obj, liftIcon:GetParent(), guid, slotNum);
+		local isLuciferi = GET_CHILD_RECURSIVELY(frame,'title'):GetUserIValue('IsLuciferi') == 1
+		_ADD_ITEM_TO_EXCHANGEWEAPONTYPE_FROM_INV(frame, obj, liftIcon:GetParent(), guid, slotNum, isLuciferi);
 	end
 end
 
@@ -340,7 +354,8 @@ function EXCHANGEWEAPONTYPE_INV_RBTN(itemobj, invSlot, invItemGuid)
 	else
 		local frame = ui.GetFrame("exchangeweapontype")
 		if EXCHANGEWEAPONTYPE_GET_SLOT_ITEM_OBJECT(frame, 1) == nil then
-			_ADD_ITEM_TO_EXCHANGEWEAPONTYPE_FROM_INV(frame, itemobj, invSlot, invItemGuid, 1);
+			local isLuciferi = GET_CHILD_RECURSIVELY(frame,'title'):GetUserIValue('IsLuciferi') == 1
+			_ADD_ITEM_TO_EXCHANGEWEAPONTYPE_FROM_INV(frame, itemobj, invSlot, invItemGuid, 1, isLuciferi);
 		else
 			EXCHANGEWEAPONTYPE_UI_CLEAR();
 		end
@@ -400,7 +415,7 @@ function EXCHANGEWEAPONTYPE_GET_SLOT_ITEM_OBJECT(frame, slotNum)
 	if guid == nil or guid == "None" then
 		return nil;
 	end
-
+	
 	local invItem = session.GetInvItemByGuid(guid);
 	if invItem == nil or invItem:GetObject() == nil then
 		return nil;
@@ -453,10 +468,10 @@ function EXCHANGEWEAPONTYPE_EXCHANGE_BUTTON_CLICK(parent, ctrl)
 		return;
 	end
 
-	if IS_ENABLE_EXCHANGE_WEAPONTYPE(targetItem, changeItemid) == false then
-		return;
+	if IS_ENABLE_EXCHANGE_WEAPONTYPE(targetItem, changeItemid) == false then 
+		return; 
 	end
-
+	
 	local invItem = session.GetInvItemByGuid(targetItemGuid);
 	if invItem == nil then return; end		
 	
@@ -465,7 +480,7 @@ function EXCHANGEWEAPONTYPE_EXCHANGE_BUTTON_CLICK(parent, ctrl)
 		local baseCls = GetClass('Item', item.ClassName);
 		local checkPropList = GET_COPY_TARGET_OPTION_LIST();
 		for i = 1, #checkPropList do
-			if TryGetProp(baseCls, checkPropList[i]) ~= TryGetProp(item, checkPropList[i]) then			
+			if TryGetProp(baseCls, checkPropList[i]) ~= TryGetProp(item, checkPropList[i]) then
 				if IsExistMsg(checkPropList[i]) == 1 then
 					if str ~= '' then
 						str = str..', ';
@@ -533,20 +548,26 @@ function EXCHANGEWEAPONTYPE_EXCHANGE_BUTTON_CLICK(parent, ctrl)
 		return str..'{/}';
 	end
 
-    local msg = 'AntiqueExchange{OPTIONS}';
-    local changeItemObj = GetClassByType('Item', changeItemid)
-    if TryGetProp(targetItem, "GroupName", "None") == "Armor" or TryGetProp(changeItemObj, "GroupName", "None") == "Armor" then
-		msg = 'AntiqueExchange_Delete{OPTIONS}';
-    end
+	local isLuciferi = TryGetProp(targetItem, "ExchangeGroup", "None") == "Luciferi_Neck" or 
+					   TryGetProp(targetItem, "ExchangeGroup", "None") == "Luciferi_Ring";
 
-	local str = ScpArgMsg(msg, 'OPTIONS', _GET_CHANGED_OPTION_STR(targetItem, invItem), 'ADDINFO', _GET_CHANGED_PR_SOCKET_STR(invItem, GetClassByType('Item', tempSelectedItemIndex)));
-    
-	if frame:GetUserIValue('CARE_MODE') == 1 then
-		str = str..'{nl}'..ClMsg('CanExchangeOnlyOnce');
+	if isLuciferi == false then 
+		local msg = 'AntiqueExchange{OPTIONS}';
+		local changeItemObj = GetClassByType('Item', changeItemid)
+
+    	if TryGetProp(targetItem, "GroupName", "None") == "Armor" or TryGetProp(changeItemObj, "GroupName", "None") == "Armor" then
+			msg = 'AntiqueExchange_Delete{OPTIONS}';
+		end
+	    local str = ScpArgMsg(msg, 'OPTIONS', _GET_CHANGED_OPTION_STR(targetItem, invItem), 'ADDINFO', _GET_CHANGED_PR_SOCKET_STR(invItem, GetClassByType('Item', tempSelectedItemIndex)));
+		if frame:GetUserIValue('CARE_MODE') == 1 then
+			str = str..'{nl}'..ClMsg('CanExchangeOnlyOnce');
+	   	end
+   
+	   	local yesScp = string.format("EXCHANGEWEAPONTYPE_EXCHANGE_CHECK")
+	   	ui.MsgBox(str, yesScp, "None");
+	else
+		EXCHANGEWEAPONTYPE_EXCHANGE_CHECK();
 	end
-
-	local yesScp = string.format("EXCHANGEWEAPONTYPE_EXCHANGE_CHECK")
-	ui.MsgBox(str, yesScp, "None");
 end
 
 function EXCHANGEWEAPONTYPE_EXCHANGE_CHECK()
@@ -564,8 +585,8 @@ function EXCHANGEWEAPONTYPE_EXCHANGE_CHECK()
 	end
 
 	local changeItemid = changeSlot:GetUserIValue("SELECTED_ID");
-	if changeItemid == nil then
-		return;
+	if changeItemid == nil then 
+		return; 
 	end
 	
 	-- 교환 가능 여부
@@ -576,8 +597,8 @@ function EXCHANGEWEAPONTYPE_EXCHANGE_CHECK()
 	end
 
 	local isExchange = IS_ENABLE_EXCHANGE_WEAPONTYPE(targetItem, changeItemid);
-	if isExchange == false then
-		return;
+	if isExchange == false then 
+		return; 
 	end
 
 	EXCHANGEWEAPONTYPE_EXEC(targetItemGuid, changeItemid);
@@ -642,3 +663,33 @@ function EXCHANGEWEAPONTYPE_UI_CLEAR()
 		bodyGbox2:RemoveAllChild();
 	end
 end
+
+
+
+
+--------- 루시페리 장신구 교환 ------------
+
+function EXCHANGELUCIFERI_OPEN()
+	local frame = ui.GetFrame("exchangeweapontype")
+	INVENTORY_SET_CUSTOM_RBTNDOWN("EXCHANGEWEAPONTYPE_INV_RBTN");
+	EXCHANGEWEAPONTYPE_UI_CLEAR();
+	EXCHANGELUCIFERI_UI_INIT_SETTING(frame);
+	frame:OpenFrame(1);
+	ui.OpenFrame("inventory");
+end
+
+function EXCHANGELUCIFERI_UI_INIT_SETTING(frame)
+	if frame ~= nil then
+		local help_pic = GET_CHILD_RECURSIVELY(frame, "helpPic");
+		if help_pic ~= nil then
+			local tooltip_text = ClMsg("LuciferiTypeExchange_Help");
+			-- 루시페리 교환 텍스트 따로 파서 설정할 수 있도록
+			help_pic:SetTextTooltip(tooltip_text);
+			help_pic:Invalidate();
+		end
+		local title = GET_CHILD_RECURSIVELY(frame, "title");
+		title:SetTextByKey('title',ClMsg('ExchangeLuciferi'));
+		title:SetUserValue("IsLuciferi",1)
+	end
+end
+

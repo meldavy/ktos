@@ -209,6 +209,16 @@ ClassID,ClassName,Name,UseDaily,UseWeekly
 6140,EVENT_Title_2101_2,냉혈한,NO,NO
 6141,EVENT_2102_Title_01,로잘리야의 친구,NO,NO
 6142,EVENT_2102_Title_02,보러블의 친구,NO,NO
+6143,EVENT_2103_Title_01,칭호- 쉘리의 친구,NO,NO
+6144,EVENT_2103_Title_02,칭호- 히토미코의 친구,NO,NO
+6145,EVENT_2103_Title_03,칭호- 테슬라의 친구,NO,NO
+6146,EVENT_2103_Title_04,칭호- 폴린의 친구,NO,NO
+6147,EVENT_2103_Title_05,칭호- 메이의 친구,NO,NO
+6148,EVENT_2103_Title_06,칭호- 펠릭시아의 친구,NO,NO
+6149,EVENT_2103_Title_07,칭호- 이클립스의 친구,NO,NO
+6150,EVENT_2103_Title_08,칭호- 소르샤의 친구,NO,NO
+6151,EVENT_2103_Title_09,칭호- 레콘의 친구,NO,NO
+6152,EVENT_2103_Title_10,칭호- 젠클라스의 친구,NO,NO
 7001,PardonerAbility,기부 레벨,NO,NO
 7002,TaxAbility,세금 납부 레벨,NO,NO
 8001,FreeDungeon_under_68_1,시카리오스 기믹,NO,NO

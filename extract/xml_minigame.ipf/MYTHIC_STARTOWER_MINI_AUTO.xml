@@ -413,14 +413,6 @@
                     </Event>
                 </StageEvents>
             </Stage>
-            <Stage Name="EVENT_2101_SUPPLY" AutoStart="0">
-                <StartScpList>
-                    <ToolScp Scp="MGAME_SUCCESS_STAGE_SCP" Client="NO" UseSleep="NO">
-                        <Str Str="Mythic"/>
-                    </ToolScp>
-                </StartScpList>
-                <ObjList/>
-            </Stage>
         </StageList>
         <EnterList>
             <ToolScp Scp="MGAME_ZONE_ENTER_ADD_BUFF_OF_MVALNAME" Client="NO" UseSleep="NO">

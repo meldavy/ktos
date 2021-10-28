@@ -107,4 +107,3 @@ ClassID,GenType,Lv,Range,GenRange,RespawnTime,MaxPop,Minimap,Hide,UseAIOufOfPC,A
 1089,1089,1,40,1,60000,1,0,0,0,0,0,0,vynmedis,,,,,,,,,,,NO,YES,NO,Monster,,,,
 1090,1090,1,40,1,60000,1,0,0,0,0,0,0,vynmedis,,,,,,,,,,,NO,YES,NO,Monster,,,,
 1091,1091,1,40,1,60000,1,0,0,0,0,0,0,vynmedis,,,,,,,,,,,NO,YES,NO,Monster,,,,
-1092,1092,1,40,1,1,1,0,0,0,0,0,0,hidden_monster4,UnvisibleName,,,,,,EVENT_2101_SUPPLY_NPC3_1_CREAT_AI,,,,NO,YES,NO,Neutral,,,,

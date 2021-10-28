@@ -748,6 +748,11 @@ function SCR_ABIL_SWORDMASTERY_ACTIVE(self, ability)
         if lItem.ClassType == "Shield" then
             local akt = (rItem.MINATK + rItem.MAXATK) / 2
             addDEF = math.floor(akt * 0.2);
+            
+            local abilHackapell25 = GetAbility(self, "Hackapell25")
+            if abilHackapell25 ~= nil and TryGetProp(abilHackapell25, "ActiveState", 0) == 1 then
+                addDEF = 0
+            end
         else
             addSpeed = 200;
         end
@@ -1420,9 +1425,11 @@ end
 function SCR_ABIL_Hoplite33_ACTIVE(self, ability)
     local skill = GetSkill(self, "Hoplite_ThrouwingSpear");
     if skill ~= nil then
+        -- 21년 3월 11일 패치로 속성바꾸는 로직이 삭제 되었습니다. 하지만 여전히 ExProp으로 남아 있는 속성을 바꿔 주기위해 속성을 투창 Attribute로 받아 오게 수정 합니다.
         local attribute = TryGetProp(skill, "Attribute");
-        skill.Attribute = "Earth";
+        skill.Attribute = attribute;
         SetExProp_Str(self, "Hoplite33_Attribute", attribute);
+        -- 여기까지
         skill.KnockDownHitType = 1
     end
 end
@@ -2309,7 +2316,7 @@ end
 function SCR_ABIL_Monk34_INACTIVE(self, ability)
     local skill = GetSkill(self, "Monk_PalmStrike");
     if skill ~= nil then
-        SetSkillOverHeat(self, skill.ClassName, 4);
+        SetSkillOverHeat(self, skill.ClassName, 3);
         RequestResetOverHeat(self, "PalmStrike_OH")
 
         local shootTime = GetExProp(ability, "Monk34_ShootTime")
@@ -3129,4 +3136,93 @@ end
 
 function SCR_ABIL_Matador26_INACTIVE(self, ability)
     RemoveInstSkill(self, "Matador_Muleta_Faena")
+end
+
+function SCR_ABIL_Doppelsoeldner36_ACTIVE(self, ability)
+    local skill = GetSkill(self, "Doppelsoeldner_Zornhau")
+    if skill ~= nil then
+        AddInstSkill(self, "Doppelsoeldner_Zornhau_Abil", skill.Level)
+        SetSkillOverHeat(self, TryGetProp(skill, "ClassName", "None"), 0, 1)
+    end
+end
+
+function SCR_ABIL_Doppelsoeldner36_INACTIVE(self, ability)
+    local skill = GetSkill(self, "Doppelsoeldner_Zornhau")
+    if skill ~= nil then
+        RemoveInstSkill(self, "Doppelsoeldner_Zornhau_Abil")
+        SetSkillOverHeat(self, TryGetProp(skill, "ClassName", "None"), 3, 1)
+    end
+end
+
+function SCR_ABIL_Doppelsoeldner38_ACTIVE(self, ability)
+    local skill = GetSkill(self, "Doppelsoeldner_Zwerchhau")
+    if skill ~= nil then
+        SetSkillOverHeat(self, TryGetProp(skill, "ClassName", "None"), 0, 1)
+    end
+end
+
+function SCR_ABIL_Doppelsoeldner38_INACTIVE(self, ability)
+    local skill = GetSkill(self, "Doppelsoeldner_Zwerchhau")
+    if skill ~= nil then
+        SetSkillOverHeat(self, TryGetProp(skill, "ClassName", "None"), 3, 1)
+    end
+end
+
+function SCR_ABIL_Hackapell24_ACTIVE(self, ability)
+    AddBuff(self, self, "Hackapell_Dagger_Shield_Buff");
+end
+
+function SCR_ABIL_Hackapell24_INACTIVE(self, ability)
+    RemoveBuff(self, "Hackapell_Dagger_Shield_Buff")
+end
+
+function SCR_ABIL_Hackapell25_ACTIVE(self, ability)
+    AddBuff(self, self, "Hackapell_Dagger_Shield_Buff");
+end
+
+function SCR_ABIL_Hackapell25_INACTIVE(self, ability)
+    RemoveBuff(self, "Hackapell_Dagger_Shield_Buff")
+end
+
+function SCR_ABIL_Hoplite41_ACTIVE(self, ability)
+    if IsBuffApplied(self, "Hoplite41_Buff") ~= "YES" then
+        AddBuff(self, self, "Hoplite41_Buff", 1, 0, 0, 0);
+    end
+end
+
+function SCR_ABIL_Hoplite41_INACTIVE(self, ability)
+    RemoveBuff(self, "Hoplite41_Buff");
+end
+
+function SCR_ABIL_Retiarii25_ACTIVE(self, ability)
+    if IsBuffApplied(self, "Retiarii25_Buff") ~= "YES" then
+        AddBuff(self, self, "Retiarii25_Buff", 1, 0, 0, 0);
+    end
+end
+
+function SCR_ABIL_Retiarii25_INACTIVE(self, ability)
+    RemoveBuff(self, "Retiarii25_Buff");
+end
+
+function SCR_ABIL_CLOWN12_ACTIVE(self, ability)
+    local skill = GetSkill(self, "Clown_ClownWalk")
+    if skill ~= nil then
+        local valuetype = TryGetProp(skill, "ValueType", "None")
+        SetExProp_Str(ability, "Origin_ValueType", valuetype)
+
+        skill.ValueType = "Attack"
+
+        InvalidateSkill(self, skill.ClassName);
+        SendSkillProperty(self, skill);
+    end
+end
+
+function SCR_ABIL_CLOWN12_INACTIVE(self, ability)
+    local skill = GetSkill(self, "Clown_ClownWalk")
+    if skill ~= nil then
+        skill.ValueType = GetExProp_Str(ability, "Origin_ValueType")
+
+        InvalidateSkill(self, skill.ClassName);
+        SendSkillProperty(self, skill);
+    end
 end

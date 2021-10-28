@@ -195,7 +195,7 @@ end
 
 -- 하카펠 - 카발리 차지
 function get_remove_buff_tooltip_Hackapell_CavalryCharge(level)
-    local percent = 1.3 * tonumber(level)    
+    local percent = 10   
     if percent > 100 then
         percent = 100
     end

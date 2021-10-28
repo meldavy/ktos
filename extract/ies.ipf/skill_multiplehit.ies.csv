@@ -11,9 +11,9 @@ ClassID,HitCount,ClassName
 10,1,Peltasta_ShieldLob
 11,2,Peltasta_UmboBlow
 12,5,Hoplite_Pierce
-13,2,Hoplite_SynchroThrusting
+13,6,Hoplite_SynchroThrusting
 14,3,Hoplite_ThrouwingSpear
-15,1,Hoplite_SpearLunge
+15,2,Hoplite_SpearLunge
 16,18,Hoplite_Stabbing
 17,1,Barbarian_Embowel
 18,1,Barbarian_StompingKick
@@ -67,9 +67,9 @@ ClassID,HitCount,ClassName
 66,1,Rancer_Chage
 67,10,Rancer_GiganteMarcha
 68,1,Retiarii_ThrowingFishingNet
-69,1,Retiarii_TridentFinish
-70,1,Retiarii_EquipDesrption
-71,1,Retiarii_DaggerFinish
+69,2,Retiarii_TridentFinish
+70,2,Retiarii_EquipDesrption
+71,3,Retiarii_DaggerFinish
 72,5,Retiarii_BlandirCadena
 73,17,Matador_Faena
 74,4,Matador_PasoDoble

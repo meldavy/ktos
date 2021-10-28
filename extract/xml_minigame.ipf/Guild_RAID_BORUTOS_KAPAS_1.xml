@@ -1125,7 +1125,7 @@
                         <Str Str="제한 시간"/>
                     </ToolScp>
                     <ToolScp Scp="MGAME_SET_TIMEOUT" Client="NO" UseSleep="NO">
-                        <Num Num="1800"/>
+                        <Num Num="3600"/>
                     </ToolScp>
                 </StartScpList>
                 <ObjList/>
@@ -1133,7 +1133,7 @@
                     <Event execCount="1" eventName="TimeOut">
                         <condList>
                             <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK" Client="NO" UseSleep="NO">
-                                <Num Num="1805"/>
+                                <Num Num="3605"/>
                             </ToolScp>
                             <ToolScp Scp="GAME_ST_EVT_COND_VALUE_NOPC" Client="NO" UseSleep="NO">
                                 <Str Str="GM_BK_CLEAR"/>
@@ -1177,7 +1177,7 @@
                     <Event execCount="1" eventName="Left_10M">
                         <condList>
                             <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK" Client="NO" UseSleep="NO">
-                                <Num Num="1200"/>
+                                <Num Num="3000"/>
                             </ToolScp>
                         </condList>
                         <execList>
@@ -1194,7 +1194,7 @@
                     <Event execCount="1" eventName="Left_5M">
                         <condList>
                             <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK" Client="NO" UseSleep="NO">
-                                <Num Num="1500"/>
+                                <Num Num="3300"/>
                             </ToolScp>
                         </condList>
                         <execList>
@@ -1241,7 +1241,7 @@
                     <Event eventName="Left_1M">
                         <condList>
                             <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK" Client="NO" UseSleep="NO">
-                                <Num Num="1740"/>
+                                <Num Num="3540"/>
                             </ToolScp>
                         </condList>
                         <execList>
@@ -1258,7 +1258,7 @@
                     <Event eventName="Left_30S">
                         <condList>
                             <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK" Client="NO" UseSleep="NO">
-                                <Num Num="1770"/>
+                                <Num Num="3570"/>
                             </ToolScp>
                         </condList>
                         <execList>
@@ -1275,7 +1275,7 @@
                     <Event execCount="1" eventName="FailStop">
                         <condList>
                             <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK" Client="NO" UseSleep="NO">
-                                <Num Num="1800"/>
+                                <Num Num="3600"/>
                             </ToolScp>
                         </condList>
                         <execList>

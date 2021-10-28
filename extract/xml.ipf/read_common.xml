@@ -311,4 +311,5 @@
 	<ReadXml Name="mythic_rule"/>
 	<ReadXml Name="ancient_slot_extend"/>
 	<ReadXml Name="instrument_scale"/>
+<ReadXml Name="explorer_quiz"/>
 </Category>

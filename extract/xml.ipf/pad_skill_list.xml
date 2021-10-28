@@ -1275,6 +1275,9 @@ return value"/>
                 <Num Num="5"/>
             </ToolScp>
             <ToolScp Scp="PAD_USEABLE_RELATION_ENEMY" Client="NO" UseSleep="NO"/>
+            <ToolScp Scp="PAD_FUNC_UPDATE_RUNSCRIPT" Client="NO" UseSleep="NO">
+                <Str Str="SCR_BARBARIAN_POUNCING"/>
+            </ToolScp>
         </createEvent>
         <updateEvent>
             <ToolScp Scp="PAD_DAMAGE_ENEMY" Client="NO" UseSleep="NO">
@@ -1290,6 +1293,9 @@ return value"/>
     </PadSkill>
     <PadSkill Name="Barbarian_Pouncing_Abil" CheckerType="1" Range="80" InnerRange="45" UpdateTerm="300" AutoPos="1" AutoDir="1" ApplyFlyMon="1" AllowOverlap="1" EnableSearch="0">
         <createEvent>
+            <ToolScp Scp="PAD_FUNC_UPDATE_RUNSCRIPT" Client="NO" UseSleep="NO">
+                <Str Str="SCR_BARBARIAN_POUNCING"/>
+            </ToolScp>
             <ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
                 <Num Num="10000000"/>
                 <Num Num="1"/>
@@ -1390,7 +1396,17 @@ return value"/>
                 <Num Num="0"/>
             </ToolScp>
             <ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
-                <Num Num="3000"/>
+                <Num Num="0" UseFunc="1" FuncTxt="    local time = 3000
+
+    if IsBuffApplied(self, &quot;StartUp_Abil_Buff&quot;) == &quot;YES&quot; then
+
+        time = 3250
+
+    end
+
+    
+
+    return time"/>
                 <Num Num="99990"/>
             </ToolScp>
             <ToolScp Scp="PAD_DESTROY_EFFECT_BLENDTIME" Client="NO" UseSleep="NO">
@@ -9938,7 +9954,7 @@ return time;"/>
                 <Num Num="0"/>
             </ToolScp>
             <ToolScp Scp="PAD_DAMAGE_ENEMY_BY_RATE" Client="NO" UseSleep="NO">
-                <Num Num="0.050000001"/>
+                <Num Num="0.05"/>
                 <Num Num="0"/>
                 <Num Num="0"/>
                 <Str_Arg Str="None" Arg="1"/>
@@ -24738,6 +24754,41 @@ return 3 + obj.Level * 0.5"/>
         <updateEvent>
             <ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
                 <Num Num="-500"/>
+                <Num Num="0"/>
+            </ToolScp>
+        </updateEvent>
+    </PadSkill>
+    <PadSkill Name="ThrouwingSpear_Hoplite33_Pad" CheckerType="0" Range="65" UpdateTerm="2000" AllowOverlap="1" IsMagicType="0">
+        <createEvent>
+            <ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
+                <Num Num="2000"/>
+                <Num Num="99"/>
+            </ToolScp>
+            <ToolScp Scp="PAD_CONCURRENT_USE_COUNT" Client="NO" UseSleep="NO">
+                <Num Num="8"/>
+            </ToolScp>
+            <ToolScp Scp="PAD_USEABLE_RELATION_ENEMY" Client="NO" UseSleep="NO"/>
+        </createEvent>
+        <destroyEvent>
+            <ToolScp Scp="C_PAD_DESTROY_EFFECT_POS" Client="YES" UseSleep="NO">
+                <Pos Angle="0" Dist="0"/>
+                <Str_Arg Str="F_smoke177_2" Arg="3"/>
+                <Num Num="0"/>
+                <Num Num="0"/>
+            </ToolScp>
+        </destroyEvent>
+        <updateEvent>
+            <ToolScp Scp="PAD_DAMAGE_DADAK_ENEMY" Client="NO" UseSleep="NO">
+                <Num Num="1"/>
+                <Num Num="0.5"/>
+                <Num Num="0"/>
+                <Num Num="0"/>
+                <Str_Arg Str="None" Arg="1"/>
+                <Num Num="0"/>
+                <Num Num="0"/>
+            </ToolScp>
+            <ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
+                <Num Num="-2000"/>
                 <Num Num="0"/>
             </ToolScp>
         </updateEvent>

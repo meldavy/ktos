@@ -47,3 +47,15 @@ ClassID,ClassName,ExchangeGroup,ExchangeItem,MaterialItemInfo
 114,DisnaiExchange_14,SavinoseDisnai,EP12_FIELD_RAPIER,ExchangeWeapon_Book_440/1;
 115,DisnaiExchange_15,SavinoseDisnai,EP12_FIELD_CANNON,ExchangeWeapon_Book_440/1;
 116,DisnaiExchange_16,SavinoseDisnai,EP12_FIELD_MUSKET,ExchangeWeapon_Book_440/1;
+1001,Luciferi_Exchange_1,Luciferi_Neck,EP12_NECK06_HIGH_001,ExchangeACC_Book_450/2;
+1002,Luciferi_Exchange_2,Luciferi_Neck,EP12_NECK06_HIGH_002,ExchangeACC_Book_450/2;
+1003,Luciferi_Exchange_3,Luciferi_Neck,EP12_NECK06_HIGH_003,ExchangeACC_Book_450/2;
+1004,Luciferi_Exchange_4,Luciferi_Neck,EP12_NECK06_HIGH_004,ExchangeACC_Book_450/2;
+1005,Luciferi_Exchange_5,Luciferi_Neck,EP12_NECK06_HIGH_005,ExchangeACC_Book_450/2;
+1006,Luciferi_Exchange_6,Luciferi_Neck,EP12_NECK06_HIGH_006,ExchangeACC_Book_450/2;
+1007,Luciferi_Exchange_7,Luciferi_Ring,EP12_BRC06_HIGH_001,ExchangeACC_Book_450/1;
+1008,Luciferi_Exchange_8,Luciferi_Ring,EP12_BRC06_HIGH_002,ExchangeACC_Book_450/1;
+1009,Luciferi_Exchange_9,Luciferi_Ring,EP12_BRC06_HIGH_003,ExchangeACC_Book_450/1;
+1010,Luciferi_Exchange_10,Luciferi_Ring,EP12_BRC06_HIGH_004,ExchangeACC_Book_450/1;
+1011,Luciferi_Exchange_11,Luciferi_Ring,EP12_BRC06_HIGH_005,ExchangeACC_Book_450/1;
+1012,Luciferi_Exchange_12,Luciferi_Ring,EP12_BRC06_HIGH_006,ExchangeACC_Book_450/1;

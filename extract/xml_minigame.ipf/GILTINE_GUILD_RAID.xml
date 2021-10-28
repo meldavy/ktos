@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by imc (imc) -->
 <GameList>
     <Game Name="GILTINE_GUILD_RAID" journal="0" minLv="0" maxLv="0" mapName="raid_giltine_AutoGuild" playerCountCheckDestroy="1" startWaitSec="0">
         <StageList>
@@ -137,7 +138,7 @@
                         <Str Str="제한 시간"/>
                     </ToolScp>
                     <ToolScp Scp="MGAME_SET_TIMEOUT" Client="NO" UseSleep="NO">
-                        <Num Num="1800"/>
+                        <Num Num="3600"/>
                     </ToolScp>
                 </StartScpList>
                 <ObjList/>
@@ -145,7 +146,7 @@
                     <Event execCount="1" eventName="TimeOut">
                         <condList>
                             <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK" Client="NO" UseSleep="NO">
-                                <Num Num="1805"/>
+                                <Num Num="3605"/>
                             </ToolScp>
                             <ToolScp Scp="GAME_ST_EVT_COND_VALUE_NOPC" Client="NO" UseSleep="NO">
                                 <Str Str="is_clear"/>
@@ -185,7 +186,7 @@
                     <Event execCount="1" eventName="LeftTime_10Min">
                         <condList>
                             <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK" Client="NO" UseSleep="NO">
-                                <Num Num="1200"/>
+                                <Num Num="3000"/>
                             </ToolScp>
                         </condList>
                         <execList>
@@ -199,7 +200,7 @@
                     <Event execCount="1" eventName="LeftTime_5Min">
                         <condList>
                             <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK" Client="NO" UseSleep="NO">
-                                <Num Num="1500"/>
+                                <Num Num="3300"/>
                             </ToolScp>
                         </condList>
                         <execList>
@@ -243,7 +244,7 @@
                     <Event eventName="LeftTime_1Min">
                         <condList>
                             <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK" Client="NO" UseSleep="NO">
-                                <Num Num="1740"/>
+                                <Num Num="3540"/>
                             </ToolScp>
                         </condList>
                         <execList>
@@ -257,7 +258,7 @@
                     <Event eventName="LeftTime_30Sec">
                         <condList>
                             <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK" Client="NO" UseSleep="NO">
-                                <Num Num="1770"/>
+                                <Num Num="3570"/>
                             </ToolScp>
                         </condList>
                         <execList>
@@ -271,7 +272,7 @@
                     <Event execCount="1" eventName="FailStop">
                         <condList>
                             <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK" Client="NO" UseSleep="NO">
-                                <Num Num="1800"/>
+                                <Num Num="3600"/>
                             </ToolScp>
                         </condList>
                         <execList>
@@ -664,8 +665,8 @@
             </Stage>
             <Stage Name="DemonicsHiddenPower" AutoStart="0">
                 <ObjList>
-                    <Obj Type="Monster" MonType="147500" Pos="473.05#23.86#1822.87" genCount="1" genTime="20000" autoGen="0" autoDestroy="0" objectKey="0" propList="&apos;Dialog&apos; &apos;GUILD_GILTINE_RAID_DEMONICS_HIDDEN_POWER_MAIN_FIELD_WARP&apos; &apos;DialogChaseDist&apos; &apos;40&apos; "/>
-                    <Obj Type="Monster" MonType="147500" Pos="-1180.42#24.74#-360.19" genCount="1" genTime="20000" autoGen="0" autoDestroy="0" objectKey="1" propList="&apos;Dialog&apos; &apos;GUILD_GILTINE_RAID_DEMONICS_HIDDEN_POWER_HIDDEN_FIELD_WARP&apos; &apos;DialogChaseDist&apos; &apos;40&apos; "/>
+                    <Obj Type="Monster" MonType="147500" Pos="473.05#23.86#1822.87" genCount="1" genTime="20000" autoGen="0" objectKey="0" autoDestroy="0" propList="&apos;Dialog&apos; &apos;GUILD_GILTINE_RAID_DEMONICS_HIDDEN_POWER_MAIN_FIELD_WARP&apos; &apos;DialogChaseDist&apos; &apos;40&apos; "/>
+                    <Obj Type="Monster" MonType="147500" Pos="-1180.42#24.74#-360.19" genCount="1" genTime="20000" autoGen="0" objectKey="1" autoDestroy="0" propList="&apos;Dialog&apos; &apos;GUILD_GILTINE_RAID_DEMONICS_HIDDEN_POWER_HIDDEN_FIELD_WARP&apos; &apos;DialogChaseDist&apos; &apos;40&apos; "/>
                     <Obj Type="Monster" MonType="160040" Pos="-1347.03#25.82#338.04" genCount="1" genTime="20000" autoGen="0" objectKey="2" propList="&apos;NumArg1&apos; &apos;1&apos; "/>
                     <Obj Type="Monster" MonType="160040" Pos="-509.78#24.74#-650.42" genCount="1" genTime="20000" autoGen="0" objectKey="3" propList="&apos;NumArg1&apos; &apos;2&apos; "/>
                 </ObjList>

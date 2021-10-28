@@ -4573,6 +4573,40 @@
         <Key Name="Temporary_Num_7" Value="108124"/>
         <Key Name="Temporary_Num_8" Value="108152"/>
         <Key Name="Temporary_Num_9" Value="108141"/>
+        <Key Name="EVENT_2103_WHITEDAY_COIN_COUNT" Value="108164"/>
+        <Key Name="EVENT_2103_WHITEDAY_FAL_PRESENT_COUNT" Value="108170"/>
+        <Key Name="EVENT_2103_WHITEDAY_FNC_PRESENT_COUNT" Value="108179"/>
+        <Key Name="EVENT_2103_WHITEDAY_MEI_PRESENT_COUNT" Value="108173"/>
+        <Key Name="EVENT_2103_WHITEDAY_MIKO_PRESENT_COUNT" Value="108171"/>
+        <Key Name="EVENT_2103_WHITEDAY_MUR_PRESENT_COUNT" Value="108187"/>
+        <Key Name="EVENT_2103_WHITEDAY_Matross_PRESENT_COUNT" Value="108174"/>
+        <Key Name="EVENT_2103_WHITEDAY_PLAY_TIME" Value="108181"/>
+        <Key Name="EVENT_2103_WHITEDAY_RUN_PRESENT_COUNT" Value="108178"/>
+        <Key Name="EVENT_2103_WHITEDAY_SCT_PRESENT_COUNT" Value="108184"/>
+        <Key Name="EVENT_2103_WHITEDAY_SET_DAY_COUNT" Value="108194"/>
+        <Key Name="EVENT_2103_WHITEDAY_SET_TOTAL_COUNT" Value="108185"/>
+        <Key Name="EVENT_2103_WHITEDAY_SHM_PRESENT_COUNT" Value="108175"/>
+        <Key Name="EVENT_2103_WHITEDAY_sculptor_PRESENT_COUNT" Value="108186"/>
+        <Key Name="WhiteDayShop2103_SHOP1_1" Value="108183"/>
+        <Key Name="WhiteDayShop2103_SHOP1_10" Value="108195"/>
+        <Key Name="WhiteDayShop2103_SHOP1_11" Value="108189"/>
+        <Key Name="WhiteDayShop2103_SHOP1_12" Value="108191"/>
+        <Key Name="WhiteDayShop2103_SHOP1_13" Value="108169"/>
+        <Key Name="WhiteDayShop2103_SHOP1_14" Value="108176"/>
+        <Key Name="WhiteDayShop2103_SHOP1_2" Value="108166"/>
+        <Key Name="WhiteDayShop2103_SHOP1_3" Value="108182"/>
+        <Key Name="WhiteDayShop2103_SHOP1_4" Value="108168"/>
+        <Key Name="WhiteDayShop2103_SHOP1_5" Value="108167"/>
+        <Key Name="WhiteDayShop2103_SHOP1_6" Value="108172"/>
+        <Key Name="WhiteDayShop2103_SHOP1_7" Value="108177"/>
+        <Key Name="WhiteDayShop2103_SHOP1_8" Value="108180"/>
+        <Key Name="WhiteDayShop2103_SHOP1_9" Value="108165"/>
+        <Key Name="WhiteDayShop2103_SHOP2_1" Value="108192"/>
+        <Key Name="WhiteDayShop2103_SHOP2_2" Value="108190"/>
+        <Key Name="WhiteDayShop2103_SHOP2_3" Value="108188"/>
+        <Key Name="WhiteDayShop2103_SHOP2_4" Value="108193"/>
+        <Key Name="GIVE_ExchangeACC_Book_450" Value="108196"/>
+        <Key Name="EVENT_2103_WHITEDAY_TIME_REWARD_ITEM" Value="108197"/>
     </KeyIDSpc>
     <KeyIDSpc Name="PCEtc">
         <Key Name="Kill_boss_Clymen_Q2" Value="7788"/>
@@ -13197,6 +13231,15 @@
         <Key Name="HaveEmoticon_5014" Value="107718"/>
         <Key Name="IndunWeeklyEnteredCount_817" Value="107799"/>
         <Key Name="HadVisited_11230" Value="107804"/>
+        <Key Name="Hide_3239" Value="108201"/>
+        <Key Name="Hide_3240" Value="108200"/>
+        <Key Name="Hide_3241" Value="108203"/>
+        <Key Name="Hide_3242" Value="108204"/>
+        <Key Name="Hide_3243" Value="108202"/>
+        <Key Name="Hide_3244" Value="108205"/>
+        <Key Name="Hide_3245" Value="108199"/>
+        <Key Name="Hide_3246" Value="108198"/>
+        <Key Name="Hide_2612" Value="108206"/>
     </KeyIDSpc>
     <KeyIDSpc Name="GuildMember">
         <Key Name="Name" Value="9011"/>

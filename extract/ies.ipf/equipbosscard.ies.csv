@@ -202,3 +202,6 @@ ClassID,ConditionArg4,ClassName,UseType,ValueType,PropertyType,ConditionScp,Cond
 201,0,Master_card_DamirBorkhan,Always,StarCount,,,,,,SCR_CARDEFFECT_ADD_BUFF_STARVALUE_PC,CARD_Earth_Buff,,0,땅 속성 마법 공격 시 대미지 {@st66d_y}{s16}[%d]{/}{/}%% 증가,1
 202,0,Master_card_KhanomCaolaw,Always,StarCount,,,,,,SCR_CARDEFFECT_ADD_BUFF_STARVALUE_PC,CARD_Strike_Atk_Buff,,0,때리기 속성 공격 시 대미지 {@st66d_y}{s16}[%d]{/}{/}%% 증가,1
 203,0,Master_card_Rudmila,Always,StarCount,,,,,,SCR_CARDEFFECT_ADD_BUFF_STARVALUE_PC,CARD_Gun_Atk_Buff,,0,총기 속성 공격 시 대미지 {@st66d_y}{s16}[%d]{/}{/}%% 증가,1
+204,0,Master_card_Flintess,Always,StarCount,,,,,,SCR_CARDEFFECT_ADD_BUFF_STARVALUE_PC,CARD_Slash_Atk_Buff,,0,베기 속성 공격 시 대미지 {@st66d_y}{s16}[%d]{/}{/}%% 증가,1
+205,0,Master_card_SorshaHutton,Always,StarCount,,,,,,SCR_CARDEFFECT_ADD_BUFF_STARVALUE_PC,CARD_Aries_Atk_Buff,,0,찌르기 속성 공격 시 대미지 {@st66d_y}{s16}[%d]{/}{/}%% 증가,1
+206,0,Master_card_IliTerid,Always,StarCount,,,,,,SCR_CARDEFFECT_ADD_BUFF_STARVALUE_PC,CARD_Soul_Buff,,0,염 속성 마법 공격 시 대미지 {@st66d_y}{s16}[%d]{/}{/}%% 증가,1

@@ -272,14 +272,14 @@ function ENABLE_MORU_USE(invItem)
 		return false;
 	end
 
-	-- 이벤트 모루일 경우 도시에서만 가능하게
-	local moruStrArg = TryGetProp(obj, "StringArg", "None");
-	if moruStrArg == "Event_LuckyBreak_Moru" then
-		if zoneCheck ~= "c_Klaipe" and zoneCheck ~= "c_fedimian" and zoneCheck ~= "c_orsha" then
-			ui.SysMsg(ScpArgMsg("Event_Item_Use_Map_Limit_Msg"));
-			return false;
-		end
-	end
+	-- -- 이벤트 모루일 경우 도시에서만 가능하게
+	-- local moruStrArg = TryGetProp(obj, "StringArg", "None");
+	-- if moruStrArg == "Event_LuckyBreak_Moru" then
+	-- 	if zoneCheck ~= "c_Klaipe" and zoneCheck ~= "c_fedimian" and zoneCheck ~= "c_orsha" then
+	-- 		ui.SysMsg(ScpArgMsg("Event_Item_Use_Map_Limit_Msg"));
+	-- 		return false;
+	-- 	end
+	-- end
 
 	return true;
 end

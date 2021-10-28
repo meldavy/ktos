@@ -41,3 +41,4 @@ ClassID,Point,ClassName,ItemClassName,PointName
 10007,100,RelicExpExtract_7,misc_glacier_NoTrade,Relic_EXP
 10008,100,RelicExpExtract_8,Legend_Misc_Mothacc_hard_NoTrade,Relic_EXP
 10009,100,RelicExpExtract_9,Relic_exp_refine_conversion,Relic_EXP
+10010,100,RelicExpExtract_10,Relic_exp_refine_conversion_Event,Relic_EXP

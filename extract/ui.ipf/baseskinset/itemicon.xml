@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by imc (imc) -->
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by imc (imc) -->
 <!-- edited with XMLSpy v2008 sp1 http://www.altova.com by MintPC Mi -->
 <skinset name="Base">
 	<imagelist category="item_tooltip_icon">
@@ -6352,7 +6352,11 @@
 		<image name="icon_item_Event_2101_NK2" file="\icon\item\icon_item_Event_2101_NK2.png" imgrect="0 0 128 128" CMM_Caption="피난민 목걸이2"/>
 		<image name="icon_item_Event_2101_NK3" file="\icon\item\icon_item_Event_2101_NK3.png" imgrect="0 0 128 128" CMM_Caption="피난민 목걸이3"/>
 		<image name="icon_item_Event_Yugwa" file="\icon\item\icon_item_Event_Yugwa.png" imgrect="0 0 128 128" CMM_Caption="2021_설날 유과"/>
+		<image name="icon_item_2103_candy" file="\icon\item\icon_item_2103_candy.png" imgrect="0 0 256 256" CMM_Caption="21년 사탕"/>
+		<image name="icon_item_2103_WhiteDay_Box" file="\icon\item\icon_item_2103_WhiteDay_Box.png" imgrect="0 0 256 256" CMM_Caption="21년 화이트데이 상자"/>
+		<image name="icon_item_reputation_relief_blue" file="\icon\item\icon_item_reputation_relief_blue.png" imgrect="0 0 256 256" CMM_Caption="명성 증가 쿠폰"/>
 		<image name="icon_item_Gold_Jpn_Episode_13_Event" file="\icon\item\icon_item_Gold_Jpn_Episode_13_Event.png" imgrect="0 0 128 128" CMM_Caption="일본서버_에피소드13 아이템"/>
+		<image name="icon_item_gem_selectbox_color" file="\icon\item\icon_item_gem_selectbox_color.png" imgrect="0 0 256 256" CMM_Caption="스킬 젬 뽑기 상자"/>
 	</imagelist>
 	<imagelist category="housing">
 		<image name="icon_item_h_bigplant_set_01_green" file="\icon\housing\icon_item_h_bigplant_set_01_green.png" imgrect="0 0 256 256" CMM_Caption="[길드 하우징] 화단_01(초록색)"/>
@@ -8248,6 +8252,7 @@
 		<image name="icon_item_selectbox_ep13cherryblossom03_1" file="\icon\payment\icon_item_selectbox_ep13cherryblossom03_1.png" imgrect="0 0 256 256"/>
 		<image name="icon_item_toy_ep13cherryblossom" file="\icon\payment\icon_item_toy_ep13cherryblossom.png" imgrect="0 0 256 256"/>
 		<image name="icon_item_wing_ep13cherryblossom" file="\icon\payment\icon_item_wing_ep13cherryblossom.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_boruta_wing" file="\icon\payment\icon_item_boruta_wing.png" imgrect="0 0 256 256" CMM_Caption="보루타 날개"/>
 	</imagelist>
 	<imagelist category="seal">
 		<image name="icon_seal_yellow_cc_A1" file="\icon\seal\seal_yellow_cc_A1.tga" imgrect="0 0 80 80"/>

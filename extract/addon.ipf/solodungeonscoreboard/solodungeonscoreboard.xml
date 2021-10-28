@@ -38,6 +38,5 @@
 		<groupbox name="rankGbox_cleric" rect="0 0 700 350" margin="0 45 0 0" parent="rankGbox" tabname="tab_cleric" layout_gravity="center top" draw="false" hittestbox="false" resizebyparent="false" resizebyresolution="false" scrollbar="false"/>
 		<groupbox name="rankGbox_scout" rect="0 0 700 350" margin="0 45 0 0" parent="rankGbox" tabname="tab_scout" layout_gravity="center top" draw="false" hittestbox="false" resizebyparent="false" resizebyresolution="false" scrollbar="false"/>
 		<richtext name="returnMsg" rect="0 0 300 30" margin="70 0 0 54" parent="bg" layout_gravity="left bottom" textalign="center top" fontname="brown_18_b" format="%s" param1="value" param1_def="잠시후 마을로 돌아갑니다"/>
-		<button name="returnBtn" parent="bg" rect="0 0 160 46" margin="0 0 80 42" layout_gravity="right bottom" LBtnUpArgNum="" LBtnUpScp="SOLODUNGEON_SCOREBOARD_MGAME_RETURN" MouseOffAnim="btn_mouseoff" MouseOnAnim="btn_mouseover" clicksound="button_click_big" skin="test_red_button" caption="{@st42}{s18}{nl}돌아가기{nl}" oversound="button_over" stretch="false"/>
 	</controls>
 </uiframe>

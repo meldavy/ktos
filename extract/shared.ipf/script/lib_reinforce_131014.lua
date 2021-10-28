@@ -68,9 +68,9 @@ function IS_MORU_NOT_DESTROY_TARGET_ITEM(moruItem)
         return true, 'ruby'
     end
 
-    if moruItem.StringArg == 'Event_LuckyBreak_Moru' then
-        return true, 'Event_LuckyBreak_Moru'
-    end
+    -- if moruItem.StringArg == 'Event_LuckyBreak_Moru' then
+    --     return true, 'Event_LuckyBreak_Moru'
+    -- end
     
     return false, 'None';
 end
@@ -97,18 +97,18 @@ function REINFORCE_ABLE_131014(item, moru_item)
         return 0;
     end
     
-    -- Event_LuckyBreak
-    local moruStrArg = TryGetProp(moru_item, "StringArg", "None");
-    local itemStrArg = TryGetProp(item, "StringArg", "None");
-    if moruStrArg == "Event_LuckyBreak_Moru" then
-        if itemStrArg ~= "Event_LuckyBreak_Equip" then
-            return 0;
-        end
-    else
-        if itemStrArg == "Event_LuckyBreak_Equip" then
-            return 0;
-        end        
-    end
+    -- -- Event_LuckyBreak
+    -- local moruStrArg = TryGetProp(moru_item, "StringArg", "None");
+    -- local itemStrArg = TryGetProp(item, "StringArg", "None");
+    -- if moruStrArg == "Event_LuckyBreak_Moru" then
+    --     if itemStrArg ~= "Event_LuckyBreak_Equip" then
+    --         return 0;
+    --     end
+    -- else
+    --     if itemStrArg == "Event_LuckyBreak_Equip" then
+    --         return 0;
+    --     end        
+    -- end
 
     local prop = TryGetProp(item, "BasicTooltipProp");    
     if prop == nil then
@@ -165,11 +165,11 @@ function GET_REINFORCE_PRICE(fromItem, moruItem, pc)
         return 0;
     end
 
-    -- Event_LuckyBreak
-    local moruStrArg = TryGetProp(moruItem, "StringArg", "None");
-    if ENABLE_EVENT_LUCKYBREAK_REINFOCE(fromItem, moruStrArg) == true then        
-        return 0;
-    end
+    -- -- Event_LuckyBreak
+    -- local moruStrArg = TryGetProp(moruItem, "StringArg", "None");
+    -- if ENABLE_EVENT_LUCKYBREAK_REINFOCE(fromItem, moruStrArg) == true then        
+    --     return 0;
+    -- end
     
     local reinforcecount_diamond = reinforcecount - 1;
 
@@ -287,19 +287,19 @@ function GET_REINFORCE_PRICE(fromItem, moruItem, pc)
 end
 
 function GET_REINFORCE_HITCOUNT(fromItem, moru)
-    -- Event_LuckyBreak
-    local moruStrArg = TryGetProp(moru, "StringArg", "None");
-    if ENABLE_EVENT_LUCKYBREAK_REINFOCE(fromItem, moruStrArg) == true then        
-        return 5;
-    end
+    -- -- Event_LuckyBreak
+    -- local moruStrArg = TryGetProp(moru, "StringArg", "None");
+    -- if ENABLE_EVENT_LUCKYBREAK_REINFOCE(fromItem, moruStrArg) == true then        
+    --     return 5;
+    -- end
 
     return 3;
 end
 
 function ENABLE_EVENT_LUCKYBREAK_REINFOCE(invItem, moruType)
-	if moruType == "Event_LuckyBreak_Moru" and TryGetProp(invItem, "StringArg", "None") == "Event_LuckyBreak_Equip" then
-		return true;
-	end
+	-- if moruType == "Event_LuckyBreak_Moru" and TryGetProp(invItem, "StringArg", "None") == "Event_LuckyBreak_Equip" then
+	-- 	return true;
+	-- end
 
 	return false;
 end

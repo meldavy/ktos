@@ -80,10 +80,10 @@ function REINFORCE_131014_UPDATE_MORU_COUNT(frame)
 	REINFORCE_SKIP_OPTION_DRAW(frame, 1);
 
 	-- Event_LuckyBreak
-	if ENABLE_EVENT_LUCKYBREAK_REINFOCE(fromItemObj, TryGetProp(moruObj, "StringArg", "None")) == true then
-		fromPRTxt:SetTextByKey('value', ClMsg("SHOWLIST_ITEM_TYPE_4"))
-		REINFORCE_SKIP_OPTION_DRAW(frame, 0);
-	end
+	-- if ENABLE_EVENT_LUCKYBREAK_REINFOCE(fromItemObj, TryGetProp(moruObj, "StringArg", "None")) == true then
+	-- 	fromPRTxt:SetTextByKey('value', ClMsg("SHOWLIST_ITEM_TYPE_4"))
+	-- 	REINFORCE_SKIP_OPTION_DRAW(frame, 0);
+	-- end
 	
 	local pc = GetMyPCObject()
 	local price = GET_REINFORCE_PRICE(fromItemObj, moruObj, pc);
@@ -151,10 +151,10 @@ function REINFORCE_131014_MSGBOX(frame)
 	local moruObj = GetIES(fromMoru:GetObject());
 	
 	-- Event_LuckyBreak
-	if ENABLE_EVENT_LUCKYBREAK_REINFOCE(fromItemObj, TryGetProp(moruObj, "StringArg", "None")) == true then
-		REINFORCE_131014_EXEC();
-		return;
-	end
+	-- if ENABLE_EVENT_LUCKYBREAK_REINFOCE(fromItemObj, TryGetProp(moruObj, "StringArg", "None")) == true then
+	-- 	REINFORCE_131014_EXEC();
+	-- 	return;
+	-- end
 
 	local curReinforce = fromItemObj.Reinforce_2;
 	local curPR = fromItemObj.PR;

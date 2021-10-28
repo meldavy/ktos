@@ -12129,6 +12129,9 @@
 		<image name="032_DamirBorkhan" file="\skin\npccard\032_DamirBorkhan.tga" imgrect="0 0 330 440"/>
 		<image name="033_KhanomCaolaw" file="\skin\npccard\033_KhanomCaolaw.tga" imgrect="0 0 330 440"/>
 		<image name="034_Rudmila" file="\skin\npccard\034_Rudmila.tga" imgrect="0 0 330 440"/>
+		<image name="035_Flintess" file="\skin\npccard\035_Flintess.tga" imgrect="0 0 330 440"/>
+		<image name="036_SorshaHutton" file="\skin\npccard\036_SorshaHutton.tga" imgrect="0 0 330 440"/>
+		<image name="037_IliTerid" file="\skin\npccard\037_IliTerid.tga" imgrect="0 0 330 440"/>
 	</imagelist>
 	<imagelist category="bosscard2">
 		<image name="001_boss_poata" file="\skin\bosscard\001_boss_poata.tga" imgrect="0 0 330 440"/>

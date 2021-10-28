@@ -39,4 +39,3 @@ ClassID,GenType,Lv,Range,GenRange,RespawnTime,MaxPop,Minimap,Hide,UseAIOufOfPC,A
 1041,1041,1,40,1,60000,2,0,0,0,0,0,0,darbas_miner,,,,,,,,,,,NO,YES,NO,Monster,,,,
 1042,1042,1,40,1,60000,2,0,0,0,0,0,0,darbas_miner,,,,,,,,,,,NO,YES,NO,Monster,,,,
 1043,1043,1,40,1,60000,2,0,0,0,0,0,0,darbas_miner,,,,,,,,,,,NO,YES,NO,Monster,,,,
-1045,1045,1,40,1,1,1,0,0,0,0,0,0,hidden_monster,UnvisibleName,,,,,,EVENT_2101_SUPPLY_NPC3_1_CREAT_AI,,,,NO,YES,NO,Neutral,,,,

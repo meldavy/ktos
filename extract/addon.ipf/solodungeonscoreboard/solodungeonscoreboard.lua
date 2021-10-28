@@ -150,7 +150,3 @@ function SOLODUNGEON_SCOREBOARD_FILL_RANK_LIST(gbox, ctrlType)
         end
     end
 end
-
-function SOLODUNGEON_SCOREBOARD_MGAME_RETURN(frame)
-    packet.ReqReturnOriginServer();
-end

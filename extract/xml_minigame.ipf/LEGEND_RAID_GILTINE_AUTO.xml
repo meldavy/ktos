@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by imc (imc) -->
 <GameList>
 	<Game Name="LEGEND_RAID_GILTINE_AUTO" minLv="0" maxLv="0" mapName="raid_giltine_AutoGuild" playerCountCheckDestroy="1" startWaitSec="-1">
 		<StageList>
@@ -21,9 +22,6 @@
 			</Stage>
 			<Stage Name="Success" AutoStart="0">
 				<StartScpList>
-					<ToolScp Scp="MGAME_SUCCESS_STAGE_SCP" Client="NO" UseSleep="NO">
-						<Str Str="LegendRaid"/>
-					</ToolScp>
 					<ToolScp Scp="MGAME_GIVE_ADVENTURE_BOOK_CLEAR_POINT" Client="NO" UseSleep="NO">
 						<Str Str="Legend_Raid_Giltine_Auto"/>
 					</ToolScp>
@@ -1028,8 +1026,8 @@
 								<Num Num="2"/>
 							</ToolScp>
 							<ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
-                                <Str Str="Step1(95-76)"/>
-                            </ToolScp>
+								<Str Str="Step1(95-76)"/>
+							</ToolScp>
 						</execList>
 					</Event>
 					<Event execMS="160000" eventName="Step1(95-76)" execWithStart="0" isEnabled="0">
@@ -1087,8 +1085,8 @@
 								<Num Num="2"/>
 							</ToolScp>
 							<ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
-                                <Str Str="Step2(67-59)"/>
-                            </ToolScp>
+								<Str Str="Step2(67-59)"/>
+							</ToolScp>
 						</execList>
 					</Event>
 					<Event execMS="160000" eventName="Step2(67-59)" execWithStart="0" isEnabled="0">
@@ -1146,8 +1144,8 @@
 								<Num Num="2"/>
 							</ToolScp>
 							<ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
-                                <Str Str="Step3(44-30)"/>
-                            </ToolScp>
+								<Str Str="Step3(44-30)"/>
+							</ToolScp>
 						</execList>
 					</Event>
 					<Event execMS="160000" eventName="Step3(44-30)" execWithStart="0" isEnabled="0">
@@ -1205,8 +1203,8 @@
 								<Num Num="2"/>
 							</ToolScp>
 							<ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
-                                <Str Str="AStep1(42-31)"/>
-                            </ToolScp>
+								<Str Str="AStep1(42-31)"/>
+							</ToolScp>
 						</execList>
 					</Event>
 					<Event execMS="160000" eventName="AStep1(42-31)" execWithStart="0" isEnabled="0">
@@ -1264,8 +1262,8 @@
 								<Num Num="2"/>
 							</ToolScp>
 							<ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
-                                <Str Str="AStep2(20-0)"/>
-                            </ToolScp>
+								<Str Str="AStep2(20-0)"/>
+							</ToolScp>
 						</execList>
 					</Event>
 					<Event execMS="160000" eventName="AStep2(20-0)" execWithStart="0" isEnabled="0">
@@ -1328,8 +1326,8 @@
 								<Str Str="SCR_AUTO_GILTINE_HELL_FIRE_START"/>
 							</ToolScp>
 							<ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
-                                <Str Str="Step1(65-30)"/>
-                            </ToolScp>
+								<Str Str="Step1(65-30)"/>
+							</ToolScp>
 						</execList>
 					</Event>
 					<Event execMS="240000" eventName="Step1(65-30)" execWithStart="0" isEnabled="0">
@@ -1387,8 +1385,8 @@
 								<Str Str="SCR_AUTO_GILTINE_HELL_FIRE_START"/>
 							</ToolScp>
 							<ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
-                                <Str Str="AStep1(47-35)"/>
-                            </ToolScp>
+								<Str Str="AStep1(47-35)"/>
+							</ToolScp>
 						</execList>
 					</Event>
 					<Event execMS="240000" eventName="AStep1(47-35)" execWithStart="0" isEnabled="0">
@@ -1446,8 +1444,8 @@
 								<Str Str="SCR_AUTO_GILTINE_HELL_FIRE_START"/>
 							</ToolScp>
 							<ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
-                                <Str Str="AStep2(20-0)"/>
-                            </ToolScp>
+								<Str Str="AStep2(20-0)"/>
+							</ToolScp>
 						</execList>
 					</Event>
 					<Event execMS="240000" eventName="AStep2(20-0)" execWithStart="0" isEnabled="0">
@@ -1510,8 +1508,8 @@
 								<Str Str="SCR_AUTO_GILTINE_PESTILENCE_DAMNATION_START"/>
 							</ToolScp>
 							<ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
-                                <Str Str="Step1(68-58)"/>
-                            </ToolScp>
+								<Str Str="Step1(68-58)"/>
+							</ToolScp>
 						</execList>
 					</Event>
 					<Event execMS="340000" eventName="Step1(68-58)" execWithStart="0" isEnabled="0">
@@ -1569,8 +1567,8 @@
 								<Str Str="SCR_AUTO_GILTINE_PESTILENCE_DAMNATION_START"/>
 							</ToolScp>
 							<ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
-                                <Str Str="Step2(45-30)"/>
-                            </ToolScp>
+								<Str Str="Step2(45-30)"/>
+							</ToolScp>
 						</execList>
 					</Event>
 					<Event execMS="340000" eventName="Step2(45-30)" execWithStart="0" isEnabled="0">
@@ -1628,8 +1626,8 @@
 								<Str Str="SCR_AUTO_GILTINE_PESTILENCE_DAMNATION_START"/>
 							</ToolScp>
 							<ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
-                                <Str Str="AStep1(42-33)"/>
-                            </ToolScp>
+								<Str Str="AStep1(42-33)"/>
+							</ToolScp>
 						</execList>
 					</Event>
 					<Event execMS="340000" eventName="AStep1(42-33)" execWithStart="0" isEnabled="0">
@@ -1687,8 +1685,8 @@
 								<Str Str="SCR_AUTO_GILTINE_PESTILENCE_DAMNATION_START"/>
 							</ToolScp>
 							<ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
-                                <Str Str="AStep2(23-18)"/>
-                            </ToolScp>
+								<Str Str="AStep2(23-18)"/>
+							</ToolScp>
 						</execList>
 					</Event>
 					<Event execMS="340000" eventName="AStep2(23-18)" execWithStart="0" isEnabled="0">
@@ -1746,8 +1744,8 @@
 								<Str Str="SCR_AUTO_GILTINE_PESTILENCE_DAMNATION_START"/>
 							</ToolScp>
 							<ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
-                                <Str Str="AStep3(12-0)"/>
-                            </ToolScp>
+								<Str Str="AStep3(12-0)"/>
+							</ToolScp>
 						</execList>
 					</Event>
 					<Event execMS="340000" eventName="AStep3(12-0)" execWithStart="0" isEnabled="0">
@@ -1802,8 +1800,8 @@
 								<Str Str="SCR_AUTO_GILTINE_DEMONICS_PRANK_START"/>
 							</ToolScp>
 							<ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
-                                <Str Str="Step1(86-70)"/>
-                            </ToolScp>
+								<Str Str="Step1(86-70)"/>
+							</ToolScp>
 						</execList>
 					</Event>
 					<Event execMS="355000" eventName="Step1(86-70)" execWithStart="0" isEnabled="0">
@@ -1853,8 +1851,8 @@
 								<Str Str="SCR_AUTO_GILTINE_DEMONICS_PRANK_START"/>
 							</ToolScp>
 							<ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
-                                <Str Str="Step2(60-50)"/>
-                            </ToolScp>
+								<Str Str="Step2(60-50)"/>
+							</ToolScp>
 						</execList>
 					</Event>
 					<Event execMS="355000" eventName="Step2(60-50)" execWithStart="0" isEnabled="0">
@@ -1904,8 +1902,8 @@
 								<Str Str="SCR_AUTO_GILTINE_DEMONICS_PRANK_START"/>
 							</ToolScp>
 							<ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
-                                <Str Str="Step3(40-30)"/>
-                            </ToolScp>
+								<Str Str="Step3(40-30)"/>
+							</ToolScp>
 						</execList>
 					</Event>
 					<Event execMS="355000" eventName="Step3(40-30)" execWithStart="0" isEnabled="0">
@@ -1955,8 +1953,8 @@
 								<Str Str="SCR_AUTO_GILTINE_DEMONICS_PRANK_START"/>
 							</ToolScp>
 							<ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
-                                <Str Str="AStep1(49-40)"/>
-                            </ToolScp>
+								<Str Str="AStep1(49-40)"/>
+							</ToolScp>
 						</execList>
 					</Event>
 					<Event execMS="355000" eventName="AStep1(49-40)" execWithStart="0" isEnabled="0">
@@ -2006,8 +2004,8 @@
 								<Str Str="SCR_AUTO_GILTINE_DEMONICS_PRANK_START"/>
 							</ToolScp>
 							<ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
-                                <Str Str="AStep2(30-21)"/>
-                            </ToolScp>
+								<Str Str="AStep2(30-21)"/>
+							</ToolScp>
 						</execList>
 					</Event>
 					<Event execMS="355000" eventName="AStep2(30-21)" execWithStart="0" isEnabled="0">
@@ -2057,8 +2055,8 @@
 								<Str Str="SCR_AUTO_GILTINE_DEMONICS_PRANK_START"/>
 							</ToolScp>
 							<ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
-                                <Str Str="AStep3(14-0)"/>
-                            </ToolScp>
+								<Str Str="AStep3(14-0)"/>
+							</ToolScp>
 						</execList>
 					</Event>
 					<Event execMS="355000" eventName="AStep3(14-0)" execWithStart="0" isEnabled="0">
@@ -2121,8 +2119,8 @@
 								<Str Str="SCR_AUTO_GILTINE_DEMONICS_FORCE_CONCORDAT_START"/>
 							</ToolScp>
 							<ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
-                                <Str Str="Step1(83-76)"/>
-                            </ToolScp>
+								<Str Str="Step1(83-76)"/>
+							</ToolScp>
 						</execList>
 					</Event>
 					<Event execMS="200000" eventName="Step1(83-76)" execWithStart="0" isEnabled="0">
@@ -2180,8 +2178,8 @@
 								<Str Str="SCR_AUTO_GILTINE_DEMONICS_FORCE_CONCORDAT_START"/>
 							</ToolScp>
 							<ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
-                                <Str Str="Step2(62-52)"/>
-                            </ToolScp>
+								<Str Str="Step2(62-52)"/>
+							</ToolScp>
 						</execList>
 					</Event>
 					<Event execMS="200000" eventName="Step2(62-52)" execWithStart="0" isEnabled="0">
@@ -2239,8 +2237,8 @@
 								<Str Str="SCR_AUTO_GILTINE_DEMONICS_FORCE_CONCORDAT_START"/>
 							</ToolScp>
 							<ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
-                                <Str Str="Step3(42-30)"/>
-                            </ToolScp>
+								<Str Str="Step3(42-30)"/>
+							</ToolScp>
 						</execList>
 					</Event>
 					<Event execMS="200000" eventName="Step3(42-30)" execWithStart="0" isEnabled="0">
@@ -2298,8 +2296,8 @@
 								<Str Str="SCR_AUTO_GILTINE_DEMONICS_FORCE_CONCORDAT_START"/>
 							</ToolScp>
 							<ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
-                                <Str Str="AStep1(33-19)"/>
-                            </ToolScp>
+								<Str Str="AStep1(33-19)"/>
+							</ToolScp>
 						</execList>
 					</Event>
 					<Event execMS="200000" eventName="AStep1(33-19)" execWithStart="0" isEnabled="0">
@@ -2357,8 +2355,8 @@
 								<Str Str="SCR_AUTO_GILTINE_DEMONICS_FORCE_CONCORDAT_START"/>
 							</ToolScp>
 							<ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
-                                <Str Str="AStep2(8-0)"/>
-                            </ToolScp>
+								<Str Str="AStep2(8-0)"/>
+							</ToolScp>
 						</execList>
 					</Event>
 					<Event execMS="200000" eventName="AStep2(8-0)" execWithStart="0" isEnabled="0">
@@ -2907,8 +2905,8 @@
 								<Str Str="SCR_AUTO_GILTINE_ELECTRIC_EEL_START"/>
 							</ToolScp>
 							<ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
-                                <Str Str="Step1(86-70)"/>
-                            </ToolScp>
+								<Str Str="Step1(86-70)"/>
+							</ToolScp>
 						</execList>
 					</Event>
 					<Event execMS="210000" eventName="Step1(86-70)" execWithStart="0" isEnabled="0">
@@ -2958,8 +2956,8 @@
 								<Str Str="SCR_AUTO_GILTINE_ELECTRIC_EEL_START"/>
 							</ToolScp>
 							<ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
-                                <Str Str="Step2(62-54)"/>
-                            </ToolScp>
+								<Str Str="Step2(62-54)"/>
+							</ToolScp>
 						</execList>
 					</Event>
 					<Event execMS="210000" eventName="Step2(62-54)" execWithStart="0" isEnabled="0">
@@ -3009,8 +3007,8 @@
 								<Str Str="SCR_AUTO_GILTINE_ELECTRIC_EEL_START"/>
 							</ToolScp>
 							<ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
-                                <Str Str="Step3(36-30)"/>
-                            </ToolScp>
+								<Str Str="Step3(36-30)"/>
+							</ToolScp>
 						</execList>
 					</Event>
 					<Event execMS="210000" eventName="Step3(36-30)" execWithStart="0" isEnabled="0">
@@ -3060,8 +3058,8 @@
 								<Str Str="SCR_AUTO_GILTINE_ELECTRIC_EEL_START"/>
 							</ToolScp>
 							<ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
-                                <Str Str="AStep1(45-36)"/>
-                            </ToolScp>
+								<Str Str="AStep1(45-36)"/>
+							</ToolScp>
 						</execList>
 					</Event>
 					<Event execMS="210000" eventName="AStep1(45-36)" execWithStart="0" isEnabled="0">
@@ -3111,8 +3109,8 @@
 								<Str Str="SCR_AUTO_GILTINE_ELECTRIC_EEL_START"/>
 							</ToolScp>
 							<ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
-                                <Str Str="AStep2(24-17)"/>
-                            </ToolScp>
+								<Str Str="AStep2(24-17)"/>
+							</ToolScp>
 						</execList>
 					</Event>
 					<Event execMS="210000" eventName="AStep2(24-17)" execWithStart="0" isEnabled="0">
@@ -3162,8 +3160,8 @@
 								<Str Str="SCR_AUTO_GILTINE_ELECTRIC_EEL_START"/>
 							</ToolScp>
 							<ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
-                                <Str Str="AStep3(10-5)"/>
-                            </ToolScp>
+								<Str Str="AStep3(10-5)"/>
+							</ToolScp>
 						</execList>
 					</Event>
 					<Event execMS="210000" eventName="AStep3(10-5)" execWithStart="0" isEnabled="0">
@@ -3443,8 +3441,8 @@
 								<Str Str="SCR_AUTO_GILTINE_DEMONICS_LANCE_START"/>
 							</ToolScp>
 							<ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
-                                <Str Str="Step1(90-72)"/>
-                            </ToolScp>
+								<Str Str="Step1(90-72)"/>
+							</ToolScp>
 						</execList>
 					</Event>
 					<Event execMS="280000" eventName="Step1(90-72)" execWithStart="0" isEnabled="0">
@@ -3504,8 +3502,8 @@
 								<Str Str="SCR_AUTO_GILTINE_DEMONICS_LANCE_START"/>
 							</ToolScp>
 							<ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
-                                <Str Str="Step2(60-32)"/>
-                            </ToolScp>
+								<Str Str="Step2(60-32)"/>
+							</ToolScp>
 						</execList>
 					</Event>
 					<Event execMS="280000" eventName="Step2(60-32)" execWithStart="0" isEnabled="0">
@@ -3565,8 +3563,8 @@
 								<Str Str="SCR_AUTO_GILTINE_DEMONICS_LANCE_START"/>
 							</ToolScp>
 							<ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
-                                <Str Str="AStep1(43-29)"/>
-                            </ToolScp>
+								<Str Str="AStep1(43-29)"/>
+							</ToolScp>
 						</execList>
 					</Event>
 					<Event execMS="280000" eventName="AStep1(43-29)" execWithStart="0" isEnabled="0">
@@ -3626,8 +3624,8 @@
 								<Str Str="SCR_AUTO_GILTINE_DEMONICS_LANCE_START"/>
 							</ToolScp>
 							<ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
-                                <Str Str="AStep2(18-0)"/>
-                            </ToolScp>
+								<Str Str="AStep2(18-0)"/>
+							</ToolScp>
 						</execList>
 					</Event>
 					<Event execMS="280000" eventName="AStep2(18-0)" execWithStart="0" isEnabled="0">

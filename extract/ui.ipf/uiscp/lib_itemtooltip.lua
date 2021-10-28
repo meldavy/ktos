@@ -321,8 +321,7 @@ function ITEM_COMPARISON_SET_OFFSET(tooltipframe, isReadObj)
 end
 
 function COMPARISON_BY_PROPLIST(list, invitem, eqpItem, tooltipframe, equipchange, ispickitem)
-	local ShowEquipItemComparison = config.GetXMLConfig("ShowEquipItemComparison")
-	local valueList = GET_COMPARE_VALUE_LIST(list, invitem, eqpItem);
+    local valueList = GET_COMPARE_VALUE_LIST(list, invitem, eqpItem);
 
 	local IsNeedShowTooltip = 0;
 		for i = 1 , #list do
@@ -333,7 +332,7 @@ function COMPARISON_BY_PROPLIST(list, invitem, eqpItem, tooltipframe, equipchang
 		end
 	end
 
-	if ShowEquipItemComparison == 0 or IsNeedShowTooltip == 0 then
+	if IsNeedShowTooltip == 0 then
 		return 0;
 	else
 		local cnt = equipchange:GetChildCount();
