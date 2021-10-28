@@ -1,438 +1,161 @@
-function SCR_QUEST_LINK_FIRST(pc,questname)
-    return SCR_QUEST_LINK_FIRST_SUB(pc,{questname}, {}, {})
-end
-
-function SCR_QUEST_LINK_FIRST_SUB(pc,t, ext, statet)
-    if #t == 0 then
-        return t, ext, statet
-    end
-    
-    local list1 = {}
-    local removeList1 = {}
-    if #t > 0 then
-        for i = 1, #t do
-            if table.find(ext,t[i]) == 0 then
-                local flag = 0
-                for i2 = 1, 4 do
-                    local questIES = GetClass('QuestProgressCheck',t[i])
-                    local before = TryGetProp(questIES,'QuestName'..i2, 'None')
-                    if before ~= 'None' then
-                        local beforeCount = TryGetProp(questIES,'QuestCount'..i2, 0)
-                        local state
-                        if IsServerSection(pc) == 1 then
-                            state = SCR_QUEST_CHECK(pc, before)
-                        else
-                            state = SCR_QUEST_CHECK_C(pc, before)
-                        end
-                        if beforeCount == 300 then
-                            if state ~= 'COMPLETE' then
-                                if table.find(list1, before) == 0 then
-                                    list1[#list1 + 1] = before
-                                    statet[#statet + 1] = {before, beforeCount, '>='}
-                                end
-                                flag = 1
-                            end
-                        elseif beforeCount == 200 then
-                            local terms = TryGetProp(questIES,'QuestTerms'..i2, '==')
-                            if terms == '>=' then
-                                if state ~= 'COMPLETE' and state ~= 'SUCCESS' then
-                                    if table.find(list1, before) == 0 then
-                                        list1[#list1 + 1] = before
-                                        statet[#statet + 1] = {before, beforeCount, terms}
-                                    end
-                                    flag = 1
-                                end
-                            else
-                                if state ~= 'SUCCESS' then
-                                    if table.find(list1, before) == 0 then
-                                        list1[#list1 + 1] = before
-                                        statet[#statet + 1] = {before, beforeCount, terms}
-                                    end
-                                    flag = 1
-                                end
-                            end
-                        elseif beforeCount == 1 then
-                            local terms = TryGetProp(questIES,'QuestTerms'..i2, '==')
-                            if terms == '>=' then
-                                if state ~= 'COMPLETE' and state ~= 'SUCCESS' and state ~= 'PROGRESS' then
-                                    if table.find(list1, before) == 0 then
-                                        list1[#list1 + 1] = before
-                                        statet[#statet + 1] = {before, beforeCount, terms}
-                                    end
-                                    flag = 1
-                                end
-                            else
-                                if state ~= 'PROGRESS' then
-                                    if table.find(list1, before) == 0 then
-                                        list1[#list1 + 1] = before
-                                        statet[#statet + 1] = {before, beforeCount, terms}
-                                    end
-                                    flag = 1
-                                end
-                            end
---                        elseif beforeCount == 0 then
---                            local terms = TryGetProp(questIES,'QuestTerms'..i2, '==')
---                            if terms == '>=' then
---                                if state ~= 'COMPLETE' and state ~= 'SUCCESS' and state ~= 'PROGRESS' and state ~= 'POSSIBLE' then
---                                    if table.find(list1, before) == 0 then
---                                        list1[#list1 + 1] = before
---                                    end
---                                    flag = 1
---                                end
---                            else
---                                if state ~= 'POSSIBLE' then
---                                    if table.find(list1, before) == 0 then
---                                        list1[#list1 + 1] = before
---                                    end
---                                    flag = 1
---                                end
---                            end
-                        end
-                    end
-                end
-                if flag == 1 then
-                    if table.find(removeList1, t[i]) == 0 then
-                        removeList1[#removeList1 + 1] = t[i]
-                    end
-                else
-                    if table.find(ext, t[i]) == 0 then
-                        ext[#ext + 1] = t[i]
-                    end
-                end
-            end
-        end
-    end
-    if #ext > 0 then
-        for i = 1, #ext do
-            local index = table.find(list1, ext[i])
-            if index > 0 then
-                table.remove(list1,index)
-            end
-        end
-    end
-    if #removeList1 > 0 then
-        for i = 1, #removeList1 do
-            local index = table.find(list1, removeList1[i])
-            if index > 0 then
-                table.remove(list1,index)
-            end
-        end
-    end
-    
-    local ret1, ret2, ret3 = SCR_QUEST_LINK_FIRST_SUB(pc,list1, ext, statet)
-    if #ret1 == 0 then
-        return ret1, ret2, ret3
-    end
-end
-
-function JOB_CHAPLAIN_PRE_CHECK(pc)
-    local jobCircle = 0
-    if IsServerSection(pc) == 1 then
-        jobCircle = GetJobGradeByName(pc, 'Char4_2');
-    else
-        local jobIES = GetClass('Job', 'Char4_2')
-        jobCircle = session.GetJobGrade(jobIES.ClassID);
-    end
-    
-    if jobCircle >= 3 then
-        return 'YES'
-    end
-    
-    return 'NO'
-end
-
-function IS_KOR_JOB_EXEMPTION_PERIOD(jobClassName)
-    local jobList = {'Char1_19','Char2_19','Char3_18','Char4_19'}
-    if GetServerNation() == 'KOR' then
-        if table.find(jobList, jobClassName) > 0 then
-            return 'YES'
-        end
-    end
-    return 'NO'
-end
-
-function IS_KOR_TEST_SERVER()
-    if GetServerNation() == 'KOR' and GetServerGroupID() == 9001 then
-        return true
-    end
-    return false
-end
-function IS_SEASON_SERVER(pc)
-    
-    if pc ~= nil then
-        if IsServerObj(pc) == 1 then
-            if IsIndun(pc) == 1 then
-                local etc = GetETCObject(pc)
-                local serverGroupID = TryGetProp(etc, "MyWorldID");
-
-                --Test Server
-                --if GetServerNation() == "KOR" and serverGroupID == 1550 then
-                --  return "NO";
-                --else
-                --  return "YES";
-                --end
-
-                --Live Server
-                if GetServerNation() == "KOR" and ( serverGroupID == 3001 or serverGroupID == 8801) then
-                    return "YES";
-                else
-                    return "NO";
-                end
-            else
-                --Test Server
-                --if (GetServerNation() == "KOR" and GetServerGroupID() == 1550) then
-                --  return "YES"
-                --else
-                --  return "NO"
-                --end
-    
-                --Live Server
-                if (GetServerNation() == "KOR" and ( GetServerGroupID() == 3001 or GetServerGroupID() == 8801)) then
-                    return "YES"
-                else
-                    return "NO"
-                end
-            end
-        else
-            if session.world.IsIntegrateServer() == true then
-                local pcEtc = GetMyEtcObject();
-                    
-                local serverGroupID = TryGetProp(pcEtc, "MyWorldID");
-
-                --Test Server
-                --if GetServerNation() == "KOR" and serverGroupID == 1550 then
-                --  return "NO";
-                --else
-                --  return "YES";
-                --end
-
-                --Live Server
-                if GetServerNation() == "KOR" and ( serverGroupID == 3001 or serverGroupID == 8801) then
-                    return "NO";
-                else
-                    return "YES";
-                end
-            else
-                --Test Server
-                --if (GetServerNation() == "KOR" and GetServerGroupID() == 1550) then
-                --  return 'YES'
-                --end
-     
-                --Live Server
-                if (GetServerNation() == "KOR" and ( GetServerGroupID() == 3001 or GetServerGroupID() == 8801)) then
-                    return "YES"
-                else
-                    return "NO"
-                end
-            end 
-        end
-    else
-        --Test Server
-        --if (GetServerNation() == "KOR" and GetServerGroupID() == 1550) then
-        --  return 'YES'
-        --end
-    
-        --Live Server
-        if (GetServerNation() == "KOR" and ( GetServerGroupID() == 3001 or GetServerGroupID() == 8801)) then
-            return 'YES'
-        end         
-    end
 
 
-    --Test Server
-    --if (GetServerNation() == "KOR" and GetServerGroupID() == 1550) then
-    --  return 'YES'
-    --end
-    
-    --Live Server
-    --if (GetServerNation() == "KOR" and ( GetServerGroupID() == 3001 or GetServerGroupID() == 8801)) then
-    --   return 'YES'
-    --end
-    
-    return 'NO'
+function IMC_FATAL(code, stringinfo)
+	imclog("Fatal",code,stringinfo)
 end
 
-function IMC_LOG(code, stringinfo)
-    imclog(code, stringinfo);
+function IMC_ERROR(code, stringinfo)
+	imclog("Error",code,stringinfo)
 end
 
--- new logger
-function IMCLOG_FATAL(logger, code, stringinfo)
-    ImcScriptLog(logger, "FATAL",code,stringinfo)
-end
-function IMCLOG_ALERT(logger, code, stringinfo)
-    ImcScriptLog(logger, "ALERT",code,stringinfo)
-end
-function IMCLOG_CRITICAL(logger, code, stringinfo)
-    ImcScriptLog(logger, "CRITICAL",code,stringinfo)
-end
-function IMCLOG_ERROR(logger,code, stringinfo)
-    ImcScriptLog(logger, "ERROR",code,stringinfo)
-end
-function IMCLOG_WARN(logger,code, stringinfo)
-    ImcScriptLog(logger, "WARN",code,stringinfo)
-end
-function IMCLOG_NOTICE(logger,code, stringinfo)
-    ImcScriptLog(logger, "NOTICE",code,stringinfo)
-end
-function IMCLOG_INFO(logger,code, stringinfo)
-    ImcScriptLog(logger, "INFO",code,stringinfo)
-end
-function IMCLOG_DEBUG(logger,code, stringinfo)
-    ImcScriptLog(logger, "DEBUG",code,stringinfo)
+function IMC_WARNING(code, stringinfo)
+	imclog("Warning",code,stringinfo)
 end
 
-function IMCLOG_CONTENT(tag, ...)
-    local logMsg = "";
-    for i, v in ipairs{...} do
-        logMsg = logMsg..tostring(v);
-    end
-
-    ImcContentLog(tag,logMsg)
+function IMC_INFO(code, stringinfo)
+	imclog("Info",code,stringinfo)
 end
+
+function IMC_NORMAL_INFO(stringinfo)
+	imclog("ERRCODE_INFO_NORMAL", stringinfo)
+end
+
 
 function IS_REINFORCEABLE_ITEM(item)
 
-    if item.GroupName == 'Weapon' then
-        return 1;
-    end
-    if item.GroupName == 'Armor' then
-        return 1;
-    end
-    if item.GroupName == 'SubWeapon' and item.BasicTooltipProp ~= 'None' then
-        return 1;
-    end
+	if item.GroupName == 'Weapon' then
+		return 1;
+	end
+	if item.GroupName == 'Armor' then
+		return 1;
+	end
+	if item.GroupName == 'SubWeapon' and item.BasicTooltipProp ~= 'None' then
+	    return 1;
+	end
 
-    return 0;
+	return 0;
 end
 
 function GET_LAST_UI_OPEN_POS(etc)
 
-    if etc == nil then
-        return nil 
-    end
+	if etc == nil then
+		return nil 
+	end
 
-    local stringpos = etc["LastUIOpenPos"]
+	local stringpos = etc["LastUIOpenPos"]
 
-    if stringpos == 'None' then
-        return nil 
-    
-    end
+	if stringpos == 'None' then
+		return nil 
+	
+	end
 
-    local x,y,z,mapname,uiname;
-    
-    for i = 0, 5 do
+	local x,y,z,mapname,uiname;
+	
+	for i = 0, 5 do
 
-        local divStart, divEnd = string.find(stringpos, "/");
-        if divStart == nil then
-            uiname = stringpos
-            break;
-        end
+		local divStart, divEnd = string.find(stringpos, "/");
+		if divStart == nil then
+			uiname = stringpos
+			break;
+		end
 
-        local divstringpos = string.sub(stringpos, 1, divStart-1);
-        
-        if i == 0 then
-            mapname = divstringpos
-        elseif i == 1 then
-            x = divstringpos
-        elseif i == 2 then
-            y = divstringpos
-        elseif i == 3 then
-            z = divstringpos
-        end
+		local divstringpos = string.sub(stringpos, 1, divStart-1);
+		
+		if i == 0 then
+			mapname = divstringpos
+		elseif i == 1 then
+			x = divstringpos
+		elseif i == 2 then
+			y = divstringpos
+		elseif i == 3 then
+			z = divstringpos
+		end
 
-        stringpos = string.sub(stringpos, divEnd +1, string.len(stringpos));
-    end
+		stringpos = string.sub(stringpos, divEnd +1, string.len(stringpos));
+	end
 
-    return mapname,x,y,z,uiname
+	return mapname,x,y,z,uiname
 end
 
 
 function IS_NO_EQUIPITEM(equipItem) -- No_~ ?úÎ¶¨Ï¶??ÑÏù¥?úÏù∏ÏßÄ.
 
-    local clsName = equipItem.ClassName;
+	local clsName = equipItem.ClassName;
 
-    if clsName == 'NoWeapon' or clsName == "NoHat" or clsName == "NoBody" or clsName == "NoOuter" or clsName == 'NoShirt' or clsName == 'NoArmband' or clsName == 'NoHair' then
-        return 1;
-    elseif clsName == 'NoPants' or clsName == "NoGloves" or clsName == "NoBoots" or clsName == "NoRing" or clsName == 'NoHelmet' or clsName == 'NoNeck'then
-        return 1;
-    end
+	if clsName == 'NoWeapon' or clsName == "NoHat" or clsName == "NoBody" or clsName == "NoOuter" or clsName == 'NoShirt' or clsName == 'NoArmband' or clsName == 'NoHair' then
+		return 1;
+	elseif clsName == 'NoPants' or clsName == "NoGloves" or clsName == "NoBoots" or clsName == "NoRing" or clsName == 'NoHelmet' or clsName == 'NoNeck'then
+		return 1;
+	end
 
-    return 0;
+	return 0;
 end
 
 function IS_HAVE_GEM(item)
 
-    for i = 0, item.MaxSocket - 1 do
-        
-        local nowsocketitem = item['Socket_Equip_' .. i]
+	for i = 0, item.MaxSocket - 1 do
+		
+		local nowsocketitem = item['Socket_Equip_' .. i]
 
-        if nowsocketitem ~= 0 then
-            return 1;
-        end     
-    end
+		if nowsocketitem ~= 0 then
+			return 1;
+		end		
+	end
 
-    return 0;
+	return 0;
 end
 
-function GET_MAKE_SOCKET_PRICE(itemlv, grade, curcnt)
+function GET_MAKE_SOCKET_PRICE(itemlv, curcnt)
 
-    local clslist, cnt  = GetClassList("socketprice");
-    local gradRatio = {1.2, 1 , 0.5 , 0.4, 0.3}
-    local itemGradeRatio = 1;
-    local secretNumber = 1;
-    if curcnt >= 1 then
-        secretNumber = 0.8;
-        itemGradeRatio = gradRatio[grade]
-    end
-    for i = 0 , cnt - 1 do
+	local clslist, cnt  = GetClassList("socketprice");
 
-        local cls = GetClassByIndexFromList(clslist, i);
+	for i = 0 , cnt - 1 do
 
-        if cls.Lv == itemlv then
-            local priceRatio = (curcnt + 1) ;
-            local ret = SyncFloor(cls.NewSocketPrice * secretNumber * (priceRatio ^ 1 / itemGradeRatio));
-            return ret
-        end
-    end
+		local cls = GetClassByIndexFromList(clslist, i);
 
-    return 0;
+		if cls.Lv == itemlv then
+		    local priceRatio = (curcnt + 1) * (curcnt + 1);
+			return cls.NewSocketPrice * priceRatio;
+		end
+	end
+
+	return 0;
 
 end
 
 function GET_REMOVE_GEM_PRICE(itemlv)
 
-    local clslist, cnt  = GetClassList("socketprice");
+	local clslist, cnt  = GetClassList("socketprice");
 
-    for i = 0 , cnt - 1 do
+	for i = 0 , cnt - 1 do
 
-        local cls = GetClassByIndexFromList(clslist, i);
+		local cls = GetClassByIndexFromList(clslist, i);
 
-        if cls.Lv == itemlv then
-            return cls.RemoveSocketPrice
-        end
-    end
+		if cls.Lv == itemlv then
+			return cls.RemoveSocketPrice
+		end
+	end
 
-    return 0;
+	return 0;
 
 end
 
 function GET_GEM_TYPE_NUMBER(GemType)
 
-    if GemType == 'Circle' then
-        return 1;
-    elseif GemType == 'Square' then
-        return 2;
-    elseif GemType == 'Diamond' then
-        return 3;
-    elseif GemType == 'Star' then
-        return 4;
-    end
+	if GemType == 'Circle' then
+		return 1;
+	elseif GemType == 'Square' then
+		return 2;
+	elseif GemType == 'Diamond' then
+		return 3;
+	elseif GemType == 'Star' then
+		return 4;
+	end
 
-    return -1;
+	return -1;
 end
 
--- ?πÏ†ï Ï°??µÏª§ Ï§??úÎç§?ºÎ°ú 1Í∞?IESÎ•?Î¶¨ÌÑ¥?¥Ï???
+-- ?πÏ†ï Ï°??µÏª§ Ï§??úÎç§?ºÎ°ú 1Í∞?IESÎ•?Î¶¨ÌÑ¥?¥Ï??
 function SCR_RANDOM_ZONE_ANCHORIES(zoneName)
     local idspace = 'Anchor_'..zoneName
     local class_count = GetClassCount(idspace)
@@ -451,7 +174,7 @@ function SCR_RANDOM_ZONE_ANCHORIES(zoneName)
     
 end
 
--- ?åÏù¥Î∏îÏóê???πÏ†ï Ïª¨Îüº??Í≤Ä?âÌï¥??Î¶¨ÌÑ¥?¥Ï???
+-- ?åÏù¥Î∏îÏóê???πÏ†ï Ïª¨Îüº??Í≤Ä?âÌï¥??Î¶¨ÌÑ¥?¥Ï??
 function SCR_TABLE_SEARCH_ITEM(list, target)
     local result = 'NO'
     local keyList = {}
@@ -541,7 +264,7 @@ function SCR_Q_SUCCESS_REWARD_JOB_GENDER_CHECK(pc, list, target1, target2, targe
 end
 
 
--- ?êÍ∞ú??IES Î¶¨Ïä§?∏Î? ?©Ï≥êÏ§Ä??
+-- ?êÍ∞ú??IES Î¶¨Ïä§?∏Î? ?©Ï≥êÏ§Ä?
 function SCR_IES_ADD_IES(IES_list1, IES_list2)
     if IES_list1 == nil and IES_list2 == nil then
         return nil
@@ -578,7 +301,7 @@ function SCR_QUEST_SOBJ_TERMS(pc, sObj_name, index)
     end
 end
 
--- ?πÏ†ï Ï°¥Ïóê ?àÎäî ?§Î∏å?ùÌä∏??Ï¢åÌëú IES Î¶¨Ïä§?∏Î? Ï∞æÏïÑÏ§?
+-- ?πÏ†ï Ï°¥Ïóê ?àÎäî ?§Î∏å?ùÌä∏??Ï¢åÌëú IES Î¶¨Ïä§?∏Î? Ï∞æÏïÑÏ§
 function SCR_GET_MONGEN_ANCHOR(zone_name, column, value)
     local result2 = SCR_GET_XML_IES('GenType_'..zone_name, column, value)
     if  result2 ~= nil and #result2 > 0 then
@@ -592,25 +315,25 @@ end
 
 -- xml Ï§??πÏ†ï Ïª¨Îüº??Í∞íÍ≥º ?ºÏπò/?†ÏÇ¨ ??IES Î¶¨Ïä§?∏Î? Ï∞æÏïÑÏ§?(option 1?¥Î©¥ ?†ÏÇ¨ Í∞? ?ÑÎãàÎ©??ºÏπò)
 function SCR_GET_XML_IES(idspace, column_name, target_value, option)
-    local return_list = {}
     if idspace == nil then
-        return return_list;
-    end
+		return;
+	end
 
     if GetClassByIndex(idspace, 0) == nil then
-        return return_list;
-    end
+		return;
+	end
 
     local obj = GetClassByIndex(idspace, 0)
     if column_name == nil then
-        return return_list;
-    end
+		return;
+	end
     
-    if GetPropType(GetClassByIndex(idspace, 0),column_name) == nil then    
-        return return_list;
-    end
+	if GetPropType(GetClassByIndex(idspace, 0),column_name) == nil then    
+		return;
+	end
 
     local class_count = GetClassCount(idspace)
+    local return_list = {}
         
     for y = 0, class_count -1 do
         local classIES = GetClassByIndex(idspace, y)
@@ -626,7 +349,7 @@ function SCR_GET_XML_IES(idspace, column_name, target_value, option)
         end
     end
 
-    return return_list
+        return return_list
 end
 
 function SCR_JOBNAME_MATCHING(jobclassname)
@@ -641,23 +364,23 @@ end
 
 
 function ZERO()
-    return 0;
+	return 0;
 end
 
 function ONE()
-    return 1;
+	return 1;
 end
 
 function FIVE()
-    return 5;
+	return 5;
 end
 
 function NONECP()
-    return -1;
+	return -1;
 end
 
 function SCR_MAX_SPL()
-    return 512;
+	return 512;
 end
 
 function SCR_DUPLICATION_SOLVE_TABLE(tb)
@@ -672,6 +395,7 @@ function SCR_DUPLICATION_SOLVE_TABLE(tb)
         end
     end
     
+
     for index3 = 1, #tb do
         if tb[index3] ~= 'None' then
             temp_tb[#temp_tb + 1] = tb[index3]
@@ -952,114 +676,7 @@ function SCR_STRING_TO_TABLE(a)
     
     return ret
 end
-function SCR_DATE_TO_YHOUR_BASIC_2000_STR(str)
-    if str == nil or type(str) ~= 'string' then
-        return
-    end
-    
-    local date = SCR_STRING_CUT(str)
-    if #date == 4 then
-        return SCR_DATE_TO_YHOUR_BASIC_2000(date[1], date[2], date[3], date[4])
-    end
-end
-function SCR_DATE_TO_YHOUR_BASIC_2000(yy, mm, dd, hh)
-    local days, monthdays, leapyears, nonleapyears, nonnonleapyears
 
-    monthdays= { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 }
-
-    leapyears=math.floor((yy-2000)/4);
-    nonleapyears=math.floor((yy-2000)/100)
-    nonnonleapyears=math.floor((yy-1600)/400)
-
-    if ((math.mod(yy,4)==0) and mm<3) then
-      leapyears = leapyears - 1
-    end
-
-    days= 365 * (yy-2000) + leapyears - nonleapyears + nonnonleapyears - 1
-    
-    local c=1
-    while (c<mm) do
-      days = days + monthdays[c]
-    c=c+1
-    end
-
-    days=days+dd+1
-    
-    local yhour = days * 24 + hh
-
-    return yhour
-end
-
-function SCR_DATE_TO_YMIN_BASIC_2000(yy, mm, dd, hh, min)
-    local days, monthdays, leapyears, nonleapyears, nonnonleapyears
-
-    monthdays= { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 }
-
-    leapyears=math.floor((yy-2000)/4);
-    nonleapyears=math.floor((yy-2000)/100)
-    nonnonleapyears=math.floor((yy-1600)/400)
-
-    if ((math.mod(yy,4)==0) and mm<3) then
-      leapyears = leapyears - 1
-    end
-
-    days= 365 * (yy-2000) + leapyears - nonleapyears + nonnonleapyears - 1
-    
-    local c=1
-    while (c<mm) do
-      days = days + monthdays[c]
-    c=c+1
-    end
-
-    days=days+dd+1
-    
-    local ymin = days * 1440 + hh * 60 + min
-
-    return ymin
-end
-function SCR_DATE_TO_YDAY_BASIC_2000_REVERSE(yday)
-    local yy,mm,dd
-    local startY = 2000
-    local monthdays= { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 }
-    
-    while 1 do
-        local leapDay = 0
-        if startY % 400 == 0 then
-            leapDay = 1
-        elseif startY % 100 == 0 then
-        elseif startY % 4 == 0 then
-            leapDay = 1
-        end
-        
-        leapDay = monthdays[2] + leapDay
-        
-        for i = 1, #monthdays do
-            local monDay = monthdays[i]
-            if i == 2 then
-                monDay = leapDay
-            end
-            
-            if yday < monDay then
-                yy = startY
-                mm = i
-                dd = yday
-                return yy,mm,dd
-            else
-                yday = yday - monDay
-            end
-            
-        end
-        startY = startY + 1
-    end
-    
-    
-    return yy,mm,dd
-end
-function SCR_DATE_TO_YWEEK_BASIC_2000(yy, mm, dd, firstWday)
-    local yday2000 = SCR_DATE_TO_YDAY_BASIC_2000(yy, mm, dd)
-    local result = math.floor((yday2000+6-firstWday)/7) + 1
-    return result
-end
 function SCR_DATE_TO_YDAY_BASIC_2000(yy, mm, dd)
     local days, monthdays, leapyears, nonleapyears, nonnonleapyears
 
@@ -1074,11 +691,11 @@ function SCR_DATE_TO_YDAY_BASIC_2000(yy, mm, dd)
     end
 
     days= 365 * (yy-2000) + leapyears - nonleapyears + nonnonleapyears - 1
-    
-    local c=1
+
+    c=1
     while (c<mm) do
       days = days + monthdays[c]
-    c=c+1
+	c=c+1
     end
 
     days=days+dd+1
@@ -1216,20 +833,18 @@ function IS_WARPNPC(zoneClassName, npcFunc)
 end
 
 function table.find(t, ele)
-    if t ~= nil then
-        local count = #t
-        if count > 0 then
-            for i = 1, count do
-                if type(t[i]) ~= type(ele) then
-                    if type(t[i]) == 'number' then
-                        ele = tonumber(ele)
-                    elseif type(t[i]) == 'string' then
-                        ele = tostring(ele)
-                    end
+    local count = #t
+    if count > 0 then
+        for i = 1, count do
+            if type(t[i]) ~= type(ele) then
+                if type(t[i]) == 'number' then
+                    ele = tonumber(ele)
+                elseif type(t[i]) == 'string' then
+                    ele = tostring(ele)
                 end
-                if t[i] == ele then
-                    return i
-                end
+            end
+            if t[i] == ele then
+                return i
             end
         end
     end
@@ -1259,25 +874,25 @@ function table.count(t, ele)
 end
 
 function ADD_GQUEST_MULTIPLY(cls, propName, mul)
-    if cls[propName] == 1 then
-        return mul + 0.5;
-    end
-    
-    return mul;
+	if cls[propName] == 1 then
+		return mul + 0.5;
+	end
+	
+	return mul;
 end
 
 function GET_GQUEST_POINT(cls, arg)
 
-    local cnt = G_TOTAL_MON_CNT(cls);
-    local mul = 1.0;
-    mul = ADD_GQUEST_MULTIPLY(cls, "CheckSkill", mul);
-    mul = ADD_GQUEST_MULTIPLY(cls, "CheckOverKill", mul);
-    mul = ADD_GQUEST_MULTIPLY(cls, "OnlyOverKill", mul);
-    mul = ADD_GQUEST_MULTIPLY(cls, "FailByDamage", mul);
-    mul = ADD_GQUEST_MULTIPLY(cls, "TimeLimit", mul);
-    mul = ADD_GQUEST_MULTIPLY(cls, "OnlyOverKill", mul);
+	local cnt = G_TOTAL_MON_CNT(cls);
+	local mul = 1.0;
+	mul = ADD_GQUEST_MULTIPLY(cls, "CheckSkill", mul);
+	mul = ADD_GQUEST_MULTIPLY(cls, "CheckOverKill", mul);
+	mul = ADD_GQUEST_MULTIPLY(cls, "OnlyOverKill", mul);
+	mul = ADD_GQUEST_MULTIPLY(cls, "FailByDamage", mul);
+	mul = ADD_GQUEST_MULTIPLY(cls, "TimeLimit", mul);
+	mul = ADD_GQUEST_MULTIPLY(cls, "OnlyOverKill", mul);
 
-    return (cls.Level * 4 + cnt * 2) * mul;
+	return (cls.Level * 4 + cnt * 2) * mul;
 
 end
 
@@ -1285,102 +900,89 @@ end
 
 function GET_CLS_GROUP(idSpace, groupName)
 
-    local clsList = GetClassList(idSpace);
-    local retList = {};
-    if clsList == nil then
-        return retList;
-    end
-    
-    local index = 1;
-    
-    while 1 do
+	local clsList = GetClassList(idSpace);
+	local retList = {};
+	if clsList == nil then
+		return retList;
+	end
+	
+	local index = 1;
+	
+	while 1 do
 
-        local name = groupName .. "_" .. index;
-        local cls = GetClassByNameFromList(clsList, name);
-        if cls == nil then
-            return retList;
-        end
-        
-        retList[index] = cls;
-        index = index + 1;          
-    end
+		local name = groupName .. "_" .. index;
+		local cls =	GetClassByNameFromList(clsList, name);
+		if cls == nil then
+			return retList;
+		end
+		
+		retList[index] = cls;
+		index = index + 1;			
+	end
 
 end
 
 
 function GET_MAP_ACHI_NAME(mapCls)
 
-    local name = ScpArgMsg("Auto_{Auto_1}_TamSaJa","Auto_1", mapCls.Name);
-    local desc = ScpArgMsg("Auto_{Auto_1}_Jiyeogeul_MoDu_TamSaHayeossSeupNiDa.","Auto_1", mapCls.Name);
-    local desctitle = name -- ?ÑÏãú. ?òÏ§ë??Îß??ÖÏ†Å ?¨ÏÑ±??Î≥¥ÏÉÅÎ∞?Ïπ?ò∏???Ä???∞Ïù¥???∏ÌåÖ ?¥Î£®??ÏßÄÎ©?Î∞îÍæ∏??
-    local reward = "None"
-    return desc, name, desctitle, reward;
+	local name = ScpArgMsg("Auto_{Auto_1}_TamSaJa","Auto_1", mapCls.Name);
+	local desc = ScpArgMsg("Auto_{Auto_1}_Jiyeogeul_MoDu_TamSaHayeossSeupNiDa.","Auto_1", mapCls.Name);
+	local desctitle = name -- ?ÑÏãú. ?òÏ§ë??Îß??ÖÏ†Å ?¨ÏÑ±??Î≥¥ÏÉÅÎ∞?Ïπ?ò∏???Ä???∞Ïù¥???∏ÌåÖ ?¥Î£®??ÏßÄÎ©?Î∞îÍæ∏??
+	local reward = "None"
+	return desc, name, desctitle, reward;
 
 end
 
--- hgihLv : ?åÌã∞?êÏ§ë Í∞Ä???íÏ? ?àÎ≤®, ?åÌã∞Í∞Ä ?ÑÎãàÍ±∞ÎÇò 1???åÌã∞Î©?0??
+-- hgihLv : ?åÌã∞?êÏ§ë Í∞Ä???íÏ? ?àÎ≤®, ?åÌã∞Í∞Ä ?ÑÎãàÍ±∞ÎÇò 1???åÌã∞Î©?0?
 function GET_EXP_RATIO(myLevel, monLevel, highLv, monster)
     local pcLv = myLevel;
     local monLv = monLevel;
     local value = 1;
-
-	if monster ~= nil then
-		if IsBuffApplied(monster, 'SuperExp') == 'YES' then
-			value = 500;
-		end
-	end
-    
-    local standardLevel = 30;
-    local levelGap = math.abs(pcLv - monLv);
-    
-    
-    if levelGap > standardLevel then
-    	local penaltyRatio = 0.0;
-    	if pcLv < monLv then
-	        penaltyRatio = 0.05;	-- Í≥†Î†àÎ≤?Î™¨Ïä§???¨ÎÉ• ???òÎÑê??
-	    else
-	    	penaltyRatio = 0.02;	-- ?Ä?àÎ≤® Î™¨Ïä§???¨ÎÉ• ???òÎÑê??
-	    end
-	    
-	    local lvRatio = 1 - ((levelGap - standardLevel) * penaltyRatio);
-        value = value * lvRatio;
+    if IsBuffApplied(monster, 'SuperExp') == 'YES' then
+        value = 500;
     end
     
+    if (pcLv - 4) > monLv then
+        local lvRatio = 1 - ((pcLv - monLv - 4) * 0.05);
+        value = value * lvRatio;
+    end
+	
     if value < 0 then
         value = 0;
     end
-    
+
     return value;
+
 end
 
 function GET_ADD_SPRAY_USE(colCnt, obj)
 
-    local curUsed = obj.RemainAmount;
-    local addUse = colCnt % MAX_COLSPRAY_PIXEL();
-    
-    local remain = MAX_COLSPRAY_PIXEL() - curUsed - addUse;
-    if remain < 0 then
-        return 0;
-    end
-    
-    if remain > GET_SPRAY_REMOVE_AMOUNT() then
-        return 0;
-    end
-    
-    return remain;
+	local curUsed = obj.RemainAmount;
+	local addUse = colCnt % MAX_COLSPRAY_PIXEL();
+	
+	local remain = MAX_COLSPRAY_PIXEL() - curUsed - addUse;
+	if remain < 0 then
+		return 0;
+	end
+	
+	if remain > GET_SPRAY_REMOVE_AMOUNT() then
+		return 0;
+	end
+	
+	return remain;
 
 end
 
 function GET_TOTAL_SPRAY_PIXEL(cnt, obj)
 
-    local curUse = obj.RemainAmount;
-    return cnt * MAX_COLSPRAY_PIXEL() - curUse;
+	local curUse = obj.RemainAmount;
+	return cnt * MAX_COLSPRAY_PIXEL() - curUse;
 
 end
 
 function GET_SPRAY_REMOVE_AMOUNT()
 
-    return 50;
+	return 50;
 
 end
 
@@ -1388,232 +990,219 @@ end
 
 function IS_GUILDQUEST_CHECK_ITEM(sObj)
 
-    for j = 1 , GUILDQUEST_MAX_ITEM do
-        
-        local ItemID = sObj["Step".. j + 4];
-        if ItemID > 0 then
-            return 1;
-        end
-    end
+	for j = 1 , GUILDQUEST_MAX_ITEM do
+		
+		local ItemID = sObj["Step".. j + 4];
+		if ItemID > 0 then
+			return 1;
+		end
+	end
 
-    return 0;
+	return 0;
 end
 
 function IS_GULID_QUEST_ITEM(sObj, itemID)
 
-    for j = 1 , GUILDQUEST_MAX_ITEM do
-        local reqID = sObj["Step".. j + 4];
-        if reqID == itemID then
-            return 1;
-        else
-            return 0;
-        end
-        
-    end
+	for j = 1 , GUILDQUEST_MAX_ITEM do
+		local reqID = sObj["Step".. j + 4];
+		if reqID == itemID then
+			return 1;
+		else
+			return 0;
+		end
+		
+	end
 
-    return 0;
+	return 0;
 end
 
 function REGISTER_XML_CONST(propName, propValue)
 
-    _G[propName] = propValue;
-    
+	_G[propName] = propValue;
+	
 end
 
 function GET_MS_TXT(sec)
-    local appTime = imcTime.GetAppTime();
-    local m, s = GET_MS(sec);
-    local colon = ":";
-    if math.mod(math.floor(appTime * 2.0), 2) == 1 then
-        colon = " ";
-    end
-    
-    return string.format("%02d%s%02d", m, colon, s);
+	local appTime = imcTime.GetAppTime();
+	local m, s = GET_MS(sec);
+	local colon = ":";
+	if math.mod(math.floor(appTime * 2.0), 2) == 1 then
+		colon = " ";
+	end
+	
+	return string.format("%02d%s%02d", m, colon, s);
 end
 
 function GET_MS(sec)
-    if sec < 0 then
-        sec = 0;
-    end
+	if sec < 0 then
+		sec = 0;
+	end
 
-    local min = 0;
-    local s = 0;
-    if sec >= 60 then
-        min = math.floor(sec / 60);
-        s = sec % 60;
-    else
-        s = sec
-    end
-    
-    return min, s;  
+	local min = 0;
+	local s = 0;
+	if sec >= 60 then
+		min = math.floor(sec / 60);
+		s = sec % 60;
+	else
+	    s = sec
+	end
+	
+	return min, s;	
 end
 
 function GET_DHMS(sec)
 
-    local day = 0;
-    local hour = 0;
-    local min = 0;
-    local s = 0;
-    if sec >= 86400 then
-        day = math.floor(sec / 86400);
-        sec = sec % 86400;
-    end
-    
-    if sec >= 3600 then
-        hour = math.floor(sec / 3600);
-        sec = sec % 3600;
-    end
-    
-    if sec >= 60 then
-        min = math.floor(sec / 60);
-        s = sec % 60;
-    else
-        s = sec
-    end
-    
-    return day, hour, min, s;   
+	local day = 0;
+	local hour = 0;
+	local min = 0;
+	local s = 0;
+	if sec >= 86400 then
+		day = math.floor(sec / 86400);
+		sec = sec % 86400;
+	end
+	
+	if sec >= 3600 then
+		hour = math.floor(sec / 3600);
+		sec = sec % 3600;
+	end
+	
+	if sec >= 60 then
+		min = math.floor(sec / 60);
+		s = sec % 60;
+	else
+	    s = sec
+	end
+	
+	return day, hour, min, s;	
 
 end
 
 function GET_DHMS_STRING(sec)
 
-    if sec < 0 then
-        sec = 0;
-    end
+	if sec < 0 then
+		sec = 0;
+	end
 
-    local d, h, m, s = GET_DHMS(sec);
-    local ret = "";
-    if d > 0 then
-        ret = ret .. string.format("%02d:", d);
-    end
-    if h > 0 then
-        ret = ret .. string.format("%02d:", h);
-    end
-    
-    ret = ret .. string.format("%02d:", m);
-    ret = ret .. string.format("%02d", s);
-    
-    return ret;
+	local d, h, m, s = GET_DHMS(sec);
+	local ret = "";
+	if d > 0 then
+		ret = ret .. string.format("%02d:", d);
+	end
+	if h > 0 then
+		ret = ret .. string.format("%02d:", h);
+	end
+	
+	ret = ret .. string.format("%02d:", m);
+	ret = ret .. string.format("%02d", s);
+	
+	return ret;
 
 end
 
 function SCR_GET_MCY_BUY_PRICE(itemIndex, curValue)
 
-    if itemIndex > 5 then
-        return 50;
-    end
-    
-    return 100;
-    --return 600 + 200 * curValue;
+	if itemIndex > 5 then
+		return 50;
+	end
+	
+	return 100;
+	--return 600 + 200 * curValue;
 
 end
 
+function GET_WIKI_ITEM_SET_COUNT(wiki)
+
+	local setProp = geItemTable.GetSetByName( wiki:GetTargetClassName() );
+	local setCnt = setProp:GetItemCount();
+	local curCnt = 0;		 
+	for j = 0 , setCnt - 1 do
+		local isGetItem = wiki:GetBoolProp("Get_" .. j);
+		if isGetItem == 1 then
+			curCnt = curCnt + 1;
+		end
+	end
+	
+	return curCnt, setCnt;
+end
+
+function GET_WIKI_OBJ(wiki)
+
+	local obj = wiki:GetWikiObject();
+	return GetIES(obj);
+
+end
+
+
+
 function GET_ABIL_LEVEL(self, abilName)
 
-    local abil = GetAbility(self, abilName);
-    if abil == nil then
-        return 0;
-    end
-    
-    return abil.Level;
-    
+	local abil = GetAbility(self, abilName);
+	if abil == nil then
+		return 0;
+	end
+	
+	return abil.Level;
+	
 end
 
 function GET_SKILL_LEVEL(self, skillName)
 
-    local skl = GetSkill(self, skillName);
-    if skl == nil then
-        return 0;
-    end
-    
-    return skl.Level;
-    
+	local skl = GetSkill(self, skillName);
+	if skl == nil then
+		return 0;
+	end
+	
+	return skl.Level;
+	
 end
 
-function SCR_DIALOG_NPC_ANIM(animName)  
-
-    --control.DestTgtPlayDialogAnim(animName);
-    local handle = session.GetTargetHandle();
-    movie.PlayAnim(handle, animName, 1.0, 1);
-
+function SCR_DIALOG_NPC_ANIM(animName)	
+	control.DestTgtPlayDialogAnim(animName);
 end
 
-                                    -- Í≥µÏö© ?ºÏù¥Î∏åÎü¨Î¶?
+									-- Í≥µÏö© ?ºÏù¥Î∏åÎü¨Î¶
 --------------------------------------------------------------------------------------
 -- ?πÏ†ï Î¨∏ÏûêÎ•?Í∏∞Ï??ºÎ°ú Î¨∏Ïûê?¥ÏùÑ ?òÎùº ?åÏù¥Î∏îÎ°ú Î∞òÌôò
 function StringSplit(str, delimStr)
-    local _tempStr = str;
-    local _result = {};
-    local _index = 1;
+	local _tempStr = str;
+	local _result = {};
+	local _index = 1;
 
-    while true do
-        local _temp = string.find(_tempStr, delimStr);
-        if _temp == nil then
-            _result[_index] = _tempStr;
-            break;
-        else
-            _result[_index] = string.sub(_tempStr, 0, _temp - 1);
-        end
-        
-        _tempStr = string.sub(_tempStr, string.len(_result[_index]) + string.len(delimStr)+1, string.len(_tempStr));
-        _index = _index + 1;
-        
-        if string.len(_tempStr) <= 0 then
-            break;
-        end
-    end
-    return _result;
+	while true do
+		local _temp = string.find(_tempStr, delimStr);
+		if _temp == nil then
+			_result[_index] = _tempStr;
+			break;
+		else
+			_result[_index] = string.sub(_tempStr, 0, _temp - 1);
+		end
+		
+		_tempStr = string.sub(_tempStr, string.len(_result[_index]) + string.len(delimStr)+1, string.len(_tempStr));
+		_index = _index + 1;
+		
+		if string.len(_tempStr) <= 0 then
+			break;
+		end
+	end
+	return _result;
 end
 
 
 function IS_EQUIP(item)
-    return item.ItemType == "Equip";
-end
-
-function IS_NEED_APPRAISED_ITEM(item)
-    if IS_EQUIP(item) == false then
-        return false;
-    end
-
-    local isAppraised = TryGetProp(item,'NeedAppraisal')
-    if isAppraised == nil then
-        return false;
-    end
-
-    if isAppraised == 1 then
-        return true;
-    end
-    return false;
-end
-
-function IS_NEED_RANDOM_OPTION_ITEM(item)
-    if IS_EQUIP(item) == false then
-
-        return false;
-    end
-
-    local isRandomOption = TryGetProp(item,'NeedRandomOption')
-    if isRandomOption == nil then
-        return false;
-    end
-
-    if isRandomOption == 1 then
-        return true;
-    end
-    return false;
+	return item.ItemType == "Equip";
 end
 
 function INCR_PROP(self, obj, propName, propValue)
 
-    self[propName] = self[propName] + propValue;
-    SetExProp(obj, propName, propValue);
+	self[propName] = self[propName] + propValue;
+	SetExProp(obj, propName, propValue);
 
 end
 
 function RESTORE_PROP(self, obj, propName)
 
-    local value = GetExProp(obj, propName);
-    self[propName] = self[propName] - value;
+	local value = GetExProp(obj, propName);
+	self[propName] = self[propName] - value;
 
 end
 
@@ -1621,98 +1210,98 @@ end
 function IsEnableEffigy(self, skill)
   
     if "NO" == IsBuffApplied(self, "Hexing_Buff") then
-        return 0;
-    end
+		return 0;
+	end
 
-    -- Í±∞Î¶¨ Ï≤¥ÌÅ¨?òÎäîÍ±?Ï∂îÍ??¥Ïïº?†ÎìØ?
-    -- Í∑ºÎç∞ Í∑∏Îüº ?±Îä•??πÑ?∏Îîî???
-    return 1;
+	-- Í±∞Î¶¨ Ï≤¥ÌÅ¨?òÎäîÍ±?Ï∂îÍ??¥Ïïº?†ÎìØ?
+	-- Í∑ºÎç∞ Í∑∏Îüº ?±Îä•??πÑ?∏Îîî???
+	return 1;
 end
 
 
 -- Î≥¥Ïä§ ?úÎûç Î¶¨Ïä§??ÍµêÏ≤¥ Î∞îÏù∏???®Ïàò
 function CHANGE_BOSSDROPLIST(self, equipDropList)
-    ChangeClassValue(self, 'EquipDropType', equipDropList);
+	ChangeClassValue(self, 'EquipDropType', equipDropList);
 end
 
 function GET_RECIPE_REQITEM_CNT(cls, propname)
 
-    local recipeType = cls.RecipeType;
-    if recipeType == "Anvil" or recipeType == "Grill" then
-        return cls[propname .. "_Cnt"], TryGet(cls, propname .. "_Level");
-    elseif recipeType == "Drag" or recipeType == "Upgrade" then
-        return cls[propname .. "_Cnt"], TryGet(cls, propname .. "_Level");
-    end
+	local recipeType = cls.RecipeType;
+	if recipeType == "Anvil" or recipeType == "Grill" then
+		return cls[propname .. "_Cnt"], TryGet(cls, propname .. "_Level");
+	elseif recipeType == "Drag" or recipeType == "Upgrade" then
+		return cls[propname .. "_Cnt"], TryGet(cls, propname .. "_Level");
+	end
 
-    return 0;
+	return 0;
 
 end
 
 -- ?ÑÏßÅÍ∞Ä??Ï°∞Í±¥Ï≤¥ÌÅ¨?òÎäî ?®Ïàò. skilltree.lua ui?†Îìú?®Ïóê???¨Ïö©?òÍ≥† ?úÎ≤Ñ?êÏÑú??Ï°∞Í±¥Ï≤¥ÌÅ¨?†Îïå ?¨Ïö©.
 function CHECK_CHANGE_JOB_CONDITION(cls, haveJobNameList, haveJobGradeList)
-    
-    -- ?¥Î? Í∞ÄÏßÄÍ≥†Ïûà??ÏßÅÏóÖ?¥Î©¥ Î∞îÎ°ú trueÎ¶¨ÌÑ¥
-    for i = 0, #haveJobNameList do      
-        if haveJobNameList[i] ~= nil then
-            if haveJobNameList[i] == cls.ClassName then
-                return true;
-            end
-        end
-    end
-    
-    -- ?ÑÎûò???àÎ°ú??ÏßÅÏóÖ?êÎ???Ï°∞Í±¥ Ï≤¥ÌÅ¨
-    local i = 1;
-    
-    while 1 do
-    
-            -- Ï°∞Í±¥Ï≤¥ÌÅ¨?òÎäî ÏπºÎüº?????ÑÏöî?òÎ©¥ xml?êÏÑú Í±??òÎ¶¨Î©¥Îê®. ?á„Öã?   
-        if GetPropType(cls, "ChangeJobCondition" .. i) == nil then
-            break;
-        end
+	
+	-- ?¥Î? Í∞ÄÏßÄÍ≥†Ïûà??ÏßÅÏóÖ?¥Î©¥ Î∞îÎ°ú trueÎ¶¨ÌÑ¥
+	for i = 0, #haveJobNameList do		
+		if haveJobNameList[i] ~= nil then
+			if haveJobNameList[i] == cls.ClassName then
+				return true;
+			end
+		end
+	end
+	
+	-- ?ÑÎûò???àÎ°ú??ÏßÅÏóÖ?êÎ???Ï°∞Í±¥ Ï≤¥ÌÅ¨
+	local i = 1;
+	
+	while 1 do
+	
+			-- Ï°∞Í±¥Ï≤¥ÌÅ¨?òÎäî ÏπºÎüº?????ÑÏöî?òÎ©¥ xml?êÏÑú Í±??òÎ¶¨Î©¥Îê®. ?á„Öã?	
+		if GetPropType(cls, "ChangeJobCondition" .. i) == nil then
+			break;
+		end
 
 
-        -- ChangeJobCondition???ÑÎ? 'None'?¥Î©¥ ?òÏä§?∏Î? ?µÌï¥???ÑÏßÅ?òÎäîÍ±∞ÏûÑ. UI?êÏÑú???àÎ≥¥?¨Ï§å.
-        if cls["ChangeJobCondition" .. i] == 'None' then
-            return false;
-        end
-        
+		-- ChangeJobCondition???ÑÎ? 'None'?¥Î©¥ ?òÏä§?∏Î? ?µÌï¥???ÑÏßÅ?òÎäîÍ±∞ÏûÑ. UI?êÏÑú???àÎ≥¥?¨Ï§å.
+		if cls["ChangeJobCondition" .. i] == 'None' then
+			return false;
+		end
+		
 
-        local sList = StringSplit(cls["ChangeJobCondition" .. i], ";");
-        local conditionCount = #sList / 2;  -- ?¥ÎãπÏßÅÏóÖ ?ÑÏßÅÏ°∞Í±¥ Ï≤¥ÌÅ¨Í∞?àò
-        
-        local completeCount = 0;            -- ?ÑÏßÅÏ°∞Í±¥??Î™áÍ∞ú??ÎßåÏ°±?òÎäîÏßÄ
-        for j = 1, conditionCount do
-            -- ÏßÅÏóÖÍ∞ÄÏßÄÍ≥†ÏûàÍ≥??îÍµ¨?àÎ≤®Î≥¥Îã§ ?íÏ?ÏßÄ Ï≤¥ÌÅ¨
-            for n=0, #haveJobNameList do
-                            
-                if sList[j*2-1] == haveJobNameList[n] and tonumber(sList[j*2]) <= tonumber(haveJobGradeList[n]) then
-                    completeCount = completeCount + 1;
-                end
-            end
-        end
+		local sList = StringSplit(cls["ChangeJobCondition" .. i], ";");
+		local conditionCount = #sList / 2;	-- ?¥ÎãπÏßÅÏóÖ ?ÑÏßÅÏ°∞Í±¥ Ï≤¥ÌÅ¨Í∞?àò
+		
+		local completeCount = 0;			-- ?ÑÏßÅÏ°∞Í±¥??Î™áÍ∞ú??ÎßåÏ°±?òÎäîÏßÄ
+		for j = 1, conditionCount do
+			-- ÏßÅÏóÖÍ∞ÄÏßÄÍ≥†ÏûàÍ≥??îÍµ¨?àÎ≤®Î≥¥Îã§ ?íÏ?ÏßÄ Ï≤¥ÌÅ¨
+			for n=0, #haveJobNameList do
+							
+				if sList[j*2-1] == haveJobNameList[n] and tonumber(sList[j*2]) <= tonumber(haveJobGradeList[n]) then
+					completeCount = completeCount + 1;
+				end
+			end
+		end
 
-            -- ?ÑÏßÅÏ°∞Í±¥??Î™®Îëê ÎßåÏ°±?òÎ©¥ ?ÑÏßÅÍ∞Ä?•Ìïò?§Í≥† ?ãÌåÖ?¥Ï§å
-        if conditionCount == completeCount then
-            return true;
-        end
+			-- ?ÑÏßÅÏ°∞Í±¥??Î™®Îëê ÎßåÏ°±?òÎ©¥ ?ÑÏßÅÍ∞Ä?•Ìïò?§Í≥† ?ãÌåÖ?¥Ï§å
+		if conditionCount == completeCount then
+			return true;
+		end
 
-        i = i + 1;
-    end
+		i = i + 1;
+	end
 
-    return false;
+	return false;
 end
 
 
 function GET_2D_DIS(x1,y1,x2,y2)
 
-    if x1 == nil or y1 == nil or x2 == nil or y2 == nil then
-        return 0
-    end
+	if x1 == nil or y1 == nil or x2 == nil or y2 == nil then
+		return 0
+	end
 
-    local x = x1 - x2
-    local y = y1 - y2
-    
-    return math.sqrt(x*x+y*y);
+	local x = x1 - x2
+	local y = y1 - y2
+	
+	return math.sqrt(x*x+y*y);
 end
 
 function NUM_KILO_CHANGE(num)
@@ -1743,99 +1332,27 @@ function NUM_KILO_CHANGE(num)
     return str
 end
 
-function SCR_POSSIBLE_UI_OPEN_CHECK(pc, questIES, subQuestZoneList, chType)
+function SCR_POSSIBLE_UI_OPEN_CHECK(pc, questIES)
     local ret = "HIDE"
     if questIES.PossibleUI_Notify == 'NO' then
-        return ret, subQuestZoneList
-    end
-    local sobjIES = GET_MAIN_SOBJ();
-    local abandonCheck = 'None';
-    local fun = _G['QUEST_ABANDON_RESTARTLIST_CHECK']
-    if nil ~= fun then
-        abandonCheck = fun(questIES, sobjIES)
-    end
-    local result = SCR_QUEST_CHECK_C(pc,questIES.ClassName)
-    
-    local checkZoneList = {}
-    local subQuestFlag = 0
-    local subQuestNowZone = ''
-    local maxLv = 10
-    
-    if pc.Lv <= 10 then
-        maxLv = 2
-    elseif pc.Lv <= 20 then
-        maxLv = 3
-    elseif pc.Lv <= 30 then
-        maxLv = 5
+        return ret
     end
     
-    if questIES.Level >= pc.Lv - 5 and questIES.Level <= pc.Lv + maxLv then
-        if pc.Lv < 100 and questIES.QStartZone ~= 'None' and sobjIES.QSTARTZONETYPE ~= 'None' and questIES.QStartZone ~=  sobjIES.QSTARTZONETYPE then
-            subQuestFlag = 4
-        else
-            if questIES.StartMapListUI ~= 'None' then
-                checkZoneList = SCR_STRING_CUT(questIES.StartMapListUI)
-            end
-            if table.find(checkZoneList, questIES.StartMap) == 0 then
-                checkZoneList[#checkZoneList + 1] = questIES.StartMap
-            end
-            if subQuestZoneList == nil then
-            else
-                if #checkZoneList > 0 then
-                    for i = 1, #checkZoneList do
-                        if table.find(subQuestZoneList, checkZoneList[i]) > 0 then
-                            subQuestFlag = 1
-                            break
-                        end
-                    end
-                else
-                    subQuestFlag = 2
-                end
-            end
-            
-            if subQuestFlag == 0 then
-                if questIES.StartMap ~= 'None' then
-                    subQuestNowZone = questIES.StartMap
-                else
-                    subQuestNowZone = checkZoneList[1]
-                end
-            end
-        end
-    else
-        subQuestFlag = 3
-    end
-    
-    if subQuestZoneList == nil then
-        subQuestZoneList = {}
-    end
-    
-    local zonecheckFun = _G['LINKZONECHECK'];
-    if chType == 'Set2' then
-        ret = "OPEN"
-        return ret, subQuestZoneList
-    elseif (chType == 'ZoneMap' or chType == 'NPCMark') and abandonCheck == 'ABANDON/LIST' then
-        ret = "OPEN"
-        return ret, subQuestZoneList
-    elseif questIES.QuestMode ~= "MAIN" and questIES.QuestMode ~= "KEYITEM" and result == 'POSSIBLE' and subQuestFlag == 0 then
-        ret = "OPEN"
-        subQuestZoneList[#subQuestZoneList + 1] = subQuestNowZone
-        return ret, subQuestZoneList
-    elseif questIES.QuestMode ~= "MAIN" and questIES.QuestMode ~= "KEYITEM" and questIES.Check_QuestCount > 0 and zonecheckFun ~= nil and zonecheckFun(GetZoneName(pc), questIES.StartMap) == 'YES' then
+    if questIES.QuestMode ~= "MAIN" and questIES.Check_QuestCount > 0 then
         local sObj = GetSessionObject(pc, "ssn_klapeda")
         local result1 = SCR_QUEST_CHECK_MODULE_QUEST(pc, questIES, sObj)
         if result1 == "YES" then
             ret = "OPEN"
-            return ret, subQuestZoneList
+            return ret
         end
     elseif questIES.QuestMode == "MAIN" or questIES.PossibleUI_Notify == 'UNCOND' then
         ret = "OPEN"
-        return ret, subQuestZoneList
+        return ret
     end
     
-    return ret, subQuestZoneList
+    return ret
 end
-
-function SCR_GET_ZONE_FACTION_OBJECT(zoneClassName, factionList, monRankList, respawnTime)
+function SCR_GET_ZONE_FACTION_OBJECT(zoneClassName, factionList, monRankList)
     local zoneGentype = 'GenType_'..zoneClassName
     local classCount = GetClassCount(zoneGentype)
     local factionList = SCR_STRING_CUT(factionList)
@@ -1845,31 +1362,28 @@ function SCR_GET_ZONE_FACTION_OBJECT(zoneClassName, factionList, monRankList, re
     for i = 0 , classCount -1 do
         local gentypeIES = GetClassByIndex(zoneGentype, i)
         if gentypeIES ~= nil and table.find(factionList, gentypeIES.Faction) > 0 and gentypeIES.MaxPop > 0 then
-            if respawnTime == nil or gentypeIES.RespawnTime <= respawnTime then
-                local monIES = GetClass('Monster', gentypeIES.ClassType)
-                if monIES ~= nil then
-                    local rankFlag = 'YES'
-                    if #monRankList > 0 and GetPropType(monIES,'MonRank') ~= nil and table.find(monRankList,monIES.MonRank) == 0 then
-                        rankFlag = 'NO'
-                    end
-                    if rankFlag == 'YES' then
-                        local flag = false
-                        if #monList > 0 then
-                            for j = 1, #monList do
-                                if monList[j][1] == gentypeIES.ClassType then
-                                    monList[j][2] = monList[j][2] + gentypeIES.MaxPop
-                                    flag = true
-                                    break
-                                end
+            local monIES = GetClass('Monster', gentypeIES.ClassType)
+            if monIES ~= nil then
+                local rankFlag = 'YES'
+                if #monRankList > 0 and GetPropType(monIES,'MonRank') ~= nil and table.find(monRankList,monIES.MonRank) == 0 then
+                    rankFlag = 'NO'
+                end
+                if rankFlag == 'YES' then
+                    local flag = false
+                    if #monList > 0 then
+                        for j = 1, #monList do
+                            if monList[j][1] == gentypeIES.ClassType then
+                                monList[j][2] = monList[j][2] + gentypeIES.MaxPop
+                                flag = true
+                                break
                             end
                         end
-                        if flag == false then
-                            monList[#monList + 1] = {}
-                            monList[#monList][1] = gentypeIES.ClassType
-                            monList[#monList][2] = gentypeIES.MaxPop
-                            monList[#monList][3] = monIES.MonRank
-                            monList[#monList][4] = monIES.DropItemList
-                        end
+                    end
+                    if flag == false then
+                        monList[#monList + 1] = {}
+                        monList[#monList][1] = gentypeIES.ClassType
+                        monList[#monList][2] = gentypeIES.MaxPop
+                        monList[#monList][3] = monIES.MonRank
                     end
                 end
             end
@@ -1877,490 +1391,4 @@ function SCR_GET_ZONE_FACTION_OBJECT(zoneClassName, factionList, monRankList, re
     end
     
     return monList
-end
-
-function GET_COMMA_SEPARATED_STRING(num)
-	local stringValue = tostring(num);
-	local retStr = stringValue;
-	local strLen = string.len(stringValue);
-	if strLen > 14 then
-		print('Can not use more than 14 digits!');
-		return num, "FAIL";
---		retStr = GET_COMMA_SEPARATED_STRING_FOR_HIGH_VALUE(num);
---		return retStr;
-	end
-	
-	local loop = math.floor((strLen - 1) / 3);
-	if loop >= 1 then
-		retStr = string.sub(stringValue, -3);
-		for i = 1, loop do
-			local tempStr = string.sub(stringValue, -3 * (i + 1), (-3 * i) - 1);
-			
-			retStr = tempStr .. ',' .. retStr;
-		end
-	end
-	
-	return retStr, "SUCCESS";
-end
-
-function GET_COMMA_SEPARATED_STRING_FOR_HIGH_VALUE(num)
-	local retStr = "";
-	local numValue = num;
-	
-	for i = 1, 1000 do	-- Î¨¥ÌïúÎ£®ÌîÑ Î∞©Ï???--
-		local tempValue = numValue % 1000;
-		if string.len(tempValue) < 3 then
-			for j = 1, 3 - string.len(tempValue) do
-				tempValue = tostring(0 .. tempValue);
-			end
-		end
-		
-		numValue = math.floor(numValue / 1000);
-		
-		if retStr == "" then
-			retStr = tempValue;
-		else
-			retStr = tempValue .. ',' .. retStr;
-		end
-		
-		if numValue < 1000 then
-			if numValue == 0 then
-				break;
-			end
-			
-			retStr = numValue .. ',' .. retStr;
-			break;
-		end
-	end
-	
-	return retStr, "SUCCESS";
-end
-
--- ???®Ïàò???¥Ï†ú ?¨Ïö©?òÏ? Îß?Í≤?--
--- Í∑∏Îûò???πÏãú ?¥Îîî??Ï∞∏Ï°∞?†Ï? Î™∞Îùº???®Í≤®?êÍ∏¥ ??--
-function GET_COMMAED_STRING(num) -- unsigned long Î≤îÏúÑ?¥Ïóê??Í∞Ä?•ÌïòÍ≤??òÏ†ï??
-    if num == nil then
-        return "0";
-    end
-    local retStr = "";
-    num = tonumber(num);
-    if num >= 0 then
-        retStr = GetCommaedString(num);
-    else
-        retStr = '-'..GetCommaedString(-num);
-    end
-    return retStr;
-end
-
-function GET_NOT_COMMAED_NUMBER(commaedString)
-    local retStr = "";
-    local strLen = string.len(commaedString);
-    local tempStr = commaedString;
-    local startIndex, endIndex = string.find(tempStr, ',');
-    local noInfinite = 0;
-
-    while startIndex ~= nil do
-        retStr = retStr.. string.sub(tempStr, 1, startIndex - 1);
-        tempStr = string.sub(tempStr, startIndex + 1, string.len(tempStr));
-        startIndex, endIndex = string.find(tempStr, ',');
-        noInfinite = noInfinite + 1;
-
-        -- ?πÏãú Î™®Î? Î¨¥ÌïúÎ£®ÌîÑ Î∞©Ï?
-        if noInfinite >= 10000 then
-            break;
-        end
-    end
-    retStr = retStr..tempStr;
-    local retNum = tonumber(retStr);
-    if retNum == nil then
-        retNum = 0;
-    end
-    return retNum;
-end
-
-function IS_ENABLE_EQUIP_GEM(targetItem, gemType)
-    if targetItem == nil or gemType == nil then
-        return false;
-    end
-
-    local maxSocket = TryGetProp(targetItem, 'MaxSocket');
-    if maxSocket < VALID_DUP_GEM_CNT then
-        return true;
-    end
-    
-    local curCnt = 0;
-    for i = 0, maxSocket - 1 do
-        if TryGetProp(targetItem, 'Socket_Equip_'..i) == gemType then
-            curCnt = curCnt + 1;
-        end
-    end
-
-    if curCnt + 1 > VALID_DUP_GEM_CNT then
-        return false;
-    end
-
-    return true;
-end
-
-function IS_ITEM_IN_LIST(list, item)
-    if list == nil or item == nil or #list < 1 then
-        return false;
-    end
-
-    for i = 1, #list do
-        if list[i] == item then
-            return true;
-        end
-    end
-
-    return false;
-end
-
-
-function EXIST_ITEM(list, element)
-    if list == nil or #list < 1 then
-        return false;
-    end
-    for i = 1, #list do
-        if list[i] == element then
-            return true;
-        end
-    end
-    return false;
-end
-
-function PUSH_BACK_IF_NOT_EXIST(list, element)
-    if EXIST_ITEM(list, element) == true then
-        return list;
-    end
-
-    list[#list + 1] = element;
-    return list;
-end
-
-function SCR_REINFORCE_COUPON()
-    local couponList = {'Event_Reinforce_100000coupon'}
-    return couponList
-end
-
-function SCR_REINFORCE_COUPON_PRECHECK(pc, price)
-    local retCouponList = {}
-    
-    local couponList = SCR_REINFORCE_COUPON()
-    local couponValueList = {}
-    for i = 1, #couponList do
-        local itemIES = GetClass('Item',couponList[i])
-        if itemIES ~= nil then
-            local value = TryGetProp(itemIES, 'NumberArg1')
-            if value ~= nil then
-                local itemCount = GetInvItemCount(pc, couponList[i])
-                if itemCount > 0 then
-                    couponValueList[#couponValueList + 1] = {couponList[i], value, itemCount}
-                end
-            end
-        end
-    end
-    
-    for i = 1, #couponValueList - 1 do
-        for x = i + 1, #couponValueList do
-            if couponValueList[i][2] < couponValueList[x][2] then
-                local temp = {couponValueList[i][1],couponValueList[i][2],couponValueList[i][3]}
-                couponValueList[i] = {couponValueList[x][1],couponValueList[x][2],couponValueList[x][3]}
-                couponValueList[x] = temp
-            end
-        end
-    end
-    if #couponValueList > 0 then
-        for i = 1, #couponValueList do
-            for x = 1, couponValueList[i][3] do
-                if price >= couponValueList[i][2] then
-                    price = price - couponValueList[i][2]
-                    if #retCouponList > 0 then
-                        local flag = 0
-                        for y = 1, #retCouponList do
-                            if retCouponList[y][1] == couponValueList[i][1] then
-                                retCouponList[y][3] = retCouponList[y][3] + 1
-                                flag = 1
-                                break
-                            end
-                        end
-                        if flag == 0 then
-                            retCouponList[#retCouponList + 1] = {couponValueList[i][1],couponValueList[i][2], 1}
-                        end
-                    else
-                        retCouponList[#retCouponList + 1] = {couponValueList[i][1],couponValueList[i][2], 1}
-                    end
-                end
-            end
-        end
-    end
-    
-    return price, retCouponList
-end
-
-----EVENT_1804_TRANSCEND_REINFORCE
---function SCR_EVENT_REINFORCE_DISCOUNT_CHECK(pc)
---    if GetServerNation() ~= "KOR" then
---        return 'NO'
---    end
---    
---    local now_time = os.date('*t')
---    local year = now_time['year']
---    local month = now_time['month']
---    local day = now_time['day']
---    
---    if IsServerSection(pc) ~= 1 then
---        local serverTime = imcTime.GetCurdateNumber()
---        year = 2000 + tonumber(string.sub(serverTime,1, 2))
---        month = tonumber(string.sub(serverTime,3, 4))
---        day = tonumber(string.sub(serverTime,5, 6))
---    end
---    
---    local nowbasicyday = SCR_DATE_TO_YDAY_BASIC_2000(year, month, day)
---
---    if nowbasicyday >= SCR_DATE_TO_YDAY_BASIC_2000(2018, 4, 19) and nowbasicyday <= SCR_DATE_TO_YDAY_BASIC_2000(2018, 5, 3) then
---        return 'YES'
---    end
---    
---    return 'NO'
---end
-
-
-
-function SCR_TABLE_TYPE_SEPARATE(inputTable, typeTable)
-    local index = 1
-    local tempTable = {}
-    local inputType
-    while 1 do
-        if index > #inputTable then
-            break
-        end
-        if table.find(typeTable, inputTable[index]) > 0 then
-            tempTable[inputTable[index]] = {}
-            inputType = inputTable[index]
-        elseif inputType ~= nil then
-            tempTable[inputType][#tempTable[inputType] + 1] = inputTable[index]
-        end
-        
-        index = index + 1
-    end
-    local retTable = {}
-    for i = 1, #typeTable do
-        retTable[typeTable[i]] = tempTable[typeTable[i]]
-    end
-    
-    return retTable
-end
-
-function IS_IN_EVENT_MAP(pc)
-    if GetZoneName(pc) == 'd_castle_agario' then
-        return true;
-    end
-
-    return false;
-end
-
---?ºÎ∞ò ?åÌã∞ Í≤ΩÌóòÏπ?Í≥ÑÏÇ∞
-function NORMAL_PARTY_EXP_BOUNS_RATE(partyMemberCount, pc)
-	--1??100. 2??190(95), 3??270(90), 4??340(85), 5??400(80)
-	--?ÄÎ¨∏ÏûêÎ°??†Ïñ∏?òÏñ¥?àÎäî Î≥Ä?òÎäî ??sharedconst_system.xml???àÎäî Í∞íÏûÑ.
-	local expUpRatio = 1;
-	
-	--?åÌã∞?∏Ïõê?òÏóê ?Ä??Í≥ÑÏÇ∞
-	if partyMemberCount > 1 then
-		expUpRatio = expUpRatio + ((1 - (partyMemberCount * PARTY_EXP_BONUS)) * (partyMemberCount - 1));
-	end
-	
-	return expUpRatio;
-end
-
---?∏Îçò ?êÎèôÎß§Ïπ≠ Í≤ΩÌóòÏπ?Í≥ÑÏÇ∞
-function INDUN_AUTO_MATCHING_PARTY_EXP_BOUNS_RATE(partyMemberCount)
-	--?úÎ™Ö??120?ÑÎ°ú????Ï§Ä?? ?? 1Î™ÖÏùº ?? Í≤ΩÌóòÏπ?Î≥¥ÎÑà???ÜÎã§.
-	local expUpRatio = NORMAL_PARTY_EXP_BOUNS_RATE(partyMemberCount);
-	
-	if partyMemberCount > 1 then
-		expUpRatio = expUpRatio + (partyMemberCount * INDUN_AUTO_FIND_EXP_BONUS);
-	end
-	
-	return expUpRatio;
-end
-
-function GET_INDUN_SILVER_RATIO(myLevel, indunLevel)
-    local pcLv = myLevel;
-    local dungeonLv = indunLevel;
-    local value = 1;
-        
-    local standardLevel = 30;
-    local levelGap = math.abs(pcLv - dungeonLv);
-    
-    if levelGap > standardLevel then
-    	local penaltyRatio = 0.02;	-- ?Ä?àÎ≤® ?∏Îçò ?¨ÎÉ• ???§Î≤Ñ ?òÎÑê??-
-	    local lvRatio = 1 - ((levelGap - standardLevel) * penaltyRatio);
-        value = value * lvRatio;        
-    end
-    
-    if value < 0 then
-        value = 0;
-    end
-    
-    return value;
-end
-
-function IMCLOG_CONTENT_SPACING(tag, ...)
-    local logMsg = "";
-    for i, v in ipairs{...} do
-        logMsg = logMsg.." "..tostring(v);
-    end
-
-    ImcContentLog(tag,logMsg)
-end
-
-function SCR_TEXT_HIGHLIGHT(dialogClassName, text)
-    local targetZoneWordList = {}
-    local targetMonWordList = {}
-    
-    local exceptList, exceptcnt  = GetClassList("DialogExceptionText");
-    local exceptdialog = {}
-    local exceptword = {}
-    for i = 0 , exceptcnt - 1 do
-        local cls = GetClassByIndexFromList(exceptList, i);
-        local clstype = TryGetProp(cls,'Type', 'None')
-        local clsword = TryGetProp(cls,'Word', 'None')
-        local clsdialog = TryGetProp(cls,'Dialog', 'None')
-        if clstype == 'WORD' then
-            exceptdialog[#exceptdialog + 1] = clsdialog
-            exceptword[#exceptword + 1] = SCR_STRING_CUT(clsword)
-        end
-    end
-    
-    local exceptIndex = table.find(exceptdialog, dialogClassName)
-    
---    if #TEXT_ZONENAMELIST == 0 then
---        local maplist, mapcnt  = GetClassList("Map");
---        for i = 0 , mapcnt - 1 do
---            local cls = GetClassByIndexFromList(maplist, i);
---            local zoneName = TryGetProp(cls,'Name', 'None')
---            if zoneName ~= 'None' and table.find(TEXT_ZONENAMELIST, zoneName) == 0 then
---                TEXT_ZONENAMELIST[#TEXT_ZONENAMELIST + 1] = zoneName
---            end
---        end
---        
---        local arealist, areacnt  = GetClassList("Map_Area");
---        for i = 0 , areacnt - 1 do
---            local cls = GetClassByIndexFromList(arealist, i);
---            local zoneName = TryGetProp(cls,'Name', 'None')
---            if zoneName ~= 'None' and table.find(TEXT_ZONENAMELIST, zoneName) == 0 then
---                TEXT_ZONENAMELIST[#TEXT_ZONENAMELIST + 1] = zoneName
---            end
---        end
---    end
-    
-    local maxi1 = #TEXT_ZONENAMELIST
-    for i = 1, maxi1 do
-        local findIndex = string.find(text, TEXT_ZONENAMELIST[i])
-        if findIndex ~= nil then
-            local beforeChar = string.sub(text,findIndex -1,findIndex -1)
-            local beforeNum = string.byte(beforeChar)
-            if findIndex == 1 or beforeChar == ' ' or (beforeNum >= 33 and beforeNum <= 47) or (beforeNum >= 58 and beforeNum <= 64) or (beforeNum >= 91 and beforeNum <= 96) or (beforeNum >= 123 and beforeNum <= 126) then
-                if exceptIndex == 0 then
-                    targetZoneWordList[#targetZoneWordList + 1] = TEXT_ZONENAMELIST[i]
-                else
-                    if table.find(exceptword[exceptIndex], TEXT_ZONENAMELIST[i]) == 0 then
-                        targetZoneWordList[#targetZoneWordList + 1] = TEXT_ZONENAMELIST[i]
-                    end
-                end
-            end
-        end
-    end
-    
---    if #TEXT_MONNAMELIST == 0 then
---        local monlist, moncnt  = GetClassList("Monster");
---        for i = 0 , moncnt - 1 do
---            local cls = GetClassByIndexFromList(monlist, i);
---            local monName = TryGetProp(cls,'Name', 'None')
---            if monName ~= 'None' and table.find(TEXT_ZONENAMELIST, monName) == 0 then
---                TEXT_MONNAMELIST[#TEXT_MONNAMELIST + 1] = monName
---            end
---        end
---    end
-    
-    
-    local maxi2 = #TEXT_MONNAMELIST
-    for i = 1, maxi2 do
-        local findIndex = string.find(text, TEXT_MONNAMELIST[i])
-        if findIndex ~= nil then
-            local beforeChar = string.sub(text,findIndex -1,findIndex -1)
-            local beforeNum = string.byte(beforeChar)
-            if findIndex == 1 or beforeChar == ' ' or (beforeNum >= 33 and beforeNum <= 47) or (beforeNum >= 58 and beforeNum <= 64) or (beforeNum >= 91 and beforeNum <= 96) or (beforeNum >= 123 and beforeNum <= 126) then
-                if exceptIndex == 0 then
-                    targetMonWordList[#targetMonWordList + 1] = TEXT_MONNAMELIST[i]
-                else
-                    if table.find(exceptword[exceptIndex], TEXT_MONNAMELIST[i]) == 0 then
-                        targetMonWordList[#targetMonWordList + 1] = TEXT_MONNAMELIST[i]
-                    end
-                end
-            end
-        end
-    end
-    
-    if #targetZoneWordList > 0 then
-        for i = 1, #targetZoneWordList - 1 do
-            for r = i + 1, #targetZoneWordList do
-                if string.len(targetZoneWordList[i]) < string.len(targetZoneWordList[r]) then
-                    local tempStr = targetZoneWordList[i]
-                    targetZoneWordList[i] = targetZoneWordList[r]
-                    targetZoneWordList[r] = tempStr
-                end
-            end
-        end
-    end
-    
-    if #targetMonWordList > 0 then
-        for i = 1, #targetMonWordList - 1 do
-            for r = i + 1, #targetMonWordList do
-                if string.len(targetMonWordList[i]) < string.len(targetMonWordList[r]) then
-                    local tempStr = targetMonWordList[i]
-                    targetMonWordList[i] = targetMonWordList[r]
-                    targetMonWordList[r] = tempStr
-                end
-            end
-        end
-    end
-    
-    if #targetZoneWordList > 0 then
-        for i = 1, #targetZoneWordList do
-            text = string.gsub(text, targetZoneWordList[i], '{#003399}'..targetZoneWordList[i]..'{/}')
-        end
-    end
-    
-    if #targetMonWordList > 0 then
-        for i = 1, #targetMonWordList do
-            text = string.gsub(text, targetMonWordList[i], '{#003399}'..targetMonWordList[i]..'{/}')
-        end
-    end
-    
-    return text
-end
-
-function GET_DATE_BY_DATE_STRING(dateString) -- yyyy-mm-dd hh:mm:ss
-    local tIndex = string.find(dateString, ' ');
-    if tIndex == nil then
-        return -1;
-    end
-    local dateStr = string.sub(dateString, 0, tIndex - 1);
-    local firstHipenIndex = string.find(dateString, '-');
-    local secondHipenIndex = string.find(dateString, '-', firstHipenIndex + 1);
-    local year = tonumber(string.sub(dateStr, 0, firstHipenIndex - 1));
-    local month = tonumber(string.sub(dateStr, firstHipenIndex + 1, secondHipenIndex - 1));
-    local day = tonumber(string.sub(dateStr, secondHipenIndex + 1));
-
-    local hourStr = string.sub(dateString, tIndex + 1);
-    local firstColonIndex = string.find(hourStr, ':');
-    local secondColonIndex = string.find(hourStr, ':', firstColonIndex + 1);
-    local hour = tonumber(string.sub(hourStr, 0, firstColonIndex - 1));
-    local minute = tonumber(string.sub(hourStr, firstColonIndex + 1, secondColonIndex - 1));
-    local second = tonumber(string.sub(hourStr, secondColonIndex + 1));
-
-    return year, month, day, hour, minute, second;
 end
