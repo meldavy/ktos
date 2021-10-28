@@ -15,10 +15,18 @@ function ITEM_BALLOON_CLEAR(handle)
 	end
 end
 
-function ITEM_BALLOON_COMMON(handle, itemCls, tooltipEnum, duration, delaySec, skinName, msgText)
--- ?????? ?????? ??? ??? ???? ?????
-  if world.GetLayer() ~= 0 then
+function ITEM_BALLOON_COMMON(handle, itemCls, tooltipEnum, duration, delaySec, skinName, msgText, isShowText)
+  if world.GetLayer() ~= 0 then --
 		return 0;
+	end
+
+	if nil == itemCls then
+		return;
+	end
+
+	local scp = _G[itemCls.RefreshScp];
+	if nil ~= scp then
+		scp(itemCls);
 	end
 
 	delaySec = 0.0;
@@ -72,7 +80,11 @@ function ITEM_BALLOON_COMMON(handle, itemCls, tooltipEnum, duration, delaySec, s
 		widthCnt = widthCnt-3;
 	end
 
-	descText:SetText(msgText);
+	if isShowText == 1 then
+		descText:SetText(msgText);
+	else
+		descText:SetText("");
+	end
 	local ctrlSet = itemcontainer:CreateControlSet(skinName, "BOX_" .. cnt, widthCnt * ctrlSetWidth, descText:GetHeight() + ctrlSetHeight * heightCnt);
 	local slot = GET_CHILD(ctrlSet, "slot", "ui::CSlot");
 	local itemSlot = GET_CHILD(ctrlSet, "itemslot", "ui::CSlot");
@@ -80,9 +92,8 @@ function ITEM_BALLOON_COMMON(handle, itemCls, tooltipEnum, duration, delaySec, s
 	if itemCls ~= nil then
 		SET_SLOT_ITEM_OBJ(itemSlot, itemCls);
 		itemSlot:EnableDrag(0);
-
-		local gradeTxt = GET_ITEM_GRADE_TXT(itemCls, 24);
-		itemtext:SetTextByKey("txt", gradeTxt);
+		local rewardTxt = REWARD_SET_ITEM_TEXT(skinName, itemCls);
+		itemtext:SetTextByKey("txt", rewardTxt);
 	else
 		CLEAR_SLOT_ITEM_INFO(itemSlot);
 		itemtext:SetTextByKey("txt", "");
@@ -97,6 +108,14 @@ function ITEM_BALLOON_COMMON(handle, itemCls, tooltipEnum, duration, delaySec, s
 	itemSlot:EnableHitTest(1)
 	RAID_REWARD_BAL_POS(frame);
 
+end
+
+function REWARD_SET_ITEM_TEXT(skinName, itemCls)
+	if skinName == "junksilvergacha_itembox" then
+		return GET_FULL_NAME(itemCls)
+	else
+		return GET_ITEM_GRADE_TXT(itemCls, 24);
+	end
 end
 
 function REWARD_ITEM_BALLOON(handle, rewardList)
