@@ -356,6 +356,8 @@ function SOLODUNGEON_RANKINGPAGE_FILL_RANK_CTRL(rankGbox, ctrlType, rank, week)
     local clear_time = scoreInfo.clear_time;
     if clear_time ~= 0 then
         clear_time = session.soloDungeon.GetClearTimeConvert(tonumber(clear_time));
+    else
+        clear_time = "03:00";
     end
 
     local killMonsterText = GET_CHILD_RECURSIVELY(rankGbox, "killMonsterText")

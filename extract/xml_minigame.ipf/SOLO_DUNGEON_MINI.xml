@@ -379,7 +379,7 @@ return value"/>
                                 <Str Str="SoloDungeon_Clear"/>
                                 <Num Num="3"/>
                             </ToolScp>
-                            <ToolScp Scp="MGAME_EXEC_ACTORSCP" Client="NO" UseSleep="NO">
+                            <ToolScp Scp="MGAME_EXEC_ACTORSCP_MAIN" Client="NO" UseSleep="NO">
                                 <Str Str="SCR_SOLO_DUNGEON_CLEAR_CHECK"/>
                             </ToolScp>
                             <ToolScp Scp="GAME_ST_EVT_EXEC_STAGE_START" Client="NO" UseSleep="NO">

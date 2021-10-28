@@ -11811,6 +11811,7 @@
 		<Class ClassID="134123" ClassName="MustEquipWeaponArmorToEnter" Data="장비를 장착하지 않은 부위가 있어서 진행이 불가능합니다."/>
 		<Class ClassID="134124" ClassName="CantEvolvedEquip" Data="진화시킬 수 없는 장비 혹은 이미 진화된 장비입니다."/>
 		<Class ClassID="134125" ClassName="LowAblityPointScore" Data="특성 달성률이 낮아 입장할 수 없습니다."/>
+		<Class ClassID="134126" ClassName="NotEnoughTicketPossibleCount_SoloDungeon" Data="베르니케의 파편 던전을 이용할 수 없는 시간입니다.{nl}이용제한 : 월요일 오전 5시부터 오전 6시 전까지"/>
 	</Category>
 	<Category Name="AchieveReward">
 		<Class ClassID="135001" ClassName="GainAchieveHairBefore" Data="이미 업적 보상을 받았습니다."/>
