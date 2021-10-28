@@ -105,9 +105,6 @@ end
 
 function PouncingClientScp_ENTER(actor, obj, buff)
     local abil = session.GetAbilityByName("Barbarian41");
-    if abil == nil then
-        return;
-    end
 
     if abil ~= nil then
         local abilObj = GetIES(abil:GetObject());
