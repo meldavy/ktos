@@ -10778,7 +10778,6 @@
 		<Class ClassID="106130" ClassName="IcorWeaponTrinket" Data="아이커 - 무기장식"/>
 		<Class ClassID="106131" ClassName="RegMarketItem{Price}" Data="{#ff0000}{s20}판매가 : 개당 {Price}실버{/}{/}{nl} {nl}"/>
 		<Class ClassID="106132" ClassName="MARKET_ENCHANT" Data="인챈트"/>
-		<Class ClassID="106133" ClassName="SellPriceMustOverThen10Silver" Data="개당 판매가격은 10실버 이상이여야 합니다."/>
 	</Category>
 	<Category Name="AutoSeller">
 		<Class ClassID="107001" ClassName="InputPriceMoreThanOne" Data="가격을 1이상 입력해주세요."/>
