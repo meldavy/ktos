@@ -455,6 +455,22 @@
 			<groupbox name="property_gbox" rect="0 0 410 0" layout_gravity="left top" margin="0 15 0 0" skin="bg" hittest="false" draw="false" updateparent="true" scrollbar="false"/>
 		</controls>
 	</controlset>
+    <controlset name="tooltip_equip_property_random" hittest="true" width="410" height="0">
+		<controls>
+			<labelline name="labelline" margin="0 0 0 0" rect="0 0 390 3" skin="labelline_def_2" layout_gravity="center top"/>
+            <richtext name="set_item" margin="0 5 0 0" rect="0 0 190 30" format="{@st41b}{s18}  랜덤 아이커" layout_gravity="left top" fixwidth="true" hittest="false" fontname="brown_16"/>
+            <labelline name="labelline2" margin="0 31 0 0" rect="0 0 390 3" skin="labelline_def_2" layout_gravity="center top"/>
+			<groupbox name="property_gbox" rect="0 0 410 0" layout_gravity="left top" margin="0 46 0 0" skin="bg" hittest="false" draw="false" updateparent="true" scrollbar="false"/>
+		</controls>
+	</controlset>
+        <controlset name="tooltip_equip_property_fixed" hittest="true" width="410" height="0">
+		<controls>
+			<labelline name="labelline" margin="0 0 0 0" rect="0 0 390 3" skin="labelline_def_2" layout_gravity="center top"/>
+            <richtext name="set_item" margin="0 5 0 0" rect="0 0 190 30" format="{@st41b}{s18}  고정 아이커" layout_gravity="left top" fixwidth="true" hittest="false" fontname="brown_16"/>
+            <labelline name="labelline2" margin="0 31 0 0" rect="0 0 390 3" skin="labelline_def_2" layout_gravity="center top"/>
+			<groupbox name="property_gbox" rect="0 0 410 0" layout_gravity="left top" margin="0 46 0 0" skin="bg" hittest="false" draw="false" updateparent="true" scrollbar="false"/>
+		</controls>
+	</controlset>
 	<controlset name="tooltip_equip_desc" hittest="true" width="410" height="0">
 		<controls>
 			<labelline name="labelline" margin="-3 0 0 0" rect="0 0 390 3" skin="labelline_def_2" layout_gravity="center top"/>
@@ -4940,7 +4956,7 @@
 			<picture name="itempic" rect="0 0 32 32" margin="25 0 0 0" layout_gravity="left center" stretch="true" image="" draw="true"/>
 			<richtext name="itemname" rect="0 0 280 36" margin="75 0 0 0" layout_gravity="left center" draw="true" textalign="left center" format="%s" param1="value" param1_def="아이템 명" fontname="white_16_ol"/>
 			<picture name="arrow" rect="0 0 20 20" margin="300 0 0 0" layout_gravity="left center" image="icon_white_arrow" draw="true"/>
-			<richtext name="result" rect="0 0 250 36" margin="350 0 0 0" layout_gravity="left center" draw="true" textalign="left center" format="{@st66d_y}{s16}%s x 1" param1="value" param1_def="인첸트 아이템 명" fontname="yellow_16_ol"/>
+			<richtext name="result" rect="0 0 250 36" margin="325 0 0 0" layout_gravity="left center" draw="true" textalign="left center" format="{@st66d_y}{s16}%s x 1" param1="value" param1_def="인첸트 아이템 명" fontname="yellow_16_ol"/>
 		</controls>
 	</controlset>
 <!--BgmPlayer-->
@@ -5144,6 +5160,8 @@
 			<slot name="ancient_card_type1_pic" rect="0 0 30 30" margin="465 0 0 0" hittest="false" layout_gravity="left center"/>
 			<slot name="ancient_card_type2_pic" rect="0 0 30 30" margin="500 0 0 0" hittest="false" layout_gravity="left center"/>
 			<button name="sell_btn" rect="0 0 103 46" margin="538 0 0 0" layout_gravity="left center" LBtnUpScp="SCR_ANCIENT_CARD_SELL" skin="test_red_button" caption="{@st42b}{s16}제거{/}" MouseOffAnim="btn_mouseoff" MouseOnAnim="btn_mouseover" oversound="button_cursor_over_2" clicksound="button_click_stats_OK"/>
+			<groupbox name="graybg" rect="0 0 646 59" margin="0 0 0 0" hittest="false" layout_gravity="center center" draw="false"/>
+			<picture name="gray" rect="0 0 640 50" margin="0 0 0 0" layout_gravity="center center" parent="graybg" image="fullblack" stretch="true" alpha="70"/>
 		</controls>
 	</controlset>
 	<controlset name="ancient_card_gacha_slot" hittest="true" width="214" height="285" skin="test_frame_midle_light" stateskin="false" enabledrag="false" draw="false">
@@ -5337,7 +5355,7 @@
 	<controlset name="simple_to_do_list" hittest="true" width="501" height="64" draw="true" hittestset="true">
 		<controls>
 			<groupbox name="gb" rect="0 0 501 64" margin="0 0 0 0" layout_gravity="center center" skin="test_skill_skin3" scrollbar="false"/>
-			<richtext name="rewardtext" rect="0 0 300 50" margin="20 0 0 0" layout_gravity="left center" hittest="false" fontname="black_16_b" format="%s" param1="value" fixwidth="true"/>
+			<richtext name="rewardtext" rect="0 0 350 50" margin="20 0 0 0" layout_gravity="left center" hittest="false" fontname="black_16_b" format="%s" param1="value" fixwidth="true"/>
 			<picture name="rewardicon" rect="0 0 39 39" margin="0 -1 65 0" layout_gravity="right center" image="icon_item_Event_Roulette_Coin" stretch="true"/>
 			<richtext name="rewardcnt" rect="0 0 50 40" margin="0 0 5 0" layout_gravity="right center" format="{@st42b}{ds}{s16}x %s" param1="value" fixwidth="true" hittest="false"/>
 		</controls>
@@ -5779,8 +5797,8 @@
 		<controls>
 			<button name="button" layout_gravity="center center" skin="test_skin_01_btn" rect="0 0 460 55" margin="0 0 0 0"/>
 			<slot name="slot" layout_gravity="left center" skin="slot_empty" rect="0 0 42 42" margin="7 -1 0 0" hittest="true"/>
-			<richtext name="item_name" rect="0 0 400 42" margin="53 7 0 0" layout_gravity="left top" fixwidth="true" hittest="false" fontname="white_14_b_ds"/>
-			<richtext name="item_price" rect="0 0 400 42" margin="54 0 0 7" layout_gravity="left bottom" fixwidth="true" hittest="false" fontname="white_14_b_ds"/>
+			<richtext name="item_name" rect="0 0 250 42" margin="53 7 0 0" layout_gravity="left top" fixwidth="true" hittest="false" fontname="white_14_b_ds" omitbywidth="true"/>
+			<richtext name="item_price" rect="0 0 250 42" margin="54 0 0 7" layout_gravity="left bottom" fixwidth="true" hittest="false" fontname="white_14_b_ds"/>
 			<richtext name="item_limit" rect="0 0 100 42" margin="120 0 0 0" layout_gravity="center center" fixwidth="true" hittest="false" fontname="white_14_b_ds"/>
 			<picture name="reputation_img" rect="0 0 40 31" margin="0 0 8 0" layout_gravity="right center" stretch="true" hittest="false" image="reputation01"/>
 			<picture name="reputation_lock" rect="0 0 30 38" margin="0 0 0 0" layout_gravity="center center" stretch="true" hittest="true" image="relabeling_lock"/>
@@ -5919,9 +5937,9 @@
 	</controlset>
 	<controlset name="tooltip_relic_gem_lv" hittest="true" width="400" height="80">
 		<controls>
-			<richtext name="text" rect="0 0 100 24" margin="10 5 0 0" fixwidth="true" hittest="false" fontname="white_24_ol" layout_gravity="left top" caption="레벨"/>
+			<richtext name="text" rect="0 0 100 24" margin="10 5 0 0" fixwidth="false" hittest="false" fontname="white_24_ol" layout_gravity="left top" caption="레벨"/>
 			<richtext name="lv" rect="0 0 50 24" margin="0 5 0 20" fixwidth="true" hittest="false" fontname="yellow_24_b_ol" layout_gravity="right top" format="%s" param1="value" param1_def="0" textalign="right center"/>
-			<richtext name="enable_text" rect="0 0 200 24" margin="10 45 0 0" fixwidth="true" hittest="false" fontname="white_18_ol" layout_gravity="left top" caption="장착 가능 성물 레벨"/>
+			<richtext name="enable_text" rect="0 0 200 24" margin="10 45 0 0" fixwidth="false" hittest="false" fontname="white_18_ol" layout_gravity="left top" caption="장착 가능 성물 레벨"/>
 			<richtext name="enable_lv" rect="0 0 50 24" margin="0 39 0 20" fixwidth="true" hittest="false" fontname="yellow_24_b_ol" layout_gravity="right top" format="%s" param1="value" param1_def="0" textalign="right center"/>
 			<labelline name="labelline" margin="5 0 0 0" rect="0 0 390 3" skin="labelline_def_2" layout_gravity="center bottom"/>
 		</controls>

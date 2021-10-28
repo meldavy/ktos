@@ -43,6 +43,8 @@
 	<Texture Name="circle038_2" File="circle038_2.dds" Size="256 256"/>
 	<Texture Name="pattern029" File="pattern029.dds" Size="128 128"/>
 	<Texture Name="sprite002_lightning_white" File="sprite002_lightning_white.dds" Size="256 256"/>
+	<Texture Name="leaf006_6_alpha" File="leaf006_6_alpha.dds" Size="128 128"/>
+	<Texture Name="leaf006_4_alpha" File="leaf006_4_alpha.dds" Size="128 128"/>
 	<Texture Name="leaf006_6" File="leaf006_6.dds" Size="128 128"/>
 	<Texture Name="leaf006_5" File="leaf006_5.dds" Size="128 128"/>
 	<Texture Name="leaf006_4" File="leaf006_4.dds" Size="128 128"/>
@@ -69,6 +71,7 @@
 	<Texture Name="skillrange_donut0" File="skillrange_donut0.dds" Size="512 512"/>
 	<Texture Name="skillrange_270" File="skillrange_270.dds" Size="512 512"/>
 	<Texture Name="skillrange_240" File="skillrange_240.dds" Size="512 512"/>
+	<Texture Name="skillrange_135_1" File="skillrange_135_1.dds" Size="512 512"/>
 	<Texture Name="skillrange_135" File="skillrange_135.dds" Size="512 512"/>
 	<Texture Name="skillrange_180" File="skillrange_180.dds" Size="512 512"/>
 	<Texture Name="skillrange_120" File="skillrange_120.dds" Size="512 512"/>

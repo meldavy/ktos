@@ -4606,6 +4606,39 @@
 			<img name="bottomcore" imgrect="442 87 30 27"/>
 			<img name="bottomright" imgrect="473 87 40 27"/>
 		</skin>
+		<skin name="brown_3patch_btn" texture="\skin\pip_test_item.tga">
+			<img name="topleft" imgrect="883 1025 20 1"/>
+			<img name="topcore" imgrect="904 1025 30 1"/>
+			<img name="topright" imgrect="935 1025 20 1"/>
+			<img name="bodyleft" imgrect="883 1027 20 31"/>
+			<img name="bodycore" imgrect="904 1027 30 31"/>
+			<img name="bodyright" imgrect="935 1027 20 31"/>
+			<img name="bottomleft" imgrect="883 1059 20 1"/>
+			<img name="bottomcore" imgrect="904 1059 30 1"/>
+			<img name="bottomright" imgrect="935 1059 20 1"/>
+		</skin>
+		<skin name="brown_3patch_btn_cursoron" texture="\skin\pip_test_item.tga">
+			<img name="topleft" imgrect="956 1025 20 1"/>
+			<img name="topcore" imgrect="977 1025 30 1"/>
+			<img name="topright" imgrect="1008 1025 20 1"/>
+			<img name="bodyleft" imgrect="956 1027 20 31"/>
+			<img name="bodycore" imgrect="977 1027 30 31"/>
+			<img name="bodyright" imgrect="1008 1027 20 31"/>
+			<img name="bottomleft" imgrect="956 1059 20 1"/>
+			<img name="bottomcore" imgrect="977 1059 30 1"/>
+			<img name="bottomright" imgrect="1008 1059 20 1"/>
+		</skin>
+		<skin name="brown_3patch_btn_clicked" texture="\skin\pip_test_item.tga">
+			<img name="topleft" imgrect="1029 1025 20 1"/>
+			<img name="topcore" imgrect="1050 1025 30 1"/>
+			<img name="topright" imgrect="1081 1025 20 1"/>
+			<img name="bodyleft" imgrect="1029 1027 20 31"/>
+			<img name="bodycore" imgrect="1050 1027 30 31"/>
+			<img name="bodyright" imgrect="1081 1027 20 31"/>
+			<img name="bottomleft" imgrect="1029 1059 20 1"/>
+			<img name="bottomcore" imgrect="1050 1059 30 1"/>
+			<img name="bottomright" imgrect="1081 1059 20 1"/>
+		</skin>
 	</skinlist>
 	<skinlist category="yiseul_frames">
 		<skin name="childrens_day_balloon" texture="\skin\say_balloon.tga">
@@ -8922,6 +8955,12 @@
 		<image name="equipment_info_exclamation_mark" file="\skin\pip_test.tga" imgrect="0 1156 25 25" CMM_Caption="장비 느낌표"/>
 		<image name="equipment_info_btn_mark" file="\skin\pip_test.tga" imgrect="0 1182 27 28" CMM_Caption="장비 버튼 마크"/>
 		<image name="equipment_info_btn_mark2" file="\skin\pip_test.tga" imgrect="357 1154 27 28" CMM_Caption="장비 버튼 마크2"/>
+		<image name="assist_cabinet_add_btn" file="\skin\pip_test2.tga" imgrect="870 353 33 33" CMM_Caption="어시스터 슬롯 확장 버튼"/>
+		<image name="assist_cabinet_add_btn_cursoron" file="\skin\pip_test2.tga" imgrect="904 353 33 33"/>
+		<image name="assist_cabinet_add_btn_clicked" file="\skin\pip_test2.tga" imgrect="904 353 33 33"/>
+		<image name="gold_jpn_Ep13_btn" file="\skin\pip_test.tga" imgrect="1585 1099 72 72" CMM_Caption="일본서버 에피소드13 이벤트 버튼"/>
+		<image name="gold_jpn_Ep13_btn_cursoron" file="\skin\pip_test.tga" imgrect="1658 1099 72 72"/>
+		<image name="gold_jpn_Ep13_btn_clicked" file="\skin\pip_test.tga" imgrect="1731 1099 72 72"/>
 	</imagelist>
 	<imagelist category="yiseul_button">
 		<image name="pvpmine_shop_btn" file="\skin\pip_test.tga" imgrect="2049 61 66 59" CMM_Caption="용병단 증표 ui 버튼"/>

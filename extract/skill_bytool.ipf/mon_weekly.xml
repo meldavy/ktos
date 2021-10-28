@@ -17844,6 +17844,7 @@ return anlgeList[IMCRandom(1,3)]"/>
                 </Scp>
             </EtcList>
             <ResultList>
+                <ToolScp Scp="S_R_COND_ONLY_PC" Client="NO" UseSleep="NO"/>
                 <ToolScp Scp="S_R_KNOCK_TARGET" Client="NO" UseSleep="NO" TooltipScp="TOOLTIP_MONSKL_R_KNOCKDOWN">
                     <Num Num="3"/>
                     <Num Num="0"/>

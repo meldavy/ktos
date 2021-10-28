@@ -259,9 +259,12 @@ function ASKED_ANCIENT_FRIENDLY_FIGHT(handle, familyName)
 end
 
 function ACK_FRIENDLY_FIGHT(handle)
-
-	packet.RequestFriendlyFight(handle, 1);
-
+	if IsBuffApplied(GetMyPCObject(), 'Instrument_Use_Buff') == 'NO' then
+		packet.RequestFriendlyFight(handle, 1);
+	else
+		local msgStr = ScpArgMsg("Instrument_MSG2")
+		ui.SysMsg(msgStr)
+	end
 end
 
 function ACK_ANCIENT_FRIENDLY_FIGHT(handle)

@@ -12,6 +12,7 @@
                     <Obj Type="Monster" MonType="157101" Pos="-852.19#409.72#156.79" angle="-134" genCount="1" genTime="20000" objectKey="5" propList="&apos;OBB&apos; &apos;NO&apos; &apos;OBBSize&apos; &apos;0;0;0&apos; &apos;Dialog&apos; &apos;GLACIER_KRUVINA_STAGE1&apos; "/>
                     <Obj Type="Monster" MonType="157101" Pos="579.16#436.17#-798.55" angle="4" genCount="1" genTime="20000" objectKey="6" propList="&apos;OBB&apos; &apos;NO&apos; &apos;OBBSize&apos; &apos;0;0;0&apos; &apos;Dialog&apos; &apos;GLACIER_KRUVINA_STAGE2&apos; "/>
                     <Obj Type="Monster" MonType="160029" Pos="1248.10#597.88#981.66" genCount="1" genTime="20000" objectKey="7" propList="&apos;NumArg1&apos; &apos;1&apos; "/>
+                    <Obj Type="Monster" MonType="40070" Pos="-797.80#285.51#-708.93" angle="-69" genCount="1" genTime="20000" objectKey="8" propList="&apos;Dialog&apos; &apos;GLACIER_NPC_NOTICE_BOARD&apos; "/>
                 </ObjList>
                 <StageEvents>
                     <Event eventName="Glacier_Enter_Check">

@@ -38,7 +38,7 @@ function GET_REPUTATION_REQUIRE_POINT(rank)
 end
 
 function GET_REPUTATION_POINT_EXTRACT_LIMIT()
-    return 500
+    return 1000
 end
 
 function GET_REPUTATION_PRICE_NAME(group)

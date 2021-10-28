@@ -646,11 +646,10 @@ return value"/>
             <ToolScp Scp="PAD_ACTIVATE" Client="NO" UseSleep="NO">
                 <Str Str="ENEMY"/>
             </ToolScp>
-            <ToolScp Scp="PAD_TGT_BUFF_AFTER_CHECK_BUFF" Client="NO" UseSleep="NO">
+            <ToolScp Scp="PAD_TGT_BUFF" Client="NO" UseSleep="NO">
                 <Str Str="ENEMY"/>
                 <Num Num="0"/>
                 <Num Num="0"/>
-                <Str Str="JincanGu_Debuff"/>
                 <Str Str="JincanGu_Debuff"/>
                 <Num Num="1" UseFunc="1" FuncTxt="return obj.Level;"/>
                 <Num Num="0"/>
@@ -740,11 +739,10 @@ return value"/>
             <ToolScp Scp="PAD_ACTIVATE" Client="NO" UseSleep="NO">
                 <Str Str="ENEMY"/>
             </ToolScp>
-            <ToolScp Scp="PAD_TGT_BUFF_AFTER_CHECK_BUFF" Client="NO" UseSleep="NO">
+            <ToolScp Scp="PAD_TGT_BUFF" Client="NO" UseSleep="NO">
                 <Str Str="ENEMY"/>
                 <Num Num="0"/>
                 <Num Num="0"/>
-                <Str Str="JincanGu_Abil_Debuff"/>
                 <Str Str="JincanGu_Abil_Debuff"/>
 		<Num Num="1" UseFunc="1" FuncTxt="return obj.Level;"/>
                 <Num Num="0"/>
@@ -1452,6 +1450,7 @@ return value"/>
                 <Num Num="0"/>
                 <Num Num="0"/>
                 <Str Str="None"/>
+                <Num Num="1"/>
             </ToolScp>
             <ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
                 <Num Num="-1000"/>
@@ -2259,6 +2258,7 @@ return value"/>
                 <Num Num="0"/>
                 <Num Num="0"/>
                 <Str Str="None"/>
+                <Num Num="1"/>
             </ToolScp>
             <ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
                 <Num Num="-1000"/>
@@ -10863,6 +10863,7 @@ return obj.Level"/>
                 <Str_Arg Str="None" Arg="1"/>
                 <Num Num="1"/>
             </ToolScp>
+            <ToolScp Scp="PAD_USEABLE_PC" Client="NO" UseSleep="NO"/>
         </createEvent>
         <updateEvent>
             <ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
@@ -15080,6 +15081,7 @@ end" Arg="1"/>
                 <Num Num="0"/>
                 <Num Num="0"/>
                 <Str Str="None"/>
+                <Num Num="1"/>
             </ToolScp>
             <ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
                 <Num Num="-500"/>
@@ -18223,13 +18225,13 @@ end"/>
         <createEvent>
             <ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
                 <Num Num="800"/>
-                <Num Num="999"/>
+                <Num Num="5"/>
             </ToolScp>
         </createEvent>
         <enterEvent>
             <ToolScp Scp="PAD_TGT_BUFF_ORACLE_HIDDEN" Client="NO" UseSleep="NO">
                 <Num Num="0"/>
-                <Num Num="0"/>
+                <Num Num="-1"/>
                 <Num Num="1" UseFunc="1" FuncTxt="return obj.Level"/>
                 <Num Num="0"/>
                 <Num Num="10000"/>
@@ -21329,7 +21331,7 @@ return 30000 + obj.Level * 5000"/>
     <PadSkill Name="ScatterCaltrop" AllowOverlap="1">
         <Area/>
     </PadSkill>
-    <PadSkill Name="ScatterCaltrop_Pad" CheckerType="0" Dist="0.66911393" Angle="1.457719" Range="50" UpdateTerm="1000" ApplyFlyMon="1" AllowOverlap="1">
+    <PadSkill Name="ScatterCaltrop_Pad" CheckerType="0" Dist="0.66911393" Angle="1.457719" Range="50" UpdateTerm="1000" ApplyFlyMon="1" AllowOverlap="1" IsMagicType="0">
         <createEvent>
             <ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
                 <Num Num="10000"/>
@@ -22771,7 +22773,7 @@ return value;"/>
             </ToolScp>
         </updateEvent>
     </PadSkill>
-    <PadSkill Name="SweepingCannon_Pad" CheckerType="0" Dist="0.51673377" Angle="0.80233294" Range="100" UpdateTerm="1000" ApplyFlyMon="1" AllowOverlap="1">
+    <PadSkill Name="SweepingCannon_Pad" CheckerType="0" Dist="0.51673377" Angle="0.80233294" Range="100" UpdateTerm="1000" ApplyFlyMon="1" AllowOverlap="1" IsMagicType="0">
         <createEvent>
             <ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
                 <Num Num="10000"/>
@@ -22798,6 +22800,7 @@ return value;"/>
                 <Num Num="0"/>
                 <Num Num="0"/>
                 <Str Str="None"/>
+                <Num Num="0"/>
             </ToolScp>
             <ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
                 <Num Num="-1000"/>
@@ -26233,6 +26236,7 @@ end"/>
                 <Str_Arg Str="None" Arg="1"/>
                 <Num Num="1"/>
             </ToolScp>
+            <ToolScp Scp="PAD_USEABLE_PC" Client="NO" UseSleep="NO"/>
         </createEvent>
         <updateEvent>
             <ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">

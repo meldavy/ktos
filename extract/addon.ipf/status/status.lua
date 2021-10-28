@@ -1991,6 +1991,7 @@ function STATUS_ACHIEVE_INIT()
 
     local clslist, clscnt = GetClassList("Achieve");
     local etcObj = GetMyEtcObject();
+    local accObj = GetMyAccountObj();
     local x = 10;
     local y = 10;
 
@@ -2065,6 +2066,9 @@ function STATUS_ACHIEVE_INIT()
                 eachAchiveDesc:SetOffset(eachAchiveDesc:GetX(), eachAchiveStaticDesc:GetY())
                
                 local etcObjValue = TryGetProp(etcObj, 'AchieveReward_' .. cls.ClassName);
+                if cls.AccountReward == 'YES' then
+                    etcObjValue = TryGetProp(accObj, 'AchieveReward_' .. cls.ClassName);
+                end
                 -- if etcObj['AchieveReward_' .. cls.ClassName] == 0 then
                 if etcObjValue ~= nil and etcObjValue == 0 then
                     eachAchiveReqBtn:ShowWindow(1);

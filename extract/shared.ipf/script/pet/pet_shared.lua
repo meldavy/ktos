@@ -253,7 +253,7 @@ end
 function PET_DEF(self)
     local byLv = self.Lv;
     local addLv = self.Level;
-    local byItem = GetSumOfPetEquip(self, 'DEF');
+    local byItem = GetSumOfPetEquip(self, 'DEF') + GetSumOfPetEquip(self, 'ADD_DEF');
     local ret = (byLv + addLv) / 2 + byItem + PET_DEF_BY_ABIL(self.Stat_DEF);
     return math.floor(ret);
 end
@@ -261,7 +261,7 @@ end
 function PET_DEF_C(self, addAbil)
     local byLv = self.Lv;
     local addLv = self.Level;
-    local byItem = GetSumOfPetEquip_C(self, 'DEF');
+    local byItem = GetSumOfPetEquip_C(self, 'DEF') + GetSumOfPetEquip_C(self, 'ADD_DEF');
     local ret = (byLv + addLv) / 2 + byItem + PET_DEF_BY_ABIL(self.Stat_DEF + addAbil);
     return math.floor(ret);
 end

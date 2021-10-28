@@ -264,8 +264,8 @@
             </Stage>
             <Stage Name="SUCCESS">
 				<ObjList>
-                    <Obj Type="Monster" MonType="160064" Pos="1726.72#165.15#-1095.96" genCount="1" genTime="20000" objectKey="0"/>
-                    <Obj Type="Monster" MonType="160065" Pos="1680.52#165.15#-1207.74" genCount="1" genTime="20000" objectKey="1"/>
+                    <Obj Type="Monster" MonType="160064" Pos="1726.72#165.15#-1095.96" genCount="1" genTime="20000" autoGen="0" objectKey="0"/>
+                    <Obj Type="Monster" MonType="160065" Pos="1680.52#165.15#-1207.74" genCount="1" genTime="20000" autoGen="0" objectKey="1"/>
                 </ObjList>
                 <StageEvents>
                     <Event execCount="1" eventName="Clear">
@@ -306,7 +306,12 @@
                             <ToolScp Scp="GAME_ST_EVT_EXEC_STAGE_START" Client="NO" UseSleep="NO">
                                 <Str Str="END"/>
                             </ToolScp>
-                        </execList>
+                        <ToolScp Scp="MGAME_EVT_EXEC_CREMON" Client="NO" UseSleep="NO">
+                                <MGameObjIndex List="SUCCESS/0/SUCCESS/1"/>
+                                <Num Num="1"/>
+                                <Num Num="0"/>
+                            </ToolScp>
+						</execList>
                     </Event>
                     <Event execCount="1" eventName="EVENT_2101_SUPPLY" execWithStart="0" isEnabled="0">
                         <condList>

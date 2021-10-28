@@ -212,7 +212,18 @@ function UPDATE_PUZZLECRAFT_TARGETS()
 	end		
 	
 	local cnt = geItemPuzzle.GetCombinationCount();
-    local totalNeedSecond = 0;
+	local totalNeedSecond = 0;
+	local reduceSecBySklLv = 0;
+	local skl = session.GetSkill(21006);
+	if skl ~= nil then
+		local sklObj = GetIES(skl:GetObject());
+		local lvOver = math.floor(sklObj.Level) - 5;
+		if lvOver < 0 then
+			lvOver = 0
+		end
+		reduceSecBySklLv = lvOver * 2
+	end
+
 	for i = 0 , cnt - 1 do
 		local info = geItemPuzzle.GetCombinationByIndex(i);
 		local resultInfo = geItemPuzzle.GetByClassID(info.classID);
@@ -242,7 +253,7 @@ function UPDATE_PUZZLECRAFT_TARGETS()
             needSec = resultInfo.needSec
         end
         
-        totalNeedSecond = totalNeedSecond + needSec * ptCount;
+        totalNeedSecond = totalNeedSecond + (needSec - reduceSecBySklLv) * ptCount;
 	end
 
     PUZZLECRAFT_UPDATE_TOTAL_TIME(frame, totalNeedSecond);

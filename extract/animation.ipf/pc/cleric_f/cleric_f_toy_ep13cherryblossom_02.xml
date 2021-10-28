@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by imc (imc) -->
+<ActionDesc>
+	<AttachModel frame="0" XAC="toy_ep13cherryblossom_stick" node="Dummy_R_HAND" isAttach="true" autoDetach="true" index="0" anim="none"/>
+	<AttachModel frame="0" XAC="toy_ep13cherryblossom" node="Bip01 Spine" isAttach="true" autoDetach="true" index="1" anim="toy_ep13cherryblossom_ani2.xsm"/>
+</ActionDesc>

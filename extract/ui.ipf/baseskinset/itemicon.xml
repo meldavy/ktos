@@ -834,6 +834,12 @@
 		<image name="item_icon_helmet_twnpanda" file="\icon\equip\item_icon_helmet_twnpanda.png" imgrect="0 0 256 256" CMM_Caption="2021_2월 대만 판다 테마"/>
 		<image name="item_icon_costume_twnpanda_f" file="\icon\equip\item_icon_costume_twnpanda_f.png" imgrect="0 0 256 256"/>
 		<image name="item_icon_costume_twnpanda_m" file="\icon\equip\item_icon_costume_twnpanda_m.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13toswinter02_2_f" file="\icon\equip\icon_item_ep13toswinter02_2_f.png" imgrect="0 0 256 256" CMM_Caption="2021_3월 토스튬 컬렉션"/>
+		<image name="icon_item_ep13toswinter02_2_m" file="\icon\equip\icon_item_ep13toswinter02_2_m.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13toswinter03_2_f" file="\icon\equip\icon_item_ep13toswinter03_2_f.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13toswinter03_2_m" file="\icon\equip\icon_item_ep13toswinter03_2_m.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13toswinter03_f" file="\icon\equip\icon_item_ep13toswinter03_f.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13toswinter03_m" file="\icon\equip\icon_item_ep13toswinter03_m.png" imgrect="0 0 256 256"/>
 	</imagelist>
 	<imagelist category="256_costume_icons">
 		<image name="icon_item_Alchemist_f" file="\icon\equip\Alchemist_f_icon.png" imgrect="0 0 256 256" CMM_Caption="알케미스트"/>
@@ -3360,6 +3366,10 @@
 		<image name="icon_item_ep13toswinter_staff" file="\icon\weapon\icon_item_ep13toswinter_staff.png" imgrect="0 0 256 256"/>
 		<image name="icon_item_ep13toswinter_shield" file="\icon\weapon\icon_item_ep13toswinter_shield.png" imgrect="0 0 256 256"/>
 		<image name="icon_item_ep13toswinter_pistol" file="\icon\weapon\icon_item_ep13toswinter_pistol.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13cherryblossom_bow" file="\icon\weapon\icon_item_ep13cherryblossom_bow.png" imgrect="0 0 256 256" CMM_Caption="2021_3월 테마 4종"/>
+		<image name="icon_item_ep13cherryblossom_rod" file="\icon\weapon\icon_item_ep13cherryblossom_rod.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13cherryblossom_thspear" file="\icon\weapon\icon_item_ep13cherryblossom_thspear.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13cherryblossom_thsword" file="\icon\weapon\icon_item_ep13cherryblossom_thsword.png" imgrect="0 0 256 256"/>
 	</imagelist>
 	<imagelist category="acc_item">
 		<image name="item_necklace_01" file="\icon\acc\item_necklace_1.png" imgrect="0 0 256 256" CMM_Caption="목걸이"/>
@@ -4102,6 +4112,8 @@
 		<image name="item_icon_accessary_twnpanda" file="\icon\hairacc\item_icon_accessary_twnpanda.png" imgrect="0 0 256 256" CMM_Caption="2021_2월 대만 판다테마"/>
 		<image name="item_icon_accessary_twnpanda_hairpin" file="\icon\hairacc\item_icon_accessary_twnpanda_hairpin.png" imgrect="0 0 256 256"/>
 		<image name="icon_item_accessory_ep13toswinter" file="\icon\hairacc\icon_item_accessory_ep13toswinter.png" imgrect="0 0 256 256" CMM_Caption="2021_2월_마신의유혹"/>
+		<image name="icon_item_accessory_ep13cherryblossom01" file="\icon\hairacc\icon_item_accessory_ep13cherryblossom01.png" imgrect="0 0 256 256" CMM_Caption="2021_3월 테마 2종"/>
+		<image name="icon_item_accessory_ep13cherryblossom02" file="\icon\hairacc\icon_item_accessory_ep13cherryblossom02.png" imgrect="0 0 256 256"/>
 	</imagelist>
 	<imagelist category="collection_item">
 		<image name="icon_collitem_collection" file="\icon\colletion\icon_item_collection.tga" imgrect="0 0 673 419" CMM_Caption="월계수"/>
@@ -6340,6 +6352,7 @@
 		<image name="icon_item_Event_2101_NK2" file="\icon\item\icon_item_Event_2101_NK2.png" imgrect="0 0 128 128" CMM_Caption="피난민 목걸이2"/>
 		<image name="icon_item_Event_2101_NK3" file="\icon\item\icon_item_Event_2101_NK3.png" imgrect="0 0 128 128" CMM_Caption="피난민 목걸이3"/>
 		<image name="icon_item_Event_Yugwa" file="\icon\item\icon_item_Event_Yugwa.png" imgrect="0 0 128 128" CMM_Caption="2021_설날 유과"/>
+		<image name="icon_item_Gold_Jpn_Episode_13_Event" file="\icon\item\icon_item_Gold_Jpn_Episode_13_Event.png" imgrect="0 0 128 128" CMM_Caption="일본서버_에피소드13 아이템"/>
 	</imagelist>
 	<imagelist category="housing">
 		<image name="icon_item_h_bigplant_set_01_green" file="\icon\housing\icon_item_h_bigplant_set_01_green.png" imgrect="0 0 256 256" CMM_Caption="[길드 하우징] 화단_01(초록색)"/>
@@ -8211,6 +8224,30 @@
 		<image name="icon_item_2021_NewYear_Package_BattleA" file="\icon\payment\icon_item_2021_NewYear_Package_BattleA.png" imgrect="0 0 256 256"/>
 		<image name="icon_item_2021_NewYear_Package_BattleB" file="\icon\payment\icon_item_2021_NewYear_Package_BattleB.png" imgrect="0 0 256 256"/>
 		<image name="icon_item_2021_NewYear_Package_ALL" file="\icon\payment\icon_item_2021_NewYear_Package_ALL.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_box_effect_ep13cherryblossom" file="\icon\payment\icon_item_box_effect_ep13cherryblossom.png" imgrect="0 0 256 256" CMM_Caption="2021_3월 테마 24종"/>
+		<image name="icon_item_box_toy_ep13cherryblossom" file="\icon\payment\icon_item_box_toy_ep13cherryblossom.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_box_wing_ep13cherryblossom" file="\icon\payment\icon_item_box_wing_ep13cherryblossom.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_effect_ep13cherryblossom" file="\icon\payment\icon_item_effect_ep13cherryblossom.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13cherryblossom01_1_f" file="\icon\payment\icon_item_ep13cherryblossom01_1_f.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13cherryblossom01_1_m" file="\icon\payment\icon_item_ep13cherryblossom01_1_m.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13cherryblossom01_2_f" file="\icon\payment\icon_item_ep13cherryblossom01_2_f.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13cherryblossom01_2_m" file="\icon\payment\icon_item_ep13cherryblossom01_2_m.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13cherryblossom01_f" file="\icon\payment\icon_item_ep13cherryblossom01_f.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13cherryblossom01_m" file="\icon\payment\icon_item_ep13cherryblossom01_m.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13cherryblossom02_1_f" file="\icon\payment\icon_item_ep13cherryblossom02_1_f.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13cherryblossom02_1_m" file="\icon\payment\icon_item_ep13cherryblossom02_1_m.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13cherryblossom02_f" file="\icon\payment\icon_item_ep13cherryblossom02_f.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13cherryblossom02_m" file="\icon\payment\icon_item_ep13cherryblossom02_m.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13cherryblossom03_1_f" file="\icon\payment\icon_item_ep13cherryblossom03_1_f.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13cherryblossom03_1_m" file="\icon\payment\icon_item_ep13cherryblossom03_1_m.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_selectbox_ep13cherryblossom01" file="\icon\payment\icon_item_selectbox_ep13cherryblossom01.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_selectbox_ep13cherryblossom01_1" file="\icon\payment\icon_item_selectbox_ep13cherryblossom01_1.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_selectbox_ep13cherryblossom01_2" file="\icon\payment\icon_item_selectbox_ep13cherryblossom01_2.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_selectbox_ep13cherryblossom02" file="\icon\payment\icon_item_selectbox_ep13cherryblossom02.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_selectbox_ep13cherryblossom02_1" file="\icon\payment\icon_item_selectbox_ep13cherryblossom02_1.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_selectbox_ep13cherryblossom03_1" file="\icon\payment\icon_item_selectbox_ep13cherryblossom03_1.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_toy_ep13cherryblossom" file="\icon\payment\icon_item_toy_ep13cherryblossom.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_wing_ep13cherryblossom" file="\icon\payment\icon_item_wing_ep13cherryblossom.png" imgrect="0 0 256 256"/>
 	</imagelist>
 	<imagelist category="seal">
 		<image name="icon_seal_yellow_cc_A1" file="\icon\seal\seal_yellow_cc_A1.tga" imgrect="0 0 80 80"/>

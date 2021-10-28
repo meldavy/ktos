@@ -1286,7 +1286,8 @@ end
 function INDUNINFO_SET_RESTRICT(frame,indunCls)
 	INDUNINFO_SET_RESTRICT_SKILL(frame,indunCls)
 	INDUNINFO_SET_RESTRICT_ITEM(frame,indunCls)
-	local restrictBox = GET_CHILD_RECURSIVELY(frame, 'restrictBox');
+    local restrictBox = GET_CHILD_RECURSIVELY(frame, 'restrictBox');
+    restrictBox:EnableScrollBar(0);
     GBOX_AUTO_ALIGN(restrictBox, 2, 2, 0, true, true,true);
 end
 
@@ -1294,7 +1295,6 @@ function INDUNINFO_SET_RESTRICT_SKILL(frame,indunCls)
     -- skill restriction
 	local restrictSkillBox = GET_CHILD_RECURSIVELY(frame, 'restrictSkillBox');
     restrictSkillBox:ShowWindow(0);
-
     local mapName = TryGetProp(indunCls, "MapName");
     local dungeonType = TryGetProp(indunCls, "DungeonType");
     local isLegendRaid = BoolToNumber(dungeonType == "Raid" or dungeonType == "GTower");
@@ -1317,7 +1317,6 @@ end
 function INDUNINFO_SET_RESTRICT_ITEM(frame,indunCls)
     local restrictItemBox = GET_CHILD_RECURSIVELY(frame, 'restrictItemBox');
     restrictItemBox:ShowWindow(0);
-
 	local cls = GetClassByStrProp("ItemRestrict", "Category", indunCls.ClassName)
     if cls ~= nil then
 		restrictItemBox:ShowWindow(1);

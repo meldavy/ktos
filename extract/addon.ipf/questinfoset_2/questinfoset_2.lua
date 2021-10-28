@@ -1348,6 +1348,16 @@ function QUESTION_QUEST_WARP(frame, ctrl, argStr, questID)
 		return;
 	end
 
+	local pc = GetMyPCObject();
+	if pc == nil then
+		return;
+	end
+
+	if IsInstrumentState(pc) == "YES" then
+		ui.SysMsg(ScpArgMsg("ImpossibleInstrumentState"));
+		return;
+	end
+
 	local cls = GetClassList('Map');
     local mapClassName = session.GetMapName();
 	local obj = GetClassByNameFromList(cls, mapClassName);
@@ -1392,8 +1402,7 @@ function QUESTION_QUEST_WARP(frame, ctrl, argStr, questID)
 		 	return;
 		end
 	end
-
-	local pc = GetMyPCObject();
+	
 	if ctrl ~= nil then
 		local fid = ctrl:GetUserValue("PC_FID");
 		if fid ~= "None" then -- 파티원 공유 퀘스트 돌아가기 누른 경우

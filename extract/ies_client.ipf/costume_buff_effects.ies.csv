@@ -36,3 +36,4 @@ ClassID,ClassName,Name,ShowEffect,EffectName
 70042,EP12DEMONLORD_EFFECT_PRE,반짝이는 발걸음 이펙트,NO,I_spread_out015_light_orange
 4632,ITEM_EFFECT_EP13cybersoldier,홀로그램 이펙트,NO,I_pc_effect_ep13cybersoldier_300
 4640,ITEM_EFFECT_TWNPANDA,대나무 숲 이펙트,NO,E_effectitem_twnpanda
+4654,ITEM_EFFECT_EP13CHERRY,연홍접몽,NO,E_ep13cherryblossom

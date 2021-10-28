@@ -96,7 +96,7 @@ function COMPOSITION_VIBORA_UI_RESET()
 		msg2:SetGravity(ui.CENTER_HORZ, ui.TOP);
 		msg2:SetMargin(0, 45, 0, 0)
 		msg2:SetText("");
-		msg2:SetText("{@st66b}{s20}".."바이보라 무기 1개 {nl}[이벤트] TOS 주화 1000개{nl}[이벤트] 5주년 기념 주화 50개");
+		msg2:SetText("{@st66b}{s20}"..ClMsg("EVENT_2011_5TH_Special_Vibora_Shop_Material"));
 		msg2:SetTextAlign("center", "center");
 		event_tip_text:SetTextByKey("value", ClMsg("EVENT_2011_5TH_Special_Vibora_Shop_tip"));
 

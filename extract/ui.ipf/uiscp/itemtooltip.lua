@@ -21,7 +21,7 @@ function ON_REFRESH_ITEM_TOOLTIP()
 	end
 end
 
-function UPDATE_ITEM_TOOLTIP(tooltipframe, strarg, numarg1, numarg2, userdata, tooltipobj, noTradeCnt)		
+function UPDATE_ITEM_TOOLTIP(tooltipframe, strarg, numarg1, numarg2, userdata, tooltipobj, noTradeCnt)	
 	tolua.cast(tooltipframe, "ui::CTooltipFrame");
 
 	local itemObj, isReadObj = nil;	
@@ -65,8 +65,8 @@ function UPDATE_ITEM_TOOLTIP(tooltipframe, strarg, numarg1, numarg2, userdata, t
 			recipeitemobj = recipeIES
 			local refreshScp = recipeitemobj.RefreshScp;
 	
-			if refreshScp ~= "None" then
-				refreshScp = _G[refreshScp];
+			if refreshScp ~= "None" then				
+				refreshScp = _G[refreshScp];				
 				refreshScp(recipeitemobj);
 			end	
 
@@ -97,110 +97,32 @@ function UPDATE_ITEM_TOOLTIP(tooltipframe, strarg, numarg1, numarg2, userdata, t
 		local ToolTipScp = _G[ 'ITEM_TOOLTIP_' .. recipeclass.ToolTipScp];
 		ToolTipScp(tooltipframe, recipeclass, strarg, "usesubframe_recipe");
 		DestroyIES(recipeitemobj);
-	end
-
-	
+    end
+    
 	if itemObj == nil then
 		return;
 	end
 	
 	local needAppraisal = TryGetProp(itemObj, "NeedAppraisal");
-	local needRandomOption = TryGetProp(itemObj, "NeedRandomOption");	
-	local drawCompare = true;
-	local showAppraisalPic = false;
-	if needAppraisal ~= nil  or  needRandomOption ~= nil then
+	local needRandomOption = TryGetProp(itemObj, "NeedRandomOption");
+    local showAppraisalPic = false;
+    
+	if needAppraisal ~= nil or needRandomOption ~= nil then
         if needAppraisal == 1 or needRandomOption == 1 then
     		DRAW_APPRAISAL_PICTURE(tooltipframe);
-    		drawCompare = false;
     		showAppraisalPic = true;
 		end
-	end
-	-- 비교툴팁
-	-- 툴팁 비교는 무기와 장비에만 해당된다. (미감정 제외)
-
-	if drawCompare == true and ( (itemObj.ToolTipScp == 'WEAPON' or itemObj.ToolTipScp == 'ARMOR') and  (strarg == 'inven' or strarg =='sell' or strarg == 'guildwarehouse' or isForgeryItem == true) and (string.find(itemObj.GroupName, "Pet") == nil)) then
-		local CompItemToolTipScp = _G[ 'ITEM_TOOLTIP_' .. itemObj.ToolTipScp];
-		local ChangeValueToolTipScp = _G[ 'ITEM_TOOLTIP_' .. itemObj.ToolTipScp..'_CHANGEVALUE'];
-		-- 한손 무기 / 방패 일 경우
-
-		local isVisble = nil;
-		
-		if itemObj.EqpType == 'SH' then
-		
-			if itemObj.DefaultEqpSlot == 'RH' or itemObj.DefaultEqpSlot == 'RH LH' then
-				
-				local item = session.GetEquipItemBySpot( item.GetEquipSpotNum("RH") );
-				if nil ~= item then
-				local equipItem = GetIES(item:GetObject());
-				
-				local classtype = TryGetProp(equipItem, "ClassType"); -- 코스튬은 안뜨도록
-
-				if IS_NO_EQUIPITEM(equipItem) == 0 and classtype ~= "Outer" then
-					CompItemToolTipScp(tooltipframe, equipItem, strarg, "usesubframe");
-					isVisble = ChangeValueToolTipScp(tooltipframe, itemObj, equipItem, strarg);
-				end
-				end
-			elseif itemObj.DefaultEqpSlot == 'LH' then
-
-				local item = session.GetEquipItemBySpot( item.GetEquipSpotNum("LH") );
-				if nil ~= item then
-				local equipItem = GetIES(item:GetObject());
-
-				if IS_NO_EQUIPITEM(equipItem) == 0 then
-					CompItemToolTipScp(tooltipframe, equipItem, strarg, "usesubframe");
-					isVisble = ChangeValueToolTipScp(tooltipframe, itemObj, equipItem, strarg);
-				end
-				end
-			end
-			
-		-- 양손 무기 일 경우
-		elseif itemObj.EqpType == 'DH' then
-			
-			local item = session.GetEquipItemBySpot(item.GetEquipSpotNum("RH"));
-			if nil ~= item then
-			local equipItem = GetIES(item:GetObject());
-
-			if IS_NO_EQUIPITEM(equipItem) == 0 then
-				CompItemToolTipScp(tooltipframe, equipItem, strarg, "usesubframe");
-				isVisble = ChangeValueToolTipScp(tooltipframe, itemObj, equipItem, strarg);
-			end
-			end
-		else
-			local equiptype = itemObj.EqpType
-
-			if equiptype == 'RING' then
-
-				if keyboard.IsKeyPressed("LALT") == 1 then
-					equiptype = 'RING2'
-				else
-					equiptype = 'RING1'
-				end
-			end
-
-			local equitSpot = item.GetEquipSpotNum(equiptype);
-			local item = session.GetEquipItemBySpot(equitSpot);
-			if item ~= nil then
-				local equipItem = GetIES(item:GetObject());
-
-				if IS_NO_EQUIPITEM(equipItem) == 0 then
-					CompItemToolTipScp(tooltipframe, equipItem, strarg, "usesubframe");
-					isVisble = ChangeValueToolTipScp(tooltipframe, itemObj, equipItem, strarg);
-				end
-
-			end
-		end
-
 	end
 	
 	-- 메인 프레임. 즉 주된 툴팁 표시.
 	if isReadObj == 1 then -- IES가 없는 아이템. 가령 제작서의 완성 아이템 표시 등
 		local class = itemObj;
 		if class ~= nil then
-			local ToolTipScp = _G['ITEM_TOOLTIP_' .. class.ToolTipScp];
+			local ToolTipScp = _G['ITEM_TOOLTIP_' .. class.ToolTipScp];			
 			ToolTipScp(tooltipframe, class, strarg, "mainframe", isForgeryItem);
 		end		
 	else
-		local ToolTipScp = _G['ITEM_TOOLTIP_' .. itemObj.ToolTipScp];
+		local ToolTipScp = _G['ITEM_TOOLTIP_' .. itemObj.ToolTipScp];		
 		if nil == noTradeCnt then
 			noTradeCnt = 0
 		end
@@ -628,8 +550,8 @@ function ITEM_TOOLTIP_EXTRACT_OPTION(tooltipframe, invitem, mouseOverFrameName)
 	if IS_EXIST_RANDOM_OPTION(invitem) == true then		
 		ypos = DRAW_EXTRACT_OPTION_RANDOM_OPTION(tooltipframe, invitem, mainframename, ypos);
 	end
-
-	ypos = DRAW_EQUIP_PROPERTY(tooltipframe, targetItem, ypos, mainframename, nil, false, invitem);
+	
+	ypos = DRAW_EQUIP_PROPERTY(tooltipframe, targetItem, nil, ypos, mainframename, false);
 	--ypos = DRAW_EXTRACT_OPTION_LIMIT_EQUIP_DESC(tooltipframe, targetItem, mainframename, ypos, ScpArgMsg('{LEVEL}LimitEquip', 'LEVEL'));
 	ypos = DRAW_EQUIP_TRADABILITY(tooltipframe, invitem, ypos, mainframename);
 	ypos = DRAW_EQUIP_VIBORA_REFINE(tooltipframe, invitem, ypos, mainframename)
@@ -795,9 +717,9 @@ function _GET_RANDOM_OPTION_RARE_CLIENT_TEXT(rareOptionName, rareOptionValue, pr
     	end
 
     	if absValue == math.floor(absValue) then
-    		strInfo = "{@st66b}{#e28500}{ol} -"..strInfo..string.format('%d', math.floor(absValue));
+    		strInfo = "{@st66b}{#e28500}{ol}"..strInfo..string.format('%d', math.floor(absValue));
     	else
-    		strInfo = "{@st66b}{#e28500}{ol} -"..strInfo..string.format('%.1f', absValue);
+    		strInfo = "{@st66b}{#e28500}{ol}"..strInfo..string.format('%.1f', absValue);
     	end
 
 		if IS_NONE_PERCENT_PROPERTY(rareOptionName) == false then
@@ -815,7 +737,7 @@ function ADD_RANDOM_OPTION_RARE_TEXT(box, invitem, ypos)
 	    local clientMessage = 'ItemRandomOptionGroupRare';
 	    local strInfo = GET_RANDOM_OPTION_RARE_CLIENT_TEXT(invitem);
 	    if strInfo ~= nil then
-			ypos = ADD_ITEM_PROPERTY_TEXT(box, strInfo, 0, ypos);
+			ypos = ADD_ITEM_PROPERTY_TEXT(box, strInfo, 0, ypos+5);
 	    end
 	end
 	return ypos

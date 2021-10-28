@@ -81,6 +81,7 @@
 			<groupbox name="etc" margin="820 0 0 0" rect="0 0 410 0" skin="bg" hittest="false" draw="true" updateparent="true" scrollbar="false" layout_gravity="left top"/>
 			<groupbox name="etc_sub" margin="410 0 0 0" rect="0 0 410 0" skin="test_Item_tooltip_normal" hittest="false" draw="true" updateparent="true" scrollbar="false" layout_gravity="left top"/>
 			<groupbox name="equip_main" margin="820 0 0 0" rect="0 0 410 0" skin="test_Item_tooltip_equip" hittest="false" draw="true" updateparent="true" scrollbar="false" layout_gravity="left top"/>
+            <groupbox name="equip_main_ichor" margin="410 0 0 0" rect="0 0 410 0" skin="test_Item_tooltip_equip_sub" hittest="false" draw="true" updateparent="true" scrollbar="false" layout_gravity="left top"/>
 			<groupbox name="equip_main_addinfo" margin="1230 0 0 0" rect="0 0 300 0" skin="test_Item_tooltip_equip_sub" hittest="false" draw="true" updateparent="true" scrollbar="false" layout_gravity="left top"/>
 			<groupbox name="equip_sub" margin="410 0 0 0" rect="0 0 410 0" skin="test_Item_tooltip_equip" hittest="false" draw="true" updateparent="true" scrollbar="false" layout_gravity="left top"/>
 			<groupbox name="equip_sub_addinfo" margin="110 0 0 0" rect="0 0 300 0" skin="test_Item_tooltip_equip_sub" hittest="false" draw="true" updateparent="true" scrollbar="false" layout_gravity="left top"/>
@@ -100,6 +101,7 @@
 			<groupbox name="etc" margin="820 0 0 0" rect="0 0 410 0" skin="bg" hittest="false" draw="true" updateparent="true" scrollbar="false" layout_gravity="left top"/>
 			<groupbox name="etc_sub" margin="410 0 0 0" rect="0 0 410 50" skin="test_Item_tooltip_normal" hittest="false" draw="true" updateparent="true" scrollbar="false" layout_gravity="left top"/>
 			<groupbox name="equip_main" margin="820 0 0 0" rect="0 0 410 0" skin="test_Item_tooltip_equip" hittest="false" draw="true" updateparent="true" scrollbar="false" layout_gravity="left top"/>
+            <groupbox name="equip_main_ichor" margin="410 0 0 0" rect="0 0 410 0" skin="test_Item_tooltip_equip_sub" hittest="false" draw="true" updateparent="true" scrollbar="false" layout_gravity="left top"/>
 			<groupbox name="equip_main_addinfo" margin="1230 0 0 0" rect="0 0 300 0" skin="test_Item_tooltip_equip" hittest="false" draw="true" updateparent="true" scrollbar="false" layout_gravity="left top"/>
 			<groupbox name="equip_sub" margin="410 0 0 0" rect="0 0 410 0" skin="test_Item_tooltip_equip" hittest="false" draw="true" updateparent="true" scrollbar="false" layout_gravity="left top"/>
 			<groupbox name="equip_sub_addinfo" margin="110 0 0 0" rect="0 0 300 0" skin="test_Item_tooltip_equip" hittest="false" draw="true" updateparent="true" scrollbar="false" layout_gravity="left top"/>
@@ -262,6 +264,7 @@
 			<groupbox name="etc" margin="820 0 0 0" rect="0 0 410 0" skin="bg" hittest="false" draw="true" updateparent="true" scrollbar="false" layout_gravity="left top"/>
 			<groupbox name="etc_sub" margin="410 0 0 0" rect="0 0 410 0" skin="test_Item_tooltip_normal" hittest="false" draw="true" updateparent="true" scrollbar="false" layout_gravity="left top"/>
 			<groupbox name="equip_main" margin="820 0 0 0" rect="0 0 410 0" skin="test_Item_tooltip_equip" hittest="false" draw="true" updateparent="true" scrollbar="false" layout_gravity="left top"/>
+            <groupbox name="equip_main_ichor" margin="410 0 0 0" rect="0 0 410 0" skin="test_Item_tooltip_equip_sub" hittest="false" draw="true" updateparent="true" scrollbar="false" layout_gravity="left top"/>
 			<groupbox name="equip_main_addinfo" margin="1230 0 0 0" rect="0 0 300 0" skin="test_Item_tooltip_equip_sub" hittest="false" draw="true" updateparent="true" scrollbar="false" layout_gravity="left top"/>
 			<groupbox name="equip_sub" margin="410 0 0 0" rect="0 0 410 0" skin="test_Item_tooltip_equip" hittest="false" draw="true" updateparent="true" scrollbar="false" layout_gravity="left top"/>
 			<groupbox name="equip_sub_addinfo" margin="110 0 0 0" rect="0 0 300 0" skin="test_Item_tooltip_equip_sub" hittest="false" draw="true" updateparent="true" scrollbar="false" layout_gravity="left top"/>

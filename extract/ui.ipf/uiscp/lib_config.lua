@@ -40,10 +40,17 @@ function UPDATE_CONTROL_MODE()
         end
 
 		local fluting_keyboard = ui.GetFrame('fluting_keyboard');
-        if fluting_keyboard ~= nil and FLUTING_KEYBOARD_UPDATE_HOTKEYNAME ~= nil then
+		if fluting_keyboard ~= nil and FLUTING_KEYBOARD_UPDATE_HOTKEYNAME ~= nil then
 		    FLUTING_KEYBOARD_UPDATE_HOTKEYNAME(fluting_keyboard);
 		    fluting_keyboard:Invalidate();
 		end
+
+		local instrument_keyboard = ui.GetFrame('instrument_keyboard');
+		if instrument_keyboard ~= nil and INSTRUMENT_KEYBOARD_UPDATE_HOTKEYNAME ~= nil then
+			INSTRUMENT_KEYBOARD_UPDATE_HOTKEYNAME(instrument_keyboard);
+			instrument_keyboard:Invalidate();
+		end
+
 		local monsterquickslot = ui.GetFrame('monsterquickslot');
 		if monsterquickslot ~= nil and MONSTERQUICKSLOT_UPDATE_HOTKEYNAME ~= nil then
 		    MONSTERQUICKSLOT_UPDATE_HOTKEYNAME(monsterquickslot);

@@ -1712,6 +1712,11 @@ function TRY_TO_USE_WARP_ITEM(invitem, itemobj)
 		ui.SysMsg(ScpArgMsg("CannotUseThieInThisMap"));
 		return 0;
 	end
+
+	if IsInstrumentState(pc) == "YES" then
+		ui.SysMsg(ScpArgMsg("ImpossibleInstrumentState"));
+		return 0;
+	end
 	
 	-- 워프 주문서 예외처리. 실제 워프가 이루어질때 아이템이 소비되도록.
 	local warpscrolllistcls = GetClass("warpscrolllist", itemobj.ClassName);
@@ -1753,7 +1758,6 @@ function TRY_TO_USE_WARP_ITEM(invitem, itemobj)
 			return 1;
 		end
 		
-		local pc = GetMyPCObject();
         local warpFrame = ui.GetFrame('worldmap2_mainmap');
         warpFrame:SetUserValue('WARP_TYPE', "ITEM")
 		warpFrame:SetUserValue('SCROLL_WARP', itemobj.ClassName)
@@ -1777,6 +1781,11 @@ end
 
 --아이템의 사용
 function INVENTORY_RBDC_ITEMUSE(frame, object, argStr, argNum)
+	local pc = GetMyPCObject();
+	if IsBuffApplied(pc, 'Instrument_Use_Buff') == 'YES' then
+		return;
+	end
+	
 	local invitem = GET_SLOT_ITEM(object);
     if invitem == nil then
 		return;
@@ -1881,7 +1890,7 @@ function INVENTORY_RBDC_ITEMUSE(frame, object, argStr, argNum)
 
 		return;
 	end	
-
+	
     -- mixer
 	local mixerFrame = ui.GetFrame("mixer");
 	if mixerFrame:IsVisible() == 1 then
@@ -1926,7 +1935,7 @@ function INVENTORY_RBDC_ITEMUSE(frame, object, argStr, argNum)
 	else -- non-equip item use        
 		if true == RUN_CLIENT_SCP(invitem) then        
             return;
-        end
+		end
 		local groupName = itemobj.GroupName;
 		local itemType = itemobj.ItemType;
 		if itemType == 'Consume' or itemType == 'Quest' or itemType == 'Cube' or groupName == 'ExpOrb' or groupName == 'SubExpOrb' then
@@ -2130,6 +2139,11 @@ end
 
 --아이템의 사용
 function INVENTORY_RBDOUBLE_ITEMUSE(frame, object, argStr, argNum)
+	local pc = GetMyPCObject();
+	if IsBuffApplied(pc, 'Instrument_Use_Buff') == 'YES' then
+		return;
+	end
+	
 	local invitem = GET_SLOT_ITEM(object);
     if invitem == nil then
 		return;
@@ -2700,6 +2714,11 @@ end
 
 --현재 가지고 있는 염색의 종류를 haveHairColorList에 넣음
 function CHANGE_HAIR_COLOR(frame)
+	local pc = GetMyPCObject();
+	if IsBuffApplied(pc, 'Instrument_Use_Buff') == 'YES' then
+		return;
+	end
+	
 	local hairColorBtn = GET_CHILD_RECURSIVELY(frame, "HAIR_COLOR");
 	if hairColorBtn == nil then
 		return;
@@ -3882,6 +3901,11 @@ function INV_HAT_VISIBLE_STATE(frame)
 end
 
 function INV_HAT_VISIBLE_STEATE_SET(frame)
+	local pc = GetMyPCObject();
+	if IsBuffApplied(pc, 'Instrument_Use_Buff') == 'YES' then
+		return;
+	end
+
 	if frame:GetUserIValue("CLICK_COOL_TIME") > imcTime.GetAppTime() then
 		return;	
 	end
@@ -3955,6 +3979,11 @@ function INV_HAIR_WIG_VISIBLE_STATE(frame)
 end
 
 function INV_HAIR_WIG_VISIBLE_STATE_SET(frame)
+	local pc = GetMyPCObject();
+	if IsBuffApplied(pc, 'Instrument_Use_Buff') == 'YES' then
+		return;
+	end
+
 	if frame:GetUserIValue("CLICK_COOL_TIME") > imcTime.GetAppTime() then
 		return;	
 	end
@@ -4116,7 +4145,7 @@ function WEAPONSWAP_HOTKEY_ENTERED()
 end
 
 --index = 1 일때 1번창으로 스왑하는 함수. 2일때 2번창으로 스왑하는 함수
-function DO_WEAPON_SWAP(frame, index)       
+function DO_WEAPON_SWAP(frame, index)
     if quickslot.IsDoingWeaponSwap() == true then
         return
     end
@@ -4127,6 +4156,10 @@ function DO_WEAPON_SWAP(frame, index)
 
 	local pc = GetMyPCObject();
 	if pc == nil then
+		return;
+	end
+	
+	if IsBuffApplied(pc, 'Instrument_Use_Buff') == 'YES' then
 		return;
 	end
 
@@ -4832,60 +4865,104 @@ function BEFORE_APPLIED_SILVER_GACHA_OPEN(invItem)
 	end
 end
 
-function BEFORE_APPLIED_misc_pvp_mine2_COUPON(invItem)	
-	if invItem == nil then
-		return;
+-- 용병단 증표 쿠폰 다수 사용
+local multiple_misc_pvp_mine2_item_id = '0'
+
+function CLIENT_USE_MULTIPLE_MISC_PVP_MINE2(item_obj)
+	multiple_misc_pvp_mine2_item_id = '0'
+	local item = GetIES(item_obj:GetObject())	
+	
+	if GetCraftState() == 1 then
+		return
 	end
 
-	local acc = GetMyAccountObj()
-	if acc == nil then
+	if true == BEING_TRADING_STATE() then
+		return
+	end
+	
+	local invItem = session.GetInvItemByGuid(item_obj:GetIESID())	
+	if nil == invItem then
+		return
+	end
+	
+	if true == invItem.isLockState then
+		ui.SysMsg(ClMsg("MaterialItemIsLock"))
+		return
+	end
+
+	CHECK_CLIENT_USE_MULTIPLE_MISC_PVP_MINE2(invItem:GetIESID())
+end
+
+function CHECK_CLIENT_USE_MULTIPLE_MISC_PVP_MINE2(item_id)
+	local invItem = session.GetInvItemByGuid(tostring(item_id))
+	local itemObj = GetIES(invItem:GetObject())
+	local arg1 = TryGetProp(itemObj, 'NumberArg1', 0)
+	if arg1 == 0 then
         return
+    end
+
+	if TryGetProp(itemObj, 'MaxStack', 0) == 1 or invItem.count == 1 then
+		multiple_misc_pvp_mine2_item_id = tostring(item_id)
+		RUN_CLIENT_USE_MULTIPLE_MISC_PVP_MINE2(1)
+	else
+		local titleText = ScpArgMsg("INPUT_CNT_D_D", "Auto_1", 1, "Auto_2", invItem.count)
+		INPUT_NUMBER_BOX(nil, titleText, "RUN_CLIENT_USE_MULTIPLE_MISC_PVP_MINE2", 1, 1, invItem.count)
+		multiple_misc_pvp_mine2_item_id = tostring(item_id)
 	end
-	
+end
+
+function RUN_CLIENT_USE_MULTIPLE_MISC_PVP_MINE2(count)
+	session.ResetItemList()
+    local pc = GetMyPCObject()
+	local acc = GetMyAccountObj(pc)
+    if acc == nil then
+        return
+    end
+
+	-- 현재 증표 획득량을 구한다
+    local now = TryGetProp(acc, 'WEEKLY_PVP_MINE_COUNT', '0')
+    if now == 'None' then
+        now = '0'
+    end
+
+	-- 현재 및 최대 증표 획득량을 구한다
     local currentValue = TryGetProp(acc, 'WEEKLY_PVP_MINE_COUNT', 0)
-
-	local invFrame = ui.GetFrame("inventory");	
-	local itemobj = GetIES(invItem:GetObject());
-	if itemobj == nil then
-		return;
-	end
-
-	invFrame:SetUserValue("REQ_USE_ITEM_GUID", invItem:GetIESID());
-	
-	local arg_Str = TryGetProp(itemobj, "StringArg", "None")
-
-	if arg_Str == "None" then
-		return;
-	end
-
-	local maxValue = tonumber(MAX_WEEKLY_PVP_MINE_COUNT)
+    local maxValue = tonumber(MAX_WEEKLY_PVP_MINE_COUNT)
     local isTokenState = session.loginInfo.IsPremiumState(ITEM_TOKEN)
     if isTokenState == true then
         local bonusValue = tonumber(WEEKLY_PVP_MINE_COUNT_TOKEN_BONUS)
         maxValue = maxValue + bonusValue
-	end
-	
-	local cutA = SCR_STRING_CUT(arg_Str, ';')
+    end
 
-	local cutC = SCR_STRING_CUT(cutA[1], '/')
-	
-	local excessMany = (currentValue + cutC[2]) - maxValue
+	-- 사용할 증표 쿠폰의 획득량이 최대 증표 획득량을 초과하지 않는지 체크
+	local invItem = session.GetInvItemByGuid(tostring(multiple_misc_pvp_mine2_item_id))
+	local itemObj = GetIES(invItem:GetObject())
 
-	if excessMany < 0 then
-		excessMany = 0
+	local getCount = TryGetProp(itemObj, 'NumberArg1', 0) * count
+
+	if now >= maxValue then
+		ui.SysMsg(ClMsg("IfLimitOver_misc_pvp_mine2_MAX", "COUNT", 1))	
+		return
 	end
 
-	if cutC[1] == "misc_pvp_mine2" then
-		if itemobj.Script == 'SCR_USE_STRING_GIVE_ITEM_NUMBER_SPLIT' then
-			if currentValue + cutC[2] >= maxValue then
-				local textmsg = string.format("%d {#0000ff}+ %d{/} / {#000000}%d{/}{nl}{#ff0000}(초과되는 개수 : %d){/}{nl}%s", currentValue, cutC[2], maxValue, excessMany, ScpArgMsg("IfLimitOver_misc_pvp_mine2"));
-				ui.MsgBox_NonNested(textmsg, itemobj.Name, "REQUEST_SUMMON_BOSS_TX", "None");
-				return;
-			elseif currentValue + cutC[2] < maxValue then
-				local textmsg = string.format("%d {#0000ff}+ %d{/} / {#000000}%d{/}{nl}%s", currentValue, cutC[2], maxValue, ScpArgMsg("Use_misc_pvp_mine2_Coupon"));
-				ui.MsgBox_NonNested(textmsg, itemobj.Name, "REQUEST_SUMMON_BOSS_TX", "None");
-				return;
-			end
-		end
+	if now + getCount > maxValue then
+		local calc = math.floor((maxValue - now) / TryGetProp(itemObj, 'NumberArg1', 0))		
+		count = calc
+		local invFrame = ui.GetFrame("inventory")
+		invFrame:SetUserValue("REQ_USE_ITEM_GUID", invItem:GetIESID())
+		local textmsg = string.format("[ %s ]{nl}%s", itemObj.Name, ScpArgMsg("IfLimitOver_misc_pvp_mine2_OVERUSE", "COUNT", calc))
+		
+		local yesscp = string.format('RUN_CLIENT_USE_MULTIPLE_MISC_PVP_MINE2_USEOVER("%s")', count)
+		ui.MsgBox_NonNested(textmsg, itemObj.Name, yesscp, "None")
+	else
+		session.AddItemID(multiple_misc_pvp_mine2_item_id, count)
+	    local resultlist = session.GetItemIDList()
+	    item.DialogTransaction("MULTIPLE_USE_MISC_PVP_MINE2", resultlist)
 	end
+end
+
+function RUN_CLIENT_USE_MULTIPLE_MISC_PVP_MINE2_USEOVER(count)
+	session.AddItemID(multiple_misc_pvp_mine2_item_id, count)
+    local resultlist = session.GetItemIDList()
+    item.DialogTransaction("MULTIPLE_USE_MISC_PVP_MINE2", resultlist)
 end

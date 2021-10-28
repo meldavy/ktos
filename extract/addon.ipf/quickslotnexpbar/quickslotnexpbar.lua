@@ -1218,6 +1218,12 @@ function QUICKSLOTNEXPBAR_EXECUTE(slotIndex)
 	if flutingFrame ~= nil and flutingFrame:IsVisible() == 1 then
 		FLUTING_SLOT_USE(flutingFrame, slotIndex);
 		return;
+	end
+
+	local instrumentFrame = ui.GetFrame('instrument_keyboard')
+	if instrumentFrame ~= nil and instrumentFrame:IsVisible() == 1 then
+		INSTRUMENT_SLOT_USE(instrumentFrame, slotIndex);
+		return;
 	end	
 
 	local restFrame = ui.GetFrame('restquickslot')

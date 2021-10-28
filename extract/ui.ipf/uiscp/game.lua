@@ -3975,6 +3975,7 @@ function UI_MODE_CHANGE(index)
 	local joystickQuickFrame = ui.GetFrame('joystickquickslot')
 	local joystickrestquickslot = ui.GetFrame('joystickrestquickslot')
 	local flutingFrame = ui.GetFrame('fluting_keyboard')
+	local instrumentFrame = ui.GetFrame('instrument_keyboard');
 	local monQuickslot = ui.GetFrame("monsterquickslot")
 	if joystickQuickFrame == nil then
 		return;
@@ -3985,6 +3986,10 @@ function UI_MODE_CHANGE(index)
 	end
 	
 	if flutingFrame:IsVisible() == 1 then
+		return;
+	end
+
+	if instrumentFrame:IsVisible() == 1 then
 		return;
 	end
 
@@ -4069,11 +4074,12 @@ function KEYBOARD_INPUT()
 	local quickFrame = ui.GetFrame('quickslotnexpbar')
 	local restquickslot = ui.GetFrame('restquickslot')
 	local joystickrestquickslot = ui.GetFrame('joystickrestquickslot')
-	local flutingFrame = ui.GetFrame('fluting_keyboard')
+	local flutingFrame = ui.GetFrame('fluting_keyboard'); -- 파이드 파이퍼 - 피리 연주 퀵슬롯
+	local instrumentFrame = ui.GetFrame('instrument_keyboard'); -- 악기 장난감 연주 퀵슬롯
 	local monsterquickslot = ui.GetFrame('monsterquickslot')
 	local summoncontrol = ui.GetFrame('summoncontrol')
 	SetJoystickMode(0)
-	if quickFrame:IsVisible() == 1 or restquickslot:IsVisible() == 1 or joystickrestquickslot:IsVisible() == 1 or monsterquickslot:IsVisible() == 1 or summoncontrol:IsVisible() == 1 then
+	if quickFrame:IsVisible() == 1 or restquickslot:IsVisible() == 1 or joystickrestquickslot:IsVisible() == 1 or monsterquickslot:IsVisible() == 1 or summoncontrol:IsVisible() == 1 or instrumentFrame:IsVisible() == 1 then
 		local joystickQuickFrame = ui.GetFrame('joystickquickslot')
 		if joystickQuickFrame:IsVisible() == 1 then
 			joystickQuickFrame:ShowWindow(0);
@@ -4098,8 +4104,13 @@ function KEYBOARD_INPUT()
 					restquickslot:ShowWindow(0);
 				end
 			else
-				quickFrame:ShowWindow(1);
-				restquickslot:ShowWindow(0);
+				if instrumentFrame:IsVisible() == 1 then
+					quickFrame:ShowWindow(0);
+					restquickslot:ShowWindow(0);
+				else
+					quickFrame:ShowWindow(1);
+					restquickslot:ShowWindow(0);
+				end
 			end
 		end
 
@@ -4126,10 +4137,11 @@ function JOYSTICK_INPUT()
 	local joystickrestquickslot = ui.GetFrame('joystickrestquickslot')
 	local restquickslot = ui.GetFrame('restquickslot')
 	local flutingFrame = ui.GetFrame('fluting_keyboard')
+	local instrumentFrame = ui.GetFrame('instrument_keyboard');
 	local monsterquickslot = ui.GetFrame('monsterquickslot')
 	local summoncontrol = ui.GetFrame('summoncontrol')
 	SetJoystickMode(1)
-	if joystickQuickFrame:IsVisible() == 1 or joystickrestquickslot:IsVisible() == 1 or restquickslot:IsVisible() == 1 or monsterquickslot:IsVisible() == 1 or summoncontrol:IsVisible() == 1 then
+	if joystickQuickFrame:IsVisible() == 1 or joystickrestquickslot:IsVisible() == 1 or restquickslot:IsVisible() == 1 or monsterquickslot:IsVisible() == 1 or summoncontrol:IsVisible() == 1 or instrumentFrame:IsVisible() == 1 then
 		local quickFrame = ui.GetFrame('quickslotnexpbar') 
 		if quickFrame:IsVisible() == 1 then	
 			quickFrame:ShowWindow(0);
@@ -4154,8 +4166,13 @@ function JOYSTICK_INPUT()
 					joystickrestquickslot:ShowWindow(0);
 				end
 			else
-				joystickQuickFrame:ShowWindow(1);
-				joystickrestquickslot:ShowWindow(0);
+				if instrumentFrame:IsVisible() == 1 then
+					joystickQuickFrame:ShowWindow(0);
+					joystickrestquickslot:ShowWindow(0);
+				else
+					joystickQuickFrame:ShowWindow(1);
+					joystickrestquickslot:ShowWindow(0);
+				end
 			end
 		end
 

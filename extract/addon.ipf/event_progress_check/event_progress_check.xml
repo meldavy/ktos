@@ -14,12 +14,12 @@
 		<groupbox name="titlegb" rect="0 0 470 75" margin="0 101 0 0" layout_gravity="center top" draw="true" skin="test_h_redribbon_skin"/>
 		<richtext name="title" parent="titlegb" rect="0 0 500 60" margin="0 1 0 0" layout_gravity="center center" format="{@st43b}{s22}%s" param1="value"/>
 		<button name="closeBtn" rect="0 0 36 37" margin="0 140 5 0" layout_gravity="right top" image="gold_close_button" LBtnUpScp="EVENT_PROGRESS_CHECK_CLOSE"/>
-		<tab name="tab" rect="0 0 550 41" margin="32 195 0 0" layout_gravity="left top" MouseOffAnim="btn_mouseoff" MouseOnAnim="btn_mouseover" clicksound="inven_arrange" fixwidth="true" itemspc="0" oversound="button_cursor_over_2" skin="tab2"/>
+		<tab name="tab" rect="0 0 550 41" margin="32 195 0 0" layout_gravity="left top" MouseOffAnim="btn_mouseoff" MouseOnAnim="btn_mouseover" clicksound="inven_arrange" fixwidth="false" itemspc="0" oversound="button_cursor_over_2" skin="tab2"/>
 		<tabitem name="tab_item1" parent="tab" caption="{@st66b}{s18}획득 현황" width="170" layout_gravity="center top"/>
 		<tabitem name="tab_item2" parent="tab" caption="{@st66b}{s18}트캉스" width="170" layout_gravity="center top"/>
 		<tabitem name="tab_item3" parent="tab" caption="{@st66b}{s18}콘텐츠" width="170" layout_gravity="center top"/>
-		<tab name="tab2" rect="0 0 550 41" margin="32 195 0 0" layout_gravity="left top" MouseOffAnim="btn_mouseoff" MouseOnAnim="btn_mouseover" clicksound="inven_arrange" fixwidth="true" itemspc="0" oversound="button_cursor_over_2" skin="tab2"/>
-		<tabitem name="tab2_item1" parent="tab2" width="170" layout_gravity="center top"/>
+		<tab name="tab2" rect="0 0 550 41" margin="32 195 0 0" layout_gravity="left top" MouseOffAnim="btn_mouseoff" MouseOnAnim="btn_mouseover" clicksound="inven_arrange" fixwidth="false" itemspc="0" oversound="button_cursor_over_2" skin="tab2"/>
+		<tabitem name="tab2_item1" parent="tab2" width="170" layout_gravity="center top" />
 		<tabitem name="tab2_item2" parent="tab2" width="170" layout_gravity="center top" texttooltip="지난 주 투표 결과 입니다."/>
 		<tabitem name="tab2_item3" parent="tab2" width="170" layout_gravity="center top"/>
 		<groupbox name="groupboxbg" rect="0 0 520 578" margin="0 240 0 0" layout_gravity="center top" draw="true" skin="test_frame_midle"/>

@@ -290,12 +290,7 @@ function get_decrease_heal_debuff_tooltip_Warlock_Mastema(lv)
 end
 
 -- 무고사 - 잠독백세
-function get_decrease_heal_debuff_tooltip_Wugushi_LatentVenom(lv)
-    local arg2 = 4.6 * tonumber(lv) * 1000
-    local bfTime = 10000
-    local msg = string.format('DecreaseHeal_Debuff/%.2f/%.2f/%d/1/100/-1/0/0', arg2, arg2, bfTime)
-    return msg
-end
+
 
 -- 무고사 - 독무만상
 function get_decrease_heal_debuff_tooltip_Wugushi_WideMiasma(lv)

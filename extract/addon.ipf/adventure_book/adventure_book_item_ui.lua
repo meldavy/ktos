@@ -308,7 +308,7 @@ function ADVENTURE_BOOK_ITEM.FILL_ITEM_PROP_EQUIP(prop_set, info, isCraft)
 	y = y + 10;
 	labelline1:SetOffset(labelline1:GetOriginalX(), y)
 
-	local dep_y = DRAW_EQUIP_PROPERTY(prop_set, dummyItemObj, y, 'gb')
+	local dep_y = DRAW_EQUIP_PROPERTY(prop_set, dummyItemObj, nil, y, 'gb')
 	local tep = GET_CHILD(gb, 'tooltip_equip_property')
 	if tep ~= nil then
 		local tep_labelline = GET_CHILD(tep, 'labelline')

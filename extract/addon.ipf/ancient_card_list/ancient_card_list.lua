@@ -13,7 +13,11 @@ end
 local ANCIENT_INFO_TAB = 0
 local ANCIENT_COMBINE_TAB = 1
 local ANCIENT_EVOLVE_TAB = 2
+local ANCIENT_PAGE_SIZE = 20
+local ANCIENT_MAIN_SLOT_NUM = 4
 
+local ANCIENT_COMBINE_GUID_LIST = {}
+--open
 function UI_CHECK_ANCIENT_UI_OPEN()
 	local aObj = GetMyAccountObj()
 	if TryGetProp(aObj,"ANCIENT_UNLOCK_UI") ~= 1 then
@@ -32,7 +36,7 @@ function ANCIENT_CARD_OPEN()
 	end
     ui.ToggleFrame('ancient_card_list')
 end
-
+--close
 function ANCIENT_CARD_LIST_CLOSE(frame)
 	local cnt = session.ancient.GetAncientCardCount()
 	for i = 1,cnt do
@@ -43,15 +47,21 @@ function ANCIENT_CARD_LIST_CLOSE(frame)
 end
 
 function TOGGLE_ANCIENT_CARD_LIST()
-	local rframe = ui.GetFrame("ancient_card_list");
-	if rframe == nil then
-		ui.OpenFrame("ancient_card_list")
-	elseif rframe:IsVisible() == 1 then
-		rframe:ShowWindow(0);
-	else
-		rframe:ShowWindow(1);
-		ANCIENT_CARD_LIST_OPEN(rframe)
+	ui.ToggleFrame('ancient_card_list')
+end
+
+function ANCIENT_CARD_LIST_OPEN(frame)
+	local tab = frame:GetChild("tab")
+	AUTO_CAST(tab);
+	if tab ~= nil then
+		tab:SelectTab(0);
+		ANCIENT_CARD_LIST_TAB_CHANGE(frame)
 	end
+end
+
+function ANCIENT_CARD_LIST_GET_TAB_TYPE(frame)
+	local tab = GET_CHILD(frame,"tab")
+	return tab:GetSelectItemIndex()
 end
 
 function ANCIENT_CARD_LIST_TAB_CHANGE(parent, ctrl)
@@ -69,34 +79,34 @@ function ANCIENT_CARD_LIST_TAB_CHANGE(parent, ctrl)
 		end
 	end
 
+	local page_controller = GET_CHILD_RECURSIVELY(frame,"card_page_control")
+	local cnt = math.max(session.ancient.GetAncientCardCount(),1)
+	local page_num = math.floor((cnt-1)/ANCIENT_PAGE_SIZE)+1
+	local now_page = page_controller:GetCurPage()
+	page_controller:SetMaxPage(page_num)
+	if now_page >= page_num then
+		now_page = page_num-1
+	end
+	page_controller:SetCurPage(now_page)
+
 	if index == ANCIENT_INFO_TAB then
 		INIT_ANCIENT_CARD_INFO_TAB(frame)
 		local button = GET_CHILD_RECURSIVELY(frame,"ancient_card_combine_btn")
 		button:SetVisible(0)
 	elseif index == ANCIENT_COMBINE_TAB then
 		INIT_ANCIENT_CARD_COMBINE_TAB(frame,index)
-		ANCIENT_CARD_COMBINE_LIST_LOAD(frame)
-		_ANCIENT_CARD_LOCK_MODE(0)
+		SET_ANCIENT_CARD_BUTTON(frame,ClMsg("Compose"),"ANCIENT_CARD_COMBINE")
 	elseif index == ANCIENT_EVOLVE_TAB then
-		INIT_ANCIENT_CARD_EVOLVE_TAB(frame,index)
-		ANCIENT_CARD_COMBINE_LIST_LOAD(frame)
-		_ANCIENT_CARD_LOCK_MODE(0)
+		INIT_ANCIENT_CARD_COMBINE_TAB(frame,index)
+		SET_ANCIENT_CARD_BUTTON(frame,ClMsg("Evolve"),"ANCIENT_CARD_EVOLVE")
 	end
 end
 
-function ANCIENT_CARD_LIST_OPEN(frame)
-	local tab = frame:GetChild("tab")
-	AUTO_CAST(tab);
-	if tab ~= nil then
-		tab:SelectTab(0);
-		ANCIENT_CARD_LIST_TAB_CHANGE(frame)
-	end 
-    local ancient_card_num = frame:GetChild('ancient_card_num')
-    ancient_card_num:SetTextByKey("max",ANCIENT_CARD_SLOT_MAX)
-    ANCEINT_PASSIVE_LIST_SET(frame)
-    ANCIENT_SET_COST(frame)
-    local ancient_card_comb_name = GET_CHILD_RECURSIVELY(frame,"ancient_card_comb_name")
-    ancient_card_comb_name:SetTooltipType('ancient_passive')
+function SET_ANCIENT_CARD_BUTTON(frame,text,script)
+	local button = GET_CHILD_RECURSIVELY(frame,'ancient_card_combine_btn')
+	button:SetText("{@st42}{s18}"..text)
+	button:SetEventScript(ui.LBUTTONDOWN, script);
+	button:SetVisible(1)
 end
 
 function INIT_ANCIENT_CARD_INFO_TAB(frame)
@@ -109,21 +119,27 @@ function INIT_ANCIENT_CARD_INFO_TAB(frame)
 	end
 	ancient_card_list_Gbox:RemoveAllChild()
 	ancient_card_list_Gbox:SetEventScript(ui.DROP,"ANCIENT_CARD_SWAP_ON_DROP")
+	INIT_ANCIENT_CARD_LIST_ALL(frame)
+	local aObj = GetMyAccountObj();
+	local ancient_card_num = GET_CHILD_RECURSIVELY(frame,'ancient_card_num')
 	local cnt = session.ancient.GetAncientCardCount()
-
-	local height = 0
-	for i = 0,cnt-1 do
-		local card = session.ancient.GetAncientCardByIndex(i)
-		if card.slot > 3 then
-			local ctrlSet = INIT_ANCIENT_CARD_LIST(frame,card)
-			ctrlSet:SetEventScript(ui.DROP,"ANCIENT_CARD_SWAP_ON_DROP")
-		end
-	end
-
-	local ancient_card_num = frame:GetChild('ancient_card_num')
+	local max_cnt = GET_ANCIENT_CARD_SLOT_MAX()
 	ancient_card_num:SetTextByKey("count",cnt)
+	ancient_card_num:SetTextByKey("max",max_cnt)
     ANCEINT_PASSIVE_LIST_SET(frame)
     ANCIENT_SET_COST(frame)
+	local ancient_card_comb_name = GET_CHILD_RECURSIVELY(frame,"ancient_card_comb_name")
+	ancient_card_comb_name:SetTooltipType('ancient_passive')
+end
+
+function INIT_ANCIENT_CARD_COMBINE_TAB(frame, index)
+	INIT_ANCIENT_CARD_SLOTS(frame,index)
+	ENABLE_COMBINE_SLOT(frame)
+	ANCIENT_CARD_COMBINE_LIST_LOAD(frame)
+	_ANCIENT_CARD_LOCK_MODE(0)
+end
+
+function INIT_ANCIENT_CARD_EVOLVE_TAB(frame, index)
 end
 
 function INIT_ANCIENT_CARD_SLOTS(frame,type)
@@ -133,16 +149,16 @@ function INIT_ANCIENT_CARD_SLOTS(frame,type)
 	end
 	gbox:RemoveAllChild()
 	local width = 4
-	local base_name = "SET_"
+	local base_name = "SLOT_"
 	if type == ANCIENT_INFO_TAB then
-		base_name = "SET_"
+		base_name = "SLOT_"
 	elseif type == ANCIENT_COMBINE_TAB then
 		base_name = "COMBINE_"
 	elseif type == ANCIENT_EVOLVE_TAB then
 		base_name = "COMBINE_"
 	end
 	local isLockMode = frame:GetUserValue("LOCK_MODE") == "YES"
-	for index = 0,3 do
+	for index = 0,ANCIENT_MAIN_SLOT_NUM-1 do
 		local ctrlSet = gbox:CreateControlSet("ancient_card_item_slot", base_name..index, width, 4);
 		width = width + ctrlSet:GetWidth() + 2
 		local ancient_card_gbox = GET_CHILD_RECURSIVELY(ctrlSet,"ancient_card_gbox")
@@ -173,7 +189,7 @@ function INIT_ANCIENT_CARD_SLOTS(frame,type)
 		elseif type == ANCIENT_COMBINE_TAB or type == ANCIENT_EVOLVE_TAB then
 			ctrlSet:SetEventScript(ui.DROP,"ON_ANCIENT_CARD_COMBINE_DROP")
 			ctrlSet:SetEventScript(ui.RBUTTONDOWN, 'ANCIENT_CARD_SLOT_POP_COMBINE')
-			if index == 3 then
+			if index == ANCIENT_MAIN_SLOT_NUM-1 then
 				local default_image = GET_CHILD_RECURSIVELY(ctrlSet,"default_image")
 				AUTO_CAST(default_image)
 				default_image:SetImage("m_question_mark")
@@ -277,41 +293,73 @@ function SET_ANCIENT_CARD_SLOT(ctrlSet,card,isLockMode)
 	
 	local groupbox = ctrlSet:GetChild("ancient_card_gbox")
 	groupbox:SetVisible(1)
-	SET_CTRL_LOCK_MODE(ctrlSet,isLockMode)
+	SET_CARD_LOCK_MODE(ctrlSet,isLockMode)
 	if card.isLock == true then
 		local lock = slot:CreateOrGetControlSet('inv_itemlock', "itemlock", 0, 0);
 		lock:SetGravity(ui.RIGHT, ui.TOP);
 	end
 end
 
+function INIT_ANCIENT_CARD_LIST_ALL(frame,func)
+	frame = frame:GetTopParentFrame()
+	local pageCtrl = GET_CHILD_RECURSIVELY(frame,"card_page_control")
+	local page = pageCtrl:GetCurPage()
+	local ancient_card_list_Gbox = GET_CHILD_RECURSIVELY(frame,"ancient_card_list_Gbox")
+	ancient_card_list_Gbox:RemoveAllChild()
+	for i = page*ANCIENT_PAGE_SIZE, (page+1)*ANCIENT_PAGE_SIZE-1 do
+		local card = session.ancient.GetAncientCardByIndex(i)
+		if card == nil then
+			break
+		end
+		local ctrlSet = INIT_ANCIENT_CARD_LIST(frame,card)
+	end
+end
+
+function IS_VALID_ANCIENT_CARD(frame,card)
+	if card.slot < ANCIENT_MAIN_SLOT_NUM then
+		return false
+	end
+	local type = ANCIENT_CARD_LIST_GET_TAB_TYPE(frame)
+	if type == ANCIENT_COMBINE_TAB or type == ANCIENT_EVOLVE_TAB then
+		for i = 0,2 do
+			local ctrlSet = GET_CHILD_RECURSIVELY(frame,"COMBINE_"..i)
+			if ctrlSet ~= nil then
+				local guid = ctrlSet:GetUserValue("ANCIENT_GUID")
+				if guid == card:GetGuid() then
+					return false
+				end
+			end
+		end
+	end
+	return true
+end
+
 function INIT_ANCIENT_CARD_LIST(frame,card)
 	frame = frame:GetTopParentFrame()
-	local tab = frame:GetChild("tab")
-	AUTO_CAST(tab)
-	local type = tab:GetSelectItemIndex();
+	local type = ANCIENT_CARD_LIST_GET_TAB_TYPE(frame)
 	local isLockMode = frame:GetUserValue("LOCK_MODE") == "YES"
 
 	local ancient_card_list_Gbox = GET_CHILD_RECURSIVELY(frame,'ancient_card_list_Gbox')
 	local ctrlSet = SET_ANCIENT_CARD_LIST(ancient_card_list_Gbox,card,isLockMode)
 	if type == ANCIENT_INFO_TAB then
+		ctrlSet:SetEventScript(ui.DROP,"ANCIENT_CARD_SWAP_ON_DROP")
 		ctrlSet:SetEventScript(ui.RBUTTONDOWN, 'ANCIENT_CARD_SWAP_RBTNDOWN');
 		ctrlSet:SetEventScriptArgNumber(ui.RBUTTONDOWN, -2);
 	else
+		ctrlSet:SetEventScript(ui.DROP,"ANCIENT_CARD_SLOT_POP_COMBINE_BY_DROP")
+		ctrlSet:SetEventScript(ui.DROP,dropScp)
 		ctrlSet:SetEventScript(ui.RBUTTONDOWN, 'ON_ANCIENT_CARD_COMBINE_RBUTTONDOWN');
-	end
-	if card.isLock == true then
-		local slot = GET_CHILD_RECURSIVELY(ctrlSet,"ancient_card_slot")
-		local lock = slot:CreateOrGetControlSet('inv_itemlock', "itemlock", 0, 0);
-		lock:SetGravity(ui.RIGHT, ui.TOP);
-		local remove = GET_CHILD_RECURSIVELY(ctrlSet,"sell_btn")
-		remove:SetEnable(0)
 	end
 	return ctrlSet;
 end
 
 function SET_ANCIENT_CARD_LIST(gbox,card,isLockMode)
 	local height = (gbox:GetChildCount()-1) * 51
-	local ctrlSet = gbox:CreateOrGetControlSet("ancient_card_item_list", "SET_" .. card.slot, 0, height);
+	local ctrlSet = GET_CHILD(gbox,"SET_" .. card.slot)
+	if ctrlSet == nil then
+		ctrlSet = gbox:CreateOrGetControlSet("ancient_card_item_list", "SET_" .. card.slot, 0, height);
+	end
+
 	--set level
 	local exp = card:GetStrExp();
 	local xpInfo = gePetXP.GetXPInfo(gePetXP.EXP_ANCIENT, tonumber(exp))
@@ -370,31 +418,29 @@ function SET_ANCIENT_CARD_LIST(gbox,card,isLockMode)
 
 	ctrlSet:SetUserValue("ANCIENT_GUID",card:GetGuid())
 
-	SET_CTRL_LOCK_MODE(ctrlSet,isLockMode)
+	SET_CARD_LOCK_MODE(ctrlSet,isLockMode)
 	if card.isNew == true then
 		local slot = GET_CHILD_RECURSIVELY(ctrlSet,'ancient_card_slot')
 		slot:SetHeaderImage('new_inventory_icon');
 	end
+	if card.isLock == true then
+		local slot = GET_CHILD_RECURSIVELY(ctrlSet,"ancient_card_slot")
+		local lock = slot:CreateOrGetControlSet('inv_itemlock', "itemlock", 0, 0);
+		lock:SetGravity(ui.RIGHT, ui.TOP);
+		local remove = GET_CHILD_RECURSIVELY(ctrlSet,"sell_btn")
+		remove:SetEnable(0)
+end
+	local pic_bg = GET_CHILD_RECURSIVELY(ctrlSet,"graybg")
+	if IS_VALID_ANCIENT_CARD(gbox:GetTopParentFrame(),card) == true then
+		pic_bg:ShowWindow(0)
+		ctrlSet:EnableHitTest(1)
+	else
+		pic_bg:ShowWindow(1)
+		local pic = GET_CHILD(pic_bg,"gray")
+		pic:SetAlpha(70)
+		ctrlSet:EnableHitTest(0)
+end
 	return ctrlSet
-end
-
-function INIT_ANCIENT_CARD_COMBINE_TAB(frame, index)
-	INIT_ANCIENT_CARD_SLOTS(frame,index)
-	SET_ANCIENT_CARD_BUTTON(frame,ClMsg("Compose"),"ANCIENT_CARD_COMBINE")
-	ENABLE_COMBINE_SLOT(frame)
-end
-
-function INIT_ANCIENT_CARD_EVOLVE_TAB(frame, index)
-	INIT_ANCIENT_CARD_SLOTS(frame,index)
-	SET_ANCIENT_CARD_BUTTON(frame,ClMsg("Evolve"),"ANCIENT_CARD_EVOLVE")
-	ENABLE_COMBINE_SLOT(frame)
-end
-
-function SET_ANCIENT_CARD_BUTTON(frame,text,script)
-	local button = GET_CHILD_RECURSIVELY(frame,'ancient_card_combine_btn')
-	button:SetText("{@st42}{s18}"..text)
-	button:SetEventScript(ui.LBUTTONDOWN, script);
-	button:SetVisible(1)
 end
 
 function ENABLE_COMBINE_SLOT(frame)
@@ -495,10 +541,11 @@ function SET_ANCIENT_CARD_COMBINE(frame, FromGuid, argStr, argNum)
 		return
 	end
 	local toCtrlSet = GET_EMPTY_COMBINE_SLOT(frame,FromGuid)
-	SET_ANCIENT_CARD_SLOT(toCtrlSet,card)
 	if toCtrlSet ~= nil then
+	        SET_ANCIENT_CARD_SLOT(toCtrlSet,card)
 		ENABLE_COMBINE_SLOT(frame)
-		ANCIENT_CARD_COMBINE_LIST_LOAD(frame)
+		local ancient_card_list_Gbox = GET_CHILD_RECURSIVELY(frame,'ancient_card_list_Gbox')
+		SET_ANCIENT_CARD_LIST(ancient_card_list_Gbox,card)
 	end
 end
 
@@ -544,9 +591,16 @@ end
 
 function ANCIENT_CARD_SLOT_POP_COMBINE(parent, ctrlSet, byDrop)
 	imcSound.PlaySoundEvent("UI_card_move");
+	local frame = parent:GetTopParentFrame()
+	local guid = ctrlSet:GetUserValue("ANCIENT_GUID")
 	ANCIENT_CARD_SLOT_POP(parent, ctrlSet)
-	ENABLE_COMBINE_SLOT(parent:GetTopParentFrame())
-	ANCIENT_CARD_COMBINE_LIST_LOAD(parent:GetTopParentFrame())
+	ENABLE_COMBINE_SLOT(frame)
+	local card = session.ancient.GetAncientCardByGuid(guid)
+	if GET_CHILD_RECURSIVELY(frame,"SET_"..card.slot) == nil then
+		return
+	end
+	local ancient_card_list_Gbox = GET_CHILD_RECURSIVELY(frame,'ancient_card_list_Gbox')
+	SET_ANCIENT_CARD_LIST(ancient_card_list_Gbox,card)
 end
 
 function ANCIENT_CARD_SLOT_POP(parent, ctrlSet)
@@ -623,7 +677,7 @@ function ANCIENT_CARD_SWAP_ON_DROP(parent,toCtrlSet, argStr, argNum)
 		return;
 	end
 	local card = session.ancient.GetAncientCardByGuid(guid)
-	if card.slot >= 4 and toIndex ~= nil and toIndex >= 4 then
+	if card.slot >= ANCIENT_MAIN_SLOT_NUM and toIndex ~= nil and toIndex >= ANCIENT_MAIN_SLOT_NUM then
 		return
 	end
 	REQUEST_SWAP_ANCIENT_CARD(toCtrlSet:GetTopParentFrame(),guid,toIndex)
@@ -647,7 +701,7 @@ function ANCIENT_CARD_SWAP_RBTNDOWN(parent,ctrlSet,argStr,argNum)
 		imcSound.PlaySoundEvent("UI_card_move");
 	elseif argNum == -2 then
 		local isEnable = false;
-		for i = 0,3 do
+		for i = 0,ANCIENT_MAIN_SLOT_NUM-1 do
 			local toCard = session.ancient.GetAncientCardBySlot(i)
 			if toCard == nil then
 				isEnable = true
@@ -680,7 +734,7 @@ function REQUEST_SWAP_ANCIENT_CARD(frame,guid,slot)
 		return;
 	end
 	if slot == nil or slot == 'None' then
-		slot = ANCIENT_CARD_GET_EMPTY_SLOT(4)
+		slot = ANCIENT_CARD_GET_EMPTY_SLOT(ANCIENT_MAIN_SLOT_NUM)
 	end
 	local toCard = session.ancient.GetAncientCardBySlot(slot)
 	if toCard ~= nil then
@@ -691,11 +745,11 @@ function REQUEST_SWAP_ANCIENT_CARD(frame,guid,slot)
 
 	local aObj = GetMyAccountObj()
 	local fromCard = session.ancient.GetAncientCardByGuid(guid)
-	if fromCard.slot > 3 and slot > 3 then
+	if fromCard.slot >= ANCIENT_MAIN_SLOT_NUM and slot >= ANCIENT_MAIN_SLOT_NUM then
 		return
 	end
 	local totalCost = 0
-	for i = 0,3 do
+	for i = 0,ANCIENT_MAIN_SLOT_NUM-1 do
 		if i ~= slot and i ~= fromCard.slot then
 			local card = session.ancient.GetAncientCardBySlot(i)
 			if card ~= nil then
@@ -738,30 +792,28 @@ function REQ_ANCIENT_CARD_SORT(sortType)
 end
 
 function ANCIENT_CARD_UPDATE(frame,card)
-	local tab = frame:GetChild("tab")
-	AUTO_CAST(tab)
-	local index = tab:GetSelectItemIndex();
-	if card.slot < 4 then
-		if index == 0 then
-			local ctrlSet = GET_CHILD_RECURSIVELY(frame,"SET_"..card.slot)
+	local type = ANCIENT_CARD_LIST_GET_TAB_TYPE(frame)
+	if card.slot < ANCIENT_MAIN_SLOT_NUM then
+		if type == 0 then
+			local ctrlSet = GET_CHILD_RECURSIVELY(frame,"SLOT_"..card.slot)
 			if ctrlSet ~= nil then
 				local isLockMode = frame:GetUserValue("LOCK_MODE") == "YES"
 				SET_ANCIENT_CARD_SLOT(ctrlSet,card,isLockMode)
 			end
 		end
-	else
-		local ctrlSet = INIT_ANCIENT_CARD_LIST(frame,card)
+	end
+	if GET_CHILD_RECURSIVELY(frame,"SET_"..card.slot) ~= nil then
+		local ancient_card_list_Gbox = GET_CHILD_RECURSIVELY(frame,'ancient_card_list_Gbox')
+		SET_ANCIENT_CARD_LIST(ancient_card_list_Gbox,card)
 	end
 end
 
 function ANCIENT_CARD_COMBINE_COMPLETE(frame,guid)
-	local tab = frame:GetChild("tab")
-	AUTO_CAST(tab)
-	local index = tab:GetSelectItemIndex();
-	if index == 0 then
+	local type = ANCIENT_CARD_LIST_GET_TAB_TYPE(frame)
+	if type == 0 then
 		return;
 	end
-	INIT_ANCIENT_CARD_SLOTS(frame,index)
+	INIT_ANCIENT_CARD_SLOTS(frame,type)
 	local resultBox = GET_CHILD_RECURSIVELY(frame,'COMBINE_3')
 	
 	local rarity = tonumber(frame:GetUserValue("RARITY"))
@@ -773,7 +825,7 @@ function ANCIENT_CARD_COMBINE_COMPLETE(frame,guid)
 	end
 	resultBox:SetUserValue("ANCIENT_GUID","SOMETHING_EXIST")
 	frame:SetUserValue("RARITY",0)
-	local scp = string.format('ANCIENT_CARD_COMBINE_END(\"%s\",\"%d\")',guid,index)
+	local scp = string.format('ANCIENT_CARD_COMBINE_END(\"%s\",\"%d\")',guid,type)
 	frame:SetEnable(0)
 	ReserveScript(scp,1.5)
 end
@@ -798,38 +850,24 @@ function ANCIENT_CARD_COMBINE_LIST_LOAD(frame)
 	ancient_card_list_Gbox:RemoveAllChild()
 	ancient_card_list_Gbox:SetEventScript(ui.DROP,"ANCIENT_CARD_SLOT_POP_COMBINE_BY_DROP")
 	local slotBox = GET_CHILD_RECURSIVELY(frame,'ancient_card_slot_Gbox')
-	local guidList = {}
-	local index = 1
-	for i = 0,3 do
-		local ctrl = slotBox:GetChild("COMBINE_"..i)
-		local guid = ctrl:GetUserValue("ANCIENT_GUID")
-		if guid ~= "None" then
-			guidList[index] = guid
-			index = index + 1
+	INIT_ANCIENT_CARD_LIST_ALL(frame)
 		end
-	end
-
-	local count = session.ancient.GetAncientCardCount()
-	for i = 0,count-1 do
-		local card = session.ancient.GetAncientCardByIndex(i)
-		local isSelected = false;
-		for i = 1,#guidList do
-			if guidList[i] == card:GetGuid() then
-				isSelected = true;
-				break;
-			end
-		end
-		if card.slot >= 4 and isSelected == false then
-			local ctrlSet = INIT_ANCIENT_CARD_LIST(frame,card)
-			ctrlSet:SetEventScript(ui.DROP,"ANCIENT_CARD_SLOT_POP_COMBINE_BY_DROP")
-		end
-	end
-end
 --애드온 메세지
 function ON_ANCIENT_CARD_ADD(frame,msg, guid)
+	local pageCtrl = GET_CHILD_RECURSIVELY(frame,"card_page_control")
+	local cnt = math.max(session.ancient.GetAncientCardCount(),1)
+	local page_num = math.floor((cnt-1)/ANCIENT_PAGE_SIZE)+1
+	if page_num ~= pageCtrl:GetMaxPage() then
+		local now_page = pageCtrl:GetCurPage()
+		pageCtrl:SetMaxPage(page_num)
+		pageCtrl:SetCurPage(now_page)
+	end
+
 	local card = session.ancient.GetAncientCardByGuid(guid)
-	INIT_ANCIENT_CARD_LIST(frame,card)
-	local ancient_card_num = frame:GetChild('ancient_card_num')
+	if pageCtrl:GetMaxPage() == pageCtrl:GetCurPage()+1 then
+		INIT_ANCIENT_CARD_LIST(frame,card)
+		end
+	local ancient_card_num = GET_CHILD_RECURSIVELY(frame,'ancient_card_num')
 	ancient_card_num:SetTextByKey("count",session.ancient.GetAncientCardCount())
 end
 
@@ -844,10 +882,10 @@ function ON_ANCIENT_CARD_UPDATE(frame,msg, guid,slot)
 	elseif msg == "ANCIENT_CARD_COMBINE" or msg == "ANCIENT_CARD_EVOLVE" then
 		ANCIENT_CARD_COMBINE_COMPLETE(frame,guid)
 	end
-	local ancient_card_num = frame:GetChild('ancient_card_num')
+	local ancient_card_num = GET_CHILD_RECURSIVELY(frame,'ancient_card_num')
 	ancient_card_num:SetTextByKey("count",session.ancient.GetAncientCardCount())
 end
---판매
+--제거
 function ON_ANCIENT_CARD_SELL(guid)
 	local zoneName = session.GetMapName();
 	if IS_ANCIENT_CARD_UI_ENABLE_MAP(zoneName) == false then
@@ -882,7 +920,6 @@ function SCR_ANCIENT_CARD_SELL(parent,ctrl)
 	local yesBtn = GET_CHILD_RECURSIVELY(msgBox,"YES")
 	yesBtn:SetClickSound('market_sell')
 end
-
 
 function ANCEINT_PASSIVE_LIST_SET(frame)
 	local cardList = GetAncientMainCardList()
@@ -923,7 +960,7 @@ function ANCIENT_SET_COST(frame)
 	local aObj = GetMyAccountObj()
 	ancient_card_cost:SetTextByKey("max",aObj.ANCIENT_MAX_COST)
 	local cost = 0
-	for i = 0,3 do
+	for i = 0,ANCIENT_MAIN_SLOT_NUM-1 do
 		local card = session.ancient.GetAncientCardBySlot(i)
 		if card ~= nil then
 			local ancientCls = GetClass("Ancient_Info",card:GetClassName())
@@ -1000,13 +1037,19 @@ function _ANCIENT_CARD_LOCK_MODE(isLockMode)
 			local card = session.ancient.GetAncientCardByIndex(i-1)
 			local ctrlSet = GET_CHILD_RECURSIVELY(frame,"SET_"..card.slot)
 			if ctrlSet ~= nil then
-				SET_CTRL_LOCK_MODE(ctrlSet, isLockMode == 1)
+				SET_CARD_LOCK_MODE(ctrlSet, isLockMode == 1)
+			end
+		end
+		for i = 0,ANCIENT_MAIN_SLOT_NUM-1 do
+			local ctrlSet = GET_CHILD_RECURSIVELY(frame,"SLOT_"..i)
+			if ctrlSet ~= nil then
+				SET_CARD_LOCK_MODE(ctrlSet, isLockMode == 1)
 			end
 		end
 	end
 end
 
-function SET_CTRL_LOCK_MODE(ctrlSet,isLockMode)
+function SET_CARD_LOCK_MODE(ctrlSet,isLockMode)
 	if isLockMode == true then
 		ctrlSet:SetDragScp("None")
 		ctrlSet:SetDragFrame("None")
@@ -1032,19 +1075,77 @@ end
 function ON_ANCIENT_CARD_LOCK(frame,msg,guid)
 	local card = session.ancient.GetAncientCardByGuid(guid)
 	local ctrlSet = GET_CHILD_RECURSIVELY(frame,"SET_"..card.slot)
+	do
 	local slot = GET_CHILD_RECURSIVELY(ctrlSet,"ancient_card_slot")
 	local remove = GET_CHILD_RECURSIVELY(ctrlSet,"sell_btn")
-	if remove ~= nil then
 		remove:SetEnable(BoolToNumber(card.isLock ~= true))
+		if card.isLock == true then
+			local lock = slot:CreateOrGetControlSet('inv_itemlock', "itemlock", 0, 0);
+			lock:SetGravity(ui.RIGHT, ui.TOP);
+		else
+			slot:RemoveChild("itemlock")
+		end
 	end
+	for i = 0,ANCIENT_MAIN_SLOT_NUM-1 do
+		local slotCtrlSet = GET_CHILD_RECURSIVELY(frame,"SLOT_"..i)
+		local guid = slotCtrlSet:GetUserValue("ANCIENT_GUID")
+		if guid == card:GetGuid() then
+			local slot = GET_CHILD_RECURSIVELY(slotCtrlSet,"ancient_card_slot")
 	if card.isLock == true then
 		local lock = slot:CreateOrGetControlSet('inv_itemlock', "itemlock", 0, 0);
 		lock:SetGravity(ui.RIGHT, ui.TOP);
 	else
 		slot:RemoveChild("itemlock")
 	end
+			break
+		end
+	end
+end
+--select -> 페이지컨트롤러, 텍스트, ' ', 페에지
+--prev,next,prevunit,nextunit ->  페이지컨트롤러, 버튼, ' ', 0
+function ANCIENT_CARD_LIST_PAGE_SELECT(pageCtrl,ctrl)
+	local page = pageCtrl:GetCurPage()
+	if page > pageCtrl:GetMaxPage()-1 then
+		pageCtrl:SetCurPage(pageCtrl:GetMaxPage()-1)
+		return
+	elseif page < 0 then
+		pageCtrl:SetCurPage(0)
+		return
+	end
+	INIT_ANCIENT_CARD_LIST_ALL(pageCtrl:GetTopParentFrame())
 end
 
 function ANCIENT_GET_COST(card)
 	return card.starrank * card.rarity
+end
+
+function ANCIENT_SLOT_EXTEND_BTN_CLICK(parent, ctrl)
+    local mapClsName = session.GetMapName()
+    local mapCls = GetClass('Map', mapClsName)
+    if TryGetProp(mapCls, 'MapType', 'None') ~= 'City' then
+        ui.SysMsg(ClMsg('AllowedInTown'))
+        return
+	end
+	
+	local extend_cost = GET_ANCIENT_SLOT_EXTEND_COST()
+	if extend_cost == nil then
+		ui.SysMsg(ClMsg('CantExtendAncientCardSlot'))
+	else
+		local extend_cnt = GET_ANCIENT_SLOT_EXTEND_COUNT()
+		local msg = ScpArgMsg('ExtendWarehouseSlot{Silver}{SLOT}', 'Silver', GET_COMMAED_STRING(tostring(extend_cost)), 'SLOT', extend_cnt)
+		local msgbox = ui.MsgBox(msg, '_EXEC_ANCIENT_SLOT_EXTEND()', 'None')
+		SET_MODAL_MSGBOX(msgbox)
+	end
+end
+
+function _EXEC_ANCIENT_SLOT_EXTEND()
+	local extend_cost = tostring(GET_ANCIENT_SLOT_EXTEND_COST())
+	local my_money = GET_TOTAL_MONEY_STR()
+	if IsGreaterThanForBigNumber(extend_cost, my_money) == 1 then
+		ui.SysMsg(ClMsg('NotEnoughMoney'))
+		return
+	end
+
+	local argStr = ""
+	pc.ReqExecuteTx("SCR_TX_ANCIENT_SLOT_EXTEND", argStr)
 end

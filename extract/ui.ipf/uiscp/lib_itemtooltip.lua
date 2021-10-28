@@ -1108,6 +1108,15 @@ function ABILITY_DESC_PLUS(desc, cur)
 
 end
 
+function AWAKEN_ABILITY_DESC_PLUS(desc, cur)   
+    if tonumber(cur) < 0 then
+        return "{@st66b}{#64ff64}{ol}"..string.format(" %s "..ScpArgMsg("PropDown").."%d", desc, math.abs(cur));
+    else
+    	return "{@st66b}{#64ff64}{ol}"..string.format(" %s "..ScpArgMsg("PropUp").."%d", desc, math.abs(cur));
+	end
+
+end
+
 function GET_OPTION_VALUE_OR_PERCECNT_STRING(optionName, optionValue)
 	local commonPropList = GET_COMMON_PROP_LIST();
 	for i = 1, #commonPropList do

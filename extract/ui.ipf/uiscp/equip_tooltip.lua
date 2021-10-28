@@ -14,11 +14,11 @@ local function replace(text, to_be_replaced, replace_with)
 end
 
 
-function ITEM_TOOLTIP_WEAPON(tooltipframe, invitem, strarg, usesubframe)
+function ITEM_TOOLTIP_WEAPON(tooltipframe, invitem, strarg, usesubframe)	
 	ITEM_TOOLTIP_EQUIP(tooltipframe, invitem, strarg, usesubframe)
 end
 
-function ITEM_TOOLTIP_ARMOR(tooltipframe, invitem, strarg, usesubframe, isForgery)
+function ITEM_TOOLTIP_ARMOR(tooltipframe, invitem, strarg, usesubframe, isForgery)	
 	ITEM_TOOLTIP_EQUIP(tooltipframe, invitem, strarg, usesubframe, isForgery) ;
 end
 
@@ -113,25 +113,23 @@ local function _DRAW_SEAL_OPTION(tooltipframe, invitem, ypos, mainframename)
 	return ypos;
 end
 
-function ITEM_TOOLTIP_EQUIP(tooltipframe, invitem, strarg, usesubframe, isForgery)    
+function ITEM_TOOLTIP_EQUIP(tooltipframe, invitem, strarg, usesubframe, isForgery)    	
 	if isForgery == nil then
 		isForgery = false;
-	end
-	tolua.cast(tooltipframe, "ui::CTooltipFrame");
-	local mainframename = 'equip_main'
-	local addinfoframename = 'equip_main_addinfo'
-	if usesubframe == "usesubframe" then
-		mainframename = 'equip_sub'
+    end
+    
+    tolua.cast(tooltipframe, "ui::CTooltipFrame");
+    
+    local mainframename = 'equip_main'
+    local ichorframename = 'equip_main_ichor'
+    local addinfoframename = 'equip_main_addinfo'
+    
+	if usesubframe == "usesubframe" or usesubframe == "usesubframe_recipe" then
+        mainframename = 'equip_sub'
 		addinfoframename = 'equip_sub_addinfo'
-	elseif usesubframe == "usesubframe_recipe" then
-		mainframename = 'equip_sub'
-		addinfoframename = 'equip_sub_addinfo'
-	end
+    end
+    
     local ypos = 0
-
-    local addinfoGBox = GET_CHILD(tooltipframe, addinfoframename,'ui::CGroupBox') -- 서브 프레임 위치 삽입
-	addinfoGBox:SetOffset(addinfoGBox:GetX(),ypos)
-	addinfoGBox:Resize(addinfoGBox:GetOriginalWidth(),0)
 
 	if IS_USE_SET_TOOLTIP(invitem) == 1 then		
     	ypos = DRAW_EQUIP_COMMON_TOOLTIP_SMALL_IMG(tooltipframe, invitem, mainframename, isForgery); -- 장비라면 공통적으로 그리는 툴팁들
@@ -162,32 +160,38 @@ function ITEM_TOOLTIP_EQUIP(tooltipframe, invitem, strarg, usesubframe, isForger
 
         local tooltipMainFrame = GET_CHILD(tooltipframe, mainframename, 'ui::CGroupBox');
         DRAW_TOOLTIP_SUB_BG(tooltipMainFrame, bg_ypos)
+
         ypos = SET_REINFORCE_TEXT(tooltipMainFrame, invitem, ypos, isEquiped, basicTooltipProp);
 	    ypos = SET_TRANSCEND_TEXT(tooltipMainFrame, invitem, ypos, isEquiped);
 	    ypos = SET_BUFF_TEXT(tooltipMainFrame, invitem, ypos, strarg);
-	    ypos = SET_REINFORCE_BUFF_TEXT(tooltipMainFrame, invitem, ypos);
+        ypos = SET_REINFORCE_BUFF_TEXT(tooltipMainFrame, invitem, ypos);
+        
 	    local bg_height = ypos - bg_ypos		
 		RESIZE_TOOLTIP_SUB_BG(tooltipMainFrame, bg_ypos, bg_height)
-	end
+    end
+    
 	if invitem.InheritanceItemName ~= nil and invitem.InheritanceItemName ~= "None" then
-		local temp = GetClass('Item', invitem.InheritanceItemName)
-		ypos = DRAW_EQUIP_PROPERTY(tooltipframe, temp, ypos, mainframename, invitem) -- 각종 프로퍼티
+		local inheritanceItem = GetClass('Item', invitem.InheritanceItemName)
+		ypos = DRAW_EQUIP_PROPERTY(tooltipframe, invitem, inheritanceItem, ypos, mainframename) -- 각종 프로퍼티
 	else
-		ypos = DRAW_EQUIP_PROPERTY(tooltipframe, invitem, ypos, mainframename) -- 각종 프로퍼티
+		ypos = DRAW_EQUIP_PROPERTY(tooltipframe, invitem, nil, ypos, mainframename) -- 각종 프로퍼티
 	end
 
-	ypos = DRAW_EQUIP_SOCKET_COUNT(tooltipframe, invitem, ypos, mainframename);
+    ypos = DRAW_EQUIP_SOCKET_COUNT(tooltipframe, invitem, ypos, mainframename);
+    
 	if IS_NEED_DRAW_GEM_TOOLTIP(invitem) == true then
 		ypos = DRAW_EQUIP_SOCKET(tooltipframe, invitem, ypos, mainframename); -- 소켓 및 옵션
-	end
+    end
+    
 	ypos = DRAW_EQUIP_MEMO(tooltipframe, invitem, ypos, mainframename) -- 제작 템 시 들어간 메모
-	ypos = DRAW_EQUIP_DESC(tooltipframe, invitem, ypos, mainframename) -- 각종 설명문
+    ypos = DRAW_EQUIP_DESC(tooltipframe, invitem, ypos, mainframename) -- 각종 설명문
+    
 	if IS_USE_SET_TOOLTIP(invitem) ~= 1 then
 		ypos = DRAW_AVAILABLE_PROPERTY(tooltipframe, invitem, ypos, mainframename) -- 장착제한, 거래제한, 소켓, 레벨 제한 등등
 	end
 
-    ypos = DRAW_EQUIP_TRADABILITY(tooltipframe, invitem, ypos, mainframename) -- 거래 제한
-
+	ypos = DRAW_EQUIP_TRADABILITY(tooltipframe, invitem, ypos, mainframename) -- 거래 제한
+   	
 	if IS_USE_SET_TOOLTIP(invitem) == 1 then
     	ypos = DRAW_CANNOT_REINFORCE(tooltipframe, invitem, ypos, mainframename) -- 초월 및 강화불가
     end
@@ -196,8 +200,9 @@ function ITEM_TOOLTIP_EQUIP(tooltipframe, invitem, strarg, usesubframe, isForger
 	ypos = DRAW_EQUIP_ONLY_PR(tooltipframe, invitem, ypos, mainframename) -- 포텐셜 만 있는 애들은 여기서 그림 (그릴 아이템인지 검사는 내부에서)
 	ypos = DRAW_EQUIP_VIBORA_REFINE(tooltipframe, invitem, ypos, mainframename)  -- 바이보라 연성(내부에서 체크)
 	ypos = DRAW_EQUIP_GODDESS_REFINE(tooltipframe, invitem, ypos, mainframename)  -- 마신 여신 연성(내부에서 체크)	
-
-	local isHaveLifeTime = TryGetProp(invitem, "LifeTime", 0);	
+	
+    local isHaveLifeTime = TryGetProp(invitem, "LifeTime", 0);	
+    
 	if 0 == tonumber(isHaveLifeTime) then
 		ypos = DRAW_SELL_PRICE(tooltipframe, invitem, ypos, mainframename);
 	else
@@ -206,18 +211,35 @@ function ITEM_TOOLTIP_EQUIP(tooltipframe, invitem, strarg, usesubframe, isForger
     
     ypos = DRAW_TOGGLE_EQUIP_DESC(tooltipframe, invitem, ypos, mainframename); -- 설명문 토글 여부
 
-	local subframeypos = 0
-	--서브프레임쪽.
-	subframeypos = DRAW_EQUIP_SET(tooltipframe, invitem, subframeypos, addinfoframename) -- 세트아이템
-	if IS_NEED_DRAW_MAGICAMULET_TOOLTIP(invitem) == true then
-		subframeypos = DRAW_EQUIP_MAGICAMULET(tooltipframe, invitem, subframeypos, addinfoframename) -- 매직어뮬렛
-	end
+    -- 왼쪽 서브프레임 (레전드 등급만 사용)
+    if IS_NEED_TO_DRAW_SUBFRAME_ICHOR(invitem) == true then
+        local ypos_sub = 0
+
+        if invitem.InheritanceItemName ~= nil and invitem.InheritanceItemName ~= "None" then
+            local inheritanceItem = GetClass('Item', invitem.InheritanceItemName)
+            ypos_sub = DRAW_EQUIP_SUBFRAME_RANDOM_ICHOR(tooltipframe, invitem, ypos_sub, ichorframename) -- 서브프레임 랜덤 아이커
+            ypos_sub = DRAW_EQUIP_SUBFRAME_FIXED_ICHOR(tooltipframe, invitem, inheritanceItem, ypos_sub, ichorframename) -- 서브프레임 고정 아이커
+
+        else
+            ypos_sub = DRAW_EQUIP_SUBFRAME_RANDOM_ICHOR(tooltipframe, invitem, ypos_sub, ichorframename) -- 서브프레임 랜덤 아이커
+            ypos_sub = DRAW_EQUIP_SUBFRAME_FIXED_ICHOR(tooltipframe, invitem, nil, ypos_sub, ichorframename) -- 서브프레임 고정 아이커
+        end
+
+        -- 서브프레임을 따로 사용하는경우 아이커 창 제거
+        if usesubframe == "usesubframe" or usesubframe == "usesubframe_recipe" then
+            GET_CHILD(tooltipframe, ichorframename, 'ui::CGroupBox'):ShowWindow(0)
+        end
+    end
+
+    -- 오른쪽 서브프레임
+	DRAW_EQUIP_SET(tooltipframe, invitem, 0, addinfoframename) -- 세트아이템
+    
     local gBox = GET_CHILD(tooltipframe, mainframename,'ui::CGroupBox')
     gBox:Resize(gBox:GetWidth(), ypos)
 end
 
 -- 기본 정보
-function DRAW_EQUIP_COMMON_TOOLTIP(tooltipframe, invitem, mainframename, isForgery)
+function DRAW_EQUIP_COMMON_TOOLTIP(tooltipframe, invitem, mainframename, isForgery)	
 	local gBox = GET_CHILD(tooltipframe, mainframename,'ui::CGroupBox')
 	gBox:RemoveAllChild()
 	
@@ -857,236 +879,300 @@ function IS_NEED_TO_DRAW_TOOLTIP_PROPERTY(list, list2, invitem, basicTooltipProp
 	return false;
 end
 
--- 아이템에 의한 추가 속성 정보 (광역공격 +1)
-function DRAW_EQUIP_PROPERTY(tooltipframe, invitem, yPos, mainframename, setItem, drawLableline, icor_item)
-	local gBox = GET_CHILD(tooltipframe,mainframename,'ui::CGroupBox')
-	gBox:RemoveChild('tooltip_equip_property');
+function DRAW_EQUIP_SUBFRAME_RANDOM_ICHOR(tooltipframe, invitem, yPos, mainframename)
+    local gBox = GET_CHILD(tooltipframe, mainframename, 'ui::CGroupBox')
+    gBox:RemoveChild('tooltip_equip_property_random');
+    
+	local tooltip_equip_property_CSet = gBox:CreateOrGetControlSet('tooltip_equip_property_random', 'tooltip_equip_property_random', 0, yPos);
+    local property_gbox = GET_CHILD(tooltip_equip_property_CSet, 'property_gbox', 'ui::CGroupBox');
 
-	local basicList = GET_EQUIP_TOOLTIP_PROP_LIST(invitem);
-    local list = {};
-    local basicTooltipPropList = StringSplit(invitem.BasicTooltipProp, ';');
-    for i = 1, #basicTooltipPropList do
-        local basicTooltipProp = basicTooltipPropList[i];
-        list = GET_CHECK_OVERLAP_EQUIPPROP_LIST(basicList, basicTooltipProp, list);
+    -- 아무것도 못그렸으면 컨트롤셋 지우고 리턴
+    if DRAW_EQUIP_RANDOM_ICHOR(invitem, property_gbox, 0) == 0 then
+        gBox:RemoveChild('tooltip_equip_property_random')
+        return yPos
+    end
+    
+	tooltip_equip_property_CSet:Resize(tooltip_equip_property_CSet:GetWidth(), tooltip_equip_property_CSet:GetHeight() + property_gbox:GetHeight() + property_gbox:GetY())
+
+	gBox:Resize(gBox:GetWidth(), gBox:GetHeight() + tooltip_equip_property_CSet:GetHeight())
+	return tooltip_equip_property_CSet:GetHeight() + tooltip_equip_property_CSet:GetY()
+end
+
+function DRAW_EQUIP_SUBFRAME_FIXED_ICHOR(tooltipframe, invitem, inheritanceItem, yPos, mainframename)
+    local gBox = GET_CHILD(tooltipframe, mainframename, 'ui::CGroupBox')
+    gBox:RemoveChild('tooltip_equip_property_fixed');
+    
+	local tooltip_equip_property_CSet = gBox:CreateOrGetControlSet('tooltip_equip_property_fixed', 'tooltip_equip_property_fixed', 0, yPos);
+    local property_gbox = GET_CHILD(tooltip_equip_property_CSet, 'property_gbox', 'ui::CGroupBox');
+
+    -- 아무것도 못그렸으면 컨트롤셋 지우고 리턴
+    if DRAW_EQUIP_FIXED_ICHOR(invitem, inheritanceItem, property_gbox, 0) == 0 then
+        gBox:RemoveChild('tooltip_equip_property_fixed')
+        return yPos
+    end
+    
+	tooltip_equip_property_CSet:Resize(tooltip_equip_property_CSet:GetWidth(), tooltip_equip_property_CSet:GetHeight() + property_gbox:GetHeight() + property_gbox:GetY())
+
+	gBox:Resize(gBox:GetWidth(), gBox:GetHeight() + tooltip_equip_property_CSet:GetHeight())
+	return tooltip_equip_property_CSet:GetHeight() + tooltip_equip_property_CSet:GetY()
+end
+
+function IS_NEED_TO_DRAW_SUBFRAME_ICHOR(invitem)
+    local itemGrade = TryGetProp(invitem, "ItemGrade")
+    local targetGroup = TryGetProp(invitem, "EquipGroup")
+
+    if itemGrade > 4 then
+        -- 레전드 등급 이상 무기
+        if targetGroup == "THWeapon" or targetGroup == "SubWeapon" or targetGroup == "Weapon" then
+            return true
+        end
+    
+        -- 레전드 등급 이상 방어구
+        if targetGroup == "SHIRT" or targetGroup == "PANTS" or targetGroup == "GLOVES" or targetGroup == "BOOTS" then
+            return true
+        end
     end
 
-	local list2 = GET_EUQIPITEM_PROP_LIST();
-	if IS_NEED_TO_DRAW_TOOLTIP_PROPERTY(list, list2, invitem, basicTooltipPropList) == false and (invitem.OptDesc == nil or invitem.OptDesc == "None" ) then -- 일단 그릴 프로퍼티가 있는지 검사. 없으면 컨트롤 셋 자체를 안만듬
-		if setItem == nil then
-			if invitem.ReinforceRatio == 100 then				
-    			return yPos
-    		end
-		end		
-	end
+    return false
+end
 
-	local tooltip_equip_property_CSet = gBox:CreateOrGetControlSet('tooltip_equip_property', 'tooltip_equip_property', 0, yPos);
+-- 아이템에 의한 추가 속성 정보
+function DRAW_EQUIP_PROPERTY(tooltipframe, invitem, inheritanceItem, yPos, mainframename, drawLableline)
+	local gBox = GET_CHILD(tooltipframe, mainframename, 'ui::CGroupBox')
+	gBox:RemoveChild('tooltip_equip_property');
+
+    -- 컨트롤셋 생성
+    local tooltip_equip_property_CSet = gBox:CreateOrGetControlSet('tooltip_equip_property', 'tooltip_equip_property', 0, yPos);
+    
+    -- 라벨라인 처리 (아이커 아이템 툴팁)
     local labelline = GET_CHILD(tooltip_equip_property_CSet, 'labelline');
     if drawLableline == false then
-        tooltip_equip_property_CSet:SetOffset(tooltip_equip_property_CSet:GetX(), tooltip_equip_property_CSet:GetY() - 20);
+        tooltip_equip_property_CSet:SetOffset(tooltip_equip_property_CSet:GetX(), tooltip_equip_property_CSet:GetY() - 10);
         labelline:ShowWindow(0);
     else
         labelline:ShowWindow(1);
     end
 
-	local property_gbox = GET_CHILD(tooltip_equip_property_CSet,'property_gbox','ui::CGroupBox');
-	local class = GetClassByType("Item", invitem.ClassID);
-
-	local inner_yPos = 0;
+    local inner_yPos = 0;
+	local property_gbox = GET_CHILD(tooltip_equip_property_CSet, 'property_gbox', 'ui::CGroupBox');
 	
-	local maxRandomOptionCnt = MAX_OPTION_EXTRACT_COUNT;
-	local randomOptionProp = {};
-	for i = 1, maxRandomOptionCnt do
-		if invitem['RandomOption_'..i] ~= 'None' then
-			randomOptionProp[invitem['RandomOption_'..i]] = invitem['RandomOptionValue_'..i];
-		end
-	end
+    -- 레전드 등급 이상 (무기, 방어구) 아이템부터는 아이커 표기 왼쪽으로 분리
+    if IS_NEED_TO_DRAW_SUBFRAME_ICHOR(invitem) == false then
+        inner_yPos = DRAW_EQUIP_RANDOM_ICHOR(invitem, property_gbox, inner_yPos) -- 랜덤 아이커
+        inner_yPos = DRAW_EQUIP_FIXED_ICHOR(invitem, inheritanceItem, property_gbox, inner_yPos) -- 고정 아이커
+    end
 
-	-- Trigger On == 1, if triggered then set margin
-	local marginTrigger = 0;
+    inner_yPos = DRAW_EQUIP_HAIR_ENCHANT(invitem, property_gbox, inner_yPos) -- 헤어 인챈트 옵션
+	inner_yPos = DRAW_EQUIP_AWAKEN_AND_ENCHANT(invitem, property_gbox, inner_yPos) -- 각성, 인챈트 옵션
 
-	for i = 1 , maxRandomOptionCnt do
-	    local propGroupName = "RandomOptionGroup_"..i;
-		local propName = "RandomOption_"..i;
-		local propValue = "RandomOptionValue_"..i;
-		local clientMessage = 'None'
+    -- 아무것도 못그렸으면 컨트롤셋 지우고 리턴
+    if inner_yPos == 0 then
+        gBox:RemoveChild('tooltip_equip_property')
+        return yPos
+    end
+    
+	tooltip_equip_property_CSet:Resize(tooltip_equip_property_CSet:GetWidth(),tooltip_equip_property_CSet:GetHeight() + property_gbox:GetHeight() + property_gbox:GetY());
 
-		local propItem = invitem
+	gBox:Resize(gBox:GetWidth(),gBox:GetHeight() + tooltip_equip_property_CSet:GetHeight())
+	return tooltip_equip_property_CSet:GetHeight() + tooltip_equip_property_CSet:GetY();
+end
 
-		if setItem ~= nil then
-			propItem = setItem
-		end
+-- 헤어 인챈트 옵션
+function DRAW_EQUIP_HAIR_ENCHANT(invitem, property_gbox, inner_yPos)
+    local init_yPos = inner_yPos;
 
-		if propItem[propGroupName] == 'ATK' then
-		    clientMessage = 'ItemRandomOptionGroupATK'
-		elseif propItem[propGroupName] == 'DEF' then
-		    clientMessage = 'ItemRandomOptionGroupDEF'
-		elseif propItem[propGroupName] == 'UTIL_WEAPON' then
-		    clientMessage = 'ItemRandomOptionGroupUTIL'
-		elseif propItem[propGroupName] == 'UTIL_ARMOR' then
-		    clientMessage = 'ItemRandomOptionGroupUTIL'
-		elseif propItem[propGroupName] == 'UTIL_SHILED' then
-		    clientMessage = 'ItemRandomOptionGroupUTIL'
-		elseif propItem[propGroupName] == 'STAT' then
-		    clientMessage = 'ItemRandomOptionGroupSTAT'
-		end
-		
-		if propItem[propValue] ~= 0 and propItem[propName] ~= "None" then
-			local opName = string.format("%s %s", ClMsg(clientMessage), ScpArgMsg(propItem[propName]));
-			local strInfo = ABILITY_DESC_NO_PLUS(opName, propItem[propValue], 0);
+    for i = 1, 3 do
+        local propName = "HatPropName_"..i;
+        local propValue = "HatPropValue_"..i;
+        if invitem[propValue] ~= 0 and invitem[propName] ~= "None" then
+            local opName = string.format("[%s] %s", ClMsg("EnchantOption"), ScpArgMsg(invitem[propName]));
+            local strInfo = ABILITY_DESC_PLUS(opName, invitem[propValue]);
+            inner_yPos = ADD_ITEM_PROPERTY_TEXT(property_gbox, strInfo, 0, inner_yPos);
+        end
+    end
 
-			inner_yPos = ADD_ITEM_PROPERTY_TEXT(property_gbox, strInfo, 0, inner_yPos);
-			marginTrigger = 1;
-		end
-	end
+    if init_yPos < inner_yPos then
+        inner_yPos = ADD_ITEM_PROPERTY_TEXT(property_gbox, " ", 0, inner_yPos);
+    end
 
-	for i = 1 , #list do
-		local propName = list[i];
-		local propValue = TryGetProp(class, propName, 0);
-		local needToShow = true;
-		for j = 1, #basicTooltipPropList do
-			if basicTooltipPropList[j] == propName then
-				needToShow = false;
-			end
-		end
+    return inner_yPos
+end
 
-		if needToShow == true and propValue ~= 0 and randomOptionProp[propName] == nil then -- 랜덤 옵션이랑 겹치는 프로퍼티는 여기서 출력하지 않음
-			if marginTrigger == 1 then
-				inner_yPos = ADD_ITEM_PROPERTY_TEXT(property_gbox, " ", 0, inner_yPos);
-				marginTrigger = 0;
-			end
+-- 각성 및 인챈트 옵션
+function DRAW_EQUIP_AWAKEN_AND_ENCHANT(invitem, property_gbox, inner_yPos)
+    local init_yPos = inner_yPos;
 
-			if  invitem.GroupName == 'Weapon' then
-				if propName ~= "MINATK" and propName ~= 'MAXATK' then
-					local strInfo = ABILITY_DESC_PLUS(ScpArgMsg(propName), propValue);					
-					inner_yPos = ADD_ITEM_PROPERTY_TEXT(property_gbox, strInfo, 0, inner_yPos);
-				end
-			elseif  invitem.GroupName == 'Armor' then
-				if invitem.ClassType == 'Gloves' then
-					if propName ~= "HR" then
-						local strInfo = ABILITY_DESC_PLUS(ScpArgMsg(propName), propValue);
-						inner_yPos = ADD_ITEM_PROPERTY_TEXT(property_gbox, strInfo, 0, inner_yPos);
-					end
-				elseif invitem.ClassType == 'Boots' then
-					if propName ~= "DR" then
-						local strInfo = ABILITY_DESC_PLUS(ScpArgMsg(propName), propValue);
-						inner_yPos = ADD_ITEM_PROPERTY_TEXT(property_gbox, strInfo, 0, inner_yPos);
-					end
-				else
-					if propName ~= "DEF" then
-						local strInfo = ABILITY_DESC_PLUS(ScpArgMsg(propName), propValue);
-						inner_yPos = ADD_ITEM_PROPERTY_TEXT(property_gbox, strInfo, 0, inner_yPos);
-					end
-				end
-			else
-				local strInfo = ABILITY_DESC_PLUS(ScpArgMsg(propName), propValue);
-				inner_yPos = ADD_ITEM_PROPERTY_TEXT(property_gbox, strInfo, 0, inner_yPos);
-			end
-		end
-	end
-
-	for i = 1 , 3 do
-		local propName = "HatPropName_"..i;
-		local propValue = "HatPropValue_"..i;
-		if invitem[propValue] ~= 0 and invitem[propName] ~= "None" then
-			local opName = string.format("[%s] %s", ClMsg("EnchantOption"), ScpArgMsg(invitem[propName]));
-			local strInfo = ABILITY_DESC_PLUS(opName, invitem[propValue]);
-			inner_yPos = ADD_ITEM_PROPERTY_TEXT(property_gbox, strInfo, 0, inner_yPos);
-		end
-	end
-   
-	for i = 1 , #list2 do
-		local propName = list2[i];
-		local propValue = TryGetProp(invitem, propName, 0);
-		if propValue ~= 0 then
-			local strInfo = ABILITY_DESC_PLUS(ScpArgMsg(propName), propValue);
-			inner_yPos = ADD_ITEM_PROPERTY_TEXT(property_gbox, strInfo, 0, inner_yPos);
-		end
-	end
-
-	if invitem.OptDesc ~= nil and invitem.OptDesc ~= 'None' and TryGetProp(invitem, 'StringArg', 'None') ~= 'Vibora' then
-		inner_yPos = ADD_ITEM_PROPERTY_TEXT(property_gbox, invitem.OptDesc, 0, inner_yPos);
-	end
-
-	if invitem.OptDesc ~= nil and (invitem.OptDesc == 'None' or invitem.OptDesc == '') and TryGetProp(invitem, 'StringArg', 'None') == 'Vibora' then
-		local opt_desc = invitem.OptDesc	
-		if opt_desc == 'None' then
-			opt_desc = ''
-		end
-			local idx = 1
-			for idx = 1, MAX_VIBORA_OPTION_COUNT do
-				local additional_option = TryGetProp(invitem, 'AdditionalOption_' .. tostring(idx), 'None')
-				if additional_option ~= 'None' then
-					local tooltip_str = 'tooltip_' .. additional_option					
-					local cls_message = GetClass('ClientMessage', tooltip_str)
-					if cls_message ~= nil then
-						opt_desc = opt_desc .. ClMsg(tooltip_str)
-					end
-				end
-			end
-
-		if setItem ~= nil then
-			for idx = 1, MAX_VIBORA_OPTION_COUNT do
-				local additional_option = TryGetProp(setItem, 'AdditionalOption_' .. tostring(idx), 'None')
-				if additional_option ~= 'None' then
-					local tooltip_str = 'tooltip_' .. additional_option					
-					local cls_message = GetClass('ClientMessage', tooltip_str)
-					if cls_message ~= nil then
-						opt_desc = opt_desc .. ClMsg(tooltip_str)
-					end
-				end
-			end
-		end
-
-		if icor_item ~= nil then
-			for idx = 1, MAX_VIBORA_OPTION_COUNT do
-				local additional_option = TryGetProp(icor_item, 'AdditionalOption_' .. tostring(idx), 'None')
-				if additional_option ~= 'None' then
-					local tooltip_str = 'tooltip_' .. additional_option					
-					local cls_message = GetClass('ClientMessage', tooltip_str)
-					if cls_message ~= nil then
-						opt_desc = opt_desc .. ClMsg(tooltip_str)
-					end
-				end
-			end
-		end
-
-		inner_yPos = ADD_ITEM_PROPERTY_TEXT(property_gbox, opt_desc, 0, inner_yPos);
-	end
-	
-	if setItem == nil then
-		if invitem.IsAwaken == 1 then
-			local opName = string.format("[%s] %s", ClMsg("AwakenOption"), ScpArgMsg(invitem.HiddenProp));
-			local strInfo = ABILITY_DESC_PLUS(opName, invitem.HiddenPropValue);
-			inner_yPos = ADD_ITEM_PROPERTY_TEXT(property_gbox, strInfo, 0, inner_yPos);
-		end
-	else
-		if setItem.IsAwaken == 1 then
-			local opName = string.format("[%s] %s", ClMsg("AwakenOption"), ScpArgMsg(setItem.HiddenProp));
-			local strInfo = ABILITY_DESC_PLUS(opName, setItem.HiddenPropValue);
-			inner_yPos = ADD_ITEM_PROPERTY_TEXT(property_gbox, strInfo, 0, inner_yPos);
-		end
-	end
+    if invitem.IsAwaken == 1 then
+        local opName = string.format("[%s] %s", ClMsg("AwakenOption"), ScpArgMsg(invitem.HiddenProp));
+        local strInfo = AWAKEN_ABILITY_DESC_PLUS(opName, invitem.HiddenPropValue);
+        inner_yPos = ADD_ITEM_PROPERTY_TEXT(property_gbox, strInfo, 0, inner_yPos);
+    end
 
 	if invitem.ReinforceRatio > 100 then
 		local opName = ClMsg("ReinforceOption");
 		local strInfo = ABILITY_DESC_PLUS(opName, math.floor(10 * invitem.ReinforceRatio/100));
-		inner_yPos = ADD_ITEM_PROPERTY_TEXT(property_gbox, strInfo.."0%"..ClMsg("ReinforceOptionAtk"), 0, inner_yPos);
+        inner_yPos = ADD_ITEM_PROPERTY_TEXT(property_gbox, strInfo.."0%"..ClMsg("ReinforceOptionAtk"), 0, inner_yPos);
 	end
 
-    if setItem ~= nil then
-	    inner_yPos = ADD_RANDOM_OPTION_RARE_TEXT(property_gbox, setItem, inner_yPos);
-    else
-        inner_yPos = ADD_RANDOM_OPTION_RARE_TEXT(property_gbox, invitem, inner_yPos);
-	end
-	local BOTTOM_MARGIN = tooltipframe:GetUserConfig("BOTTOM_MARGIN"); -- 맨 아랫쪽 여백
-	BOTTOM_MARGIN = tonumber(BOTTOM_MARGIN)
-	if BOTTOM_MARGIN == nil then
-		BOTTOM_MARGIN = 0
-	end
-	tooltip_equip_property_CSet:Resize(tooltip_equip_property_CSet:GetWidth(),tooltip_equip_property_CSet:GetHeight() + property_gbox:GetHeight() + property_gbox:GetY() + BOTTOM_MARGIN);
+    inner_yPos = ADD_RANDOM_OPTION_RARE_TEXT(property_gbox, invitem, inner_yPos);
+        
+    if init_yPos < inner_yPos then
+        inner_yPos = ADD_ITEM_PROPERTY_TEXT(property_gbox, " ", 0, inner_yPos);
+    end
 
-	gBox:Resize(gBox:GetWidth(),gBox:GetHeight() + tooltip_equip_property_CSet:GetHeight())
-	return tooltip_equip_property_CSet:GetHeight() + tooltip_equip_property_CSet:GetY();
+    return inner_yPos
+end
+
+-- 랜덤 아이커
+function DRAW_EQUIP_RANDOM_ICHOR(invitem, property_gbox, inner_yPos)
+    local init_yPos = inner_yPos;
+
+    for i = 1, MAX_OPTION_EXTRACT_COUNT do
+        local propGroupName = "RandomOptionGroup_"..i;
+        local propName = "RandomOption_"..i;
+        local propValue = "RandomOptionValue_"..i;
+        local clientMessage = 'None'
+
+        local propItem = invitem
+
+        if propItem[propGroupName] == 'ATK' then
+            clientMessage = 'ItemRandomOptionGroupATK'
+        elseif propItem[propGroupName] == 'DEF' then
+            clientMessage = 'ItemRandomOptionGroupDEF'
+        elseif propItem[propGroupName] == 'UTIL_WEAPON' then
+            clientMessage = 'ItemRandomOptionGroupUTIL'
+        elseif propItem[propGroupName] == 'UTIL_ARMOR' then
+            clientMessage = 'ItemRandomOptionGroupUTIL'
+        elseif propItem[propGroupName] == 'UTIL_SHILED' then
+            clientMessage = 'ItemRandomOptionGroupUTIL'
+        elseif propItem[propGroupName] == 'STAT' then
+            clientMessage = 'ItemRandomOptionGroupSTAT'
+        end
+        
+        if propItem[propValue] ~= 0 and propItem[propName] ~= "None" then
+            local opName = string.format("%s %s", ClMsg(clientMessage), ScpArgMsg(propItem[propName]));
+            local strInfo = ABILITY_DESC_NO_PLUS(opName, propItem[propValue], 0);
+
+            inner_yPos = ADD_ITEM_PROPERTY_TEXT(property_gbox, strInfo, 0, inner_yPos);
+            margin = true;
+        end
+    end
+
+    if init_yPos < inner_yPos then
+        inner_yPos = ADD_ITEM_PROPERTY_TEXT(property_gbox, " ", 0, inner_yPos);
+    end
+
+    return inner_yPos
+end
+
+-- 고정 아이커
+function DRAW_EQUIP_FIXED_ICHOR(invitem, inheritanceItem, property_gbox, inner_yPos)
+    local init_yPos = inner_yPos;
+
+    -- 옵션 아이템 선택
+    if inheritanceItem ~= nil then
+        invitem = inheritanceItem
+    end
+
+    -- 옵션 리스트 정리
+    local list = {};
+    local basicList = GET_EQUIP_TOOLTIP_PROP_LIST(invitem);
+    local basicTooltipPropList = StringSplit(invitem.BasicTooltipProp, ';');
+
+    for i = 1, #basicTooltipPropList do
+        local basicTooltipProp = basicTooltipPropList[i];
+        list = GET_CHECK_OVERLAP_EQUIPPROP_LIST(basicList, basicTooltipProp, list);
+    end
+
+    -- 랜덤옵션 리스트 정리
+	local randomOptionProp = {};
+	for i = 1, MAX_OPTION_EXTRACT_COUNT do
+		if invitem['RandomOption_'..i] ~= 'None' then
+			randomOptionProp[invitem['RandomOption_'..i]] = invitem['RandomOptionValue_'..i];
+		end
+    end
+
+    local class = GetClassByType("Item", invitem.ClassID);
+
+	-- 고정 아이커 이름
+	if inheritanceItem ~= nil then
+		inner_yPos = ADD_ITEM_PROPERTY_TEXT(property_gbox, '{@st42_yellow}{s15}'..inheritanceItem.Name, 0, inner_yPos);
+		inner_yPos = ADD_ITEM_PROPERTY_TEXT(property_gbox, ' ', 0, 8);
+	end
+
+    -- 고정 아이커 스탯
+    for i = 1, #list do
+        local propName = list[i];
+        local propValue = TryGetProp(class, propName, 0);
+        local needToShow = true;
+
+        for j = 1, #basicTooltipPropList do
+            if basicTooltipPropList[j] == propName then
+                needToShow = false;
+            end
+        end
+
+        if needToShow == true and propValue ~= 0 and randomOptionProp[propName] == nil then -- 랜덤 옵션이랑 겹치는 프로퍼티는 여기서 출력하지 않음
+            if invitem.GroupName == 'Weapon' then
+                if propName ~= "MINATK" and propName ~= 'MAXATK' then
+                    local strInfo = ABILITY_DESC_PLUS(ScpArgMsg(propName), propValue);					
+                    inner_yPos = ADD_ITEM_PROPERTY_TEXT(property_gbox, strInfo, 0, inner_yPos);
+                end
+            elseif  invitem.GroupName == 'Armor' then
+                if invitem.ClassType == 'Gloves' then
+                    if propName ~= "HR" then
+                        local strInfo = ABILITY_DESC_PLUS(ScpArgMsg(propName), propValue);
+                        inner_yPos = ADD_ITEM_PROPERTY_TEXT(property_gbox, strInfo, 0, inner_yPos);
+                    end
+                elseif invitem.ClassType == 'Boots' then
+                    if propName ~= "DR" then
+                        local strInfo = ABILITY_DESC_PLUS(ScpArgMsg(propName), propValue);
+                        inner_yPos = ADD_ITEM_PROPERTY_TEXT(property_gbox, strInfo, 0, inner_yPos);
+                    end
+                else
+                    if propName ~= "DEF" then
+                        local strInfo = ABILITY_DESC_PLUS(ScpArgMsg(propName), propValue);
+                        inner_yPos = ADD_ITEM_PROPERTY_TEXT(property_gbox, strInfo, 0, inner_yPos);
+                    end
+                end
+            else
+                local strInfo = ABILITY_DESC_PLUS(ScpArgMsg(propName), propValue);
+                inner_yPos = ADD_ITEM_PROPERTY_TEXT(property_gbox, strInfo, 0, inner_yPos);
+            end
+        end
+    end
+
+    -- 고정 아이커 옵션
+    if invitem.OptDesc ~= nil and invitem.OptDesc ~= 'None' and TryGetProp(invitem, 'StringArg', 'None') ~= 'Vibora' then
+		inner_yPos = ADD_ITEM_PROPERTY_TEXT(property_gbox, invitem.OptDesc, 0, inner_yPos);
+    end
+
+    -- 고정 아이커 옵션 (바이보라)
+    if invitem.OptDesc ~= nil and (invitem.OptDesc == 'None' or invitem.OptDesc == '') and TryGetProp(invitem, 'StringArg', 'None') == 'Vibora' then
+        local opt_desc = invitem.OptDesc
+        if opt_desc == 'None' then
+            opt_desc = ''
+        end
+        
+        for idx = 1, MAX_VIBORA_OPTION_COUNT do			
+            local additional_option = TryGetProp(invitem, 'AdditionalOption_' .. tostring(idx), 'None')			
+            if additional_option ~= 'None' then
+                local tooltip_str = 'tooltip_' .. additional_option					
+                local cls_message = GetClass('ClientMessage', tooltip_str)
+                if cls_message ~= nil then
+                    opt_desc = opt_desc .. ClMsg(tooltip_str)
+                end
+            end
+        end
+
+        inner_yPos = ADD_ITEM_PROPERTY_TEXT(property_gbox, opt_desc, 0, inner_yPos);
+    end
+
+    if init_yPos < inner_yPos then
+        inner_yPos = ADD_ITEM_PROPERTY_TEXT(property_gbox, " ", 0, inner_yPos);
+    end
+
+    return inner_yPos
 end
 
 -- 제작 시 넣은 메모
@@ -1126,7 +1212,7 @@ function DRAW_EQUIP_DESC(tooltipframe, invitem, yPos, mainframename)
 	if desc == "" then -- 일단 그릴 설명이 있는지 검사. 없으면 컨트롤 셋 자체를 안만듬
 		return yPos
 	end
-
+	
     local value = IS_TOGGLE_EQUIP_ITEM_TOOLTIP_DESC();
     if value == 1 then
         return yPos
@@ -1820,7 +1906,7 @@ function DRAW_CANNOT_REINFORCE(tooltipframe, invitem, yPos, mainframename)
 	if IS_VALID_LOOK_ITEM(invitem) == false then
 	    briquet_flag = 1;
 	end
-
+    
 	local itemClass = GetClassByType("Item", invitem.ClassID);
 	if (itemClass ~= nil and itemClass.Extractable == 'No') or IS_ENABLE_EXTRACT_OPTION(invitem) ~= true then
 		extract_flag = 1
@@ -1829,7 +1915,7 @@ function DRAW_CANNOT_REINFORCE(tooltipframe, invitem, yPos, mainframename)
     if TryGetProp(itemClass, "BriquetingAble", "No") == "No" or TryGetProp(itemClass, "StringArg", "None") == "WoodCarving" then
         briquet_Valid_flag = 1
     end
-    
+
     if invitem.MaxSocket > 100 then invitem.MaxSocket = 0 end
 	if invitem.MaxSocket == 0 then
 		socket_flag = 1
@@ -2092,7 +2178,7 @@ function DRAW_EQUIP_VIBORA_REFINE(tooltipframe, invitem, yPos, mainframename)
 end
 
 -- 여신 마신 연성
-function DRAW_EQUIP_GODDESS_REFINE(tooltipframe, invitem, yPos, mainframename)	
+function DRAW_EQUIP_GODDESS_REFINE(tooltipframe, invitem, yPos, mainframename)		
 	local is_goddess = false
 	local current_lv = 2
 	
@@ -2125,7 +2211,7 @@ function DRAW_EQUIP_GODDESS_REFINE(tooltipframe, invitem, yPos, mainframename)
 		end
 	end
 
-	if is_goddess == true then
+	if is_goddess == true then		
 		local gBox = GET_CHILD(tooltipframe, mainframename,'ui::CGroupBox')
 		gBox:RemoveChild('tooltip_refine');
 
@@ -2395,6 +2481,8 @@ end
 ----------------- 아크 아이템 tooltip -----------------
 
 -- 성물 tooltip --
+local relic_text_margin = 10
+
 local function _CREATE_RELIC_LV_OPTION(gBox, ypos, step, class_name, curlv)
 	local margin = 5
 
@@ -2408,7 +2496,7 @@ local function _CREATE_RELIC_LV_OPTION(gBox, ypos, step, class_name, curlv)
 		local msg = string.format('RelicOptionLongText%s', type)
 		local strInfo = ScpArgMsg(msg, 'name', ClMsg(name), 'total', total, 'interval', interval, 'value', value)
 
-		local infoText = gBox:CreateControl('richtext', 'infoText'..step, 15, ypos, gBox:GetWidth(), 30)
+		local infoText = gBox:CreateControl('richtext', 'infoText'..step, relic_text_margin, ypos, gBox:GetWidth() - relic_text_margin, 30)
 		infoText:SetTextFixWidth(1)
 		infoText:SetText(strInfo)
 		infoText:SetFontName('brown_16')
@@ -2419,7 +2507,7 @@ local function _CREATE_RELIC_LV_OPTION(gBox, ypos, step, class_name, curlv)
 		local msg2 = string.format('RelicOptionEnableEquipGemLevel', type)
 		local strInfo2 = ScpArgMsg(msg2, 'value', value2)
 		
-		local infoText2 = gBox:CreateControl('richtext', 'infoText2'..step, 15, ypos, gBox:GetWidth(), 40)
+		local infoText2 = gBox:CreateControl('richtext', 'infoText2'..step, relic_text_margin, ypos, gBox:GetWidth() - relic_text_margin, 40)
 		infoText2:SetTextFixWidth(1)
 		infoText2:SetText(strInfo2)
 		infoText2:SetFontName('brown_16')

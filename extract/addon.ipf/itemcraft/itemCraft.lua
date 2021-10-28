@@ -260,7 +260,7 @@ function CRAFT_UPDATE_PAGE(page, cls, haveMaterial, item)
 	local skill = GetSkill(pc, "Alchemist_Tincturing")
 	local Level = 0;
 	if nil ~= skill and g_itemCraftFrameName ~= "itemcraft" then
-		Level= skill.Level;
+		Level = math.min(skill.Level, 15);
 		local abil = session.GetAbilityByName(cls.ClassName);
 		if cls.IDSpc == 'Skill_Ability' and nil ~= abil then
 			local abilObj =  GetIES(abil:GetObject());

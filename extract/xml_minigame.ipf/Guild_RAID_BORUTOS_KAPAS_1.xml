@@ -1152,6 +1152,10 @@
                             <ToolScp Scp="GAME_ST_EVT_EXEC_STAGE_CLEAR" Client="NO" UseSleep="NO">
                                 <Str Str="Gen_Boss"/>
                             </ToolScp>
+                            <ToolScp Scp="MGAME_EVT_SCP_TO_MON" Client="NO" UseSleep="NO">
+                                <MGameObj List="Initialize/0"/>
+                                <Str Str="GM_BK_NPC_STATE_GUILD_PROP_RESET"/>
+                            </ToolScp>
                             <ToolScp Scp="GAME_ST_EVT_EXEC_STAGE_START" Client="NO" UseSleep="NO">
                                 <Str Str="FailEnd"/>
                             </ToolScp>
@@ -1203,6 +1207,10 @@
                             <ToolScp Scp="MGAME_GUILD_MINIGAME_EXIT" Client="NO" UseSleep="NO"/>
                             <ToolScp Scp="GAME_ST_EVT_EXEC_STAGE_DISABLE" Client="NO" UseSleep="NO">
                                 <Str Str="TimeAttackMode"/>
+                            </ToolScp>
+                            <ToolScp Scp="MGAME_EVT_SCP_TO_MON" Client="NO" UseSleep="NO">
+                                <MGameObj List="Initialize/0"/>
+                                <Str Str="GM_BK_NPC_STATE_GUILD_PROP_RESET"/>
                             </ToolScp>
                             <ToolScp Scp="GAME_ST_EVT_FAIL" Client="NO" UseSleep="NO">
                                 <Str Str="모든 플레이어가 전투 불능 상태가 되었습니다."/>

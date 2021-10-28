@@ -377,3 +377,76 @@ function ANCINET_GRADE_RANK_CALC(starRank, grade)
     
     return rankValue, gradeValue
 end
+
+function GET_ANCIENT_CARD_SLOT_MAX(pc)
+    local value = tonumber(ANCIENT_CARD_SLOT_MAX)
+
+    local acc = nil
+    if IsServerSection() == 1 then
+        acc = GetAccountObj(pc)
+    else
+        acc = GetMyAccountObj()
+    end
+
+    local extra_value = 0
+    if acc ~= nil then
+        local extend_cnt = TryGetProp(acc, 'ANCIENT_SLOT_EXTEND_COUNT', 0)
+        local extend_cls = GetClass('ancient_slot_extend', tostring(extend_cnt))
+        if extend_cls ~= nil then
+            local extend_slot = TryGetProp(extend_cls, 'ExtendSlot', 0)
+            extra_value = extra_value + extend_slot
+        end
+    end
+
+    value = value + extra_value
+
+    return value
+end
+
+function GET_ANCIENT_SLOT_EXTEND_COST(pc)
+    local value = nil
+
+    local acc = nil
+    if IsServerSection() == 1 then
+        acc = GetAccountObj(pc)
+    else
+        acc = GetMyAccountObj()
+    end
+
+    if acc ~= nil then
+        local extend_cnt = TryGetProp(acc, 'ANCIENT_SLOT_EXTEND_COUNT', 0)
+        local extend_cls = GetClass('ancient_slot_extend', tostring(extend_cnt + 1))
+        if extend_cls ~= nil then
+            value = TryGetProp(extend_cls, 'ExtendCost', 5000000)
+        end
+    end
+
+    return value
+end
+
+function GET_ANCIENT_SLOT_EXTEND_COUNT(pc)
+    local value = 0
+
+    local acc = nil
+    if IsServerSection() == 1 then
+        acc = GetAccountObj(pc)
+    else
+        acc = GetMyAccountObj()
+    end
+
+    if acc ~= nil then
+        local extend_cnt = TryGetProp(acc, 'ANCIENT_SLOT_EXTEND_COUNT', 0)
+        local cur_cls = GetClass('ancient_slot_extend', tostring(extend_cnt))
+        local next_cls = GetClass('ancient_slot_extend', tostring(extend_cnt + 1))
+        if cur_cls ~= nil and next_cls ~= nil then
+            local cur_value = TryGetProp(cur_cls, 'ExtendSlot', 10)
+            local next_value = TryGetProp(next_cls, 'ExtendSlot', 10)
+            value = next_value - cur_value
+        elseif extend_cnt == 0 and next_cls ~= nil then
+            local next_value = TryGetProp(next_cls, 'ExtendSlot', 10)
+            value = next_value
+        end
+    end
+
+    return value
+end

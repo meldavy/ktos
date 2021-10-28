@@ -128,6 +128,7 @@ function ON_RESTQUICKSLOT_CLOSE(frame, msg, argStr, argNum)
 	if flutFrame:IsVisible() == 1 then
 		flutFrame:ShowWindow(0);
 	end
+	
 	frame:ShowWindow(0);
 
 	if IsJoyStickMode() == 0 then

@@ -4474,6 +4474,57 @@
         <Key Name="EVENT_2101_SUPPLY_Shop4_3" Value="108059"/>
         <Key Name="EVENT_2101_SUPPLY_Shop4_4" Value="108060"/>
         <Key Name="EVENT_2101_SUPPLY_Shop3_13" Value="108062"/>
+        <Key Name="ANCIENT_SLOT_EXTEND_COUNT" Value="108090"/>
+        <Key Name="AchieveReward_Ancient_1" Value="108094"/>
+        <Key Name="AchieveReward_Ancient_10" Value="108103"/>
+        <Key Name="AchieveReward_Ancient_11" Value="108091"/>
+        <Key Name="AchieveReward_Ancient_12" Value="108108"/>
+        <Key Name="AchieveReward_Ancient_2" Value="108113"/>
+        <Key Name="AchieveReward_Ancient_3" Value="108115"/>
+        <Key Name="AchieveReward_Ancient_4" Value="108104"/>
+        <Key Name="AchieveReward_Ancient_5" Value="108098"/>
+        <Key Name="AchieveReward_Ancient_6" Value="108102"/>
+        <Key Name="AchieveReward_Ancient_7" Value="108095"/>
+        <Key Name="AchieveReward_Ancient_8" Value="108096"/>
+        <Key Name="AchieveReward_Ancient_9" Value="108114"/>
+        <Key Name="ContentsTotalShop_2102_1" Value="108099"/>
+        <Key Name="ContentsTotalShop_2102_2" Value="108107"/>
+        <Key Name="ContentsTotalShop_2102_3" Value="108100"/>
+        <Key Name="ContentsTotalShop_2102_4" Value="108093"/>
+        <Key Name="ContentsTotalShop_2102_5" Value="108101"/>
+        <Key Name="ContentsTotalShop_2102_6" Value="108089"/>
+        <Key Name="ContentsTotalShop_2102_7" Value="108092"/>
+        <Key Name="EVENT_2102_REPAIRKIT_COIN_COUNT" Value="108074"/>
+        <Key Name="EVENT_2102_REPAIR_SHOP_1" Value="108070"/>
+        <Key Name="EVENT_2102_REPAIR_SHOP_10" Value="108068"/>
+        <Key Name="EVENT_2102_REPAIR_SHOP_11" Value="108067"/>
+        <Key Name="EVENT_2102_REPAIR_SHOP_12" Value="108069"/>
+        <Key Name="EVENT_2102_REPAIR_SHOP_13" Value="108086"/>
+        <Key Name="EVENT_2102_REPAIR_SHOP_14" Value="108081"/>
+        <Key Name="EVENT_2102_REPAIR_SHOP_15" Value="108077"/>
+        <Key Name="EVENT_2102_REPAIR_SHOP_16" Value="108071"/>
+        <Key Name="EVENT_2102_REPAIR_SHOP_17" Value="108080"/>
+        <Key Name="EVENT_2102_REPAIR_SHOP_18" Value="108082"/>
+        <Key Name="EVENT_2102_REPAIR_SHOP_19" Value="108083"/>
+        <Key Name="EVENT_2102_REPAIR_SHOP_2" Value="108078"/>
+        <Key Name="EVENT_2102_REPAIR_SHOP_20" Value="108065"/>
+        <Key Name="EVENT_2102_REPAIR_SHOP_21" Value="108064"/>
+        <Key Name="EVENT_2102_REPAIR_SHOP_22" Value="108063"/>
+        <Key Name="EVENT_2102_REPAIR_SHOP_23" Value="108076"/>
+        <Key Name="EVENT_2102_REPAIR_SHOP_3" Value="108072"/>
+        <Key Name="EVENT_2102_REPAIR_SHOP_4" Value="108075"/>
+        <Key Name="EVENT_2102_REPAIR_SHOP_5" Value="108073"/>
+        <Key Name="EVENT_2102_REPAIR_SHOP_6" Value="108079"/>
+        <Key Name="EVENT_2102_REPAIR_SHOP_7" Value="108085"/>
+        <Key Name="EVENT_2102_REPAIR_SHOP_8" Value="108066"/>
+        <Key Name="EVENT_2102_REPAIR_SHOP_9" Value="108084"/>
+        <Key Name="dress_toswinter_1" Value="108109"/>
+        <Key Name="dress_toswinter_2" Value="108111"/>
+        <Key Name="dress_toswinter_3" Value="108112"/>
+        <Key Name="dress_toswinter_4" Value="108106"/>
+        <Key Name="dress_toswinter_5" Value="108105"/>
+        <Key Name="dress_toswinter_6" Value="108110"/>
+        <Key Name="toswinter_thema" Value="108097"/>
     </KeyIDSpc>
     <KeyIDSpc Name="PCEtc">
         <Key Name="Kill_boss_Clymen_Q2" Value="7788"/>
@@ -14197,6 +14248,7 @@
         <Key Name="GuildEvent_Giltine_Count" Value="107623"/>
         <Key Name="GuildEvent_Giltine_Reset" Value="107620"/>
         <Key Name="GuildEvent_Giltine_Reset_Hour" Value="107622"/>
+        <Key Name="GUILD_EVENT_NPC_STARTED" Value="108088"/>
     </KeyIDSpc>
     <KeyIDSpc Name="ZoneObject">
         <Key Name="JaqBoxLock" Value="122"/>
@@ -21853,6 +21905,7 @@
         <Key Name="MG_Last_MYTHIC_STARTOWER_MINI_AUTO" Value="107706"/>
         <Key Name="MG_Last_MYTHIC_STARTOWER_MINI_AUTO_HARD" Value="107704"/>
         <Key Name="GIVEHOLYTHING_Q_1" Value="107722"/>
+        <Key Name="EVENT_2102_STATUE_BUFF_COUNT" Value="108087"/>
     </KeyIDSpc>
     <KeyIDSpc Name="Monster">
         <Key Name="MaxHate" Value="6671"/>

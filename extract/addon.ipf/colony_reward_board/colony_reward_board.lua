@@ -7,6 +7,7 @@ end
 
 function COLONY_REWARD_BOARD_REQINFO()
 	session.colonyReward.LoadRewardItemDate();
+	session.colonytax.ReqTaxChequeList();
     session.colonyReward.ReqTaxInquireList();
 end
 
