@@ -18,7 +18,7 @@ function ON_DELETE_PET(frame, msg, guid)
 	local barrackName = ui.GetFrame("barrack_charlist");
 	local pccount = barrackName:GetChild("pccount");
 	local buySlot = session.loginInfo.GetBuySlotCount();
-	local myCharCont = myaccount:GetPCCount() + myaccount:GetPetCount();
+	local myCharCont = myaccount:GetPCCount();
 	local barrackCls = GetClass("BarrackMap", myaccount:GetThemaName());
 	pccount:SetTextByKey("curpc", tostring(myCharCont));
 	pccount:SetTextByKey("maxpc", tostring(barrackCls.BaseSlot + buySlot));
@@ -56,20 +56,23 @@ function ON_BARRACK_CREATE_PET_BTN(frame)
 	
 end
 
-function UPDATE_PET_LIST()
+function UPDATE_PET_LIST(barrackMode)
 	local frame = ui.GetFrame("barrack_petlist");
 	local bg = frame:GetChild("bg");
 	bg:RemoveAllChild();	
 
 	local acc = session.barrack.GetMyAccount();
 	local petVec = acc:GetPetVec();
-
-	if petVec:size() == 0 then
-		frame:ShowWindow(0);
-		return;
+	if barrackMode == "Visit" then
+		acc = session.barrack.GetCurrentAccount();
+		petVec = acc:GetPetVec();
+		if petVec:size() == 0 then
+			frame:ShowWindow(0);
+			return;
+		end
+		frame:ShowWindow(1);
 	end
-
-	frame:ShowWindow(1);
+	
 	for i = 0 , petVec:size() -  1 do
 		local pet = petVec:at(i);
 		local pcID = tonumber(pet:GetPCID())
@@ -83,7 +86,4 @@ function UPDATE_PET_LIST()
 	end
 
 	GBOX_AUTO_ALIGN(bg, 30, 10, 10, true, false);
-	
-
 end
-

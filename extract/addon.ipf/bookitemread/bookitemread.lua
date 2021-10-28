@@ -24,7 +24,7 @@ end
 
 function BOOKITEM_UPDATE(frame)
 	
-	if imcinput.IsHotKeyDown("Select") == true or imcinput.IsHotKeyDown("Jump") == true then
+	if imcinput.HotKey.IsDown("Select") == true or imcinput.HotKey.IsDown("Jump") == true then
 		NEXT_BOOK_PAGE(frame);
 	end
 
@@ -34,13 +34,13 @@ end
 function BOOKITEM_UI_CLOSE()
 	BOOKITEM_UI_INIT();
 
-	control.ResetControl();
+	control.EnableControl(1, 0, 'BOOKITEM_READ');	
 end
 
 function ON_READ_BOOK_ITEM(frame, msg, argStr, argNum)
 	BOOKITEM_UI_CLOSE()
 	g_bookClassName = argStr;
-	control.EnableControl(0,1);
+	control.EnableControl(0, 1, 'BOOKITEM_READ');
 	VIEW_BOOKITEM_PAGE(frame, g_bookPage);
 	frame:ShowWindow(1);
 end
@@ -205,5 +205,5 @@ function COLSE_BOOK_ITEM(frame)
 	textObj2:ClearText();
 	frame:ShowWindow(0);
 
-	control.EnableControl(1);
+	control.EnableControl(1, 0, 'BOOKITEM_READ');
 end
