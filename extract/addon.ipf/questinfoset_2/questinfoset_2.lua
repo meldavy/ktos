@@ -1361,6 +1361,11 @@ function QUESTION_QUEST_WARP(frame, ctrl, argStr, questID)
 		return;
 	end
 	
+	if session.IsAutoChallengeMap() == true then
+		ui.SysMsg(ClMsg('WarpQuestDisabled'));
+		return;
+	end
+
 	local questIES = GetClassByType("QuestProgressCheck", questID);
 	local targetMapName = GET_QUEST_LOCATION(questIES)
 	local targetMapCls = GetClassByNameFromList(cls, targetMapName);

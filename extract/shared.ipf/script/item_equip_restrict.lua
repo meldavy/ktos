@@ -1,6 +1,6 @@
 -- item_equip_restrict.lua (콘텐츠 입장 제한 확인 로직)
 
-local function is_scout_class(pc)
+function is_scout_class(pc)
 	if IsServerSection() ~= 1 then
 		pc = GetMyPCObject()
 	end
@@ -45,7 +45,7 @@ function CHECK_SINGULARITY_AUTOMATCHING_FOR_EP13(pc)
 			item_lh = GetEquipItem(pc, 'RH')
 		end
 		-- 장비440레벨, 레전드등급, 고정아이커체크, 1레벨 바이보라, 8초월
-		local ret = CHECK_WEAPON_ITEM(pc, item_lh, 440, 5, true, 430, {{"ALL", 380}}, 8, 10)	
+		local ret = CHECK_WEAPON_ITEM(pc, item_lh, 440, 5, true, 380, {{"ALL", 380}}, 8, 10)	
 		if ret == false then
 			SendSysMsg(pc, 'RequireWeaponItemLowGrade');
 			return false

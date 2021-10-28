@@ -1722,6 +1722,11 @@ function TRY_TO_USE_WARP_ITEM(invitem, itemobj)
 				end
 			end
 		end
+
+		if session.IsAutoChallengeMap() == true then
+			ui.SysMsg(ClMsg('ThisLocalUseNot'));
+			return 0;
+		end
 		
 		if true == invitem.isLockState then
 			ui.SysMsg(ClMsg("MaterialItemIsLock"));

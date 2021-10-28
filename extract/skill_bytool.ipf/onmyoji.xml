@@ -876,7 +876,7 @@ return value"/>
                     <Num Num="0"/>
                 </Scp>
                 <Scp Client="YES" Scp="C_EFFECT" Time="0" UseSleep="NO">
-                    <Str_Arg Arg="1" Str="E_WaterShikigami"/>
+                    <Str_Arg Arg="1" Str="E_whiteShikigami"/>
                     <Str Str="None"/>
                     <Num Num="0"/>
                 </Scp>

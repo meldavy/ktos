@@ -329,11 +329,6 @@
                 <Frame Type="FAN" Time="9999" HitCount="1" TermMin="0" TermMax="0" PosType="0" Dist="0" RandDist="0" RandomPerHit="0" Angle="0" AniTime="10199" RotAngle="0" ForceATK="0" ScriptIndex="0" ScriptName="" SkillType="0"/>
             </HitList>
             <EtcList>
-                <Scp Scp="MONSKL_C_PLAY_ANIM" Client="YES" UseSleep="NO" Time="0">
-                    <Str Str="SKL_FATALROULETTE_SHOT"/>
-                    <Num Num="1"/>
-                    <Num Num="1"/>
-                </Scp>
                 <Scp Scp="SKL_BUFF_REMOVE" Client="NO" UseSleep="NO" Time="0">
                     <Str Str="Skill_SuperArmor_Buff"/>
                 </Scp>
