@@ -54,7 +54,7 @@
 					<Num FuncTxt="return 5000 + obj.Level * 2000;" Num="10000" UseFunc="1" />
 					<Str_Arg Arg="1" Str="None" />
 				</Scp>
-				<Scp Client="NO" Scp="SKL_RUN_SCRIPT" Time="1250" UseSleep="NO">
+                <Scp Client="NO" Scp="SKL_RUN_SCRIPT" Time="850" UseSleep="NO">
 					<Str Str="SCR_INFERNAL_SHADOW_EFFECT" />
 				</Scp>
 			</EtcList>
