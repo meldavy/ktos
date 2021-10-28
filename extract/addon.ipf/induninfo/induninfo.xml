@@ -182,7 +182,7 @@
 		<button name="boruta_reward_btn" parent="boruta_info_gb" rect="0 0 163 48" margin="0 0 69 10" layout_gravity="right bottom" format="{s16}{ol}{#FFFFFF}보상 수령" LBtnUpScp="BORUTA_RANKING_REWARD_CLICK" MouseOffAnim="btn_mouseoff" MouseOnAnim="btn_mouseover" skin="test_red_button" oversound="button_over" texttooltip="길드 마스터만 이용 가능합니다.{nl}수령한 보상은 길드 보관함으로 지급됩니다."/>
 		<!-- field boss ranking -->
 		<groupbox name="field_boss_box" rect="0 0 1070 500" margin="0 100 0 0" layout_gravity="center top" draw="false"/>
-		<controlset name="field_boss_ranking_control" parent="field_boss_box" rect="0 0 552 500" margin="0 0 0 0" type="season_raid_ranking_info" layout_gravity="left top"/>
+		<controlset name="field_boss_ranking_control" parent="field_boss_box" rect="0 0 530 500" margin="0 0 0 0" type="season_raid_ranking_info" layout_gravity="left top"/>
 		<controlset name="field_boss_boss_control" parent="field_boss_box" rect="0 0 500 200" margin="0 0 30 0" type="season_raid_boss_info" layout_gravity="right top"/>
 		<controlset name="field_boss_my_rank_control" parent="field_boss_box" rect="0 0 500 310" margin="0 100 30 0" type="season_raid_my_info" layout_gravity="right top"/>
 		<groupbox name="field_boss_util_box" rect="0 0 500 100" margin="0 390 0 0" parent="field_boss_box" layout_gravity="right top" draw="false"/>

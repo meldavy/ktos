@@ -5593,7 +5593,7 @@
 			<richtext name="rankTitle" parent="rankboxTitle" rect="0 0 30 40" margin="30 0 0 0" layout_gravity="left center" caption="{@st66b}{s16}순위"/>
 			<richtext name="rankDamage" parent="rankboxTitle" rect="0 0 30 40" margin="170 0 0 0" layout_gravity="left center" caption="{@st66b}{s16}누적 대미지"/>
 			<richtext name="rankTime" parent="rankboxTitle" rect="0 0 30 40" margin="0 0 30 0" layout_gravity="right center" caption="{@st66b}{s16}클리어 시간"/>
-			<groupbox name="rankListBox" parent="rankbox" rect="0 0 487 393" margin="0 36 0 0" layout_gravity="left top" draw="false" hittest="true"/>
+			<groupbox name="rankListBox" parent="rankbox" rect="0 0 470 393" margin="0 36 0 0" layout_gravity="left top" draw="false" hittest="true"/>
 			<tab name="season_tab" parent="rank_gb" rect="0 0 61 420" margin="0 58 0 0" itemspc="18" layout_gravity="left top" selectionfont="white_16_ol" vertical="true" LBtnDownScp="FIELD_BOSS_DATA_REQUEST_DAY" MouseOffAnim="btn_mouseoff" MouseOnAnim="btn_mouseover" clicksound="button_click_7" fixwidth="true" oversound="button_cursor_over_2" skin="tab2"/>
 			<tab name="sub_tab" parent="rank_gb" rect="0 0 470 50" margin="62 6 0 0" layout_gravity="left top" selectionfont="white_18_ol" LBtnDownScp="FIELD_BOSS_DATA_REQUEST_HOUR" MouseOffAnim="btn_mouseoff" MouseOnAnim="btn_mouseover" clicksound="button_click_3" fixwidth="true" itemspc="2" oversound="button_cursor_over_2" skin="tab2"/>
 		</controls>

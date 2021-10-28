@@ -2816,6 +2816,11 @@ function FIELD_BOSS_RANKING_LIST_UPDATE(frame)
 	local rankListBox = GET_CHILD_RECURSIVELY(ctrlSet, "rankListBox", "ui::CGroupBox");
 	rankListBox:RemoveAllChild()
 	for i = 1,totalcnt do
+		local score = session.fieldboss.GetRankInfoScore(time,i);
+		if score == "None" then
+			break
+		end
+
 		local ctrlSet = rankListBox:CreateControlSet("content_status_board_rank_attribute_type2", "CTRLSET_" .. i,  ui.LEFT, ui.TOP, 0, (i - 1) * 73, 0, 0);
 		ctrlSet:Resize(Width, ctrlSet:GetHeight());
 		local attr_bg = GET_CHILD(ctrlSet, "attr_bg");
@@ -2834,10 +2839,6 @@ function FIELD_BOSS_RANKING_LIST_UPDATE(frame)
 			attr_rank_text:ShowWindow(1);
 		end
 
-		local score = session.fieldboss.GetRankInfoScore(time,i);
-		if score == "None" then
-			break
-		end
 		local scoreArgList = StringSplit(score,'/')
 
 		local attr_damage_text = GET_CHILD(ctrlSet, "attr_damage_text", "ui::CRichText");

@@ -3528,6 +3528,7 @@
         <Key Name="HadVisited_11217" Value="106533"/>
         <Key Name="HadVisited_11218" Value="106534"/>
         <Key Name="HadVisited_11219" Value="106536"/>
+        <Key Name="InDunCountType_809" Value="106550"/>
     </KeyIDSpc>
     <KeyIDSpc Name="PCEtc">
         <Key Name="Kill_boss_Clymen_Q2" Value="7788"/>
@@ -11910,6 +11911,7 @@
         <Key Name="Kill_Field_pattern_monster" Value="106496"/>
         <Key Name="Kill_field_Hidden_monster" Value="106506"/>
         <Key Name="Kill_field_brest_monster" Value="106503"/>
+        <Key Name="InDunCountType_809" Value="106551"/>
     </KeyIDSpc>
     <KeyIDSpc Name="GuildMember">
         <Key Name="Name" Value="9011"/>
