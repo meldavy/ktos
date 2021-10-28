@@ -386,16 +386,16 @@ function SCR_GET_CON(self)
     if enchantCount > 0 then
         local enchantStatString = "MNA";
         
-        local enchantByJob = TryGetProp(self, enchantStatString.."_JOB");
-        local enchantByStat = TryGetProp(self, enchantStatString.."_STAT");
-        local enchantByBonus = TryGetProp(self, enchantStatString.."_Bonus");
-        local enchantByTemp = GetExProp(self, enchantStatString.."_TEMP");
+        --local enchantByJob = TryGetProp(self, enchantStatString.."_JOB");
+        --local enchantByBonus = TryGetProp(self, enchantStatString.."_Bonus");
+        --local enchantByTemp = GetExProp(self, enchantStatString.."_TEMP");
+        local enchantByStat = TryGetProp(self, enchantStatString);
         local enchantRewardProp = GET_REWARD_PROPERTY(self, statString);
-        
-        byEnchant = ((enchantByJob + enchantByStat + enchantByBonus + enchantByTemp + enchantRewardProp) / 20) * enchantCount;
+
+        byEnchant = ((enchantByStat + enchantRewardProp) / 20) * enchantCount;
     end
     
-    local value = defaultStat + byJob + byStat + byBonus + byAdd + byTemp + rewardProperty;
+    local value = defaultStat + byJob + byStat + byBonus + byAdd + byTemp + byEnchant + rewardProperty;
     
     if value < 1 then
         value = 1;

@@ -122,7 +122,7 @@ function GET_EVENT_PROGRESS_CHECK_EVENT_STATE(type)
     local table = 
     {
         [1] = {"cur", "cur", "cur", "pre", "pre"},
-        [2] = {"cur", "cur", "cur", "cur", "cur"},
+        [2] = {"cur", "cur", "cur", "cur", "end"},
         [3] = {"cur", "cur", "end", "cur", "cur"},
         [5] = {"cur", "cur", "cur", "cur", "cur"},
     }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by imc (imc) -->
+<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by imc (imc) -->
 <!-- edited with XMLSpy v2008 sp1 http://www.altova.com by MintPC Mi -->
 <skinset name="Base">
 	<imagelist category="item_tooltip_icon">
@@ -793,6 +793,12 @@
 		<image name="icon_item_ep12musical03_2_f" file="\icon\equip\icon_item_ep12musical03_2_f.png" imgrect="0 0 256 256"/>
 		<image name="icon_item_ep12musical02_2_m" file="\icon\equip\icon_item_ep12musical02_2_m.png" imgrect="0 0 256 256"/>
 		<image name="icon_item_ep12musical02_2_f" file="\icon\equip\icon_item_ep12musical02_2_f.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_kindergartener_skyblue_f" file="\icon\equip\icon_item_kindergartener_skyblue_f.png" imgrect="0 0 256 256" CMM_Caption="2020_할로윈 코스튬 색배리 6종"/>
+		<image name="icon_item_kindergartener_skyblue_m" file="\icon\equip\icon_item_kindergartener_skyblue_m.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_sweat_suit_white_f" file="\icon\equip\icon_item_sweat_suit_white_f.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_sweat_suit_white_m" file="\icon\equip\icon_item_sweat_suit_white_m.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_blackwolf_f" file="\icon\equip\icon_item_blackwolf_f.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_blackwolf_m" file="\icon\equip\icon_item_blackwolf_m.png" imgrect="0 0 256 256"/>
 	</imagelist>
 	<imagelist category="256_costume_icons">
 		<image name="icon_item_Alchemist_f" file="\icon\equip\Alchemist_f_icon.png" imgrect="0 0 256 256" CMM_Caption="알케미스트"/>
@@ -6095,6 +6101,10 @@
 		<image name="icon_item_Sweet_Zongzi" file="\icon\item\icon_item_Sweet_Zongzi.png" imgrect="0 0 128 128" CMM_Caption="2020_단쫑즈"/>
 		<image name="icon_item_Salty_Zongzi" file="\icon\item\icon_item_Salty_Zongzi.png" imgrect="0 0 128 128" CMM_Caption="2020_짠쫑즈"/>
 		<image name="icon_item_expertmode_enter_recipe" file="\icon\item\icon_item_expertmode_enter_recipe.png" imgrect="0 0 256 256" CMM_Caption="분열 특이점 입장권 제작서"/>
+		<image name="icon_item_VelJamu" file="\icon\item\icon_item_VelJamu.png" imgrect="0 0 256 256" CMM_Caption="벨자무"/>
+		<image name="icon_item_KruvinaVeljamu" file="\icon\item\icon_item_KruvinaVeljamu.png" imgrect="0 0 256 256" CMM_Caption="크루비나가 섞인 벨자무"/>
+		<image name="icon_item_Unknown_Triplehelix" file="\icon\item\icon_item_Unknown_Triplehelix.png" imgrect="0 0 256 256" CMM_Caption="머티니스"/>
+		<image name="icon_item_Kruvina_fragment" file="\icon\item\icon_item_Kruvina_fragment.png" imgrect="0 0 256 256" CMM_Caption="크루비나 파편"/>
 		<image name="icon_item_Master_Vote_BOX" file="\icon\item\icon_item_Master_Vote_BOX.png" imgrect="0 0 128 128" CMM_Caption="[당신의 마스터] 투표 보상"/>
 		<image name="icon_item_Event_costume_2008" file="\icon\item\icon_item_Event_costume_2008.png" imgrect="0 0 128 128" CMM_Caption="[당신의 마스터] 수박 코스튬 상자"/>
 		<image name="icon_item_TelHarsha_neck" file="\icon\item\icon_item_TelHarsha_neck.png" imgrect="0 0 128 128" CMM_Caption="헬하르샤 목걸이"/>
@@ -6127,6 +6137,14 @@
 		<image name="icon_item_Roulette_costumebox" file="\icon\item\icon_item_Roulette_costumebox.png" imgrect="0 0 256 256" CMM_Caption="룰렛 코스튬 상자"/>
 		<image name="icon_item_Roulette_effectcostumebox" file="\icon\item\icon_item_Roulette_effectcostumebox.png" imgrect="0 0 256 256" CMM_Caption="룰렛 이펙트 코스튬 상자"/>
 		<image name="icon_item_viborabox_2" file="\icon\item\icon_item_viborabox_2.png" imgrect="0 0 256 256" CMM_Caption="바이보라 랜덤 상자"/>
+		<image name="icon_item_2010_cosplay_box_f" file="\icon\item\icon_item_2010_cosplay_box_f.png" imgrect="0 0 128 128" CMM_Caption="2020_코스프레 랜덤박스"/>
+		<image name="icon_item_2010_cosplay_box_m" file="\icon\item\icon_item_2010_cosplay_box_m.png" imgrect="0 0 128 128"/>
+		<image name="icon_item_2010_pumpkin_candy" file="\icon\item\icon_item_2010_pumpkin_candy.png" imgrect="0 0 128 128" CMM_Caption="2020_할로윈 특제 캔디"/>
+		<image name="icon_item_costume_trade_ticket" file="\icon\item\icon_item_costume_trade_ticket.png" imgrect="0 0 128 128" CMM_Caption="2020_할로윈 코스튬 영구제 교환권"/>
+		<image name="icon_item_Rangda_Interpretations" file="\icon\item\icon_item_Rangda_Interpretations.png" imgrect="0 0 128 128" CMM_Caption="비석의 해석문"/>
+		<image name="icon_item_ragaanosis_blood" file="\icon\item\icon_item_ragaanosis_blood.png" imgrect="0 0 128 128" CMM_Caption="레거노시스 혈액"/>
+		<image name="icon_item_essence_of_curse" file="\icon\item\icon_item_essence_of_curse.png" imgrect="0 0 128 128" CMM_Caption="저주 시약병"/>
+		<image name="icon_item_rangdadagger" file="\icon\item\icon_item_rangdadagger.png" imgrect="0 0 128 128" CMM_Caption="랑다 단검"/>
 	</imagelist>
 	<imagelist category="housing">
 		<image name="icon_item_h_bigplant_set_01_green" file="\icon\housing\icon_item_h_bigplant_set_01_green.png" imgrect="0 0 256 256" CMM_Caption="[길드 하우징] 화단_01(초록색)"/>
@@ -7792,6 +7810,10 @@
 		<image name="icon_item_thanksgiving_sparrow" file="\icon\payment\icon_item_thanksgiving_sparrow.png" imgrect="0 0 256 256" CMM_Caption="달맞이 참새 알"/>
 		<image name="icon_item_m_costume_ticket" file="\icon\payment\icon_item_m_costume_ticket.png" imgrect="0 0 256 256" CMM_Caption="코스튬 등록권_남"/>
 		<image name="icon_item_f_costume_ticket" file="\icon\payment\icon_item_f_costume_ticket.png" imgrect="0 0 256 256" CMM_Caption="코스튬 등록권_여"/>
+		<image name="icon_item_Sklgem_ExtractionProtect" file="\icon\payment\icon_item_Sklgem_ExtractionProtect.png" imgrect="0 0 256 256" CMM_Caption="스킬 젬 추출 보호권"/>
+		<image name="icon_item_allbox_ep12musical" file="\icon\payment\icon_item_allbox_ep12musical.png" imgrect="0 0 256 256" CMM_Caption="커튼콜 ALL패키지"/>
+		<image name="icon_item_actone_ep12musical" file="\icon\payment\icon_item_actone_ep12musical.png" imgrect="0 0 256 256" CMM_Caption="커튼콜 Act One 패키지"/>
+		<image name="icon_item_acttwo_ep12musical" file="\icon\payment\icon_item_acttwo_ep12musical.png" imgrect="0 0 256 256" CMM_Caption="커튼콜 Act Two 패키지"/>
 	</imagelist>
 	<imagelist category="seal">
 		<image name="icon_seal_yellow_cc_A1" file="\icon\seal\seal_yellow_cc_A1.tga" imgrect="0 0 80 80"/>
@@ -7949,5 +7971,18 @@
 		<image name="icon_item_small_bag_white" file="\icon\item_sloticon.tga" imgrect="88 440 42 42" CMM_Caption="작은 가방 흰색"/>
 		<image name="icon_item_bubearrow" file="\icon\item_sloticon.tga" imgrect="396 440 42 42" CMM_Caption="부베 화살"/>
 		<image name="icon_item_bubebowstring" file="\icon\item_sloticon.tga" imgrect="440 440 42 42" CMM_Caption="부베 활시위"/>
+	</imagelist>
+	<imagelist category="questitemshow">
+		<image name="icon_item_ragaanosis_blood_8080" file="\icon\questitemshow\icon_item_ragaanosis_blood_8080.png" imgrect="0 0 80 80" CMM_Caption="레거노시스 혈액"/>
+		<image name="icon_item_essence_of_curse_8080" file="\icon\questitemshow\icon_item_essence_of_curse_8080.png" imgrect="0 0 80 80" CMM_Caption="저주 시약병"/>
+		<image name="icon_item_VelJamu_8080" file="\icon\questitemshow\icon_item_VelJamu_8080.png" imgrect="0 0 80 80" CMM_Caption="벨자무"/>
+		<image name="icon_item_KruvinaVeljamu_8080" file="\icon\questitemshow\icon_item_KruvinaVeljamu_8080.png" imgrect="0 0 80 80" CMM_Caption="크루비나가 섞인 벨자무"/>
+		<image name="icon_item_Unknown_Triplehelix_8080" file="\icon\questitemshow\icon_item_Unknown_Triplehelix_8080.png" imgrect="0 0 80 80" CMM_Caption="머티니스"/>
+		<image name="icon_item_Kruvina_fragment_8080" file="\icon\questitemshow\icon_item_Kruvina_fragment_8080.png" imgrect="0 0 80 80" CMM_Caption="크루비나 파편"/>
+		<image name="icon_item_Rangda_Interpretations_8080" file="\icon\questitemshow\icon_item_Rangda_Interpretations_8080.png" imgrect="0 0 80 80" CMM_Caption="비석의 해석문"/>
+		<image name="headicon_expression_01" file="\icon\questitemshow\headicon_expression_01.png" imgrect="0 0 80 80" CMM_Caption="감정표현 말풍선_1차"/>
+		<image name="headicon_expression_02" file="\icon\questitemshow\headicon_expression_02.png" imgrect="0 0 80 80"/>
+		<image name="headicon_expression_03" file="\icon\questitemshow\headicon_expression_03.png" imgrect="0 0 80 80"/>
+		<image name="headicon_expression_04" file="\icon\questitemshow\headicon_expression_04.png" imgrect="0 0 80 80"/>
 	</imagelist>
 </skinset>

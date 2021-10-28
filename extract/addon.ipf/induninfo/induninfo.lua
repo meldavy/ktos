@@ -612,8 +612,6 @@ function INDUNINFO_IS_EVENT_CATEGORY(indunCls)
         local pc = GetMyPCObject()
         if IsBuffApplied(pc, "Event_Unique_Raid_Bonus") == "YES" then
 			return true
-		elseif IsBuffApplied(pc, "Event_Kor_New_World_Buff") == "YES" then
-			return true
         elseif IsBuffApplied(pc, "Event_Unique_Raid_Bonus_Limit") == "YES" then
             local accountObject = GetMyAccountObj(pc)
             if TryGetProp(accountObject ,"EVENT_UNIQUE_RAID_BONUS_LIMIT") > 0 then
@@ -907,7 +905,7 @@ function GET_INDUNINFO_DROPBOX_LIST_MOUSE_OVER(index, classname)
 
     local newobj = CreateIES('Item', classname);
     itemFrame:SetTooltipType('wholeitem');
-    newobj = tolua.cast(newobj, 'imcIES::IObject');
+    newobj = tolua.cast(newobj, 'size_t');
     itemFrame:SetToolTipObject(newobj);
 
     currentFrame = itemFrame;
@@ -931,7 +929,7 @@ function GET_INDUNINFO_DROPBOX_LIST_TOOLTIP_VIEW(index, classname)
 
     local newobj = CreateIES('Item', classname);
     itemFrame:SetTooltipType('wholeitem');
-    newobj = tolua.cast(newobj, 'imcIES::IObject');
+    newobj = tolua.cast(newobj, 'size_t');
     itemFrame:SetToolTipObject(newobj);
 
     currentFrame = itemFrame;
@@ -1249,8 +1247,6 @@ function GET_INDUN_ADMISSION_ITEM_COUNT(indunCls)
     if indunCls.DungeonType == 'UniqueRaid' then
         if IsBuffApplied(pc, "Event_Unique_Raid_Bonus") == "YES" then
 			nowAdmissionItemCount  = admissionItemCount
-		elseif IsBuffApplied(pc, "Event_Kor_New_World_Buff") == "YES" then
-			nowAdmissionItemCount  = 1
         elseif IsBuffApplied(pc, "Event_Unique_Raid_Bonus_Limit") == "YES" and TryGetProp(accountObject,"EVENT_UNIQUE_RAID_BONUS_LIMIT") > 0 then
             nowAdmissionItemCount  = admissionItemCount
         end

@@ -633,4 +633,8 @@
 		<!--quest_main_text-->
 		<font name="normal" size="16" space="0" color="2b1f14" bold="no" italic="no" dropshadow="no" outline="no" underline="no" centerline="no"/>
 	</style>
+	<style name="st107_coffee">
+		<!--dialog_quotation_text-->
+		<font name="normal" size="21" space="0" color="1f100b" bold="yes" italic="yes" dropshadow="no" outline="no" underline="no" centerline="no"/>
+	</style>
 </StyleSheet>

@@ -38,10 +38,11 @@ end
 function UPDATE_NOTICE_ICON_POS(frame, num)
 	frame = tolua.cast(frame, "ui::CFrame");
 	local handle = frame:GetUserIValue("HANDLE");
-	local point = info.GetPositionInUI(handle, 2);
-	local x = point.x - frame:GetWidth() / 2;
-	local y = point.y - frame:GetHeight() - 40;
-    frame:MoveFrame(x, y);
+	local picture = GET_CHILD_RECURSIVELY(frame, "icon");
+	local point = info.GetPositionInUI(handle, 3);
+	point.x = point.x - frame:GetWidth()/2;
+	point.y = point.y - picture:GetImageHeight();
+	frame:MoveFrame(point.x, point.y);
 	return 1;
 end
 

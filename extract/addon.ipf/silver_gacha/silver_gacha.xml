@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by imc (imc) -->
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by imc (imc) -->
 <uiframe name="silver_gacha" x="0" y="0" width="1270" height="960">
 	<frame draw="true" fasthide="true" layout_gravity="center center"/>
 	<skin frameskin="none"/>
@@ -9,7 +9,7 @@
 	<sound opensound="skill_window_open" closesound="skill_window_close"/>
 	<layer layerlevel="92"/>
 	<script OpenScp="SILVER_GACHA_OPEN" CloseScp="SILVER_GACHA_CLOSE"/>
-	<userconfig RESULT_EFFECT="I_screen_bosscard_frame06" RESULT_EFFECT_SCALE="5" RESULT_EFFECT_DURATION="0.5" DEDICATION_BUTTON_EFFECT="UI_screen_CircleButton" DEDICATION_BUTTON_EFFECT_SCALE="7" DEDICATION_BUTTON_EFFECT_DURATION="2" POINT_RESULT_EFFECT_SCALE="4" SLOT_IMAGE_RANK1="protection_legend" SLOT_IMAGE_RANK2="protection_unique" SLOT_IMAGE_RANK3="protection_magic"/>
+	<userconfig RESULT_EFFECT="I_screen_bosscard_frame06" RESULT_EFFECT_SCALE="5" RESULT_EFFECT_DURATION="0.5" SPINE="lagana" DEDICATION_BUTTON_EFFECT="UI_screen_CircleButton" DEDICATION_BUTTON_EFFECT_SCALE="7" DEDICATION_BUTTON_EFFECT_DURATION="2" POINT_RESULT_EFFECT_SCALE="4" SLOT_IMAGE_RANK1="protection_legend" SLOT_IMAGE_RANK2="protection_unique" SLOT_IMAGE_RANK3="protection_magic"/>
 	<controls>
 		<!-- title -->
 		<groupbox name="main_frame" rect="0 0 1270 890" margin="0 58 0 0" layout_gravity="center top" skin="test_frame_low" hittest="false"/>
@@ -21,7 +21,7 @@
 		<groupbox name="time_gb" rect="0 0 290 42" margin="0 135 0 0" layout_gravity="center top" skin="protection_stopwatch" hittest="false"/>
 		<richtext name="time" parent="time_gb" rect="0 0 290 42" margin="0 0 0 0" layout_gravity="center center" format="{@st41b}{s16}%s월 %s일 ~ %s월 %s일" param1="month1" param1_def="1" param2="day1" param2_def="1" param3="month2" param3_def="1" param4="day2" param4_def="1"/>
 		<!-- dedication -->
-		<picture name="spinepic" rect="0 0 661 800" margin="299 140 0 0" layout_gravity="center top" image="Dlg_port_Ragana" stretch="true"/>
+		<spinepic name="spinepic" rect="0 0 661 800" margin="299 140 0 0" layout_gravity="center top" updateparent="true" animation="animation" scale="0.9" stretch="true" offsetX="0" offsetY="30"/>
 		<picture name="dedication_slot_pic" rect="0 0 120 120" margin="180 640 0 0" image="protection_prize" layout_gravity="center top" stretch="true" draw="true"/>
 		<slot name="dedication_slot" parent="dedication_slot_pic" rect="0 0 71 71" margin="0 3 0 0" layout_gravity="center center" enabledrop="false" enablepop="false" enabledrag="false" draw="true"/>
 		<groupbox name="dedication_gb" rect="0 0 195 41" margin="180 770 0 0" skin="protection_lottery_notice" layout_gravity="center top" hittest="false" scroll="false"/>

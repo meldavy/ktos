@@ -122,9 +122,7 @@ function SHOW_INDUNENTER_DIALOG(indunType, isAlreadyPlaying, enableAutoMatch, en
 --    if  SCR_RAID_EVENT_20190102(nil, false) and admissionItemName == "Dungeon_Key01" then
     -- if IsBuffApplied(pc,"Event_Steam_New_World_Buff") == "YES" and admissionItemName == "Dungeon_Key01" then
 	--     nowAdmissionItemCount = 1
-	if IsBuffApplied(pc,"Event_Kor_New_World_Buff") == "YES" and admissionItemName == "Dungeon_Key01" then
-	    nowAdmissionItemCount = 1
-    elseif IsBuffApplied(pc, "Event_Unique_Raid_Bonus") == "YES" and admissionItemName == "Dungeon_Key01" then
+	if IsBuffApplied(pc, "Event_Unique_Raid_Bonus") == "YES" and admissionItemName == "Dungeon_Key01" then
         nowAdmissionItemCount = admissionItemCount
     elseif IsBuffApplied(pc, "Event_Unique_Raid_Bonus_Limit") == "YES" and admissionItemName == "Dungeon_Key01" then
         local accountObject = GetMyAccountObj(pc)
@@ -539,7 +537,7 @@ function GET_INDUNENTER_DROPBOX_LIST_MOUSE_OVER(index, classname)
 
     local newobj = CreateIES('Item', classname);
     itemFrame:SetTooltipType('wholeitem');
-    newobj = tolua.cast(newobj, 'imcIES::IObject');
+    newobj = tolua.cast(newobj, 'size_t');
     itemFrame:SetToolTipObject(newobj);
 
     currentFrame = itemFrame;
@@ -561,7 +559,7 @@ function GET_INDUNENTER_DROPBOX_LIST_TOOLTIP_VIEW(index, classname)
 
     local newobj = CreateIES('Item', classname);
     itemFrame:SetTooltipType('wholeitem');
-    newobj = tolua.cast(newobj, 'imcIES::IObject');
+    newobj = tolua.cast(newobj, 'size_t');
     itemFrame:SetToolTipObject(newobj);
 
     currentFrame = itemFrame;
@@ -1911,9 +1909,7 @@ function INDUNENTER_CHECK_ADMISSION_ITEM(frame)
 --        if SCR_RAID_EVENT_20190102(nil , false) and admissionItemName == "Dungeon_Key01" then
         -- if IsBuffApplied(user,"Event_Steam_New_World_Buff") == "YES" and admissionItemName == "Dungeon_Key01" then
 		--     nowAdmissionItemCount = 1
-		if IsBuffApplied(user,"Event_Kor_New_World_Buff") == "YES" and admissionItemName == "Dungeon_Key01" then
-		    nowAdmissionItemCount = 1
-        elseif IsBuffApplied(user, "Event_Unique_Raid_Bonus") == "YES" and admissionItemName == "Dungeon_Key01" then
+		if IsBuffApplied(user, "Event_Unique_Raid_Bonus") == "YES" and admissionItemName == "Dungeon_Key01" then
             nowAdmissionItemCount = admissionItemCount
         elseif IsBuffApplied(user, "Event_Unique_Raid_Bonus_Limit") == "YES" and admissionItemName == "Dungeon_Key01" then
             local accountObject = GetMyAccountObj(user)

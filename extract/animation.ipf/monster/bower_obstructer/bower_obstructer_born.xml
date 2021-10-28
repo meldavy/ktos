@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="EUC-KR"?>
+<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by IMCGames Co., Ltd (IMCGames Co., Ltd) -->
+<ActionDesc>
+	<Particle frame="9" attachNode="Dummy_root" particleName="F_smoke058_violet" useAttach="true" hiddenObj="false" changeEffect="None" scale="4" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="9" attachNode="Dummy_effect_center" particleName="F_dash011_violet_reverse" useAttach="true" hiddenObj="false" changeEffect="None" scale="2.5" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="9" attachNode="Dummy_root" particleName="F_smoke084" useAttach="false" hiddenObj="false" changeEffect="None" scale="2" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="9" attachNode="Dummy_root" particleName="F_stone005" useAttach="false" hiddenObj="false" changeEffect="None" scale="3" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<BlendOn frame="0" R="0" G="0" B="0" A="50"/>
+	<BlendOn frame="1" R="180" G="130" B="200" A="100"/>
+	<BlendOn frame="2" R="160" G="110" B="180" A="100"/>
+	<BlendOn frame="3" R="135" G="95" B="150" A="100"/>
+	<BlendOn frame="4" R="115" G="80" B="130" A="100"/>
+	<BlendOn frame="5" R="90" G="60" B="100" A="100"/>
+	<BlendOn frame="6" R="70" G="40" B="80" A="100"/>
+	<BlendOn frame="7" R="60" G="35" B="70" A="100"/>
+	<BlendOn frame="8" R="50" G="30" B="60" A="100"/>
+	<BlendOn frame="9" R="40" G="25" B="50" A="100"/>
+	<BlendOn frame="10" R="30" G="20" B="40" A="100"/>
+	<BlendOn frame="11" R="25" G="15" B="30" A="200"/>
+	<BlendOn frame="12" R="15" G="10" B="20" A="200"/>
+	<BlendOn frame="13" R="8" G="6" B="10" A="200"/>
+	<BlendOn frame="14" R="6" G="3" B="8" A="200"/>
+	<BlendOff frame="15" R="0" G="0" B="0" A="0"/>
+</ActionDesc>

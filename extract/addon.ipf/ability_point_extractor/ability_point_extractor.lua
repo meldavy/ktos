@@ -42,11 +42,6 @@ function ABILITY_POINT_EXTRACTOR_RESET(frame, msg, argStr, type)
         feeValueText:SetTextByKey('value', GET_COMMAED_STRING(fee));
         feeValueText:SetTextByKey('value2', "%");
         
-        local pc = GetMyPCObject();
-        if IsBuffApplied(pc,"EVENT_Season_Guild_Benefits_BUFF") == "YES" then
-            fee = 0;
-        end
-        
         enableCountByMoney = math.floor(session.ability.GetAbilityPoint() / (ABILITY_POINT_SCROLL_RATE + (ABILITY_POINT_SCROLL_RATE / 100 * fee)));
         enableCountByPoint = math.floor(session.ability.GetAbilityPoint() / ABILITY_POINT_SCROLL_RATE);
         enableCount = math.min(enableCountByMoney, enableCountByPoint);
@@ -207,11 +202,6 @@ function ABILITY_POINT_EXTRACTOR_GET_CONSUME_MONEY(frame)
         eventDiscount = 1
 	end
 	
-	local pc = GetMyPCObject()
-	if IsBuffApplied(pc,"EVENT_Season_Guild_Benefits_BUFF") == "YES" then
-		consumeMoney = 0
-	end
-
     return consumeMoney, eventDiscount;
 end
 

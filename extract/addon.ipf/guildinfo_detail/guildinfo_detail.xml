@@ -119,7 +119,7 @@
 																	<richtext name="recruitingText" caption="{@s18}모집중{/}" textalign="left center" resizebytext="false" fontname="brown_16" fixwidth="false" drawbackground="false" slideshow="false"/>
 																</layoutsection>
 																<layoutsection name="recruitBtn">
-																	<button name="joinBtn" skin="test_red_button" margin="0 0 0 -4" caption="{@st41}가입 신청" LBtnUpScp="OPEN_REQUEST_GUILDJOIN" textalign="center center"/>
+																	<button name="joinBtn" skin="test_red_button" margin="0 0 0 -4" caption="{@st41}가입 신청" LBtnUpScp="OPEN_REQUEST_GUILDJOIN_CHECK" textalign="center center"/>
 																</layoutsection>
 															</layout>
 														</layoutsection>

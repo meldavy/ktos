@@ -146,7 +146,7 @@
                     <Num Num="0"/>
                     <Num Num="0"/>
                 </Scp>
-                <Scp Scp="SKL_BUFF" Client="NO" UseSleep="NO" Time="500">
+                <Scp Scp="SKL_BUFF" Client="NO" UseSleep="NO" Time="100">
                     <Str Str="KaguraDance_Buff"/>
                     <Num Num="0" UseFunc="1" FuncTxt="return obj.Level;"/>
                     <Num Num="0"/>
@@ -155,7 +155,7 @@
                     <Num Num="100"/>
                     <Num Num="1"/>
                 </Scp>
-                <Scp Scp="SKL_TGT_BUFF" Client="NO" UseSleep="NO" Time="500">
+                <Scp Scp="SKL_TGT_BUFF" Client="NO" UseSleep="NO" Time="100">
                     <Str Str="Kagura_Debuff"/>
                     <Num Num="0" UseFunc="1" FuncTxt="return obj.Level;"/>
                     <Num Num="0"/>
@@ -165,7 +165,7 @@
                     <Num Num="0"/>
                     <Num Num="0"/>
                 </Scp>
-                <Scp Scp="SKL_TGT_BUFF_ABIL" Client="NO" UseSleep="NO" Time="700">
+                <Scp Scp="SKL_TGT_BUFF_ABIL" Client="NO" UseSleep="NO" Time="100">
                     <Str Str="Miko8"/>
                     <Str Str="Kagura_Crtdr_Debuff"/>
                     <Num Num="0" UseFunc="1" FuncTxt="return obj.Level;"/>
@@ -174,8 +174,8 @@
                     <Num Num="0"/>
                     <Num Num="1"/>
                     <Num Num="100"/>
-                </Scp>                
-                <Scp Scp="MONSKL_CRE_PAD" Client="NO" UseSleep="NO" Time="500">
+                </Scp>
+                <Scp Scp="MONSKL_CRE_PAD" Client="NO" UseSleep="NO" Time="100">
                     <Pos Angle="0" Dist="0"/>
                     <Angle Angle="0"/>
                     <Str Str="Miko_KaguraDance"/>
@@ -300,9 +300,9 @@
             </ToolScp>
         </KeyInput>
         <KeyInputStart>
-			<ToolScp Client="NO" Scp="SKL_CONSUME_SKILL_COOLDOWN" UseSleep="NO">
-				<Num Num="1"/>
-			</ToolScp>        
+            <ToolScp Client="NO" Scp="SKL_CONSUME_SKILL_COOLDOWN" UseSleep="NO">
+                <Num Num="1"/>
+            </ToolScp>
             <ToolScp Client="NO" Scp="MONSKL_START_SPAWN_PAD" UseSleep="NO">
                 <Str Str="Miko_HoukiBroom"/>
                 <Num FuncTxt="return 5" Num="10" UseFunc="1"/>

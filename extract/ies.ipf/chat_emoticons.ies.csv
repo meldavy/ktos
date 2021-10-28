@@ -107,6 +107,10 @@ ClassID,IconSpineScale,IconSpineDurationTime,ClassName,CheckServer,IconTokken,Ic
 106,0,0,medeina_emotion04,YES,메데이나돈자랑,Normal,
 107,0,0,medeina_emotion05,YES,메데이나멋짐,Normal,
 108,0,0,medeina_emotion06,YES,메데이나울먹,Normal,
+109,0,0,giltine_emotion109,YES,길티네찌릿,Normal,
+110,0,0,giltine_emotion110,YES,길티네고민,Normal,
+111,0,0,raima_emotion111,YES,라이마웃음,Normal,
+112,0,0,raima_emotion112,YES,라이마기도,Normal,
 113,0,0,ShellyPennington_emotion01,YES,쉘리하트,Normal,
 5001,0.17,5,motion_medeina_emotion01,YES,메데이나당황모션,Motion,medeinacon01
 5002,0.2,5,motion_medeina_emotion02,YES,메데이나기쁨모션,Motion,medeinacon02

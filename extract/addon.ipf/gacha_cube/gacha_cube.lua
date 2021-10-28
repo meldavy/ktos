@@ -128,10 +128,6 @@ function GACHA_CUBE_SUCEECD_UI(frame, invItemClsID, rewardItem, btnVisible, reop
 	    price = SyncFloor(price * discountRatio)
 	    
 	end
-	local pc = GetMyPCObject()
-	if IsBuffApplied(pc,'EVENT_Season_Guild_Benefits_BUFF') == 'YES' then
-	    price = math.floor(price/2)
-	end
 	
 	if price ~= nil then
 		price = GetCommaedText(price);

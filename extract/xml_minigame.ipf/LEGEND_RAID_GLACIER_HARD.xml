@@ -1275,6 +1275,11 @@
                                 <MGameObj List="Boss_Glacier/0"/>
                                 <Num Num="1"/>
                             </ToolScp>
+                            <ToolScp Scp="GAME_ST_EVT_COND_VALUE" Client="NO" UseSleep="NO">
+                                <Str Str="Pbeta_Clear"/>
+                                <Str Str="EQ"/>
+                                <Num Num="0"/>
+                            </ToolScp>
                             <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK" Client="NO" UseSleep="NO">
                                 <Num Num="3"/>
                             </ToolScp>
@@ -1309,6 +1314,28 @@
                             <ToolScp Scp="MGAME_EVT_SCP_TO_MON_CMD" Client="NO" UseSleep="NO">
                                 <MGameObj List="Boss_Glacier/0"/>
                                 <Str Str="SCR_LEGEND_GLACIER_WITCH_COLD_DEBUFF_TOP_HATER_CHECK"/>
+                            </ToolScp>
+                        </execList>
+                    </Event>
+                    <Event eventName="WtichCold_Debuff_Clear_Pbeta">
+                        <condList>
+                            <ToolScp Scp="MGAME_EVT_COND_MONCNT_ALIVE" Client="NO" UseSleep="NO">
+                                <MGameObj List="Boss_Glacier/0"/>
+                                <Num Num="1"/>
+                            </ToolScp>
+                            <ToolScp Scp="GAME_ST_EVT_COND_VALUE" Client="NO" UseSleep="NO">
+                                <Str Str="Pbeta_Clear"/>
+                                <Str Str="EQ"/>
+                                <Num Num="1"/>
+                            </ToolScp>
+                            <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK" Client="NO" UseSleep="NO">
+                                <Num Num="6"/>
+                            </ToolScp>
+                        </condList>
+                        <execList>
+                            <ToolScp Scp="MGAME_EVT_SCP_TO_MON_CMD" Client="NO" UseSleep="NO">
+                                <MGameObj List="Boss_Glacier/0"/>
+                                <Str Str="SCR_LEGEND_GLACIER_APPLY_WITCH_COLD_DEBUFF_ALL_PC"/>
                             </ToolScp>
                         </execList>
                     </Event>
@@ -1497,7 +1524,7 @@
             <Stage Name="GLACIER_WITCH_MADNESS" AutoStart="0">
                 <ObjList>
                     <Obj Type="Monster" MonType="59459" Pos="1234.05#602.46#1311.47" genCount="1" genTime="20000" autoGen="0" objectKey="0" propList="&apos;BTree&apos; &apos;BT_TimeBomb_Legend_Glacier&apos; "/>
-                    <Obj Type="Monster" MonType="59459" Pos="1185.62#602.46#1313.92" genCount="1" genTime="20000" autoGen="0" objectKey="1" propList="&apos;BTree&apos; &apos;BT_TimeBomb_Legend_Glacier&apos; "/>
+                    <Obj Type="Monster" MonType="59459" Pos="1515.48#602.46#1688.31" genCount="1" genTime="20000" autoGen="0" objectKey="1" propList="&apos;BTree&apos; &apos;BT_TimeBomb_Legend_Glacier&apos; "/>
                 </ObjList>
                 <StageEvents>
                     <Event eventName="HP_30_BELOW">

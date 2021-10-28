@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ActionDesc>
+    <Sound frame="1.00" soundFile="mon_pet_rocksodon_wakeup"/>
+    <Sound frame="12.00" soundFile="mon_voice_hog_6"/>
+    <Sound frame="13.00" soundFile="skl_eff_underground_obj_1"/>
+</ActionDesc>

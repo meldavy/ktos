@@ -38,3 +38,14 @@ function SCR_FIELD_DUNGEON_CONSUME_DECREASE(pc, name, value)
 
     return value
 end
+
+-- 일단 섬 지형 좌표를 가지고 하드하게 예외처리...
+function RIFT_DUNGEON_CHECK_ENABLE_POS(mapName, x, y, z)
+    if mapName == 'd_dcapital_108' then
+        if z >= 1400 or (x <= -1250 and z <= -2600) or (x >= 2400 and z <= -2600) then
+            return false
+        end
+	end
+
+	return true
+end

@@ -755,6 +755,6 @@ function SYSMENU_GUILD_PROMOTE_NOTICE(frame)
 
 	noticeBallon:SetGravity(ui.RIGHT, ui.BOTTOM);
 	noticeBallon:SetMargin(0, 0, x, y);
-	noticeBallon:SetLayerLevel(106);
+	noticeBallon:SetLayerLevel(60);
 	noticeBallon:ShowWindow(1);
 end

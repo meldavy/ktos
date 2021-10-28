@@ -841,7 +841,8 @@ function SCR_PRE_KEY_OF_LEGEND_01(self, argstring, argnum1, argnum2)
             PC_zone == 'd_velniasprison_51_5' or
             PC_zone == 'id_catacomb_25_4' or
             PC_zone == 'd_fantasylibrary_48_5' or
-            PC_zone == 'f_maple_25_1' then
+            PC_zone == 'f_maple_25_1' or
+            PC_zone == 'd_dcapital_108' then
             
         if GetLayer(self) == 0 then
 --            if result1 == "PROGRESS" or result2 == "PROGRESS" then
@@ -9188,6 +9189,28 @@ function SCR_PRE_F_TABLELAND_28_2_RAID_09_ITEM(self, argstring, argnum1, argnum2
             MList[i].ClassName == 'Siaulav_bow_blue' or 
             MList[i].ClassName == 'lapasape_blue' then
                 return 1
+            end
+        end
+    end
+    return 0
+end
+
+
+function SCR_PRE_EP12_2_F_CASTLE_101_MQ04_1_ITEM(self, argstring, argnum1, argnum2)
+    if GetZoneName(self) == "f_castle_101" then
+        local result01 = SCR_QUEST_CHECK(self, 'EP12_2_F_CASTLE_101_MQ04_1')
+        if result01 == 'PROGRESS' then
+            local fndList, fndCnt = SelectObject(self, 50, 'ALL', 1)
+            local i
+            if fndCnt > 0 then
+                for i = 1, fndCnt do
+                    if fndList[i].ClassName == 'bower_interfere' or 
+                    fndList[i].ClassName == 'bower_obstructer' or 
+                    fndList[i].ClassName == 'bower_oblivion' or 
+                    fndList[i].ClassName == 'bower_guillotine' then
+                            return GetHandle(fndList[i])
+                    end
+                end
             end
         end
     end

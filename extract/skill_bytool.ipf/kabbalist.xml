@@ -305,12 +305,7 @@
                     <Num Num="1"/>
                 </Scp>
                 <Scp Scp="SKL_TGT_BUFF" Client="NO" UseSleep="NO" Time="500">
-                    <Str Str="" UseFunc="1" FuncTxt="    local buff = &quot;Ayin_sof_Cool_Buff&quot;
-    if IsBuffApplied(self, 'CarveLaima_Buff') == 'YES' then
-        buff = &quot;None&quot;
-    end
-
-    return buff"/>
+                    <Str Str="Ayin_sof_Cool_Buff"/>
                     <Num Num="1" UseFunc="1" FuncTxt="return obj.Level;"/>
                     <Num Num="0"/>
                     <Num Num="90000"/>

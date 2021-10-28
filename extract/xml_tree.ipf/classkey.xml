@@ -456,6 +456,7 @@
         <Key Name="ICOR_TRY_COUNT" Value="105560"/>
         <Key Name="Magic_Soul_Atk" Value="106482"/>
         <Key Name="StringArg2" Value="106494"/>
+        <Key Name="SkillName" Value="106801"/>
     </KeyIDSpc>
     <KeyIDSpc Name="Party">
         <Key Name="P_PARTY_Q_040" Value="53"/>
@@ -3575,6 +3576,89 @@
         <Key Name="dress_honored_rose_4" Value="106598"/>
         <Key Name="dress_honored_rose_5" Value="106599"/>
         <Key Name="dress_honored_rose_6" Value="106600"/>
+        <Key Name="EVENT_2010_HALLOWEEN01" Value="106619"/>
+        <Key Name="EVENT_2010_HALLOWEEN02" Value="106612"/>
+        <Key Name="EVENT_2010_HALLOWEEN03" Value="106613"/>
+        <Key Name="EVENT_2010_HALLOWEEN04" Value="106609"/>
+        <Key Name="EVENT_2010_HALLOWEEN05" Value="106616"/>
+        <Key Name="EVENT_2010_HALLOWEEN06" Value="106610"/>
+        <Key Name="EVENT_2010_HALLOWEEN07" Value="106618"/>
+        <Key Name="EVENT_2010_HALLOWEEN08" Value="106621"/>
+        <Key Name="EVENT_2010_HALLOWEEN09" Value="106620"/>
+        <Key Name="EVENT_2010_HALLOWEEN10" Value="106611"/>
+        <Key Name="EVENT_2010_HALLOWEEN11" Value="106614"/>
+        <Key Name="EVENT_2010_HALLOWEEN_ATTENDANCE" Value="106622"/>
+        <Key Name="EVENT_2010_HALLOWEEN_COIN_COUNT" Value="106615"/>
+        <Key Name="EVENT_2010_HALLOWEEN_FREE_COSTUME" Value="106617"/>
+        <Key Name="EVENT_2010_HALLOWEEN_TICKET_GACHA" Value="106747"/>
+        <Key Name="EVENT_2010_HALLOWEEN_TIME" Value="106623"/>
+        <Key Name="EVENT_2010_HALLOWEEN_TRADE_COSTUME" Value="106608"/>
+        <Key Name="EVENT_2010_LVUP_SHOP_1" Value="106758"/>
+        <Key Name="EVENT_2010_LVUP_SHOP_10" Value="106796"/>
+        <Key Name="EVENT_2010_LVUP_SHOP_11" Value="106746"/>
+        <Key Name="EVENT_2010_LVUP_SHOP_12" Value="106790"/>
+        <Key Name="EVENT_2010_LVUP_SHOP_13" Value="106757"/>
+        <Key Name="EVENT_2010_LVUP_SHOP_14" Value="106773"/>
+        <Key Name="EVENT_2010_LVUP_SHOP_15" Value="106743"/>
+        <Key Name="EVENT_2010_LVUP_SHOP_16" Value="106764"/>
+        <Key Name="EVENT_2010_LVUP_SHOP_17" Value="106774"/>
+        <Key Name="EVENT_2010_LVUP_SHOP_18" Value="106776"/>
+        <Key Name="EVENT_2010_LVUP_SHOP_19" Value="106798"/>
+        <Key Name="EVENT_2010_LVUP_SHOP_2" Value="106763"/>
+        <Key Name="EVENT_2010_LVUP_SHOP_20" Value="106748"/>
+        <Key Name="EVENT_2010_LVUP_SHOP_21" Value="106745"/>
+        <Key Name="EVENT_2010_LVUP_SHOP_22" Value="106800"/>
+        <Key Name="EVENT_2010_LVUP_SHOP_23" Value="106768"/>
+        <Key Name="EVENT_2010_LVUP_SHOP_24" Value="106761"/>
+        <Key Name="EVENT_2010_LVUP_SHOP_25" Value="106797"/>
+        <Key Name="EVENT_2010_LVUP_SHOP_26" Value="106744"/>
+        <Key Name="EVENT_2010_LVUP_SHOP_3" Value="106740"/>
+        <Key Name="EVENT_2010_LVUP_SHOP_4" Value="106766"/>
+        <Key Name="EVENT_2010_LVUP_SHOP_5" Value="106791"/>
+        <Key Name="EVENT_2010_LVUP_SHOP_6" Value="106780"/>
+        <Key Name="EVENT_2010_LVUP_SHOP_7" Value="106749"/>
+        <Key Name="EVENT_2010_LVUP_SHOP_8" Value="106794"/>
+        <Key Name="EVENT_2010_LVUP_SHOP_9" Value="106799"/>
+        <Key Name="EVENT_2010_NEWCHARACTER_COUNT" Value="106742"/>
+        <Key Name="EVENT_2010_NEWCHARACTER_GIVE_ABILITY_BOX" Value="106741"/>
+        <Key Name="EVENT_2010_TWN_FISHING_BAIT_RECEIVED" Value="106624"/>
+        <Key Name="EVENT_2010_TWN_FISHING_TRADE_COUNT" Value="106625"/>
+        <Key Name="FirstQuestClear_Episode_12_2_91021" Value="106760"/>
+        <Key Name="FirstQuestClear_Episode_12_2_91022" Value="106755"/>
+        <Key Name="FirstQuestClear_Episode_12_2_91023" Value="106750"/>
+        <Key Name="FirstQuestClear_Episode_12_2_91024" Value="106751"/>
+        <Key Name="FirstQuestClear_Episode_12_2_91025" Value="106752"/>
+        <Key Name="FirstQuestClear_Episode_12_2_91026" Value="106754"/>
+        <Key Name="FirstQuestClear_Episode_12_2_91027" Value="106762"/>
+        <Key Name="FirstQuestClear_Episode_12_2_91028" Value="106753"/>
+        <Key Name="FirstQuestClear_Episode_12_2_91029" Value="106756"/>
+        <Key Name="FirstQuestClear_Episode_12_2_91030" Value="106759"/>
+        <Key Name="FirstQuestClear_Episode_12_2_91031" Value="106765"/>
+        <Key Name="FirstQuestClear_Episode_12_2_91032" Value="106783"/>
+        <Key Name="FirstQuestClear_Episode_12_2_92000" Value="106787"/>
+        <Key Name="FirstQuestClear_Episode_12_2_92001" Value="106781"/>
+        <Key Name="FirstQuestClear_Episode_12_2_92002" Value="106769"/>
+        <Key Name="FirstQuestClear_Episode_12_2_92003" Value="106771"/>
+        <Key Name="FirstQuestClear_Episode_12_2_92004" Value="106772"/>
+        <Key Name="FirstQuestClear_Episode_12_2_92005" Value="106785"/>
+        <Key Name="FirstQuestClear_Episode_12_2_92006" Value="106770"/>
+        <Key Name="FirstQuestClear_Episode_12_2_92007" Value="106767"/>
+        <Key Name="FirstQuestClear_Episode_12_2_92008" Value="106778"/>
+        <Key Name="FirstQuestClear_Episode_12_2_92009" Value="106775"/>
+        <Key Name="FirstQuestClear_Episode_12_2_92010" Value="106779"/>
+        <Key Name="FirstQuestClear_Episode_12_2_92011" Value="106786"/>
+        <Key Name="FirstQuestClear_Episode_12_2_92012" Value="106788"/>
+        <Key Name="FirstQuestClear_Episode_12_2_92013" Value="106777"/>
+        <Key Name="FirstQuestClear_Episode_12_2_92014" Value="106782"/>
+        <Key Name="FirstQuestClear_Episode_12_2_92015" Value="106793"/>
+        <Key Name="FirstQuestClear_Episode_12_2_92016" Value="106795"/>
+        <Key Name="FirstQuestClear_Episode_12_2_92017" Value="106792"/>
+        <Key Name="HadVisited_11208" Value="106784"/>
+        <Key Name="HadVisited_5002" Value="106789"/>
+        <Key Name="EVENT_2010_EMOTICON_QUEST" Value="106823"/>
+        <Key Name="EVENT_2010_GUILD_NEW_SEASON_ITEM_GET" Value="106824"/>
+        <Key Name="GUILD_QUEST_REWARD" Value="106822"/>
+        <Key Name="LastServerGuildOutDay" Value="106826"/>
     </KeyIDSpc>
     <KeyIDSpc Name="PCEtc">
         <Key Name="Kill_boss_Clymen_Q2" Value="7788"/>
@@ -11968,6 +12052,89 @@
         <Key Name="Kill_Field_boss_froster_lord" Value="106591"/>
         <Key Name="Kill_Field_boss_warpulis" Value="106592"/>
         <Key Name="Pose_WIGGLE" Value="106589"/>
+        <Key Name="EP12_2_D_DCAPITAL_108_MQ01_TRACK" Value="106720"/>
+        <Key Name="EP12_2_D_DCAPITAL_108_MQ02_TRACK" Value="106721"/>
+        <Key Name="EP12_2_D_DCAPITAL_108_MQ04_TRACK" Value="106726"/>
+        <Key Name="EP12_2_D_DCAPITAL_108_MQ05_TRACK" Value="106730"/>
+        <Key Name="EP12_2_D_DCAPITAL_108_MQ06_TRACK" Value="106733"/>
+        <Key Name="EP12_2_D_DCAPITAL_108_MQ07_TRACK" Value="106734"/>
+        <Key Name="EP12_2_D_DCAPITAL_108_MQ08_TRACK" Value="106729"/>
+        <Key Name="EP12_2_D_DCAPITAL_108_MQ10_TRACK" Value="106735"/>
+        <Key Name="EP12_2_D_DCAPITAL_108_MQ14_TRACK" Value="106739"/>
+        <Key Name="EP12_2_D_DCAPITAL_108_MQ15_TRACK" Value="106738"/>
+        <Key Name="EP12_2_D_DCAPITAL_108_MQ16_TRACK" Value="106731"/>
+        <Key Name="EP12_2_D_DCAPITAL_108_MQ17_TRACK" Value="106732"/>
+        <Key Name="EP12_2_D_DCAPITAL_108_MQ18_TRACK" Value="106736"/>
+        <Key Name="EP12_2_F_CASTLE_101_MQ01_TRACK" Value="106666"/>
+        <Key Name="EP12_2_F_CASTLE_101_MQ02_TRACK" Value="106668"/>
+        <Key Name="EP12_2_F_CASTLE_101_MQ03_1_TRACK" Value="106667"/>
+        <Key Name="EP12_2_F_CASTLE_101_MQ03_2_TRACK" Value="106722"/>
+        <Key Name="EP12_2_F_CASTLE_101_MQ03_3_TRACK" Value="106728"/>
+        <Key Name="EP12_2_F_CASTLE_101_MQ03_TRACK" Value="106723"/>
+        <Key Name="EP12_2_F_CASTLE_101_MQ04_1_TRACK" Value="106724"/>
+        <Key Name="EP12_2_F_CASTLE_101_MQ04_2_TRACK" Value="106725"/>
+        <Key Name="EP12_2_F_CASTLE_101_MQ04_TRACK" Value="106669"/>
+        <Key Name="EP12_2_F_CASTLE_101_MQ05_TRACK" Value="106671"/>
+        <Key Name="EP12_2_F_CASTLE_101_MQ06_TRACK" Value="106719"/>
+        <Key Name="EP12_2_F_DACPITAL_104_MQ01_TRACK" Value="106727"/>
+        <Key Name="Event_2010_LVUP_ABILITY" Value="106718"/>
+        <Key Name="HadVisited_11208" Value="106670"/>
+        <Key Name="HadVisited_5002" Value="106737"/>
+        <Key Name="Hide_3084" Value="106675"/>
+        <Key Name="Hide_3085" Value="106672"/>
+        <Key Name="Hide_3086" Value="106674"/>
+        <Key Name="Hide_3087" Value="106676"/>
+        <Key Name="Hide_3088" Value="106673"/>
+        <Key Name="Hide_3089" Value="106684"/>
+        <Key Name="Hide_3090" Value="106682"/>
+        <Key Name="Hide_3091" Value="106678"/>
+        <Key Name="Hide_3092" Value="106683"/>
+        <Key Name="Hide_3093" Value="106679"/>
+        <Key Name="Hide_3094" Value="106685"/>
+        <Key Name="Hide_3095" Value="106686"/>
+        <Key Name="Hide_3096" Value="106677"/>
+        <Key Name="Hide_3097" Value="106687"/>
+        <Key Name="Hide_3098" Value="106680"/>
+        <Key Name="Hide_3099" Value="106681"/>
+        <Key Name="Hide_3100" Value="106689"/>
+        <Key Name="Hide_3101" Value="106693"/>
+        <Key Name="Hide_3102" Value="106696"/>
+        <Key Name="Hide_3104" Value="106697"/>
+        <Key Name="Hide_3105" Value="106694"/>
+        <Key Name="Hide_3106" Value="106688"/>
+        <Key Name="Hide_3107" Value="106695"/>
+        <Key Name="Hide_3108" Value="106692"/>
+        <Key Name="Hide_3109" Value="106690"/>
+        <Key Name="Hide_3110" Value="106691"/>
+        <Key Name="Hide_3111" Value="106702"/>
+        <Key Name="Hide_3112" Value="106699"/>
+        <Key Name="Hide_3113" Value="106708"/>
+        <Key Name="Hide_3114" Value="106704"/>
+        <Key Name="Hide_3115" Value="106700"/>
+        <Key Name="Hide_3200" Value="106705"/>
+        <Key Name="Hide_3201" Value="106703"/>
+        <Key Name="Hide_3202" Value="106706"/>
+        <Key Name="Hide_3203" Value="106707"/>
+        <Key Name="Hide_3204" Value="106701"/>
+        <Key Name="Hide_3210" Value="106698"/>
+        <Key Name="Hide_3220" Value="106714"/>
+        <Key Name="Hide_3221" Value="106709"/>
+        <Key Name="Hide_3222" Value="106713"/>
+        <Key Name="Hide_3223" Value="106711"/>
+        <Key Name="Hide_3224" Value="106715"/>
+        <Key Name="Hide_3225" Value="106712"/>
+        <Key Name="Hide_3226" Value="106710"/>
+        <Key Name="Reward_d_dcapital_108" Value="106716"/>
+        <Key Name="Reward_f_castle_101" Value="106717"/>
+        <Key Name="HaveEmoticon_109" Value="106818"/>
+        <Key Name="HaveEmoticon_110" Value="106819"/>
+        <Key Name="HaveEmoticon_111" Value="106821"/>
+        <Key Name="HaveEmoticon_112" Value="106820"/>
+        <Key Name="Kill_Legend_Boss_Giltine_Q1" Value="106817"/>
+        <Key Name="Kill_boss_BowerKeeper" Value="106816"/>
+        <Key Name="Kill_boss_RaganosisCommander" Value="106815"/>
+        <Key Name="Hide_3116" Value="106828"/>
+        <Key Name="Hide_3117" Value="106827"/>
     </KeyIDSpc>
     <KeyIDSpc Name="GuildMember">
         <Key Name="Name" Value="9011"/>
@@ -13048,6 +13215,19 @@
         <Key Name="SEASON_SERVER_GUILD_QUEST_TOTAL_SUCCESS_COUNT" Value="105576"/>
         <Key Name="SEASON_SERVER_GUILD_QUEST_WEEK_SUCCESS_COUNT" Value="105579"/>
         <Key Name="GUILD_LEADER_LEVEL" Value="105631"/>
+        <Key Name="GUILD_QUEST_REWARD" Value="106804"/>
+        <Key Name="NEW_GUILD_QUEST_BORUTA_SPECIAL_SUCCESS_COUNT" Value="106806"/>
+        <Key Name="NEW_GUILD_QUEST_BORUTA_TOTAL_SUCCESS_COUNT" Value="106802"/>
+        <Key Name="NEW_GUILD_QUEST_BORUTA_WEEK_SUCCESS_COUNT" Value="106811"/>
+        <Key Name="NEW_GUILD_QUEST_NEXT_RESET_DATE" Value="106814"/>
+        <Key Name="NEW_GUILD_QUEST_TOTAL_SUCCESS_COUNT" Value="106812"/>
+        <Key Name="NEW_GUILD_QUEST_WEEK_SUCCESS_COUNT" Value="106807"/>
+        <Key Name="OLD_GUILD_QUEST_BORUTA_SPECIAL_SUCCESS_COUNT" Value="106808"/>
+        <Key Name="OLD_GUILD_QUEST_BORUTA_TOTAL_SUCCESS_COUNT" Value="106810"/>
+        <Key Name="OLD_GUILD_QUEST_BORUTA_WEEK_SUCCESS_COUNT" Value="106809"/>
+        <Key Name="OLD_GUILD_QUEST_NEXT_RESET_DATE" Value="106813"/>
+        <Key Name="OLD_GUILD_QUEST_TOTAL_SUCCESS_COUNT" Value="106805"/>
+        <Key Name="OLD_GUILD_QUEST_WEEK_SUCCESS_COUNT" Value="106803"/>
     </KeyIDSpc>
     <KeyIDSpc Name="ZoneObject">
         <Key Name="JaqBoxLock" Value="122"/>
@@ -20497,6 +20677,47 @@
         <Key Name="MG_Last_FIELD_BOSS_RAID_HOLY" Value="106493"/>
         <Key Name="MG_Last_FIELD_BOSS_RAID_ICE" Value="106492"/>
         <Key Name="MG_Last_FIELD_BOSS_RAID_POISON" Value="106490"/>
+        <Key Name="D_DCAPITAL_108_ZEMINA_P" Value="106639"/>
+        <Key Name="EP12_2_D_DCAPITAL_108_MQ01" Value="106629"/>
+        <Key Name="EP12_2_D_DCAPITAL_108_MQ02" Value="106638"/>
+        <Key Name="EP12_2_D_DCAPITAL_108_MQ03" Value="106643"/>
+        <Key Name="EP12_2_D_DCAPITAL_108_MQ04" Value="106645"/>
+        <Key Name="EP12_2_D_DCAPITAL_108_MQ05" Value="106648"/>
+        <Key Name="EP12_2_D_DCAPITAL_108_MQ06" Value="106646"/>
+        <Key Name="EP12_2_D_DCAPITAL_108_MQ07" Value="106651"/>
+        <Key Name="EP12_2_D_DCAPITAL_108_MQ08" Value="106661"/>
+        <Key Name="EP12_2_D_DCAPITAL_108_MQ09" Value="106647"/>
+        <Key Name="EP12_2_D_DCAPITAL_108_MQ10" Value="106662"/>
+        <Key Name="EP12_2_D_DCAPITAL_108_MQ11" Value="106652"/>
+        <Key Name="EP12_2_D_DCAPITAL_108_MQ12" Value="106636"/>
+        <Key Name="EP12_2_D_DCAPITAL_108_MQ13" Value="106655"/>
+        <Key Name="EP12_2_D_DCAPITAL_108_MQ14" Value="106664"/>
+        <Key Name="EP12_2_D_DCAPITAL_108_MQ15" Value="106637"/>
+        <Key Name="EP12_2_D_DCAPITAL_108_MQ16" Value="106627"/>
+        <Key Name="EP12_2_D_DCAPITAL_108_MQ17" Value="106634"/>
+        <Key Name="EP12_2_D_DCAPITAL_108_MQ18" Value="106650"/>
+        <Key Name="EP12_2_F_CASTLE_101_MQ01" Value="106642"/>
+        <Key Name="EP12_2_F_CASTLE_101_MQ02" Value="106656"/>
+        <Key Name="EP12_2_F_CASTLE_101_MQ03" Value="106654"/>
+        <Key Name="EP12_2_F_CASTLE_101_MQ03_1" Value="106635"/>
+        <Key Name="EP12_2_F_CASTLE_101_MQ03_2" Value="106660"/>
+        <Key Name="EP12_2_F_CASTLE_101_MQ03_3" Value="106640"/>
+        <Key Name="EP12_2_F_CASTLE_101_MQ04" Value="106641"/>
+        <Key Name="EP12_2_F_CASTLE_101_MQ04_1" Value="106653"/>
+        <Key Name="EP12_2_F_CASTLE_101_MQ04_2" Value="106659"/>
+        <Key Name="EP12_2_F_CASTLE_101_MQ05" Value="106631"/>
+        <Key Name="EP12_2_F_CASTLE_101_MQ06" Value="106657"/>
+        <Key Name="EP12_2_F_DACPITAL_104_MQ01" Value="106658"/>
+        <Key Name="EVENT_2010_NEWCHARACTER_CHAR_USE" Value="106649"/>
+        <Key Name="EVENT_2010_NEWCHARACTER_CREATE_CHAR" Value="106663"/>
+        <Key Name="MG_Last_EP12_2_ENDING_MINI_01" Value="106630"/>
+        <Key Name="MG_Last_EP12_2_ENDING_MINI_02" Value="106628"/>
+        <Key Name="MG_Last_EP12_2_F_CASTLE_101_MQ02_MINI" Value="106626"/>
+        <Key Name="MG_Last_EP12_2_F_CASTLE_101_MQ05_MINI" Value="106644"/>
+        <Key Name="MG_Last_EP12_2_F_CASTLE_101_MQ_03_1_MINI" Value="106632"/>
+        <Key Name="WARP_C_KLAIPE_CATHEDRAL_MEDIUM" Value="106665"/>
+        <Key Name="WARP_F_CASTLE_101" Value="106633"/>
+        <Key Name="Event_2010_LVUP_ABILITY_2" Value="106825"/>
     </KeyIDSpc>
     <KeyIDSpc Name="Monster">
         <Key Name="MaxHate" Value="6671"/>

@@ -92,12 +92,10 @@
                 <Frame Type="SQUARE" Time="9999" HitCount="1" TermMin="0" TermMax="0" PosType="0" Dist="0" RandDist="0" RandomPerHit="0" Angle="0" Width="30" Length="100" AniTime="10999" RotAngle="0" ForceATK="0"/>
             </HitList>
             <EtcList>
-                <Scp Client="NO" Scp="SKL_RECOVER_COOLDOWN_SP" Time="0" TimeSync="0" UseSleep="NO"/>
                 <Scp Scp="SKL_SET_TARGET_CLIENT_TARGETTING" Client="NO" UseSleep="NO" Time="0">
                     <Num Num="1"/>
                     <Num Num="130"/>
                 </Scp>
-                <Scp Client="NO" Scp="SKL_SPEND_COOLDOWN_SP" Time="0" TimeSync="0" UseSleep="NO"/>
                 <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="0">
                     <Str_Arg Str="E_warrior_controlblade001" Arg="2"/>
                     <Str Str="Dummy_emitter"/>
@@ -459,12 +457,10 @@ return buff"/>
                 <Frame Type="CIRCLE" Time="9999" HitCount="1" TermMin="0" TermMax="0" PosType="0" Dist="0" RandDist="0" RandomPerHit="0" Angle="0" Width="100" SklAngle="0.52359879" AniTime="10999" RotAngle="0" ForceATK="0"/>
             </HitList>
             <EtcList>
-                <Scp Scp="SKL_RECOVER_COOLDOWN_SP" Client="NO" UseSleep="NO" Time="0" TimeSync="0"/>
                 <Scp Scp="SKL_SET_TARGET_CLIENT_TARGETTING" Client="NO" UseSleep="NO" Time="0">
                     <Num Num="1"/>
                     <Num Num="130"/>
                 </Scp>
-                <Scp Scp="SKL_SPEND_COOLDOWN_SP" Client="NO" UseSleep="NO" Time="0" TimeSync="0"/>
                 <Scp Scp="SKL_SET_IMMUNE_STATE" Client="NO" UseSleep="NO" Time="0">
                     <Str Str="Skill_NoDamage_Buff"/>
                     <Num Num="100"/>
@@ -536,12 +532,10 @@ return buff"/>
                         <Frame Type="SQUARE" Time="9999" HitCount="1" TermMin="0" TermMax="0" PosType="0" Dist="0" RandDist="0" RandomPerHit="0" Angle="0" Width="30" Length="100" AniTime="10999" RotAngle="0" ForceATK="0"/>
                     </HitList>
                     <EtcList>
-                        <Scp Scp="SKL_RECOVER_COOLDOWN_SP" Client="NO" UseSleep="NO" Time="0" TimeSync="0"/>
                         <Scp Scp="SKL_SET_TARGET_CLIENT_TARGETTING" Client="NO" UseSleep="NO" Time="0">
                             <Num Num="1"/>
                             <Num Num="130"/>
                         </Scp>
-                        <Scp Scp="SKL_SPEND_COOLDOWN_SP" Client="NO" UseSleep="NO" Time="0" TimeSync="0"/>
                         <Scp Scp="SKL_SET_IMMUNE_STATE" Client="NO" UseSleep="NO" Time="0">
                             <Str Str="Skill_NoDamage_Buff"/>
                             <Num Num="100"/>

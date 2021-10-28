@@ -25,14 +25,14 @@
 		<Class ClassID="28" ClassName="/uicallscp_event1810guildquest" Alias="/길드퀘스트" ConvertWhenSend="1"/>
 		<Class ClassID="29" ClassName="/uicallscp_event1916coin" Alias="/주화" ConvertWhenSend="1"/>
 		<Class ClassID="31" ClassName="/uicallscp_event1909coin" Alias="/조각" ConvertWhenSend="1"/>
-		<Class ClassID="32" ClassName="/note" Alias="/수첩" ConvertWhenSend="1"/>
+		<!-- <Class ClassID="32" ClassName="/note" Alias="/수첩" ConvertWhenSend="1"/> -->
 		<Class ClassID="33" ClassName="/grimoire" Alias="/그리모어" ConvertWhenSend="1"/>
 		<Class ClassID="34" ClassName="/candy" Alias="/사탕" ConvertWhenSend="1"/>
 		<Class ClassID="35" ClassName="/totalPoint" Alias="/통합" ConvertWhenSend="1"/>
 		<Class ClassID="36" ClassName="/pot" Alias="/항아리" ConvertWhenSend="1"/>
 		<Class ClassID="37" ClassName="/expedition" Alias="/토벌대" ConvertWhenSend="1"/>
 		<Class ClassID="38" ClassName="/escape" Alias="/탈출" ConvertWhenSend="1"/>
-		<Class ClassID="39" ClassName="/coin" Alias="/코인" ConvertWhenSend="1"/>
+		<!-- <Class ClassID="39" ClassName="/coin" Alias="/코인" ConvertWhenSend="1"/> -->
 		<Class ClassID="40" ClassName="/fishing" Alias="/낚시" ConvertWhenSend="1"/>
 		<Class ClassID="41" ClassName="/candy_klaipeda" Alias="/화이트데이 클라페다" ConvertWhenSend="1"/>
 		<Class ClassID="42" ClassName="/candy_orsha" Alias="/화이트데이 오르샤" ConvertWhenSend="1"/>
@@ -52,13 +52,15 @@
 		<Class ClassID="55" ClassName="/ticket" Alias="/티켓" ConvertWhenSend="1"/>
 		<Class ClassID="56" ClassName="/tokenwarp" Alias="/토큰이동" ConvertWhenSend="1"/>
 		<Class ClassID="57" ClassName="/matsuri" Alias="/마츠리" ConvertWhenSend="1"/>
-		<Class ClassID="58" ClassName="/maxLevel" Alias="/만렙" ConvertWhenSend="1"/>
+		<!-- <Class ClassID="58" ClassName="/maxLevel" Alias="/만렙" ConvertWhenSend="1"/> -->
 		<Class ClassID="59" ClassName="/rice" Alias="/찹쌀" ConvertWhenSend="1"/>
 		<Class ClassID="60" ClassName="/vote" Alias="/투표" ConvertWhenSend="1"/>
 		<Class ClassID="61" ClassName="/master" Alias="/마스터" ConvertWhenSend="1"/>
 		<Class ClassID="62" ClassName="/chusok" Alias="/추석" ConvertWhenSend="1"/>
-	<Class ClassID="63" ClassName="/cat" Alias="/고양이" ConvertWhenSend="1"/>
+	    <Class ClassID="63" ClassName="/cat" Alias="/고양이" ConvertWhenSend="1"/>
+	    <Class ClassID="64" ClassName="/episode" Alias="/에피소드" ConvertWhenSend="1"/>
 		<Class ClassID="65" ClassName="/moonlight" Alias="/달빛" ConvertWhenSend="1"/>
 		<Class ClassID="67" ClassName="/fullmoon" Alias="/달맞이" ConvertWhenSend="1"/>
+		<Class ClassID="66" ClassName="/halloween" Alias="/할로윈" ConvertWhenSend="1"/>
 	</Category>
 </idspace>

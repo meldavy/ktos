@@ -289,4 +289,5 @@
 	<ReadXml Name="dress_room"/>
 	<ReadXml Name="dress_room_reward"/>
 	<ReadXml Name="common_gamble_property_reward"/>		
+	<ReadXml Name="accountprop_inventory_list"/>
 </Category>

@@ -74,10 +74,6 @@ function GET_LEGEND_PREFIX_NEED_MATERIAL_COUNT_BY_NEEDITEM(targetObj, needItemCl
 			if string.find(cls.LegendGroup, legendGroup) ~= nil and targetObj.LegendPrefix ~= cls.ClassName and cls.NeedMaterial == needItemClsName then
 				if targetObj.GroupName == 'Armor' and targetObj.ClassType ~= 'Shield' then
 					local count = cls.NeedMaterial_ArmorCnt
-					--EVENT_SEASON_SERVER
-					if IS_SEASON_SERVER() == "YES" then
-                        count = math.floor(count*0.5)
-					end
                         
 					-- 440장비는 이미 셋옵이 있으면 비용 1/4
 					if TryGetProp(targetObj, 'UseLv', 1) >= 440 and TryGetProp(targetObj, 'LegendPrefix', "None") ~= "None" then
@@ -97,10 +93,6 @@ function GET_LEGEND_PREFIX_NEED_MATERIAL_COUNT_BY_NEEDITEM(targetObj, needItemCl
 				else
 					local count = cls.NeedMaterial_WeaponCnt;
 					-- PvP 전용 아이템 재료 1
-					--EVENT_SEASON_SERVER
-					if IS_SEASON_SERVER() == "YES" then
-						count = math.floor(count*0.5)
-					end
 					
 					-- 440장비는 이미 셋옵이 있으면 비용 1/4
 					if TryGetProp(targetObj, 'UseLv', 1) >= 440 and TryGetProp(targetObj, 'LegendPrefix', "None") ~= "None" then

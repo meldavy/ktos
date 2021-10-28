@@ -86,17 +86,9 @@ function EVENT_PROGRESS_CHECK_TAB_CLICK(parent, ctrl, argStr, type)
 	if index == 0 then
 		EVENT_PROGRESS_CHECK_ACQUIRE_STATE_OPEN(frame, type);
     elseif index == 1 then
-        if type == 5 then
-            EVENT_2009_FULLMOON_CHECK_LEVEL_REWARD(frame, type);
-        else
-            EVENT_PROGRESS_CHECK_STAMP_TOUR_STATE_OPEN(frame, type);
-        end
+        EVENT_PROGRESS_CHECK_STAMP_TOUR_STATE_OPEN(frame, type);
     elseif index == 2 then
-        if type == 5 then
-            EVENT_2009_FULLMOON_CHECK_BUFF_DESCRIPTION(frame, type);
-        else
-            EVENT_PROGRESS_CHECK_CONTENTS_STATE_OPEN(parent:GetTopParentFrame(), type);
-        end
+        EVENT_PROGRESS_CHECK_CONTENTS_STATE_OPEN(parent:GetTopParentFrame(), type);
 	end
 end
 
@@ -212,18 +204,18 @@ function EVENT_PROGRESS_CHECK_ACQUIRE_STATE_OPEN(frame, type)
 			state:SetTextByKey('max', "");
         end
 
-        -- EVENT_2009_FULLMOON
-        if type == 5 then
-            -- 단계
-            if i == 1 then
-                state:SetTextByKey('max', " "..ClMsg("Step"));
-            end
+        -- -- EVENT_2009_FULLMOON
+        -- if type == 5 then
+        --     -- 단계
+        --     if i == 1 then
+        --         state:SetTextByKey('max', " "..ClMsg("Step"));
+        --     end
 
-            -- 포인트
-            if i == 2 then
-                state:SetTextByKey('max', " "..ClMsg("POINT"));
-            end
-        end
+        --     -- 포인트
+        --     if i == 2 then
+        --         state:SetTextByKey('max', " "..ClMsg("POINT"));
+        --     end
+        -- end
 
 		y = y + ctrlSet:GetHeight();
     end
@@ -247,10 +239,10 @@ function EVENT_PROGRESS_CHECK_DAILY_PLAY_TIME_UPDATE(frame, msg, time)
 		return;
     end
     
-    -- EVENT_2009_FULLMOON
-    if frame:GetUserValue("TYPE") == 5 then
-        return;
-    end
+    -- -- EVENT_2009_FULLMOON
+    -- if frame:GetUserValue("TYPE") == 5 then
+    --     return;
+    -- end
 	
 	local state = GET_CHILD(ctrlSet, "state");
 	state:SetTextByKey("cur", time);

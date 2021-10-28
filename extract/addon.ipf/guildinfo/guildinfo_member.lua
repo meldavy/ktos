@@ -375,15 +375,9 @@ function WARP_GUILD_MEMBER_EXEC(aid)
                 local addTime = AFTER_GUILD_OUT_COLONY_WAR_PARTICIPATE_PERIOD_DELAY
 
                 -- 개척 길드 탈퇴 패널티 제거
-                local guildidx = GET_GUILD_MEMBER_JOIN_AUTO_GUILD_OUT_IDX();
+                local guildidx = GET_GUILD_MEMBER_JOIN_AUTO_GUILD_IDX();
                 if guildidx ~= "0" and guildidx == lastGuildGIDX then
                     return;
-                end
-
-                --200827_SEASON
-                local IsSeasonSvr = IS_SEASON_SERVER()
-                if IsSeasonSvr == "YES" then
-                    addTime = 10080;
                 end
 
                 local enterEnableTime = imcTime.AddSec(lastTime, (addTime*60));

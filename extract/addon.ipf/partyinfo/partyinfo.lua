@@ -750,12 +750,16 @@ function RECEIVE_PARTY_INVITE(partyType, inviterAid, familyName)
 	ui.MsgBox(str, yesScp, noScp);
 end
 
-function RECEIVE_GUILD_INVITE(partyType, inviterAid, familyName, guildID)    
+function RECEIVE_GUILD_INVITE(partyType, inviterAid, familyName, guildID, is_season_server)    
 	local msg = "";
 	msg = "{Inviter}InviteYouToGuild_DoYouAccept?";	
 	local str = ScpArgMsg(msg, "Inviter", familyName);
 	str = ui.ConvertScpArgMsgTag(str)
-
+	if is_season_server == 1 then
+		str = str..string.format("{#0000FF}(%s){/}",ClMsg("SeasonServer"))
+	else
+		str = str..string.format("{#0000FF}(%s){/}",ClMsg("NotSeasonServer"))
+	end
 	local msgBox = ui.GetMsgBox(str);
 	if msgBox ~= nil then
 		return

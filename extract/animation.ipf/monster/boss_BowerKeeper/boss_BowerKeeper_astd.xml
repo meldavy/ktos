@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="EUC-KR"?>
+<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by IMCGames Co., Ltd (IMCGames Co., Ltd) -->
+<ActionDesc>
+	<Particle frame="0" attachNode="Bip001 Spine1" particleName="I_force018_trail_psychokinesis3_6" useAttach="true" hiddenObj="false" changeEffect="None" scale="1.4" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="80" attachNode="Bip001 Spine1" particleName="I_force018_trail_psychokinesis3_6" useAttach="true" hiddenObj="false" changeEffect="None" scale="1.4" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="0" attachNode="LBone011" particleName="I_force018_trail_psychokinesis3_5" useAttach="true" hiddenObj="false" changeEffect="None" scale="0.6" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="80" attachNode="LBone011" particleName="I_force018_trail_psychokinesis3_5" useAttach="true" hiddenObj="false" changeEffect="None" scale="0.6" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="0" attachNode="RBone011" particleName="I_force018_trail_psychokinesis3_5" useAttach="true" hiddenObj="false" changeEffect="None" scale="0.6" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="80" attachNode="RBone011" particleName="I_force018_trail_psychokinesis3_5" useAttach="true" hiddenObj="false" changeEffect="None" scale="0.6" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="0" attachNode="Bip001 L Finger2" particleName="I_force018_trail_psychokinesis3_5" useAttach="true" hiddenObj="false" changeEffect="None" scale="0.6" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="80" attachNode="Bip001 L Finger2" particleName="I_force018_trail_psychokinesis3_5" useAttach="true" hiddenObj="false" changeEffect="None" scale="0.6" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="0" attachNode="Bip001 R Finger2" particleName="I_force018_trail_psychokinesis3_5" useAttach="true" hiddenObj="false" changeEffect="None" scale="0.6" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="80" attachNode="Bip001 R Finger2" particleName="I_force018_trail_psychokinesis3_5" useAttach="true" hiddenObj="false" changeEffect="None" scale="0.6" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="0" attachNode="CB_Bone003" particleName="I_force018_trail_psychokinesis3_5" useAttach="true" hiddenObj="false" changeEffect="None" scale="0.3" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="80" attachNode="CB_Bone003" particleName="I_force018_trail_psychokinesis3_5" useAttach="true" hiddenObj="false" changeEffect="None" scale="0.3" pause="true" use2DEffect="false" soft2DValue="20"/>
+</ActionDesc>

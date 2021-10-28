@@ -16,15 +16,15 @@ function MINIMIZED_EVENT_PROGRESS_CHECK_BUTTON1(frame, gb)
 	local btn = GET_CHILD(gb, "openBtn");
 	local title = GET_CHILD(gb, "title");
 	-- SEASON_SERVER
-	if IS_SEASON_SERVER() == "YES" then
-		btn:SetImage("god_roulette_coin_entrance");
-		btn:SetEventScript(ui.LBUTTONUP, "MINIMIZED_EVENT_PROGRESS_CHECK_BUTTON_CLICK");
-		btn:SetEventScriptArgNumber(ui.LBUTTONUP, 2);
+	-- if IS_SEASON_SERVER() == "YES" then
+	-- 	btn:SetImage("god_roulette_coin_entrance");
+	-- 	btn:SetEventScript(ui.LBUTTONUP, "MINIMIZED_EVENT_PROGRESS_CHECK_BUTTON_CLICK");
+	-- 	btn:SetEventScriptArgNumber(ui.LBUTTONUP, 2);
 		
-		title:SetTextByKey("value", ClMsg("GODDESS_ROULETTE"));
-		gb:ShowWindow(1);
-		return;
-	end
+	-- 	title:SetTextByKey("value", ClMsg("GODDESS_ROULETTE"));
+	-- 	gb:ShowWindow(1);
+	-- 	return;
+	-- end
 
 	-- FLEX_BOX
 	-- if IS_SEASON_SERVER() == "NO"  then
@@ -49,12 +49,12 @@ function MINIMIZED_EVENT_PROGRESS_CHECK_BUTTON2(frame, gb)
 	-- title:SetTextByKey("value", ClMsg("EVENT_YOUR_MASTER_TITLE"));
     -- gb:ShowWindow(1);
 
-    -- EVENT_2009_FULLMOON
-    btn:SetImage("2009Chursok_btn")
-    btn:SetEventScript(ui.LBUTTONUP, "MINIMIZED_EVENT_PROGRESS_CHECK_BUTTON_CLICK");
-	btn:SetEventScriptArgNumber(ui.LBUTTONUP, 5);
-	title:SetTextByKey("value", ClMsg("EVENT_2009_FULLMOON_TITLE"));
-    gb:ShowWindow(1);
+    -- -- EVENT_2009_FULLMOON
+    -- btn:SetImage("2009Chursok_btn")
+    -- btn:SetEventScript(ui.LBUTTONUP, "MINIMIZED_EVENT_PROGRESS_CHECK_BUTTON_CLICK");
+	-- btn:SetEventScriptArgNumber(ui.LBUTTONUP, 5);
+	-- title:SetTextByKey("value", ClMsg("EVENT_2009_FULLMOON_TITLE"));
+    -- gb:ShowWindow(1);
 end
 
 function MINIMIZED_EVENT_PROGRESS_CHECK_BUTTON_CLICK(parent, ctrl, argStr, type)	

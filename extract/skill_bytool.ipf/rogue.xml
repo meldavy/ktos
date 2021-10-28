@@ -383,6 +383,15 @@ return func(skill.Level)" Str="0" UseFunc="1"/>
 	<Skill Name="Rogue_Evasion">
 		<MainSkl JumpFlee="NO" MSPDToUsePos="0" ScrLock="None">
 			<EtcList>
+                <Scp Scp="SKL_BUFF" Client="NO" UseSleep="NO" Time="150">
+                    <Str Str="Evasion_Buff"/>
+                    <Num Num="1"/>
+                    <Num Num="0"/>
+                    <Num Num="10000"/>
+                    <Num Num="1"/>
+                    <Num Num="100"/>
+                    <Num Num="0"/>
+                </Scp>
 				<Scp Client="YES" Scp="C_VOICE_SOUND" Time="200" UseSleep="NO">
 					<Str Str="voice_war_atk_medium"/>
 					<Str Str="voice_atk_medium_war_f"/>

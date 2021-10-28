@@ -179,4 +179,7 @@
 		<Element Name="bakarinecon2" root="bakarinecon2" atlas="bakarinecon2" json="bakarinecon2" scale="1" offsetX="0" offsetY="-10" animation="animation"/>
 		<Element Name="bakarinecon3" root="bakarinecon3" atlas="bakarinecon3" json="bakarinecon3" scale="0.8" offsetX="-1" offsetY="-10" animation="animation"/>
 	</Spine>
+	<Spine>
+		<Element Name="lagana" root="lagana" atlas="lagana" json="lagana" scale="0.6" offsetX="0" offsetY="0" animation="animation"/>
+	</Spine>
 </List>

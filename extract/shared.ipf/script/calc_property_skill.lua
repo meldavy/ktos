@@ -6661,7 +6661,7 @@ end
 
 
 function SCR_Get_SummonSalamion_Ratio(skill)
-    local value = 12.8 + (skill.Level * 4.48);
+    local value = 14.72 + (skill.Level * 5.152);
     return value;
 end
 
@@ -6785,7 +6785,7 @@ function SCR_Get_Haste_Bufftime(skill)
 end
 
 function SCR_Get_CreateShoggoth_Ratio(skill)
-    local value = skill.Level * 20;
+    local value = skill.Level * 23;
     return math.floor(value);
 end
 
@@ -7808,57 +7808,57 @@ function SCR_GET_CorpseTower_Ratio2(skill)
 end
 
 function SCR_GET_CorpseTower_Ratio3(skill)
-    local value = 19.2 + (skill.Level * 10.08)
+    local value = skill.Level * 13.8
     return value;
 end
 
 function SCR_GET_RaiseDead_Ratio(skill)
-    local value = 12.8 + (skill.Level * 13.44);
+    local value = skill.Level * 18.4;
     return math.floor(value);
 
 end
 
 function SCR_GET_RaiseDead_Ratio2(skill)
-   local value = 32 + (skill.Level * 33.6);
+   local value = skill.Level * 40;
    return math.floor(value);
 end
 
 function SCR_GET_RaiseDead_Ratio3(skill)
-    local value = 16 + (skill.Level * 16.8);
+    local value = skill.Level * 20;
     
     return value;
 end
 
 function SCR_GET_RaiseSkullarcher_Ratio(skill)
-    local value = 16 + (skill.Level * 16.8);
+    local value = skill.Level * 23;
     return math.floor(value);
 
 end
 
 function SCR_GET_RaiseSkullarcher_Ratio2(skill)
-    local value = 16 + (skill.Level * 16.8);
+    local value = skill.Level * 20;
     return math.floor(value);
 
 end
 
 function SCR_GET_RaiseSkullarcher_Ratio3(skill)
-    local value = 12.8 + (skill.Level * 13.44);
+    local value = skill.Level * 16;
     
     return value;
 end
 
 function SCR_GET_RaiseSkullWizard_Ratio(skill)
-   local value = 16 + (skill.Level * 16.8);
+   local value = skill.Level * 23;
    return math.floor(value);
 end
 
 function SCR_GET_RaiseSkullWizard_Ratio2(skill)
-   local value = 16 + (skill.Level * 16.8);
+   local value = skill.Level * 20;
    return math.floor(value);
 end
 
 function SCR_GET_RaiseSkullWizard_Ratio3(skill)
-    local value = 8 + (skill.Level * 8.4)
+    local value = skill.Level * 10;
     
     return value;
 end
@@ -9642,16 +9642,19 @@ function SCR_GET_Zombify_Bufftime(skill)
 end
 
 function SCR_GET_Zombify_ratio(skill)
-    local pc = GetSkillOwner(skill);
-    local value = 4 + skill.Level
---  local bookor8_abil = GetAbility(pc, 'Bokor8');
---  if bookor8_abil ~= nil and 1 == bookor8_abil.ActiveState then
---      value = value + bookor8_abil.Level;
---  end
-    
-    return value
+    local value = 9.2 + skill.Level * 3.22
+    return value;
 end
 
+function SCR_GET_Zombify_ratio2(skill)
+    local value = 16 + skill.Level * 5.6
+    return value;
+end
+
+function SCR_GET_Zombify_ratio3(skill)
+    local value = 8 + skill.Level * 2.8
+    return value;
+end
 
 function SCR_GET_CrossGuard_Bufftime(skill)
     local pc = GetSkillOwner(skill);
@@ -10717,6 +10720,12 @@ end
 
 function SCR_Get_Summoning_Ratio2(skill)
     local value = 24 + (skill.Level * 8.4);
+    
+    return value;
+end
+
+function SCR_Get_Summoning_Ratio3(skill)
+    local value = 18.4 + (skill.Level * 6.44);
     
     return value;
 end

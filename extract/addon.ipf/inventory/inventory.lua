@@ -434,9 +434,10 @@ function INVENTORY_CLOSE()
 
 	item.RemoveTargetItem();
 	INVENTORY_SET_CUSTOM_RBTNDOWN("None");
+	
 	ui.CloseFrame("inventory");
-
 	ui.CloseFrame("inventoryoption")
+	ui.CloseFrame("accountprop_inventory")
 end
 
 function INVENTORY_FRONT_IMAGE_CLEAR(frame)
@@ -3702,6 +3703,15 @@ function INV_INVENTORY_OPTION_OPEN(frame, msg, argStr, argNum)
 	ui.OpenFrame("inventoryoption")
 end
 
+function INV_ACCOUNT_PROP_INVENTORY_BTN_CLICK()
+	local frame = ui.GetFrame("accountprop_inventory");
+	if frame:IsVisible() == 1 then
+		ACCOUNTPROP_INVENTORY_CLOSE();
+		return;
+	end
+
+	ACCOUNTPROP_INVENTORY_OPEN();
+end
 
 function INV_HAT_VISIBLE_STATE(frame)
 	if frame == nil then
@@ -4501,4 +4511,64 @@ function RUN_CLIENT_USE_MULTIPLE_ABILITY_POINT(count)
     session.AddItemID(multiple_ability_item_id, count)    
     local resultlist = session.GetItemIDList()
     item.DialogTransaction("MULTIPLE_USE_ABILITY", resultlist)
+end
+
+
+
+
+
+-- 다수 경험치 카드 사용
+local multiple_xpCard_item_id = '0'
+
+function CLIENT_USE_MULTIPLE_XPCARD(item_obj)
+	multiple_xpCard_item_id = '0'
+	local item = GetIES(item_obj:GetObject())
+	
+	if GetCraftState() == 1 then
+		return;
+	end
+
+	if true == BEING_TRADING_STATE() then
+		return;
+	end
+	
+	local invItem = session.GetInvItemByGuid(item_obj:GetIESID())	
+	if nil == invItem then
+		return;
+	end
+	
+	if true == invItem.isLockState then
+		ui.SysMsg(ClMsg("MaterialItemIsLock"));
+		return;
+	end
+	
+	CHECK_CLIENT_USE_MULTIPLE_XPCARD(invItem:GetIESID())
+end
+
+function CHECK_CLIENT_USE_MULTIPLE_XPCARD(item_id)
+	local invItem = session.GetInvItemByGuid(tostring(item_id))
+	local itemObj = GetIES(invItem:GetObject());	
+	local SetLv = TryGetProp(itemObj, 'UseLv', 0)
+    local pc = GetMyPCObject();
+	local pcLv = pc.Lv
+	if pcLv < SetLv then
+		ui.SysMsg(ClMsg("NotEnoughLevelToEquipItem"));
+		return
+	end
+	if TryGetProp(itemObj, 'MaxStack', 0) == 1 or invItem.count == 1 then		
+		multiple_xpCard_item_id = tostring(item_id)
+		RUN_CLIENT_USE_MULTIPLE_XPCARD(1)
+	else
+		local titleText = ScpArgMsg("INPUT_CNT_D_D", "Auto_1", 1, "Auto_2", invItem.count);
+		INPUT_NUMBER_BOX(nil, titleText, "RUN_CLIENT_USE_MULTIPLE_XPCARD", 1, 1, invItem.count);	
+		multiple_xpCard_item_id = tostring(item_id)
+	end
+end
+
+function RUN_CLIENT_USE_MULTIPLE_XPCARD(count)
+	session.ResetItemList();
+    local pc = GetMyPCObject();
+    session.AddItemID(multiple_xpCard_item_id, count)    
+	local resultlist = session.GetItemIDList()
+    item.DialogTransaction("MULTIPLE_USE_XPCARD", resultlist)
 end

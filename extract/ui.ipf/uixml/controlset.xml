@@ -5640,6 +5640,14 @@
 			<richtext name="itemPrice" margin="0 0 0 0" layout_gravity="left center" textalign="left center" rect="55 0 400 55" stretch="true"/>
 		</controls>
 	</controlset>
+	<controlset name="icon_text_count" hittest="false" hittestset="false" width="360" height="65" draw="false">
+		<controls>
+			<groupbox name="bg" rect="0 0 355 70" margin="0 0 0 0" layout_gravity="left center" hittestbox="false" skin="test_skill_skin3" draw="true" scrollbar="false"/>
+			<picture name="pic" rect="0 0 50 50" margin="10 0 0 0" layout_gravity="left center" stretch="true" skin="test_skin_01_btn" hittest="false"/>
+			<richtext name="name" rect="0 0 180 20" margin="62 1 0 0" layout_gravity="left center" resizebytext="true" format="%s" param1="value" param1_def="아이템 이름" fontname="black_16_b" textalign="left center"/>
+			<richtext name="count" rect="0 0 100 40" margin="0 1 25 10" layout_gravity="right center" format="%s" param1="value" param1_def="0" fontname="black_16_b" textalign="right center"/>
+		</controls>
+	</controlset>
 	<controlset name="dress_room_deck" hittest="true" width="510" height="80" skin="test_skin_01_btn" hittestset="true" draw="true" stateskin="false">
 		<controls>
 			<groupbox name="gb_complete" layout_gravity="left top" rect="0 0 510 80" margin="0 0 0 0" draw="true" resizebyparent="false" scrollbar="false" skin="base_btn_clicked"/>
@@ -5664,6 +5672,12 @@
 			<picture name="slot_pic" rect="0 0 190 146" margin="0 0 0 0" layout_gravity="center top" image="protection_legend"/>
 			<slot name="slot" rect="0 0 111 111" margin="0 8 0 0" layout_gravity="center top" enabledrop="false" enabledrag="false" enablepop="false"/>
 			<richtext name="slot_text" rect="0 0 300 40" margin="0 95 0 0" layout_gravity="center top" format="{@st100white_16}{s18}%s / %s" param1="now" param1_def="1" param2="original" param2_def="1" hittest="false"/>
+		</controls>
+	</controlset>
+	<controlset name="event_gamble_slot" hittest="true" width="190" height="146" hittestset="true" draw="false" stateskin="false">
+		<controls>
+			<picture name="slot_pic" rect="0 0 190 146" margin=" 0 0 0 0" image="protection_legend" imagealign="center center" layout_gravity="center top"/>
+			<slot name="slot" parent="slot_pic" rect="0 0 111 111" margin="0 8 0 0" layout_gravity="center top" enabledrop="false" enablepop="false" enabledrag="false"/>
 		</controls>
 	</controlset>
 </controlsetlist>

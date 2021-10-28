@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by IMC (IMCGames Co., Ltd) -->
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by imc (imc) -->
 <!-- 한 맵에 여러개의 dpk quest를 넣으면 성능상의 이슈가 있을 수 있다. 많아야 5개 -->
 <!-- ClassName은 중복을 허용하지 않는다 -->
 <!-- MonsterClassName은 ; 을 구분자로 여러개 등록할 수 있다. -->
@@ -11,4 +11,6 @@
 	<dpk MapClassName="f_castle_102" ClassName="f_castle_102_dpk_1" MonsterClassName="Wolf;Goblin_sword_rider;castle_goblin_archer;Neckko;Wolf_leader" DPKCount="30" RunScript="DPK_SUCCESS_f_castle_102_dpk_1" LimitTime="900000" CondKillCnt="30" ObjectClsName="Wolf;Goblin_sword_rider;castle_goblin_archer;Neckko;Wolf_leader" Type="KillMon" RewardList="ep12_dpk_reward4"/>
 	<dpk MapClassName="f_desolated_capital_53_1" ClassName="f_desolated_capital_53_1_dpk_1" MonsterClassName="Orc_shield;Orc_double_axe;Orc_wand;Orc_leader" DPKCount="30" RunScript="DPK_SUCCESS_f_desolated_capital_53_1_dpk_1" LimitTime="900000" CondKillCnt="30" ObjectClsName="Orc_shield;Orc_double_axe;Orc_wand;Orc_leader" Type="KillMon" RewardList="ep12_dpk_reward5"/>
 	<dpk MapClassName="f_dcapital_104" ClassName="f_dcapital_104_dpk_1" MonsterClassName="Orc_cannon;Orc_flag;Orc_glaive" DPKCount="30" RunScript="DPK_SUCCESS_f_dcapital_104_dpk_1" LimitTime="900000" CondKillCnt="30" ObjectClsName="Orc_cannon;Orc_flag;Orc_glaive" Type="KillMon" RewardList="ep12_dpk_reward6"/>
+	<dpk MapClassName="f_castle_101" ClassName="f_castle_101_dpk_1" MonsterClassName="bower_obstructer;bower_interfere;bower_oblivion;bower_guillotine" DPKCount="30" RunScript="DPK_SUCCESS_f_castle_101_dpk_1" LimitTime="900000" CondKillCnt="30" ObjectClsName="bower_obstructer;bower_interfere;bower_oblivion;bower_guillotine" Type="KillMon" RewardList="ep12_dpk_reward7"/>
+	<dpk MapClassName="d_dcapital_108" ClassName="d_dcapital_108_dpk_1" MonsterClassName="raganosis_guardian;raganosis_seeker;raganosis_ram" DPKCount="30" RunScript="DPK_SUCCESS_d_dcapital_108_dpk_1" LimitTime="900000" CondKillCnt="30" ObjectClsName="raganosis_guardian;raganosis_seeker;raganosis_ram" Type="KillMon" RewardList="ep12_dpk_reward8"/>
 </Data>

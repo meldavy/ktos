@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ActionDesc>
+    <Sound frame="7.00" soundFile="mon_pet_rocksodon_skl"/>
+    <Sound frame="7.00" soundFile="skl_eff_action_shot_1"/>
+    <Sound frame="7.00" soundFile="atk_rod"/>
+    <Sound frame="12.00" soundFile="skl_eff_action_shot_1"/>
+    <Sound frame="13.00" soundFile="atk_rodswing"/>
+</ActionDesc>

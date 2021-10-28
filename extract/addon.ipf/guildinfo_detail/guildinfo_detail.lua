@@ -9,6 +9,7 @@ local finishedLoading = false;
 
 function GUILDINFO_DETAIL_ON_INIT(addon, frame)
     addon:RegisterMsg('RECEIVE_OTHER_GUILD_AGIT_INFO', 'SCR_OTHER_GUILD_AGIT_INFO');
+    addon:RegisterMsg('SERVER_GUILD_OUT_DATE_CHECK', 'SERVER_GUILD_OUT_DATE_CHECK');
 end
 
 function GUILDINFO_DETAIL_INIT(guildData, emblemPath, info, guild_idx)
@@ -128,6 +129,20 @@ function GUILDINFO_DETAIL_OPEN(addon, frame)
 
     local intro = GET_CHILD_RECURSIVELY(detail, "intro");
     intro:ShowWindow(1)
+end
+
+function OPEN_REQUEST_GUILDJOIN_CHECK()
+    local guildidx = GET_GUILD_MEMBER_JOIN_AUTO_GUILD_IDX();
+    if guildidx ~= "0" and guildidx == g_guildIdx then
+        control.CustomCommand("REQ_SERVER_GUILD_OUT_DATE_CHECK", 0);
+        return;
+    end
+
+    OPEN_REQUEST_GUILDJOIN();
+end
+
+function SERVER_GUILD_OUT_DATE_CHECK()
+    OPEN_REQUEST_GUILDJOIN();
 end
 
 function OPEN_REQUEST_GUILDJOIN()

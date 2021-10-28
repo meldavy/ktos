@@ -17,7 +17,7 @@ end
 
 -- OPEN / CLOSE
 function SILVER_GACHA_OPEN()
-    
+    SILVER_GACHA_SPINE()
 end
 
 function SILVER_GACHA_CLOSE()
@@ -472,4 +472,19 @@ function SILVER_GACHA_GET_ITEM_LIST_BY_RANK(eventID, rank)
     end
 
 	return list
+end
+
+function SILVER_GACHA_SPINE()
+	local frame = ui.GetFrame("silver_gacha");
+    local picture = GET_CHILD_RECURSIVELY(frame, 'spinepic');
+	local isEnableSpine = config.GetXMLConfig("EnableAnimateItemIllustration");
+	if isEnableSpine == 1 then
+
+		local spineToolTip = frame:GetUserConfig("SPINE")
+		local spineInfo = geSpine.GetSpineInfo(spineToolTip);
+		if spineInfo ~= nil then
+			picture:CreateSpineActor(spineInfo:GetRoot(), spineInfo:GetAtlas(), spineInfo:GetJson(), "", spineInfo:GetAnimation());
+		end	
+	end
+	
 end

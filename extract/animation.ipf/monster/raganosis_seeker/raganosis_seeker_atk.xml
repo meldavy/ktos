@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ActionDesc>
+    <Sound frame="2.00" soundFile="mon_voice_hogma_archer_atk"/>
+    <Sound frame="2.00" soundFile="skl_eff_sheriff_peacemaker_shoot"/>
+    <Sound frame="4.00" soundFile="skl_eff_rifle_atk_move_end"/>
+</ActionDesc>
