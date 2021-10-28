@@ -13685,7 +13685,7 @@ end
 -- done , 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_GET_Roar_Ratio(skill)
     local pc = GetSkillOwner(skill)
-    local value = skill.Level * 6
+    local value = 30 + skill.Level * 3
     
     return value
 end
