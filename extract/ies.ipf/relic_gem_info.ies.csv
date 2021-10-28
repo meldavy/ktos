@@ -1,6 +1,6 @@
 ClassID,SilverCost,MaterialCnt_1,MaterialCnt_2,ClassName,Material_1,Material_2
 1,4000000,300,10,CompositionCost,misc_Relic_Gem,Premium_item_transcendence_Stone
-2,4000000,400,800,DecomposeResult,misc_Relic_Gem,misc_Relic_Gem
+2,4000000,800,1600,DecomposeResult,misc_Relic_Gem,misc_Relic_Gem
 101,2000000,50,2,RelicGem_Upgrade_Lv1,misc_Relic_Gem,Premium_item_transcendence_Stone
 102,4000000,100,3,RelicGem_Upgrade_Lv2,misc_Relic_Gem,Premium_item_transcendence_Stone
 103,6000000,200,3,RelicGem_Upgrade_Lv3,misc_Relic_Gem,Premium_item_transcendence_Stone

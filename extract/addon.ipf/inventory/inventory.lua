@@ -195,7 +195,7 @@ function INVENTORY_ON_INIT(addon, frame)
 	addon:RegisterMsg('TOGGLE_ITEM_SLOT_ON', 'TOGGLE_ITEM_SLOT_INVEN_ON_MSG');
 	addon:RegisterMsg('TOGGLE_ITEM_SLOT_OFF', 'TOGGLE_ITEM_SLOT_INVEN_ON_MSG');
 	addon:RegisterOpenOnlyMsg('WEIGHT_UPDATE', 'INVENTORY_WEIGHT_UPDATE');
-	addon:RegisterOpenOnlyMsg('SLOTCOUNT_UPDATE', 'INVENTORY_SLOTCOUNT_UPDATE');
+	--addon:RegisterOpenOnlyMsg('SLOTCOUNT_UPDATE', 'INVENTORY_SLOTCOUNT_UPDATE');
 	
 	addon:RegisterMsg('UPDATE_ITEM_REPAIR', 'INVENTORY_ON_MSG');
 	addon:RegisterMsg('UPDATE_ITEM_APPRAISAL', 'INVENTORY_ON_MSG');
@@ -505,11 +505,20 @@ function INVENTORY_WEIGHT_UPDATE(frame)
 		rate = math.floor(pc.NowWeight * 100 / pc.MaxWeight)
 	end
 		
+	local invItemList = GetInvItemList(pc)
+	local curCount = #invItemList
+	if tonumber(GET_TOTAL_MONEY_STR()) > 0 then
+		curCount = curCount - 1
+	end
+	local maxCount = 2000
+
 	local weightscptext = ScpArgMsg("Weight{All}{Max}", "All", string.format("%.1f", pc.NowWeight), "Max", string.format("%.1f", pc.MaxWeight))
+	local slotscptext = ScpArgMsg("slotcount{All}{Max}", "All", curCount, "Max", maxCount)
+
 	local weightratetext = ScpArgMsg("Weight{Rate}", "Rate", tostring(rate))
 
 	local weightGbox = GET_CHILD_RECURSIVELY(bottomgroup, 'weightGbox','ui::CGroupBox')
-	weightGbox:SetTextTooltip(weightscptext)
+	weightGbox:SetTextTooltip(weightscptext..'{nl}'..slotscptext)
 
 	local weighttext = GET_CHILD_RECURSIVELY(bottomgroup, 'invenweight','ui::CRichText')
 	weighttext:SetText(weightratetext)
@@ -519,27 +528,6 @@ function INVENTORY_WEIGHT_UPDATE(frame)
 	else
 		SYSMENU_INVENTORY_WEIGHT_NOTICE_CLOSE()
 	end
-end
-
-function INVENTORY_SLOTCOUNT_UPDATE(frame)
-	local bottomgroup = GET_CHILD_RECURSIVELY(frame, 'bottomGbox', 'ui::CGroupBox')
-	local pc = GetMyPCObject()
-	local invItemList = GetInvItemList(pc)
-	local curCount = #invItemList
-	if tonumber(GET_TOTAL_MONEY_STR()) > 0 then
-		curCount = curCount - 1
-	end
-	local maxCount = 2000
-	local rate = math.floor(curCount * 100 / maxCount)
-
-	local slotscptext = ScpArgMsg("slotcount{All}{Max}", "All", curCount, "Max", maxCount)
-	local slotratetext = ScpArgMsg("slotcount{Rate}", "Rate", tostring(rate))
-
-	local slotGbox = GET_CHILD_RECURSIVELY(bottomgroup, 'slotcountGbox','ui::CGroupBox')
-	slotGbox:SetTextTooltip(slotscptext)
-
-	local slotttext = GET_CHILD_RECURSIVELY(bottomgroup, 'invenslotcount','ui::CRichText')
-	slotttext:SetText(slotratetext)
 
 	if curCount >= maxCount then
 		SYSMENU_INVENTORY_SLOTCOUNT_NOTICE()
@@ -547,6 +535,33 @@ function INVENTORY_SLOTCOUNT_UPDATE(frame)
 		SYSMENU_INVENTORY_SLOTCOUNT_NOTICE_CLOSE()
 	end
 end
+
+--function INVENTORY_SLOTCOUNT_UPDATE(frame)	
+--	local bottomgroup = GET_CHILD_RECURSIVELY(frame, 'bottomGbox', 'ui::CGroupBox')
+--	local pc = GetMyPCObject()
+--	local invItemList = GetInvItemList(pc)
+--	local curCount = #invItemList
+--	if tonumber(GET_TOTAL_MONEY_STR()) > 0 then
+--		curCount = curCount - 1
+--	end
+--	local maxCount = 2000
+--	local rate = math.floor(curCount * 100 / maxCount)
+--
+--	local slotscptext = ScpArgMsg("slotcount{All}{Max}", "All", curCount, "Max", maxCount)
+--	local slotratetext = ScpArgMsg("slotcount{Rate}", "Rate", tostring(rate))
+--
+--	local slotGbox = GET_CHILD_RECURSIVELY(bottomgroup, 'slotcountGbox','ui::CGroupBox')
+--	slotGbox:SetTextTooltip(slotscptext)
+--
+--	local slotttext = GET_CHILD_RECURSIVELY(bottomgroup, 'invenslotcount','ui::CRichText')
+--	slotttext:SetText(slotratetext)
+--
+--	if curCount >= maxCount then
+--		SYSMENU_INVENTORY_SLOTCOUNT_NOTICE()
+--	else
+--		SYSMENU_INVENTORY_SLOTCOUNT_NOTICE_CLOSE()
+--	end
+--end
 
 function INVITEM_INVINDEX_CHANGE(itemGuid)
 
@@ -662,7 +677,7 @@ function INVENTORY_ON_MSG(frame, msg, argStr, argNum)
 	
 	if msg == 'INV_ITEM_ADD' then
 		TEMP_INV_ADD(frame, argNum);
-		INVENTORY_SLOTCOUNT_UPDATE(frame);
+		--INVENTORY_SLOTCOUNT_UPDATE(frame);
 	end
 	
 	if  msg == 'EQUIP_ITEM_LIST_GET' then
@@ -681,7 +696,8 @@ function INVENTORY_ON_MSG(frame, msg, argStr, argNum)
 		STATUS_EQUIP_SLOT_SET(frame);
 		DRAW_MEDAL_COUNT(frame)
 		INVENTORY_WEIGHT_UPDATE(frame);
-		INVENTORY_SLOTCOUNT_UPDATE(frame);
+		--INVENTORY_SLOTCOUNT_UPDATE(frame);
+		DRAW_SEASON_COIN(frame)
     end
 
 	if msg == 'INV_ITEM_CHANGE_COUNT' then
@@ -693,11 +709,12 @@ function INVENTORY_ON_MSG(frame, msg, argStr, argNum)
 	end
 
 	if msg == 'INV_ITEM_POST_REMOVE' then
-		INVENTORY_SLOTCOUNT_UPDATE(frame);
+		--INVENTORY_SLOTCOUNT_UPDATE(frame);
 	end
 
 	if msg == 'ACCOUNT_UPDATE' then
 		DRAW_MEDAL_COUNT(frame)
+		DRAW_SEASON_COIN(frame)
 	end
 
 	if msg == 'INV_DRAW_MONEY_TEXT' then
@@ -2310,6 +2327,35 @@ function DRAW_TOTAL_VIS(frame, childname, remove)
     INVENTORY_CronCheck:SetText('{@st41b}'..GET_COMMAED_STRING(silverAmountStr))
 end
 
+function DRAW_SEASON_COIN(frame)
+	local aObj = GetMyAccountObj()
+	local Cls = GetClassByStrProp('accountprop_inventory_list', 'IsNowSeason', 'YES')
+	local PropName = TryGetProp(Cls, 'ClassName', 'None')
+	if PropName == 'None' then
+		PropName = 'GabijaCertificate'
+	end
+
+	local InvIcon = TryGetProp(Cls, 'InvIcon', 'None')
+	if InvIcon == 'None' then
+		InvIcon = 'inventory_coin_gabia_pic'
+	end
+
+	local CoinAmountStr = TryGetProp(aObj, PropName, 'None')
+
+	if CoinAmountStr == 'None' then
+		CoinAmountStr = '0'
+	end
+
+	local bottomGbox = frame:GetChild('bottomGbox');
+	local CoinGbox = bottomGbox:GetChild('SeasonCoinGbox');
+
+	local INVENTORY_CronCheck = GET_CHILD_RECURSIVELY(CoinGbox, 'sesasonCoinText', 'ui::CRichText');
+    INVENTORY_CronCheck:SetText('{@st41b}'..GET_COMMAED_STRING(CoinAmountStr))
+
+	local Coin_Icon = GET_CHILD_RECURSIVELY(CoinGbox, 'SeasonCoin_Img')
+	Coin_Icon:SetImage(InvIcon)
+end
+
 function DRAW_MEDAL_COUNT(frame)
 	local bottomGbox = frame:GetChild('bottomGbox');
 	local medalGbox = bottomGbox:GetChild('medalGbox');
@@ -3243,7 +3289,7 @@ function CLIENT_CONVERT_TO_NOTRADE(item_obj)
 	end
 
 	local yesscp = string.format('CHECK_CLIENT_CONVERT_TO_NOTRADE("%s")', invItem:GetIESID());
-	ui.MsgBox(ScpArgMsg('ConvertToNoTrade{NAME}', 'NAME', TryGetProp(item, 'Name', 'None')), yesscp, 'None');
+	WARNINGMSGBOX_FRAME_OPEN(ScpArgMsg('ConvertToNoTradeWarning{NAME}', 'NAME', TryGetProp(item, 'Name', 'None')), yesscp, 'None', nil, ScpArgMsg('WarningTeamBelonging'));
 end
 
 function CHECK_CLIENT_CONVERT_TO_NOTRADE(item_id)
@@ -4518,7 +4564,7 @@ function ON_UPDATE_TRUST_POINT(frame, msg, argStr, trustPoint)
 
 	trustPoint = math.min(trustPoint + 1, 6);
 	trustPointImg:SetImage("icon_credit_grade_" .. trustPoint);
-	trustPointText:SetTextByKey("trustPoint", trustPoint - 1);
+	trustPointText:SetTextByKey("trustPoint", "{img icon_credit_grade_" .. trustPoint .." 25 29}".." "..trustPoint - 1);
 	trustPointGbox:SetTooltipType('trust_point');
 	trustPointGbox:SetTooltipOverlap(1);
 	if config.GetServiceNation() == "GLOBAL" then
@@ -5109,7 +5155,7 @@ function CLIENT_CONVERT_TO_HIDDEN_ABILITY(item_obj)
 	end
 
 	local yesscp = string.format('CHECK_CLIENT_CONVERT_TO_HIDDEN_ABILITY("%s")', invItem:GetIESID());
-	ui.MsgBox(ScpArgMsg('ConvertToNoTrade{NAME}', 'NAME', TryGetProp(item, 'Name', 'None')), yesscp, 'None');
+	WARNINGMSGBOX_FRAME_OPEN(ScpArgMsg('ConvertToNoTradeWarning{NAME}', 'NAME', TryGetProp(item, 'Name', 'None')), yesscp, 'None', nil, ScpArgMsg('WarningTeamBelonging'));
 end
 
 function CHECK_CLIENT_CONVERT_TO_HIDDEN_ABILITY(item_id)

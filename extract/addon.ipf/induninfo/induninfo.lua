@@ -2555,12 +2555,21 @@ function RAID_RANKING_INFO_DETAIL(y, rank, time, member)
     local membery = 20;
     for i = 1, memberCnt do
         local infostrlist = StringSplit(memberstrlist[i], ' ');
+        local end_count = #infostrlist
+
         local teamname = "";
         local guildname = "";
         local memberCtrl = membergb:CreateOrGetControlSet("raid_ranking_info_member", "member_"..i, 0, membery);
         if 1 < #infostrlist then
-            guildname = infostrlist[1];
-            teamname = infostrlist[2];
+            for j = 1, end_count - 1 do
+                if j == 1 then
+                    guildname = infostrlist[j]
+                else
+                    guildname = guildname .. ' ' .. infostrlist[j];
+                end
+            end
+                        
+            teamname = infostrlist[end_count];
 
             local guildCtrl = GET_CHILD(memberCtrl, "guild");
             guildCtrl:SetText(guildname);
@@ -2964,7 +2973,7 @@ function BORUTA_RANKING_EMBLEM_IMAGE_SET(code, return_json)
     local emblemPath = emblemFolderPath .. "\\" .. guild_idx .. ".png"
 
     local frame = ui.GetFrame('induninfo')
-    local rankListBox = GET_CHILD_RECURSIVELY(frame, "ranking", "ui::CGroupBox")
+    local rankListBox = GET_CHILD_RECURSIVELY(frame, "ranking_list_box", "ui::CGroupBox")
     for i = 0,rankListBox:GetChildCount()-1 do
         local controlset = rankListBox:GetChildByIndex(i)
         if controlset:GetUserValue("GUILD_IDX") == guild_idx then

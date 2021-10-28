@@ -272,7 +272,7 @@
 		<Class ClassID="2097" ClassName="hairenchant_close" Data="마법 부여 스크롤 창을 닫습니다."/>
 		<Class ClassID="2098" ClassName="master_hairenchant_close" Data="장인의 마법 부여 스크롤 창을 닫습니다."/>
 		<Class ClassID="2099" ClassName="decomposeCant" Data="분해 할 수 없는 아이템입니다."/>
-		<Class ClassID="2100" ClassName="NotRoastingGemEquip" Data="{#fe7e00}로스팅 되지 않은 젬입니다.{/}{nl}정말 장착하시겠습니까?{nl}장착하시려면 숫자 [0000] 을 입력해주세요."/>
+		<Class ClassID="2100" ClassName="NotRoastingGemEquip" Data="{#fe7e00}로스팅 레벨이 낮은 젬입니다.{/}{nl}정말 장착하시겠습니까?{nl}장착하시려면 숫자 [0000] 을 입력해주세요."/>
 		<Class ClassID="2102" ClassName="ReallyDecomposeArk" Data="정말 해당 아크 아이템을 분해하시겠습니까?"/>
 		<Class ClassID="2103" ClassName="DecomposeArkCant" Data="레벨 1, 경험치 보유량 0인 아크만 분해가 가능합니다."/>
 		<Class ClassID="2104" ClassName="ProcessReinforceBy{Name}Moru" Data="{s20}{#0606ff}{Name}{/}로{nl}아이템을 강화하시겠습니까?{nl} {nl}{/}{s16}+5 이상부터는 강화에 실패할 수 있으며, 실패 시 포텐셜이 하락합니다.{nl}포텐셜이 0인 상태에서 실패 시, 아이템이 파괴됩니다.{/}"/>
@@ -318,6 +318,7 @@
 		<Class ClassID="2144" ClassName="OverGoddessGradeOnSubSlot" Data="서브 슬롯에는 가디스 등급의 장비만 장착 가능합니다."/>
 		<Class ClassID="2145" ClassName="OnlySameCardType" Data="같은 종류의 카드만 가능합니다."/>
 		<Class ClassID="2146" ClassName="NeedRegisterForCardCopy" Data="복사할 카드를 먼저 등록해야합니다."/>
+		<Class ClassID="2147" ClassName="OnlyRoastedGemEquipableToGoddess" Data="가디스 장비에는 로스팅 레벨이 낮은 컬러 젬을 장착할 수 없습니다."/>
 	</Category>
 	<Category Name="ItemContents">
 		<Class ClassID="2200" ClassName="ClickSocketTargetItem" Data="소켓을 추가 할 아이템을 선택해주세요"/>
@@ -501,9 +502,10 @@
 		<Class ClassID="2398" ClassName="ReallyDoCraftByInheritAddReinforce{mat}" Data="장비 계승을 통한 제작 시{nl}{#0001ff}[{mat}]{/}아이템 및{nl}{#ff0000}강화 수치와 인챈트 수치의 일부를 제외한{nl}장착된 젬 및 모든 옵션이 사라집니다.{/}{nl}계속하시겠습니까?"/>
 		<Class ClassID="2399" ClassName="ReallyDoCraftByConvert{item1}{item2}" Data="{#0001ff}[{item1}]{/}을/를{nl}{#0001ff}[{item2}]{/}로{nl}정말 변경 하시겠습니까?{nl} {nl}{#ff0100}(계열 변경 시 각성 옵션이 사라집니다.){/}"/>
 		<Class ClassID="2400" ClassName="AppliedEngraveOption" Data="각인된 옵션이 적용되었습니다."/>
+		<Class ClassID="2401" ClassName="ConvertToNoTradeWarning{NAME}" Data="{@st66d_y}{NAME}{/}{nl} {nl}재료용 {@st66d_y}거래불가 아이템으로 변환{/}되며, 변환 시 {@st66d_y}팀에 귀속{/}되고 복구가 불가능합니다.{nl} {nl}정말 변환하시겠습니까?"/>
 		<Class ClassID="2402" ClassName="Need8Transcend" Data="8초월 이상인 아이템만 가능합니다."/>
 		<Class ClassID="2403" ClassName="Need440UseLv" Data="440레벨 이상인 아이템만 가능합니다."/>
-		<Class ClassID="2404" ClassName="NeedLegendGrade" Data="레전드 등급 이상인 아이템만 가능합니다."/>		
+		<Class ClassID="2404" ClassName="NeedLegendGrade" Data="레전드 등급 이상인 아이템만 가능합니다."/>
 	</Category>
 	<Category Name="ClassContents">
 		<Class ClassID="2500" ClassName="FullWeeklyGainClassResetExp" Data="주간 획득 가능한 클래스 변경 포인트를 모두 달성하였습니다."/>
@@ -1033,7 +1035,8 @@
 		<Class ClassID="4410" ClassName="WarningTeamBelonging" Data="팀 귀속 주의"/>
 		<Class ClassID="4411" ClassName="ClassMisc" Data="전용 재료"/>
 		<Class ClassID="4412" ClassName="CantInheritIcorEquip" Data="아이커가 장착되어 있는 아이템은 계승할 수 없습니다.{nl}아이커 장착 해제 후 다시 시도해주세요."/>
-	</Category>
+		<Class ClassID="4413" ClassName="ItemDecomposeMistakeWarningPropMessage" Data="{#FE7E00}{s25}분해 실수 발생 가능성 높음{nl}{/}{/}{s18}분해 실수가 잦은 아이템이 포함되어 있습니다.{nl} {nl}{#FE7E00}{ITEMLIST}{/}{/}{nl} {nl}{DEFAULTMSG}"/>
+		</Category>
 	<Category Name="ItemTooltip">
 		<Class ClassID="5001" ClassName="CoolDown : {Sec} Sec" Data="재사용 대기시간 : {Sec}초"/>
 		<Class ClassID="5002" ClassName="WhenEquipToMainOrSubWeapon" Data="무기, 보조 장비 장착 시 효과"/>
@@ -1048,7 +1051,7 @@
 		<Class ClassID="5011" ClassName="Fire_Atk_BM" Data="화염 속성 대미지"/>
 		<Class ClassID="5012" ClassName="SkillStats" Data="스킬능력치"/>
 		<Class ClassID="5013" ClassName="Weight{All}{Max}" Data="무게 : {All}/{Max}"/>
-		<Class ClassID="5014" ClassName="Weight{Rate}" Data="무게 ({Rate}%)"/>
+		<Class ClassID="5014" ClassName="Weight{Rate}" Data="{img inventory_weight_pic 27 27} ({Rate}%)"/>
 		<Class ClassID="5015" ClassName="CantAddSocket" Data="소켓 추가 불가"/>
 		<Class ClassID="5016" ClassName="PropDown" Data="{img red_down_arrow 16 16}"/>
 		<Class ClassID="5017" ClassName="PropUp" Data="{img green_up_arrow 16 16}"/>
@@ -2268,6 +2271,7 @@
 		<Class ClassID="21446" ClassName="NewEpisodeLockMsg_Episode_13_2" Data="{@st59}해당 에피소드의 클리어 보상은 추후 공개될 예정입니다.{nl}{#FFFF00}[Episode13-2]{/}의 퀘스트 시작은 {#FFFF00}오르샤{/}의 {#FFFF00}이네사 해먼데일{/}로부터 시작할 수 있습니다."/>
 		<Class ClassID="21448" ClassName="TP_Social" Data="소셜"/>
 		<Class ClassID="21449" ClassName="AlreadyHaveGesture" Data="이미 보유 중인 제스처입니다."/>
+		<Class ClassID="21450" ClassName="WarningTitle" Data="주의"/>
 		</Category>
 	<Category Name="ChatText">
 		<Class ClassID="22001" ClassName="Guard" Data="방어"/>
@@ -10015,8 +10019,8 @@
 		<Class ClassID="92092" ClassName="SHOWDIALOGKEY{MSG}" Data="{img SPACE 70 70} / {img mouseclick_left 64 64} / {img red_B_btn 50 50}{nl}{MSG}"/>
 		<Class ClassID="92093" ClassName="TooltipDescGearScore" Data="착용한 장비들의 평균 아이템 점수입니다."/>
 		<Class ClassID="92094" ClassName="EquipedItemGearScore" Data="기어 스코어"/>
-		<Class ClassID="92095" ClassName="Goddess_Raid_Vasilissa" Data="성자의 기도소 : 가디스 레이드"/>
-		<Class ClassID="92096" ClassName="Goddess_Raid_Vasilissa_Auto" Data="성자의 기도소 : 가디스 레이드 (자동 매칭)"/>
+		<Class ClassID="92095" ClassName="Goddess_Raid_Vasilissa" Data="성자의 기도소: 가디스 레이드"/>
+		<Class ClassID="92096" ClassName="Goddess_Raid_Vasilissa_Auto" Data="성자의 기도소: 가디스 레이드 (자동 매칭)"/>
 		<Class ClassID="92097" ClassName="Raid_Vasilissa_cant_obtain_spear" Data="더 이상 티로나스의 힘을 받아들이지 못해 창을 집을 수 없습니다."/>
 		<Class ClassID="92098" ClassName="IndunWeeklyEnteredCount_NumberArg1" Data="[{NAME}]{nl}입장 횟수가 1 추가되었습니다."/>
 		<Class ClassID="92099" ClassName="Warning_IndunWeeklyEnteredCount_NumberArg1" Data="[{NAME}]{nl}입장 횟수를 모두 소진해야 사용 가능합니다."/>
@@ -15361,10 +15365,10 @@
 		<Class ClassID="302550" ClassName="EVENT_2107_NEXT_GR_MSG4" Data="{#FF0000}※수령가능 횟수를 초과하였습니다.{nl}매일 오전 06시에 초기화 됩니다.{/}"/>
 		<Class ClassID="302551" ClassName="EVENT_2107_NEXT_Time_MSG1" Data="{#0066FF}※ '[개편한 세상] 개척자의 상자' 아이템이 지급되었습니다.{/}"/>
 		<Class ClassID="302552" ClassName="EVENT_2107_NEXT_KEY_MSG1" Data="{#FF0000}}※ '[개편한 세상] 개척자의 열쇠' 아이템이 부족합니다.{/}"/>
-		<Class ClassID="302553" ClassName="EVENT_2107_NEXT_ITEM_MSG1" Data="{#0066FF}※ '[개편한 세상] 성자의 기도소 : 가디스 1회 입장권' 아이템이 지급되었습니다.{/}"/>
+		<Class ClassID="302553" ClassName="EVENT_2107_NEXT_ITEM_MSG1" Data="{#0066FF}※ '[개편한 세상] 성자의 기도소: 가디스 1회 입장권' 아이템이 지급되었습니다.{/}"/>
 		<Class ClassID="302554" ClassName="EVENT_2107_NEXT_ITEM_MSG2" Data="{#FF0000}}※레벨 460이상 캐릭터를 보유한 경우에 수령할 수 있습니다.{/}"/>
 		<Class ClassID="302555" ClassName="EVENT_2107_NEXT_ITEM_MSG3" Data="{#003399}※ 아이템 수령하기{/}"/>
-		<Class ClassID="302556" ClassName="EVENT_2107_NEXT_CHECK_MESSAGE1" Data="{#0066FF}[개편한 세상 신규 콘텐츠 이벤트 현황]{/}{nl}일일 개척자의 상자 획득 현황{#0066FF} ({BOX}){/}{nl}일일 개척자의 열쇠 획득 현황{#0066FF} ({KEY}/40){/}{nl}[개편한 세상] 성자의 기도소 : 가디스 1회 입장권 획득 현황 {#0066FF} ({SCROLL}/1){/}{nl}{#FF0000}}※ 일일 획득 제한은 매일 오전 06시 초기화 됩니다.{/}"/>
+		<Class ClassID="302556" ClassName="EVENT_2107_NEXT_CHECK_MESSAGE1" Data="{#0066FF}[개편한 세상 신규 콘텐츠 이벤트 현황]{/}{nl}일일 개척자의 상자 획득 현황{#0066FF} ({BOX}){/}{nl}일일 개척자의 열쇠 획득 현황{#0066FF} ({KEY}/40){/}{nl}[개편한 세상] 성자의 기도소: 가디스 1회 입장권 획득 현황 {#0066FF} ({SCROLL}/1){/}{nl}{#FF0000}}※ 일일 획득 제한은 매일 오전 06시 초기화 됩니다.{/}"/>
 		<Class ClassID="302557" ClassName="EVENT_2107_NEXT_CHECK_MESSAGE2" Data="{#0066FF}[개편한 세상 이벤트 참여 현황]{/}{nl}일일 '[이벤트] 개편한 세상 주화' 획득 개수 {#0066FF}({COIN}/1000개){/}{nl}일일 성장 지원 아이템 수령 횟수 (캐릭터){#0066FF}({COUNT}/1회){/}{nl}{#FF0000}}※일일 제한은 매일 오전 06시 초기화 됩니다.{nl}※성장 지원은 이벤트 기간 중 팀당 1회 참여 가능합니다.{/}"/>
 		<Class ClassID="302558" ClassName="EVENT_2107_NEXT_SHOP" Data="{#003399}[개편한 세상]{/} 이벤트 상점"/>
 		<Class ClassID="302559" ClassName="KUPOLE_TESTSERVER2_DLG_1" Data="글레이시어 레겐다, 원더러스, 글레이시어 유니크"/>
@@ -15388,7 +15392,7 @@
 		<Class ClassID="302583" ClassName="NEWUSER_BUFF_MSG" Data="{#FF0000}※신규/복귀 유저 지원 버프가 종료되었습니다. 스크롤을 다시 사용해주세요.{/}"/>
 		<Class ClassID="302599" ClassName="EP13CARE_TRADE4" Data="온전한 신력의 조각 / 검붉은 영혼석 교환"/>
 		<Class ClassID="302600" ClassName="GoddessCare_UniqueMaterial" Data="여신 / 마신 방어구 재료 교환"/>
-	</Category>
+		</Category>
 	<Category Name="Account">
 		<Class ClassID="303001" ClassName="MaxAccountWarehouseCount" Data="팀 창고"/>
 		<Class ClassID="303002" ClassName="AccountUse2MoreRank" Data="실버 입금 및 출금은 15레벨 이상 가능합니다."/>

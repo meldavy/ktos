@@ -89,19 +89,17 @@ function C_EFFECT_BY_BUFF(actor, obj, effectName1, scale1, effectName2, scale2, 
 end
 
 function C_EFFECT(actor, obj, effectName, scale, nodeName, lifeTime)
-    
     if lifeTime == nil then
-
         lifeTime = 0;
     end
 
     -- 포포팝 피스톨 체크1
-    if IS_EXIST_BRIQUETTING_OR_BEAUTYSHOP_ITEM(actor, "LH", "Pistol", obj.type, 634214) == true then
+    if IS_EXIST_BRIQUETTING_OR_BEAUTYSHOP_ITEM(actor, "LH", "Pistol", obj.type, 634214) == true or IS_EXIST_BRIQUETTING_OR_BEAUTYSHOP_ITEM(actor, "RH", "Pistol", obj.type, 634214) == true then
         effectName = "None";
     end
 
     -- 레일건 피스톨 체크
-    if IS_EXIST_BRIQUETTING_OR_BEAUTYSHOP_ITEM(actor, "LH", "Pistol", obj.type, 11007106) == true then
+    if IS_EXIST_BRIQUETTING_OR_BEAUTYSHOP_ITEM(actor, "LH", "Pistol", obj.type, 11007106) == true or IS_EXIST_BRIQUETTING_OR_BEAUTYSHOP_ITEM(actor, "RH", "Pistol", obj.type, 11007106) == true then
         effectName = "None";
     end
 
@@ -118,7 +116,6 @@ function C_EFFECT(actor, obj, effectName, scale, nodeName, lifeTime)
     end
 
     effect.PlayActorEffect(actor, effectName, nodeName, lifeTime, scale);
-
 end
 
 function C_EFFECT_ABIL(actor, obj, abilName, effectName, scale, nodeName, lifeTime)
@@ -132,12 +129,12 @@ function C_EFFECT_ABIL(actor, obj, abilName, effectName, scale, nodeName, lifeTi
                 end
 
                 -- 포포팝 피스톨 체크
-                if IS_EXIST_BRIQUETTING_OR_BEAUTYSHOP_ITEM(actor, "LH", "Pistol", obj.type, 634214) == true then
+                if IS_EXIST_BRIQUETTING_OR_BEAUTYSHOP_ITEM(actor, "LH", "Pistol", obj.type, 634214) == true  or IS_EXIST_BRIQUETTING_OR_BEAUTYSHOP_ITEM(actor, "RH", "Pistol", obj.type, 634214) == true then
                     effectName = "None";
                 end
 
                 -- 레일건 피스톨 체크
-                if IS_EXIST_BRIQUETTING_OR_BEAUTYSHOP_ITEM(actor, "LH", "Pistol", obj.type, 11007106) == true then
+                if IS_EXIST_BRIQUETTING_OR_BEAUTYSHOP_ITEM(actor, "LH", "Pistol", obj.type, 11007106) == true or IS_EXIST_BRIQUETTING_OR_BEAUTYSHOP_ITEM(actor, "RH", "Pistol", obj.type, 11007106) == true then
                     effectName = "None";
                 end
             
@@ -158,7 +155,6 @@ function C_EFFECT_USE_XYZ(actor, obj, effectName, scale, nodeName, x, y, z)
     end
 
     effect.PlayActorEffect(actor, effectName, nodeName, lifeTime, scale,x,y,z);
-
 end
 
 function C_EFFECT_POS(actor, obj, eftName, scl, x, y, z, lifeTime, key)
@@ -173,14 +169,13 @@ function C_EFFECT_ATTACH(actor, obj, eftName, scl, scl2, x, y, z, autoDetach, an
 	if angle == nil then
 		angle = -1;
 	end
-
     if x == nil then
         effect.AddActorEffect(actor, eftName, scl * scl2, 0, 0, 0, angle);
     else
         effect.AddActorEffect(actor, eftName, scl * scl2, x, y, z, angle);
     end
 
-	-- �� ���̾�ó�� ��ų�� ���� ScpArgMsg("Auto_iPegTeuTteKi")�� ������������ ����ϸ� ��
+	-- 헬 파이어처럼 스킬에 따로 ScpArgMsg("Auto_iPegTeuTteKi")를 넣을수없을때 사용하면 됨
     if autoDetach == 1 then
         actor:GetEffect():AddAutoDetachEffect(eftName);
     end
@@ -195,13 +190,12 @@ function C_EFFECT_ATTACH_OOBE(actor, obj, eftName, scl, scl2, x, y, z, autoDetac
             effect.AddActorEffect(oobeActor, eftName, scl * scl2, x, y, z);
         end
 
-		-- �� ���̾�ó�� ��ų�� ���� ScpArgMsg("Auto_iPegTeuTteKi")�� ������������ ����ϸ� ��
+		-- 헬 파이어처럼 스킬에 따로 ScpArgMsg("Auto_iPegTeuTteKi")를 넣을수없을때 사용하면 됨
         if autoDetach == 1 then
             oobeActor:GetEffect():AddAutoDetachEffect(eftName);
         end
     end
 end
-
 
 function C_EFFECT_DETACH_OOBE(actor, obj, eftName, scl, hideTime)
     local oobeActor = actor:GetOOBEActor();
@@ -235,7 +229,6 @@ function SKL_SYNC_EXEC_C(actor, obj)
 end
 
 function C_VOICE_SOUND(actor, obj, maleVoice, femaleVoice)
-
     if actor:GetObjType() == GT_MONSTER then
         return;
     end
@@ -254,7 +247,6 @@ function C_VOICE_SOUND(actor, obj, maleVoice, femaleVoice)
     else
         actor:GetEffect():PlaySound(femaleVoice, -1, false, isMyPC);
     end
-    
 end
 
 function MONSKL_C_PLAY_ANIM(actor, skill, animName, spd, freezeAnim, cancelByHit)
@@ -370,7 +362,6 @@ function MONSKL_C_RESERVE_ANIM_OOBE(actor, skill, animName, spd, freezeAnim)
 end
 
 function MONSKL_C_CASTING_ANIM(actor, skill, animName, moveAnimName, spd, freezeAnim, buffName, buffAnimName)
-
     if buffName ~= nil and buffName ~= 'None' then
         local handle = actor:GetHandleVal();
         local buff = info.GetBuffByName(handle, buffName);
@@ -437,7 +428,6 @@ function C_SKL_SPIN_OBJ(actor, obj, delay, spinCount, spinSec)
 end
 
 function C_COLORBLEND_ACTOR(self, obj, actorType, isUse, color_R, color_G, color_B, colar_A, blendOption)
-
     local target = self;
 	-- 1 : 시전자, 2 : 타겟, 3 : 시전자+컴패니언(탑승)
     if actorType == 1 or actorType == 3 then
@@ -515,22 +505,20 @@ function C_FORCE_EFT(actor, obj, eft, scale, snd, finEft, finEftScale, finSnd, d
     
     local ret = actor:GetForce():PlayForce_Tool(eft, scale, snd, finEft, finEftScale, finSnd, destroy, fSpeed, easing, gravity, angle, hitIndex, collrange, createLength, radiusSpd, useHitEffect, customTarget, linkTexName, delayStart, addX, addY, addZ, fixVerDir);
 
-	-- ������������ ������ ��ųĵ�� �����ϰ� ���ش�.
-	if isLastForce == 1 or isLastForce == nil then	-- nil�� üũ�ϴ������� �����þȵȰ� �� ������ ������������� ������
+	-- 마지막포스가 날라가면 스킬캔슬 가능하게 해준다.
+	if isLastForce == 1 or isLastForce == nil then	-- nil도 체크하는이유는 값셋팅안된건 걍 무조건 마지막포스라고 생각함
         actor:EnableSkillCancel(1);
     end
 
     return ret;
 end
 
--- ����� ����. �ٴڿ� ���� �������� ����
+-- 연출용 포스. 바닥에 날라가 떨어지는 포스
 function C_SR_FORCE_DROP(self, target, sklLevel, hitInfo, hitIndex, eft, scale, snd, finEft, finEftScale, finSnd, destroy, fSpeed, easing, gravity, angle, hitIndex, collrange, createLength, radiusSpd)
-
     self:GetForce():PlayForce_Drop(eft, scale, snd, finEft, finEftScale, finSnd, destroy, fSpeed, easing, gravity, angle, hitIndex, collrange, createLength, radiusSpd);
 end
 
 function C_MON_KILL_TEXT_EFT(actor, atk_rate, targetActor)
-
     local obj = targetActor:GetFSMHandler();
     if obj:GetObjType() == GT_MONSTER then
         local type = obj:GetType();
@@ -539,7 +527,6 @@ function C_MON_KILL_TEXT_EFT(actor, atk_rate, targetActor)
             return;
         end
     end
-
 
     local text;
     if atk_rate > 60 then 
@@ -556,7 +543,6 @@ function C_MON_KILL_TEXT_EFT(actor, atk_rate, targetActor)
 end
 
 function C_MON_KDBonus_TEXT_EFT(actor, addDamage, targetActor)
-
     local obj = targetActor:GetFSMHandler();
     if obj:GetObjType() == GT_MONSTER then
         local type = obj:GetType();
@@ -642,16 +628,13 @@ function C_RESET_STDANIM(actor)
     actor:GetAnimation():ResetSTDAnim();
 end
 
-
 function C_SKL_CIRCLE_DAMAGE(actor, obj, range, hitType, hitDelay, isKdSafe, sklSR)
-
-	-- hitdelay���� ����. �������� �ϴ� 0���� ����.
+	-- hitdelay쓰면 멈춤. 버그있음 일단 0으로 고정.
     actor:DamageByClientDecisionOnCircle(obj.type, range, hitType, 0, isKdSafe, sklSR);
 end
 
 function C_SKL_CIRCLE_DAMAGE_SR(actor, obj, range, hitType, hitDelay, isKdSafe)
-
-	-- hitdelay���� ����. �������� �ϴ� 0���� ����.
+	-- hitdelay쓰면 멈춤. 버그있음 일단 0으로 고정.
     local sklSR = actor:GetMySkillSR(obj.type);
     if sklSR == 0 then
         return;
@@ -672,14 +655,12 @@ function SKL_C_RESERVE_LANDANIM(actor, skill, animName, spd, freezeAnim, playAni
 end
 
 function SCR_COLONY_SIEGE_TOWER_CANNON_ATTACK_EFFECT_RUN(handle, effectName, scale, nodeName)
-
     if lifeTime == nil then
         lifeTime = 0;
     end
     local obj = world.GetActor(handle)
     
     effect.PlayActorEffect(obj, effectName, nodeName, lifeTime, scale);
-    
 end
 
 function MONSKL_C_CASTING_ANIM_OR_PLAY_ANIM(actor, skill, CastinganimName, moveAnimName, spd, freezeAnim, AbilName, NormalanimName, Normalanimspd, NormalfreezeAnim, cancelByHit)

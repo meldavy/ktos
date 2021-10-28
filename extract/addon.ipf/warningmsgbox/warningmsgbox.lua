@@ -5,7 +5,7 @@ function WARNINGMSGBOX_ON_INIT(addon, frame)
 	addon:RegisterMsg("DO_OPEN_WARNINGMSGBOX_UI", "WARNINGMSGBOX_FRAME_OPEN");
 end
 
-function WARNINGMSGBOX_FRAME_OPEN(clmsg, yesScp, noScp, itemGuid)
+function WARNINGMSGBOX_FRAME_OPEN(clmsg, yesScp, noScp, itemGuid, title)
 	ui.OpenFrame("warningmsgbox")
 	
 	local frame = ui.GetFrame('warningmsgbox')
@@ -36,7 +36,15 @@ function WARNINGMSGBOX_FRAME_OPEN(clmsg, yesScp, noScp, itemGuid)
         end
     else
         local_item_grade = 0
-    end
+	end
+	
+	if title ~= nil then
+		local warningtitle = GET_CHILD_RECURSIVELY(frame, "warningtitle")
+		warningtitle:SetText(title)
+	else
+		local warningtitle = GET_CHILD_RECURSIVELY(frame, "warningtitle")
+		warningtitle:SetText(ScpArgMsg('WarningTitle'))
+	end
     
 	local yesBtn = GET_CHILD_RECURSIVELY(frame, "yes")
 	tolua.cast(yesBtn, "ui::CButton");
@@ -86,6 +94,8 @@ function _WARNINGMSGBOX_FRAME_OPEN_YES(parent, ctrl, argStr, argNum)
 	local scp = _G[argStr]
 	if scp ~= nil then
 		scp()
+	elseif argStr ~= nil then
+		RunStringScript(argStr)
 	end
 	ui.CloseFrame("warningmsgbox")
 	ui.CloseFrame("item_tooltip")
@@ -96,6 +106,8 @@ function _WARNINGMSGBOX_FRAME_OPEN_NO(parent, ctrl, argStr, argNum)
 	local scp = _G[argStr]
 	if scp ~= nil then
 		scp()
+	elseif argStr ~= nil then
+		RunStringScript(argStr)
 	end
 	--RunScript(argStr)
 	ui.CloseFrame("warningmsgbox")

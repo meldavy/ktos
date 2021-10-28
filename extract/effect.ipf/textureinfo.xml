@@ -1,9 +1,10 @@
 <?xml version="1.0" standalone="yes"?>
-<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by imc (imc) -->
+<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by IMCGames Co., Ltd (IMCGames Co., Ltd) -->
 <!-- edited with XMLSpy v2006 U (http://www.altova.com) by Administrator (EMBRACE) -->
 <TextureInfo>
-	<Texture Name="success_logo_weapon_add" File="success_logo_weapon_add.tga" Size="512 512"/>
-	<Texture Name="success_logo_weapon" File="success_logo_weapon.tga" Size="1024 1024"/>
+	<Texture Name="screen_frozen" File="screen_frozen.tga" Size="1920 1080"/>
+	<Texture Name="complete_logo_add" File="complete_logo_add.tga" Size="512 512"/>
+	<Texture Name="complete_logo" File="complete_logo.tga" Size="1024 1024"/>
 	<Texture Name="light049" File="light049.dds" Size="256 256"/>
 	<Texture Name="skillrange_donut75_4" File="skillrange_donut75_4.dds" Size="512 512"/>
 	<Texture Name="skillrange_donut75_2" File="skillrange_donut75_2.dds" Size="512 512"/>

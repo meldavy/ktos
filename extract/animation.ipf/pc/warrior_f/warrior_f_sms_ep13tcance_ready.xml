@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by imc (imc) -->
+<ActionDesc>
+	<CreateMonster frame="0" MonName="ep13tcance_curtain" Key="ep13tcance_curtain" Angle="0" Dist="1" MonAngle="0"/>
+	<CreateMonsterAnim frame="0" Key="ep13tcance_curtain" Anim="ready" Freeze="0"/>
+	<CreateMonsterAnim frame="30" Key="ep13tcance_curtain" Anim="shot" Freeze="0"/>
+	<DeleteMonster frame="37" Key="ep13tcance_curtain"/>
+</ActionDesc>

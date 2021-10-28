@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="EUC-KR"?>
+<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by IMCGames Co., Ltd (IMCGames Co., Ltd) -->
+<ActionDesc>
+	<Particle frame="7" attachNode="Dummy_effect3" particleName="F_bg_light015_white2" useAttach="false" hiddenObj="false" changeEffect="None" scale="1.2" pause="true" use2DEffect="false" soft2DValue="0" targetPos="false"/>
+	<Particle frame="7" attachNode="Dummy_effect3" particleName="F_light149_blue" useAttach="false" hiddenObj="false" changeEffect="None" scale="1" pause="true" use2DEffect="false" soft2DValue="0" targetPos="false"/>
+	<Particle frame="7" attachNode="Dummy_effect3" particleName="F_light170_violet" useAttach="false" hiddenObj="false" changeEffect="None" scale="2" pause="true" use2DEffect="false" soft2DValue="0" targetPos="false"/>
+	<Particle frame="7" attachNode="Dummy_curtain" particleName="F_levitation031_white2" useAttach="false" hiddenObj="false" changeEffect="None" scale="1.2" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+	<Particle frame="7" attachNode="Dummy_curtain" particleName="F_pc_run_water" useAttach="false" hiddenObj="false" changeEffect="None" scale="1" pause="true" use2DEffect="false" soft2DValue="0" targetPos="false"/>
+	<Particle frame="40" attachNode="Dummy_curtain" particleName="F_pose_jumping_light" useAttach="false" hiddenObj="false" changeEffect="None" scale="1.2" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+</ActionDesc>

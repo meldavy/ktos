@@ -118,7 +118,7 @@ function ITEMBUFF_NEEDITEM_Squire_EquipmentTouchUp(self, item)
            lv = 1;
         end
     
-    local needCount = lv + lv * (item.ItemGrade - 1) / 2;
+    local needCount = (lv + lv * (item.ItemGrade - 1) / 2) / 2;
     needCount = math.max(1, needCount);
     return "misc_whetstone", math.floor(needCount);
 end

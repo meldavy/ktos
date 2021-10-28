@@ -337,6 +337,7 @@
 	<ReadXml Name="Monster_BountyHunt"/>
 	<ReadXml Name="goddess_recipe"/>
 	<ReadXml Name="goddess_evolve"/>
-	<ReadXml Name="fieldboss_worldevent_reward_count"/>	
+	<ReadXml Name="fieldboss_worldevent_reward_count"/>
+	<ReadXml Name="itemdecompose_mistake"/>
 	<ReadXml Name="resurrect_return_control"/>
 </Category>

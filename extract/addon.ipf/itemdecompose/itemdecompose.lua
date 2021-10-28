@@ -312,6 +312,8 @@ function ITEM_DECOMPOSE_EXECUTE(frame)
 	itemCheckProp['EnchantOption'] = false;
 	itemCheckProp['Socket_Equip'] = false;
 	itemCheckProp['Socket_Add'] = false;
+
+	local itemDecomposeMistakeCheck = {}
 	
 	local groupName = frame:GetUserValue("GroupName");
 	local groupInfo = session.autoSeller.GetByIndex(groupName, 0);
@@ -360,6 +362,14 @@ function ITEM_DECOMPOSE_EXECUTE(frame)
 						break;
 					end
 				end
+
+				-- 분해 실수율 높은 아이템인지 확인
+				local itemClassID = TryGetProp(itemobj, 'ClassID')
+				local lst, cnt = GetClassList('itemdecompose_mistake')
+				local clsItemDecomposeMistake = GetClassByType('itemdecompose_mistake', itemClassID)
+				if clsItemDecomposeMistake ~= nil then
+					itemDecomposeMistakeCheck[itemClassID] = TryGetProp(itemobj, 'Name')
+				end 
 			end
 		end
 	end
@@ -387,7 +397,18 @@ function ITEM_DECOMPOSE_EXECUTE(frame)
 		local warningProp = table.concat(warningPropList, ", ")
 		msg = ScpArgMsg('ItemDecomposeWarningPropMessage', 'WARNINGPROP', warningProp, 'DEFAULTMSG', msg);
 	end
-	
+
+	-- 분해 실수율 높은 아이템이 포함되어 있으면 '분해 실수 발생 가능성 높음' 메시지 출력
+	local DecomposeMistakeItemList = {};
+	for key,val in pairs(itemDecomposeMistakeCheck) do
+		DecomposeMistakeItemList[#DecomposeMistakeItemList + 1] = val
+	end
+
+	if #DecomposeMistakeItemList > 0 then
+		local DecomposeMistakeProp = table.concat(DecomposeMistakeItemList, ", ")
+		msg = ScpArgMsg('ItemDecomposeMistakeWarningPropMessage', 'ITEMLIST', DecomposeMistakeProp, 'DEFAULTMSG', msg);
+	end
+
 	local msgBox = WARNINGMSGBOX_FRAME_OPEN(msg, "ITEM_DECOMPOSE_EXECUTE_COMMIT", "None")
 	local msgBoxFrame = ui.GetFrame("warningmsgbox")
 	if msgBoxFrame == nil then

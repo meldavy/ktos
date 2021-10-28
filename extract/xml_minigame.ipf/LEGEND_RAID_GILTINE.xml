@@ -34,7 +34,9 @@
                         <Num Num="5"/>
                     </ToolScp>
                 </StartScpList>
-                <ObjList/>
+                <ObjList>
+                    <Obj Type="Monster" MonType="160065" Pos="474.39#23.86#2494.69" genCount="1" genTime="20000" objectKey="0"/>
+                </ObjList>
                 <StageEvents>
                     <Event execCount="1" eventName="Return_Zone">
                         <condList>

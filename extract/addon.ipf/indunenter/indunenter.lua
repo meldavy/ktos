@@ -1503,7 +1503,7 @@ function INDUNENTER_AUTOMATCH_TYPE(indunType, needUnderstaffAllow)
         local indunCls = GetClassByType('Indun', indunType)
         if indunCls ~= nil then
             local dungeonType = TryGetProp(indunCls, 'DungeonType', 'None')
-            local bannedDungeonType = {'Raid','GTower','Challenge_Auto','MythicDungeon_Auto','MythicDungeon_Auto_Hard'}
+            local bannedDungeonType = {'GTower','Challenge_Auto','MythicDungeon_Auto','MythicDungeon_Auto_Hard'}
             if table.find(bannedDungeonType,dungeonType) ~= 0 then
                 needUnderstaffAllow = 0;
             end

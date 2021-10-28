@@ -80,7 +80,7 @@ ClassID,NeedCount,ClassName,Group,Category,Name,Desc,Icon,Hidden,DescTitle,Rewar
 2094,1,WEB_PROPOSAL_3,AchievePoint,이벤트,건의왕,월간 BEST 건의 10회 선정자에게 주어지는 칭호,icon_item_Misc_00021,YES,건의왕,,False,WEB_PROPOSAL_3,NO,,,,,NO,NO,
 2095,1,Event_1808_Lab_3_1,AchievePoint,이벤트,[TOS 3기 연구원],TOS 3기 연구원으로 참여자께 지급되는 칭호입니다.,icon_item_Misc_00021,YES,[TOS 3기 연구원],,False,Event_1808_Lab_3_1,NO,,,,,NO,NO,
 2097,1,EVENT_1809_UCC_ACHIEVE,AchievePoint,이벤트,축제를 즐기는,다이누 슈벤테이벤트 참가자분께 주어지는 칭호입니다.,icon_item_Misc_00021,YES,축제를 즐기는,,False,EVENT_1809_UCC_ACHIEVE,NO,,,,,NO,NO,
-2098,1,Achieve_Event_Game_Guide_Creator,AchievePoint,이벤트,Game Guide Creator,Game Guide Creator에게 지급되는 칭호입니다. 마우스 오른쪽 클릭으로 사용합니다.,icon_item_Misc_00021,YES,Game Guide Creator,,False,Achieve_Event_Game_Guide_Creator,NO,,,,,NO,,
+2098,1,Achieve_Event_Game_Guide_Creator,AchievePoint,이벤트,Game Guide Creator,Game Guide Creator에게 지급되는 칭호입니다.,icon_item_Misc_00021,YES,Game Guide Creator,,False,Achieve_Event_Game_Guide_Creator,NO,,,,,NO,,
 2099,1,EVENT_1809_CHUSEOK_MOON_ACHIEVE,AchievePoint,이벤트,달아 달아 밝은 달아,보름달 키우기 대작전 이벤트 참가자분께 주어지는 칭호입니다.,icon_item_Misc_00021,YES,달아 달아 밝은 달아,,False,EVENT_1809_CHUSEOK_MOON_ACHIEVE,NO,,,,,NO,NO,
 2102,1,COLONYWAR_KOR_BETA_REWARD_ACHIEVE,AchievePoint,이벤트,콜로니 선봉대,길드 콜로니전 베타 참여자에게 지급되는 칭호입니다.,icon_item_Misc_00021,YES,콜로니 선봉대,,False,COLONYWAR_KOR_BETA_REWARD_ACHIEVE,NO,,,,,NO,NO,
 2103,1,EVENT_1809_OTP_ACHIEVE1,AchievePoint,이벤트,OTP는 0원 보안은 영원,계정 보호를 기원해 구원자분께 지급되는 칭호입니다.,icon_item_Misc_00021,YES,OTP는 0원 보안은 영원,,False,EVENT_1809_OTP_ACHIEVE1,NO,,,,,NO,NO,

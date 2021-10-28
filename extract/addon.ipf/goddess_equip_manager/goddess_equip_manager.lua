@@ -3397,7 +3397,16 @@ function GODDESS_MGR_SOCKET_GEM_ITEM_DROP(parent, slot, arg_str, arg_num)
 		if item_obj == nil then return end
 
 		local gem_type = GET_EQUIP_GEM_TYPE(item_obj)
-		if gem_type == 'normal' or gem_type == 'skill' then
+		if gem_type == 'normal' then
+			local gem_prop = geItemTable.GetProp(item_obj.ClassID)
+			local penalty_prop = gem_prop:GetSocketPropertyByLevel(0)
+			local penalty_add = penalty_prop:GetPropPenaltyAddByIndex(0, 0) -- 스킬 젬인지 검사
+			if penalty_add ~= nil and TryGetProp(item_obj, 'GemRoastingLv', 0) > TryGetProp(item_obj, 'GemLevel', 0) then
+				ui.SysMsg(ClMsg('OnlyRoastedGemEquipableToGoddess'))
+			else
+				GODDESS_MGR_SOCKET_NORMAL_GEM_EQUIP(parent, slot, inv_item, item_obj)
+			end
+		elseif gem_type == 'skill' then
 			GODDESS_MGR_SOCKET_NORMAL_GEM_EQUIP(parent, slot, inv_item, item_obj)
 		elseif gem_type == 'aether' then
 			GODDESS_MGR_SOCKET_AETHER_GEM_EQUIP(parent, slot, inv_item, item_obj)
@@ -3486,20 +3495,47 @@ function GODDESS_MGR_SOCKET_REQ_GEM_REMOVE(parent, btn)
 	local slot = GET_CHILD_RECURSIVELY(frame, 'socket_slot')
 	local guid = slot:GetUserValue('ITEM_GUID')
 	if guid ~= 'None' then
+		local index = parent:GetUserValue('SLOT_INDEX')
+
 		local inv_item = session.GetInvItemByGuid(guid)
 		if inv_item == nil then return end
 
-		
 		local item_obj = GetIES(inv_item:GetObject())
 		local item_name = dic.getTranslatedStr(TryGetProp(item_obj, 'Name', 'None'))
-		local msg_cls_name = 'ReallyRemoveGem_AetherGem'
-		local gem_id = inv_item:GetEquipGemID(2)
+
+
+		local gem_id = inv_item:GetEquipGemID(index)
 		local gem_cls = GetClassByType('Item', gem_id)
 		local gem_numarg1 = TryGetProp(gem_cls, 'NumberArg1', 0)
 		local price = gem_numarg1 * 100
-		local clmsg = "[" .. item_name .. "]" .. ScpArgMsg(msg_cls_name) .. tostring(price)
+		local clmsg = 'None'
 
-		local index = parent:GetUserValue('SLOT_INDEX')
+		local msg_cls_name = ''
+
+		if TryGetProp(gem_cls, 'GemType', 'None') == 'Gem_High_Color' then
+			msg_cls_name = 'ReallyRemoveGem_AetherGem'
+			clmsg = "[" .. item_name .. "]" .. ScpArgMsg(msg_cls_name) .. tostring(price)
+		else
+			local startTimeStr = "2021-04-22 09:00:00"
+			local endTimeStr = "2021-07-22 08:59:59"
+			local nowTime = date_time.get_lua_now_datetime_str()
+			local isBeforeTime = date_time.is_later_than(nowTime, startTimeStr)
+			local isAfterTime = date_time.is_later_than(nowTime, endTimeStr)
+			local isGemRemoveCare = false
+			if isBeforeTime == true and isAfterTime == false then
+				isGemRemoveCare = true
+			end
+
+
+			if isGemRemoveCare == true then
+				msg_cls_name = "ReallyRemoveGem_Care"
+			else
+				msg_cls_name = "ReallyRemoveGem"
+			end
+
+			clmsg = "'".. item_name .. ScpArgMsg("Auto_'_SeonTaeg")..ScpArgMsg(msg_cls_name)
+		end
+
 		local yesscp = string.format('_GODDESS_MGR_SOCKET_REQ_GEM_REMOVE(%s)', index)
 		local msgbox = ui.MsgBox(clmsg, yesscp, '')
 		SET_MODAL_MSGBOX(msgbox)
@@ -4336,7 +4372,7 @@ function GODDESS_MGR_INHERIT_REG_ITEM(frame, inv_item, item_obj)
 	end
 	local before_name = GET_CHILD_RECURSIVELY(frame, 'inherit_before_item_name')
 	before_name:SetTextByKey('name', name_str)
-	
+
 	local before_enchant = GET_CHILD_RECURSIVELY(frame, 'inherit_before_item_enchant')
 	local enchant_txt = GET_RANDOM_OPTION_RARE_CLIENT_TEXT(item_obj)
 	before_enchant:SetTextByKey('value', enchant_txt)
@@ -4359,7 +4395,7 @@ function GODDESS_MGR_INHERIT_CLEAR(frame)
 
 	local before_name = GET_CHILD_RECURSIVELY(frame, 'inherit_before_item_name')
 	before_name:SetTextByKey('name', '')
-	
+
 	local before_enchant = GET_CHILD_RECURSIVELY(frame, 'inherit_before_item_enchant')
 	before_enchant:SetTextByKey('value', '')
 
@@ -4419,51 +4455,51 @@ function GODDESS_MGR_INHERIT_EXEC(parent, btn)
 	local yesscp = string.format('WARNINGMSGBOX_FRAME_INHERIT(%d, %d)', TryGetProp(item_obj, 'ClassID', 0), selected_id)
 	local msgbox = ui.MsgBox(clmsg, yesscp, '')
 	SET_MODAL_MSGBOX(msgbox)
-end
+	end
 
 function WARNINGMSGBOX_FRAME_INHERIT(itemid, selected_id)
 	local itemType = TryGetProp(GetClassByNumProp("Item", "ClassID", itemid), "ClassType", "None")
 	local selectedType = TryGetProp(GetClassByNumProp("Item", "ClassID", selected_id), "ClassType", "None")
 	
 	if itemType ~= selectedType then
-		ui.OpenFrame("warningmsgbox")
+	ui.OpenFrame("warningmsgbox")
 		local itemName = TryGetProp(GetClassByNumProp("Item", "ClassID", itemid), "Name", "None")
 		local selectedName = TryGetProp(GetClassByNumProp("Item", "ClassID", selected_id), "Name", "None")
 
 		local clmsg = ScpArgMsg('OtherSlotEquipMent{ITEM1}{ITEM2}', 'ITEM1', itemName, 'ITEM2', selectedName);
 
-		local frame = ui.GetFrame('warningmsgbox')
+	local frame = ui.GetFrame('warningmsgbox')
 		frame:EnableHide(1);
-		
-		local warningText = GET_CHILD_RECURSIVELY(frame, "warningtext")
-		warningText:SetText(clmsg)
+	
+	local warningText = GET_CHILD_RECURSIVELY(frame, "warningtext")
+	warningText:SetText(clmsg)
 
-		local yesBtn = GET_CHILD_RECURSIVELY(frame, "yes")
+	local yesBtn = GET_CHILD_RECURSIVELY(frame, "yes")
 		tolua.cast(yesBtn, "ui::CButton");
-		local noBtn = GET_CHILD_RECURSIVELY(frame, "no")
+	local noBtn = GET_CHILD_RECURSIVELY(frame, "no")
 		tolua.cast(noBtn, "ui::CButton");
 
 		yesBtn:SetEventScript(ui.LBUTTONUP, '_GODDESS_MGR_INHERIT_EXEC');
 		yesBtn:SetEventScriptArgNumber(ui.LBUTTONUP, selected_id);
 
-		local buttonMargin = noBtn:GetMargin()
-		local warningbox = GET_CHILD_RECURSIVELY(frame, 'warningbox')
-		local totalHeight = warningbox:GetY() + warningText:GetY() + warningText:GetHeight() + noBtn:GetHeight() + 2 * buttonMargin.bottom
+	local buttonMargin = noBtn:GetMargin()
+	local warningbox = GET_CHILD_RECURSIVELY(frame, 'warningbox')
+	local totalHeight = warningbox:GetY() + warningText:GetY() + warningText:GetHeight() + noBtn:GetHeight() + 2 * buttonMargin.bottom
 
 		yesBtn:ShowWindow(1);
 		noBtn:ShowWindow(1);
 
-		local input_frame = GET_CHILD_RECURSIVELY(frame, "input")
-		local showTooltipCheck = GET_CHILD_RECURSIVELY(frame, "cbox_showTooltip")
-		local okBtn = GET_CHILD_RECURSIVELY(frame, "ok")
-		showTooltipCheck:ShowWindow(0)
-		input_frame:ShowWindow(0)
+	local input_frame = GET_CHILD_RECURSIVELY(frame, "input")
+	local showTooltipCheck = GET_CHILD_RECURSIVELY(frame, "cbox_showTooltip")
+	local okBtn = GET_CHILD_RECURSIVELY(frame, "ok")
+	showTooltipCheck:ShowWindow(0)
+	input_frame:ShowWindow(0)
 		okBtn:ShowWindow(0);
 
-		local bg = GET_CHILD_RECURSIVELY(frame, 'bg')
-		warningbox:Resize(warningbox:GetWidth(), totalHeight)
-		bg:Resize(bg:GetWidth(), totalHeight)
-		frame:Resize(frame:GetWidth(), totalHeight)
+	local bg = GET_CHILD_RECURSIVELY(frame, 'bg')
+	warningbox:Resize(warningbox:GetWidth(), totalHeight)
+	bg:Resize(bg:GetWidth(), totalHeight)
+	frame:Resize(frame:GetWidth(), totalHeight)
 	else
 		_GODDESS_MGR_INHERIT_EXEC(0, 0, 0, selected_id)
 	end
@@ -4476,7 +4512,7 @@ function _GODDESS_MGR_INHERIT_EXEC(notuse1, notuse2, notuse3, class_id)
 	local slot = GET_CHILD_RECURSIVELY(frame, 'inherit_slot_before')
 	local guid = slot:GetUserValue('ITEM_GUID')
 	if guid == 'None' then return end
-	
+
 	local arg_list = string.format('%d', class_id)
 
 	pc.ReqExecuteTx_Item('GODDESS_CRAFT_EQUIP_BY_INHERIT', guid, arg_list)

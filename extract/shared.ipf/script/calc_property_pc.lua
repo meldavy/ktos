@@ -3094,8 +3094,12 @@ function SCR_Get_Sta_Run(self)
     
 	if IS_TOS_HERO_ZONE(self) == 'YES' and GetExProp(self, "TOSHero_NECK_MoveSPD") > 0 then
 		value = 0
-	end
+    end
 
+    if GetExProp(self, 'CHALLENGE_MODE_AUTO_PLAYER') == 1 then
+        value = value * 0.5
+    end
+    
     return math.floor(value);
 end
 

@@ -3437,6 +3437,12 @@
 		<image name="icon_item_medusa_thmace" file="\icon\weapon\icon_item_medusa_thmace.png" imgrect="0 0 256 256"/>
 		<image name="icon_item_medusa_thspear" file="\icon\weapon\icon_item_medusa_thspear.png" imgrect="0 0 256 256"/>
 		<image name="icon_item_medusa_thsword" file="\icon\weapon\icon_item_medusa_thsword.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13tcance_dagger" file="\icon\weapon\icon_item_ep13tcance_dagger.png" imgrect="0 0 256 256" CMM_Caption="2021_7월 여신의 큐브 6종"/>
+		<image name="icon_item_ep13tcance_mace" file="\icon\weapon\icon_item_ep13tcance_mace.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13tcance_rod" file="\icon\weapon\icon_item_ep13tcance_rod.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13tcance_staff" file="\icon\weapon\icon_item_ep13tcance_staff.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13tcance_thmace" file="\icon\weapon\icon_item_ep13tcance_thmace.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13tcance_thspear" file="\icon\weapon\icon_item_ep13tcance_thspear.png" imgrect="0 0 256 256"/>
 	</imagelist>
 	<imagelist category="acc_item">
 		<image name="item_necklace_01" file="\icon\acc\item_necklace_1.png" imgrect="0 0 256 256" CMM_Caption="목걸이"/>
@@ -4189,11 +4195,16 @@
 		<image name="icon_item_accessory_ep13mafia" file="\icon\hairacc\icon_item_accessory_ep13mafia.png" imgrect="0 0 256 256" CMM_Caption="2021.5월_2종"/>
 		<image name="icon_item_helmet_ep13mafia" file="\icon\hairacc\icon_item_helmet_ep13mafia.png" imgrect="0 0 256 256"/>
 		<image name="icon_item_boss_coop_helmet" file="\icon\hairacc\icon_item_boss_coop_helmet.png" imgrect="0 0 256 256" CMM_Caption="보스협동전_헬멧"/>
+		<image name="item_icon_accessary_twnocelot_hairband" file="\icon\hairacc\item_icon_accessary_twnocelot_hairband.png" imgrect="0 0 256 256" CMM_Caption="5주년 오셀롯_머리띠"/>
+		<image name="item_icon_helmet_twnocelot" file="\icon\hairacc\item_icon_helmet_twnocelot.png" imgrect="0 0 256 256" CMM_Caption="5주년 오셀롯_헬멧"/>
 		<image name="icon_item_accessary_ep13stem01" file="\icon\hairacc\icon_item_accessary_ep13stem01.png" imgrect="0 0 256 256" CMM_Caption="2021.6월_3종"/>
 		<image name="icon_item_accessary_ep13stem02" file="\icon\hairacc\icon_item_accessary_ep13stem02.png" imgrect="0 0 256 256"/>
 		<image name="icon_item_helmet_ep13stem" file="\icon\hairacc\icon_item_helmet_ep13stem.png" imgrect="0 0 256 256"/>
-		<image name="item_icon_accessary_twnocelot_hairband" file="\icon\hairacc\item_icon_accessary_twnocelot_hairband.png" imgrect="0 0 256 256" CMM_Caption="5주년 오셀롯_머리띠"/>
-		<image name="item_icon_helmet_twnocelot" file="\icon\hairacc\item_icon_helmet_twnocelot.png" imgrect="0 0 256 256" CMM_Caption="5주년 오셀롯_헬멧"/>
+		<image name="icon_item_accessory_ep13tcance01" file="\icon\hairacc\icon_item_accessory_ep13tcance01.png" imgrect="0 0 256 256" CMM_Caption="2021_7월 여신의 큐브 5종"/>
+		<image name="icon_item_accessory_ep13tcance02" file="\icon\hairacc\icon_item_accessory_ep13tcance02.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_accessory_ep13tcance03" file="\icon\hairacc\icon_item_accessory_ep13tcance03.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_accessory_ep13tcance04" file="\icon\hairacc\icon_item_accessory_ep13tcance04.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_accessory_ep13tcance05" file="\icon\hairacc\icon_item_accessory_ep13tcance05.png" imgrect="0 0 256 256"/>
 	</imagelist>
 	<imagelist category="collection_item">
 		<image name="icon_collitem_collection" file="\icon\colletion\icon_item_collection.tga" imgrect="0 0 673 419" CMM_Caption="월계수"/>
@@ -8570,7 +8581,7 @@
 		<image name="icon_item_unique_glass_1line_460" file="\icon\payment\icon_item_unique_glass_1line_460.png" imgrect="0 0 256 256" CMM_Caption="[Lv.460] 신드라의 미세 감정 돋보기"/>
 		<image name="icon_item_unique_glass_460" file="\icon\payment\icon_item_unique_glass_460.png" imgrect="0 0 256 256" CMM_Caption="[Lv.460] 신드라의 감정 돋보기"/>
 		<image name="icon_item_Vasilisa_Auto_Enter" file="\icon\payment\icon_item_Vasilisa_Auto_Enter.png" imgrect="0 0 256 256" CMM_Caption="성자의 기도소(자동매칭) 1회 입장권"/>
-		<image name="icon_item_Vasilisa_Hard_Enter" file="\icon\payment\icon_item_Vasilisa_Hard_Enter.png" imgrect="0 0 256 256" CMM_Caption="성자의 기도소 : 가디스 1회 입장권"/>
+		<image name="icon_item_Vasilisa_Hard_Enter" file="\icon\payment\icon_item_Vasilisa_Hard_Enter.png" imgrect="0 0 256 256" CMM_Caption="성자의 기도소: 가디스 1회 입장권"/>
 		<image name="item_icon_misc_ExchangeBook_460" file="\icon\payment\item_icon_misc_ExchangeBook_460.png" imgrect="0 0 256 256" CMM_Caption="장비 계열 변경의 서"/>
 		<image name="icon_item_SelectBox_Ticket_BountyHunt" file="\icon\payment\icon_item_SelectBox_Ticket_BountyHunt.png" imgrect="0 0 256 256" CMM_Caption="바운티 헌트 지령서 선택상자"/>
 		<image name="icon_item_202107package_growth" file="\icon\payment\icon_item_202107package_growth.png" imgrect="0 0 256 256" CMM_Caption="2021 7월 개편한 세상"/>
@@ -8578,6 +8589,39 @@
 		<image name="icon_item_202107package_battleB" file="\icon\payment\icon_item_202107package_battleB.png" imgrect="0 0 256 256"/>
 		<image name="icon_item_202107package_daily" file="\icon\payment\icon_item_202107package_daily.png" imgrect="0 0 256 256"/>
 		<image name="icon_item_202107package_ALL" file="\icon\payment\icon_item_202107package_ALL.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_box_effect_ep13tcance" file="\icon\payment\icon_item_box_effect_ep13tcance.png" imgrect="0 0 256 256" CMM_Caption="2021_7월 여신의 큐브 33종"/>
+		<image name="icon_item_box_wing_ep13tcance" file="\icon\payment\icon_item_box_wing_ep13tcance.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_effect_ep13tcance" file="\icon\payment\icon_item_effect_ep13tcance.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13tcance01_1_f" file="\icon\payment\icon_item_ep13tcance01_1_f.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13tcance01_1_m" file="\icon\payment\icon_item_ep13tcance01_1_m.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13tcance01_2_f" file="\icon\payment\icon_item_ep13tcance01_2_f.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13tcance01_2_m" file="\icon\payment\icon_item_ep13tcance01_2_m.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13tcance01_f" file="\icon\payment\icon_item_ep13tcance01_f.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13tcance01_m" file="\icon\payment\icon_item_ep13tcance01_m.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13tcance02_1_f" file="\icon\payment\icon_item_ep13tcance02_1_f.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13tcance02_1_m" file="\icon\payment\icon_item_ep13tcance02_1_m.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13tcance02_2_f" file="\icon\payment\icon_item_ep13tcance02_2_f.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13tcance02_2_m" file="\icon\payment\icon_item_ep13tcance02_2_m.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13tcance02_f" file="\icon\payment\icon_item_ep13tcance02_f.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13tcance02_m" file="\icon\payment\icon_item_ep13tcance02_m.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13tcance03_1_f" file="\icon\payment\icon_item_ep13tcance03_1_f.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13tcance03_1_m" file="\icon\payment\icon_item_ep13tcance03_1_m.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13tcance03_2_f" file="\icon\payment\icon_item_ep13tcance03_2_f.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13tcance03_2_m" file="\icon\payment\icon_item_ep13tcance03_2_m.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13tcance03_f" file="\icon\payment\icon_item_ep13tcance03_f.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13tcance03_m" file="\icon\payment\icon_item_ep13tcance03_m.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_selectbox_ep13tcance01" file="\icon\payment\icon_item_selectbox_ep13tcance01.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_selectbox_ep13tcance01_1" file="\icon\payment\icon_item_selectbox_ep13tcance01_1.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_selectbox_ep13tcance01_2" file="\icon\payment\icon_item_selectbox_ep13tcance01_2.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_selectbox_ep13tcance02" file="\icon\payment\icon_item_selectbox_ep13tcance02.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_selectbox_ep13tcance02_1" file="\icon\payment\icon_item_selectbox_ep13tcance02_1.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_selectbox_ep13tcance02_2" file="\icon\payment\icon_item_selectbox_ep13tcance02_2.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_selectbox_ep13tcance03" file="\icon\payment\icon_item_selectbox_ep13tcance03.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_selectbox_ep13tcance03_1" file="\icon\payment\icon_item_selectbox_ep13tcance03_1.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_selectbox_ep13tcance03_2" file="\icon\payment\icon_item_selectbox_ep13tcance03_2.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_toy_ep13tcance01" file="\icon\payment\icon_item_toy_ep13tcance01.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_toy_ep13tcance02" file="\icon\payment\icon_item_toy_ep13tcance02.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_wing_ep13tcance" file="\icon\payment\icon_item_wing_ep13tcance.png" imgrect="0 0 256 256"/>
 	</imagelist>
 	<imagelist category="seal">
 		<image name="icon_seal_yellow_cc_A1" file="\icon\seal\seal_yellow_cc_A1.tga" imgrect="0 0 80 80"/>

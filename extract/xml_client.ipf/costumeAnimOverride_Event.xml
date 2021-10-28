@@ -2020,22 +2020,6 @@
 				</Job>
 			</Motion>
 		</Class>
-		<Class Costume="hiphop_pistol">
-			<Motion Name="PNSATK">
-				<Job Name="All" LoopTime="0">
-					<Event>
-						<Particle frame="2" attachNode="Dummy_effect_pistol" particleName="I_pc_item_money_gun_mesh" useAttach="false" hiddenObj="false" scale="1.5" pause="true" use2DEffect="true" soft2DValue="20"/>
-					</Event>
-				</Job>
-			</Motion>
-			<Motion Name="PNSATK_RIDE">
-				<Job Name="All" LoopTime="0">
-					<Event>
-						<Particle frame="2" attachNode="Dummy_effect_pistol_pet" particleName="I_pc_item_money_gun_mesh" useAttach="false" hiddenObj="false" scale="1.5" pause="true" use2DEffect="true" soft2DValue="20"/>
-					</Event>
-				</Job>
-			</Motion>
-		</Class>
 		<Class Costume="hiphop_cannon">
 			<Motion Name="ATK">
 				<Job Name="All" LoopTime="0">
@@ -4372,22 +4356,6 @@
 				<Job Name="All" LoopTime="500">
 					<Event>
 						<Particle frame="0" attachNode="Dummy_emitter_pet2" particleName="E_pc_item_accessory_hiphop05" useAttach="true" hiddenObj="false" scale="0.85" pause="true" use2DEffect="true" soft2DValue="20"/>
-					</Event>
-				</Job>
-			</Motion>
-		</Class>
-		<Class Costume="hiphop_pistol">
-			<Motion Name="PNSATK">
-				<Job Name="All" LoopTime="0">
-					<Event>
-						<Particle frame="2" attachNode="Dummy_effect_pistol" particleName="I_pc_item_money_gun_mesh" useAttach="false" hiddenObj="false" scale="1.5" pause="true" use2DEffect="true" soft2DValue="20"/>
-					</Event>
-				</Job>
-			</Motion>
-			<Motion Name="PNSATK_RIDE">
-				<Job Name="All" LoopTime="0">
-					<Event>
-						<Particle frame="2" attachNode="Dummy_effect_pistol_pet" particleName="I_pc_item_money_gun_mesh" useAttach="false" hiddenObj="false" scale="1.5" pause="true" use2DEffect="true" soft2DValue="20"/>
 					</Event>
 				</Job>
 			</Motion>

@@ -120,7 +120,7 @@ function ITEM_CABINET_ITEM_TAB_INIT(listCls, itemTabCtrl)
 	local get_name_func = _G[TryGetProp(listCls, 'GetItemFunc', 'None')];
 	if get_name_func == nil then return; end
 
-	local itemClsName = get_name_func(listCls, GetMyAccountObj());
+	local itemClsName = get_name_func(listCls, GetMyAccountObj());	
 	if itemClsName == 'None' then return; end
 
 	local itemCls = GetClass('Item', itemClsName);
@@ -203,7 +203,7 @@ function ITEM_CABINET_SELECT_ITEM(parent, self)
 	local index = tab:GetSelectItemIndex();
 	local aObj = GetMyAccountObj();
 	local category = ITEM_CABINET_GET_CATEGORY(parent);
-	local itemType = parent:GetUserIValue("ITEM_TYPE");
+	local itemType = parent:GetUserIValue("ITEM_TYPE");	
 	local itemCls = GetClassByType("cabinet_"..string.lower(category), itemType);
 	local itemName = itemCls.ClassName;
 	local curLv = TryGetProp(aObj, itemCls.UpgradeAccountProperty, 0);
@@ -222,11 +222,7 @@ function ITEM_CABINET_SELECT_ITEM(parent, self)
 	ITEM_CABINET_ICOR_SECTION(frame, self, itemCls);
 end
 
-function ITEM_CABINET_ICOR_SECTION(frame, self, itemCls)
-	local silverText = GET_CHILD_RECURSIVELY(frame,"pricetxt");
-	local price = GET_COMMA_SEPARATED_STRING_FOR_HIGH_VALUE(itemCls.MakeCostSilver);
-	silverText:SetTextByKey("price", price);
-
+function ITEM_CABINET_ICOR_SECTION(frame, self, entry_cls)
 	local itemslot = GET_CHILD_RECURSIVELY(self:GetParent(), "itemIcon");
 	local iconinfo = itemslot:GetIcon():GetInfo();
 	local itemCls = GetClassByType('Item', iconinfo.type);
@@ -243,6 +239,17 @@ function ITEM_CABINET_ICOR_SECTION(frame, self, itemCls)
 	optionGbox:RemoveChild('item_tooltip_ark')
 	optionGbox:RemoveChild('tooltip_ark_lv')
 
+	local silverText = GET_CHILD_RECURSIVELY(frame,"pricetxt");
+	local cost = tonumber(entry_cls.MakeCostSilver)
+	local category = frame:GetUserValue("CATEGORY")
+	
+	if string.lower(category) == 'accessory' then		
+		cost = GET_ACC_CABINET_COST(entry_cls, GetMyAccountObj())
+	end
+
+	local price = GET_COMMA_SEPARATED_STRING_FOR_HIGH_VALUE(cost);	
+	silverText:SetTextByKey("price", price);
+	
 	ITEM_CABINET_OPTION_INFO(optionGbox, itemCls)
 end
 
@@ -312,7 +319,7 @@ function ITEM_CABINET_UPGRADE_TAB(parent)
 		GET_CHILD_RECURSIVELY(frame,"optionGbox"):ShowWindow(0);
 		GET_CHILD_RECURSIVELY(frame,"belongingtxt"):ShowWindow(0);
 
-		local max = GET_CHILD_RECURSIVELY(frame, 'registerbtn'):GetTextByKey("name");
+		local max = GET_CHILD_RECURSIVELY(frame, 'registerbtn'):GetTextByKey("name");		
 		if max == "MAX" then
 			INVENTORY_SET_CUSTOM_RBTNDOWN("None");
 		else
@@ -359,13 +366,13 @@ function ITEM_CABINET_REGISTER_SECTION(frame, category, itemType, curLv)
 	local itemCls = GetClassByType("cabinet_"..string.lower(category), itemType);
 	local itemName = itemCls.ClassName;
 	local isRegister = TryGetProp(aObj, itemCls.AccountProperty, 0);
-	local maxLv = itemCls.MaxUpgrade;
+	local maxLv = itemCls.MaxUpgrade;	
 	local registerBtn = GET_CHILD_RECURSIVELY(frame, 'registerbtn');
 	local upgrade_tab = GET_CHILD_RECURSIVELY(frame, 'upgrade_tab');
 	registerBtn:SetTextByKey("name", "MAX");
-	registerBtn:SetEnable(0);
+	registerBtn:SetEnable(0);	
 	GET_CHILD_RECURSIVELY(frame, "upgradegbox"):RemoveAllChild();	
-	if (category == "Weapon" or category == "Armor") and maxLv ~= 1 then
+	if (category == "Weapon" or category == "Armor" or category == 'Accessory') and maxLv ~= 1 then		
 		if curLv == maxLv and isRegister == 1 then
 			upgrade_tab:ChangeCaptionOnly(1,"{@st66b}{s16}"..ClMsg("Upgrade"),false)
 			return;
@@ -377,11 +384,8 @@ function ITEM_CABINET_REGISTER_SECTION(frame, category, itemType, curLv)
 		end
 	end
 	registerBtn:SetEnable(1);
-	if itemName == "EP12_NECK06_HIGH_003" then -- 칸트리베는 레시피가 두개임 
-		curLv = frame:GetUserIValue("TARGET_LV");
-		frame:SetUserValue("TARGET_LV", curLv + 1);
-	end
-	local materialTable = GET_REGISTER_MATERIAL(category, itemName, curLv+1);	
+	
+	local materialTable = GET_REGISTER_MATERIAL(category, itemName, curLv+1);		
 	ITEM_CABINET_DRAW_MATERIAL(frame, materialTable, curLv+1, maxLv);
 end
 

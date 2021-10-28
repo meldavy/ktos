@@ -1436,7 +1436,7 @@ function CHECK_GEAR_SCORE_FOR_CONTENTS(pc, indun_cls)
 					return false;
 				end
 			elseif indun_cls.ClassName == "Goddess_Raid_Vasilissa_Auto" then
-				if gear_score < 430 then
+				if gear_score < 445 then
 					SendSysMsg(pc, "LowEquipedItemGearScore");
 					return false;
 				end

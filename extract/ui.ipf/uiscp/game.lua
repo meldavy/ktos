@@ -2609,9 +2609,9 @@ function USE_ITEMTARGET_ICON(frame, itemobj, argNum)
 	if itemobj.GroupName == "Gem" then
 		local gemProp = geItemTable.GetProp(itemobj.ClassID);
 		local socketPenaltyProp = gemProp:GetSocketPropertyByLevel(0);
-		local propPenaltyAdd = socketPenaltyProp:GetPropPenaltyAddByIndex(0, 0); -- 몬스터 젬인지 검사 
-		if itemobj.GemRoastingLv == 0 and propPenaltyAdd ~= nil then
-			-- 로스팅 되지 않은 젬일 경우 경고창
+		local propPenaltyAdd = socketPenaltyProp:GetPropPenaltyAddByIndex(0, 0); -- 스킬 젬인지 검사
+		if propPenaltyAdd ~= nil and itemobj.GemRoastingLv > itemobj.GemLevel then
+			-- 젬 레벨이 로스팅 레벨보다 낮은 경우 경고창
 			NOT_ROASTING_GEM_EQUIP_WARNINGMSGBOX_FRAME_OPEN(GetIESID(itemobj), argNum);
 		else
 			local yesscp = string.format("USE_ITEMTARGET_ICON_GEM(%d)", argNum);

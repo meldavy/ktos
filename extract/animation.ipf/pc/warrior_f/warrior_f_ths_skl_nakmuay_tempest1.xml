@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by IMC (IMCGames Co., Ltd) -->
+<ActionDesc>
+	<Particle frame="7" attachNode="Dummy_effect_left_foot" particleName="F_smoke037" useAttach="false" hiddenObj="false" changeEffect="None" scale="1" pause="true" use2DEffect="false" targetPos="false"/>
+	<Particle frame="14" attachNode="Dummy_emitter" particleName="E_warrior_pierce" useAttach="true" hiddenObj="false" changeEffect="None" scale="1" pause="true" use2DEffect="false" targetPos="false"/>
+	<Particle frame="13" attachNode="Bip01 R Foot" particleName="F_smoke037" useAttach="false" hiddenObj="false" changeEffect="None" scale="0.3" pause="true" use2DEffect="false" targetPos="false"/>
+	<BlendOn frame="14" R="120" G="100" B="100" A="50"/>
+	<BlendOff frame="16" R="0" G="0" B="0" A="0"/>
+	<Shockwave frame="14" type="2" intensity="5" frequency="50" duration="0.2" range="1000"/>
+	<Sound frame="15.00" soundFile="voice_atk_long_war_f"/>
+</ActionDesc>

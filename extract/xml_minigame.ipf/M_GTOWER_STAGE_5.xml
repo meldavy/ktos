@@ -401,6 +401,7 @@
                 </StartScpList>
                 <ObjList>
                     <Obj Type="Monster" MonType="156162" Pos="2795.77#239.89#3957.99" genCount="1" genTime="20000" objectKey="0" propList="&apos;Dialog&apos; &apos;NPC_DUNGEON_GACHA_CUBE&apos; "/>
+                    <Obj Type="Monster" MonType="160065" Pos="2716.22#239.89#3964.09" genCount="1" genTime="20000" objectKey="1"/>
                 </ObjList>
                 <StageEvents>
                     <Event execCount="1" eventName="LEAVE">

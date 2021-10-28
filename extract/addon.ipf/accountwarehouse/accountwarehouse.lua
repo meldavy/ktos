@@ -214,14 +214,20 @@ function PUT_ACCOUNT_ITEM_TO_WAREHOUSE_BY_INVITEM(frame, invItem, slot, fromFram
         return;
     end
 
-    if TryGetProp(obj, 'BelongingCount', 0) ~= 0 or TryGetProp(obj, 'CharacterBelonging', 0) == 1 then
+    local belongingCount = TryGetProp(obj, 'BelongingCount', 0)
+    if belongingCount > 0 and belongingCount >= invItem.count then
+        ui.SysMsg(ClMsg("ItemIsNotTradable"));
+        return;
+    end
+
+    if TryGetProp(obj, 'CharacterBelonging', 0) == 1 then
         ui.SysMsg(ClMsg("ItemIsNotTradable"));
         return;
     end
 
     if fromFrame:GetName() == "inventory" then
         local maxCnt = invItem.count;
-        if TryGetProp(obj, "BelongingCount") ~= nil then
+        if belongingCount > 0 then
             maxCnt = invItem.count - obj.BelongingCount;
             if maxCnt <= 0 then
                 maxCnt = 0;

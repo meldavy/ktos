@@ -219,12 +219,24 @@ function GET_GEAR_SCORE(item)
         local set_option = 1
         local set_advantage = 0.9
 
+        local base_acc = false
         if use_lv == 1 and TryGetProp(item, 'ItemGrade', 1) == 5 then
             use_lv = math.floor(PC_MAX_LEVEL * 0.85)
+            base_acc = true
         end
 
+        local add_acc = 0
         if type == 'NECK' or type == 'RING' then            
             avg_lv = use_lv
+            if base_acc == false then
+                if TryGetProp(item, 'StringArg', 'None') == 'Luciferi' then
+                    add_acc = 50
+                elseif TryGetProp(item, 'StringArg', 'None') == 'Acc_EP12' then
+                    add_acc = 40
+                else
+                    add_acc = 30
+                end
+            end
         else
             local prefix = TryGetProp(item, 'LegendPrefix', 'None')            
             if prefix ~= 'None' then                
@@ -243,7 +255,7 @@ function GET_GEAR_SCORE(item)
         end        
         set_option = 1 - random_option_penalty - enchant_option_penalty        
         local ret = 0.5 * ( (4*transcend) + (3*reinforce)) + ( (30*grade) + (1.66*avg_lv) )*0.5
-        ret = ret * set_option * set_advantage
+        ret = ret * set_option * set_advantage + add_acc
         
         return math.floor(ret + 0.5)
     end

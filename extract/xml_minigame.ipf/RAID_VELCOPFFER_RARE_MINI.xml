@@ -265,6 +265,7 @@
                 </StartScpList>
                 <ObjList>
                     <Obj Type="Monster" MonType="156162" Pos="2544.58#188.75#18.11" genCount="1" genTime="20000" objectKey="0" propList="&apos;Dialog&apos; &apos;NPC_DUNGEON_GACHA_CUBE&apos; "/>
+                    <Obj Type="Monster" MonType="160065" Pos="2586.43#188.75#61.61" genCount="1" genTime="20000" objectKey="1"/>
                 </ObjList>
                 <StageEvents>
                     <Event execCount="1" eventName="마을로 돌아가기">

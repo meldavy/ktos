@@ -1816,6 +1816,16 @@ end
 -- 이전 끝
 
 -- 분해
+local function _DECOMPOSE_PRICE_UPDATE(frame, price)
+	local d_price = GET_CHILD_RECURSIVELY(frame, 'd_price')
+	d_price:SetTextByKey('value', GET_COMMAED_STRING(price))
+
+	local cur_money_str = GET_TOTAL_MONEY_STR()
+	local result_money = SumForBigNumberInt64(cur_money_str, tostring(tonumber(price) * -1))
+	local d_invmoney = GET_CHILD_RECURSIVELY(frame, 'd_invmoney')
+	d_invmoney:SetTextByKey('value', GET_COMMAED_STRING(result_money))
+end
+
 function UPDATE_RELIC_GEM_MANAGER_DECOMPOSE(frame)
 	local tab = GET_CHILD_RECURSIVELY(frame, 'type_Tab')
 	if tab == nil then return end
@@ -1844,26 +1854,52 @@ function UPDATE_RELIC_GEM_MANAGER_DECOMPOSE(frame)
 			ICON_SET_INVENTORY_TOOLTIP(icon, invItem, 'poisonpot', class)
 		end
 	end, false, slotSet, materialItemList)
+
+	-- 할인 쿠폰
+	local dis_slotSet = GET_CHILD_RECURSIVELY(frame, 'dslotlist_discount', 'ui::CSlotSet')
+	dis_slotSet:ClearIconAll()
+	FOR_EACH_INVENTORY(invItemList, function(invItemList, invItem, slotSet, materialItemList)
+		local coupon_table = SCR_REINFORCE_COUPON()
+		local obj = GetIES(invItem:GetObject())
+		for i, v in pairs(coupon_table) do
+			if v == TryGetProp(obj, "ClassName", "None") then
+				local slotindex = imcSlot:GetEmptySlotIndex(dis_slotSet)
+				local slot = dis_slotSet:GetSlotByIndex(slotindex)
+				slot:SetUserValue('COUPON_GUID', invItem:GetIESID())
+				slot:SetMaxSelectCount(invItem.count)
+				slot:SetUserValue('DISCOUNT_POINT', TryGetProp(obj, 'NumberArg1', 0))
+				local icon = CreateIcon(slot)
+				icon:Set(obj.Icon, 'Item', invItem.type, slotindex, invItem:GetIESID(), invItem.count)
+				local class = GetClassByType('Item', invItem.type)
+				SET_SLOT_ITEM_TEXT_USE_INVCOUNT(slot, invItem, obj, invItem.count)
+				ICON_SET_INVENTORY_TOOLTIP(icon, invItem, 'poisonpot', class)
+			end
+		end
+
+	end, false, slotSet, materialItemList)
 end
 
 function RELIC_GEM_DECOMPOSE_SET_COUNT(frame)
 	local do_decompose = GET_CHILD_RECURSIVELY(frame, 'do_decompose')
 	local slotSet = GET_CHILD_RECURSIVELY(frame, 'slotlist')
+	local d_slotSet = GET_CHILD_RECURSIVELY(frame, 'dprice_info')
+	local d_slotlist = GET_CHILD_RECURSIVELY(frame, 'dslotlist_discount')
+
 	local decompose_cnt = slotSet:GetSelectedSlotCount()
 	if decompose_cnt <= 0 then
 		do_decompose:SetEnable(0)
+		d_slotSet:ShowWindow(0)
+		d_slotlist:ShowWindow(0)
 	else
 		do_decompose:SetEnable(1)
+		d_slotSet:ShowWindow(1)
+		d_slotlist:ShowWindow(1)
 	end
+
 	local cost_per = shared_item_relic.get_gem_decompose_silver()
 	local total_price = MultForBigNumberInt64(decompose_cnt, cost_per)
-	local d_price = GET_CHILD_RECURSIVELY(frame, 'd_price')
-	d_price:SetTextByKey('value', GET_COMMAED_STRING(total_price))
-
-	local cur_money_str = GET_TOTAL_MONEY_STR()
-	local result_money = SumForBigNumberInt64(cur_money_str, tostring(tonumber(total_price) * -1))
-	local d_invmoney = GET_CHILD_RECURSIVELY(frame, 'd_invmoney')
-	d_invmoney:SetTextByKey('value', GET_COMMAED_STRING(result_money))
+	frame:SetUserValue('DECOMPOSE_PRICE', total_price)
+	_DECOMPOSE_PRICE_UPDATE(frame, total_price)
 end
 
 function SCP_LBTDOWN_RELIC_GEM_DECOMPOSE(frame, ctrl)
@@ -1900,6 +1936,8 @@ function RELIC_GEM_MANAGER_DECOMPOSE_EXEC(parent)
 	local decompose_cnt = slotSet:GetSelectedSlotCount()
 	local cost_per = shared_item_relic.get_gem_decompose_silver()
 	local total_price = MultForBigNumberInt64(decompose_cnt, cost_per)
+	local discount = RELIC_GEM_MANAGER_DECOMPOSE_TOTAL_DISCOUNT_PRICE()
+	total_price = SumForBigNumberInt64(total_price, tonumber(discount) * -1)
 	local my_money = GET_TOTAL_MONEY_STR()
     if IsGreaterThanForBigNumber(total_price, my_money) == 1 then
         ui.SysMsg(ClMsg('NotEnoughMoney'))
@@ -1918,6 +1956,17 @@ function RELIC_GEM_MANAGER_DECOMPOSE_EXEC(parent)
 		local slot = slotSet:GetSelectedSlot(i)
 		local gem_guid = slot:GetUserValue('GEM_GUID')
 		session.AddItemID(gem_guid, 1)
+	end
+
+	local dslotlist_discount = GET_CHILD_RECURSIVELY(frame, 'dslotlist_discount')
+	local discount_cnt = dslotlist_discount:GetSelectedSlotCount()
+	if discount_cnt > 0 then
+		for i = 0, discount_cnt - 1 do
+			local _slot = dslotlist_discount:GetSelectedSlot(i)
+			local _guid = _slot:GetUserValue('COUPON_GUID')
+			local _count = _slot:GetSelectCount()
+			session.AddItemID(_guid, _count)
+		end
 	end
 
 	local msg = ClMsg('REALLY_DO_RELIC_GEM_DECOMPOSE')
@@ -1945,4 +1994,59 @@ function SUCCESS_RELIC_GEM_DECOMPOSE(frame)
 	UPDATE_RELIC_GEM_MANAGER_DECOMPOSE(frame)
 	RELIC_GEM_DECOMPOSE_SET_COUNT(frame)
 end
--- 분해 끝
+
+function RELIC_GEM_MANAGER_DECOMPOSE_TOTAL_DISCOUNT_PRICE()
+	local frame = ui.GetFrame('relic_gem_manager')
+    if frame == nil then
+        return
+    end
+
+    local slotSet = GET_CHILD_RECURSIVELY(frame, 'dslotlist_discount')
+	local totalDiscount = 0
+
+	for i = 0, slotSet:GetSlotCount() - 1 do
+		local slot = slotSet:GetSlotByIndex(i)
+		local point = tonumber(slot:GetUserValue("DISCOUNT_POINT"))
+		if point == nil then
+			break
+		end
+
+		totalDiscount = SumForBigNumberInt64(totalDiscount, MultForBigNumberInt64(slot:GetSelectCount(), point))
+    end
+    
+    return totalDiscount
+end
+
+function RELIC_GEM_MANAGER_DECOMPOSE_DISCOUNT_CLICK(slotSet, slot)
+    local frame = ui.GetFrame('relic_gem_manager')
+    if frame == nil then
+        return
+	end
+
+	local totalPrice = frame:GetUserValue('DECOMPOSE_PRICE')
+	local discountPrice = RELIC_GEM_MANAGER_DECOMPOSE_TOTAL_DISCOUNT_PRICE()
+	local adjustValue = SumForBigNumberInt64(totalPrice, tostring(tonumber(discountPrice) * -1))
+
+	if IsGreaterThanForBigNumber(0, adjustValue) == 1 then
+		local point = tonumber(slot:GetUserValue("DISCOUNT_POINT"))
+		if point == nil or point == 0 then
+			return
+		end
+
+		local nowCount = slot:GetSelectCount()
+		local adjustCount = math.floor(tonumber(DivForBigNumberInt64(adjustValue, point)))
+		adjustCount = math.max(nowCount + adjustCount, 0)
+		slot:SetSelectCount(adjustCount)
+	end
+
+	-- 선택한게 없으면 포커스 풀어주기
+	if slot:GetSelectCount() == 0 then
+		slot:Select(0)
+	end
+
+	ui.EnableSlotMultiSelect(1)
+	
+	local totalPrice = frame:GetUserValue('DECOMPOSE_PRICE')
+	local discountPrice = RELIC_GEM_MANAGER_DECOMPOSE_TOTAL_DISCOUNT_PRICE()
+	_DECOMPOSE_PRICE_UPDATE(frame, SumForBigNumberInt64(totalPrice, tostring(tonumber(discountPrice) * -1)))
+end

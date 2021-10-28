@@ -32981,7 +32981,7 @@ end"/>
             </ToolScp>
         </enterEvent>
     </PadSkill>
-	<PadSkill Name="weekly_ShadowGaoler_circlewave" CheckerType="4" Range="20" InnerRange="10" UpdateTerm="300" ApplyFlyMon="1" EnableSearch="0">
+	<PadSkill Name="weekly_ShadowGaoler_circlewave" CheckerType="4" Range="20" UpdateTerm="300" ApplyFlyMon="1" EnableSearch="0">
         <createEvent>
             <ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
                 <Num Num="4000"/>

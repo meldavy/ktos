@@ -175,7 +175,7 @@
                     <Event execCount="1" eventName="1min">
                         <condList>
                             <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK" Client="NO" UseSleep="NO">
-                                <Num Num="540"/>
+                                <Num Num="840"/>
                             </ToolScp>
                         </condList>
                         <execList>
@@ -189,7 +189,7 @@
                     <Event execCount="1" eventName="time_over">
                         <condList>
                             <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK" Client="NO" UseSleep="NO">
-                                <Num Num="660"/>
+                                <Num Num="1080"/>
                             </ToolScp>
                         </condList>
                         <execList>
@@ -197,7 +197,7 @@
                                 <Str Str="Fail"/>
                             </ToolScp>
                             <ToolScp Scp="MGAME_MSG_ICON" Client="YES" UseSleep="NO">
-                                <Str Str="제한 시간 11분이 경과되어 레이드에 실패하였습니다.{nl}30초 후 입장 지역으로 이동됩니다."/>
+                                <Str Str="제한 시간 18분이 경과되어 레이드에 실패하였습니다.{nl}30초 후 입장 지역으로 이동됩니다."/>
                                 <Str Str="!"/>
                                 <Num Num="5"/>
                             </ToolScp>
@@ -418,7 +418,7 @@
                         </condList>
                         <execList>
                             <ToolScp Scp="MGAME_SET_RAID_TIMER" Client="NO" UseSleep="NO">
-                                <Num Num="600"/>
+                                <Num Num="900"/>
                                 <Str Str="RemainTime"/>
                                 <Str Str="Yellow"/>
                             </ToolScp>
@@ -447,7 +447,7 @@
                         </condList>
                         <execList>
                             <ToolScp Scp="MGAME_SET_RAID_TIMER" Client="NO" UseSleep="NO">
-                                <Num Num="60"/>
+                                <Num Num="180"/>
                                 <Str Str="GraceTime"/>
                                 <Str Str="Red"/>
                             </ToolScp>

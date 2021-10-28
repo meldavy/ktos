@@ -4,6 +4,7 @@ g_cabinet_required_item_list = nil -- 보관함 등록 및 업그레이드시에
 
 local luciferi_return_item_list = nil
 local acc_group_list = nil -- acc 그룹 AccountProperty 리스트
+local acc_upgrade_group_list = nil
 
 local function make_cabinet_required_item_list()
     if g_cabinet_required_item_list ~= nil then
@@ -11,6 +12,7 @@ local function make_cabinet_required_item_list()
     end
     g_cabinet_required_item_list = {}
     acc_group_list = {}
+    acc_upgrade_group_list = {}
 
     local category_list = {}
     category_list['Weapon'] = 4
@@ -117,82 +119,95 @@ local function make_cabinet_required_item_list()
             local item_cls = GetClass('Item', item_name)
             local group = TryGetProp(entry_cls, 'Group', 0)
             local acc_prop = TryGetProp(entry_cls, 'AccountProperty', 'None')
-            if item_cls ~= nil and TryGetProp(entry_cls, 'Basic', 0) == 0 and TryGetProp(item_cls, 'StringArg', 'None') == 'Luciferi' then
+            local acc_upgrade_prop = TryGetProp(entry_cls, 'UpgradeAccountProperty', 'None')
+            if item_cls ~= nil and TryGetProp(entry_cls, 'Basic', 0) == 0 and (TryGetProp(item_cls, 'StringArg', 'None') == 'Luciferi' or TryGetProp(item_cls, 'StringArg', 'None') == 'Acc_EP12') then
                 if acc_group_list[group] == nil then
                     acc_group_list[group] = {}
                 end
 
+                if acc_upgrade_group_list[group] == nil then
+                    acc_upgrade_group_list[group] = {}
+                end
+
                 if acc_prop ~= 'None' then
-                    table.insert(acc_group_list[group], acc_prop)                    
+                    table.insert(acc_group_list[group], acc_prop)                             
+                end
+
+                if acc_upgrade_prop ~= 'None' then
+                    table.insert(acc_upgrade_group_list[group], acc_upgrade_prop)           
                 end
 
                 if g_cabinet_required_item_list[category][item_name] == nil then
                     g_cabinet_required_item_list[category][item_name] = {}
                 end
-                local lv = 1
+                local lv = 1                
                 for lv = 1, max_lv do
                     if g_cabinet_required_item_list[category][item_name][lv] == nil then
                         g_cabinet_required_item_list[category][item_name][lv] = {}  -- 레벨별 재료
                     end
                     
-                    if item_name == 'EP12_NECK06_HIGH_002' or item_name == 'EP12_BRC06_HIGH_002' then
-                        g_cabinet_required_item_list[category][item_name][lv]['NECK05_012'] = 1
-                        g_cabinet_required_item_list[category][item_name][lv]['BRC05_012__1'] = 1
-                        g_cabinet_required_item_list[category][item_name][lv]['BRC05_012__2'] = 1
-                        g_cabinet_required_item_list[category][item_name][lv]['NECK05_004'] = 1
-                        g_cabinet_required_item_list[category][item_name][lv]['BRC05_004__1'] = 1
-                        g_cabinet_required_item_list[category][item_name][lv]['BRC05_004__2'] = 1
-                    elseif item_name == 'EP12_NECK06_HIGH_001' or item_name == 'EP12_BRC06_HIGH_001' then
-                        g_cabinet_required_item_list[category][item_name][lv]['NECK05_010'] = 1
-                        g_cabinet_required_item_list[category][item_name][lv]['BRC05_010__1'] = 1
-                        g_cabinet_required_item_list[category][item_name][lv]['BRC05_010__2'] = 1
-                        g_cabinet_required_item_list[category][item_name][lv]['NECK05_006'] = 1
-                        g_cabinet_required_item_list[category][item_name][lv]['BRC05_006__1'] = 1
-                        g_cabinet_required_item_list[category][item_name][lv]['BRC05_006__2'] = 1
-                    elseif item_name == 'EP12_NECK06_HIGH_003' or item_name == 'EP12_BRC06_HIGH_003' then
-                        g_cabinet_required_item_list[category][item_name][lv]['NECK05_009'] = 1
-                        g_cabinet_required_item_list[category][item_name][lv]['BRC05_009__1'] = 1
-                        g_cabinet_required_item_list[category][item_name][lv]['BRC05_009__2'] = 1
-                        g_cabinet_required_item_list[category][item_name][lv]['NECK05_007'] = 1
-                        g_cabinet_required_item_list[category][item_name][lv]['BRC05_007__1'] = 1
-                        g_cabinet_required_item_list[category][item_name][lv]['BRC05_007__2'] = 1
-
-                        g_cabinet_required_item_list[category][item_name][lv+1] = {}
-                        g_cabinet_required_item_list[category][item_name][lv+1]['NECK05_009'] = 1  -- 칸트리베만 재료가 2가지
-                        g_cabinet_required_item_list[category][item_name][lv+1]['BRC05_009__1'] = 1
-                        g_cabinet_required_item_list[category][item_name][lv+1]['BRC05_009__2'] = 1
-                        g_cabinet_required_item_list[category][item_name][lv+1]['NECK05_005'] = 1
-                        g_cabinet_required_item_list[category][item_name][lv+1]['BRC05_005__1'] = 1
-                        g_cabinet_required_item_list[category][item_name][lv+1]['BRC05_005__2'] = 1
-                        g_cabinet_required_item_list[category][item_name][lv+1]['misc_luferium_NoTrade'] = 1
-                        g_cabinet_required_item_list[category][item_name][lv+1]['misc_mothstone'] = 1
-                        g_cabinet_required_item_list[category][item_name][lv+1]['misc_Telharsha_neck'] = 72
-                    elseif item_name == 'EP12_NECK06_HIGH_005' or item_name == 'EP12_BRC06_HIGH_005' then
-                        g_cabinet_required_item_list[category][item_name][lv]['NECK05_011'] = 1
-                        g_cabinet_required_item_list[category][item_name][lv]['BRC05_011__1'] = 1
-                        g_cabinet_required_item_list[category][item_name][lv]['BRC05_011__2'] = 1
-                        g_cabinet_required_item_list[category][item_name][lv]['NECK05_001'] = 1
-                        g_cabinet_required_item_list[category][item_name][lv]['BRC05_001__1'] = 1
-                        g_cabinet_required_item_list[category][item_name][lv]['BRC05_001__2'] = 1
-                    elseif item_name == 'EP12_NECK06_HIGH_006' or item_name == 'EP12_BRC06_HIGH_006' then
-                        g_cabinet_required_item_list[category][item_name][lv]['NECK05_008'] = 1
-                        g_cabinet_required_item_list[category][item_name][lv]['BRC05_008__1'] = 1
-                        g_cabinet_required_item_list[category][item_name][lv]['BRC05_008__2'] = 1
-                        g_cabinet_required_item_list[category][item_name][lv]['NECK05_002'] = 1
-                        g_cabinet_required_item_list[category][item_name][lv]['BRC05_002__1'] = 1
-                        g_cabinet_required_item_list[category][item_name][lv]['BRC05_002__2'] = 1
-                    elseif item_name == 'EP12_NECK06_HIGH_004' or item_name == 'EP12_BRC06_HIGH_004' then
-                        g_cabinet_required_item_list[category][item_name][lv]['NECK05_008'] = 1
-                        g_cabinet_required_item_list[category][item_name][lv]['BRC05_008__1'] = 1
-                        g_cabinet_required_item_list[category][item_name][lv]['BRC05_008__2'] = 1
-                        g_cabinet_required_item_list[category][item_name][lv]['NECK05_003'] = 1
-                        g_cabinet_required_item_list[category][item_name][lv]['BRC05_003__1'] = 1
-                        g_cabinet_required_item_list[category][item_name][lv]['BRC05_003__2'] = 1
+                    if lv == 1 then
+                        if item_name == 'EP12_NECK05_HIGH_002' or item_name == 'EP12_BRC05_HIGH_002' then   -- 카랄리엔 이스가리티
+                            g_cabinet_required_item_list[category][item_name][lv]['NECK05_012'] = 1
+                            g_cabinet_required_item_list[category][item_name][lv]['BRC05_012__1'] = 1
+                            g_cabinet_required_item_list[category][item_name][lv]['BRC05_012__2'] = 1
+                            g_cabinet_required_item_list[category][item_name][lv]['NECK05_004'] = 1
+                            g_cabinet_required_item_list[category][item_name][lv]['BRC05_004__1'] = 1
+                            g_cabinet_required_item_list[category][item_name][lv]['BRC05_004__2'] = 1
+                        elseif item_name == 'EP12_NECK05_HIGH_001' or item_name == 'EP12_BRC05_HIGH_001' then   -- 카랄리엔 주오다
+                            g_cabinet_required_item_list[category][item_name][lv]['NECK05_010'] = 1
+                            g_cabinet_required_item_list[category][item_name][lv]['BRC05_010__1'] = 1
+                            g_cabinet_required_item_list[category][item_name][lv]['BRC05_010__2'] = 1
+                            g_cabinet_required_item_list[category][item_name][lv]['NECK05_006'] = 1
+                            g_cabinet_required_item_list[category][item_name][lv]['BRC05_006__1'] = 1
+                            g_cabinet_required_item_list[category][item_name][lv]['BRC05_006__2'] = 1
+                        elseif item_name == 'EP12_BRC05_HIGH_003' then                                          -- 카랄리엔 칸트리베 1
+                            g_cabinet_required_item_list[category][item_name][lv]['NECK05_009'] = 1
+                            g_cabinet_required_item_list[category][item_name][lv]['BRC05_009__1'] = 1
+                            g_cabinet_required_item_list[category][item_name][lv]['BRC05_009__2'] = 1
+                            g_cabinet_required_item_list[category][item_name][lv]['NECK05_007'] = 1
+                            g_cabinet_required_item_list[category][item_name][lv]['BRC05_007__1'] = 1
+                            g_cabinet_required_item_list[category][item_name][lv]['BRC05_007__2'] = 1
+                        elseif item_name == 'EP12_NECK05_HIGH_003' then                                         -- 카랄리엔 칸트리베 2
+                            g_cabinet_required_item_list[category][item_name][lv] = {}
+                            g_cabinet_required_item_list[category][item_name][lv]['NECK05_009'] = 1  
+                            g_cabinet_required_item_list[category][item_name][lv]['BRC05_009__1'] = 1
+                            g_cabinet_required_item_list[category][item_name][lv]['BRC05_009__2'] = 1
+                            g_cabinet_required_item_list[category][item_name][lv]['NECK05_005'] = 1
+                            g_cabinet_required_item_list[category][item_name][lv]['BRC05_005__1'] = 1
+                            g_cabinet_required_item_list[category][item_name][lv]['BRC05_005__2'] = 1                                                    
+                        elseif item_name == 'EP12_NECK05_HIGH_006' or item_name == 'EP12_BRC05_HIGH_006' then   -- 카랄리엔 트리우카스
+                            g_cabinet_required_item_list[category][item_name][lv]['NECK05_011'] = 1     -- 모링포니아 트리우카스 네클리스
+                            g_cabinet_required_item_list[category][item_name][lv]['BRC05_011__1'] = 1   -- 모링포니아 트리우카스 브레이슬릿
+                            g_cabinet_required_item_list[category][item_name][lv]['BRC05_011__2'] = 1
+                            g_cabinet_required_item_list[category][item_name][lv]['NECK05_001'] = 1     -- 드라코나스 리느키 시트 네클리스
+                            g_cabinet_required_item_list[category][item_name][lv]['BRC05_001__1'] = 1   -- 드라코나스 리느키 시트 브레이슬릿
+                            g_cabinet_required_item_list[category][item_name][lv]['BRC05_001__2'] = 1
+                        elseif item_name == 'EP12_NECK05_HIGH_007' or item_name == 'EP12_BRC05_HIGH_007' then -- 카랄리엔 프리데티
+                            g_cabinet_required_item_list[category][item_name][lv]['NECK05_008'] = 1     -- 모링포니아 피크티스 네클리스
+                            g_cabinet_required_item_list[category][item_name][lv]['BRC05_008__1'] = 1   -- 모링포니아 피크티스 브레이슬릿
+                            g_cabinet_required_item_list[category][item_name][lv]['BRC05_008__2'] = 1
+                            g_cabinet_required_item_list[category][item_name][lv]['NECK05_002'] = 1     -- 드라코나스 카이트 무어 네클리스
+                            g_cabinet_required_item_list[category][item_name][lv]['BRC05_002__1'] = 1   -- 드라코나스 카이트 무어 브레이슬릿
+                            g_cabinet_required_item_list[category][item_name][lv]['BRC05_002__2'] = 1
+                        elseif item_name == 'EP12_NECK05_HIGH_005' or item_name == 'EP12_BRC05_HIGH_005' then   -- 카랄리엔 피크티스
+                            g_cabinet_required_item_list[category][item_name][lv]['NECK05_008'] = 1     -- 모링포니아 피크티스 네클리스
+                            g_cabinet_required_item_list[category][item_name][lv]['BRC05_008__1'] = 1   -- 모링포니아 피크티스 브레이슬릿
+                            g_cabinet_required_item_list[category][item_name][lv]['BRC05_008__2'] = 1
+                            g_cabinet_required_item_list[category][item_name][lv]['NECK05_003'] = 1     -- 드라코나스 파시우테스 네클리스
+                            g_cabinet_required_item_list[category][item_name][lv]['BRC05_003__1'] = 1   -- 드라코나스 파시우테스 브레이슬릿
+                            g_cabinet_required_item_list[category][item_name][lv]['BRC05_003__2'] = 1
+                        end
                     end
 
-                    g_cabinet_required_item_list[category][item_name][lv]['misc_luferium_NoTrade'] = 1
-                    g_cabinet_required_item_list[category][item_name][lv]['misc_mothstone'] = 1
-                    g_cabinet_required_item_list[category][item_name][lv]['misc_Telharsha_neck'] = 72
+                    if lv == 1 then
+                        g_cabinet_required_item_list[category][item_name][lv]['misc_mothstone'] = 1  -- 바이올렛틴
+                    end
+
+                    if lv == 2 then
+                        g_cabinet_required_item_list[category][item_name][lv]['misc_luferium_NoTrade'] = 1  -- 루페리움
+                        g_cabinet_required_item_list[category][item_name][lv]['misc_Telharsha_neck'] = 72  -- 의장품
+                    end
                 end
             end
         end
@@ -231,6 +246,10 @@ function GET_ACC_GROUP_PROPERTY_LIST(group)
     return acc_group_list[group]
 end
 
+function GET_ACC_UPGRADE_GROUP_PROPERTY_LIST(group)
+    return acc_upgrade_group_list[group]
+end
+
 function GET_REGISTER_MATERIAL(category, item_name, lv)
     if g_cabinet_required_item_list[category] == nil then        
         return nil
@@ -257,6 +276,60 @@ function GET_CABINET_ITEM_NAME(cls, acc)
             return name
         else
             name = name .. '_Lv' .. lv
+            return name
+        end
+    else
+        return TryGetProp(cls, 'ClassName', 'None')
+    end
+end
+
+function GET_CABINET_ACC_ITEM_NAME(cls, acc)
+    if cls == nil or acc == nil then
+        return 'None'
+    end
+    
+    if TryGetProp(cls, 'Upgrade', 'None') == 1 then
+        local name = TryGetProp(cls, 'ClassName', 'None')
+        local upgrade_property = TryGetProp(cls, 'UpgradeAccountProperty', 0)
+        
+        local lv = TryGetProp(acc, upgrade_property, 0)        
+        if lv <= 1 then
+            return name
+        elseif lv == 2 then
+            if name == 'EP12_NECK05_HIGH_006' then
+                return 'EP12_NECK06_HIGH_005'
+            end
+
+            if name == 'EP12_BRC05_HIGH_006' then
+                return 'EP12_BRC06_HIGH_005'
+            end
+
+            if name == 'EP12_NECK05_HIGH_007' then
+                return 'EP12_NECK06_HIGH_006'                
+            end
+
+            if name == 'EP12_BRC05_HIGH_007' then
+                return 'EP12_BRC06_HIGH_006'
+            end
+
+            if name == 'EP12_NECK05_HIGH_005' then
+                return 'EP12_NECK06_HIGH_004'
+            end
+
+            if name == 'EP12_BRC05_HIGH_005' then
+                return 'EP12_BRC06_HIGH_004'
+            end
+
+            if string.find(name, '_NECK05_') ~= nil then
+                name = replace(name, '_NECK05_', '_NECK06_')
+                return name
+            elseif string.find(name, '_BRC05_') ~= nil then
+                name = replace(name, '_BRC05_', '_BRC06_')
+                return name
+            else
+                return name
+            end
+        else
             return name
         end
     else
@@ -571,4 +644,19 @@ function IS_STRING_COIN(name)
             return false
         end
     end
+end
+
+function GET_ACC_CABINET_COST(entry_cls, acc)        
+    if TryGetProp(entry_cls, 'Category', 'None') == 'Accessory' then        
+        local cost = TryGetProp(entry_cls, 'MakeCostSilver', 5000000)
+        local upgrade_prop = TryGetProp(entry_cls, 'UpgradeAccountProperty', 'None')
+        local lv = TryGetProp(acc, upgrade_prop, 0)        
+        if lv <= 1 then
+            cost = math.floor(cost * 0.4)
+        end
+
+        return cost
+    end
+
+    return TryGetProp(entry_cls, 'MakeCostSilver', 5000000)
 end

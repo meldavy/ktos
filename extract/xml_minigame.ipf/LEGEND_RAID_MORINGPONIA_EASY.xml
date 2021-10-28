@@ -181,7 +181,9 @@
                         <Num Num="5"/>
                     </ToolScp>
                 </StartScpList>
-                <ObjList/>
+                <ObjList>
+                 <Obj Type="Monster" MonType="160065" Pos="-2613.26#292.69#-237.93" genCount="1" genTime="20000" objectKey="1"/>
+                </ObjList>
                 <StageEvents>
                     <Event execCount="1" eventName="RETURN_ZONE">
                         <condList>

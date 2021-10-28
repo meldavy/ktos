@@ -99,7 +99,6 @@
     </Skill>
     <Skill Name="Dievdirbys_CarveVakarine">
         <EnableScripts>
-            <ToolScp Scp="CHECK_IS_GUIILDCOLONY_MAP" Client="BOTH" UseSleep="NO"/>
             <ToolScp Scp="SKL_CHECK_SKL_OBJ_CNT" Client="NO" UseSleep="NO">
                 <Num Num="0"/>
                 <Str Str="pcskill_wood_bakarine2"/>
@@ -111,6 +110,7 @@
 
     return value"/>
             </ToolScp>
+            <ToolScp Scp="CHECK_IS_GUIILDCOLONY_MAP_MemoryLeap" Client="BOTH" UseSleep="NO"/>
         </EnableScripts>
         <MainSkl ScrLock="None" JumpFlee="NO" MSPDToUsePos="0">
             <EtcList>

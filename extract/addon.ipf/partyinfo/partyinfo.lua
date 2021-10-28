@@ -301,7 +301,7 @@ function ON_PARTYINFO_BUFFLIST_UPDATE(frame)
 								icon:SetTooltipType('buff');
 								icon:SetTooltipArg(handle, buffID, "");
 
-								local imageName = 'icon_' .. cls.Icon;
+								local imageName = 'icon_' .. TryGetProp(cls, 'Icon', 'None');
 								icon:Set(imageName, 'BUFF', buffID, 0);
 
 								if buffOver > 1 then
@@ -880,7 +880,7 @@ function PARTY_JOB_TOOLTIP(frame, cid, uiChild, nowJobName, isChangeMainClass)
 	for jobid, grade in pairs(OTHERPCJOBS) do
 		-- 클래스 이름{@st41}
 		local cls = GetClassByTypeFromList(clslist, jobid);
-		if cls.Name == nowjobcls.Name then
+		if TryGetProp(cls, 'Name', 'None') == TryGetProp(nowjobcls, 'Name', 'None') then
 			jobtext = jobtext .. ("{@st41_yellow}").. GET_JOB_NAME(cls, gender);
 		else
 			jobtext = jobtext .. ("{@st41}").. GET_JOB_NAME(cls, gender);
@@ -897,7 +897,7 @@ function PARTY_JOB_TOOLTIP_BY_CID(cid, icon, nowJobName)
 	if (nil == session.otherPC.GetByStrCID(cid)) or (nil == icon) then 
 		return 0;
 	end		 
-			 	
+
 
 	local otherpcinfo = session.otherPC.GetByStrCID(cid);
 	local nowjobinfo, jobCount;	
@@ -936,7 +936,7 @@ function PARTY_JOB_TOOLTIP_BY_CID(cid, icon, nowJobName)
 	end
 
 	local jobtext = ("");
-	local jobName = nowjobcls.Name;
+	local jobName = TryGetProp(nowjobcls, 'Name', 'None');
 	local etc = GetMyEtcObject();
     if etc.RepresentationClassID ~= 'None' then
         local repreJobCls = GetClassByType('Job', etc.RepresentationClassID);
@@ -949,7 +949,7 @@ function PARTY_JOB_TOOLTIP_BY_CID(cid, icon, nowJobName)
 		-- 클래스 이름{@st41}
 		local cls = GetClassByTypeFromList(clslist, jobid);
 
-		if cls.Name == jobName then
+		if TryGetProp(cls, 'Name', 'None') == jobName then
 			jobtext = jobtext .. ("{@st41_yellow}").. GET_JOB_NAME(cls, gender)..'{nl}{/}';
 		else
 			jobtext = jobtext .. ("{@st41}").. GET_JOB_NAME(cls, gender)..'{nl}{/}';

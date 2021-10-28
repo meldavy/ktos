@@ -183,6 +183,7 @@
                 </StartScpList>
                 <ObjList>
                     <Obj Type="Monster" MonType="156162" Pos="-2506.70#292.69#-126.62" genCount="1" genTime="20000" objectKey="0" propList="&apos;Dialog&apos; &apos;NPC_DUNGEON_GACHA_CUBE&apos; "/>
+                    <Obj Type="Monster" MonType="160065" Pos="-2613.26#292.69#-237.93" genCount="1" genTime="20000" objectKey="1"/>
                 </ObjList>
                 <StageEvents>
                     <Event execCount="1" eventName="RETURN_ZONE">

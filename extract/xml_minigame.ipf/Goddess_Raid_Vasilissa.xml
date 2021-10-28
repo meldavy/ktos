@@ -13,7 +13,6 @@
                                 <Num Num="1"/>
                                 <Num Num="5"/>
                             </ToolScp>
-                            <ToolScp Scp="SCR_RAID_CLEAR_TIME_START_SETTING" Client="NO" UseSleep="NO"/>
                             <ToolScp Scp="MGAME_STAGE_CHECK_LOG_STAGEPROGRESS" Client="NO" UseSleep="NO">
                                 <Str Str="Goddess_Raid_Vasilissa"/>
                                 <Str Str="StageStart"/>
@@ -441,6 +440,7 @@
                                 <MGameObj List="Vasilissa/0"/>
                                 <Str Str="SCR_GODDESS_RAID_VASILISSA_MOVE_PC"/>
                             </ToolScp>
+                            <ToolScp Scp="SCR_RAID_CLEAR_TIME_START_SETTING" Client="NO" UseSleep="NO"/>
                         </execList>
                     </Event>
                     <Event eventName="Vasilissa_Stun_Check">
@@ -457,7 +457,7 @@
                         </execList>
                     </Event>
                     <Event eventName="timer_start">
-                        <condList>
+                        <condList>                        
                             <ToolScp Scp="GAME_ST_EVT_COND_VALUE" Client="NO" UseSleep="NO">
                                 <Str Str="TIMER_REMAIN_TIME"/>
                                 <Str Str="OVER"/>

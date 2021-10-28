@@ -8860,6 +8860,8 @@
 		<image name="aether_icon_inventory" file="\skin\pip_test.tga" imgrect="541 1126 26 26" CMM_Caption="에테르젬 인벤토리 아이콘"/>
 		<image name="goddess_Evolve_Circle" file="\skin\goddess_Evolve_Circle.tga" imgrect="0 0 624 624" CMM_Caption="가디스 마법진"/>
 		<image name="token_skin3" file="\skin\paid_skin.tga" imgrect="1320 802 316 165" CMM_Caption="각인 슬롯 확장권 팝업스킨"/>
+		<image name="inventory_weight_pic" file="\skin\pip_test2.tga" imgrect="964 171 27 27" CMM_Caption="무게 아이콘"/>
+		<image name="inventory_coin_gabia_pic" file="\skin\pip_test2.tga" imgrect="992 171 27 27" CMM_Caption="여신의 증표(가비아)"/>
 	</imagelist>
 	<imagelist category="je_button">
 		<image name="menu_guild_info" file="\skin\guild_skin.tga" imgrect="165 298 45 45" CMM_Caption="길드 정보"/>

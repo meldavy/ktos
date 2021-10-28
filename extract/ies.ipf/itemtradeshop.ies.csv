@@ -1082,6 +1082,8 @@ ClassID,Arg1,Arg2,RecipeTime,SuccessRatio,LevelByFail,TargetItemCnt,Item_1_1_Cnt
 10041,5,0,8,0,0,1,30,0,0,0,0,0,0,0,0,0,0,0,0,EVENT_2107_NEXT_SHOP_22,EVENT_2107_NEXT_SHOP,Recipe,,Drag,Action,Drag,Drag,,,,CRAFT,Event_Stone_500_25,,EVENT_2107_NEXT_SHOP_22,EVENT_2107_coin,,,,,,,,,,,
 10042,5,0,8,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,EVENT_2107_NEXT_SHOP_23,EVENT_2107_NEXT_SHOP,Recipe,,Drag,Action,Drag,Drag,,,,CRAFT,Event_Stone_500_25,,,Event_2107_Next_Box,,,,,,,,,,,
 10043,5,0,8,0,0,5,1,0,0,0,0,0,0,0,0,0,0,0,0,EVENT_2107_NEXT_SHOP_24,EVENT_2107_NEXT_SHOP,Recipe,,Drag,Action,Drag,Drag,,,,CRAFT,Event_Ability_Point_Stone_5_25,,,Event_2107_Next_Key,,,,,,,,,,,
+10059,5,0,8,0,0,1,200,0,0,0,0,0,0,0,0,0,0,0,0,EVENT_2107_NEXT_SHOP_25,EVENT_2107_NEXT_SHOP,Recipe,,Drag,Action,Drag,Drag,,,,CRAFT,Moru_Ruby_14d_event,,,EVENT_2107_coin,,,,,,,,,,,
+10069,5,0,8,0,0,1,100,0,0,0,0,0,0,0,0,0,0,0,0,EVENT_2107_NEXT_SHOP_26,EVENT_2107_NEXT_SHOP,Recipe,,Drag,Action,Drag,Drag,,,,CRAFT,Moru_Gold_14d_Team_event1909,,,EVENT_2107_coin,,,,,,,,,,,
 10044,5,0,8,0,0,1,200,0,0,0,0,0,0,0,0,0,0,0,0,EVENT_2107_NEXT_EP12_SHOP_1,EVENT_2107_NEXT_EP12_SHOP,Recipe,,Drag,Action,Drag,Drag,,,,CRAFT,Episode12_Transcend_Scroll_8_Weapon_440Lv,,EVENT_2101_NEW_YEAR_SHOP_24,EVENT_2107_coin,,,,,,,,,,,
 10045,5,0,8,0,0,1,200,0,0,0,0,0,0,0,0,0,0,0,0,EVENT_2107_NEXT_EP12_SHOP_2,EVENT_2107_NEXT_EP12_SHOP,Recipe,,Drag,Action,Drag,Drag,,,,CRAFT,Episode12_Transcend_Scroll_8_Armor_440Lv,,EVENT_2101_NEW_YEAR_SHOP_25,EVENT_2107_coin,,,,,,,,,,,
 10046,5,0,8,0,0,1,200,0,0,0,0,0,0,0,0,0,0,0,0,EVENT_2107_NEXT_EP12_SHOP_3,EVENT_2107_NEXT_EP12_SHOP,Recipe,,Drag,Action,Drag,Drag,,,,CRAFT,Episode12_Reinforce_Scroll_11_Weapon_440Lv,,EVENT_2101_NEW_YEAR_SHOP_26,EVENT_2107_coin,,,,,,,,,,,

@@ -373,8 +373,8 @@ function BTN_HOUSING_LAB_RESEARCH_USE_GUILD(gbox, btn)
 	local skillLv = agit.researchLevels[researchTypeNumber + 1];
     local buffCls = GetClass("Buff", "Guild_"..researchType.."_Group_Buff")
     local buffName = buffCls.Name;
-    local need_silver = 2000000 -- 길드 연구소 단체 활성화 가격(클라)
-    --need_silver = need_silver * tonumber(skillLv)
+    local need_silver = 1000000 -- 길드 연구소 단체 활성화 가격(클라)
+    need_silver = need_silver * tonumber(skillLv)
     local clmsg
     local yesScp
     local noScp

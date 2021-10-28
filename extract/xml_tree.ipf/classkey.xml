@@ -5285,6 +5285,18 @@
         <Key Name="PVP_MINE_overbuycount8" Value="109405"/>
         <Key Name="PVP_MINE_overbuycount9" Value="109404"/>
         <Key Name="Vasilissa_Party_Raid_EnableEntryCount" Value="109425"/>
+        <Key Name="EP12_BRC06_HIGH_001_cabinet_upgrade" Value="109450"/>
+        <Key Name="EP12_BRC06_HIGH_002_cabinet_upgrade" Value="109446"/>
+        <Key Name="EP12_BRC06_HIGH_003_cabinet_upgrade" Value="109453"/>
+        <Key Name="EP12_BRC06_HIGH_004_cabinet_upgrade" Value="109448"/>
+        <Key Name="EP12_BRC06_HIGH_005_cabinet_upgrade" Value="109447"/>
+        <Key Name="EP12_BRC06_HIGH_006_cabinet_upgrade" Value="109443"/>
+        <Key Name="EP12_NECK06_HIGH_001_cabinet_upgrade" Value="109452"/>
+        <Key Name="EP12_NECK06_HIGH_002_cabinet_upgrade" Value="109445"/>
+        <Key Name="EP12_NECK06_HIGH_003_cabinet_upgrade" Value="109454"/>
+        <Key Name="EP12_NECK06_HIGH_004_cabinet_upgrade" Value="109444"/>
+        <Key Name="EP12_NECK06_HIGH_005_cabinet_upgrade" Value="109449"/>
+        <Key Name="EP12_NECK06_HIGH_006_cabinet_upgrade" Value="109451"/>
     </KeyIDSpc>
     <KeyIDSpc Name="PCEtc">
         <Key Name="Kill_boss_Clymen_Q2" Value="7788"/>
@@ -14353,6 +14365,10 @@
         <Key Name="RandomOptionValuePreset_9_RH_SUB" Value="109290"/>
         <Key Name="RandomOptionValuePreset_9_SHIRT" Value="109182"/>
         <Key Name="IndunJoinMethod" Value="109423"/>
+        <Key Name="Kill_boss_Bounty01" Value="109440"/>
+        <Key Name="Kill_boss_Bounty02" Value="109441"/>
+        <Key Name="Kill_boss_Bounty03" Value="109439"/>
+        <Key Name="Kill_boss_Bounty04" Value="109442"/>
     </KeyIDSpc>
     <KeyIDSpc Name="GuildMember">
         <Key Name="Name" Value="9011"/>

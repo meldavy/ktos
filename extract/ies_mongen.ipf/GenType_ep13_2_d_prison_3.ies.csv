@@ -49,3 +49,4 @@ ClassID,GenType,Lv,Range,GenRange,RespawnTime,MaxPop,Minimap,Hide,UseAIOufOfPC,A
 50,50,1,40,1,1,1,1,0,0,0,0,0,npc_pajauta_1,파야우타,,,,,,,EP13_2_DPRISON3_MQ_NPC_6,,,NO,YES,NO,Neutral,,,,
 51,51,1,300,1,60000,1,0,0,0,0,0,0,noshadow_npc,UnvisibleName,,,,MON_DUMMY,,,,EP13_2_DPRISON3_MQ_NPC_4,,NO,YES,NO,Neutral,,,,
 52,52,1,40,1,1,1,1,0,0,0,0,0,npc_paulius_2,쓰러진 파울루스,,,,MON_DUMMY,MON_DUMMY,,EP13_2_DPRISON3_MQ_NPC_5,,,NO,YES,NO,Neutral,Anim/dead,,,
+53,53,1,40,100,20000,14,0,0,0,1,0,0,rootcrystal_01,나무뿌리 수정,,,,MON_TORCH,,,,,,NO,YES,NO,RootCrystal,,,,

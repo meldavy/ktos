@@ -1043,11 +1043,8 @@ end
 
 function SCR_ABIL_MACE_ACTIVE(self, ability)
     local addHeaLPwrRate = 0;
-    local rItem  = GetEquipItem(self, 'RH');
-    if TryGetProp(rItem, "ClassType") == "Mace" then
-        addHeaLPwrRate = ability.Level * 0.02
-    end
-    
+    addHeaLPwrRate = ability.Level * 0.02
+
     SetExProp(self, "ABIL_MACE_ADDHEAL", addHeaLPwrRate);
 end
 
