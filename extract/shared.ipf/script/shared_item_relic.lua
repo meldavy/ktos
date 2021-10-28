@@ -410,3 +410,12 @@ function get_dummy_item_relic_buff_by_object(self, item)
 
     return item_name;
 end
+
+function SCR_RELIC_GEM_REINFORCE_COUPON()
+    local list = {
+        'Relic_gem_upgrade_token',
+        'Event_Reinforce_100000coupon',
+        'Event_Reinforce_100000coupon_Event',
+    }
+    return list
+end

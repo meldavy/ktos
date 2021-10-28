@@ -1793,6 +1793,14 @@
 			<richtext name="ItemName" rect="80 0 400 42" layout_gravity="left center" fixwidth="true" resizebytext="true" hittest="false" fontname="white_14_b_ds"/>
 		</controls>
 	</controlset>
+	<controlset name="quest_reward_s_diff" toggle="false" hittest="true" skin="reward_joo_btn" draw="true" updateparent="true" width="335" height="70">
+		<controls>
+			<slot name="slot" layout_gravity="left center" rect="20 0 42 42" hittest="false"/>
+			<slot name="diff_slot" layout_gravity="left center" rect="440 0 32 32" hittest="false"/>
+			<richtext name="ItemName" rect="80 0 400 42" layout_gravity="left center" fixwidth="true" resizebytext="true" hittest="false" fontname="white_14_b_ds"/>
+			<richtext name="diffCntName" rect="475 0 400 80" layout_gravity="left center" fixwidth="true" resizebytext="true" hittest="false" fontname="white_14_b_ds"/>
+		</controls>
+	</controlset>
 	<controlset name="ancient_card_reward_s" toggle="true" hittest="true" skin="reward_joo_btn" draw="true" updateparent="true" width="524" height="64">
 		<controls>
 			<slot name="slot" layout_gravity="left center" rect="0 0 48 48" margin="20 0 0 0" hittest="false"/>

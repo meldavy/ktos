@@ -2474,18 +2474,6 @@ function SCR_MON_STAT_RATE(self, prop)
         local statTypeClass = GetClass("Stat_Monster_Type", statType);
         if statTypeClass ~= nil then
             statTypeRate = TryGetProp(statTypeClass, prop, statTypeRate);
-            -----------------------------------------62주차 스탯타입 유지 예외처리----
-            if statTypeClass.ClassName == "Weekly_Boss" or statTypeClass.ClassName == "Weekly_Boss_Tiny" then
-                local week_num = Weeklyboss_GetNowWeekNum()
-                if week_num ~= nil and week_num == 62 then
-                    if prop == "DEF" then
-                        statTypeRate = 425
-                    elseif prop == "MDEF" then
-                        statTypeRate = 425
-                    end
-                end
-            end
-            ------------------------------------------------------------------------
         end
     end
     

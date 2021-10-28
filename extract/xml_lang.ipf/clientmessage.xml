@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by imc (imc) -->
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by IMC (IMCGames Co., Ltd) -->
 <idspace id="ClientMessage">
 	<Category Name="ErrorMsg">
 		<Class ClassID="1" Data="DirectX 9.0c 이상의 버전이 설치되어 있어야 합니다"/>
@@ -437,6 +437,11 @@
 		<Class ClassID="2365" ClassName="EnchantScrollTipText" Data="해당 고정 아이커는 추출할 수 없습니다."/>
 		<Class ClassID="2366" ClassName="EnchantScrollWarning{ITEM}" Data=" 고정 아이커 옵션 변경{nl} {nl}{@st66d}대상 아이템{/}{/}{nl}{@st66d_y}{ITEM}{/}{/}{nl} {nl}{@st66d}적용되는 고정 옵션{/}{/}{nl}{@st42_yellow}{s18}{OPTION}"/>
 		<Class ClassID="2367" ClassName="SetoptionScrollWarning{OPTION}" Data=" 세트 옵션 변경{nl} {nl}{@st66d}대상 아이템{/}{/}{nl}{@st66d_y}{ITEM}{/}{/}{nl} {nl}{@st66d}적용되는 세트 옵션{/}{/}{nl}{@st42_yellow}{s18}{OPTION}"/>
+		<Class ClassID="2371" ClassName="Vibora_Weapon_Trade_check_Msg{ITEM}{TARGET}" Data="재료를 소모하여{nl}{@st66d_y}{ITEM}{/}을{nl}{@st66d_y}{TARGET}{/}으로 변경하시겠습니까?"/>
+		<Class ClassID="2372" ClassName="Vibora_Weapon_Trade_Msg1" Data="같은 바이보라 무기를 등록해 주세요"/>
+		<Class ClassID="2373" ClassName="Vibora_Weapon_Trade_Msg2" Data="같은 바이보라 무기로 교환할 수 없습니다."/>
+		<Class ClassID="2374" ClassName="Vibora_Weapon_Trade_help" Data="보유한 [Lv4] 바이보라 무기를{nl}다른 종류의 [Lv4] 바이보라 무기로 교환할 수 있습니다.{nl}교환에는 재료로 소모될 [Lv2] 바이보라 유니크 무기 4개가 필요하며{nl}주 재료로 투입한 [Lv4] 바이보라 무기가 부 재료로 투입한 [Lv2] 바이보라 무기로 변경됩니다.{nl}부 재료로 투입되는 [Lv2] 바이보라 무기 4개는 모두 동일한 종류의 아이템만 가능합니다.{nl} - 교환 주 재료 및 부 재료는 아이커도 사용할 수 있습니다."/>
+		<Class ClassID="2375" ClassName="CantCraftCuzInvalidWordInName" Data="이름에 사용할 수 없는 문자가 포함되어 있습니다."/>
 	</Category>
 	<Category Name="ClassContents">
 		<Class ClassID="2500" ClassName="FullWeeklyGainClassResetExp" Data="주간 획득 가능한 클래스 변경 포인트를 모두 달성하였습니다."/>
@@ -448,7 +453,7 @@
 		<Class ClassID="2506" ClassName="DoYouWantCtrlTypeReset" Data="계열 변경을 하시겠습니까?"/>
 		<Class ClassID="2507" ClassName="ArcherCannotDashInBattleState" Data="아처 클래스는 전투 중에 대시를 할 수 없습니다."/>
 		<Class ClassID="2508" ClassName="WarningPartyMemberLongDistance" Data="[경고!] 파티원과의 거리가 200 이상입니다. 파티원과 가까이 모이세요."/>
-	</Category>
+		</Category>
 	<Category Name="CannotGetSkillMessage">
 		<Class ClassID="2600" ClassName="CannotGetSkillMessage_Doppelsoeldner_Zucken" Data="[스킬] 존하우 1레벨 이상 필요"/>
 		<Class ClassID="2601" ClassName="CannotGetSkillMessage_Doppelsoeldner_Redel" Data="[스킬] 츠켄 1레벨 이상 필요"/>
@@ -544,6 +549,7 @@
 		<Class ClassID="3079" ClassName="Random_Icor" Data="랜덤 아이커"/>
 		<Class ClassID="3080" ClassName="Set_option" Data="세트 옵션"/>
 		<Class ClassID="3081" ClassName="FixedIcorOptin" Data="고정 아이커 옵션"/>
+		<Class ClassID="3082" ClassName="OnlyUseHavingZeroCount_Raid" Data="[{Raid}] 입장 가능 횟수가 0 인 경우에만 사용 가능합니다."/>
 	</Category>
 	<Category Name="ItemPuzzle">
 		<Class ClassID="3501" ClassName="WouldYouSelectThisCombinationAsAlchemystryTarget?" Data="이 조합을 연금 대상으로 선택합니까?"/>
@@ -918,6 +924,7 @@
 		<Class ClassID="4373" ClassName="IfLimitOver_misc_pvp_mine2_MAX" Data="주간 용병단 증표 획득량이 최대치에 도달하여 사용할 수 없습니다."/>
 		<Class ClassID="4374" ClassName="IfLimitOver_misc_pvp_mine2_OVERUSE" Data="입력한 수량이{nl}주간 용병단 증표 최대 획득량을 초과하여{nl}용병단 증표 쿠폰이 {#ff0000}{COUNT}{/}{/}개만 소비됩니다.{/}{/}{nl}{@st66d_y}{s20}{nl} {nl}정말 사용하시겠습니까?"/>
 		<Class ClassID="4383" ClassName="GET_CONTENTS_TOTAL_POINT{count}" Data="+{count} 콘텐츠 통합 포인트"/>
+		<Class ClassID="4385" ClassName="Enough_Relic_Gem_DiscountStone" Data="여신의 축복석 요구 수량이 0 입니다.{nl}더 이상 할인 쿠폰을 투입하여도 여신의 축복석 할인은 적용되지 않습니다."/>
 	</Category>
 	<Category Name="ItemTooltip">
 		<Class ClassID="5001" ClassName="CoolDown : {Sec} Sec" Data="재사용 대기시간 : {Sec}초"/>
@@ -1034,7 +1041,7 @@
 		<Class ClassID="5112" ClassName="tooltip_DoubleMarking" Data=" - 아발리스터 모든 스킬 레벨 {img green_up_arrow 16 16} 1{nl} {nl}이중표식{nl} - 유도화살 확률 20% 추가 증가"/>
 		<Class ClassID="5113" ClassName="tooltip_MassHealFreeze" Data=" - 매스 힐 스킬 레벨{img green_up_arrow 16 16}1 {nl} {nl}매스 힐: 냉각{nl}-  매스 힐 사용시 [힐: 과부하] 중첩에 따라{nl}매스 힐 재사용 대기시간 감소{nl} - 과부하 중첩당 1초 감소{nl} - 매스 힐 사용 시 [힐: 과부하] 중첩 모두 제거"/>
 		<Class ClassID="5114" ClassName="tooltip_Convict" Data=" - 크루세이더 모든 스킬 레벨 {img green_up_arrow 16 16}1{nl} {nl}단죄{nl}  - 홀리 스매시 재사용 대기시간 5초 감소{nl}  - 컨뎀 재사용 대기시간 10초 감소"/>
-		<Class ClassID="5115" ClassName="tooltip_Retiarii_ThrowNet" Data=" - 레티아리이 모든 스킬 레벨 {img green_up_arrow 16 16}1{nl}  - 투망 던지기 스킬 레벨{img green_up_arrow 16 16}2{nl} {nl}투망 발사장치{nl} - 트라이던트 피니시 첫 번째 오버히트 시전시{nl}[투망 던지기] 디버프 부여"/>
+		<Class ClassID="5115" ClassName="tooltip_Retiarii_ThrowNet" Data=" - 레티아리이 모든 스킬 레벨 {img green_up_arrow 16 16}1{nl}  - 투망 던지기 스킬 레벨{img green_up_arrow 16 16}2{nl} {nl}투망 발사장치{nl} - 트라이던트 피니시 첫 번째 오버히트 시전시{nl}현재 레벨의 [투망 던지기] 디버프 부여"/>
 		<Class ClassID="5116" ClassName="tooltip_Halberd" Data=" - 드라군 모든 스킬 레벨 {img green_up_arrow 16 16}1{nl} {nl}미늘창{nl} - 드라군 헬멧 착용 중 대형, 보스 몬스터에게 주는 대미지 40% 증가{nl} -  보스 몬스터에게 디쓰론 명중시 5초간 디버프 부여{nl}디버프 대상에게 자신이 받는 대미지 15% 감소"/>
 		<Class ClassID="5117" ClassName="tooltip_CurseDagger" Data=" - 루카 스킬 레벨{img green_up_arrow 16 16}3{nl}  - 케레티한 스킬 레벨{img green_up_arrow 16 16}2 {nl} {nl}저주의 비수{nl} - 루카 시전 시 현재 레벨의 케레티한 디버프 4중첩 부여{nl} - 루카 시전 시 [저주의 비수] 디버프를 부여{nl} - 저주의 비수는 현재 레벨의 루카와 동일한 지속 피해를 줌{nl} - 저주의 비수 지속시간 10초"/>
 		<Class ClassID="5118" ClassName="tooltip_StoneSlinger" Data=" - 스톤 샤워 스킬 레벨 {img green_up_arrow 16 16}2{nl} {nl}무릿매{nl} - 샌드 블래스트 치명타 적중 시 현재 레벨의 스톤 샤워 시전{nl} - 치명타가 아닐 때, 샌드 블래스트 적중 시 15% 확률로 스톤 샤워 시전"/>
@@ -8580,6 +8587,8 @@
 		<Class ClassID="70606" ClassName="EXPLORER_ANASTAZIJA_CHALLENGE_SUCCESS" Data="탐험가의 징표를 찾았다고 한다"/>
 		<Class ClassID="70607" ClassName="EXPLORER_ANASTAZIJA_CHALLENGE_HINT" Data="힌트를 다시 알려달라고 한다"/>
 		<Class ClassID="70608" ClassName="EXPLORER_ANASTAZIJA_CHALLENGE_CARE" Data="도전 장소에 갈 수 없다고 한다"/>
+		<Class ClassID="70609" ClassName="JOB_SHADOWMANCER_Q1_MSG_ERR_1" Data="훈련지역을 이탈했습니다.{nl}훈련 지역으로 돌아가세요!"/>
+		<Class ClassID="70610" ClassName="JOB_SHADOWMANCER_Q1_MSG_ERR_2" Data="훈련지역을 이탈하여 훈련 포인트가 줄어들고 있습니다"/>
 		<Class ClassID="80001" ClassName="LIMESTONE_52_1_CRYSTAL_ING" Data="불안정한 마력핵 설치 중"/>
 		<Class ClassID="80002" ClassName="LIMESTONE_52_1_SQ_1_TAKE" Data="목걸이 빼앗는 중"/>
 		<Class ClassID="80003" ClassName="LIMESTONE_52_2_MQ_7_SUCC_MSG" Data="구속장치가 요동치기 시작합니다!"/>
@@ -10958,6 +10967,10 @@
 		<Class ClassID="112035" ClassName="QUEST_STATE_SUCCESS" Data="완료"/>
 		<Class ClassID="112036" ClassName="QUEST_STATE_IMPOSSIBLE" Data="진행불가"/>
 		<Class ClassID="112037" ClassName="QUEST_STATE_COMPLETE" Data="완료"/>
+		<Class ClassID="112038" ClassName="Easy_Eng" Data="Easy"/>
+		<Class ClassID="112039" ClassName="Normal_Eng" Data="Normal"/>
+		<Class ClassID="112040" ClassName="Hard_Eng" Data="Hard"/>
+		<Class ClassID="112041" ClassName="VeryHard_Eng" Data="Very Hard"/>
 	</Category>
 	<Category Name="JobCategoryName">
 		<Class ClassID="113001" ClassName="Char1" Data="전사 계열"/>
@@ -11268,6 +11281,8 @@
 		<Class ClassID="124062" ClassName="CannotBecauseLowLevel{LEVEL}" Data="캐릭터 레벨이 {LEVEL}레벨 이상인 경우만 사용 가능합니다."/>
 		<Class ClassID="124063" ClassName="TeamDeleteWarningTitle" Data="{S30}{#ffa200}게임 데이터 삭제 주의!!{/}{/}"/>
 		<Class ClassID="124064" ClassName="ReallySelect{NAME}Item" Data="정말 [{NAME}]을 선택하시겠습니까?"/>
+		<Class ClassID="124065" ClassName="ItemDel_For_UserCare_msg1" Data="삭제한다"/>
+		<Class ClassID="124066" ClassName="FIX_CHAT_EMOTICON_MSG1" Data="중복 이모티콘 아이템을 이벤토리에서 제거했습니다{nl}{ITEMNAME} : {COUNT} 개"/>
 	</Category>
 	<Category Name="Quest">
 		<Class ClassID="125001" ClassName="QuestAlignFilter_All" Data="모든 퀘스트"/>
@@ -11531,6 +11546,7 @@
 		<Class ClassID="134109" ClassName="Mgame_Return_Players_Agree_Count{CURCNT}{MAXCNT}" Data="{MAXCNT}명의 파티원이 동의할 경우 입장 지역으로 돌아갑니다.{nl}현재 동의 수 {CURCNT}/{MAXCNT}"/>
 		<Class ClassID="134110" ClassName="Mgame_Return_Players_Msg{CNT}" Data="{CNT}명의 파티원이 돌아가기에 동의하여 입장 지역으로 돌아갑니다"/>
 		<Class ClassID="134111" ClassName="MythicDungeonEntranceCountLimit" Data="성물 레이드 : 도전 모드의 입장 횟수가 부족합니다."/>
+		<Class ClassID="134112" ClassName="RaidEntranceCountLimit" Data="{Raid} 입장 횟수가 부족합니다."/>
 	</Category>
 	<Category Name="AchieveReward">
 		<Class ClassID="135001" ClassName="GainAchieveHairBefore" Data="이미 업적 보상을 받았습니다."/>
@@ -13952,6 +13968,7 @@
 		<Class ClassID="138418" ClassName="Auto_Dont_Have_2020_ARBORDAY_Neck" Data="2020 근본 네클리스를 가지고 있지 않습니다."/>
 		<Class ClassID="138419" ClassName="Auto_Dont_Have_2020_ARBORDAY_Brc" Data="2020 근본 브레이슬릿을 가지고 있지 않습니다."/>
 		<Class ClassID="138420" ClassName="Auto_Dont_Have_Upgrade_scroll" Data="업그레이드 스크롤을 가지고 있지 않습니다."/>
+		<Class ClassID="138421" ClassName="RaidEnableCountUp" Data="레이드 입장 가능 횟수가 1 증가했습니다."/>
 	</Category>
 	<Category Name="SkillMsg">
 		<Class ClassID="200001" ClassName="DontBuildCampThisAria" Data="해당 지역에서는 거점을 설치할 수 없습니다."/>
@@ -14991,6 +15008,7 @@
 		<Class ClassID="302416" ClassName="EVENT_2103_AC_GIVE_SEL4" Data="{#003399}드라코나스 프리에노 계열 액세서리 세트{/} 수령하기"/>
 		<Class ClassID="302417" ClassName="EVENT_VIBORA_TICKET" Data="{#FF3333}이벤트 바이보라 합성 이용 가능 횟수가 1회 추가되었습니다.{/}"/>
 		<Class ClassID="302418" ClassName="EVENT_VIBORA_TICKET2" Data="{#FF3333}이벤트 바이보라 합성 이용 가능 횟수를 모두 사용했을 경우에만 사용 가능 합니다.{/}"/>
+		<Class ClassID="302419" ClassName="BURNING_EVENT_COUNT_RESET_SEL1" Data="챌린지 모드 이용 횟수 초기화 하기"/>
 	</Category>
 	<Category Name="Account">
 		<Class ClassID="303001" ClassName="MaxAccountWarehouseCount" Data="팀 창고"/>
@@ -16019,7 +16037,11 @@
 		<Class ClassID="514064" ClassName="GILTINE_HOLD_POSITION_NOTICE_MSG" Data="{#ff6d00}검은연기{/}가 생성되었습니다."/>
 		<Class ClassID="514065" ClassName="GILTINE_DEMONICS_LANCE_NOTICE_MSG" Data="{#ff6d00}공포의 선언{/}가 잠시 후 발동 됩니다."/>
 		<Class ClassID="514066" ClassName="GLACIER_WITCH_COLD_CHANGE_TOOLTIP" Data="6초 마다 중첩되며 특정 버프로 무효화할 수 있습니다. 특정 스킬 피격 또는 회피시 더 빨리 중첩됩니다.{nl}1~9스택 : 이상 없음.{nl}10~19스택 : 이동속도 20% 감소, 보스에게 받는 대미지 50%증가.{nl}20~29스택 : 자신의 최종 대미지30% 하향{nl}30~39스택 : 10초마다 주변 50범위에 2초간 [결빙]/ 100범위 10초마다 대미지 40,000 부여.{nl}40(Max)：보스에 받는 대미지 50%증가(총 100%), 자신의 방어력 50% 1회 하향./ 매 초당, 고정 대미지 15,000씩 피해를 받으며, [마녀의 분노] 스택에 따라서 대미지가 증가됩니다.{nl}{#FF0000}※ 글레이시어가 타겟으로 지정한 대상은 10초 마다 1씩 중첩됩니다"/>
+		<Class ClassID="514067" ClassName="BERSERK_TIME_MSG" Data="광폭화 남은 시간"/>
+		<Class ClassID="514068" ClassName="RAID_END_TIME_MSG" Data="레이드 종료 시간"/>
 		<Class ClassID="514069" ClassName="PBETA_BATTLE_FIELD_FAIL_MSG" Data="크루비나의 장치가 제거 됩니다."/>
+		<Class ClassID="514070" ClassName="AVATARAS_SIGN_OF_DEATH_MSG" Data="{s20}마신 아바타라스가 {#ff6d00}{NAME}{/}을(를) 죽음의 표식 대상으로 지정합니다.{nl}표식 대상과 이격하여 대비하세요.{/}"/>
+		<Class ClassID="514071" ClassName="NotEnoughStacks" Data="{#ff6d00}저주받은 이단자{/}버프가 부족합니다.{/}"/>
 	</Category>
 	<Category Name="SoloDungeon">
 		<Class ClassID="513001" ClassName="SoloDungeonStageMSG" Data="스테이지의 몬스터가 몰려옵니다. 모두 처치해 주세요!"/>
@@ -16587,5 +16609,6 @@
 		<Class ClassID="1008020" ClassName="DO_NOT_DECOMPOSEABLE_RELIC_GEM" Data="선택한 성물 젬 중 분해가 불가능하거나{nl}잠금 상태인 성물 젬이 포함되어 있습니다."/>
 		<Class ClassID="1008021" ClassName="PLZ_EQUIP_RELIC_WHEN_RELIC_GEM_REINFORCE" Data="성물 젬 강화를 시도하려면 성물을 장착해야 합니다."/>
 		<Class ClassID="1008022" ClassName="DO_NOT_REINFORCE_RELIC_GEM_ENABLE_RELIC_LV" Data="성물의 레벨이 낮아 강화할 수 없습니다."/>
+		<Class ClassID="1008023" ClassName="RELIC_GEM_UPGRADE_TITLE_MSG" Data="성물 젬 강화"/>
 	</Category>
 </idspace>

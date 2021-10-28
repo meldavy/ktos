@@ -11026,6 +11026,14 @@
 			</ToolScp>
 		</List>
 	</AI>
+    <AI Name="GILTINE_SHADOW" ActiveMessageMapInBattle="1">
+        <List>
+            <ToolScp Scp="S_AI_CUSTOM_SCRIPT" Client="NO" UseSleep="YES">
+                <Str Str="SCR_GILTINE_SHADOW_AI"/>
+                <Num Num="0"/>
+            </ToolScp>
+        </List>
+    </AI>
 	<AI Name="GIMMICK_STATUE_AI" ActiveMessageMapInBattle="1">
 		<StartList>
 			<ToolScp Scp="S_AI_SET_BTREE" Client="NO" UseSleep="NO">
@@ -25368,6 +25376,13 @@ if self.HP == 0 then return 1; else return 0; end;">
 		</List>
 	</AI>
 	<AI Name="companion_penguin_marine" ActiveMessageMapInBattle="1">
+		<List>
+			<ToolScp Scp="SAI_FUNC2_DIRECT_SLEEP" Client="NO" UseSleep="YES">
+				<Str Str="PET_LOOP_AI"/>
+			</ToolScp>
+		</List>
+	</AI>
+	<AI Name="companion_pet_ep13dessert" ActiveMessageMapInBattle="1">
 		<List>
 			<ToolScp Scp="SAI_FUNC2_DIRECT_SLEEP" Client="NO" UseSleep="YES">
 				<Str Str="PET_LOOP_AI"/>

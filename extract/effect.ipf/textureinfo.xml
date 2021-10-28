@@ -2,6 +2,11 @@
 <!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by imc (imc) -->
 <!-- edited with XMLSpy v2006 U (http://www.altova.com) by Administrator (EMBRACE) -->
 <TextureInfo>
+	<Texture Name="skillrange_donut75_4" File="skillrange_donut75_4.dds" Size="512 512"/>
+	<Texture Name="skillrange_donut75_2" File="skillrange_donut75_2.dds" Size="512 512"/>
+	<Texture Name="skillrange_donut75_1" File="skillrange_donut75_1.dds" Size="512 512"/>
+	<Texture Name="status_icon_mvp" File="status_icon_mvp.tga" Size="100 100"/>
+	<Texture Name="skillrange_36_1" File="skillrange_36_1.dds" Size="512 512"/>
 	<Texture Name="rize004_2_alpha" File="rize004_2_alpha.dds" Size="512 128"/>
 	<Texture Name="rize003_2" File="rize003_2.dds" Size="512 128"/>
 	<Texture Name="rize005_2" File="rize005_2.dds" Size="512 128"/>

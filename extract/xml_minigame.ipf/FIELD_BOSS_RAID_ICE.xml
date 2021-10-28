@@ -268,7 +268,7 @@
                     <Event execMS="3000" eventName="RemoveBuff">
                         <execList>
                             <ToolScp Scp="MGAME_EXEC_ACTORSCP" Client="NO" UseSleep="NO">
-                                <Str Str="SCR_WEEKLY_BOSS_REMOVE_BUFF"/>
+                                <Str Str="SCR_FIELD_BOSS_REMOVE_BUFF"/>
                             </ToolScp>
                         </execList>
                     </Event>

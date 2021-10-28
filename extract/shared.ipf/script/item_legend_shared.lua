@@ -301,6 +301,46 @@ function GET_COMPOSITION_VIROBA_SOURCE_COUNT()
     
     return max_count
 end
+
+function IS_VIRORA_ITEM(item, lv)
+    local group_name = TryGetProp(item, 'GroupName', 'None')
+    if group_name == 'None' then
+        return false, 'None'
+    end
+    
+    if lv == nil then
+        if group_name == 'Icor' then
+            local class_name = TryGetProp(item, 'InheritanceItemName', 'None')
+            local cls = GetClass('Item', class_name)
+            if cls ~= nil then
+                if TryGetProp(cls, 'StringArg', 'None') == 'Vibora' then
+                    return true, TryGetProp(cls, 'ClassName', 'None')
+                end
+            end
+        else    
+            if TryGetProp(item, 'StringArg', 'None') == 'Vibora' then
+                return true, TryGetProp(item, 'ClassName', 'None')
+            end
+        end
+    else
+        if group_name == 'Icor' then
+            local class_name = TryGetProp(item, 'InheritanceItemName', 'None')
+            local cls = GetClass('Item', class_name)
+            if cls ~= nil then
+                if TryGetProp(cls, 'StringArg', 'None') == 'Vibora' and TryGetProp(cls, 'NumberArg1', 0) == lv then
+                    return true, TryGetProp(cls, 'ClassName', 'None')
+                end
+            end
+        else    
+            if TryGetProp(item, 'StringArg', 'None') == 'Vibora' and TryGetProp(item, 'NumberArg1', 0) == lv then
+                return true, TryGetProp(item, 'ClassName', 'None')
+            end
+        end
+    end
+
+    return false, 'None'
+end
+
 -- Lv1 바이보라 장비 또는 아이커
 function IS_COMPOSABLE_VIRORA(item)
     local group_name = TryGetProp(item, 'GroupName', 'None')
@@ -324,7 +364,6 @@ function IS_COMPOSABLE_VIRORA(item)
 
     return false, 'None'
 end
-
 
 -- 바이보라 업그레이드
 function GET_UPGRADE_VIROBA_SOURCE_COUNT()
@@ -368,6 +407,7 @@ function IS_UPGARDE_VIBORA_MISC(name, dic)
 
     return false
 end
+
 -- 여신/마신 연성 재료인가?
 function IS_UPGARDE_GODDESS_MISC(name, dic)
     if dic == nil then
@@ -452,6 +492,11 @@ function GET_LV1_VIBORA_CLASS_NAME(name, lv)
     end
 end
 
+-- 인자로 넘겨준 LV의 바이보라 ClassName을 반환
+function GET_LV_VIBORA_CLASS_NAME(className, lv)
+	return className.."_Lv"..lv;
+end
+
 -- 리스트 중 check_count 까지 모두 동일한 아이템인가? 같은 종류 아이커/장비, NumberArg1 수치
  function IS_VALID_UPGRADE_VIBORA_ITEM_LIST(list, check_count)
     if #list < check_count or check_count < 1 then
@@ -523,6 +568,7 @@ function GET_UPGRADE_VIBORA_MISC_LIST(goal_lv)
 
     return nil, 0, nil
 end
+
 -- 바이보라 연성에 필요한 실버를 가져온다.
 function GET_UPGRADE_VIBORA_SILVER_COST(goal_lv)
     if goal_lv == 2 then
@@ -535,6 +581,7 @@ function GET_UPGRADE_VIBORA_SILVER_COST(goal_lv)
 
     return 100000000
 end
+
 -- 바이보라 최대 업그레이드 카운트, 현재 레벨에서 다음 레벨로 가기위해 시도해야하는 횟수
 function GET_UPGRADE_VIBORA_MAX_COUNT(goal_lv)
     if goal_lv == 2 then
@@ -548,6 +595,12 @@ function GET_UPGRADE_VIBORA_MAX_COUNT(goal_lv)
     return 1000
 end
 
+-- [Lv4] 바이보라 무기 교환 재료에 필요한 아이템 수
+function GET_VIBORA_WEAPON_TRADE_SOURCE_COUNT()
+    local max_count = 5;
+    
+    return max_count
+end
 
 --------------------------------- 여신, 마신 업그레이드 -------------------------------------------------------
 -- 리스트 중 check_count 까지 모두 동일한 아이템인가? 같은 종류 아이커/장비, NumberArg1 수치

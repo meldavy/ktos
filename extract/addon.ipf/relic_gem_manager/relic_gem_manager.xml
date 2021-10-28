@@ -53,7 +53,7 @@
 		<picture name="r_text_success" parent="rresult_gb" rect="0 0 220 90" hittest="false" image="card_reinforce_SUCCESS" margin="0 0 0 25" stretch="true" layout_gravity="center bottom"/>
 		<picture name="r_text_fail" parent="rresult_gb" rect="0 0 220 90" hittest="false" image="card_reinforce_FAIL" margin="0 0 0 25" stretch="true" layout_gravity="center bottom"/>
 		<button name="do_reinforce" parent="reinforceBg" rect="0 0 160 70" margin="0 0 0 20" layout_gravity="center bottom" LBtnUpScp="RELIC_GEM_MANAGER_REINFORCE_EXEC" skin="relic_btn_purple" format="{@st41b}{s18}%s" oversound="button_cursor_over_3" param1="value" param1_def="강화" MouseOffAnim="btn_mouseoff" MouseOnAnim="btn_mouseover" clicksound="button_click_big"/>
-		<button name="send_ok_reinforce" parent="reinforceBg" rect="0 0 160 70" margin="0 0 0 20" layout_gravity="center bottom" LBtnUpScp="CLEAR_RELIC_GEM_MANAGER_REINFORCE" skin="relic_btn_purple" format="{@st41b}{s18}%s" oversound="button_cursor_over_3" param1="value" param1_def="확인" MouseOffAnim="btn_mouseoff" MouseOnAnim="btn_mouseover" clicksound="button_click_big"/>
+		<button name="send_ok_reinforce" parent="reinforceBg" rect="0 0 160 70" margin="0 0 0 20" layout_gravity="center bottom" LBtnUpScp="CONFIRM_RELIC_GEM_MANAGER_REINFORCE" skin="relic_btn_purple" format="{@st41b}{s18}%s" oversound="button_cursor_over_3" param1="value" param1_def="확인" MouseOffAnim="btn_mouseoff" MouseOnAnim="btn_mouseover" clicksound="button_click_big"/>
 		<!-- 강화 끝 -->
 		<!-- 합성 -->
 		<groupbox name="composeBg" parent="bg" rect="0 0 424 714" margin="0 97 0 0" layout_gravity="center top" draw="false" hittestbox="false" tabname="tab_compose" resizebyparent="false" resizebyresolution="false" scrollbar="false" skin="relic_frame_bg"/>

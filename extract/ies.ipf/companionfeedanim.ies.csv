@@ -42,4 +42,5 @@ ClassID,Sleep,FeedCreateTimeMS,FeedDist,ClassName,ComName,Type,PCAnim,ComAnim,Fe
 42,3500,0,0,42,pet_winter_rabbit,Normal,FEED3,FEED,,carrot_set,artefact_carrot_pc.xsm,
 43,5000,0,0,43,pet_twnpanda,Normal,FEED4,FEED,,bamboo_stick_set,artefact_bamboo_stick_feed.xsm,
 44,2700,0,0,44,pet_robot_dog,Normal,FEED_SIT,FEED,,battery_capsule_set,artefact_battery_capsule_pc.xsm,
+45,1500,0,0,45,pet_ep13dessert,Normal,FEED2,FEED,,artefact_redfish_set,artefact_redfish_pc.xsm,
 46,3500,0,0,46,pet_arborday_rabbit,Normal,FEED3,FEED,,carrot_set,artefact_carrot_pc.xsm,

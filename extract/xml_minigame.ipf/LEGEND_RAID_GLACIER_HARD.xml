@@ -807,7 +807,7 @@
                                 <Str Str="SCR_GLACIER_DEAD_MSG"/>
                             </ToolScp>
                             <ToolScp Scp="SCR_LEGEND_RAID_CLEAR_CHECK" Client="NO" UseSleep="NO">
-                                <Str Str=""/>
+                                <Str Str="하얀 마녀의 숲: 레전드(Hard)"/>
                                 <Str Str=""/>
                             </ToolScp>
                             <ToolScp Scp="MGAME_EXEC_GIVE_TAKE_SOBJ_ACHIEVE2_TX" Client="NO" UseSleep="NO">

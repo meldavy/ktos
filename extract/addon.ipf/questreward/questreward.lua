@@ -1,4 +1,4 @@
-﻿MAX_QUEST_TAKEITEM = 4;
+MAX_QUEST_TAKEITEM = 4;
 MAX_QUEST_SELECTITEM = 8;
 QUESTREWARD_SELECT = 1;
 MAX_SIZE_HEIGT_FRAME_EMPTY_VALUE = 100;
@@ -1003,6 +1003,72 @@ function CREATE_QUEST_REWARE_CTRL(box, y, index, ItemName, itemCnt, callFunc, tr
 	return y;
 
 end
+
+
+function CREATE_QUEST_REWARE_CTRL_DIFF_COUNT(box, y, index, ItemName, itemCnt, NeedItemCount, callFunc, tradeselectitemClassName)
+	local isOddCol = 0;
+	if math.floor((index - 1) % 2) == 1 then
+		isOddCol = 0;
+	end
+
+	local x = 5;
+	if isOddCol == 1 then
+		x = (box:GetWidth() / 2) + 5;
+		local ctrlHeight = ui.GetControlSetAttribute('quest_reward_s_diff', 'height');
+		y = y - ctrlHeight - 10;
+	end
+	
+	local ctrlSet = box:CreateControlSet('quest_reward_s_diff', "REWARD_" .. index, x, y);
+	tolua.cast(ctrlSet, "ui::CControlSet");
+	ctrlSet:SetValue(index);
+	
+	if callFunc == 'DIALOGSELECT_QUEST_REWARD_ADD' then
+	ctrlSet:Resize(box:GetHeight() + 70,ctrlSet:GetHeight())
+	end
+
+	local itemCls = GetClass("Item", ItemName);
+	local slot = ctrlSet:GetChild("slot");
+	tolua.cast(slot, "ui::CSlot");
+	
+	local icon = GET_ITEM_ICON_IMAGE(itemCls, GETMYPCGENDER())
+	SET_SLOT_IMG(slot, icon);
+
+	local ItemName = ctrlSet:GetChild("ItemName");
+
+	local itemText = string.format("{@st41b}%s x%d", itemCls.Name, itemCnt);
+	ItemName:SetText(itemText);
+
+	-- 교환 재료
+	local diff_slot = ctrlSet:GetChild("diff_slot");
+	tolua.cast(diff_slot, "ui::CSlot");
+
+	local diffitemCls = GetClass("Item", tradeselectitemClassName);
+	local icon_diff = GET_ITEM_ICON_IMAGE(diffitemCls, GETMYPCGENDER())
+	SET_SLOT_IMG(diff_slot, icon_diff);
+	
+	local diffCntName = ctrlSet:GetChild("diffCntName");
+	local CntTxt = string.format("{@st41_yellow}%d", NeedItemCount);
+	diffCntName:SetText(CntTxt);
+
+
+	ctrlSet:SetOverSound("button_cursor_over_3");
+	ctrlSet:SetClickSound("button_click_stats");
+	ctrlSet:SetEnableSelect(1);
+	ctrlSet:SetSelectGroupName("QuestRewardList");
+	
+	if tradeselectitemClassName == nil or tradeselectitemClassName == 'None' then
+		SET_ITEM_TOOLTIP_BY_TYPE(ctrlSet, itemCls.ClassID);
+	else
+		SET_ITEM_TOOLTIP_BY_TRADESELECTITEM(ctrlSet, tradeselectitemClassName, itemCls.ClassID)
+	end
+	
+	ctrlSet:Resize(box:GetWidth() - 30, ctrlSet:GetHeight());
+
+	y = y + ctrlSet:GetHeight();
+	return y;
+
+end
+
 
 function CREATE_ANCIENT_CARD_CTRL(box, y, index, ItemName, itemCnt, targetItemName, targetName, targetCost)
 end

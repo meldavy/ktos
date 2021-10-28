@@ -58,7 +58,7 @@ function SET_COLLECTION_MAIGC_LIST(collection_frame, collectionCompleteMagicList
 		if i > 1 then
 			textlist = textlist .. "{nl}";
 		end
-		textlist = textlist .. v.name .. " +" .. tostring(v.value);
+		textlist = textlist .. v.name .. " {#0000FF}+" .. tostring(v.value) .. "{/}";
 	end
 	
 	local magictext = GET_CHILD(frame, "richtext_magic_list", "ui::CRichText");

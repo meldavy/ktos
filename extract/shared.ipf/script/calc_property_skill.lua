@@ -8766,7 +8766,10 @@ function SCR_GET_SpellShop_Sacrament_Ratio(skill)
     
     -- 주문 ?�매?�점 개설 강화 ?�성?�??�러개라??SCR_REINFORCEABILITY_TOOLTIP ?�수???�용 불�?. 직접 ?�용 ----
     local abilAddRate = 1;
-    local reinforceAbil = GetOtherAbility(pc, "Pardoner12")
+    local reinforceAbil = GetAbility(pc, "Pardoner12")
+    if IsServerSection() ~= 1 and reinforceAbil == nil then
+        reinforceAbil = GetOtherAbility(pc, "Pardoner12")
+    end
     if reinforceAbil ~= nil then
         local abilLevel = TryGetProp(reinforceAbil, "Level")
         local masterAddValue = 0
@@ -8790,7 +8793,10 @@ function SCR_GET_SpellShop_Blessing_Ratio(skill)
     
     -- 주문 ?�매?�점 개설 강화 ?�성?�??�러개라??SCR_REINFORCEABILITY_TOOLTIP ?�수???�용 불�?. 직접 ?�용 ----
     local abilAddRate = 1;
-    local reinforceAbil = GetOtherAbility(pc, "Pardoner13")
+    local reinforceAbil = GetAbility(pc, "Pardoner13")
+    if IsServerSection() ~= 1 and reinforceAbil == nil then
+        reinforceAbil = GetOtherAbility(pc, "Pardoner13")
+    end
     if reinforceAbil ~= nil then
         local abilLevel = TryGetProp(reinforceAbil, "Level")
         local masterAddValue = 0
@@ -8819,7 +8825,10 @@ function SCR_GET_SpellShop_IncreaseMagicDEF_Ratio(skill)
     
     -- 주문 ?�매?�점 개설 강화 ?�성?�??�러개라??SCR_REINFORCEABILITY_TOOLTIP ?�수???�용 불�?. 직접 ?�용 ----
     local abilAddRate = 1;
-    local reinforceAbil = GetOtherAbility(pc, "Pardoner14")
+    local reinforceAbil = GetAbility(pc, "Pardoner14")
+    if IsServerSection() ~= 1 and reinforceAbil == nil then
+        reinforceAbil = GetOtherAbility(pc, "Pardoner14")
+    end
     if reinforceAbil ~= nil then
         local abilLevel = TryGetProp(reinforceAbil, "Level")
         local masterAddValue = 0
@@ -8848,7 +8857,10 @@ function SCR_GET_SpellShop_Aspersion_Ratio(skill)
     
     -- 주문 ?�매?�점 개설 강화 ?�성?�??�러개라??SCR_REINFORCEABILITY_TOOLTIP ?�수???�용 불�?. 직접 ?�용 ----
     local abilAddRate = 1;
-    local reinforceAbil = GetOtherAbility(pc, "Pardoner15")
+    local reinforceAbil = GetAbility(pc, "Pardoner15")
+    if IsServerSection() ~= 1 and reinforceAbil == nil then
+        reinforceAbil = GetOtherAbility(pc, "Pardoner15")
+    end
     if reinforceAbil ~= nil then
         local abilLevel = TryGetProp(reinforceAbil, "Level")
         local masterAddValue = 0

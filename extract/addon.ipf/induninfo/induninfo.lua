@@ -346,7 +346,6 @@ function INDUNINFO_RESET_USERVALUE(frame)
 end
 
 function INDUNINFO_DRAW_CATEGORY_DETAIL_LIST(indunListBox, cls, is_weekly_reset)
-  
     local indunDetailCtrl = indunListBox:CreateOrGetControlSet('indun_detail_ctrl', 'DETAIL_CTRL_' .. cls.ClassID, 0, 0);
     indunDetailCtrl = tolua.cast(indunDetailCtrl, 'ui::CControlSet');
     indunDetailCtrl:SetUserValue('INDUN_CLASS_ID', cls.ClassID);
@@ -380,7 +379,7 @@ function INDUNINFO_DRAW_CATEGORY_DETAIL_LIST(indunListBox, cls, is_weekly_reset)
         -- if resetGroupID == -101 or resetGroupID == 816 or resetGroupID == 817 or resetGroupID == 813 then
         -- 분열 특이점, 성물레이드, 성물레이드 도전모드 예외 처리; 
         -- -101 : contents_info에 있는 분열특이점, 챌린지모드는 어따 쓰는지 모르겠음 일단 현황판 탭에서는 안쓰이는중
-        if cls.PlayPerResetType == 816 or cls.PlayPerResetType == 813 or cls.PlayPerResetType == 817 then
+        if cls.PlayPerResetType == 816 or cls.PlayPerResetType == 813 or cls.PlayPerResetType == 817 or cls.PlayPerResetType == 807 then
             countText:SetText(ScpArgMsg('ChallengeMode_HardMode_Count', 'Count', GET_CURRENT_ENTERANCE_COUNT(cls.PlayPerResetType)))
             cyclePic:ShowWindow(0);
         else
@@ -552,6 +551,10 @@ function GET_CURRENT_ENTERANCE_COUNT(resetGroupID)
         if indunCls.UnitPerReset == 'PC' then
             return etc['InDunCountType_'..resetGroupID]; --매일 남은 횟수
         else
+            if resetGroupID == 807 then
+                return acc_obj["Giltine_Raid_EnableEntryCount"]; 
+            end
+            
             if indunCls.DungeonType == "Challenge_Auto" then
                 if string.find(indunCls.ClassName, "Challenge_Division") == nil then
                     -- 챌린지 자동매칭 남은 횟수
@@ -670,6 +673,8 @@ function GET_RESET_CYCLE_PIC_TYPE(cls,postFix)
 			cyclePicType = 'week';
         elseif string.find(indunCls.ClassName, "Challenge_Division_Auto") ~= nil then
             cyclePicType = "None";
+        elseif string.find(indunCls.ClassName, "Legend_Raid_Giltine") ~= nil then
+            cyclePicType = "None";
         else
             cyclePicType = 'day';
         end
@@ -681,6 +686,8 @@ function GET_RESET_CYCLE_PIC_TYPE(cls,postFix)
             cyclePicType = dayOfWeekStr;
         elseif dungeonType == "UniqueRaid" then
             cyclePicType = 'None';
+        elseif string.find(dungeonType, "MythicDungeon_Auto_Hard") ~= nil then
+            cyclePicType = "None";
         elseif string.find(dungeonType, "MythicDungeon") ~= nil then
             cyclePicType = "week";
         end
@@ -937,22 +944,23 @@ function INDUNINFO_MAKE_PATTERN_BOX(frame,indunCls)
 end
 
 function GET_INDUN_PATTERN_ID_LIST(indunCls)
-	local ret = {}
-	local dungeonType = TryGetProp(indunCls,"DungeonType")
+	local ret = {};
+    local dungeonType = TryGetProp(indunCls, "DungeonType");
 	if string.find(dungeonType,"MythicDungeon") == 1 then
-		local pattern_info = mythic_dungeon.GetPattern(mythic_dungeon.GetCurrentSeason())
-		local cnt = pattern_info:GetPatternSize()
+		local pattern_info = mythic_dungeon.GetPattern(mythic_dungeon.GetCurrentSeason());
+		local cnt = pattern_info:GetPatternSize();
 		if dungeonType == 'MythicDungeon_Auto' then
-			cnt = math.min(3,cnt)
+			cnt = math.min(3, cnt);
         elseif dungeonType == 'MythicDungeon_Auto_Hard' then
-            cnt = math.min(4,cnt)
+            cnt = math.min(4, cnt);
         end
+
 		for i = 0,cnt-1 do
-			local patternID = pattern_info:GetPattern(i)
-			table.insert(ret,patternID)
+			local patternID = pattern_info:GetPattern(i);
+			table.insert(ret,patternID);
 		end
 	end
-	return ret
+	return ret;
 end
 
 function INDUNINFO_PATTERN_BOX_ADD_ICON(gbox,pattern,index)
@@ -1270,7 +1278,7 @@ function INDUNINFO_SET_ENTERANCE_COUNT(frame, resetGroupID)
     --todo
     local countData = GET_CHILD_RECURSIVELY(frame, 'countData');
     local countData2 = GET_CHILD_RECURSIVELY(frame, 'countData2');
-    if resetGroupID == -101 or resetGroupID == 816 or resetGroupID == 817 then
+    if resetGroupID == -101 or resetGroupID == 816 or resetGroupID == 817 or resetGroupID == 807 then
         countData2:SetTextByKey('now', GET_CURRENT_ENTERANCE_COUNT(resetGroupID))
         countData:ShowWindow(0)
         countData2:ShowWindow(1)
@@ -1438,7 +1446,7 @@ function INDUNINFO_SET_ADMISSION_ITEM(frame,indunCls)
     local nowAdmissionItemCount = GET_INDUN_ADMISSION_ITEM_COUNT(indunCls)
     if nowAdmissionItemCount <= 0 then
         countText:SetText(ScpArgMsg("IndunAdmissionItemReset"))
-        if indunCls.DungeonType == 'ChallengeMode_HardMode' or string.find(indunCls.ClassName, "Challenge_Division_Auto") ~= nil or indunCls.DungeonType == "MythicDungeon_Auto_Hard" then
+        if indunCls.DungeonType == 'ChallengeMode_HardMode' or string.find(indunCls.ClassName, "Challenge_Division_Auto") ~= nil or indunCls.DungeonType == "MythicDungeon_Auto_Hard" or indunCls.PlayPerResetType == 807 then
             countData:ShowWindow(0);
             countData2:ShowWindow(1);
         else

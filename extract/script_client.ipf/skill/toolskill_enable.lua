@@ -648,3 +648,12 @@ function CHECK_IS_EQUIP_PREFIX_C(actor, skl, prefix)
     
     return 1
 end
+
+function SCR_SKL_CHECK_BATTLESTATE_C(actor, skl)
+    local pc = GetMyPCObject()
+    if IsBattleState(pc) == 0 then
+        return 1;
+    end
+
+    return 0;
+end

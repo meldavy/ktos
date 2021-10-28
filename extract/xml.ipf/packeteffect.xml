@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by asdasd (IMCGames Co., Ltd) -->
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by IMC (IMCGames Co., Ltd) -->
 <packeteffects>
     <Category ID="163">
         <Effect Name="F_archer_bodkinpoint_hit_explosion#Dummy001"/>
@@ -566,6 +566,50 @@
         <Effect Name="Mythic_Mon_Fireball_santan"/>
         <Effect Name="Mythic_boss_firewall_red"/>
         <Effect Name="Mythic_Grinender_FirePillar"/>
+        <Effect Name="Giltine_Auto_Raid_Demonics_Lance"/>
+        <Effect Name="I_breath013_fire2_short#None"/>
+        <Effect Name="Giltine_Raid_DarkRedThypoon2"/>
+        <Effect Name="Giltine_Raid_DarkRedThypoon3"/>
+        <Effect Name="I_laser010_violet"/>
+        <Effect Name="I_skillrange_135_1"/>
+        <Effect Name="I_skillrange_135_1"/>
+        <Effect Name="I_skillrange_135_1##1"/>
+        <Effect Name="I_skillrange_135_1##1.5"/>
+        <Effect Name="I_skillrange_135_1##2"/>
+        <Effect Name="I_skillrange_135_1##2"/>
+        <Effect Name="I_arrow023__dark"/>
+        <Effect Name="I_force018_violet_red"/>
+        <Effect Name="skl9_loop"/>
+        <Effect Name="I_force018_violet_red#Dummy_effect_hand_L"/>
+        <Effect Name="I_force018_violet_red#weapon_Point"/>
+        <Effect Name="I_force018_violet_red#Dummy_eff_weapon002"/>
+        <Effect Name="I_smoke001_dark_loop#Dummy_eff_weapon002"/>
+        <Effect Name="CristalObj"/>
+        <Effect Name="F_giltine_raid_condensation"/>
+        <Effect Name="DARK_BLADE"/>
+        <Effect Name="SummonShadowGiltine"/>
+        <Effect Name="F_skillrange_donut002##0.5"/>
+        <Effect Name="F_skillrange_donut002##1"/>
+        <Effect Name="F_skillrange_donut002##1"/>
+        <Effect Name="Giltine_pad1"/>
+        <Effect Name="Giltine_pad1"/>
+        <Effect Name="Thypoon"/>
+        <Effect Name="Boss_Giltine_PosPad"/>
+        <Effect Name="Boss_Giltine_StopPad"/>
+        <Effect Name="I_smoke001_dark_loop#I_arrow023_dark"/>
+        <Effect Name="F_skillrange_donut001##1"/>
+        <Effect Name="Dummy_effect_effigy_doll"/>
+        <Effect Name="RemoveBuff"/>
+        <Effect Name="CristalObjPattern"/>
+        <Effect Name="F_explosion99_dark3"/>
+        <Effect Name="DarkBlade"/>
+        <Effect Name="F_ground202_red"/>
+        <Effect Name="F_ground202_red"/>
+        <Effect Name="Giltine_Skl8_pad"/>
+        <Effect Name="F_hit018"/>
+        <Effect Name="SummonShadowAvataras"/>
+        <Effect Name="SignOfDeath"/>
+        <Effect Name="ElectricEel_Ava"/>
     </Category>
     <Category ID="146">
         <Effect Name="beginner"/>
@@ -6090,6 +6134,21 @@
 		<Effect Name="F_scratch_001"/>
 		<Effect Name="swd_blow_critical1"/>
 		<Effect Name="FEED3"/>
+        	<Effect Name="F_pose_magical2_light01_mint"/>
+        	<Effect Name="F_pose_magical_light3"/>
+        	<Effect Name="F_spin045_ground_mint"/>
+        	<Effect Name="F_pose_magical2_light02_mint"/>
+        	<Effect Name=" F_pose_magical2_light01_cream"/>
+     	  	<Effect Name="F_pose_magical_light4"/>
+		<Effect Name="F_spin045_ground_cream"/>
+     		<Effect Name=" F_pose_magical2_light02_cream"/>
+    		<Effect Name=" F_pose_magical2_light01_brown"/>
+        	<Effect Name="F_spin045_ground_brown"/>
+        	<Effect Name=" F_pose_magical2_light02_brown"/>
+        	<Effect Name="F_pose_magical2_light01_brown"/>
+        	<Effect Name="F_pose_magical2_light02_brown"/>
+        	<Effect Name="F_pose_magical2_light01_cream"/>
+        	<Effect Name="F_pose_magical2_light02_cream"/>
 	</Category>
 	<Category ID="28">
 		<Effect Name="F_explosion006_green#Dummy_skl2_shot"/>
@@ -9523,6 +9582,10 @@
         <Effect Name="Giltine_Auto_Fury_Pad"/>
         <Effect Name="Giltine_Auto_Fury_Dounut3_Pad"/>
         <Effect Name="Giltine_Auto_Fury_Dounut2_Pad"/>
+        <Effect Name="I_breath013_fire5#None##1"/>
+        <Effect Name="Giltine_Auto_Raid_Demonics_Lance"/>
+        <Effect Name="LEGEND_RAID_GILTINE_AUTO_HARD"/>
+        <Effect Name="contirbution"/>
     </Category>
     <Category ID="19">
         <Effect Name="I_fallen_statue_atk002_mash"/>
@@ -17934,6 +17997,7 @@
         <Effect Name="I_emo_size_blind"/>
         <Effect Name="I_emo_lmpact"/>
         <Effect Name="I_emo_blind"/>
+		<Effect Name="I_emo_mvp"/>
         <Effect Name="I_force003_green#tooth_L"/>
         <Effect Name="Monster_Sleep"/>
         <Effect Name="Monster_FireBall"/>

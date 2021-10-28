@@ -83,6 +83,10 @@ ClassID,ClassName,Name,UseDaily,UseWeekly
 2510,Giltine_first_kill,[마신의 성소 : 레전드] 서버별 최초 클리어,NO,NO
 2511,Giltine_clear,[마신의 성소] 일정 기간 내 클리어,NO,NO
 2512,Giltine_auto_clear,[마신의 성소 (자동 매칭)] 일정 기간 내 클리어,NO,NO
+2513,Giltine_Reorganization_first_kill,[마신의 성소 : 레전드] 서버별 최초 클리어,NO,NO
+2514,Giltine_clear_gold,[마신의 성소 : 레전드] 3분 이내 클리어,NO,NO
+2515,Giltine_clear_silver,[마신의 성소 : 레전드] 10분 이내 클리어,NO,NO
+2516,Giltine_clear_bronze,[마신의 성소 : 레전드] 클리어,NO,NO
 3001,HairShop,미용실,NO,NO
 3002,Connection,접속 횟수,NO,NO
 3003,INDUN,인던입장횟수,NO,NO
@@ -220,6 +224,11 @@ ClassID,ClassName,Name,UseDaily,UseWeekly
 6151,EVENT_2103_Title_09,칭호- 레콘의 친구,NO,NO
 6152,EVENT_2103_Title_10,칭호- 젠클라스의 친구,NO,NO
 6153,EVENT_Best_Painter,Best Painter,NO,NO
+6154,EVENT_2103_Title_11,칭호- 워 팻의 친구,NO,NO
+6155,EVENT_2103_Title_12,칭호- 지나의 친구,NO,NO
+6156,EVENT_2103_Title_13,칭호- 마리아의 친구,NO,NO
+6157,EVENT_2103_Title_14,칭호- 워시스의 친구,NO,NO
+6158,EVENT_2103_Title_15,칭호- 갈홍의 친구,NO,NO
 7001,PardonerAbility,기부 레벨,NO,NO
 7002,TaxAbility,세금 납부 레벨,NO,NO
 8001,FreeDungeon_under_68_1,시카리오스 기믹,NO,NO

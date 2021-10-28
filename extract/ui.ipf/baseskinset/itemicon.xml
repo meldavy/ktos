@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by imc (imc) -->
+<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by imc (imc) -->
 <!-- edited with XMLSpy v2008 sp1 http://www.altova.com by MintPC Mi -->
 <skinset name="Base">
 	<imagelist category="item_tooltip_icon">
@@ -3378,6 +3378,25 @@
 		<image name="icon_item_ep13cherryblossom_rod" file="\icon\weapon\icon_item_ep13cherryblossom_rod.png" imgrect="0 0 256 256"/>
 		<image name="icon_item_ep13cherryblossom_thspear" file="\icon\weapon\icon_item_ep13cherryblossom_thspear.png" imgrect="0 0 256 256"/>
 		<image name="icon_item_ep13cherryblossom_thsword" file="\icon\weapon\icon_item_ep13cherryblossom_thsword.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_Artefact_Giltine_bow" file="\icon\weapon\icon_item_Artefact_Giltine_bow.png" imgrect="0 0 256 256" CMM_Caption="길티네 무기 16종"/>
+		<image name="icon_item_Artefact_Giltine_cannon" file="\icon\weapon\icon_item_Artefact_Giltine_cannon.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_Artefact_Giltine_dagger" file="\icon\weapon\icon_item_Artefact_Giltine_dagger.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_Artefact_Giltine_mace" file="\icon\weapon\icon_item_Artefact_Giltine_mace.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_Artefact_Giltine_musket" file="\icon\weapon\icon_item_Artefact_Giltine_musket.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_Artefact_Giltine_pistol" file="\icon\weapon\icon_item_Artefact_Giltine_pistol.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_Artefact_Giltine_rapier" file="\icon\weapon\icon_item_Artefact_Giltine_rapier.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_Artefact_Giltine_rod" file="\icon\weapon\icon_item_Artefact_Giltine_rod.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_Artefact_Giltine_shield" file="\icon\weapon\icon_item_Artefact_Giltine_shield.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_Artefact_Giltine_spear" file="\icon\weapon\icon_item_Artefact_Giltine_spear.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_Artefact_Giltine_staff" file="\icon\weapon\icon_item_Artefact_Giltine_staff.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_Artefact_Giltine_sword" file="\icon\weapon\icon_item_Artefact_Giltine_sword.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_Artefact_Giltine_thbow" file="\icon\weapon\icon_item_Artefact_Giltine_thbow.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_Artefact_Giltine_thmace" file="\icon\weapon\icon_item_Artefact_Giltine_thmace.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_Artefact_Giltine_thsepar" file="\icon\weapon\icon_item_Artefact_Giltine_thsepar.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_Artefact_Giltine_thsword" file="\icon\weapon\icon_item_Artefact_Giltine_thsword.png" imgrect="0 0 256 256"/>
+                <image name="icon_item_ep13dessert_mace" file="\icon\weapon\icon_item_ep13dessert_mace.png" imgrect="0 0 256 256" CMM_Caption="2021.04 테마_3종"/>
+		<image name="icon_item_ep13dessert_dagger" file="\icon\weapon\icon_item_ep13dessert_dagger.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13dessert_rod" file="\icon\weapon\icon_item_ep13dessert_rod.png" imgrect="0 0 256 256"/>
 	</imagelist>
 	<imagelist category="acc_item">
 		<image name="item_necklace_01" file="\icon\acc\item_necklace_1.png" imgrect="0 0 256 256" CMM_Caption="목걸이"/>
@@ -4124,6 +4143,7 @@
 		<image name="icon_item_accessory_ep13toswinter" file="\icon\hairacc\icon_item_accessory_ep13toswinter.png" imgrect="0 0 256 256" CMM_Caption="2021_2월_마신의유혹"/>
 		<image name="icon_item_accessory_ep13cherryblossom01" file="\icon\hairacc\icon_item_accessory_ep13cherryblossom01.png" imgrect="0 0 256 256" CMM_Caption="2021_3월 테마 2종"/>
 		<image name="icon_item_accessory_ep13cherryblossom02" file="\icon\hairacc\icon_item_accessory_ep13cherryblossom02.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_accessory_ep13dessert01" file="\icon\hairacc\icon_item_accessory_ep13dessert01.png" imgrect="0 0 256 256" CMM_Caption="2021.4월_1종"/>
 	</imagelist>
 	<imagelist category="collection_item">
 		<image name="icon_collitem_collection" file="\icon\colletion\icon_item_collection.tga" imgrect="0 0 673 419" CMM_Caption="월계수"/>
@@ -6379,6 +6399,7 @@
 		<image name="icon_item_2020ArborDay_necklace_Upgrade" file="\icon\item\icon_item_2020ArborDay_necklace_Upgrade.png" imgrect="0 0 256 256" CMM_Caption="2020 근본 네클리스 업그레이드 스크롤"/>
 		<image name="icon_item_2020ArborDay_bracelet_Upgrade" file="\icon\item\icon_item_2020ArborDay_bracelet_Upgrade.png" imgrect="0 0 256 256" CMM_Caption="2020 근본 브레이슬릿 업그레이드 스크롤"/>
 		<image name="icon_item_defensive_potion_lv2" file="\icon\item\icon_item_defensive_potion_lv2.png" imgrect="0 0 128 128" CMM_Caption="[주간 보스 레이드] 레티샤 특제 포션 Lv.2"/>
+		<image name="icon_item_misc_Giltine_Raid_HARD" file="\icon\item\icon_item_misc_Giltine_Raid_HARD.png" imgrect="0 0 80 80" CMM_Caption="길티네 깃털"/>
 	</imagelist>
 	<imagelist category="housing">
 		<image name="icon_item_h_bigplant_set_01_green" file="\icon\housing\icon_item_h_bigplant_set_01_green.png" imgrect="0 0 256 256" CMM_Caption="[길드 하우징] 화단_01(초록색)"/>
@@ -8282,6 +8303,38 @@
 		<image name="icon_item_2021_ArborDay_Package_Growth02" file="\icon\payment\icon_item_2021_ArborDay_Package_Growth02.png" imgrect="0 0 256 256"/>
 		<image name="icon_item_2020_ArborDay_Package_Acc_Upgrade" file="\icon\payment\icon_item_2020_ArborDay_Package_Acc_Upgrade.png" imgrect="0 0 256 256"/>
 		<image name="icon_item_arborday_rabbit" file="\icon\payment\icon_item_arborday_rabbit.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_all_costume_box" file="\icon\payment\icon_item_all_costume_box.png" imgrect="0 0 256 256" CMM_Caption="코스튬all상자"/>
+		<image name="icon_item_box_wing_ep13dessert" file="\icon\payment\icon_item_box_wing_ep13dessert.png" imgrect="0 0 256 256" CMM_Caption="2021.04테마_30종"/>
+		<image name="icon_item_ep13dessert01_1_f" file="\icon\payment\icon_item_ep13dessert01_1_f.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13dessert01_1_m" file="\icon\payment\icon_item_ep13dessert01_1_m.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13dessert01_2_f" file="\icon\payment\icon_item_ep13dessert01_2_f.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13dessert01_2_m" file="\icon\payment\icon_item_ep13dessert01_2_m.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13dessert01_f" file="\icon\payment\icon_item_ep13dessert01_f.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13dessert01_m" file="\icon\payment\icon_item_ep13dessert01_m.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13dessert02_1_f" file="\icon\payment\icon_item_ep13dessert02_1_f.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13dessert02_1_m" file="\icon\payment\icon_item_ep13dessert02_1_m.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13dessert02_2_f" file="\icon\payment\icon_item_ep13dessert02_2_f.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13dessert02_2_m" file="\icon\payment\icon_item_ep13dessert02_2_m.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13dessert02_f" file="\icon\payment\icon_item_ep13dessert02_f.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13dessert02_m" file="\icon\payment\icon_item_ep13dessert02_m.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13dessert03_1_f" file="\icon\payment\icon_item_ep13dessert03_1_f.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13dessert03_1_m" file="\icon\payment\icon_item_ep13dessert03_1_m.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13dessert03_2_f" file="\icon\payment\icon_item_ep13dessert03_2_f.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13dessert03_2_m" file="\icon\payment\icon_item_ep13dessert03_2_m.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13dessert03_f" file="\icon\payment\icon_item_ep13dessert03_f.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13dessert03_m" file="\icon\payment\icon_item_ep13dessert03_m.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_selectbox_ep13dessert01" file="\icon\payment\icon_item_selectbox_ep13dessert01.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_selectbox_ep13dessert01_1" file="\icon\payment\icon_item_selectbox_ep13dessert01_1.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_selectbox_ep13dessert01_2" file="\icon\payment\icon_item_selectbox_ep13dessert01_2.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_selectbox_ep13dessert02" file="\icon\payment\icon_item_selectbox_ep13dessert02.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_selectbox_ep13dessert02_1" file="\icon\payment\icon_item_selectbox_ep13dessert02_1.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_selectbox_ep13dessert02_2" file="\icon\payment\icon_item_selectbox_ep13dessert02_2.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_selectbox_ep13dessert03" file="\icon\payment\icon_item_selectbox_ep13dessert03.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_selectbox_ep13dessert03_1" file="\icon\payment\icon_item_selectbox_ep13dessert03_1.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_selectbox_ep13dessert03_2" file="\icon\payment\icon_item_selectbox_ep13dessert03_2.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_wing_ep13dessert" file="\icon\payment\icon_item_wing_ep13dessert.png" imgrect="0 0 256 256"/>
+		<image name="item_icon_pet_ep13dessert" file="\icon\payment\item_icon_pet_ep13dessert.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_wing_Guilty_Raid" file="\icon\payment\icon_item_wing_Guilty_Raid.png" imgrect="0 0 256 256" CMM_Caption="길티네 날개 색배리"/>
 	</imagelist>
 	<imagelist category="seal">
 		<image name="icon_seal_yellow_cc_A1" file="\icon\seal\seal_yellow_cc_A1.tga" imgrect="0 0 80 80"/>

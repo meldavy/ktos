@@ -161,6 +161,7 @@ ClassID,Arg1,Arg2,RecipeTime,SuccessRatio,LevelByFail,TargetItemCnt,Item_1_1_Cnt
 3345,5,0,8,0,0,1,2500,0,0,0,0,0,0,0,0,0,0,PVP_MINE_45,PVPMine,Recipe,,Drag,Action,Drag,Drag,,,,CRAFT,Ticket_Moringponia_Easy_7d,,PVP_MINE_TradeCount18,misc_pvp_mine2,,,,,,Entrance_Ticket,Week,
 3346,5,0,8,0,0,1,2500,0,0,0,0,0,0,0,0,0,0,PVP_MINE_46,PVPMine,Recipe,,Drag,Action,Drag,Drag,,,,CRAFT,Ticket_Mythic_Auto_7d,,PVP_MINE_TradeCount19,misc_pvp_mine2,,,,,,Entrance_Ticket,Week,
 3348,5,0,8,0,0,1,10000,0,0,0,0,0,0,0,0,0,0,PVP_MINE_48,PVPMine,Recipe,,Drag,Action,Drag,Drag,,,,CRAFT,misc_Ectonite_NoTrade,,PVP_MINE_TradeCount21,misc_pvp_mine2,,,,,,Drug,Week,
+3351,5,0,8,0,0,1,10000,0,0,0,0,0,0,0,0,0,0,PVP_MINE_51,PVPMine,Recipe,,Drag,Action,Drag,Drag,,,,CRAFT,Ticket_Giltine_Auto_7d,,PVP_MINE_TradeCount24,misc_pvp_mine2,,,,,,Entrance_Ticket,Week,
 3401,5,0,8,0,0,1,5,0,0,0,0,0,0,0,0,0,0,DailyRewardShop1_1,DailyRewardShop,Recipe,,Drag,Action,Drag,Drag,,,,CRAFT,Premium_awakeningStone14_Team,,,misc_0533,,,,,,,,
 3402,5,0,8,0,0,1,20,0,0,0,0,0,0,0,0,0,0,DailyRewardShop1_2,DailyRewardShop,Recipe,,Drag,Action,Drag,Drag,,,,CRAFT,EVENT_190124_RankReset_Point_Lv2,,,misc_0533,,,,,,,,
 3403,5,0,8,0,0,1,20,0,0,0,0,0,0,0,0,0,0,DailyRewardShop1_3,DailyRewardShop,Recipe,,Drag,Action,Drag,Drag,,,,CRAFT,Premium_SkillReset_14d_Team,,,misc_0533,,,,,,,,

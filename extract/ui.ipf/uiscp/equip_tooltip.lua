@@ -1158,7 +1158,7 @@ function DRAW_EQUIP_FIXED_ICHOR(invitem, inheritanceItem, property_gbox, inner_y
     end
 
     -- 고정 아이커 옵션 (바이보라)
-    if invitem.OptDesc ~= nil and (invitem.OptDesc == 'None' or invitem.OptDesc == '') and TryGetProp(invitem, 'StringArg', 'None') == 'Vibora' then
+    if invitem.OptDesc ~= nil and (invitem.OptDesc == 'None' or invitem.OptDesc == '') and (TryGetProp(invitem, 'StringArg', 'None') == 'Vibora' or (TryGetProp(invitem, 'StringArg', 'None') == 'pvp_Mine' and TryGetProp(invitem, 'AdditionalOption_1', 'None') ~= "None")) then
         local opt_desc = invitem.OptDesc
         if opt_desc == 'None' then
             opt_desc = ''

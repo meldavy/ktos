@@ -390,12 +390,11 @@ function UPDATE_INDUN_INFO_TOOLTIP(tooltipframe, cidStr, param1, param2, actor)
 	local indunLabelText = GET_CHILD_RECURSIVELY(tooltipframe, "indunLabelText")
 	indunLabelText:SetText("{@st43}{s20}" ..ClMsg("IndunCountInfo"))
 	local pcInfo = accountInfo:GetByStrCID(cidStr)
+
 	-- 인던 이용 현황 출력
 	for j = 0, indunCount - 1 do
 		local indunCls = GetClassByIndexFromList(indunClsList, j)
-
 		if indunCls ~= nil and indunCls.Category ~= "None" then
-
 			local indunGroupBox = indunListBox:CreateOrGetControl("groupbox", "INDUN_CONTROL_".. indunCls.PlayPerResetType, ctrlLeftMargin, 0, ctrlWidth, ctrlHeight)
 			indunGroupBox = tolua.cast(indunGroupBox, "ui::CGroupBox")
 			indunGroupBox:EnableDrawFrame(0)
@@ -418,8 +417,8 @@ function UPDATE_INDUN_INFO_TOOLTIP(tooltipframe, cidStr, param1, param2, actor)
 				end
 
 				local dungeonType = TryGetProp(indunCls, "DungeonType", "None");
-				if dungeonType == "MythicDungeon_Auto_Hard" or string.find(indunCls.ClassName, "Challenge_Division_Auto") ~= nil then
-					indunCntLabel:SetText("{@st42b}" .. entranceCount .. "{img infinity_text 20 10}");
+				if dungeonType == "MythicDungeon_Auto_Hard" or string.find(indunCls.ClassName, "Challenge_Division_Auto") ~= nil or indunCls.PlayPerResetType == 807 then
+					indunCntLabel:SetText("{@st42b}" .. entranceCount .. "/" .. "{img infinity_text 20 10}");
 				else
 					indunCntLabel:SetText("{@st42b}" .. entranceCount .. "/" .. BARRACK_GET_INDUN_MAX_ENTERANCE_COUNT(indunCls.PlayPerResetType))
 				end

@@ -125,6 +125,7 @@ function GET_MORE_EVENT_EXP(pc)
 	sumExp = sumExp + IsBuffAppliedEXP(pc, 'EVENT_2006_SUMMER_EXPUP_coconut'); -- 2006 여름 이벤트 시원한 코코넛주스 --
 	sumExp = sumExp + IsBuffAppliedEXP(pc, 'EVENT_2006_SUMMER_EXPUP_bingsu'); -- 2006 여름 이벤트 달달한 과일빙수 --
 	sumExp = sumExp + IsBuffAppliedEXP(pc, 'EVENT_2006_SUMMER_EXPUP_softice'); -- 2006 여름 이벤트 부드러운 소프트아이스크림 --
+	sumExp = sumExp + IsBuffAppliedEXP(pc, 'EVENT_2008_OBON_FULLMOON_BUFF'); -- jpn 추석 이벤트 보름달 버프
 	sumExp = sumExp + IsBuffAppliedEXP(pc, 'EVENT_2006_SWEET_ZONGZI_1'); -- 2006 단쫑즈 1단계 --
 	sumExp = sumExp + IsBuffAppliedEXP(pc, 'EVENT_2006_SWEET_ZONGZI_2'); -- 2006 단쫑즈 2단계 --
 	sumExp = sumExp + IsBuffAppliedEXP(pc, 'EVENT_2006_SWEET_ZONGZI_3'); -- 2006 단쫑즈 3단계 --

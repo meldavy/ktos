@@ -838,7 +838,7 @@ function INDUNENTER_MAKE_COUNT_BOX(frame, noPicBox, indunCls)
     local admissionItemCls = GetClass('Item', admissionItemName);
     local admissionItemIcon = TryGetProp(admissionItemCls, "Icon");
     local admissionItemCount = TryGetProp(indunCls, "AdmissionItemCount");
-    local admissionPlayAddItemCount = TryGetProp(indunCls, "AdmissionPlayAddItemCount");
+    local admissionPlayAddItemCount = TryGetProp(indunCls, "AdmissionPlayAddItemCount", 0);
     local indunAdmissionItemImage = admissionItemIcon
     local WeeklyEnterableCount = TryGetProp(indunCls, "WeeklyEnterableCount");
 
@@ -849,13 +849,17 @@ function INDUNENTER_MAKE_COUNT_BOX(frame, noPicBox, indunCls)
     admissionItemCount = math.floor(admissionItemCount);
     if admissionItemName == "None" or admissionItemName == nil then
         -- now play count
-        local nowCount = TryGetProp(etc, "InDunCountType_"..tostring(TryGetProp(indunCls, "PlayPerResetType")), 0)        
+        local resetGroupID = TryGetProp(indunCls, "PlayPerResetType");
+        local nowCount = TryGetProp(etc, "InDunCountType_"..tostring(resetGroupID), 0);
         if WeeklyEnterableCount ~= nil and WeeklyEnterableCount ~= "None" and WeeklyEnterableCount ~= 0 then            
-            nowCount = GET_CURRENT_ENTERANCE_COUNT(TryGetProp(indunCls, "PlayPerResetType"));
+            nowCount = GET_CURRENT_ENTERANCE_COUNT(resetGroupID);
         end
 
-        local resetGroupID = TryGetProp(indunCls, "PlayPerResetType", "None");
-        if resetGroupID == 817 then
+        if resetGroupID == 817 or resetGroupID == 813 or resetGroupID == 807 then
+            if resetGroupID == 813 or resetGroupID == 807 then 
+                nowCount = GET_CURRENT_ENTERANCE_COUNT(resetGroupID); 
+        end
+
             countData2:SetTextByKey("now", nowCount);
             countData:ShowWindow(0);
             countData2:ShowWindow(1);

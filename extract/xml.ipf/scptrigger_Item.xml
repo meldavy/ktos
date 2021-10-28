@@ -15914,6 +15914,126 @@ end"/>
 			</Trigger>
 		</TriggerList>
 	</SpcItem>
+	<SpcItem Name="EP13_costume_Com_054">
+		<TriggerList Act="Equip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="EQUIP_SKILLMAKE_ADD" Client="NO" UseSleep="NO">
+						<Str Str="dessert_Appeal"/>
+					</ToolScp>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="UnEquip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="UNEQUIP_SKILLMAKE_REMOVE" Client="NO" UseSleep="NO">
+						<Str Str="dessert_Appeal"/>
+					</ToolScp>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+	</SpcItem>
+	<SpcItem Name="EP13_costume_Com_055">
+		<TriggerList Act="Equip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="EQUIP_SKILLMAKE_ADD" Client="NO" UseSleep="NO">
+						<Str Str="dessert_Appeal"/>
+					</ToolScp>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="UnEquip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="UNEQUIP_SKILLMAKE_REMOVE" Client="NO" UseSleep="NO">
+						<Str Str="dessert_Appeal"/>
+					</ToolScp>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+	</SpcItem>
+	<SpcItem Name="EP13_costume_Com_056">
+		<TriggerList Act="Equip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="EQUIP_SKILLMAKE_ADD" Client="NO" UseSleep="NO">
+						<Str Str="dessert_Appeal"/>
+					</ToolScp>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="UnEquip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="UNEQUIP_SKILLMAKE_REMOVE" Client="NO" UseSleep="NO">
+						<Str Str="dessert_Appeal"/>
+					</ToolScp>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+	</SpcItem>
+	<SpcItem Name="EP13_costume_Com_057">
+		<TriggerList Act="Equip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="EQUIP_SKILLMAKE_ADD" Client="NO" UseSleep="NO">
+						<Str Str="dessert_Appeal"/>
+					</ToolScp>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="UnEquip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="UNEQUIP_SKILLMAKE_REMOVE" Client="NO" UseSleep="NO">
+						<Str Str="dessert_Appeal"/>
+					</ToolScp>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+	</SpcItem>
+	<SpcItem Name="EP13_costume_Com_066">
+		<TriggerList Act="Equip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="EQUIP_SKILLMAKE_ADD" Client="NO" UseSleep="NO">
+						<Str Str="dessert_Appeal"/>
+					</ToolScp>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="UnEquip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="UNEQUIP_SKILLMAKE_REMOVE" Client="NO" UseSleep="NO">
+						<Str Str="dessert_Appeal"/>
+					</ToolScp>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+	</SpcItem>
+	<SpcItem Name="EP13_costume_Com_067">
+		<TriggerList Act="Equip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="EQUIP_SKILLMAKE_ADD" Client="NO" UseSleep="NO">
+						<Str Str="dessert_Appeal"/>
+					</ToolScp>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="UnEquip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="UNEQUIP_SKILLMAKE_REMOVE" Client="NO" UseSleep="NO">
+						<Str Str="dessert_Appeal"/>
+					</ToolScp>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+	</SpcItem>
 	<SpcItem Name="2021_ARBORDAY_NECK05">
 		<TriggerList Act="UnEquip">
 			<Trigger>

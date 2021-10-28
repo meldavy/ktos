@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by imc (imc) -->
+<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by imc (imc) -->
 <!-- edited with XMLSpy v2008 sp1 (http://www.altova.com) by MintPC (Mi) -->
 <skinset name="Base">
 	<skinlist category="frames">
@@ -9479,6 +9479,7 @@
 		<image name="companion_pet_robot_dog" file="\icon\companion_Velhider.tga" imgrect="160 400 80 80"/>
 		<image name="companion_pet_twnpanda" file="\icon\companion_Velhider.tga" imgrect="240 400 80 80"/>
 		<image name="companion_pet_arborday_rabbit" file="\icon\companion_Velhider.tga" imgrect="320 400 80 80"/>
+		<image name="companion_pet_ep13dessert" file="\icon\companion_Velhider.tga" imgrect="400 400 80 80"/>
 		<image name="bg_w" file="\skin\button.tga" imgrect="252 974 50 50"/>
 		<image name="barrack_signboard" file="\skin\barrack.tga" imgrect="356 0 257 192"/>
 		<image name="barrack_attack_icon" file="\skin\barrack.tga" imgrect="59 720 55 61"/>
@@ -9539,6 +9540,7 @@
 		<image name="house_change01" file="\skin\barrack.tga" imgrect="1957 812 70 70"/>
 		<image name="house_change02" file="\skin\barrack.tga" imgrect="1957 954 70 70"/>
 		<image name="house_change_man" file="\skin\HUD.tga" imgrect="2021 543 25 25"/>
+		<image name="personal_shop_edit" file="\skin\HUD.tga" imgrect="2021 569 25 25"/>
 		<image name="icon_house_p_basic_1" file="\icon\housing\icon_house_p_basic_1.png" imgrect="0 0 400 400"/>
 		<image name="icon_house_p_candyshop_1" file="\icon\housing\icon_house_p_candyshop_1.png" imgrect="0 0 400 400"/>
 		<image name="icon_house_p_fishman_1" file="\icon\housing\icon_house_p_fishman_1.png" imgrect="0 0 400 400"/>
@@ -10378,6 +10380,7 @@
 		<image name="ability_on" file="\skin\mainframe_A.tga" imgrect="730 390 70 30"/>
 		<image name="ability_off" file="\skin\mainframe_A.tga" imgrect="730 421 70 30"/>
 		<image name="dark_balloon_2_direction" file="\skin\say_balloon.tga" imgrect="1 1 80 74"/>
+		<image name="dark_balloon_direction" file="\skin\tooltip_skin_3.tga" imgrect="929 1494 80 80"/>
 		<image name="dark_balloon" file="\skin\login_barrack.tga" imgrect="352 0 200 200"/>
 		<image name="star_mark" file="\skin\tooltip_skin_3.tga" imgrect="854 50 95 90"/>
 		<image name="star_mark2" file="\skin\pip_test_item.tga" imgrect="1409 928 95 90"/>
@@ -11922,6 +11925,7 @@
 		<image name="icon_pet_twnpanda" file="\icon\buff_icon4.tga" imgrect="256 896 128 128" CMM_Caption="판다"/>
 		<image name="icon_Event_Yugwa" file="\icon\buff_icon4.tga" imgrect="384 896 128 128" CMM_Caption="2021_설날 유과 버프"/>
 		<image name="icon_pet_arborday_rabbit_buff" file="\icon\buff_icon5.tga" imgrect="0 128 128 128" CMM_Caption="근본 토끼 버프"/>
+		<image name="icon_pet_ep13dessert_buff" file="\icon\buff_icon5.tga" imgrect="128 128 128 128" CMM_Caption="스위트팽 버프"/>
 	</imagelist>
 	<imagelist category="housing_bufficon">
 		<image name="icon_Weapon_Klaida" file="\icon\icon_hosing_buff.tga" imgrect="0 0 128 128"/>
@@ -12178,6 +12182,9 @@
 		<image name="035_Flintess" file="\skin\npccard\035_Flintess.tga" imgrect="0 0 330 440"/>
 		<image name="036_SorshaHutton" file="\skin\npccard\036_SorshaHutton.tga" imgrect="0 0 330 440"/>
 		<image name="037_IliTerid" file="\skin\npccard\037_IliTerid.tga" imgrect="0 0 330 440"/>
+		<image name="038_LufasKehel" file="\skin\npccard\038_LufasKehel.tga" imgrect="0 0 330 440"/>
+		<image name="039_VisavaldasBlack" file="\skin\npccard\039_VisavaldasBlack.tga" imgrect="0 0 330 440"/>
+		<image name="040_Pauline" file="\skin\npccard\040_Pauline.tga" imgrect="0 0 330 440"/>
 	</imagelist>
 	<imagelist category="bosscard2">
 		<image name="001_boss_poata" file="\skin\bosscard\001_boss_poata.tga" imgrect="0 0 330 440"/>
@@ -12512,6 +12519,10 @@
 		<image name="plate_achieve_weeklyrank_16" file="\skin\user_title_skin.tga" imgrect="0 327 214 36" CMM_Caption="주간보스_루시"/>
 		<image name="plate_Christmas_Master" file="\skin\user_title_skin.tga" imgrect="215 290 214 34" CMM_Caption="2020_크리스마스 칭호"/>
 		<image name="plate_achieve_Giltine_auto_clear" file="\skin\user_title_skin.tga" imgrect="430 283 214 34" CMM_Caption="길티네_자동매칭 클리어"/>
+		<image name="plate_achieve_Giltine_clear_2" file="\skin\user_title_skin.tga" imgrect="0 364 214 34" CMM_Caption="길티네 개편_클리어"/>
+		<image name="plate_achieve_Giltine_first_kill_2" file="\skin\user_title_skin.tga" imgrect="215 364 214 34" CMM_Caption="길티네 개편_퍼스트"/>
+		<image name="plate_achieve_Giltine_clear_2_01" file="\skin\user_title_skin.tga" imgrect="0 399 214 34" CMM_Caption="길티네 개편_클리어 동"/>
+		<image name="plate_achieve_Giltine_clear_2_02" file="\skin\user_title_skin.tga" imgrect="215 399 214 34" CMM_Caption="길티네 개편_클리어 은"/>
 	</imagelist>
 	<imagelist category="skin_hair">
 		<image name="icon_skintone_01_m01" file="\skin\skinhair\icon_skintone_01_m01.png" imgrect="0 0 80 80" CMM_Caption="남성 01"/>

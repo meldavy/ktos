@@ -143,6 +143,9 @@ function _OPEN_WORLDMAP(frame)
 end
 
 function UPDATE_WORLDMAP_CONTROLS(frame, changeDirection)
+	if changeDirection == 'COLONY_OCCUPATION_INFO_UPDATE' then
+		return
+	end	
 	CREATE_ALL_ZONE_TEXT(frame, changeDirection);
 end
 
@@ -151,7 +154,7 @@ function PRELOAD_WORLDMAP()
 	OPEN_WORLDMAP(frame);
 end
 
-function CREATE_ALL_ZONE_TEXT(frame, changeDirection)
+function CREATE_ALL_ZONE_TEXT(frame, changeDirection)	
 
 	local clsList, cnt = GetClassList('Map');	
 	if cnt == 0 then
