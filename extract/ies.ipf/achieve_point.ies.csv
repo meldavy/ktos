@@ -7,8 +7,12 @@ ClassID,ClassName,Name,UseDaily,UseWeekly
 105,PcRevive,부활횟수,NO,NO
 106,MonBossKill,보스 몬스터 킬,NO,NO
 107,MonKill_hanaming,하나밍 킬 횟수,NO,NO
+401,Challenge_AP1,챌린지모드,NO,NO
 501,TournamentGift,토너먼트선물,NO,NO
 502,TournamentWin,토너먼트선물,NO,NO
+503,TeamBattle_Gold,TeamBattle1st,NO,NO
+504,TeamBattle_Silver,TeamBattle2nd,NO,NO
+505,TeamBattle_Bronze,TeamBattle3rd,NO,NO
 1001,Quest,퀘스트 수행 횟수,NO,NO
 1002,Vegitable,야채 재배 횟수,NO,NO
 1003,GuildQuest,의뢰 성공 횟수,NO,NO
@@ -23,18 +27,104 @@ ClassID,ClassName,Name,UseDaily,UseWeekly
 1012,QP5_thorn_23,해진깃발 기수,NO,NO
 1013,QP6_farm_49_3,정화의 조율자,NO,NO
 1014,GimmickPoint1,필드 기믹횟수,NO,NO
-2001,TreasureBox,보물상자,NO,NO
+1015,DailyQuest,일일퀘스트 횟수,NO,NO
+1016,Q_ORSHA_HQ_3_P,컴패니언의 진정한 반려인,NO,NO
+1017,Q_TABLELAND_28_1_HQ1_P,시노비를 찾는 자,NO,NO
+1018,Q_CASTLE65_3_HQ_1_P,역사의 산증인,NO,NO
+1019,Q_ABBEY64_22_HQ2_P,노바하 추모객,NO,NO
+1020,Q_LOWLV_BOASTER_SQ_P,위대한 해결사의 제자,NO,NO
+1021,REMAINS38_HQ1_AP,룬문자 해석가,NO,NO
+1022,THORN22_HQ1_AP,신성한 보급 인력,NO,NO
+1023,SIAULIAI462_HQ2_AP,최고의 맷집,NO,NO
+1024,CATHEDRAL1_HQ1_AP,피리 부는 나그네,NO,NO
+1025,FLASH29_1_HQ1_AP,함께 아파한 여행자,NO,NO
+1026,QP7_abbey_35_4,엘고스 수도원의 은인,NO,NO
+1027,QP8_prison_82,사명을 함께 이룬 자,NO,NO
+1028,QP9_limestonecave_52_5,고귀한 희생을 목격한 자,NO,NO
+1501,F_3CMLAKE26,란코 지역,NO,NO
+1502,D_FANTASYLIB48,환상도서관 지역,NO,NO
 2002,ItemRecipe,아이템제작,NO,NO
 2003,ReinforceWin,강화성공,NO,NO
 2004,Shovel,삽질,NO,NO
 2005,Potion,물약,NO,NO
+2006,BOOKCOLLECTIONAP,책교환,NO,NO
+2501,VELCOFFER_KILL,벨코퍼 처치 횟수,NO,NO
 3001,HairShop,미용실,NO,NO
 3002,Connection,접속 횟수,NO,NO
 3003,INDUN,인던입장횟수,NO,NO
+3004,Transport1,이동장치,NO,NO
+4001,EXPLORER_MISLE,탐험가,NO,NO
+4002,CatButler,대길이와 놀아준 횟수,NO,NO
 5001,MapReveal,세계 탐색 점수,NO,NO
 6001,PlayCBT1,CBT1 참여,NO,NO
 6002,PlayCBT3_RANK6_1,아우슈리네의 화신,NO,NO
 6003,PlayCBT3_RANK6_10,아우슈리네의 영웅,NO,NO
 6004,IamDeveloper,개발자,NO,NO
+6005,AlphabetEvent1,제 1회 알파벳 이벤트,NO,NO
+6006,Translator1,완벽한 번역가,NO,NO
+6007,100daysEvent,100일 기념 이벤트,NO,NO
+6008,GoldHand01,가장 뛰어난 금손,NO,NO
+6009,GeographerEvent,지리학자,NO,NO
+6010,Rank8AchievePoint,8랭크 달성,NO,NO
+6011,TeamBattle_Swordman,소드맨의 정점,NO,NO
+6012,TeamBattle_Wizard,위자드의 정점,NO,NO
+6013,TeamBattle_Archer,아처의 정점,NO,NO
+6014,TeamBattle_Cleric,클레릭의 정점,NO,NO
+6015,CreativeSoul_Ev,창작의 혼,NO,NO
+6016,TheLuckyNumber,행운의 번호,NO,NO
+6017,HauntedArtist,저주받은 예술가,NO,NO
+6018,EV161229_DICE_ACHP,제미나의 추종자,NO,NO
+6019,TheGiftedArtist,크리스마스 아티스트,NO,NO
+6020,EV_Luck1,소길,NO,NO
+6021,EV_Luck2,중길,NO,NO
+6022,EV_Luck3,길,NO,NO
+6023,EV_Luck4,대길,NO,NO
+6024,Valentine2017_1,달콤한 인생,NO,NO
+6025,Valentine2017_2,다이어트 내일부터,NO,NO
+6026,Valentine2017_3,초코 러브 마이스터,NO,NO
+6027,Valentine2017_4,혈당주의,NO,NO
+6028,Valentine2017_5,Chocoholic!,NO,NO
+6030,OST_EV,TOS 음악대장,NO,NO
+6031,EV170427_DayCheck,알고 있는 구원자,NO,NO
+6032,Event_1704_LvUp_Achieve1,계시를 받은 자,NO,NO
+6033,Event_1704_LvUp_Achieve2,깨어난 구원자,NO,NO
+6034,Event_1704_LvUp_Achieve3,걸음마를 뗀 구원자,NO,NO
+6035,Event_1704_LvUp_Achieve4,아장아장 걷는 구원자,NO,NO
+6036,Event_1704_LvUp_Achieve5,쑥쑥 커가는 구원자,NO,NO
+6037,Event_1704_LvUp_Achieve6,질풍노도의 구원자,NO,NO
+6038,Event_1704_LvUp_Achieve7,성숙한 구원자,NO,NO
+6039,Event_1704_LvUp_Achieve8,증명된 구원자,NO,NO
+6040,Event_1704_ArborDay1,오만한 구원자,NO,NO
+6041,Event_1705_Corsair,명예 해적 단원,NO,NO
+6042,Event_1705_Schwarzereiter,명예 황금노래 용병단원,NO,NO
+6043,Event_1706_Monk,명예 수행자,NO,NO
+6044,Event_1705_Lab,[TOS 1기 연구원],NO,NO
+6046,Event_1706_Doppelsoeldner,명예 칼날서약 용병단원,NO,NO
+6047,EVENT_1707_COMPASS,칼날서약 용병단 지망생,NO,NO
+6048,EVENT_1707_USERWEDDING,우리 결혼했어요,NO,NO
+6050,EVENT_GOLDEN_WHALE_ACHIEVE,고래 사냥꾼,NO,NO
+6051,EVENT_1709_NEWFIELD_ACHIEVE,초대에 응한 자,NO,NO
+6054,Event_1710_Lab_2_1,[TOS 2기 연구원],NO,NO
+6055,Event_1710_Lab_2_2,[TOS 인기 연구원],NO,NO
+6056,2017_Halloween1_AP,나이트메어 세이비어,NO,NO
+6057,2017_Halloween2_AP,스푸키 세이비어,NO,NO
+6058,2017_Halloween3_AP,던전 크리퍼,NO,NO
+6061,EVENT_1712_ACHIEVE,평생겜 트오세 고고혓,NO,NO
+6064,EVENT_1802_NEWYEAR_ACHIEVE,2018 대박맞은,NO,NO
+6066,EVENT_1803_NEWCHARACTER_ACHIEVE,궁극의 구원자,NO,NO
+6067,EVENT_1804_ARBOR_ACHIEVE,나무를 가꾸는 자,NO,NO
 7001,PardonerAbility,기부 레벨,NO,NO
 7002,TaxAbility,세금 납부 레벨,NO,NO
+8001,FreeDungeon_under_68_1,시카리오스 기믹,NO,NO
+8002,FreeDungeon_startower_60_1,르귄 기믹,NO,NO
+8003,FreeDungeon_velnias_54_1,제2 마족수감소 기믹,NO,NO
+8004,FreeDungeon_castle_67_2,토페스 보루 기믹,NO,NO
+8005,FreeDungeon_cmine_66_2,네밸랫 광산 기믹,NO,NO
+8006,FreeDungeon_under_59_3,왕릉 적재소 기믹,NO,NO
+8007,ID_WHITETREES1_GIMMICK_AP,피난처 기믹,NO,NO
+9001,Journal_AP1,초일류 모험가,NO,NO
+9002,Journal_AP2,든든한 구원자,NO,NO
+9003,Journal_AP3,거목같은 구원자,NO,NO
+9004,Journal_AP4,일지 기록자,NO,NO
+9005,Journal_AP5,위대한 기록자,NO,NO
+9006,Journal_AP6,낭비벽이 심한 구원자,NO,NO

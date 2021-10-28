@@ -1,37 +1,54 @@
 -- itemtooltip.lua
 
--- tooltip.xml에 적혀있는, 툴팁 관련 가장 처음 실행되는 루아 함수. 여기서 아이템의 종류에 따라 각각 다른 전용 툴팁 함수들을 호출한다. 종류되는 함수 명은 item클래스의 CT_ToolTipScp를 따름
+-- tooltip.xml???��??�는, ?�팁 관??가??처음 ?�행?�는 루아 ?�수. ?�기???�이?�의 종류???�라 각각 ?�른 ?�용 ?�팁 ?�수?�을 ?�출?�다. 종류?�는 ?�수 명�? item?�래?�의 CT_ToolTipScp�??�름
 
 function ON_REFRESH_ITEM_TOOLTIP()
 	local wholeitem = ui.GetTooltip("wholeitem")
 	if wholeitem ~= nil then
 		wholeitem:RefreshTooltip();
 	end
+
+    local wholeitem_link = ui.GetFrame("wholeitem_link")
+	tolua.cast(wholeitem_link, "ui::CTooltipFrame");
+	if wholeitem_link ~= nil then
+		wholeitem_link:RefreshTooltip();
+	end
 end
 
 function UPDATE_ITEM_TOOLTIP(tooltipframe, strarg, numarg1, numarg2, userdata, tooltipobj, noTradeCnt)
-
 	tolua.cast(tooltipframe, "ui::CTooltipFrame");
 	
 	local itemObj, isReadObj = nil
-
+	
 	if tooltipobj ~= nil then
 		itemObj = tooltipobj;
 		isReadObj = 0;
 	else
 		itemObj, isReadObj = GET_TOOLTIP_ITEM_OBJECT(strarg, numarg2, numarg1);	
 	end
+    
+	if itemObj == nil then
+		return;
+	end
 
 	if nil ~= itemObj and itemObj.GroupName == "Unused" then
 		tooltipframe:Resize(1, 1);
         return;
 	end
-
+	
+	-- 모조?��? 가?�의 ?�이???�보�?만들?�서 보여주기 ?�문??GUID가 ?�어??strarg�??�해 ?�보 보내�?forgery#ModifiedPropertyString)
+	local isForgeryItem = false;	
+	if string.find(strarg, 'forgery') ~= nil and itemObj ~= nil then
+		isForgeryItem = true;
+		local strList = StringSplit(strarg, '#');
+		SetModifiedPropertiesString(itemObj, strList[2]);
+	end	
+	tooltipframe:SetUserValue('TOOLTIP_ITEM_GUID', numarg2);
 
 	local recipeitemobj = nil
 
 	local recipeid = IS_RECIPE_ITEM(itemObj)
-	-- 레시피 아이템 쪽
+	-- ?�시???�이??�
 		
 	if recipeid ~= 0 then
 		
@@ -69,7 +86,8 @@ function UPDATE_ITEM_TOOLTIP(tooltipframe, strarg, numarg1, numarg2, userdata, t
 
 	local recipeclass = recipeitemobj;
 
-	if recipeclass ~= nil then
+	-- 콜렉?�에???�팁???�울?�는 ?�작?�는 ?�작?�만 보여준?? 
+	if recipeclass ~= nil and strarg ~= 'collection' then
 		local ToolTipScp = _G[ 'ITEM_TOOLTIP_' .. recipeclass.ToolTipScp];
 		ToolTipScp(tooltipframe, recipeclass, strarg, "usesubframe_recipe");
 		DestroyIES(recipeitemobj);
@@ -80,26 +98,38 @@ function UPDATE_ITEM_TOOLTIP(tooltipframe, strarg, numarg1, numarg2, userdata, t
 		return;
 	end
 	
-	-- 비교툴팁
-	-- 툴팁 비교는 무기와 장비에만 해당된다.
+	local needAppraisal = TryGetProp(itemObj, "NeedAppraisal");
+	local needRandomOption = TryGetProp(itemObj, "NeedRandomOption");	
+	local drawCompare = true;
+	local showAppraisalPic = false;
+	if needAppraisal ~= nil  or  needRandomOption ~= nil then
+        if needAppraisal == 1 or needRandomOption == 1 then
+    		DRAW_APPRAISAL_PICTURE(tooltipframe);
+    		drawCompare = false;
+    		showAppraisalPic = true;
+		end
+	end
+	
+	-- 비교?�팁
+	-- ?�팁 비교??무기?� ?�비?�만 ?�당?�다. (미감???�외)
 
-	if (itemObj.ToolTipScp == 'WEAPON' or itemObj.ToolTipScp == 'ARMOR') and  (strarg == 'inven' or strarg =='sell') and (string.find(itemObj.GroupName, "Pet") == nil) then
+	if drawCompare == true and ( (itemObj.ToolTipScp == 'WEAPON' or itemObj.ToolTipScp == 'ARMOR') and  (strarg == 'inven' or strarg =='sell' or isForgeryItem == true) and (string.find(itemObj.GroupName, "Pet") == nil)) then
 
 		local CompItemToolTipScp = _G[ 'ITEM_TOOLTIP_' .. itemObj.ToolTipScp];
 		local ChangeValueToolTipScp = _G[ 'ITEM_TOOLTIP_' .. itemObj.ToolTipScp..'_CHANGEVALUE'];
-		-- 한손 무기 / 방패 일 경우
+		-- ?�손 무기 / 방패 ??경우
 
 		local isVisble = nil;
 		
 		if itemObj.EqpType == 'SH' then
 		
-			if itemObj.DefaultEqpSlot == 'RH' then
+			if itemObj.DefaultEqpSlot == 'RH' or itemObj.DefaultEqpSlot == 'RH LH' then
 				
 				local item = session.GetEquipItemBySpot( item.GetEquipSpotNum("RH") );
 				if nil ~= item then
 				local equipItem = GetIES(item:GetObject());
 				
-				local classtype = TryGetProp(equipItem, "ClassType"); -- 코스튬은 안뜨도록
+				local classtype = TryGetProp(equipItem, "ClassType"); -- 코스?��? ?�뜨?�록
 
 				if IS_NO_EQUIPITEM(equipItem) == 0 and classtype ~= "Outer" then
 					CompItemToolTipScp(tooltipframe, equipItem, strarg, "usesubframe");
@@ -119,7 +149,7 @@ function UPDATE_ITEM_TOOLTIP(tooltipframe, strarg, numarg1, numarg2, userdata, t
 				end
 			end
 			
-		-- 양손 무기 일 경우
+		-- ?�손 무기 ??경우
 		elseif itemObj.EqpType == 'DH' then
 			
 			local item = session.GetEquipItemBySpot(item.GetEquipSpotNum("RH"));
@@ -132,7 +162,6 @@ function UPDATE_ITEM_TOOLTIP(tooltipframe, strarg, numarg1, numarg2, userdata, t
 			end
 			end
 		else
-
 			local equiptype = itemObj.EqpType
 
 			if equiptype == 'RING' then
@@ -161,14 +190,13 @@ function UPDATE_ITEM_TOOLTIP(tooltipframe, strarg, numarg1, numarg2, userdata, t
 
 	end
 
-	-- 메인 프레임. 즉 주된 툴팁 표시.
-	if isReadObj == 1 then -- IES가 없는 아이템. 가령 제작서의 완성 아이템 표시 등
+	-- 메인 ?�레?? �?주된 ?�팁 ?�시.
+	if isReadObj == 1 then -- IES가 ?�는 ?�이?? 가???�작?�의 ?�성 ?�이???�시 ?
 			
 		local class = itemObj;
 		if class ~= nil then
-
 			local ToolTipScp = _G[ 'ITEM_TOOLTIP_' .. class.ToolTipScp];
-			ToolTipScp(tooltipframe, class, strarg, "mainframe");
+			ToolTipScp(tooltipframe, class, strarg, "mainframe", isForgeryItem);
 		end
 
 		
@@ -186,23 +214,61 @@ function UPDATE_ITEM_TOOLTIP(tooltipframe, strarg, numarg1, numarg2, userdata, t
 		DestroyIES(itemObj);
 	end
 
-	ITEMTOOLTIPFRAME_ARRANGE_CHILDS(tooltipframe)
-	ITEMTOOLTIPFRAME_RESIZE(tooltipframe)
+	ITEMTOOLTIPFRAME_ARRANGE_CHILDS(tooltipframe, showAppraisalPic);
+	ITEMTOOLTIPFRAME_RESIZE(tooltipframe);
 
 end
 
-function ITEMTOOLTIPFRAME_ARRANGE_CHILDS(tooltipframe)
+function ITEMTOOLTIPFRAME_ARRANGE_CHILDS(tooltipframe, showAppraisalPic)
 
 	local cvalueGBox = GET_CHILD(tooltipframe, 'changevalue','ui::CGroupBox')
+	if showAppraisalPic == true then
+		cvalueGBox =  GET_CHILD(tooltipframe, 'appraisal','ui::CGroupBox');
+	end
 	local cvalueGBoxheight = cvalueGBox:GetHeight()
 	local childCnt = tooltipframe:GetChildCount();
+	local minY = option.GetClientHeight();
+	local arrange = false;
 	for i = 0 , childCnt - 1 do
 		local chld = tooltipframe:GetChildByIndex(i);
 		if chld:GetName() ~= 'changevalue' then
-			chld:SetOffset(chld:GetX(), chld:GetY() + cvalueGBoxheight)
+			local targetY = chld:GetY() + cvalueGBoxheight;			
+			local diff = targetY + chld:GetHeight() - option.GetClientHeight();
+			if diff > 0 then
+				arrange = true;
+				targetY = targetY - diff;
+			end
+
+			chld:SetOffset(chld:GetX(), targetY);
+
+			if minY > targetY then
+				minY = targetY;
+			end
 		end
 	end
 
+	if arrange == true then
+		-- 비교 ?�팁 ?�치 맞춰주기
+		local equip_main = tooltipframe:GetChild('equip_main');
+		local equip_sub = tooltipframe:GetChild('equip_sub');
+		local mainY = equip_main:GetY();
+		local subY = equip_sub:GetY();
+		if mainY > subY then
+			equip_main:SetOffset(equip_main:GetX(), subY);
+		elseif mainY < subY then
+			equip_sub:SetOffset(equip_sub:GetX(), mainY);
+		end
+
+		-- 비교 말풍???�치 조정
+		local changevalue = tooltipframe:GetChild('changevalue');
+		local appraisalOffset = 0;
+		if showAppraisalPic == true then
+			changevalue = tooltipframe:GetChild('appraisal');
+			local marginRect = changevalue:GetMargin();
+			appraisalOffset = marginRect.top;
+		end
+		changevalue:SetOffset(changevalue:GetX(), minY - cvalueGBoxheight + appraisalOffset);
+	end
 end
 
 function INIT_ITEMTOOLTIPFRAME_CHILDS(tooltipframe)
@@ -256,41 +322,87 @@ function ITEMTOOLTIPFRAME_RESIZE(tooltipframe)
 	local childCnt = tooltipframe:GetChildCount();
 	for i = 0 , childCnt - 1 do
 		local chld = tooltipframe:GetChildByIndex(i);
-		chld:SetOffset(chld:GetX() - min_x, chld:GetY() - min_y)
+		    chld:SetOffset(chld:GetX() - min_x, chld:GetY() - min_y)
 	end
 
 	tooltipframe:Resize(max_x-min_x, max_y-min_y);
 
 end
 
---상점에서 가격 표시
+--?�점?�서 가�??�시
 function DRAW_SELL_PRICE(tooltipframe, invitem, yPos, mainframename)
     
-    if invitem.ShopTrade ~= 'YES' then
+	local itemProp = geItemTable.GetPropByName(invitem.ClassName);
+    if itemProp:IsEnableShopTrade() == false then
         return yPos
     end
     
 	local gBox = GET_CHILD(tooltipframe, mainframename,'ui::CGroupBox')
 	gBox:RemoveChild('tooltip_sellinfo');
-
-	if ui.IsFrameVisible("shop") == 0 and invitem.SellPrice ~= 0 and invitem.ShopTrade == 'YES' then
-		return yPos
-	end
 	
 	local tooltip_sellinfo_CSet = gBox:CreateControlSet('tooltip_sellinfo', 'tooltip_sellinfo', 0, yPos);
 	tolua.cast(tooltip_sellinfo_CSet, "ui::CControlSet");
 
 	local sellprice_text = GET_CHILD(tooltip_sellinfo_CSet,'sellprice','ui::CRichText')
-	
-	local itemProp = geItemTable.GetPropByName(invitem.ClassName);
-
 	sellprice_text:SetTextByKey("silver", geItemTable.GetSellPrice(itemProp) );
 
-	local BOTTOM_MARGIN = tooltipframe:GetUserConfig("BOTTOM_MARGIN"); -- 맨 아랫쪽 여백
+	local BOTTOM_MARGIN = tooltipframe:GetUserConfig("BOTTOM_MARGIN"); -- �??�랫�??�백
 	tooltip_sellinfo_CSet:Resize(tooltip_sellinfo_CSet:GetWidth(),tooltip_sellinfo_CSet:GetHeight() + BOTTOM_MARGIN);
 
-	gBox:Resize(gBox:GetWidth(),gBox:GetHeight() + tooltip_sellinfo_CSet:GetHeight())
+	local height = gBox:GetHeight() + tooltip_sellinfo_CSet:GetHeight();
+	gBox:Resize(gBox:GetWidth(), height);
+	return yPos + tooltip_sellinfo_CSet:GetHeight();
+end
+
+function DRAW_REMAIN_LIFE_TIME(tooltipframe, invitem, yPos, mainframename)
 	
+	local itemProp = geItemTable.GetPropByName(invitem.ClassName);
+    if itemProp:IsEnableShopTrade() == false and itemProp.LifeTime == 0 then
+        return yPos
+    end
+    
+	local gBox = GET_CHILD(tooltipframe, mainframename,'ui::CGroupBox')
+	gBox:RemoveChild('tooltip_lifeTimeinfo');	
+
+	local tooltip_lifeTimeinfo_CSet = gBox:CreateControlSet('tooltip_lifeTimeinfo', 'tooltip_lifeTimeinfo', 0, yPos);
+	tolua.cast(tooltip_lifeTimeinfo_CSet, "ui::CControlSet");
+
+	local lifeTime_text = GET_CHILD(tooltip_lifeTimeinfo_CSet,'lifeTime','ui::CRichText');
+		
+	if string.find(invitem.ItemLifeTime, "None") ~= nil then
+		local timeTxt = GET_TIME_TXT(invitem.LifeTime);
+		lifeTime_text:SetTextByKey("p_LifeTime", timeTxt );
+	else
+	local sysTime = geTime.GetServerSystemTime();
+	local endTime = imcTime.GetSysTimeByStr(invitem.ItemLifeTime);
+	local difSec = imcTime.GetDifSec(endTime, sysTime);
+	lifeTime_text:SetUserValue("REMAINSEC", difSec);
+	lifeTime_text:SetUserValue("STARTSEC", imcTime.GetAppTime());
+	lifeTime_text:RunUpdateScript("SHOW_REMAIN_LIFE_TIME");
+	end
+
+	local BOTTOM_MARGIN = tooltipframe:GetUserConfig("BOTTOM_MARGIN"); -- �??�랫�??�백
+	tooltip_lifeTimeinfo_CSet:Resize(tooltip_lifeTimeinfo_CSet:GetWidth(),tooltip_lifeTimeinfo_CSet:GetHeight() + BOTTOM_MARGIN);
+	
+	local height = gBox:GetHeight() + tooltip_lifeTimeinfo_CSet:GetHeight();
+	gBox:Resize(gBox:GetWidth(), height);
+	return height;
+end;
+
+function SHOW_REMAIN_LIFE_TIME(ctrl)
+	local elapsedSec = imcTime.GetAppTime() - ctrl:GetUserIValue("STARTSEC");
+	local startSec = ctrl:GetUserIValue("REMAINSEC");
+	startSec = startSec - elapsedSec;
+	if 0 > startSec then
+		ctrl:SetText(ScpArgMsg("LessThanItemLifeTime"));
+		ctrl:SetFontName("red_18");
+		ctrl:StopUpdateScript("SHOW_REMAIN_LIFE_TIME");
+		return 0;
+	end 
+	
+	local timeTxt = GET_TIME_TXT(startSec);
+	ctrl:SetTextByKey("p_LifeTime", timeTxt );
+	return 1;
 end
 
 function GET_ITEM_TOOLTIP_DESC(obj)
@@ -310,7 +422,7 @@ function GET_ITEM_TOOLTIP_DESC(obj)
 	return invDesc;
 end
 
--- propNameList만 가져오는 함수. 만일 툴팁이나 기타 등등에 아이템의 옵션을 표시할 때 옵션값들을 하나의 통합된 string 형태가 아니라 그냥 리스트로 가져오고 싶을 때 활용.
+-- propNameList�?가?�오???�수. 만일 ?�팁?�나 기�? ?�등???�이?�의 ?�션???�시?????�션값들???�나???�합??string ?�태가 ?�니??그냥 리스?�로 가?�오�??�을 ???�용.
 function GET_ITEM_PROP_NAME_LIST(obj) 
 
 	local tooltipValue = TryGetProp(obj, "TooltipValue");
@@ -328,7 +440,13 @@ function GET_ITEM_PROP_NAME_LIST(obj)
 		else
 			propNameList[#propNameList + 1] = {};
 			propNameList[#propNameList]["PropName"] = propName;
-			propNameList[#propNameList]["PropValue"] = obj[propName];
+
+            local propValue = math.floor(obj[propName]);
+            if propName == 'CoolDown' and propValue == 0 then -- 인벤토리가 아닌 아이템의 경우 CP계산을 못해요
+                propValue = obj.ItemCoolDown;
+            end
+
+			propNameList[#propNameList]["PropValue"] = propValue;
 		end
 	end
 	
@@ -352,7 +470,7 @@ function GET_ITEM_DESC_BY_TOOLTIP_VALUE(obj)
 			resultMsg = title;
 		else
 			if propName == "CoolDown" then
-				propValue = propValue / 1000;
+				propValue = math.floor(propValue / 1000);
 				 resultMsg = ScpArgMsg("CoolDown : {Sec} Sec",'Sec', propValue);
 			else
 				if useOperator ~= nil and propValue > 0 then
@@ -399,4 +517,193 @@ end
 
 function CLOSE_ITEM_TOOLTIP()
 
+end
+
+
+-- ???�수???�크�??�이?�도 ?�시?????�용?�니??
+function SET_ITEM_TOOLTIP_ALL_TYPE(icon, invitem, className, strType, ItemType, index)
+	
+	if className == 'Scroll_SkillItem' then
+		local obj = GetIES(invitem:GetObject());
+		SET_TOOLTIP_SKILLSCROLL(icon, obj, nil, strType);
+	else
+		icon:SetTooltipType('wholeitem');
+		if nil ~= strType and nil ~= ItemType and nil ~= index then
+			icon:SetTooltipArg(strType, ItemType, index);
+		end
+	end
+end
+
+function SET_ITEM_TOOLTIP_TYPE(prop, itemID, itemCls, tooltipType)	
+	local customTooltipScp = TryGetProp(itemCls, "CustomToolTip");
+	if customTooltipScp ~= nil and customTooltipScp ~= "None" then
+		customTooltipScp = _G[customTooltipScp];
+		customTooltipScp(prop, itemCls, nil, tooltipType);
+	else
+		prop:SetTooltipType('wholeitem');
+	end	
+	
+end
+
+function SET_TOOLTIP_SKILLSCROLL(icon, obj, itemCls, strType)
+
+	if nil == obj or obj.SkillType == 0 then
+		return 0;
+	end 
+
+	SET_SKILL_TOOLTIP_BY_TYPE_LEVEL(icon, obj.SkillType, obj.SkillLevel);
+	if strType ~= nil then
+		local slot = icon:GetParent();
+		if slot ~= nil then
+			slot:SetUserValue("SCROLL_ITEM_ID", GetIESID(obj));
+			slot:SetUserValue("SCROLL_ITEM_INVTYPE", strType);
+		end
+		
+		icon:SetUserValue("SCROLL_ITEM_ID", GetIESID(obj));
+		icon:SetUserValue("SCROLL_ITEM_INVTYPE", strType);
+	end
+
+	return 1;
+end
+
+-- 마켓?�에??묘사?�서 ?�킬�??�오?�록
+function SET_ITEM_DESC(value, desc, item)
+	if desc == "None" then
+		desc = "";
+	end
+
+	local obj = GetIES(item:GetObject());
+
+	if nil ~= obj and
+	   obj.ClassName == 'Scroll_SkillItem' then		
+		local sklCls = GetClassByType("Skill", obj.SkillType)
+		value:SetTextByKey("value", obj.SkillLevel .. " Level/ "..  sklCls.Name);
+	else
+		value:SetTextByKey("value", desc);
+	end
+end
+
+function ICON_SET_INVENTORY_TOOLTIP(icon, invitem, strarg, itemCls)
+    if itemCls == nil then
+        return;
+    end
+
+	if strarg == nil then
+		strarg = 'inven';
+	end
+
+	SET_ITEM_TOOLTIP_ALL_TYPE(icon, invitem, itemCls.ClassName, strarg, 0, invitem:GetIESID());
+
+	local itemobj = GetIES(invitem:GetObject());
+	if itemobj.ItemType == "Equip" and itemobj.MaxDur ~= 0 and itemobj.Dur == 0 then
+		icon:SetColorTone("FFFF0000");
+	end
+
+end
+
+function ICON_SET_EQUIPITEM_TOOLTIP(icon, equipitem, topParentFrameName)
+	SET_ITEM_TOOLTIP_TYPE(icon, equipitem.type);
+	icon:SetTooltipArg('equip', equipitem.type, equipitem:GetIESID());
+	if topParentFrameName ~= nil then
+		icon:SetTooltipTopParentFrame(topParentFrameName);
+	end
+end
+
+-- 옵션 추출 아이템 툴팁
+function ITEM_TOOLTIP_EXTRACT_OPTION(tooltipframe, invitem, mouseOverFrameName)
+	local targetItem = GetClass('Item', invitem.InheritanceItemName);
+	if targetItem == nil then
+		return;
+	end
+
+	tolua.cast(tooltipframe, "ui::CTooltipFrame");
+	local mainframename = 'extract_option';
+	local ypos, commonCtrlSet = DRAW_EXTRACT_OPTION_COMMON_TOOLTIP(tooltipframe, invitem, targetItem, mainframename);	
+	local line1 = commonCtrlSet:GetChild('line1');
+	if IS_EXIST_RANDOM_OPTION(invitem) == false then
+		line1:ShowWindow(0);
+		ypos = DRAW_EQUIP_PROPERTY(tooltipframe, targetItem, ypos, mainframename);
+	else
+		line1:ShowWindow(1);
+		ypos = DRAW_EXTRACT_OPTION_RANDOM_OPTION(tooltipframe, invitem, mainframename, ypos);	
+	end
+	ypos = DRAW_EXTRACT_OPTION_LIMIT_EQUIP_DESC(tooltipframe, targetItem, mainframename, ypos);
+	ypos = DRAW_EQUIP_TRADABILITY(tooltipframe, invitem, ypos, mainframename);
+	ypos = DRAW_EQUIP_DESC(tooltipframe, invitem, ypos, mainframename);
+	ypos = DRAW_SELL_PRICE(tooltipframe, invitem, ypos, mainframename);
+end
+
+function DRAW_EXTRACT_OPTION_LIMIT_EQUIP_DESC(tooltipframe, targetItem, mainframename, ypos)
+	local gBox = GET_CHILD(tooltipframe, mainframename);
+	local descCtrlset = gBox:CreateControlSet('tooltip_extract_option_equip_limit', 'equipLimitCtrlSet', 0, ypos);
+    local descText = GET_CHILD(descCtrlset, 'descText');
+    descText:SetText(ScpArgMsg('{LEVEL}LimitEquip', 'LEVEL', GET_OPTION_EQUIP_LIMIT_LEVEL(targetItem)));
+    descCtrlset:Resize(descCtrlset:GetWidth(), descText:GetY() + descText:GetHeight());
+
+	ypos = ypos + descCtrlset:GetHeight() + 10;
+	gBox:Resize(gBox:GetWidth(), ypos);
+	return ypos;
+end
+
+function DRAW_EXTRACT_OPTION_COMMON_TOOLTIP(tooltipframe, invitem, targetItem, mainframename)
+	local gBox = GET_CHILD(tooltipframe, mainframename);
+	gBox:RemoveAllChild();
+	
+	local ctrlset = gBox:CreateControlSet('tooltip_extract_option', 'EXTRACT_OPTION_CTRLSET', 0, 0);
+	local nameText = GET_CHILD(ctrlset, 'nameText');
+	nameText:SetText(invitem.Name);
+
+	local itemPic = GET_CHILD(ctrlset, 'itemPic');
+	itemPic:SetImage(invitem.Icon);
+
+	local groupText = GET_CHILD(ctrlset, 'groupText');
+	groupText:SetText(ClMsg(invitem.GroupName));
+
+	local weightText = GET_CHILD(ctrlset, 'weightText');
+	weightText:SetTextByKey('weight', invitem.Weight)
+
+	local classTypeText = GET_CHILD(ctrlset, 'classTypeText');	
+	classTypeText:SetText(ClMsg(targetItem.ClassType));
+
+	gBox:Resize(gBox:GetWidth(), gBox:GetHeight() + ctrlset:GetHeight());
+	return ctrlset:GetHeight(), ctrlset;
+end
+
+function DRAW_EXTRACT_OPTION_RANDOM_OPTION(tooltipframe, invitem, mainframename, ypos)
+	local gBox = GET_CHILD(tooltipframe, mainframename);
+	local randomOptionBox = gBox:CreateControl('groupbox', 'randomOptionBox', 0, ypos + 5, gBox:GetWidth(), 0);
+	randomOptionBox:SetSkinName('None');
+	local inner_yPos = 0;
+
+	for i = 1 , 6 do
+	    local propGroupName = "RandomOptionGroup_"..i;
+		local propName = "RandomOption_"..i;
+		local propValue = "RandomOptionValue_"..i;
+		local clientMessage = 'None'
+		
+		if invitem[propGroupName] == 'ATK' then
+		    clientMessage = 'ItemRandomOptionGroupATK'
+		elseif invitem[propGroupName] == 'DEF' then
+		    clientMessage = 'ItemRandomOptionGroupDEF'
+		elseif invitem[propGroupName] == 'UTIL_WEAPON' then
+		    clientMessage = 'ItemRandomOptionGroupUTIL'
+		elseif invitem[propGroupName] == 'UTIL_ARMOR' then
+		    clientMessage = 'ItemRandomOptionGroupUTIL'
+		elseif invitem[propGroupName] == 'UTIL_SHILED' then
+		    clientMessage = 'ItemRandomOptionGroupUTIL'
+		elseif invitem[propGroupName] == 'STAT' then
+		    clientMessage = 'ItemRandomOptionGroupSTAT'
+		end
+		
+		if invitem[propValue] ~= 0 and invitem[propName] ~= "None" then
+			local opName = string.format("%s %s", ClMsg(clientMessage), ScpArgMsg(invitem[propName]));
+			local strInfo = ABILITY_DESC_NO_PLUS(opName, invitem[propValue], 0);
+			inner_yPos = ADD_ITEM_PROPERTY_TEXT(randomOptionBox, strInfo, 0, inner_yPos);
+		end
+	end
+
+	randomOptionBox:Resize(randomOptionBox:GetWidth(), inner_yPos);
+	ypos = randomOptionBox:GetY() + randomOptionBox:GetHeight() + 10;
+	gBox:Resize(gBox:GetWidth(), ypos);
+	return ypos;
 end
