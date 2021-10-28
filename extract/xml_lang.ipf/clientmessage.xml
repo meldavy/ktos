@@ -15502,7 +15502,7 @@
 		<Class ClassID="302622" ClassName="EVENT_2108_ARCHEOLOGY_TITLE_CHECK_SEL4" Data="{#0033FF}[이벤트 칭호 - 명예 고고학 협회 회원]{/}"/>
 		<Class ClassID="302623" ClassName="EVENT_2108_ARCHEOLOGY_SEL4" Data="{#003399}[유물 이벤트]{/}칭호 획득하기"/>
 		<Class ClassID="302624" ClassName="EVENT_2108_ARCHEOLOGY_SEARCH_6" Data="{#FF0000}※탐사 횟수가 초과하였습니다.{/}"/>
-		<Class ClassID="302625" ClassName="EVENT_2108_ARCHEOLOGY_CHECK_MSG" Data="{#0066FF}[유물 찾기 이벤트 현황]{/}{nl}일일 고고학 협회 교환권 획득량 (({#0066FF}{COIN}{/}/100){nl}일일 유물찾기 횟수 제한 (({#0066FF}{COUNT}{/}/10){nl}전체 유물찾기 횟수 (({#0066FF}{TOTAL}{/}){nl}{#FF3333}※ 사냥을 통한 유물 상자는 이벤트 버프 적용 중에만 획득 가능합니다.{/}{nl}{#FF3333}※ 일일 제한은 매일 06시 초기화 됩니다.{/}"/>
+		<Class ClassID="302625" ClassName="EVENT_2108_ARCHEOLOGY_CHECK_MSG" Data="{#0066FF}[유물 찾기 이벤트 현황]{/}{nl}일일 고고학 협회 교환권 획득량 ({#0066FF}{COIN}{/}/100){nl}일일 유물찾기 횟수 제한 ({#0066FF}{COUNT}{/}/10){nl}전체 유물찾기 횟수 ({#0066FF}{TOTAL}{/}){nl}{#FF3333}※ 사냥을 통한 유물 상자는 이벤트 버프 적용 중에만 획득 가능합니다.{/}{nl}{#FF3333}※ 일일 제한은 매일 06시 초기화 됩니다.{/}{nl}{#FF3333}※ 전체 유물찾기 횟수는 사냥을 통한 유물 획득 숫자가 포함되지 않습니다.{/}"/>
 		<Class ClassID="302626" ClassName="EVENT_2108_ARCHEOLOGY_SHOP2" Data="{#003399}[유물 이벤트]{/}유물 교환 상점"/>
 		<Class ClassID="302627" ClassName="EVENT_2108_ARCHEOLOGY_SEARCH_7" Data="{#FF0000}※이 지역에서는 더이상 유물을 찾을 수 없을 것 같다.{/}"/>
 		<Class ClassID="302628" ClassName="EVENT_2108_ARCHEOLOGY_SEARCH_8" Data="{#FF0000}※주위를 찾아보면 유물을 발견할 수 있을 것 같다.{nl}더 이동해보자.{/}"/>
