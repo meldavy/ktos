@@ -23560,7 +23560,7 @@ return value;"/>
             </ToolScp>
         </updateEvent>
     </PadSkill>
-    <PadSkill Name="TOSHero_Buff_Avatar_3_Pad" CheckerType="0" Range="50" AllowOverlap="1">
+    <PadSkill Name="TOSHero_Buff_Avatar_3_Pad" CheckerType="0" Range="50" ApplyFlyMon="1" AllowOverlap="1">
         <createEvent>
             <ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
                 <Num Num="10000"/>
@@ -23582,7 +23582,7 @@ return value;"/>
             </ToolScp>
         </createEvent>
     </PadSkill>
-    <PadSkill Name="TOSHero_Buff_Avatar_H_Pad" CheckerType="0" PadHeight="5" Dist="43.622456" Angle="0.20129643" Range="80" UpdateTerm="100" AllowOverlap="1">
+    <PadSkill Name="TOSHero_Buff_Avatar_H_Pad" CheckerType="0" PadHeight="5" Dist="43.622456" Angle="0.20129643" Range="80" UpdateTerm="100" ApplyFlyMon="1" AllowOverlap="1">
         <createEvent>
             <ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
                 <Num Num="10000"/>
@@ -23606,7 +23606,7 @@ return value;"/>
             </ToolScp>
         </updateEvent>
     </PadSkill>
-    <PadSkill Name="TOSHero_Buff_PoisonPad" CheckerType="0" Dist="3.1389942" Angle="-0.92681986" Range="50" AllowOverlap="1">
+    <PadSkill Name="TOSHero_Buff_PoisonPad" CheckerType="0" Dist="3.1389942" Angle="-0.92681986" Range="50" ApplyFlyMon="1" AllowOverlap="1">
         <createEvent>
             <ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
                 <Num Num="11000"/>

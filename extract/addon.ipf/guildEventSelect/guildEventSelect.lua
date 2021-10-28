@@ -1,5 +1,6 @@
 function GUILDEVENTSELECT_ON_INIT(addon, frame)
 	addon:RegisterMsg("GUILD_EVENT_START_REQUEST_MSG_BOX", "ON_GUILD_EVENT_START_REQUEST_MSG_BOX");
+	addon:RegisterMsg("ACCEPT_GUILD_EVENT", "ON_ACCEPT_GUILD_EVENT");
 end
 
 function REQ_OPEN_GUILD_EVENT_PIP()
@@ -52,6 +53,7 @@ function CREATE_GUILD_EVENT_LIST(frame)
 			if cls.GuildLv > 0 and lv >= cls.GuildLv then
 				local ctrlSet = gbox:CreateControlSet("guild_event", cls.ClassName, ui.LEFT, ui.TOP, 0, 0, 0, 0);
 				ctrlSet:SetUserValue("GUILD_EVENT_CTRL", "YES");
+
 				local eventName = GET_CHILD(ctrlSet, "EventName");
 				eventName:SetTextByKey("value", cls.Name);
 
@@ -91,7 +93,16 @@ end
 
 function ACCEPT_GUILD_EVENT(parent, ctrl)
 	local clsID = parent:GetUserIValue("CLSID");
+	-- local cls = GetClassByType("GuildEvent", clsID)
+
+	-- 길드 이벤트 진행 여부 체크
+	control.CustomCommand("REQ_EXIST_GUILD_EVENT_CHECK", clsID)
+	-- 진행중인 퀘스트가 없고 새로 시작할 경우 ON_ACCEPT_GUILD_EVENT 실행
+end
+
+function ON_ACCEPT_GUILD_EVENT(clsID)
 	local cls = GetClassByType("GuildEvent", clsID)
+
 	local msg = ScpArgMsg("DoYouWant{GuildEvent}Start?", "GuildEvent", cls.Name);
 	if clsID == 500 then -- boruta
 		local compare_cls = GetClassByType("GuildEvent", 501);
@@ -106,6 +117,30 @@ function ACCEPT_GUILD_EVENT(parent, ctrl)
 	end
 	local yesScp = string.format("EXEC_GUILD_EVENT(%d)", clsID);
 	ui.MsgBox(msg, yesScp, "None");
+end
+
+-- Dev #97866 길드 퀘스트 바로가기 기능 추가
+function MOVE_GUILD_EVENT(parent, ctrl)
+	local clsID = parent:GetUserIValue("CLSID")
+	
+	-- 맵 이름
+	local cls = GetClassByType("GuildEvent", clsID)
+	if cls == nil then return end
+	local mapClsName = TryGetProp(cls, "StartMap", "None")
+	if mapClsName == "None" then return end
+	local mapCls = GetClassByStrProp("Map", "ClassName", mapClsName);
+	if mapCls == nil then return end
+	local mapName = TryGetProp(mapCls, "Name", "None")
+	if mapName == "None" then return end
+
+	local msg = ScpArgMsg("{StartMap}DoYouWantMove", "StartMap", mapName)
+	local yesScp = string.format("MOVE_GUILD_EVENT_RUN(%d)", clsID);
+
+	ui.MsgBox(msg, yesScp, "None");
+end
+
+function MOVE_GUILD_EVENT_RUN(clsID)
+	control.CustomCommand("GUILD_EVENT_MOVE_MAP", clsID)
 end
 
 function EXEC_GUILD_EVENT(clsID)

@@ -48,7 +48,7 @@ function TOSHERO_INFO_REINFORCE_SET()
             local cls = GetClass('TOSHeroEquipOption', TOSHeroEquipOption)
             local text = TryGetProp(cls, 'EffectDesc', 'None')
 
-            optionText:SetText(string.sub(text, 0, string.len(text)-9))
+            optionText:SetText(text)
 
             optionButton:SetImage(frame:GetUserConfig("OPTION_CHANGE_BUTTON"))
             optionButton:SetVisible(1)

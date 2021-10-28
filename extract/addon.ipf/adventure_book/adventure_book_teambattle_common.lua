@@ -139,109 +139,34 @@ function ADVENTURE_BOOK_JOIN_WORLDPVP(parent, ctrl)
 		ui.SysMsg(ClMsg("HasTeamBattleLeaguePenalty"));
 		return;
 	end
+	
 	local cls = GET_TEAM_BATTLE_CLASS();
 	if nil == cls then
 		ui.SysMsg(ScpArgMsg("DonotOpenPVP"))
 		return;
 	end	
+
     local pvpType = cls.ClassID;
-	if cls.MatchType == "Guild" then
-		local pcparty = session.party.GetPartyInfo(PARTY_GUILD);
-		if pcparty == nil then
-			ui.SysMsg(ScpArgMsg("PleaseJoinGuild"));
-			return;
-		end
-	end
-
-	local isLeader = AM_I_LEADER(PARTY_GUILD);	
-	if cls.MatchType ~= "Guild" or isLeader == 0 then
-		JOIN_WORLDPVP_BY_TYPE(parent, pvpType);
-		return;
-	end
-	local pvpObj = GET_PVP_OBJECT_FOR_TYPE(cls);
-	if nullptr == pvpObj then
-		ui.SysMsg(ScpArgMsg("DonotOpenPVP"))
-		return;
-	end	
-	local myCnt = pvpObj:GetPropValue(cls.ClassName .. "_Cnt", 0);
-	local yesScp = string.format("NOTICE_AND_CHECK_PVP_COUNT(%d, %d)", pvpType, myCnt);	
-	local state = session.worldPVP.GetState();
-	if state == PVP_STATE_PLAYING then
-		ui.MsgBox(ScpArgMsg("ExistsPlayingPVP"), yesScp, "None");	
-	elseif state == PVP_STATE_NONE then
-		local msg = ScpArgMsg("PVPEnter{COUNT}{MAX}",'COUNT',myCnt, 'MAX',cls.MaxPlayCount )
-		ui.MsgBox(msg, yesScp, "None");
-	elseif state == PVP_STATE_FINDING then
-		local msg = ScpArgMsg("AskPVPEnterCancel")
-		ui.MsgBox(msg, yesScp, "None");
-	end
-end
-
-function JOIN_WORLDPVP_BY_TYPE(btn, pvpType)
-	local cls = GET_TEAM_BATTLE_CLASS();
-	local join = btn;
+	if IsBuffApplied(GetMyPCObject(), "UNKNOWN_SANTUARY_PC") == "YES" then 
 	local state = session.worldPVP.GetState();
 	if state == PVP_STATE_NONE then
-		if cls.Party == 0 then
-			if GETMYPCLEVEL() < WORLDPVP_MIN_LEVEL and cls.MatchType ~= "Guild" then
-				local msg = ScpArgMsg("OnlyAbleOver{LEVEL}", "LEVEL", WORLDPVP_MIN_LEVEL);
-				ui.MsgBox(msg);
+			local top_frame_name = parent:GetTopParentFrame():GetName();
+			local parent_name = parent:GetName();
+			local yes_scp = string.format("ADVENTURE_BOOK_JOIN_WORLDPVP_UNKNOWN_SANTUARTY_PC_BUFF_YES_SCP(\"%s\",\"%s\",\"%d\")", top_frame_name, parent_name, pvpType);
+			ui.MsgBox(ClMsg("WorldPVP_JoinCheck_UnknownSantuaryPCBuff"), yes_scp, "None");
 				 return;
 			end
-			if cls.MatchType == "Guild" then
-				local isLeader = AM_I_LEADER(PARTY_GUILD);
-				if isLeader == 1 then
-					worldPVP.ReqJoinPVP(pvpType, PVP_STATE_FINDING);
-					join:SetEnable(0);
-				else
-					local pvpGuid = frame:GetUserIValue("GUILD_PVP_GUID_" .. pvpType);
-					if pvpGuid > 0 then
-						worldPVP.ReqJoinGuildPVP(pvpType, pvpGuid)
-					else
-						ui.SysMsg(ScpArgMsg("DonotPlayGuildBattleYet"))
-						return;
-					end
-				end
-			else
-				worldPVP.ReqJoinPVP(pvpType, PVP_STATE_FINDING);
-				join:SetEnable(0);
 			end
-		else
-			local partyMemberList = session.party.GetPartyMemberList(PARTY_NORMAL);
-			local curCount = 0;
-			if partyMemberList ~= nil then
-				local count = partyMemberList:Count();
-				for i = 0 , count - 1 do
-					local partyMemberInfo = partyMemberList:Element(i);
-					if partyMemberInfo:GetMapID() > 0 then
-						curCount = curCount + 1;
-					end
-				end
-			end
-
-			if curCount < cls.PlayerCnt then
-				local strBuf = string.format(ClMsg("NotEnoughPartyMember(%d/%d)"), curCount, cls.PlayerCnt);
-				ui.SysMsg(strBuf);
+	JOIN_WORLDPVP_BY_TYPE(parent, pvpType);
 				return;
 			end
 		
-			worldPVP.ReqInvitePartyPVP(pvpType);
-			ui.MsgBox(ClMsg("InvitedPartyMembers_WaitAccept"));
+function ADVENTURE_BOOK_JOIN_WORLDPVP_UNKNOWN_SANTUARTY_PC_BUFF_YES_SCP(frame_name, parent_name, pvp_type)
+	local frame = ui.GetFrame(frame_name);
+	local parent = GET_CHILD_RECURSIVELY(frame, parent_name);
+	if parent ~= nil then
+		JOIN_WORLDPVP_BY_TYPE(parent, pvp_type);
 		end
-
-	elseif state == PVP_STATE_FINDING then
-		worldPVP.ReqJoinPVP(pvpType, PVP_STATE_NONE);
-		join:SetEnable(0);
-	elseif state == PVP_STATE_PLAYING then
-
-		if cls.MatchType == "Guild" then
-			local pvpGuid = frame:GetUserIValue("GUILD_PVP_GUID_" .. pvpType);
-			if pvpGuid > 0 then
-				worldPVP.ReqJoinGuildPVP(pvpType, pvpGuid);
-			end
-		end
-	end
-
 end
 
 function ADVENTURE_BOOK_TEAM_BATTLE_STATE_CHANGE(frame, msg, argStr, argNum)
@@ -289,51 +214,51 @@ function ADVENTURE_BOOK_TEAM_BATTLE_SEARCH(parent, ctrl)
 end
 
 function WORLDPVP_PUBLIC_GAME_LIST(frame, msg, argStr, argNum)
-	local isGuildPVP = 0;
-	if 0 == frame:IsVisible() then		
-		isGuildPVP = 1;
-	end
-    local worldPVPFrame = ui.GetFrame('worldpvp');
+	local is_guild_pvp = 0;
+	if frame:IsVisible() == 0 then is_guild_pvp = 1; end
+
 	local bg_observer = GET_CHILD_RECURSIVELY(frame, "bg_observer");
+	local CTRLSET_OFFSET = bg_observer:GetUserConfig('CTRLSET_OFFSET');
+
 	local gbox = bg_observer:GetChild("gbox");
 	gbox:RemoveAllChild();
 
-	local gameIndexList = WORLDPVP_PUBLIC_GAME_LIST_BY_TYPE(isGuildPVP);	
-	local maxCnt = 3;
-	local cnt = math.min(#gameIndexList, maxCnt);
-	
-	local CTRLSET_OFFSET = bg_observer:GetUserConfig('CTRLSET_OFFSET');
-	local controlsetY = 0;
+	local world_pvp_frame = ui.GetFrame("worldpvp");
+	local game_index_list = WORLDPVP_PUBLIC_GAME_LIST_BY_TYPE(is_guild_pvp);
 
-	for i = 1 , cnt do
-		local index = gameIndexList[i];
+	local ctrl_set_y = 0;
+	local max_count = 3;
+	local cnt = math.min(#game_index_list, max_count);
+	for i = 1, cnt do
+		local index = game_index_list[i];
 		if index ~= nil then
 			local info = session.worldPVP.GetPublicGameByIndex(index);
-			local ctrlSet = gbox:CreateControlSet("pvp_observe_ctrlset", "CTRLSET_" .. i, 0, controlsetY);
-			ctrlSet:SetUserValue("GAME_ID", info.guid);
+			local ctrl_set = gbox:CreateControlSet("pvp_observe_ctrlset", "CTRLSET_"..i, 0, ctrl_set_y);
+			if ctrl_set ~= nil then
+				ctrl_set:SetUserValue("GAME_ID", info.guid);
+				local gbox_pc = ctrl_set:GetChild("gbox_pc");
+				local gbox_ctrl_set = ctrl_set:GetChild("gbox");
+				local gbox_whole = ctrl_set:GetChild("gbox_whole");
 
-			local gbox_pc = ctrlSet:GetChild("gbox_pc");
-			local teamVec1 = info:CreateTeamInfo(1);
-			local teamVec2 = info:CreateTeamInfo(2);
-			local gbox_ctrlSet = ctrlSet:GetChild("gbox");
-			local gbox_whole = ctrlSet:GetChild("gbox_whole");
-			local gbox_1 = ctrlSet:GetChild("gbox_1");
-			local gbox_2 = ctrlSet:GetChild("gbox_2");
+				local gbox_1 = ctrl_set:GetChild("gbox_1");
+				local teamVec1 = info:CreateTeamInfo(1);
+				WORLDPVP_PUBLIC_GAME_SET_PCTEAM(frame, gbox_1, teamVec1, 1);
+				SET_VS_NAMES(world_pvp_frame, ctrl_set, 1, WORLDPVP_PUBLIC_GAME_SET_PCTEAM(frame, gbox_1, teamVec1, 1));
 
-			local guildName1 = WORLDPVP_PUBLIC_GAME_SET_PCTEAM(frame, gbox_1, teamVec1, 1);
+				local gbox_2 = ctrl_set:GetChild("gbox_2");
+				local teamVec2 = info:CreateTeamInfo(2);
+				SET_VS_NAMES(world_pvp_frame, ctrl_set, 2, WORLDPVP_PUBLIC_GAME_SET_PCTEAM(frame, gbox_2, teamVec2, 2));		
 
-			SET_VS_NAMES(worldPVPFrame, ctrlSet, 1, WORLDPVP_PUBLIC_GAME_SET_PCTEAM(frame, gbox_1, teamVec1, 1));
-			SET_VS_NAMES(worldPVPFrame, ctrlSet, 2, WORLDPVP_PUBLIC_GAME_SET_PCTEAM(frame, gbox_2, teamVec2, 2));		
+				local height_add_value = 7;
+				local height = math.max(gbox_1:GetHeight(), gbox_2:GetHeight()) + height_add_value;
+				gbox_ctrl_set:Resize(gbox_ctrl_set:GetWidth(), height);
+				
+				local btn = ctrl_set:GetChild("btn");
+				ctrl_set:Resize(ctrl_set:GetWidth(), height + btn:GetHeight() + height_add_value + 45);
+				gbox_whole:Resize(ctrl_set:GetWidth(), height + btn:GetHeight() + height_add_value +50);
 
-			local heightAddValue = 7;
-			local height = math.max(gbox_1:GetHeight(), gbox_2:GetHeight()) + heightAddValue;
-			gbox_ctrlSet:Resize(gbox_ctrlSet:GetWidth(), height);
-
-			local btn = ctrlSet:GetChild("btn");
-			ctrlSet:Resize(ctrlSet:GetWidth(), height + btn:GetHeight() + heightAddValue +45);
-			gbox_whole:Resize(ctrlSet:GetWidth(), height + btn:GetHeight() + heightAddValue +50 );
-
-			controlsetY = controlsetY + ctrlSet:GetHeight() + CTRLSET_OFFSET;
+				ctrl_set_y = ctrl_set_y + ctrl_set:GetHeight() + CTRLSET_OFFSET;
+			end
 		end
 	end
 end

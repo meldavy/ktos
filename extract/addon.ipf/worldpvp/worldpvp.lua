@@ -780,32 +780,32 @@ function WORLDPVP_OBSERVER_GET_TEAM_STR(teamName, jobID)
 end
 
 function WORLDPVP_PUBLIC_GAME_SET_PCTEAM(frame, gbox, teamVec, teamID)
-	local guildName = "None";
+	local guild_name = "None";
 	local count = teamVec:GetCount();
-	for i = 0 , count - 1 do
+	for i = 0, count - 1 do
+		local pc_info = teamVec:GetByIndex(i);
+		guild_name = pc_info:GetGuildName();
+		local pc_set = gbox:CreateOrGetControlSet("pvp_observe_ctrlset_pc_"..teamID, "PC_"..i, 0, 0);
+		if pc_set ~= nil then
+			local lv = GET_CHILD_RECURSIVELY(pc_set, "lv");
+			lv:SetTextByKey("value", pc_info.level);
 
-		local pcInfo = teamVec:GetByIndex(i);
-		guildName = pcInfo:GetGuildName();	
-
-		local pcSet = gbox:CreateOrGetControlSet("pvp_observe_ctrlset_pc_" .. teamID, "PC_" .. i, 0, 0);
-		local lv = pcSet:GetChild("lv");
-		local name = pcSet:GetChild("name");
-		lv:SetTextByKey("value", pcInfo.level);
-		name:SetTextByKey("value", pcInfo:GetFamilyName());
-		local pic_job = GET_CHILD(pcSet, "pic_job");
-		pic_job:SetImage(GET_JOB_ICON(pcInfo.jobID));
-		local pic_rank = GET_CHILD(pcSet, "pic_rank");
-		if pcInfo.rank == 0 then
-			pic_rank:ShowWindow(0);
-		else
-			local txt_rank = pic_rank:GetChild("txt_rank");
-			txt_rank:SetTextByKey("value", pcInfo.rank);
-		end
+			local name = GET_CHILD_RECURSIVELY(pc_set, "name");
+			name:SetTextByKey("value", pc_info:GetFamilyName());
 	
+			local pic_job = GET_CHILD_RECURSIVELY(pc_set, "pic_job");
+			pic_job:SetImage(GET_JOB_ICON(pc_info.jobID));
+			local pic_rank = GET_CHILD_RECURSIVELY(pc_set, "pic_rank");
+			if pc_info.rank == 0 then
+				pic_rank:ShowWindow(0);
+			else
+				local txt_rank = GET_CHILD_RECURSIVELY(pic_rank, "txt_rank");
+				txt_rank:SetTextByKey("value", pc_info.rank);
+			end
+		end
 	end
-
 	GBOX_AUTO_ALIGN(gbox, 0, 0, 0, true, true);
-	return guildName;
+	return guild_name;
 end
 
 function WORLDPVP_PUBLIC_GAME_LIST_BY_TYPE(isGuildPVP)

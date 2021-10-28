@@ -196,6 +196,23 @@ return value"/>
                             </ToolScp>
                         </execList>
                     </Event>
+                    <Event eventName="end_game_timer_start">
+                        <condList>
+                            <ToolScp Scp="MGAME_EVT_COND_SCRIPT_MON" Client="NO" UseSleep="NO">
+                                <MGameObj List="End/1"/>
+                                <Str Str="SCR_SOLO_DUNGEON_AETHER_GEM_START_CHECK"/>
+                                <Str Str="None"/>
+                                <Num Num="0"/>
+                            </ToolScp>
+                        </condList>
+                        <execList>
+                            <ToolScp Scp="MGAME_SET_RAID_TIMER" Client="NO" UseSleep="NO">
+                                <Num Num="60"/>
+                                <Str Str="RemainTimeToEndGame"/>
+                                <Str Str="Yellow"/>
+                            </ToolScp>
+                        </execList>
+                    </Event>
                     <Event execCount="1" eventName="포탈생성">
                         <execList>
                             <ToolScp Scp="MGAME_EVT_SCP_TO_MON_CMD" Client="NO" UseSleep="NO">
@@ -206,11 +223,15 @@ return value"/>
                     </Event>
                     <Event execCount="1" eventName="ReturnCity">
                         <condList>
-                            <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK" Client="NO" UseSleep="NO">
-                                <Num Num="60"/>
+                            <ToolScp Scp="MGAME_EVT_COND_SCRIPT_MON" Client="NO" UseSleep="NO">
+                                <MGameObj List="End/1"/>
+                                <Str Str="SCR_SOLO_DUNGEON_END_TIME_CHECK"/>
+                                <Str Str="TIMER_REMAIN_TIME"/>
+                                <Num Num="0"/>
                             </ToolScp>
                         </condList>
                         <execList>
+                            <ToolScp Scp="MGAME_SET_RAID_TIMER_END" Client="NO" UseSleep="NO"/>
                             <ToolScp Scp="GAME_ST_EVT_EXEC_STAGE_START" Client="NO" UseSleep="NO">
                                 <Str Str="ReTurnCity"/>
                             </ToolScp>

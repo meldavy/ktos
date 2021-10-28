@@ -124,6 +124,7 @@ local function ADD_RARE_OPTION_CTRLSET(box, itemID)
 		if rareOptionText ~= nil then
 			local rareOptionCtrl = box:CreateOrGetControlSet('eachproperty_in_itemrandomreset', 'PROPERTY_CSET_RARE', 0, 0);
 			rareOptionCtrl = AUTO_CAST(rareOptionCtrl);
+			rareOptionCtrl:Resize(box:GetWidth(), rareOptionCtrl:GetWidth())
 			rareOptionCtrl:Move(0, 30);
 			local propertyList = GET_CHILD_RECURSIVELY(rareOptionCtrl, "property_name", "ui::CRichText");
 			propertyList:SetOffset(30, propertyList:GetY());
@@ -131,7 +132,7 @@ local function ADD_RARE_OPTION_CTRLSET(box, itemID)
 			
 			local width = propertyList:GetWidth();
 			local frame = box:GetTopParentFrame();
-			local fixwidth = tonumber(frame:GetUserConfig('FIX_WIDTH'));
+			local fixwidth = box:GetWidth() - 30
 
 			if fixwidth < width then
 				propertyList:SetTextFixWidth(1);

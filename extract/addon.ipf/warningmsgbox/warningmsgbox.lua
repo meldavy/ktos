@@ -548,7 +548,7 @@ end
 
 function _WARNINGMSGBOX_FRAME_OPEN_DELETE_ITEM_YES(parent, ctrl, argStr, argNum)	
 	local input_frame = GET_CHILD_RECURSIVELY(parent, "input")    	
-    if local_item_grade >= 3 and input_frame:GetText() ~= ClMsg('destory_now') then
+    if local_item_grade >= 3 and input_frame:GetText() ~= dic.getTranslatedStr(ClMsg('destory_now')) then
         -- 확인메시지 불일치
 		ui.SysMsg(ClMsg('miss_match_confirm_text'))
         return

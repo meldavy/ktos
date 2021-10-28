@@ -211,6 +211,15 @@ ClassID,NeedCount,ClassName,Group,Category,Name,Desc,Icon,Hidden,DescTitle,Rewar
 6001,1,TeamBattle_GoldRanker,WeekRanker,팀배틀리그,Team Battle 1st,팀 배틀 리그 순위 보상 [매주 월요일 6시 초기화],icon_item_Misc_00021,NO,팀 배틀 리그 1위,,False,TeamBattle_Gold,NO,,,,,YES,NO,Collar_TBL1st
 6002,1,TeamBattle_SilverRanker,WeekRanker,팀배틀리그,Team Battle 2nd,팀 배틀 리그 순위 보상 [매주 월요일 6시 초기화],icon_item_Misc_00021,NO,팀 배틀 리그 2위,,False,TeamBattle_Silver,NO,,,,,YES,NO,Collar_TBL2nd
 6003,1,TeamBattle_BronzeRanker,WeekRanker,팀배틀리그,Team Battle 3rd,팀 배틀 리그 순위 보상 [매주 월요일 6시 초기화],icon_item_Misc_00021,NO,팀 배틀 리그 3위,,False,TeamBattle_Bronze,NO,,,,,YES,NO,Collar_TBL3rd
+6101,100,TeamBattle5vs5_Winner_1,TeamBattle,팀배틀리그,{img plate_achieve_winner_BRONZE 200 25},팀 배틀 리그 5vs5 승리 누적 100회,icon_item_Misc_00021,NO,WINNER,,False,TeamBattle5vs5_Winner_AP,NO,,,,,NO,NO,plate_achieve_winner_BRONZE
+6102,500,TeamBattle5vs5_Winner_2,TeamBattle,팀배틀리그,{img plate_achieve_winner_SILVER 200 25},팀 배틀 리그 5vs5 승리 누적 500회,icon_item_Misc_00021,NO,WINNER,,False,TeamBattle5vs5_Winner_AP,NO,,,,,NO,NO,plate_achieve_winner_SILVER
+6103,1000,TeamBattle5vs5_Winner_3,TeamBattle,팀배틀리그,{img plate_achieve_winner_GOLD 200 25},"팀 배틀 리그 5vs5 승리 누적 1,000회",icon_item_Misc_00021,NO,WINNER,,False,TeamBattle5vs5_Winner_AP,NO,,,,,NO,NO,plate_achieve_winner_GOLD
+6111,50,TeamBattle5vs5_MVP_1,TeamBattle,팀배틀리그,{img plate_achieve_mvp_BRONZE 200 25},팀 배틀 리그 5vs5 MVP 50회,icon_item_Misc_00021,NO,TEAM BATTLE MVP,,False,TeamBattle5vs5_MVP_AP,NO,,,,,NO,NO,plate_achieve_mvp_BRONZE
+6112,200,TeamBattle5vs5_MVP_2,TeamBattle,팀배틀리그,{img plate_achieve_mvp_SILVER 200 25},팀 배틀 리그 5vs5 MVP 200회,icon_item_Misc_00021,NO,TEAM BATTLE MVP,,False,TeamBattle5vs5_MVP_AP,NO,,,,,NO,NO,plate_achieve_mvp_SILVER
+6113,500,TeamBattle5vs5_MVP_3,TeamBattle,팀배틀리그,{img plate_achieve_mvp_GOLD 200 25},팀 배틀 리그 5vs5 MVP 500회,icon_item_Misc_00021,NO,TEAM BATTLE MVP,,False,TeamBattle5vs5_MVP_AP,NO,,,,,NO,NO,plate_achieve_mvp_GOLD
+6121,100,TeamBattle5vs5_TopWarrior_1,TeamBattle,팀배틀리그,{img plate_achieve_topwarrior_BRONZE 200 25},팀 배틀 리그 5vs5 누적 처치 100회,icon_item_Misc_00021,NO,Top Warrior,,False,TeamBattle5vs5_TopWarrior_AP,NO,,,,,NO,NO,plate_achieve_topwarrior_BRONZE
+6122,1000,TeamBattle5vs5_TopWarrior_2,TeamBattle,팀배틀리그,{img plate_achieve_topwarrior_SILVER 200 25},"팀 배틀 리그 5vs5 누적 처치 1,000회",icon_item_Misc_00021,NO,Top Warrior,,False,TeamBattle5vs5_TopWarrior_AP,NO,,,,,NO,NO,plate_achieve_topwarrior_SILVER
+6123,5000,TeamBattle5vs5_TopWarrior_3,TeamBattle,팀배틀리그,{img plate_achieve_topwarrior_GOLD 200 25},"팀 배틀 리그 5vs5 누적 처치 5,000회",icon_item_Misc_00021,NO,Top Warrior,,False,TeamBattle5vs5_TopWarrior_AP,NO,,,,,NO,NO,plate_achieve_topwarrior_GOLD
 7001,1,Journal_1,Journal,모험일지,초일류 모험가,모험일지 랭킹 1위를 달성한 유저,icon_item_Misc_00021,YES,초일류 모험가,,False,Journal_AP1,NO,,,,,YES,NO,
 7002,1,Journal_2,Journal,모험일지,든든한 구원자,모험일지 성장점수 5600점을 달성한 유저에게 주어지는 칭호,icon_item_Misc_00021,NO,든든한 구원자,,True,Journal_AP2,NO,,,,,NO,NO,
 7003,1,Journal_3,Journal,모험일지,거목같은 구원자,모험일지 성장점수 11300점을 달성한 유저에게 주어지는 칭호,icon_item_Misc_00021,NO,거목같은 구원자,,True,Journal_AP3,NO,,,,,NO,NO,
@@ -257,6 +266,7 @@ ClassID,NeedCount,ClassName,Group,Category,Name,Desc,Icon,Hidden,DescTitle,Rewar
 9014,1,WEEKLY_BOSS_RANK_14,AchievePoint,랭킹,Trinity Bear,"주간 보스 [티니 3형제] 계열 별 랭킹 보상으로 지급되는 칭호입니다. ",icon_item_Misc_00021,YES,Trinity Bear,,True,WeeklyRank_14,YES,,,,,,NO,plate_achieve_weeklyrank_14
 9015,1,WEEKLY_BOSS_RANK_15,AchievePoint,랭킹,Insight Commander,"주간 보스 [솔콤] 계열 별 랭킹 보상으로 지급되는 칭호입니다. ",icon_item_Misc_00021,YES,Insight Commander,,True,WeeklyRank_15,YES,,,,,,NO,plate_achieve_weeklyrank_15
 9016,1,WEEKLY_BOSS_RANK_16,AchievePoint,랭킹,Chasing The Rabbit,"주간 보스 [루시] 계열 별 랭킹 보상으로 지급되는 칭호입니다. ",icon_item_Misc_00021,YES,Chasing The Rabbit,,True,WeeklyRank_16,YES,,,,,,NO,plate_achieve_weeklyrank_16
+9017,1,WEEKLY_BOSS_RANK_17,AchievePoint,랭킹,Alter Ego,"주간 보스 [아시오 메이지] 계열 별 랭킹 보상으로 지급되는 칭호입니다. ",icon_item_Misc_00021,YES,Alter Ego,,True,WeeklyRank_17,YES,,,,,,NO,plate_achieve_weeklyrank_17
 100001,10000,Kill_1_50,AchievePoint,킬,사냥꾼,"몬스터를 10,000마리 처치",icon_item_Misc_00021,NO,사냥의 시작,,True,MonKill,YES,,,,,NO,NO,
 100002,1000000,Kill_1_100,AchievePoint,킬,학살자,"몬스터를 1,000,000마리 처치",icon_item_Misc_00021,NO,익숙한 사냥,,True,MonKill,YES,,,,,NO,NO,
 100005,10000,OverKill_1,AchievePoint,오버킬,승부사,"오버킬을 10,000회 달성",icon_item_Misc_00021,NO,전투의 기초,,True,OverKill,YES,,,,,NO,NO,
@@ -354,3 +364,91 @@ ClassID,NeedCount,ClassName,Group,Category,Name,Desc,Icon,Hidden,DescTitle,Rewar
 130012,110,Achieve_RidePet_4_3,AchievePoint,탈 것,석화 면역,성자의 기도소(파티) 110회 완료,icon_item_Misc_00021,NO,석화 면역,,True,Achieve_RidePet_4,NO,,,,,NO,NO,
 140001,1,Achieve_TOSHero_1,AchievePoint,영웅담,이름 없는 영웅,영웅담을 클리어하였습니다.,icon_item_Misc_00021,NO,영웅담 1회 클리어,,True,Achieve_TOSHero_1,NO,,,,,NO,NO,
 140002,150,Achieve_TOSHero_2,AchievePoint,영웅담,{img Collar_TOSHero_1 30 30}{img Collar_TOSHero_2 30 30}{img Collar_TOSHero_3 30 30}{img Collar_TOSHero_4 30 30}{img Collar_TOSHero_5 30 30}{img Collar_TOSHero_6 30 30},영웅담을 150회 클리어 했습니다.,icon_item_Misc_00021,NO,영웅담 150회 클리어,,True,Achieve_TOSHero_1,NO,,,,,NO,NO,
+160001,1,WEEKLY_BOSS_RANK_CLASS_1,AchievePoint,랭킹,하이랜더,주간 보스 레이드 클래스 랭킹 1등 칭호,icon_item_Misc_00021,YES,하이랜더,,True,WeeklyRankClass_1,YES,,,,,,NO,plate_achieve_Master_of_Highlander
+160002,1,WEEKLY_BOSS_RANK_CLASS_2,AchievePoint,랭킹,펠타스타,주간 보스 레이드 클래스 랭킹 1등 칭호,icon_item_Misc_00021,YES,펠타스타,,True,WeeklyRankClass_2,YES,,,,,,NO,plate_achieve_Master_of_Peltasta
+160003,1,WEEKLY_BOSS_RANK_CLASS_3,AchievePoint,랭킹,하플라이트,주간 보스 레이드 클래스 랭킹 1등 칭호,icon_item_Misc_00021,YES,하플라이트,,True,WeeklyRankClass_3,YES,,,,,,NO,plate_achieve_Master_of_Hoplite
+160004,1,WEEKLY_BOSS_RANK_CLASS_4,AchievePoint,랭킹,바바리안,주간 보스 레이드 클래스 랭킹 1등 칭호,icon_item_Misc_00021,YES,바바리안,,True,WeeklyRankClass_4,YES,,,,,,NO,plate_achieve_Master_of_Barbarian
+160005,1,WEEKLY_BOSS_RANK_CLASS_5,AchievePoint,랭킹,캐터프랙트,주간 보스 레이드 클래스 랭킹 1등 칭호,icon_item_Misc_00021,YES,캐터프랙트,,True,WeeklyRankClass_5,YES,,,,,,NO,plate_achieve_Master_of_Cataphract
+160006,1,WEEKLY_BOSS_RANK_CLASS_6,AchievePoint,랭킹,도펠죌트너,주간 보스 레이드 클래스 랭킹 1등 칭호,icon_item_Misc_00021,YES,도펠죌트너,,True,WeeklyRankClass_6,YES,,,,,,NO,plate_achieve_Master_of_Doppelsoeldner
+160007,1,WEEKLY_BOSS_RANK_CLASS_7,AchievePoint,랭킹,로델레로,주간 보스 레이드 클래스 랭킹 1등 칭호,icon_item_Misc_00021,YES,로델레로,,True,WeeklyRankClass_7,YES,,,,,,NO,plate_achieve_Master_of_Rodelero
+160008,1,WEEKLY_BOSS_RANK_CLASS_8,AchievePoint,랭킹,무르밀로,주간 보스 레이드 클래스 랭킹 1등 칭호,icon_item_Misc_00021,YES,무르밀로,,True,WeeklyRankClass_8,YES,,,,,,NO,plate_achieve_Master_of_Murmillo
+160009,1,WEEKLY_BOSS_RANK_CLASS_9,AchievePoint,랭킹,펜서,주간 보스 레이드 클래스 랭킹 1등 칭호,icon_item_Misc_00021,YES,펜서,,True,WeeklyRankClass_9,YES,,,,,,NO,plate_achieve_Master_of_Fencer
+160010,1,WEEKLY_BOSS_RANK_CLASS_10,AchievePoint,랭킹,드라군,주간 보스 레이드 클래스 랭킹 1등 칭호,icon_item_Misc_00021,YES,드라군,,True,WeeklyRankClass_10,YES,,,,,,NO,plate_achieve_Master_of_Dragoon
+160011,1,WEEKLY_BOSS_RANK_CLASS_11,AchievePoint,랭킹,템플러,주간 보스 레이드 클래스 랭킹 1등 칭호,icon_item_Misc_00021,YES,템플러,,True,WeeklyRankClass_11,YES,,,,,,NO,plate_achieve_Master_of_Templar
+160012,1,WEEKLY_BOSS_RANK_CLASS_12,AchievePoint,랭킹,랜서,주간 보스 레이드 클래스 랭킹 1등 칭호,icon_item_Misc_00021,YES,랜서,,True,WeeklyRankClass_12,YES,,,,,,NO,plate_achieve_Master_of_Lancer
+160013,1,WEEKLY_BOSS_RANK_CLASS_13,AchievePoint,랭킹,마타도르,주간 보스 레이드 클래스 랭킹 1등 칭호,icon_item_Misc_00021,YES,마타도르,,True,WeeklyRankClass_13,YES,,,,,,NO,plate_achieve_Master_of_Matador
+160014,1,WEEKLY_BOSS_RANK_CLASS_14,AchievePoint,랭킹,낙무아이,주간 보스 레이드 클래스 랭킹 1등 칭호,icon_item_Misc_00021,YES,낙무아이,,True,WeeklyRankClass_14,YES,,,,,,NO,plate_achieve_Master_of_Nak_Muay
+160015,1,WEEKLY_BOSS_RANK_CLASS_15,AchievePoint,랭킹,레티아리이,주간 보스 레이드 클래스 랭킹 1등 칭호,icon_item_Misc_00021,YES,레티아리이,,True,WeeklyRankClass_15,YES,,,,,,NO,plate_achieve_Master_of_Retiarii
+160016,1,WEEKLY_BOSS_RANK_CLASS_16,AchievePoint,랭킹,하카펠,주간 보스 레이드 클래스 랭킹 1등 칭호,icon_item_Misc_00021,YES,하카펠,,True,WeeklyRankClass_16,YES,,,,,,NO,plate_achieve_Master_of_Hackapell
+160017,1,WEEKLY_BOSS_RANK_CLASS_17,AchievePoint,랭킹,매화검수,주간 보스 레이드 클래스 랭킹 1등 칭호,icon_item_Misc_00021,YES,매화검수,,True,WeeklyRankClass_17,YES,,,,,,NO,plate_achieve_Master_of_Blossom_Blader
+160018,1,WEEKLY_BOSS_RANK_CLASS_18,AchievePoint,랭킹,파이로맨서,주간 보스 레이드 클래스 랭킹 1등 칭호,icon_item_Misc_00021,YES,파이로맨서,,True,WeeklyRankClass_18,YES,,,,,,NO,plate_achieve_Master_of_Pyromancer
+160019,1,WEEKLY_BOSS_RANK_CLASS_19,AchievePoint,랭킹,크리오맨서,주간 보스 레이드 클래스 랭킹 1등 칭호,icon_item_Misc_00021,YES,크리오맨서,,True,WeeklyRankClass_19,YES,,,,,,NO,plate_achieve_Master_of_Cryomancer
+160020,1,WEEKLY_BOSS_RANK_CLASS_20,AchievePoint,랭킹,사이코키노,주간 보스 레이드 클래스 랭킹 1등 칭호,icon_item_Misc_00021,YES,사이코키노,,True,WeeklyRankClass_20,YES,,,,,,NO,plate_achieve_Master_of_Psychokino
+160021,1,WEEKLY_BOSS_RANK_CLASS_21,AchievePoint,랭킹,알케미스트,주간 보스 레이드 클래스 랭킹 1등 칭호,icon_item_Misc_00021,YES,알케미스트,,True,WeeklyRankClass_21,YES,,,,,,NO,plate_achieve_Master_of_Alchemist
+160022,1,WEEKLY_BOSS_RANK_CLASS_22,AchievePoint,랭킹,소서러,주간 보스 레이드 클래스 랭킹 1등 칭호,icon_item_Misc_00021,YES,소서러,,True,WeeklyRankClass_22,YES,,,,,,NO,plate_achieve_Master_of_Sorcerer
+160023,1,WEEKLY_BOSS_RANK_CLASS_23,AchievePoint,랭킹,크로노맨서,주간 보스 레이드 클래스 랭킹 1등 칭호,icon_item_Misc_00021,YES,크로노맨서,,True,WeeklyRankClass_23,YES,,,,,,NO,plate_achieve_Master_of_Chronomancer
+160024,1,WEEKLY_BOSS_RANK_CLASS_24,AchievePoint,랭킹,네크로맨서,주간 보스 레이드 클래스 랭킹 1등 칭호,icon_item_Misc_00021,YES,네크로맨서,,True,WeeklyRankClass_24,YES,,,,,,NO,plate_achieve_Master_of_Necromancer
+160025,1,WEEKLY_BOSS_RANK_CLASS_25,AchievePoint,랭킹,엘리멘탈리스트,주간 보스 레이드 클래스 랭킹 1등 칭호,icon_item_Misc_00021,YES,엘리멘탈리스트,,True,WeeklyRankClass_25,YES,,,,,,NO,plate_achieve_Master_of_Elementalist
+160026,1,WEEKLY_BOSS_RANK_CLASS_26,AchievePoint,랭킹,세이지,주간 보스 레이드 클래스 랭킹 1등 칭호,icon_item_Misc_00021,YES,세이지,,True,WeeklyRankClass_26,YES,,,,,,NO,plate_achieve_Master_of_Sage
+160027,1,WEEKLY_BOSS_RANK_CLASS_27,AchievePoint,랭킹,워록,주간 보스 레이드 클래스 랭킹 1등 칭호,icon_item_Misc_00021,YES,워록,,True,WeeklyRankClass_27,YES,,,,,,NO,plate_achieve_Master_of_Warlock
+160028,1,WEEKLY_BOSS_RANK_CLASS_28,AchievePoint,랭킹,페더풋,주간 보스 레이드 클래스 랭킹 1등 칭호,icon_item_Misc_00021,YES,페더풋,,True,WeeklyRankClass_28,YES,,,,,,NO,plate_achieve_Master_of_Featherfoot
+160029,1,WEEKLY_BOSS_RANK_CLASS_29,AchievePoint,랭킹,룬캐스터,주간 보스 레이드 클래스 랭킹 1등 칭호,icon_item_Misc_00021,YES,룬캐스터,,True,WeeklyRankClass_29,YES,,,,,,NO,plate_achieve_Master_of_Rune_Caster
+160030,1,WEEKLY_BOSS_RANK_CLASS_30,AchievePoint,랭킹,섀도우맨서,주간 보스 레이드 클래스 랭킹 1등 칭호,icon_item_Misc_00021,YES,섀도우맨서,,True,WeeklyRankClass_30,YES,,,,,,NO,plate_achieve_Master_of_Shadowmancer
+160031,1,WEEKLY_BOSS_RANK_CLASS_31,AchievePoint,랭킹,음양사,주간 보스 레이드 클래스 랭킹 1등 칭호,icon_item_Misc_00021,YES,음양사,,True,WeeklyRankClass_31,YES,,,,,,NO,plate_achieve_Master_of_Onmyoji
+160032,1,WEEKLY_BOSS_RANK_CLASS_32,AchievePoint,랭킹,도사,주간 보스 레이드 클래스 랭킹 1등 칭호,icon_item_Misc_00021,YES,도사,,True,WeeklyRankClass_32,YES,,,,,,NO,plate_achieve_Master_of_Taoist
+160033,1,WEEKLY_BOSS_RANK_CLASS_33,AchievePoint,랭킹,보코르,주간 보스 레이드 클래스 랭킹 1등 칭호,icon_item_Misc_00021,YES,보코르,,True,WeeklyRankClass_33,YES,,,,,,NO,plate_achieve_Master_of_Bokor
+160034,1,WEEKLY_BOSS_RANK_CLASS_34,AchievePoint,랭킹,테라맨서,주간 보스 레이드 클래스 랭킹 1등 칭호,icon_item_Misc_00021,YES,테라맨서,,True,WeeklyRankClass_34,YES,,,,,,NO,plate_achieve_Master_of_Terramancer
+160035,1,WEEKLY_BOSS_RANK_CLASS_35,AchievePoint,랭킹,헌터,주간 보스 레이드 클래스 랭킹 1등 칭호,icon_item_Misc_00021,YES,헌터,,True,WeeklyRankClass_35,YES,,,,,,NO,plate_achieve_Master_of_Hunter
+160036,1,WEEKLY_BOSS_RANK_CLASS_36,AchievePoint,랭킹,쿼렐슈터,주간 보스 레이드 클래스 랭킹 1등 칭호,icon_item_Misc_00021,YES,쿼렐슈터,,True,WeeklyRankClass_36,YES,,,,,,NO,plate_achieve_Master_of_Quarrel_Shooter
+160037,1,WEEKLY_BOSS_RANK_CLASS_37,AchievePoint,랭킹,레인저,주간 보스 레이드 클래스 랭킹 1등 칭호,icon_item_Misc_00021,YES,레인저,,True,WeeklyRankClass_37,YES,,,,,,NO,plate_achieve_Master_of_Ranger
+160038,1,WEEKLY_BOSS_RANK_CLASS_38,AchievePoint,랭킹,새퍼,주간 보스 레이드 클래스 랭킹 1등 칭호,icon_item_Misc_00021,YES,새퍼,,True,WeeklyRankClass_38,YES,,,,,,NO,plate_achieve_Master_of_Sapper
+160039,1,WEEKLY_BOSS_RANK_CLASS_39,AchievePoint,랭킹,무고사,주간 보스 레이드 클래스 랭킹 1등 칭호,icon_item_Misc_00021,YES,무고사,,True,WeeklyRankClass_39,YES,,,,,,NO,plate_achieve_Master_of_Wugushi
+160040,1,WEEKLY_BOSS_RANK_CLASS_40,AchievePoint,랭킹,플레쳐,주간 보스 레이드 클래스 랭킹 1등 칭호,icon_item_Misc_00021,YES,플레쳐,,True,WeeklyRankClass_40,YES,,,,,,NO,plate_achieve_Master_of_Fletcher
+160041,1,WEEKLY_BOSS_RANK_CLASS_41,AchievePoint,랭킹,파이드 파이퍼,주간 보스 레이드 클래스 랭킹 1등 칭호,icon_item_Misc_00021,YES,파이드 파이퍼,,True,WeeklyRankClass_41,YES,,,,,,NO,plate_achieve_Master_of_Pied_Piper
+160042,1,WEEKLY_BOSS_RANK_CLASS_42,AchievePoint,랭킹,감정사,주간 보스 레이드 클래스 랭킹 1등 칭호,icon_item_Misc_00021,YES,감정사,,True,WeeklyRankClass_42,YES,,,,,,NO,plate_achieve_Master_of_Appraiser
+160043,1,WEEKLY_BOSS_RANK_CLASS_43,AchievePoint,랭킹,응사,주간 보스 레이드 클래스 랭킹 1등 칭호,icon_item_Misc_00021,YES,응사,,True,WeeklyRankClass_43,YES,,,,,,NO,plate_achieve_Master_of_Falconer
+160044,1,WEEKLY_BOSS_RANK_CLASS_44,AchievePoint,랭킹,캐노니어,주간 보스 레이드 클래스 랭킹 1등 칭호,icon_item_Misc_00021,YES,캐노니어,,True,WeeklyRankClass_44,YES,,,,,,NO,plate_achieve_Master_of_Cannoneer
+160045,1,WEEKLY_BOSS_RANK_CLASS_45,AchievePoint,랭킹,머스킷티어,주간 보스 레이드 클래스 랭킹 1등 칭호,icon_item_Misc_00021,YES,머스킷티어,,True,WeeklyRankClass_45,YES,,,,,,NO,plate_achieve_Master_of_Musketeer
+160046,1,WEEKLY_BOSS_RANK_CLASS_46,AchievePoint,랭킹,메르겐,주간 보스 레이드 클래스 랭킹 1등 칭호,icon_item_Misc_00021,YES,메르겐,,True,WeeklyRankClass_46,YES,,,,,,NO,plate_achieve_Master_of_Mergen
+160047,1,WEEKLY_BOSS_RANK_CLASS_47,AchievePoint,랭킹,매트로스,주간 보스 레이드 클래스 랭킹 1등 칭호,icon_item_Misc_00021,YES,매트로스,,True,WeeklyRankClass_47,YES,,,,,,NO,plate_achieve_Master_of_Matross
+160048,1,WEEKLY_BOSS_RANK_CLASS_48,AchievePoint,랭킹,산포,주간 보스 레이드 클래스 랭킹 1등 칭호,icon_item_Misc_00021,YES,산포,,True,WeeklyRankClass_48,YES,,,,,,NO,plate_achieve_Master_of_Tiger_Hunter
+160049,1,WEEKLY_BOSS_RANK_CLASS_49,AchievePoint,랭킹,아발리스터,주간 보스 레이드 클래스 랭킹 1등 칭호,icon_item_Misc_00021,YES,아발리스터,,True,WeeklyRankClass_49,YES,,,,,,NO,plate_achieve_Master_of_Arbalester
+160050,1,WEEKLY_BOSS_RANK_CLASS_50,AchievePoint,랭킹,아퀴버지어,주간 보스 레이드 클래스 랭킹 1등 칭호,icon_item_Misc_00021,YES,아퀴버지어,,True,WeeklyRankClass_50,YES,,,,,,NO,plate_achieve_Master_of_Arquebusier
+160051,1,WEEKLY_BOSS_RANK_CLASS_51,AchievePoint,랭킹,프리스트,주간 보스 레이드 클래스 랭킹 1등 칭호,icon_item_Misc_00021,YES,프리스트,,True,WeeklyRankClass_51,YES,,,,,,NO,plate_achieve_Master_of_Priest
+160052,1,WEEKLY_BOSS_RANK_CLASS_52,AchievePoint,랭킹,크리비,주간 보스 레이드 클래스 랭킹 1등 칭호,icon_item_Misc_00021,YES,크리비,,True,WeeklyRankClass_52,YES,,,,,,NO,plate_achieve_Master_of_Krivis
+160053,1,WEEKLY_BOSS_RANK_CLASS_53,AchievePoint,랭킹,드루이드,주간 보스 레이드 클래스 랭킹 1등 칭호,icon_item_Misc_00021,YES,드루이드,,True,WeeklyRankClass_53,YES,,,,,,NO,plate_achieve_Master_of_Druid
+160054,1,WEEKLY_BOSS_RANK_CLASS_54,AchievePoint,랭킹,사두,주간 보스 레이드 클래스 랭킹 1등 칭호,icon_item_Misc_00021,YES,사두,,True,WeeklyRankClass_54,YES,,,,,,NO,plate_achieve_Master_of_Sadhu
+160055,1,WEEKLY_BOSS_RANK_CLASS_55,AchievePoint,랭킹,딥디르비,주간 보스 레이드 클래스 랭킹 1등 칭호,icon_item_Misc_00021,YES,딥디르비,,True,WeeklyRankClass_55,YES,,,,,,NO,plate_achieve_Master_of_Dievdirbys
+160056,1,WEEKLY_BOSS_RANK_CLASS_56,AchievePoint,랭킹,오라클,주간 보스 레이드 클래스 랭킹 1등 칭호,icon_item_Misc_00021,YES,오라클,,True,WeeklyRankClass_56,YES,,,,,,NO,plate_achieve_Master_of_Oracle
+160057,1,WEEKLY_BOSS_RANK_CLASS_57,AchievePoint,랭킹,몽크,주간 보스 레이드 클래스 랭킹 1등 칭호,icon_item_Misc_00021,YES,몽크,,True,WeeklyRankClass_57,YES,,,,,,NO,plate_achieve_Master_of_Monk
+160058,1,WEEKLY_BOSS_RANK_CLASS_58,AchievePoint,랭킹,파드너,주간 보스 레이드 클래스 랭킹 1등 칭호,icon_item_Misc_00021,YES,파드너,,True,WeeklyRankClass_58,YES,,,,,,NO,plate_achieve_Master_of_Pardoner
+160059,1,WEEKLY_BOSS_RANK_CLASS_59,AchievePoint,랭킹,팔라딘,주간 보스 레이드 클래스 랭킹 1등 칭호,icon_item_Misc_00021,YES,팔라딘,,True,WeeklyRankClass_59,YES,,,,,,NO,plate_achieve_Master_of_Paladin
+160060,1,WEEKLY_BOSS_RANK_CLASS_60,AchievePoint,랭킹,채플린,주간 보스 레이드 클래스 랭킹 1등 칭호,icon_item_Misc_00021,YES,채플린,,True,WeeklyRankClass_60,YES,,,,,,NO,plate_achieve_Master_of_Chaplain
+160061,1,WEEKLY_BOSS_RANK_CLASS_61,AchievePoint,랭킹,플레이그닥터,주간 보스 레이드 클래스 랭킹 1등 칭호,icon_item_Misc_00021,YES,플레이그닥터,,True,WeeklyRankClass_61,YES,,,,,,NO,plate_achieve_Master_of_Plague_Doctor
+160062,1,WEEKLY_BOSS_RANK_CLASS_62,AchievePoint,랭킹,카발리스트,주간 보스 레이드 클래스 랭킹 1등 칭호,icon_item_Misc_00021,YES,카발리스트,,True,WeeklyRankClass_62,YES,,,,,,NO,plate_achieve_Master_of_Kabbalist
+160063,1,WEEKLY_BOSS_RANK_CLASS_63,AchievePoint,랭킹,인퀴지터,주간 보스 레이드 클래스 랭킹 1등 칭호,icon_item_Misc_00021,YES,인퀴지터,,True,WeeklyRankClass_63,YES,,,,,,NO,plate_achieve_Master_of_Inquisitor
+160064,1,WEEKLY_BOSS_RANK_CLASS_64,AchievePoint,랭킹,무녀,주간 보스 레이드 클래스 랭킹 1등 칭호,icon_item_Misc_00021,YES,무녀,,True,WeeklyRankClass_64,YES,,,,,,NO,plate_achieve_Master_of_Miko
+160065,1,WEEKLY_BOSS_RANK_CLASS_65,AchievePoint,랭킹,칸누시,주간 보스 레이드 클래스 랭킹 1등 칭호,icon_item_Misc_00021,YES,칸누시,,True,WeeklyRankClass_65,YES,,,,,,NO,plate_achieve_Master_of_kannushi
+160066,1,WEEKLY_BOSS_RANK_CLASS_66,AchievePoint,랭킹,질럿,주간 보스 레이드 클래스 랭킹 1등 칭호,icon_item_Misc_00021,YES,질럿,,True,WeeklyRankClass_66,YES,,,,,,NO,plate_achieve_Master_of_Zealot
+160067,1,WEEKLY_BOSS_RANK_CLASS_67,AchievePoint,랭킹,엑소시스트,주간 보스 레이드 클래스 랭킹 1등 칭호,icon_item_Misc_00021,YES,엑소시스트,,True,WeeklyRankClass_67,YES,,,,,,NO,plate_achieve_Master_of_Exorcist
+160068,1,WEEKLY_BOSS_RANK_CLASS_68,AchievePoint,랭킹,크루세이더,주간 보스 레이드 클래스 랭킹 1등 칭호,icon_item_Misc_00021,YES,크루세이더,,True,WeeklyRankClass_68,YES,,,,,,NO,plate_achieve_Master_of_Crusader
+160069,1,WEEKLY_BOSS_RANK_CLASS_69,AchievePoint,랭킹,스카우트,주간 보스 레이드 클래스 랭킹 1등 칭호,icon_item_Misc_00021,YES,스카우트,,True,WeeklyRankClass_69,YES,,,,,,NO,plate_achieve_Master_of_Scout
+160070,1,WEEKLY_BOSS_RANK_CLASS_70,AchievePoint,랭킹,어쌔신,주간 보스 레이드 클래스 랭킹 1등 칭호,icon_item_Misc_00021,YES,어쌔신,,True,WeeklyRankClass_70,YES,,,,,,NO,plate_achieve_Master_of_Assassin
+160071,1,WEEKLY_BOSS_RANK_CLASS_71,AchievePoint,랭킹,아웃로,주간 보스 레이드 클래스 랭킹 1등 칭호,icon_item_Misc_00021,YES,아웃로,,True,WeeklyRankClass_71,YES,,,,,,NO,plate_achieve_Master_of_Outlaw
+160072,1,WEEKLY_BOSS_RANK_CLASS_72,AchievePoint,랭킹,스콰이어,주간 보스 레이드 클래스 랭킹 1등 칭호,icon_item_Misc_00021,YES,스콰이어,,True,WeeklyRankClass_72,YES,,,,,,NO,plate_achieve_Master_of_Squire
+160073,1,WEEKLY_BOSS_RANK_CLASS_73,AchievePoint,랭킹,커세어,주간 보스 레이드 클래스 랭킹 1등 칭호,icon_item_Misc_00021,YES,커세어,,True,WeeklyRankClass_73,YES,,,,,,NO,plate_achieve_Master_of_Corsair
+160074,1,WEEKLY_BOSS_RANK_CLASS_74,AchievePoint,랭킹,시노비,주간 보스 레이드 클래스 랭킹 1등 칭호,icon_item_Misc_00021,YES,시노비,,True,WeeklyRankClass_74,YES,,,,,,NO,plate_achieve_Master_of_Shinobi
+160075,1,WEEKLY_BOSS_RANK_CLASS_75,AchievePoint,랭킹,쏘마터지,주간 보스 레이드 클래스 랭킹 1등 칭호,icon_item_Misc_00021,YES,쏘마터지,,True,WeeklyRankClass_75,YES,,,,,,NO,plate_achieve_Master_of_Thaumaturge
+160076,1,WEEKLY_BOSS_RANK_CLASS_76,AchievePoint,랭킹,인챈터,주간 보스 레이드 클래스 랭킹 1등 칭호,icon_item_Misc_00021,YES,인챈터,,True,WeeklyRankClass_76,YES,,,,,,NO,plate_achieve_Master_of_Enchanter
+160077,1,WEEKLY_BOSS_RANK_CLASS_77,AchievePoint,랭킹,링커,주간 보스 레이드 클래스 랭킹 1등 칭호,icon_item_Misc_00021,YES,링커,,True,WeeklyRankClass_77,YES,,,,,,NO,plate_achieve_Master_of_Linker
+160078,1,WEEKLY_BOSS_RANK_CLASS_78,AchievePoint,랭킹,로그,주간 보스 레이드 클래스 랭킹 1등 칭호,icon_item_Misc_00021,YES,로그,,True,WeeklyRankClass_78,YES,,,,,,NO,plate_achieve_Master_of_Rogue
+160079,1,WEEKLY_BOSS_RANK_CLASS_79,AchievePoint,랭킹,슈바르츠라이터,주간 보스 레이드 클래스 랭킹 1등 칭호,icon_item_Misc_00021,YES,슈바르츠라이터,,True,WeeklyRankClass_79,YES,,,,,,NO,plate_achieve_Master_of_Schwarzer_Reiter
+160080,1,WEEKLY_BOSS_RANK_CLASS_80,AchievePoint,랭킹,불릿 마커,주간 보스 레이드 클래스 랭킹 1등 칭호,icon_item_Misc_00021,YES,불릿 마커,,True,WeeklyRankClass_80,YES,,,,,,NO,plate_achieve_Master_of_Bullet_Marker
+160081,1,WEEKLY_BOSS_RANK_CLASS_81,AchievePoint,랭킹,아르디티,주간 보스 레이드 클래스 랭킹 1등 칭호,icon_item_Misc_00021,YES,아르디티,,True,WeeklyRankClass_81,YES,,,,,,NO,plate_achieve_Master_of_Ardito
+160082,1,WEEKLY_BOSS_RANK_CLASS_82,AchievePoint,랭킹,셰리프,주간 보스 레이드 클래스 랭킹 1등 칭호,icon_item_Misc_00021,YES,셰리프,,True,WeeklyRankClass_82,YES,,,,,,NO,plate_achieve_Master_of_Sheriff
+160083,1,WEEKLY_BOSS_RANK_CLASS_83,AchievePoint,랭킹,랑다,주간 보스 레이드 클래스 랭킹 1등 칭호,icon_item_Misc_00021,YES,랑다,,True,WeeklyRankClass_83,YES,,,,,,NO,plate_achieve_Master_of_Rangda
+160084,1,WEEKLY_BOSS_RANK_CLASS_84,AchievePoint,랭킹,클로운,주간 보스 레이드 클래스 랭킹 1등 칭호,icon_item_Misc_00021,YES,클로운,,True,WeeklyRankClass_84,YES,,,,,,NO,plate_achieve_Master_of_Clown
+160085,1,WEEKLY_BOSS_RANK_CLASS_85,AchievePoint,랭킹,소드맨,주간 보스 레이드 클래스 랭킹 1등 칭호,icon_item_Misc_00021,YES,소드맨,,True,WeeklyRankClass_85,YES,,,,,,NO,plate_achieve_Master_of_Warrior
+160086,1,WEEKLY_BOSS_RANK_CLASS_86,AchievePoint,랭킹,아처,주간 보스 레이드 클래스 랭킹 1등 칭호,icon_item_Misc_00021,YES,아처,,True,WeeklyRankClass_86,YES,,,,,,NO,plate_achieve_Master_of_Archer
+160087,1,WEEKLY_BOSS_RANK_CLASS_87,AchievePoint,랭킹,클레릭,주간 보스 레이드 클래스 랭킹 1등 칭호,icon_item_Misc_00021,YES,클레릭,,True,WeeklyRankClass_87,YES,,,,,,NO,plate_achieve_Master_of_Cleric
+160088,1,WEEKLY_BOSS_RANK_CLASS_88,AchievePoint,랭킹,위저드,주간 보스 레이드 클래스 랭킹 1등 칭호,icon_item_Misc_00021,YES,위저드,,True,WeeklyRankClass_88,YES,,,,,,NO,plate_achieve_Master_of_Wizard

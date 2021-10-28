@@ -256,6 +256,9 @@ function ICORRELEASE_CTRL_REG_TARGETITEM(ctrlSet, itemID)
 	labelline:ShowWindow(0)
 	local property_gbox = GET_CHILD(tooltip_equip_property_CSet,'property_gbox','ui::CGroupBox')
 
+	tooltip_equip_property_CSet:Resize(gBox:GetWidth(), tooltip_equip_property_CSet:GetHeight())
+	property_gbox:Resize(gBox:GetWidth(), property_gbox:GetHeight())
+	
 	local inner_yPos = 0
 
 	local randomOptionProp = {}

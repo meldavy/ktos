@@ -1828,6 +1828,14 @@ function EXEC_CHATMACRO(index)
 	if macro.macro == "" then
 		return;
 	end
+	
+	local msg = REPLACE_EMOTICON(macro.macro)
+	local findStart, findEnd = string.find(msg, "/gn ");	
+	if findStart == 1 and findEnd == 4 then
+		local aidx = session.loginInfo.GetAID();
+		GetPlayerClaims("GUILD_NOTICE_CHECK", aidx, msg);
+		return;
+	end
 
 	ui.Chat(REPLACE_EMOTICON(macro.macro));
 end

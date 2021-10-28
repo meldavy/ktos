@@ -204,7 +204,8 @@ function ITEMOPTIONRELOCATE_REG_SRC_ITEM(frame, itemID)
 
 	local itemObj = GetIES(invItem:GetObject());
 	if relocateType == 'AWAKE' then
-		if itemObj.IsAwaken == 0 then
+		if TryGetProp(itemObj, 'IsAwaken', 0) == 0 then
+			ui.SysMsg(ClMsg('IT_ISNT_REINFORCEABLE_ITEM'));
 			return;
 		end
 		

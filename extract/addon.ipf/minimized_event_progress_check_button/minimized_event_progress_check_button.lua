@@ -1,4 +1,4 @@
-function MINIMIZED_EVENT_PROGRESS_CHECK_BUTTON_ON_INIT(addon, frame)
+﻿function MINIMIZED_EVENT_PROGRESS_CHECK_BUTTON_ON_INIT(addon, frame)
 	addon:RegisterMsg("GAME_START", "MINIMIZED_EVENT_PROGRESS_CHECK_BUTTON_INIT");
 end
 
@@ -7,6 +7,14 @@ function MINIMIZED_EVENT_PROGRESS_CHECK_BUTTON_INIT(frame)
 	btn1_gb:ShowWindow(0);
 	local btn2_gb = GET_CHILD(frame, "btn2_gb");
 	btn2_gb:ShowWindow(0);
+
+	local mapprop = session.GetCurrentMapProp();
+	local mapCls = GetClassByType("Map", mapprop.type);
+	local housingPlaceClass = GetClass("Housing_Place", mapCls.ClassName);
+	if housingPlaceClass ~= nil then
+		local margin = frame:GetMargin()
+		frame:SetMargin(margin.left, 225, margin.right, margin.bottom)
+	end
 
 	MINIMIZED_EVENT_PROGRESS_CHECK_BUTTON1(frame, btn1_gb);
 	MINIMIZED_EVENT_PROGRESS_CHECK_BUTTON2(frame, btn2_gb);

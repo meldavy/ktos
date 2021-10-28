@@ -66,7 +66,19 @@
 					<Str Str="ITEM_LEGEND_EZERA"/>
 					<Num Num="1"/>
 					<Num Num="0"/>
-					<Num Num="25000" UseFunc="1" FuncTxt="local value = 25000; local isDragonPower = GetExProp(self, 'ITEM_DRAGON_POWER') if tonumber(isDragonPower) >= 1 then value = 35000 end return value"/>
+					<Num Num="25000" UseFunc="1" FuncTxt="    local value = 25000;
+    local dragonPower = 10000
+    if IsPVPServer(self) == 1 then
+        value = 12000
+        dragonPower = 5000
+    end
+
+    local isDragonPower = GetExProp(self, 'ITEM_DRAGON_POWER')
+    if tonumber(isDragonPower) >= 1 then
+        value = value + dragonPower
+    end
+    
+    return value"/>
 					<Num Num="1"/>
 					<Num Num="100"/>
 					<Num Num="0"/>
@@ -100,7 +112,12 @@
 					<Str Str="ITEM_LEGEND_KARYS"/>
 					<Num Num="1"/>
 					<Num Num="0"/>
-					<Num Num="30000"/>
+					<Num Num="30000" UseFunc="1" FuncTxt="    local value = 30000
+    if IsPVPServer(self) == 1 then
+        value = 15000
+    end
+    
+    return value"/>
 					<Num Num="1"/>
 					<Num Num="100"/>
 					<Num Num="0"/>

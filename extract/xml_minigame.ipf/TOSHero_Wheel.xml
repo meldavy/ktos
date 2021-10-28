@@ -130,6 +130,15 @@
                                 <Num Num="0"/>
                             </ToolScp>
                         </execList>
+                        <listSet>
+                            <ToolScp Scp="MGAME_LIST_PC_ALL" Client="NO" UseSleep="NO"/>
+                        </listSet>
+                        <listExec>
+                            <ToolScp Scp="MLIST_E_RUNSCRIPT" Client="NO" UseSleep="NO">
+                                <Str Str="TOSHERO_PAINBARRIER_BUFFADD"/>
+                                <Num Num="0"/>
+                            </ToolScp>
+                        </listExec>
                     </Event>
                     <Event eventName="Ready_check">
                         <execList>
@@ -149,7 +158,44 @@
                     </Event>
                     <Event execCount="1" eventName="RemoveStageBuff">
                         <execList>
-                            <ToolScp Scp="TOSHERO_GEN_MON_SET" Client="NO" UseSleep="NO">
+                            <ToolScp Scp="GAME_ST_EVT_EXEC_VALUE" Client="NO" UseSleep="NO">
+                                <Str Str="TOSHero_Wheel_SPOT_1"/>
+                                <Num Num="0"/>
+                            </ToolScp>
+                            <ToolScp Scp="GAME_ST_EVT_EXEC_VALUE" Client="NO" UseSleep="NO">
+                                <Str Str="TOSHero_Wheel_SPOT_2"/>
+                                <Num Num="0"/>
+                            </ToolScp>
+                            <ToolScp Scp="GAME_ST_EVT_EXEC_VALUE" Client="NO" UseSleep="NO">
+                                <Str Str="TOSHero_Wheel_SPOT_3"/>
+                                <Num Num="0"/>
+                            </ToolScp>
+                            <ToolScp Scp="GAME_ST_EVT_EXEC_VALUE" Client="NO" UseSleep="NO">
+                                <Str Str="TOSHero_Wheel_SPOT_4"/>
+                                <Num Num="0"/>
+                            </ToolScp>
+                            <ToolScp Scp="GAME_ST_EVT_EXEC_VALUE" Client="NO" UseSleep="NO">
+                                <Str Str="TOSHero_Wheel_SPOT_5"/>
+                                <Num Num="0"/>
+                            </ToolScp>
+                            <ToolScp Scp="GAME_ST_EVT_EXEC_VALUE" Client="NO" UseSleep="NO">
+                                <Str Str="TOSHero_Wheel_SPOT_6"/>
+                                <Num Num="0"/>
+                            </ToolScp>
+                            <ToolScp Scp="GAME_ST_EVT_EXEC_VALUE" Client="NO" UseSleep="NO">
+                                <Str Str="TOSHero_Wheel_SPOT_7"/>
+                                <Num Num="0"/>
+                            </ToolScp>
+                            <ToolScp Scp="GAME_ST_EVT_EXEC_VALUE" Client="NO" UseSleep="NO">
+                                <Str Str="TOSHero_Wheel_SPOT_8"/>
+                                <Num Num="0"/>
+                            </ToolScp>
+                            <ToolScp Scp="GAME_ST_EVT_EXEC_VALUE" Client="NO" UseSleep="NO">
+                                <Str Str="TOSHero_Wheel_IsChaos"/>
+                                <Num Num="0"/>
+                            </ToolScp>
+                            <ToolScp Scp="GAME_ST_EVT_EXEC_VALUE" Client="NO" UseSleep="NO">
+                                <Str Str="IsBossGen"/>
                                 <Num Num="0"/>
                             </ToolScp>
                         </execList>
@@ -249,10 +295,10 @@
                     <Obj Type="Monster" MonType="59639" Pos="-617.50#1.00#270.65" autoGen="0" objectKey="32"/>
                 </ObjList>
                 <StageEvents>
-                    <Event execCount="10" eventName="MON1" execWithStart="0" isEnabled="0">
+                    <Event execCount="6" eventName="MON1" execWithStart="0" isEnabled="0">
                         <condList>
                             <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK_START" Client="NO" UseSleep="NO">
-                                <Num Num="3"/>
+                                <Num Num="5"/>
                             </ToolScp>
                         </condList>
                         <execList>
@@ -263,10 +309,10 @@
                             </ToolScp>
                         </execList>
                     </Event>
-                    <Event execCount="10" eventName="MON2" execWithStart="0" isEnabled="0">
+                    <Event execCount="6" eventName="MON2" execWithStart="0" isEnabled="0">
                         <condList>
                             <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK_START" Client="NO" UseSleep="NO">
-                                <Num Num="3"/>
+                                <Num Num="5"/>
                             </ToolScp>
                         </condList>
                         <execList>
@@ -277,10 +323,10 @@
                             </ToolScp>
                         </execList>
                     </Event>
-                    <Event execCount="10" eventName="MON3" execWithStart="0" isEnabled="0">
+                    <Event execCount="6" eventName="MON3" execWithStart="0" isEnabled="0">
                         <condList>
                             <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK_START" Client="NO" UseSleep="NO">
-                                <Num Num="3"/>
+                                <Num Num="5"/>
                             </ToolScp>
                         </condList>
                         <execList>
@@ -291,10 +337,10 @@
                             </ToolScp>
                         </execList>
                     </Event>
-                    <Event execCount="10" eventName="MON4" execWithStart="0" isEnabled="0">
+                    <Event execCount="6" eventName="MON4" execWithStart="0" isEnabled="0">
                         <condList>
                             <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK_START" Client="NO" UseSleep="NO">
-                                <Num Num="3"/>
+                                <Num Num="5"/>
                             </ToolScp>
                         </condList>
                         <execList>
@@ -305,10 +351,10 @@
                             </ToolScp>
                         </execList>
                     </Event>
-                    <Event execCount="10" eventName="MON5" execWithStart="0" isEnabled="0">
+                    <Event execCount="6" eventName="MON5" execWithStart="0" isEnabled="0">
                         <condList>
                             <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK_START" Client="NO" UseSleep="NO">
-                                <Num Num="3"/>
+                                <Num Num="5"/>
                             </ToolScp>
                         </condList>
                         <execList>
@@ -319,10 +365,10 @@
                             </ToolScp>
                         </execList>
                     </Event>
-                    <Event execCount="10" eventName="MON6" execWithStart="0" isEnabled="0">
+                    <Event execCount="6" eventName="MON6" execWithStart="0" isEnabled="0">
                         <condList>
                             <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK_START" Client="NO" UseSleep="NO">
-                                <Num Num="3"/>
+                                <Num Num="5"/>
                             </ToolScp>
                         </condList>
                         <execList>
@@ -333,10 +379,10 @@
                             </ToolScp>
                         </execList>
                     </Event>
-                    <Event execCount="10" eventName="MON7" execWithStart="0" isEnabled="0">
+                    <Event execCount="6" eventName="MON7" execWithStart="0" isEnabled="0">
                         <condList>
                             <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK_START" Client="NO" UseSleep="NO">
-                                <Num Num="3"/>
+                                <Num Num="5"/>
                             </ToolScp>
                         </condList>
                         <execList>
@@ -347,10 +393,10 @@
                             </ToolScp>
                         </execList>
                     </Event>
-                    <Event execCount="10" eventName="MON8" execWithStart="0" isEnabled="0">
+                    <Event execCount="6" eventName="MON8" execWithStart="0" isEnabled="0">
                         <condList>
                             <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK_START" Client="NO" UseSleep="NO">
-                                <Num Num="3"/>
+                                <Num Num="5"/>
                             </ToolScp>
                         </condList>
                         <execList>
@@ -361,94 +407,16 @@
                             </ToolScp>
                         </execList>
                     </Event>
-                    <Event execMS="0" execCount="1" eventName="GenControl1">
-                        <execList>
-                            <ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
-                                <Str Str="MON1"/>
-                            </ToolScp>
-                        </execList>
-                    </Event>
-                    <Event execMS="0" execCount="1" eventName="GenControl2">
+                    <Event execMS="0" execCount="8" eventName="GenControl">
                         <condList>
-                            <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK" Client="NO" UseSleep="NO">
+                            <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK_START" Client="NO" UseSleep="NO">
                                 <Num Num="20"/>
                             </ToolScp>
                         </condList>
                         <execList>
-                            <ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
-                                <Str Str="MON2"/>
-                            </ToolScp>
-                        </execList>
-                    </Event>
-                    <Event execMS="0" execCount="1" eventName="GenControl3">
-                        <condList>
-                            <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK" Client="NO" UseSleep="NO">
-                                <Num Num="40"/>
-                            </ToolScp>
-                        </condList>
-                        <execList>
-                            <ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
-                                <Str Str="MON3"/>
-                            </ToolScp>
-                        </execList>
-                    </Event>
-                    <Event execMS="0" execCount="1" eventName="GenControl4">
-                        <condList>
-                            <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK" Client="NO" UseSleep="NO">
-                                <Num Num="60"/>
-                            </ToolScp>
-                        </condList>
-                        <execList>
-                            <ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
-                                <Str Str="MON4"/>
-                            </ToolScp>
-                        </execList>
-                    </Event>
-                    <Event execMS="0" execCount="1" eventName="GenControl5">
-                        <condList>
-                            <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK" Client="NO" UseSleep="NO">
-                                <Num Num="80"/>
-                            </ToolScp>
-                        </condList>
-                        <execList>
-                            <ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
-                                <Str Str="MON5"/>
-                            </ToolScp>
-                        </execList>
-                    </Event>
-                    <Event execMS="100000" execCount="1" eventName="GenControl6">
-                        <condList>
-                            <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK" Client="NO" UseSleep="NO">
-                                <Num Num="100"/>
-                            </ToolScp>
-                        </condList>
-                        <execList>
-                            <ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
-                                <Str Str="MON6"/>
-                            </ToolScp>
-                        </execList>
-                    </Event>
-                    <Event execMS="0" execCount="1" eventName="GenControl7">
-                        <condList>
-                            <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK" Client="NO" UseSleep="NO">
-                                <Num Num="120"/>
-                            </ToolScp>
-                        </condList>
-                        <execList>
-                            <ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
-                                <Str Str="MON7"/>
-                            </ToolScp>
-                        </execList>
-                    </Event>
-                    <Event execMS="0" execCount="1" eventName="GenControl8">
-                        <condList>
-                            <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK" Client="NO" UseSleep="NO">
-                                <Num Num="140"/>
-                            </ToolScp>
-                        </condList>
-                        <execList>
-                            <ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
-                                <Str Str="MON8"/>
+                            <ToolScp Scp="TOSHERO_RAN_SPOT_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
+                                <Str Str="MON"/>
+                                <Num Num="8"/>
                             </ToolScp>
                         </execList>
                     </Event>
@@ -587,13 +555,13 @@
                     <Obj Type="Monster" MonType="59639" Pos="-243.75#1.00#-612.69" autoGen="0" objectKey="29"/>
                     <Obj Type="Monster" MonType="59639" Pos="-604.18#1.00#-274.33" autoGen="0" objectKey="30"/>
                     <Obj Type="Monster" MonType="59639" Pos="-617.50#1.00#270.65" autoGen="0" objectKey="31"/>
-                    <Obj Type="Monster" MonType="59616" Pos="1.45#1.00#-3.66" angle="-46" genCount="1" genTime="1" autoGen="0" objectKey="32" tendency="1"/>
+                    <Obj Type="Monster" MonType="59616" Pos="1.45#1.00#-3.66" angle="-46" genCount="1" genTime="1" objectKey="32" tendency="1"/>
                 </ObjList>
                 <StageEvents>
-                    <Event execCount="10" eventName="MON1" execWithStart="0" isEnabled="0">
+                    <Event execCount="6" eventName="MON1" execWithStart="0" isEnabled="0">
                         <condList>
                             <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK_START" Client="NO" UseSleep="NO">
-                                <Num Num="3"/>
+                                <Num Num="5"/>
                             </ToolScp>
                         </condList>
                         <execList>
@@ -604,10 +572,10 @@
                             </ToolScp>
                         </execList>
                     </Event>
-                    <Event execCount="10" eventName="MON2" execWithStart="0" isEnabled="0">
+                    <Event execCount="6" eventName="MON2" execWithStart="0" isEnabled="0">
                         <condList>
                             <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK_START" Client="NO" UseSleep="NO">
-                                <Num Num="3"/>
+                                <Num Num="5"/>
                             </ToolScp>
                         </condList>
                         <execList>
@@ -618,10 +586,10 @@
                             </ToolScp>
                         </execList>
                     </Event>
-                    <Event execCount="10" eventName="MON3" execWithStart="0" isEnabled="0">
+                    <Event execCount="6" eventName="MON3" execWithStart="0" isEnabled="0">
                         <condList>
                             <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK_START" Client="NO" UseSleep="NO">
-                                <Num Num="3"/>
+                                <Num Num="5"/>
                             </ToolScp>
                         </condList>
                         <execList>
@@ -632,10 +600,10 @@
                             </ToolScp>
                         </execList>
                     </Event>
-                    <Event execCount="10" eventName="MON4" execWithStart="0" isEnabled="0">
+                    <Event execCount="6" eventName="MON4" execWithStart="0" isEnabled="0">
                         <condList>
                             <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK_START" Client="NO" UseSleep="NO">
-                                <Num Num="3"/>
+                                <Num Num="5"/>
                             </ToolScp>
                         </condList>
                         <execList>
@@ -646,10 +614,10 @@
                             </ToolScp>
                         </execList>
                     </Event>
-                    <Event execCount="10" eventName="MON5" execWithStart="0" isEnabled="0">
+                    <Event execCount="6" eventName="MON5" execWithStart="0" isEnabled="0">
                         <condList>
                             <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK_START" Client="NO" UseSleep="NO">
-                                <Num Num="3"/>
+                                <Num Num="5"/>
                             </ToolScp>
                         </condList>
                         <execList>
@@ -660,10 +628,10 @@
                             </ToolScp>
                         </execList>
                     </Event>
-                    <Event execCount="10" eventName="MON6" execWithStart="0" isEnabled="0">
+                    <Event execCount="6" eventName="MON6" execWithStart="0" isEnabled="0">
                         <condList>
                             <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK_START" Client="NO" UseSleep="NO">
-                                <Num Num="3"/>
+                                <Num Num="5"/>
                             </ToolScp>
                         </condList>
                         <execList>
@@ -674,10 +642,10 @@
                             </ToolScp>
                         </execList>
                     </Event>
-                    <Event execCount="10" eventName="MON7" execWithStart="0" isEnabled="0">
+                    <Event execCount="6" eventName="MON7" execWithStart="0" isEnabled="0">
                         <condList>
                             <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK_START" Client="NO" UseSleep="NO">
-                                <Num Num="3"/>
+                                <Num Num="5"/>
                             </ToolScp>
                         </condList>
                         <execList>
@@ -688,111 +656,15 @@
                             </ToolScp>
                         </execList>
                     </Event>
-                    <Event execCount="10" eventName="MON8" execWithStart="0" isEnabled="0">
+                    <Event execCount="6" eventName="MON8" execWithStart="0" isEnabled="0">
                         <condList>
                             <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK_START" Client="NO" UseSleep="NO">
-                                <Num Num="3"/>
+                                <Num Num="5"/>
                             </ToolScp>
                         </condList>
                         <execList>
                             <ToolScp Scp="MGAME_EVT_EXEC_CREMON" Client="NO" UseSleep="NO">
                                 <MGameObjIndex List="Stage2/7/Stage2/15/Stage2/23"/>
-                                <Num Num="1"/>
-                                <Num Num="0"/>
-                            </ToolScp>
-                        </execList>
-                    </Event>
-                    <Event execMS="0" execCount="1" eventName="GenControl1">
-                        <execList>
-                            <ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
-                                <Str Str="MON1"/>
-                            </ToolScp>
-                        </execList>
-                    </Event>
-                    <Event execMS="0" execCount="1" eventName="GenControl2">
-                        <condList>
-                            <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK" Client="NO" UseSleep="NO">
-                                <Num Num="20"/>
-                            </ToolScp>
-                        </condList>
-                        <execList>
-                            <ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
-                                <Str Str="MON2"/>
-                            </ToolScp>
-                        </execList>
-                    </Event>
-                    <Event execMS="0" execCount="1" eventName="GenControl3">
-                        <condList>
-                            <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK" Client="NO" UseSleep="NO">
-                                <Num Num="40"/>
-                            </ToolScp>
-                        </condList>
-                        <execList>
-                            <ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
-                                <Str Str="MON3"/>
-                            </ToolScp>
-                        </execList>
-                    </Event>
-                    <Event execMS="0" execCount="1" eventName="GenControl4">
-                        <condList>
-                            <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK" Client="NO" UseSleep="NO">
-                                <Num Num="60"/>
-                            </ToolScp>
-                        </condList>
-                        <execList>
-                            <ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
-                                <Str Str="MON4"/>
-                            </ToolScp>
-                        </execList>
-                    </Event>
-                    <Event execMS="0" execCount="1" eventName="GenControl5">
-                        <condList>
-                            <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK" Client="NO" UseSleep="NO">
-                                <Num Num="80"/>
-                            </ToolScp>
-                        </condList>
-                        <execList>
-                            <ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
-                                <Str Str="MON5"/>
-                            </ToolScp>
-                        </execList>
-                    </Event>
-                    <Event execMS="100000" execCount="1" eventName="GenControl6">
-                        <condList>
-                            <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK" Client="NO" UseSleep="NO">
-                                <Num Num="100"/>
-                            </ToolScp>
-                        </condList>
-                        <execList>
-                            <ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
-                                <Str Str="MON6"/>
-                            </ToolScp>
-                        </execList>
-                    </Event>
-                    <Event execMS="0" execCount="1" eventName="GenControl7">
-                        <condList>
-                            <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK" Client="NO" UseSleep="NO">
-                                <Num Num="120"/>
-                            </ToolScp>
-                        </condList>
-                        <execList>
-                            <ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
-                                <Str Str="MON7"/>
-                            </ToolScp>
-                        </execList>
-                    </Event>
-                    <Event execMS="0" execCount="1" eventName="GenControl8">
-                        <condList>
-                            <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK" Client="NO" UseSleep="NO">
-                                <Num Num="140"/>
-                            </ToolScp>
-                        </condList>
-                        <execList>
-                            <ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
-                                <Str Str="MON8"/>
-                            </ToolScp>
-                            <ToolScp Scp="MGAME_EVT_EXEC_CREMON" Client="NO" UseSleep="NO">
-                                <MGameObjIndex List="Stage2/32"/>
                                 <Num Num="1"/>
                                 <Num Num="0"/>
                             </ToolScp>
@@ -885,6 +757,19 @@
                             </ToolScp>
                         </execList>
                     </Event>
+                    <Event execMS="0" execCount="8" eventName="GenControl">
+                        <condList>
+                            <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK_START" Client="NO" UseSleep="NO">
+                                <Num Num="20"/>
+                            </ToolScp>
+                        </condList>
+                        <execList>
+                            <ToolScp Scp="TOSHERO_RAN_SPOT_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
+                                <Str Str="MON"/>
+                                <Num Num="8"/>
+                            </ToolScp>
+                        </execList>
+                    </Event>
                 </StageEvents>
             </Stage>
             <Stage Name="Stage3" AutoStart="0">
@@ -895,7 +780,7 @@
                     <ToolScp Scp="MGAME_SET_STYLE_INFO" Client="NO" UseSleep="NO">
                         <Str Str="Stage3_mission"/>
                         <Str Str="text"/>
-                        <Str Str="보스 등장 전에 모든 몬스터 처치"/>
+                        <Str Str="보스 등장 시 남은 몬스터 20 미만"/>
                         <Num Num="1"/>
                         <Num Num="1"/>
                     </ToolScp>
@@ -936,10 +821,10 @@
                     <Obj Type="Monster" MonType="59639" Pos="-617.50#1.00#270.65" autoGen="0" objectKey="32"/>
                 </ObjList>
                 <StageEvents>
-                    <Event execCount="10" eventName="MON1" execWithStart="0" isEnabled="0">
+                    <Event execCount="6" eventName="MON1" execWithStart="0" isEnabled="0">
                         <condList>
                             <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK_START" Client="NO" UseSleep="NO">
-                                <Num Num="3"/>
+                                <Num Num="5"/>
                             </ToolScp>
                         </condList>
                         <execList>
@@ -950,10 +835,10 @@
                             </ToolScp>
                         </execList>
                     </Event>
-                    <Event execCount="10" eventName="MON2" execWithStart="0" isEnabled="0">
+                    <Event execCount="6" eventName="MON2" execWithStart="0" isEnabled="0">
                         <condList>
                             <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK_START" Client="NO" UseSleep="NO">
-                                <Num Num="3"/>
+                                <Num Num="5"/>
                             </ToolScp>
                         </condList>
                         <execList>
@@ -964,10 +849,10 @@
                             </ToolScp>
                         </execList>
                     </Event>
-                    <Event execCount="10" eventName="MON3" execWithStart="0" isEnabled="0">
+                    <Event execCount="6" eventName="MON3" execWithStart="0" isEnabled="0">
                         <condList>
                             <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK_START" Client="NO" UseSleep="NO">
-                                <Num Num="3"/>
+                                <Num Num="5"/>
                             </ToolScp>
                         </condList>
                         <execList>
@@ -978,10 +863,10 @@
                             </ToolScp>
                         </execList>
                     </Event>
-                    <Event execCount="10" eventName="MON4" execWithStart="0" isEnabled="0">
+                    <Event execCount="6" eventName="MON4" execWithStart="0" isEnabled="0">
                         <condList>
                             <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK_START" Client="NO" UseSleep="NO">
-                                <Num Num="3"/>
+                                <Num Num="5"/>
                             </ToolScp>
                         </condList>
                         <execList>
@@ -992,10 +877,10 @@
                             </ToolScp>
                         </execList>
                     </Event>
-                    <Event execCount="10" eventName="MON5" execWithStart="0" isEnabled="0">
+                    <Event execCount="6" eventName="MON5" execWithStart="0" isEnabled="0">
                         <condList>
                             <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK_START" Client="NO" UseSleep="NO">
-                                <Num Num="3"/>
+                                <Num Num="5"/>
                             </ToolScp>
                         </condList>
                         <execList>
@@ -1006,10 +891,10 @@
                             </ToolScp>
                         </execList>
                     </Event>
-                    <Event execCount="10" eventName="MON6" execWithStart="0" isEnabled="0">
+                    <Event execCount="6" eventName="MON6" execWithStart="0" isEnabled="0">
                         <condList>
                             <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK_START" Client="NO" UseSleep="NO">
-                                <Num Num="3"/>
+                                <Num Num="5"/>
                             </ToolScp>
                         </condList>
                         <execList>
@@ -1020,10 +905,10 @@
                             </ToolScp>
                         </execList>
                     </Event>
-                    <Event execCount="10" eventName="MON7" execWithStart="0" isEnabled="0">
+                    <Event execCount="6" eventName="MON7" execWithStart="0" isEnabled="0">
                         <condList>
                             <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK_START" Client="NO" UseSleep="NO">
-                                <Num Num="3"/>
+                                <Num Num="5"/>
                             </ToolScp>
                         </condList>
                         <execList>
@@ -1034,10 +919,10 @@
                             </ToolScp>
                         </execList>
                     </Event>
-                    <Event execCount="10" eventName="MON8" execWithStart="0" isEnabled="0">
+                    <Event execCount="6" eventName="MON8" execWithStart="0" isEnabled="0">
                         <condList>
                             <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK_START" Client="NO" UseSleep="NO">
-                                <Num Num="3"/>
+                                <Num Num="5"/>
                             </ToolScp>
                         </condList>
                         <execList>
@@ -1045,97 +930,6 @@
                                 <MGameObjIndex List="Stage3/7/Stage3/15/Stage3/23"/>
                                 <Num Num="1"/>
                                 <Num Num="0"/>
-                            </ToolScp>
-                        </execList>
-                    </Event>
-                    <Event execMS="0" execCount="1" eventName="GenControl1">
-                        <execList>
-                            <ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
-                                <Str Str="MON1"/>
-                            </ToolScp>
-                        </execList>
-                    </Event>
-                    <Event execMS="0" execCount="1" eventName="GenControl2">
-                        <condList>
-                            <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK" Client="NO" UseSleep="NO">
-                                <Num Num="20"/>
-                            </ToolScp>
-                        </condList>
-                        <execList>
-                            <ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
-                                <Str Str="MON2"/>
-                            </ToolScp>
-                        </execList>
-                    </Event>
-                    <Event execMS="0" execCount="1" eventName="GenControl3">
-                        <condList>
-                            <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK" Client="NO" UseSleep="NO">
-                                <Num Num="40"/>
-                            </ToolScp>
-                        </condList>
-                        <execList>
-                            <ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
-                                <Str Str="MON3"/>
-                            </ToolScp>
-                        </execList>
-                    </Event>
-                    <Event execMS="0" execCount="1" eventName="GenControl4">
-                        <condList>
-                            <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK" Client="NO" UseSleep="NO">
-                                <Num Num="60"/>
-                            </ToolScp>
-                        </condList>
-                        <execList>
-                            <ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
-                                <Str Str="MON4"/>
-                            </ToolScp>
-                        </execList>
-                    </Event>
-                    <Event execMS="0" execCount="1" eventName="GenControl5">
-                        <condList>
-                            <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK" Client="NO" UseSleep="NO">
-                                <Num Num="80"/>
-                            </ToolScp>
-                        </condList>
-                        <execList>
-                            <ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
-                                <Str Str="MON5"/>
-                            </ToolScp>
-                        </execList>
-                    </Event>
-                    <Event execMS="100000" execCount="1" eventName="GenControl6">
-                        <condList>
-                            <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK" Client="NO" UseSleep="NO">
-                                <Num Num="100"/>
-                            </ToolScp>
-                        </condList>
-                        <execList>
-                            <ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
-                                <Str Str="MON6"/>
-                            </ToolScp>
-                        </execList>
-                    </Event>
-                    <Event execMS="0" execCount="1" eventName="GenControl7">
-                        <condList>
-                            <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK" Client="NO" UseSleep="NO">
-                                <Num Num="120"/>
-                            </ToolScp>
-                        </condList>
-                        <execList>
-                            <ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
-                                <Str Str="MON7"/>
-                            </ToolScp>
-                        </execList>
-                    </Event>
-                    <Event execMS="0" execCount="1" eventName="GenControl8">
-                        <condList>
-                            <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK" Client="NO" UseSleep="NO">
-                                <Num Num="140"/>
-                            </ToolScp>
-                        </condList>
-                        <execList>
-                            <ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
-                                <Str Str="MON8"/>
                             </ToolScp>
                         </execList>
                     </Event>
@@ -1251,6 +1045,19 @@
                             </ToolScp>
                         </execList>
                     </Event>
+                    <Event execMS="0" execCount="8" eventName="GenControl">
+                        <condList>
+                            <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK_START" Client="NO" UseSleep="NO">
+                                <Num Num="20"/>
+                            </ToolScp>
+                        </condList>
+                        <execList>
+                            <ToolScp Scp="TOSHERO_RAN_SPOT_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
+                                <Str Str="MON"/>
+                                <Num Num="8"/>
+                            </ToolScp>
+                        </execList>
+                    </Event>
                 </StageEvents>
             </Stage>
             <Stage Name="Stage4" AutoStart="0">
@@ -1302,10 +1109,10 @@
                     <Obj Type="Monster" MonType="59639" Pos="-617.50#1.00#270.65" autoGen="0" objectKey="32"/>
                 </ObjList>
                 <StageEvents>
-                    <Event execCount="10" eventName="MON1" execWithStart="0" isEnabled="0">
+                    <Event execCount="6" eventName="MON1" execWithStart="0" isEnabled="0">
                         <condList>
                             <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK_START" Client="NO" UseSleep="NO">
-                                <Num Num="3"/>
+                                <Num Num="5"/>
                             </ToolScp>
                         </condList>
                         <execList>
@@ -1316,10 +1123,10 @@
                             </ToolScp>
                         </execList>
                     </Event>
-                    <Event execCount="10" eventName="MON2" execWithStart="0" isEnabled="0">
+                    <Event execCount="6" eventName="MON2" execWithStart="0" isEnabled="0">
                         <condList>
                             <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK_START" Client="NO" UseSleep="NO">
-                                <Num Num="3"/>
+                                <Num Num="5"/>
                             </ToolScp>
                         </condList>
                         <execList>
@@ -1330,10 +1137,10 @@
                             </ToolScp>
                         </execList>
                     </Event>
-                    <Event execCount="10" eventName="MON3" execWithStart="0" isEnabled="0">
+                    <Event execCount="6" eventName="MON3" execWithStart="0" isEnabled="0">
                         <condList>
                             <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK_START" Client="NO" UseSleep="NO">
-                                <Num Num="3"/>
+                                <Num Num="5"/>
                             </ToolScp>
                         </condList>
                         <execList>
@@ -1344,10 +1151,10 @@
                             </ToolScp>
                         </execList>
                     </Event>
-                    <Event execCount="10" eventName="MON4" execWithStart="0" isEnabled="0">
+                    <Event execCount="6" eventName="MON4" execWithStart="0" isEnabled="0">
                         <condList>
                             <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK_START" Client="NO" UseSleep="NO">
-                                <Num Num="3"/>
+                                <Num Num="5"/>
                             </ToolScp>
                         </condList>
                         <execList>
@@ -1358,10 +1165,10 @@
                             </ToolScp>
                         </execList>
                     </Event>
-                    <Event execCount="10" eventName="MON5" execWithStart="0" isEnabled="0">
+                    <Event execCount="6" eventName="MON5" execWithStart="0" isEnabled="0">
                         <condList>
                             <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK_START" Client="NO" UseSleep="NO">
-                                <Num Num="3"/>
+                                <Num Num="5"/>
                             </ToolScp>
                         </condList>
                         <execList>
@@ -1372,10 +1179,10 @@
                             </ToolScp>
                         </execList>
                     </Event>
-                    <Event execCount="10" eventName="MON6" execWithStart="0" isEnabled="0">
+                    <Event execCount="6" eventName="MON6" execWithStart="0" isEnabled="0">
                         <condList>
                             <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK_START" Client="NO" UseSleep="NO">
-                                <Num Num="3"/>
+                                <Num Num="5"/>
                             </ToolScp>
                         </condList>
                         <execList>
@@ -1386,10 +1193,10 @@
                             </ToolScp>
                         </execList>
                     </Event>
-                    <Event execCount="10" eventName="MON7" execWithStart="0" isEnabled="0">
+                    <Event execCount="6" eventName="MON7" execWithStart="0" isEnabled="0">
                         <condList>
                             <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK_START" Client="NO" UseSleep="NO">
-                                <Num Num="3"/>
+                                <Num Num="5"/>
                             </ToolScp>
                         </condList>
                         <execList>
@@ -1400,10 +1207,10 @@
                             </ToolScp>
                         </execList>
                     </Event>
-                    <Event execCount="10" eventName="MON8" execWithStart="0" isEnabled="0">
+                    <Event execCount="6" eventName="MON8" execWithStart="0" isEnabled="0">
                         <condList>
                             <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK_START" Client="NO" UseSleep="NO">
-                                <Num Num="3"/>
+                                <Num Num="5"/>
                             </ToolScp>
                         </condList>
                         <execList>
@@ -1411,97 +1218,6 @@
                                 <MGameObjIndex List="Stage4/7/Stage4/15/Stage4/23"/>
                                 <Num Num="1"/>
                                 <Num Num="0"/>
-                            </ToolScp>
-                        </execList>
-                    </Event>
-                    <Event execMS="0" execCount="1" eventName="GenControl1">
-                        <execList>
-                            <ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
-                                <Str Str="MON1"/>
-                            </ToolScp>
-                        </execList>
-                    </Event>
-                    <Event execMS="0" execCount="1" eventName="GenControl2">
-                        <condList>
-                            <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK" Client="NO" UseSleep="NO">
-                                <Num Num="20"/>
-                            </ToolScp>
-                        </condList>
-                        <execList>
-                            <ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
-                                <Str Str="MON2"/>
-                            </ToolScp>
-                        </execList>
-                    </Event>
-                    <Event execMS="0" execCount="1" eventName="GenControl3">
-                        <condList>
-                            <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK" Client="NO" UseSleep="NO">
-                                <Num Num="40"/>
-                            </ToolScp>
-                        </condList>
-                        <execList>
-                            <ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
-                                <Str Str="MON3"/>
-                            </ToolScp>
-                        </execList>
-                    </Event>
-                    <Event execMS="0" execCount="1" eventName="GenControl4">
-                        <condList>
-                            <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK" Client="NO" UseSleep="NO">
-                                <Num Num="60"/>
-                            </ToolScp>
-                        </condList>
-                        <execList>
-                            <ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
-                                <Str Str="MON4"/>
-                            </ToolScp>
-                        </execList>
-                    </Event>
-                    <Event execMS="0" execCount="1" eventName="GenControl5">
-                        <condList>
-                            <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK" Client="NO" UseSleep="NO">
-                                <Num Num="80"/>
-                            </ToolScp>
-                        </condList>
-                        <execList>
-                            <ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
-                                <Str Str="MON5"/>
-                            </ToolScp>
-                        </execList>
-                    </Event>
-                    <Event execMS="100000" execCount="1" eventName="GenControl6">
-                        <condList>
-                            <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK" Client="NO" UseSleep="NO">
-                                <Num Num="100"/>
-                            </ToolScp>
-                        </condList>
-                        <execList>
-                            <ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
-                                <Str Str="MON6"/>
-                            </ToolScp>
-                        </execList>
-                    </Event>
-                    <Event execMS="0" execCount="1" eventName="GenControl7">
-                        <condList>
-                            <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK" Client="NO" UseSleep="NO">
-                                <Num Num="120"/>
-                            </ToolScp>
-                        </condList>
-                        <execList>
-                            <ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
-                                <Str Str="MON7"/>
-                            </ToolScp>
-                        </execList>
-                    </Event>
-                    <Event execMS="0" execCount="1" eventName="GenControl8">
-                        <condList>
-                            <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK" Client="NO" UseSleep="NO">
-                                <Num Num="140"/>
-                            </ToolScp>
-                        </condList>
-                        <execList>
-                            <ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
-                                <Str Str="MON8"/>
                             </ToolScp>
                         </execList>
                     </Event>
@@ -1617,6 +1333,19 @@
                             </ToolScp>
                         </execList>
                     </Event>
+                    <Event execMS="0" execCount="8" eventName="GenControl">
+                        <condList>
+                            <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK_START" Client="NO" UseSleep="NO">
+                                <Num Num="20"/>
+                            </ToolScp>
+                        </condList>
+                        <execList>
+                            <ToolScp Scp="TOSHERO_RAN_SPOT_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
+                                <Str Str="MON"/>
+                                <Num Num="8"/>
+                            </ToolScp>
+                        </execList>
+                    </Event>
                 </StageEvents>
             </Stage>
             <Stage Name="Stage5" AutoStart="0">
@@ -1627,7 +1356,7 @@
                     <ToolScp Scp="MGAME_SET_STYLE_INFO" Client="NO" UseSleep="NO">
                         <Str Str="Stage5_mission"/>
                         <Str Str="text"/>
-                        <Str Str="보스 등장 전에 모든 몬스터 처치"/>
+                        <Str Str="마기 집성체의 자폭으로 보스 몬스터 공격"/>
                         <Num Num="1"/>
                         <Num Num="1"/>
                     </ToolScp>
@@ -1668,10 +1397,10 @@
                     <Obj Type="Monster" MonType="59639" Pos="-617.50#1.00#270.65" autoGen="0" objectKey="32"/>
                 </ObjList>
                 <StageEvents>
-                    <Event execCount="10" eventName="MON1" execWithStart="0" isEnabled="0">
+                    <Event execCount="6" eventName="MON1" execWithStart="0" isEnabled="0">
                         <condList>
                             <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK_START" Client="NO" UseSleep="NO">
-                                <Num Num="3"/>
+                                <Num Num="5"/>
                             </ToolScp>
                         </condList>
                         <execList>
@@ -1682,10 +1411,10 @@
                             </ToolScp>
                         </execList>
                     </Event>
-                    <Event execCount="10" eventName="MON2" execWithStart="0" isEnabled="0">
+                    <Event execCount="6" eventName="MON2" execWithStart="0" isEnabled="0">
                         <condList>
                             <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK_START" Client="NO" UseSleep="NO">
-                                <Num Num="3"/>
+                                <Num Num="5"/>
                             </ToolScp>
                         </condList>
                         <execList>
@@ -1696,10 +1425,10 @@
                             </ToolScp>
                         </execList>
                     </Event>
-                    <Event execCount="10" eventName="MON3" execWithStart="0" isEnabled="0">
+                    <Event execCount="6" eventName="MON3" execWithStart="0" isEnabled="0">
                         <condList>
                             <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK_START" Client="NO" UseSleep="NO">
-                                <Num Num="3"/>
+                                <Num Num="5"/>
                             </ToolScp>
                         </condList>
                         <execList>
@@ -1710,10 +1439,10 @@
                             </ToolScp>
                         </execList>
                     </Event>
-                    <Event execCount="10" eventName="MON4" execWithStart="0" isEnabled="0">
+                    <Event execCount="6" eventName="MON4" execWithStart="0" isEnabled="0">
                         <condList>
                             <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK_START" Client="NO" UseSleep="NO">
-                                <Num Num="3"/>
+                                <Num Num="5"/>
                             </ToolScp>
                         </condList>
                         <execList>
@@ -1724,10 +1453,10 @@
                             </ToolScp>
                         </execList>
                     </Event>
-                    <Event execCount="10" eventName="MON5" execWithStart="0" isEnabled="0">
+                    <Event execCount="6" eventName="MON5" execWithStart="0" isEnabled="0">
                         <condList>
                             <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK_START" Client="NO" UseSleep="NO">
-                                <Num Num="3"/>
+                                <Num Num="5"/>
                             </ToolScp>
                         </condList>
                         <execList>
@@ -1738,10 +1467,10 @@
                             </ToolScp>
                         </execList>
                     </Event>
-                    <Event execCount="10" eventName="MON6" execWithStart="0" isEnabled="0">
+                    <Event execCount="6" eventName="MON6" execWithStart="0" isEnabled="0">
                         <condList>
                             <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK_START" Client="NO" UseSleep="NO">
-                                <Num Num="3"/>
+                                <Num Num="5"/>
                             </ToolScp>
                         </condList>
                         <execList>
@@ -1752,10 +1481,10 @@
                             </ToolScp>
                         </execList>
                     </Event>
-                    <Event execCount="10" eventName="MON7" execWithStart="0" isEnabled="0">
+                    <Event execCount="6" eventName="MON7" execWithStart="0" isEnabled="0">
                         <condList>
                             <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK_START" Client="NO" UseSleep="NO">
-                                <Num Num="3"/>
+                                <Num Num="5"/>
                             </ToolScp>
                         </condList>
                         <execList>
@@ -1766,10 +1495,10 @@
                             </ToolScp>
                         </execList>
                     </Event>
-                    <Event execCount="10" eventName="MON8" execWithStart="0" isEnabled="0">
+                    <Event execCount="6" eventName="MON8" execWithStart="0" isEnabled="0">
                         <condList>
                             <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK_START" Client="NO" UseSleep="NO">
-                                <Num Num="3"/>
+                                <Num Num="5"/>
                             </ToolScp>
                         </condList>
                         <execList>
@@ -1777,97 +1506,6 @@
                                 <MGameObjIndex List="Stage5/7/Stage5/15/Stage5/23"/>
                                 <Num Num="1"/>
                                 <Num Num="0"/>
-                            </ToolScp>
-                        </execList>
-                    </Event>
-                    <Event execMS="0" execCount="1" eventName="GenControl1">
-                        <execList>
-                            <ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
-                                <Str Str="MON1"/>
-                            </ToolScp>
-                        </execList>
-                    </Event>
-                    <Event execMS="0" execCount="1" eventName="GenControl2">
-                        <condList>
-                            <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK" Client="NO" UseSleep="NO">
-                                <Num Num="20"/>
-                            </ToolScp>
-                        </condList>
-                        <execList>
-                            <ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
-                                <Str Str="MON2"/>
-                            </ToolScp>
-                        </execList>
-                    </Event>
-                    <Event execMS="0" execCount="1" eventName="GenControl3">
-                        <condList>
-                            <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK" Client="NO" UseSleep="NO">
-                                <Num Num="40"/>
-                            </ToolScp>
-                        </condList>
-                        <execList>
-                            <ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
-                                <Str Str="MON3"/>
-                            </ToolScp>
-                        </execList>
-                    </Event>
-                    <Event execMS="0" execCount="1" eventName="GenControl4">
-                        <condList>
-                            <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK" Client="NO" UseSleep="NO">
-                                <Num Num="60"/>
-                            </ToolScp>
-                        </condList>
-                        <execList>
-                            <ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
-                                <Str Str="MON4"/>
-                            </ToolScp>
-                        </execList>
-                    </Event>
-                    <Event execMS="0" execCount="1" eventName="GenControl5">
-                        <condList>
-                            <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK" Client="NO" UseSleep="NO">
-                                <Num Num="80"/>
-                            </ToolScp>
-                        </condList>
-                        <execList>
-                            <ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
-                                <Str Str="MON5"/>
-                            </ToolScp>
-                        </execList>
-                    </Event>
-                    <Event execMS="100000" execCount="1" eventName="GenControl6">
-                        <condList>
-                            <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK" Client="NO" UseSleep="NO">
-                                <Num Num="100"/>
-                            </ToolScp>
-                        </condList>
-                        <execList>
-                            <ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
-                                <Str Str="MON6"/>
-                            </ToolScp>
-                        </execList>
-                    </Event>
-                    <Event execMS="0" execCount="1" eventName="GenControl7">
-                        <condList>
-                            <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK" Client="NO" UseSleep="NO">
-                                <Num Num="120"/>
-                            </ToolScp>
-                        </condList>
-                        <execList>
-                            <ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
-                                <Str Str="MON7"/>
-                            </ToolScp>
-                        </execList>
-                    </Event>
-                    <Event execMS="0" execCount="1" eventName="GenControl8">
-                        <condList>
-                            <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK" Client="NO" UseSleep="NO">
-                                <Num Num="140"/>
-                            </ToolScp>
-                        </condList>
-                        <execList>
-                            <ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
-                                <Str Str="MON8"/>
                             </ToolScp>
                         </execList>
                     </Event>
@@ -1983,6 +1621,19 @@
                             </ToolScp>
                         </execList>
                     </Event>
+                    <Event execMS="0" execCount="8" eventName="GenControl">
+                        <condList>
+                            <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK_START" Client="NO" UseSleep="NO">
+                                <Num Num="20"/>
+                            </ToolScp>
+                        </condList>
+                        <execList>
+                            <ToolScp Scp="TOSHERO_RAN_SPOT_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
+                                <Str Str="MON"/>
+                                <Num Num="8"/>
+                            </ToolScp>
+                        </execList>
+                    </Event>
                 </StageEvents>
             </Stage>
             <Stage Name="BossStage1" AutoStart="0">
@@ -1992,8 +1643,10 @@
                 <StageEvents>
                     <Event execCount="1" eventName="BossGen">
                         <condList>
-                            <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK" Client="NO" UseSleep="NO">
-                                <Num Num="189"/>
+                            <ToolScp Scp="GAME_ST_EVT_COND_VALUE" Client="NO" UseSleep="NO">
+                                <Str Str="IsBossGen"/>
+                                <Str Str="=="/>
+                                <Num Num="1"/>
                             </ToolScp>
                         </condList>
                         <execList>
@@ -2013,13 +1666,12 @@
                     </Event>
                     <Event eventName="ClearCheck">
                         <condList>
-                            <ToolScp Scp="GAME_ST_EVT_COND_STAGE_TIME_CHECK" Client="NO" UseSleep="NO">
-                                <Num Num="195"/>
+                            <ToolScp Scp="GAME_ST_EVT_COND_VALUE" Client="NO" UseSleep="NO">
+                                <Str Str="IsBossGen"/>
+                                <Str Str="=="/>
+                                <Num Num="1"/>
                             </ToolScp>
-                            <ToolScp Scp="MGAME_EVT_COND_MONCNT" Client="NO" UseSleep="NO">
-                                <MGameObj List="Stage1/0/Stage1/1/Stage1/2/Stage1/3/Stage1/4/Stage1/5/Stage1/6/Stage1/7/Stage1/8/Stage1/9/Stage1/10/Stage1/11/Stage1/12/Stage1/13/Stage1/14/Stage1/15/Stage1/16/Stage1/17/Stage1/18/Stage1/19/Stage1/20/Stage1/21/Stage1/22/Stage1/23"/>
-                                <Num Num="0"/>
-                            </ToolScp>
+                            <ToolScp Scp="TOSHERO_MONKILL_CHECK" Client="NO" UseSleep="NO"/>
                             <ToolScp Scp="MGAME_EVT_COND_MONCNT" Client="NO" UseSleep="NO">
                                 <MGameObj List="BossStage1/0"/>
                                 <Num Num="0"/>
@@ -2029,6 +1681,9 @@
                             <ToolScp Scp="GAME_ST_EVT_ADD_VALUE" Client="NO" UseSleep="NO">
                                 <Str Str="StagePlace"/>
                                 <Num Num="1"/>
+                            </ToolScp>
+                            <ToolScp Scp="GAME_ST_EVT_EXEC_STAGE_DESTROY" Client="NO" UseSleep="NO">
+                                <Str Str="Stage1"/>
                             </ToolScp>
                             <ToolScp Scp="GAME_ST_EVT_EXEC_STAGE_RESTART" Client="NO" UseSleep="NO">
                                 <Str Str="Ready"/>
@@ -2110,8 +1765,10 @@
                 <StageEvents>
                     <Event execCount="1" eventName="BossGen">
                         <condList>
-                            <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK" Client="NO" UseSleep="NO">
-                                <Num Num="189"/>
+                            <ToolScp Scp="GAME_ST_EVT_COND_VALUE" Client="NO" UseSleep="NO">
+                                <Str Str="IsBossGen"/>
+                                <Str Str="=="/>
+                                <Num Num="1"/>
                             </ToolScp>
                         </condList>
                         <execList>
@@ -2131,13 +1788,12 @@
                     </Event>
                     <Event eventName="ClearCheck">
                         <condList>
-                            <ToolScp Scp="GAME_ST_EVT_COND_STAGE_TIME_CHECK" Client="NO" UseSleep="NO">
-                                <Num Num="195"/>
+                            <ToolScp Scp="GAME_ST_EVT_COND_VALUE" Client="NO" UseSleep="NO">
+                                <Str Str="IsBossGen"/>
+                                <Str Str="=="/>
+                                <Num Num="1"/>
                             </ToolScp>
-                            <ToolScp Scp="MGAME_EVT_COND_MONCNT" Client="NO" UseSleep="NO">
-                                <MGameObj List="Stage2/0/Stage2/1/Stage2/2/Stage2/3/Stage2/4/Stage2/5/Stage2/6/Stage2/7/Stage2/8/Stage2/9/Stage2/10/Stage2/11/Stage2/12/Stage2/13/Stage2/14/Stage2/15/Stage2/16/Stage2/17/Stage2/18/Stage2/19/Stage2/20/Stage2/21/Stage2/22/Stage2/23"/>
-                                <Num Num="0"/>
-                            </ToolScp>
+                            <ToolScp Scp="TOSHERO_MONKILL_CHECK" Client="NO" UseSleep="NO"/>
                             <ToolScp Scp="MGAME_EVT_COND_MONCNT" Client="NO" UseSleep="NO">
                                 <MGameObj List="BossStage2/0"/>
                                 <Num Num="0"/>
@@ -2147,6 +1803,9 @@
                             <ToolScp Scp="GAME_ST_EVT_ADD_VALUE" Client="NO" UseSleep="NO">
                                 <Str Str="StagePlace"/>
                                 <Num Num="1"/>
+                            </ToolScp>
+                            <ToolScp Scp="GAME_ST_EVT_EXEC_STAGE_DESTROY" Client="NO" UseSleep="NO">
+                                <Str Str="Stage2"/>
                             </ToolScp>
                             <ToolScp Scp="GAME_ST_EVT_EXEC_STAGE_RESTART" Client="NO" UseSleep="NO">
                                 <Str Str="Ready"/>
@@ -2231,8 +1890,10 @@
                 <StageEvents>
                     <Event execCount="1" eventName="BossGen">
                         <condList>
-                            <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK" Client="NO" UseSleep="NO">
-                                <Num Num="189"/>
+                            <ToolScp Scp="GAME_ST_EVT_COND_VALUE" Client="NO" UseSleep="NO">
+                                <Str Str="IsBossGen"/>
+                                <Str Str="=="/>
+                                <Num Num="1"/>
                             </ToolScp>
                         </condList>
                         <execList>
@@ -2252,13 +1913,12 @@
                     </Event>
                     <Event eventName="ClearCheck">
                         <condList>
-                            <ToolScp Scp="GAME_ST_EVT_COND_STAGE_TIME_CHECK" Client="NO" UseSleep="NO">
-                                <Num Num="195"/>
+                            <ToolScp Scp="GAME_ST_EVT_COND_VALUE" Client="NO" UseSleep="NO">
+                                <Str Str="IsBossGen"/>
+                                <Str Str="=="/>
+                                <Num Num="1"/>
                             </ToolScp>
-                            <ToolScp Scp="MGAME_EVT_COND_MONCNT" Client="NO" UseSleep="NO">
-                                <MGameObj List="Stage3/0/Stage3/1/Stage3/2/Stage3/3/Stage3/4/Stage3/5/Stage3/6/Stage3/7/Stage3/8/Stage3/9/Stage3/10/Stage3/11/Stage3/12/Stage3/13/Stage3/14/Stage3/15/Stage3/16/Stage3/17/Stage3/18/Stage3/19/Stage3/20/Stage3/21/Stage3/22/Stage3/23"/>
-                                <Num Num="0"/>
-                            </ToolScp>
+                            <ToolScp Scp="TOSHERO_MONKILL_CHECK" Client="NO" UseSleep="NO"/>
                             <ToolScp Scp="MGAME_EVT_COND_MONCNT" Client="NO" UseSleep="NO">
                                 <MGameObj List="BossStage3/0"/>
                                 <Num Num="0"/>
@@ -2268,6 +1928,9 @@
                             <ToolScp Scp="GAME_ST_EVT_ADD_VALUE" Client="NO" UseSleep="NO">
                                 <Str Str="StagePlace"/>
                                 <Num Num="1"/>
+                            </ToolScp>
+                            <ToolScp Scp="GAME_ST_EVT_EXEC_STAGE_DESTROY" Client="NO" UseSleep="NO">
+                                <Str Str="Stage3"/>
                             </ToolScp>
                             <ToolScp Scp="GAME_ST_EVT_EXEC_STAGE_RESTART" Client="NO" UseSleep="NO">
                                 <Str Str="Ready"/>
@@ -2281,6 +1944,9 @@
                             </ToolScp>
                             <ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
                                 <Str Str="mission_Fail_Check"/>
+                            </ToolScp>
+                            <ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
+                                <Str Str="mission_Success_Check"/>
                             </ToolScp>
                             <ToolScp Scp="GAME_EVT_OFF" Client="NO" UseSleep="NO"/>
                         </execList>
@@ -2325,6 +1991,20 @@
                             </ToolScp>
                         </execList>
                     </Event>
+                    <Event execCount="1" eventName="mission_Success_Check" execWithStart="0" isEnabled="0">
+                        <condList>
+                            <ToolScp Scp="GAME_ST_EVT_COND_VALUE" Client="NO" UseSleep="NO">
+                                <Str Str="Stage3_mission"/>
+                                <Str Str="EQ"/>
+                                <Num Num="1"/>
+                            </ToolScp>
+                        </condList>
+                        <execList>
+                            <ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
+                                <Str Str="StageEnd"/>
+                            </ToolScp>
+                        </execList>
+                    </Event>
                 </StageEvents>
             </Stage>
             <Stage Name="BossStage4" AutoStart="0">
@@ -2334,8 +2014,10 @@
                 <StageEvents>
                     <Event execCount="1" eventName="BossGen">
                         <condList>
-                            <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK" Client="NO" UseSleep="NO">
-                                <Num Num="189"/>
+                            <ToolScp Scp="GAME_ST_EVT_COND_VALUE" Client="NO" UseSleep="NO">
+                                <Str Str="IsBossGen"/>
+                                <Str Str="=="/>
+                                <Num Num="1"/>
                             </ToolScp>
                         </condList>
                         <execList>
@@ -2355,13 +2037,12 @@
                     </Event>
                     <Event eventName="ClearCheck">
                         <condList>
-                            <ToolScp Scp="GAME_ST_EVT_COND_STAGE_TIME_CHECK" Client="NO" UseSleep="NO">
-                                <Num Num="195"/>
+                            <ToolScp Scp="GAME_ST_EVT_COND_VALUE" Client="NO" UseSleep="NO">
+                                <Str Str="IsBossGen"/>
+                                <Str Str="=="/>
+                                <Num Num="1"/>
                             </ToolScp>
-                            <ToolScp Scp="MGAME_EVT_COND_MONCNT" Client="NO" UseSleep="NO">
-                                <MGameObj List="Stage4/0/Stage4/1/Stage4/2/Stage4/3/Stage4/4/Stage4/5/Stage4/6/Stage4/7/Stage4/8/Stage4/9/Stage4/10/Stage4/11/Stage4/12/Stage4/13/Stage4/14/Stage4/15/Stage4/16/Stage4/17/Stage4/18/Stage4/19/Stage4/20/Stage4/21/Stage4/22/Stage4/23"/>
-                                <Num Num="0"/>
-                            </ToolScp>
+                            <ToolScp Scp="TOSHERO_MONKILL_CHECK" Client="NO" UseSleep="NO"/>
                             <ToolScp Scp="MGAME_EVT_COND_MONCNT" Client="NO" UseSleep="NO">
                                 <MGameObj List="BossStage4/0"/>
                                 <Num Num="0"/>
@@ -2371,6 +2052,9 @@
                             <ToolScp Scp="GAME_ST_EVT_ADD_VALUE" Client="NO" UseSleep="NO">
                                 <Str Str="StagePlace"/>
                                 <Num Num="1"/>
+                            </ToolScp>
+                            <ToolScp Scp="GAME_ST_EVT_EXEC_STAGE_DESTROY" Client="NO" UseSleep="NO">
+                                <Str Str="Stage4"/>
                             </ToolScp>
                             <ToolScp Scp="GAME_ST_EVT_EXEC_STAGE_RESTART" Client="NO" UseSleep="NO">
                                 <Str Str="Ready"/>
@@ -2454,8 +2138,10 @@
                 <StageEvents>
                     <Event execCount="1" eventName="BossGen">
                         <condList>
-                            <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK" Client="NO" UseSleep="NO">
-                                <Num Num="189"/>
+                            <ToolScp Scp="GAME_ST_EVT_COND_VALUE" Client="NO" UseSleep="NO">
+                                <Str Str="IsBossGen"/>
+                                <Str Str="=="/>
+                                <Num Num="1"/>
                             </ToolScp>
                         </condList>
                         <execList>
@@ -2478,10 +2164,12 @@
                     </Event>
                     <Event eventName="ClearCheck" execWithStart="0" isEnabled="0">
                         <condList>
-                            <ToolScp Scp="MGAME_EVT_COND_MONCNT" Client="NO" UseSleep="NO">
-                                <MGameObj List="Stage5/0/Stage5/1/Stage5/2/Stage5/3/Stage5/4/Stage5/5/Stage5/6/Stage5/7/Stage5/8/Stage5/9/Stage5/10/Stage5/11/Stage5/12/Stage5/13/Stage5/14/Stage5/15/Stage5/16/Stage5/17/Stage5/18/Stage5/19/Stage5/20/Stage5/21/Stage5/22/Stage5/23"/>
-                                <Num Num="0"/>
+                            <ToolScp Scp="GAME_ST_EVT_COND_VALUE" Client="NO" UseSleep="NO">
+                                <Str Str="IsBossGen"/>
+                                <Str Str="=="/>
+                                <Num Num="1"/>
                             </ToolScp>
+                            <ToolScp Scp="TOSHERO_MONKILL_CHECK" Client="NO" UseSleep="NO"/>
                             <ToolScp Scp="MGAME_EVT_COND_MONCNT" Client="NO" UseSleep="NO">
                                 <MGameObj List="BossStage5/0"/>
                                 <Num Num="0"/>
@@ -2490,6 +2178,9 @@
                         <execList>
                             <ToolScp Scp="MGAME_EVT_SCRIPT" Client="NO" UseSleep="NO">
                                 <Str Str="TOSHERO_STRAIGHT_MAPPATTERN_CLEARN"/>
+                            </ToolScp>
+                            <ToolScp Scp="GAME_ST_EVT_EXEC_STAGE_DESTROY" Client="NO" UseSleep="NO">
+                                <Str Str="Stage5"/>
                             </ToolScp>
                             <ToolScp Scp="TOSHERO_GIVEPOINT" Client="NO" UseSleep="NO">
                                 <Num Num="25000"/>

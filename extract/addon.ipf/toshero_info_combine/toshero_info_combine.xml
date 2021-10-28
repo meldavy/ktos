@@ -3,7 +3,7 @@
 <uiframe name="toshero_info_combine" x="0" y="0" width="480" height="908">
 	<frame fullheight="false" layout_gravity="right top" margin="0 35 600 0"/>
 	<skin frameskin="test_frame_low"/>
-	<layer layerlevel="101"/>
+	<layer layerlevel="102"/>
 	<input moveable="true"/>
 	<draw drawtitlebar="false"/>
 	<option closebutton="false"/>

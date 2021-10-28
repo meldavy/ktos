@@ -21,8 +21,9 @@
         <picture name="buff_2" rect="0 0 36 36" margin="-65 -35 0 0" layout_gravity="center center" hittest="true" image="hero_icon_Default" stretch="true"/>
         <picture name="buff_3" rect="0 0 36 36" margin="-25 -35 0 0" layout_gravity="center center" hittest="true" image="hero_icon_Default" stretch="true"/>
         <picture name="pic_max" rect="0 0 70 40" margin="55 10 0 0" layout_gravity="center center" hittest="false" image="skill_max_img" stretch="true"/>
-		<richtext name="text_bosscount" rect="0 0 70 50" margin="290 -33 0 0" layout_gravity="center center" format="%s%s" hittest="false" param1="font" param1_def="{@st55_hero_count}" param2="text" param2_def="0" textalign="center center" resizebytext="false" fixwidth="true"/>
-		<picture name="heroimage_bosscountdown" rect="0 0 45 45" margin="240 -33 0 0" layout_gravity="center center" hittest="false" image="hero_bosscountdown" stretch="true"/>
-		<richtext name="text2_bosscount" rect="0 0 70 50" margin="240 -65 0 0" layout_gravity="center center" format="%s%s" hittest="false" param1="font" param1_def="{@st55_hero_count}{s15}" param2="text" param2_def="BOSS" textalign="center center" resizebytext="false" fixwidth="true"/>
+		<richtext name="text_bosscount" rect="0 0 70 50" margin="260 -33 0 0" layout_gravity="center center" format="%s%s" hittest="false" param1="font" param1_def="{@st55_hero_count}" param2="text" param2_def="0" textalign="center center" resizebytext="false" fixwidth="true"/>
+		<picture name="heroimage_bosscountdown" rect="0 0 45 45" margin="210 -33 0 0" layout_gravity="center center" hittest="false" image="hero_bosscountdown" stretch="true"/>
+		<richtext name="text2_bosscount" rect="0 0 70 50" margin="210 -65 0 0" layout_gravity="center center" format="%s%s" hittest="false" param1="font" param1_def="{@st55_hero_count}{s15}" param2="text" param2_def="BOSS" textalign="center center" resizebytext="false" fixwidth="true"/>
+		<richtext name="text3_bosscount" rect="0 0 70 80" margin="300 -33 0 0" layout_gravity="center center" format="%s%s" hittest="false" param1="font" param1_def="{@st55_hero_count}{s18}" param2="text" param2_def="0" textalign="center center" resizebytext="false" fixwidth="true"/>
 	</controls>
 </uitile>

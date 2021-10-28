@@ -1,4 +1,4 @@
-function LETICIA_CUBE_ON_INIT(addon, frame)
+﻿function LETICIA_CUBE_ON_INIT(addon, frame)
     addon:RegisterMsg("LETICIA_CUBE_NOT_ENABLE", "LETICIA_CUBE_CLOSE_ALL");
 end
 
@@ -17,7 +17,8 @@ function LETICIA_CUBE_OPEN(frame)
 	LETICIA_CUBE_LIST_UPDATE(frame);
 	frame:ShowWindow(1);
 	if config.GetServiceNation() ~= "KOR" then
-		GET_CHILD_RECURSIVELY(frame,"openBtn2"):ShowWindow(0)
+        GET_CHILD_RECURSIVELY(frame,"openBtn2"):SetEnable(0)
+        GET_CHILD_RECURSIVELY(frame,"openBtn2"):ShowWindow(0)
 		GET_CHILD_RECURSIVELY(frame,"openBtn"):SetMargin(0, 0, 0, 40);
 		session.shop.RequestUsedMedalTotal()
 	end
@@ -183,10 +184,18 @@ end
 
 
 function LETICIA_CUBE_ITEM_LIST_BUTTON()
+    if config.GetServiceNation() ~= "KOR" then
+        return
+    end
+
 	local textmsg = string.format("[ %s ]{nl}%s", '{@st66d_y}'..ClMsg('ContainWarningItem2')..'{/}{/}', '{nl} {nl}'..ScpArgMsg("ContainWarningItem_URL"))
 	ui.MsgBox(textmsg, 'LETICIA_CUBE_ITEM_LIST_BUTTON_URL', "None")
 end
 
 function LETICIA_CUBE_ITEM_LIST_BUTTON_URL()
+    if config.GetServiceNation() ~= "KOR" then
+        return
+    end
+
 	login.OpenURL('http://iteminfo.nexon.com/probability/games/tos')
 end

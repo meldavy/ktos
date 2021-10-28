@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by asdasd (IMCGames Co., Ltd) -->
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by imc (imc) -->
 <ToolSkill>
     <Skill Name="Mon_weekly_Nepenthes_Skill_1">
         <MainSkl JumpFlee="NO" MSPDToUsePos="0" ScrLock="None">
@@ -25,6 +25,1535 @@
                     <Num Num="1000"/>
                     <Str_Arg Arg="1" Str="None"/>
                     <Str Str="None"/>
+                </Scp>
+            </EtcList>
+        </MainSkl>
+    </Skill>
+    <Skill Name="Mon_weekly_boss_Asiomage_Skill_4">
+        <MainSkl ScrLock="None" JumpFlee="NO" MSPDToUsePos="0">
+            <HitList>
+                <Frame Type="FAN" Time="0" HitCount="1" TermMin="0" TermMax="0" PosType="0" Dist="0" RandDist="0" RandomPerHit="0" Angle="0" Width="30" Length="30" SklAngle="0.17453292" AniTime="300" RotAngle="0" ForceATK="0" ScriptIndex="0" ScriptName="" SkillType="0"/>
+            </HitList>
+            <EtcList>
+                <Anim Time="0" Anim="skl2" Speed="2.5"/>
+                <Scp Scp="SKL_RUN_SCRIPT" Client="NO" UseSleep="NO" Time="700">
+                    <Str Str="SCR_WEEKLY_BOSS_ASIOMAGE_FIND_PC_POS"/>
+                </Scp>
+                <Scp Scp="SKL_RUN_SCRIPT" Client="NO" UseSleep="NO" Time="1400">
+                    <Str Str="SCR_WEEKLY_BOSS_ASIOMAGE_SETPOS_TO_PC"/>
+                </Scp>
+            </EtcList>
+        </MainSkl>
+    </Skill>
+    <Skill Name="Mon_weekly_boss_Asiomage_Skill_2">
+        <MainSkl ScrLock="None" JumpFlee="NO" MSPDToUsePos="0">
+            <HitList>
+                <Frame Type="FAN" Time="0" HitCount="1" TermMin="0" TermMax="0" PosType="0" Dist="0" RandDist="0" RandomPerHit="0" Angle="0" Width="30" Length="30" SklAngle="0.17453292" AniTime="300" RotAngle="0" ForceATK="0" ScriptIndex="0" ScriptName="" SkillType="0"/>
+            </HitList>
+            <EtcList>
+                <Anim Time="0" Anim="skl2" Speed="1.5" StartTime="0.5"/>
+                <Scp Scp="SKL_RUN_SCRIPT" Client="NO" UseSleep="NO" Time="700">
+                    <Str Str="SCR_WEEKLY_BOSS_ASIOMAGE_FIND_PC_POS"/>
+                </Scp>
+                <Scp Scp="SKL_SET_TARGET_CIRCLE" Client="NO" UseSleep="NO" Time="1600">
+                    <Pos Angle="0" Dist="0"/>
+                    <Num Num="500"/>
+                    <Num Num="5"/>
+                    <Num Num="2"/>
+                    <Num Num="0"/>
+                    <Num Num="1"/>
+                    <Num Num="1"/>
+                    <Num Num="0"/>
+                    <Num Num="1"/>
+                </Scp>
+                <Scp Scp="SKL_RUN_SCRIPT" Client="NO" UseSleep="NO" Time="1900">
+                    <Str Str="SCR_WEEKLY_BOSS_QUIPMAGE_MOVE_TO_PC"/>
+                </Scp>
+            </EtcList>
+        </MainSkl>
+    </Skill>
+    <Skill Name="Mon_weekly_boss_Asiomage_Skill_1">
+        <MainSkl ScrLock="None" JumpFlee="NO" MSPDToUsePos="0">
+            <HitList>
+                <Frame Type="FAN" Time="800" HitCount="1" TermMin="0" TermMax="0" PosType="0" Dist="0" RandDist="0" RandomPerHit="0" Angle="0" Width="80" Length="100" SklAngle="0.95993114" AniTime="1000" RotAngle="0" ForceATK="0" ScriptIndex="0" ScriptName="" SkillType="0"/>
+            </HitList>
+            <EtcList>
+                <Anim Time="0" Anim="atk1" Speed="2" StartTime="0.30000001"/>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="800">
+                    <Str_Arg Str="I_swordtrail033_orage_reverse_dark" Arg="3"/>
+                    <Str Str="slash_dum"/>
+                    <Num Num="0"/>
+                </Scp>
+            </EtcList>
+        </MainSkl>
+    </Skill>
+    <Skill Name="Mon_weekly_boss_Quipmage_Skill_5">
+        <MainSkl ScrLock="None" JumpFlee="NO" MSPDToUsePos="0">
+            <MoveList>
+                <Frame Time="2600" Dist="1.7650265" Angle="3.0110509" Accel="1" Height="0" MoveType="0" Gravity="600" JumpPower="300"/>
+                <Frame Time="2650" Dist="80.217049" Angle="3.0585158" Accel="1" Height="0" MoveType="0" Gravity="600" JumpPower="300"/>
+            </MoveList>
+            <HitList>
+                <Frame Type="FAN" Time="10791" HitCount="1" TermMin="0" TermMax="0" PosType="0" Dist="0" RandDist="0" RandomPerHit="0" Angle="0" AniTime="10991" RotAngle="0" ForceATK="0" ScriptIndex="0" ScriptName="" SkillType="0"/>
+            </HitList>
+            <EtcList>
+                <Anim Time="0" Anim="skl4" Speed="1.3"/>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="0">
+                    <Str_Arg Str="I_light004_green_3" Arg="3"/>
+                    <Str Str="Dummy_effect_wepon"/>
+                    <Num Num="4"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="0">
+                    <Str_Arg Str="I_force104_trail2" Arg="2"/>
+                    <Str Str="Dummy_effect_wepon"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="C_SOUND" Client="YES" UseSleep="NO" Time="230">
+                    <Str Str="m_harpeia_skl_2"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="300">
+                    <Str_Arg Str="I_smoke052_white3" Arg="1"/>
+                    <Str Str="Bip001 Xtra0103"/>
+                    <Num Num="3.3"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="300">
+                    <Str_Arg Str="I_smoke052_white3" Arg="1"/>
+                    <Str Str="Bip001 Xtra01Opp03"/>
+                    <Num Num="3.3"/>
+                </Scp>
+                <Scp Scp="C_SHOCKWAVE" Client="YES" UseSleep="NO" Time="500">
+                    <Num Num="0.5"/>
+                    <Num Num="1"/>
+                    <Num Num="70"/>
+                    <Num Num="999"/>
+                </Scp>
+                <Scp Scp="C_SOUND" Client="YES" UseSleep="NO" Time="640">
+                    <Str Str="mon_denoptic_skl_1"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="800">
+                    <Str_Arg Str="I_light004_mint" Arg="0.80000001"/>
+                    <Str Str="Dummy_effect_wepon"/>
+                    <Num Num="2.2"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="800">
+                    <Str_Arg Str="I_smoke053_mint_loop" Arg="1"/>
+                    <Str Str="Dummy_effect_wepon2"/>
+                    <Num Num="4.5"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="900">
+                    <Str_Arg Str="F_spread_out031_fether_mint" Arg="0.80000001"/>
+                    <Str Str="Bip001 Xtra01Opp05"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="900">
+                    <Str_Arg Str="F_spread_out031_fether_mint" Arg="0.80000001"/>
+                    <Str Str="Bip001 Xtra0105"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="C_COLORBLEND_ACTOR" Client="YES" UseSleep="NO" Time="1200">
+                    <Num Num="1"/>
+                    <Num Num="1"/>
+                    <Num Num="0.029999999"/>
+                    <Num Num="0.050000001"/>
+                    <Num Num="0.029999999"/>
+                    <Num Num="0.050000001"/>
+                    <Num Num="1"/>
+                </Scp>
+                <Scp Scp="C_COLORBLEND_ACTOR" Client="YES" UseSleep="NO" Time="1300">
+                    <Num Num="1"/>
+                    <Num Num="1"/>
+                    <Num Num="0"/>
+                    <Num Num="0"/>
+                    <Num Num="0"/>
+                    <Num Num="0"/>
+                    <Num Num="1"/>
+                </Scp>
+                <Scp Scp="C_COLORBLEND_ACTOR" Client="YES" UseSleep="NO" Time="1400">
+                    <Num Num="1"/>
+                    <Num Num="1"/>
+                    <Num Num="0.029999999"/>
+                    <Num Num="0.2"/>
+                    <Num Num="0.15000001"/>
+                    <Num Num="0.2"/>
+                    <Num Num="1"/>
+                </Scp>
+                <Scp Scp="C_COLORBLEND_ACTOR" Client="YES" UseSleep="NO" Time="1500">
+                    <Num Num="1"/>
+                    <Num Num="1"/>
+                    <Num Num="0"/>
+                    <Num Num="0"/>
+                    <Num Num="0"/>
+                    <Num Num="0"/>
+                    <Num Num="1"/>
+                </Scp>
+                <Scp Scp="C_COLORBLEND_ACTOR" Client="YES" UseSleep="NO" Time="1600">
+                    <Num Num="1"/>
+                    <Num Num="1"/>
+                    <Num Num="0.029999999"/>
+                    <Num Num="0.050000001"/>
+                    <Num Num="0.029999999"/>
+                    <Num Num="0.050000001"/>
+                    <Num Num="1"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="1600">
+                    <Str_Arg Str="F_spread_out031_fether_mint" Arg="0.80000001"/>
+                    <Str Str="Bip001 Xtra0105"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="1600">
+                    <Str_Arg Str="F_spread_out031_fether_mint" Arg="0.80000001"/>
+                    <Str Str="Bip001 Xtra01Opp05"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="C_COLORBLEND_ACTOR" Client="YES" UseSleep="NO" Time="1700">
+                    <Num Num="1"/>
+                    <Num Num="1"/>
+                    <Num Num="0"/>
+                    <Num Num="0"/>
+                    <Num Num="0"/>
+                    <Num Num="0"/>
+                    <Num Num="1"/>
+                </Scp>
+                <Scp Scp="C_COLORBLEND_ACTOR" Client="YES" UseSleep="NO" Time="1800">
+                    <Num Num="1"/>
+                    <Num Num="1"/>
+                    <Num Num="0.029999999"/>
+                    <Num Num="0.050000001"/>
+                    <Num Num="0.029999999"/>
+                    <Num Num="0.050000001"/>
+                    <Num Num="1"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="1900">
+                    <Str_Arg Str="I_force104_trail" Arg="2"/>
+                    <Str Str="Bip001 Xtra01Opp05"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="1900">
+                    <Str_Arg Str="I_force104_trail" Arg="2"/>
+                    <Str Str="Bip001 Xtra0105"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="C_COLORBLEND_ACTOR" Client="YES" UseSleep="NO" Time="1900">
+                    <Num Num="1"/>
+                    <Num Num="1"/>
+                    <Num Num="0"/>
+                    <Num Num="0"/>
+                    <Num Num="0"/>
+                    <Num Num="0"/>
+                    <Num Num="1"/>
+                </Scp>
+                <Scp Scp="C_COLORBLEND_ACTOR" Client="YES" UseSleep="NO" Time="2000">
+                    <Num Num="1"/>
+                    <Num Num="1"/>
+                    <Num Num="0.029999999"/>
+                    <Num Num="0.050000001"/>
+                    <Num Num="0.029999999"/>
+                    <Num Num="0.050000001"/>
+                    <Num Num="1"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="2000">
+                    <Str_Arg Str="F_smoke062_2" Arg="1"/>
+                    <Str Str="Dummy_emitter"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="C_SHOCKWAVE" Client="YES" UseSleep="NO" Time="2100">
+                    <Num Num="2"/>
+                    <Num Num="0.2"/>
+                    <Num Num="60"/>
+                    <Num Num="999"/>
+                </Scp>
+                <Scp Scp="C_COLORBLEND_ACTOR" Client="YES" UseSleep="NO" Time="2100">
+                    <Num Num="1"/>
+                    <Num Num="1"/>
+                    <Num Num="0"/>
+                    <Num Num="0"/>
+                    <Num Num="0"/>
+                    <Num Num="0"/>
+                    <Num Num="1"/>
+                </Scp>
+                <Scp Scp="C_COLORBLEND_ACTOR" Client="YES" UseSleep="NO" Time="2200">
+                    <Num Num="1"/>
+                    <Num Num="1"/>
+                    <Num Num="0.029999999"/>
+                    <Num Num="0.050000001"/>
+                    <Num Num="0.029999999"/>
+                    <Num Num="0.050000001"/>
+                    <Num Num="1"/>
+                </Scp>
+                <Scp Scp="C_COLORBLEND_ACTOR" Client="YES" UseSleep="NO" Time="2300">
+                    <Num Num="1"/>
+                    <Num Num="1"/>
+                    <Num Num="0"/>
+                    <Num Num="0"/>
+                    <Num Num="0"/>
+                    <Num Num="0"/>
+                    <Num Num="1"/>
+                </Scp>
+                <Scp Scp="C_COLORBLEND_ACTOR" Client="YES" UseSleep="NO" Time="2400">
+                    <Num Num="1"/>
+                    <Num Num="1"/>
+                    <Num Num="0.029999999"/>
+                    <Num Num="0.050000001"/>
+                    <Num Num="0.029999999"/>
+                    <Num Num="0.050000001"/>
+                    <Num Num="1"/>
+                </Scp>
+                <Scp Scp="C_COLORBLEND_ACTOR" Client="YES" UseSleep="NO" Time="2500">
+                    <Num Num="1"/>
+                    <Num Num="1"/>
+                    <Num Num="0"/>
+                    <Num Num="0"/>
+                    <Num Num="0"/>
+                    <Num Num="0"/>
+                    <Num Num="1"/>
+                </Scp>
+                <Scp Scp="C_SOUND" Client="YES" UseSleep="NO" Time="2500">
+                    <Str Str="skl_eff_special_hit_2"/>
+                </Scp>
+                <Scp Scp="C_COLORBLEND_ACTOR" Client="YES" UseSleep="NO" Time="2600">
+                    <Num Num="1"/>
+                    <Num Num="1"/>
+                    <Num Num="0.2"/>
+                    <Num Num="0.30000001"/>
+                    <Num Num="0.40000001"/>
+                    <Num Num="0.5"/>
+                    <Num Num="1"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="2700">
+                    <Str_Arg Str="I_light004_mint" Arg="2"/>
+                    <Str Str="Dummy_effect_wepon"/>
+                    <Num Num="1.5"/>
+                </Scp>
+                <Scp Scp="C_SHOCKWAVE" Client="YES" UseSleep="NO" Time="2850">
+                    <Num Num="5"/>
+                    <Num Num="0.5"/>
+                    <Num Num="60"/>
+                    <Num Num="999"/>
+                </Scp>
+                <Scp Scp="C_COLORBLEND_ACTOR" Client="YES" UseSleep="NO" Time="2850">
+                    <Num Num="1"/>
+                    <Num Num="1"/>
+                    <Num Num="0"/>
+                    <Num Num="0"/>
+                    <Num Num="0"/>
+                    <Num Num="0"/>
+                    <Num Num="1"/>
+                </Scp>
+                <Scp Scp="EFT_AND_HIT" Client="NO" UseSleep="YES" TooltipScp="TOOLTIP_EFT_AND_HIT" Time="2900">
+                    <Pos Angle="0" Dist="50"/>
+                    <Str_Arg Str="None" Arg="1"/>
+                    <Num Num="0"/>
+                    <Str_Arg Str="F_explosion098_dark_mint" Arg="1.3"/>
+                    <Num Num="80"/>
+                    <Num Num="150"/>
+                    <Num Num="0"/>
+                    <Num Num="1"/>
+                    <Num Num="1000"/>
+                    <Str_Arg Str="None" Arg="1"/>
+                    <Str Str="None"/>
+                    <Num Num="4"/>
+                    <Num Num="15"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="3700">
+                    <Str_Arg Str="F_ground071_smoke2" Arg="1"/>
+                    <Str Str="Dummy_emitter"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="3800">
+                    <Str_Arg Str="F_spread_out031_fether_mint" Arg="1"/>
+                    <Str Str="Bip001 Xtra01Opp05"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="3800">
+                    <Str_Arg Str="F_spread_out031_fether_mint" Arg="1"/>
+                    <Str Str="Bip001 Xtra0105"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="C_SHOCKWAVE" Client="YES" UseSleep="NO" Time="3800">
+                    <Num Num="1"/>
+                    <Num Num="0.30000001"/>
+                    <Num Num="60"/>
+                    <Num Num="999"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="4100">
+                    <Str_Arg Str="F_spread_out031_fether_mint_dark" Arg="1"/>
+                    <Str Str="Bip001 Xtra01Opp05"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="4100">
+                    <Str_Arg Str="F_spread_out031_fether_mint_dark" Arg="1"/>
+                    <Str Str="Bip001 Xtra0105"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="4300">
+                    <Str_Arg Str="F_light028_mint4" Arg="9"/>
+                    <Str Str="Dummy_effect_wepon"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="4300">
+                    <Str_Arg Str="F_smoke109" Arg="3"/>
+                    <Str Str="Dummy_effect_wepon_smoke"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="4300">
+                    <Str_Arg Str="I_smoke058_blue2" Arg="2"/>
+                    <Str Str="Dummy_effect_wepon2"/>
+                    <Num Num="0"/>
+                </Scp>
+            </EtcList>
+        </MainSkl>
+    </Skill>
+    <Skill Name="Mon_weekly_boss_Quipmage_Skill_4">
+        <MainSkl ScrLock="None" JumpFlee="NO" MSPDToUsePos="0">
+            <HitList>
+                <Frame Type="FAN" Time="10791" HitCount="1" TermMin="0" TermMax="0" PosType="0" Dist="0" RandDist="0" RandomPerHit="0" Angle="0" AniTime="10991" RotAngle="0" ForceATK="0" ScriptIndex="0" ScriptName="" SkillType="0"/>
+            </HitList>
+            <EtcList>
+                <Anim Time="0" Anim="skl2" Speed="1.3"/>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="0">
+                    <Str_Arg Str="I_light004_green_3" Arg="3"/>
+                    <Str Str="Dummy_effect_wepon"/>
+                    <Num Num="3.5"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="0">
+                    <Str_Arg Str="I_force104_trail2" Arg="2"/>
+                    <Str Str="Dummy_effect_wepon"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="0">
+                    <Str_Arg Str="I_light004_white" Arg="0.5"/>
+                    <Str Str="Dummy_effect_eye_R"/>
+                    <Num Num="4.8000002"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="0">
+                    <Str_Arg Str="I_light004_white" Arg="0.5"/>
+                    <Str Str="Dummy_effect_eye_L"/>
+                    <Num Num="4.8000002"/>
+                </Scp>
+                <Scp Scp="C_SOUND" Client="YES" UseSleep="NO" Time="50">
+                    <Str Str="mon_deathweaver_skl_3"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="800">
+                    <Str_Arg Str="I_light004_mint" Arg="0.80000001"/>
+                    <Str Str="Dummy_effect_wepon"/>
+                    <Num Num="1.5"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="800">
+                    <Str_Arg Str="I_smoke053_mint_loop" Arg="1"/>
+                    <Str Str="Dummy_effect_wepon2"/>
+                    <Num Num="4.5"/>
+                </Scp>
+                <Scp Scp="EFT_AND_HIT_ARROW" Client="NO" UseSleep="YES" Time="2400">
+                    <Pos Angle="0" Dist="30"/>
+                    <Pos Angle="0" Dist="175"/>
+                    <Str_Arg Str="None" Arg="1"/>
+                    <Num Num="25"/>
+                    <Num Num="0.0099999998"/>
+                    <Num Num="1"/>
+                    <Num Num="0"/>
+                    <Str_Arg Str="F_burstup029_smoke_grey" Arg="2"/>
+                    <Num Num="40"/>
+                    <Num Num="100"/>
+                    <Num Num="0"/>
+                    <Num Num="25"/>
+                    <Num Num="0.2"/>
+                    <Num Num="1"/>
+                    <Num Num="1000"/>
+                    <Num Num="3"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="2400">
+                    <Str_Arg Str="I_light004_mint" Arg="2"/>
+                    <Str Str="Dummy_effect_wepon"/>
+                    <Num Num="1"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="2400">
+                    <Str_Arg Str="F_ground071_smoke_grey" Arg="1"/>
+                    <Str Str="Dummy_emitter"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="2400">
+                    <Str_Arg Str="F_spread_out031_fether_mint" Arg="0.80000001"/>
+                    <Str Str="Bip001 Xtra0105"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="2400">
+                    <Str_Arg Str="F_spread_out031_fether_mint" Arg="0.80000001"/>
+                    <Str Str="Bip001 Xtra01Opp05"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="2800">
+                    <Str_Arg Str="F_spread_out031_fether_mint_dark" Arg="0.80000001"/>
+                    <Str Str="Bip001 R Hand"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="3800">
+                    <Str_Arg Str="F_stone007" Arg="2"/>
+                    <Str Str="Dummy_effect_wepon_smoke"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="3800">
+                    <Str_Arg Str="F_smoke109" Arg="2"/>
+                    <Str Str="Dummy_effect_wepon_smoke"/>
+                    <Num Num="0"/>
+                </Scp>
+            </EtcList>
+        </MainSkl>
+    </Skill>
+    <Skill Name="Mon_weekly_boss_Quipmage_Skill_3">
+        <MainSkl ScrLock="None" JumpFlee="NO" MSPDToUsePos="0">
+            <MoveList>
+                <Frame Time="2000" Dist="0" Angle="-0.00048804286" Accel="1" Height="0" MoveType="0" Gravity="600" JumpPower="300"/>
+                <Frame Time="2300" Dist="231.13" Angle="0.0083768805" Accel="1" Height="0" MoveType="0" Gravity="600" JumpPower="300"/>
+            </MoveList>
+            <HitList>
+                <Frame Type="FAN" Time="10791" HitCount="1" TermMin="0" TermMax="0" PosType="0" Dist="0" RandDist="0" RandomPerHit="0" Angle="0" AniTime="10991" RotAngle="0" ForceATK="0" ScriptIndex="0" ScriptName="" SkillType="0"/>
+            </HitList>
+            <EtcList>
+                <Anim Time="0" Anim="skl3" Speed="1.5"/>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="0">
+                    <Str_Arg Str="I_smoke052_white3" Arg="0.80000001"/>
+                    <Str Str="Dummy_emitter001"/>
+                    <Num Num="2"/>
+                </Scp>
+                <Scp Scp="C_SOUND" Client="YES" UseSleep="NO" Time="0">
+                    <Str Str="m_harpeia_born"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="0">
+                    <Str_Arg Str="I_smoke052_white3" Arg="1"/>
+                    <Str Str="Bip001 Xtra0103"/>
+                    <Num Num="3.3"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="0">
+                    <Str_Arg Str="I_smoke052_white3" Arg="1"/>
+                    <Str Str="Bip001 Xtra01Opp03"/>
+                    <Num Num="3.3"/>
+                </Scp>
+                <Scp Scp="C_SOUND" Client="YES" UseSleep="NO" Time="180">
+                    <Str Str="m_harpeia_skl_3"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="600">
+                    <Str_Arg Str="F_spread_out031_fether_mint" Arg="0.80000001"/>
+                    <Str Str="Bip001 Xtra01Opp05"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="600">
+                    <Str_Arg Str="F_spread_out031_fether_mint" Arg="0.80000001"/>
+                    <Str Str="Bip001 Xtra0105"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="900">
+                    <Str_Arg Str="F_ground145_smoke" Arg="1.5"/>
+                    <Str Str="Dummy_emitter001"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="C_COLORBLEND_ACTOR" Client="YES" UseSleep="NO" Time="900">
+                    <Num Num="1"/>
+                    <Num Num="1"/>
+                    <Num Num="0.029999999"/>
+                    <Num Num="0.050000001"/>
+                    <Num Num="0.029999999"/>
+                    <Num Num="0.050000001"/>
+                    <Num Num="1"/>
+                </Scp>
+                <Scp Scp="C_COLORBLEND_ACTOR" Client="YES" UseSleep="NO" Time="1000">
+                    <Num Num="1"/>
+                    <Num Num="1"/>
+                    <Num Num="0"/>
+                    <Num Num="0"/>
+                    <Num Num="0"/>
+                    <Num Num="0"/>
+                    <Num Num="1"/>
+                </Scp>
+                <Scp Scp="C_COLORBLEND_ACTOR" Client="YES" UseSleep="NO" Time="1100">
+                    <Num Num="1"/>
+                    <Num Num="1"/>
+                    <Num Num="0.029999999"/>
+                    <Num Num="0.2"/>
+                    <Num Num="0.15000001"/>
+                    <Num Num="0.2"/>
+                    <Num Num="1"/>
+                </Scp>
+                <Scp Scp="C_COLORBLEND_ACTOR" Client="YES" UseSleep="NO" Time="1200">
+                    <Num Num="1"/>
+                    <Num Num="1"/>
+                    <Num Num="0"/>
+                    <Num Num="0"/>
+                    <Num Num="0"/>
+                    <Num Num="0"/>
+                    <Num Num="1"/>
+                </Scp>
+                <Scp Scp="C_COLORBLEND_ACTOR" Client="YES" UseSleep="NO" Time="1300">
+                    <Num Num="1"/>
+                    <Num Num="1"/>
+                    <Num Num="0.029999999"/>
+                    <Num Num="0.050000001"/>
+                    <Num Num="0.029999999"/>
+                    <Num Num="0.050000001"/>
+                    <Num Num="1"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="1300">
+                    <Str_Arg Str="F_spread_out031_fether_mint" Arg="0.80000001"/>
+                    <Str Str="Bip001 Xtra0105"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="1300">
+                    <Str_Arg Str="F_spread_out031_fether_mint" Arg="0.80000001"/>
+                    <Str Str="Bip001 Xtra01Opp05"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="C_COLORBLEND_ACTOR" Client="YES" UseSleep="NO" Time="1400">
+                    <Num Num="1"/>
+                    <Num Num="1"/>
+                    <Num Num="0"/>
+                    <Num Num="0"/>
+                    <Num Num="0"/>
+                    <Num Num="0"/>
+                    <Num Num="1"/>
+                </Scp>
+                <Scp Scp="C_COLORBLEND_ACTOR" Client="YES" UseSleep="NO" Time="1500">
+                    <Num Num="1"/>
+                    <Num Num="1"/>
+                    <Num Num="0.029999999"/>
+                    <Num Num="0.050000001"/>
+                    <Num Num="0.029999999"/>
+                    <Num Num="0.050000001"/>
+                    <Num Num="1"/>
+                </Scp>
+                <Scp Scp="C_COLORBLEND_ACTOR" Client="YES" UseSleep="NO" Time="1600">
+                    <Num Num="1"/>
+                    <Num Num="1"/>
+                    <Num Num="0"/>
+                    <Num Num="0"/>
+                    <Num Num="0"/>
+                    <Num Num="0"/>
+                    <Num Num="1"/>
+                </Scp>
+                <Scp Scp="C_COLORBLEND_ACTOR" Client="YES" UseSleep="NO" Time="1700">
+                    <Num Num="1"/>
+                    <Num Num="1"/>
+                    <Num Num="0.029999999"/>
+                    <Num Num="0.050000001"/>
+                    <Num Num="0.029999999"/>
+                    <Num Num="0.050000001"/>
+                    <Num Num="1"/>
+                </Scp>
+                <Scp Scp="C_COLORBLEND_ACTOR" Client="YES" UseSleep="NO" Time="1800">
+                    <Num Num="1"/>
+                    <Num Num="1"/>
+                    <Num Num="0"/>
+                    <Num Num="0"/>
+                    <Num Num="0"/>
+                    <Num Num="0"/>
+                    <Num Num="1"/>
+                </Scp>
+                <Scp Scp="C_COLORBLEND_ACTOR" Client="YES" UseSleep="NO" Time="1900">
+                    <Num Num="1"/>
+                    <Num Num="1"/>
+                    <Num Num="0.029999999"/>
+                    <Num Num="0.050000001"/>
+                    <Num Num="0.029999999"/>
+                    <Num Num="0.050000001"/>
+                    <Num Num="1"/>
+                </Scp>
+                <Scp Scp="C_COLORBLEND_ACTOR" Client="YES" UseSleep="NO" Time="2000">
+                    <Num Num="1"/>
+                    <Num Num="1"/>
+                    <Num Num="0"/>
+                    <Num Num="0"/>
+                    <Num Num="0"/>
+                    <Num Num="0"/>
+                    <Num Num="1"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="2000">
+                    <Str_Arg Str="I_force104_trail" Arg="4"/>
+                    <Str Str="Bip001 Xtra01Opp05"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="2000">
+                    <Str_Arg Str="I_force104_trail" Arg="4"/>
+                    <Str Str="Bip001 Xtra0105"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="EFT_AND_HIT_ARROW" Client="NO" UseSleep="YES" Time="2000">
+                    <Pos Angle="0" Dist="0"/>
+                    <Pos Angle="0" Dist="220"/>
+                    <Str_Arg Str="None" Arg="1"/>
+                    <Num Num="25"/>
+                    <Num Num="0.0099999998"/>
+                    <Num Num="1"/>
+                    <Num Num="0"/>
+                    <Str_Arg Str="F_explosion001_darkmint" Arg="1.3"/>
+                    <Num Num="0"/>
+                    <Num Num="0"/>
+                    <Num Num="200"/>
+                    <Num Num="40"/>
+                    <Num Num="0.1"/>
+                    <Num Num="0"/>
+                    <Num Num="1000"/>
+                    <Num Num="1"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="EFT_AND_HIT_ARROW" Client="NO" UseSleep="YES" Time="2000">
+                    <Pos Angle="0" Dist="0"/>
+                    <Pos Angle="0" Dist="220"/>
+                    <Str_Arg Str="None" Arg="1"/>
+                    <Num Num="25"/>
+                    <Num Num="0.0099999998"/>
+                    <Num Num="1"/>
+                    <Num Num="0"/>
+                    <Str_Arg Str="F_ground068_smoke2_grey" Arg="1.5"/>
+                    <Num Num="40"/>
+                    <Num Num="100"/>
+                    <Num Num="200"/>
+                    <Num Num="40"/>
+                    <Num Num="0.1"/>
+                    <Num Num="1"/>
+                    <Num Num="1000"/>
+                    <Num Num="1"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="EFT_AND_HIT_ARROW" Client="NO" UseSleep="YES" Time="2000">
+                    <Pos Angle="0" Dist="0"/>
+                    <Pos Angle="0" Dist="220"/>
+                    <Str_Arg Str="None" Arg="1"/>
+                    <Num Num="25"/>
+                    <Num Num="0.0099999998"/>
+                    <Num Num="1"/>
+                    <Num Num="1500"/>
+                    <Str_Arg Str="F_explosion012_2" Arg="2"/>
+                    <Num Num="40"/>
+                    <Num Num="100"/>
+                    <Num Num="0"/>
+                    <Num Num="40"/>
+                    <Num Num="0.1"/>
+                    <Num Num="1"/>
+                    <Num Num="1000"/>
+                    <Num Num="1"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="C_COLORBLEND_ACTOR" Client="YES" UseSleep="NO" Time="2100">
+                    <Num Num="1"/>
+                    <Num Num="1"/>
+                    <Num Num="0.029999999"/>
+                    <Num Num="0.050000001"/>
+                    <Num Num="0.029999999"/>
+                    <Num Num="0.050000001"/>
+                    <Num Num="1"/>
+                </Scp>
+                <Scp Scp="C_COLORBLEND_ACTOR" Client="YES" UseSleep="NO" Time="2200">
+                    <Num Num="1"/>
+                    <Num Num="1"/>
+                    <Num Num="0"/>
+                    <Num Num="0"/>
+                    <Num Num="0"/>
+                    <Num Num="0"/>
+                    <Num Num="1"/>
+                </Scp>
+                <Scp Scp="C_COLORBLEND_ACTOR" Client="YES" UseSleep="NO" Time="2300">
+                    <Num Num="1"/>
+                    <Num Num="1"/>
+                    <Num Num="0.2"/>
+                    <Num Num="0.30000001"/>
+                    <Num Num="0.40000001"/>
+                    <Num Num="0.5"/>
+                    <Num Num="1"/>
+                </Scp>
+                <Scp Scp="C_SOUND" Client="YES" UseSleep="NO" Time="2450">
+                    <Str Str="skl_eff_spread_13"/>
+                </Scp>
+                <Scp Scp="C_COLORBLEND_ACTOR" Client="YES" UseSleep="NO" Time="2550">
+                    <Num Num="1"/>
+                    <Num Num="1"/>
+                    <Num Num="0"/>
+                    <Num Num="0"/>
+                    <Num Num="0"/>
+                    <Num Num="0"/>
+                    <Num Num="1"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="3000">
+                    <Str_Arg Str="F_spread_out031_fether_mint" Arg="1"/>
+                    <Str Str="Bip001 Xtra0105"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="3000">
+                    <Str_Arg Str="F_spread_out031_fether_mint" Arg="1"/>
+                    <Str Str="Bip001 Xtra01Opp05"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="3300">
+                    <Str_Arg Str="F_spread_out031_fether_mint_dark" Arg="1"/>
+                    <Str Str="Bip001 Xtra01Opp05"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="3300">
+                    <Str_Arg Str="F_spread_out031_fether_mint_dark" Arg="1"/>
+                    <Str Str="Bip001 Xtra0105"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="3500">
+                    <Str_Arg Str="F_smoke109" Arg="3"/>
+                    <Str Str="Dummy_emitter"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="4050">
+                    <Str_Arg Str="F_smoke109" Arg="1.5"/>
+                    <Str Str="Dummy_effect_wepon_smoke"/>
+                    <Num Num="0"/>
+                </Scp>
+            </EtcList>
+        </MainSkl>
+    </Skill>
+    <Skill Name="Mon_weekly_boss_Quipmage_Skill_2">
+        <CondList>
+            <Scp Scp="SCOND_DISTANCE_CHECK" Client="NO" UseSleep="NO" Time="0">
+                <Num Num="0"/>
+                <Num Num="50"/>
+                <Num Num="125"/>
+            </Scp>
+        </CondList>
+        <MainSkl ScrLock="None" JumpFlee="NO" MSPDToUsePos="0">
+            <HitList>
+                <Frame Type="FAN" Time="10791" HitCount="1" TermMin="0" TermMax="0" PosType="0" Dist="0" RandDist="0" RandomPerHit="0" Angle="0" AniTime="10991" RotAngle="0" ForceATK="0" ScriptIndex="0" ScriptName="" SkillType="0"/>
+            </HitList>
+            <EtcList>
+                <Anim Time="0" Anim="skl1" Speed="1"/>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="0">
+                    <Str_Arg Str="None" Arg="1.5"/>
+                    <Str Str="Bip001 R Hand"/>
+                    <Num Num="2.5"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="0">
+                    <Str_Arg Str="I_light004_green_3" Arg="3"/>
+                    <Str Str="Dummy_effect_wepon"/>
+                    <Num Num="5"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="0">
+                    <Str_Arg Str="I_force104_trail2" Arg="2"/>
+                    <Str Str="Dummy_effect_wepon"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="0">
+                    <Str_Arg Str="I_light004_white" Arg="1"/>
+                    <Str Str="Dummy_effect_eye_R"/>
+                    <Num Num="5.3000002"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="0">
+                    <Str_Arg Str="I_light004_white" Arg="1"/>
+                    <Str Str="Dummy_effect_eye_L"/>
+                    <Num Num="5.3000002"/>
+                </Scp>
+                <Scp Scp="C_SOUND" Client="YES" UseSleep="NO" Time="0">
+                    <Str Str="m_harpeia_dead"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="800">
+                    <Str_Arg Str="I_light004_mint" Arg="0.80000001"/>
+                    <Str Str="Dummy_effect_wepon"/>
+                    <Num Num="2.5"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="800">
+                    <Str_Arg Str="I_smoke053_mint_loop" Arg="1"/>
+                    <Str Str="Dummy_effect_wepon2"/>
+                    <Num Num="4.5"/>
+                </Scp>
+                <Scp Scp="C_SOUND" Client="YES" UseSleep="NO" Time="900">
+                    <Str Str="m_harpeia_skl_2"/>
+                </Scp>
+                <Scp Scp="C_SOUND" Client="YES" UseSleep="NO" Time="2500">
+                    <Str Str="skl_eff_featherfoot_enervation_ground"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="2700">
+                    <Str_Arg Str="I_light004_mint" Arg="2"/>
+                    <Str Str="Dummy_effect_wepon"/>
+                    <Num Num="1.5"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="2800">
+                    <Str_Arg Str="F_spread_out031_fether_mint_dark" Arg="0.80000001"/>
+                    <Str Str="Bip001 R Hand"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="EFT_AND_HIT_ARROW" Client="NO" UseSleep="YES" Time="2800">
+                    <Pos Angle="-1.134464" Dist="100"/>
+                    <Pos Angle="0.52359879" Dist="165"/>
+                    <Str_Arg Str="None" Arg="1"/>
+                    <Num Num="25"/>
+                    <Num Num="0.0099999998"/>
+                    <Num Num="1"/>
+                    <Num Num="0"/>
+                    <Str_Arg Str="F_explosion125" Arg="2"/>
+                    <Num Num="30"/>
+                    <Num Num="150"/>
+                    <Num Num="200"/>
+                    <Num Num="30"/>
+                    <Num Num="0.050000001"/>
+                    <Num Num="1"/>
+                    <Num Num="1000"/>
+                    <Num Num="3"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="C_COLORBLEND_ACTOR" Client="YES" UseSleep="NO" Time="2950">
+                    <Num Num="1"/>
+                    <Num Num="1"/>
+                    <Num Num="0.2"/>
+                    <Num Num="0.40000001"/>
+                    <Num Num="0.30000001"/>
+                    <Num Num="0.30000001"/>
+                    <Num Num="1"/>
+                </Scp>
+                <Scp Scp="C_SHOCKWAVE" Client="YES" UseSleep="NO" Time="2950">
+                    <Num Num="5"/>
+                    <Num Num="0.2"/>
+                    <Num Num="65"/>
+                    <Num Num="999"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="3000">
+                    <Str_Arg Str="F_ground071_smoke_grey" Arg="0.80000001"/>
+                    <Str Str="Dummy_emitter"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="C_COLORBLEND_ACTOR" Client="YES" UseSleep="NO" Time="3050">
+                    <Num Num="1"/>
+                    <Num Num="1"/>
+                    <Num Num="0"/>
+                    <Num Num="0"/>
+                    <Num Num="0"/>
+                    <Num Num="0"/>
+                    <Num Num="1"/>
+                </Scp>
+                <Scp Scp="C_SOUND" Client="YES" UseSleep="NO" Time="3200">
+                    <Str Str="skl_eff_daoshi_divinepunishment_ground"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="3200">
+                    <Str_Arg Str="F_spread_out031_fether_mint" Arg="0.80000001"/>
+                    <Str Str="Bip001 Xtra0105"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="3200">
+                    <Str_Arg Str="F_spread_out031_fether_mint" Arg="0.80000001"/>
+                    <Str Str="Bip001 Xtra01Opp05"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="3200">
+                    <Str_Arg Str="F_spread_out031_fether_mint_dark" Arg="0.80000001"/>
+                    <Str Str="Bip001 R Hand"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="EFT_AND_HIT_ARROW" Client="NO" UseSleep="YES" Time="3200">
+                    <Pos Angle="1.134464" Dist="100"/>
+                    <Pos Angle="-0.52359879" Dist="165"/>
+                    <Str_Arg Str="None" Arg="1"/>
+                    <Num Num="25"/>
+                    <Num Num="0.0099999998"/>
+                    <Num Num="1"/>
+                    <Num Num="0"/>
+                    <Str_Arg Str="F_explosion125" Arg="2"/>
+                    <Num Num="30"/>
+                    <Num Num="150"/>
+                    <Num Num="200"/>
+                    <Num Num="30"/>
+                    <Num Num="0.050000001"/>
+                    <Num Num="1"/>
+                    <Num Num="1000"/>
+                    <Num Num="3"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="3350">
+                    <Str_Arg Str="F_ground071_smoke_grey" Arg="1"/>
+                    <Str Str="Dummy_emitter"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="C_COLORBLEND_ACTOR" Client="YES" UseSleep="NO" Time="3400">
+                    <Num Num="1"/>
+                    <Num Num="1"/>
+                    <Num Num="0.2"/>
+                    <Num Num="0.40000001"/>
+                    <Num Num="0.30000001"/>
+                    <Num Num="0.30000001"/>
+                    <Num Num="1"/>
+                </Scp>
+                <Scp Scp="C_SHOCKWAVE" Client="YES" UseSleep="NO" Time="3400">
+                    <Num Num="5"/>
+                    <Num Num="0.2"/>
+                    <Num Num="65"/>
+                    <Num Num="999"/>
+                </Scp>
+                <Scp Scp="C_COLORBLEND_ACTOR" Client="YES" UseSleep="NO" Time="3500">
+                    <Num Num="1"/>
+                    <Num Num="1"/>
+                    <Num Num="0"/>
+                    <Num Num="0"/>
+                    <Num Num="0"/>
+                    <Num Num="0"/>
+                    <Num Num="1"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="4650">
+                    <Str_Arg Str="F_spread_out031_fether_mint_dark" Arg="0.80000001"/>
+                    <Str Str="Bip001 R Hand"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="4700">
+                    <Str_Arg Str="F_spread_out031_fether_mint" Arg="0.80000001"/>
+                    <Str Str="Bip001 Xtra0105"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="4700">
+                    <Str_Arg Str="F_spread_out031_fether_mint" Arg="0.80000001"/>
+                    <Str Str="Bip001 Xtra01Opp05"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="4700">
+                    <Str_Arg Str="I_smoke053_mint" Arg="1.5"/>
+                    <Str Str="Dummy_effect_wepon2"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="4700">
+                    <Str_Arg Str="F_light028_mint4" Arg="4"/>
+                    <Str Str="Dummy_effect_wepon"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="4750">
+                    <Str_Arg Str="I_smoke053_mint" Arg="1"/>
+                    <Str Str="Dummy_effect_wepon2"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="4800">
+                    <Str_Arg Str="F_smoke033_2" Arg="0.69999999"/>
+                    <Str Str="Dummy_effect_wepon_smoke"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="C_COLORBLEND_ACTOR" Client="YES" UseSleep="NO" Time="4950">
+                    <Num Num="1"/>
+                    <Num Num="1"/>
+                    <Num Num="0.02"/>
+                    <Num Num="0.02"/>
+                    <Num Num="0.02"/>
+                    <Num Num="0.050000001"/>
+                    <Num Num="1"/>
+                </Scp>
+                <Scp Scp="C_COLORBLEND_ACTOR" Client="YES" UseSleep="NO" Time="4990">
+                    <Num Num="1"/>
+                    <Num Num="1"/>
+                    <Num Num="0"/>
+                    <Num Num="0"/>
+                    <Num Num="0"/>
+                    <Num Num="0"/>
+                    <Num Num="1"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="-300">
+                    <Str_Arg Str="None" Arg="1.5"/>
+                    <Str Str="Bip001 R Hand"/>
+                    <Num Num="2.5"/>
+                </Scp>
+            </EtcList>
+        </MainSkl>
+    </Skill>
+    <Skill Name="Mon_weekly_boss_Quipmage_Skill_1">
+        <MainSkl ScrLock="None" JumpFlee="NO" MSPDToUsePos="0">
+            <HitList>
+                <Frame Type="FAN" Time="800" HitCount="1" TermMin="0" TermMax="0" PosType="0" Dist="0" RandDist="0" RandomPerHit="0" Angle="0" Width="45" Length="80" SklAngle="0.95993114" AniTime="1000" RotAngle="0" ForceATK="0" ScriptIndex="0" ScriptName="" SkillType="0"/>
+            </HitList>
+            <EtcList>
+                <Anim Time="0" Anim="atk1" Speed="1.5" StartTime="0.69999999"/>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="0">
+                    <Str_Arg Str="I_light004_white" Arg="1"/>
+                    <Str Str="Dummy_effect_eye_R"/>
+                    <Num Num="2.7"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="0">
+                    <Str_Arg Str="I_light004_white" Arg="1"/>
+                    <Str Str="Dummy_effect_eye_L"/>
+                    <Num Num="2.7"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="0">
+                    <Str_Arg Str="I_light004_green_3" Arg="3"/>
+                    <Str Str="Dummy_effect_wepon"/>
+                    <Num Num="2.5999999"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="0">
+                    <Str_Arg Str="I_force104_trail" Arg="5"/>
+                    <Str Str="Dummy_effect_wepon"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="C_SOUND" Client="YES" UseSleep="NO" Time="50">
+                    <Str Str="m_harpeia_skl_1"/>
+                </Scp>
+                <Scp Scp="C_SOUND" Client="YES" UseSleep="NO" Time="440">
+                    <Str Str="skl_eff_skyline_spread"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="500">
+                    <Str_Arg Str="I_light004_mint" Arg="1.5"/>
+                    <Str Str="Dummy_effect_wepon"/>
+                    <Num Num="1.75"/>
+                </Scp>
+                <Scp Scp="C_COLORBLEND_ACTOR" Client="YES" UseSleep="NO" Time="650">
+                    <Num Num="1"/>
+                    <Num Num="1"/>
+                    <Num Num="0.30000001"/>
+                    <Num Num="0.60000002"/>
+                    <Num Num="0.5"/>
+                    <Num Num="0.5"/>
+                    <Num Num="1"/>
+                </Scp>
+                <Scp Scp="C_SHOCKWAVE" Client="YES" UseSleep="NO" Time="700">
+                    <Num Num="5"/>
+                    <Num Num="0.2"/>
+                    <Num Num="70"/>
+                    <Num Num="999"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="700">
+                    <Str_Arg Str="F_spread_out031_fether_mint" Arg="0.80000001"/>
+                    <Str Str="Bip001 Xtra0105"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="700">
+                    <Str_Arg Str="F_spread_out031_fether_mint" Arg="0.80000001"/>
+                    <Str Str="Bip001 Xtra01Opp05"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="C_COLORBLEND_ACTOR" Client="YES" UseSleep="NO" Time="750">
+                    <Num Num="1"/>
+                    <Num Num="1"/>
+                    <Num Num="0.15000001"/>
+                    <Num Num="0.30000001"/>
+                    <Num Num="0.2"/>
+                    <Num Num="0.30000001"/>
+                    <Num Num="1"/>
+                </Scp>
+                <Scp Scp="C_COLORBLEND_ACTOR" Client="YES" UseSleep="NO" Time="850">
+                    <Num Num="1"/>
+                    <Num Num="1"/>
+                    <Num Num="0"/>
+                    <Num Num="0"/>
+                    <Num Num="0"/>
+                    <Num Num="0"/>
+                    <Num Num="1"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="900">
+                    <Str_Arg Str="I_force104_trail" Arg="5"/>
+                    <Str Str="Dummy_effect_wepon"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="900">
+                    <Str_Arg Str="I_light004_white" Arg="1"/>
+                    <Str Str="Dummy_effect_eye_R"/>
+                    <Num Num="1.5"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="900">
+                    <Str_Arg Str="I_light004_white" Arg="1"/>
+                    <Str Str="Dummy_effect_eye_L"/>
+                    <Num Num="1.5"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="1000">
+                    <Str_Arg Str="F_spread_out031_fether_mint_dark" Arg="0.80000001"/>
+                    <Str Str="Bip001 R Hand"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="1000">
+                    <Str_Arg Str="I_smoke053_mint" Arg="1.5"/>
+                    <Str Str="Dummy_effect_wepon2"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="1000">
+                    <Str_Arg Str="F_spread_out031_fether_mint_dark" Arg="0.80000001"/>
+                    <Str Str="Bip001 L Hand"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="1050">
+                    <Str_Arg Str="I_smoke053_mint" Arg="1"/>
+                    <Str Str="Dummy_effect_wepon2"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="1090">
+                    <Str_Arg Str="I_light004_white" Arg="1"/>
+                    <Str Str="Dummy_effect_eye_R"/>
+                    <Num Num="0.5"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="1090">
+                    <Str_Arg Str="I_light004_white" Arg="1"/>
+                    <Str Str="Dummy_effect_eye_L"/>
+                    <Num Num="0.5"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="1150">
+                    <Str_Arg Str="F_light028_mint4" Arg="4"/>
+                    <Str Str="Dummy_effect_wepon"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="C_SHOCKWAVE" Client="YES" UseSleep="NO" Time="1290">
+                    <Num Num="1.5"/>
+                    <Num Num="0.30000001"/>
+                    <Num Num="50"/>
+                    <Num Num="999"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="1290">
+                    <Str_Arg Str="F_smoke033_2" Arg="1"/>
+                    <Str Str="Dummy_effect_wepon_smoke"/>
+                    <Num Num="0"/>
+                </Scp>
+            </EtcList>
+        </MainSkl>
+    </Skill>
+    <Skill Name="Mon_weekly_boss_Asiomage_Skill_3">
+        <MainSkl ScrLock="None" JumpFlee="NO" MSPDToUsePos="0">
+            <MoveList>
+                <Frame Time="2000" Dist="4.3977904" Angle="0.36323959" Accel="1" Height="0" MoveType="0" Gravity="600" JumpPower="300"/>
+                <Frame Time="2500" Dist="158.34131" Angle="-0.011675156" Accel="1" Height="0" MoveType="0" Gravity="600" JumpPower="300"/>
+            </MoveList>
+            <HitList>
+                <Frame Type="FAN" Time="9999" HitCount="1" TermMin="0" TermMax="0" PosType="0" Dist="0" RandDist="0" RandomPerHit="0" Angle="0" AniTime="10199" RotAngle="0" ForceATK="0" ScriptIndex="0" ScriptName="" SkillType="0"/>
+            </HitList>
+            <EtcList>
+                <Anim Time="0" Anim="skl3" Speed="1.2"/>
+                <Scp Scp="SKL_RUN_SCRIPT" Client="NO" UseSleep="NO" Time="0">
+                    <Str Str="SCR_WEEKLY_BOSS_ASIOMAGE_USESKILL_WITH_QUIPMAGE"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="300">
+                    <Str_Arg Str="I_smoke052_white3" Arg="1"/>
+                    <Str Str="Bip001 Xtra0103"/>
+                    <Num Num="3.3"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="300">
+                    <Str_Arg Str="I_smoke052_white3" Arg="1"/>
+                    <Str Str="Bip001 Xtra01Opp03"/>
+                    <Num Num="3.3"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="300">
+                    <Str_Arg Str="I_smoke052_white3" Arg="0.80000001"/>
+                    <Str Str="Dummy_emitter001"/>
+                    <Num Num="2"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="500">
+                    <Str_Arg Str="F_ground145_smoke_red" Arg="1.5"/>
+                    <Str Str="Dummy_emitter"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="900">
+                    <Str_Arg Str="F_spread_out031_fether_red" Arg="0.80000001"/>
+                    <Str Str="Bip001 Xtra0105"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="1600">
+                    <Str_Arg Str="F_spread_out031_fether_red" Arg="0.80000001"/>
+                    <Str Str="Bip001 Xtra0105"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="1600">
+                    <Str_Arg Str="F_spread_out031_fether_red" Arg="0.80000001"/>
+                    <Str Str="Bip001 Xtra01Opp05"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="2300">
+                    <Str_Arg Str="I_force104_trail_red" Arg="4"/>
+                    <Str Str="Bip001 Xtra0102"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="2300">
+                    <Str_Arg Str="I_force104_trail_red" Arg="4"/>
+                    <Str Str="Bip001 Xtra01Opp03"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="C_SHOCKWAVE" Client="YES" UseSleep="NO" Time="3000">
+                    <Num Num="8"/>
+                    <Num Num="1"/>
+                    <Num Num="55"/>
+                    <Num Num="999"/>
+                </Scp>
+                <Scp Scp="EFT_AND_HIT_ARROW" Client="NO" UseSleep="YES" Time="3000">
+                    <Pos Angle="0" Dist="0"/>
+                    <Pos Angle="0" Dist="175"/>
+                    <Str_Arg Str="None" Arg="1"/>
+                    <Num Num="25"/>
+                    <Num Num="0.0099999998"/>
+                    <Num Num="1"/>
+                    <Num Num="0"/>
+                    <Str_Arg Str="F_ground068_smoke2_grey" Arg="1.5"/>
+                    <Num Num="40"/>
+                    <Num Num="100"/>
+                    <Num Num="0"/>
+                    <Num Num="40"/>
+                    <Num Num="0.1"/>
+                    <Num Num="1"/>
+                    <Num Num="1000"/>
+                    <Num Num="1"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="EFT_AND_HIT_ARROW" Client="NO" UseSleep="YES" Time="3000">
+                    <Pos Angle="0" Dist="0"/>
+                    <Pos Angle="0" Dist="175"/>
+                    <Str_Arg Str="None" Arg="1"/>
+                    <Num Num="25"/>
+                    <Num Num="0.0099999998"/>
+                    <Num Num="1"/>
+                    <Num Num="0"/>
+                    <Str_Arg Str="F_explosion125_red" Arg="2.5"/>
+                    <Num Num="0"/>
+                    <Num Num="0"/>
+                    <Num Num="0"/>
+                    <Num Num="40"/>
+                    <Num Num="0.1"/>
+                    <Num Num="0"/>
+                    <Num Num="1000"/>
+                    <Num Num="1"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="4000">
+                    <Str_Arg Str="F_spread_out031_fether_red" Arg="1"/>
+                    <Str Str="Bip001 Xtra0105"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="4000">
+                    <Str_Arg Str="F_spread_out031_fether_red" Arg="1"/>
+                    <Str Str="Bip001 Xtra01Opp05"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="4300">
+                    <Str_Arg Str="F_smoke109" Arg="3"/>
+                    <Str Str="Dummy_emitter"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="4500">
+                    <Str_Arg Str="F_spread_out031_fether_red" Arg="1"/>
+                    <Str Str="Bip001 Xtra0105"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="4500">
+                    <Str_Arg Str="F_spread_out031_fether_red" Arg="1"/>
+                    <Str Str="Bip001 Xtra01Opp05"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="4850">
+                    <Str_Arg Str="F_smoke109" Arg="1.5"/>
+                    <Str Str="Dummy_effect_wepon_smoke"/>
+                    <Num Num="0"/>
+                </Scp>
+            </EtcList>
+        </MainSkl>
+    </Skill>
+    <Skill Name="Mon_weekly_boss_Asiomage_Skill_5">
+        <MainSkl ScrLock="None" JumpFlee="NO" MSPDToUsePos="0">
+            <MoveList>
+                <Frame Time="2300" Dist="5.6734853" Angle="2.0160596" Accel="1" Height="0" MoveType="0" Gravity="600" JumpPower="300"/>
+                <Frame Time="2350" Dist="74.676376" Angle="-3.1188741" Accel="1" Height="0" MoveType="0" Gravity="600" JumpPower="300"/>
+            </MoveList>
+            <HitList>
+                <Frame Type="FAN" Time="9999" HitCount="1" TermMin="0" TermMax="0" PosType="0" Dist="0" RandDist="0" RandomPerHit="0" Angle="0" AniTime="10199" RotAngle="0" ForceATK="0" ScriptIndex="0" ScriptName="" SkillType="0"/>
+            </HitList>
+            <EtcList>
+                <Anim Time="0" Anim="skl4" Speed="1.3"/>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="0">
+                    <Str_Arg Str="I_light004_red_glow" Arg="3"/>
+                    <Str Str="Dummy_effect_wepon"/>
+                    <Num Num="4"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="0">
+                    <Str_Arg Str="I_force104_trail_red" Arg="2"/>
+                    <Str Str="Dummy_effect_wepon"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="300">
+                    <Str_Arg Str="I_smoke052_white3" Arg="1"/>
+                    <Str Str="Bip001 Xtra0103"/>
+                    <Num Num="3.3"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="300">
+                    <Str_Arg Str="I_smoke052_white3" Arg="1"/>
+                    <Str Str="Bip001 Xtra01Opp03"/>
+                    <Num Num="3.3"/>
+                </Scp>
+                <Scp Scp="C_SHOCKWAVE" Client="YES" UseSleep="NO" Time="500">
+                    <Num Num="0.5"/>
+                    <Num Num="1"/>
+                    <Num Num="70"/>
+                    <Num Num="999"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="800">
+                    <Str_Arg Str="I_light004_red_glow" Arg="0.80000001"/>
+                    <Str Str="Dummy_effect_wepon"/>
+                    <Num Num="2.2"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="800">
+                    <Str_Arg Str="I_smoke058_violet2_loop" Arg="1"/>
+                    <Str Str="Dummy_effect_wepon2"/>
+                    <Num Num="4.5"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="900">
+                    <Str_Arg Str="F_spread_out031_fether_red" Arg="0.80000001"/>
+                    <Str Str="Bip001 Xtra01Opp05"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="900">
+                    <Str_Arg Str="F_spread_out031_fether_red" Arg="0.80000001"/>
+                    <Str Str="Bip001 Xtra0105"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="1600">
+                    <Str_Arg Str="F_spread_out031_fether_red" Arg="0.80000001"/>
+                    <Str Str="Bip001 Xtra0105"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="1600">
+                    <Str_Arg Str="F_spread_out031_fether_red" Arg="0.80000001"/>
+                    <Str Str="Bip001 Xtra01Opp05"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="1900">
+                    <Str_Arg Str="I_force104_trail_red" Arg="2"/>
+                    <Str Str="Bip001 Xtra01Opp05"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="1900">
+                    <Str_Arg Str="I_force104_trail_red" Arg="2"/>
+                    <Str Str="Bip001 Xtra0105"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="2000">
+                    <Str_Arg Str="F_smoke062_2" Arg="1"/>
+                    <Str Str="Dummy_emitter"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="SKL_SET_TARGET_CIRCLE" Client="NO" UseSleep="NO" Time="2000">
+                    <Pos Angle="0" Dist="-1.2802653e-22"/>
+                    <Num Num="200"/>
+                    <Num Num="5"/>
+                    <Num Num="2"/>
+                    <Num Num="0"/>
+                    <Num Num="1"/>
+                    <Num Num="1"/>
+                    <Num Num="0"/>
+                    <Num Num="1"/>
+                </Scp>
+                <Scp Scp="C_SHOCKWAVE" Client="YES" UseSleep="NO" Time="2100">
+                    <Num Num="2"/>
+                    <Num Num="0.2"/>
+                    <Num Num="60"/>
+                    <Num Num="999"/>
+                </Scp>
+                <Scp Scp="MSL_THROW" Client="NO" UseSleep="YES" TooltipScp="TOOLTIP_MSL_THROW" Time="2700">
+                    <Str_Arg Str="I_force018_trail_fire#Dummy_effect_wepon" Arg="3"/>
+                    <Str_Arg Str="F_explosion125_explosion2" Arg="5"/>
+                    <Str_Arg Str="I_force003_green" Arg="1"/>
+                    <Pos Angle="0" Dist="0" PosType="1"/>
+                    <Num Num="80"/>
+                    <Num Num="0.2"/>
+                    <Num Num="0"/>
+                    <Num Num="0"/>
+                    <Num Num="3"/>
+                    <Num Num="1000"/>
+                    <Num Num="1"/>
+                    <Str_Arg Str="None" Arg="1"/>
+                    <Num Num="0"/>
+                    <Num Num="0"/>
+                    <Num Num="0"/>
+                    <Num Num="3"/>
+                    <Num Num="60"/>
+                    <Num Num="0"/>
+                    <Str Str="None"/>
+                    <Num Num="1000"/>
+                    <Str Str="ENEMY"/>
+                    <Str Str="MSL_APPLIED_BUFF_CallBack"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="2700">
+                    <Str_Arg Str="I_light004_red_glow" Arg="2"/>
+                    <Str Str="Dummy_effect_wepon"/>
+                    <Num Num="1.5"/>
+                </Scp>
+                <Scp Scp="C_SHOCKWAVE" Client="YES" UseSleep="NO" Time="2850">
+                    <Num Num="7"/>
+                    <Num Num="0.5"/>
+                    <Num Num="60"/>
+                    <Num Num="999"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="3700">
+                    <Str_Arg Str="F_ground071_smoke2" Arg="1"/>
+                    <Str Str="Dummy_emitter"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="3800">
+                    <Str_Arg Str="F_spread_out031_fether_red" Arg="1"/>
+                    <Str Str="Bip001 Xtra01Opp05"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="3800">
+                    <Str_Arg Str="F_spread_out031_fether_red" Arg="1"/>
+                    <Str Str="Bip001 Xtra0105"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="C_SHOCKWAVE" Client="YES" UseSleep="NO" Time="3800">
+                    <Num Num="1"/>
+                    <Num Num="0.30000001"/>
+                    <Num Num="60"/>
+                    <Num Num="999"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="4100">
+                    <Str_Arg Str="F_spread_out031_fether_red" Arg="1"/>
+                    <Str Str="Bip001 Xtra01Opp05"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="4100">
+                    <Str_Arg Str="F_spread_out031_fether_red" Arg="1"/>
+                    <Str Str="Bip001 Xtra0105"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="4300">
+                    <Str_Arg Str="F_light028_red" Arg="20"/>
+                    <Str Str="Dummy_effect_wepon"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="4300">
+                    <Str_Arg Str="F_smoke109" Arg="3"/>
+                    <Str Str="Dummy_effect_wepon_smoke"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="4300">
+                    <Str_Arg Str="I_smoke058_blue2" Arg="2"/>
+                    <Str Str="Dummy_effect_wepon2"/>
+                    <Num Num="0"/>
+                </Scp>
+            </EtcList>
+        </MainSkl>
+    </Skill>
+    <Skill Name="Mon_weekly_boss_Asiomage_Skill_6">
+        <MainSkl ScrLock="None" JumpFlee="NO" MSPDToUsePos="0">
+            <MoveList>
+                <Frame Time="1700" Dist="0" Angle="-1.192093e-07" Accel="1" Height="0" MoveType="0" Gravity="600" JumpPower="300"/>
+                <Frame Time="1900" Dist="142.33595" Angle="-3.1399498" Accel="1" Height="0" MoveType="0" Gravity="600" JumpPower="300"/>
+            </MoveList>
+            <HitList>
+                <Frame Type="FAN" Time="0" HitCount="1" TermMin="0" TermMax="0" PosType="0" Dist="0" RandDist="0" RandomPerHit="0" Angle="0" Width="30" Length="30" SklAngle="0.17453292" AniTime="300" RotAngle="0" ForceATK="0" ScriptIndex="0" ScriptName="" SkillType="0"/>
+            </HitList>
+            <EtcList>
+                <Anim Time="0" Anim="skl4" Speed="1.5" StartTime="1"/>
+                <Scp Scp="SKL_RUN_SCRIPT" Client="NO" UseSleep="NO" Time="1700">
+                    <Str Str="SCR_WEEKLY_BOSS_SUMMON_QUIPMAGE"/>
+                </Scp>
+            </EtcList>
+        </MainSkl>
+    </Skill>
+    <Skill Name="Mon_weekly_boss_Asiomage_Skill_7">
+        <MainSkl ScrLock="None" JumpFlee="NO" MSPDToUsePos="0">
+            <HitList>
+                <Frame Type="FAN" Time="9999" HitCount="1" TermMin="0" TermMax="0" PosType="0" Dist="0" RandDist="0" RandomPerHit="0" Angle="0" Width="30" Length="30" SklAngle="0.17453292" AniTime="10199" RotAngle="0" ForceATK="0" ScriptIndex="0" ScriptName="" SkillType="0"/>
+            </HitList>
+            <EtcList>
+                <Anim Time="0" Anim="skl2" Speed="2"/>
+                <Scp Scp="SKL_SET_TARGET_CIRCLE" Client="NO" UseSleep="NO" Time="0">
+                    <Pos Angle="0" Dist="1.7570792e-14"/>
+                    <Num Num="100"/>
+                    <Num Num="5"/>
+                    <Num Num="2"/>
+                    <Num Num="0"/>
+                    <Num Num="1"/>
+                    <Num Num="1"/>
+                    <Num Num="0"/>
+                    <Num Num="1"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="1700">
+                    <Str_Arg Str="F_explosion99_decal" Arg="5"/>
+                    <Str Str="None"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="SKL_RUN_SCRIPT" Client="NO" UseSleep="NO" Time="2000">
+                    <Str Str="SCR_WEEKLY_BOSS_ASIOMAGE_EXCHANGE_POS"/>
                 </Scp>
             </EtcList>
         </MainSkl>

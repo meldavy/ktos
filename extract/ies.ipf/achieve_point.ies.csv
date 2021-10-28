@@ -13,6 +13,9 @@ ClassID,ClassName,Name,UseDaily,UseWeekly
 503,TeamBattle_Gold,TeamBattle1st,NO,NO
 504,TeamBattle_Silver,TeamBattle2nd,NO,NO
 505,TeamBattle_Bronze,TeamBattle3rd,NO,NO
+600,TeamBattle5vs5_Winner_AP,팀 배틀 리그 5vs5 승리누적,NO,NO
+601,TeamBattle5vs5_MVP_AP,팀 배틀 리그 5vs5 MVP,NO,NO
+602,TeamBattle5vs5_TopWarrior_AP,팀 배틀 리그 5vs5 누적 킬,NO,NO
 1001,Quest,퀘스트 수행 횟수,NO,NO
 1002,Vegitable,야채 재배 횟수,NO,NO
 1003,GuildQuest,의뢰 성공 횟수,NO,NO
@@ -276,6 +279,7 @@ ClassID,ClassName,Name,UseDaily,UseWeekly
 20014,WeeklyRank_14,티니 3형제 주간보스 랭킹,NO,YES
 20015,WeeklyRank_15,솔콤 주간보스 랭킹,NO,YES
 20016,WeeklyRank_16,루시 주간보스 랭킹,NO,YES
+20017,WeeklyRank_17,아시오 메이지 주간보스 랭킹,NO,YES
 21001,Ancient_1,텔하르샤 4단계이상 40회 클리어,NO,NO
 21002,Ancient_2,분열 특이점 5단계 또는 자동 매칭 100회 클리어,NO,NO
 21003,Ancient_3,챌린지 모드 자동 매칭 300회 클리어,NO,NO
@@ -297,3 +301,91 @@ ClassID,ClassName,Name,UseDaily,UseWeekly
 30002,Achieve_RidePet_3,탈 것 보상 칭호,NO,NO
 30003,Achieve_RidePet_4,탈 것 보상 칭호,NO,NO
 40001,Achieve_TOSHero_1,영웅담 클리어,NO,NO
+60000,WeeklyRankClass_1,Highlander,NO,NO
+60001,WeeklyRankClass_2,Peltasta,NO,NO
+60002,WeeklyRankClass_3,Hoplite,NO,NO
+60003,WeeklyRankClass_4,Barbarian,NO,NO
+60004,WeeklyRankClass_5,Cataphract,NO,NO
+60005,WeeklyRankClass_6,Doppelsoeldner,NO,NO
+60006,WeeklyRankClass_7,Rodelero,NO,NO
+60007,WeeklyRankClass_8,Murmillo,NO,NO
+60008,WeeklyRankClass_9,Fencer,NO,NO
+60009,WeeklyRankClass_10,Dragoon,NO,NO
+60010,WeeklyRankClass_11,Templar,NO,NO
+60011,WeeklyRankClass_12,Lancer,NO,NO
+60012,WeeklyRankClass_13,Matador,NO,NO
+60013,WeeklyRankClass_14,Nak Muay,NO,NO
+60014,WeeklyRankClass_15,Retiarii,NO,NO
+60015,WeeklyRankClass_16,Hackapell,NO,NO
+60016,WeeklyRankClass_17,Blossom Blader,NO,NO
+60017,WeeklyRankClass_18,Pyromancer,NO,NO
+60018,WeeklyRankClass_19,Cryomancer,NO,NO
+60019,WeeklyRankClass_20,Psychokino,NO,NO
+60020,WeeklyRankClass_21,Alchemist,NO,NO
+60021,WeeklyRankClass_22,Sorcerer,NO,NO
+60022,WeeklyRankClass_23,Chronomancer,NO,NO
+60023,WeeklyRankClass_24,Necromancer,NO,NO
+60024,WeeklyRankClass_25,Elementalist,NO,NO
+60025,WeeklyRankClass_26,Sage,NO,NO
+60026,WeeklyRankClass_27,Warlock,NO,NO
+60027,WeeklyRankClass_28,Featherfoot,NO,NO
+60028,WeeklyRankClass_29,Rune Caster,NO,NO
+60029,WeeklyRankClass_30,Shadowmancer,NO,NO
+60030,WeeklyRankClass_31,Onmyoji,NO,NO
+60031,WeeklyRankClass_32,Taoist,NO,NO
+60032,WeeklyRankClass_33,Bokor,NO,NO
+60033,WeeklyRankClass_34,Terramancer,NO,NO
+60034,WeeklyRankClass_35,Hunter,NO,NO
+60035,WeeklyRankClass_36,Quarrel Shooter,NO,NO
+60036,WeeklyRankClass_37,Ranger,NO,NO
+60037,WeeklyRankClass_38,Sapper,NO,NO
+60038,WeeklyRankClass_39,Wugushi,NO,NO
+60039,WeeklyRankClass_40,Fletcher,NO,NO
+60040,WeeklyRankClass_41,Pied Piper,NO,NO
+60041,WeeklyRankClass_42,Appraiser,NO,NO
+60042,WeeklyRankClass_43,Falconer,NO,NO
+60043,WeeklyRankClass_44,Cannoneer,NO,NO
+60044,WeeklyRankClass_45,Musketeer,NO,NO
+60045,WeeklyRankClass_46,Mergen,NO,NO
+60046,WeeklyRankClass_47,Matross,NO,NO
+60047,WeeklyRankClass_48,Tiger Hunter,NO,NO
+60048,WeeklyRankClass_49,Arbalester,NO,NO
+60049,WeeklyRankClass_50,Arquebusier,NO,NO
+60050,WeeklyRankClass_51,Priest,NO,NO
+60051,WeeklyRankClass_52,Krivis,NO,NO
+60052,WeeklyRankClass_53,Druid,NO,NO
+60053,WeeklyRankClass_54,Sadhu,NO,NO
+60054,WeeklyRankClass_55,Dievdirbys,NO,NO
+60055,WeeklyRankClass_56,Oracle,NO,NO
+60056,WeeklyRankClass_57,Monk,NO,NO
+60057,WeeklyRankClass_58,Pardoner,NO,NO
+60058,WeeklyRankClass_59,Paladin,NO,NO
+60059,WeeklyRankClass_60,Chaplain,NO,NO
+60060,WeeklyRankClass_61,Plague Doctor,NO,NO
+60061,WeeklyRankClass_62,Kabbalist,NO,NO
+60062,WeeklyRankClass_63,Inquisitor,NO,NO
+60063,WeeklyRankClass_64,Miko,NO,NO
+60064,WeeklyRankClass_65,Kannushi,NO,NO
+60065,WeeklyRankClass_66,Zealot,NO,NO
+60066,WeeklyRankClass_67,Exorcist,NO,NO
+60067,WeeklyRankClass_68,Crusader,NO,NO
+60068,WeeklyRankClass_69,Scout,NO,NO
+60069,WeeklyRankClass_70,Assassin,NO,NO
+60070,WeeklyRankClass_71,Outlaw,NO,NO
+60071,WeeklyRankClass_72,Squire,NO,NO
+60072,WeeklyRankClass_73,Corsair,NO,NO
+60073,WeeklyRankClass_74,Shinobi,NO,NO
+60074,WeeklyRankClass_75,Thaumaturge,NO,NO
+60075,WeeklyRankClass_76,Enchanter,NO,NO
+60076,WeeklyRankClass_77,Linker,NO,NO
+60077,WeeklyRankClass_78,Rogue,NO,NO
+60078,WeeklyRankClass_79,Schwarzer Reiter,NO,NO
+60079,WeeklyRankClass_80,Bullet Marker,NO,NO
+60080,WeeklyRankClass_81,Arditi,NO,NO
+60081,WeeklyRankClass_82,Sheriff,NO,NO
+60082,WeeklyRankClass_83,Rangda,NO,NO
+60083,WeeklyRankClass_84,Clown,NO,NO
+60084,WeeklyRankClass_85,Warrior,NO,NO
+60085,WeeklyRankClass_86,Archer,NO,NO
+60086,WeeklyRankClass_87,Cleric,NO,NO
+60087,WeeklyRankClass_88,Wizard,NO,NO

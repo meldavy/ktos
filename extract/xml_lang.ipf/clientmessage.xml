@@ -171,6 +171,7 @@
 		<Class ClassID="1159" ClassName="GoddessEvil" Data="여신/마신"/>
 		<Class ClassID="1160" ClassName="GraceTime" Data="추가 시간"/>
 		<Class ClassID="1161" ClassName="GoddessCardCopy" Data="여신 카드 레벨 복사"/>
+		<Class ClassID="1162" ClassName="SkillFactorText" Data="스킬 계수 "/>
 	</Category>
 	<Category Name="Reinforce">
 		<Class ClassID="2001" ClassName="NotEnoughReinforcePotential" Data="강화에 필요한 포텐셜이 부족합니다"/>
@@ -507,6 +508,8 @@
 		<Class ClassID="2402" ClassName="Need8Transcend" Data="8초월 이상인 아이템만 가능합니다."/>
 		<Class ClassID="2403" ClassName="Need440UseLv" Data="440레벨 이상인 아이템만 가능합니다."/>
 		<Class ClassID="2404" ClassName="NeedLegendGrade" Data="레전드 등급 이상인 아이템만 가능합니다."/>
+		<Class ClassID="2406" ClassName="{name}dice{num}{max}" Data="[{#33FF33}{name}{/}]님이 주사위를 굴려 [{#33FF33}{num}{/}]이(가) 나왔습니다.(1-{max})"/>
+		<Class ClassID="2407" ClassName="TryRandomOptionPresetApply" Data="각인 부여 시 {#0000ff}기존 옵션은 제거{/}됩니다.{nl}선택된 장비에 대하여 각인 부여를 하시겠습니까?"/>
 	</Category>
 	<Category Name="ClassContents">
 		<Class ClassID="2500" ClassName="FullWeeklyGainClassResetExp" Data="주간 획득 가능한 클래스 변경 포인트를 모두 달성하였습니다."/>
@@ -518,7 +521,18 @@
 		<Class ClassID="2506" ClassName="DoYouWantCtrlTypeReset" Data="계열 변경을 하시겠습니까?"/>
 		<Class ClassID="2507" ClassName="ArcherCannotDashInBattleState" Data="아처 클래스는 전투 중에 대시를 할 수 없습니다."/>
 		<Class ClassID="2508" ClassName="WarningPartyMemberLongDistance" Data="[경고!] 파티원과의 거리가 200 이상입니다. 파티원과 가까이 모이세요."/>
-		</Category>
+		<Class ClassID="2509" ClassName="AlreadySummonedByOtherChar" Data="소환된 캐릭터는 이미 다른캐릭터가 소환중인 컴패니언을 소환할 수 없습니다."/>
+		<Class ClassID="2510" ClassName="OnlyCanSummonMaxPCLevel" Data="최대 레벨을 달성한 캐릭터만 소환가능합니다."/>
+		<Class ClassID="2511" ClassName="NotLoadedRegisteredCharacter" Data="등록된 캐릭터의 정보가 아직 로드되지 않았습니다. 잠시 후 사용해 주세요."/>
+		<Class ClassID="2512" ClassName="CantRegisterCharacterArea" Data="캐릭터를 등록할 수 없는 지역입니다."/>
+		<Class ClassID="2513" ClassName="CantChangeCharacterArea" Data="캐릭터를 변경할 수 없는 지역입니다."/>
+		<Class ClassID="2514" ClassName="CantChangeCharacterRegist" Data="캐릭터를 등록할 수 없습니다. 등록된 캐릭터 수를 확인해 주세요."/>
+		<Class ClassID="2515" ClassName="CantChangeCharacterDeregist" Data="캐릭터를 등록 해제 할 수 없습니다."/>
+		<Class ClassID="2516" ClassName="AskCharacterRegist" Data="{slot_index}번 슬롯에 등록하시겠습니까?"/>
+		<Class ClassID="2517" ClassName="AskCharacterDeRegist" Data="{slot_index}번 슬롯을 해제하시겠습니까?"/>
+		<Class ClassID="2518" ClassName="CantChangeCharacterTime" Data="캐릭터를 변경할 수 없는 시간입니다."/>
+		<Class ClassID="2519" ClassName="CantChangeCharacterState" Data="캐릭터 변경을 할 수 없는 상태입니다."/>		
+	</Category>
 	<Category Name="CannotGetSkillMessage">
 		<Class ClassID="2600" ClassName="CannotGetSkillMessage_Doppelsoeldner_Zucken" Data="[스킬] 존하우 1레벨 이상 필요"/>
 		<Class ClassID="2601" ClassName="CannotGetSkillMessage_Doppelsoeldner_Redel" Data="[스킬] 츠켄 1레벨 이상 필요"/>
@@ -599,6 +613,7 @@
 		<Class ClassID="3060" ClassName="CanGetMiscWhenDecomposeMiscLegend" Data="아키스톤 분해 시 아키스톤 파편 10개를 획득합니다"/>
 		<Class ClassID="3061" ClassName="CanGetMiscWhenDecomposeAccEp12" Data="불완전한 카랄리엔/카랄리엔/루시페리 액세서리 분해 시 위의 재료를 획득합니다."/>
 		<Class ClassID="3062" ClassName="SpecialDecompose" Data="특수 아이템 분해"/>
+		<Class ClassID="3064" ClassName="composition_sklgem" Data="스킬 젬 합성"/>
 		<Class ClassID="3067" ClassName="CanGetMiscWhenDecomposeVibora" Data="[바이보라 비전] 또는 [바이보라 아이커]를 분해하여 위의 아이템들을 획득합니다.{nl}* 팀 귀속된 바이보라는 분해할 수 없습니다."/>
 		<Class ClassID="3068" ClassName="ExceedCountDecomposeViboraMisc" Data="바이보라 분해시 획득하는 아이템의 최대 소유 한도를 초과하였습니다."/>
 		<Class ClassID="3069" ClassName="NotEnoughCompositionNeedItem" Data="합성에 필요한 아이템이 부족합니다."/>
@@ -623,6 +638,7 @@
 		<Class ClassID="3088" ClassName="ReallyMakeSocketGoddess{img}{value}" Data="소켓을 추가하시겠습니까?{nl} {nl}{img}  {value}개"/>
 		<Class ClassID="3089" ClassName="OnlyGoddessEquipManagement" Data="가디스 장비 관리에서만 가능합니다."/>
 		<Class ClassID="3090" ClassName="ReallyRemoveGem_AetherGem" Data="{nl}무기에서 에테르 젬을 추출하시겠습니까?{nl}추출 비용 : {img silver 20 20/}"/>
+		<Class ClassID="3091" ClassName="composition_sklgem_result" Data="{@st66d_y}{s20}스킬 젬 합성 결과 예상{/}{/}{nl} {nl}{s17} - 무작위 소드맨 계열 스킬 젬{@st55_hero_count}{s16}{RATE1}{/}{/}%{nl} - 무작위 위저드 계열 스킬 젬{@st55_hero_count}{s16}{RATE2}{/}{/}%{nl} - 무작위 아처 계열 스킬 젬{@st55_hero_count}{s16}{RATE3}{/}{/}%{nl} - 무작위 클레릭 계열 스킬 젬{@st55_hero_count}{s16}{RATE4}{/}{/}%{nl} - 무작위 스카우트 계열 스킬 젬{@st55_hero_count}{s16}{RATE5}{/}{/}%{nl} {nl}{@st66d_y}{s20}추가 획득 아이템{/}{/}{nl} {nl} - 스킬 젬 파편 1개"/>
 	</Category>
 	<Category Name="ItemPuzzle">
 		<Class ClassID="3501" ClassName="WouldYouSelectThisCombinationAsAlchemystryTarget?" Data="이 조합을 연금 대상으로 선택합니까?"/>
@@ -1048,11 +1064,14 @@
 		<Class ClassID="4422" ClassName="TOSHero_EnableEntryCount" Data="영웅담 입장 횟수 1회 획득"/>
 		<Class ClassID="4423" ClassName="{use}ectonite{get}" Data="엑토나이트 [{#33FF33}{use}{/}]개를 소모해 [{#33FF33}{get}{/}]의 마력을 충전했습니다."/>
 		<Class ClassID="4424" ClassName="EquipMainWeaponFirst" Data="주 장비를 먼저 착용해야 합니다."/>
+		<Class ClassID="4425" ClassName="SklgemSelectCtrlType" Data="스킬 젬 계열 선택"/>
+		<Class ClassID="4426" ClassName="SklgemSelectJob" Data="스킬 젬 클래스 선택"/>
+		<Class ClassID="4427" ClassName="SklgemSelectGem" Data="스킬 젬 선택"/>
 		<Class ClassID="4428" ClassName="ReallyRegisterForCabinet" Data="등록한 무기/방어구는 {#0000ff}가디스 등급의 장비에만 아이커 부여가 가능{/}합니다.{nl} {nl}등록한 아이템은 복구가 불가능합니다.{nl}정말 등록하시겠습니까?"/>
 		<Class ClassID="4429" ClassName="EngravedOptionExist" Data="{#FE7E00}저장된 옵션이 있습니다!{/}"/>
 		<Class ClassID="4430" ClassName="ReallyEngraveOption" Data="{#FE7E00}각인은 캐릭터에 귀속되며, 기존 옵션은 복구되지 않습니다.{/}{nl}선택한 아이템과 재료로 각인 저장을 시도하시겠습니까?"/>
 		<Class ClassID="4457" ClassName="DontUseItem" Data="사용할 수 없는 아이템입니다."/>
-		</Category>
+	</Category>
 	<Category Name="ItemTooltip">
 		<Class ClassID="5001" ClassName="CoolDown : {Sec} Sec" Data="재사용 대기시간 : {Sec}초"/>
 		<Class ClassID="5002" ClassName="WhenEquipToMainOrSubWeapon" Data="무기, 보조 장비 장착 시 효과"/>
@@ -1155,7 +1174,7 @@
 		<Class ClassID="5099" ClassName="tooltip_ExplosionEdge" Data=" - 퍼니시 스킬 레벨 {img green_up_arrow 16 16}3{nl} {nl}쐐기폭파{nl} - 퍼니시 재사용 대기시간 20초로 변경{nl} - 퍼니시 베기 속성으로 변경{nl} - 퍼니시 캐스팅 시간 1초로 변경{nl} - 퍼니시 넉다운 대상 판정 및 타겟된 적에게 이동 기능 삭제{nl} - 퍼니시 5연타로 변경{nl} - 퍼니시가 자신 주변 다수의 적에게 피해를 줌{nl} - 최대 대상 수 30"/>
 		<Class ClassID="5100" ClassName="tooltip_OneManRush" Data=" - 캐터프랙트 모든 스킬 레벨{img green_up_arrow 16 16}1{nl}  - 돌격 스킬 범위{img green_up_arrow 16 16}100%{nl} {nl}일기당천{nl} - 돌격 채널링 3초 후 추가 공격 2회 시전(베기 속성){nl} - 추가 공격 1회 당 5회 타격{nl} - 스킬 계수 현재 레벨의 돌격과 동일{nl} - 추가 공격 광역 공격 비율 20{nl} {nl}추가 공격은 채널링/캐스팅으로 판정되지 않음"/>
 		<Class ClassID="5101" ClassName="tooltip_Banderilla" Data=" - 마타도르 모든 스킬 레벨 {img green_up_arrow 16 16}1{nl}  - 올레 재사용 대기시간 10초 감소{nl}  - 카포티 재사용 대기시간 10초 감소{nl} {nl}반데릴라{nl} - 올레, 카포티 스킬 시전 시 버프 1중첩{nl}(버프 지속시간 5초, 최대 3중첩){nl} - 버프 중 150 범위 내에서 보스 몬스터 혹은 적 캐릭터가 공격 스킬 사용 시 [꿰어짐] 디버프 부여{nl} - 발동 시 버프 1중첩 소모{nl} {nl}꿰어짐{nl} - 1초 마다 찌르기 속성 지속 대미지{nl}  (스킬 계수 현재 레벨 파소 도블레의 20%){nl} - 디버프 중첩 당 지속 대미지 타격 수{img green_up_arrow 16 16}1{nl} - 디버프 대상에게 자신이 받는 피해 중첩 당 6% 감소{nl} - 디버프 중첩 당 이동속도 4 감소{nl} - 지속시간 10초, 최대 3중첩{nl} {nl}꿰어짐 대상이 캐릭터일 경우 중첩 마다 창을 꽂는 이펙트 효과"/>
-		<Class ClassID="5102" ClassName="tooltip_SpeedLoader" Data=" - 셰리프 모든 스킬 레벨 {img green_up_arrow 16 16}1{nl}  - 웨스트레이드 재사용 대기시간 25초 감소{nl} {nl}스피드 로더{nl} - 장착 시 5초 마다 [셰리프: 리로드] 버프 3 중첩{nl} - [셰리프: 리로드] 버프가 10중첩 일 때, 웨스트레이드 시전 시 중첩을 모두 소모하고{nl}[피스메이커], [에이밍 샷] 재사용 대기시간 초기화"/>
+		<Class ClassID="5102" ClassName="tooltip_SpeedLoader" Data=" - 셰리프 모든 스킬 레벨 {img green_up_arrow 16 16}1{nl}  - 웨스트레이드 재사용 대기시간 25초 감소{nl} {nl}스피드 로더{nl} - 장착 시 5초 마다 [셰리프: 리로드] 버프 3 중첩{nl} - [셰리프: 리로드] 버프가 10중첩 일 때, 웨스트레이드 시전 시 중첩을 모두 소모하고{nl}[피스메이커], [에이밍 샷] 재사용 대기시간 초기화 ([피스메이커: 무장 해제] 특성이 활성화 중에는 피스메이커 재사용 대기시간이 초기화 되지 않음)"/>
 		<Class ClassID="5103" ClassName="tooltip_CenterFire" Data=" - 익스플로전 스킬 레벨 {img green_up_arrow 16 16} 3{nl} {nl}센터파이어{nl} - 대상에게 익스플로전 시전 시 1회 추가 발사{nl}(스킬 계수 현재 레벨 익스플로전의 30%, 연타 수 5){nl} - 추가 시전 된 익스플로전은 주 대상 1명에게만 피해"/>
 		<Class ClassID="5104" ClassName="tooltip_DeflectGravitation" Data=" - 사이코키노 모든 스킬 레벨{img green_up_arrow 16 16}1{nl} {nl}편향인력{nl} - 그라비티 폴 시전 중 넉백, 넉다운 면역{nl} - 그라비티 폴 시전 중 1초 마다 부채꼴 범위 타격{nl}(현재 레벨의 그라비티 폴 스킬 계수 50%로 피해){nl} - 대상이 몬스터면 매 타격 마다 조금씩 끌어당김{nl} - 그라비티폴 채널링 종료 시 원형 범위 추가 타격{nl}(현재 레벨의 그라비티 폴 스킬 계수로 5회 타격){nl} - 최대 대상 수 20{nl} {nl}편향인력은 채널링으로 판정되지 않음"/>
 		<Class ClassID="5105" ClassName="tooltip_Necrosis" Data=" - 소각 스킬 레벨{img green_up_arrow 16 16}3{nl}  - 판데믹 스킬 범위{img green_up_arrow 16 16}60%{nl} {nl}괴사{nl} - 판데믹 [공황] 받는 마법 피해 효과 최대치 50% 증가{nl}(보유한 디버프 개수 당 30%로 변경){nl} - 판데믹 시전 시 현재 레벨의 [소각], [흑사병 증기] 디버프 부여{nl} - 판데믹 시전 시 적 몬스터에게 4초 동안 [이동불가] 디버프 부여{nl} - 최대 대상 수 20{nl} {nl}장착 해제 시 괴사로 부여한 [소각], [흑사병 증기] 및 [이동불가] 디버프 제거"/>
@@ -1231,7 +1250,7 @@
 		<Class ClassID="5175" ClassName="tooltip_DivineShock" Data=" - 크리비 모든 스킬 레벨 {img green_up_arrow 16 16}1{nl}  - 장착 시 [광휘] 디버프의 최대 중첩이 60으로 변경 {nl} {nl}성뢰{nl} - 자이바스 명중 시 대상에게 [광휘] 디버프 5중첩 부여{nl} - [광휘] 디버프 중첩이 51이상인 적을 공격 시 효과 발동{nl} - 스킬 계수 현재 레벨의 파이어티의 150%{nl} - 연타 수 4{nl} - 효과 발동 시 대상의 디버프 중첩 50 소모{nl} {nl}'[아츠] 자이바스 : 카타툼보'활성화 시 [광휘] 디버프 중첩 증가가 3배로 늘어남"/>
 		<Class ClassID="5176" ClassName="tooltip_DivineShock_Lv4" Data="{nl} {nl}{@st66d}{s15} - 자이바스 최종 대미지 {img green_up_arrow 16 16}100%"/>
 		<Class ClassID="5177" ClassName="tooltip_Sabotage" Data=" - 아웃로 모든 스킬 레벨 {img green_up_arrow 16 16}1{nl}  - 난동 부리기 시전 후 적에게 받는 피해 증가, 받는 피해 회피 불가 효과 제거{nl}  {nl}파괴공작{nl} - 난동 부리기 시전 시 공격 마다 추가 공격 발생{nl} - 스킬 계수 현재 레벨의 난동 부리기와 동일{nl} - 추가 공격 대상 수 18"/>
-		<Class ClassID="5178" ClassName="tooltip_Sabotage_Lv4" Data="{nl} {nl}{@st66d}{s15} - 난사 최종 대미지 {img green_up_arrow 16 16}100%"/>
+		<Class ClassID="5178" ClassName="tooltip_Sabotage_Lv4" Data="{nl} {nl}{@st66d}{s15} - 난사 최종 대미지 {img green_up_arrow 16 16}100%{nl}{@st66d}{s15} - 난도질 최종 대미지 {img green_up_arrow 16 16}100%"/>
 		<Class ClassID="5181" ClassName="tooltip_SuddenDeath" Data=" - 어쌔신 모든 스킬 레벨 {img green_up_arrow 16 16}1{nl}  - 타흐카브 알칼브 스킬 레벨 {img green_up_arrow 16 16}1{nl}  {nl}절명{nl} - 타흐카브 알칼브 명중 시 대상에게 [절명] 디버프 20초 부여{nl} - [절명] 디버프 대상은 1초마다 시전자에게만 보이는 [은밀]을 생성{nl} - 시전자가 [은밀]을 밟을 때마다 버프 중첩 1증가{nl}(버프 중 은신, 이동속도 {img green_up_arrow 16 16}10, 최대 중첩 수 5){nl} - [절명] 디버프 대상을 어쌔신 스킬로 타격 시 디버프를 제거하고 찌르기 속성으로 5연타{nl} - [은밀] 버프 중첩 만큼 [절명] 연타 수 증가{nl} - 스킬 계수 타흐카브 알칼브의 46.5%{nl} - 절명 디버프 부여 재사용 대기시간 20초{nl} {nl}절명 디버프는 보스 및 캐릭터에게만 부여 가능{nl}어쌔신 스킬로 인한 지속 대미지로 절명효과 발동 불가능"/>
 		<Class ClassID="5182" ClassName="tooltip_SuddenDeath_Lv4" Data="{nl} {nl}{@st66d}{s15} - 이브아다탄 재사용 대기시간 15초 감소"/>
 		<Class ClassID="5183" ClassName="tooltip_SelfImmolate" Data=" - 이몰레이션 스킬 레벨 {img green_up_arrow 16 16}3{nl}  - 이몰레이션 범위 25% 증가{nl}  {nl}소신{nl} - 이몰레이션 시전 시 대상의 크기에 따라 디버프 지속시간 증가{nl}(소형 : 2초, 중형 : 4초, 대형 : 6초, 초대형 : 8초){nl} - [이몰레이션: 멜트 아머]의 지속시간이 20초로 증가{nl} {nl}소신 장착 해제 시 이몰레이션 디버프 제거"/>
@@ -2292,7 +2311,7 @@
 		<Class ClassID="21448" ClassName="TP_Social" Data="소셜"/>
 		<Class ClassID="21449" ClassName="AlreadyHaveGesture" Data="이미 보유 중인 제스처입니다."/>
 		<Class ClassID="21450" ClassName="WarningTitle" Data="주의"/>
-		</Category>
+	</Category>
 	<Category Name="ChatText">
 		<Class ClassID="22001" ClassName="Guard" Data="방어"/>
 		<Class ClassID="22002" ClassName="FrontShot!" Data="전방 사격!"/>
@@ -10059,6 +10078,7 @@
 		<Class ClassID="92113" ClassName="UITUTO_GLASS2" Data="산드라의 감정 돋보기 사용"/>
 		<Class ClassID="92114" ClassName="UITUTO_GLASS3" Data="산드라의 미세 감정 돋보기 사용"/>
 		<Class ClassID="92115" ClassName="MustUseWeeklyCount" Data="소모한 주간 교환 횟수가 없어 사용할 수 없습니다."/>
+		<Class ClassID="92116" ClassName="RECYCLE_NEWCHARACTER_MSG" Data="캐릭터 슬롯이 모두 개방되어 있어 리사이클 메달 66개가 지급됩니다"/>
 	</Category>
 	<Category Name="BattleText">
 		<Class ClassID="100001" ClassName="ADD_DAMAGE_{Auto_1}!" Data="추가 대미지 {Auto_1}!"/>
@@ -10316,6 +10336,8 @@
 		<Class ClassID="101146" ClassName="firstPartyLeaderEnter" Data="파티장이 먼저 입장해야 합니다."/>
 		<Class ClassID="101147" ClassName="PartyLeaderOnly" Data="파티장만 사용 가능합니다."/>
 		<Class ClassID="101148" ClassName="GuildMemberJoinAutoLimit" Data="길드 가입이 제한된 유저입니다."/>
+		<Class ClassID="101149" ClassName="OnlyPartyLeaderStartIndunMatching" Data="파티 리더만 최초 [파티원과 자동매칭] 신청을 시작할 수 있습니다."/>
+		<Class ClassID="101150" ClassName="OnlyPartyLeaderRegisterIndunMatching" Data="파티 리더만 [현재 모인 멤버로 자동매칭]을 시작할 수 있습니다."/>
 	</Category>
 	<Category Name="Guild">
 		<Class ClassID="102001" ClassName="GuildMember{Cur}/{Max}People,OnLine{On}People" Data="길드원 ( {Cur} / {Max} 명, 온라인 {On} 명 )"/>
@@ -10636,7 +10658,8 @@
 		<Class ClassID="102499" ClassName="KickConfirm" Data="정말 추방하시겠습니까?{nl}이 유저가 보냈던 모든 메시지가 삭제되며, 다시는 이 채팅방에 들어올 수 없습니다."/>
 		<Class ClassID="102501" ClassName="MaxChannelExceed" Data="더 이상 채팅방을 만들 수 없습니다."/>
 		<Class ClassID="102502" ClassName="SuccessJoinedNewbieGuild" Data="성장 지원길드에 가입되었습니다."/>
-	</Category>
+		<Class ClassID="102503" ClassName="{StartMap}DoYouWantMove" Data="[{#003399}{StartMap}{/}]{nl}이동하시겠습니까?"/>
+</Category>
 	<Category Name="EqupClasses">
 		<Class ClassID="103001" ClassName="THSword" Data="양손검"/>
 		<Class ClassID="103002" ClassName="Sword" Data="한손검"/>
@@ -11666,11 +11689,15 @@
 		<Class ClassID="131070" ClassName="HasTeamBattleLeaguePenalty" Data="팀배틀리그 패널티 중에는 참여하실 수 없습니다."/>
 		<Class ClassID="131071" ClassName="RewardSeason" Data="이전 시즌의 팀배틀리그 보상을  이미 받으셨습니다."/>
 		<Class ClassID="131072" ClassName="PVPReward" Data="보상 받기"/>
+		<Class ClassID="131073" ClassName="TEAMBATTLEShop" Data="팀 배틀 리그 상점"/>
 		<Class ClassID="131074" ClassName="CantExcutePartyInvite" Data="현재 맵에서는 파티 초대기능을 사용하실 수 없습니다."/>
 		<Class ClassID="131076" ClassName="CantUseNow" Data="현재 사용할 수 없는 기능입니다."/>
 		<Class ClassID="131077" ClassName="BuyableCountPerAccount_{Count}" Data="팀 당 {Count}개 구매 가능"/>
 		<Class ClassID="131078" ClassName="OverAccountBuyCount" Data="팀 당 구매 가능한 수량을 초과했습니다."/>
 		<Class ClassID="131079" ClassName="PVP_State_Enter" Data="입장하기"/>
+		<Class ClassID="131080" ClassName="TEAMBATTLE_WAIT_CHANGE_TIME_1" Data="캐릭터 교체 대기 시간"/>
+		<Class ClassID="131081" ClassName="WorldPVPResultDeatilTeamTitle" Data="{TeamID}팀"/>
+		<Class ClassID="131082" ClassName="WorldPVPCharacterChangeFail" Data="팀 배틀리그 입장 조건에 맞지 않는 캐릭터 입니다. 메인 캐릭터로 교체 됩니다."/>		
 	</Category>
 	<Category Name="MonInfo">
 		<Class ClassID="132001" ClassName="MonInfo_Size" Data="크기"/>
@@ -11809,7 +11836,7 @@
 		<Class ClassID="134074" ClassName="EnterRightNow2" Data="바로 입장하시겠습니까?{nl}{ol}{s17}{#ff6d00}※입장시 횟수가 차감됩니다."/>
 		<Class ClassID="134075" ClassName="Ancient_Dungeon_Reward_Info" Data="{@st66b}일일 보상{nl}어시스터 던전에서 등장하는 보스 몬스터 처치 시 1일 1회 {#003399}어시스터 카드첩 : 선택{/}를 획득할 수 있습니다.{nl}보스 몬스터는 5 스테이지마다 출현합니다.{nl}{#8e0000}※ 일일 보상은 매일 오전 12시에 초기화됩니다.{/}{nl}{nl} {nl}{@st66b}주간 보상{/}{nl}매주 스테이지 첫 클리어 시 보상을 획득할 수 있습니다.{nl}{#8e0000}※ 주간 보상은 매주 월요일 6시에 초기화됩니다.{/}{nl} {nl}{@st66b}추가 보상{/}{nl}특정 스테이지 클리어 시 어시스터 코스트를 확장시킬 수 있습니다.{nl}{#8e0000}※ 추가 보상은 팀 당 1회만 받을 수 있습니다.{/}{nl} {nl} {nl} {nl} {nl} {nl}모든 보상은 어시스터 던전 종료 시 일괄 지급됩니다."/>
 		<Class ClassID="134076" ClassName="PVP_Mine_Reward_Info" Data="{@st66b}자원 쟁탈전에서는 쟁탈전 종료 시 승패 결과와 함께 보상으로 {#003399}용병단 증표{/}를 지급합니다.{nl} {nl}승리 팀에 2250개, 패배팀은 450개를 지급하며{nl}자신의 [광산 포인트 x 3]만큼{nl}{#003399}용병단 증표{/}를 추가로 획득할 수 있습니다.(최대 2250개){nl} {nl}MVP 보너스{nl}자원 쟁탈전 내에서 '킬 포인트' 또는 '광산 포인트'가 팀 내 5위안으로 도달했을 경우 추가로 용병단 증표를 지급됩니다.{nl} {nl}{nl}유니폼 모드에서는 {#003399}경험치 카드{/}를 추가로 지급합니다. 지급되는 경험치 카드는 플레이어의 레벨에 따라 차등 지급됩니다.{nl}Lv450 미만 : Lv16 경험치 카드 x7{nl}Lv460 미만 : Lv17 경험치 카드 x10{nl} {nl} {nl}{#8e0000}※단, 수정 반납 개수가 10개 미만인 경우에는 보상을 획득할 수 없습니다.{/}"/>
-		<Class ClassID="134077" ClassName="TEAM_BATTLE_Reward_Info" Data="{@st66b}팀 배틀 리그 참여 시{nl}{#003399}용병단 증표{/} 300개를 팀 당 1일 3회 획득할 수 있습니다.{nl} {nl}팀 배틀 리그는 매주 월요일 오전 6시 기준 순위 합산 1,2,3위에게 칭호가 부여되며 7일 기간제 코스튬이 지급됩니다.{nl} {nl}순위 보상은 [모험 일지] - [팀배틀리그 랭킹] -[보상받기]를 통해 획득할 수 있습니다.{nl} {nl}{#8e0000}※칭호 효과는 다음 시즌 초기화 전까지 유지됩니다.{/}"/>
+		<Class ClassID="134077" ClassName="TEAM_BATTLE_Reward_Info" Data="{@st66b}팀 배틀 리그 전투 보상{nl}{#003399}[승리팀]{/}{nl}팀 배틀 리그 코인 : 5개{nl}여신의 증표(가비야) : 500개{nl}클래스 변경 포인트 : 50점{nl}{#8e0000}[패배팀]{/}{nl}팀 배틀 리그 코인 : 1개{nl}여신의 증표(가비야) : 100개{nl}클래스 변경 포인트 : 50점{nl}[MVP]{nl}팀 배틀 리그 코인 : 추가 1개{nl}여신의 증표(가비야) : 추가 100개{nl}{nl} {nl}팀 배틀 리그는 매주 월요일 오전 6시 기준 순위 합산 1,2,3위에게 칭호가 부여되며 7일 기간제 코스튬이 지급됩니다.{nl} {nl}순위 보상은 [모험 일지] - [팀배틀리그 랭킹] -[보상받기]를 통해 획득할 수 있습니다.{nl} {nl}{#8e0000}※칭호 효과는 다음 시즌 초기화 전까지 유지됩니다.{/}"/>
 		<Class ClassID="134078" ClassName="AlreadyBelongToIndun" Data="이미 진행 중인 인스턴스 던전이 있습니다."/>
 		<Class ClassID="134079" ClassName="MustEquipWeaponArmorToAutoMatch" Data="장비를 장착하지 않은 부위가 있어서 자동 매칭을 신청할 수 없습니다."/>
 		<Class ClassID="134080" ClassName="MustEquipFixedIcorToAutoMatch" Data="고정 아이커를 장착하지 않은 아이템이 존재하여 자동 매칭을 신청할 수 없습니다."/>
@@ -11856,6 +11883,8 @@
 		<Class ClassID="134124" ClassName="CantEvolvedEquip" Data="진화시킬 수 없는 장비 혹은 이미 진화된 장비입니다."/>
 		<Class ClassID="134125" ClassName="LowAblityPointScore" Data="특성 달성률이 낮아 입장할 수 없습니다."/>
 		<Class ClassID="134126" ClassName="NotEnoughTicketPossibleCount_SoloDungeon" Data="베르니케의 파편 던전을 이용할 수 없는 시간입니다.{nl}이용제한 : 월요일 오전 5시부터 오전 6시 전까지"/>
+		<Class ClassID="134127" ClassName="LowAblityPointScore_ChangeCharacter" Data="특성 달성률이 낮아 캐릭터를 교체할 수 없습니다."/>
+		<Class ClassID="134128" ClassName="MustGoddessEquipWeaponArmorToEnter_ChangeCharacter" Data="가디스 등급의 장비를 장착하지 않은 부위가 있어서 캐릭터 교체가 불가능합니다."/>
 	</Category>
 	<Category Name="AchieveReward">
 		<Class ClassID="135001" ClassName="GainAchieveHairBefore" Data="이미 업적 보상을 받았습니다."/>
@@ -14905,6 +14934,10 @@
 		<Class ClassID="300205" ClassName="Premium_boostToken06" Data="x32 경험의 서"/>
 		<Class ClassID="300206" ClassName="IsAppliedPremiumBoostToken" Data="이미 경험의 서 아이템이 활성화 중에 있습니다."/>
 		<Class ClassID="300207" ClassName="PVPMineShopWeeklyResetDateTime" Data="{@st66d_y}※ 주간 구매 가능 수량은{nl}{@st66d_y}{#FF0000}토요일 오전 6시{/}에 초기화됩니다."/>
+		<Class ClassID="300208" ClassName="Equipmisc" Data="장비 가공"/>
+		<Class ClassID="300209" ClassName="Contents" Data="콘텐츠"/>
+		<Class ClassID="300210" ClassName="Equip" Data="장비"/>
+		<Class ClassID="300211" ClassName="Reset" Data="초기화"/>
 	</Category>
 	<Category Name="TPHistory">
 		<Class ClassID="301001" ClassName="RemainLogoutPC" Data="로그아웃 PC 만들기"/>
@@ -15507,7 +15540,10 @@
 		<Class ClassID="302626" ClassName="EVENT_2108_ARCHEOLOGY_SHOP2" Data="{#003399}[유물 이벤트]{/}유물 교환 상점"/>
 		<Class ClassID="302627" ClassName="EVENT_2108_ARCHEOLOGY_SEARCH_7" Data="{#FF0000}※이 지역에서는 더이상 유물을 찾을 수 없을 것 같다.{/}"/>
 		<Class ClassID="302628" ClassName="EVENT_2108_ARCHEOLOGY_SEARCH_8" Data="{#FF0000}※주위를 찾아보면 유물을 발견할 수 있을 것 같다.{nl}더 이동해보자.{/}"/>
-		</Category>
+		<Class ClassID="302629" ClassName="EVENT_2108_JP_EVE_FESTIVAL_MSG1" Data="{#0066FF}이벤트 아이템이 지급되었습니다.{/}"/>
+		<Class ClassID="302630" ClassName="EVENT_2108_JP_EVE_FESTIVAL_MSG2" Data="{#0066FF}[전야제 이벤트 현황]{/}{nl}일일 1시간 접속 시 보상 지급 ({#0066FF}{TIME}{/}/60분){nl}{#FF3333}※이벤트 기간 : 8월 25일 ~ 9월 1일 오전 05시 59분{nl}※ 하루는 당일 오전 06시 부터 익일 오전 05시 59분 까지 입니다.{/}"/>
+		<Class ClassID="302631" ClassName="EVENT_2107_NEXT_SEL6" Data="HotWeek 보상 수령하기"/>
+	</Category>
 	<Category Name="Account">
 		<Class ClassID="303001" ClassName="MaxAccountWarehouseCount" Data="팀 창고"/>
 		<Class ClassID="303002" ClassName="AccountUse2MoreRank" Data="실버 입금 및 출금은 15레벨 이상 가능합니다."/>
@@ -16026,6 +16062,8 @@
 		<Class ClassID="801174" ClassName="PRE_Challenge_RepeatHealPotion" Data="챌린지 모드 6단 이하에서만 사용 가능합니다."/>
 		<Class ClassID="801175" ClassName="PRE_Challenge_RepeatHealPotion2" Data="이미 효과가 활성화 중입니다."/>
 		<Class ClassID="801176" ClassName="PRE_Only_ChallengeMode" Data="챌린지 모드 또는 분열 특이점에서만 사용 가능합니다."/>
+		<Class ClassID="801177" ClassName="UsingOtherPotion" Data="같은 효과의 다른 아이템이 적용 중 입니다."/>
+		<Class ClassID="801182" ClassName="CantUsePlace" Data="사용할 수 없는 지역입니다."/>
 	</Category>
 	<Category Name="ColonyTax">
 		<Class ClassID="810000" ClassName="ColonyTaxRateDetail{Default}{Min}{Max}{ModifyDelay}{DisableModifyDelay1}{DisableModifyDelay2}" Data="- 챔피언스 리그 지역을 최종 점령한 길드는 각 도시의 적립요율을 조정할 수 있습니다.({Min}% ~ {Max}%) {nl}- 도시 적립요율은 기본적으로 표준 요율({Default}%)이 적용되어 있습니다.{nl}- 도시 적립요율 조정은 길드 마스터 또는 해당 권한을 가진 일원만 가능합니다.{nl}- 도시 적립요율은 조정 후, {ModifyDelay}시간 뒤에 재조정이 가능합니다.{nl}- 콜로니전 시작 {DisableModifyDelay1}시간 전부터 종료 {DisableModifyDelay2}분 후까지 도시 적립요율 조정이 제한됩니다.{nl}- 매 콜로니전 종료 후, 챔피언스 리그 지역의 최종 점령 길드가 지난번 점령 길드와 다른 경우 도시 적립요율은 표준 요율({Default}%)로 조정됩니다.{nl}- 챔피언스 리그 지역의 최종 점령 길드에 가입된 인원들은 해당 적립요율 적용 도시에 한해 최소 요율({Min}%)로 고정되어 적용됩니다.{nl}- 적립금 누적 기간 동안 [적립요율 적용 항목]의 실버 소비 시, 적용된 요율에 따라 적립금이 누적됩니다.{nl}   (적립금 누적 기간 : 콜로니전 종료 5분 후 시각을 기점으로 다음 콜로니전 종료 시 까지){nl}- 적립금 누적 기간이 끝나면 [적립금 분배] 탭에서 수령된 적립금을 길드원에게 분배할 수 있습니다."/>
@@ -16133,7 +16171,8 @@
 		<Class ClassID="815057" ClassName="Guild_Housing_Tab_Landscape" Data="{@st66b}조경"/>
 		<Class ClassID="815058" ClassName="GuildAssetLog_HousingClearFurniture" Data="가구 철거"/>
 		<Class ClassID="815059" ClassName="GuildAssetLog_UnknownSantuary_Activate" Data="미지의 성역 활성화"/>
-	<Class ClassID="815060" ClassName="Guild_Housing_Dungon_Lab_Enter" Data="다음 미지의 성역 관문을 활성화 합니다.{nl}활성화 하시겠습니까?{nl}{#ff0000}{Name}{/}{#ff0000}{nl}※길드 자금 25,000,000실버가 소모됩니다{/}"/>
+		<Class ClassID="815060" ClassName="Guild_Housing_Dungon_Lab_Enter" Data="다음 미지의 성역 관문을 활성화 합니다.{nl}활성화 하시겠습니까?{nl}{#ff0000}{Name}{/}{#ff0000}{nl}※길드 자금 25,000,000실버가 소모됩니다{/}"/>
+		<Class ClassID="815061" ClassName="WorldPVP_JoinCheck_UnknownSantuaryPCBuff" Data="{#ff0000}성역의 가호{/}는 팀 배틀리그 참여시 사라지게 됩니다. 참여 하시겠습니까?"/>
 	</Category>
 	<Category Name="PersonalHousing">
 		<Class ClassID="815100" ClassName="PH_SEL_DLG_1" Data="개인 하우징 활성화"/>
@@ -16320,7 +16359,7 @@
 		<Class ClassID="1000049" ClassName="challenge_auto_division_mode_day_6{mapName}" Data="토요일 : {mapName}"/>
 		<Class ClassID="1000050" ClassName="challenge_auto_division_mode_day_help_text" Data="챌린지 모드 : 분열 특이점 (필드) 위치 정보"/>
 		<Class ClassID="1000051" ClassName="challenge_auto_division_mode_day_7" Data="일요일 : 모든 지역(EP.13)"/>
-	<Class ClassID="1000052" ClassName="challenge_Mode_Auto_Disable_ReEnter" Data="게임 시작 이전에 퇴장하였으므로 다시 참여할 수 없습니다."/>
+		<Class ClassID="1000052" ClassName="challenge_Mode_Auto_Disable_ReEnter" Data="게임 시작 이전에 퇴장하였으므로 다시 참여할 수 없습니다."/>
 	</Category>
 	<Category Name="RankReset">
 		<Class ClassID="1001000" ClassName="CannotChangeJobBecauseJobLevel" Data="클래스 레벨이 최대 레벨일 때에만 가능합니다."/>
@@ -16602,6 +16641,9 @@
 		<!-- 주간보스도 여기서 묻어감 -->
 		<Class ClassID="513012" ClassName="NotExistWeeklyBossRankInfo" Data="주간보스 랭킹 정보가 존재하지 않습니다."/>
 		<Class ClassID="513013" ClassName="SoloDungeonSelectStageEnterMsg" Data="베르니케 파편 던전 {#FF0000}{Stage} 스테이지{/}에 정말 입장하시겠습니까?"/>
+		<Class ClassID="513014" ClassName="WeeklyBossClassRankRewardTitle" Data="{JobName} 순위 보상"/>
+		<Class ClassID="513015" ClassName="WeeklyBossClassRankEmptyTitle" Data="{#ff9900}※ 클래스 순위 보상 안내 ※{/}{nl}{nl}기본 계열 클래스에는 클래스 순위 보상이 없습니다. 다른 클래스를 선택하여 보상을 확인하세요."/>
+	<Class ClassID="513016" ClassName="WeeklyBossClassRankDisEnableTitle" Data="{#ff9900}※ 클래스 순위 보상 안내 ※{/}{nl}{nl}클래스 순위 보상이 없는 시즌입니다."/>
 	</Category>
 	<Category Name="JobSelectGuide">
 		<Class ClassID="515001" ClassName="JobSelectGuide_Result" Data="결과"/>
@@ -16858,6 +16900,7 @@
 		<Class ClassID="570013" ClassName="Gesture_WIGGLE" Data="{nl} {nl}모든 캐릭터가 제스처를 흭득합니다.{nl} {nl}{@st66d_y}제스처를 습득하시겠습니까?"/>
 		<Class ClassID="570014" ClassName="Gesture_SHOOTDANCE" Data="{nl} {nl}모든 캐릭터가 제스처를 흭득합니다.{nl} {nl}{@st66d_y}제스처를 습득하시겠습니까?"/>
 		<Class ClassID="570015" ClassName="Gesture_CHEER" Data="{nl} {nl}모든 캐릭터가 제스처를 흭득합니다.{nl} {nl}{@st66d_y}제스처를 습득하시겠습니까?"/>
+		<Class ClassID="570016" ClassName="Gesture_RUSTLEDANCE" Data="{nl} {nl}모든 캐릭터가 제스처를 흭득합니다.{nl} {nl}{@st66d_y}제스처를 습득하시겠습니까?"/>
 	</Category>
 	<Category Name="ChatBalloon">
 		<Class ClassID="580000" ClassName="ChatBalloon_YESSCP_message1" Data="{nl} {nl}모든 캐릭터가 말풍선 스킨을 획득하며, 캐릭터 설정에서 말풍선 스킨을 변경할 수 있습니다.{nl}"/>
@@ -17109,6 +17152,7 @@
 		<Class ClassID="1005003" ClassName="Mileage_SilverGacha" Data="마신의 유혹 포인트"/>
 		<Class ClassID="1005004" ClassName="REPUTATION_COIN_EP13" Data="왕국 재건단 주화"/>
 		<Class ClassID="1005006" ClassName="GabijaCertificate" Data="여신의 증표(가비야)"/>
+		<Class ClassID="1005007" ClassName="TeamBattleCoin" Data="팀 배틀 리그 코인"/>
 	</Category>
 	<Category Name="reputation">
 		<Class ClassID="1006000" ClassName="DAY_LIMIT_MSG" Data="일간"/>
@@ -17139,6 +17183,9 @@
 		<Class ClassID="1007007" ClassName="REPUTATION_QUEST_BOARD_COMPLETE" Data="{#FFFF00}{COUNT}개{/}의 명성 일일 퀘스트를 시작합니다"/>
 		<Class ClassID="1007008" ClassName="REPUTATION_QUEST_BOARD_NO_QUEST" Data="수령 가능한 명성 일일 퀘스트가 없습니다"/>
 		<Class ClassID="1007009" ClassName="REPUTATION_QUEST_BOARD_SEARCH" Data="진행 가능한 명성 일일 퀘스트를 검색 중입니다..."/>
+		<Class ClassID="1007010" ClassName="REPUTATION_QUEST_RESETQUEST_SEARCH" Data="초기화 가능한 명성 일일 퀘스트를 검색 중입니다..."/>
+		<Class ClassID="1007011" ClassName="REPUTATION_QUEST_RESETQUEST_FAIL" Data="아직 명성 일일 퀘스트를 모두 완료하지 않았습니다"/>
+		<Class ClassID="1007012" ClassName="REPUTATION_QUEST_RESETQUEST_COMPLETE" Data="명성 일일 퀘스트를 다시 진행할 수 있습니다"/>
 	</Category>
 	<Category Name="relic_ui">
 		<Class ClassID="1008001" ClassName="NO_EQUIP_RELIC" Data="성물을 착용 후 이용 가능합니다."/>
@@ -17198,7 +17245,7 @@
 		<Class ClassID="1010022" ClassName="TOSHeroStraightMapPattern1" Data="{@st100white_24}{#FFFF00}[역류]{/}{/}{nl}반대편에서 부터 검은 구체가 날아옵니다."/>
 		<Class ClassID="1010023" ClassName="TOSHeroStraightMapPattern2" Data="{@st100white_24}{#FF0000}[화염 지대]{/}{/}{nl}진행 방향으로 천천히 화염 지대가 생성됩니다."/>
 		<Class ClassID="1010024" ClassName="TOSHeroWheelMapPattern1" Data="{@st100white_24}{#FFFF00}[마력 폭발]{/}{/}{nl}마력의 중심부 무작위 위치에서 마력이 폭발합니다."/>
-		<Class ClassID="1010025" ClassName="TOSHeroWheelMapPattern2" Data="{@st100white_24}{#FF0000}[시련의 연속]{/}{/}{nl}보스 몬스터가 죽음을 극복하고 체력을 절반 회복합니다."/>
+		<Class ClassID="1010025" ClassName="TOSHeroWheelMapPattern2" Data="{@st100white_24}{#FF0000}[시련의 연속]{/}{/}{nl}보스 몬스터가 죽음을 극복하고 체력을 회복합니다."/>
 		<Class ClassID="1010026" ClassName="TOSHeroNextStage{SEC}" Data="다음 스테이지 시작까지 {SEC}초 남았습니다."/>
 		<Class ClassID="1010027" ClassName="TOSHeroGridRootName" Data="속박된 신성"/>
 		<Class ClassID="1011000" ClassName="TOSHERO_TUTO_01_SEL_01_1" Data="이야기꾼의 이야기에 집중한다"/>
@@ -17239,6 +17286,16 @@
 		<Class ClassID="1011035" ClassName="TOSHeroCouponCanAfterStageClear" Data="1 스테이지 클리어 후 이용할 수 있습니다."/>
 		<Class ClassID="1011036" ClassName="TOSHeroOpenNeckShop" Data="영웅들의 목걸이를 일람한다"/>
 		<Class ClassID="1011037" ClassName="TOSHeroDoNotBuyStageProcess" Data="스테이지 진행 중 구매할 수 없습니다."/>
+		<Class ClassID="1011038" ClassName="TOSHero_Wheel_Gen_MSG" Data="{#FFFF00}{SPOT}{/}에서 적들이 몰려옵니다!"/>
+		<Class ClassID="1011039" ClassName="TOSHero_Wheel_Gen_MSG_1" Data="첫 번째 소용돌이"/>
+		<Class ClassID="1011040" ClassName="TOSHero_Wheel_Gen_MSG_2" Data="두 번째 소용돌이"/>
+		<Class ClassID="1011041" ClassName="TOSHero_Wheel_Gen_MSG_3" Data="세 번째 소용돌이"/>
+		<Class ClassID="1011042" ClassName="TOSHero_Wheel_Gen_MSG_4" Data="네 번째 소용돌이"/>
+		<Class ClassID="1011043" ClassName="TOSHero_Wheel_Gen_MSG_5" Data="다섯 번째 소용돌이"/>
+		<Class ClassID="1011044" ClassName="TOSHero_Wheel_Gen_MSG_6" Data="여섯 번째 소용돌이"/>
+		<Class ClassID="1011045" ClassName="TOSHero_Wheel_Gen_MSG_7" Data="일곱 번째 소용돌이"/>
+		<Class ClassID="1011046" ClassName="TOSHero_Wheel_Gen_MSG_8" Data="여덟 번째 소용돌이"/>
+		<Class ClassID="1011047" ClassName="TOSHero_MAPPATTERN_TrialsBuff_DOWN_MSG" Data="{#FFFF00}5 스테이지 미션 성공{/}{nl}보스 몬스터의 {#FFFF00}[시련의 연속]{/} HP 회복량이 20% 감소합니다"/>
 	</Category>
 	<Category Name="aether_ui">
 		<Class ClassID="1030000" ClassName="clear_stage" Data="클리어 스테이지 - "/>
@@ -17283,6 +17340,7 @@
 		<Class ClassID="1041071" ClassName="RidePet_Not_Selected" Data="선택된 탈 것이 없습니다."/>
 		<Class ClassID="1041072" ClassName="RidePet_Not_Select_CoolTime" Data="탈 것 선택 재사용 대기시간이 적용중입니다."/>
 		<Class ClassID="1041073" ClassName="RidePet_Impossible_Select_Target" Data="대상이 탈 것에 탑승 중입니다."/>
+		<Class ClassID="1041074" ClassName="RidePet_Summon_Fail_Msg_6" Data="비행 중에는 사용할 수 없습니다."/>
 	</Category>
 	<Category Name="trade_select_item_set">
 		<Class ClassID="1050001" ClassName="trade_select_item_set_1" Data="드라코나스 {@st66d_y}리느키 시트{/} 세트 {@st66d_y}(마법 계열){/}{/}"/>

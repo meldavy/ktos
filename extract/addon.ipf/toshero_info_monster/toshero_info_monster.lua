@@ -27,7 +27,7 @@ function TOSHERO_INFO_MONSTER(frame, argStr)
         local monsterClass = GetClass("Monster", monsterClassName)
 
         if monsterClassName ~= "None" then
-            local controlset = bg:CreateOrGetControlSet('toshero_monster_info', 'info_'..i, 0, 104 * (i - 1))
+            local controlset = bg:CreateOrGetControlSet('toshero_monster_info', 'info_'..i, 0, 124 * (i - 1))
             local monsterName = GET_CHILD_RECURSIVELY(controlset, "monsterName")
             local monsterDesc = GET_CHILD_RECURSIVELY(controlset, "monsterDesc")
             local monsterPic = GET_CHILD_RECURSIVELY(controlset, "monsterPic")

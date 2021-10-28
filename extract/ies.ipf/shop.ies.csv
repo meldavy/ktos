@@ -890,6 +890,9 @@ ClassID,SellRate,Count,Price,ShopName,IDSpace,ItemName,Description,NeedProperty
 20230,1,1,1,Personal_Housing,Item,PersonalHousing_Item_hp_h_barrack_12_partition,지면,Hide
 20231,1,1,1,Personal_Housing,Item,PersonalHousing_Item_hp_h_barrack_12_tablelamp,지면,Hide
 20232,1,1,1,Personal_Housing,Item,PersonalHousing_Item_hp_h_barrack_12_chess,지면,Hide
+20233,1,1,1,Personal_Housing,Item,PersonalHousing_Item_hp_f_Quipmage_bronze,피규어,Hide
+20234,1,1,1,Personal_Housing,Item,PersonalHousing_Item_hp_f_Quipmage_silver,피규어,Hide
+20235,1,1,1,Personal_Housing,Item,PersonalHousing_Item_hp_f_Quipmage_gold,피규어,Hide
 21001,1,1,1,Event2002_Fish_Shop,Item,Event_2002_mudfish,,
 22001,1,1,1,SeasonCoin,Item,GabijaCertificateCoin_1p,,
 22002,1,1,1,SeasonCoin,Item,GabijaCertificateCoin_100p,,
@@ -1141,3 +1144,9 @@ ClassID,SellRate,Count,Price,ShopName,IDSpace,ItemName,Description,NeedProperty
 23333,1,1,1,Test_Kupole_MasterCard,Item,Master_card_Pauline,,
 23334,1,1,1,Test_Kupole_MasterCard,Item,Master_card_GeHong,,
 23335,1,1,1,Test_Kupole_MasterCard,Item,Master_card_PhilipAureolus,,
+23401,1,1,1,TeamBattleLeagueShop,Item,GabijaCertificateCoin_1p,,
+23402,1,1,1,TeamBattleLeagueShop,Item,GabijaCertificateCoin_100p,,
+23403,1,1,1,TeamBattleLeagueShop,Item,GabijaCertificateCoin_1000p,,
+23404,1,1,1,TeamBattleLeagueShop,Item,GabijaCertificateCoin_5000p,,
+23405,1,1,1,TeamBattleLeagueShop,Item,GabijaCertificateCoin_10000p,,
+23406,1,1,1,TeamBattleLeagueShop,Item,GabijaCertificateCoin_50000p,,

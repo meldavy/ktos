@@ -215,7 +215,17 @@ return value"/>
                     <Str Str="Redemption_Buff"/>
                     <Num Num="1" UseFunc="1" FuncTxt="return obj.Level;"/>
                     <Num Num="0"/>
-                    <Num Num="5000" UseFunc="1" FuncTxt="local value = 20000; local abil = GetAbility(self, 'Sheriff6') if abil ~= nil and abil.ActiveState == 1 then     value = value / 2; end return value"/>
+                    <Num Num="5000" UseFunc="1" FuncTxt="    local value = 40000;
+    if IsPVPField(self) == 1 or IsPVPServer(self) == 1 or IsJoinColonyWarMap(self) == 1 then
+        value = 8000
+    end
+
+    local abil = GetAbility(self, 'Sheriff6')
+    if abil ~= nil and TryGetProp(abil, &quot;ActiveState&quot;, 0) == 1 then
+        value = value / 2;
+    end
+
+    return value"/>
                     <Num Num="1"/>
                     <Num Num="100"/>
                     <Num Num="0"/>

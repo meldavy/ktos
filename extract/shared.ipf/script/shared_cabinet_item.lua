@@ -49,13 +49,13 @@ local function make_cabinet_required_item_list()
 
                     if TryGetProp(item_cls, 'StringArg', 'None') == 'Vibora' then
                         if lv == 2 then
-                            g_cabinet_required_item_list['Weapon'][item_name][lv]['EP12_enrich_Vibora_misc'] = 2
+                            g_cabinet_required_item_list['Weapon'][item_name][lv]['EP12_enrich_Vibora_misc_NoTrade'] = 2
                             g_cabinet_required_item_list['Weapon'][item_name][lv]['GabijaCertificate'] = 20000
                         elseif lv == 3 then
-                            g_cabinet_required_item_list['Weapon'][item_name][lv]['EP12_enrich_Vibora_misc'] = 5
+                            g_cabinet_required_item_list['Weapon'][item_name][lv]['EP12_enrich_Vibora_misc_NoTrade'] = 5
                             g_cabinet_required_item_list['Weapon'][item_name][lv]['GabijaCertificate'] = 50000
                         elseif lv == 4 then
-                            g_cabinet_required_item_list['Weapon'][item_name][lv]['EP12_enrich_Vibora_misc'] = 10
+                            g_cabinet_required_item_list['Weapon'][item_name][lv]['EP12_enrich_Vibora_misc_NoTrade'] = 10
                             g_cabinet_required_item_list['Weapon'][item_name][lv]['GabijaCertificate'] = 100000
                         end
                     end
@@ -91,10 +91,10 @@ local function make_cabinet_required_item_list()
 
                         if TryGetProp(item_cls, 'StringArg', 'None') == 'evil' or TryGetProp(item_cls, 'StringArg', 'None') == 'goddess' then
                             if lv == 2 then
-                                g_cabinet_required_item_list['Armor'][item_name][lv]['EP12_enrich_Goddess_misc'] = 3
+                                g_cabinet_required_item_list['Armor'][item_name][lv]['EP12_enrich_Goddess_misc_NoTrade'] = 3
                                 g_cabinet_required_item_list['Armor'][item_name][lv]['GabijaCertificate'] = 12500
                             elseif lv == 3 then
-                                g_cabinet_required_item_list['Armor'][item_name][lv]['EP12_enrich_Goddess_misc'] = 6
+                                g_cabinet_required_item_list['Armor'][item_name][lv]['EP12_enrich_Goddess_misc_NoTrade'] = 6
                                 g_cabinet_required_item_list['Armor'][item_name][lv]['GabijaCertificate'] = 25000
                             end
                         end
@@ -201,7 +201,7 @@ local function make_cabinet_required_item_list()
                     end
 
                     if lv == 1 then
-                        g_cabinet_required_item_list[category][item_name][lv]['misc_mothstone'] = 1  -- 바이올렛틴
+                        g_cabinet_required_item_list[category][item_name][lv]['misc_mothstone_NoTrade'] = 1  -- 바이올렛틴
                     end
 
                     if lv == 2 then

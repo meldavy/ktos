@@ -22,7 +22,6 @@ function MINIMIZED_TOTAL_SHOP_BUTTON_OPEN_CHECK(frame, msg, argStr, argNum)
 end
 
 local function SHOW_MINIMIZED_BUTTON(frame)
-
 	local pvp_button = ui.GetFrame('minimized_pvpmine_shop_button')
 	local ceritificate_button = ui.GetFrame('minimized_certificate_shop_button')
 
@@ -33,7 +32,7 @@ local function SHOW_MINIMIZED_BUTTON(frame)
 	else
 		frame:ShowWindow(1)
 		frame:GetMargin()
-		frame:SetMargin(0, 77, 355, 0)
+		frame:SetMargin(0, 71, 355, 0)
 
 		pvp_button:ShowWindow(1)
 		ceritificate_button:ShowWindow(1)
@@ -44,8 +43,8 @@ local function SHOW_MINIMIZED_BUTTON(frame)
 		local housingPlaceClass = GetClass("Housing_Place", mapCls.ClassName)
 		if housingPlaceClass ~= nil then
 			frame:SetMargin(0, 177, 355, 0)
-			pvp_button:SetMargin(0, 185, 425, 0)
-			ceritificate_button:SetMargin(0, 185, 470, 0)
+			pvp_button:SetMargin(0, 183, 413, 0)
+			ceritificate_button:SetMargin(0, 183, 458, 0)
 		end
 	end
 

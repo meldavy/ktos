@@ -252,9 +252,6 @@ function SQUIRE_UI_RESET(frame)
 	local materialtext = GET_CHILD_RECURSIVELY(frame, "reqitemNeedCount")
 	materialtext:SetTextByKey("txt", "")
 
-	local timestr = GET_CHILD_RECURSIVELY(frame, "timestr")
-	timestr:SetTextByKey("txt", "")
-
 	local checkall = GET_CHILD_RECURSIVELY(frame, 'checkall')
 	checkall:SetCheck(0)
 	SQUIRE_BUFF_EQUIP_SELECT_ALL(frame, checkall)

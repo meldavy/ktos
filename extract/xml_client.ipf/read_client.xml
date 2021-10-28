@@ -55,5 +55,6 @@
         <ReadXml Name="toshero_induninfo"/>
 	<ReadXml Name="leticia_date"/>
 	<ReadXml Name="toshero_monsterinfo"/>
+	<ReadXml Name="acronyms_list"/>
 </Category>
 <!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by dd (IMCGames Co., Ltd) -->

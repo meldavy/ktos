@@ -985,6 +985,7 @@ function GET_FURNITURE_CLASS_BY_ITEM_CLASSID(classID)
 
 	return GET_FURNITURE_CLASS_BY_ITEM(itemClass.ClassName);
 end
+
 function SET_SLOT_ICOR_CATEGORY(slot, item_obj)
 	if item_obj.GroupName == 'Icor' then
 		local font = '{s14}{ol}{b}'
@@ -1023,10 +1024,21 @@ function SET_SLOT_ICOR_CATEGORY(slot, item_obj)
 		if #token > 1 then
 			name = TrimString(token[2])
 		end
+
 		if config.GetServiceNation() == "KOR" then
 			msg = msg .. name
 		else
-			msg = msg .. name
+			local className = TryGetProp(item_obj, 'ClassName', 'None')
+			local lv = string.match(className, "_LV(%d)")
+			if lv ~= nil then
+				className = string.sub(className, 1, -5)
+			end
+			local acronyms = GetClass("acronyms_list", className)
+			if acronyms == nil then
+				msg = msg .. name
+			else
+				msg = msg .. TryGetProp(acronyms, 'Name', 'None')
+			end
 		end
 		
 		slot:SetText(msg, 'quickiconfont', ui.CENTER_VERT, ui.CENTER_HORZ, -2, 1);

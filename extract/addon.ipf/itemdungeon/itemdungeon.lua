@@ -228,7 +228,7 @@ function EXEC_ITEM_DUNGEON(parent, ctrl)
 
 	local pc = GetMyPCObject();
 	local x, y, z = GetPos(pc);
-	if 0 == IsFarFromNPC(pc, x, y, z, 50) then
+	if 0 == IsFarFromNPC(pc, x, y, z, 60) then
 		ui.SysMsg(ClMsg("TooNearFromNPC"));	
 		return 0;
 	end

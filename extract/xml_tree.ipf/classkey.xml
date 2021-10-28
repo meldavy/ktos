@@ -5397,6 +5397,25 @@
         <Key Name="TITLE_Event_2108_Relic_C_4_CHECK" Value="109517"/>
         <Key Name="RidePet_7" Value="109551"/>
         <Key Name="PVPMineShopResetTime" Value="109552"/>
+        <Key Name="EVENT_2108_JP_EVE_FESTIVAL_PLAY_TIME" Value="109574"/>
+        <Key Name="EVENT_STM_MUST_BUFF" Value="109572"/>
+        <Key Name="EVENT_STM_MUST_MIC" Value="109573"/>
+        <Key Name="EVENT_STM_MUST_REINFORCE" Value="109571"/>
+        <Key Name="EVENT_STM_MUST_TRANSCEND" Value="109570"/>
+        <Key Name="LobbyChannel" Value="109581"/>
+        <Key Name="LobbyInstID" Value="109578"/>
+        <Key Name="LobbyMapID" Value="109580"/>
+        <Key Name="LobbyServerID" Value="109582"/>
+        <Key Name="LobbyZoneIP" Value="109579"/>
+        <Key Name="LobbyZonePort" Value="109577"/>
+        <Key Name="ADDITIONAL_ENGRAVE_SLOT_TEAMBATTLE" Value="109596"/>
+        <Key Name="CharacterChangeMaxSlotCount" Value="109593"/>
+        <Key Name="EVENT_2107_HOTWEEK_COUNT" Value="109583"/>
+        <Key Name="HadVisited_20011" Value="109592"/>
+        <Key Name="TeamBattleCoin" Value="109594"/>
+        <Key Name="TeamBattleLeagueShop_1" Value="109595"/>
+        <Key Name="TeamBattleLeagueShop_2" Value="109597"/>
+        <Key Name="CONTENTS_TOTAL_SHOP_POSE_16" Value="109600"/>
     </KeyIDSpc>
     <KeyIDSpc Name="PCEtc">
         <Key Name="Kill_boss_Clymen_Q2" Value="7788"/>
@@ -14495,6 +14514,20 @@
         <Key Name="PrevEquipItem_RING2" Value="109557"/>
         <Key Name="PrevEquipItem_SEAL" Value="109567"/>
         <Key Name="PrevEquipItem_SHIRT" Value="109568"/>
+        <Key Name="RidePetCompanion" Value="109575"/>
+        <Key Name="CharacterChangeSlot_1" Value="109587"/>
+        <Key Name="CharacterChangeSlot_2" Value="109586"/>
+        <Key Name="CharacterChangeSlot_3" Value="109588"/>
+        <Key Name="CharacterChangeSlot_4" Value="109591"/>
+        <Key Name="CharacterChangeSlot_5" Value="109584"/>
+        <Key Name="HadVisited_20011" Value="109590"/>
+        <Key Name="Kill_weekly_boss_Asiomage" Value="109585"/>
+        <Key Name="Kill_weekly_boss_Quipmage" Value="109589"/>
+        <Key Name="Hide_3273" Value="109598"/>
+        <Key Name="Pose_RUSTLEDANCE" Value="109599"/>
+        <Key Name="LastAbililityPoint" Value="109603"/>
+        <Key Name="LastGearScore" Value="109602"/>
+        <Key Name="SixGoddesEquip" Value="109601"/>
     </KeyIDSpc>
     <KeyIDSpc Name="GuildMember">
         <Key Name="Name" Value="9011"/>
@@ -23360,6 +23393,7 @@
         <Key Name="MG_Last_F_NICOPOLIS_UNIQUE_MQ1_MGAME" Value="109095"/>
         <Key Name="MG_Last_Goddess_Raid_Vasilissa_Solo" Value="109482"/>
         <Key Name="EVENT_2108_ARCHEOLOGY_BON_COUNT" Value="109550"/>
+        <Key Name="MG_Last_battlefield5vs5" Value="109576"/>
     </KeyIDSpc>
     <KeyIDSpc Name="Monster">
         <Key Name="MaxHate" Value="6671"/>

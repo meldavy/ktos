@@ -4,6 +4,20 @@ function HAIR_GACHA_START_ON_INIT(addon, frame)
 
 end
 
+function HAIR_GACHA_OPEN(frame)
+	local frame = ui.GetFrame("hair_gacha_start")
+	
+	local openBtn2 = GET_CHILD_RECURSIVELY(frame, "openBtn2")
+	local button = GET_CHILD_RECURSIVELY(frame, "button")
+	if openBtn2 ~= nil and button ~= nil then
+		if config.GetServiceNation() ~= "KOR" then
+			openBtn2:SetEnable(0)
+			openBtn2:ShowWindow(0)
+			button:SetMargin(0, 0, 0, 70);
+		end
+	end
+end
+
 function HAIR_GACHA_OK_BTN()
 	local darkframe = ui.GetFrame("fulldark")
 	local popupframe = ui.GetFrame("hair_gacha_popup")

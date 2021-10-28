@@ -1,4 +1,6 @@
 ClassID,StartTimeYYYYMM,StartTimeDDHHMM,NewTimeYYYYMM,NewTimeDDHHMM,EndTimeYYYYMM,EndTimeDDHHMM,DeadlineTimeYYYYMM,DeadlineTimeDDHHMM,ExchangeTimeYYYYMM,ExchangeTimeDDHHMM,ClassName,Name,ImagePath,url,UserCommand1,UserCommand2,UserCommand3,ShowType
+996760,202109,10000,202109,60000,202110,10000,202109,250000,0,0,event2109_Burning,주말 앤 버닝 - 9월,event2109_Burning,http://tos.nexon.com/news/events/view.aspx?n4ArticleSN=345&n4ArticleCategorySN=1,,,,
+996770,202109,10000,202109,60000,202110,10000,202109,250000,0,0,event2109_VaivoraReward,바이보라 출석 - 9월,event2109_VaivoraReward,http://tos.nexon.com/news/events/view.aspx?n4ArticleSN=344&n4ArticleCategorySN=1,,,,
 996780,202108,120900,202108,170000,202109,20700,202108,280000,0,0,event2108_summer_specialedition,핫서머 패키지,event2108_summer_specialedition,http://tos.nexon.com/news/update/view.aspx?n4ArticleSN=2473&n4CategorySN=0,,,,
 996790,202108,120900,202108,170000,202109,90700,202109,40000,0,0,2108_goddesscube,축복받은 여신의 큐브 - 8월,2108_goddesscube,http://tos.nexon.com/news/update/view.aspx?n4ArticleSN=2472&n4CategorySN=0,,,,
 996800,202108,120900,202108,170000,202109,90700,202109,40000,0,0,event2108_archeology,숨겨진 유물 이벤트,event2108_archeology,http://tos.nexon.com/news/events/view.aspx?n4ArticleSN=343&n4ArticleCategorySN=1,,,,

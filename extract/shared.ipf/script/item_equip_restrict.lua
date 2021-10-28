@@ -1387,13 +1387,71 @@ function CHECK_HIDDEN_ABILITY(pc, abil_count, goal_lv)
 	return false
 end
 
+function CHECK_GODDESS_EQUIP(pc)
+	local icorable_spot = {	RH = "NoWeapon", LH = "NoWeapon", SHIRT = "NoShirt", PANTS = "NoPants", GLOVES = "NoGloves", BOOTS = "NoBoots" };
+
+	local function _check_equip(pc, item, check)
+		-- no equip
+		if item == nil then return false, "MustEquipWeaponArmorToEnter"; end
+		local class_name = TryGetProp(item, "ClassName", "None");
+		if class_name == check then return false, "MustEquipWeaponArmorToEnter"; end
+		-- item grade
+		local item_grade = TryGetProp(item, "ItemGrade");
+		if item_grade < 6 then return false, "MustGoddessEquipWeaponArmorToEnter";end
+		-- pvp
+		local string_arg = TryGetProp(item, "StringArg", "None");
+		if string_arg == "FreePVP" then return false, "NotAllowFreePvPEquip"; end
+		return true, "None";
+	end
+
+	for spot, check in pairs(icorable_spot) do
+		local item = GetEquipItem(pc, spot);
+		local ret, msg = _check_equip(pc, item, check);
+		if ret == false then			
+			return false, msg;
+		end
+
+		-- two hand check
+		if spot == "RH" then
+			local equip_group = TryGetProp(item, "EquipGroup", "None");
+			if equip_group == "THWeapon" then
+				local sub_spot = "LH";
+				local sub_check = "NoOuter";
+				local sub_item = GetEquipItem(pc, sub_spot);
+				ret, msg = _check_equip(pc, sub_item, sub_check);
+				if ret == false then					
+					return false, msg;
+				end
+			end
+		end
+	end
+	return true;
+end
+
 -- ** gear score / ablity_score 으로 체크 방식 : 콘텐츠 장비 제한 ** --
 function CHECK_GEAR_SCORE_FOR_CONTENTS(pc, indun_cls)
 	if pc == nil and indun_cls == nil then return false; end
 	local gear_score = GET_PLAYER_GEAR_SCORE(pc);
-	local ablity_score = GET_PLAYER_ABILITY_SCORE(pc)
-	local acc = GetAccountObj(pc)
-	
+	local ablity_score = GET_PLAYER_ABILITY_SCORE(pc);
+
+	-- team battle leauge
+	if TryGetProp(indun_cls, "ClassName", "None") == "Indun_teamBattle" then
+		-- 특성 달성률 제한
+		if tonumber(ablity_score) < 80 then
+			SendSysMsg(pc, "LowAblityPointScore");
+			return false;
+		end
+
+		-- 가디스 장비 체크
+		local ret, msg = CHECK_GODDESS_EQUIP(pc)
+		if ret == false then
+			SendSysMsg(pc, msg)
+			return false;
+		end
+		return true;
+	end
+
+	local acc = GetAccountObj(pc);	
 	if TryGetProp(indun_cls, 'UnitPerReset', 'None') == 'ACCOUNT' and TryGetProp(indun_cls, 'TicketingType', 'None') == 'Entrance_Ticket' and TryGetProp(indun_cls, 'CheckCountName', 'None') ~= 'None' then
 		local remain_count = TryGetProp(acc, TryGetProp(indun_cls, 'CheckCountName', 'None'), 0)
 		if remain_count < 1 then
@@ -1458,46 +1516,11 @@ function CHECK_GEAR_SCORE_FOR_CONTENTS(pc, indun_cls)
 				end
 			end
 
-			local icorable_spot = {	
-				RH = "NoWeapon", LH = "NoWeapon", SHIRT = "NoShirt", PANTS = "NoPants", GLOVES = "NoGloves", BOOTS = "NoBoots",
-			};
-
-			local function _check_equip(pc, item, check)
-				-- no equip
-				if item == nil then return false, "MustEquipWeaponArmorToEnter"; end
-				local class_name = TryGetProp(item, "ClassName", "None");
-				if class_name == check then return false, "MustEquipWeaponArmorToEnter"; end
-				-- item grade
-				local item_grade = TryGetProp(item, "ItemGrade");
-				if item_grade < 6 then return false, "MustGoddessEquipWeaponArmorToEnter";end
-				-- pvp
-				local string_arg = TryGetProp(item, "StringArg", "None");
-				if string_arg == "FreePVP" then return false, "NotAllowFreePvPEquip"; end
-				return true, "None";
-			end
-
-			for spot, check in pairs(icorable_spot) do
-				local item = GetEquipItem(pc, spot);
-				local ret, msg = _check_equip(pc, item, check);
-				if ret == false then
-					SendSysMsg(pc, msg);
-					return false;
-				end
-
-				-- two hand check
-				if spot == "RH" then
-					local equip_group = TryGetProp(item, "EquipGroup", "None");
-					if equip_group == "THWeapon" then
-						local sub_spot = "LH";
-						local sub_check = "NoOuter";
-						local sub_item = GetEquipItem(pc, sub_spot);
-						ret, msg = _check_equip(pc, sub_item, sub_check);
-						if ret == false then
-							SendSysMsg(pc, msg);
-							return false;
-						end
-					end
-				end
+			-- 가디스 장비 체크
+			local ret, msg = CHECK_GODDESS_EQUIP(pc)
+			if ret == false then
+				SendSysMsg(pc, msg)
+				return false;
 			end
 		end
 	else
@@ -1629,4 +1652,30 @@ function CHECK_GEAR_SCORE_FOR_GUILD_EVENT_BLOCKADE(pc, event_id)
 			end
 		end
 	end
+end
+
+-- ** 팀 배틀리그 교체 입장 제한 체크 ** --
+function CHECK_ENTERANCE_FOR_TEAM_BATTLE_LEAGUE(pc, index)
+	if pc == nil and index == nil then return false; end
+	local ablity_score = GetRegisteredCharacter_AbilityScore(pc, index);
+	local is_goddess_equip = GetRegisteredCharacter_GoddessEquip(pc, index);
+	if ablity_score < 80 then
+		SendSysMsg(pc, "LowAblityPointScore_ChangeCharacter");
+		return false;
+	end
+
+	if is_goddess_equip == 0 then
+		SendSysMsg(pc, "MustGoddessEquipWeaponArmorToEnter_ChangeCharacter");
+		return false;
+	end
+
+	local cmd = GetMGameCmd(pc);
+	if cmd ~= nil then
+		local is_character_change_start = cmd:GetUserValue("character_change_start");
+		if is_character_change_start == 0 then
+			SendSysMsg(pc, "CantChangeCharacterTime");
+			return false;
+		end
+	end
+	return true;
 end

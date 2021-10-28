@@ -12,8 +12,11 @@ function MINIMIZED_LETICIA_BUTTON_ON_INIT(addon, frame)
 end
 
 function MINIMIZED_LETICIA_BUTTON_CHECK(frame)
-	local openLeticiaBtn = GET_CHILD_RECURSIVELY(frame, 'openLeticiaBtn')
+	frame = ui.GetFrame('minimized_leticia_button')
+	if frame == nil then return end
 
+	local openLeticiaBtn = GET_CHILD_RECURSIVELY(frame, 'openLeticiaBtn')
+	
 	if config.GetServiceNation() ~= 'KOR' then
 		openLeticiaBtn:SetEnable(0)
 		frame:ShowWindow(0)
@@ -51,7 +54,7 @@ function MINIMIZED_LETICIA_REMAIN_TIME(frame)
 
 	time:RunUpdateScript("UPDATE_MINIMIZED_LETICIA_REMAIN_TIME", 0.1)
 
-	UPDATE_MINIMIZED_LETICIA_TIME_CTRL(time, remainsec)
+	UPDATE_MINIMIZED_LETICIA_TIME_CTRL(time, remainsec, nowstr, StartTime, EndTime, frame)
 end
 
 function UPDATE_MINIMIZED_LETICIA_REMAIN_TIME(ctrl)

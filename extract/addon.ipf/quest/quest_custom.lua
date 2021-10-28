@@ -219,8 +219,6 @@ function ATTACH_STYLE_INFO_CTRLSET(ctrlset, key, style, text, curCount, count, s
 		AUTO_CAST(content);
 
 		local pic = GET_CHILD(content, 'pic');
-		local labelline = GET_CHILD_RECURSIVELY(content, 'labelline');
-		labelline:SetVisible(0);
 		pic:ShowWindow(0);
 		
 		if curCount < count then
@@ -231,14 +229,12 @@ function ATTACH_STYLE_INFO_CTRLSET(ctrlset, key, style, text, curCount, count, s
 				txt = string.format("{@st42}%s", text);
 				pic:SetImage("mark_img_x")
 				pic:ShowWindow(1);
-				labelline:SetVisible(1);
 			end
 
 		else			
 			txt = string.format("{@st42}%s", text);
 			pic:SetImage("mark_img_o")
 			pic:ShowWindow(1);
-			labelline:SetVisible(1);
 		end
 
 		local text = GET_CHILD(content, 'text');

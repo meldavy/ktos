@@ -2389,7 +2389,7 @@ function SCR_Get_KDArmorType(self)
         value = 1;
     end
     
-    local buffList = { "Safe", "PainBarrier_Buff", "Lycanthropy_Buff", "Marschierendeslied_Buff", "Methadone_Buff", "Fluting_Buff", "Slithering_Buff", "Algiz_PainBarrier_Buff", "BullyPainBarrier_Buff", "CavalryCharge_Abil_Buff" };
+    local buffList = { "Safe", "PainBarrier_Buff", "Lycanthropy_Buff", "Marschierendeslied_Buff", "Methadone_Buff", "Fluting_Buff", "Slithering_Buff", "Algiz_PainBarrier_Buff", "BullyPainBarrier_Buff", "CavalryCharge_Abil_Buff", "TOSHero_PainBarrier" };
     for i = 1, #buffList do
         if IsBuffApplied(self, buffList[i]) == 'YES' then
             value = 99999;
@@ -2761,7 +2761,12 @@ function SCR_Get_SR(self)
 	local byItemRareOption = TryGetProp(self, 'EnchantSR');
 	if byItemRareOption == nil then
 	    byItemRareOption = 0;
-	end
+    end
+    
+    if IsPVPServer(self) == 1 then
+        byItem = 0;
+        byItemRareOption = 0;
+    end
     
     local byBuff = TryGetProp(self, "SR_BM")
     if byBuff == nil then
@@ -2797,6 +2802,10 @@ function SCR_Get_SDR(self)
     if byItem == nil then
         byItem = 0;
     end
+
+    if IsPVPServer(self) == 1 then
+        byItem = 0;
+    end
     
     local byBuff = TryGetProp(self, "SDR_BM")
     if byBuff == nil then
@@ -2809,7 +2818,9 @@ function SCR_Get_SDR(self)
     	value = 1;
     end
     
-    if IsPVPField(self) == 1 and value > 4 then
+    if IsPVPServer(self) == 1 then
+        value = 2
+    elseif IsPVPField(self) == 1 and value > 4 then
         value = math.floor((math.max(0, value-4)^0.5))+math.min(4, value)
     end
 

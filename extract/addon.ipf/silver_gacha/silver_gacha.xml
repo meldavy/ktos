@@ -47,6 +47,7 @@
 		<!-- protection_in -->
 		<groupbox name="protection_gb" rect="0 0 575 730" margin="-320 195 0 0" layout_gravity="center top" skin="protection_in_background" scroll="false"/>
 		<!-- description -->
-		<richtext name="desc_text" rect="0 0 0 0" margin="0 200 30 0" layout_gravity="right top" caption="{@st66b}{s18}* 마신의 유혹은 실버로 이용하는 확률형 콘텐츠입니다.{nl}* 회당 5만 실버가 소모되며, 확률에 따라 월별 신규 코스튬이나{nl}    마신의 유혹 포인트를 획득할 수 있습니다." hittest="false"/>
+		<groupbox name="desc_text_gb" rect="0 0 600 150" margin="0 200 30 0" layout_gravity="right top" skin="" hittest="false"/>
+		<richtext name="desc_text" parent="desc_text_gb" rect="0 0 600 100" margin="0 0 0 0" layout_gravity="right top" caption="{@st66b}{s18}* 마신의 유혹은 실버로 이용하는 확률형 콘텐츠입니다.{nl}* 회당 5만 실버가 소모되며, 확률에 따라 월별 신규 코스튬이나{nl}    마신의 유혹 포인트를 획득할 수 있습니다." hittest="false" maxwidth="600"/>
 	</controls>
 </uiframe>

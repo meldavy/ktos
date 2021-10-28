@@ -473,7 +473,7 @@ function CANCEL_TRADE_ITEM(frame, ctrl, argStr, argNum)
 	frame:ShowWindow(0);
 end
 
--- JOB ?�택
+-- JOB ?�택
 function OPEN_TRADE_SELECT_JOB(invItem)
 	local frame = ui.GetFrame("tradeselectitem")
 	frame:SetTitleName('{@st43}{s22}' ..ScpArgMsg('SkillPointPotion'))
@@ -485,7 +485,7 @@ function OPEN_TRADE_SELECT_JOB(invItem)
 	local jobList = GetMyJobList()
 
 	local lv = TryGetProp(GetMyPCObject(), 'Lv', 1)
-	-- 440 ?�벨 ?�상 ?�용 가??--
+	-- 440 ?�벨 ?�상 ?�용 가??--
     if lv < PC_MAX_LEVEL - 20 then
 		ui.SysMsg(ScpArgMsg('CannotBecauseBaseLevel'));        
         return;
@@ -582,7 +582,7 @@ function CREATE_QUEST_REWARE_CTRL_JOB(box, y, index, jobCls)
 	local jobIcon = jobCls.Icon
 	local ctrlSet = box:CreateControlSet('quest_reward_s', "REWARD_" .. index, x, y);
 	tolua.cast(ctrlSet, "ui::CControlSet");
-	--?�기 값을 ?�중??받아??처리!!
+	--?�기 값을 ?�중??받아??처리!!
 	ctrlSet:SetValue(jobCls.ClassID);
 	
 	local slot = ctrlSet:GetChild("slot");
@@ -631,7 +631,7 @@ function REQUEST_TRADE_JOB(frame, ctrl, argStr, argNum)
 	end
 
 	if selectExist == 1 then
-		--?�택??ClassID		
+		--?�택??ClassID		
 		local itemGuid = frame:GetUserValue("UseItemGuid");
 		local argStr = string.format("%s", selected);
         pc.ReqExecuteTx_Item("SCR_USE_ADD_SKILL_POINT", itemGuid, argStr);
@@ -925,4 +925,381 @@ end
 
 function REQUEST_TRADE_ITEM_STRING_SPLIT_WARNINGYES(argStr)
     pc.ReqExecuteTx("SCR_TX_TRADE_SELECT_ITEM_3", argStr);
+end
+
+
+
+
+
+
+
+
+
+
+function OPEN_TRADE_SELECT_SKILL_GEM_CTRLTYPE(invItem)
+
+	local frame = ui.GetFrame("tradeselectitem")
+	frame:SetTitleName('{@st43}{s22}' ..ScpArgMsg('SklgemSelectCtrlType'))
+	local box = frame:GetChild('box');
+	tolua.cast(box, "ui::CGroupBox");
+	box:DeleteAllControl();
+	local y = 5;
+
+	local itemGuid = invItem:GetIESID();
+	local itemObj = GetObjectByGuid(itemGuid)
+
+	local jobList = {'Char1_1', 'Char2_1', 'Char3_1', 'Char4_1', 'Char5_1'}
+
+	for i = 1, #jobList do
+		local jobCls = GetClass('Job', jobList[i])
+		if jobCls ~= nil then
+			local jobName = jobCls.Name
+			y = CREATE_QUEST_REWARE_CTRL_JOB(box, y, i, jobCls);	
+			y = y + 5
+		end
+	end
+
+	local cancelBtn = frame:GetChild('CancelBtn');
+	local useBtn = frame:GetChild('UseBtn');
+	useBtn:SetEventScript(ui.LBUTTONUP,'OPEN_TRADE_SELECT_SKILL_GEM_CLASS')
+
+	box:Resize(box:GetOriginalWidth(), y);	    
+	local screen_height = option.GetClientHeight();
+	local maxSizeHeightFrame = box:GetY() + box:GetHeight() + 20;
+	local maxSizeHeightWnd = ui.GetSceneHeight();
+    
+    if maxSizeHeightWnd >= 950 then        
+        maxSizeHeightWnd = 950
+    
+        if maxSizeHeightWnd > screen_height then
+            maxSizeHeightWnd = screen_height * 0.8
+        end
+    end
+    
+    if maxSizeHeightFrame >= maxSizeHeightWnd then
+        maxSizeHeightFrame = maxSizeHeightWnd
+    end
+       
+	if maxSizeHeightWnd < (maxSizeHeightFrame + 50) then                 
+		local margin = maxSizeHeightWnd/2;
+		box:EnableScrollBar(1);
+
+		box:Resize(box:GetOriginalWidth(), margin - useBtn:GetHeight() - 40);
+		box:SetScrollBar(0);
+		box:InvalidateScrollBar();
+		frame:Resize(frame:GetOriginalWidth(), margin + 100);
+	else
+		box:SetCurLine(0) 
+		
+		box:Resize(box:GetOriginalWidth(), y);
+		frame:Resize(frame:GetOriginalWidth(), maxSizeHeightFrame);
+	end;
+	box:SetScrollPos(0);
+
+	local NeedItemSlot = frame:GetChild('NeedItemSlot')
+	local NeedItemName = frame:GetChild('NeedItemName')
+	NeedItemName:SetVisible(0)
+	NeedItemSlot:SetVisible(0)
+
+	frame:SetUserValue("UseItemGuid", itemGuid);
+	frame:ShowWindow(1);
+end
+
+
+function OPEN_TRADE_SELECT_SKILL_GEM_CLASS(frame)
+	local box = frame:GetChild('box');
+	tolua.cast(box, "ui::CGroupBox");
+
+	local selectExist = 0;
+	local selected = 0;
+	local cnt = box:GetChildCount();
+	for i = 0 , cnt - 1 do
+		local ctrlSet = box:GetChildByIndex(i);
+		local name = ctrlSet:GetName();
+		if string.find(name, "REWARD_") ~= nil then
+			tolua.cast(ctrlSet, "ui::CControlSet");
+			if ctrlSet:IsSelected() == 1 then
+				selected = ctrlSet:GetValue();
+			end
+			selectExist = 1;
+		end
+	end
+
+	frame:SetTitleName('{@st43}{s22}' ..ScpArgMsg('SklgemSelectJob'))
+	local box = frame:GetChild('box');
+	tolua.cast(box, "ui::CGroupBox");
+	box:DeleteAllControl();
+	local y = 5;
+
+	local itemGuid = frame:GetUserValue("UseItemGuid")
+	local itemObj = GetObjectByGuid(itemGuid)
+
+	local job_type = TryGetProp(GetClassByType('Job', selected), 'CtrlType', 'None')
+
+	local jobList = GetClassListByProp('Job', 'CtrlType', job_type)
+
+	for i = 1,#jobList do
+		local jobCls = jobList[i]
+		if jobCls ~= nil and TryGetProp(jobCls, 'EnableJob', 'NO') == 'YES' then
+			local jobName = jobCls.Name
+			y = CREATE_QUEST_REWARE_CTRL_JOB(box, y, i, jobCls)
+			y = y + 5
+		end
+	end
+
+	local cancelBtn = frame:GetChild('CancelBtn');
+	local useBtn = frame:GetChild('UseBtn');
+	useBtn:SetEventScript(ui.LBUTTONUP,'OPEN_TRADE_SELECT_SKILL_GEM')
+
+	box:Resize(box:GetOriginalWidth(), y);	    
+	local screen_height = option.GetClientHeight();
+	local maxSizeHeightFrame = box:GetY() + box:GetHeight() + 20;
+	local maxSizeHeightWnd = ui.GetSceneHeight();
+    
+    if maxSizeHeightWnd >= 950 then        
+        maxSizeHeightWnd = 950
+    
+        if maxSizeHeightWnd > screen_height then
+            maxSizeHeightWnd = screen_height * 0.8
+        end
+    end
+    
+    if maxSizeHeightFrame >= maxSizeHeightWnd then
+        maxSizeHeightFrame = maxSizeHeightWnd
+    end
+       
+	if maxSizeHeightWnd < (maxSizeHeightFrame + 50) then                 
+		local margin = maxSizeHeightWnd/2;
+		box:EnableScrollBar(1);
+
+		box:Resize(box:GetOriginalWidth(), margin - useBtn:GetHeight() - 40);
+		box:SetScrollBar(0);
+		box:InvalidateScrollBar();
+		frame:Resize(frame:GetOriginalWidth(), margin + 100);
+	else
+		box:SetCurLine(0) 
+		
+		box:Resize(box:GetOriginalWidth(), y);
+		frame:Resize(frame:GetOriginalWidth(), maxSizeHeightFrame);
+	end;
+	box:SetScrollPos(0);
+
+	local selectExist = 0;
+	local selected = 0;
+	local cnt = box:GetChildCount();
+	for i = 0 , cnt - 1 do
+		local ctrlSet = box:GetChildByIndex(i);
+		local name = ctrlSet:GetName();
+		if string.find(name, "REWARD_") ~= nil then
+			tolua.cast(ctrlSet, "ui::CControlSet");
+			if ctrlSet:IsSelected() == 1 then
+				selected = ctrlSet:GetValue();
+			end
+			selectExist = 1;
+		end
+	end
+
+	local NeedItemSlot = frame:GetChild('NeedItemSlot')
+	local NeedItemName = frame:GetChild('NeedItemName')
+	NeedItemName:SetVisible(0)
+	NeedItemSlot:SetVisible(0)
+
+	frame:SetUserValue("UseItemGuid", itemGuid);
+	frame:ShowWindow(1);
+end
+
+
+function OPEN_TRADE_SELECT_SKILL_GEM(frame)
+
+	frame:SetTitleName('{@st43}{s22}' ..ScpArgMsg('SklgemSelectGem'))
+
+	local box = frame:GetChild('box');
+	tolua.cast(box, "ui::CGroupBox");
+
+	local selectExist = 0;
+	local selected = 0;
+	local cnt = box:GetChildCount();
+	for i = 0 , cnt - 1 do
+		local ctrlSet = box:GetChildByIndex(i);
+		local name = ctrlSet:GetName();
+		if string.find(name, "REWARD_") ~= nil then
+			tolua.cast(ctrlSet, "ui::CControlSet");
+			if ctrlSet:IsSelected() == 1 then
+				selected = ctrlSet:GetValue();
+			end
+			selectExist = 1;
+		end
+	end
+	
+	if selected == 0 then return end
+
+	box:DeleteAllControl();
+	local y = 5;
+
+	local job = TryGetProp(GetClassByType('Job', selected), "JobName", "None")
+	local SkillList = {}
+
+	if job == 'FireMage' then
+		job = 'Pyromancer' 
+	elseif job == 'FrostMage' then
+		job = 'Cryomancer'
+	elseif job == 'Outlaw' then
+		job = 'OutLaw'
+	end
+
+	local cls , cnt = GetClassList('SkillTree')
+	for i = 0, cnt -1 do
+		local skltcls = GetClassByIndexFromList(cls, i)
+		local sklname = TryGetProp(skltcls, "SkillName", "None")
+
+		if string.find(sklname, job..'_') ~= nil  then
+			local skillgem_cls = GetClassByStrProp('Item', 'SkillName', sklname)
+			SkillList[#SkillList + 1] = skillgem_cls
+        end
+    end
+
+	if SkillList[1] == nil then return end
+
+	for i = 1,#SkillList do
+		local sklCls = SkillList[i]
+		if sklCls ~= nil then
+			local sklName = sklCls.ClassName
+			y = CREATE_SKILL_GEM_ITEM_CTRL(box, y, i, sklName, 1)
+			y = y + 5
+		end
+	end
+
+	local cancelBtn = frame:GetChild('CancelBtn');
+	local useBtn = frame:GetChild('UseBtn');
+	useBtn:SetEventScript(ui.LBUTTONUP,'REQUEST_TRADE_SELECT_SKILL_GEM')
+
+	box:Resize(box:GetOriginalWidth(), y);	    
+	local screen_height = option.GetClientHeight();
+	local maxSizeHeightFrame = box:GetY() + box:GetHeight() + 20;
+	local maxSizeHeightWnd = ui.GetSceneHeight();
+    
+    if maxSizeHeightWnd >= 950 then        
+        maxSizeHeightWnd = 950
+    
+        if maxSizeHeightWnd > screen_height then
+            maxSizeHeightWnd = screen_height * 0.8
+        end
+    end
+    
+    if maxSizeHeightFrame >= maxSizeHeightWnd then
+        maxSizeHeightFrame = maxSizeHeightWnd
+    end
+       
+	if maxSizeHeightWnd < (maxSizeHeightFrame + 50) then                 
+		local margin = maxSizeHeightWnd/2;
+		box:EnableScrollBar(1);
+
+		box:Resize(box:GetOriginalWidth(), margin - useBtn:GetHeight() - 40);
+		box:SetScrollBar(0);
+		box:InvalidateScrollBar();
+		frame:Resize(frame:GetOriginalWidth(), margin + 100);
+	else
+		box:SetCurLine(0) 
+		
+		box:Resize(box:GetOriginalWidth(), y);
+		frame:Resize(frame:GetOriginalWidth(), maxSizeHeightFrame);
+	end;
+	box:SetScrollPos(0);
+
+	local NeedItemSlot = frame:GetChild('NeedItemSlot')
+	local NeedItemName = frame:GetChild('NeedItemName')
+	NeedItemName:SetVisible(0)
+	NeedItemSlot:SetVisible(0)
+
+	frame:ShowWindow(1);
+end
+
+
+
+function CREATE_SKILL_GEM_ITEM_CTRL(box, y, index, ItemName, itemCnt)
+	local isOddCol = 0;
+	if math.floor((index - 1) % 2) == 1 then
+		isOddCol = 0;
+	end
+
+	local x = 5;
+	if isOddCol == 1 then
+		x = (box:GetWidth() / 2) + 5;
+		local ctrlHeight = ui.GetControlSetAttribute('quest_reward_s', 'height');
+		y = y - ctrlHeight - 10;
+	end
+	
+	local ctrlSet = box:CreateControlSet('quest_reward_s', "REWARD_" .. index, x, y);
+	tolua.cast(ctrlSet, "ui::CControlSet");
+	ctrlSet:SetValue(index);
+
+	local itemCls = GetClass("Item", ItemName);
+
+	ctrlSet:SetUserValue('SklGemID', itemCls.ClassID)
+
+	local slot = ctrlSet:GetChild("slot");
+	tolua.cast(slot, "ui::CSlot");
+	
+	local icon = GET_ITEM_ICON_IMAGE(itemCls, GETMYPCGENDER())
+	SET_SLOT_IMG(slot, icon);
+
+	local ItemName = ctrlSet:GetChild("ItemName");
+	local itemText = string.format("{@st41b}%s x%d", itemCls.Name, itemCnt);
+	ItemName:SetText(itemText);
+
+	ctrlSet:SetOverSound("button_cursor_over_3");
+	ctrlSet:SetClickSound("button_click_stats");
+	ctrlSet:SetEnableSelect(1);
+	ctrlSet:SetSelectGroupName("QuestRewardList");
+	
+	SET_ITEM_TOOLTIP_BY_TYPE(ctrlSet, itemCls.ClassID);
+	
+	ctrlSet:Resize(box:GetWidth() - 30, ctrlSet:GetHeight());
+
+	y = y + ctrlSet:GetHeight();
+	return y;
+
+end
+
+
+function REQUEST_TRADE_SELECT_SKILL_GEM(frame)    
+	local box = frame:GetChild('box')
+	tolua.cast(box, "ui::CGroupBox")
+
+	local selectExist = 0
+	local selected = 0
+	local selectgem = 0
+
+	local cnt = box:GetChildCount()
+	for i = 0 , cnt - 1 do
+		local ctrlSet = box:GetChildByIndex(i)
+		local name = ctrlSet:GetName()
+		if string.find(name, "REWARD_") ~= nil then
+			tolua.cast(ctrlSet, "ui::CControlSet")
+			if ctrlSet:IsSelected() == 1 then
+				selectgem = ctrlSet:GetUserValue('SklGemID')
+				selected = ctrlSet:GetValue();
+			end
+			selectExist = 1
+		end
+	end
+
+	if selectExist == 1 and selected == 0 then
+		ui.MsgBox(ScpArgMsg("Auto_BoSangeul_SeonTaegHaeJuSeyo."))
+		return
+	end
+
+	if selectExist == 1 and selectgem ~= 0 then
+		local itemGuid = frame:GetUserValue("UseItemGuid")
+		local yesScp = string.format("REQUEST_TRADE_SELECT_SKILL_GEM_WARNINGYES(\"%s\", \"%s\")", itemGuid, selectgem)
+		ui.MsgBox(ScpArgMsg('SelectHairAcc{ITEM}','ITEM', GetClassByType('Item', selectgem).Name) , yesScp, 'None')
+	end
+
+	frame = frame:GetTopParentFrame()
+	frame:ShowWindow(0)
+end
+
+
+function REQUEST_TRADE_SELECT_SKILL_GEM_WARNINGYES(itemGuid, selectgem)
+    pc.ReqExecuteTx_Item("TRADE_SELECT_SKILL_GEM", itemGuid, selectgem)
 end

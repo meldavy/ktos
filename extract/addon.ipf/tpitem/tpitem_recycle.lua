@@ -95,10 +95,6 @@ function CHECK_RECYCLE_SHOW_ITEM(frame, item, category)
 		return false;
 	end
 
-	if curSelectCate == 'Drug' and TryGetProp(item, 'ItemType') ~= 'Consume' then
-		return false;
-	end
-
 	if string.find(curSelectCate, 'costume') ~= nil then
 		if TryGetProp(item, 'ClassType') ~= 'Outer' then
 			return false;
@@ -117,11 +113,53 @@ function CHECK_RECYCLE_SHOW_ITEM(frame, item, category)
 			end
 		end
 	end
+	
+	local subCt = 'Recyle_Shop_' .. tostring(curSelectCate)
 
-	if curSelectCate == 'Artefact' and TryGetProp(item, 'ClassType') ~= 'Artefact' then
+	if curSelectCate == 'Equipmisc' and subCt ~= category then
 		return false;
 	end
 
+	if curSelectCate == 'Drug' and subCt ~= category then
+		return false;
+	end
+	
+	if curSelectCate == 'Misc' and subCt ~= category then
+		return false;
+	end
+	
+	if curSelectCate == 'Contents' and subCt ~= category then
+		return false;
+	end
+	
+	if curSelectCate == 'Growth' and subCt ~= category then
+		return false;
+	end
+	
+	if curSelectCate == 'Gem' and subCt ~= category then
+		return false;
+	end
+	
+	if curSelectCate == 'Equip' and subCt ~= category then
+		return false;
+	end
+	
+	if curSelectCate == 'Card' and subCt ~= category then
+		return false;
+	end
+	
+	if curSelectCate == 'Reset' and subCt ~= category then
+		return false;
+	end
+	
+	if curSelectCate == 'Etc' and subCt ~= category then
+		return false;
+	end
+
+	if curSelectCate == 'Toy' and subCt ~= category then
+		return false;
+	end
+	
 	if curSelectCate == 'recycle_special' and curSelectCate ~= category then
         return false;
 	end
@@ -910,9 +948,17 @@ function RECYCLE_MAKE_TREE(frame)
 
 	-- TODO: 추후 카테고리를 늘릴 때에는 여기 아래를 수정하면 됨. 지금은 고정된 것들만 하기로 하였음
 	local firstItem = RECYCLE_CREATE_CATEGORY_ITEM(recycleCateTree, 'TotalTabName');
+	RECYCLE_CREATE_CATEGORY_ITEM(recycleCateTree, 'Equipmisc');
 	RECYCLE_CREATE_CATEGORY_ITEM(recycleCateTree, 'Drug');
-	RECYCLE_CREATE_CATEGORY_ITEM(recycleCateTree, 'Wiki_Accessory');
-	RECYCLE_CREATE_CATEGORY_ITEM(recycleCateTree, 'Artefact');
+	RECYCLE_CREATE_CATEGORY_ITEM(recycleCateTree, 'Misc');
+	RECYCLE_CREATE_CATEGORY_ITEM(recycleCateTree, 'Contents');
+	RECYCLE_CREATE_CATEGORY_ITEM(recycleCateTree, 'Growth');
+	RECYCLE_CREATE_CATEGORY_ITEM(recycleCateTree, 'Gem');
+	RECYCLE_CREATE_CATEGORY_ITEM(recycleCateTree, 'Equip');
+	RECYCLE_CREATE_CATEGORY_ITEM(recycleCateTree, 'Card');
+	RECYCLE_CREATE_CATEGORY_ITEM(recycleCateTree, 'Reset');
+	RECYCLE_CREATE_CATEGORY_ITEM(recycleCateTree, 'Etc');
+	RECYCLE_CREATE_CATEGORY_ITEM(recycleCateTree, 'Toy');
 	RECYCLE_CREATE_CATEGORY_ITEM(recycleCateTree, 'Com_costume_M');
 	RECYCLE_CREATE_CATEGORY_ITEM(recycleCateTree, 'War_costume_F');
 	RECYCLE_CREATE_CATEGORY_ITEM(recycleCateTree, 'Wiz_costume_F');

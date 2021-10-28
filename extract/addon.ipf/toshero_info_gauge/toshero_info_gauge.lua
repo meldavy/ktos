@@ -24,6 +24,7 @@ function ON_TOSHERO_INFO_GAUGE_SET(frame, msg, argStr, stage)
     GET_CHILD_RECURSIVELY(frame, "text_bosscount"):ShowWindow(0)
     GET_CHILD_RECURSIVELY(frame, "heroimage_bosscountdown"):ShowWindow(0)
     GET_CHILD_RECURSIVELY(frame, "text2_bosscount"):ShowWindow(0)
+    GET_CHILD_RECURSIVELY(frame, "text3_bosscount"):ShowWindow(0)
 
     -- 속성 표기
     local argList = StringSplit(argStr, "/")
@@ -84,28 +85,34 @@ function ON_TOSHERO_INFO_OBJECTHP(frame, msg, HP)
     gauge:SetPoint(HP, 100)
 end
 
-function ON_TOSHERO_SHOW_SIMPLE_MSG(frame, msg, msgStr)
+function ON_TOSHERO_SHOW_SIMPLE_MSG(frame, msg, msgStr, msgStr2)
     local text = GET_CHILD_RECURSIVELY(frame, "text_bosscount")
     local image = GET_CHILD_RECURSIVELY(frame, "heroimage_bosscountdown")
     local text2 = GET_CHILD_RECURSIVELY(frame, "text2_bosscount")
+    local text3 = GET_CHILD_RECURSIVELY(frame, "text3_bosscount")
 
     image:ShowWindow(1);
     text2:ShowWindow(1);
     text:ShowWindow(1);
+    text3:ShowWindow(1);
     text:SetTextByKey("font", "");
     
 	local sList = StringSplit(msgStr, "}");
 	local number = 0;
-	if #sList > 1 then
-		number = tonumber(sList[2]);
-	end
 
+    if #sList > 1 then
+        number = tonumber(sList[2]);
+    end
+
+    local In_text2 = "{#FF0000}(-"..msgStr2.."){/}" 
     if number > 0 then
 		text:SetTextByKey("text", msgStr);
+		text3:SetTextByKey("text", In_text2);
 	else
         text:SetTextByKey("text", "");
         image:ShowWindow(0);
         text2:ShowWindow(0);
+        text3:ShowWindow(0);
 	end
 	frame:SetDuration(120);
 end

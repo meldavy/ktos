@@ -6,6 +6,7 @@ function TOSHERO_INFO_ON_INIT(addon, frame)
     addon:RegisterMsg('TOSHERO_HIDDEN_BUFF_ADD', 'ON_TOSHERO_HIDDEN_BUFF_ADD')
     addon:RegisterMsg('TOSHERO_ZONE_ENTER', 'ON_TOSHERO_ZONE_ENTER')
     addon:RegisterMsg('TOSHERO_STAGE_END', 'ON_TOSHERO_STAGE_CLEAR')
+    addon:RegisterMsg('TOSHERO_STAGE_TEXT', 'ON_TOSHERO_STAGE_TEXT')
 end
 
 g_toshero_reinforce_image = "None"
@@ -39,6 +40,15 @@ function ON_TOSHERO_STAGE_CLEAR()
     GET_CHILD_RECURSIVELY(frame, 'ready'):SetSkinName("test_gray_button")
 end
 
+function ON_TOSHERO_STAGE_TEXT(frame, msg, argStr, stage)
+    local frame = ui.GetFrame('toshero_info')
+    if frame == nil then
+        return
+    end
+
+    GET_CHILD_RECURSIVELY(frame, 'title'):SetTextByKey("stage", stage)
+end
+
 function ON_TOSHERO_INFO_POINT()
     local frame = ui.GetFrame('toshero_info')
     if frame == nil then
@@ -56,7 +66,6 @@ function ON_TOSHERO_INFO_SET_STAGE(frame, msg, argStr, stage)
         return
     end
     g_stage_start = true
-    GET_CHILD_RECURSIVELY(frame, 'title'):SetTextByKey("stage", stage)
 end
 
 function ON_TOSHERO_ZONE_ENTER(frame, msg, argStr, stage)
@@ -110,11 +119,13 @@ end
 function TOSHERO_INFO_SET_ATTRIBUTE(frame)
     local attribute = GET_CHILD_RECURSIVELY(frame, 'attribute_pic')
     local nowAttribute = GetTOSHeroAttribute()
+    GET_CHILD_RECURSIVELY(frame, 'attribute_txt'):ShowWindow(1)
 
     if nowAttribute > 1 then
         local attributeClass = GetClassByType("TOSHeroAttribute", nowAttribute)
         local attributeImage = TryGetProp(attributeClass, "Image", "None")
-
+        
+        GET_CHILD_RECURSIVELY(frame, 'attribute_txt'):ShowWindow(0)
         attribute:SetImage(attributeImage)
     end
 end

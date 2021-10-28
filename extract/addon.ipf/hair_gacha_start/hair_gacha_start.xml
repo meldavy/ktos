@@ -9,8 +9,8 @@
 	<sound opensound="sys_popup_open_1" closesound="character_item_window_close"/>
 	<animation frameOpenAnim="popup_start3" frameCloseAnim="popup_end3"/>
 	<effect open="character_item_window_open" close="character_item_window_close"/>
-	<script CloseScp=""/>
-	<controls>
+	<script OpenScp="HAIR_GACHA_OPEN" CloseScp=""/>
+<controls>
 		<groupbox name="bg_hair" rect="0 0 450 480" margin="0 0 0 0" layout_gravity="left top" draw="false" hittestbox="false" resizebyparent="false" resizebyresolution="false" scrollbar="false" image="gacha_skin"/>
 		<groupbox name="bg_rbox" rect="0 0 450 480" margin="0 0 0 0" layout_gravity="left top" draw="false" hittestbox="false" resizebyparent="false" resizebyresolution="false" scrollbar="false" image="randombox_skin"/>
 		<button name="button" margin="0 0 0 85" rect="0 0 280 60" format="%s" param1="value" skin="test_red_button" layout_gravity="center bottom" oversound="button_over" LBtnUpScp="HAIR_GACHA_OK_BTN" clicksound="skl_eff_gacha_box_button"/>

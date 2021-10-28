@@ -286,8 +286,13 @@ function PET_MDEF_C(self, addAbil)
     return math.floor(ret);
 end
 
-function PET_SDR(self)    
-    return 1;
+function PET_SDR(self)
+    local value = 1
+    if IsPVPServer(self) == 1 then
+        value = 0
+    end
+
+    return value;
 end
 
 function PET_DR_BY_ABIL(statValue)

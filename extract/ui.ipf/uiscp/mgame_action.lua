@@ -9,7 +9,6 @@ function MGAME_MSG(actor, msgStr, msgDuration)
 end
 
 function SHOW_SIMPLE_MSG(msgStr)
-
 	local pvpmsg = ui.GetFrame("pvpmsg");
 	pvpmsg:ShowWindow(1);
 	local text = pvpmsg:GetChild("text");
@@ -18,6 +17,26 @@ function SHOW_SIMPLE_MSG(msgStr)
 	local number = 0;
 	if #sList > 1 then
 		number = tonumber(sList[2]);
+	end
+
+	if number > 0 then
+	text:SetTextByKey("text", msgStr);
+	else
+		text:SetTextByKey("text", "");
+	end
+	pvpmsg:SetDuration(120);
+
+end
+
+function SHOW_SIMPLE_MSG_2(msgStr)
+	local pvpmsg = ui.GetFrame("pvpmsg");
+	pvpmsg:ShowWindow(1);
+	local text = pvpmsg:GetChild("text");
+	text:SetTextByKey("font", "");
+	local sList = StringSplit(msgStr, "}");
+	local number = 0;
+	if #sList > 1 then
+		number = tonumber(sList[3]);
 	end
 
 	if number > 0 then

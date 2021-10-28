@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by imc (imc) -->
+<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by imc (imc) -->
 <!-- edited with XMLSpy v2008 sp1 (http://www.altova.com) by MintPC (Mi) -->
 <skinset name="Base">
 	<skinlist category="frames">
@@ -2256,9 +2256,9 @@
 			<img name="bodyleft" imgrect="455 201 200 100"/>
 			<img name="bodycore" imgrect="656 201 100 100"/>
 			<img name="bodyright" imgrect="757 201 200 100"/>
-			<img name="bottomleft" imgrect="455 303 200 200"/>
-			<img name="bottomcore" imgrect="656 303 100 200"/>
-			<img name="bottomright" imgrect="757 303 200 200"/>
+			<img name="bottomleft" imgrect="455 302 200 200"/>
+			<img name="bottomcore" imgrect="656 302 100 200"/>
+			<img name="bottomright" imgrect="757 302 200 200"/>
 		</skin>
 		<skin name="test_skin_01" texture="\skin\pip_test.tga">
 			<img name="topleft" imgrect="958 153 50 50"/>
@@ -2472,12 +2472,12 @@
 			<img name="topleft" imgrect="403 0 10 10"/>
 			<img name="topcore" imgrect="414 0 29 10"/>
 			<img name="topright" imgrect="444 0 10 10"/>
-			<img name="bodyleft" imgrect="403 10 10 15"/>
-			<img name="bodycore" imgrect="414 10 29 15"/>
-			<img name="bodyright" imgrect="444 10 10 15"/>
-			<img name="bottomleft" imgrect="403 25 10 10"/>
-			<img name="bottomcore" imgrect="414 25 29 10"/>
-			<img name="bottomright" imgrect="444 25 10 10"/>
+			<img name="bodyleft" imgrect="403 11 10 15"/>
+			<img name="bodycore" imgrect="414 11 29 15"/>
+			<img name="bodyright" imgrect="444 11 10 15"/>
+			<img name="bottomleft" imgrect="403 27 10 8"/>
+			<img name="bottomcore" imgrect="414 27 29 8"/>
+			<img name="bottomright" imgrect="444 27 10 8"/>
 		</skin>
 		<skin name="test_skill_tooltip" texture="\skin\pip_test.tga">
 			<img name="topleft" imgrect="455 503 150 110"/>
@@ -8910,6 +8910,8 @@
 		<image name="highcolorgem_CON" file="\skin\pip_test_item.tga" imgrect="964 1372 240 240"/>
 		<image name="600percent_image2" file="\skin\paid_skin.tga" imgrect="837 664 100 45" CMM_Caption="경험의 서 600"/>
 		<image name="1200percent_image2" file="\skin\paid_skin.tga" imgrect="938 664 100 45" CMM_Caption="경험의 서 1200"/>
+		<image name="class_tree_mark" file="\skin\class_tree.tga" imgrect="1 824 159 158" CMM_Caption="클래식 전직 마크"/>
+		<image name="plus_button_plusimag" file="\skin\pip_test.tga" imgrect="2049 328 31 31" CMM_Caption="플러스 버튼의 플러스 이미지만 뗌"/>
 	</imagelist>
 	<imagelist category="yiseul_image">
 		<image name="AbillityReset_skin" file="\skin\paid_skin_title.tga" imgrect="0 330 316 165" CMM_Caption="특성 초기화"/>
@@ -9586,6 +9588,9 @@
 		<image name="inventory_quest" file="\skin\pip_test2.tga" imgrect="39 699 38 61" CMM_Caption="인벤토리_퀘스트"/>
 		<image name="inventory_quest_cursoron" file="\skin\pip_test2.tga" imgrect="78 699 38 61"/>
 		<image name="inventory_quest_clicked" file="\skin\pip_test2.tga" imgrect="0 699 38 61"/>
+		<image name="bgm_cancel_simple_black" file="\skin\bgm_player.tga" imgrect="530 476 13 14" CMM_Caption="캔슬 버튼 배리"/>
+		<image name="bgm_cancel_simple_black_cursoron" file="\skin\bgm_player.tga" imgrect="544 476 13 14"/>
+		<image name="bgm_cancel_simple_black_clicked" file="\skin\bgm_player.tga" imgrect="558 476 13 14"/>
 	</imagelist>
 	<imagelist category="yiseul_button">
 		<image name="pvpmine_shop_btn" file="\skin\pip_test.tga" imgrect="2049 61 66 59" CMM_Caption="용병단 증표 ui 버튼"/>
@@ -9741,6 +9746,9 @@
 		<image name="pvpmine_shop_btn_total" file="\skin\button_small.tga" imgrect="135 291 44 44" CMM_Caption="용병단 증표 상점 리사이즈"/>
 		<image name="pvpmine_shop_btn_total_cursoron" file="\skin\button_small.tga" imgrect="180 291 44 44"/>
 		<image name="pvpmine_shop_btn_total_clicked" file="\skin\button_small.tga" imgrect="225 291 44 44"/>
+		<image name="Change_Character_btn" file="\skin\button_small.tga" imgrect="270 245 56 56" CMM_Caption="캐릭터 체인지 버튼"/>
+		<image name="Change_Character_btn_cursoron" file="\skin\button_small.tga" imgrect="327 245 56 56"/>
+		<image name="Change_Character_btn_clicked" file="\skin\button_small.tga" imgrect="384 245 56 56"/>
 	</imagelist>
 	<imagelist category="worldmap_image">
 		<image name="worldmap2_mainmap" file="\skin\worldmap\worldmap2_mainmap.jpg" imgrect="0 0 1920 1080" CMM_Caption="월드맵배경"/>
@@ -10172,6 +10180,7 @@
 		<image name="companion_penguin_blue" file="\icon\companion_Velhider.tga" imgrect="80 240 80 80"/>
 		<image name="companion_lessrpanda_gray" file="\icon\companion_Velhider.tga" imgrect="160 240 80 80"/>
 		<image name="companion_sled" file="\icon\companion_Velhider.tga" imgrect="240 240 80 80"/>
+		<image name="companion_sled_blue" file="\icon\companion_Velhider.tga" imgrect="560 0 80 80"/>
 		<image name="companion_Armadilo" file="\icon\companion_Velhider.tga" imgrect="320 0 80 80"/>
 		<image name="companion_goro_suit" file="\icon\companion_Velhider.tga" imgrect="320 80 80 80"/>
 		<image name="companion_gold_goro" file="\icon\companion_Velhider.tga" imgrect="320 160 80 80"/>
@@ -11472,6 +11481,8 @@
 		<image name="icon_gesture_wiggle" file="\icon\social.tga" imgrect="406 649 80 80"/>
 		<image name="icon_item_shootdance" file="\icon\social.tga" imgrect="1 730 80 80"/>
 		<image name="icon_item_cheer" file="\icon\social.tga" imgrect="82 730 80 80"/>
+		<image name="icon_gesture_ClockworkDance" file="\icon\social.tga" imgrect="163 730 80 80"/>
+		<image name="icon_gesture_RustleDance" file="\icon\social.tga" imgrect="244 730 80 80"/>
 	</imagelist>
 	<imagelist>
 		<image name="chat_page_arrow_left" file="\skin\mainframe_A.tga" imgrect="766 943 40 40"/>
@@ -12784,6 +12795,11 @@
 		<image name="icon_TOSHero_Buff_Random_1" file="\icon\buff_icon5.tga" imgrect="256 1024 128 128" CMM_Caption="랜덤 버프"/>
 		<image name="icon_Event_2108_Archeology" file="\icon\buff_icon5.tga" imgrect="384 1024 128 128" CMM_Caption="고고학 버프"/>
 		<image name="icon_ridepet_ep13raincoat_buff" file="\icon\buff_icon5.tga" imgrect="512 1024 128 128" CMM_Caption="금붕어 버프"/>
+		<image name="icon_TOSHero_MAPPATTERN_DONTOUT_OFF" file="\icon\buff_icon5.tga" imgrect="640 1024 128 128" CMM_Caption="마력 전소"/>
+		<image name="icon_TOSHero_PainBarrier" file="\icon\buff_icon5.tga" imgrect="768 1024 128 128" CMM_Caption="영웅심"/>
+		<image name="icon_TOSHero_Ordeal" file="\icon\buff_icon5.tga" imgrect="896 1024 128 128" CMM_Caption="시련의 연속"/>
+		<image name="icon_TOSHero_OvercomeOrdeal" file="\icon\buff_icon5.tga" imgrect="0 1152 128 128" CMM_Caption="시련 극복"/>
+		<image name="icon_TOSHero_Scatter" file="\icon\buff_icon5.tga" imgrect="128 1152 128 128" CMM_Caption="산개"/>
 	</imagelist>
 	<imagelist category="housing_bufficon">
 		<image name="icon_Weapon_Klaida" file="\icon\icon_hosing_buff.tga" imgrect="0 0 128 128"/>
@@ -13397,6 +13413,105 @@
 		<image name="plate_achieve_Vasilisa_clear_01" file="\skin\user_title_skin.tga" imgrect="0 434 214 34" CMM_Caption="바실리사_클리어 동"/>
 		<image name="plate_achieve_Vasilisa_clear_02" file="\skin\user_title_skin.tga" imgrect="215 434 214 34" CMM_Caption="바실리사_클리어 은"/>
 		<image name="plate_achieve_Vasilisa_clear_03" file="\skin\user_title_skin.tga" imgrect="430 434 214 34" CMM_Caption="바실리사_클리어 금"/>
+		<image name="plate_achieve_Master_of_Barbarian" file="\skin\user_title_skin.tga" imgrect="864 0 214 34" CMM_Caption="소드맨 계열_18종"/>
+		<image name="plate_achieve_Master_of_Blossom_Blader" file="\skin\user_title_skin.tga" imgrect="1079 0 214 34"/>
+		<image name="plate_achieve_Master_of_Cataphract" file="\skin\user_title_skin.tga" imgrect="864 35 214 34"/>
+		<image name="plate_achieve_Master_of_Doppelsoeldner" file="\skin\user_title_skin.tga" imgrect="1079 35 214 34"/>
+		<image name="plate_achieve_Master_of_Dragoon" file="\skin\user_title_skin.tga" imgrect="864 70 214 34"/>
+		<image name="plate_achieve_Master_of_Fencer" file="\skin\user_title_skin.tga" imgrect="1079 70 214 34"/>
+		<image name="plate_achieve_Master_of_Hackapell" file="\skin\user_title_skin.tga" imgrect="864 105 214 34"/>
+		<image name="plate_achieve_Master_of_Highlander" file="\skin\user_title_skin.tga" imgrect="1079 105 214 34"/>
+		<image name="plate_achieve_Master_of_Hoplite" file="\skin\user_title_skin.tga" imgrect="864 140 214 34"/>
+		<image name="plate_achieve_Master_of_Lancer" file="\skin\user_title_skin.tga" imgrect="1079 140 214 34"/>
+		<image name="plate_achieve_Master_of_Matador" file="\skin\user_title_skin.tga" imgrect="864 175 214 34"/>
+		<image name="plate_achieve_Master_of_Murmillo" file="\skin\user_title_skin.tga" imgrect="1079 175 214 34"/>
+		<image name="plate_achieve_Master_of_Nak_Muay" file="\skin\user_title_skin.tga" imgrect="864 210 214 34"/>
+		<image name="plate_achieve_Master_of_Peltasta" file="\skin\user_title_skin.tga" imgrect="1079 210 214 34"/>
+		<image name="plate_achieve_Master_of_Retiarii" file="\skin\user_title_skin.tga" imgrect="864 245 214 34"/>
+		<image name="plate_achieve_Master_of_Rodelero" file="\skin\user_title_skin.tga" imgrect="1079 245 214 34"/>
+		<image name="plate_achieve_Master_of_Templar" file="\skin\user_title_skin.tga" imgrect="864 280 214 34"/>
+		<image name="plate_achieve_Master_of_Warrior" file="\skin\user_title_skin.tga" imgrect="1079 280 214 34"/>
+		<image name="plate_achieve_Master_of_Ardito" file="\skin\user_title_skin.tga" imgrect="864 315 214 34" CMM_Caption="스카우트 계열_16종"/>
+		<image name="plate_achieve_Master_of_Assassin" file="\skin\user_title_skin.tga" imgrect="1079 315 214 34"/>
+		<image name="plate_achieve_Master_of_Bullet_Marker" file="\skin\user_title_skin.tga" imgrect="864 350 214 34"/>
+		<image name="plate_achieve_Master_of_Clown" file="\skin\user_title_skin.tga" imgrect="1079 350 214 34"/>
+		<image name="plate_achieve_Master_of_Corsair" file="\skin\user_title_skin.tga" imgrect="864 385 214 34"/>
+		<image name="plate_achieve_Master_of_Enchanter" file="\skin\user_title_skin.tga" imgrect="1079 385 214 34"/>
+		<image name="plate_achieve_Master_of_Linker" file="\skin\user_title_skin.tga" imgrect="645 429 214 34"/>
+		<image name="plate_achieve_Master_of_Outlaw" file="\skin\user_title_skin.tga" imgrect="860 429 214 34"/>
+		<image name="plate_achieve_Master_of_Rangda" file="\skin\user_title_skin.tga" imgrect="1075 429 214 34"/>
+		<image name="plate_achieve_Master_of_Rogue" file="\skin\user_title_skin.tga" imgrect="0 469 214 34"/>
+		<image name="plate_achieve_Master_of_Schwarzer_Reiter" file="\skin\user_title_skin.tga" imgrect="215 469 214 34"/>
+		<image name="plate_achieve_Master_of_Scout" file="\skin\user_title_skin.tga" imgrect="430 469 214 34"/>
+		<image name="plate_achieve_Master_of_Sheriff" file="\skin\user_title_skin.tga" imgrect="645 469 214 34"/>
+		<image name="plate_achieve_Master_of_Shinobi" file="\skin\user_title_skin.tga" imgrect="860 469 214 34"/>
+		<image name="plate_achieve_Master_of_Squire" file="\skin\user_title_skin.tga" imgrect="1075 469 214 34"/>
+		<image name="plate_achieve_Master_of_Thaumaturge" file="\skin\user_title_skin.tga" imgrect="0 504 214 34"/>
+		<image name="plate_achieve_Master_of_Cannoneer" file="\skin\user_title_skin.tga" imgrect="215 504 214 34" CMM_Caption="아처 계열_18종"/>
+		<image name="plate_achieve_Master_of_Appraiser" file="\skin\user_title_skin.tga" imgrect="430 504 214 34"/>
+		<image name="plate_achieve_Master_of_Arbalester" file="\skin\user_title_skin.tga" imgrect="645 504 214 34"/>
+		<image name="plate_achieve_Master_of_Archer" file="\skin\user_title_skin.tga" imgrect="860 504 214 34"/>
+		<image name="plate_achieve_Master_of_Arquebusier" file="\skin\user_title_skin.tga" imgrect="1075 504 214 34"/>
+		<image name="plate_achieve_Master_of_Musketeer" file="\skin\user_title_skin.tga" imgrect="0 539 214 34"/>
+		<image name="plate_achieve_Master_of_Falconer" file="\skin\user_title_skin.tga" imgrect="215 539 214 34"/>
+		<image name="plate_achieve_Master_of_Fletcher" file="\skin\user_title_skin.tga" imgrect="430 539 214 34"/>
+		<image name="plate_achieve_Master_of_Hunter" file="\skin\user_title_skin.tga" imgrect="645 539 214 34"/>
+		<image name="plate_achieve_Master_of_Matross" file="\skin\user_title_skin.tga" imgrect="860 539 214 34"/>
+		<image name="plate_achieve_Master_of_Mergen" file="\skin\user_title_skin.tga" imgrect="1075 539 214 34"/>
+		<image name="plate_achieve_Master_of_Pied_Piper" file="\skin\user_title_skin.tga" imgrect="0 574 214 34"/>
+		<image name="plate_achieve_Master_of_Poison_Shooter" file="\skin\user_title_skin.tga" imgrect="215 574 214 34"/>
+		<image name="plate_achieve_Master_of_Quarrel_Shooter" file="\skin\user_title_skin.tga" imgrect="430 574 214 34"/>
+		<image name="plate_achieve_Master_of_Ranger" file="\skin\user_title_skin.tga" imgrect="645 574 214 34"/>
+		<image name="plate_achieve_Master_of_Sapper" file="\skin\user_title_skin.tga" imgrect="860 574 214 34"/>
+		<image name="plate_achieve_Master_of_Tiger_Hunter" file="\skin\user_title_skin.tga" imgrect="1075 574 214 34"/>
+		<image name="plate_achieve_Master_of_Wugushi" file="\skin\user_title_skin.tga" imgrect="0 609 214 34"/>
+		<image name="plate_achieve_Master_of_Elementalist" file="\skin\user_title_skin.tga" imgrect="215 609 214 34" CMM_Caption="위저드 계열_18종"/>
+		<image name="plate_achieve_Master_of_Alchemist" file="\skin\user_title_skin.tga" imgrect="430 609 214 34"/>
+		<image name="plate_achieve_Master_of_Bokor" file="\skin\user_title_skin.tga" imgrect="645 609 214 34"/>
+		<image name="plate_achieve_Master_of_Chronomancer" file="\skin\user_title_skin.tga" imgrect="860 609 214 34"/>
+		<image name="plate_achieve_Master_of_Cryomancer" file="\skin\user_title_skin.tga" imgrect="1075 609 214 34"/>
+		<image name="plate_achieve_Master_of_Rune_Caster" file="\skin\user_title_skin.tga" imgrect="0 644 214 34"/>
+		<image name="plate_achieve_Master_of_Featherfoot" file="\skin\user_title_skin.tga" imgrect="215 644 214 34"/>
+		<image name="plate_achieve_Master_of_Necromancer" file="\skin\user_title_skin.tga" imgrect="430 644 214 34"/>
+		<image name="plate_achieve_Master_of_Onmyoji" file="\skin\user_title_skin.tga" imgrect="645 644 214 34"/>
+		<image name="plate_achieve_Master_of_Psychokino" file="\skin\user_title_skin.tga" imgrect="860 644 214 34"/>
+		<image name="plate_achieve_Master_of_Pyromancer" file="\skin\user_title_skin.tga" imgrect="1075 644 214 34"/>
+		<image name="plate_achieve_Master_of_Sage" file="\skin\user_title_skin.tga" imgrect="0 679 214 34"/>
+		<image name="plate_achieve_Master_of_Shadowmancer" file="\skin\user_title_skin.tga" imgrect="215 679 214 34"/>
+		<image name="plate_achieve_Master_of_Sorcerer" file="\skin\user_title_skin.tga" imgrect="430 679 214 34"/>
+		<image name="plate_achieve_Master_of_Taoist" file="\skin\user_title_skin.tga" imgrect="645 679 214 34"/>
+		<image name="plate_achieve_Master_of_Terramancer" file="\skin\user_title_skin.tga" imgrect="860 679 214 34"/>
+		<image name="plate_achieve_Master_of_Warlock" file="\skin\user_title_skin.tga" imgrect="1075 679 214 34"/>
+		<image name="plate_achieve_Master_of_Wizard" file="\skin\user_title_skin.tga" imgrect="0 714 214 34"/>
+		<image name="plate_achieve_Master_of_Chaplain" file="\skin\user_title_skin.tga" imgrect="215 714 214 34" CMM_Caption="클레릭 계열_18종"/>
+		<image name="plate_achieve_Master_of_Cleric" file="\skin\user_title_skin.tga" imgrect="430 714 214 34"/>
+		<image name="plate_achieve_Master_of_Crusader" file="\skin\user_title_skin.tga" imgrect="645 714 214 34"/>
+		<image name="plate_achieve_Master_of_Dievdirbys" file="\skin\user_title_skin.tga" imgrect="860 714 214 34"/>
+		<image name="plate_achieve_Master_of_Druid" file="\skin\user_title_skin.tga" imgrect="1075 714 214 34"/>
+		<image name="plate_achieve_Master_of_Exorcist" file="\skin\user_title_skin.tga" imgrect="0 749 214 34"/>
+		<image name="plate_achieve_Master_of_Inquisitor" file="\skin\user_title_skin.tga" imgrect="215 749 214 34"/>
+		<image name="plate_achieve_Master_of_Kabbalist" file="\skin\user_title_skin.tga" imgrect="430 749 214 34"/>
+		<image name="plate_achieve_Master_of_Krivis" file="\skin\user_title_skin.tga" imgrect="645 749 214 34"/>
+		<image name="plate_achieve_Master_of_Miko" file="\skin\user_title_skin.tga" imgrect="860 749 214 34"/>
+		<image name="plate_achieve_Master_of_Monk" file="\skin\user_title_skin.tga" imgrect="1075 749 214 34"/>
+		<image name="plate_achieve_Master_of_Oracle" file="\skin\user_title_skin.tga" imgrect="0 784 214 34"/>
+		<image name="plate_achieve_Master_of_Paladin" file="\skin\user_title_skin.tga" imgrect="215 784 214 34"/>
+		<image name="plate_achieve_Master_of_Pardoner" file="\skin\user_title_skin.tga" imgrect="430 784 214 34"/>
+		<image name="plate_achieve_Master_of_Plague_Doctor" file="\skin\user_title_skin.tga" imgrect="645 784 214 34"/>
+		<image name="plate_achieve_Master_of_Priest" file="\skin\user_title_skin.tga" imgrect="860 784 214 34"/>
+		<image name="plate_achieve_Master_of_Sadhu" file="\skin\user_title_skin.tga" imgrect="1075 784 214 34"/>
+		<image name="plate_achieve_Master_of_Zealot" file="\skin\user_title_skin.tga" imgrect="0 819 214 34"/>
+		<image name="plate_achieve_winner_GOLD" file="\skin\user_title_skin.tga" imgrect="430 819 214 34" CMM_Caption="승리누적_금은동"/>
+		<image name="plate_achieve_winner_SILVER" file="\skin\user_title_skin.tga" imgrect="645 819 214 34"/>
+		<image name="plate_achieve_winner_BRONZE" file="\skin\user_title_skin.tga" imgrect="860 819 214 34"/>
+		<image name="plate_achieve_mvp_GOLD" file="\skin\user_title_skin.tga" imgrect="1075 819 214 34" CMM_Caption="mvp_금은동"/>
+		<image name="plate_achieve_mvp_SILVER" file="\skin\user_title_skin.tga" imgrect="0 854 214 34"/>
+		<image name="plate_achieve_mvp_BRONZE" file="\skin\user_title_skin.tga" imgrect="215 854 214 34"/>
+		<image name="plate_achieve_topwarrior_GOLD" file="\skin\user_title_skin.tga" imgrect="430 854 214 34" CMM_Caption="누적대미지_금은동"/>
+		<image name="plate_achieve_topwarrior_SILVER" file="\skin\user_title_skin.tga" imgrect="645 854 214 34"/>
+		<image name="plate_achieve_topwarrior_BRONZE" file="\skin\user_title_skin.tga" imgrect="860 854 214 34"/>
+		<image name="plate_achieve_Master_of_kannushi" file="\skin\user_title_skin.tga" imgrect="1075 854 214 34"/>
+		<image name="plate_achieve_weeklyrank_17" file="\skin\user_title_skin.tga" imgrect="215 889 214 34" CMM_Caption="주간보스_아시오메이지"/>
 	</imagelist>
 	<imagelist category="skin_hair">
 		<image name="icon_skintone_01_m01" file="\skin\skinhair\icon_skintone_01_m01.png" imgrect="0 0 80 80" CMM_Caption="남성 01"/>

@@ -1293,7 +1293,9 @@ local function ITEM_CABINET_CREATE_ARK_OPTION(gBox, ypos, step, class_name)
 	if tooltip_func ~= nil then
 		local tooltip_type, status, interval, add_value, summon_atk, client_msg, unit = tooltip_func();
 		local option = status
-		local infoText = gBox:CreateControl('richtext', 'optionText'..step, 15, ypos, gBox:GetWidth(), 30);
+		local infoText = gBox:CreateControl('richtext', 'optionText'..step, 15, ypos, gBox:GetWidth()-50, 30);
+		infoText:SetTextFixWidth(1);
+
 		local text = ''
 		if tooltip_type == 1 then
 			text = ScpArgMsg("ArkOptionText{Option}{interval}{addvalue}", "Option", ClMsg(option), "interval", interval, "addvalue", add_value)
@@ -1353,12 +1355,12 @@ function ITEM_CABINET_OPTION_INFO(gBox, targetItem)
 	end
 
 	local tooltip_equip_property_CSet = gBox:CreateOrGetControlSet('tooltip_equip_property_narrow', 'tooltip_equip_property_narrow', 0, yPos)
-	tooltip_equip_property_CSet:Resize(gBox:GetWidth(),tooltip_equip_property_CSet:GetHeight())
-	
 	local labelline = GET_CHILD_RECURSIVELY(tooltip_equip_property_CSet, "labelline")
 	labelline:ShowWindow(0)
 	local property_gbox = GET_CHILD(tooltip_equip_property_CSet,'property_gbox','ui::CGroupBox')
-	property_gbox:Resize(tooltip_equip_property_CSet:GetWidth(),property_gbox:GetHeight())
+
+	tooltip_equip_property_CSet:Resize(gBox:GetWidth(),tooltip_equip_property_CSet:GetHeight())
+	property_gbox:Resize(gBox:GetWidth(),property_gbox:GetHeight())
 
 	local class = GetClassByType("Item", targetItem.ClassID)
 

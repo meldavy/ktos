@@ -339,7 +339,9 @@ function GCM_SELECT_CHANNEL(channel, no_reload)
     joining_to = ""
 
     local chat_edit = GET_CHILD_RECURSIVELY(frame, "chat_edit")
-    chat_edit:Focus()
+    if chat_edit:IsHaveFocus() == 0 then
+        chat_edit:Focus()
+    end
 
     return true
 end

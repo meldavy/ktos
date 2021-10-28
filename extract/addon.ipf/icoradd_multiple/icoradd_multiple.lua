@@ -355,6 +355,9 @@ function ICORADD_CTRL_REG_ADD_ITEM(ctrlSet, itemID)
 	labelline:ShowWindow(0)
 	local property_gbox = GET_CHILD(tooltip_equip_property_CSet,'property_gbox','ui::CGroupBox')
 
+	tooltip_equip_property_CSet:Resize(gBox:GetWidth(), tooltip_equip_property_CSet:GetHeight())
+	property_gbox:Resize(gBox:GetWidth(), property_gbox:GetHeight())
+
 	local class = GetClassByType("Item", targetItem.ClassID)
 
 	local inner_yPos = 0
@@ -818,11 +821,12 @@ function ADD_ITEM_PROPERTY_TEXT_NARROW(GroupCtrl, txt, xmargin, yPos )
 	local ControlSetObj	= GroupCtrl:CreateControlSet('tooltip_item_prop_richtxt_narrow', "ITEM_PROP_" .. cnt , 0, yPos)
 	local ControlSetCtrl = tolua.cast(ControlSetObj, 'ui::CControlSet')
 	local richText = GET_CHILD(ControlSetCtrl, "text", "ui::CRichText")
+	
+	richText:SetMaxWidth(GroupCtrl:GetWidth()-50)
 	richText:SetTextByKey('text', txt)
-	ControlSetCtrl:Resize(ControlSetCtrl:GetWidth(), richText:GetHeight())
+	ControlSetCtrl:Resize(GroupCtrl:GetWidth()-20, richText:GetHeight())
 	GroupCtrl:ShowWindow(1)
 
 	GroupCtrl:Resize(GroupCtrl:GetWidth(),GroupCtrl:GetHeight() + ControlSetObj:GetHeight())
-	
 	return ControlSetCtrl:GetHeight() + ControlSetCtrl:GetY()
 end

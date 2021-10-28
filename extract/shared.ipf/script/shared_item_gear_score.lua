@@ -316,12 +316,13 @@ function GET_GEAR_SCORE(item, pc)
                         set_advantage = 0.9
                     end
                 end
-            else
-                if is_sub_slot == true then
-                    set_advantage = 1
-                end
             end
-        end        
+
+            if is_sub_slot == true then
+                set_advantage = 1
+            end
+        end
+
         set_option = 1 - random_option_penalty - enchant_option_penalty        
         local ret = 0.5 * ( (4*transcend) + (3*reinforce)) + ( (30*grade) + (1.66*avg_lv) )*0.5
         ret = ret * set_option * set_advantage + add_acc + gem_point

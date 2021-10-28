@@ -1142,6 +1142,7 @@ local function _GODDESS_MGR_MAKE_ENCHANT_OPTION(box, item_obj)
 		if rareOptionText ~= nil then
 			local rareOptionCtrl = box:CreateOrGetControlSet('eachproperty_in_itemrandomreset', 'PROPERTY_CSET_RARE', 0, 0)
 			rareOptionCtrl = AUTO_CAST(rareOptionCtrl)
+			rareOptionCtrl:Resize(box:GetWidth(), rareOptionCtrl:GetWidth())
 			rareOptionCtrl:Move(0, 30)
 			local propertyList = GET_CHILD_RECURSIVELY(rareOptionCtrl, 'property_name', 'ui::CRichText')
 			propertyList:SetOffset(30, propertyList:GetY())
@@ -1149,7 +1150,7 @@ local function _GODDESS_MGR_MAKE_ENCHANT_OPTION(box, item_obj)
 			
 			local width = propertyList:GetWidth()
 			local frame = box:GetTopParentFrame()
-			local fixwidth = tonumber(frame:GetUserConfig('FIX_WIDTH'))
+			local fixwidth = box:GetWidth() - 50
 
 			if fixwidth < width then
 				propertyList:SetTextFixWidth(1)
@@ -2117,6 +2118,9 @@ function _GODDESS_MGR_MAKE_RANDOM_OPTION_TEXT(gBox, item_obj, option_list)
 	local labelline = GET_CHILD_RECURSIVELY(tooltip_equip_property_CSet, 'labelline')
 	labelline:ShowWindow(0)
 	local property_gbox = GET_CHILD(tooltip_equip_property_CSet, 'property_gbox', 'ui::CGroupBox')
+	
+	tooltip_equip_property_CSet:Resize(gBox:GetWidth(), tooltip_equip_property_CSet:GetHeight())
+	property_gbox:Resize(gBox:GetWidth(), property_gbox:GetHeight())
 
 	local inner_yPos = 0
 	if item_obj == nil then
@@ -2319,6 +2323,9 @@ function GODDESS_MGR_RANDOMOPTION_ENGRAVE_CLEAR(frame)
 	local rand_item_text = GET_CHILD_RECURSIVELY(frame, 'rand_item_text')
 	rand_item_text:ShowWindow(1)
 
+	local rand_equip_list = GET_CHILD_RECURSIVELY(frame, 'rand_equip_list')
+	rand_equip_list:SetMargin(30, rand_item_text:GetMargin().top + rand_item_text:GetHeight() + 10, 0, 0)
+
 	local rand_engrave_current_inner = GET_CHILD_RECURSIVELY(frame, 'rand_engrave_current_inner')
 	rand_engrave_current_inner:RemoveChild('tooltip_equip_property_narrow')
 
@@ -2499,6 +2506,9 @@ function GODDESS_MGR_RANDOMOPTION_ENGRAVE_REG_ITEM(frame, inv_item, item_obj, sp
 	local rand_item_name = GET_CHILD_RECURSIVELY(frame, 'rand_item_name')
 	rand_item_name:SetTextByKey('name', dic.getTranslatedStr(TryGetProp(item_obj, 'Name', 'NONE')))
 	rand_item_name:ShowWindow(1)
+
+	local rand_equip_list = GET_CHILD_RECURSIVELY(frame, 'rand_equip_list')
+	rand_equip_list:SetMargin(30, rand_item_name:GetMargin().top + rand_item_name:GetHeight() + 10, 0, 0)
 
 	local rand_engrave_current_inner = GET_CHILD_RECURSIVELY(frame, 'rand_engrave_current_inner')
 	rand_engrave_current_inner:RemoveChild('tooltip_equip_property_narrow')
@@ -2909,7 +2919,7 @@ function GODDESS_MGR_RANDOMOPTION_APPLY_EXEC(parent, btn)
 	end
 
 	local yesscp = string.format('_GODDESS_MGR_RANDOMOPTION_APPLY_EXEC()')
-	local msgbox = ui.MsgBox(ClMsg('TryRandomOptionPresetEngrave'), yesscp, 'None')
+	local msgbox = ui.MsgBox(ClMsg('TryRandomOptionPresetApply'), yesscp, 'None')
 	SET_MODAL_MSGBOX(msgbox)
 end
 

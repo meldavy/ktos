@@ -264,6 +264,13 @@ function INDUNINFO_CREATE_CATEGORY(frame)
                         INDUNINFO_PUSH_BACK_TABLE(g_indunCategoryList, groupID)
                         createCategory(groupID, indunCls)
 			    	end
+                elseif string.find(indunCls.DungeonType, "TOSHero") == 1 then
+                    local dungeonType = session.rank.GetCurrentDungeon(1)
+                    if dungeonType == indunCls.MapName then
+                        INDUNINFO_ADD_COUNT(groupTable, groupID)
+                        INDUNINFO_PUSH_BACK_TABLE(g_indunCategoryList, groupID)
+                        createCategory(groupID, indunCls)
+                    end
                 else
                     INDUNINFO_ADD_COUNT(groupTable, groupID)
                     INDUNINFO_PUSH_BACK_TABLE(g_indunCategoryList, groupID)
@@ -534,6 +541,11 @@ function INDUNINFO_CATEGORY_LBTN_CLICK(categoryCtrl, ctrl)
 					if TryGetProp(mapCls,"ClassName") == indunCls.MapName then
 						add_flag = true;
 					end
+                elseif string.find(indunCls.DungeonType,"TOSHero") == 1 then
+                    local dungeonType = session.rank.GetCurrentDungeon(1)
+                    if dungeonType == indunCls.MapName then
+						add_flag = true;
+                    end
                 else
                     add_flag = true;
                 end
@@ -1187,7 +1199,7 @@ function PVP_INDUNINFO_MAKE_DETAIL_INFO_BOX(frame, indunClassID)
 
     local resetGroupID = indunCls.GroupID;       
     INDUNINFO_MAKE_DETAIL_COMMON_INFO(frame,indunCls,resetGroupID)
-
+    INDUNINFO_SET_RESTRICT(frame,indunCls)
     INDUNINFO_SET_ENTERANCE_TIME(frame, indunCls)
     --pvp info
     local pvpInfoSet = GET_CHILD_RECURSIVELY(frame, 'pvpInfoBox');
@@ -1422,6 +1434,13 @@ end
 function INDUNINFO_SET_BUTTONS(frame, indunCls)
     local buttonBox = GET_CHILD_RECURSIVELY(frame, 'buttonBox');
     local btnInfoCls = GetClass("IndunInfoButton", indunCls.DungeonType);
+
+    if indunCls.DungeonType == "TOSHero" then
+        GET_CHILD_RECURSIVELY(buttonBox, 'tinyButton'):ShowWindow(1);
+    else
+        GET_CHILD_RECURSIVELY(buttonBox, 'tinyButton'):ShowWindow(0);
+    end
+
     if btnInfoCls == nil then
         local redButton = GET_CHILD_RECURSIVELY(buttonBox,'RedButton')
         redButton:ShowWindow(0)
@@ -2066,9 +2085,11 @@ end
 function INDUNINFO_SELECT_CATEGORY(index)
 	local frame = ui.GetFrame('induninfo')
     local categoryBox = GET_CHILD_RECURSIVELY(frame, 'categoryBox');
-	local ctrl = categoryBox:GetChildByIndex(index)
-	local button = GET_CHILD(ctrl,"button")
-    PVP_INDUNINFO_CATEGORY_LBTN_CLICK(button:GetParent(), button);
+    local ctrl = categoryBox:GetChildByIndex(index);
+    local button = GET_CHILD(ctrl, "button")
+    if button ~= nil then
+        PVP_INDUNINFO_CATEGORY_LBTN_CLICK(button:GetParent(), button);
+    end
 end
 --------------------------------- 주간 보스 레이드 --------------------------------- 
 function  WEEKLYBOSSINFO_UI_OPEN(frame)
@@ -2089,7 +2110,7 @@ function WEEKLY_BOSS_DATA_REUQEST()
     rank_gb:EnableHitTest(0);
     ReserveScript("HOLD_RANKUI_UNFREEZE()", 1);
 
-    local week_num =  WEEKLY_BOSS_RANK_WEEKNUM_NUMBER();
+    local week_num = WEEKLY_BOSS_RANK_WEEKNUM_NUMBER();
     if week_num < 1 then
         return;
     end
@@ -2097,11 +2118,16 @@ function WEEKLY_BOSS_DATA_REUQEST()
     weekly_boss.RequestWeeklyBossRankingRewardList(week_num);   -- 랭킹 보상 목록 요청
     weekly_boss.RequestGetReceiveAbsoluteReward(week_num);      -- 내가 수령한 누적대미지 보상 정보 요청
     weekly_boss.RequestGetReceiveRankingReward(week_num);       -- 내가 수령한 랭킹 보상 정보 요청
+    weekly_boss.RequestGetReceiveClassRankingReward(week_num);  -- 내가 수령한 클래스 랭킹 보상 정보 요청
+    weekly_boss.RequestEnableClassRankRewardSeason(week_num);   -- 클래스 랭킹 보상 가능 여부 확인 요청.
 
     -- 랭킹 정보
     local jobID = WEEKLY_BOSS_RANK_JOBID_NUMBER();
+    WEEKLYBOSS_REWARD_CLASS_SELECT_JOB_ID(jobID);
+    weekly_boss.RequestWeeklyBossClassRankingRewardList(week_num, jobID); -- 클래스 랭킹 보상 목록 요청.
+
     weekly_boss.RequestWeeklyBossRankingInfoList(week_num, jobID);
-	INDUNINFO_CLASS_SELECTOR_FILL_CLASS(jobID)
+    INDUNINFO_CLASS_SELECTOR_FILL_CLASS(jobID)
 
     -- 보스 정보
     weekly_boss.RequestWeeklyBossStartTime(week_num);           -- 해당 주간 보스 시작 시간 정보 요청
@@ -2119,17 +2145,19 @@ function HOLD_RANKUI_UNFREEZE()
 end
 
 -- 갱신된 정보에 맞게 UI 수정 
-function WEEKLY_BOSS_UI_UPDATE()
+function WEEKLY_BOSS_UI_UPDATE(frame, msg, arg_str, arg_num)
     local frame = ui.GetFrame("induninfo")
     local week_num = WEEKLY_BOSS_RANK_WEEKNUM_NUMBER();
 
     -- 몬스터 정보
     local weeklybossPattern = session.weeklyboss.GetPatternInfo();
-	local monClsName = weeklybossPattern.MonsterClassName
+    local monClsName = weeklybossPattern.MonsterClassName
+    
 	--티니 삼형제
 	if string.find(monClsName,"weekly_boss_Tiny") ~= nil then
 		monClsName = "weekly_boss_Tiny_ThreeBrothers"
-	end
+    end
+    
     local monCls = GetClass("Monster",monClsName)
     if monCls ~= nil then
         local monster_icon_pic = GET_CHILD_RECURSIVELY(frame, 'monster_icon_pic');
@@ -2171,7 +2199,6 @@ function WEEKLY_BOSS_UI_UPDATE()
     end
     local mydamage = session.weeklyboss.GetMyDamageInfoToString(week_num);                  -- 도전 1회 최고 점수
     local accumulateDamage = session.weeklyboss.GetWeeklyBossAccumulatedDamage(week_num);   -- 누적 대미지
-    
     local battle_info_attr = GET_CHILD_RECURSIVELY(frame, "battle_info_attr", "ui::CControlSet");
     SET_TEXT(battle_info_attr, "attr_value_text_1", "rank", myrank);
     SET_TEXT(battle_info_attr, "attr_value_text_1", "rank_p", myrank_p);
@@ -2190,16 +2217,13 @@ function WEEKLY_BOSS_UI_UPDATE()
     
     if 0 < difsec then
         gauge:SetPoint(durtime - difsec, durtime);
-        
         local textstr = GET_TIME_TXT(difsec) .. ClMsg("After_Exit");
         battle_info_time_text:SetTextByKey("value", textstr);
-        
         battle_info_time_text:SetUserValue("REMAINSEC", difsec);
         battle_info_time_text:SetUserValue("STARTSEC", imcTime.GetAppTime());
         battle_info_time_text:RunUpdateScript("WEEKLY_BOSS_REMAIN_END_TIME");
     elseif difsec < 0 then
         gauge:SetPoint(1, 1);
-        
         local textstr = ClMsg("Already_Exit_Raid");
         battle_info_time_text:SetTextByKey("value", textstr);
         battle_info_time_text:StopUpdateScript("WEEKLY_BOSS_REMAIN_END_TIME");
@@ -2213,11 +2237,11 @@ function WEEKLY_BOSS_UI_UPDATE()
     else
         joinButton:SetEnable(1)
     end
+
     --시즌 갱신
     WEEKLY_BOSS_SEASON_UPDATE();
     -- 랭킹 LIST 갱신
     WEEKLY_BOSS_RANK_UPDATE();
-
 end
 
 function WEEKLY_BOSS_SEASON_UPDATE()
@@ -2366,6 +2390,11 @@ end
 function WEEKLY_BOSS_TOTAL_DAMAGE_REWARD_CLICK()
     local week_num = WEEKLY_BOSS_RANK_WEEKNUM_NUMBER();
     WEEKLYBOSSREWARD_SHOW(1);
+end
+
+-- 클래스 순위 보상
+function WEEKLY_BOSS_TOTAL_CLASS_RANK_REWARD_CLICK()
+    WEEKLYBOSS_REWARD_CLASS_SELECT_OPEN();
 end
 
 -- 계열 순위 보상 버튼 클릭
@@ -3597,4 +3626,13 @@ function INDUNINFO_CHANGE_FAVORITE_IMG(categoryBox, groupID)
     else
         favorite_img:SetImage("star_in_arrow")
     end
+end
+
+function PVP_INDUNINFO_OPEN_SHOP(frame, btn)
+    REQ_TEAM_BATTLE_SHOP_OPEN()
+    return;
+end
+
+function PVP_INDUNINFO_CHARACTER_REGIST(parent, btn)
+    CHARACTER_CHANGE_REGISTER_OPEN();
 end

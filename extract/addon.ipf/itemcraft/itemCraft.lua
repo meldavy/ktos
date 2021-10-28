@@ -1945,6 +1945,8 @@ function CRAFT_PVP_MINE_ITEM_ALL(itemSet, btn)
 		propName = 'Mileage_SilverGacha'
 	elseif itemName == 'dummy_GabijaCertificate' then
 		propName = 'GabijaCertificate' -- 여신의 증표(가비야) 상점
+	elseif itemName == 'dummy_TeamBattleCoin' then
+		propName = 'TeamBattleCoin' -- 팀배코인
     end
 
     if propName == nil then

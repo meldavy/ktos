@@ -732,9 +732,151 @@ function SCR_GET_SKL_COOLDOWN(skill)
             basicCoolDown = basicCoolDown + 2000
         end
 
-        if skill.ClassName == "Priest_Revive" or skill.ClassName == "Priest_Resurrection" then
-            basicCoolDown = 180000
+        if skill.ClassName == "Priest_Revive" then
+            basicCoolDown = 900000
         end
+
+        if TryGetProp(skill, "ClassName", "None") == "Priest_Resurrection" then
+            basicCoolDown = 900000
+        end
+    end
+
+    local ret = math.floor(basicCoolDown) / 1000
+    ret = math.floor(ret) * 1000;
+    if coolDownClassify == "Fix" then
+        ret = zoneAddCoolDown;
+    elseif coolDownClassify == "Add" then
+        ret = zoneAddCoolDown + ret
+    end
+    
+    return math.floor(ret);
+end
+
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
+function SCR_GET_SKL_COOLDOWN_Lydeti(skill)    
+    local pc = GetSkillOwner(skill);
+    local basicCoolDown = skill.BasicCoolDown;
+    local abilAddCoolDown = GetAbilityAddSpendValue(pc, skill.ClassName, "CoolDown");
+    basicCoolDown = basicCoolDown + abilAddCoolDown;
+    
+    local cls = GetClassList("SkillRestrict");
+    local sklCls = GetClassByNameFromList(cls, skill.ClassName);
+    local coolDownClassify = nil;
+    local zoneAddCoolDown = 0;
+    
+    if sklCls ~= nil then
+        local isKeyword = TryGetProp(sklCls, "Keyword", nil)
+        if IsRaidField(pc) == 1 then
+            if string.find(isKeyword, "IsRaidField") == 1 then
+                local addCoolDown = TryGetProp(sklCls, "Raid_CoolDown", nil)
+                addCoolDown = StringSplit(addCoolDown, "/");
+                coolDownClassify, zoneAddCoolDown = addCoolDown[1], addCoolDown[2]
+            end
+        elseif IsPVPField(pc) == 1 then
+            if string.find(isKeyword, "IsPVPField") == 1 then
+                local addCoolDown = TryGetProp(sklCls, "PVP_CoolDown", nil)
+                addCoolDown = StringSplit(addCoolDown, "/");
+                coolDownClassify, zoneAddCoolDown = addCoolDown[1], addCoolDown[2]
+            end
+        end
+    end
+    
+    basicCoolDown = SCR_COMMON_COOLDOWN_DECREASE(pc, skill, basicCoolDown)
+
+    if IsPVPServer(pc) == 1 or IsPVPField(pc) == 1 then
+        basicCoolDown = 80000
+    end
+
+    local ret = math.floor(basicCoolDown) / 1000
+    ret = math.floor(ret) * 1000;
+    if coolDownClassify == "Fix" then
+        ret = zoneAddCoolDown;
+    elseif coolDownClassify == "Add" then
+        ret = zoneAddCoolDown + ret
+    end
+
+    return math.floor(ret);
+end
+
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
+function SCR_GET_SKL_COOLDOWN_Karys(skill)    
+    local pc = GetSkillOwner(skill);
+    local basicCoolDown = skill.BasicCoolDown;
+    local abilAddCoolDown = GetAbilityAddSpendValue(pc, skill.ClassName, "CoolDown");
+    basicCoolDown = basicCoolDown + abilAddCoolDown;
+    
+    local cls = GetClassList("SkillRestrict");
+    local sklCls = GetClassByNameFromList(cls, skill.ClassName);
+    local coolDownClassify = nil;
+    local zoneAddCoolDown = 0;
+    
+    if sklCls ~= nil then
+        local isKeyword = TryGetProp(sklCls, "Keyword", nil)
+        if IsRaidField(pc) == 1 then
+            if string.find(isKeyword, "IsRaidField") == 1 then
+                local addCoolDown = TryGetProp(sklCls, "Raid_CoolDown", nil)
+                addCoolDown = StringSplit(addCoolDown, "/");
+                coolDownClassify, zoneAddCoolDown = addCoolDown[1], addCoolDown[2]
+            end
+        elseif IsPVPField(pc) == 1 then
+            if string.find(isKeyword, "IsPVPField") == 1 then
+                local addCoolDown = TryGetProp(sklCls, "PVP_CoolDown", nil)
+                addCoolDown = StringSplit(addCoolDown, "/");
+                coolDownClassify, zoneAddCoolDown = addCoolDown[1], addCoolDown[2]
+            end
+        end
+    end
+    
+    basicCoolDown = SCR_COMMON_COOLDOWN_DECREASE(pc, skill, basicCoolDown)
+    
+    if IsPVPServer(pc) == 1 then
+        basicCoolDown = 300000
+    end
+
+    local ret = math.floor(basicCoolDown) / 1000
+    ret = math.floor(ret) * 1000;
+    if coolDownClassify == "Fix" then
+        ret = zoneAddCoolDown;
+    elseif coolDownClassify == "Add" then
+        ret = zoneAddCoolDown + ret
+    end
+    
+    return math.floor(ret);
+end
+
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
+function SCR_GET_SKL_COOLDOWN_Ezera(skill)    
+    local pc = GetSkillOwner(skill);
+    local basicCoolDown = skill.BasicCoolDown;
+    local abilAddCoolDown = GetAbilityAddSpendValue(pc, skill.ClassName, "CoolDown");
+    basicCoolDown = basicCoolDown + abilAddCoolDown;
+    
+    local cls = GetClassList("SkillRestrict");
+    local sklCls = GetClassByNameFromList(cls, skill.ClassName);
+    local coolDownClassify = nil;
+    local zoneAddCoolDown = 0;
+    
+    if sklCls ~= nil then
+        local isKeyword = TryGetProp(sklCls, "Keyword", nil)
+        if IsRaidField(pc) == 1 then
+            if string.find(isKeyword, "IsRaidField") == 1 then
+                local addCoolDown = TryGetProp(sklCls, "Raid_CoolDown", nil)
+                addCoolDown = StringSplit(addCoolDown, "/");
+                coolDownClassify, zoneAddCoolDown = addCoolDown[1], addCoolDown[2]
+            end
+        elseif IsPVPField(pc) == 1 then
+            if string.find(isKeyword, "IsPVPField") == 1 then
+                local addCoolDown = TryGetProp(sklCls, "PVP_CoolDown", nil)
+                addCoolDown = StringSplit(addCoolDown, "/");
+                coolDownClassify, zoneAddCoolDown = addCoolDown[1], addCoolDown[2]
+            end
+        end
+    end
+    
+    basicCoolDown = SCR_COMMON_COOLDOWN_DECREASE(pc, skill, basicCoolDown)
+    
+    if IsPVPServer(pc) == 1 then
+        basicCoolDown = 300000
     end
 
     local ret = math.floor(basicCoolDown) / 1000
@@ -1172,12 +1314,12 @@ function SCR_GET_SKL_COOLDOWN_WIZARD(skill)
 
     if IsPVPServer(pc) == 1 then
         if skill.ClassName == "Chronomancer_BackMasking" then
-            basicCoolDown = 180000
+            basicCoolDown = 900000
         end
 
         local abilChronomancer12 = GetAbility(pc, "Chronomancer12")
         if skill.ClassName == "Chronomancer_Samsara" and abilChronomancer12 ~= nil and TryGetProp(abilChronomancer12, "ActiveState", 0) == 1 then
-            basicCoolDown = 180000
+            basicCoolDown = 900000
         end
     end
     
@@ -5419,13 +5561,7 @@ end
 -- done , 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_GET_BeakMask_Time(skill)
     local value = 60
-    local pc = GetSkillOwner(skill)
-    if IsPVPServer(pc) == 1 or IsPVPField(pc) == 1 then
-        value = value / 3
-    end
-    
     return math.floor(value);
-  
 end
 
 -- done , 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
@@ -8140,8 +8276,8 @@ end
 function SCR_GET_Revive_Bufftime(skill)
     local pc = GetSkillOwner(skill);
     local value = 90
-    if IsPVPServer(pc) == 1 then
-        value = 30
+    if IsPVPServer(pc) == 1 or IsPVPField(pc) == 1 then
+        value = 15
     end
     local Priest21_abil = GetAbility(pc, 'Priest21')
     if Priest21_abil ~= nil and 1 == Priest21_abil.ActiveState and IsPVPServer(pc) == 0 then
@@ -9272,10 +9408,9 @@ end
 -- done , 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_GET_Prophecy_Time(skill)
     local value = 30
-    -- 팀 배틀리그 토너먼트만 적용됨 ----
     local pc = GetSkillOwner(skill);
-    if IsPVPServer(pc) == 1 then
-        value = 10;
+    if IsPVPServer(pc) == 1 or IsPVPField(pc) == 1 then
+        value = 15;
     end
     return value;
 end
@@ -14338,10 +14473,14 @@ end
 -- done , 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_GET_Redemption_Time(skill)
     local pc = GetSkillOwner(skill)
-    local value = 20
+    local value = 40
+    if IsPVPField(pc) == 1 or IsPVPServer(pc) == 1 or IsJoinColonyWarMap(pc) == 1 then
+        value = 8
+    end
+
     local abil = GetAbility(pc, 'Sheriff6')
-    if abil ~= nil and abil.ActiveState == 1 then
-        value = 10;
+    if abil ~= nil and TryGetProp(abil, "ActiveState", 0) == 1 then
+        value = value / 2;
     end
     
     return value
@@ -14350,17 +14489,29 @@ end
 -- done , 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_GET_Redemption_Ratio(skill)
     local pc = GetSkillOwner(skill)
-    local value = math.ceil(skill.Level * 0.5)
+    local value = 3
+
+    if IsPVPField(pc) == 1 then
+        value = value * 2;
+    end
+
     local abil = GetAbility(pc, 'Sheriff6')
     if abil ~= nil and abil.ActiveState == 1 then
         value = value * 2;
-    end    
+    end
+     
     return value
 end
 
 -- done , 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_GET_Redemption_Ratio2(skill)
-    local value = 40 + skill.Level * 4
+    local pc = GetSkillOwner(skill)
+    local skillLevel = TryGetProp(skill, "Level", 1)
+    local value = 15 + skillLevel
+    if IsPVPField(pc) == 1 or IsPVPServer(pc) == 1 or IsJoinColonyWarMap(pc) == 1 then
+        value = 90 + skillLevel
+    end
+
     return value
 end
 
@@ -14369,9 +14520,8 @@ end
 function SCR_GET_AimingShot_Ratio(skill)
     local pc = GetSkillOwner(skill)
     local value = 3
-    local abil = GetAbility(pc, "Sheriff5")
-    if abil ~= nil and abil.ActiveState == 1 then
-        value = 1
+    if IsPVPField(pc) == 1 or IsPVPServer(pc) == 1 or IsJoinColonyWarMap(pc) == 1 then
+        value = 6
     end
 
     return value
@@ -15613,10 +15763,14 @@ end
 function SCR_GET_Ezera_Ratio(skill)
     local value = 25
     local pc = GetSkillOwner(skill)
-    if pc ~= nil then        
-        if HAS_DRAGON_POWER(pc) == true then
-            value = value + 10
-        end  
+    local dragonPower = 10
+    if IsPVPServer(pc) == 1 then
+        value = 12
+        dragonPower = 5
+    end
+
+    if HAS_DRAGON_POWER(pc) == true then
+        value = value + dragonPower
     end
 
     return value;
@@ -15646,6 +15800,28 @@ function SCR_GET_Karys_Ratio(skill)
     end
 
     return value;
+end
+
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
+function SCR_GET_Karys_Ratio2(skill)
+    local value = 30
+    local pc = GetSkillOwner(skill)
+    if IsPVPServer(pc) == 1 then
+        value = 15
+    end
+
+    return value;
+end
+
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
+function SCR_GET_Lydeti_Ratio(skill)
+    local value = 300
+    local pc = GetSkillOwner(skill)
+    if IsPVPField(pc) == 1 then
+        value = 150
+    end
+
+    return value
 end
 
 -- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.

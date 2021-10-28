@@ -1657,3 +1657,8 @@ end
 function EFFECT_EP13RAINCOAT_BUFF_LEAVE(actor, obj, buff)
 	SCR_REMOVE_FAIRY_GROUND(actor:GetHandleVal(), "effect_ep13raincoat");
 end
+
+function TOSHero_Buff_Overwhelm_ClientScp_ENTER(actor, obj, buff)
+    print(actor, obj, buff)
+    actor:GetEffect():ActorColorBlend(0, 0, 0, 0, 1, 1);
+end

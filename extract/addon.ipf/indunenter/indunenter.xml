@@ -56,7 +56,7 @@
 		<button name="monRightBtn" parent="monBox" rect="0 0 40 50" margin="0 35 0 0" layout_gravity="right top" image="button_right_select2" LBtnUpScp="INDUNENTER_MON_CLICK_RIGHT"/>
 		<button name="monLeftBtn" parent="monBox" rect="0 0 40 50" margin="0 35 0 0" layout_gravity="left top" image="button_left_select2" LBtnUpScp="INDUNENTER_MON_CLICK_LEFT"/>
 		<picture name="monPic" parent="monBox" rect="0 0 27 27" margin="5 5 0 0" layout_gravity="left top" image="indun_bossmonster"/>
-		<richtext name="monText" parent="monBox" rect="0 0 190 30" margin="35 5 0 0" layout_gravity="left top" fontname="brown_18_b" caption="대표 등장 몬스터"/>
+		<richtext name="monText" parent="monBox" rect="0 0 190 30" margin="35 5 0 0" layout_gravity="left top" fontname="brown_18_b" caption="대표 등장 몬스터" autofontsizebywidth="140"/>
 		<groupbox name="monBox_dummy" parent="monBox" rect="0 0 340 65" margin="35 5 0 0" layout_gravity="left bottom" draw="false"/>
 		<slotset name="monSlotSet" parent="monBox_dummy" rect="0 0 370 60" margin="5 0 0 0" layout_gravity="left top" row="1" col="10" size="65 65" skin="invenslot2" spc="2 2" enabledrop="false" enablepop="false"/>
         <button name="monListBtn" parent="monBox" rect="0 0 30 30" margin="173 1 0 0" layout_gravity="left top" image="hero_btn_monster" LBtnUpScp="OPEN_TOSHERO_INFO_MONSTER"/>
@@ -88,8 +88,8 @@
 		<richtext name="mapInfoText" parent="mapInfoBox" rect="0 0 190 30" margin="35 0 0 0" layout_gravity="left top" caption="맵 정보" fontname="brown_18_b"/>
         <groupbox name="mapInfoWrapper_dummy" parent="mapInfoBox" rect="0 0 380 135" margin="17 28 0 0" scrollbar="false" layout_gravity="left top" skin="test_frame_midle"/>
 		<groupbox name="mapInfoWrapper" parent="mapInfoWrapper_dummy" rect="0 0 380 142" margin="2 0 0 0" layout_gravity="left top" skin="none"/>
-        <richtext name="mapInfoMission" parent="mapInfoWrapper" rect="0 0 360 30" margin="0 0 0 0" layout_gravity="left top" caption="{@sti1c}{s14}미션"/>
-        <richtext name="mapInfoPattern" parent="mapInfoWrapper" rect="0 0 360 30" margin="0 0 0 0" layout_gravity="left top" caption="{@sti1c}{s14}맵 패턴"/>
+        <richtext name="mapInfoMission" parent="mapInfoWrapper" rect="0 0 360 30" margin="0 0 0 0" layout_gravity="left top" caption="{@sti1c}{s14}미션" autofontsizebywidth="65"/>
+        <richtext name="mapInfoPattern" parent="mapInfoWrapper" rect="0 0 60 30" margin="0 0 0 0" layout_gravity="left top" caption="{@sti1c}{s14}맵 패턴" fixwidth="true"/>
         <richtext name="mapInfoMissionText" parent="mapInfoWrapper" rect="0 0 280 30" margin="50 0 0 0" layout_gravity="left top" fixwidth="true" format="{s14}%s" param1="text" param1_def="내용" fontname="brown_18_b"/>
         <richtext name="mapInfoPatternText1" parent="mapInfoWrapper" rect="0 0 280 30" margin="50 0 0 0" layout_gravity="left top" fixwidth="true" format="{s14}%s" param1="text" param1_def="내용" fontname="brown_18_b"/>
         <richtext name="mapInfoPatternText2" parent="mapInfoWrapper" rect="0 0 280 30" margin="50 0 0 0" layout_gravity="left top" fixwidth="true" format="{s14}%s" param1="text" param1_def="내용" fontname="brown_18_b"/>

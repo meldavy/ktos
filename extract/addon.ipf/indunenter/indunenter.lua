@@ -3,7 +3,8 @@
     addon:RegisterMsg('CLOSE_UI', 'INDUNENTER_CLOSE');
     addon:RegisterMsg('ESCAPE_PRESSED', 'INDUNENTER_ON_ESCAPE_PRESSED');
 	addon:RegisterMsg('UPDATE_MYTHIC_DUNGEON_PATTERN', 'INDUNENTER_MAKE_PATTERN_BOX');    
-    
+    addon:RegisterMsg('FAIL_START_PARTY_MATCHING', 'FAIL_START_PARTY_MATCHING');
+    addon:RegisterMsg('FAIL_REGISTER_PARTY_MATCHING', 'FAIL_REGISTER_PARTY_MATCHING');
     PC_INFO_COUNT = 5;
 end
 
@@ -86,6 +87,14 @@ end
 
 function SHOW_INDUNENTER_DIALOG(indunType, isAlreadyPlaying, enableAutoMatch, enableEnterRight, enablePartyMatch)   
     INDUNENTER_MULTI_CANCEL(ui.GetFrame('indunenter'))
+
+local indun_cls = GetClassByType("Indun", indunType);
+    if indun_cls == nil then return; end
+
+    if string.find(indun_cls.DungeonType, "TOSHero") == 1 then
+        indun_cls = GetClass("Indun", session.rank.GetCurrentDungeon(1));
+        indunType = indun_cls.ClassID;
+    end
     -- get data and check
     local indunCls = GetClassByType('Indun', indunType);
     local admissionItemName = TryGetProp(indunCls, "AdmissionItemName");
@@ -1374,7 +1383,7 @@ function INDUNENTER_AUTOMATCH(frame, ctrl)
     end
 end
 
-function INDUNENTER_PARTYMATCH(frame, ctrl)
+function INDUNENTER_PARTYMATCH(frame, ctrl)        
     local topFrame = frame:GetTopParentFrame();
     local useCount = tonumber(topFrame:GetUserValue("multipleCount"));
     local indunType = topFrame:GetUserValue('INDUN_TYPE');
@@ -1418,7 +1427,7 @@ function INDUNENTER_PARTYMATCH(frame, ctrl)
     local enableReenter = frame:GetUserIValue('ENABLE_REENTER');
 
     if topFrame:GetUserValue('WITHMATCH_MODE') == 'NO' then
-        ReqMoveToIndun(3, textCount);
+        ReqMoveToIndun(3, textCount);        
         ctrl:SetTextTooltip(ClMsg("PartyMatchInfo_Go"));
         if enableReenter == true then
             understaffEnterAllowBtn:ShowWindow(1);
@@ -2320,4 +2329,20 @@ function IS_INDUN_AUTOMATCH_WAITING()
     end
 
     return false
+end
+
+function FAIL_START_PARTY_MATCHING(frame, msg, str, num)
+    local topFrame = frame:GetTopParentFrame();
+    local understaffEnterAllowBtn = GET_CHILD_RECURSIVELY(topFrame, 'understaffEnterAllowBtn');    
+    understaffEnterAllowBtn:ShowWindow(1);    
+    INDUNENTER_SET_ENABLE(0, 1, 1, 0);
+end
+
+function FAIL_REGISTER_PARTY_MATCHING(frame, msg, str, num)
+    local topFrame = frame:GetTopParentFrame();
+    local understaffEnterAllowBtn = GET_CHILD_RECURSIVELY(topFrame, 'understaffEnterAllowBtn');    
+    understaffEnterAllowBtn:ShowWindow(1);    
+    local withTime = GET_CHILD_RECURSIVELY(frame, 'withTime');
+    withTime:SetEnable(1)
+    INDUNENTER_SET_ENABLE(0, 0, 1, 0);
 end

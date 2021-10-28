@@ -513,49 +513,49 @@ return value"/>
                     <Str Str="None"/>
                 </Scp>
                 <Scp Scp="C_EFFECT_POS" Client="YES" UseSleep="NO" Time="100">
-                    <Str_Arg Str="I_stone001_mesh###1" Arg="0.60000002"/>
-                    <Pos Angle="0" Dist="0" PosType="3"/>
+                    <Str_Arg Str="I_stone001_mesh" Arg="0.9"/>
+                    <Pos Angle="0.39269909" Dist="-20" PosType="3"/>
                     <Num Num="0"/>
                     <Str Str="None"/>
                 </Scp>
                 <Scp Scp="C_EFFECT_POS" Client="YES" UseSleep="NO" Time="300">
-                    <Str_Arg Str="F_ground180_boom" Arg="1.2"/>
+                    <Str_Arg Str="F_ground180_boom" Arg="1.4"/>
                     <Pos Angle="-1.5790404" Dist="7.1315899" PosType="3"/>
                     <Num Num="0"/>
                     <Str Str="None"/>
                 </Scp>
                 <Scp Scp="C_EFFECT_POS" Client="YES" UseSleep="NO" Time="320">
-                    <Str_Arg Str="F_ground180_boom" Arg="1.2"/>
+                    <Str_Arg Str="F_ground180_boom" Arg="1.4"/>
                     <Pos Angle="-0.36615556" Dist="19.409985" PosType="3"/>
                     <Num Num="0"/>
                     <Str Str="None"/>
                 </Scp>
                 <Scp Scp="C_EFFECT_POS" Client="YES" UseSleep="NO" Time="340">
-                    <Str_Arg Str="F_ground180_boom" Arg="1.2"/>
+                    <Str_Arg Str="F_ground180_boom" Arg="1.4"/>
                     <Pos Angle="-3.1381824" Dist="19.489395" PosType="3"/>
                     <Num Num="0"/>
                     <Str Str="None"/>
                 </Scp>
                 <Scp Scp="C_EFFECT_POS" Client="YES" UseSleep="NO" Time="360">
-                    <Str_Arg Str="F_ground180_boom" Arg="1.2"/>
+                    <Str_Arg Str="F_ground180_boom" Arg="1.4"/>
                     <Pos Angle="-1.5784241" Dist="12.643083" PosType="3"/>
                     <Num Num="0"/>
                     <Str Str="None"/>
                 </Scp>
                 <Scp Scp="C_EFFECT_POS" Client="YES" UseSleep="NO" Time="380">
-                    <Str_Arg Str="F_ground180_boom" Arg="1.2"/>
+                    <Str_Arg Str="F_ground180_boom" Arg="1.4"/>
                     <Pos Angle="-2.2755485" Dist="16.666779" PosType="3"/>
                     <Num Num="0"/>
                     <Str Str="None"/>
                 </Scp>
                 <Scp Scp="C_EFFECT_POS" Client="YES" UseSleep="NO" Time="400">
-                    <Str_Arg Str="F_ground180_boom###1" Arg="1.2"/>
+                    <Str_Arg Str="F_ground180_boom" Arg="1.4"/>
                     <Pos Angle="-0.88910574" Dist="18.733698" PosType="3"/>
                     <Num Num="0"/>
                     <Str Str="None"/>
                 </Scp>
                 <Scp Scp="C_EFFECT_POS" Client="YES" UseSleep="NO" Time="420">
-                    <Str_Arg Str="F_ground180_boom" Arg="1.2"/>
+                    <Str_Arg Str="F_ground180_boom" Arg="1.4"/>
                     <Pos Angle="-1.7227178" Dist="28.133331" PosType="3"/>
                     <Num Num="0"/>
                     <Str Str="None"/>

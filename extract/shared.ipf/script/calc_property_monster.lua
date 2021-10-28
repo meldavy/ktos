@@ -1537,11 +1537,8 @@ function SCR_Get_MON_SDR(self)
     end
     
     local value = 5;
-    
     local monSDR = TryGetProp(self, 'MonSDR', 1);
-    
     local monSize = TryGetProp(self, 'Size', "S");
-    
     if monSize == 'S' then
         value = 1;
     elseif monSize == 'M' then
@@ -1552,23 +1549,39 @@ function SCR_Get_MON_SDR(self)
         value = 5;
     end
     
-    local statType = TryGetProp(self, "StatType", "None");
     local addStat = 0;
+    local statType = TryGetProp(self, "StatType", "None");
     if statType ~= nil and statType ~= 'None' then
         local statTypeClass = GetClass("Stat_Monster_Type", statType);
         if statTypeClass ~= nil then
             addStat = TryGetProp(statTypeClass, "SDR_BM", 0);
         end
     end
-    
     value = value + addStat;
-    
+
     local byBuff = TryGetProp(self, 'SDR_BM', 0);
-    
     value = value + byBuff;
+
+    if IsPVPServer(self) == 1 then
+        if TryGetProp(self, "Keyword", "None") == "PCSkill" and monSize == 'S' or monSize == 'M' then
+            value = 1
+        elseif TryGetProp(self, "Keyword", "None") == "PCSkill" and monSize == 'XL' then
+            value = 2
+        end
+    end
     
-    if value < 1 then
+    if value < 1 then 
         value = 1;
+    end
+
+    -- Companion SDR setting : TeamBattle
+    if IsPVPServer(self) == 1 then
+        local cmd = GetMGameCmd(self);
+        if cmd ~= nil and cmd:GetMGameName() == "battlefield5vs5" then
+            if TryGetProp(self, "MonRank", "None") == "Pet" then
+                value = 0;
+            end
+        end
     end
 
     return math.floor(value);

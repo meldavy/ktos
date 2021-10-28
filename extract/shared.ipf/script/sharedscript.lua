@@ -222,6 +222,10 @@ end
 random_item = { }
 date_time = { }
 account_warehouse = {} 
+skill_gem_list = nil
+skill_gem_class_name_list = nil
+skill_gem_ctrltype_list = nil
+skill_gem_list_cube = nil
 
 unpack = unpack or table.unpack
 
@@ -460,6 +464,57 @@ function get_balance_patch_care_ratio()
     end
 end
 
+-- 스킬젬 합성
+function make_skill_gem_list()
+    local idx = 0
+    if skill_gem_list == nil then        
+        skill_gem_list = {}                
+        local clsList, count =  GetClassList("Item")        
+        for idx = 0, count - 1 do
+            local cls = GetClassByIndexFromList(clsList, idx)            
+            if cls ~= nil then                
+                if TryGetProp(cls, 'StringArg', 'None') == 'SkillGem' and TryGetProp(cls, 'SkillName', 'None') ~= 'None' then                   
+
+                    local gem_job = TryGetProp(GetClass('Skill', TryGetProp(cls, 'SkillName', 'None')), 'Job', 'None')
+                    local gem_ctrlType = TryGetProp(GetClassByStrProp('Job', 'JobName', gem_job), 'CtrlType', "None")
+                    
+                    if skill_gem_list[gem_ctrlType] == nil then
+                        skill_gem_list[gem_ctrlType] = {}
+                    end
+
+                    table.insert(skill_gem_list[gem_ctrlType], TryGetProp(cls, 'ClassName', 'None'))
+
+                end
+            end
+        end
+    end
+end
+
+make_skill_gem_list()
+
+
+ -- 스킬젬 큐브
+ function make_skill_gem_list_cube()
+     local idx = 0
+     if skill_gem_list_cube == nil then        
+         skill_gem_list_cube = {}                
+         local clsList, count =  GetClassList("Item")       
+         for idx = 0, count - 1 do
+             local cls = GetClassByIndexFromList(clsList, idx)            
+             if cls ~= nil then                
+                 if TryGetProp(cls, 'StringArg', 'None') == 'SkillGem' and TryGetProp(cls, 'SkillName', 'None') ~= 'None' then                 
+                    table.insert(skill_gem_list_cube, TryGetProp(cls, 'ClassName', 'None'))
+                 end
+             end
+         end
+     end
+ end
+
+ make_skill_gem_list_cube()
+
+function GET_SKILL_GEM_LIST_BY_CTRLTYPE(ctrl)
+    return skill_gem_list[ctrl]
+end
 
 function SCR_QUEST_LINK_FIRST(pc, questname)
     return SCR_QUEST_LINK_FIRST_SUB(pc, { questname }, { }, { })
@@ -3317,6 +3372,21 @@ function GET_ABILITY_POINT_EXTRACTOR_MIN_VALUE(type)
     end
 
     return 0;    
+end
+
+-- 합성 가능한 스킬젬인지 확인
+function CAN_COMPOSITION_SKILL_GEM(item)
+    if TryGetProp(item, 'StringArg', 'None') ~= 'SkillGem' then
+        return false, 0
+    end
+
+    local level = TryGetProp(item, 'NumberArg1', 0)
+    local cls = GetClassByType('item_gem_composition', level)
+    if cls == nil then
+        return false, 0
+    end
+
+    return true, TryGetProp(item, 'NumberArg1', 0)
 end
 
 function ENABLE_GUILD_MEMBER_JOIN_AUTO(aObj)

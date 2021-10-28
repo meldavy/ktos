@@ -743,7 +743,8 @@ function SET_MON_QUICK_SLOT(frame, slot, category, type)
 		local iconInfo = icon:GetInfo();
 		slot:SetUserValue('ICON_CATEGORY', iconInfo:GetCategory());
 		slot:SetUserValue('ICON_TYPE', iconInfo.type);
-		icon:SetTooltipType("")
+
+		frame:SetUserValue('before_summon_skill_slot_' .. tostring(iconInfo.type), type)
 	end
 
 	local skl = session.GetSkill(type);
@@ -780,6 +781,7 @@ function SET_MON_QUICK_SLOT(frame, slot, category, type)
 
 	slot:EnableDrag(0);
 	slot:EnableDrop(0);
+	icon:SetTooltipType("skill_summon")
 	SET_QUICKSLOT_OVERHEAT(slot);
 end
 

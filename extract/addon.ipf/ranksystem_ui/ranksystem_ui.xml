@@ -18,7 +18,7 @@
         <groupbox name="score_top" margin="0 4 0 0" rect="0 0 462 35" parent="score_bg" layout_gravity="center top" skin="hero_rankingBar"/>
         <picture name="labelline1" margin="100 0 0 0" rect="0 0 2 28" parent="score_top" layout_gravity="left center" image="hero_line"/>
         <picture name="labelline2" margin="0 0 100 0" rect="0 0 2 28" parent="score_top" layout_gravity="right center" image="hero_line"/>
-		<richtext name="rank" margin="35 1 0 0" rect="0 0 120 30" parent="score_top" caption="{@st202}{s16}순위{/}" textalign="center center" layout_gravity="left center"/>
+		<richtext name="rank" margin="-180 1 0 0" rect="0 0 120 30" parent="score_top" caption="{@st202}{s16}순위{/}" textalign="center center" layout_gravity="center center"/>
 		<richtext name="teamname" margin="0 1 0 0" rect="0 0 120 30" parent="score_top" caption="{@st202}{s16}팀명{/}" textalign="center center" layout_gravity="center center"/>
 		<richtext name="score" margin="0 1 25 0" rect="0 0 120 30" parent="score_top" caption="{@st202}{s16}스코어{/}" textalign="center center" layout_gravity="right center"/>
         <tab name="season_tab" rect="0 0 52 300" margin="10 64 0 0" itemspc="16" layout_gravity="left top" vertical="true" LBtnDownScp="RANKSYSTEM_UI_SEASON_SELECT" MouseOffAnim="btn_mouseoff" MouseOnAnim="btn_mouseover" clicksound="button_click_7" fixwidth="true" oversound="button_cursor_over_2" skin="tab2"/>
