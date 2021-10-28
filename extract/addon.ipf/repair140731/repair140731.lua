@@ -10,7 +10,6 @@ end
 
 
 function REPAIR140731_ON_MSG(frame, msg, argStr, argNum)
-
 	if  msg == 'DIALOG_CLOSE'  then
 		frame:OpenFrame(0);
     elseif msg == 'OPEN_DLG_REPAIR' then
@@ -29,37 +28,34 @@ function REPAIR140731_ON_MSG(frame, msg, argStr, argNum)
 end
 
 function REPAIR140731_OPEN(frame)
-
+	frame:SetUserValue("SELECTED", "NotSelected");
 	ui.EnableSlotMultiSelect(1);
 
 	UPDATE_REPAIR140731_LIST(frame);
 end
 
 function REPAIR140731_CLOSE(frame)
-
 	ui.EnableSlotMultiSelect(0);
 end
 
 function UPDATE_REPAIR140731_LIST(frame)
-	
-	--½½·Ô ¼Â ¹× ÀüÃ¼ ½½·Ô ÃÊ±âÈ­ ÇØ¾ßµÊ
+	--ìŠ¬ë¡¯ ì…‹ ë° ì „ì²´ ìŠ¬ë¡¯ ì´ˆê¸°í™” í•´ì•¼ë¨
 	local slotSet = GET_CHILD_RECURSIVELY(frame,"slotlist","ui::CSlotSet")
 	slotSet:ClearIconAll();
-	local slotcnt = 0
-
 	local equiplist = session.GetEquipItemList()
 	local isSquire = 0;
 
 	if "itembuffrepair" == frame:GetName() then
 		isSquire = 1;
 	end
-	
+
 	for i = 0, equiplist:Count() - 1 do
-		local equipItem = equiplist:Element(i);
+		local equipItem = equiplist:GetEquipItemByIndex(i);
 		local tempobj = equipItem:GetObject()
 		if tempobj ~= nil then
 			local obj = GetIES(tempobj);
 			if IS_NEED_REPAIR_ITEM(obj, isSquire) == true then
+				local slotcnt = imcSlot:GetEmptySlotIndex(slotSet);
 				local slot = slotSet:GetSlotByIndex(slotcnt)
 				slot:SetClickSound('button_click_stats');
 				while slot == nil do 
@@ -68,35 +64,26 @@ function UPDATE_REPAIR140731_LIST(frame)
 				end
 
 				local icon = CreateIcon(slot);
-				icon:Set(obj.Icon, 'Item', equipItem.type, slotcnt, equipItem:GetIESID());
-				local class 			= GetClassByType('Item', equipItem.type);
+				local iconValue = obj.Icon;
+				if obj.BriquettingIndex > 0 then
+					local briquettingItemCls = GetClassByType('Item', obj.BriquettingIndex);
+					iconValue = briquettingItemCls.Icon;
+				end
+				icon:Set(iconValue, 'Item', equipItem.type, slotcnt, equipItem:GetIESID());
+				local class = GetClassByType('Item', equipItem.type);
 				ICON_SET_INVENTORY_TOOLTIP(icon, equipItem, "repair", class);
-
-				slotcnt = slotcnt + 1
 			end
-		else
-			print('error! tempobj == nil')
 		end
-		
-
 	end
 
-	local invItemList = session.GetInvItemList();
-
-	local i = invItemList:Head();
-	while 1 do
-		if i == invItemList:InvalidIndex() then
-			break;
-		end
-
-		local invItem = invItemList:Element(i);		
-		i = invItemList:Next(i);
-		
+	local invItemList = session.GetInvItemList();	
+	FOR_EACH_INVENTORY(invItemList, function(invItemList, invItem, isSquire, slotSet)
 		local tempobj = invItem:GetObject()
 		if tempobj ~= nil then
 			local obj = GetIES(tempobj);
 			if IS_NEED_REPAIR_ITEM(obj, isSquire) == true then
-				local slot = slotSet:GetSlotByIndex(slotcnt)
+				local slotcnt = imcSlot:GetEmptySlotIndex(slotSet);
+				local slot = slotSet:GetSlotByIndex(slotcnt);
 
 				while slot == nil do 
 					slotSet:ExpandRow()
@@ -104,18 +91,21 @@ function UPDATE_REPAIR140731_LIST(frame)
 				end
 
 				local icon = CreateIcon(slot);
-				icon:Set(obj.Icon, 'Item', invItem.type, slotcnt, invItem:GetIESID());
-				local class 			= GetClassByType('Item', invItem.type);
+                local iconValue = obj.Icon;
+				if obj.BriquettingIndex > 0 then
+					local briquettingItemCls = GetClassByType('Item', obj.BriquettingIndex);
+					iconValue = briquettingItemCls.Icon;
+				end
+				icon:Set(iconValue, 'Item', invItem.type, slotcnt, invItem:GetIESID());
+				local class = GetClassByType('Item', invItem.type);
 				ICON_SET_INVENTORY_TOOLTIP(icon, invItem, "repair", class);
-
-				slotcnt = slotcnt + 1
 			end
-
-		else
-			print('error! tempobj == nil')
 		end
+	end, false, isSquire, slotSet);
 
-
+	local invFrame = ui.GetFrame("inventory")
+	if invFrame ~= nil then
+		INVENTORY_ON_MSG(invFrame, "UPDATE_ITEM_REPAIR", "Equip")
 	end
 
 	UPDATE_REPAIR140731_MONEY(frame)
@@ -140,17 +130,17 @@ function UPDATE_REPAIR140731_MONEY(frame)
 	end
 
 	local repairprice = GET_CHILD_RECURSIVELY(frame, "invenZeny", "ui::CRichText")
-	-- ½ºÄâÀÌ¾î ¼ö¸® ¹öÇÁ ½ÃÀü½Ã UPDATE_REPAIR140731_LIST¸¦ °¡Á®´Ù½á¿ä
-	-- ±×·³ ÀÌ money ÇÔ¼ö°¡ È£ÃâÀÌ µÇ´Âµ¥ ÀÌ º¯¼ö°¡ ¾ø¾î °æ°í°¡ ¶°¼­ ¿¹¿ÜÃ³¸® ÇØÁá½À´Ï´Ù.
+	-- ìŠ¤ì½°ì´ì–´ ìˆ˜ë¦¬ ë²„í”„ ì‹œì „ì‹œ UPDATE_REPAIR140731_LISTë¥¼ ê°€ì ¸ë‹¤ì¨ìš”
+	-- ê·¸ëŸ¼ ì´ money í•¨ìˆ˜ê°€ í˜¸ì¶œì´ ë˜ëŠ”ë° ì´ ë³€ìˆ˜ê°€ ì—†ì–´ ê²½ê³ ê°€ ë– ì„œ ì˜ˆì™¸ì²˜ë¦¬ í•´ì¤¬ìŠµë‹ˆë‹¤.
 	if nil ~= repairprice then
-		repairprice:SetText(totalprice)
+		repairprice:SetText(GET_COMMAED_STRING(totalprice))
 	end
 
 	local calcprice = GET_CHILD_RECURSIVELY(frame, "remainInvenZeny", "ui::CRichText")
-	-- ½ºÄâÀÌ¾î ¼ö¸® ¹öÇÁ ½ÃÀü½Ã UPDATE_REPAIR140731_LIST¸¦ °¡Á®´Ù½á¿ä
-	-- ±×·³ ÀÌ money ÇÔ¼ö°¡ È£ÃâÀÌ µÇ´Âµ¥ ÀÌ º¯¼ö°¡ ¾ø¾î °æ°í°¡ ¶°¼­ ¿¹¿ÜÃ³¸® ÇØÁá½À´Ï´Ù.
+	-- ìŠ¤ì½°ì´ì–´ ìˆ˜ë¦¬ ë²„í”„ ì‹œì „ì‹œ UPDATE_REPAIR140731_LISTë¥¼ ê°€ì ¸ë‹¤ì¨ìš”
+	-- ê·¸ëŸ¼ ì´ money í•¨ìˆ˜ê°€ í˜¸ì¶œì´ ë˜ëŠ”ë° ì´ ë³€ìˆ˜ê°€ ì—†ì–´ ê²½ê³ ê°€ ë– ì„œ ì˜ˆì™¸ì²˜ë¦¬ í•´ì¤¬ìŠµë‹ˆë‹¤.
 	if nil ~= calcprice then
-		calcprice:SetText(GET_TOTAL_MONEY()-totalprice)
+		calcprice:SetText(GET_COMMAED_STRING(SumForBigNumberInt64(GET_TOTAL_MONEY_STR(), -1 * totalprice)));
 	end
 
 end
@@ -177,7 +167,7 @@ function IS_NEED_REPAIR_ITEM(itemobj, isSquireRepair)
 	--if item.IsNoneItem(itemobj.ClassID) == 0 and itemobj.MaxDur > 0  then
 		return true
 		else
-			-- ³»±¸µµ ´Â °¡µæ Ã£Áö¸¸, ½ºÄâÀÌ¾î·Î ºÎ¸¦ ¶§ 
+			-- ë‚´êµ¬ë„ ëŠ” ê°€ë“ ì°¾ì§€ë§Œ, ìŠ¤ì½°ì´ì–´ë¡œ ë¶€ë¥¼ ë•Œ 
 			if nil ~= isSquireRepair and isSquireRepair == 1 and itemobj.MaxDur ~= -1 then
 				return true
 			end
@@ -220,7 +210,7 @@ function EXECUTE_REPAIR140731(frame)
 		return;
 	end
 	
-	if GET_TOTAL_MONEY() < totalprice then
+	if IsGreaterThanForBigNumber(totalprice, GET_TOTAL_MONEY_STR()) == 1 then
 		ui.MsgBox(ScpArgMsg("NOT_ENOUGH_MONEY"))
 		return;
 	end
@@ -260,38 +250,88 @@ function SCP_LBTDOWN_REPAIR140731(frame, ctrl)
 	end
 
 	local repairprice = GET_CHILD_RECURSIVELY_AT_TOP(ctrl, "invenZeny", "ui::CRichText")
-	repairprice:SetText(totalprice)
+	repairprice:SetText(GET_COMMAED_STRING(totalprice));
 
 	local calcprice = GET_CHILD_RECURSIVELY_AT_TOP(ctrl, "remainInvenZeny", "ui::CRichText")
-	calcprice:SetText(GET_TOTAL_MONEY()-totalprice)
+	calcprice:SetText(GET_COMMAED_STRING(SumForBigNumberInt64(GET_TOTAL_MONEY_STR(), -1 * totalprice)));
 
 
 end
 
 function REPAIR140731_SELECT_ALL(frame, ctrl)
 
-	local isselected =  ctrl:GetUserValue("SELECTED");
-
-	local slotSet = GET_CHILD_RECURSIVELY_AT_TOP(ctrl, "slotlist", "ui::CSlotSet")
-	
+	local slotSet = GET_CHILD_RECURSIVELY_AT_TOP(ctrl, "slotlist", "ui::CSlotSet")	
 	local slotCount = slotSet:GetSlotCount();
-
+	local isselected =  frame:GetUserValue("SELECTED");
+	
 	for i = 0, slotCount - 1 do
 		local slot = slotSet:GetSlotByIndex(i);
 		if slot:GetIcon() ~= nil then
-			if isselected == "selected" then
+			slot:Select(0)
+		end
+	end
+	
+	local isSelectAllItem = false;
+	for i = 0, slotCount - 1 do
+		local slot = slotSet:GetSlotByIndex(i);
+		if slot:GetIcon() ~= nil then
+			if isselected == "SelectedAll" then
 				slot:Select(0)
 			else
 				slot:Select(1)
+				isSelectAllItem = true;
+			end
+		end
+	end
+	slotSet:MakeSelectionList()
+		
+	if isSelectAllItem == false or isselected == "SelectedAll" then
+		frame:SetUserValue("SELECTED", "NotSelected");
+	else
+		frame:SetUserValue("SELECTED", "SelectedAll");
+	end
+
+	UPDATE_REPAIR140731_MONEY(frame)
+end
+
+function REPAIR140731_SELECT_EQUIPED_ITEMS(frame, ctrl)
+
+	local slotSet = GET_CHILD_RECURSIVELY_AT_TOP(ctrl, "slotlist", "ui::CSlotSet")	
+	local slotCount = slotSet:GetSlotCount();
+	local isselected =  frame:GetUserValue("SELECTED");
+	
+	for i = 0, slotCount - 1 do
+		local slot = slotSet:GetSlotByIndex(i);
+		if slot:GetIcon() ~= nil then
+			slot:Select(0)
+		end
+	end
+	
+	local isSelectEquipedItem = false;
+	local equipList = session.GetEquipItemList();
+	for i = 0, slotCount - 1 do
+		local slot = slotSet:GetSlotByIndex(i);
+		if slot:GetIcon() ~= nil then
+			if isselected == "SelectedEquiped" then
+				slot:Select(0)
+			else
+				for j = 0, equipList:Count() - 1 do
+					local equipItem = equipList:GetEquipItemByIndex(j);
+					if equipItem:GetIESID() == slot:GetIcon():GetInfo():GetIESID() then
+						slot:Select(1);
+						isSelectEquipedItem = true;
+						break;
+					end
+				end
 			end
 		end
 	end
 	slotSet:MakeSelectionList()
 
-	if isselected == "selected" then
-		ctrl:SetUserValue("SELECTED", "notselected");
+	if isSelectEquipedItem == false or isselected == "SelectedEquiped" then	
+		frame:SetUserValue("SELECTED", "NotSelected");
 	else
-		ctrl:SetUserValue("SELECTED", "selected");
+		frame:SetUserValue("SELECTED", "SelectedEquiped");
 	end
 
 	UPDATE_REPAIR140731_MONEY(frame)
