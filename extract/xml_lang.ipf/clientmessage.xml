@@ -10908,6 +10908,7 @@
 		<Class ClassID="112034" ClassName="QUEST_STATE_PROGRESS" Data="진행중"/>
 		<Class ClassID="112035" ClassName="QUEST_STATE_SUCCESS" Data="완료"/>
 		<Class ClassID="112036" ClassName="QUEST_STATE_IMPOSSIBLE" Data="진행불가"/>
+		<Class ClassID="112037" ClassName="QUEST_STATE_COMPLETE" Data="완료"/>
 	</Category>
 	<Category Name="JobCategoryName">
 		<Class ClassID="113001" ClassName="Char1" Data="전사 계열"/>
