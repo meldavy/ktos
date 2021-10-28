@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by imc (imc) -->
 <ActionDesc>
-	<Particle frame="0" attachNode="Bip01 Neck" particleName="F_smoke135_dark" useAttach="false" hiddenObj="false" changeEffect="None" scale="2" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
-	<Particle frame="0" attachNode="Bip01" particleName="F_levitation044_dark_TOP" useAttach="false" hiddenObj="false" changeEffect="None" scale="0.5" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
-	<Particle frame="10" attachNode="None" particleName="F_ground134_red_noloop2" useAttach="true" hiddenObj="false" changeEffect="None" scale="3" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
-	<Particle frame="15" attachNode="None" particleName="F_smoke168_darkred" useAttach="true" hiddenObj="false" changeEffect="None" scale="2" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
-	<Particle frame="15" attachNode="None" particleName="F_smoke185_spread_out_dark" useAttach="true" hiddenObj="false" changeEffect="None" scale="2" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Particle frame="0" attachNode="Bip01 Neck" particleName="F_smoke135_dark" useAttach="false" hiddenObj="false" changeEffect="None" scale="2" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Particle frame="0" attachNode="Bip01" particleName="F_levitation044_dark_TOP" useAttach="false" hiddenObj="false" changeEffect="None" scale="0.5" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Sound frame="0.00" soundFile="mon_voice_giltine_hit_1"/>
+    <Sound frame="0.84" soundFile="skl_eff_whoosh_1"/>
+    <Particle frame="10" attachNode="None" particleName="F_ground134_red_noloop2" useAttach="true" hiddenObj="false" changeEffect="None" scale="3" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Sound frame="13.00" soundFile="skl_eff_dark_hit"/>
+    <Sound frame="14.93" soundFile="skl_eff_smokeshell"/>
+    <Particle frame="15" attachNode="None" particleName="F_smoke168_darkred" useAttach="true" hiddenObj="false" changeEffect="None" scale="2" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Particle frame="15" attachNode="None" particleName="F_smoke185_spread_out_dark" useAttach="true" hiddenObj="false" changeEffect="None" scale="2" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Sound frame="38.00" soundFile="skl_eff_shot_smoke"/>
 </ActionDesc>

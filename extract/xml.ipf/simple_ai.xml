@@ -1115,6 +1115,20 @@
 			</ToolScp>
 		</StartList>
 	</AI>
+    <AI Name="AUTO_MATCHING_RECOVERY_BEAD" UpdateMS="300" ActiveMessageMapInBattle="1">
+        <List>
+            <ToolScp Scp="S_AI_CUSTOM_SCRIPT" Client="NO" UseSleep="YES">
+                <Str Str="AUTO_MATCHING_RECOVERY_BEAD_UPDATE"/>
+                <Num Num="0"/>
+            </ToolScp>
+        </List>
+        <StartList>
+            <ToolScp Scp="S_AI_CUSTOM_SCRIPT" Client="NO" UseSleep="YES">
+                <Str Str="AUTO_MATCHING_RECOVERY_BEAD_BORN"/>
+                <Num Num="0"/>
+            </ToolScp>
+        </StartList>
+    </AI>
 	<AI Name="AYAUTA_EP11_8_OBJ_1_AI" ActiveMessageMapInBattle="1">
 		<StartList>
 			<ToolScp Scp="S_AI_EFFECT_ATTACH" Client="NO" UseSleep="NO">

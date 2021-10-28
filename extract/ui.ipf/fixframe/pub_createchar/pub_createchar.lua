@@ -288,12 +288,12 @@ function PUB_CREATECHAR_NAME_CHECK()
 	end
 
 	local accountInfo = session.barrack.GetMyAccount();
-	local cnt = accountInfo:GetPCCount();
+	local cnt = accountInfo:GetPCCountForAllLayer(); 
 	-- 팀내 같은 이름의 캐릭터가 있는지 확인	
 	for i = 0 , cnt - 1 do
-		local pcInfo = accountInfo:GetPCByIndex(i);
-		local pcApc = pcInfo:GetApc();
-		if pcApc:GetName() == text then
+		local pcBasicInfo = accountInfo:GetPCByIndexForAllLayer(i);
+		local pcName = pcBasicInfo:GetName();
+		if pcName == text then
 			ui.SysMsg(ClMsg("AlreadyorImpossibleName"));
 			return;
 		end
@@ -1006,11 +1006,13 @@ function PUB_PRECHECK_VIEW_CONTROL(frame, msg, argStr, isEnable)
 	local input_name = GET_CHILD_RECURSIVELY(frame, "input_name");
 	if input_name ~= nil then
 		input_name:SetVisible(isEnable);
+		input_name:SetEnable(isEnable);
 	end
 
 	local createcharBtn = GET_CHILD_RECURSIVELY(frame, "createcharBtn");
 	if createcharBtn ~= nil then
 		createcharBtn:SetVisible(isEnable);
+		createcharBtn:SetEnable(isEnable);
 	end
 
 	local selectcancleBtn = GET_CHILD_RECURSIVELY(frame, "selectcancleBtn");

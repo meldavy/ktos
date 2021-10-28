@@ -60,3 +60,7 @@ ClassID,GenType,Lv,Range,GenRange,RespawnTime,MaxPop,Minimap,Hide,UseAIOufOfPC,A
 5221,5221,1,40,-1,60000,1,2,0,0,0,0,0,Board3_Event,이벤트 게시판,,,,MON_DUMMY,,,EVENT_YOUR_MASTER_NPC,,,NO,YES,NO,Neutral,,,,
 5230,5230,1,40,1,60000,1,2,0,0,0,0,0,npc_sailor_f,[할로윈 이벤트]{nl}케도란 특별 상인,,,,,,,EVENT_2010_HALLOWEEN,,,NO,YES,NO,Neutral,,,,
 5231,5231,1,40,1,1,1,2,0,0,1,0,0,npc_Ragana_shop,[마신의 유혹]{nl}마신 라가나의 환영,,,,,,SHOP_NPC_RAGANA_CITY_AI,SHOP_NPC_RAGANA_CITY_1,,,NO,YES,NO,Neutral,,,,
+5232,5232,1,150,-1,1,1,0,0,0,0,0,0,FishingPlace,,,,,,,,,,,NO,YES,NO,Neutral,,,,
+5233,5233,1,40,-1,1,1,0,0,0,0,0,0,fishing_sign,,,,,,,,KLAPEDA_FISHING_BOARD,,,NO,YES,NO,Neutral,,,,
+5234,5234,1,1,-1,1,1,2,0,0,0,0,0,Event_FishingBox,[낚시 상점]{nl}요하의 살림통,,,,,,,EVENT_2011_FISHING_NPC,,,NO,YES,NO,Neutral,,,,
+5235,5235,1,40,1,60000,1,2,0,0,0,0,0,event_2001_cat,[낚시 이벤트]{nl}낚시터 고양이,,,,,,,EVENT_2011_CAT,,,NO,YES,NO,Neutral,,,,

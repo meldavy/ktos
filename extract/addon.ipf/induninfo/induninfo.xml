@@ -77,14 +77,14 @@
 		<radiobutton name="lvAscendRadio" parent="bottomBox" rect="0 0 200 30" margin="70 0 0 0" layout_gravity="left center" group="sortOption" LBtnDownScp="INDUNINFO_SORT_BY_LEVEL" caption="{@st66b}레벨 오름차순{/}" clicksound="button_click_big" oversound="button_over"/>
 		<radiobutton name="lvDescendRadio" parent="bottomBox" rect="0 0 200 30" margin="250 0 0 0" layout_gravity="left center" group="sortOption" LBtnDownScp="INDUNINFO_SORT_BY_LEVEL" caption="{@st66b}레벨 내림차순{/}" clicksound="button_click_big" oversound="button_over"/>
 		<button name="showCharIndunState" parent="bottomBox" rect="0 0 5 5" margin="20 0 0 3" layout_gravity="left center" image="indun_count_btn" clicksound="button_click_big" oversound="button_over" LBtnUpScp="UI_TOGGLE_INDUNINFO_CHAR_UI" isEnabled="0"/>
-		<tab name="tab" rect="0 0 1050 40" margin="10 60 0 0" layout_gravity="left top" LBtnDownScp="INDUNINFO_TAB_CHANGE" MouseOffAnim="btn_mouseoff" MouseOnAnim="btn_mouseover" clicksound="inven_arrange" fixwidth="true" itemspc="0" oversound="button_cursor_over_2" skin="tab2"/>
-		<tabitem name="Itembox1" parent="tab" caption="{@st66b}던전{/}" width="150" layout_gravity="left top"/>
-		<tabitem name="Itembox2" parent="tab" caption="{@st66b}레이드{/}" width="150" layout_gravity="left top"/>
-		<tabitem name="Itembox3" parent="tab" caption="{@st66b}주간 보스 레이드" width="150" layout_gravity="left top"/>
-		<tabitem name="Itembox4" parent="tab" caption="{@st66b}콘텐츠 랭킹" width="150" layout_gravity="left top"/>
-		<tabitem name="Itembox5" parent="tab" caption="{@st66b}봉쇄전" width="150" layout_gravity="left top"/>
-		<tabitem name="ItemboxN" parent="tab" caption="{@st66b}PVP" width="150" layout_gravity="left top"/>
-		<tabitem name="Itembox7" parent="tab" caption="{@st66b}보스 협동전" width="150" layout_gravity="left top"/>
+		<tab name="tab" rect="0 0 1050 40" margin="10 60 0 0" layout_gravity="left top" LBtnDownScp="INDUNINFO_TAB_CHANGE" MouseOffAnim="btn_mouseoff" MouseOnAnim="btn_mouseover" clicksound="inven_arrange" fixwidth="true" omitbywidth="true" itemspc="0" oversound="button_cursor_over_2" skin="tab2"/>
+		<tabitem name="Itembox1" parent="tab" caption="{@st66b}던전{/}" width="150" layout_gravity="left top" texttooltip="던전"/>
+		<tabitem name="Itembox2" parent="tab" caption="{@st66b}레이드{/}" width="150" layout_gravity="left top" texttooltip="레이드"/>
+		<tabitem name="Itembox3" parent="tab" caption="{@st66b}주간 보스 레이드" width="150" layout_gravity="left top" texttooltip="주간 보스 레이드"/>
+		<tabitem name="Itembox4" parent="tab" caption="{@st66b}콘텐츠 랭킹" width="150" layout_gravity="left top" texttooltip="콘텐츠 랭킹"/>
+		<tabitem name="Itembox5" parent="tab" caption="{@st66b}봉쇄전" width="150" layout_gravity="left top" texttooltip="봉쇄전"/>
+		<tabitem name="ItemboxN" parent="tab" caption="{@st66b}PVP" width="150" layout_gravity="left top" texttooltip="PVP"/>
+		<tabitem name="Itembox7" parent="tab" caption="{@st66b}보스 협동전" width="150" layout_gravity="left top" texttooltip="보스 협동전"/>
 		<!-- Time for pvp tab -->
 		<groupbox name="timeBox" parent="pvpbox" rect="0 0 412 60" margin="0 44 0 0" layout_gravity="right top" draw="false" hittestbox="false"/>
 		<picture name="timePic" parent="timeBox" rect="0 0 27 27" margin="0 0 0 0" layout_gravity="left center" image="indun_entrance"/>

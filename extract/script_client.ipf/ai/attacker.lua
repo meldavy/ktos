@@ -272,6 +272,7 @@ function ENTER_INTE_WARP(actor, argString, warpUpdateType, isMoveMap)
 	actor:SetMoveDestPos(scenePos);
 	actor:ReserveArgPos(1);
 	actor:SetArgPos(0, world.GetActorPos(actor:GetHandleVal()));
+	actor:SetUserValue("WarpRequested", 0);
 	movie.PlayAnim(actor:GetHandleVal(), "WARP", 1.0, 1);
 end
 
@@ -291,45 +292,47 @@ function UPDATE_INTE_WARP(actor, elapsedTime, argString, warpUpdateType, isMoveM
 end
 
 function UPDATE_INTE_WARP_READY(actor, elapsedTime, argString, warpUpdateType, isMoveMap, enterAppTime)
+    local ratio = (imcTime.GetAppTime() - enterAppTime) / s_warpTotalTime;
+    local isHide = (imcTime.GetAppTime() - enterAppTime) > s_warpPCHideTime;
 
-	local startPos = actor:GetArgPos(0);
-	local destPos = actor:GetMoveDestPos();
+    local startPos = actor:GetArgPos(0);
+    local destPos = actor:GetMoveDestPos();
+    
+    startPos.y = s_warpDestYPos * ratio * ratio * ratio * ratio * ratio + startPos.y;
 	
-	local ratio = (imcTime.GetAppTime() - enterAppTime) / s_warpTotalTime;
-	
-	local yPos  = s_warpDestYPos * ratio * ratio * ratio * ratio * ratio + startPos.y;
-	startPos.y = yPos;
-	
-	if ratio < 1.0 then
-		actor:SetPos(startPos);
-	else
-		local isEnableWarpEffect = actor:GetUserIValue("IsEnableWarpEffect");
-		if isEnableWarpEffect == 1 then
-			local isPlayedWarpEffect = actor:GetUserIValue("IsPlayedWarpEffect");
-			if isPlayedWarpEffect == 0 then
-				actor:GetEffect():PlayEffect("F_light029_blue", 0.2);
-				actor:SetUserValue("IsPlayedWarpEffect", 1);
-			end
-		end
-	end		
-	
-	if ratio >= 1.0 and (imcTime.GetAppTime() - enterAppTime) > s_warpPCHideTime then				
-		local sageWarp, sageWarpEnd= string.find(argString,'friends.SageSkillGoFriend');
-		if nil ~= sageWarp then
-			local length = string.len(argString);
-			local string = string.sub(argString, sageWarpEnd+2, length-1)
-			local sList = StringSplit(string, ",");
-			if #sList >= 6 then
-				friends.SageSkillGoFriend(sList[1], tonumber(sList[2]), tonumber(sList[2]), tonumber(sList[2]), tonumber(sList[2]), tonumber(sList[2]));
-			end
-		else
-			if argString == nil or argString ~= "None" then
-				ui.Chat(argString);	
-			end
-		end
-		actor:SetUserValue("IsEnableWarpEffect", 1);
-		return;
-	end
+    if ratio < 1.0 then
+        actor:SetPos(startPos);
+        return;
+    end
+
+    if actor:GetUserIValue("WarpRequested") == 1 then
+        return;
+    end
+
+    if isHide then
+        INTE_WARP_EXEC(argString);
+
+        actor:GetEffect():PlayEffect("F_light029_blue", 0.2);
+        actor:SetUserValue("WarpRequested", 1);
+
+        return;
+    end
+end
+
+function INTE_WARP_EXEC(argString)
+    local sageWarp, sageWarpEnd= string.find(argString,'friends.SageSkillGoFriend');
+    if nil ~= sageWarp then
+        local length = string.len(argString);
+        local string = string.sub(argString, sageWarpEnd+2, length-1)
+        local sList = StringSplit(string, ",");
+        if #sList >= 6 then
+            friends.SageSkillGoFriend(sList[1], tonumber(sList[2]), tonumber(sList[2]), tonumber(sList[2]), tonumber(sList[2]), tonumber(sList[2]));
+        end
+    else
+        if argString == nil or argString ~= "None" then
+            ui.Chat(argString);	
+        end
+    end
 end
  
 function UPDATE_INTE_WARP_PROC(actor, elapsedTime, argString, warpUpdateType, isMoveMap, enterAppTime)

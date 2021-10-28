@@ -4022,6 +4022,11 @@ function DO_WEAPON_SWAP(frame, index)
 	if pc == nil then
 		return;
 	end
+
+	if SCR_CHECK_SWAPABLE_C() == false then
+		return
+	end
+
     g_weapon_swap_request_index = index    	
 
     local frame = ui.GetFrame("inventory");
@@ -4078,6 +4083,17 @@ function DO_WEAPON_SWAP_2(frame)
 		frame = ui.GetFrame("inventory");
 	end    
 	DO_WEAPON_SWAP(frame, 2)
+end
+
+function SCR_CHECK_SWAPABLE_C()
+	if session.world.IsIntegrateIndunServer() == true then
+		local mGameName = session.mgame.GetCurrentMGameName()
+		if mGameName ~= nil and (mGameName == 'LEGEND_RAID_MORINGPONIA_EASY' or mGameName == 'LEGEND_RAID_GLACIER_EASY') then
+			return false
+		end
+	end
+
+	return true
 end
 
 function INVENTORY_RBTN_LEGENDPREFIX(invItem)

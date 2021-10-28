@@ -1424,7 +1424,7 @@
                     </Event>
                 </StageEvents>
             </Stage>
-        </StageList>
+            </StageList>
         <WorldInitList>
             <ToolScp Scp="MGAME_INIT_CHANGE_VIEW" Client="NO" UseSleep="NO">
                 <Num Num="1500"/>

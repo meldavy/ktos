@@ -1069,7 +1069,7 @@ function INDUNENTER_ENTER(frame, ctrl)
     end
     
     local topFrame = frame:GetTopParentFrame();
-    if INDUNENTER_CHECK_ADMISSION_ITEM(topFrame) == false then
+    if INDUNENTER_CHECK_ADMISSION_ITEM(topFrame, 1) == false then
         return;
     end
 
@@ -1113,13 +1113,13 @@ function INDUNENTER_AUTOMATCH(frame, ctrl)
     end
     end
     
-    local topFrame = frame:GetTopParentFrame();
-    if INDUNENTER_CHECK_ADMISSION_ITEM(topFrame) == false then
-        return;
-    end
-
     local textCount = topFrame:GetUserIValue("multipleCount");
     if topFrame:GetUserValue('AUTOMATCH_MODE') == 'NO' then
+        local topFrame = frame:GetTopParentFrame();
+        if INDUNENTER_CHECK_ADMISSION_ITEM(topFrame, 2) == false then
+            return;
+        end
+        
         ReqMoveToIndun(2, textCount);
     else
         INDUNENTER_AUTOMATCH_CANCEL();
@@ -1252,6 +1252,14 @@ function INDUNENTER_AUTOMATCH_TYPE(indunType, needUnderstaffAllow)
             INDUNENTER_SMALL(frame, smallBtn);
         end
     elseif frame:GetUserValue('AUTOMATCH_MODE') ~= 'YES' then
+        local indunCls = GetClassByType('Indun', indunType)
+        if indunCls ~= nil then
+            local dungeonType = TryGetProp(indunCls, 'DungeonType', 'None')
+            if dungeonType == 'Raid' or dungeonType == 'GTower' then
+                needUnderstaffAllow = 0
+            end
+        end
+
         frame:SetUserValue('AUTOMATCH_MODE', 'YES');
         frame:SetUserValue('EXCEPT_CLOSE_TARGET', 'YES');
         autoMatchText:ShowWindow(0);
@@ -1877,9 +1885,12 @@ function INDUNENTER_CHECK_UNDERSTAFF_MODE_WITH_PARTY(frame)
     return true;
 end
 
-function INDUNENTER_CHECK_ADMISSION_ITEM(frame)
+function INDUNENTER_CHECK_ADMISSION_ITEM(frame, matchType)
     local indunType = frame:GetUserIValue('INDUN_TYPE');
     local indunCls = GetClassByType('Indun', indunType);
+    if matchType == nil then
+        matchType = 1
+    end
     
     if indunCls ~= nil and indunCls.AdmissionItemName ~= 'None' then
         local user = GetMyPCObject();
@@ -1926,7 +1937,7 @@ function INDUNENTER_CHECK_ADMISSION_ITEM(frame)
                 return true;
             else
                 local multipleCnt = frame:GetUserIValue("multipleCount");
-                local yesScp = string.format("ReqMoveToIndun(%d,%d)", 1, multipleCnt);
+                local yesScp = string.format("ReqMoveToIndun(%d,%d)", matchType, multipleCnt);
                 local itemCls = GetClass("Item", admissionItemName);
                 local itemName = TryGetProp(itemCls, "Name");
 
@@ -1960,6 +1971,26 @@ function INDUNENTER_CHECK_ADMISSION_ITEM(frame)
         if invItem == nil or invItem.isLockState == true then
             ui.MsgBox_NonNested(ClMsg('AdmissionItemLockMsg'), 0x00000000);
             return false;
+        end
+    elseif indunCls ~= nil and matchType == 2 and (indunCls.DungeonType == 'Raid' or indunCls.DungeonType == 'GTower') then
+        local etc = GetMyEtcObject()
+        if indunCls.UnitPerReset == 'ACCOUNT' then
+            etc = GetMyAccountObj()
+        end
+
+        local nowCount = TryGetProp(etc, "InDunCountType_"..tostring(TryGetProp(indunCls, "PlayPerResetType")))
+        if indunCls.WeeklyEnterableCount ~= 0 then
+            nowCount = TryGetProp(etc, "IndunWeeklyEnteredCount_"..tostring(TryGetProp(indunCls, "PlayPerResetType")))
+        end
+
+        if nowCount < indunCls.WeeklyEnterableCount then
+            return true
+        else
+            local multipleCnt = frame:GetUserIValue("multipleCount")
+            local yesScp = string.format("ReqMoveToIndun(%d,%d)", matchType, multipleCnt)
+            ui.MsgBox(ClMsg("HaveNoEnterableCount"), yesScp, "None")
+
+            return false
         end
     end
     return true;

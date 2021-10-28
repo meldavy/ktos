@@ -42,6 +42,10 @@ ClassID,Price,JobGrade,Itemdate,AccountLimitCount,BonusItemCnt,ClassName,Categor
 41,417,0,200924,5,50,ClassName41,TP_Premium,TP_Useable,txbox_20chuseok_Package_BattleA,,2020-09-24 09:00:00,2020-10-08 10:00:00,NO,Event_Roulette_Coin_2,YES
 42,397,0,200924,5,50,ClassName42,TP_Premium,TP_Useable,txbox_20chuseok_Package_BattleB,,2020-09-24 09:00:00,2020-10-08 10:00:00,NO,Event_Roulette_Coin_2,YES
 43,998,0,200924,1,200,ClassName43,TP_Premium,TP_Useable,txbox_20chuseok_Package_All,,2020-09-24 09:00:00,2020-10-08 10:00:00,NO,Event_Roulette_Coin_2,YES
+44,59,0,201112,0,0,ClassName44,TP_Premium,TP_Useable,Gacha_HairAcc_ReSale001_M_2,,2020-11-12 09:00:00,2020-12-10 08:00:00,NO,,NO
+45,590,0,201112,0,0,ClassName45,TP_Premium,TP_Useable,Gacha_HairAcc_ReSale010_M_2,,2020-11-12 09:00:00,2020-12-10 08:00:00,NO,,NO
+46,59,0,201112,0,0,ClassName46,TP_Premium,TP_Useable,Gacha_HairAcc_ReSale001_F_2,,2020-11-12 09:00:00,2020-12-10 08:00:00,NO,,NO
+47,590,0,201112,0,0,ClassName47,TP_Premium,TP_Useable,Gacha_HairAcc_ReSale010_F_2,,2020-11-12 09:00:00,2020-12-10 08:00:00,NO,,NO
 101,39,0,151229,0,0,ClassName101,TP_Premium,TP_Consume,Mic_bundle50,,,,NO,,
 102,1,0,151229,0,0,ClassName102,TP_Premium,TP_Consume,Mic,,,,NO,,
 103,18,0,151229,0,0,ClassName103,TP_Premium,TP_Consume,RestartCristal_bundle10,,,,NO,,

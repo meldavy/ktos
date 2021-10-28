@@ -637,4 +637,16 @@
 		<!--dialog_quotation_text-->
 		<font name="normal" size="21" space="0" color="1f100b" bold="yes" italic="yes" dropshadow="no" outline="no" underline="no" centerline="no"/>
 	</style>
+	<style name="st201">
+		<!--wedge_normal-->
+		<font name="normal" size="18" space="0" color="866c4f" bold="yes" italic="no" dropshadow="no" outline="no" underline="no" centerline="no"/>
+	</style>
+	<style name="st202">
+		<!--wedge_normal-->
+		<font name="normal" size="18" space="0" color="493621" bold="yes" italic="no" dropshadow="no" outline="no" underline="no" centerline="no"/>
+	</style>
+	<style name="st203">
+		<!--wedge_point-->
+		<font name="normal" size="18" space="0" color="e06400" bold="yes" italic="no" dropshadow="no" outline="no" underline="no" centerline="no"/>
+	</style>
 </StyleSheet>

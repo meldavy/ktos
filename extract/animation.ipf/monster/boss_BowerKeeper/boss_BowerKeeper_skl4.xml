@@ -1,17 +1,32 @@
 <?xml version="1.0" encoding="EUC-KR"?>
 <!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by imc (imc) -->
 <ActionDesc>
-	<Shockwave frame="69" type="2" intensity="2" frequency="70" duration="0.3" range="1000"/>
-	<Shockwave frame="78" type="2" intensity="2" frequency="70" duration="0.3" range="1000"/>
-	<Shockwave frame="87" type="2" intensity="2" frequency="70" duration="0.3" range="1000"/>
-	<Shockwave frame="105" type="2" intensity="2" frequency="70" duration="0.3" range="1000"/>
-	<Particle frame="0" attachNode="LBone011" particleName="I_force061_violet" useAttach="true" hiddenObj="false" changeEffect="None" scale="0.5" pause="true" use2DEffect="false" soft2DValue="20"/>
-	<Particle frame="0" attachNode="RBone011" particleName="I_force061_violet" useAttach="true" hiddenObj="false" changeEffect="None" scale="0.5" pause="true" use2DEffect="false" soft2DValue="20"/>
-	<Particle frame="0" attachNode="Bip001 L Finger2" particleName="I_force061_violet" useAttach="true" hiddenObj="false" changeEffect="None" scale="0.5" pause="true" use2DEffect="false" soft2DValue="20"/>
-	<Particle frame="0" attachNode="Bip001 R Finger2" particleName="I_force061_violet" useAttach="true" hiddenObj="false" changeEffect="None" scale="0.5" pause="true" use2DEffect="false" soft2DValue="20"/>
-	<Particle frame="60" attachNode="LBone011" particleName="I_force061_violet" useAttach="true" hiddenObj="false" changeEffect="None" scale="0.5" pause="true" use2DEffect="false" soft2DValue="20"/>
-	<Particle frame="60" attachNode="RBone011" particleName="I_force061_violet" useAttach="true" hiddenObj="false" changeEffect="None" scale="0.5" pause="true" use2DEffect="false" soft2DValue="20"/>
-	<Particle frame="60" attachNode="Bip001 L Finger2" particleName="I_force061_violet" useAttach="true" hiddenObj="false" changeEffect="None" scale="0.5" pause="true" use2DEffect="false" soft2DValue="20"/>
-	<Particle frame="60" attachNode="Bip001 R Finger2" particleName="I_force061_violet" useAttach="true" hiddenObj="false" changeEffect="None" scale="0.5" pause="true" use2DEffect="false" soft2DValue="20"/>
-	<Particle frame="15" attachNode="Bip001 Spine1" particleName="F_spread_in030_dark" useAttach="true" hiddenObj="false" changeEffect="None" scale="0.3" pause="true" use2DEffect="false" soft2DValue="20"/>
+    <Particle frame="0" attachNode="LBone011" particleName="I_force061_violet" useAttach="true" hiddenObj="false" changeEffect="None" scale="0.5" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Particle frame="0" attachNode="RBone011" particleName="I_force061_violet" useAttach="true" hiddenObj="false" changeEffect="None" scale="0.5" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Particle frame="0" attachNode="Bip001 L Finger2" particleName="I_force061_violet" useAttach="true" hiddenObj="false" changeEffect="None" scale="0.5" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Particle frame="0" attachNode="Bip001 R Finger2" particleName="I_force061_violet" useAttach="true" hiddenObj="false" changeEffect="None" scale="0.5" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Sound frame="0.00" soundFile="mon_voice_screech_7"/>
+    <Sound frame="0.00" soundFile="skl_eff_dark"/>
+    <Sound frame="0.51" soundFile="skl_eff_smokeshell"/>
+    <Sound frame="10.00" soundFile="skl_eff_spread_1"/>
+    <Particle frame="15" attachNode="Bip001 Spine1" particleName="F_spread_in030_dark" useAttach="true" hiddenObj="false" changeEffect="None" scale="0.3" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Sound frame="24.85" soundFile="skl_eff_spread_9"/>
+    <Sound frame="50.20" soundFile="skl_eff_atk_move_l_12"/>
+    <Particle frame="60" attachNode="LBone011" particleName="I_force061_violet" useAttach="true" hiddenObj="false" changeEffect="None" scale="0.5" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Particle frame="60" attachNode="RBone011" particleName="I_force061_violet" useAttach="true" hiddenObj="false" changeEffect="None" scale="0.5" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Particle frame="60" attachNode="Bip001 L Finger2" particleName="I_force061_violet" useAttach="true" hiddenObj="false" changeEffect="None" scale="0.5" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Particle frame="60" attachNode="Bip001 R Finger2" particleName="I_force061_violet" useAttach="true" hiddenObj="false" changeEffect="None" scale="0.5" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Sound frame="64.00" soundFile="skl_eff_darksight_force"/>
+    <Sound frame="64.00" soundFile="skl_eff_atk_move_m_2"/>
+    <Shockwave frame="69" type="2" intensity="2" frequency="70" duration="0.3" range="1000"/>
+    <Sound frame="75.00" soundFile="skl_eff_atk_move_m_2"/>
+    <Sound frame="75.00" soundFile="skl_eff_darksight_force"/>
+    <Shockwave frame="78" type="2" intensity="2" frequency="70" duration="0.3" range="1000"/>
+    <Sound frame="81.00" soundFile="skl_eff_darksight_force"/>
+    <Sound frame="81.00" soundFile="skl_eff_atk_move_m_2"/>
+    <Shockwave frame="87" type="2" intensity="2" frequency="70" duration="0.3" range="1000"/>
+    <Shockwave frame="105" type="2" intensity="2" frequency="70" duration="0.3" range="1000"/>
+    <Sound frame="105.00" soundFile="skl_eff_darksight_force"/>
+    <Sound frame="105.00" soundFile="skl_eff_atk_move_m_2"/>
+    <Sound frame="105.00" soundFile="skl_eff_force_whoosh_3"/>
 </ActionDesc>

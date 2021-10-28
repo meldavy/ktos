@@ -5683,4 +5683,18 @@
 			<slot name="slot" parent="slot_pic" rect="0 0 111 111" margin="0 8 0 0" layout_gravity="center top" enabledrop="false" enablepop="false" enabledrag="false"/>
 		</controls>
 	</controlset>
+	<controlset name="select_mgame_buff_ctrl" hittest="true" width="80" height="108" draw="false">
+		<controls>
+			<picture name="background_pic" image="buffselect_empty" rect="0 0 80 80" margin="0 0 0 0" imagealign="center center" layout_gravity="center center"/>
+			<picture name="buff_icon" image="None" rect="0 0 80 80" margin="0 0 0 0" imagealign="center center" layout_gravity="center center"/>
+			<button name="buff_select_btn" image="buffselect_btn" rect="0 0 80 80" margin="0 0 0 0" layout_gravity="center center" LBtnUpScp="ON_SELECT_MGAME_BUFF_ICON_CLICK"/>
+			<picture name="buff_select_on" image="buffselect_btn_clicked" rect="0 0 80 80" margin="0 0 0 0" layout_gravity="center center" hittest="false"/>
+			<groupbox name="buff_member_gb" rect="0 0 80 30" margin="0 95 0 0" layout_gravity="left top" hittest="false" draw="false"/>
+			<picture name="buff_member_icon_1" rect="0 0 15 12" margin="0 0 0 0" parent="buff_member_gb" image="None" layout_gravity="left top" hittest="false"/>
+			<picture name="buff_member_icon_2" rect="0 0 15 12" margin="10 0 0 0" parent="buff_member_gb" image="None" layout_gravity="left top" hittest="false"/>
+			<picture name="buff_member_icon_3" rect="0 0 15 12" margin="20 0 0 0" parent="buff_member_gb" image="None" layout_gravity="left top" hittest="false"/>
+			<picture name="buff_member_icon_4" rect="0 0 15 12" margin="30 0 0 0" parent="buff_member_gb" image="None" layout_gravity="left top" hittest="false"/>
+			<picture name="buff_member_icon_5" rect="0 0 15 12" margin="40 0 0 0" parent="buff_member_gb" image="None" layout_gravity="left top" hittest="false"/>
+		</controls>
+	</controlset>
 </controlsetlist>

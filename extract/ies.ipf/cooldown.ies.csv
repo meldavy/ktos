@@ -1322,6 +1322,7 @@ ClassID,OverHeatResetTime,ClassName,IsOverHeat,ReducePlayOnly,ForceReset
 4093,6000,EVENT_POTION,NO,FALSE,YES
 4094,0,MagicalGirl,NO,FALSE,YES
 4095,0,GuildColony_Resistance_status_Drug,NO,FALSE,YES
+4096,0,Common_bubbletea,NO,FALSE,YES
 4097,6000,WarpStoneToCity,NO,FALSE,NO
 4098,0,Omamoriitem,NO,FALSE,YES
 4099,0,Mon_14,NO,FALSE,YES

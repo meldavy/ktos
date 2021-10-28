@@ -4597,6 +4597,39 @@
 			<img name="bottomcore" imgrect="655 579 21 1"/>
 			<img name="bottomright" imgrect="677 579 97 1"/>
 		</skin>
+		<skin name="wedge_frame01" texture="\skin\wedge_dungeon.tga">
+			<img name="topleft" imgrect="0 0 30 28"/>
+			<img name="topcore" imgrect="31 0 27 28"/>
+			<img name="topright" imgrect="59 0 30 28"/>
+			<img name="bodyleft" imgrect="0 29 30 27"/>
+			<img name="bodycore" imgrect="31 29 27 27"/>
+			<img name="bodyright" imgrect="59 29 30 27"/>
+			<img name="bottomleft" imgrect="0 57 30 28"/>
+			<img name="bottomcore" imgrect="31 57 27 28"/>
+			<img name="bottomright" imgrect="59 57 30 28"/>
+		</skin>
+		<skin name="wedge_frame02" texture="\skin\wedge_dungeon.tga">
+			<img name="topleft" imgrect="259 132 24 24"/>
+			<img name="topcore" imgrect="284 132 24 24"/>
+			<img name="topright" imgrect="309 132 24 24"/>
+			<img name="bodyleft" imgrect="259 157 24 24"/>
+			<img name="bodycore" imgrect="284 157 24 24"/>
+			<img name="bodyright" imgrect="309 157 24 24"/>
+			<img name="bottomleft" imgrect="259 182 24 24"/>
+			<img name="bottomcore" imgrect="284 182 24 24"/>
+			<img name="bottomright" imgrect="309 182 24 24"/>
+		</skin>
+		<skin name="wedge_frame03" texture="\skin\wedge_dungeon.tga">
+			<img name="topleft" imgrect="0 88 30 12"/>
+			<img name="topcore" imgrect="31 88 27 12"/>
+			<img name="topright" imgrect="59 88 30 12"/>
+			<img name="bodyleft" imgrect="0 101 30 13"/>
+			<img name="bodycore" imgrect="31 101 27 13"/>
+			<img name="bodyright" imgrect="59 101 30 13"/>
+			<img name="bottomleft" imgrect="0 115 30 13"/>
+			<img name="bottomcore" imgrect="31 115 27 13"/>
+			<img name="bottomright" imgrect="59 115 30 13"/>
+		</skin>
 	</skinlist>
 	<skinlist category="yiseul_buttons">
 		<skin name="worldmap2_btn_round" texture="\skin\worldmap2.tga">
@@ -6361,6 +6394,14 @@
 			<img name="barmiddle" imgrect="1004 1324 332 10"/>
 			<img name="barright" imgrect="1336 1313 1 10"/>
 		</skin>
+		<skin name="buffselect_guage" texture="\skin\wedge_dungeon.tga">
+			<img name="bgleft" imgrect="356 557 1 12"/>
+			<img name="bgmiddle" imgrect="357 557 410 12"/>
+			<img name="bgright" imgrect="767 557 1 12"/>
+			<img name="barleft" imgrect="356 557 1 12"/>
+			<img name="barmiddle" imgrect="354 547 410 8"/>
+			<img name="barright" imgrect="767 557 1 12"/>
+		</skin>
 	</skinlist>
 	<skinlist category="labellines">
 		<skin name="labelline_def_5" texture="\skin\tooltip_skin_3.tga">
@@ -7991,6 +8032,20 @@
 		<image name="bonus_rank_B" file="\skin\gacha_ui.tga" imgrect="513 373 100 100" CMM_Caption="회차 보너스 등급 B 마크"/>
 		<image name="craft_reinforce" file="\skin\pip_test_item.tga" imgrect="603 1136 80 80" CMM_Caption="강화 수치 아이콘"/>
 		<image name="craft_transcend" file="\skin\pip_test_item.tga" imgrect="684 1136 80 80" CMM_Caption="초월 수치 아이콘"/>
+		<image name="wedge_titlebg" file="\skin\wedge_dungeon.tga" imgrect="0 132 256 60" CMM_Caption="쐐기던전_맵이름배경"/>
+		<image name="wedge_line" file="\skin\wedge_dungeon.tga" imgrect="0 196 256 0" CMM_Caption="쐐기던전_구분선"/>
+		<image name="wedge_icon_grade" file="\skin\wedge_dungeon.tga" imgrect="290 42 20 20" CMM_Caption="쐐기던전_순위아이콘"/>
+		<image name="wedge_icon_time" file="\skin\wedge_dungeon.tga" imgrect="311 42 20 20" CMM_Caption="쐐기던전_시간아이콘"/>
+		<image name="wedge_icon_pattern" file="\skin\wedge_dungeon.tga" imgrect="332 42 20 20" CMM_Caption="쐐기던전_패턴아이콘"/>
+		<image name="wedge_icon_trophy" file="\skin\wedge_dungeon.tga" imgrect="258 42 30 28" CMM_Caption="쐐기던전_트로피아이콘"/>
+		<image name="wedge_guildmark" file="\skin\wedge_dungeon.tga" imgrect="258 72 30 30" CMM_Caption="쐐기던전_길드기본아이콘"/>
+		<image name="wedge_label_my" file="\skin\wedge_dungeon.tga" imgrect="258 0 40 40" CMM_Caption="쐐기던전_라벨_my"/>
+		<image name="wedge_label_all" file="\skin\wedge_dungeon.tga" imgrect="299 0 40 40" CMM_Caption="쐐기던전_라벨_all"/>
+		<image name="buffselect_frame_s" file="\skin\wedge_dungeon.tga" imgrect="354 0 481 259" CMM_Caption="버프선택창_개인"/>
+		<image name="buffselect_frame_p" file="\skin\wedge_dungeon.tga" imgrect="354 262 481 282" CMM_Caption="버프선택창_파티"/>
+		<image name="buffselect_empty" file="\skin\wedge_dungeon.tga" imgrect="0 283 80 80" CMM_Caption="버프선택_공란"/>
+		<image name="buffselect_count_icon" file="\skin\wedge_dungeon.tga" imgrect="290 72 15 12" CMM_Caption="버프선택_카운트 아이콘"/>
+		<image name="infinity_text_red" file="\skin\indun_skin.tga" imgrect="896 98 27 12" CMM_Caption="뫼비우스의 띠_레드"/>
 	</imagelist>
 	<imagelist category="je_button">
 		<image name="menu_guild_info" file="\skin\guild_skin.tga" imgrect="165 298 45 45" CMM_Caption="길드 정보"/>
@@ -8587,6 +8642,12 @@
 		<image name="2009Chursok_btn" file="\skin\pip_test.tga" imgrect="1351 1025 72 72" CMM_Caption="2009 추석 버튼"/>
 		<image name="2009Chursok_btn_cursoron" file="\skin\pip_test.tga" imgrect="1424 1025 72 72"/>
 		<image name="2009Chursok_btn_clicked" file="\skin\pip_test.tga" imgrect="1497 1025 72 72"/>
+		<image name="wedge_tabBtn" file="\skin\wedge_dungeon.tga" imgrect="92 0 54 112" CMM_Caption="쐐기던전 탭버튼"/>
+		<image name="wedge_tabBtn_cursoron" file="\skin\wedge_dungeon.tga" imgrect="147 0 54 112"/>
+		<image name="wedge_tabBtn_clicked" file="\skin\wedge_dungeon.tga" imgrect="2020 54 112"/>
+		<image name="buffselect_btn" file="\skin\wedge_dungeon.tga" imgrect="0 202 80 80" CMM_Caption="버프선택 버튼"/>
+		<image name="buffselect_btn_cursoron" file="\skin\wedge_dungeon.tga" imgrect="81 202 80 80"/>
+		<image name="buffselect_btn_clicked" file="\skin\wedge_dungeon.tga" imgrect="162 202 80 80"/>
 	</imagelist>
 	<imagelist category="worldmap_image">
 		<image name="worldmap2_mainmap" file="\skin\worldmap\worldmap2_mainmap.jpg" imgrect="0 0 1920 1080" CMM_Caption="월드맵배경"/>
@@ -9599,6 +9660,7 @@
 		<image name="medeina_emotion05" file="\icon\emoticon\medeina_emotion05.png" imgrect="0 0 128 128"/>
 		<image name="medeina_emotion06" file="\icon\emoticon\medeina_emotion06.png" imgrect="0 0 128 128"/>
 		<image name="ShellyPennington_emotion01" file="\icon\emoticon\ShellyPennington_emotion01.png" imgrect="0 0 128 128"/>
+		<image name="Hitomico_emoticon_01" file="\icon\emoticon\Hitomico_emoticon_01.png" imgrect="0 0 128 128"/>
 	</imagelist>
 	<imagelist category="itemtooltip_image">
 		<image name="circle_gem" file="\skin\tooltip_skin_3.tga" imgrect="805 228 30 30"/>
@@ -11315,6 +11377,37 @@
 		<image name="icon_Weekly_BLK_UP" file="\icon\buff_icon3.tga" imgrect="640 1920 128 128" CMM_Caption="블록 특화"/>
 		<image name="icon_Weekly_DR_UP" file="\icon\buff_icon3.tga" imgrect="768 1920 128 128" CMM_Caption="회피 특화"/>
 		<image name="icon_pet_dalmatian_buff" file="\icon\buff_icon4.tga" imgrect="128 256 128 128" CMM_Caption="달마시안 버프"/>
+		<image name="icon_Uniform_Auxiliary_Buff" file="\icon\buff_icon4.tga" imgrect="256 256 128 128" CMM_Caption="유니폼 버프 "/>
+		<image name="icon_Tanker_Auxiliary_Buff" file="\icon\buff_icon4.tga" imgrect="384 256 128 128" CMM_Caption="탱커 보조 버프 "/>
+		<image name="icon_AEO_Auxiliary_Buff" file="\icon\buff_icon4.tga" imgrect="512 256 128 128" CMM_Caption="광역 보조 버프"/>
+		<image name="icon_Healer_Auxiliary_Buff" file="\icon\buff_icon4.tga" imgrect="640 256 128 128" CMM_Caption="힐 보조 버프"/>
+		<image name="icon_CC_Auxiliary_Buff" file="\icon\buff_icon4.tga" imgrect="768 256 128 128" CMM_Caption="빙결 버프"/>
+		<image name="icon_Heal_Party_Buff" file="\icon\buff_icon4.tga" imgrect="896 256 128 128" CMM_Caption="전술_힐"/>
+		<image name="icon_Attack_Party_Buff" file="\icon\buff_icon4.tga" imgrect="0 384 128 128" CMM_Caption="전술_공격"/>
+		<image name="icon_Defence_Party_Buff" file="\icon\buff_icon4.tga" imgrect="128 384 128 128" CMM_Caption="전술_방어"/>
+		<image name="icon_Mythic_Magnetic_Field" file="\icon\buff_icon4.tga" imgrect="256 384 128 128" CMM_Caption="자기장"/>
+		<image name="icon_Mythic_Chain_Lightning" file="\icon\buff_icon4.tga" imgrect="384 384 128 128" CMM_Caption="연쇄 번개"/>
+		<image name="icon_Mythic_Gravity_Field" file="\icon\buff_icon4.tga" imgrect="512 384 128 128" CMM_Caption="중력장"/>
+		<image name="icon_Mythic_Puddle" file="\icon\buff_icon4.tga" imgrect="640 384 128 128" CMM_Caption="피의 웅덩이"/>
+		<image name="icon_Mythic_Link" file="\icon\buff_icon4.tga" imgrect="768 384 128 128" CMM_Caption="링크"/>
+		<image name="icon_Mythic_Crowd" file="\icon\buff_icon4.tga" imgrect="896 384 128 128" CMM_Caption="무리"/>
+		<image name="icon_Mythic_Giantization" file="\icon\buff_icon4.tga" imgrect="0 512 128 128" CMM_Caption="거대화"/>
+		<image name="icon_Mythic_TodalShield" file="\icon\buff_icon4.tga" imgrect="128 512 128 128" CMM_Caption="철갑화"/>
+		<image name="icon_Mythic_Bomb" file="\icon\buff_icon4.tga" imgrect="256 512 128 128" CMM_Caption="폭탄"/>
+		<image name="icon_Mythic_Rage" file="\icon\buff_icon4.tga" imgrect="384 512 128 128" CMM_Caption="격노"/>
+		<image name="icon_Mythic_Berserk_Fury" file="\icon\buff_icon4.tga" imgrect="512 512 128 128" CMM_Caption="광분"/>
+		<image name="icon_Mythic_InfectiousDisease" file="\icon\buff_icon4.tga" imgrect="640 512 128 128" CMM_Caption="전염병"/>
+		<image name="icon_Mythic_Timeattack" file="\icon\buff_icon4.tga" imgrect="768 512 128 128" CMM_Caption="타임어택"/>
+		<image name="icon_Mythic_RankUp" file="\icon\buff_icon4.tga" imgrect="896 512 128 128" CMM_Caption="랭크업"/>
+		<image name="icon_Mythic_WhimCaprice" file="\icon\buff_icon4.tga" imgrect="0 640 128 128" CMM_Caption="변덕"/>
+		<image name="icon_Mythic_Lucky_Monster" file="\icon\buff_icon4.tga" imgrect="128 640 128 128" CMM_Caption="행운 몬스터"/>
+		<image name="icon_Mythic_CoordinationOfPain" file="\icon\buff_icon4.tga" imgrect="256 640 128 128" CMM_Caption="고통의 조율"/>
+		<image name="icon_Mythic_Pyroego" file="\icon\buff_icon4.tga" imgrect="384 640 128 128" CMM_Caption="중간 보스 - 파이로 에고"/>
+		<image name="icon_Mythic_Genmagnus" file="\icon\buff_icon4.tga" imgrect="384 640 128 128" CMM_Caption="중간 보스 - 마스터 지니"/>
+		<image name="icon_AUTO_MATCHING_RECOVERY_BEAD_BUFF" file="\icon\buff_icon4.tga" imgrect="512 640 128 128" CMM_Caption="회복 구슬"/>
+		<image name="icon_AUTO_MATCHING_DAMAGE_BUFF" file="\icon\buff_icon4.tga" imgrect="640 640 128 128" CMM_Caption="스킬 대미지 증가"/>
+		<image name="icon_AUTO_MATCHING_DAMAGE2_BUFF" file="\icon\buff_icon4.tga" imgrect="768 640 128 128" CMM_Caption="타겟 대상 피격 대미지 증가"/>
+		<image name="icon_AUTO_MATCHING_PARTY_HEAL2_BUFF" file="\icon\buff_icon4.tga" imgrect="896 640 128 128" CMM_Caption="자동매칭 파티 버프 - 치유+면역"/>
 	</imagelist>
 	<imagelist category="housing_bufficon">
 		<image name="icon_Weapon_Klaida" file="\icon\icon_hosing_buff.tga" imgrect="0 0 128 128"/>
@@ -11548,6 +11641,8 @@
 		<image name="023_npc_ShellyPennington" file="\skin\npccard\023_npc_ShellyPennington.tga" imgrect="0 0 330 440"/>
 		<image name="024_npc_WinonaEnde" file="\skin\npccard\024_npc_WinonaEnde.tga" imgrect="0 0 330 440"/>
 		<image name="025_npc_Feliksia" file="\skin\npccard\025_npc_Feliksia.tga" imgrect="0 0 330 440"/>
+		<image name="026_npc_MistesGoldmund" file="\skin\npccard\026_npc_MistesGoldmund.tga" imgrect="0 0 330 440"/>
+		<image name="027_npc_FeliksiaAleisterCrowley" file="\skin\npccard\027_npc_FeliksiaAleisterCrowley.tga" imgrect="0 0 330 440"/>
 		<image name="028_npc_Leticia" file="\skin\npccard\028_npc_Leticia.tga" imgrect="0 0 330 440"/>
 	</imagelist>
 	<imagelist category="bosscard2">

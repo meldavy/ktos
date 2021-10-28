@@ -158,7 +158,7 @@ ClassID,ConditionArg4,ClassName,UseType,ValueType,PropertyType,ConditionScp,Cond
 157,0,Legend_card_Mirtis_JP,Always,StarCount,,,,,,SCR_CARDEFFECT_ATTRIBUTE_PENALTY_REDUCTION,ATTRIBUTE_PENALTY,,10,공격 시 속성 상성에 따른 패널티 {@st66d_y}{s16}[%d]{/}{/}%% 감소,10
 158,0,Legend_card_FrosterLord_JP,Always,StarCount,,,,,,SCR_CARDEFFECT_SUMMON_ATK_RANGE,MON_Average_Atk_FROM_PC,,10,소환수의 최소 공격력과 최대 공격력의 차이 {@st66d_y}{s16}[%d]{/}{/}%% 감소,10
 159,0,Legendcard_skiaclips,Always,StarCount,,,,100,,SCR_CARDEFFECT_STATUS_PLUS,Klaida_Atk_BM,Klaida_Atk_BM,750,곤충형 대상 공격력+{@st66d_y}{s16}[%d]{/}{/},750
-160,0,card_Moringponia,Always,StarCount,,,,100,,SCR_CARDEFFECT_STATUS_IMMUNE_AND_STATUS,Res_Freeze_Debuff_BM/MHP_BM,,100/100,"빙결 상태이상 저항 +{@st66d_y}{s16}[%d]{/}{/}, 최대 HP +{@st66d_y}{s16}[%d]{/}{/}",1/100
+160,0,card_Moringponia,Always,StarCount,,,,100,,SCR_CARDEFFECT_STATUS_IMMUNE_AND_STATUS,Res_Freeze_Debuff_BM/MHP_BM,,100/100,"결빙 상태이상 저항 +{@st66d_y}{s16}[%d]{/}{/}, 최대 HP +{@st66d_y}{s16}[%d]{/}{/}",1/100
 161,0,Legendcard_Moringponia,Always,StarCount,,,,100,,SCR_CARDEFFECT_STATUS_PLUS,MiddleSize_Atk_BM,MiddleSize_Atk_BM,300,중형 대상 공격력+{@st66d_y}{s16}[%d]{/}{/},300
 162,0,card_Misrus,Always,StarCount,,,,100,,SCR_CARDEFFECT_STATUS_IMMUNE_AND_STATUS,Res_Blind_Debuff_BM/MSP_BM,,100/60,"암흑 상태이상 저항 +{@st66d_y}{s16}[%d]{/}{/}, 최대 SP +{@st66d_y}{s16}[%d]{/}{/}",1/60
 163,0,Legendcard_Misrus,Always,StarCount,,,,,,SCR_CARDEFFECT_ADD_BUFF_STARVALUE_PC,card_Misrus_legendcard,,0,실드 적용 중인 대상에게 {@st66d_y}{s16}[%d]{/}{/} 추가 대미지,1000
@@ -191,3 +191,5 @@ ClassID,ConditionArg4,ClassName,UseType,ValueType,PropertyType,ConditionScp,Cond
 190,0,Master_card_ShellyPennington,Always,StarCount,,,,100,,SCR_CARDEFFECT_STATUS_PLUS,CRTDR_BM,CRTDR,10,치명타 저항 +{@st66d_y}{s16}[%d]{/}{/},10
 191,0,Master_card_Winona_Ende,BeforeAttack,StarCount,,SCR_CARDCHECK_NEAR_BY_ENEMY,CARD_Winona_Ende,,,SCR_CARDEFFECT_DAMAGE_RATE_BY_NEAR_BY_ENEMY,CARD_Winona_Ende,,0,주변에 적이 7명 이상일 때 대미지 증가 +{@st66d_y}{s16}[%d]{/}{/}%%  (PvP지역은 +{@st66d_y}{s16}[%d]{/}{/}%%),1.3/0.8
 192,0,Master_card_Feliksia,Always,StarCount,,,,,,SCR_CARDEFFECT_DAMAGE_REDUCTION_RATE_FROM_BOSS,DAMAGE_REDUCTION_RATE_FROM_BOSS,,0.4,보스에게 받는 피해 감소 +{@st66d_y}{s16}[%d]{/}{/}%%,0.4
+193,0,Master_card_MistesGoldmund,Always,StarCount,,,,,,SCR_CARDEFFECT_ADD_BUFF_STARVALUE_PC,Luminosity_Buff,,0,광휘 상태 이상에 걸린 대상에게 대미지 {@st66d_y}{s16}[%d]{/}{/}%% 증가,1
+194,0,Master_card_AleisterCrowley,BeforeAttack,StarCount,,,,,,SCR_CARDEFFECT_DAMAGE_RATE_BY_BUFF,Freeze,Keyword,1,"결빙, 한기 상태 이상에 걸린 대상에게 주는 대미지{@st66d_y}{s16}[%d]{/}{/}%% 증가",1

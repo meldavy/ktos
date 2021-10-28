@@ -51,3 +51,7 @@ ClassID,Count,Price,ClassName,ItemClassName,Group,GachaType,RewardGroup,PreCheck
 164,1,10,Gacha_TP2_Season_001,Gacha_TP2_Season_001,NPC,rbox,Gacha_TP2_Season_001,SCR_PRECHECK_LETICIA_CONSUME,SCR_PRECHECK_LETICIA_CONSUME,1,TP,NO,,
 165,11,100,Gacha_TP2_Season_010,Gacha_TP2_Season_010,NPC,rbox,Gacha_TP2_Season_001,SCR_PRECHECK_LETICIA_CONSUME,SCR_PRECHECK_LETICIA_CONSUME,1,TP,NO,,
 166,11,999,Gacha_HairAcc_Animal_TWN,Gacha_HairAcc_Animal_TWN,CUBE,hair,Gacha_HairAcc_Animal_TWN,,Gacha_HairAcc_Animal_TWN,1,CUBE,NO,,
+167,1,999,Gacha_HairAcc_ReSale001_M_2,Gacha_HairAcc_ReSale001_M_2,CUBE,hair,GACHA_HAIRACC_ReSale_001_M_2,,GACHA_HAIRACC_ReSale_001_M_2,1,CUBE,NO,,
+168,11,999,Gacha_HairAcc_ReSale010_M_2,Gacha_HairAcc_ReSale010_M_2,CUBE,hair,GACHA_HAIRACC_ReSale_001_M_2,,GACHA_HAIRACC_ReSale_001_M_2,1,CUBE,NO,,
+169,1,999,Gacha_HairAcc_ReSale001_F_2,Gacha_HairAcc_ReSale001_F_2,CUBE,hair,GACHA_HAIRACC_ReSale_001_F_2,,GACHA_HAIRACC_ReSale_001_F_2,1,CUBE,NO,,
+170,11,999,Gacha_HairAcc_ReSale010_F_2,Gacha_HairAcc_ReSale010_F_2,CUBE,hair,GACHA_HAIRACC_ReSale_001_F_2,,GACHA_HAIRACC_ReSale_001_F_2,1,CUBE,NO,,

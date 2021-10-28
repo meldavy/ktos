@@ -10,6 +10,26 @@ function ITEMOPTIONEXTRACT_ON_INIT(addon, frame)
     addon:RegisterMsg("MSG_RUN_FAIL_EFFECT", 'RUN_FAIL_EFFECT');
 end
 
+local function PLAY_EXEC_EFFECT_ITEMOPTION(frame)
+	local frame = ui.GetFrame("itemoptionextract");
+	local EXTRACT_RESULT_EFFECT_NAME = frame:GetUserConfig('EXTRACT_RESULT_EFFECT');
+	local EFFECT_SCALE = tonumber(frame:GetUserConfig('EFFECT_SCALE'));
+	local EFFECT_DURATION = tonumber(frame:GetUserConfig('EFFECT_DURATION'));
+	local pic_bg = GET_CHILD_RECURSIVELY(frame, 'pic_bg');
+	if pic_bg == nil then
+		return;
+	end
+	
+	pic_bg:ShowWindow(1)
+	pic_bg:PlayUIEffect(EXTRACT_RESULT_EFFECT_NAME, EFFECT_SCALE, 'EXTRACT_RESULT_EFFECT');
+
+	local do_extract = GET_CHILD_RECURSIVELY(frame, "do_extract")
+	do_extract:ShowWindow(0)
+	ui.SetHoldUI(true);
+
+    ReserveScript('release_ui_lock()', EFFECT_DURATION);
+end
+
 function ON_OPEN_DLG_ITEMOPTIONEXTRACT(frame)
 	frame:ShowWindow(1);	
 end
@@ -637,33 +657,18 @@ function _ITEMOPTIONEXTRACT_EXEC(checkRebuildFlag)
 	local argList = string.format("%d", extractKitIconInfo.type);
 	pc.ReqExecuteTx_Item("EXTRACT_ITEM_OPTION", invItem:GetIESID(), argList)
 	
-	PLAY_EXEC_EFFECT(frame)
-
-	return
+	PLAY_EXEC_EFFECT_ITEMOPTION(frame)
 end
 
 function release_ui_lock()
-    ui.SetHoldUI(false)
-end
-
-function PLAY_EXEC_EFFECT(frame)
+	ui.SetHoldUI(false)
 	local frame = ui.GetFrame("itemoptionextract");
-	local EXTRACT_RESULT_EFFECT_NAME = frame:GetUserConfig('EXTRACT_RESULT_EFFECT');
-	local EFFECT_SCALE = tonumber(frame:GetUserConfig('EFFECT_SCALE'));
-	local EFFECT_DURATION = tonumber(frame:GetUserConfig('EFFECT_DURATION'));
 	local pic_bg = GET_CHILD_RECURSIVELY(frame, 'pic_bg');
 	if pic_bg == nil then
 		return;
 	end
 	
-	pic_bg:ShowWindow(1)
-	pic_bg:PlayUIEffect(EXTRACT_RESULT_EFFECT_NAME, EFFECT_SCALE, 'EXTRACT_RESULT_EFFECT');
-
-	local do_extract = GET_CHILD_RECURSIVELY(frame, "do_extract")
-	do_extract:ShowWindow(0)
-	ui.SetHoldUI(true);
-
-    ReserveScript('release_ui_lock()', EFFECT_DURATION);
+	pic_bg:StopUIEffect('EXTRACT_RESULT_EFFECT', true, 0);		
 end
 
 function _SUCCESS_ITEM_OPTION_EXTRACT()

@@ -17,11 +17,11 @@
 		<richtext name="richtext_1" rect="0 0 120 24" margin="0 63 0 0" layout_gravity="center top" drawbackground="false" fixwidth="false" fontname="white_16_ol" maxwidth="0" resizebytext="true" slideshow="false" spacey="0" textalign="left top" updateparent="false" format="{@st43}%s" param1="value" param1_def="특수 아이템 분해"/>
 		<button name="close" rect="0 0 44 44" margin="0 60 40 0" layout_gravity="right top" LBtnUpArgNum="" LBtnUpScp="ui.CloseFrame('decompose_manager')" MouseOffAnim="btn_mouseoff" MouseOnAnim="btn_mouseover" clicksound="button_click_big" image="testclose_button" oversound="button_over"/>
 		<!-- 탭 -->
-		<tab name="type_Tab" parent="bg" margin="30 110 0 0" rect="0 0 460 40" layout_gravity="left top" MouseOffAnim="btn_mouseoff" MouseOnAnim="btn_mouseover" clicksound="inven_arrange" LBtnUpScp="DECOMPOSE_MANAGER_TAB_CHANGE" itemspc="0" oversound="button_cursor_over_2" skin="tab2"/>
-		<tabitem name="tab_ark" parent="type_Tab" width="115" caption="{@st66b}아크{/}" texttooltip="{@st59}아크 분해{/}" layout_gravity="left top"/>
-		<tabitem name="tab_unique" parent="type_Tab" width="115" caption="{@st66b}여신/마신{/}" texttooltip="{@st59}여신/마신 장비 분해{/}" layout_gravity="left top"/>
-		<tabitem name="tab_misc_legend" parent="type_Tab" width="115" caption="{@st66b}아키스톤{/}" texttooltip="{@st59}아키스톤 분해{/}" layout_gravity="left top"/>
-		<tabitem name="tab_acc_ep12" parent="type_Tab" width="115" caption="{@st66b}액세서리{/}" texttooltip="{@st59}카랄리엔 액세서리 분해{/}" layout_gravity="left top"/>
+		<tab name="type_Tab" parent="bg" margin="30 110 0 0" rect="0 0 460 40" layout_gravity="left top" fixwidth="true" omitbywidth="true" MouseOffAnim="btn_mouseoff" MouseOnAnim="btn_mouseover" clicksound="inven_arrange" LBtnUpScp="DECOMPOSE_MANAGER_TAB_CHANGE" itemspc="0" oversound="button_cursor_over_2" skin="tab2"/>
+		<tabitem name="tab_ark" parent="type_Tab" width="110" caption="{@st66b}아크{/}" texttooltip="{@st59}아크 분해{/}" layout_gravity="left top"/>
+		<tabitem name="tab_unique" parent="type_Tab" width="110" caption="{@st66b}여신/마신{/}" texttooltip="{@st59}여신/마신 장비 분해{/}" layout_gravity="left top"/>
+		<tabitem name="tab_misc_legend" parent="type_Tab" width="110" caption="{@st66b}아키스톤{/}" texttooltip="{@st59}아키스톤 분해{/}" layout_gravity="left top"/>
+		<tabitem name="tab_acc_ep12" parent="type_Tab" width="110" caption="{@st66b}액세서리{/}" texttooltip="{@st59}카랄리엔 액세서리 분해{/}" layout_gravity="left top"/>
 		<!-- 분해 대상 -->
 		<groupbox name="gbox" rect="0 0 520 964" margin="0 110 0 0" layout_gravity="center top" resizebyparent="false" draw="false" hittestbox="false" resizebyresolution="true" scrollbar="false" skin="gem_socket_bg"/>
 		<groupbox name="slotbox" parent="gbox" rect="0 0 520 320" margin="0 25 0 0" layout_gravity="center top" resizebyparent="false" draw="false" hittestbox="false" resizebyresolution="false" scrollbar="false" skin="gem_socket_bg"/>

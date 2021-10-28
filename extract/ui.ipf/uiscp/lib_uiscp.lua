@@ -617,3 +617,6 @@ function FIND_CLASSNAME_LIST_BY_PROP(idspace, propName, propVal)
     return list;
 end
 
+function ENABLE_FRAME(frame,argNum,argStr)
+	frame:SetEnable(1)
+end

@@ -155,6 +155,13 @@
                             </ToolScp>
                         </execList>
                     </Event>
+                    <Event execCount="1" eventName="ForLog">
+                        <execList>
+                            <ToolScp Scp="MGAME_EXEC_ACTORSCP" Client="NO" UseSleep="NO">
+                                <Str Str="SCR_LEGEND_RAID_DPS_RESULT"/>
+                            </ToolScp>
+                        </execList>
+                    </Event>
                 </StageEvents>
             </Stage>
             <Stage Name="Fail" AutoStart="0">
@@ -234,6 +241,13 @@
                                 <Num Num="1"/>
                             </ToolScp>
                             <ToolScp Scp="MGAME_RETURN" Client="NO" UseSleep="NO"/>
+                        </execList>
+                    </Event>
+                    <Event execCount="1" eventName="ForLog">
+                        <execList>
+                            <ToolScp Scp="MGAME_EXEC_ACTORSCP" Client="NO" UseSleep="NO">
+                                <Str Str="SCR_LEGEND_RAID_DPS_RESULT"/>
+                            </ToolScp>
                         </execList>
                     </Event>
                 </StageEvents>
@@ -879,6 +893,13 @@
                             <ToolScp Scp="MGAME_EVT_SCP_TO_MON_CMD" Client="NO" UseSleep="NO">
                                 <MGameObj List="Boss_Glacier/0"/>
                                 <Str Str="SCR_LEGEND_TOP_HATER_CHECK"/>
+                            </ToolScp>
+                        </execList>
+                    </Event>
+                    <Event execCount="1" eventName="ForLog">
+                        <execList>
+                            <ToolScp Scp="MGAME_EXEC_ACTORSCP" Client="NO" UseSleep="NO">
+                                <Str Str="SCR_LEGEND_RAID_DPS_START_PC"/>
                             </ToolScp>
                         </execList>
                     </Event>

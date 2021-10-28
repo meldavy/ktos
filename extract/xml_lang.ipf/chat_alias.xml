@@ -63,5 +63,6 @@
 		<Class ClassID="67" ClassName="/fullmoon" Alias="/달맞이" ConvertWhenSend="1"/>
 		<Class ClassID="66" ClassName="/halloween" Alias="/할로윈" ConvertWhenSend="1"/>
 		<Class ClassID="68" ClassName="/ragana" Alias="/라가나" ConvertWhenSend="1"/>
+		<Class ClassID="69" ClassName="/fihingcat" Alias="/꽁치" ConvertWhenSend="1"/>
 	</Category>
 </idspace>

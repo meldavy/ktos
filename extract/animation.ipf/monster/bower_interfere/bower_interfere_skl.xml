@@ -1,20 +1,26 @@
 <?xml version="1.0" encoding="EUC-KR"?>
 <!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by IMCGames Co., Ltd (IMCGames Co., Ltd) -->
 <ActionDesc>
-	<Particle frame="7" attachNode="Dummy_effect_skl_00" particleName="I_swordtrail029_violet_360" useAttach="false" hiddenObj="false" changeEffect="None" scale="2.5" pause="true" use2DEffect="false" soft2DValue="20"/>
-	<Particle frame="13" attachNode="Dummy_effect_skl" particleName="I_swordtrail057_violet_reverse" useAttach="false" hiddenObj="false" changeEffect="None" scale="1.5" pause="true" use2DEffect="false" soft2DValue="20"/>
-	<Particle frame="7" attachNode="Bip001 Pelvis" particleName="I_force018_trail_psychokinesis3_7" useAttach="false" hiddenObj="false" changeEffect="None" scale="2.5" pause="true" use2DEffect="false" soft2DValue="20"/>
-	<Particle frame="7" attachNode="Dummy_root" particleName="F_spread_out026_violet" useAttach="false" hiddenObj="false" changeEffect="None" scale="1" pause="true" use2DEffect="false" soft2DValue="20"/>
-	<Particle frame="13" attachNode="Dummy_root" particleName="F_spread_out026_violet" useAttach="false" hiddenObj="false" changeEffect="None" scale="1.2" pause="true" use2DEffect="false" soft2DValue="20"/>
-	<Shockwave frame="13" type="2" intensity="1" frequency="80" duration="0.1" range="300"/>
-	<BlendOn frame="0" R="0" G="0" B="0" A="50"/>
-	<BlendOn frame="7" R="115" G="80" B="130" A="100"/>
-	<BlendOn frame="8" R="30" G="20" B="40" A="100"/>
-	<BlendOn frame="9" R="0" G="0" B="0" A="50"/>
-	<BlendOn frame="13" R="180" G="130" B="200" A="100"/>
-	<BlendOn frame="14" R="135" G="95" B="150" A="100"/>
-	<BlendOn frame="15" R="60" G="35" B="70" A="100"/>
-	<BlendOn frame="16" R="30" G="20" B="40" A="100"/>
-	<BlendOn frame="17" R="15" G="10" B="20" A="200"/>
-	<BlendOff frame="18" R="0" G="0" B="0" A="0"/>
+    <BlendOn frame="0" R="0" G="0" B="0" A="50"/>
+    <Sound frame="3.00" soundFile="skl_eff_atk_move_s12"/>
+    <Sound frame="5.00" soundFile="skl_eff_atk_move_s_4"/>
+    <Particle frame="7" attachNode="Dummy_effect_skl_00" particleName="I_swordtrail029_violet_360" useAttach="false" hiddenObj="false" changeEffect="None" scale="2.5" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Particle frame="7" attachNode="Bip001 Pelvis" particleName="I_force018_trail_psychokinesis3_7" useAttach="false" hiddenObj="false" changeEffect="None" scale="2.5" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Particle frame="7" attachNode="Dummy_root" particleName="F_spread_out026_violet" useAttach="false" hiddenObj="false" changeEffect="None" scale="1" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <BlendOn frame="7" R="115" G="80" B="130" A="100"/>
+    <Sound frame="7.00" soundFile="skl_eff_short_impact_whoosh_3"/>
+    <BlendOn frame="8" R="30" G="20" B="40" A="100"/>
+    <Sound frame="8.00" soundFile="mon_voice6_action_2"/>
+    <BlendOn frame="9" R="0" G="0" B="0" A="50"/>
+    <Sound frame="10.00" soundFile="skl_eff_thsword_whoosh"/>
+    <Sound frame="10.00" soundFile="skl_eff_atk_move_s_8"/>
+    <Particle frame="13" attachNode="Dummy_effect_skl" particleName="I_swordtrail057_violet_reverse" useAttach="false" hiddenObj="false" changeEffect="None" scale="1.5" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Particle frame="13" attachNode="Dummy_root" particleName="F_spread_out026_violet" useAttach="false" hiddenObj="false" changeEffect="None" scale="1.2" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Shockwave frame="13" type="2" intensity="1" frequency="80" duration="0.1" range="300"/>
+    <BlendOn frame="13" R="180" G="130" B="200" A="100"/>
+    <BlendOn frame="14" R="135" G="95" B="150" A="100"/>
+    <BlendOn frame="15" R="60" G="35" B="70" A="100"/>
+    <BlendOn frame="16" R="30" G="20" B="40" A="100"/>
+    <BlendOn frame="17" R="15" G="10" B="20" A="200"/>
+    <BlendOff frame="18" R="0" G="0" B="0" A="0"/>
 </ActionDesc>

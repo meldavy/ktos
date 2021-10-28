@@ -375,8 +375,10 @@ function WORLDMAP2_TOKEN_WARP(mapName)
 end
 
 function WORLDMAP2_TOKEN_WARP_REQUEST(mapName)
-    RequestTokenWarp(mapName)
-    WORLDMAP2_CLOSE()
+	movie.InteWarp(session.GetMyHandle(), string.format("/intewarpByToken %s", mapName))
+	packet.ClientDirect("InteWarp")
+    
+	WORLDMAP2_CLOSE()
 end
 
 -- 즐겨찾기 목록

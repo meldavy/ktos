@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ActionDesc>
+    <Sound frame="0.00" soundFile="skl_eff_whoosh_2"/>
+    <Sound frame="1.58" soundFile="skl_eff_atk_move_l_14"/>
+    <Sound frame="36.00" soundFile="skl_eff_atk_move_l_10"/>
+    <Sound frame="37.00" soundFile="skl_eff_atk_move_s_11"/>
+    <Sound frame="42.78" soundFile="mon_lecifer_wing"/>
+    <Sound frame="62.32" soundFile="mon_lecifer_wing"/>
+</ActionDesc>

@@ -143,7 +143,6 @@ ClassID,Arg1,Arg2,RecipeTime,SuccessRatio,LevelByFail,TargetItemCnt,Item_1_1_Cnt
 3324,5,0,8,0,0,1,49000,0,0,0,0,0,0,0,0,0,0,PVP_MINE_24,PVPMine,Recipe,,Drag,Action,Drag,Drag,,,,CRAFT,Hat_628019,,,misc_pvp_mine2,,,,,,
 3325,5,0,8,0,0,1,49000,0,0,0,0,0,0,0,0,0,0,PVP_MINE_25,PVPMine,Recipe,,Drag,Action,Drag,Drag,,,,CRAFT,Hat_628071,,,misc_pvp_mine2,,,,,,
 3326,5,0,8,0,0,1,49000,0,0,0,0,0,0,0,0,0,0,PVP_MINE_26,PVPMine,Recipe,,Drag,Action,Drag,Drag,,,,CRAFT,Hat_628012,,,misc_pvp_mine2,,,,,,
-3327,5,0,8,0,0,1,1000,0,0,0,0,0,0,0,0,0,0,PVP_MINE_27,PVPMine,Recipe,,Drag,Action,Drag,Drag,,,,CRAFT,ChallengeModeReset_NoTrade,,PVP_MINE_TradeCount6,misc_pvp_mine2,,,,,,Day
 3328,5,0,8,0,0,1,200,0,0,0,0,0,0,0,0,0,0,PVP_MINE_28,PVPMine,Recipe,,Drag,Action,Drag,Drag,,,,CRAFT,WeeklyBossDEFpotion,,,misc_pvp_mine2,,,,,,
 3329,5,0,8,0,0,1,5000,0,0,0,0,0,0,0,0,0,0,PVP_MINE_29,PVPMine,Recipe,,Drag,Action,Drag,Drag,,,,CRAFT,RVR_BK_MEDAL_BORUTOS_KAPAS_1,,PVP_MINE_TradeCount7,misc_pvp_mine2,,,,,,Day
 3330,5,0,8,0,0,1,2000,0,0,0,0,0,0,0,0,0,0,PVP_MINE_30,PVPMine,Recipe,,Drag,Action,Drag,Drag,,,,CRAFT,misc_gemExpStone09_Team,,,misc_pvp_mine2,,,,,,
@@ -153,9 +152,12 @@ ClassID,Arg1,Arg2,RecipeTime,SuccessRatio,LevelByFail,TargetItemCnt,Item_1_1_Cnt
 3334,5,0,8,0,0,1,20000,0,0,0,0,0,0,0,0,0,0,PVP_MINE_34,PVPMine,Recipe,,Drag,Action,Drag,Drag,,,,CRAFT,WeeklyBossReductionPotion_Team,,PVP_MINE_TradeCount9,misc_pvp_mine2,,,,,,Day
 3335,5,0,8,0,0,1,1000,0,0,0,0,0,0,0,0,0,0,PVP_MINE_35,PVPMine,Recipe,,Drag,Action,Drag,Drag,,,,CRAFT,Ancient_CardBook_Choice,,PVP_MINE_TradeCount11,misc_pvp_mine2,,,,,,Day
 3336,5,0,8,0,0,1,300,0,0,0,0,0,0,0,0,0,0,PVP_MINE_36,PVPMine,Recipe,,Drag,Action,Drag,Drag,,,,CRAFT,Challenge_RepeatHealPotion,,PVP_MINE_TradeCount5,misc_pvp_mine2,,,,,,Day
-3337,5,0,8,0,0,1,3000,0,0,0,0,0,0,0,0,0,0,PVP_MINE_37,PVPMine,Recipe,,Drag,Action,Drag,Drag,,,,CRAFT,ChallengeExpertModeCountUp_NoTrade,,PVP_MINE_TradeCount4,misc_pvp_mine2,,,,,,Day
 3338,5,0,8,0,0,1,10000,0,0,0,0,0,0,0,0,0,0,PVP_MINE_38,PVPMine,Recipe,,Drag,Action,Drag,Drag,,,,CRAFT,Galimybe_box,,,misc_pvp_mine2,,,,,,
 3339,5,0,8,0,0,1,10000,0,0,0,0,0,0,0,0,0,0,PVP_MINE_39,PVPMine,Recipe,,Drag,Action,Drag,Drag,,,,CRAFT,SoloRaidCntReset_Team,,PVP_MINE_TradeCount12,misc_pvp_mine2,,,,,,Week
+3340,5,0,8,0,0,1,1000,0,0,0,0,0,0,0,0,0,0,PVP_MINE_40,PVPMine,Recipe,,Drag,Action,Drag,Drag,,,,CRAFT,ChallengeModeReset_1d,,PVP_MINE_TradeCount13,misc_pvp_mine2,,,,,,Week
+3341,5,0,8,0,0,1,1000,0,0,0,0,0,0,0,0,0,0,PVP_MINE_41,PVPMine,Recipe,,Drag,Action,Drag,Drag,,,,CRAFT,ChallengeModeReset_1d,,PVP_MINE_TradeCount15,misc_pvp_mine2,,,,,,Day
+3342,5,0,8,0,0,1,3000,0,0,0,0,0,0,0,0,0,0,PVP_MINE_42,PVPMine,Recipe,,Drag,Action,Drag,Drag,,,,CRAFT,ChallengeExpertModeCountUp_1d,,PVP_MINE_TradeCount14,misc_pvp_mine2,,,,,,Week
+3343,5,0,8,0,0,1,3000,0,0,0,0,0,0,0,0,0,0,PVP_MINE_43,PVPMine,Recipe,,Drag,Action,Drag,Drag,,,,CRAFT,ChallengeExpertModeCountUp_1d,,PVP_MINE_TradeCount16,misc_pvp_mine2,,,,,,Day
 3401,5,0,8,0,0,1,5,0,0,0,0,0,0,0,0,0,0,DailyRewardShop1_1,DailyRewardShop,Recipe,,Drag,Action,Drag,Drag,,,,CRAFT,Premium_Enchantchip14_Team,,,misc_0533,,,,,,
 3402,5,0,8,0,0,1,5,0,0,0,0,0,0,0,0,0,0,DailyRewardShop1_2,DailyRewardShop,Recipe,,Drag,Action,Drag,Drag,,,,CRAFT,Premium_Mystic_Glass_Event,,,misc_0533,,,,,,
 3403,5,0,8,0,0,1,5,0,0,0,0,0,0,0,0,0,0,DailyRewardShop1_3,DailyRewardShop,Recipe,,Drag,Action,Drag,Drag,,,,CRAFT,Premium_awakeningStone14_Team,,,misc_0533,,,,,,
@@ -628,3 +630,4 @@ ClassID,Arg1,Arg2,RecipeTime,SuccessRatio,LevelByFail,TargetItemCnt,Item_1_1_Cnt
 7524,5,0,8,0,0,1,500,0,0,0,0,0,0,0,0,0,0,LvUpShop2010_24,LvUpShop2010,Recipe,,Drag,Action,Drag,Drag,,,,CRAFT,Event_HiddenAbility_MasterPiece,,EVENT_2010_LVUP_SHOP_24,Event_LevelUP_Jewel,,,,,,
 7525,5,0,8,0,0,1,50,0,0,0,0,0,0,0,0,0,0,LvUpShop2010_25,LvUpShop2010,Recipe,,Drag,Action,Drag,Drag,,,,CRAFT,RestartCristal,,EVENT_2010_LVUP_SHOP_25,Event_LevelUP_Jewel,,,,,,
 7526,5,0,8,0,0,1,500,0,0,0,0,0,0,0,0,0,0,LvUpShop2010_26,LvUpShop2010,Recipe,,Drag,Action,Drag,Drag,,,,CRAFT,Event_irredians_accessory_box,,EVENT_2010_LVUP_SHOP_26,Event_LevelUP_Jewel,,,,,,
+75300,5,0,8,0,0,30,1,0,0,0,0,0,0,0,0,0,0,FishingShop2011_1,FishingShop2011,Recipe,,Drag,Action,Drag,Drag,,,,CRAFT,Event_2011_mudfish,,,Silver_Fish,,,,,,
