@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by imc (imc) -->
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by imc (imc) -->
 <!-- edited with XMLSpy v2008 sp1 (http://www.altova.com) by MintPC (Mi) -->
 <skinset name="Base">
 	<skinlist category="frames">
@@ -5435,6 +5435,39 @@
 			<img name="bottomleft" imgrect="80 172 19 7"/>
 			<img name="bottomcore" imgrect="100 172 21 7"/>
 			<img name="bottomright" imgrect="122 172 19 7"/>
+		</skin>
+		<skin name="hero_btn_green2" texture="\skin\hero_skin.tga">
+			<img name="topleft" imgrect="623 324 33 25"/>
+			<img name="topcore" imgrect="657 324 89 25"/>
+			<img name="topright" imgrect="747 324 33 25"/>
+			<img name="bodyleft" imgrect="623 350 33 11"/>
+			<img name="bodycore" imgrect="657 350 89 11"/>
+			<img name="bodyright" imgrect="747 350 33 11"/>
+			<img name="bottomleft" imgrect="623 362 33 20"/>
+			<img name="bottomcore" imgrect="657 362 89 20"/>
+			<img name="bottomright" imgrect="747 362 33 20"/>
+		</skin>
+		<skin name="hero_btn_green2_cursoron" texture="\skin\hero_skin.tga">
+			<img name="topleft" imgrect="623 383 33 25"/>
+			<img name="topcore" imgrect="657 383 89 25"/>
+			<img name="topright" imgrect="747 383 33 25"/>
+			<img name="bodyleft" imgrect="623 409 33 11"/>
+			<img name="bodycore" imgrect="657 409 89 11"/>
+			<img name="bodyright" imgrect="747 409 33 11"/>
+			<img name="bottomleft" imgrect="623 421 33 20"/>
+			<img name="bottomcore" imgrect="657 421 89 20"/>
+			<img name="bottomright" imgrect="747 421 33 20"/>
+		</skin>
+		<skin name="hero_btn_green2_clicked" texture="\skin\hero_skin.tga">
+			<img name="topleft" imgrect="623 442 33 25"/>
+			<img name="topcore" imgrect="657 442 89 25"/>
+			<img name="topright" imgrect="747 442 33 25"/>
+			<img name="bodyleft" imgrect="623 468 33 11"/>
+			<img name="bodycore" imgrect="657 468 89 11"/>
+			<img name="bodyright" imgrect="747 468 33 11"/>
+			<img name="bottomleft" imgrect="623 480 33 20"/>
+			<img name="bottomcore" imgrect="657 480 89 20"/>
+			<img name="bottomright" imgrect="747 480 33 20"/>
 		</skin>
 	</skinlist>
 	<skinlist category="buttons">
