@@ -5658,11 +5658,11 @@ end
 
 function SCR_Get_BloodCurse_ratio(skill)
     local pc = GetSkillOwner(skill);
-    local value = 60
+    local value = 30
     
     local abil = GetAbility(pc, 'Featherfoot12')
     if abil ~= nil and 1 == abil.ActiveState then
-        value = 40
+        value = 20
     end
     
     return value;

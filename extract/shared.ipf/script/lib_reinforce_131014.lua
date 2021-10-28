@@ -96,6 +96,10 @@ function REINFORCE_ABLE_131014(item, moru_item)
     end
     
     if moru_item ~= nil and TryGetProp(moru_item, 'StringArg2', 'None') == 'contents_moru' then  -- 레전드 전용 모루인 경우        
+        if TryGetProp(item, 'Reinforce_2', 0) >= 31 then -- 콘텐츠 모루 인 경우, 31강 이상에서 사용 불가
+            return 0
+        end
+
         if  TryGetProp(moru_item, 'StringArg', 'None') == "Luciferi" then
             if TryGetProp(item, 'StringArg', 'None') ~= "Luciferi" and TryGetProp(item, 'StringArg', 'None') ~= "Acc_EP12" then
                 return 0
@@ -235,10 +239,10 @@ function GET_REINFORCE_PRICE(fromItem, moruItem, pc)
         value = 0;
     end
     
-    if moruItem.StringArg == 'DIAMOND' and reinforcecount > 1 then
+    if  moruItem.StringArg == 'DIAMOND' and reinforcecount > 1 then
         value = value + (value_diamond * 2.1)
-    elseif TryGetProp(moruItem, 'StringArg2', 'None') == 'contents_moru' and reinforcecount > 1 then -- 콘텐츠 모루는 강화 비용 3배
-        value = value * 3
+    elseif TryGetProp(moruItem, 'StringArg2', 'None') == 'contents_moru' and reinforcecount > 1 then -- 콘텐츠 모루는 강화 비용 3배        
+        value = value + (value_diamond * 2.1)
     end
 
     -- 440레벨 장비 부터는 item_IncreaseCost.xml 테이블의 영향을 받아 비용 증가

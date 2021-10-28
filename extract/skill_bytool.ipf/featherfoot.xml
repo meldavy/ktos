@@ -44,8 +44,24 @@
                     <Num Num="75"/>
                 </Scp>
                 <Scp Client="NO" Scp="SKL_CONSUME_HP" Time="1300" UseSleep="NO">
-                    <Num FuncTxt="local value = 0; local ratio = 0.6;  local pc = GetSkillOwner(obj);  local abilFeatherfoot12 = GetAbility(pc, 'Featherfoot12'); if abilFeatherfoot12 ~= nil and abilFeatherfoot12.ActiveState == 1 then     ratio = 0.4; end  value = self.MHP * ratio;  local abilFeatherfoot16 = GetAbility(pc, 'Featherfoot16'); if (abilFeatherfoot16 ~= nil and abilFeatherfoot16.ActiveState == 1) or IsVillage(self) == &quot;YES&quot; then     if value &gt;= self.HP then         value = self.HP - 1;     end end  return math.floor(value);" Num="15000" UseFunc="1"/>
+                    <Num FuncTxt="local value = 0; local ratio = 0.3;  local pc = GetSkillOwner(obj);  local abilFeatherfoot12 = GetAbility(pc, 'Featherfoot12'); if abilFeatherfoot12 ~= nil and abilFeatherfoot12.ActiveState == 1 then     ratio = 0.2; end  value = self.MHP * ratio;  local abilFeatherfoot16 = GetAbility(pc, 'Featherfoot16'); if (abilFeatherfoot16 ~= nil and abilFeatherfoot16.ActiveState == 1) or IsVillage(self) == &quot;YES&quot; then     if value &gt;= self.HP then         value = self.HP - 1;     end end  return math.floor(value);" Num="15000" UseFunc="1"/>
                 </Scp>
+                <Scp Client="NO" Scp="SKL_SET_TARGET_CIRCLE" Time="1000" UseSleep="NO">
+					<Pos Angle="0" Dist="0"/>
+					<Num Num="75"/>
+					<Num Num="50"/>
+					<Num Num="2"/>
+					<Num Num="0"/>
+					<Num Num="1"/>
+				</Scp>
+				<Scp Client="NO" Scp="SKL_TGT_BUFF" Time="1000" UseSleep="NO">
+					<Str Str="BloodCurse_Debuff"/>
+					<Num FuncTxt="return  obj.Level" Num="1" UseFunc="1"/>
+					<Num Num="0"/>
+					<Num FuncTxt="return 7000 + 500 * obj.Level + (GET_ABIL_LEVEL(self, 'Featherfoot12') * 7000)" Num="0" UseFunc="1"/>
+					<Num Num="1"/>
+					<Num Num="100"/>
+				</Scp>
                 <Scp Scp="SKL_BUFF" Client="NO" UseSleep="NO" Time="1300">
                     <Str Str="BloodCurse_Heal_Buff"/>
                     <Num Num="1" UseFunc="1" FuncTxt="return obj.Level"/>

@@ -1757,11 +1757,6 @@ function _BUY_MARKET_ITEM(row, isRecipeSearchBox)
 		return;
 	end
 
-	if IsGreaterThanForBigNumber(totalPrice, GET_TOTAL_MONEY_STR()) == 1 then
-		ui.SysMsg(ClMsg("NotEnoughMoney"));
-		return;
-	end
-
 	local limitTradeStr = GET_REMAIN_MARKET_TRADE_AMOUNT_STR();	
 	if limitTradeStr ~= nil then
 		if IsGreaterThanForBigNumber(totalPrice, limitTradeStr) == 1 then			
@@ -1769,7 +1764,7 @@ function _BUY_MARKET_ITEM(row, isRecipeSearchBox)
 			return;
 		end		
 	end
-
+	
 	market.ReqBuyItems();	
 end
 
