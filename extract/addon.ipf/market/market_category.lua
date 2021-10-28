@@ -103,20 +103,21 @@ local function ADD_SUB_CATEGORY(detailBox, parentCategory, subCategoryList)
 		if category == nil then
 			category = 'ShowAll';
 		end
-		
-		local subCateCtrlset = subCateBox:CreateControl('groupbox', 'SUB_CATE_'..category, 0, 0, detailBox:GetWidth(), 20);
-		AUTO_CAST(subCateCtrlset);
-		subCateCtrlset:SetSkinName('None');
-		subCateCtrlset:SetUserValue('PARENT_CATEGORY', parentCategory);
-		subCateCtrlset:SetUserValue('CATEGORY', category);
-		subCateCtrlset:SetEventScript(ui.LBUTTONUP, 'MARKET_SUB_CATEOGRY_CLICK');
-		subCateCtrlset:EnableScrollBar(0);
+		if parentCategory == 'Gem' and category ~= 'Relic' then
+			local subCateCtrlset = subCateBox:CreateControl('groupbox', 'SUB_CATE_'..category, 0, 0, detailBox:GetWidth(), 20);
+			AUTO_CAST(subCateCtrlset);
+			subCateCtrlset:SetSkinName('None');
+			subCateCtrlset:SetUserValue('PARENT_CATEGORY', parentCategory);
+			subCateCtrlset:SetUserValue('CATEGORY', category);
+			subCateCtrlset:SetEventScript(ui.LBUTTONUP, 'MARKET_SUB_CATEOGRY_CLICK');
+			subCateCtrlset:EnableScrollBar(0);
 
-		local text = subCateCtrlset:CreateControl('richtext', 'text', 20, 0, 100, 20);
-		text:SetGravity(ui.LEFT, ui.CENTER_VERT);
-		text:SetFontName('brown_16_b');
-		text:SetText(ClMsg(category));
-		text:EnableHitTest(0);
+			local text = subCateCtrlset:CreateControl('richtext', 'text', 20, 0, 100, 20);
+			text:SetGravity(ui.LEFT, ui.CENTER_VERT);
+			text:SetFontName('brown_16_b');
+			text:SetText(ClMsg(category));
+			text:EnableHitTest(0);
+		end
 	end
 
 	GBOX_AUTO_ALIGN(subCateBox, 2, 2, 0, true, true);
@@ -228,7 +229,7 @@ function DRAW_DETAIL_CATEGORY(frame, selectedCtrlset, subCategoryList, forceOpen
 		detailBox:Resize(detailBox:GetWidth(), _ypos);
 		return detailBox;
 	end
-
+	
 	local ypos = ADD_SUB_CATEGORY(detailBox, parentCategory, subCategoryList);
 	ypos = ADD_LEVEL_RANGE(detailBox, ypos, parentCategory);
 	ypos = ADD_ITEM_GRADE(detailBox, ypos, parentCategory);
