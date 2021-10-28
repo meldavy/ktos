@@ -520,6 +520,7 @@ function EXEC_GUILD_CHANGE_DUTY(frame, ctrl)
 	local memberInfo = session.party.GetPartyMemberInfoByName(PARTY_GUILD, name);
 		
 	party.ReqPartyNameChange(PARTY_GUILD, PARTY_STRING_DUTY, duty, memberInfo:GetAID());
+	print(PARTY_GUILD, PARTY_STRING_DUTY, duty, memberInfo:GetAID())
 	frame:ShowWindow(0);
 
 end

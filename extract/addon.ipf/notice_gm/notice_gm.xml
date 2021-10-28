@@ -2,9 +2,9 @@
 <uiframe name="notice_gm" x="0" y="0" width="804" height="350" create="open">
     <frame title="알림" layout_gravity="center top" margin="0 160 0 0"/>
     <skin frameskin="none"/>
-	<option closebutton="false" visible="false"/>
+	<option closebutton="false" visible="false" alwaysVisible="true"/>
     <draw drawtitlebar="false" drawframe="true"/>
-    <layer layerlevel="150"/>
+    <layer layerlevel="100"/>
     <input hittest="false"/>
     <animation frameOpenAnim="dialog_select_start" frameCloseAnim="dialog_select_end"/>
     <controls>
