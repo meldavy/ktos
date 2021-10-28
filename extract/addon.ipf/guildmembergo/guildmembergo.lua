@@ -196,7 +196,7 @@ function ACCEPT_GUILD_SKILL(aid, skillType)
 						--200827_SEASON
 						local IsSeasonSvr = IS_SEASON_SERVER()
 						if IsSeasonSvr == "YES" then
-							addTime = 720
+							addTime = 10080;
 						end
 
                 	    local enterEnableTime = imcTime.AddSec(lastTime, (addTime*60));
