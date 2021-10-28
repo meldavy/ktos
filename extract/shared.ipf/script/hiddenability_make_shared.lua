@@ -16,6 +16,8 @@ job_list['Archer'] = {}
 job_list['Cleric'] = {}
 job_list['Scout'] = {}
 
+local high_ability = {}
+
 local function _StringSplit(str, delimStr)  
   local _tempStr = str;
   local _result = { };
@@ -77,7 +79,7 @@ function RUN_PARSE_HIDDEN_ABILITY_ITEM()
   end
 
   local idx = 2040001
-  for idx = 2040001, 2040557 do
+  for idx = 2040001, 2040558 do
       local cls = GetClassByType('Item', idx)
       if cls ~= nil then
           local job = TryGetProp(cls, 'AbilityIdspace', 'None')
@@ -92,6 +94,15 @@ function RUN_PARSE_HIDDEN_ABILITY_ITEM()
           if item_name ~= 'None' and TryGetProp(cls, 'EnableItem', 'None') == 'YES' then
               table.insert(arts_dic[ctrl][cls_name], item_name)              
           end
+      end
+  end
+
+  list, cnt = GetClassList("HiddenAbility_Reinforce")
+  for i = 0, cnt - 1 do
+      local cls  = GetClassByIndexFromList(list, i)
+      local name = TryGetProp(cls, 'HiddenReinforceAbil', 'None')        
+      if name ~= 'None' then
+          high_ability['HiddenAbility_' .. name] = 1
       end
   end
 end
@@ -142,6 +153,15 @@ function IS_HIDDENABILITY_DECOMPOSE_BOOK_MATERIAL(itemObj)
     end
     
     return false
+end
+
+-- 상급 강화인가?
+function IS_HIGH_HIDDENABILITY(class_name)
+    if high_ability[class_name] == 1 then
+      return true
+    else
+      return false
+    end
 end
 
 -- 시작의 신비한 서 인가

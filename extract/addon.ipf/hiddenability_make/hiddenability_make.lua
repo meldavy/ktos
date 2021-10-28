@@ -22,7 +22,7 @@ function HIDDENABILITY_MAKE_OPEN(frame)
     HIDDENABILITY_CONTROL_ENABLE(frame, 1);
 
     INVENTORY_SET_CUSTOM_RBTNDOWN("HIDDENABILITY_MAKE_ITEM_RBTNDOWN");
-    
+    frame:SetUserValue('IsHighAbility', 0)    
 	ui.OpenFrame("inventory");	
 end
 
@@ -219,6 +219,9 @@ function HIDDENABILITY_MAKE_MASTER_PIECE_REG(frame, guid)
     SET_SLOT_ITEM(matslot, invitem);
     frame:SetUserValue("MATERIAL_1_GUID", guid);
 
+    local edit = GET_CHILD_RECURSIVELY(frame, "once_edit");
+    edit:SetText('1');
+
     HIDDENABILITY_MAKE_JOB_DROPLIST_UPDATE(frame);
     HIDDENABILITY_MAKE_NEED_MATERIAL_COUNT_UPDATE(frame);
 end
@@ -256,6 +259,10 @@ function HIDDENABILITY_MAKE_NEED_MATERIAL_COUNT_UPDATE(frame)
         curCnt = GET_TOTAL_HIDDENABILITY_MASTER_PIECE_COUNT(pc, isNoevice);
     end
     
+    if frame:GetUserIValue("IsHighAbility") == 0 then
+        edit:SetText("1")
+    end
+
     local needCnt = HIDDENABILITY_MAKE_NEED_MASTER_PIECE_COUNT() * tonumber(edit:GetText());
     local style = frame:GetUserConfig("ENOUPH_STYLE");
     if curCnt < needCnt then
@@ -269,9 +276,9 @@ function HIDDENABILITY_MAKE_NEED_MATERIAL_COUNT_UPDATE(frame)
     matslot_1_count:ShowWindow(1);
 end
 
-function HIDDENABILITY_MAKE_ONCE_COUNT_RESET(frame)
+function HIDDENABILITY_MAKE_ONCE_COUNT_RESET(frame)    
     local edit = GET_CHILD_RECURSIVELY(frame, "once_edit");
-    edit:SetText("0");
+    edit:SetText("1");
 end
 
 function HIDDENABILITY_MAKE_ONCE_COUNT_TYPING(parent, ctrl)
@@ -285,10 +292,15 @@ end
 
 function HIDDENABILITY_MAKE_ONCE_COUNT_UP_CLICK(parent, ctrl)
     local edit = GET_CHILD(parent, "once_edit");
-
     local curCnt = tonumber(edit:GetText());
     local upCnt = curCnt + 1;
-    edit:SetText(upCnt);
+
+    local frame = ui.GetFrame("hiddenability_make");
+    if frame:GetUserIValue('IsHighAbility') == 0 then
+        edit:SetText("1");
+    else
+        edit:SetText(upCnt);
+    end
 
     local frame = parent:GetTopParentFrame();
     HIDDENABILITY_MAKE_NEED_MATERIAL_COUNT_UPDATE(frame);
@@ -301,6 +313,10 @@ function HIDDENABILITY_MAKE_ONCE_COUNT_DOWN_CLICK(parent, ctrl)
     local downCnt = curCnt - 1;
     if downCnt < 1 then
         downCnt = 1;
+    end
+
+    if downCnt < 1 then
+        downCnt = 1
     end
 
     edit:SetText(downCnt);
@@ -317,7 +333,7 @@ function HIDDENABILITY_MAKE_ARTS_RESET(frame)
     arts_text:ShowWindow(0);
 end
 
-function HIDDENABILITY_MAKE_ARTS_UPDATE(frame, artsClassName)
+function HIDDENABILITY_MAKE_ARTS_UPDATE(frame, artsClassName)    
     frame:SetUserValue("ARTS_CLASSNAME", artsClassName);
 
     local cls = GetClass("Item", artsClassName);
@@ -333,6 +349,13 @@ function HIDDENABILITY_MAKE_ARTS_UPDATE(frame, artsClassName)
     arts_text:SetTextByKey("value", "");
     arts_text:SetTextByKey("value", cls.Name);
     arts_text:ShowWindow(1);
+    
+    if IS_HIGH_HIDDENABILITY(artsClassName) == true then
+        frame:SetUserValue('IsHighAbility', 1)    
+    else
+        frame:SetUserValue('IsHighAbility', 0)
+        HIDDENABILITY_MAKE_NEED_MATERIAL_COUNT_UPDATE(frame)        
+    end
 end
 
 function HIDDENABILITY_CONTROL_ENABLE(frame, isenable)
