@@ -99,7 +99,7 @@
 		<Child Name="PATK_RATE_MUL_BM"/>
 		<Child Name="EQUIP_PATK"/>
 		<Child Name="EQUIP_PATK_MAIN"/>
-	</hierarchy>
+		</hierarchy>
 	<hierarchy Name="MAXPATK">
 		<Child Name="STR"/>
 		<Child Name="PATK_BM"/>
@@ -113,7 +113,7 @@
 		<Child Name="PATK_RATE_MUL_BM"/>
 		<Child Name="EQUIP_PATK"/>
 		<Child Name="EQUIP_PATK_MAIN"/>
-	</hierarchy>
+		</hierarchy>
 	<hierarchy Name="MINPATK_SUB">
 		<Child Name="STR"/>
 		<Child Name="PATK_BM"/>
@@ -217,7 +217,7 @@
 		<Child Name="MATKADJ_RATE_BM"/>
 		<Child Name="MATK_RATE_MUL_BM"/>
 		<Child Name="EQUIP_MATK"/>
-	</hierarchy>
+		</hierarchy>
 	<hierarchy Name="MAXMATK">
 		<Child Name="INT"/>
 		<Child Name="MATK_BM"/>
@@ -226,7 +226,7 @@
 		<Child Name="MAXMATK_RATE_BM"/>
 		<Child Name="MATK_RATE_MUL_BM"/>
 		<Child Name="EQUIP_MATK"/>
-	</hierarchy>
+		</hierarchy>
 	<hierarchy Name="ADD_OverHeat">
 		<Child Name="INT"/>
 	</hierarchy>
@@ -371,6 +371,10 @@
 		<Child Name="Holy_Atk_BM"/>
 		<Child Name="Dark_Atk_BM"/>
 		<Child Name="Add_Damage_Atk_BM"/>
+		<Child Name="MINPATK"/>
+		<Child Name="MAXPATK"/>
+		<Child Name="MINMATK"/>
+		<Child Name="MAXMATK"/>
 	</hierarchy>
 	<hierarchy Name="MiddleSize_Def">
 		<Child Name="MiddleSize_Def_BM"/>

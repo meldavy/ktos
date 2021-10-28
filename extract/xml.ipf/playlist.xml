@@ -123,6 +123,7 @@
 	<BGM PlayListName="master_Cryomancer" Volume="130" FileName1="tos_SFA_Cryomancer_Escarcero_onda(short).mp3"/>
 	<BGM PlayListName="master_Psychokino" Volume="130" FileName1="tos_SFA_Psychokino_Rondo_Miserabile(short).mp3"/>
 	<BGM PlayListName="master_Arquebusier" Volume="130" FileName1="tos_Initium_Arquebusier_Lyudmila(short).mp3"/>
+	<BGM PlayListName="master_Luchador" Volume="130" FileName1="tos_SFA_Polka_of_Wilderness.mp3"/>
 	<BGM PlayListName="NPC_CHRISTMASTREE01" Volume="120" FileName1="Orgel_No_Matter_Christmas.mp3"/>
 	<BGM PlayListName="NPC_CHRISTMASTREE02" Volume="120" FileName1="Orgel_Dont_Cry.mp3"/>
 	<BGM PlayListName="raid_velcoffer" Volume="120" FileName1="tos_Drogo_Uno_Impetu.mp3" FileName2="tos_Drogo_Velvet_Penetration.mp3" FileName3="tos_Gaudium_Wrong_Theory.mp3"/>

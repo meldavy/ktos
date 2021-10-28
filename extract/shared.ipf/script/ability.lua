@@ -2696,13 +2696,12 @@ function SCR_ABIL_Paladin43_INACTIVE(self, ability)
     end
 end
 
-function SCR_ABIL_Swordman28_ACTIVE(self, ability)    
-    SetExProp(self, 'provoke_active', 1)
-    
+function SCR_ABIL_Swordman28_ACTIVE(self, ability)
+
 end
 
 function SCR_ABIL_Swordman28_INACTIVE(self, ability)    
-    SetExProp(self, 'provoke_active', 0)
+
 end
 
 function SCR_ABIL_Sapper42_ACTIVE(self, ability)
@@ -3289,33 +3288,39 @@ function SCR_ABIL_STAFFMASTERY_Casting_INACTIVE(self, ability)
 end
 
 function SCR_ABIL_Schwarzereiter35_ACTIVE(self, ability)
-    if IsBuffApplied(self, "Schwarzereiter35_Buff") == "NO" then
-        AddBuff(self, self, "Schwarzereiter35_Buff", 1, 0, 0, 1);
-    end
+    local lv = TryGetProp(ability, "Level", 0)
+    SetExProp(self, "IS_ADDDAMAGE_ABIL", lv)
 end
 
 function SCR_ABIL_Schwarzereiter35_INACTIVE(self, ability)
-    RemoveBuff(self, "Schwarzereiter35_Buff");
+    SetExProp(self, "IS_ADDDAMAGE_ABIL", 0)
 end
 
 function SCR_ABIL_QuarrelShooter38_ACTIVE(self, ability)
-    if IsBuffApplied(self, "QuarrelShooter38_Buff") == "NO" then
-        AddBuff(self, self, "QuarrelShooter38_Buff", 1, 0, 0, 1);
-    end
+    local lv = TryGetProp(ability, "Level", 0)
+    SetExProp(self, "IS_ADDDAMAGE_ABIL", lv)
 end
 
 function SCR_ABIL_QuarrelShooter38_INACTIVE(self, ability)
-    RemoveBuff(self, "QuarrelShooter38_Buff");
+    SetExProp(self, "IS_ADDDAMAGE_ABIL", 0)
 end
 
 function SCR_ABIL_Chaplain24_ACTIVE(self, ability)
-    if IsBuffApplied(self, "Chaplain24_Buff") == "NO" then
-        AddBuff(self, self, "Chaplain24_Buff", 1, 0, 0, 1);
-    end
+    local lv = TryGetProp(ability, "Level", 0)
+    SetExProp(self, "IS_ADDDAMAGE_ABIL", lv)
 end
 
 function SCR_ABIL_Chaplain24_INACTIVE(self, ability)
-    RemoveBuff(self, "Chaplain24_Buff");
+    SetExProp(self, "IS_ADDDAMAGE_ABIL", 0)
+end
+
+function SCR_ABIL_NakMuay14_ACTIVE(self, ability)
+    local lv = TryGetProp(ability, "Level", 0)
+    SetExProp(self, "IS_ADDDAMAGE_ABIL", lv)
+end
+
+function SCR_ABIL_NakMuay14_INACTIVE(self, ability)
+    SetExProp(self, "IS_ADDDAMAGE_ABIL", 0)
 end
 
 function SCR_ABIL_Schwarzereiter34_ACTIVE(self, ability)
@@ -3324,4 +3329,60 @@ end
 
 function SCR_ABIL_Schwarzereiter34_INACTIVE(self, ability)
     RemoveBuff(self, "EvasiveAction_Buff");
+end
+
+function SCR_ABIL_ENMASCARADO_ACTIVE(self, ability)
+    RemoveBuff(self, "Enmascarado_Buff");
+end
+
+function SCR_ABIL_ENMASCARADO_INACTIVE(self, ability)
+    RemoveBuff(self, "Enmascarado_Buff");
+end
+
+function SCR_ABIL_SHIELDSTRIKE_ACTIVE(self, ability)
+    SetExProp(self, "IS_SHIELDSTRIKE_ABIL", 1);
+    RemoveBuff(self, "HardShield_Buff");
+end
+
+function SCR_ABIL_SHIELDSTRIKE_INACTIVE(self, ability)
+    DelExProp(self, "IS_SHIELDSTRIKE_ABIL");
+end
+
+function SCR_ABIL_Luchador18_ACTIVE(self, ability)
+    SetExProp(self, "IS_DASH_ABIL", 1);
+end
+
+function SCR_ABIL_Luchador18_INACTIVE(self, ability)
+    DelExProp(self, "IS_DASH_ABIL");
+end
+
+function SCR_ABIL_Luchador12_ACTIVE(self, ability)
+    local skill = GetSkill(self, "Luchador_Ceremonia");
+    if skill ~= nil then
+        local shootTime = TryGetProp(skill, "ShootTime", 0)
+        local cancelTime = TryGetProp(skill, "CancelTime", 0)
+
+        SetExProp(ability, "Ceremonia_shootTime", shootTime)
+        SetExProp(ability, "Ceremonia_cancelTime", cancelTime)
+
+        skill.ShootTime = 0
+        skill.CancelTime = 0
+
+        InvalidateSkill(self, skill.ClassName);
+        SendSkillProperty(self, skill);
+    end 
+end
+
+function SCR_ABIL_Luchador12_INACTIVE(self, ability)
+    local skill = GetSkill(self, "Luchador_Ceremonia");
+    if skill ~= nil then
+        local shootTime = GetExProp(ability, "Ceremonia_shootTime")
+        local cancelTime = GetExProp(ability, "Ceremonia_cancelTime")
+
+        skill.ShootTime = shootTime
+        skill.CancelTime = cancelTime
+
+        InvalidateSkill(self, skill.ClassName);
+        SendSkillProperty(self, skill);
+    end
 end

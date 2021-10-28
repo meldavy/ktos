@@ -163,6 +163,12 @@ function ATTENDANCE_INIT_REWARD(frame, attendanceID)
 
 	local bgBoxMargin = bgBox:GetMargin();
 	frame:Resize(frame:GetOriginalWidth(), bgBox:GetHeight() + bgBoxMargin.top);
+	
+	local periodText1 = GET_CHILD_RECURSIVELY(frame, "periodText1");
+	local periodText2 = GET_CHILD_RECURSIVELY(frame, "periodText2");
+	local periodText1_margin =  periodText1:GetMargin();
+	periodText1_margin.right = periodText2:GetWidth() +5
+	
 end
 
 function ATTENDANCE_TOGGLE_VAKARINE_UI()

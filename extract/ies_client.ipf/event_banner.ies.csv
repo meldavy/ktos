@@ -1,4 +1,7 @@
 ClassID,StartTimeYYYYMM,StartTimeDDHHMM,NewTimeYYYYMM,NewTimeDDHHMM,EndTimeYYYYMM,EndTimeDDHHMM,DeadlineTimeYYYYMM,DeadlineTimeDDHHMM,ExchangeTimeYYYYMM,ExchangeTimeDDHHMM,ClassName,Name,ImagePath,url,UserCommand1,UserCommand2,UserCommand3,ShowType
+996680,202109,300900,202110,50000,202110,280700,202110,230000,0,0,event2110_master_specialedition,루차도르 업데이트,event2110_master_specialedition,http://tos.nexon.com/events/20210930/index.aspx,,,,
+996690,202110,10000,202110,60000,202111,10000,202110,260000,0,0,event2110_Burning,주말 앤 버닝 - 10월,event2110_Burning,http://tos.nexon.com/news/events/view.aspx?n4ArticleSN=349&n4ArticleCategorySN=1,,,,
+996700,202110,10000,202110,60000,202111,10000,202110,260000,0,0,event2110_VaivoraReward,바이보라 출석 - 10월,event2110_VaivoraReward,http://tos.nexon.com/news/events/view.aspx?n4ArticleSN=348&n4ArticleCategorySN=1,,,,
 996710,202109,160900,202109,210000,202109,300600,202109,250000,0,0,event210916_tp_reward,TP더드림 이벤트,event210916_tp_reward,http://tos.nexon.com/news/update/view.aspx?n4ArticleSN=2505&n4CategorySN=0,,,,
 996720,202109,160900,202109,210000,202109,300600,202109,250000,0,0,event210916_specialedition,2021 추석 특판,event210916_specialedition,http://tos.nexon.com/news/update/view.aspx?n4ArticleSN=2503&n4CategorySN=0,,,,
 996730,202109,90900,202109,140000,202110,140900,202110,90000,0,0,event210909goddesscube,축복받은 여신의 큐브 - 9월,event210909goddesscube,http://tos.nexon.com/news/update/view.aspx?n4ArticleSN=2497&n4CategorySN=0,,,,

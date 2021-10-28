@@ -345,6 +345,7 @@
 	<ReadXml Name="goddess_recipe"/>
 	<ReadXml Name="goddess_evolve"/>
 	<ReadXml Name="fieldboss_worldevent_reward_count"/>
+	<ReadXml Name="job_unlockquest"/>
 	<ReadXml Name="itemdecompose_mistake"/>
 	<ReadXml Name="resurrect_return_control"/>
 	<ReadXml Name="ability_point_score"/>
@@ -353,4 +354,5 @@
 	<ReadXml Name="pvp_teambattle_rule"/>
 	<ReadXml Name="screen_effect_list"/>
 	<ReadXml Name="relic_gem_table"/>
+	<ReadXml Name="contents_alert_table"/>
 </Category>

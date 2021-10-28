@@ -107,12 +107,15 @@
         <richtext name="mapInfoDummy" parent="mapInfoWrapper" rect="0 0 360 30" margin="0 0 0 0" layout_gravity="left top" caption=""/>
 		<!-- Indun Button Box -->
 		<groupbox name="buttonBox" parent="infoBox" rect="0 0 412 100" margin="0 368 0 0" layout_gravity="right top" draw="false" hittestbox="false"/>
-		<button name="Button1" rect="0 0 160 45" parent="buttonBox" margin="0 0 160 0" layout_gravity="right top" MouseOffAnim="btn_mouseoff" MouseOnAnim="btn_mouseover" skin="test_pvp_btn" oversound="button_over" format="{s17}{#050505}%s" param1="btnText" param1_def="이동"/>
-		<button name="Button2" rect="0 0 160 45" parent="buttonBox" margin="0 0 0 0" layout_gravity="right top" MouseOffAnim="btn_mouseoff" MouseOnAnim="btn_mouseover" skin="test_pvp_btn" oversound="button_over" format="{s17}{#050505}%s" param1="btnText" param1_def="이동"/>
-		<button name="Button3" rect="0 0 160 45" parent="buttonBox" margin="0 43 160 0" layout_gravity="right top" MouseOffAnim="btn_mouseoff" MouseOnAnim="btn_mouseover" skin="test_pvp_btn" oversound="button_over" format="{s17}{#050505}%s" param1="btnText" param1_def="이동"/>
+		<button name="Button1" rect="0 0 160 45" parent="buttonBox" margin="0 0 160 0" layout_gravity="right top" MouseOffAnim="btn_mouseoff" MouseOnAnim="btn_mouseover" skin="test_pvp_btn" oversound="button_over"/>
+		<button name="Button2" rect="0 0 160 45" parent="buttonBox" margin="0 0 0 0" layout_gravity="right top" MouseOffAnim="btn_mouseoff" MouseOnAnim="btn_mouseover" skin="test_pvp_btn" oversound="button_over"/>
+		<button name="Button3" rect="0 0 160 45" parent="buttonBox" margin="0 43 160 0" layout_gravity="right top" MouseOffAnim="btn_mouseoff" MouseOnAnim="btn_mouseover" skin="test_pvp_btn" oversound="button_over"/>
 		<button name="tinyButton" rect="0 0 90 40" parent="buttonBox" margin="0 45 325 0" layout_gravity="right top" MouseOffAnim="btn_mouseoff" MouseOnAnim="btn_mouseover" skin="test_pvp_btn" oversound="button_over" format="{s17}{#050505}%s" param1="btnText" param1_def="조합식" LBtnUpScp="ui.OpenFrame('toshero_info_combine')"/>
-		
-		<button name="RedButton" rect="0 0 160 45" parent="buttonBox" margin="0 43 0 0" layout_gravity="right top" MouseOffAnim="btn_mouseoff" MouseOnAnim="btn_mouseover" skin="test_red_button" oversound="button_over" format="{s18}{ol}{#FFFFFF}%s" param1="btnText" param1_def="이동" resizebytext="false"/>
+		<button name="RedButton" rect="0 0 160 45" parent="buttonBox" margin="0 43 0 0" layout_gravity="right top" MouseOffAnim="btn_mouseoff" MouseOnAnim="btn_mouseover" skin="test_red_button" oversound="button_over"/>
+		<richtext name="Button1Text" rect="0 0 160 45" parent="Button1" margin="0 0 0 0" layout_gravity="center center" textalign="left center" hittest="false" format="{s17}{#050505}%s" param1="btnText" param1_def="이동" autofontsizebywidth="160"/>
+		<richtext name="Button2Text" rect="0 0 160 45" parent="Button2" margin="0 0 0 0" layout_gravity="center center" textalign="left center" hittest="false" format="{s17}{#050505}%s" param1="btnText" param1_def="이동" autofontsizebywidth="160"/>
+		<richtext name="Button3Text" rect="0 0 160 45" parent="Button3" margin="0 0 0 0" layout_gravity="center center" textalign="left center" hittest="false" format="{s17}{#050505}%s" param1="btnText" param1_def="이동" autofontsizebywidth="160"/>
+		<richtext name="RedButtonText" rect="0 0 160 45" parent="RedButton" margin="0 0 0 0" layout_gravity="center center" textalign="left center" hittest="false" format="{s18}{ol}{#FFFFFF}%s" param1="btnText" param1_def="이동" autofontsizebywidth="160"/>
 		<!-- Bottom controls -->
 		<richtext name="canNotEnterText" rect="0 0 600 30" parent="bottomBox" margin="0 0 20 0" layout_gravity="right center" caption="{@st66b}랭킹 집계로 인해 토요일 00:00 ~ 06:00시 사이에는 입장이 불가능합니다.{nl}{s13}{#FF0000}※ 랭킹은 자동매칭을 통해서만 등록이 가능합니다.{/}{/}{/}"/>
 		<richtext name="resetInfoText" rect="0 0 600 30" parent="bottomBox" margin="0 0 20 0" layout_gravity="right center" format="{@st66b}입장 횟수는 매일 %s시에 초기화 됩니다.{/}" param1="resetTime" param1_def="6"/>
@@ -142,7 +145,8 @@
 		<richtext name="pvpInfoValue" parent="pvpInfoBox" rect="0 0 190 30" margin="0 0 0 0" layout_gravity="right top" fontname="brown_18_b" format="%s전 %s승 %s패" param1="total" param1_def="0" param2="win" param2_def="0" param3="lose" param3_def="0"/>
 		<richtext name="pvpScoreText" parent="pvpInfoBox" rect="0 0 190 30" margin="0 30 0 0" layout_gravity="left top" fontname="brown_18_b" caption="점수"/>
 		<richtext name="pvpScoreValue" parent="pvpInfoBox" rect="0 0 190 30" margin="0 30 0 0" layout_gravity="right top" fontname="brown_18_b" format="%s점" param1="score" param1_def="0"/>
-		<button name="pvpShopBtn" parent="pvpInfoBox" rect="0 0 160 45" margin="0 150 0 0" layout_gravity="right top" format="{@st66b}{s16}팀 배틀리그 상점" LBtnUpScp="PVP_INDUNINFO_OPEN_SHOP" MouseOffAnim="btn_mouseoff" MouseOnAnim="btn_mouseover" skin="test_pvp_btn" oversound="button_over"/>
+		<button name="pvpShopBtn" parent="pvpInfoBox" rect="0 0 160 45" margin="0 150 160 0" layout_gravity="right top" format="{@st66b}{s16}팀 배틀리그 상점" LBtnUpScp="PVP_INDUNINFO_OPEN_SHOP" MouseOffAnim="btn_mouseoff" MouseOnAnim="btn_mouseover" skin="test_pvp_btn" oversound="button_over"/>
+		<button name="pvpCharacterRegistBtn" parent="pvpInfoBox" rect="0 0 160 45" margin="0 150 0 0" layout_gravity="right top" format="{@st66b}{s16}교체 캐릭터 등록" LBtnUpScp="PVP_INDUNINFO_CHARACTER_REGIST" MouseOffAnim="btn_mouseoff" MouseOnAnim="btn_mouseover" skin="test_pvp_btn" oversound="button_over"/>
 		<!-- WeeklyBoss info box -->
 		<groupbox name="WeeklyBossbox" rect="0 0 1070 500" margin="0 100 0 0" layout_gravity="center top" draw="false"/>
 		<groupbox name="rank_gb" parent="WeeklyBossbox" rect="0 0 552 500" margin="0 0 0 0" layout_gravity="left top" skin="" draw="false" hittestbox="false" scrollbar="false"/>

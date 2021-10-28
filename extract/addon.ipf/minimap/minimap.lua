@@ -670,9 +670,12 @@ function M_MAP_UPDATE_PARTY(frame, msg, a, b, c)
 end
 
 function M_MAP_UPDATE_GUILD(frame, msg, a, b, c)
+	if frame == nil then return; end
 	local npcList = frame:GetChild('npclist')
-	tolua.cast(npcList, 'ui::CGroupBox');
-	MAP_UPDATE_GUILD(npcList, msg, a, b, c);
+	if npcList ~= nil then
+		tolua.cast(npcList, 'ui::CGroupBox');
+		MAP_UPDATE_GUILD(npcList, msg, a, b, c);
+	end
 end
 
 function MINIMAP_COLONY_MONSTER(frame, msg, posStr, monID)

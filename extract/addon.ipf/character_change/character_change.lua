@@ -1,43 +1,55 @@
 -- character change
 function CHARACTER_CHANGE_ON_INIT(addon, frame)
-	--[[ addon:RegisterMsg("RELOAD_CHARACTER_CHANGE_LIST", "CHARACTER_CHANGE_RELOAD_LIST"); ]]
+	addon:RegisterMsg("RELOAD_CHARACTER_CHANGE_LIST", "CHARACTER_CHANGE_RELOAD_LIST");
 end
 
 function CHARACTER_CHANGE_OPEN()
-	--[[ ui.OpenFrame("character_change");
+	ui.OpenFrame("character_change");
 	local frame = ui.GetFrame("character_change");
 	if frame ~= nil then
 		CHARACTER_CHANGE_CREATE_LIST(frame);
-	end ]]
+	end
 end
 
 function CHARACTER_CHANGE_RELOAD_LIST(frame)
-	--CHARACTER_CHANGE_CREATE_LIST(frame);
+	CHARACTER_CHANGE_CREATE_LIST(frame);
 end
 
 function CHARACTER_CHANGE_REMOVE_LIST(frame, gbox)
-	--[[ local count = gbox:GetChildCount();
+	local count = gbox:GetChildCount();
 	for i = 0, count - 1 do
 		local child = gbox:GetChildByIndex(i);
 		if child ~= nil and string.find(child:GetName(), "candidate_char_") ~= nil then
 			gbox:RemoveChildByIndex(i);
 		end
 	end
-	frame:Invalidate(); ]]
+	frame:Invalidate();
 end
 
 function CHARACTER_CHANGE_CREATE_LIST(frame)
-	--[[ local gbox = GET_CHILD_RECURSIVELY(frame, "gbox");
+	local gbox = GET_CHILD_RECURSIVELY(frame, "gbox");
 	if gbox == nil then return; end
 	CHARACTER_CHANGE_REMOVE_LIST(frame, gbox);
+	local add_height = 0;
 	local change_list_count = character_change.GetCurrentRegisteredCharacterCount();
 	for i = 0, change_list_count do
 		local character_name = character_change.GetRegisteredPcName(i);
 		if character_name ~= "None" then
 			local start_y = 50;
-			local height = 150;
+			local height = 150 + add_height;
 			local ctrl_set = gbox:CreateOrGetControlSet("character_change_info", "candidate_char_"..i, 25, start_y + (i * height));
 			if ctrl_set ~= nil then
+				local main_char_gb = GET_CHILD_RECURSIVELY(ctrl_set, "main_char_gb");
+				if i == 0 then
+					ctrl_set:SetSkinName("None");
+					main_char_gb:ShowWindow(1);
+					add_height = 35;
+				else
+					ctrl_set:SetSkinName("monster_card_list");
+					main_char_gb:ShowWindow(0);
+					add_height = 25;
+				end
+
 				ctrl_set:SetUserValue("slot_index", i);
 				ctrl_set:SetUserValue("select", 0);
 				local main_gb = GET_CHILD_RECURSIVELY(ctrl_set, "main_gb");
@@ -92,12 +104,12 @@ function CHARACTER_CHANGE_CREATE_LIST(frame)
 				end
 			end
 		end
-	end ]]
+	end
 end
 
 -- select
 function CHARACTER_CHANGE_SELECT_ITEM(ctrl_set, gb, arg_str, arg_num)
-	--[[ local frame = ctrl_set:GetTopParentFrame();
+	local frame = ctrl_set:GetTopParentFrame();
 	local select = ctrl_set:GetUserIValue("select");
 	if select == 0 then
 		frame:SetUserValue("select_slot_index", ctrl_set:GetUserIValue("slot_index"));
@@ -106,21 +118,21 @@ function CHARACTER_CHANGE_SELECT_ITEM(ctrl_set, gb, arg_str, arg_num)
 	elseif select == 1 then
 		CHARACTER_CHANGE_SELECT_ITEM_SKIN_VISIBLE(ctrl_set, 0);
 		ctrl_set:SetUserValue("select", 0);		
-	end ]]
+	end
 end
 
 -- skin visible
 function CHARACTER_CHANGE_SELECT_ITEM_SKIN_VISIBLE(ctrl_set, visible)
-	--[[ local select_gb = GET_CHILD_RECURSIVELY(ctrl_set, "select_gb");
+	local select_gb = GET_CHILD_RECURSIVELY(ctrl_set, "select_gb");
 	if select_gb ~= nil then 
 		select_gb:ShowWindow(visible);
 	end
-	CHARACTER_CHANGE_SELECTED_ITEM_RESET(); ]]
+	CHARACTER_CHANGE_SELECTED_ITEM_RESET();
 end
 
 -- selected item reset
 function CHARACTER_CHANGE_SELECTED_ITEM_RESET()
-	--[[ local frame = ui.GetFrame("character_change");
+	local frame = ui.GetFrame("character_change");
 	if frame == nil then return; end
 	local gbox = GET_CHILD_RECURSIVELY(frame, "gbox");
 	if gbox == nil then return; end
@@ -137,15 +149,15 @@ function CHARACTER_CHANGE_SELECTED_ITEM_RESET()
 				end
 			end
 		end
-	end ]]
+	end
 end
 
 -- change
 function DO_CHARACTER_CHANGE(parent, ctrl)
-	--[[ local frame = parent:GetTopParentFrame();
+	local frame = parent:GetTopParentFrame();
 	if frame ~= nil then
 		local select_slot_index = frame:GetUserIValue("select_slot_index");
 		character_change.RequestCharacterChange(select_slot_index);
 		ui.CloseFrame("character_change");
-	end ]]
+	end
 end

@@ -731,3 +731,293 @@ function GET_ACC_CABINET_COST(entry_cls, acc)
 
     return TryGetProp(entry_cls, 'MakeCostSilver', 5000000)
 end
+
+-- 보관함 개방권
+local cabinet_item_armor_list = nil
+local cabinet_armor_list_type = nil
+
+local cabinet_item_acc_list = nil
+local cabinet_acc_list_type = nil
+
+local cabinet_item_ark_list = nil
+local cabinet_ark_list_type = nil
+
+function init_cabinet_item_armor_list()
+    if cabinet_item_armor_list ~= nil then
+        return
+    end
+
+    cabinet_armor_list_type = {'Gabija', 'Dalia', 'installation', 'Vakarine', 'Austeja', 'Zemyna', 'EVIL', 'EVIL_SUMMONNER'} 
+
+    cabinet_item_armor_list = {}    
+    local prefix = 'EP12'
+    local suffix_list = {'TOP', 'LEG', 'HAND', 'FOOT'}    
+
+    for k, v in pairs(cabinet_armor_list_type) do        
+        cabinet_item_armor_list[v] = {}
+        for _, v2 in pairs(suffix_list) do           
+            local name = prefix .. '_' .. v .. '_' .. v2 
+            table.insert(cabinet_item_armor_list[v], name)
+        end
+    end
+end
+function init_cabinet_item_acc_list()
+    if cabinet_item_acc_list ~= nil then
+        return
+    end
+
+    cabinet_acc_list_type = {'isgariti', 'juoda', 'kantrybe', 'triukas', 'predeti', 'piktis'}
+    cabinet_item_acc_list = {}
+
+    cabinet_item_acc_list['isgariti'] = {}
+    table.insert(cabinet_item_acc_list['isgariti'], 'EP12_NECK05_HIGH_002')
+    table.insert(cabinet_item_acc_list['isgariti'], 'EP12_BRC05_HIGH_002')
+
+    cabinet_item_acc_list['juoda'] = {}
+    table.insert(cabinet_item_acc_list['juoda'], 'EP12_NECK05_HIGH_001')
+    table.insert(cabinet_item_acc_list['juoda'], 'EP12_BRC05_HIGH_001')
+
+    cabinet_item_acc_list['kantrybe'] = {}
+    table.insert(cabinet_item_acc_list['kantrybe'], 'EP12_NECK05_HIGH_003')
+    table.insert(cabinet_item_acc_list['kantrybe'], 'EP12_BRC05_HIGH_003')
+
+    cabinet_item_acc_list['triukas'] = {}
+    table.insert(cabinet_item_acc_list['triukas'], 'EP12_NECK05_HIGH_006')
+    table.insert(cabinet_item_acc_list['triukas'], 'EP12_BRC05_HIGH_006')
+
+    cabinet_item_acc_list['predeti'] = {}
+    table.insert(cabinet_item_acc_list['predeti'], 'EP12_NECK05_HIGH_007')
+    table.insert(cabinet_item_acc_list['predeti'], 'EP12_BRC05_HIGH_007')
+
+    cabinet_item_acc_list['piktis'] = {}
+    table.insert(cabinet_item_acc_list['piktis'], 'EP12_NECK05_HIGH_005')
+    table.insert(cabinet_item_acc_list['piktis'], 'EP12_BRC05_HIGH_005')
+end
+function init_cabinet_item_ark_list()
+    if cabinet_item_ark_list ~= nil then
+        return
+    end
+
+    cabinet_ark_list_type = {'Ark_thunderbolt', 'Ark_dispersion', 'Ark_overpower', 'Ark_wind', 'Ark_punishment', 'Ark_healingwave', 'Ark_storm'}
+    cabinet_item_ark_list = {}
+
+    for _, v in pairs(cabinet_ark_list_type) do
+        cabinet_item_ark_list[v] = v
+    end    
+end
+
+init_cabinet_item_armor_list()
+init_cabinet_item_acc_list()
+init_cabinet_item_ark_list()
+
+function GET_CABINET_ARMOR_TYPE_BY_INDEX(index)
+    return cabinet_armor_list_type[index]
+end
+function GET_CABINET_ARMOR_INDEX(type)
+    for i = 1, #cabinet_armor_list_type do
+        if cabinet_armor_list_type[i] == type then
+            return i
+        end
+    end
+    return 0
+end
+function GET_CABINET_ITEM_ARMOR_TYPE_LIST()
+    return cabinet_armor_list_type
+end
+function GET_CABINET_ITEM_ARMOR_LIST(name)
+    return cabinet_item_armor_list[name]
+end
+
+function GET_CABINET_ACC_INDEX(type)
+    for i = 1, #cabinet_armor_list_type do
+        if cabinet_acc_list_type[i] == type then
+            return i
+        end
+    end
+    return 0
+end
+function GET_CABINET_ITEM_ACC_TYPE_LIST()
+    return cabinet_acc_list_type
+end
+function GET_CABINET_ITEM_ACC_LIST(name)
+    return cabinet_item_acc_list[name]
+end
+
+function GET_CABINET_ARK_INDEX(type)
+    for i = 1, #cabinet_ark_list_type do
+        if cabinet_ark_list_type[i] == type then
+            return i
+        end
+    end
+    return 0
+end
+function GET_CABINET_ITEM_ARK_TYPE_LIST()
+    return cabinet_ark_list_type
+end
+function GET_CABINET_ITEM_ARK_LIST(name)
+    return cabinet_item_ark_list[name]
+end
+
+function IS_VALID_CABINET_ITEM_ARMOR_OPEN(acc, type) -- type 아이템 종류(가비야, 아우스테야 등)
+    local list = GET_CABINET_ITEM_ARMOR_LIST(type)
+    if list == nil then
+        return 0, 'NotValidItem'
+    end
+
+    local count = 0
+    for _, v in pairs(list) do
+        local cls = GetClass('cabinet_armor', v)
+        if cls == nil then
+            return 0, 'NotValidItem'
+        end
+        local prop = TryGetProp(cls, 'AccountProperty', 'None')
+        local prop_2 = TryGetProp(cls, 'UpgradeAccountProperty', 'None')
+        if prop == 'None' or prop_2 == 'None' then
+            return 0, 'NotValidItem'
+        end
+
+        if TryGetProp(acc, prop, 0) ~= 0 or TryGetProp(acc, prop_2, 0) ~= 0 then
+            count = count + 1
+        end
+    end
+    if count == 4 then
+        return 0
+    elseif count == 0 then
+        return 1
+    else
+        return 2
+    end
+
+    return 1
+end
+
+function IS_VALID_CABINET_ITEM_ACC_OPEN(acc, type)
+    local list = GET_CABINET_ITEM_ACC_LIST(type)
+    if list == nil then
+        return 0, 'NotValidItem'
+    end
+
+    for _, v in pairs(list) do
+        local cls = GetClass('cabinet_accessory', v)
+        if cls == nil then
+            return 0, 'NotValidItem'
+        end
+        local prop = TryGetProp(cls, 'AccountProperty', 'None')
+        local prop_2 = TryGetProp(cls, 'UpgradeAccountProperty', 'None')
+        if prop == 'None' or prop_2 == 'None' then
+            return 0, 'NotValidItem'
+        end
+
+        if TryGetProp(acc, prop, 0) ~= 0 or TryGetProp(acc, prop_2, 0) ~= 0 then
+            return 0
+        end
+    end
+    
+    return 1
+end
+
+-- 카랄리엔
+function IS_VALID_CREATE_CABINET_ITEM_ACC_OPEN(acc, type)
+    local list = GET_CABINET_ITEM_ACC_LIST(type)
+    if list == nil then
+        return 0, 'NotValidItem'
+    end
+
+    for _, v in pairs(list) do
+        local cls = GetClass('cabinet_accessory', v)
+        if cls == nil then
+            return 0, 'NotValidItem'
+        end
+        local prop = TryGetProp(cls, 'AccountProperty', 'None')
+        local prop_2 = TryGetProp(cls, 'UpgradeAccountProperty', 'None')
+        if prop == 'None' or prop_2 == 'None' then
+            return 0, 'NotValidItem'
+        end
+        
+        if TryGetProp(acc, prop, 0) == 1 and TryGetProp(acc, prop_2, 0) >= 1 then
+            return 1
+        end
+    end
+    
+    return 0
+end
+-- 루시페리
+function IS_VALID_CREATE_CABINET_ITEM_ACC2_OPEN(acc, type)
+    local list = GET_CABINET_ITEM_ACC_LIST(type)
+    if list == nil then
+        return 0, 'NotValidItem'
+    end
+
+    for _, v in pairs(list) do
+        local cls = GetClass('cabinet_accessory', v)
+        if cls == nil then
+            return 0, 'NotValidItem'
+        end
+        local prop = TryGetProp(cls, 'AccountProperty', 'None')
+        local prop_2 = TryGetProp(cls, 'UpgradeAccountProperty', 'None')
+        if prop == 'None' or prop_2 == 'None' then
+            return 0, 'NotValidItem'
+        end
+        
+        if TryGetProp(acc, prop, 0) == 1 and TryGetProp(acc, prop_2, 0) > 1 then
+            return 1
+        end
+    end
+    
+    return 0
+end
+
+function IS_VALID_CABINET_ITEM_ARK_OPEN(acc, type)
+    local name = type    
+    if name == nil then
+        return 0, 'NotValidItem'
+    end
+
+    local cls = GetClass('cabinet_ark', name)
+    if cls == nil then
+        return 0, 'NotValidItem'
+    end
+
+    local prop = TryGetProp(cls, 'AccountProperty', 'None')    
+    if prop == 'None' then
+        return 0, 'NotValidItem'
+    end
+
+    if TryGetProp(acc, prop, 0) ~= 0 then
+        return 0
+    end
+    
+    return 1
+end
+
+
+function IS_VALID_ARK_LVUP_BY_SCROLL(ark, scroll)
+    if TryGetProp(ark, 'CharacterBelonging', 0) ~= 1 then 
+        return false, 'CanExecCuzCharacterBelonging'
+    end
+
+    if TryGetProp(ark, 'GroupName', 'None') ~= 'Ark' then
+        return false, 'NotValidItem'
+    end
+
+    if TryGetProp(ark, 'StringArg2', 'None') ~= 'Made_Ark' then
+        return false, 'NotValidItem'
+    end
+    
+    local name = TryGetProp(ark, 'ClassName', 'None')
+    if string.find(name, 'Event_Ark') ~= nil then
+        return false, 'CantUseEventItem'
+    end
+
+    if TryGetProp(scroll, 'StringArg', 'None') ~= 'ArkLVUPScroll' then
+        return false, 'NotValidItem'
+    end
+
+    local now_lv = TryGetProp(ark, 'ArkLevel', 1)    
+    local goal_lv = TryGetProp(scroll, 'NumberArg1', 0)    
+    if now_lv >= goal_lv then
+        return false, 'ItemLevelIsGreaterThanMatItem'
+    end
+
+    return true
+end

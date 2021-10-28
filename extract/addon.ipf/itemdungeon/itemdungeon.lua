@@ -344,9 +344,11 @@ function ITEMDUNGEON_SET_TITLE(frame, isSeller)
 	local title = '';
 	if isSeller == true then
 		title = ClMsg('OpenAwakeningShop');
+		GET_CHILD_RECURSIVELY(frame,'check_no_msgbox'):ShowWindow(0);
 	else
 		local awakeningSkl = GetClass('Skill', 'Alchemist_ItemAwakening');
 		title = awakeningSkl.Name;
+		GET_CHILD_RECURSIVELY(frame,'check_no_msgbox'):ShowWindow(1);
 	end
 	titleText:SetTextByKey('title', title);
 end
@@ -489,6 +491,7 @@ function ITEMDUNGEON_UPDATE_SELLER(parent, ctrl)
 	local frame = parent:GetTopParentFrame();
 	local buyBtn = GET_CHILD_RECURSIVELY(frame,'buyBtn')
 	buyBtn:ShowWindow(1)
+	GET_CHILD_RECURSIVELY(frame,'check_no_msgbox'):ShowWindow(1);
 
 	local closeShopBtn = GET_CHILD_RECURSIVELY(frame,'closeShopBtn')
 	closeShopBtn:SetGravity(ui.RIGHT,ui.CENTER_VERT)
@@ -502,6 +505,7 @@ function ITEMDUNGEON_UPDATE_HISTORY(parent, ctrl)
 	if ctrl ~= nil then
 		local buyBtn = GET_CHILD_RECURSIVELY(frame,'buyBtn')
 		buyBtn:ShowWindow(0)
+		GET_CHILD_RECURSIVELY(frame,'check_no_msgbox'):ShowWindow(0);
 		local closeShopBtn = GET_CHILD_RECURSIVELY(frame,'closeShopBtn')
 		closeShopBtn:SetGravity(ui.CENTER_HORZ,ui.CENTER_VERT)
 	end

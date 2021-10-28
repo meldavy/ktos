@@ -153,3 +153,8 @@ ClassID,DefNumValue,ClassName,Type,DefStrValue,ClientScp
 163,1,PopupPickItem,Number,,
 164,1,PickItemMessage,Number,,
 165,0,RelicAutoCharge,Number,,
+166,1,InvOption_Equip_Goddess,Number,,
+167,1,InvOption_Gem_Cyan,Number,,
+168,1,InvOption_Gem_Magenta,Number,,
+169,1,InvOption_Gem_Black,Number,,
+170,1,InvOption_Gem_Aether,Number,,

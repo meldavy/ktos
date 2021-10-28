@@ -192,4 +192,9 @@
 		<Element Name="popocon2" root="popocon2" atlas="popocon2" json="popocon2" scale="1" offsetX="0" offsetY="0" animation="animation"/>
 		<Element Name="popocon3" root="popocon3" atlas="popocon3" json="popocon3" scale="1" offsetX="-3" offsetY="0" animation="animation"/>
 	</Spine>
+	<Spine>
+		<Element Name="malsuns_emotion82" root="malsuns_emotion82" atlas="malsuns_emotion82" json="malsuns_emotion82" scale="1" offsetX="6" offsetY="-10" animation="animation"/>
+		<Element Name="malsuns_emotion100" root="malsuns_emotion100" atlas="malsuns_emotion100" json="malsuns_emotion100" scale="1" offsetX="0" offsetY="-20" animation="animation"/>
+		<Element Name="malsuns_emotion77" root="malsuns_emotion77" atlas="malsuns_emotion77" json="malsuns_emotion77" scale="1" offsetX="-10" offsetY="0" animation="animation"/>
+	</Spine>
 </List>

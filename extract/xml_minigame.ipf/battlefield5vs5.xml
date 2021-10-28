@@ -441,8 +441,9 @@
                             <ToolScp Scp="MGAME_EVT_SCRIPT" Client="NO" UseSleep="NO">
                                 <Str Str="WORLDPVP_ROUND_END"/>
                             </ToolScp>
-                            <ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
-                                <Str Str="nextStage"/>
+                            <ToolScp Scp="GAME_ST_EVT_EXEC_VALUE" Client="NO" UseSleep="NO">
+                                <Str Str="do_character_change"/>
+                                <Num Num="1"/>
                             </ToolScp>
                         </execList>
                     </Event>
@@ -481,6 +482,45 @@
                                 <Num Num="1"/>
                             </ToolScp>
                         </listExec>
+                    </Event>
+                    <Event execCount="1" eventName="on_character_change_start">
+                        <condList>
+                            <ToolScp Scp="GAME_ST_EVT_COND_VALUE" Client="NO" UseSleep="NO">
+                                <Str Str="Team1_Score"/>
+                                <Str Str="UNDER"/>
+                                <Num Num="1"/>
+                            </ToolScp>
+                            <ToolScp Scp="GAME_ST_EVT_COND_VALUE" Client="NO" UseSleep="NO">
+                                <Str Str="Team2_Score"/>
+                                <Str Str="UNDER"/>
+                                <Num Num="1"/>
+                            </ToolScp>
+                        </condList>
+                        <execList>
+                            <ToolScp Scp="MGAME_COUNTDOWN_TEAM_BATTLE" Client="NO" UseSleep="YES">
+                                <Num Num="20"/>
+                            </ToolScp>
+                            <ToolScp Scp="MGAME_EVT_SCRIPT" Client="NO" UseSleep="NO">
+                                <Str Str="ON_TEAM_BATTLE_LEAGUE_CHARACTER_CHANGE"/>
+                            </ToolScp>
+                        </execList>
+                    </Event>
+                    <Event eventName="character_change_end_check">
+                        <condList>
+                            <ToolScp Scp="GAME_ST_EVT_COND_VALUE" Client="NO" UseSleep="NO">
+                                <Str Str="character_change_start"/>
+                                <Str Str="EQ"/>
+                                <Num Num="1"/>
+                            </ToolScp>
+                            <ToolScp Scp="MGAME_EVT_COND_SCRIPT" Client="NO" UseSleep="NO">
+                                <Str Str="CHECK_TEAM_BATTLE_LEAGUE_CHARACTER_CHANGE_END"/>
+                            </ToolScp>
+                        </condList>
+                        <execList>
+                            <ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
+                                <Str Str="nextStage"/>
+                            </ToolScp>
+                        </execList>
                     </Event>
                     <Event execCount="1" eventName="nextStage" execWithStart="0" isEnabled="0">
                         <condList>
@@ -573,13 +613,20 @@
                     <Obj Type="Monster" MonType="160098" Pos="24.57#1.40#-21.20" genCount="1" genTime="20000" objectKey="0"/>
                 </ObjList>
                 <StageEvents>
-                    <Event execCount="1" eventName="wait" execWithStart="0">
+                    <Event execMS="20000" execCount="1" eventName="wait" execWithStart="0">
                         <execList>
                             <ToolScp Scp="GAME_ST_EVT_EXEC_STAGE_DISABLE" Client="NO" UseSleep="NO">
                                 <Str Str="WaitStart"/>
                             </ToolScp>
                             <ToolScp Scp="GAME_ST_EVT_EXEC_STAGE_START" Client="NO" UseSleep="NO">
                                 <Str Str="DefGroup"/>
+                            </ToolScp>
+                        </execList>
+                    </Event>
+                    <Event execCount="1" eventName="setui">
+                        <execList>
+                            <ToolScp Scp="MGAME_COUNTDOWN_TEAM_BATTLE" Client="NO" UseSleep="YES">
+                                <Num Num="20"/>
                             </ToolScp>
                         </execList>
                     </Event>
@@ -643,6 +690,51 @@
                                 <Num Num="1"/>
                             </ToolScp>
                         </listExec>
+                    </Event>
+                    <Event eventName="waitbuff">
+                        <execList>
+                            <ToolScp Scp="MGAME_EVT_SCRIPT" Client="NO" UseSleep="NO">
+                                <Str Str="BATTLEFILD_WAIT_BUFF"/>
+                            </ToolScp>
+                            <ToolScp Scp="GAME_ST_EVT_EXEC_VALUE" Client="NO" UseSleep="NO">
+                                <Str Str="do_character_change"/>
+                                <Num Num="1"/>
+                            </ToolScp>
+                        </execList>
+                    </Event>
+                    <Event execCount="1" eventName="enter_character_change_start">
+                        <condList>
+                            <ToolScp Scp="MGAME_EVT_COND_SCRIPT" Client="NO" UseSleep="NO">
+                                <Str Str="CHECK_TEAM_BATTLE_LEAGUE_CHARACTER_CHANGE_START"/>
+                            </ToolScp>
+                        </condList>
+                        <execList>
+                            <ToolScp Scp="GAME_ST_EVT_EXEC_VALUE" Client="NO" UseSleep="NO">
+                                <Str Str="character_change_time"/>
+                                <Num Num="20000"/>
+                            </ToolScp>
+                            <ToolScp Scp="MGAME_EVT_SCRIPT" Client="NO" UseSleep="NO">
+                                <Str Str="ON_TEAM_BATTLE_LEAGUE_CHARACTER_CHANGE"/>
+                            </ToolScp>
+                        </execList>
+                    </Event>
+                    <Event eventName="enter_character_change_end_check">
+                        <condList>
+                            <ToolScp Scp="GAME_ST_EVT_COND_VALUE" Client="NO" UseSleep="NO">
+                                <Str Str="character_change_start"/>
+                                <Str Str="EQ"/>
+                                <Num Num="1"/>
+                            </ToolScp>
+                            <ToolScp Scp="MGAME_EVT_COND_SCRIPT" Client="NO" UseSleep="NO">
+                                <Str Str="CHECK_TEAM_BATTLE_LEAGUE_CHARACTER_CHANGE_END"/>
+                            </ToolScp>
+                        </condList>
+                        <execList>
+                            <ToolScp Scp="GAME_ST_EVT_EXEC_VALUE" Client="NO" UseSleep="NO">
+                                <Str Str="character_change_time"/>
+                                <Num Num="20000"/>
+                            </ToolScp>
+                        </execList>
                     </Event>
                 </StageEvents>
             </Stage>

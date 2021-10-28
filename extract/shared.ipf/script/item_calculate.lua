@@ -846,6 +846,24 @@ function SCR_REFRESH_ARMOR(item, enchantUpdate, ignoreReinfAndTranscend, reinfBo
                 basicDef = math.floor(basicDef) * upgradeRatio + GET_REINFORCE_ADD_VALUE(basicProp, item, ignoreReinfAndTranscend, reinfBonusValue) + buffarg
                 item[basicProp] = SyncFloor(basicDef);
         end
+        
+    if TryGetProp(item, "EquipGroup", "None") == "SubWeapon" then
+        local evolvedMaxAtkUp = 0
+        local evolvedMinAtkUp = 0          
+        local evolvedAtkUp = 0
+        local classType = TryGetProp(item, "ClassType");
+        local itemGradeClass = GetClassList('item_grade')
+        local weaponDamageClass = GetClassByNameFromList(itemGradeClass,'WeaponDamageRange')
+        local damageRange = weaponDamageClass[classType]
+
+        evolvedMaxAtkUp = GET_EVOLVED_ATK(item) * damageRange
+        evolvedMinAtkUp = GET_EVOLVED_ATK(item) * (2 - damageRange)
+        evolvedAtkUp = GET_EVOLVED_ATK(item)
+
+        item.MAXATK = item.MAXATK + SyncFloor(evolvedMaxAtkUp)
+        item.MINATK = item.MINATK + SyncFloor(evolvedMinAtkUp)
+        item.MATK = item.MATK + SyncFloor(evolvedAtkUp)
+    end
     
     APPLY_AWAKEN(item);
     APPLY_RANDOM_OPTION(item);

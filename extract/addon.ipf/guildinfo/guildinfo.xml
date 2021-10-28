@@ -758,7 +758,15 @@
 														</layout>
 													</layoutsection>
 													<layoutsection name="titleHeaderSection" size="40">
-														<richtext name="titleLabel" caption="{@st43b}{s18}직급 부여" textalign="left center" fontname="black_18_b"/>
+														<layout name="searchLayout" orientation="horizontal">	
+															<layoutsection name="titleSection" size="880">
+																<richtext name="titleLabel" caption="{@st43b}{s18}직급 부여" textalign="left center" fontname="black_18_b"/>
+															</layoutsection>
+															<layoutsection name="searchSection" size="500">
+																<groupbox name="searchgbox" rect="0 0 490 35" margin="0 0 0 0" draw="true" scrollbar="true" hittestbox="false" resizebyparent="false" skin="guild_base_skin"/>
+																<edit name="memberSearch" parent="searchgbox" rect="0 0 470 35" margin="3 0 0 0" OffsetForDraw="0 -1" clicksound="button_click_big" drawbackground="false" fontname="white_18_ol" maxlen="40" oversound="button_over" skin="None" textalign="left center" typingscp="GUILDMEMBER_LIST_GET" typingsound="chat_typing"/>
+															</layoutsection>
+														</layout>
 													</layoutsection>
 													<layoutsection name="titleSetSection" size="46%">
 														<overlap name="titleSetSectionOverlap">

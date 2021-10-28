@@ -1353,6 +1353,10 @@ function QUESTION_QUEST_WARP(frame, ctrl, argStr, questID)
 		return;
 	end
 
+	if GetExProp(pc, "SVIRTI_BUFF_CAST_C") > 0 then
+		return;
+	end
+
 	if IsInstrumentState(pc) == "YES" then
 		ui.SysMsg(ScpArgMsg("ImpossibleInstrumentState"));
 		return;

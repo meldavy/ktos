@@ -170,11 +170,11 @@ function COMMON_GAMBLE_INIT(frame, gamble_type)
 	if RatioCls == 'None' then
 		return
 	end
-	local Cut = SCR_STRING_CUT(RatioCls, ';')
+	local Cut = SCR_STRING_CUT(RatioCls, ';')	
 	local RatioTable = {}
 
 	for i = 1, #Cut do
-		RatioTable[#RatioTable + 1] = Cut[i]
+		RatioTable[#RatioTable + 1] = Cut[i]		
 	end
 	
 	local RatioSum = 0 
@@ -188,12 +188,12 @@ function COMMON_GAMBLE_INIT(frame, gamble_type)
 
 	-- 슬롯 별 확률 표기
 	for i = 0, #Cut - 1 do
-		local slotratio = GET_CHILD(slot_gb, "slot"..i..'_ratio')
+		local slotratio = GET_CHILD(slot_gb, "slot"..i..'_ratio')		
 		if slotratio == nil and RatioTable[i+1] == nil or RatioTable[i+1] == 0 then
 			return
 		end
 		if slotratio ~= nil and RatioTable[i+1] ~= nil or RatioTable[i+1] ~= 0 then
-			slotratio:SetTextByKey('value'..i, '          '..RatioTable[i+1] / RatioSum * 100 .. '%')
+			slotratio:SetTextByKey('value'..i, '          '.. string.format('%.1f', RatioTable[i+1] / RatioSum * 100) .. '%')
 		end
 	end
 

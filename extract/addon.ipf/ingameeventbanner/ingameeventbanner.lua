@@ -130,7 +130,7 @@ function UPDATE_EVENTBANNER_RANKING_TEAMBATTLE(eachctrl, name, i)
         return false;
 	end
 	
-	local info = session.worldPVP.GetRankInfoByIndex(i-1);
+	local info = session.worldPVP.GetTeamBattleRankInfoByIndex(i - 1);
 	if info == nil then
 		return false;
 	end
@@ -143,14 +143,14 @@ function UPDATE_EVENTBANNER_RANKING_TEAMBATTLE(eachctrl, name, i)
 	noranker_text:SetVisible(0);
 	name_text:SetVisible(1);
 	job_pic:SetVisible(1);
-	
-	local jobIcon = TryGetProp(GetClassByType("Job", iconinfo.job), "Icon");
+
+	local job_id = iconinfo.job;
+	local jobIcon = GET_BASE_JOB_ICON(job_id);
 	job_pic:SetImage(jobIcon);
 
 	name_text:SetTextByKey("lv", iconinfo:GetLevel());
 	name_text:SetTextByKey("name", iconinfo:GetFamilyName());
 	score_text:SetTextByKey("value", info.point);
-
 	return true;
 end
 

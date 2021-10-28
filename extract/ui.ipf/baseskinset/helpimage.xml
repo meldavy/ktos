@@ -385,8 +385,8 @@
 		<image name="TUTO_LEGEND_CARD_09" file="helpimg\TUTO_LEGEND_CARD_09.jpg" imgrect="0 0 380 349"/>
 		<image name="TUTO_VELCOFFER_RAID_01" file="helpimg\TUTO_VELCOFFER_RAID_01.jpg" imgrect="0 0 380 313"/>
 		<image name="TUTO_VELCOFFER_RAID_02" file="helpimg\TUTO_VELCOFFER_RAID_02.jpg" imgrect="0 0 380 609"/>
-		<image name="TUTO_VELCOFFER_RAID_03" file="helpimg\TUTO_VELCOFFER_RAID_03.jpg" imgrect="0 0 380 544"/>
-		<image name="TUTO_VELCOFFER_RAID_04" file="helpimg\TUTO_VELCOFFER_RAID_04.jpg" imgrect="0 0 380 408"/>
+		<image name="TUTO_VELCOFFER_RAID_03" file="helpimg\TUTO_VELCOFFER_RAID_03.jpg" imgrect="0 0 380 512"/>
+		<image name="TUTO_VELCOFFER_RAID_04" file="helpimg\TUTO_VELCOFFER_RAID_04.jpg" imgrect="0 0 380 302"/>
 		<image name="TUTO_VELCOFFER_RAID_05" file="helpimg\TUTO_VELCOFFER_RAID_05.jpg" imgrect="0 0 380 138"/>
 		<image name="TUTO_LEGEND_EQUIPMENT_01" file="helpimg\TUTO_LEGEND_EQUIPMENT_01.jpg" imgrect="0 0 380 228"/>
 		<image name="TUTO_LEGEND_EQUIPMENT_02" file="helpimg\TUTO_LEGEND_EQUIPMENT_02.jpg" imgrect="0 0 380 1037"/>

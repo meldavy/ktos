@@ -5,6 +5,13 @@
 function CHECK_CHARACTER_CHANGE_CONDITION(pc)
     if IsBuffApplied(pc, "ChangeCharacterState") == "YES" then
         return true;
+    else
+        if IsServerSection() == 1 then
+            local cmd = GetMGameCmd(pc);
+            if cmd ~= nil and cmd:IsCharacterChangeState() == true then
+                return true;
+            end
+        end
     end
     SendSysMsg(pc, "CantChangeCharacterState");
     return false;

@@ -1375,6 +1375,7 @@ end
 function STATUS_HIDDEN_JOB_UNLOCK_VIEW(pc, opc, frame, gboxctrl, y)
     local jobList, jobListCnt = GetClassList('Job');
     local etcObj = GetMyEtcObject();
+    local aObj = GetMyAccountObj();
     for i = 0, jobListCnt - 1 do
         local jobIES = GetClassByIndexFromList(jobList, i);
         if jobIES ~= nil then
@@ -1393,6 +1394,16 @@ function STATUS_HIDDEN_JOB_UNLOCK_VIEW(pc, opc, frame, gboxctrl, y)
                     local hidden_job = gboxctrl:CreateControl('richtext', 'HIDDEN_JOB_' .. jobIES.ClassName, 10, y, 100, 25);
                     hidden_job:SetText('{@sti8}' .. ScpArgMsg("HIDDEN_JOB_UNLOCK_VIEW_MSG1", "JOBNAME", jobIES.Name))
                     y = y + 25
+                end
+                
+                if UQ_GET_JOB_SETTING_JOB(jobIES.ClassName) ~= nil then
+                    if aObj["UnlockQuest_" .. jobIES.ClassName] ~= nil then
+                        if flag == true and((aObj["UnlockQuest_" .. jobIES.ClassName] == 1 and jobIES.PreFunction ~= 'None' ) or IS_KOR_TEST_SERVER()) then
+                            local hidden_job = gboxctrl:CreateControl('richtext', 'HIDDEN_JOB_' .. jobIES.ClassName, 10, y, 100, 25);
+                            hidden_job:SetText('{@sti8}' .. ScpArgMsg("HIDDEN_JOB_UNLOCK_VIEW_MSG1", "JOBNAME", jobIES.Name))
+                            y = y + 25
+                        end
+                    end
                 end
             end
         end
@@ -2072,7 +2083,7 @@ function STATUS_ACHIEVE_INIT()
             break;
         end
 
-        if HAVE_ACHIEVE_FIND(cls.ClassID) == 1 or cls.Hidden == "NO" then
+        if HAVE_ACHIEVE_FIND(cls.ClassID) == 1 or cls.Hidden == "NO" or IS_UNLOCK_QUEST_STARTED(nil, cls.ClassName) == true then
             local nowpoint = GetAchievePoint(GetMyPCObject(), cls.NeedPoint);
             local ctrlset = internalBox:CreateOrGetControlSet('each_achieve', 'ACHIEVE_RICHTEXT_' .. i, x, y);
             tolua.cast(ctrlset, "ui::CControlSet");

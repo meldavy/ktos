@@ -443,7 +443,7 @@
                 <Scp Scp="C_VOICE_SOUND" Client="YES" UseSleep="NO" Time="300">
                     <Str Str="voice_war_atk_medium"/>
                     <Str Str="voice_atk_medium_war_f"/>
-                </Scp>
+                </Scp>             
             </EtcList>
             <ResultList>
                 <ToolScp Scp="S_R_TGTBUFF" Client="NO" UseSleep="NO">
@@ -458,6 +458,9 @@
                     <Num Num="1" />
                     <Num Num="50" />
                     <Num Num="-1" />
+                </ToolScp>
+                <ToolScp Scp="S_R_COND_SCRIPT" Client="NO" UseSleep="NO">
+                    <Str Str="SKL_VIBORA_HEADBUTT"/>
                 </ToolScp>
             </ResultList>
         </MainSkl>
@@ -809,28 +812,14 @@
                     <Num Num="45"/>
                     <Num Num="999"/>
                 </Scp>
+                <Scp Scp="SKL_RUN_SCRIPT" Client="NO" Time="1100" UseSleep="NO">
+                    <Str Str="SKL_VIBORA_FRENZIEDBURST"/>
+                </Scp>
             </EtcList>
-            <ResultList>
-                <ToolScp Scp="S_R_TGTBUFF" Client="NO" UseSleep="NO">
-                    <Str Str="Stun"/>
-                    <Num Num="1"/>
-                    <Num Num="0"/>
-                    <Num Num="1200"/>
-                    <Num Num="1"/>
-                    <Num Num="100"/>
-                    <Num Num="-1"/>
-                </ToolScp>
-            </ResultList>
         </MainSkl>
     </Skill>
     <Skill Name="Murmillo_CassisCrista">
         <EnableScripts>
-            <ToolScp Client="BOTH" Scp="SKL_CHECK_CHECK_NOBUFF" UseSleep="NO">
-                <Str Str="DragoonHelmet_Buff"/>
-            </ToolScp>
-            <ToolScp Client="BOTH" Scp="SKL_CHECK_CHECK_NOBUFF" UseSleep="NO">
-                <Str Str="DragoonHelmet_Abil_Buff"/>
-            </ToolScp>
             <ToolScp Client="BOTH" Scp="SKL_CHECK_CHECK_NOBUFF" UseSleep="NO">
                 <Str Str="EquipDesrption_Debeff"/>
             </ToolScp>

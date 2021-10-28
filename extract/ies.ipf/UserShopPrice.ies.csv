@@ -9,3 +9,4 @@ ClassID,DefaultPrice,MinPrice,MaxPrice,ClassName,Name,PriceType,Price,ExistAbili
 3001,200,50,1000,Appraiser_Apprise,감정,UnitPrice,SCR_GET_APPRISE_PRICE,NO
 4001,800,50,1000,Pardoner_SpellShop,주문 판매상점 개설,ConstantPrice,SCR_GET_SPELLSHOP_PRICE,YES
 4002,20000,50,30000,Oracle_SwitchGender,스위치 젠더,ConstantPrice,SCR_GET_SWITCHGENDER_PRICE,NO
+4003,1,1,1,Pardoner_Oblation,봉헌,ConstantPrice,SCR_GET_OBLATION_PRICE,NO

@@ -1287,3 +1287,5 @@ ClassID,BuyPrice,SellPrice,ClassName,Category,SubCategory,PackageList
 11113,0,30,EP13_Artefact_132,Recyle_Shop_Sell,Recyle_Shop_Sell,
 11114,0,30,EP13_Artefact_133,Recyle_Shop_Sell,Recyle_Shop_Sell,
 11115,0,30,EP13_Artefact_134,Recyle_Shop_Sell,Recyle_Shop_Sell,
+11116,0,100,UnlockQuest_OverAchieveClear_Char1_23_Costume,Recyle_Shop_Sell,Recyle_Shop_Sell,
+11117,0,100,UnlockQuest_OverAchieveClear_Char1_23_Job,Recyle_Shop_Sell,Recyle_Shop_Sell,

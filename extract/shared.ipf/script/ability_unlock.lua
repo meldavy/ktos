@@ -329,3 +329,13 @@ function UNLOCK_ARBALESTER19_LEVEL(pc, jobClassName, limitLevel, abilIES)
 
 	return "LOCK_GRADE";
 end
+
+function UNLOCK_LUCHADOR_SUBSKILL_COND(pc, skillClassName, limitCharLevel, abilIES)
+	local skl = GetSkill(pc, skillClassName)
+	local pcBaseLevel = TryGetProp(pc, "Lv")
+	if (skl ~= nil and skl.LevelByDB >= 1) and (pcBaseLevel >= limitCharLevel) then
+		return "UNLOCK";
+	end
+
+	return "LOCK_GRADE";
+end

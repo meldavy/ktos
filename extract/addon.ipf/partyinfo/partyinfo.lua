@@ -215,6 +215,7 @@ function IS_PARTY_INFO_SHOWICON(showIcon)
 end
 
 function ON_PARTYINFO_BUFFLIST_UPDATE(frame)
+	if frame == nil then return; end
 	local pcparty = session.party.GetPartyInfo();
 	if pcparty == nil then
 		DESTROY_CHILD_BYNAME(frame, 'PTINFO_');
@@ -232,8 +233,7 @@ function ON_PARTYINFO_BUFFLIST_UPDATE(frame)
 	-- 접속중 파티원 버프리스트
 	for i = 0, count - 1 do
 		local partyMemberInfo = list:Element(i);
-				if geMapTable.GetMapName(partyMemberInfo:GetMapID()) ~= 'None' then
-
+		if geMapTable.GetMapName(partyMemberInfo:GetMapID()) ~= 'None' then
 			local buffCount = partyMemberInfo:GetBuffCount();
 			local partyInfoCtrlSet = frame:GetChild('PTINFO_'.. partyMemberInfo:GetAID());
 			if partyInfoCtrlSet ~= nil then

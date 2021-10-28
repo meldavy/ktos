@@ -67,6 +67,8 @@ ClassID,ClassName,Name,UseDaily,UseWeekly
 1049,QP13_ep13_f_siauliai_5,그림자 흔적,NO,NO
 1050,EPISODE_ACHIEVE_P_12_1,EP 12-1 사명의 완성,NO,NO
 1051,EPISODE_ACHIEVE_P_12_2,EP 12-2 숙명,NO,NO
+1052,EPISODE_ACHIEVE_P_13_1,EP 13-1 신수를 노리는 마족,NO,NO
+1053,EPISODE_ACHIEVE_P_13_2,EP 13-2 대답없는 기도들,NO,NO
 1501,F_3CMLAKE26,란코 지역,NO,NO
 1502,D_FANTASYLIB48,환상도서관 지역,NO,NO
 2002,ItemRecipe,아이템제작,NO,NO
@@ -304,6 +306,23 @@ ClassID,ClassName,Name,UseDaily,UseWeekly
 30002,Achieve_RidePet_3,탈 것 보상 칭호,NO,NO
 30003,Achieve_RidePet_4,탈 것 보상 칭호,NO,NO
 40001,Achieve_TOSHero_1,영웅담 클리어,NO,NO
+50000,UQ_Char1_23_Unlock_Job,[루차도르] 슈퍼스타의 자질,NO,NO
+50001,UQ_Char1_23_Unlock_Job_1,[루차도르] 해금권 : 업적 1,NO,NO
+50002,UQ_Char1_23_Unlock_Job_2,[루차도르] 해금권 : 업적 2,NO,NO
+50003,UQ_Char1_23_Unlock_Job_3,[루차도르] 해금권 : 업적 3,NO,NO
+50004,UQ_Char1_23_Unlock_Job_4,[루차도르] 해금권 : 업적 4,NO,NO
+50005,UQ_Char1_23_Unlock_Job_5,[루차도르] 해금권 : 업적 5,NO,NO
+50006,UQ_Char1_23_Unlock_Job_6,[루차도르] 해금권 : 업적 6,NO,NO
+50007,UQ_Char1_23_Unlock_Job_7,[루차도르] 해금권 : 업적 7,NO,NO
+50050,UQ_Char1_23_Unlock_Costume,[루차도르] 슈퍼스타의 자태,NO,NO
+50051,UQ_Char1_23_Unlock_Costume_1,[루차도르] 코스튬 : 업적 1,NO,NO
+50052,UQ_Char1_23_Unlock_Costume_2,[루차도르] 코스튬 : 업적 2,NO,NO
+50053,UQ_Char1_23_Unlock_Costume_3,[루차도르] 코스튬 : 업적 3,NO,NO
+50054,UQ_Char1_23_Unlock_Costume_4,[루차도르] 코스튬 : 업적 4,NO,NO
+50055,UQ_Char1_23_Unlock_Costume_5,[루차도르] 코스튬 : 업적 5,NO,NO
+50056,UQ_Char1_23_Unlock_Costume_6,[루차도르] 코스튬 : 업적 6,NO,NO
+50057,UQ_Char1_23_Unlock_Costume_7,[루차도르] 코스튬 : 업적 7,NO,NO
+50058,UQ_Char1_23_AllClear,[루차도르] 마스터 의뢰 완료,NO,NO
 60000,WeeklyRankClass_1,Highlander,NO,NO
 60001,WeeklyRankClass_2,Peltasta,NO,NO
 60002,WeeklyRankClass_3,Hoplite,NO,NO
@@ -392,3 +411,4 @@ ClassID,ClassName,Name,UseDaily,UseWeekly
 60085,WeeklyRankClass_86,Archer,NO,NO
 60086,WeeklyRankClass_87,Cleric,NO,NO
 60087,WeeklyRankClass_88,Wizard,NO,NO
+60088,WeeklyRankClass_89,Luchador,NO,NO

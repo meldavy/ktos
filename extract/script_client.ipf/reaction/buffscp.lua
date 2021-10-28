@@ -1,6 +1,6 @@
 ﻿-- buffscp.lua
 function ShadowUmbrella_ENTER(actor, obj, buff)
-    actor:PlayEquipAni(1, "b-master_umbrella_ani.xsm");
+    actor:GetAnimation():PlayEquipAni(1, "b-master_umbrella_ani.xsm");
 end
 
 function ShadowUmbrella_LEAVE(actor, obj, buff)
@@ -1256,6 +1256,7 @@ function ScpChangeSwordmanStanceAnimationSet(actor, obj, buff)
     local buffFinestra= actor:GetBuff():GetBuff('Finestra_Buff');
     local buffEpeeGarde = actor:GetBuff():GetBuff('EpeeGarde_Buff');
     local buffHelmet = actor:GetBuff():GetBuff('murmillo_helmet');
+    local buffEnmascarado = actor:GetBuff():GetBuff('Enmascarado_Buff');
     
     if buffRamMuay ~= nil then
         actor:GetAnimation():SetSTDAnim("SKL_NAKMUAY_ASTD");
@@ -1307,6 +1308,22 @@ function ScpChangeSwordmanStanceAnimationSet(actor, obj, buff)
         actor:GetAnimation():SetRAISEAnim("SKL_MURMILLO_RAISE")
         actor:GetAnimation():SetOnAIRAnim("SKL_MURMILLO_ONAIR")
         actor:GetAnimation():SetFALLAnim("SKL_MURMILLO_FALL")
+    elseif buffEnmascarado ~= nil then
+        actor:GetAnimation():SetSTDAnim("SKL_LUCHADOR_ASTD");
+        actor:GetAnimation():SetSTDAnim("SKL_LUCHADOR_ASTD");
+        actor:GetAnimation():SetTURNAnim("SKL_LUCHADOR_ASTD");
+        actor:GetAnimation():SetChangeJumpAnim(true);
+        actor:GetAnimation():SetRAISEAnim("SKL_NAKMUAY_RAISE");
+        actor:GetAnimation():SetOnAIRAnim("SKL_NAKMUAY_ONAIR");
+        actor:GetAnimation():SetFALLAnim("SKL_NAKMUAY_FALL");
+
+        local abil = session.GetAbilityByName("Luchador18");
+        if abil ~= nil then
+            local abilObj = GetIES(abil:GetObject());
+            if abilObj.ActiveState == 1 then
+                actor:GetAnimation():SetRUNAnim("DASH_RUN");
+            end
+        end
     else
         actor:GetAnimation():ResetSTDAnim();
         actor:GetAnimation():ResetRUNAnim();
@@ -1660,6 +1677,14 @@ function EFFECT_EP13RAINCOAT_BUFF_LEAVE(actor, obj, buff)
 	SCR_REMOVE_FAIRY_GROUND(actor:GetHandleVal(), "effect_ep13raincoat");
 end
 
+function DragonoidClientScp_ENTER(actor, obj, buff)
+    actor:SetAuraInfo("Dragonoid_Color");
+end
+
+function DragonoidClientScp_LEAVE(actor, obj, buff)
+    actor:SetAuraInfo("None");
+end
+
 function TOSHero_Buff_Overwhelm_ClientScp_ENTER(actor, obj, buff)
     print(actor, obj, buff)
     actor:GetEffect():ActorColorBlend(0, 0, 0, 0, 1, 1);
@@ -1677,4 +1702,56 @@ function EP13RETRO_EFFECT_LEAVE(actor, obj, buff)
     effect.DetachActorEffect(actor, "F_light195_loop", 0.2);
     effect.DetachActorEffect(actor, "F_light196_loop", 0.2);
     actor:SetEquipItemFlagProp("EFFECTCOSTUME", 0);
+end
+
+function Luchador_ChangeStance_ENTER(actor, obj, buff)
+    actor:SetAlwaysBattleState(true);
+    actor:GetAnimation():SetSTDAnim("SKL_LUCHADOR_ASTD");
+    actor:GetAnimation():SetTURNAnim("SKL_LUCHADOR_ASTD");
+    actor:GetAnimation():SetChangeJumpAnim(true);
+    actor:GetAnimation():SetRAISEAnim("SKL_NAKMUAY_RAISE");
+    actor:GetAnimation():SetOnAIRAnim("SKL_NAKMUAY_ONAIR");
+    actor:GetAnimation():SetFALLAnim("SKL_NAKMUAY_FALL");
+
+    local abil = session.GetAbilityByName("Luchador18");
+    if abil ~= nil then
+        local abilObj = GetIES(abil:GetObject());
+        if abilObj.ActiveState == 1 then
+            actor:GetAnimation():SetRUNAnim("DASH_RUN");
+        end
+    end
+end
+
+function Luchador_ChangeStance_LEAVE(actor, obj, buff)
+    actor:SetAlwaysBattleState(false);
+    actor:GetAnimation():ResetSTDAnim();
+    actor:GetAnimation():ResetRUNAnim();
+    actor:GetAnimation():ResetTURNAnim();
+    actor:GetAnimation():SetChangeJumpAnim(false);
+
+    ScpChangeSwordmanStanceAnimationSet(actor, obj, buff)
+end
+
+function GolpearClientScp_ENTER(actor, obj, buff)
+    actor:GetAnimation():SetRUNAnim("SKL_LUCHADOR_GOLPEAR");
+    actor:GetAnimation():SetWLKAnim("SKL_LUCHADOR_GOLPEAR");
+    actor:GetAnimation():SetSTDAnim("SKL_LUCHADOR_GOLPEAR_STAND"); 
+
+    actor:SetAlwaysBattleState(true);
+end
+
+function GolpearClientScp_LEAVE(actor, obj, buff)
+    actor:GetAnimation():ResetRUNAnim();
+    actor:GetAnimation():ResetWLKAnim();
+    actor:GetAnimation():ResetSTDAnim();
+    ScpChangeSwordmanStanceAnimationSet(actor, obj, buff)
+    actor:SetAlwaysBattleState(false);
+end
+
+function LuchadorComboClientScp_ENTER(actor, obj, buff)
+    actor:SetAuraInfo("EliteBuff");
+end
+
+function LuchadorComboClientScp_LEAVE(actor, obj, buff)
+    actor:SetAuraInfo("None");
 end

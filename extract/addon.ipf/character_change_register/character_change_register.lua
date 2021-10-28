@@ -1,19 +1,19 @@
 ﻿-- character_change_register.lua
 function CHARACTER_CHANGE_REGISTER_ON_INIT(addon, frame)
-	--[[ addon:RegisterMsg("REGISTER_SUCCESS", "ON_REGISTER_SUCCESS_UPDATE");
-	addon:RegisterMsg("DEREGISTER_SUCCESS", "ON_DEREGISTER_SUCCESS_UPDATE"); ]]
+	addon:RegisterMsg("REGISTER_SUCCESS", "ON_REGISTER_SUCCESS_UPDATE");
+	addon:RegisterMsg("DEREGISTER_SUCCESS", "ON_DEREGISTER_SUCCESS_UPDATE");
 end
 
 function CHARACTER_CHANGE_REGISTER_OPEN()
-	--[[ ui.OpenFrame("character_change_register");
+	ui.OpenFrame("character_change_register");
 	local frame = ui.GetFrame("character_change_register");
 	if frame ~= nil then
 		CHARACTER_CHANGE_REGISTER_CREATE_SLOT_LIST(frame);
-	end ]]
+	end
 end
 
 function CHARACTER_CHANGE_REGISTER_REMOVE_LIST(frame, gbox)
-	--[[ if gbox ~= nil then
+	if gbox ~= nil then
 		local count = gbox:GetChildCount();
 		for i = 0, count - 1 do
 			local child = gbox:GetChildByIndex(i);
@@ -22,17 +22,17 @@ function CHARACTER_CHANGE_REGISTER_REMOVE_LIST(frame, gbox)
 			end
 		end
 		frame:Invalidate();
-	end ]]
+	end
 end
 
 function CHARACTER_CHANGE_REGISTER_CREATE_SLOT_LIST(frame)
-	--[[ local list_gbox = GET_CHILD_RECURSIVELY(frame, "slot_list_gbox");
+	local list_gbox = GET_CHILD_RECURSIVELY(frame, "slot_list_gbox");
 	if list_gbox == nil then return; end
 	CHARACTER_CHANGE_REGISTER_REMOVE_LIST(frame, list_gbox);
 	local slot_count = GET_CHARACTER_CHANGE_SLOT_COUNT();
-	for i = 0, slot_count - 1 do
+	for i = 1, slot_count do
 		local height = 160;
-		local ctrl_set = list_gbox:CreateOrGetControlSet("character_change_regist_info", "register_slot_"..i, 0, i * height);
+		local ctrl_set = list_gbox:CreateOrGetControlSet("character_change_regist_info", "register_slot_"..i, 0, (i - 1) * height);
 		local character_name = character_change.GetRegisteredPcName(i);
 		if character_name ~= "None" then
 			CHARACTER_CHANGE_REGISTER_FILL_INFO_EXIST(ctrl_set, i);
@@ -43,15 +43,15 @@ function CHARACTER_CHANGE_REGISTER_CREATE_SLOT_LIST(frame)
 		end
 		ctrl_set:Invalidate();
 	end
-	frame:Invalidate(); ]]
+	frame:Invalidate();
 end
 
 function CHARACTER_CHANGE_REGISTER_FILL_INFO_EXIST(ctrl_set, index)	
-	--[[ if ctrl_set ~= nil then
+	if ctrl_set ~= nil then
 		local selected_index = character_change.GetRegisteredPcIndexFromCandidateList(index);
 		ctrl_set:SetUserValue("selected_index", selected_index);
 		ctrl_set:SetUserValue("guid", character_change.GetRegisteredPcGuid(index));
-		ctrl_set:SetUserValue("slot_index", index);
+		ctrl_set:SetUserValue("slot_index", index - 1);
 		ctrl_set:SetGravity(ui.CENTER_HORZ, ui.TOP);
 		local name = GET_CHILD_RECURSIVELY(ctrl_set, "name");
 		if name ~= nil then
@@ -93,24 +93,24 @@ function CHARACTER_CHANGE_REGISTER_FILL_INFO_EXIST(ctrl_set, index)
 				end
 			end
 		end
-	end ]]
+	end
 end
 
 function CHARACTER_CHANGE_REGISTER_FILL_INFO_NOT_EXIST(ctrl_set, index)
-	--[[ if ctrl_set ~= nil then
+	if ctrl_set ~= nil then
 		ctrl_set:SetGravity(ui.CENTER_HORZ, ui.TOP);
-		ctrl_set:SetUserValue("slot_index", index);
+		ctrl_set:SetUserValue("slot_index", index - 1);
 		ctrl_set:SetUserValue("guid", "None");
 		ctrl_set:SetSkinName("test_frame_midle_light");
 		local main_gb = GET_CHILD_RECURSIVELY(ctrl_set, "main_gb");
 		if main_gb ~= nil then
 			main_gb:SetEventScript(ui.LBUTTONDOWN, "CHARACTER_CHANGE_REGISTER_SELECT_ITEM");
 		end
-	end ]]
+	end
 end
 
 function CHARACTER_CAHNGE_REGISTER_VISIBLE_CTRL(ctrl_set, registered)
-	--[[ local empty_visible = 1;
+	local empty_visible = 1;
 	if registered == true then empty_visible = 0; end
 	local empty = GET_CHILD_RECURSIVELY(ctrl_set, "empty");
 	empty:ShowWindow(empty_visible);
@@ -150,12 +150,12 @@ function CHARACTER_CHANGE_REGISTER_SELECT_ITEM(ctrl_set, gb, arg_str, arg_num)
 		local y = frame:GetY();
 		local slot_index = ctrl_set:GetUserIValue("slot_index");
 		CHARACTER_CHANGE_REGISTER_SELECT_OPEN(x, y, slot_index);
-	end ]]
+	end
 end
 
 -- register & deregister
 function CHARACTER_CHANGE_REGISTER_ADD_ITEM(add_index, reg_char_index, guid)
-	--[[ local frame = ui.GetFrame("character_change_register");
+	local frame = ui.GetFrame("character_change_register");
 	if frame == nil then return; end
 	local gbox = GET_CHILD_RECURSIVELY(frame, "slot_list_gbox");
 	if gbox == nil then return; end
@@ -172,18 +172,18 @@ function CHARACTER_CHANGE_REGISTER_ADD_ITEM(add_index, reg_char_index, guid)
 				break;
 			end
 		end
-	end ]]
+	end
 end
 
 function DO_CHARACTER_CHANGE_REGISTER(guid, slot_index)
-	--[[ if character_change.IsRegistedCharacterByGuid(guid) == false then
+	if character_change.IsRegistedCharacterByGuid(guid) == false then
 		character_change.RegisterMyCharacter(guid, slot_index);
 		ui.CloseFrame("character_change_register_select");
-	end ]]
+	end
 end
 
 function CHARACTER_CHANGE_REGISTER_REMOVE_ITEM(parent, btn)
-	--[[ local upper_parent = parent:GetParent();
+	local upper_parent = parent:GetParent();
 	local ctrl_set = upper_parent:GetParent();
 	if ctrl_set ~= nil then
 		local slot_index = ctrl_set:GetUserIValue("slot_index");
@@ -191,26 +191,26 @@ function CHARACTER_CHANGE_REGISTER_REMOVE_ITEM(parent, btn)
 		local guid = ctrl_set:GetUserValue("guid");
 		local yes_scp = string.format("DO_CHARACTER_CHANGE_DEREGISTER(%s)", guid);
 		ui.MsgBox(str, yes_scp, "None");
-	end ]]
+	end
 end
 
 function DO_CHARACTER_CHANGE_DEREGISTER(guid)
-	--[[ if guid == "None" then return; end
+	if guid == "None" then return; end
 	if character_change.IsRegistedCharacterByGuid(guid) == true then
 		character_change.DeregisterByCharacter(guid);
-	end ]]
+	end
 end
 
 function ON_REGISTER_SUCCESS_UPDATE(frame, msg, arg_str, arg_num)
-	--[[ if frame == nil then return; end
+	if frame == nil then return; end
 	local gbox = GET_CHILD_RECURSIVELY(frame, "slot_list_gbox");
 	CHARACTER_CHANGE_REGISTER_REMOVE_LIST(frame, gbox);
-	CHARACTER_CHANGE_REGISTER_CREATE_SLOT_LIST(frame); ]]
+	CHARACTER_CHANGE_REGISTER_CREATE_SLOT_LIST(frame);
 end
 
 function ON_DEREGISTER_SUCCESS_UPDATE(frame, msg, arg_str, arg_num)
-	--[[ if frame == nil then return; end
+	if frame == nil then return; end
 	local gbox = GET_CHILD_RECURSIVELY(frame, "slot_list_gbox");
 	CHARACTER_CHANGE_REGISTER_REMOVE_LIST(frame, gbox);
-	CHARACTER_CHANGE_REGISTER_CREATE_SLOT_LIST(frame); ]]
+	CHARACTER_CHANGE_REGISTER_CREATE_SLOT_LIST(frame);
 end

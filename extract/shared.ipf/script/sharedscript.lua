@@ -3100,6 +3100,29 @@ function JOB_NAKMUAY_PRE_CHECK(pc, jobCount)
     return 'NO'
 end
 
+function JOB_LUCHADOR_PRE_CHECK(pc, jobCount)
+    if jobCount == nil then
+        jobCount = GetTotalJobCount(pc);
+    end
+    if jobCount >= 2 then
+        -- local aObj
+        -- if IsServerSection() == 0 then
+        --     aObj = GetMyAccountObj();
+        -- else
+        --     aObj = GetAccountObj(pc);
+        -- end
+        
+        -- if aObj ~= nil then
+        --     local value = TryGetProp(aObj, 'UnlockQuest_Char1_23', 0)
+        --     if value == 1 or IS_KOR_TEST_SERVER() == true then
+                return 'YES'
+            -- end
+        -- end
+    end
+
+    return 'NO'
+end
+
 
 function JOB_RUNECASTER_PRE_CHECK(pc, jobCount)
     if jobCount == nil then
@@ -3625,4 +3648,47 @@ function TRIM_STRING_WITH_SPACING(str)
 		end
 	end
 	return str
+end
+
+function UQ_GET_JOB_SETTING_JOB(JobClassName) -- job_unlockquest.xml에서 cls를 가져온다
+    local JobNumLimt = 1000
+    local list, cnt = GetClassList("job_unlockquest")
+    if cnt == 0 or cnt == nil then return end
+    
+    local resultJob = nil
+
+    if JobClassName == "ALL" then
+        local AllList = {}
+        for p  = 0, cnt - 1 do
+            local cls = GetClassByIndexFromList(list, p);
+            local clsID = TryGetProp(cls, "ClassID", 0)
+
+            if clsID >= JobNumLimt then
+                break
+            end
+
+            if clsID < JobNumLimt then
+                AllList[#AllList + 1] = cls
+            end
+        end
+
+        return AllList
+    end
+
+    for i  = 0, cnt - 1 do
+        local cls = GetClassByIndexFromList(list, i);
+        local clsID = TryGetProp(cls, "ClassID", 0)
+        local TargetJob = TryGetProp(cls, "TargetJob", "None")
+        if clsID >= JobNumLimt then
+            break
+        end
+        if TargetJob == JobClassName then
+            resultJob = cls
+            return resultJob;
+        end
+    end
+    
+    if resultJob == nil then
+        return nil;
+    end
 end

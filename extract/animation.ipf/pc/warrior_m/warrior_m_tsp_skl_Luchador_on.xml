@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by IMCGames Co., Ltd (IMCGames Co., Ltd) -->
+<ActionDesc>
+	<Shockwave frame="5" type="2" intensity="2" frequency="70" duration="0.2" range="1000"/>
+	<BlendOn frame="0" R="0" G="0" B="0" A="50"/>
+	<BlendOn frame="5" R="150" G="150" B="100" A="100"/>
+	<BlendOn frame="6" R="80" G="80" B="80" A="100"/>
+	<BlendOff frame="7" R="0" G="0" B="0" A="0"/>
+	<Particle frame="5" attachNode="Dummy_emitter" particleName="F_light191_white" useAttach="false" hiddenObj="false" changeEffect="None" scale="3" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="6" attachNode="Dummy_emitter" particleName="F_smoke189_white2" useAttach="false" hiddenObj="false" changeEffect="None" scale="1.5" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="5" attachNode="Dummy_emitter" particleName="F_ground185_spred_out_light_white" useAttach="false" hiddenObj="false" changeEffect="None" scale="0.5" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<AttachModel frame="0" XAC="Warrior_Luchador_helmet_red" node="Dummy_helmet" isAttach="true" autoDetach="true" index="0" anim=""/>
+</ActionDesc>

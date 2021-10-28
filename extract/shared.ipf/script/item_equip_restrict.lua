@@ -1677,5 +1677,9 @@ function CHECK_ENTERANCE_FOR_TEAM_BATTLE_LEAGUE(pc, index)
 			return false;
 		end
 	end
+
+	if CHECK_CHARACTER_CHANGE_CONDITION(pc) == false then
+		return false;
+	end
 	return true;
 end

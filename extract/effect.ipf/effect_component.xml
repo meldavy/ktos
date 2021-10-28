@@ -713,6 +713,8 @@
 	<Ray name="rize004" texture="rize004" height="3.00" texel_x="0" texel_y="0" texel_width="128" texel_height="32" texel_speed="0.00" loopingwidth="0.00" loop="true" count="4" pitch="4" ticktime="0.10"/>
 	<Ray name="rize003_1" texture="rize003_1" height="5.00" texel_x="0" texel_y="0" texel_width="128" texel_height="32" texel_speed="0.00" loopingwidth="0.00" loop="true" count="4" pitch="4" ticktime="0.10"/>
 	<Ray name="rize003" texture="rize003" height="5.00" texel_x="0" texel_y="0" texel_width="128" texel_height="32" texel_speed="0.00" loopingwidth="0.00" loop="true" count="4" pitch="4" ticktime="0.10"/>
+	<Trail name="dash001_alpha2" texture="dash001_alpha2" height="5.00" texel_x="0" texel_y="0" texel_width="32" texel_height="16"/>
+	<Trail name="dash001_pink_alpha" texture="dash001_pink_alpha" height="5.00" texel_x="0" texel_y="0" texel_width="32" texel_height="16"/>
 	<Trail name="trail008_1" texture="trail008_1" height="5.00" texel_x="0" texel_y="0" texel_width="128" texel_height="64"/>
 	<Trail name="trail006_blur" texture="trail006_blur" height="5.00" texel_x="0" texel_y="0" texel_width="256" texel_height="256"/>
 	<Trail name="trail_circle007" texture="circle007" height="5.00" texel_x="0" texel_y="0" texel_width="64" texel_height="64"/>
@@ -737,6 +739,11 @@
 	<Trail name="dash001_pink" texture="dash001_pink" height="5.00" texel_x="0" texel_y="0" texel_width="32" texel_height="16"/>
 	<Trail name="dash001" texture="dash001" height="5.00" texel_x="0" texel_y="0" texel_width="32" texel_height="16"/>
 	<Trail name="smoke002" texture="smoke002" height="10.00" texel_x="512" texel_y="512" texel_width="64" texel_height="64"/>
+	<Model name="arrowdancing_arrow_effect" model="arrowdancing_arrow_effect.xac" motion="None" texturepath="effect\high\modeltexture\" overlap="true" AlphaType="BLEND"/>
+	<Model name="Sadhu_Tanoti_Chain_model03" model="Sadhu_Tanoti_Chain_model.xac" motion="Sadhu_Tanoti_Chain_model03_ani.xsm" texturepath="effect\high\modeltexture\" overlap="true" AlphaType="BLEND"/>
+	<Model name="Sadhu_Tanoti_Chain_model02" model="Sadhu_Tanoti_Chain_model.xac" motion="Sadhu_Tanoti_Chain_model02_ani.xsm" texturepath="effect\high\modeltexture\" overlap="true" AlphaType="BLEND"/>
+	<Model name="Sadhu_Tanoti_Chain_model01" model="Sadhu_Tanoti_Chain_model.xac" motion="Sadhu_Tanoti_Chain_model01_ani.xsm" texturepath="effect\high\modeltexture\" overlap="true" AlphaType="BLEND"/>
+	<Model name="spiral_mesh003" model="spiral_mesh003.xac" motion="None" texturepath="effect\high\modeltexture\" overlap="true" AlphaType="BLEND"/>
 	<Model name="arrow_PyeonJeon" model="arrow_PyeonJeon.xac" motion="None" texturepath="effect\high\modeltexture\" overlap="true" AlphaType="TEST"/>
 	<Model name="effect_ep13retro" model="effect_ep13retro.xac" motion="effect_ep13retro_ani.xsm" texturepath="effect\high\modeltexture\" overlap="true" AlphaType="TEST"/>
 	<Model name="effect_ep13retro_thmace" model="effect_ep13retro_thmace.xac" motion="None" texturepath="effect\high\modeltexture\" overlap="true" AlphaType="TEST"/>

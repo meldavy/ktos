@@ -12,6 +12,7 @@ ClassID,Price,PriceRatio,StampCount,ClassName,Category,Gender,ItemClassName,Equi
 1011,127,0,0,DesignCut_HAIR_M_143,Designcut,M,DesignCut_HAIR_M_143,designcut,,,,,NO,,2020-03-19 00:00:00,DesigncutDyeWarning
 1012,127,0,0,DesignCut_HAIR_M_144,Designcut,M,DesignCut_HAIR_M_144,designcut,,,,,NO,,2020-03-19 00:00:00,DesigncutDyeWarning
 1013,127,0,0,DesignCut_HAIR_M_145,Designcut,M,DesignCut_HAIR_M_145,designcut,,,,,NO,,2020-10-08 00:00:00,DesigncutDyeWarning
+1014,127,0,0,DesignCut_HAIR_M_146,Designcut,M,DesignCut_HAIR_M_146,designcut,,,,,NO,,2021-09-30 00:00:00,DesigncutDyeWarning
 1101,198,0,0,DesignCut_HAIR_F_126,Designcut,F,DesignCut_HAIR_F_126,designcut,,,,,NO,,2020-03-19 00:00:00,DesigncutDyeWarning
 1102,198,0,0,DesignCut_HAIR_F_133,Designcut,F,DesignCut_HAIR_F_133,designcut,,,,,NO,,2020-03-19 00:00:00,DesigncutDyeWarning
 1103,198,0,0,DesignCut_HAIR_F_134,Designcut,F,DesignCut_HAIR_F_134,designcut,,,,,NO,,2020-03-19 00:00:00,DesigncutDyeWarning
@@ -25,3 +26,4 @@ ClassID,Price,PriceRatio,StampCount,ClassName,Category,Gender,ItemClassName,Equi
 1111,127,0,0,DesignCut_HAIR_F_147,Designcut,F,DesignCut_HAIR_F_147,designcut,,,,,NO,,2020-03-19 00:00:00,DesigncutDyeWarning
 1112,127,0,0,DesignCut_HAIR_F_148,Designcut,F,DesignCut_HAIR_F_148,designcut,,,,,NO,,2020-03-19 00:00:00,DesigncutDyeWarning
 1113,155,0,0,DesignCut_HAIR_F_149,Designcut,F,DesignCut_HAIR_F_149,designcut,,,,,NO,,2020-10-08 00:00:00,DesigncutDyeWarning
+1114,127,0,0,DesignCut_HAIR_F_150,Designcut,F,DesignCut_HAIR_F_150,designcut,,,,,NO,,2021-09-30 00:00:00,DesigncutDyeWarning

@@ -140,3 +140,6 @@ ClassID,IconSpineScale,IconSpineDurationTime,ClassName,CheckServer,IconTokken,Ic
 5015,0.14,5,motion_popo_emotion01,YES,헹가래모션,Motion,popocon1,
 5016,0.16,5,motion_popo_emotion02,YES,멋짐모션,Motion,popocon2,
 5017,0.15,5,motion_popo_emotion03,YES,심한말모션,Motion,popocon3,
+5018,0.31,5,motion_malsuns_emotion82,YES,말순이축하모션,Motion,malsuns_emotion82,
+5019,0.38,5,motion_malsuns_emotion100,YES,개복치그렇군모션,Motion,malsuns_emotion100,
+5020,0.34,5,motion_malsuns_emotion77,YES,말순이기쁨모션,Motion,malsuns_emotion77,

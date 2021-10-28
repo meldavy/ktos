@@ -541,11 +541,72 @@ function  TPITEM_RETURNUSER_ENABLE_BY_LIMITATION(tpitemCls, itemcset )
 	local itemCls = GetClass('Item', tpitemCls.ItemClassName);	
 	local curBuyCount = session.shop.GetCurrentBuyLimitCount(shopType, tpitemCls.ClassID, itemCls.ClassID);    
 	local accountLimitCount = TryGetProp(tpitemCls, 'AccountLimitCount');
+
+	local limit = GET_LIMITATION_TO_BUY(tpitemCls.ClassID);	
+
+	local itemobj = GetClass("Item", tpitemCls.ItemClassName)
+
+	if itemobj == nil then
+		return
+	end
+
+	local classid = itemobj.ClassID;
 	
 	if (accountLimitCount ~= nil and accountLimitCount > 0 and curBuyCount >= accountLimitCount) then
 		buyBtn:SetSkinName('test_gray_button');
 		buyBtn:SetText(ClMsg('ITEM_IsPurchased0'))
 		buyBtn:EnableHitTest(0)
+	elseif limit == 'ACCOUNT' then		
+		if TryGetProp(tpitemCls, 'ItemSocial', 'None') == 'Gesture' then		
+			local pc = GetMyPCObject()
+			if pc ~= nil then	
+				local accObj = GetMyAccountObj(pc)
+				local pose_prop = TryGetProp(GetClass('Pose', TryGetProp(itemobj, "StringArg", "None")), 'RewardName', 'None')				
+				if pose_prop ~= nil and pose_prop ~= 'None' then
+					if TryGetProp(accObj, pose_prop, 0) ~= 0 then
+						buyBtn:SetSkinName('test_gray_button');
+						buyBtn:SetText(ClMsg('ITEM_IsPurchased0'))
+						buyBtn:EnableHitTest(0)
+					end
+				end
+			end
+		else
+			local curBuyCount = session.shop.GetCurrentBuyLimitCount(0, tpitemCls.ClassID, classid);
+			if curBuyCount >= tpitemCls.AccountLimitCount then
+				buyBtn:SetSkinName('test_gray_button');
+				buyBtn:SetText(ClMsg('ITEM_IsPurchased0'))
+				buyBtn:EnableHitTest(0)
+			end
+		end
+	elseif limit == 'MONTH' then		
+        local curBuyCount = session.shop.GetCurrentBuyLimitCount(0, tpitemCls.ClassID, classid);
+		if curBuyCount >= tpitemCls.MonthLimitCount then
+			buyBtn:SetSkinName('test_gray_button');
+			buyBtn:SetText(ClMsg('ITEM_IsPurchased0'))
+			buyBtn:EnableHitTest(0)
+		end
+	elseif limit == 'WEEKLY' then
+		local prop = TryGetProp(tpitemCls, 'AccountLimitWeeklyCountProperty', 'None')		
+		local accObj = GetMyAccountObj(pc)
+		local curBuyCount = TryGetProp(accObj, prop, 0)		
+		if curBuyCount >= tpitemCls.AccountLimitWeeklyCount then
+			buyBtn:SetSkinName('test_gray_button');
+			buyBtn:SetText(ClMsg('ITEM_IsPurchased0'))
+			buyBtn:EnableHitTest(0)
+		end
+	elseif TryGetProp(tpitemCls, 'ItemSocial', 'None') == 'Gesture' then		
+		local pc = GetMyPCObject()
+		if pc == nil then return false end
+
+		local accObj = GetMyAccountObj(pc)
+		local pose_prop = TryGetProp(GetClass('Pose', TryGetProp(itemobj, "StringArg", "None")), 'RewardName', 'None')		
+		if pose_prop ~= nil and pose_prop ~= 'None' then
+			if TryGetProp(accObj, pose_prop, 0) ~= 0 then
+				buyBtn:SetSkinName('test_gray_button');
+				buyBtn:SetText(ClMsg('ITEM_IsPurchased0'))
+				buyBtn:EnableHitTest(0)
+			end
+		end
 	end
 end
 
@@ -607,6 +668,15 @@ function TPSHOP_ITEM_TO_RETURNUSER_BUY_BASKET_PREPROCESSOR(parent, control, tpit
             return false;
 		else
 			ui.MsgBox(ScpArgMsg("SelectPurchaseRestrictedItemByMonth","Value", obj.MonthLimitCount -curBuyCount ), string.format("TPSHOP_ITEM_TO_RETURNUSER_BUY_BASKET('%s', %d)", tpitemname, classid), "None");
+		end
+	elseif limit == 'WEEKLY' then
+		local prop = TryGetProp(obj, 'AccountLimitWeeklyCountProperty', 'None')
+		local curBuyCount = TryGetProp(GetMyAccountObj(), prop, 0)
+		if curBuyCount >= obj.AccountLimitWeeklyCount then
+			ui.MsgBox_OneBtnScp(ScpArgMsg("PurchaseItemExceeded","Value", obj.AccountLimitWeeklyCount), "")
+            return false;
+		else
+			ui.MsgBox(ScpArgMsg("SelectPurchaseRestrictedItemByWeekly","Value", obj.AccountLimitWeeklyCount, "Value2", obj.AccountLimitWeeklyCount - curBuyCount), string.format("TPSHOP_ITEM_TO_NEWBIE_BUY_BASKET('%s', %d)", tpitemname, classid), "None");
 		end
 	elseif TPITEM_IS_ALREADY_PUT_INTO_BASKET(parent:GetTopParentFrame(), obj) == true then
 		ui.MsgBox(ClMsg("AleadyPutInBasketReallyBuy?"), string.format("TPSHOP_ITEM_TO_RETURNUSER_BUY_BASKET('%s', %d)", tpitemname, classid), "None");	

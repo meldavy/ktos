@@ -429,6 +429,7 @@
         <Effect Name="F_spread_in030_air"/>
         <Effect Name="F_spread_in030_ice4"/>
         <Effect Name="F_explosion98_rize_4"/>
+        <Effect Name="master_Luchador"/>
     </Category>
     <Category ID="132">
         <Effect Name="I_arrow005_mash2_red#Dummy_back_arrow04"/>
@@ -3260,6 +3261,14 @@
         <Effect Name="F_ground131_dark_green"/>
         <Effect Name="F_explosion062_liquid"/>
         <Effect Name="F_explosion062_liquid_green"/>
+        <Effect Name="SKL_LUCHADOR_MARTINETE"/>
+        <Effect Name="Luchador_Golpear"/>
+        <Effect Name="skl_Chocar_mask_off"/>
+        <Effect Name="skl_Chop1"/>
+        <Effect Name="skl_Chop2"/>
+        <Effect Name="skl_Martinete"/>
+        <Effect Name="skl_Ceremonia"/>
+        <Effect Name="SKL_LUCHADOR_GOLPEAR_ABIL_LOOP"/>
     </Category>
     <Category ID="197">
         <Effect Name="F_burstup030_fire1"/>
@@ -3403,6 +3412,7 @@
         <Effect Name="hit_twinklestar"/>
         <Effect Name="skl_eff_stormdust_loop"/>
         <Effect Name="skl_eff_elementalist_elementalessence_cast"/>
+    <Effect Name="voice_luchador_m_golpear_huracan"/>
     </Category>
     <Category ID="171">
         <Effect Name="MISSION_UPHILL_DEFFENSE_EVENT2"/>
@@ -3716,6 +3726,33 @@
         <Effect Name="I_cleric_BeadyEyed_dash_red"/>
         <Effect Name="F_hit009_rize_green4"/>
         <Effect Name="voice_cleric_m_barrier_shot"/>
+        <Effect Name="Murmillo_FrenziedBurst_Arena"/>
+        <Effect Name="Luchador_Golpear_Abil"/>
+        <Effect Name="SKL_WHIRLWIND_LOOP"/>
+        <Effect Name="SKL_LUCHADOR_ENMASCARADO_RODANDO"/>
+        <Effect Name="SKL_LUCHADOR_ENMASCARADO_BUCEANDO"/>
+        <Effect Name="voice_luchador_f_martinete_shot"/>
+        <Effect Name="SKL_LUCHADOR_ASTD"/>
+        <Effect Name="voice_luchador_f_golpear_huracan"/>
+        <Effect Name="skl_eff_luchador_golpear_storm_ground"/>
+        <Effect Name="skl_eff_voice_luchador_announce_m_turn"/>
+        <Effect Name="skl_eff_voice_luchador_announce_f_turn"/>
+        <Effect Name="skl_eff_voice_luchador_announce_f_cheers"/>
+        <Effect Name="skl_eff_voice_luchador_announce_f_joy"/>
+        <Effect Name="skl_eff_voice_luchador_audience_f_cheers"/>
+        <Effect Name="skl_eff_voice_luchador_announce_m_cheers"/>
+        <Effect Name="skl_eff_voice_luchador_announce_f_intro"/>
+        <Effect Name="skl_eff_voice_luchador_audience_m_anger"/>
+        <Effect Name="skl_eff_voice_luchador_announce_m_anger"/>
+        <Effect Name="skl_eff_voice_luchador_announce_m_intro"/>
+        <Effect Name="skl_eff_voice_luchador_announce_m_end"/>
+        <Effect Name="skl_eff_voice_luchador_announce_m_catcall"/>
+        <Effect Name="skl_eff_voice_luchador_announce_f_catcall"/>
+        <Effect Name="skl_eff_voice_luchador_announce_f_sad"/>
+        <Effect Name="skl_eff_voice_luchador_announce_f_end"/>
+        <Effect Name="skl_eff_voice_luchador_announce_m_joy"/>
+        <Effect Name="F_buff_basic059"/>
+        <Effect Name="voice_luchador_m_martinete_shot"/>
     </Category>
     <Category ID="84">
         <Effect Name="M_PAST_FLIBRARY_1"/>
@@ -10257,6 +10294,7 @@
         <Effect Name="Goddess_Raid_Vasilissa_Solo"/>
         <Effect Name="Lose"/>
         <Effect Name="Win"/>
+        <Effect Name="Draw"/>
     </Category>
     <Category ID="19">
         <Effect Name="I_fallen_statue_atk002_mash"/>

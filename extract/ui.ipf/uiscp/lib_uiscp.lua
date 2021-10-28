@@ -541,8 +541,27 @@ function GET_JOB_ICON(job)
     if cls == nil then
         return "None";
     end
-
     return cls.Icon;
+end
+
+function GET_BASE_JOB_ICON(job)
+    local cls = GetClassByType("Job", job);
+    if cls == nil then return "None"; end
+    local ctrl_type = TryGetProp(cls, "CtrlType", "None");
+    local list, cnt = GetClassList("Job");
+    if list ~= nil and cnt > 0 then
+        for i = 0, cnt - 1 do
+            local job_cls = GetClassByIndexFromList(list, i);
+            if job_cls ~= nil then
+                local rank = TryGetProp(job_cls, "Rank", 0);
+                local job_ctrl_type = TryGetProp(job_cls, "CtrlType", "None");
+                if rank <= 1 and job_ctrl_type == ctrl_type then
+                    return TryGetProp(job_cls, "Icon", "None");
+                end
+            end
+        end
+    end
+    return "None";
 end
 
 function GET_MON_ILLUST(monCls)

@@ -51,8 +51,10 @@ function CHECK_INVENTORY_OPTION_EQUIP(itemCls)
 		optionConfig = config.GetXMLConfig("InvOption_Equip_Rare")
 	elseif itemGrade == 4 then
 		optionConfig = config.GetXMLConfig("InvOption_Equip_Unique")
-	elseif itemGrade >= 5 then
+	elseif itemGrade == 5 then
 		optionConfig = config.GetXMLConfig("InvOption_Equip_Legend")
+	elseif itemGrade == 6 then
+		optionConfig = config.GetXMLConfig("InvOption_Equip_Goddess")
 	end
 
 	if config.GetXMLConfig("InvOption_Equip_All") == 1 then
@@ -164,6 +166,14 @@ function CHECK_INVENTORY_OPTION_GEM(itemCls)
 		optionConfig = config.GetXMLConfig("InvOption_Gem_Skill")
 	elseif cardGroup == "Gem_GemWhite" then
 		optionConfig = config.GetXMLConfig("InvOption_Gem_White")
+	elseif cardGroup == "Gem_Relic_Cyan" then
+		optionConfig = config.GetXMLConfig("InvOption_Gem_Cyan")
+	elseif cardGroup == "Gem_Relic_Magenta" then
+		optionConfig = config.GetXMLConfig("InvOption_Gem_Magenta")
+	elseif cardGroup == "Gem_Relic_Black" then
+		optionConfig = config.GetXMLConfig("InvOption_Gem_Black")
+	elseif cardGroup == "Gem_High_Color" then
+		optionConfig = config.GetXMLConfig("InvOption_Gem_Aether")
 	end
 	
 	return optionConfig
@@ -4890,9 +4900,13 @@ function BEFORE_APPLIED_YESSCP_OPEN_LVCARD(invItem)
 	
 	local lv = TryGetProp(itemobj , 'NumberArg1')
 	if lv ~= 0 then
-    	local textmsg = string.format("[ %s ]{nl}%s", itemobj.Name, ScpArgMsg("EXPCARD_JUMPING_SET_LV_MSG", "LEVEL", lv));
-    	ui.MsgBox_NonNested(textmsg, itemobj.Name, 'REQUEST_SUMMON_BOSS_TX', "None");
-    end
+		local beforeLV = GETMYPCLEVEL()
+		if lv <= beforeLV then
+			return;
+		end
+		local textmsg = string.format("[ %s ]{nl}%s", itemobj.Name, ScpArgMsg("EXPCARD_JUMPING_SET_LV_MSG", "BEFORELEVEL", beforeLV, "AFTERLEVEL", lv));
+		ui.MsgBox_NonNested(textmsg, itemobj.Name, 'REQUEST_SUMMON_BOSS_TX', "None");
+	end
 	return;
 end
 

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by imc (imc) -->
+<ActionDesc>
+    <Sound frame="0.00" soundFile="skl_eff_action_cast_1"/>
+    <Particle frame="2" attachNode="Dummy_effect_r_hand" particleName="F_pose_magical_shot_heart_end" useAttach="false" hiddenObj="false" changeEffect="None" scale="0.2" pause="true" use2DEffect="true" targetPos="false"/>
+    <Sound frame="2.00" soundFile="skl_eff_treeofsephiroth_buff"/>
+    <Sound frame="4.00" soundFile="skl_eff_aukuras_buff_body"/>
+    <Sound frame="9.00" soundFile="skl_eff_action_shot_1"/>
+    <Particle frame="12" attachNode="Dummy_effect_moulinet_005" particleName="I_spread_out001_light_heart" useAttach="true" hiddenObj="false" changeEffect="None" scale="4" pause="true" use2DEffect="true" targetPos="false"/>
+</ActionDesc>

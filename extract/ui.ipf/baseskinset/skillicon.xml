@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by imc (imc) -->
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by imc (imc) -->
 <!-- edited with XMLSpy v2008 sp1 (http://www.altova.com) by MintPC (Mi) -->
 <skinset name="Base">
 	<imagelist category="wizard_skillicon">
@@ -749,6 +749,13 @@
 		<image name="Icon_warri_BlossomSlash" file="\icon\skill\warrior\Icon_warri_BlossomSlash.png" imgrect="0 0 128 128" CMM_Caption="매화 베기"/>
 		<image name="Icon_warri_ControlBlade" file="\icon\skill\warrior\Icon_warri_ControlBlade.png" imgrect="0 0 128 128" CMM_Caption="어검술"/>
 		<image name="Icon_warri_Flash" file="\icon\skill\warrior\Icon_warri_Flash.png" imgrect="0 0 128 128" CMM_Caption="일섬"/>
+		<image name="icon_warri_Chop" file="\icon\skill\warrior\icon_warri_Chop.png" imgrect="0 0 128 128" CMM_Caption="쵸프"/>
+		<image name="icon_warri_Chocar" file="\icon\skill\warrior\icon_warri_Chocar.png" imgrect="0 0 128 128" CMM_Caption="쵸카르"/>
+		<image name="icon_warri_Enmascarado" file="\icon\skill\warrior\icon_warri_Enmascarado.png" imgrect="0 0 128 128" CMM_Caption="엔마스카라도"/>
+		<image name="icon_warri_Ceremonia" file="\icon\skill\warrior\icon_warri_Ceremonia.png" imgrect="0 0 128 128" CMM_Caption="세레모니아"/>
+		<image name="icon_warri_Martinete" file="\icon\skill\warrior\icon_warri_Martinete.png" imgrect="0 0 128 128" CMM_Caption="마르티네테"/>
+		<image name="icon_warri_LuchaDeSilla" file="\icon\skill\warrior\icon_warri_LuchaDeSilla.png" imgrect="0 0 128 128" CMM_Caption="루차 데 시야"/>
+		<image name="icon_warri_Golpear" file="\icon\skill\warrior\icon_warri_Golpear.png" imgrect="0 0 128 128" CMM_Caption="골페아르"/>
 	</imagelist>
 	<imagelist category="scout_skillicon">
 		<image name="icon_scout_aggress" file="\icon\skill\scout\icon_scout_aggress.png" imgrect="0 0 128 128" CMM_Caption="인법뇌둔술"/>
@@ -1555,6 +1562,24 @@
 		<image name="ability_Warrior_blossomblader21" file="\icon\icon_ability_warrior09.tga" imgrect="640 896 128 128" CMM_Caption="기수식: 매화낙락"/>
 		<image name="ability_Warrior_Hoplite41" file="\icon\icon_ability_warrior09.tga" imgrect="768 896 128 128" CMM_Caption="하플라이트: 축적"/>
 		<image name="ability_Warrior_Retiarii25" file="\icon\icon_ability_warrior09.tga" imgrect="896 896 128 128" CMM_Caption="레티아리이: 투지"/>
+		<image name="ability_Warrior_Luchador1" file="\icon\icon_ability_warrior10.tga" imgrect="0 0 128 128" CMM_Caption="엔마스카라도: 강화"/>
+		<image name="ability_Warrior_Luchador2" file="\icon\icon_ability_warrior10.tga" imgrect="128 0 128 128" CMM_Caption="엔마스카라도: 부세안도"/>
+		<image name="ability_Warrior_Luchador3" file="\icon\icon_ability_warrior10.tga" imgrect="256 0 128 128" CMM_Caption="엔마스카라도: 로단도"/>
+		<image name="ability_Warrior_Luchador4" file="\icon\icon_ability_warrior10.tga" imgrect="384 0 128 128" CMM_Caption="쵸프: 강화"/>
+		<image name="ability_Warrior_Luchador5" file="\icon\icon_ability_warrior10.tga" imgrect="516 0 128 128" CMM_Caption="골페아르: 강화"/>
+		<image name="ability_Warrior_Luchador6" file="\icon\icon_ability_warrior10.tga" imgrect="640 0 128 128" CMM_Caption="루차 데 시야: 강화"/>
+		<image name="ability_Warrior_Luchador7" file="\icon\icon_ability_warrior10.tga" imgrect="768 0 128 128" CMM_Caption="쵸카르: 강화"/>
+		<image name="ability_Warrior_Luchador8" file="\icon\icon_ability_warrior10.tga" imgrect="896 0 128 128" CMM_Caption="마르티네테: 강화"/>
+		<image name="ability_Warrior_Luchador9" file="\icon\icon_ability_warrior10.tga" imgrect="0 128 128 128" CMM_Caption="루차 데 시야: 슈퍼 스턴"/>
+		<image name="ability_Warrior_Luchador10" file="\icon\icon_ability_warrior10.tga" imgrect="128 128 128 128" CMM_Caption="쵸카르: 슈퍼 넉다운"/>
+		<image name="ability_Warrior_Luchador11" file="\icon\icon_ability_warrior10.tga" imgrect="256 128 128 128" CMM_Caption="[아츠] 골페아르: 우라칸"/>
+		<image name="ability_Warrior_Luchador12" file="\icon\icon_ability_warrior10.tga" imgrect="384 128 128 128" CMM_Caption="[아츠] 세레모니아: 빅토리아"/>
+		<image name="ability_Warrior_Luchador13" file="\icon\icon_ability_warrior10.tga" imgrect="512 128 128 128" CMM_Caption="[아츠] 쵸프: 상급 강화"/>
+		<image name="ability_Warrior_Luchador14" file="\icon\icon_ability_warrior10.tga" imgrect="640 128 128 128" CMM_Caption="[아츠] 골페아르: 상급 강화"/>
+		<image name="ability_Warrior_Luchador15" file="\icon\icon_ability_warrior10.tga" imgrect="768 128 128 128" CMM_Caption="[아츠] 루차 데 시야: 상급 강화"/>
+		<image name="ability_Warrior_Luchador16" file="\icon\icon_ability_warrior10.tga" imgrect="896 128 128 128" CMM_Caption="[아츠] 쵸카르: 상급 강화"/>
+		<image name="ability_Warrior_Luchador17" file="\icon\icon_ability_warrior10.tga" imgrect="0 256 128 128" CMM_Caption="[아츠] 마르티네테: 상급 강화"/>
+		<image name="ability_Warrior_NakMuay14" file="\icon\icon_ability_warrior10.tga" imgrect="128 256 128 128" CMM_Caption="낙무아이: 추가 대미지"/>
 	</imagelist>
 	<imagelist category="abilityicon_wizard">
 		<image name="ability_Wizard_Wizard1" file="\icon\icon_ability_wizard01.tga" imgrect="0 0 128 128" CMM_Caption="슬리프-단잠"/>

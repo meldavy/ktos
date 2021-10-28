@@ -75,18 +75,22 @@ function WROLDPVP_RESULT_DETAIL_MY_TEAM_CREATE_LIST(frame, my_team_id)
 					name:SetTextByKey("value", family_name);
 	
 					local attack_damage = session.teambattleleauge.GetResultDetailDamage(aid, "AttackDamage");
+					attack_damage = GET_COMMAED_STRING(attack_damage);
 					local txt_attack_deal = GET_CHILD_RECURSIVELY(ctrl_set, "txt_attack_deal");
 					txt_attack_deal:SetText(attack_damage);
 	
 					local take_damage = session.teambattleleauge.GetResultDetailDamage(aid, "DefenceDamage");
+					take_damage = GET_COMMAED_STRING(take_damage);
 					local txt_take_deal = GET_CHILD_RECURSIVELY(ctrl_set, "txt_take_deal");
 					txt_take_deal:SetText(take_damage);
 					
 					local give_heal = session.teambattleleauge.GetResultDetailHeal(aid, "GiveHeal");
+					give_heal = GET_COMMAED_STRING(give_heal);
 					local txt_give_heal = GET_CHILD_RECURSIVELY(ctrl_set, "txt_give_heal");
 					txt_give_heal:SetText(give_heal);
 	
 					local take_heal = session.teambattleleauge.GetResultDetailHeal(aid, "TakeHeal");
+					take_heal = GET_COMMAED_STRING(take_heal);
 					local txt_take_heal = GET_CHILD_RECURSIVELY(ctrl_set, "txt_take_heal");
 					txt_take_heal:SetText(take_heal);
 				end
@@ -124,18 +128,22 @@ function WORLDPVP_RESULT_DETAIL_OTHER_TEAM_CREATE_LIST(frame, my_team_id)
 					name:SetTextByKey("value", family_name);
 	
 					local attack_damage = session.teambattleleauge.GetResultDetailDamage(aid, "AttackDamage");
+					attack_damage = GET_COMMAED_STRING(attack_damage);
 					local txt_attack_deal = GET_CHILD_RECURSIVELY(ctrl_set, "txt_attack_deal");
 					txt_attack_deal:SetText(attack_damage);
 	
 					local take_damage = session.teambattleleauge.GetResultDetailDamage(aid, "DefenceDamage");
+					take_damage = GET_COMMAED_STRING(take_damage);
 					local txt_take_deal = GET_CHILD_RECURSIVELY(ctrl_set, "txt_take_deal");
 					txt_take_deal:SetText(take_damage);
 					
 					local give_heal = session.teambattleleauge.GetResultDetailHeal(aid, "GiveHeal");
+					give_heal = GET_COMMAED_STRING(give_heal);
 					local txt_give_heal = GET_CHILD_RECURSIVELY(ctrl_set, "txt_give_heal");
 					txt_give_heal:SetText(give_heal);
 	
 					local take_heal = session.teambattleleauge.GetResultDetailHeal(aid, "TakeHeal");
+					take_heal = GET_COMMAED_STRING(take_heal);
 					local txt_take_heal = GET_CHILD_RECURSIVELY(ctrl_set, "txt_take_heal");
 					txt_take_heal:SetText(take_heal);
 				end

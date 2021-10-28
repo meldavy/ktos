@@ -237,14 +237,12 @@ end
 function SCR_ENABLE_RESURRECT_BY_BACKMASKING(pc)
 	-- 여기에서 부활을 해줄지 말지 판정해준다
 	if IsRaidField(pc) == 1 then
-        local count = GetExProp(pc, "RESURRECTION_COUNT")
-		if count ~= nil then
-			if count > 0 then
-                SetExProp(pc, "RESURRECTION_COUNT", count - 1)
-                return 1;
-			else
-                return 0;
-            end
+        local pcAidx = tonumber(GetPcAIDStr(pc));
+        local mGameValue = "resurrection_" .. pcAidx
+        if GetMGameValue(pc, mGameValue) == nil or GetMGameValue(pc, mGameValue) == 0 then
+            return 1;
+        else
+            return 0;
         end
     end
 
@@ -367,4 +365,8 @@ end
 
 function SCR_GET_FOODTABLE_PRICE(shopClassName, mapClassName, buffClassName, abilList)
 	return 0;
+end
+
+function SCR_GET_OBLATION_PRICE(shopClassName, mapClassName, buffClassName, abilList)
+	return 1;
 end

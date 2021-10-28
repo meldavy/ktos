@@ -121,3 +121,9 @@ ClassID,ClassName,Group,DyeName,IconName
 613,ClassName613,DesignCut_HAIR_F_149,purple,Dye_tangleup_violet
 614,ClassName614,DesignCut_HAIR_F_149,pink,Dye_tangleup_pink
 615,ClassName615,DesignCut_HAIR_F_149,gray,Dye_tangleup_ashgrey
+621,ClassName621,DesignCut_HAIR_M_146,default,Dye_black
+622,ClassName622,DesignCut_HAIR_M_146,gold,Dye_gold
+623,ClassName623,DesignCut_HAIR_M_146,brown,Dye_seeweed_brown
+631,ClassName631,DesignCut_HAIR_F_150,default,Dye_black
+632,ClassName632,DesignCut_HAIR_F_150,pink,Dye_tangleup_pink
+633,ClassName633,DesignCut_HAIR_F_150,violet,Dye_tangleup_violet

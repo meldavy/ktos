@@ -3137,16 +3137,16 @@
 			<richtext name="richtext_2_1_1" margin="19 87 0 0" rect="0 0 120 24" caption="{@brown_16}개인 참여{/}" textalign="left top" resizebytext="true" spacey="0" maxwidth="0" fontname="brown_16" fixwidth="false" updateparent="false" drawbackground="false" slideshow="false" layout_gravity="left top" parent="gbox_playcnt"/>
 		</controls>
 	</controlset>
-	<controlset name="pvp_result_detail" hittest="true" width="900" height="45" hittestset="false" draw="false" skin="none">
+	<controlset name="pvp_result_detail" hittest="true" width="1100" height="65" hittestset="false" draw="false" skin="none">
 		<controls>
-			<picture name="pic" margin="0 0 0 0" rect="5 5 45 45" hittest="false" image="mainpc_crown" stretch="true" changecursor="false" layout_gravity="left top"/>
-			<richtext name="txt_name" margin="70 0 0 0" rect="0 0 176 46" format="%s" param1="value" param1_def="name" textalign="left center" resizebytext="false" spacey="0" maxwidth="0" fontname="yellow_18_ol" fixwidth="true" updateparent="false" drawbackground="false" slideshow="false" layout_gravity="left center" omitbywidth="true"/>
-			<richtext name="txt_attack_deal" margin="150 0 0 0" rect="0 0 136 45" format="{@st45tw2}%s{/}" param1="value" param1_def="0" textalign="center center" resizebytext="false" spacey="0" maxwidth="0" fontname="white_16_ol" fixwidth="true" updateparent="false" drawbackground="false" slideshow="false" layout_gravity="left center"/>
-			<richtext name="txt_take_deal" margin="350 0 0 0" rect="0 0 121 45" format="{@st45tw2}%s{/}" param1="value" param1_def="0" textalign="center center" resizebytext="false" spacey="0" maxwidth="0" fontname="white_16_ol" fixwidth="true" updateparent="false" drawbackground="false" slideshow="false" layout_gravity="left center"/>
-			<richtext name="txt_give_heal" margin="500 0 0 0" rect="0 0 121 45" format="{@st45tw2}%s{/}" param1="value" param1_def="0" textalign="center center" resizebytext="false" spacey="0" maxwidth="0" fontname="white_16_ol" fixwidth="true" updateparent="false" drawbackground="false" slideshow="false" layout_gravity="left center" hittest="true"/>
-			<richtext name="txt_take_heal" margin="650 0 0 0" rect="0 0 147 45" format="{@st45tw2}%s{/}" param1="value" param1_def="0" textalign="center center" resizebytext="false" spacey="0" maxwidth="0" fontname="white_16_ol" fixwidth="true" updateparent="false" drawbackground="false" slideshow="false" layout_gravity="left center" hittest="true"/>
-			<picture name="achieve" margin="750 0 0 0" rect="0 0 32 31" hittest="false" image="" stretch="true" changecursor="false" layout_gravity="left top"/>
-			<richtext name="txt_achieve" margin="750 0 0 0" rect="0 0 112 41" format="{@sti9}%s{/}" param1="value" param1_def="" textalign="center center" resizebytext="false" spacey="0" maxwidth="0" fontname="white_16_ol" fixwidth="true" updateparent="false" drawbackground="false" slideshow="false" layout_gravity="left center"/>
+			<picture name="pic" margin="0 0 0 0" rect="5 5 65 65" hittest="false" image="mainpc_crown" stretch="true" changecursor="false" layout_gravity="left top"/>
+			<richtext name="txt_name" margin="70 0 0 0" rect="0 0 176 65" format="%s" param1="value" param1_def="name" textalign="left center" resizebytext="false" spacey="0" maxwidth="0" fontname="yellow_18_ol" fixwidth="true" updateparent="false" drawbackground="false" slideshow="false" layout_gravity="left center" omitbywidth="true"/>
+			<richtext name="txt_attack_deal" margin="200 0 0 0" rect="0 0 136 65" format="{@st45tw2}%s{/}" param1="value" param1_def="0" textalign="center center" resizebytext="false" spacey="0" maxwidth="0" fontname="white_16_ol" fixwidth="true" updateparent="false" drawbackground="false" slideshow="false" layout_gravity="left center"/>
+			<richtext name="txt_take_deal" margin="400 0 0 0" rect="0 0 121 65" format="{@st45tw2}%s{/}" param1="value" param1_def="0" textalign="center center" resizebytext="false" spacey="0" maxwidth="0" fontname="white_16_ol" fixwidth="true" updateparent="false" drawbackground="false" slideshow="false" layout_gravity="left center"/>
+			<richtext name="txt_give_heal" margin="600 0 0 0" rect="0 0 121 65" format="{@st45tw2}%s{/}" param1="value" param1_def="0" textalign="center center" resizebytext="false" spacey="0" maxwidth="0" fontname="white_16_ol" fixwidth="true" updateparent="false" drawbackground="false" slideshow="false" layout_gravity="left center" hittest="true"/>
+			<richtext name="txt_take_heal" margin="800 0 0 0" rect="0 0 147 65" format="{@st45tw2}%s{/}" param1="value" param1_def="0" textalign="center center" resizebytext="false" spacey="0" maxwidth="0" fontname="white_16_ol" fixwidth="true" updateparent="false" drawbackground="false" slideshow="false" layout_gravity="left center" hittest="true"/>
+			<picture name="achieve" margin="930 0 0 0" rect="0 0 32 31" hittest="false" image="" stretch="true" changecursor="false" layout_gravity="left top"/>
+			<richtext name="txt_achieve" margin="930 0 0 0" rect="0 0 112 41" format="{@sti9}%s{/}" param1="value" param1_def="" textalign="center center" resizebytext="false" spacey="0" maxwidth="0" fontname="white_16_ol" fixwidth="true" updateparent="false" drawbackground="false" slideshow="false" layout_gravity="left center"/>
 		</controls>
 	</controlset>
 	<controlset name="guildbattle_ranking_page" hittest="true" width="520" height="800" hittestset="false" draw="false" skin="none">
@@ -4134,7 +4134,7 @@
 		<c RANK_PAGE_FONT="{@st42}"/>
 		<controls>
 			<richtext name="infoText1" rect="0 0 300 30" margin="32 20 0 0" layout_gravity="left top" caption="순위" fontname="brown_18_b"/>
-			<richtext name="infoText2" rect="0 0 300 30" margin="170 20 0 0" layout_gravity="left top" caption="이름 및 클래스" fontname="brown_18_b"/>
+			<richtext name="infoText2" rect="0 0 300 30" margin="170 20 0 0" layout_gravity="left top" caption="계열 및 이름" fontname="brown_18_b"/>
 			<richtext name="infoText3" rect="0 0 300 30" margin="0 20 50 0" layout_gravity="right top" caption="점수" fontname="brown_18_b"/>
 			<groupbox name="rankingBox" rect="0 0 500 600" margin="0 50 0 0" layout_gravity="right top" skin="test_frame_midle"/>
 			<groupbox name="searchBox" rect="0 0 500 35" margin="0 0 0 55" layout_gravity="right bottom" skin="test_weight_skin"/>
@@ -6153,6 +6153,7 @@
 	<!--캐릭터 체인지-->
 	<controlset name="character_change_info" toggle="false" hittest="true" hittestset="false" width="410" height="150" skin="monster_card_list">
 		<controls>
+			<groupbox name="main_char_gb" margin="0 0 0 0" rect="0 0 410 150" scrollbar="false" draw="true" skin="premium_case_skin" hittestbox="true" layout_gravity="left top"/>
 			<groupbox name="main_gb" margin="15 0 0 0" rect="0 0 410 150" scrollbar="false" draw="false" hittestbox="true" layout_gravity="left top"/>
 			<groupbox name="select_gb" rect="0 0 410 150" margin="0 0 0 0" draw="true" scrollbar="false" hittestbox="false" layout_gravity="left top" skin="base_btn_select"/>
 			<richtext name="name" rect="0 0 410 24" parent="main_gb" layout_gravity="left top" margin="10 15 0 0" hittest="false" fontname="yellow_18_ol" textalign="left center" caption="name" fixwidth="true"/>
@@ -6293,6 +6294,11 @@
 			<richtext name="before_text" rect="0 0 250 50" margin="0 160 0 0" format="{@st42}{s20}%s{/}" param1="name" param1_def="현재 저장된 옵션" textalign="left center" fontname="white_20_ol" fixwidth="true" layout_gravity="left top" resizebytext="true"/>
 			<groupbox name="before_bg" rect="0 0 320 120" margin="0 190 0 0" layout_gravity="center top" draw="true" hittestbox="false" resizebyparent="false" resizebyresolution="false" scrollbar="true" skin="test_skin_01"/>
 			<groupbox name="before_inner" parent="before_bg" rect="0 0 320 120" margin="0 0 0 0" layout_gravity="center top" draw="false" hittestbox="false" resizebyparent="false" resizebyresolution="false" scrollbar="false"/>
+		</controls>
+	</controlset>
+	<controlset name="comboinput_key" hittest="false" width="64" height="64" hittestset="false" skin="None" draw="false" stateskin="false">
+		<controls>
+			<picture name="keycap" rect="0 0 64 64" margin="0 0 0 0" layout_gravity="center center" image="key_ESC" stretch="true"/>
 		</controls>
 	</controlset>
 	<controlset name="colony_retreat_control" hittest="false" width="340" height="60" hittestset="false" skin="None" draw="false" stateskin="false">

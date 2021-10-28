@@ -512,39 +512,45 @@ function WORLDPVP_SET_UI_MODE(frame, uiType)
 	end
 end
 
-function UPDATE_PVP_RANK_CTRLSET(ctrlSet, info)
-	local iconInfo = info:GetIconInfo();
-	local key = info:GetCID();
-	local myName = GETMYFAMILYNAME();
-	local isMyAccount = false;
-	if myName == iconInfo:GetFamilyName() then
-		isMyAccount = true;
+function UPDATE_PVP_RANK_CTRLSET(ctrl_set, info)
+	local icon_info = info:GetIconInfo();
+	local key = info:GetAID();
+	ctrl_set:SetUserValue("AID", key);
+	
+	local pic = GET_CHILD_RECURSIVELY(ctrl_set, "pic");
+	if pic ~= nil then
+		local job_id = icon_info.job;
+		local img_name = GET_BASE_JOB_ICON(job_id);
+		if img_name ~= "None" then
+			pic:SetImage(img_name);
+			pic:ShowWindow(1);
+		else
+			pic:ShowWindow(0);
+		end
 	end
 
-	local imgName = GET_JOB_ICON(iconInfo.job);
-	local txt_name = ctrlSet:GetChild("txt_name");
-	local pic = GET_CHILD(ctrlSet, "pic");
-	ctrlSet:SetUserValue("CID", key);
-	if isMyAccount == true then
-		txt_name:SetTextByKey("value", "{#0000FF}" .. iconInfo:GetGivenName() .. "{nl}" .. iconInfo:GetFamilyName());
-	else
-		txt_name:SetTextByKey("value", iconInfo:GetGivenName() .. "{nl}" .. iconInfo:GetFamilyName());
+	local is_my_account = false;
+	local my_name = GETMYFAMILYNAME(); 
+	if my_name == icon_info:GetFamilyName() then is_my_account = true; end
+	
+	local txt_name = GET_CHILD_RECURSIVELY(ctrl_set, "txt_name");
+	if txt_name ~= nil then
+		if is_my_account == true then
+			txt_name:SetTextByKey("value", "{#0000FF}".. icon_info:GetFamilyName());
+		else
+			txt_name:SetTextByKey("value", icon_info:GetFamilyName());
+		end
 	end
 
-	local txt_point = ctrlSet:GetChild("txt_point");
+	local txt_point = GET_CHILD_RECURSIVELY(ctrl_set, "txt_point");
 	if txt_point ~= nil then
 		txt_point:SetTextByKey("value", info.point);
 	end
 
-	if imgName ~= 'None' then
-		pic:SetImage(imgName);
-		pic:ShowWindow(1);
-	else
-		pic:ShowWindow(0);
+	local txt_rank = ctrl_set:GetChild("txt_rank");
+	if txt_rank ~= nil then
+		txt_rank:SetTextByKey("value", info.ranking + 1);
 	end
-
-	local txt_rank = ctrlSet:GetChild("txt_rank");
-	txt_rank:SetTextByKey("value", info.ranking + 1);
 end
 
 function ON_WORLDPVP_RANK_PAGE(frame)
@@ -589,13 +595,13 @@ function ON_WORLDPVP_RANK_PAGE(frame)
 	end
 end
 
-function ON_WORLDPVP_RANK_ICON(frame, msg, cid, argNum, info)
+function ON_WORLDPVP_RANK_ICON(frame, msg, aid, argNum, info)
 	local bg_ranking = frame:GetChild("bg_ranking");
 	local gbox_ctrls = bg_ranking:GetChild("gbox_ctrls");
-	local ctrlSet = GET_CHILD_BY_USERVALUE(gbox_ctrls, "CID", cid);
-	if ctrlSet ~= nil then
+	local ctrl_set = GET_CHILD_BY_USERVALUE(gbox_ctrls, "AID", aid);
+	if ctrl_set ~= nil then
 		info = tolua.cast(info, "WORLD_PVP_RANK_INFO_C");
-		UPDATE_PVP_RANK_CTRLSET(ctrlSet, info);
+		UPDATE_PVP_RANK_CTRLSET(ctrl_set, info);
 	end
 end
 

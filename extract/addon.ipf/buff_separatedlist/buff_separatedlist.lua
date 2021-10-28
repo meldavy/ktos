@@ -13,8 +13,10 @@ end
 
 function INIT_BUFF_SEPARATEDLIST_UI(frame)
 	if frame ~= nil then
-		local charbaseinfoFrame = ui.GetFrame("charbaseinfo1_my");
-		if charbaseinfoFrame ~= nil then
+		local pos = ui.GetCatchMovePos(frame:GetName());
+		if pos.x ~= 0 and pos.y ~= 0 then
+			frame:MoveFrame(pos.x, pos.y);
+		else
 			frame:MoveFrame(818, 310);
 		end
 

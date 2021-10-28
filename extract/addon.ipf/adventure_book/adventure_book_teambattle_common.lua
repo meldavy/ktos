@@ -43,37 +43,35 @@ function IS_TEAM_BATTLE_ENABLE()
 end
 
 function GET_TEAM_BATTLE_CLASS()
-    local pvpCls = GetClass("WorldPVPType", 'Three');
-	return pvpCls;
+	local pvp_cls = GetClass("WorldPVPType", "Three");
+	return pvp_cls;
 end
 
 function ADVENTURE_BOOK_TEAM_BATTLE_COMMON_UPDATE(adventureBookFrame, msg, argStr, argNum)
-    local pvpCls = GET_TEAM_BATTLE_CLASS();
-	if pvpCls == nil then
-		return;
+	local pvp_cls = GET_TEAM_BATTLE_CLASS();
+	if pvp_cls == nil then return; end
+	
+	local aid = session.loginInfo.GetAID();
+	local pvp_obj = session.worldPVP.GetTeamBattlePVPObject(aid);
+	if pvp_obj == nil then return; end
+	
+	local pvp_class_name = TryGetProp(pvp_cls, "ClassName", "None");
+    local win_value = pvp_obj:GetPropValue(pvp_class_name.."_WIN");
+	local lose_value = pvp_obj:GetPropValue(pvp_class_name.."_LOSE");
+	local total_value = win_value + lose_value;
+    local battle_history_value_text = GET_CHILD_RECURSIVELY(adventureBookFrame, "battleHistoryValueText");    
+    battle_history_value_text:SetTextByKey("total", total_value);
+    battle_history_value_text:SetTextByKey("win", win_value);
+	battle_history_value_text:SetTextByKey("lose", lose_value);
+	
+	local point_info = session.worldPVP.GetTeamBattleRankInfoByAID(aid);
+	local point_value = pvp_obj:GetPropValue(pvp_class_name.."_RP", 1000);
+	if point_info ~= nil then
+		point_value = point_info.point;
 	end
-	local pvpObj = GET_PVP_OBJECT_FOR_TYPE(pvpCls);        
-	if nil == pvpObj then
-		return;
-	end
-    local winValue = pvpObj:GetPropValue(pvpCls.ClassName..'_WIN');
-    local loseValue = pvpObj:GetPropValue(pvpCls.ClassName..'_LOSE');
-    local totalValue = winValue + loseValue;
-    local battleHistoryValueText = GET_CHILD_RECURSIVELY(adventureBookFrame, 'battleHistoryValueText');    
-    battleHistoryValueText:SetTextByKey('total', totalValue);
-    battleHistoryValueText:SetTextByKey('win', winValue);
-    battleHistoryValueText:SetTextByKey('lose', loseValue);
-        
-    local mySession = session.GetMySession();
-	local cid = mySession:GetCID();
-    local pointInfo = session.worldPVP.GetRankInfoByCID(cid);
-    local pointValue = pvpObj:GetPropValue(pvpCls.ClassName..'_RP', 1000);
-    if pointInfo ~= nil then
-        pointValue = pointInfo.point;
-    end
 
-    local battlePointValueText = GET_CHILD_RECURSIVELY(adventureBookFrame, 'battlePointValueText');
-    battlePointValueText:SetTextByKey('point', pointValue);
+	local battle_point_value_text = GET_CHILD_RECURSIVELY(adventureBookFrame, "battlePointValueText");
+	battle_point_value_text:SetTextByKey("point", point_value);
 end
 
 function ADVENTURE_BOOK_TEAM_BATTLE_RANK(parent, teamBattleRankingBox)
@@ -89,42 +87,47 @@ function ADVENTURE_BOOK_TEAM_BATTLE_RANK(parent, teamBattleRankingBox)
 end
 
 function ADVENTURE_BOOK_TEAM_BATTLE_RANK_UPDATE(frame, msg, argStr, argNum)
-    local rank_type = session.worldPVP.GetRankProp("Type");    
-	if rank_type == 210 then
-        return;
-	end
-	local teamBattleRankSet = GET_CHILD_RECURSIVELY(frame, 'teamBattleRankSet');
-	local EACH_RANK_SET_HEIGHT_FOR_TB = tonumber(teamBattleRankSet:GetUserConfig('EACH_RANK_SET_HEIGHT_FOR_TB'));
-    local rankingBox = GET_CHILD(teamBattleRankSet, 'rankingBox');
-	rankingBox:RemoveAllChild();
-    local pvpCls = GET_TEAM_BATTLE_CLASS();
-	local pvpType = pvpCls.ClassID;
-	local type = session.worldPVP.GetRankProp("Type");
+	local rank_type = session.worldPVP.GetRankProp("Type");
+	if rank_type == 210 then return; end
+
+	local pvp_cls = GET_TEAM_BATTLE_CLASS();
+	local pvp_type = TryGetProp(pvp_cls, "ClassID", 0);
+	local type = rank_type;
 	local league = session.worldPVP.GetRankProp("League");
 	local page = session.worldPVP.GetRankProp("Page");
-	local totalCount = session.worldPVP.GetRankProp("TotalCount");
+	local total_count = session.worldPVP.GetRankProp("TotalCount");
 	
-	local cnt = session.worldPVP.GetRankInfoCount();
-	for i = 0 , cnt - 1 do
-		local info = session.worldPVP.GetRankInfoByIndex(i);
-		local ctrlSet = rankingBox:CreateControlSet("pvp_rank_ctrl", "CTRLSET_" .. i,  ui.CENTER_HORZ, ui.TOP, 0, 0, 0, 0);
-		UPDATE_PVP_RANK_CTRLSET(ctrlSet, info);
-        ctrlSet:Resize(rankingBox:GetWidth(), EACH_RANK_SET_HEIGHT_FOR_TB);
-	end
-	GBOX_AUTO_ALIGN(rankingBox, 0, 0, 0, true, false);
+	local team_battle_rank_set = GET_CHILD_RECURSIVELY(frame, "teamBattleRankSet");
+	local each_rank_set_height_for_tb = tonumber(team_battle_rank_set:GetUserConfig("EACH_RANK_SET_HEIGHT_FOR_TB"));
 
-	local totalPage = math.floor((totalCount + WORLDPVP_RANK_PER_PAGE)/ WORLDPVP_RANK_PER_PAGE) ;
-	local control = GET_CHILD(teamBattleRankSet, 'control', 'ui::CPageController')
-	control:SetMaxPage(totalPage);
+	local ranking_box = GET_CHILD_RECURSIVELY(team_battle_rank_set, "rankingBox");
+	ranking_box:RemoveAllChild();
+
+	local count = session.worldPVP.GetTeamBattleRankInfoCount();
+	for i = 0, count - 1 do
+		local info = session.worldPVP.GetTeamBattleRankInfoByIndex(i);
+		if info ~= nil then
+			local ctrl_set = ranking_box:CreateControlSet("pvp_rank_ctrl", "CTRLSET_"..i, ui.CENTER_HORZ, ui.TOP, 0, 0, 0, 0);
+			if ctrl_set ~= nil then
+				UPDATE_PVP_RANK_CTRLSET(ctrl_set, info);
+				ctrl_set:Resize(ranking_box:GetWidth(), each_rank_set_height_for_tb);
+			end
+		end
+	end
+	GBOX_AUTO_ALIGN(ranking_box, 0, 0, 0, true, false);
+
+	local total_page = math.floor((total_count + WORLDPVP_RANK_PER_PAGE) / WORLDPVP_RANK_PER_PAGE);
+	local control = GET_CHILD(team_battle_rank_set, 'control', 'ui::CPageController')
+	control:SetMaxPage(total_page);
 	control:SetCurPage(page - 1);
 
 	local reward = GET_CHILD_RECURSIVELY(frame, 'teamBattleRewardBtn');
-	local cid = session.GetMySession():GetCID();
-	local myRank = session.worldPVP.GetPrevRankInfoByCID(cid);
-	if myRank ~= nil and myRank.ranking < 3 then
-		reward:SetEnable(1)
+	local aid = session.loginInfo.GetAID();
+	local my_rank = session.worldPVP.GetTeamBattlePrevRankInfoByAID(aid);
+	if my_rank ~= nil and my_rank.ranking < 3 then
+		reward:SetEnable(1);
 	else
-		reward:SetEnable(0)
+		reward:SetEnable(0);		
 	end
 end
 

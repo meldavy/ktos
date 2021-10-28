@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by IMCGames Co., Ltd (IMCGames Co., Ltd) -->
+<ActionDesc>
+    <BlendOn frame="0" R="0" G="0" B="0" A="50"/>
+    <AttachModel frame="0" XAC="warrior_folding_chair" node="Dummy_L_HAND" isAttach="true" autoDetach="true" index="0" anim=""/>
+    <BlendOn frame="1" R="120" G="110" B="100" A="100"/>
+    <Particle frame="1" attachNode="Dummy_emitter" particleName="F_ground071_smoke2" useAttach="false" hiddenObj="false" changeEffect="None" scale="1" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Sound frame="1.00" soundFile="skl_eff_luchador_luchadesilla_hit"/>
+    <Sound frame="1.00" soundFile="skl_eff_luchador_luchadesilla_hit"/>
+    <Shockwave frame="2" type="2" intensity="2" frequency="70" duration="0.3" range="1000"/>
+    <BlendOn frame="2" R="200" G="110" B="100" A="100"/>
+    <Particle frame="2" attachNode="Dummy_emitter" particleName="F_ground071_smoke3" useAttach="false" hiddenObj="false" changeEffect="None" scale="0.7" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Particle frame="3" attachNode="Dummy_emitter" particleName="F_stone005" useAttach="false" hiddenObj="false" changeEffect="None" scale="1.4" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Particle frame="3" attachNode="Dummy_emitter" particleName="F_stone007" useAttach="false" hiddenObj="false" changeEffect="None" scale="6" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Particle frame="3" attachNode="Dummy_effect_chop2" particleName="F_pc_item_ep13cybersoldier01_pistol_light_red2" useAttach="false" hiddenObj="false" changeEffect="None" scale="2" pause="true" use2DEffect="true" soft2DValue="20" targetPos="false"/>
+    <Particle frame="3" attachNode="Dummy_emitter" particleName="F_smoke046" useAttach="false" hiddenObj="false" changeEffect="None" scale="1" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <BlendOn frame="4" R="70" G="65" B="50" A="100"/>
+    <BlendOff frame="5" R="0" G="0" B="0" A="0"/>
+</ActionDesc>

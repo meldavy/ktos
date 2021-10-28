@@ -1,4 +1,4 @@
-s_warpDestYPos	 = 20.0;
+﻿s_warpDestYPos	 = 20.0;
 
 function SCR_STEPREWARD_QUEST_REMAINING_CHECK(pc, questName)
     local questIES = GetClass('QuestProgressCheck',questName)
@@ -956,4 +956,171 @@ function SCR_CQ_11_ITEM_RE(pc, tx)
     else
         return
     end
+end
+
+-- 마스터 의뢰 퀘스트 시작 조건 Account 체크
+function SCR_UQ_CLEAR_CHECK(pc, questName, scriptInfo)
+    local aObj
+    
+    if IsServerSection(pc) == 1 then
+        aObj = GetAccountObj(pc);
+    else
+        aObj = GetMyAccountObj();
+    end
+        
+    if aObj == nil then
+        return
+    end
+
+    local aprop = TryGetProp(aObj, questName, 0)
+    if aprop == 0 then
+        return 'YES'
+    end
+    return 'NO'
+end
+
+-- 마스터 의뢰 퀘스트 수락 후 시작 NPC 대사에 삽입
+function SCR_SET_UNLOCK_AOBJ_UNLOCK(pc, questName, scriptInfo)--퀘스트 시작/성공 시 퀘스트 이름과 같은 Account On
+    local aObj = nil;
+    if IsServerSection(pc) == 1 then
+        aObj = GetAccountObj(pc);
+        SCR_UQ_ACHIEVE_START(pc, questName);
+    else
+        aObj = GetMyAccountObj();
+    end
+
+    if aObj == nil then return; end
+
+    local Target_aObj = TryGetProp(aObj, questName)
+    if Target_aObj == 0 then
+        _SCR_SET_UNLOCK_AOBJ(pc, aObj, 1, questName)
+    end
+end
+
+-- 마스터 의뢰 퀘스트 완료 시 NPC 대사에 삽입
+function SCR_SET_UNLOCK_AOBJ_LOCK(pc, questName, scriptInfo)--퀘스트 시작/성공 시 퀘스트 이름과 같은 Account Off
+    local aObj
+    
+    if IsServerSection(pc) == 1 then
+        aObj = GetAccountObj(pc);
+    else
+        aObj = GetMyAccountObj();
+    end
+
+    if aObj == nil then return end
+
+    local Target_aObj = TryGetProp(aObj, questName)
+    if Target_aObj == 1 then
+        _SCR_SET_UNLOCK_AOBJ(pc, aObj, 2, questName)
+    end
+end
+
+function _SCR_SET_UNLOCK_AOBJ(pc, aObj, state, questName)
+    local tx = TxBegin(pc)
+
+    TxSetIESProp(tx, aObj, questName, state)
+    local ret = TxCommit(tx)
+
+    if ret == "SUCCESS" then
+        CustomMongoLog(pc, "UnlockQuest", "Quest", questName, "On/Off", state, "QuestState", SCR_QUEST_CHECK(pc, questName));
+    end
+end
+
+-- 마스터 의뢰 퀘스트 포기/실패/시스템 취소 시 함수에 삽입
+function SCR_SET_UNLOCK_AOBJ_ABANDON(pc, tx, funcCutList, questName)--퀘스트 실패/포기 시 Account 0으로 설정
+    local aObj
+    
+    if IsServerSection(pc) == 1 then
+        aObj = GetAccountObj(pc);
+    else
+        aObj = GetMyAccountObj();
+    end
+
+    if aObj == nil then return end
+    TxSetIESProp(tx, aObj, questName, 0)
+end
+
+-- 마스터 의뢰 관련 업적 리스트 가져오기.
+function GET_UNLOCK_QUEST_ACHIEVE_LIST(quest_name)
+    -- unlock quest class check
+    local unlock_quest_cls = GetClassByStrProp("job_unlockquest", "MasterQuest", quest_name);
+    if unlock_quest_cls == nil then 
+        return false, nil; 
+    end
+    
+    -- unlock quest class name check
+    local unlock_quest_class_name = TryGetProp(unlock_quest_cls, "ClassName", "None"); 
+    if unlock_quest_class_name == nil or unlock_quest_class_name == "None" then 
+        return false, nil; 
+    end
+
+    -- unlock quest achieve list check
+    local under_achieve_list = UQ_GET_UNDER_ACHIEVE_LIST(unlock_quest_class_name);
+    if under_achieve_list == nil or #under_achieve_list <= 0 then
+        return false, nil;
+    end
+
+    local achieve_cls_list = {};
+    for i = 1, #under_achieve_list do
+        local under_achieve_cls = under_achieve_list[i];
+        if under_achieve_cls ~= nil then
+            local under_achieve_class_name = TryGetProp(under_achieve_cls, "ClassName", "None");
+            local achieve_cls = GetClass("Achieve", under_achieve_class_name);
+            if achieve_cls ~= nil then
+                achieve_cls_list[#achieve_cls_list + 1] = achieve_cls;
+            end
+        end
+    end
+
+    if achieve_cls_list == nil or #achieve_cls_list <= 0 then
+        return false, nil;
+    end
+
+    -- achieve hidden, hidden_veiw_check prop
+    local unlock_quest_achieve_list = {};
+    for i = 1, #achieve_cls_list do
+        local achieve_cls = achieve_cls_list[i];
+        if achieve_cls ~= nil then
+            local class_name = TryGetProp(achieve_cls, "ClassName", "None");
+            local hidden = TryGetProp(achieve_cls, "Hidden", "NO");
+            local hidden_view_check = TryGetProp(achieve_cls, "HiddenViewCheck", "NO");
+            if hidden == "YES" and hidden_view_check == "YES" then
+                unlock_quest_achieve_list[#unlock_quest_achieve_list + 1] = class_name;
+            end
+        end
+    end
+
+    --over achieve insert table
+    table.insert(unlock_quest_achieve_list, 1, unlock_quest_class_name);
+
+    if unlock_quest_achieve_list == nil or #unlock_quest_achieve_list <= 0 then
+        return false, nil;
+    end
+
+    -- return : check_value, send_addon_msg_achieve_list
+    return true, unlock_quest_achieve_list;
+end
+
+-- 마스터 의뢰 퀘스트 시작했는지 체크
+function IS_UNLOCK_QUEST_STARTED(pc, achieve_name)
+    if IsServerSection() == 0 then
+        local account_obj = GetMyAccountObj();
+        if account_obj ~= nil then
+            local prop_name = "AchieveUnlockQuest_"..achieve_name;
+            local value = TryGetProp(account_obj, prop_name, 0);
+            if value == 1 then
+                return true;
+            end
+        end
+    else 
+        local account_obj = GetAccountObj(pc);
+        if account_obj ~= nil then
+            local prop_name = "AchieveUnlockQuest_"..achieve_name;
+            local value = TryGetProp(account_obj, prop_name, 0);
+            if value == 1 then
+                return true;
+            end
+        end
+    end
+    return false;
 end

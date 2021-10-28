@@ -66,7 +66,7 @@ function INDUNENTER_UI_RESET(frame)
     local accBtn = GET_CHILD_RECURSIVELY(rewardBox, 'accBtn');
     local armourBtn = GET_CHILD_RECURSIVELY(rewardBox, 'armourBtn');
     local subweaponBtn = GET_CHILD_RECURSIVELY(rewardBox, 'subweaponBtn');
-    
+
     weaponBtn:SetImage("indun_weapon")
     frame:SetUserValue('weaponBtn','NO')
     materialBtn:SetImage("indun_material")
@@ -144,10 +144,10 @@ local indun_cls = GetClassByType("Indun", indunType);
     else
         nowAdmissionItemCount = admissionItemCount + addCount - isTokenState
     end
-        
+    
     if indunCls == nil then
         return;
-    end
+        end
 
     local frame = ui.GetFrame('indunenter');
     local bigmode = frame:GetChild('bigmode');
@@ -419,7 +419,7 @@ function INDUNENTER_SHOW_WINDOW_MONBOX(frame, isVisible)
     end
 end
 
-function INDUNENTER_SHOW_WINDOW_REWARDBOX(frame,isVisible)
+function INDUNENTER_SHOW_WINDOW_REWARDBOX(frame, isVisible)
 	local reward_box = GET_CHILD_RECURSIVELY(frame, "rewardBox");
     reward_box:ShowWindow(isVisible);
 end
@@ -506,6 +506,7 @@ function INDUNENTER_MAKE_MONLIST(frame, indunCls)
     local dungeonType = TryGetProp(indunCls,"DungeonType","None")
     local is_mythic_dungeon = string.find(dungeonType, "MythicDungeon") == 1
     local is_toshero_dungeon = string.find(dungeonType, "TOSHero") == 1
+    local is_solo_dungeon = dungeonType == "Solo_dungeon";
 
      -- 챌린지 모드 자동매칭 분열 위치 표시 처리
     if indunCls ~= nil and TryGetProp(indunCls, "PlayPerResetType") == 816 then
@@ -529,7 +530,7 @@ function INDUNENTER_MAKE_MONLIST(frame, indunCls)
 		end
 
         INDUNENTER_SHOW_WINDOW_MONBOX(frame, 1);
-        INDUNENTER_SHOW_WINDOW_REWARDBOX(frame, BoolToNumber(is_mythic_dungeon == false and is_toshero_dungeon == false and is_four_buttons == false));
+        INDUNENTER_SHOW_WINDOW_REWARDBOX(frame, BoolToNumber(is_mythic_dungeon == false and is_toshero_dungeon == false and is_four_buttons == false and is_solo_dungeon == false));
     end
 
     INDUNENTER_SHOW_WINDOW_MAPINFO(frame, indunCls, BoolToNumber(is_toshero_dungeon))

@@ -16,7 +16,7 @@ ClassID,minLv,maxLv,dropRatio,ClassName,Name,ServerMsg,EventCompositon,Dropable
 15,420,450,2,CAN04_118,바이보라 비전 - 캐논홀드,YES,YES,YES
 16,420,450,2,MUS04_118,바이보라 비전 - 철갑탄,YES,YES,YES
 17,420,450,2,TRK04_111,바이보라 비전 - 협응,YES,YES,YES
-18,420,450,2,SWD04_126_1,바이보라 비전 - 공간베기,YES,YES,YES
+18,420,450,2,SWD04_126_1,바이보라 비전 - 에스쿠도 에스파다,YES,YES,YES
 19,420,450,2,TSP04_128_1,바이보라 비전 - 분쇄,YES,YES,YES
 20,420,450,2,TSF04_129_1,바이보라 비전 - 확산투영,YES,YES,YES
 21,420,450,2,DAG04_123_1,바이보라 비전 - 그림자 분신,YES,YES,YES
@@ -66,3 +66,5 @@ ClassID,minLv,maxLv,dropRatio,ClassName,Name,ServerMsg,EventCompositon,Dropable
 65,420,450,2,MAC04_129_3,바이보라 비전 - 기억 도약,YES,NO,YES
 66,420,450,2,TBW04_126_3,바이보라 비전 - 무영지독,YES,NO,YES
 67,420,450,2,TBW04_126_2,바이보라 비전 - 매 사냥,YES,NO,YES
+68,420,450,2,SWD04_126_6,바이보라 비전 - 도블레 아타케,YES,NO,YES
+69,420,450,2,SWD04_126_7,바이보라 비전 - 아레나,YES,NO,YES
