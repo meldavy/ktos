@@ -132,31 +132,26 @@ function DRAW_EPISODE_QUEST_CTRL(bgCtrl, titleInfo_episodeName, titleInfo_name, 
 		local controlSetType = "episode_list_oneline"
 		local controlsetHeight = ui.GetControlSetAttribute(controlSetType, 'height');
 
-		if questListGbox ~= nil then
+		if questListGbox ~= nil and titleInfo_isOpened == true then -- 트리가 열려있을 때만 컨트롤 생성
 			-- 퀘스트 목록 순회.
 			local questInfoCount = titleInfo_questCount;
-			local cnt = 1
 			for index = 1, questInfoCount do
-				if titleInfo_isOpened == true then -- 트리가 열려있을 때만 컨트롤 생성
-					local ctrlName = "_Q_" .. tostring(titleInfo_questID[index]);
-					local Quest_Ctrl = questListGbox:CreateOrGetControlSet(controlSetType, ctrlName, 5, controlsetHeight * (drawTargetCount));			
-					
-					-- 배경 설정.
-					if cnt % 2 == 1 then
-						Quest_Ctrl:SetSkinName("chat_window_2");
-					else
-						Quest_Ctrl:SetSkinName('None');
-					end
-					cnt = cnt +1
-					
-					-- detail 설정
-					UPDATE_EPISODE_QUEST_CTRL(Quest_Ctrl, titleInfo_questID[index], titleInfo_questState[index] );
-
-					questCtrlTotalHeight = questCtrlTotalHeight + Quest_Ctrl:GetHeight();
+				local ctrlName = "_Q_" .. tostring(titleInfo_questID[index]);
+				local Quest_Ctrl = questListGbox:CreateOrGetControlSet(controlSetType, ctrlName, 5, controlsetHeight * (drawTargetCount));			
+				
+				-- 배경 설정.
+				if index % 2 == 1 then
+					Quest_Ctrl:SetSkinName("chat_window_2");
+				else
+					Quest_Ctrl:SetSkinName('None');
 				end
+				
+				-- detail 설정
+				UPDATE_EPISODE_QUEST_CTRL(Quest_Ctrl, titleInfo_questID[index], titleInfo_questState[index] );
 
+				questCtrlTotalHeight = questCtrlTotalHeight + Quest_Ctrl:GetHeight();
 				drawTargetCount = drawTargetCount +1
-			end	
+			end
 		end
 	end
 
