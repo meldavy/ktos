@@ -17252,6 +17252,7 @@
 		<Class ClassID="1008023" ClassName="RELIC_GEM_UPGRADE_TITLE_MSG" Data="성물 젬 강화"/>
 		<Class ClassID="1008024" ClassName="DO_NOT_CHARGE_RP_COLONY_LIMIT" Data="진행 중인 콘텐츠가 종료될 때까지 마력을 충전할 수 없습니다."/>
 		<Class ClassID="1008025" ClassName="DO_NOT_RELIC_GEM_COMPOSE_LEVEL" Data="1 레벨 성물 젬만 합성 가능합니다."/>
+		<Class ClassID="1008026" ClassName="CantTransferLevelCauseReinforceRevision" Data="레벨 이전 대상 성물 젬의 강화 보정 확률이 0보다 커서 이전할 수 없습니다."/>
 	</Category>
 	<Category Name="TOSHero_Equip_tooltip">
 		<Class ClassID="1009000" ClassName="TOSHeroEquipTooltip_OnlyUse" Data="         영웅담 콘텐츠에서만 사용이 가능한 장비입니다"/>
