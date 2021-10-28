@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by asdasd (IMCGames Co., Ltd) -->
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by imc (imc) -->
 <AIList>
 	<AI Name="3CMLAKE262_SQ11_CHECK" ActiveMessageMapInBattle="1">
 		<List>
@@ -6281,6 +6281,18 @@
 		<StartList>
 			<ToolScp Scp="SAI_FUNC2_DIRECT" Client="NO" UseSleep="NO">
 				<Str Str="SCR_EVENT_GODDESS_ROULETTE_NPC_AI_BORN"/>
+			</ToolScp>
+		</StartList>
+	</AI>
+	<AI Name="EVENT_NEW_SEASON_SERVER_450_REWARD_ADD_AI" UpdateMS="60000" ActiveMessageMapInBattle="1">
+		<List>
+			<ToolScp Scp="SAI_FUNC2_DIRECT" Client="NO" UseSleep="NO">
+				<Str Str="EVENT_NEW_SEASON_SERVER_450_REWARD_ADD_AI"/>
+			</ToolScp>
+		</List>
+		<StartList>
+			<ToolScp Scp="SAI_FUNC2_DIRECT" Client="NO" UseSleep="NO">
+				<Str Str="EVENT_NEW_SEASON_SERVER_450_REWARD_ADD_AI"/>
 			</ToolScp>
 		</StartList>
 	</AI>

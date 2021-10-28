@@ -75,3 +75,4 @@ ClassID,GenType,Lv,Range,GenRange,RespawnTime,MaxPop,Minimap,Hide,UseAIOufOfPC,A
 5226,10073,1,40,1,1,1,2,0,0,0,0,0,npc_city_alchemist,[전문 알케미스트]{nl}아벨루,,,,,,,ALCHEIST_EXPERT_NPC_KLAPEDA,,,NO,YES,NO,Neutral,,,,
 5235,10080,1,1,1,1,1,0,0,0,0,0,0,HiddenTrigger6,[이벤트] 여신의 룰렛,,,,,,EVENT_GODDESS_ROULETTE_NPC_AI,EVENT_GODDESS_ROULETTE_NPC,,,NO,YES,NO,Neutral,,,,
 5241,5241,1,1,1,60000,1,0,0,0,0,0,0,HiddenTrigger6,[이벤트] 큐폴,,,,,,EVENT_FLEX_BOX_NPC_AI,EVENT_FLEX_BOX_NPC,,,NO,YES,NO,Neutral,,,,
+5247,10085,1,40,1,1,1,0,0,0,1,0,0,HiddenTrigger6,[시즌서버]{nl}이벤트 보상 게시판,,,,,,EVENT_NEW_SEASON_SERVER_450_REWARD_ADD_AI,,,,NO,YES,NO,Neutral,,,,

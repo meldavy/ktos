@@ -51,7 +51,7 @@
 		<Class ClassID="47" ClassName="CantCreateTeamCuzExisting" Data="Cannot create a team due to the existing team in the other world."/>
 		<Class ClassID="48" ClassName="CantConnectChatServer{error}" Data="ErrorCode[{error}] 채팅 서버에 연결할 수 없습니다."/>
 		<Class ClassID="49" ClassName="DisconnectCuzdiffHwid" Data="이전과 다른 하드웨어로 접속하여 보호모드가 실행됩니다."/>
-		<Class ClassID="50" ClassName="SeasonServerCannotCreateTeamName" Data="통합 대상 서버 혹은 시즌 서버에 팀이 존재합니다. 팀은 통합 대상 서버와 시즌 서버 중 한 곳에만 생성할 수 있습니다. {nl} {nl}시즌 서버 운영 기간 중, 팀 생성 및 삭제와 관련한 자세한 내용은 공식 홈페이지의 공지사항을 참고하여 주세요."/>
+		<Class ClassID="50" ClassName="SeasonServerCannotCreateTeamName" Data="통합 대상 서버 혹은 시즌 서버에 팀이 존재합니다. 팀은 통합 대상 서버와 시즌 서버 중 한 곳에만 생성할 수 있습니다. {nl} {nl}시즌 서버 운영 기간 중, 팀 생성 및 삭제와 관련한 자세한 내용은 공식 홈페이지의 공지사항을 참고하여 주세요. {nl} {nl} {@st41b}{#ff0000}[통합 대상 서버 혹은 시즌 서버에 팀을 생성/삭제하고 다시 시도해주세요]"/>
 		<Class ClassID="51" ClassName="SeasonServerCannotZoneEnter" Data="팀 사전 등록 기간입니다.{nl}8월 6일 (목) 점검 후부터 팀 사전 등록 보상 수령 및 게임 시작이 가능합니다."/>
 	</Category>
 	<Category Name="ChatMsg">
@@ -15369,6 +15369,10 @@
 	<Category Name="NPCName">
 		<Class ClassID="595000" ClassName="EVENT_FLEX_BOX_NPC_NAME" Data="[이벤트] 큐폴"/>
 		<Class ClassID="595001" ClassName="EVENT_GODDESS_ROULETTE_NPC_NAME" Data="[이벤트] 여신의 룰렛"/>
+		<Class ClassID="595002" ClassName="EVENT_NEW_SEASON_SERVER_450_REWARD_NAME" Data="[시즌서버] 이벤트 보상 게시판"/>
+		<Class ClassID="595003" ClassName="EVENT_NEW_SEASON_SERVER_450_REWARD_MSG_1" Data="450 Lv 달성 시, 지급받을 수 있습니다"/>
+		<Class ClassID="595004" ClassName="EVENT_NEW_SEASON_SERVER_450_REWARD_MSG_2" Data="{#003399}[만렙 달성 이벤트]{/} 보상 수령"/>
+		<Class ClassID="595005" ClassName="EVENT_NEW_SEASON_SERVER_450_REWARD_MSG_3" Data="이미 보상을 수령했습니다"/>
 	</Category>
 	<Category Name="EventProgressCheck">
 		<Class ClassID="596000" ClassName="FLEX!" Data="FLEX!"/>

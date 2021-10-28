@@ -2650,6 +2650,7 @@
         <Key Name="Set_korup" Value="105619"/>
         <Key Name="Set_rykuma" Value="105626"/>
         <Key Name="Set_skidas" Value="105621"/>
+        <Key Name="EVENT_NEW_SEASON_SERVER_LEVEL_450" Value="105675"/>
     </KeyIDSpc>
     <KeyIDSpc Name="PCEtc">
         <Key Name="Kill_boss_Clymen_Q2" Value="7788"/>
