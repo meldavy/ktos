@@ -5116,9 +5116,19 @@ function GODDESS_MGR_CONVERT_EXEC(parent, btn)
 	local selected_id = list_bg:GetUserIValue('NOW_SELECT_ITEM_ID')
 	if selected_id <= 0 then return end
 
-	local selectedName = TryGetProp(GetClassByNumProp("Item", "ClassID", selected_id), "Name", "None")
+	local selected_item_cls = GetClassByNumProp("Item", "ClassID", selected_id);
+	if selected_item_cls == nil then return; end
 
-	local clmsg = ScpArgMsg('ReallyDoCraftByConvert{item1}{item2}', 'item1', item_name, 'item2', selectedName)
+	local clmsg = "None";
+	local selectedName = TryGetProp(selected_item_cls, "Name", "None");
+	local selected_item_group_name = TryGetProp(selected_item_cls, "GroupName", "None");
+	local selected_item_class_type = TryGetProp(selected_item_cls, "ClassType", "None");
+	if selected_item_group_name == "Armor" and selected_item_class_type ~= "Shield" then
+		clmsg = ScpArgMsg('ReallyDoCraftByConvertArmor{item1}{item2}', 'item1', item_name, 'item2', selectedName);
+	else
+		clmsg = ScpArgMsg('ReallyDoCraftByConvert{item1}{item2}', 'item1', item_name, 'item2', selectedName);
+    end
+
 	local yesscp = string.format('_GODDESS_MGR_CONVERT_EXEC(%d)', selected_id)
 	local msgbox = ui.MsgBox(clmsg, yesscp, '')
 	SET_MODAL_MSGBOX(msgbox)

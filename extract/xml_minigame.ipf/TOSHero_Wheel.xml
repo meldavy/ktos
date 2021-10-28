@@ -130,15 +130,6 @@
                                 <Num Num="0"/>
                             </ToolScp>
                         </execList>
-                        <listSet>
-                            <ToolScp Scp="MGAME_LIST_PC_ALL" Client="NO" UseSleep="NO"/>
-                        </listSet>
-                        <listExec>
-                            <ToolScp Scp="MLIST_E_RUNSCRIPT" Client="NO" UseSleep="NO">
-                                <Str Str="TOSHERO_PAINBARRIER_BUFFADD"/>
-                                <Num Num="0"/>
-                            </ToolScp>
-                        </listExec>
                     </Event>
                     <Event eventName="Ready_check">
                         <execList>

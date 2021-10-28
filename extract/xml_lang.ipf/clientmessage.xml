@@ -511,6 +511,7 @@
 		<Class ClassID="2404" ClassName="NeedLegendGrade" Data="레전드 등급 이상인 아이템만 가능합니다."/>
 		<Class ClassID="2406" ClassName="{name}dice{num}{max}" Data="[{#33FF33}{name}{/}]님이 주사위를 굴려 [{#33FF33}{num}{/}]이(가) 나왔습니다.(1-{max})"/>
 		<Class ClassID="2407" ClassName="TryRandomOptionPresetApply" Data="각인 부여 시 {#0000ff}기존 옵션은 제거{/}됩니다.{nl}선택된 장비에 대하여 각인 부여를 하시겠습니까?"/>
+		<Class ClassID="2408" ClassName="ReallyDoCraftByConvertArmor{item1}{item2}" Data="{#0001ff}[{item1}]{/}을/를{nl}{#0001ff}[{item2}]{/}로{nl}정말 변경 하시겠습니까?{nl} {nl}{#ff0100}(계열 변경 시 각성, 고정 아이커 옵션이 사라집니다.){/}"/>
 	</Category>
 	<Category Name="ClassContents">
 		<Class ClassID="2500" ClassName="FullWeeklyGainClassResetExp" Data="주간 획득 가능한 클래스 변경 포인트를 모두 달성하였습니다."/>
