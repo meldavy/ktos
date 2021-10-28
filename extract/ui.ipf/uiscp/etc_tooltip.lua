@@ -1,6 +1,6 @@
 -- etc_tooltip.lua
 
-function ITEM_TOOLTIP_ETC(tooltipframe, invitem, argStr, usesubframe)
+function ITEM_TOOLTIP_ETC(tooltipframe, invitem, num1, usesubframe)
 	tolua.cast(tooltipframe, "ui::CTooltipFrame");
 
 	local mainframename = 'etc'
@@ -11,21 +11,17 @@ function ITEM_TOOLTIP_ETC(tooltipframe, invitem, argStr, usesubframe)
 		mainframename = "etc_sub"
 	end
 
-	local ypos = DRAW_ETC_COMMON_TOOLTIP(tooltipframe, invitem, mainframename, argStr); -- 기타 템이라면 공통적으로 그리는 툴팁들	
+	local ypos = DRAW_ETC_COMMON_TOOLTIP(tooltipframe, invitem, mainframename); -- 기타 템이라면 공통적으로 그리는 툴팁들
+	ypos = DRAW_ETC_HEAL_AMOUNT(tooltipframe, invitem, ypos, mainframename); -- 회복량. (존재한다면)
+	ypos = DRAW_ETC_PROPRTY(tooltipframe, invitem, ypos, mainframename); -- 쿨다운은 몇초입니다. 그런것들?
 	ypos = DRAW_ETC_DESC_TOOLTIP(tooltipframe, invitem, ypos, mainframename); -- 아이템 설명.
 	ypos = DRAW_ETC_RECIPE_NEEDITEM_TOOLTIP(tooltipframe, invitem, ypos, mainframename); -- 재료템이라면 필요한 재료랑 보여줌
-    ypos = DRAW_EQUIP_TRADABILITY(tooltipframe, invitem, ypos, mainframename);
-	
-	local isHaveLifeTime = TryGetProp(invitem, "LifeTime");	
-	if 0 == isHaveLifeTime then
-		ypos = DRAW_SELL_PRICE(tooltipframe, invitem, ypos, mainframename); -- 가격
-	else
-		ypos = DRAW_REMAIN_LIFE_TIME(tooltipframe, invitem, ypos, mainframename); -- 남은 시간
-	end
+	ypos = DRAW_SELL_PRICE(tooltipframe, invitem, ypos, mainframename); -- 재료템이라면 필요한 재료랑 보여줌
 	
 end
 
-function DRAW_ETC_COMMON_TOOLTIP(tooltipframe, invitem, mainframename, from)
+
+function DRAW_ETC_COMMON_TOOLTIP(tooltipframe, invitem, mainframename)
 	local gBox = GET_CHILD(tooltipframe, mainframename,'ui::CGroupBox')
 	gBox:RemoveAllChild()
 	--스킨 세팅
@@ -59,22 +55,17 @@ function DRAW_ETC_COMMON_TOOLTIP(tooltipframe, invitem, mainframename, from)
 		questMark:ShowWindow(0);
 	end
 
-	-- 별 그리기
-	SET_GRADE_TOOLTIP(CSet, invitem, GRADE_FONT_SIZE);
+	-- 별 그리기 : 요청에 의해 일반템 별 삭제
+	--SET_GRADE_TOOLTIP(CSet, invitem, GRADE_FONT_SIZE);
 
 	-- 아이템 이름 세팅
 	local fullname = GET_FULL_NAME(invitem, true);
 	local nameChild = GET_CHILD(CSet, "name", "ui::CRichText");
 	nameChild:SetText(fullname);
-	nameChild:AdjustFontSizeByWidth(nameChild:GetWidth());
-	nameChild:SetTextAlign("center","center");
-    
-    -- 쿨타임 등 세팅 옮김
-	local invDesc = GET_ITEM_DESC_BY_TOOLTIP_VALUE(invitem);
-	local propRichtext= GET_CHILD(CSet,'prop_text','ui::CRichText')
-	propRichtext:SetText(invDesc)
 
-	-- 아이템 유저 거래 유무 다시 세팅
+	-- 아이템 유저 거래 유무 세팅
+	local trade_richtext = GET_CHILD(CSet, "trade_text", "ui::CRichText");
+	local tradeText = "";
 	local noTrade_cnt = GET_CHILD(CSet, "noTrade_cnt", "ui::CRichText");
 	local noTradeCount = TryGetProp(invitem, "BelongingCount");
 	if nil ~= noTradeCount and 0 > noTradeCount then
@@ -84,7 +75,10 @@ function DRAW_ETC_COMMON_TOOLTIP(tooltipframe, invitem, mainframename, from)
 
 	local itemProp = geItemTable.GetPropByName(invitem.ClassName);
 	if itemProp ~= nil then
-		if itemProp:IsEnableUserTrade() ~= true then
+		if itemProp:IsExchangeable() == true then
+			tradeText = ScpArgMsg("UserTradeAble")
+		else
+			tradeText = ScpArgMsg("UserTradeUnable")
 			if nil ~= noTrade_cnt then
 				noTrade_cnt:ShowWindow(0);
 			end
@@ -95,10 +89,7 @@ function DRAW_ETC_COMMON_TOOLTIP(tooltipframe, invitem, mainframename, from)
 		end
 	end
 
-    if from ~= nil and from == 'accountwarehouse' then
-        noTrade_cnt:ShowWindow(0)
-    end
-    
+	trade_richtext:SetText(tradeText);
 	
 	-- 아이템 종류 세팅
 	local type_richtext = GET_CHILD(CSet, "type_text", "ui::CRichText");
@@ -106,8 +97,7 @@ function DRAW_ETC_COMMON_TOOLTIP(tooltipframe, invitem, mainframename, from)
 	
 	--무게
 	local weightRichtext = GET_CHILD(CSet, "weight_text", "ui::CRichText");
-	local weightString = string.format("%.1f", invitem.Weight)
-	weightRichtext:SetTextByKey('weight', weightString);
+	weightRichtext:SetTextByKey('weight',invitem.Weight);
 
 	gBox:Resize(gBox:GetWidth(),gBox:GetHeight()+CSet:GetHeight())
 	return CSet:GetHeight();
@@ -137,6 +127,28 @@ function DRAW_ETC_PROPRTY(tooltipframe, invitem, yPos, mainframename)
 	Cset:Resize(Cset:GetOriginalWidth(), propRichtext:GetY()+propRichtext:GetHeight() + BOTTOM_MARGIN)
 	gBox:Resize(gBox:GetWidth(), gBox:GetHeight() + Cset:GetHeight())
 	return Cset:GetHeight() + Cset:GetY();
+end
+
+-- 회복량 표시.
+function DRAW_ETC_HEAL_AMOUNT(tooltipframe, invitem, yPos, mainframename)
+
+	local gBox = GET_CHILD(tooltipframe, mainframename,'ui::CGroupBox')
+	gBox:RemoveChild('tooltip_etc_heal_amount');
+	
+	-- 회복량 등 표시
+	local usable = IS_DRAW_ETC_ITEM_DAMAGE(invitem)
+
+	if usable ~= 1 then
+		return yPos;
+	end
+
+--	local Cset = gBox:CreateOrGetControlSet('tooltip_etc_heal_amount', 'tooltip_etc_heal_amount', 0, yPos);
+--	
+--	SET_DAMAGE_TEXT(Cset, ScpArgMsg("PotionRecovery"), 'None', invitem.NumberArg1, invitem.NumberArg2, 1);
+--
+--	gBox:Resize(gBox:GetWidth(), gBox:GetHeight() + Cset:GetHeight())
+--	return Cset:GetHeight() + Cset:GetY();
+	return yPos;
 end
 
 function DRAW_ETC_DESC_TOOLTIP(tooltipframe, invitem, yPos, mainframename)
@@ -199,7 +211,6 @@ function DRAW_ETC_RECIPE_NEEDITEM_TOOLTIP(tooltipframe, invitem, ypos, mainframe
 			local recipeItemCnt, invItemCnt, dragRecipeItem = GET_RECIPE_MATERIAL_INFO(recipecls, i);
 
 			local itemSet = gbox_items:CreateOrGetControlSet("tooltip_recipe_eachitem", "ITEM_" .. i, 0, inner_yPos);
-			itemSet = tolua.cast(itemSet, 'ui::CControlSet');
 			
 			local image = GET_CHILD(itemSet, "image", "ui::CPicture");
 			local text = GET_CHILD(itemSet, "text", "ui::CRichText");
@@ -213,9 +224,6 @@ function DRAW_ETC_RECIPE_NEEDITEM_TOOLTIP(tooltipframe, invitem, ypos, mainframe
 			else
 				text:SetFontName(UNAVAIABLE_MAKE_FONT)
 			end
-
-			local GRADE_FONT_SIZE = itemSet:GetUserConfig("GRADE_FONT_SIZE"); -- 등급 나타내는 별 크기
-			SET_GRADE_TOOLTIP(itemSet,dragRecipeItem,GRADE_FONT_SIZE)
 			
 			inner_yPos = inner_yPos + itemSet:GetHeight();
 		end
@@ -229,147 +237,4 @@ function DRAW_ETC_RECIPE_NEEDITEM_TOOLTIP(tooltipframe, invitem, ypos, mainframe
 	gBox:Resize(gBox:GetWidth(), gBox:GetHeight() + CSet:GetHeight()+ BOTTOM_MARGIN)
 
 	return CSet:GetHeight() + CSet:GetY();
-end
-
-local function _SET_TRUST_POINT_PARAM_INFO(tooltipframe, index, paramType)
-	-- point
-	local starTextBox = GET_CHILD_RECURSIVELY(tooltipframe, 'starTextBox'..index);
-	local point = session.inventory.GetTrustPointByParam(paramType);
-	local STAR_IMG = 'star_in_arrow';
-	local STAR_SIZE = 19;
-	local starText = '';
-	for i = 1, point do
-		starText = starText..string.format('{img %s %s %s}', STAR_IMG, STAR_SIZE, STAR_SIZE);
-	end
-	starTextBox:SetTextByKey('value', starText);
-
-	-- info
-	local paramTextBox = GET_CHILD_RECURSIVELY(tooltipframe, 'paramTextBox'..index);
-	if paramType == 'SafeAuth' then
-		paramTextBox:SetTextByKey('value', ClMsg('SafeAuthInfo'));
-	else		
-		paramTextBox:SetTextByKey('value', session.inventory.GetTrustInfoCriteria(paramType));
-	end
-
-	-- check
-	local check = GET_CHILD_RECURSIVELY(tooltipframe, 'check'..index);
-	if session.inventory.IsSatisfyTrustParam(paramType) == true then
-		check:SetCheck(1);
-	else
-		check:SetCheck(0);
-	end
-end
-
-local function _HIDE_SAFEAUTH_INFO(tooltipframe, safeAuthIndex, questIndex)
-	local starTextBox = GET_CHILD_RECURSIVELY(tooltipframe, 'starTextBox'..safeAuthIndex);
-	local paramTextBox = GET_CHILD_RECURSIVELY(tooltipframe, 'paramTextBox'..safeAuthIndex);
-	local check = GET_CHILD_RECURSIVELY(tooltipframe, 'check'..safeAuthIndex);
-	starTextBox:ShowWindow(0);
-	paramTextBox:ShowWindow(0);
-	check:ShowWindow(0);
-
-	local _starTextBox = GET_CHILD_RECURSIVELY(tooltipframe, 'starTextBox'..questIndex);
-	local _paramTextBox = GET_CHILD_RECURSIVELY(tooltipframe, 'paramTextBox'..questIndex);
-	local _check = GET_CHILD_RECURSIVELY(tooltipframe, 'check'..questIndex);
-	_starTextBox:SetOffset(_starTextBox:GetX(), starTextBox:GetY());
-	_paramTextBox:SetOffset(_paramTextBox:GetX(), paramTextBox:GetY());		
-	local margin = check:GetMargin();
-	_check:SetMargin(margin.left, margin.top, margin.right, margin.bottom);
-
-	tooltipframe:Resize(tooltipframe:GetWidth(), _starTextBox:GetY() + _starTextBox:GetHeight() + 10);
-end
-
-function UPDATE_TRUST_POINT_TOOLTIP(tooltipframe, tree)
-	_SET_TRUST_POINT_PARAM_INFO(tooltipframe, 1, 'TeamLevel');
-	_SET_TRUST_POINT_PARAM_INFO(tooltipframe, 2, 'CharLevel');
-	_SET_TRUST_POINT_PARAM_INFO(tooltipframe, 3, 'CreateTime');
-	_SET_TRUST_POINT_PARAM_INFO(tooltipframe, 4, 'SafeAuth');
-	_SET_TRUST_POINT_PARAM_INFO(tooltipframe, 5, 'Quest');
-
-	if config.GetServiceNation() ~= 'KOR' and config.GetServiceNation() ~= 'GLOBAL' then
-		_HIDE_SAFEAUTH_INFO(tooltipframe, 4, 5);
-	end
-end
-
-function UPDATE_INDUN_INFO_TOOLTIP(tooltipframe, cidStr, param1, param2, actor)	
-	actor =	tolua.cast(actor, "CFSMActor")
-	tootltipframe = AUTO_CAST(tooltipframe)
-
-	local indunClsList, indunCount = GetClassList('Indun');
-	local ctrlWidth = tonumber(tooltipframe:GetUserConfig("INDUN_CTRL_WIDTH"))
-	local ctrlLeftMargin = tonumber(tooltipframe:GetUserConfig("INDUN_CTRL_LEFT_MARGIN"))
-	local playPerRestTypeTable={}
-
-	local accountInfo = session.barrack.GetMyAccount();
-	local indunListBox = GET_CHILD_RECURSIVELY(tooltipframe, "indunListBox")
-
-	local indunLabelText = GET_CHILD_RECURSIVELY(tooltipframe, "indunLabelText")
-	indunLabelText:SetText("{@st43}{s20}" ..ClMsg("IndunCountInfo"))
-	local pcInfo = accountInfo:GetByStrCID(cidStr)
-	for j = 0, indunCount - 1 do
-		local indunCls = GetClassByIndexFromList(indunClsList, j)
-
-		if indunCls ~= nil and indunCls.Category ~= "None" then
-
-			local indunGroupBox = indunListBox:CreateOrGetControl("groupbox", "INDUN_CONTROL_".. indunCls.PlayPerResetType, ctrlLeftMargin, 0, ctrlWidth, 20)
-			indunGroupBox = tolua.cast(indunGroupBox, "ui::CGroupBox")
-			indunGroupBox:EnableDrawFrame(0)
-			local indunLabel = indunGroupBox:CreateOrGetControl("richtext", "INDUN_NAME_" .. indunCls.PlayPerResetType, 0, 0, ctrlWidth / 2, 20)
-			indunLabel = tolua.cast(indunLabel, 'ui::CRichText')
-			indunLabel:SetText('{@st42b}' .. indunCls.Category)
-			indunLabel:SetEnable(0)
-		
-			local indunCntLabel = indunGroupBox:CreateOrGetControl("richtext", "INDUN_COUNT_" .. indunCls.PlayPerResetType, 0, 0, ctrlWidth / 2, 20)
-			indunCntLabel:SetGravity(ui.RIGHT, ui.TOP)
-			indunCntLabel:SetEnable(0)
-
-			local entranceCount = BARRACK_GET_CHAR_INDUN_ENTRANCE_COUNT(cidStr, indunCls.PlayPerResetType)
-
-			if entranceCount ~= nil then
-				if entranceCount == 'None' then
-					entranceCount = 0;
-				else
-					entranceCount = tonumber(entranceCount)
-				end
-				indunCntLabel:SetText("{@st42b}" .. entranceCount .. "/" .. BARRACK_GET_INDUN_MAX_ENTERANCE_COUNT(indunCls.PlayPerResetType))
-			end
-
-			if pcInfo ~= nil then
-				if indunCls.Level <= actor:GetLv() or playPerRestTypeTable["INDUN_COUNT_" .. indunCls.PlayPerResetType]==1 then
-					indunLabel:SetEnable(1)
-					indunCntLabel:SetEnable(1)
-					playPerRestTypeTable["INDUN_COUNT_" .. indunCls.PlayPerResetType]=1
-				end
-			end
-		end
-	end
-
-	-- 실버 표시
-	local indunGroupBox = indunListBox:CreateOrGetControl("groupbox", "INDUN_CONTROL_SILVER", ctrlLeftMargin, 0, ctrlWidth, 20)
-	indunGroupBox = tolua.cast(indunGroupBox, "ui::CGroupBox")
-	indunGroupBox:EnableDrawFrame(0)
-	local indunLabel = indunGroupBox:CreateOrGetControl("richtext", "INDUN_NAME_SILVER", 0, 0, ctrlWidth / 2, 20)
-	indunLabel = tolua.cast(indunLabel, 'ui::CRichText')
-	indunLabel:SetText('{@st42b}' .. ScpArgMsg('Auto_SilBeo'))
-	indunLabel:SetEnable(1)
-	
-	local indunCntLabel = indunGroupBox:CreateOrGetControl("richtext", "INDUN_CRRUNT_SILVER", 0, 0, ctrlWidth / 2, 20)
-	indunCntLabel:SetGravity(ui.RIGHT, ui.TOP)
-	indunCntLabel:SetText('{@st42b}' .. GET_COMMAED_STRING(pcInfo:GetSilver()))
-	indunCntLabel:SetEnable(1)
-
-	local spacing = tonumber(tooltipframe:GetUserConfig("INDUN_CTRL_SPACING"))
-	local startY = tonumber(tooltipframe:GetUserConfig("INDUN_CTRL_START_TOP_MARGIN"))
-	local offset = tonumber(tooltipframe:GetUserConfig("INDUN_CTRL_OFFSET"))
-	GBOX_AUTO_ALIGN(indunListBox, startY, spacing, offset, true, false)
-
-	-- 인던 갯수에 따른 툴팁 크기변환
-	local spaceOffset = (indunListBox:GetChildCount() - 1) * ( offset + spacing);
-	local bgBox = GET_CHILD(tooltipframe, 'indunListBoxBg');
-
-	tootltipframe:Resize(tootltipframe:GetOriginalWidth(), tootltipframe:GetOriginalHeight() + spaceOffset );	
-	bgBox:Resize(bgBox:GetOriginalWidth(), bgBox:GetOriginalHeight() + spaceOffset);
-	indunListBox:Resize(indunListBox:GetOriginalWidth(), indunListBox:GetOriginalHeight() + spaceOffset );	
-
-
 end

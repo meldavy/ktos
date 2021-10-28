@@ -1,4 +1,4 @@
-ï»¿
+
 function COMPARE_ON_INIT(addon, frame)
 	addon:RegisterMsg("RELATED_HISTORY", "COMPARE_RELATED_HISTORY");
 end
@@ -63,17 +63,17 @@ function UPDATE_AM_I_LIKE_YOU(fname)
 	likeCheck:SetUserValue("NOWFNAME",fname);
 end
 
--- ìì‹ ì˜ ìºë¦­ê³¼ ëŠ¥ë ¥ì¹˜ ë¹„êµí•˜ëŠ” ë¶€ë¶„ ì†ŒìŠ¤ì½”ë“œê°€ í•„ìš”í•˜ë©´ 20140910 ì´ì „ ë¦¬ë¹„ì „ì—ì„œ í™•ì¸í•  ê²ƒ. ì§€ê¸ˆì€ ì‚­ì œë˜ì–´ ìˆë‹¤. (20140915)
+-- ÀÚ½ÅÀÇ Ä³¸¯°ú ´É·ÂÄ¡ ºñ±³ÇÏ´Â ºÎºĞ ¼Ò½ºÄÚµå°¡ ÇÊ¿äÇÏ¸é 20140910 ÀÌÀü ¸®ºñÀü¿¡¼­ È®ÀÎÇÒ °Í. Áö±İÀº »èÁ¦µÇ¾î ÀÖ´Ù. (20140915)
 function SHOW_PC_COMPARE(cid)
 
 	local otherpcinfo = session.otherPC.GetByStrCID(cid);
+	local jobhistory = otherpcinfo.jobHistory;
+	local ranking = geServerWiki.GetWikiServRank();
 	local frame = ui.GetFrame("compare");
 	frame:ShowWindow(1);
 
-	local charName = otherpcinfo:GetAppearance():GetName()
-	local teamName = otherpcinfo:GetAppearance():GetFamilyName()
-	local gender = otherpcinfo:GetAppearance():GetGender()
-	frame:SetUserValue('COMPARE_PC_GENDER', gender); -- ì‚´í´ë³´ê¸°í•  ë•Œ ì‚´í´ë³´ê¸°ì¤‘ì¸ ìºë¦­ì˜ ì„±ë³„ ê°€ì ¸ì˜¤ê¸° ìœ„í•¨
+	local charName		= otherpcinfo:GetAppearance():GetName()
+	local teamName		= otherpcinfo:GetAppearance():GetFamilyName()
 
 	local infoGbox = frame:GetChild("groupbox_1");
 
@@ -84,13 +84,13 @@ function SHOW_PC_COMPARE(cid)
 
 	local obj = GetIES(otherpcinfo:GetObject());
 
-	--ì¢‹ì•„ìš” ìˆ˜ í‘œì‹œ
+	--ÁÁ¾Æ¿ä ¼ö Ç¥½Ã
 	local likeItCountTxt = GET_CHILD_RECURSIVELY(frame,"likeitCount")
 	if otherpcinfo.likeMeCount ~= -1 then
 		likeItCountTxt:SetTextByKey("count",otherpcinfo.likeMeCount)
 	end
 
-	--ë‚´ê°€ ì´ë¯¸ ì¢‹ì•„ìš” í–ˆëŠ”ì§€?
+	--³»°¡ ÀÌ¹Ì ÁÁ¾Æ¿ä Çß´ÂÁö?
 	UPDATE_AM_I_LIKE_YOU(otherpcinfo:GetAppearance():GetFamilyName())
 	
 
@@ -100,25 +100,26 @@ function SHOW_PC_COMPARE(cid)
 
 	local jobInfoRTxt = GET_CHILD(infoGbox,"jobInfo","ui::CRichText")
 
-	local jobRank = otherpcinfo:GetJobCount();
-	local nowjobinfo = otherpcinfo:GetJobInfoByIndex(jobRank - 1);
+	local nowjobinfo = jobhistory:GetJobHistory(jobhistory:GetJobHistoryCount()-1);
 	local clslist, cnt  = GetClassList("Job");
 	local nowjobcls = GetClassByTypeFromList(clslist, nowjobinfo.jobID);
 
-	local jobName = GET_JOB_NAME(nowjobcls, gender);
-	local level = obj.Lv
-	
-	jobInfoRTxt:SetTextByKey("rank", jobRank);
-	jobInfoRTxt:SetTextByKey("job", jobName);
-	jobInfoRTxt:SetTextByKey("lv", level);
+	local jobRank		= nowjobinfo.grade
+	local jobName		= nowjobcls.Name
+	local level			= obj.Lv
 
-	local rankInfo = otherpcinfo:GetOtherpcAdventureBookRanking();    
-    local pcranking = rankInfo.rank;
-	local score = math.max(rankInfo.score, 0); -- ë­í‚¹ ì—†ìœ¼ë©´ 0ì ì´ì–´ì•¼ í•¨
-	local wholeusercnt = GetAdventureBookTotalRankCount();
+	jobInfoRTxt:SetTextByKey("rank",jobRank);
+	jobInfoRTxt:SetTextByKey("job",jobName);
+	jobInfoRTxt:SetTextByKey("lv",level);
+
+
+	local score			= otherpcinfo.wikiTotalScore
+	local pcranking		= otherpcinfo:GetOtherpcWikiRanking(WIKI_TOTAL) 
+	local wholeusercnt	= ranking.totalCount
+
 	local rankingInfoRTxt = GET_CHILD(infoGbox,"rankingInfo","ui::CRichText")
 	local unrankingInfoRTxt = GET_CHILD(infoGbox,"unrankingInfo","ui::CRichText")
-    
+
 	if pcranking < 0 then
 		rankingInfoRTxt:ShowWindow(0)
 		unrankingInfoRTxt:ShowWindow(1)
@@ -127,10 +128,12 @@ function SHOW_PC_COMPARE(cid)
 		unrankingInfoRTxt:ShowWindow(0)
 	end
 
-	rankingInfoRTxt:SetTextByKey("journalScore", score);
-	unrankingInfoRTxt:SetTextByKey("journalScore", score);
-	rankingInfoRTxt:SetTextByKey("charRanking", pcranking);
-	rankingInfoRTxt:SetTextByKey("userCount", wholeusercnt);
+	rankingInfoRTxt:SetTextByKey("journalScore",score);
+	unrankingInfoRTxt:SetTextByKey("journalScore",score);
+	rankingInfoRTxt:SetTextByKey("charRanking",pcranking);
+	rankingInfoRTxt:SetTextByKey("userCount",wholeusercnt);
+	
+
 
 	local his_box_bg = GET_CHILD_RECURSIVELY(frame,"his_box_bg");
 	his_box_bg:ShowWindow(0)
@@ -138,13 +141,12 @@ function SHOW_PC_COMPARE(cid)
 	local g_equip = frame:GetChild("groupbox_2");
 	g_equip:ShowWindow(1)
 
-	DESTROY_CHILD_BYNAME(g_equip, "EQUIPS"); -- ì„ì‹œì„
+	DESTROY_CHILD_BYNAME(g_equip, "EQUIPS"); -- ÀÓ½ÃÀÓ
 
 	eqpSet = g_equip:CreateOrGetControlSet("itemslotset_compare", "EQUIPS", 40, 20);
 	eqpSet:ShowWindow(1);
-	tolua.cast(eqpSet, "ui::CControlSet")
 
-	local imagename = ui.CaptureSomeonesFullStdImage(otherpcinfo:GetAppearance(), 7);	
+	local imagename = ui.CaptureSomeonesFullStdImage(otherpcinfo:GetAppearance())	
 	
 	local charImage = GET_CHILD(eqpSet,"shihouette","ui::CPicture");
 	charImage:SetImage(imagename)
@@ -152,11 +154,19 @@ function SHOW_PC_COMPARE(cid)
 	local eqpList = otherpcinfo:GetEquipList();
 	SET_EQUIP_LIST(eqpSet, eqpList, PC_COMPARE_SET_ICON);
 
+	
+
 	local OTHERPCJOBS = {}
-	for i = 0, otherpcinfo:GetJobCount() - 1 do
-		local tempjobinfo = otherpcinfo:GetJobInfoByIndex(i);
+
+	for i = 0, jobhistory:GetJobHistoryCount()-1 do
+		local tempjobinfo = jobhistory:GetJobHistory(i);
+
 		if OTHERPCJOBS[tempjobinfo.jobID] == nil then
-			OTHERPCJOBS[tempjobinfo.jobID] = 1;
+			OTHERPCJOBS[tempjobinfo.jobID] = tempjobinfo.grade;
+		else
+			if tempjobinfo.grade > OTHERPCJOBS[tempjobinfo.jobID] then
+				OTHERPCJOBS[tempjobinfo.jobID] = tempjobinfo.grade;
+			end
 		end
 	end
 
@@ -168,10 +178,10 @@ function SHOW_PC_COMPARE(cid)
 	local clsindex = 0
 	for jobid, grade in pairs(OTHERPCJOBS) do
 		local x = clsindex%3 * 150
-		local y = math.floor(clsindex/3) * 125
+		local y = math.floor(clsindex/3) * 160
 
 		local cls = GetClassByTypeFromList(clslist, jobid);
-		local classCtrl = classGbox:CreateOrGetControlSet('classtreeIcon', 'classCtrl_'..cls.ClassName, x+20, y+5);
+		local classCtrl = classGbox:CreateOrGetControlSet('classtreeIcon', 'classCtrl_'..cls.ClassName, x+20, y+10);
 		
 		local classSlot = GET_CHILD(classCtrl, "slot", "ui::CSlot");
 		classSlot:EnableHitTest(0)
@@ -183,10 +193,28 @@ function SHOW_PC_COMPARE(cid)
 		local iconname = cls.Icon;
 		icon:SetImage(iconname);
 
-		-- í´ë˜ìŠ¤ ì´ë¦„
+		local upCtrl = GET_CHILD(classCtrl, "upbtn", "ui::CButton");
+		upCtrl:ShowWindow(0);
+
+		-- Å¬·¡½º ÀÌ¸§
 		local nameCtrl = GET_CHILD(classCtrl, "name", "ui::CRichText");
-		nameCtrl:SetText("{@st41}".. GET_JOB_NAME(cls, gender));
+		nameCtrl:SetText("{@st41}".. cls.Name);
+
+		-- Å¬·¡½º ·¹º§ (¡Ú·Î Ç¥½Ã)
+		local levelCtrl = GET_CHILD(classCtrl, "level", "ui::CRichText");
+		local levelFont = frame:GetUserConfig("Font_Normal");
 		
+		local startext = ""
+		for i = 1 , 3 do
+			if i <= grade then
+				startext = startext ..('{img star_in_arrow 20 20}')
+			else
+				startext = startext ..('{img star_out_arrow 20 20}')
+			end
+		end
+
+		levelCtrl:SetText(startext);
+
 		clsindex = clsindex + 1
 	end
 
@@ -208,7 +236,7 @@ function SHOW_PC_COMPARE(cid)
 		local y = i * 30
 		local achitext = achieveGbox_sub:CreateOrGetControl("richtext", "achieve_" .. i, 15, y+10, 300, 30);
 		achitext:SetFontName("white_18_ol")
-		achitext:SetText(nowachicls.DescTitle)
+		achitext:SetText(nowachicls.Name)
 	end
 	
 	frame:Invalidate();

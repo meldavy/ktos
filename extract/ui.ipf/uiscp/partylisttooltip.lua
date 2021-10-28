@@ -5,8 +5,50 @@ function UPDATE_PARTYLIST_TOOLTIP(tooltipframe, strarg, numarg1, numarg2, userDa
 	
 end
 
-function UPDATE_COMMON_PARTY_INFO(frame, eachpartyinfo, eachpartymemberlist, name)
+function PARTY_INFO_UPDATE_TOOLTIP(tooltipframe, strarg, numarg1, numarg2, userData)
+	
+	local name = GET_CHILD_RECURSIVELY(tooltipframe,"partyname")
+	local getterPartyList = session.party.GetNearPartyList();
+		
+	if getterPartyList == nil then
+		return;
+	end	
 
+	local eachpartyinfo = getterPartyList:Element(numarg1).partyInfo;
+	local eachpartymemberlist = getterPartyList:Element(numarg1):GetMemberList();
+
+	if eachpartyinfo == nil then
+		return;
+	end
+
+	TOOLTIP_NORMAL_PROCESS_TOOLTIP(tooltipframe, eachpartyinfo, eachpartymemberlist, name);
+
+end
+
+
+
+function PARTY_INFO_UPDATE_TOOLTIP_NORMAL(tooltipframe, strarg, numarg1, numarg2, userData)
+
+	local name = GET_CHILD_RECURSIVELY(tooltipframe,"partyname")
+	local getterPartyList = session.party.GetFoundPartyList(PARTY_NORMAL);
+
+	if getterPartyList == nil then
+		return;
+	end	
+
+	local eachpartyinfo = getterPartyList:Element(numarg1).partyInfo;
+	local eachpartymemberlist = getterPartyList:Element(numarg1):GetMemberList();
+
+	if eachpartyinfo == nil then
+		return;
+	end	
+
+	TOOLTIP_NORMAL_PROCESS_TOOLTIP(tooltipframe, eachpartyinfo, eachpartymemberlist, name);
+
+end
+
+
+function TOOLTIP_NORMAL_PROCESS_TOOLTIP(tooltipframe, eachpartyinfo, eachpartymemberlist, name)
 	local ppartyobj = eachpartyinfo:GetObject();
 
 	if ppartyobj == nil then
@@ -20,18 +62,18 @@ function UPDATE_COMMON_PARTY_INFO(frame, eachpartyinfo, eachpartymemberlist, nam
 	end
 
 		
-	-- ï¿½ï¿½Æ¼ ï¿½Ì¸ï¿½
-	local name = GET_CHILD_RECURSIVELY(frame,'partyname')
+	-- ÆÄÆ¼ ÀÌ¸§
+	local name = GET_CHILD_RECURSIVELY(tooltipframe,'partyname')
 	name:SetText(eachpartyinfo.info.name)
 	
-	local memo = GET_CHILD_RECURSIVELY(frame,'partymemo')
+	local memo = GET_CHILD_RECURSIVELY(tooltipframe,'partymemo')
 	memo:SetText(partyObj["Note"])
 
 	
 	local elapsedTime = session.party.GetHowOldPartyCreated(eachpartyinfo);
 	local timeString = GET_TIME_TXT_DHM(elapsedTime);
 	
-	local createdTimeTxt = GET_CHILD_RECURSIVELY(frame,'createdTime')
+	local createdTimeTxt = GET_CHILD_RECURSIVELY(tooltipframe,'createdTime')
 
 	if elapsedTime < 0 or elapsedTime > 315360000 then
 		createdTimeTxt:ShowWindow(0)
@@ -42,7 +84,7 @@ function UPDATE_COMMON_PARTY_INFO(frame, eachpartyinfo, eachpartymemberlist, nam
 	
 	
 
-	local meminfogbox = GET_CHILD_RECURSIVELY(frame,'meminfo')
+	local meminfogbox = GET_CHILD_RECURSIVELY(tooltipframe,'meminfo')
 
 	DESTROY_CHILD_BYNAME(meminfogbox, 'eachmember_');
 	for i = 0 , eachpartymemberlist:Count() - 1 do
@@ -64,18 +106,17 @@ function UPDATE_COMMON_PARTY_INFO(frame, eachpartyinfo, eachpartymemberlist, nam
 			meminfotext:SetTextByKey('lv',eachpartymember:GetLevel())
 
 			local jobclass = GetClassByType("Job",eachpartymember:GetIconInfo().job)
-			local gender = eachpartymember:GetIconInfo().gender;
-			meminfotext:SetTextByKey('job',GET_JOB_NAME(jobclass, gender))
+			meminfotext:SetTextByKey('job',jobclass.Name)
 
-			-- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½È­.
+			-- »öÀ¸·Î Â÷º°È­.
 			if eachpartyinfo.info:GetLeaderAID() == eachpartymember:GetAID() then
 				if eachpartyinfo.info.isCorsairType == true then
-					meminfotext:SetFontName("green_16_ol"); -- Ä¿ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê·Ï»ï¿½
+					meminfotext:SetFontName("green_16_ol"); -- Ä¿¼¼¾î´Â ÃÊ·Ï»ö
 				else
-					meminfotext:SetFontName("yellow_16_ol"); -- ï¿½ï¿½Æ¼ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
+					meminfotext:SetFontName("yellow_16_ol"); -- ÆÄÆ¼ÀåÀº ³ë¶õ»ö
 				end
 			else
-					meminfotext:SetFontName("white_16_ol"); -- ï¿½Ï¹ï¿½ï¿½ï¿½ ï¿½Ï¾ï¿½ï¿½
+					meminfotext:SetFontName("white_16_ol"); -- ÀÏ¹ÝÀº ÇÏ¾á»ö
 			end
 
 			
@@ -100,9 +141,9 @@ function UPDATE_COMMON_PARTY_INFO(frame, eachpartyinfo, eachpartymemberlist, nam
 	end
 		
 	
-	local questText = GET_CHILD_RECURSIVELY(frame,'questTextval')
-	local expText = GET_CHILD_RECURSIVELY(frame,'expTextval')
-	local itemText = GET_CHILD_RECURSIVELY(frame,'itemTextval')
+	local questText = GET_CHILD_RECURSIVELY(tooltipframe,'questTextval')
+	local expText = GET_CHILD_RECURSIVELY(tooltipframe,'expTextval')
+	local itemText = GET_CHILD_RECURSIVELY(tooltipframe,'itemTextval')
 
 	if partyObj["IsQuestShare"] == 0 then
 		questText:SetText(ScpArgMsg("PartyOptQuest_NonShare"))
@@ -126,5 +167,7 @@ function UPDATE_COMMON_PARTY_INFO(frame, eachpartyinfo, eachpartymemberlist, nam
 		itemText:SetText(ScpArgMsg("PartyOptItem_Ran"))
 	end
 	
+	tooltipframe:Resize(tooltipframe:GetOriginalWidth(), 210 + (eachpartymemberlist:Count() * 30) )
 
+	tooltipframe:Invalidate()
 end

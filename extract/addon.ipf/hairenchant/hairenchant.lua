@@ -15,24 +15,12 @@ end
 
 function HAIRENCHANT_SUCEECD(itemIES)
 	HAIRENCHANT_UPDATE_ITEM_OPTION(itemIES);
-		
-	local invItem = session.GetInvItemByGuid(itemIES);
-	if invItem == nil then
-		return;
-	end
-
-	local itemCls = GetClassByType("Item", invItem.type);
-	local typeStr = "Item"	
-	if itemCls.ItemType == "Equip" then
-		typeStr = itemCls.ItemType; 
-	end	
-
 	imcSound.PlaySoundEvent("premium_enchantchip");
 	
 	local invframe = ui.GetFrame("inventory");
 	local inventoryGbox = invframe:GetChild("inventoryGbox");
-	local treeGbox = inventoryGbox:GetChild("treeGbox_" .. typeStr);
-	local tree = GET_CHILD(treeGbox,"inventree_" .. typeStr);
+	local treeGbox = inventoryGbox:GetChild("treeGbox");
+	local tree = GET_CHILD(treeGbox,"inventree");
 	tree:CloseNodeAll();
 
 	local treegroup = tree:FindByValue("Premium");
@@ -105,7 +93,7 @@ function HAIRENCHANT_DRAW_HIRE_ITEM(slot, invItem)
 
 	local obj = GetIES(invItem:GetObject());
 	if ENCHANTCHIP_ABLIE(obj) ~= 1 then
-		ui.SysMsg(ClMsg("MagicEnchant").." "..ClMsg("IT_ISNT_REINFORCEABLE_ITEM"));
+		ui.SysMsg(ClMsg("CannotDropItem"));
 		return;
 	end
 
@@ -118,7 +106,7 @@ function HAIRENCHANT_DRAW_HIRE_ITEM(slot, invItem)
 	local frame = ui.GetFrame("hairenchant");
 	frame:SetUserValue("itemIES", itemIES);
 	local slot  = frame:GetChild("slot");
-	SET_SLOT_ITEM_IMAGE(slot, invItem);
+	SET_SLOT_ITEM_IMANGE(slot, invItem);
 
 	local itemName = frame:GetChild("itemName")
 	itemName:SetTextByKey("value", obj.Name);
