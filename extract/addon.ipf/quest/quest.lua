@@ -2132,8 +2132,12 @@ function SCR_VIEW_QUEST_LOCATION(ctrlSet, ctrl, strArg, numArg)
     local mapName = GET_QUEST_LOCATION(quest)
     local episode = GET_EPISODE_BY_MAPNAME(mapName)
     
-    ui.OpenFrame("worldmap2_mainmap")
+    if episode == nil then
+        return
+    end
 
+    ui.OpenFrame("worldmap2_mainmap")
+    
     WORLDMAP2_SUBMAP_OPEN_FROM_MAINMAP_BY_EPISODE(episode)
     WORLDMAP2_SUBMAP_ZONE_CHECK(mapName)
 end

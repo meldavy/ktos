@@ -1336,6 +1336,10 @@ function INDUNINFO_OPEN_INDUN_MAP(parent, ctrl)
     local mapID = parent:GetUserValue('INDUN_START_MAP_ID')
     local mapName = GetClassByType("Map", mapID).ClassName
     local episode = GET_EPISODE_BY_MAPNAME(mapName)
+ 
+    if episode == nil then
+        return
+    end
     
     ui.OpenFrame("worldmap2_mainmap")
 
