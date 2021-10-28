@@ -37,6 +37,30 @@
                if func == nil then return end
                return func(obj.Level)"/>
 				</Scp>
+				<Scp Scp="C_EFFECT_POS" Client="YES" UseSleep="NO" Time="300">
+					<Str_Arg Str="F_ground185_spred_out_light" Arg="0.5"/>
+					<Pos Angle="0" Dist="0" PosType="0"/>
+					<Num Num="0"/>
+					<Str Str="None"/>
+				</Scp>
+				<Scp Scp="C_EFFECT_POS" Client="YES" UseSleep="NO" Time="300">
+					<Str_Arg Str="F_cleric_ground_seedboom" Arg="1"/>
+					<Pos Angle="0" Dist="0" PosType="0"/>
+					<Num Num="0"/>
+					<Str Str="None"/>
+				</Scp>
+				<Scp Scp="C_EFFECT_POS" Client="YES" UseSleep="NO" Time="300">
+					<Str_Arg Str="F_circle029_ground" Arg="1"/>
+					<Pos Angle="0" Dist="0" PosType="0"/>
+					<Num Num="0"/>
+					<Str Str="None"/>
+				</Scp>
+				<Scp Scp="C_EFFECT_POS" Client="YES" UseSleep="NO" Time="300">
+					<Str_Arg Str="F_cleric_ground_katadikazo" Arg="3"/>
+					<Pos Angle="0" Dist="0" PosType="0"/>
+					<Num Num="0"/>
+					<Str Str="None"/>
+				</Scp>
 				<Scp Scp="SKL_TGT_MOVE" Client="NO" UseSleep="YES" Time="300">
 					<Num Num="30"/>
 					<Num Num="0" UseFunc="1" FuncTxt="local value = 90; if GET_ABIL_LEVEL(self, &quot;Matross2&quot;) > 0 then value =  value  * 0.5; end return value"/>
