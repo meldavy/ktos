@@ -149,3 +149,4 @@ ClassID,DefNumValue,ClassName,Type,DefStrValue,ClientScp
 156,1,InvOption_Card_Goddess,Number,,
 157,1,ShowTutorialnote,Number,,UPDATE_SHOW_TUTORIALNOTE
 161,0,IsEnableSummonAlpha,Number,,
+162,0,EnableAutoCasting,Number,,

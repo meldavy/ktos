@@ -198,7 +198,7 @@
                     <Event execCount="1" eventName="5Min">
                         <condList>
                             <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK" Client="NO" UseSleep="NO">
-                                <Num Num="600"/>
+                                <Num Num="900"/>
                             </ToolScp>
                         </condList>
                         <execList>
@@ -212,7 +212,7 @@
                     <Event execCount="1" eventName="1Min">
                         <condList>
                             <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK" Client="NO" UseSleep="NO">
-                                <Num Num="840"/>
+                                <Num Num="1140"/>
                             </ToolScp>
                         </condList>
                         <execList>
@@ -226,7 +226,7 @@
                     <Event execCount="1" eventName="TimeOver">
                         <condList>
                             <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK" Client="NO" UseSleep="NO">
-                                <Num Num="1080"/>
+                                <Num Num="1380"/>
                             </ToolScp>
                         </condList>
                         <execList>
@@ -234,7 +234,7 @@
                                 <Str Str="Fail"/>
                             </ToolScp>
                             <ToolScp Scp="MGAME_MSG_ICON" Client="YES" UseSleep="NO">
-                                <Str Str="제한 시간 18분이 경과되어 레이드에 실패하였습니다.{nl}30초 후 입장 지역으로 이동됩니다."/>
+                                <Str Str="제한 시간 23분이 경과되어 레이드에 실패하였습니다.{nl}30초 후 입장 지역으로 이동됩니다."/>
                                 <Str Str="!"/>
                                 <Num Num="5"/>
                             </ToolScp>
@@ -556,7 +556,7 @@
                         </condList>
                         <execList>
                             <ToolScp Scp="MGAME_SET_RAID_TIMER" Client="NO" UseSleep="NO">
-                                <Num Num="900"/>
+                                <Num Num="1200"/>
                                 <Str Str="BERSERK_TIME_MSG"/>
                                 <Str Str="Yellow"/>
                             </ToolScp>

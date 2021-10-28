@@ -672,8 +672,8 @@
 		<image name="TUTO_RELIC_08" file="\helpimg\TUTO_RELIC_08.jpg" imgrect="0 0 380 1184"/>
 		<image name="TUTO_RELIC_09" file="\helpimg\TUTO_RELIC_09.jpg" imgrect="0 0 380 592"/>
 		<image name="TUTO_RELIC_10" file="\helpimg\TUTO_RELIC_10.jpg" imgrect="0 0 380 583"/>
-		<image name="TUTO_RELIC_11" file="\helpimg\TUTO_RELIC_11.jpg" imgrect="0 0 380 677"/>
-		<image name="TUTO_RELIC_12" file="\helpimg\TUTO_RELIC_12.jpg" imgrect="0 0 380 375"/>
+		<image name="TUTO_RELIC_11" file="\helpimg\TUTO_RELIC_11.jpg" imgrect="0 0 380 674"/>
+		<image name="TUTO_RELIC_12" file="\helpimg\TUTO_RELIC_12.jpg" imgrect="0 0 380 359"/>
 		<image name="TUTO_RELIC_13" file="\helpimg\TUTO_RELIC_13.jpg" imgrect="0 0 380 454"/>
 		<image name="TUTO_RELIC_14" file="\helpimg\TUTO_RELIC_14.jpg" imgrect="0 0 380 502"/>
 		<image name="TUTO_RELIC_15" file="\helpimg\TUTO_RELIC_15.jpg" imgrect="0 0 380 442"/>

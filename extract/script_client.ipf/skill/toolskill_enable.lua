@@ -478,6 +478,18 @@ function SCR_BOKOR_CHECK_BUFF_C_Mackangdal(actor, skl, buffName)
     return 0;
 end
 
+function SCR_BACKMASKING_CHECK_BUFF_C(actor, skl, buffName)
+    local getBuff = actor:GetBuff():GetBuff("TimeWarp_Buff")
+    if getBuff ~= nil then
+        local over = getBuff.over
+        if over >= 3 then
+            return 1;
+        end
+    end
+    
+    return 0;
+end
+
 function SKL_CHECK_USE_RAMPAGE_SKILL_C(actor, skl, abilName)
     if actor:GetBuff():GetBuff("RidingCompanion") ~= nil then
         local obj = nil
@@ -647,6 +659,17 @@ function CHECK_IS_EQUIP_PREFIX_C(actor, skl, prefix)
     end
     
     return 1
+end
+
+function SCR_ENCHANTER_CHECK_BUFFOVER_C(actor, skl, buffName)
+    local getbuff = actor:GetBuff():GetBuff("Enchanter17_Buff")
+    if getbuff ~= nil then
+        local over = getbuff.over
+        if over >= 3 then
+            return 1;
+        end
+    end
+    return 0;
 end
 
 function SCR_SKL_CHECK_BATTLESTATE_C(actor, skl)

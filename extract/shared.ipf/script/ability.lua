@@ -1395,33 +1395,6 @@ function SCR_ABIL_Exorcist19_INACTIVE(self, ability)
     end
 end
 
-function SCR_ABIL_Appraiser7_ACTIVE(self, ability)
-    local skill = GetSkill(self, "Appraiser_Blindside");
-    if skill ~= nil then
-        local attribute = TryGetProp(skill, "Attribute");
-        skill.Attribute = "Fire";
-        SetExProp_Str(self, "Appraiser7_Attribute", attribute);
-
-        skill.CastingCategory = "channeling"
-
-        InvalidateSkill(self, skill.ClassName);
-        SendSkillProperty(self, skill);
-    end
-end
-
-function SCR_ABIL_Appraiser7_INACTIVE(self, ability)
-    local skill = GetSkill(self, "Appraiser_Blindside");
-    if skill ~= nil then
-        local attribute = GetExProp_Str(self, "Appraiser7_Attribute");
-        skill.Attribute = attribute;
-
-        skill.CastingCategory = "instant"
-
-        InvalidateSkill(self, skill.ClassName);
-        SendSkillProperty(self, skill);
-    end
-end
-
 function SCR_ABIL_Hoplite33_ACTIVE(self, ability)
     local skill = GetSkill(self, "Hoplite_ThrouwingSpear");
     if skill ~= nil then
@@ -1698,13 +1671,10 @@ function SCR_ABIL_Outlaw20_ACTIVE(self, ability)
     local skill = GetSkill(self, "OutLaw_Rampage");
     if skill ~= nil then
         local attribute = TryGetProp(skill, "Attribute");
-        local enableCompanion = TryGetProp(skill, "EnableCompanion");
 
         skill.Attribute = "Ice";
-        skill.EnableCompanion = "None";
 
         SetExProp_Str(self, "Outlaw20_Attribute", attribute);
-        SetExProp_Str(self, "Outlaw20_companion", enableCompanion);
     end
 end
 
@@ -1712,10 +1682,8 @@ function SCR_ABIL_Outlaw20_INACTIVE(self, ability)
     local skill = GetSkill(self, "OutLaw_Rampage");
     if skill ~= nil then
         local attribute = GetExProp_Str(self, "Outlaw20_Attribute");
-        local enableCompanion = GetExProp_Str(self, "Outlaw20_companion");
 
         skill.Attribute = attribute;
-        skill.EnableCompanion = enableCompanion;
     end
 end
 
@@ -3233,4 +3201,42 @@ function SCR_ABIL_CLOWN12_INACTIVE(self, ability)
         InvalidateSkill(self, skill.ClassName);
         SendSkillProperty(self, skill);
     end
+end
+
+function SCR_ABIL_Enchanter17_ACTIVE(self, ability)
+    if IsBuffApplied(self, "Enchanter17_AddBuff_Buff") ~= "YES" then
+        AddBuff(self, self, "Enchanter17_AddBuff_Buff", 1, 0, 0, 0);
+    end
+end
+
+function SCR_ABIL_Enchanter17_INACTIVE(self, ability)
+    RemoveBuff(self, "Enchanter17_AddBuff_Buff");
+end
+
+function SCR_ABIL_Corsair35_ACTIVE(self, ability)
+    if IsBuffApplied(self, "Corsair35_AddBuff_Buff") ~= "YES" then
+        AddBuff(self, self, "Corsair35_AddBuff_Buff", 1, 0, 0, 0);
+    end
+end
+
+function SCR_ABIL_Corsair35_INACTIVE(self, ability)
+    RemoveBuff(self, "Corsair35_AddBuff_Buff");
+end
+
+function SCR_ABIL_Schwarzereiter31_ACTIVE(self, ability)
+    if IsBuffApplied(self, "Schwarzereiter_MaxR_Buff") ~= "YES" then
+        AddBuff(self, self, "Schwarzereiter_MaxR_Buff", 1, 0, 0, 1);
+    end
+end
+
+function SCR_ABIL_Schwarzereiter31_INACTIVE(self, ability)
+    RemoveBuff(self, "Schwarzereiter_MaxR_Buff");
+end
+
+function SCR_ABIL_Schwarzereiter18_ACTIVE(self, ability)
+    StartCoolTime(self, 'Schwarzereiter_Limacon')
+end
+
+function SCR_ABIL_Schwarzereiter18_INACTIVE(self, ability)
+    StartCoolTime(self, 'Schwarzereiter_Limacon')
 end

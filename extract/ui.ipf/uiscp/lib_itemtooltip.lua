@@ -1127,11 +1127,15 @@ function GET_OPTION_VALUE_OR_PERCECNT_STRING(optionName, optionValue)
 	return ' - '..ScpArgMsg(optionName, 'value', percentText);
 end
 
-function ABILITY_DESC_NO_PLUS(desc, cur)
+function ABILITY_DESC_NO_PLUS(desc, cur, is_max)
     if cur < 0 then
         return string.format(" %s "..ScpArgMsg("PropDown").."%d", desc, math.abs(cur));
-    else
-    	return string.format(" %s "..ScpArgMsg("PropUp").."%d", desc, math.abs(cur));
+	else
+		if is_max == 1 then
+			return string.format(" %s "..ScpArgMsg("PropUp").."%s", desc, '{@st66b}{#64ff64}{ol}'.. math.abs(cur));
+		else
+			return string.format(" %s "..ScpArgMsg("PropUp").."%d", desc, math.abs(cur));
+		end    	
 	end
 end
 

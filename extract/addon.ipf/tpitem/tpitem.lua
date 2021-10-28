@@ -1,4 +1,4 @@
-﻿-- tpitem.lua : (tp shop)
+-- tpitem.lua : (tp shop)
 
 local eventUserType = {
 	normalUser = 0,		-- 일반
@@ -800,10 +800,46 @@ function MAKE_CATEGORY_TREE()
 
 	local selectcategoty = "";
 
+	local isLimitedPackageExist = false
+
 	for i = 0, cnt - 1 do
 		local obj = GetClassByIndexFromList(clsList, i);
+		if obj.SubCategory == "TP_Package" and obj.SellEndTime ~= "None" then
+			local lua_time = date_time.get_lua_datetime_from_str(obj.SellEndTime)
+			local lua_now = date_time.get_lua_now_datetime()
 
-		local usedTPTypeindex = table.find(usedTPType, obj.SubCategory)			-- 플레이어 사용 tp 값에 따라 구매할 수 있는 아이템 카테고리는 여기에서 생성하지 않음
+			if lua_time > lua_now then
+				isLimitedPackageExist = true
+				break
+			end
+
+		end
+	end
+
+	local indexTable = {}
+
+	for i = 0, cnt - 1 do
+		local obj = GetClassByIndexFromList(clsList, i);
+		if obj.SubCategory == "TP_Package" and isLimitedPackageExist == false then
+			indexTable[#indexTable + 1] = i
+		else
+			local usedTPTypeindex = table.find(usedTPType, obj.SubCategory)
+		if obj.Category ~= 'TP_Premium_Sale' and usedTPTypeindex == 0 then
+			firstTreeItem = CREATE_TPITEM_TREE(obj, tpitemtree, i, firstTreeItem);
+		elseif ((config.GetServiceNation() == "GLOBAL") or (config.GetServiceNation() == "GLOBAL_JP")) and usedTPTypeindex >  0 then
+			local usedTP = session.shop.GetUsedMedalTotal();
+			if frame:GetUserIValue("is_RequestUsedMedal") == 1 and IS_USED_MEDAL_TYPE(obj, usedTP) then
+				firstTreeItem = CREATE_TPITEM_TREE(obj, tpitemtree, i, firstTreeItem);
+				selectcategoty = obj.Category.."#"..obj.SubCategory;
+			end
+        end
+	end
+	end
+
+	for idx = 1, #indexTable do
+		local i = indexTable[idx]
+		local obj = GetClassByIndexFromList(clsList, i);
+		local usedTPTypeindex = table.find(usedTPType, obj.SubCategory)
 		if obj.Category ~= 'TP_Premium_Sale' and usedTPTypeindex == 0 then
 			firstTreeItem = CREATE_TPITEM_TREE(obj, tpitemtree, i, firstTreeItem);
 		elseif ((config.GetServiceNation() == "GLOBAL") or (config.GetServiceNation() == "GLOBAL_JP")) and usedTPTypeindex >  0 then

@@ -8502,7 +8502,7 @@ function SCR_PRE_NICOPOLIS_811_SUBQ1_ITEM1(self, argObj, argstring, arg1, arg2)
         local objectList, objectCount = SelectObject(self, 20, "ALL", 1)
         if objectCount ~= nil then
             for i = 1, objectCount do
-            if objectList[i].ClassName == "npcl_abbey_device" or objectList[i].ClassName == "star_lantern_01" then
+                if objectList[i].ClassName == "npc_nicopolis_obj4" or objectList[i].ClassName == "star_lantern_01" then
                     if IsServerSection(self) == 1 then
                         if objectList[i].Dialog == "NICO811_DEVICE1" then
                             local quest_result = SCR_QUEST_CHECK(self, "F_NICOPOLIS_81_1_SQ_02_1")

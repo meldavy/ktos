@@ -354,20 +354,6 @@ function get_remove_buff_tooltip_PiedPiper_Wiegenlied(level)
     return str
 end
 
--- 감정사 - 평가절하
-function get_remove_buff_tooltip_Appraiser_Devaluation(level)
-    local percent = 5 * tonumber(level)    
-    if percent > 100 then
-        percent = 100
-    end
-
-    local remove_count = 1
-
-    -- buff_type, lv, count, percent, relation, boss_check
-    local str = string.format('Buff/3/%d/%.2f/ENEMY/0', remove_count, percent)    
-    return str
-end
-
 -- 캐노니어 - 스위핑 캐논
 function get_remove_buff_tooltip_Cannoneer_SweepingCannon(level)
     local percent = 7 * tonumber(level)    

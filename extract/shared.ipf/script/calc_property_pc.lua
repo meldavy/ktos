@@ -2462,20 +2462,20 @@ function SCR_Get_MSPD(self)
         if IsBuffApplied(self, 'DesperateDefense_Buff') == 'YES' then
             return math.floor(value);
         else
-            if value >= GetExProp(self, 'SniperSPD') then
+            if GetExProp(self, 'SniperSPD') > 0 and value >= GetExProp(self, 'SniperSPD') then
                 return GetExProp(self, 'SniperSPD')
             end
         end
     end
     
     if IsBuffApplied(self, 'Burrow_Rogue') == 'YES' then
-        if value >= GetExProp(self, 'BurrowSPD') then
+        if GetExProp(self, 'BurrowSPD') > 0 and value >= GetExProp(self, 'BurrowSPD') then
             return GetExProp(self, 'BurrowSPD')
         end
     end
 
     if IsBuffApplied(self, 'Bazooka_Abill_Buff') == 'YES' then
-        if value >= GetExProp(self, 'BazookaSPD') then
+        if GetExProp(self, 'BazookaSPD') > 0 and value >= GetExProp(self, 'BazookaSPD') then
             return GetExProp(self, 'BazookaSPD')
         end
     end

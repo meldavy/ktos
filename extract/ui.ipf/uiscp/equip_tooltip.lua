@@ -1061,7 +1061,23 @@ function DRAW_EQUIP_RANDOM_ICHOR(invitem, property_gbox, inner_yPos)
         
         if propItem[propValue] ~= 0 and propItem[propName] ~= "None" then
             local opName = string.format("%s %s", ClMsg(clientMessage), ScpArgMsg(propItem[propName]));
-            local strInfo = ABILITY_DESC_NO_PLUS(opName, propItem[propValue], 0);
+			local _, max = GET_RANDOM_OPTION_VALUE_VER2(invitem, propItem[propName])	
+			
+			local strInfo = nil
+			if max ~= nil then
+				local current_value = propItem[propValue]						
+				if max == current_value then
+					strInfo = ABILITY_DESC_NO_PLUS(opName, propItem[propValue], 1);
+				else
+					strInfo = ABILITY_DESC_NO_PLUS(opName, propItem[propValue], 0);
+				end
+				
+				if max ~= nil and max ~= current_value and (keyboard.IsKeyPressed('LALT') == 1 or keyboard.IsKeyDown('LALT') == 1) then
+					strInfo = strInfo .. ' {@st66b}{#e28500}{ol}(' .. max .. ')'
+				end
+			else
+				strInfo = ABILITY_DESC_NO_PLUS(opName, propItem[propValue], 0);
+			end
 
             inner_yPos = ADD_ITEM_PROPERTY_TEXT(property_gbox, strInfo, 0, inner_yPos);
             margin = true;

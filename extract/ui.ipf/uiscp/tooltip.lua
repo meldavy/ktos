@@ -125,6 +125,8 @@ function PARSE_TOOLTIP_CAPTION(_obj, caption, predictSkillPoint)
                 elseif skillAttackType == "Cannon" then
                     addCaption = addCaption.." - "..ScpArgMsg('SKILL_CAPTION_MSG9')
                 end
+            elseif skillClassType == "Responsive" then
+                addCaption = addCaption..ScpArgMsg('SKILL_CAPTION_MSG24')
             end
             
             if skillAttribute == "Fire" then

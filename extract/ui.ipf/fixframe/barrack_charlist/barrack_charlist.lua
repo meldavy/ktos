@@ -479,7 +479,17 @@ function BARRACK_GET_CHAR_INDUN_ENTRANCE_COUNT(cid, resetGroupID)
 		if indunCls.UnitPerReset == 'PC' then
 			return accountInfo:GetBarrackCharEtcProp(cid, 'InDunCountType_'..resetGroupID);         --매일 ?��? ?�수
 		else
-			return (acc_obj['InDunCountType_'..resetGroupID]);            							--매일 ?��? ?�수
+			if indunCls.DungeonType == "Challenge_Auto" then
+				if string.find(indunCls.ClassName, "Challenge_Division") == nil then
+					-- 챌린지 자동매칭 클리어 횟수
+					return accountInfo:GetBarrackCharEtcProp(cid, "ChallengeModeCompleteCount");
+				else
+					-- 챌린지 분열 클리어 횟수
+					return acc_obj['InDunCountType_'..resetGroupID];
+				end
+			else
+				return acc_obj['InDunCountType_'..resetGroupID];
+			end
 		end        
     end
 end

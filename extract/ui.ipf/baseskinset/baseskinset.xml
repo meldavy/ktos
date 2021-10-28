@@ -9101,6 +9101,21 @@
 		<image name="quest_Qmark_btn" file="\skin\pip_test.tga" imgrect="1103 1076 30 30"/>
 		<image name="quest_Qmark_btn_cursoron" file="\skin\pip_test.tga" imgrect="1134 1076 30 30"/>
 		<image name="quest_Qmark_btn_clicked" file="\skin\pip_test.tga" imgrect="1134 1076 30 30"/>
+		<image name="pvpmine_shop_btn_small_resize" file="\skin\button_small.tga" imgrect="384 124 50 50" CMM_Caption="용병단 증표 상점 버튼_리사이즈"/>
+		<image name="pvpmine_shop_btn_small_resize_cursoron" file="\skin\button_small.tga" imgrect="435 124 50 50"/>
+		<image name="pvpmine_shop_btn_small_resize_clicked" file="\skin\button_small.tga" imgrect="486 124 50 50"/>
+		<image name="steam_shop2_btn_small_resize" file="\skin\button_small.tga" imgrect="384 175 50 50" CMM_Caption="TP샵 버튼 리사이즈"/>
+		<image name="steam_shop2_btn_small_resize_cursoron" file="\skin\button_small.tga" imgrect="435 175 50 50"/>
+		<image name="steam_shop2_btn_small_resize_clicked" file="\skin\button_small.tga" imgrect="435 175 50 50"/>
+		<image name="btn_housing_editmode_small_resize" file="\skin\button_small.tga" imgrect="486 175 50 50" CMM_Caption="개인 하우징 버튼 리사이즈"/>
+		<image name="btn_housing_editmode_small_resize_cursoron" file="\skin\button_small.tga" imgrect="486 175 50 50"/>
+		<image name="btn_housing_editmode_small_resize_clicked" file="\skin\button_small.tga" imgrect="537 175 50 50"/>
+		<image name="news_btn_small_resize" file="\skin\button_small.tga" imgrect="537 124 50 50" CMM_Caption="뉴스 버튼 리사이즈"/>
+		<image name="news_btn_small_resize_cursoron" file="\skin\button_small.tga" imgrect="588 124 50 50"/>
+		<image name="news_btn_small_resize_clicked" file="\skin\button_small.tga" imgrect="639 124 50 50"/>
+		<image name="leticia_btn_small" file="\skin\button_small.tga" imgrect="0 189 66 62" CMM_Caption="레티샤버튼"/>
+		<image name="leticia_btn_small_cursoron" file="\skin\button_small.tga" imgrect="0 189 66 62"/>
+		<image name="leticia_btn_small_clicked" file="\skin\button_small.tga" imgrect="67 189 66 62"/>
 	</imagelist>
 	<imagelist category="worldmap_image">
 		<image name="worldmap2_mainmap" file="\skin\worldmap\worldmap2_mainmap.jpg" imgrect="0 0 1920 1080" CMM_Caption="월드맵배경"/>

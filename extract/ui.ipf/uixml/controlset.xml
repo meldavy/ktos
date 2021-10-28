@@ -1603,7 +1603,7 @@
 			<button name="staticSellMedalbox" margin="0 0 0 105" rect="0 0 255 30" layout_gravity="center bottom" hittestbox="false" draw="true" hittest="false" skin="categoryselect_skin" textalign="left center" fontname="black_16_b" caption="{@st42}{s16}  획득메달 {/}{img icon_item_recyclemedal 20 20}{/}"/>
 			<labelline name="labelline14" margin="10 60 0 0" rect="0 0 270 2" skin="none" layout_gravity="left top"/>
 			<richtext name="nxp" margin="0 0 20 100" rect="0 0 217 30" caption="999" textalign="right top" resizebytext="false" spacey="0" maxwidth="0" fontname="black_16_b" fixwidth="false" updateparent="false" drawbackground="false" slideshow="false" layout_gravity="right bottom"/>
-			<richtext name="desc" margin="20 0 0 75" rect="0 0 260 24" caption="XXXXXXXXXXXXXXXXXXXXXXXXX" textalign="left top" resizebytext="false" spacey="0" maxwidth="0" fontname="brown_16_b" fixwidth="false" updateparent="false" drawbackground="false" slideshow="false" layout_gravity="left bottom"/>
+			<richtext name="desc" margin="20 0 0 55" rect="0 0 260 44" caption="XXXXXXXXXXXXXXXXXXXXXXXXX" textalign="left top" resizebytext="false" spacey="0" maxwidth="250" fontname="brown_16_b" fixwidth="true" updateparent="false" drawbackground="false" slideshow="false" layout_gravity="left bottom"/>
 			<richtext name="tradeable" margin="20 0 0 55" rect="0 0 260 24" caption="거래 불가" textalign="left top" resizebytext="false" spacey="0" maxwidth="0" fontname="brown_16_b" fixwidth="false" updateparent="false" drawbackground="false" slideshow="false" layout_gravity="left bottom"/>
 			<richtext name="remaincnt" margin="0 0 20 70" rect="0 0 217 30" format="보유 수량 : %s" param1="cnt" param1_def="def" textalign="right top" resizebytext="false" spacey="0" maxwidth="0" fontname="black_16_b" fixwidth="false" updateparent="false" drawbackground="false" slideshow="false" layout_gravity="right bottom"/>
 			<button name="previewBtn" rect="0 0 130 44" margin="11 0 0 10" layout_gravity="left bottom" skin="test_pvp_btn" scrollbar="false" hittest="true" caption="{@st66b}{s16}미리보기{/}" fontname="brown_16_b" oversound="button_over" clicksound="button_click_stats" MouseOnAnim="btn_mouseover" MouseOffAnim="btn_mouseoff" LBtnUpScp="TPSHOP_ITEM_RECYCLE_PREVIEW_PREPROCESSOR"/>
@@ -1617,7 +1617,7 @@
 			<groupbox name="slot_bg" rect="0 0 425 30" margin="0 5 0 0" layout_gravity="left top" skin="guild_base_skin" scrollbar="false"/>
 			<picture name="rightarrow" margin="20 40 0 0" rect="0 0 30 20" hittest="false" image="market_rightarrow" stretch="true" changecursor="false" layout_gravity="center top"/>
 			<slot name="itemicon" margin="10 0 0 0" rect="0 0 80 80" layout_gravity="left center" enabledrop="false" enablepop="false" hittest="true" stretch="true"/>
-			<richtext name="itemname" margin="100 10 0 0" rect="0 0 400 40" caption="ZZZZZZZZZZZ" autofontsizebywidth="400" textalign="left center" resizebytext="true" spacey="0" maxwidth="280" fontname="white_18_ol" fixwidth="true" updateparent="false" drawbackground="false" slideshow="false" layout_gravity="left top"/>
+			<richtext name="itemname" margin="100 10 0 0" rect="0 0 320 40" caption="ZZZZZZZZZZZ" autofontsizebywidth="320" textalign="left center" resizebytext="true" spacey="0" maxwidth="320" fontname="white_18_ol" fixwidth="true" updateparent="false" drawbackground="false" slideshow="false" layout_gravity="left top" omitbywidth="true"/>
 			<richtext name="itemStaticprice_buy" margin="10 40 0 0" rect="0 0 210 40" caption="소비 메달" autofontsizebywidth="210" textalign="left center" resizebytext="true" spacey="0" maxwidth="280" fontname="brown_16_b" fixwidth="true" updateparent="false" drawbackground="false" slideshow="false" layout_gravity="center top"/>
 			<richtext name="itemStaticprice_sell" margin="100 40 0 0" rect="0 0 210 40" caption="획득 메달" textalign="left center" resizebytext="true" spacey="0" maxwidth="280" fontname="brown_16_b" fixwidth="false" updateparent="false" drawbackground="false" slideshow="false" layout_gravity="center top"/>
 			<richtext name="itemprice" margin="150 40 0 0" rect="0 0 210 40" caption="ZZZZZZZZZZZ" textalign="right center" resizebytext="true" spacey="0" maxwidth="280" fontname="brown_16_b" fixwidth="false" updateparent="false" drawbackground="false" slideshow="false" layout_gravity="center top"/>
@@ -3200,7 +3200,7 @@
 		<controls>
 			<groupbox name="skinBox" rect="0 0 332 30" margin="4 0 0 0" layout_gravity="left center" skin="None" hittest="false"/>
 			<richtext name="infoText" rect="0 0 350 30" margin="10 0 0 0" layout_gravity="left center" format="{@st42b}Lv %s{/}" param1="level" fixwidth="false" omitbywidth="false" param1_def="50" hittest="false"/>
-			<richtext name="nameText" rect="0 0 245 30" margin="80 0 0 0" layout_gravity="left center" format="{@st42b}%s{/}" param1="name" fixwidth="true" omitbywidth="true" param1_def="던전 이름" hittest="false"/>
+			<richtext name="nameText" rect="0 0 245 30" margin="65 0 0 0" layout_gravity="left center" format="{@st42b}%s{/}" param1="name" fixwidth="true" omitbywidth="true" param1_def="던전 이름" hittest="false"/>
 			<picture name="onlinePic" rect="0 0 27 27" margin="0 5 40 0" layout_gravity="right top" image="guild_offline"/>
 			<richtext name="countText" margin="0 0 35 0" rect="0 0 80 35" fixwidth="true" textalign="right center" omitbywidth="true" layout_gravity="right center" format="{#000000}(%s/%s){/}" param1="current" param1_def="0" param2="max" param2_def="2"/>
 			<picture name="cycleCtrlPic" margin="0 6 72 0" rect="0 0 41 30" image="indun_icon_day_s" layout_gravity="right center"/>
@@ -4459,7 +4459,7 @@
 	<controlset name="packagelist_item" hittest="true" width="430" height="78" skin="test_skin_01_btn" hittestset="false">
 		<controls>
 			<slot name="itemSlot" rect="0 0 65 65" margin="6 -1 0 0" layout_gravity="left center" skin="invenslot2"/>
-			<richtext name="nameText" rect="0 0 100 30" margin="80 10 0 0" layout_gravity="left top" caption="아이템 이름" fontname="brown_16_b"/>
+			<richtext name="nameText" rect="0 0 345 30" margin="80 10 0 0" layout_gravity="left top" caption="아이템 이름" fontname="brown_16_b" fixwidth="true" omitbywidth="true"/>
 			<richtext name="typeText" rect="0 0 100 30" margin="80 45 0 0 " layout_gravity="left top" caption="타입" fontname="brown_16"/>
 			<button name="previewBtn" rect="0 0 100 30" margin="0 0 10 10" layout_gravity="right bottom" skin="test_pvp_btn" caption="{@st42b}미리보기" LBtnUpScp="PACKAGELIST_ITEM_PREVIEW_CLICK"/>
 		</controls>

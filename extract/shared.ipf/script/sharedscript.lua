@@ -1,3 +1,213 @@
+-- sharedscript.lua
+
+------------ 랜덤 옵션 관련 ----------------------------------------------------------------
+-------------------------------------------------------------------------------------------
+ITEM_POINT_MULTIPLE = 10
+ITEM_ATK_POINT_MULTIPLE = 20
+
+-- 랜덤 옵션 등장 정보 - item_random.xml
+
+g_random_option_range_table = nil  -- 옵션별 min ~ max가 저장된 테이블
+g_skip_option = {}  -- 과거 연산식이 적용되는 옵션, 이 옵션이 나오는 경우, 과거 로직을 돌린다.
+g_skip_option['RES_FIRE'] = 1
+g_skip_option['RES_ICE'] = 1
+g_skip_option['RES_POISON'] = 1
+g_skip_option['RES_LIGHTNING'] = 1
+g_skip_option['RES_EARTH'] = 1
+g_skip_option['RES_SOUL'] = 1
+g_skip_option['RES_HOLY'] = 1
+g_skip_option['RES_DARK'] = 1
+g_skip_option['ADD_FIRE'] = 1
+g_skip_option['ADD_ICE'] = 1
+g_skip_option['ADD_POISON'] = 1
+g_skip_option['ADD_LIGHTNING'] = 1
+g_skip_option['ADD_EARTH'] = 1
+g_skip_option['ADD_HOLY'] = 1
+g_skip_option['ADD_DARK'] = 1
+g_skip_option['ADD_SOUL'] = 1
+
+-- 비중(weight) 값을 고정하고 변하지 않도록 한다. (새로운 아이템 슬롯이 추가되면 변경될 수도 있다)
+total_equip_weight = 0            -- 전체 비중의 합
+random_equip_weight = {}
+random_equip_weight['RING1'] = 0.4        -- 반지1
+random_equip_weight['RING2'] = 0.4        -- 반지2
+random_equip_weight['NECK'] = 0.6         -- 목걸이
+random_equip_weight['NECK_SET'] = 1.4     -- 장신구 세트
+random_equip_weight['SEAL'] = 1           -- 인장
+random_equip_weight['ARK'] = 2            -- 아크
+random_equip_weight['SHIRT'] = 0.8        -- 상의
+random_equip_weight['PANTS'] = 0.8       -- 하의
+random_equip_weight['GLOVES'] = 0.8       -- 장갑
+random_equip_weight['BOOTS'] = 0.8        -- 신발
+random_equip_weight['Weapon'] = 1.5       -- 한손 무기
+random_equip_weight['SubWeapon'] = 1.5    -- 보조무기
+random_equip_weight['ARMOR_SET'] = 1      -- 방어구 세트
+
+-- 랜덤 옵션 부여가 가능한 parts 리스트
+random_option_equip_list = {}
+random_option_equip_list['SHIRT'] = 1
+random_option_equip_list['PANTS'] = 1
+random_option_equip_list['GLOVES'] = 1
+random_option_equip_list['BOOTS'] = 1
+random_option_equip_list['Weapon'] = 1
+random_option_equip_list['SubWeapon'] = 1
+random_option_equip_list['Shield'] = 1
+random_option_equip_list['Trinket'] = 1
+random_option_equip_list['THWeapon'] = 1
+-- end of 랜덤 옵션 부여가 가능한 parts 리스트
+
+-- 비중 합 연산식
+for k, v in pairs(random_equip_weight) do
+    total_equip_weight = total_equip_weight + v    
+end
+
+-- 이 3개는 비중 합 연산식 보다 아래에 위치해야 한다!!!!!    --------------
+random_equip_weight['Shield'] = 1.5
+random_equip_weight['Trinket'] = 0.75
+random_equip_weight['THWeapon'] = 2.25
+------------------------------------------------------------------------
+
+-- 옵션별 추가 멀티플, 해당 멀티플 수치가 바뀌면, calc_battle_status.lua 에도 동기화 해야 함
+-- shared를 못쓰는 이유 : shared의 초기화보다 이 파일이 먼저 실행됨. 서버 시작시에 테이블 세팅이 필요하기에 가장 먼지 실행되어야 함
+local random_option_multiple ={}
+random_option_multiple[ITEM_POINT_MULTIPLE] = {'CRTHR', 'CRTDR', 'BLK_BREAK', 'BLK', 'ADD_HR', 'ADD_DR', 'RHP'}
+random_option_multiple[ITEM_ATK_POINT_MULTIPLE] = { 'MSP',
+    'ADD_CLOTH', 'ADD_LEATHER', 'ADD_IRON', 'ADD_SMALLSIZE', 'ADD_MIDDLESIZE',
+    'ADD_LARGESIZE', 'ADD_GHOST', 'ADD_FORESTER', 'ADD_WIDLING', 'ADD_VELIAS', 
+    'ADD_PARAMUNE', 'ADD_KLAIDA', 'MiddleSize_Def',
+    'Cloth_Def', 'Leather_Def', 'Iron_Def'}
+random_option_multiple[30] = {'ResAdd_Damage', 'Add_Damage_Atk'}
+random_option_multiple[3] = {'LootingChance', 'STR', 'DEX', 'CON', 'INT', 'MNA', 'RSP'}
+random_option_multiple[0.7] = {'MSTA'}
+-- end of 옵션별 추가 멀티플
+
+local base_lv = 430
+
+-- item_lv, option_name, equip_group의 랜덤옵션 수치(min, max) 테이블을 생성한다.
+function init_random_option_range_table_for_lv(item_lv)
+    -- item_lv : option_name : equip_group : min/max(range)    
+    if g_random_option_range_table[item_lv] == nil then
+        g_random_option_range_table[item_lv] = {}
+    end
+
+    local once = false
+    local log = false
+
+    for multiple, option_list in pairs(random_option_multiple) do
+        local total = multiple * (item_lv + (item_lv - base_lv)) -- ratio 조절 부분        
+        for _, option_name in pairs(option_list) do            
+            local str = option_name
+            local str_equip = '\t'
+            for equip, _ in pairs(random_option_equip_list) do
+                
+                if log == true then
+                    str_equip = str_equip .. '\t' .. equip
+                end
+
+                local before_weight = random_equip_weight[equip] * 1000000
+                local weight = tonumber(string.format('%.8f', ((before_weight/1000000) / total_equip_weight)))
+                local max_value = math.ceil(total * weight)
+                local min_value = math.ceil(max_value * 0.3)
+                if min_value <= 0 then
+                    min_value = 1
+                end
+                
+                if g_random_option_range_table[item_lv][option_name] == nil then
+                    g_random_option_range_table[item_lv][option_name] = {}
+                end
+                
+                if g_random_option_range_table[item_lv][option_name][equip] == nil then
+                    g_random_option_range_table[item_lv][option_name][equip] = {}
+                end
+
+                g_random_option_range_table[item_lv][option_name][equip][1] = min_value
+                g_random_option_range_table[item_lv][option_name][equip][2] = max_value
+                
+                if log == true then
+                    str = str .. '\t' .. max_value
+                end
+            end            
+            if once == false and log == true then
+                print(str_equip)
+                once = true
+            end
+
+            if log == true then
+                print(str)
+            end
+        end        
+    end
+end
+
+-- 초기 정보 (min, max) 세팅 함수 ----------------------------------------------
+local function init_random_option_range_table()
+    if g_random_option_range_table ~= nil then
+        return
+    end
+
+    g_random_option_range_table = {}
+
+    -- 여기 아래에 레벨별로 추가해 준다.
+    init_random_option_range_table_for_lv(430)
+    init_random_option_range_table_for_lv(440)
+    init_random_option_range_table_for_lv(460)
+end
+-- end of 초기 정보 (min, max) 세팅 함수 ----------------------------------------------
+
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+--  랜덤 옵션 정보 세팅
+init_random_option_range_table()
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+
+-- 아이템 등급에 따른 min 비율을 가져온다.
+function get_item_grade_ratio(grade)
+    local ret = 0.2
+
+    if grade > 4 then 
+        grade = 4
+    end
+
+    if grade == 3 then  -- 레어 등급은 min은 max의 20%
+        ret = 0.2
+    elseif grade == 4 then
+        ret = 0.8       -- 유니크 등급 min은 max의 80%
+    end
+
+    if ret > 0.8 then
+        ret = 0.8
+    end
+
+    return ret
+end
+
+-- UseLv >= 430 이상 아이템의 랜덤옵션 값을 가져온다.
+function GET_RANDOM_OPTION_VALUE_VER2(item, option_name)
+    local equipGroup = TryGetProp(item, 'EquipGroup', 'None');
+    local equip_group = equipGroup
+    if equip_group == 'None' then
+        equip_group = TryGetProp(item, 'ClassType', 'None');  
+    end 
+    local item_lv = TryGetProp(item, 'UseLv', 1)
+
+    if equip_group == 'SubWeapon' and TryGetProp(item, 'ClassType', 'None') == 'Trinket' then
+        equip_group = 'Trinket'
+    end
+
+    if g_random_option_range_table[item_lv] == nil then
+        return nil, nil
+    else
+        local item_grade = TryGetProp(item, 'ItemGrade', 1)
+        local grade_ratio = get_item_grade_ratio(item_grade)  -- 아이템 등급에 따른 min 비율
+        local max = g_random_option_range_table[item_lv][option_name][equip_group][2]     
+        local min = math.ceil(max * grade_ratio)
+        return min, max
+    end
+end
+------------ end of 랜덤 옵션 관련 ---------------------------------------------------------
+-------------------------------------------------------------------------------------------
+
 random_item = { }
 date_time = { }
 account_warehouse = {} 
@@ -176,6 +386,22 @@ date_time.is_later_than = function(a_str, b_str)
     else
         return false
     end
+end
+
+-- 문자열로 남은 시간을 계산한다
+date_time.get_diff_sec = function(str_end, str_start)
+    local end_time = date_time.get_lua_datetime_from_str(str_end)
+    local start_time = date_time.get_lua_datetime_from_str(str_start)
+
+    return end_time - start_time
+end
+
+-- 레티샤 시작 시간과 종료 시간을 가져온다 yyyy-mm-dd hh:mm:ss 
+function get_leticia_start_and_end_time_num()
+	local startTime = TryGetProp(GetClassByType('reward_tp', 1), "StartTime", "None")
+    local endTime = TryGetProp(GetClassByType('reward_tp', 1), "EndTime", "None")
+
+	return startTime, endTime
 end
 
 -- 추가 팀창고 개수

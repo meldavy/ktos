@@ -37,6 +37,7 @@ function SYSTEMOPTION_CREATE(frame)
 	SET_RENDER_SHADOW(frame);
 	SET_QUESTINFOSET_TRANSPARENCY(frame);
 	SET_COOLDOWN_DECIMAL_POINT_SEC(frame);
+	SET_ENABLE_AUTO_CASTING(frame)
 	SHOW_COLONY_BATTLEMESSAGE(frame);		
 	SYSTEMOPTION_INIT_TAB(frame);
 end
@@ -1092,4 +1093,17 @@ function SET_USE_URO(parent, ctrl)
 	local isEnable = ctrl:IsChecked();
     config.SetUseURO(isEnable);
 	config.SaveConfig();
+end
+
+function CONFIG_ENABLE_AUTO_CASTING(parent, ctrl)
+	local enable = ctrl:IsChecked()
+	config.SetEnableAutoCasting(enable)
+	config.SaveConfig()
+end
+
+function SET_ENABLE_AUTO_CASTING(frame)
+	local Check_EnableAutoCasting = GET_CHILD_RECURSIVELY(frame, "Check_EnableAutoCasting", "ui::CCheckBox")
+	if Check_EnableAutoCasting ~= nil then
+		Check_EnableAutoCasting:SetCheck(config.GetEnableAutoCasting())
+	end
 end

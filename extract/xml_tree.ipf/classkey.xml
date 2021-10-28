@@ -4727,6 +4727,16 @@
         <Key Name="LEGEND_RAID_GILTINE_2" Value="108333"/>
         <Key Name="Relic_EXP" Value="108335"/>
         <Key Name="Relic_LV" Value="108334"/>
+        <Key Name="AchieveReward_Gimmick_count_3" Value="108338"/>
+        <Key Name="AchieveReward_HairColor1" Value="108339"/>
+        <Key Name="AchieveReward_HairColor2" Value="108340"/>
+        <Key Name="AchieveReward_HairColor3" Value="108341"/>
+        <Key Name="AchieveReward_HairColor4" Value="108342"/>
+        <Key Name="AchieveReward_ID_WHITETREES1_GIMMICK" Value="108343"/>
+        <Key Name="HAIRACC_CUBE_OPEN_COUNT" Value="108337"/>
+        <Key Name="HAIRACC_CUBE_OPEN_LAST_DATE" Value="108336"/>
+        <Key Name="REPUTATION_REST_POINT" Value="108344"/>
+        <Key Name="REST_POINT_LAST_PLAY_TIME" Value="108345"/>
     </KeyIDSpc>
     <KeyIDSpc Name="PCEtc">
         <Key Name="Kill_boss_Clymen_Q2" Value="7788"/>
@@ -13368,6 +13378,7 @@
         <Key Name="HaveEmoticon_5017" Value="108288"/>
         <Key Name="Pose_CHEER" Value="108290"/>
         <Key Name="Pose_SHOOTDANCE" Value="108284"/>
+        <Key Name="Hide_3247" Value="108346"/>
     </KeyIDSpc>
     <KeyIDSpc Name="GuildMember">
         <Key Name="Name" Value="9011"/>

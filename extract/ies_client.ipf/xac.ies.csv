@@ -5722,6 +5722,7 @@ ClassID,ClassName,Mesh,Path,ArmbandInfo,UseAlpha,IsJiggleBoneHair
 201797,black_crack,char_hi\npc\episode13_siauliai\black_crack.xac,char_texture\npc\episode13_siauliai\,,NO,
 201800,cheering_stick_pink,item_hi\pc_item\weapon\cheering_stick_pink_set.xac,item_texture\,,NO,
 201801,cheering_stick_green,item_hi\pc_item\weapon\cheering_stick_green_set.xac,item_texture\,,NO,
+201802,artefact_HighMagnifyingGlass,item_hi\pc_item\weapon\artefact_HighMagnifyingGlass.xac,item_texture\,,NO,
 205001,warrior_f_hair_lightsalmon,char_hi\pc\faces\warrior_f\shorthair\shorthair_Warrior_f_hair_std.xac,char_texture\pc\face\hair_f_lightsalmon\,,NO,
 205002,warrior_f_hair2_lightsalmon,char_hi\pc\faces\warrior_f\longhair\longhair_Warrior_f_hair_std.xac,char_texture\pc\face\hair_f_lightsalmon\,,NO,
 205003,warrior_f_hair3_lightsalmon,char_hi\pc\faces\warrior_f\semilonghair\semilonghair_Warrior_f_hair_std.xac,char_texture\pc\face\hair_f_lightsalmon\,,NO,

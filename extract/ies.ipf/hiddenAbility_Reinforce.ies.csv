@@ -283,7 +283,7 @@ ClassID,FactorByLevel,AddFactor,ClassName,HiddenReinforceAbil,CMM_Caption
 282,1.25,0,OutLaw_FireBlindly,Outlaw24,[아츠] 난사: 상급 강화
 283,1.25,0,OutLaw_Rampage,Outlaw25,[아츠] 난동 부리기: 상급 강화
 284,1.25,0,Squire_DeadlyCombo,Squire17,[아츠] 데들리 콤보: 상급 강화
-285,1.25,0,Corsair_Keelhauling,Corsair22,[아츠] 킬홀링: 상급 강화
+285,1.25,0,Corsair_Keelhauling,Corsair22,[아츠] 후크 스팅: 상급 강화
 286,1.25,0,Corsair_DustDevil,Corsair23,[아츠] 더스트 데블: 상급 강화
 287,1.25,0,Corsair_HexenDropper,Corsair24,[아츠] 헥슨 드롭퍼: 상급 강화
 288,1.25,0,Corsair_PistolShot,Corsair25,[아츠] 퀵 앤드 데드: 상급 강화
@@ -376,9 +376,35 @@ ClassID,FactorByLevel,AddFactor,ClassName,HiddenReinforceAbil,CMM_Caption
 375,1.25,0,QuarrelShooter_RunningShot,QuarrelShooter37,[아츠] 런닝 샷: 상급 강화
 376,1.25,0,Cleric_Heal_Cleric34,Cleric34,[아츠] 힐: 타락 구체 상급 강화
 377,1.25,0,Kriwi_Melstis,Kriwi31,[아츠] 파이어티: 상급 강화
+391,1.25,0,PiedPiper_Improvisation,PiedPiper25,[아츠] 슈테그라이프슈필: 상급 강화
+392,1.25,0,PiedPiper_HypnotischeFlote,PiedPiper27,[아츠] 힙노티쉐 플뢰테: 상급 강화
+393,1.25,0,PiedPiper_Friedenslied,PiedPiper29,[아츠] 프리덴슬리트: 상급 강화
+394,1.25,0,PiedPiper_Dissonanz,PiedPiper31,[아츠] 디소난츠: 상급 강화
+395,1.25,0,Thaumaturge_Flowofchange,Thaumaturge29,[아츠] 변화의 흐름: 상급 강화
+396,1.25,0,Thaumaturge_Birthceremony,Thaumaturge30,[아츠] 무의 탄생식: 상급 강화
+397,1.25,0,Thaumaturge_Suddenchange,Thaumaturge31,[아츠] 갑작스러운 변화: 상급 강화
+398,1.25,0,Enchanter_EnergyAbsorption,Enchanter24,[아츠] 마력 흡수: 상급 강화
+399,1.25,0,Enchanter_EnergyEruption,Enchanter25,[아츠] 마력 분출: 상급 강화
+400,1.25,0,Enchanter_EnchantField,Enchanter26,[아츠] 인챈트 필드: 상급 강화
+401,1.25,0,Enchanter_EnchantBullet,Enchanter27,[아츠] 인챈트탄: 상급 강화
+402,1.25,0,Enchanter_Fragility,Enchanter28,[아츠] 프레자일리티: 상급 강화
+403,1.25,0,Chronomancer_TimeForward,Chronomancer21,[아츠] 타임 포워드: 상급 강화
+404,1.25,0,Chronomancer_TimeEruption,Chronomancer23,[아츠] 타임 이럽션: 상급 강화
+405,1.25,0,Chronomancer_TimeRestriction,Chronomancer27,[아츠] 타임 리스트릭션: 상급 강화
+406,1.25,0,Rangda_Penyerapan,Rangda17,[아츠] 페네라판: 상급 강화
+407,1.25,0,Rangda_Keletihan,Rangda18,[아츠] 케레티한: 상급 강화
+408,1.25,0,Schwarzereiter_DoubleBullet,Schwarzereiter29,[아츠] 연쇄탄환: 상급 강화
+409,1.25,0,Corsair_HookSwing,Corsair34,[아츠] 후크 스윙: 상급 강화
+410,1.25,0,Corsair_IronHook,Corsair37,[아츠] 아이언 후크: 상급 강화
+411,1.25,0,Linker_JointPenalty,Linker26,[아츠] 조인트 페널티: 상급 강화
+412,1.25,0,Appraiser_LargeMagnifyingGlass,Appraiser11,[아츠] 대형 돋보기: 상급 강화
+413,1.25,0,Appraiser_TripletLens,Appraiser14,[아츠] 트리플렛 렌즈: 상급 강화
+414,1.25,0,Appraiser_Devaluation,Appraiser15,[아츠] 평가절하: 상급 강화
+415,1.25,0,Linker_HangmansKnot,Linker24,[아츠] 행맨스 낫: 상급 강화
 10001,0,0,Barbarian35,Barbarian35,[아츠] 가죽 마스터리: 야수성
 10002,0,0,Sadhu26,Sadhu26,[아츠] 사두: 고행
 10003,0,0,Exorcist20,Exorcist20,[아츠] 루브릭: 타락
 10004,0,0,Thaumaturge20,Thaumaturge20,[아츠] 스웰 브레인: 물리
 10005,0,0,Thaumaturge21,Thaumaturge21,[아츠] 스웰 브레인: 마법
 10006,0,0,Arbalester19,Arbalester19,[아츠] 유도화살: 추가피해
+10007,0,0,Schwarzereiter32,Schwarzereiter32,[아츠] 리마콘: 추가 대미지

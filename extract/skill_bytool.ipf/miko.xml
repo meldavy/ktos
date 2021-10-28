@@ -279,7 +279,7 @@
                 <Num Num="0"/>
                 <Num Num="5"/>
                 <Num Num="1"/>
-                <Num Num="0"/>
+                <Num Num="1"/>
                 <Num Num="0"/>
                 <Num Num="0"/>
                 <Num Num="0"/>
@@ -287,7 +287,7 @@
                 <Num Num="0"/>
                 <Num Num="1"/>
                 <Num Num="0"/>
-                <Str_Arg Arg="0" Str=""/>
+                <Str_Arg Arg="0" Str="" />
                 <Str Str=""/>
                 <Num Num="0"/>
                 <Num Num="0"/>
@@ -297,7 +297,7 @@
                 <Num Num="0"/>
                 <Num Num="0"/>
                 <Num Num="0"/>
-            </ToolScp>
+                </ToolScp>
         </KeyInput>
         <KeyInputStart>
             <ToolScp Client="NO" Scp="SKL_CONSUME_SKILL_COOLDOWN" UseSleep="NO">
@@ -305,7 +305,7 @@
             </ToolScp>
             <ToolScp Client="NO" Scp="MONSKL_START_SPAWN_PAD" UseSleep="NO">
                 <Str Str="Miko_HoukiBroom"/>
-                <Num FuncTxt="return 5" Num="10" UseFunc="1"/>
+                <Num FuncTxt="return 5" Num="10" UseFunc="1" />
                 <Num Num="60"/>
             </ToolScp>
             <ToolScp Client="NO" Scp="SKL_BUFF" UseSleep="NO">
@@ -336,7 +336,7 @@
                 <Str Str="MONSKL_END_SPAWN_PAD"/>
             </ToolScp>
         </KeyCancelScp>
-        <MainSkl JumpFlee="NO" MSPDToUsePos="0" ScrLock="None">
+        <MainSkl JumpFlee="NO" MSPDToUsePos="0"ScrLock="None">
             <HitList>
                 <Frame Angle="0" AniTime="10999" Dist="0" ForceATK="0" HitCount="1" PosType="0" RandDist="0" RandomPerHit="0" RotAngle="0" TermMax="0" TermMin="0" Time="10799" Type="FAN"/>
             </HitList>

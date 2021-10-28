@@ -52,5 +52,6 @@
 	<ReadXml Name="item_restrict"/>
 	<ReadXml Name="skill_range_color"/>
 	<ReadXml Name="item_top_render"/>
+	<ReadXml Name="leticia_date"/>
 </Category>
 <!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by dd (IMCGames Co., Ltd) -->

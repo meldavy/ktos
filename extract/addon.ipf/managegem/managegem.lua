@@ -292,9 +292,25 @@ function CLICK_REMOVE_GEM_BUTTON(frame, slot, argStr, argNum)
 		ui.MsgBox(ScpArgMsg("SelectSomeItemPlz"))
 		return;
 	end
+	
+	local startTimeStr = "2021-04-22 09:00:00"
+	local endTimeStr = "2021-05-20 08:59:59"
+	local nowTime = date_time.get_lua_now_datetime_str()
+	local isBeforeTime = date_time.is_later_than(nowTime, startTimeStr)
+	local isAfterTime = date_time.is_later_than(nowTime, endTimeStr)
+	local isGemRemoveCare = false
+	if isBeforeTime == true and isAfterTime == false then
+		isGemRemoveCare = true
+	end
+
 	local itemname = argStr;
 	local yesScp = string.format("EXEC_REMOVE_GEM()");
-	ui.MsgBox( "'"..itemname ..ScpArgMsg("Auto_'_SeonTaeg")..ScpArgMsg("ReallyRemoveGem"), yesScp, "None");
+
+	if isGemRemoveCare == true then
+        	ui.MsgBox( "'"..itemname ..ScpArgMsg("Auto_'_SeonTaeg")..ScpArgMsg("ReallyRemoveGem_Care"), yesScp, "None");
+    	else
+		ui.MsgBox( "'"..itemname ..ScpArgMsg("Auto_'_SeonTaeg")..ScpArgMsg("ReallyRemoveGem"), yesScp, "None");
+	end
 end
 
 function EXEC_REMOVE_GEM()
@@ -320,8 +336,24 @@ function EXEC_REMOVE_GEM()
 		return 0;
 	end
 
+	local startTimeStr = "2021-04-22 09:00:00"
+	local endTimeStr = "2021-05-20 08:59:59"
+	local nowTime = date_time.get_lua_now_datetime_str()
+	local isBeforeTime = date_time.is_later_than(nowTime, startTimeStr)
+	local isAfterTime = date_time.is_later_than(nowTime, endTimeStr)
+	local isGemRemoveCare = false
+	if isBeforeTime == true and isAfterTime == false then
+		isGemRemoveCare = true
+	end
+
 	local price = GET_REMOVE_GEM_PRICE(lv, GET_COLONY_TAX_RATE_CURRENT_MAP())
-	if IsGreaterThanForBigNumber(price, GET_TOTAL_MONEY_STR()) == 1 then
+	local GreaterThanForBigNumber = IsGreaterThanForBigNumber(price, GET_TOTAL_MONEY_STR())
+
+	if isGemRemoveCare == true then
+		GreaterThanForBigNumber = 0 
+	end
+
+	if GreaterThanForBigNumber == 1 then
 		ui.MsgBox(ScpArgMsg("NOT_ENOUGH_MONEY"))
 		return;
 	end
@@ -330,7 +362,6 @@ function EXEC_REMOVE_GEM()
 	session.AddItemID(tempiesid);	
 	local resultlist = session.GetItemIDList();
 	item.DialogTransaction("REMOVE_GEM", resultlist, selectedNum-1);
-
 end
 
 function CLICK_MAKE_SOCKET_BUTTON(frame, slot, argStr, argNum)

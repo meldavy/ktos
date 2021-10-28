@@ -3,6 +3,16 @@ function LETICIA_CUBE_ON_INIT(addon, frame)
 end
 
 function LETICIA_CUBE_OPEN(frame)
+	local button = ui.GetFrame('minimized_leticia_button')
+	local lua_endTime = button:GetUserIValue('lua_endTime')
+	local cls = TryGetProp(GetClassByType('reward_tp', 1), "EndTime", "None")
+	local lua_endTime = date_time.get_lua_datetime_from_str(cls)
+	local lua_now = date_time.get_lua_now_datetime()
+
+	if lua_now > lua_endTime then
+		return
+	end
+
 	local frame = ui.GetFrame('leticia_cube');
 	LETICIA_CUBE_LIST_UPDATE(frame);
 	frame:ShowWindow(1);
@@ -169,4 +179,14 @@ end
 function LETICIA_CUBE_CLOSE_ALL()
     ui.CloseFrame('fulldark');
     LETICIA_CUBE_MSG_BOX_RESET();
+end
+
+
+function LETICIA_CUBE_ITEM_LIST_BUTTON()
+	local textmsg = string.format("[ %s ]{nl}%s", '{@st66d_y}'..ClMsg('ContainWarningItem2')..'{/}{/}', '{nl} {nl}'..ScpArgMsg("ContainWarningItem_URL"))
+	ui.MsgBox(textmsg, 'LETICIA_CUBE_ITEM_LIST_BUTTON_URL', "None")
+end
+
+function LETICIA_CUBE_ITEM_LIST_BUTTON_URL()
+	login.OpenURL('http://iteminfo.nexon.com/probability/games/tos')
 end

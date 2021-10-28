@@ -1,7 +1,7 @@
 <!-- edited with XMLSpy v2021 (x64) (http://www.altova.com) by sevin (IMCGAMES) -->
 <!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by imc (imc) -->
 <PlayList>
-	<BGM PlayListName="Login_Barrack" Volume="80" FileName1="tos_SFA_Dieno_Blossom.mp3" FileName2="tos_Tree_of_Savior_Piano.mp3" FileName3="tos_SFA_Openup_Po10.mp3"/>
+	<BGM PlayListName="Login_Barrack" Volume="90" FileName1="tos_Kevin_TOS_Carol_2017.mp3" FileName2="tos_Tree_of_Savior_Piano.mp3" FileName3="tos_SFA_Openup_Po10.mp3"/>
 	<BGM PlayListName="opening" Volume="90" FileName1="tos_Kevin_Overture.mp3"/>
 	<BGM PlayListName="test_zone" Volume="90" FileName1="tos_Tree_of_Savior.mp3" FileName2="tos_SoundTeMP_Nu_Motion.mp3"/>
 	<BGM PlayListName="f_siauliai" Volume="90" FileName1="tos_SFA_The_Dignity_of_Wrath.mp3" FileName2="tos_Questrosound_First_Step.mp3" FileName3="tos_SFA_Fiesta_bloom.mp3" FileName4="tos_SFA_In_My_Dreams.mp3"/>
@@ -29,7 +29,7 @@
 	<BGM PlayListName="f_whitetrees_2" Volume="90" FileName1="tos_Kevin_Milagro_Tierra.mp3" FileName2="tos_Kevin_Synphonia.mp3"/>
 	<BGM PlayListName="f_nicopolis" Volume="100" FileName1="tos_Kevin_Mayor_Higher.mp3" FileName2="tos_SFA_Groove_of_the_Sea.mp3" FileName3="tos_SFA_Seven_Cloudy_Drive.mp3" FileName4="tos_7Clouds_DayDream.mp3"/>
 	<BGM PlayListName="c_barber_dress" Volume="90" FileName1="tos_SFA_Comida_Timar.mp3"/>
-	<BGM PlayListName="c_Klaipe" Volume="80" FileName1="tos_SFA_Cherry_Deive.mp3" FileName2="tos_SFA_Triste.mp3" FileName3="tos_SFA_Whisper_of_Moment.mp3" FileName4="tos_SFA_Open_Up_Po10_inst.mp3"/>
+	<BGM PlayListName="c_Klaipe" Volume="80" FileName1="tos_SFA_Triste.mp3" FileName2="tos_SFA_Whisper_of_Moment.mp3" FileName3="tos_SFA_April_Town.mp3" FileName4="tos_SFA_Open_Up_Po10_inst.mp3"/>
 	<BGM PlayListName="c_summer_klaipe" Volume="80" FileName1="tos_SFA_Summer_breeze.mp3" FileName2="tos_Initium_Verano_lluvia.mp3"/>
 	<BGM PlayListName="event_halloween" Volume="90" FileName1="tos_SoundTeMP_Ymix_Red_and_the_Black.mp3"/>
 	<BGM PlayListName="event_halloween_2" Volume="90" FileName1="tos_Kevin_Halloween_City.mp3"/>
@@ -153,4 +153,5 @@
 	<BGM PlayListName="DLC_6" Volume="140" FileName1="tos_SFA_Openup_Po10_EDM_mix(DLC_Special_Edition).mp3" FileName2="tos_SFA_Openup_Po10_EDM_mix(Instrumental).mp3"/>
 	<BGM PlayListName="DLC_7" Volume="140" FileName1="tos_SFA_Deives_Veliava_feat_Romanas(DLC_special_edition).mp3" FileName2="tos_SFA_Cherish_the_Memory(bonus_track).mp3"/>
 	<BGM PlayListName="DLC_8" Volume="140" FileName1="tos_SFA_Samba_de_Seoul(DLC_SE1).mp3" FileName2="tos_SFA_Pristinee_Edm_mixed(DLC_SE2).mp3"/>
+	<BGM PlayListName="DLC_9" Volume="140" FileName1="tos_SFA_Cherry_Deive.mp3" FileName2="tos_SFA_Dieno_Blossom.mp3"/>
 </PlayList>

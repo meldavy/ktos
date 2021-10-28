@@ -270,7 +270,7 @@ function UPDATE_MONB_HP(frame, handle)
 		hpGauge:SetPoint(stat.HP, stat.maxHP);
     end
 
-    if targetInfo.isSummoned == 1 then
+    if targetInfo ~= nil and targetInfo.isSummoned == 1 then
         hpGauge:SetSkinName("hpgauge2");
         hpGauge:SetColorTone("FF777777");
         hpGauge:ShowWindow(1);

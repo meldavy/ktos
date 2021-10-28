@@ -74,8 +74,9 @@ function RECYCLE_CREATE_BUY_LIST()
 	for i = 0, cnt - 1 do
 		local obj = GetClassByIndexFromList(clsList, i);
 		if obj.BuyPrice ~= 0 then
-			local itemobj = GetClass("Item", obj.ClassName);
-			if CHECK_RECYCLE_SHOW_ITEM(frame, itemobj) == true then
+            local itemobj = GetClass("Item", obj.ClassName);
+            local category = obj.SubCategory;
+			if CHECK_RECYCLE_SHOW_ITEM(frame, itemobj, category) == true then
 				x = ( (showitemcnt-1) % 3) * ui.GetControlSetAttribute("tpshop_recycle", 'width')
 				y = (math.ceil( (showitemcnt / 3) ) - 1) * (ui.GetControlSetAttribute("tpshop_recycle", 'height') * 1)
 				local itemcset = mainSubGbox:CreateOrGetControlSet('tpshop_recycle', 'eachitem_'..showitemcnt, x, y);
@@ -87,7 +88,7 @@ function RECYCLE_CREATE_BUY_LIST()
 	end
 end
 
-function CHECK_RECYCLE_SHOW_ITEM(frame, item)
+function CHECK_RECYCLE_SHOW_ITEM(frame, item, category)
 	-- category check	
 	local curSelectCate = frame:GetUserValue('RECYCLE_SELECTED_CATEGORY');		
 	if curSelectCate == 'Wiki_Accessory' and TryGetProp(item, 'ClassType') ~= 'Ring' and TryGetProp(item, 'ClassType') ~= 'Neck' then
@@ -121,10 +122,8 @@ function CHECK_RECYCLE_SHOW_ITEM(frame, item)
 		return false;
 	end
 
-	if curSelectCate == 'recycle_special' then
-	    if TryGetProp(item, 'ClassType') ~= 'Doll' and TryGetProp(item, 'ClassType') ~= 'Wing' and TryGetProp(item, 'ClassType') ~= 'EffectCostume' then
-		    return false;
-		end
+	if curSelectCate == 'recycle_special' and curSelectCate ~= category then
+        return false;
 	end
 
 	-- text check

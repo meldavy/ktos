@@ -215,9 +215,12 @@ function UPDATE_TIME_NOTICE_RAID_ICON_POS(frame, total_elapsed_time, elapsed_tim
         return 0;
     end
 
-	local point = info.GetPositionInUI(handle, 2);
-	local x = point.x - frame:GetWidth() / 2;
-	local y = point.y - frame:GetHeight() - 40;
+    local point = info.GetPositionInUI(handle, 2);
+    local x = point.x - frame:GetWidth() / 2;
+    local offset_y = 40;
+    local actor = world.GetActor(handle);
+    if actor ~= nil and actor:GetVehicleState() == true then offset_y = 60; end
+	local y = point.y - frame:GetHeight() - offset_y;
     frame:MoveFrame(x, y);
 
     local total_time = frame:GetUserIValue("TOTAL_TIME");

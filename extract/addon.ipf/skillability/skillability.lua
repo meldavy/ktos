@@ -1177,7 +1177,7 @@ function TOGGLE_ABILITY(abilName)
     end
 
     topFrame:SetUserValue("CLICK_ABIL_ACTIVE_TIME", curTime);
-    pc.ReqExecuteTx("SCR_TX_PROPERTY_ACTIVE_TOGGLE", abilName);    
+    pc.RequestToggleAbility(abilCls.ClassID)
 end
 
 function SKILLABILITY_INIT_TOGGLE_ABILITY(parent, ctrl, abilClass, isActive)

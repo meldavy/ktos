@@ -9,14 +9,6 @@ function get_decrease_heal_debuff_tooltip_Hoplite_Pierce(lv)
     return msg
 end
 
--- 감정사 - 약점공격
-function get_decrease_heal_debuff_tooltip_Appraiser_Blindside(lv)
-    local arg2 = 2 * tonumber(lv) * 1000
-    local bfTime = 5000
-    local msg = string.format('DecreaseHeal_Debuff/%.2f/%.2f/%d/1/100/-1/0/0', arg2, arg2, bfTime)
-    return msg
-end
-
 -- 아발리스트 - 가이디드 샷
 function get_decrease_heal_debuff_tooltip_Arbalester_GuidedShot(lv)
     local arg2 = 1.6 * tonumber(lv) * 1000

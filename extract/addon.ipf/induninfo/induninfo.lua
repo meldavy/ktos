@@ -1194,12 +1194,6 @@ function INDUNINFO_MAKE_DETAIL_COMMON_INFO(frame, indunCls, resetGroupID)
     local lvData = GET_CHILD_RECURSIVELY(frame, 'lvData');
     lvData:SetText(indunCls.Level);
 
-    if indunCls.DungeonType == "MythicDungeon_Auto_Hard" then
-        local posBox = GET_CHILD_RECURSIVELY(frame, 'posBox');
-        DESTROY_CHILD_BYNAME(posBox, "MAP_CTRL_");
-        posBox:ShowWindow(0);
-        INDUNINFO_SET_ENTERANCE_TIME_BY_RAID(frame, indunCls);
-    else
         local raid_time_box = GET_CHILD_RECURSIVELY(frame, "raid_time_box");
         raid_time_box:ShowWindow(0);
 
@@ -1228,7 +1222,6 @@ function INDUNINFO_MAKE_DETAIL_COMMON_INFO(frame, indunCls, resetGroupID)
                 mapNameText:SetText(mapCls.Name);
             end
         end
-    end
    
     INDUNINFO_SET_BUTTONS(frame,indunCls)
     INDUNINFO_MAKE_PATTERN_BOX(frame,indunCls)

@@ -361,12 +361,10 @@
                     </Event>
                     <Event eventName="SaveHP" execWithStart="0">
                         <condList>
-                            <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
-                                <MGameObj List="Boss/0/Boss/1"/>
-                                <Num Num="30"/>
-                                <Str Str="OVER"/>
-                                <Num Num="1"/>
-                                <Str Str="OVER"/>
+                            <ToolScp Scp="GAME_ST_EVT_COND_VALUE" Client="NO" UseSleep="NO">
+                                <Str Str="event_start_avatarastrasnform"/>
+                                <Str Str="=="/>
+                                <Num Num="0"/>
                             </ToolScp>
                         </condList>
                         <execList>
@@ -469,7 +467,7 @@
                         <condList>
                             <ToolScp Scp="MGAME_EVT_COND_MONHP_ACCURATE" Client="NO" UseSleep="NO">
                                 <MGameObj List="Boss/0/Boss/1"/>
-                                <Num Num="10"/>
+                                <Num Num="50"/>
                                 <Str Str="UNDER"/>
                                 <Num Num="1"/>
                                 <Str Str="OVER"/>
@@ -492,13 +490,6 @@
                     </Event>
                     <Event execCount="1" eventName="AvatarasTransform">
                         <condList>
-                            <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
-                                <MGameObj List="Boss/0/Boss/1"/>
-                                <Num Num="50"/>
-                                <Str Str="UNDER"/>
-                                <Num Num="1"/>
-                                <Str Str="OVER"/>
-                            </ToolScp>
                             <ToolScp Scp="GAME_ST_EVT_COND_VALUE" Client="NO" UseSleep="NO">
                                 <Str Str="event_start_avatarastrasnform"/>
                                 <Str Str="=="/>
@@ -506,10 +497,6 @@
                             </ToolScp>
                         </condList>
                         <execList>
-                            <ToolScp Scp="MGAME_EVT_SCP_TO_MON_CMD" Client="NO" UseSleep="NO">
-                                <MGameObj List="Boss/0/Boss/1"/>
-                                <Str Str="SCR_GUILD_GILTINE_DEMONICS_SUMMON_MONSTER_REMOVE"/>
-                            </ToolScp>
                             <ToolScp Scp="MGAME_EVT_EXEC_DIRECTION" Client="NO" UseSleep="NO">
                                 <Str Str="GILTINE_RAID_CHANGE_BOSS_TRACK"/>
                             </ToolScp>
@@ -543,23 +530,6 @@
                             <ToolScp Scp="GAME_EVT_OFF" Client="NO" UseSleep="NO"/>
                         </execList>
                     </Event>
-                    <Event execCount="1" eventName="Giltine_Rage">
-                        <condList>
-                            <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
-                                <MGameObj List="Boss/2/Boss/3"/>
-                                <Num Num="20"/>
-                                <Str Str="UNDER"/>
-                                <Num Num="1"/>
-                                <Str Str="OVER"/>
-                            </ToolScp>
-                        </condList>
-                        <execList>
-                            <ToolScp Scp="MGAME_EVT_SCP_TO_MON_CMD" Client="NO" UseSleep="NO">
-                                <MGameObj List="Boss/2/Boss/3"/>
-                                <Str Str="SCR_GUILD_GILTINE_AVATARAS_RAGE"/>
-                            </ToolScp>
-                        </execList>
-                    </Event>
                     <Event execCount="1" eventName="BossDeadCheck">
                         <condList>
                             <ToolScp Scp="SCR_MGAME_VALUE_CHECK_2" Client="NO" UseSleep="NO">
@@ -580,12 +550,10 @@
                     </Event>
                     <Event eventName="SaveHPAvataras" execWithStart="0">
                         <condList>
-                            <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
-                                <MGameObj List="Boss/2/Boss/3"/>
-                                <Num Num="30"/>
-                                <Str Str="UNDER"/>
+                            <ToolScp Scp="GAME_ST_EVT_COND_VALUE" Client="NO" UseSleep="NO">
+                                <Str Str="event_start_avatarastrasnform"/>
+                                <Str Str="=="/>
                                 <Num Num="1"/>
-                                <Str Str="OVER"/>
                             </ToolScp>
                         </condList>
                         <execList>
