@@ -146,8 +146,6 @@ function SUDDENQUEST_MONCOUNT_UPDATE(killCnt)
     end
 
     if tonumber(killCnt) >= condCnt then
-        -- quest Sucess reward
-        control.CustomCommand("DPK_QUEST_REWARD_ITEM", 1);
         SUDDENQUEST_YESSCP_EXITMSGBOX();
         frame:Invalidate();
         return;

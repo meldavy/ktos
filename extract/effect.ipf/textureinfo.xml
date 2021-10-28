@@ -2,6 +2,12 @@
 <!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by IMCGames Co., Ltd (IMCGames Co., Ltd) -->
 <!-- edited with XMLSpy v2006 U (http://www.altova.com) by Administrator (EMBRACE) -->
 <TextureInfo>
+	<Texture Name="pattern011_alpha3" File="pattern011_alpha3.dds" Size="256 256"/>
+	<Texture Name="pattern011_pink1" File="pattern011_pink1.dds" Size="256 256"/>
+	<Texture Name="pattern011_pink" File="pattern011_pink.dds" Size="256 256"/>
+	<Texture Name="pattern011_orange1" File="pattern011_orange1.dds" Size="256 256"/>
+	<Texture Name="pattern011_alpha2" File="pattern011_alpha2.dds" Size="256 256"/>
+	<Texture Name="pattern011_orange" File="pattern011_orange.dds" Size="256 256"/>
 	<Texture Name="leaf007" File="leaf007.dds" Size="256 256"/>
 	<Texture Name="status_icon_badword" File="status_icon_badword.tga" Size="100 100"/>
 	<Texture Name="line006" File="line006.dds" Size="128 128"/>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by IMCGames Co., Ltd (IMCGames Co., Ltd) -->
+<ActionDesc>
+    <BlendOn frame="0" R="0" G="0" B="0" A="50"/>
+    <Sound frame="0.00" soundFile="mon_voice5_l_dead_6"/>
+    <Sound frame="3.00" soundFile="skl_eff_atk_move_l_8"/>
+    <Sound frame="29.00" soundFile="skl_eff_atk_move_l_21"/>
+    <Sound frame="44.00" soundFile="mon_voice5_l_4"/>
+    <Particle frame="50" attachNode="Dummy_effect_skl4_4" particleName="I_swordtrail011_yellow" useAttach="false" hiddenObj="false" changeEffect="None" scale="9" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Sound frame="51.00" soundFile="skl_eff_dethrone_whoosh"/>
+    <Sound frame="51.00" soundFile="skl_eff_big_whoosh_2"/>
+    <BlendOn frame="54" R="150" G="140" B="100" A="100"/>
+    <Shockwave frame="54" type="2" intensity="10" frequency="60" duration="1" range="1000"/>
+    <Sound frame="54.57" soundFile="explosion_small"/>
+    <BlendOn frame="55" R="130" G="120" B="80" A="100"/>
+    <Particle frame="55" attachNode="Dummy_effect_skl5_hit" particleName="F_smoke046" useAttach="true" hiddenObj="false" changeEffect="None" scale="9" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Particle frame="55" attachNode="Dummy_effect_skl5_hit" particleName="F_explosion94" useAttach="false" hiddenObj="false" changeEffect="None" scale="20" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <BlendOn frame="56" R="0" G="0" B="0" A="50"/>
+    <BlendOff frame="57" R="0" G="0" B="0" A="0"/>
+</ActionDesc>

@@ -3246,6 +3246,21 @@ function GET_ABILITY_POINT_EXTRACTOR_MIN_VALUE(type)
     return 0;    
 end
 
+function ENABLE_GUILD_MEMBER_JOIN_AUTO(aObj)
+    if USE_GUILD_MEMBER_JOIN_AUTO == 0 then
+        return false;
+    end
+
+    local isJoinedGuild = TryGetProp(aObj, "EVENT_IS_JOINED_GUILD", 0);
+    local lastguildOutDay = TryGetProp(aObj, "LastGuildOutDay", "None");
+    local limit = TryGetProp(aObj, "GUILD_MEMBER_JOIN_AUTO_LIMIT", 0);
+    if isJoinedGuild == 0 and lastguildOutDay == "None" and limit == 0 then
+        return true;
+    end
+
+    return false;
+end
+
 function GET_GUILD_MEMBER_JOIN_AUTO_GUILD_IDX()
     local nation = GetServerNation();
     local groupid = GetServerGroupID();

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="EUC-KR"?>
+<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by IMCGames Co., Ltd (IMCGames Co., Ltd) -->
+<ActionDesc>
+    <BlendOn frame="0" R="0" G="0" B="0" A="50"/>
+    <Sound frame="0.56" soundFile="mon_voice5_l_cast_1"/>
+    <Sound frame="15.00" soundFile="skl_eff_atk_move_l_1"/>
+    <Sound frame="19.47" soundFile="skl_eff_force_whoosh_3"/>
+    <Sound frame="26.14" soundFile="skl_eff_atk_move_l_18"/>
+    <Sound frame="33.93" soundFile="skl_eff_hammer"/>
+    <BlendOn frame="35" R="150" G="130" B="100" A="100"/>
+    <Shockwave frame="35" type="2" intensity="10" frequency="70" duration="0.3" range="1000"/>
+    <Particle frame="35" attachNode="Dummy_effect_skl1_sword" particleName="I_warrior_bash_swordtrail3" useAttach="false" hiddenObj="false" changeEffect="None" scale="7.4" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <BlendOn frame="36" R="100" G="80" B="50" A="100"/>
+    <BlendOn frame="37" R="60" G="50" B="30" A="100"/>
+    <BlendOn frame="38" R="50" G="40" B="30" A="100"/>
+    <BlendOn frame="39" R="30" G="25" B="20" A="100"/>
+    <BlendOn frame="40" R="20" G="15" B="10" A="100"/>
+    <BlendOn frame="41" R="10" G="8" B="5" A="100"/>
+    <BlendOn frame="42" R="0" G="0" B="0" A="50"/>
+    <Sound frame="66.20" soundFile="mon_voice5_l_cast_2"/>
+    <Sound frame="73.98" soundFile="skl_eff_atk_move_l_21"/>
+    <Sound frame="85.00" soundFile="boss_skl_eff_atk_move_l_6"/>
+    <Sound frame="90.67" soundFile="skl_eff_meteostrikes_boom_2"/>
+    <Sound frame="92.90" soundFile="skl_eff_stab_earth_boom_1"/>
+    <BlendOn frame="94" R="100" G="80" B="50" A="100"/>
+    <Shockwave frame="94" type="2" intensity="7" frequency="70" duration="0.3" range="1000"/>
+    <Particle frame="94" attachNode="Dummy_effect_skl1" particleName="F_cleric_DoublePunch_shot_spread_in_orange" useAttach="false" hiddenObj="false" changeEffect="None" scale="6" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <BlendOn frame="95" R="60" G="50" B="30" A="100"/>
+    <BlendOn frame="96" R="0" G="0" B="0" A="50"/>
+    <Sound frame="106.25" soundFile="skl_eff_explosion"/>
+    <BlendOn frame="111" R="180" G="150" B="100" A="100"/>
+    <Shockwave frame="111" type="2" intensity="10" frequency="70" duration="0.5" range="1000"/>
+    <Particle frame="111" attachNode="Dummy_effect_skl1" particleName="F_spread_in035_smoke" useAttach="false" hiddenObj="false" changeEffect="None" scale="12" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Particle frame="111" attachNode="Dummy_effect_skl1" particleName="F_scout_Granata_explosion" useAttach="false" hiddenObj="false" changeEffect="None" scale="15" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <BlendOn frame="112" R="150" G="130" B="100" A="100"/>
+    <Sound frame="112.92" soundFile="skl_eff_resizing_boom"/>
+    <BlendOn frame="113" R="0" G="0" B="0" A="50"/>
+    <BlendOff frame="114" R="0" G="0" B="0" A="0"/>
+    <Particle frame="115" attachNode="None" particleName="F_smoke046" useAttach="false" hiddenObj="false" changeEffect="None" scale="2" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+</ActionDesc>

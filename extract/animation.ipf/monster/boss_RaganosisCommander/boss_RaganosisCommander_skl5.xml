@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by imc (imc) -->
+<ActionDesc>
+    <BlendOn frame="0" R="0" G="0" B="0" A="50"/>
+    <Sound frame="0.00" soundFile="mon_voice5_l_dead_6"/>
+    <Sound frame="3.52" soundFile="skl_eff_atk_move_l_8"/>
+    <Particle frame="5" attachNode="Dummy_effect_wepon" particleName="F_spread_in030_holy" useAttach="true" hiddenObj="false" changeEffect="None" scale="2.5" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Sound frame="44.00" soundFile="mon_voice5_l_4"/>
+    <Sound frame="45.00" soundFile="boss_skl_eff_atk_move_l_6"/>
+    <BlendOn frame="50" R="150" G="130" B="100" A="100"/>
+    <Particle frame="50" attachNode="Dummy_effect_skl4_4" particleName="I_swordtrail011_yellow" useAttach="false" hiddenObj="false" changeEffect="None" scale="9" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <BlendOn frame="51" R="100" G="80" B="50" A="100"/>
+    <Sound frame="51.93" soundFile="skl_eff_big_whoosh_2"/>
+    <Sound frame="51.93" soundFile="skl_eff_dethrone_whoosh"/>
+    <BlendOn frame="52" R="60" G="50" B="30" A="100"/>
+    <BlendOn frame="53" R="50" G="40" B="30" A="100"/>
+    <BlendOn frame="54" R="30" G="25" B="20" A="100"/>
+    <BlendOn frame="55" R="20" G="15" B="10" A="100"/>
+    <BlendOn frame="56" R="10" G="8" B="5" A="100"/>
+    <BlendOn frame="57" R="0" G="0" B="0" A="50"/>
+    <BlendOff frame="60" R="0" G="0" B="0" A="0"/>
+</ActionDesc>
