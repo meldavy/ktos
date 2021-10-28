@@ -13549,6 +13549,10 @@ end"/>
 		<TriggerList Act="Equip">
 			<Trigger>
 				<ExecList>
+					<ToolScp Scp="SPCI_JOB_ALL_SKILLUP" Client="NO" UseSleep="NO">
+						<Str Str="QuarrelShooter"/>
+						<Num Num="1"/>
+					</ToolScp>
 					<ToolScp Scp="EQUIP_SKILLMAKE_ADD_NEED_SPLIT_SKILL" Client="NO" UseSleep="NO">
 						<Str Str="QuarrelShooter_ViboraShoot/QuarrelShooter_Teardown"/>
 					</ToolScp>
@@ -13558,6 +13562,10 @@ end"/>
 		<TriggerList Act="UnEquip">
 			<Trigger>
 				<ExecList>
+					<ToolScp Scp="SPCI_JOB_ALL_SKILLUP" Client="NO" UseSleep="NO">
+						<Str Str="QuarrelShooter"/>
+						<Num Num="-1"/>
+					</ToolScp>
 					<ToolScp Scp="UNEQUIP_SKILLMAKE_REMOVE" Client="NO" UseSleep="NO">
 						<Str Str="QuarrelShooter_ViboraShoot"/>
 					</ToolScp>

@@ -760,6 +760,14 @@ function BGMPLAYER_PLAY(frame, btn)
                 local musicTitle = titleText:GetTextByKey("value");
                 if musicTitle ~= nil then
                     musicTitle = StringSplit(musicTitle, '. ');
+
+                    if string.find(musicTitle[1], "{#ffc03a}") ~= nil then
+                        local find_start, find_end = string.find(musicTitle[1], "{#ffc03a}");
+                        if find_start ~= nil and find_end ~= nil then
+                            musicTitle[1] = string.sub(musicTitle[1], find_end + 1, string.len(musicTitle[1]));
+                        end
+                    end
+
                     local index = tonumber(musicTitle[1]);
                     local bgmType = GET_BGMPLAYER_MODE(topFrame, mode, option);
                     if bgmType == 1 then
@@ -864,11 +872,19 @@ function BGMPLAYER_SEQUENCE_PLAY(type, curIndex)
             if titleText ~= nil then
                 local musicIndex = titleText:GetTextByKey("value");
                 musicIndex = StringSplit(musicIndex, '. ');
+
+                local dlcSize = GetDlcBgmListSize();
+                if i <= dlcSize + 1 then
+                    local find_start, find_end = string.find(musicIndex[1], "{#ffc03a}");
+                    if find_start ~= nil and find_end ~= nil then
+                        musicIndex[1] = string.sub(musicIndex[1], find_end + 1, string.len(musicIndex[1]));
+                    end
+                end
+                
                 if tonumber(musicIndex[1]) == tonumber(curIndex) then
                     local musicTitle = titleText:GetTextByKey("value");
                     musicTitle = StringSplit(musicTitle, " ");
                     musicTitle[2] = GET_BGMPLAYER_MUSIC_TITLE(minIndex, maxIndex, musicTitle);
-
                     local success = PlayBgm(musicTitle[2], child:GetName());
                     if success == false then
                         local index = 0;
@@ -931,7 +947,7 @@ function BGMPLAYER_PLAY_RANDOM(frame, curIndex)
             index = StringSplit(index, '. ');
 
             local find_start, find_end = string.find(index[1], "{#ffc03a}");
-            if find_start ~= nil and find_end then
+            if find_start ~= nil and find_end ~= nil then
                 index[1] = string.sub(index[1], find_end + 1, string.len(index[1]));
             end
 
@@ -1006,11 +1022,13 @@ function BGMPLAYER_PLAY_PREVIOUS_BGM(frame, btn)
             musicIndex = StringSplit(musicIndex, '. ');
 
             local dlcSize = GetDlcBgmListSize();
-            if i < dlcSize + 1 then
+            if i <= dlcSize + 1 then
                 local find_start, find_end = string.find(musicIndex[1], "{#ffc03a}");
-                musicIndex[1] = string.sub(musicIndex[1], find_end + 1, string.len(musicIndex[1]));
+                if find_start ~= nil and find_end ~= nil then
+                    musicIndex[1] = string.sub(musicIndex[1], find_end + 1, string.len(musicIndex[1]));
+                end
             end
-
+            
             if curIndex - 1 == 0 then
                 curIndex = childCnt;
             end
@@ -1019,6 +1037,7 @@ function BGMPLAYER_PLAY_PREVIOUS_BGM(frame, btn)
                 if bgmType == 1 then 
                     SetBgmCurIndex(curIndex - 1, playRandom);
                 elseif bgmType == 0 then
+                    print(curIndex - 1);
                     SetBgmCurFVIndex(curIndex - 1, playRandom); 
                 end
 
@@ -1086,15 +1105,17 @@ function BGMPLAYER_PLAY_NEXT_BGM(frame, btn)
             musicIndex = StringSplit(musicIndex, '. ');
 
             local dlcSize = GetDlcBgmListSize();
-            if i < dlcSize + 1 then
+            if i <= dlcSize + 1 then
                 local find_start, find_end = string.find(musicIndex[1], "{#ffc03a}");
-                musicIndex[1] = string.sub(musicIndex[1], find_end + 1, string.len(musicIndex[1]));
+                if find_start ~= nil and find_end ~= nil then
+                    musicIndex[1] = string.sub(musicIndex[1], find_end + 1, string.len(musicIndex[1]));
+                end
             end
-
+            
             if curIndex + 1 == childCnt then
                 curIndex = 0;
             end
-
+            
             if tonumber(musicIndex[1]) == curIndex + 1 then
                 if bgmType == 1 then 
                     SetBgmCurIndex(curIndex + 1, playRandom);

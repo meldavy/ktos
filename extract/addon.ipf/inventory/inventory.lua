@@ -4452,3 +4452,53 @@ function BEFORE_APPLIED_CAHT_BALLOON_YESSCP_OPEN(invItem)
     end
 	return;
 end
+
+-- 다수 특성 포인트 사용
+local multiple_ability_item_id = '0'
+
+function CLIENT_USE_MULTIPLE_ABILITY_POINT(item_obj)
+	multiple_ability_item_id = '0'
+	local item = GetIES(item_obj:GetObject())	
+	
+	if GetCraftState() == 1 then
+		return;
+	end
+
+	if true == BEING_TRADING_STATE() then
+		return;
+	end
+	
+	local invItem = session.GetInvItemByGuid(item_obj:GetIESID())	
+	if nil == invItem then
+		return;
+	end
+	
+	if true == invItem.isLockState then
+		ui.SysMsg(ClMsg("MaterialItemIsLock"));
+		return;
+	end
+	
+	CHECK_CLIENT_USE_MULTIPLE_ABILITY_POINT(invItem:GetIESID())
+end
+
+function CHECK_CLIENT_USE_MULTIPLE_ABILITY_POINT(item_id)
+	local invItem = session.GetInvItemByGuid(tostring(item_id))
+	local itemObj = GetIES(invItem:GetObject());	
+	
+	if TryGetProp(itemObj, 'MaxStack', 0) == 1 or invItem.count == 1 then		
+		multiple_ability_item_id = tostring(item_id)
+		RUN_CLIENT_USE_MULTIPLE_ABILITY_POINT(1)
+	else
+		local titleText = ScpArgMsg("INPUT_CNT_D_D", "Auto_1", 1, "Auto_2", invItem.count);
+		INPUT_NUMBER_BOX(nil, titleText, "RUN_CLIENT_USE_MULTIPLE_ABILITY_POINT", 1, 1, invItem.count);	
+		multiple_ability_item_id = tostring(item_id)
+	end
+end
+
+function RUN_CLIENT_USE_MULTIPLE_ABILITY_POINT(count)	
+	session.ResetItemList();
+    local pc = GetMyPCObject();
+    session.AddItemID(multiple_ability_item_id, count)    
+    local resultlist = session.GetItemIDList()
+    item.DialogTransaction("MULTIPLE_USE_ABILITY", resultlist)
+end

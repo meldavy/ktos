@@ -263,13 +263,15 @@ return value"/>
 		</KeyInput>
 		<KeyInputStart>
 			<ToolScp Scp="MONSKL_C_CASTING_ANIM" Client="YES" UseSleep="NO">
-				<Str Str="None" UseFunc="1" FuncTxt="local value = 'None'
-local pc = GetMyPCObject()
-if IsBuffApplied(pc, 'ITEM_BUFF_VIBORA_THSWORD_PUNISH') == 'YES' then
-    value = 'skl_leapattack_cast'
-end
-
-return value"/>
+				<Str Str="None" UseFunc="1" FuncTxt="if self == nil then 
+    return 'None'
+end 
+local Buff = info.GetBuffByName(self:GetHandleVal(), 'ITEM_BUFF_VIBORA_THSWORD_PUNISH')
+ if Buff ~= nil then 
+    return 'skl_leapattack_cast' 
+ else 
+    return 'None'
+end"/>
 				<Str Str="ARUN"/>
 				<Num Num="2"/>
 				<Num Num="1"/>
@@ -293,14 +295,28 @@ end
 return value"/>
 			</ToolScp>
 			<ToolScp Scp="C_EFFECT" Client="YES" UseSleep="NO">
-				<Str_Arg Str="F_pc_effectitem_gabia" Arg="2"/>
+				<Str_Arg Str="None" UseFunc="1" FuncTxt="if self == nil then 
+    return 'None'
+end 
+local Buff = info.GetBuffByName(self:GetHandleVal(), 'ITEM_BUFF_VIBORA_THSWORD_PUNISH')
+ if Buff ~= nil then
+    return 'F_pc_effectitem_gabia', 2 
+ else 
+    return 'None', 0
+end" Arg="0"/>
 				<Str Str="Dummy_emitter"/>
-				<Num Num="0"/>
 			</ToolScp>
 			<ToolScp Scp="C_EFFECT" Client="YES" UseSleep="NO">
-				<Str_Arg Str="E_pc_full_charge_red" Arg="1"/>
+				<Str_Arg Str="None" UseFunc="1" FuncTxt="if self == nil then 
+    return 'None'
+end 
+local Buff = info.GetBuffByName(self:GetHandleVal(), 'ITEM_BUFF_VIBORA_THSWORD_PUNISH')
+ if Buff ~= nil then 
+    return 'E_pc_full_charge_red', 2 
+ else 
+    return 'None', 0
+end" Arg="0"/>
 				<Str Str="Dummy_emitter"/>
-				<Num Num="0"/>
 			</ToolScp>
 		</KeyInputStart>
 		<KeyInputEnd>

@@ -428,13 +428,15 @@
 			</ToolScp>
 			<ToolScp Client="YES" Scp="SKL_C_RESUME_ANI" UseSleep="NO"/>
 			<ToolScp Client="YES" Scp="MONSKL_C_PLAY_ANIM" UseSleep="NO">
-				<Str Str="SKL_RUSH_RIDE" UseFunc="1" FuncTxt="local Str = 'SKL_RUSH_RIDE'
-local pc = GetMyPCObject()
-if IsBuffApplied(pc, 'ITEM_BUFF_VIBORA_THSPEAR_RUSH') == 'YES' then
-    Str = 'SKL_RUSH_RIDE_VIBORA'
-end
-
-return Str"/>
+				<Str Str="SKL_RUSH_RIDE" UseFunc="1" FuncTxt="if self == nil then 
+    return 'SKL_RUSH_RIDE'
+end 
+local Buff = info.GetBuffByName(self:GetHandleVal(), 'ITEM_BUFF_VIBORA_THSPEAR_RUSH')
+ if Buff ~= nil then 
+    return 'SKL_RUSH_RIDE_VIBORA' 
+ else 
+    return 'SKL_RUSH_RIDE'
+end"/>
 				<Num Num="1"/>
 				<Num Num="1"/>
 				<Num Num="0"/>
