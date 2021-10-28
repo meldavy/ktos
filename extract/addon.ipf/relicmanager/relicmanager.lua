@@ -278,6 +278,7 @@ function CLEAR_RELICMANAGER_CHARGE()
 
 	local do_charge = GET_CHILD_RECURSIVELY(frame, 'do_charge')
 	do_charge:ShowWindow(1)
+	do_charge:EnableHitTest(1)
 
 	local mat_ctrl = GET_CHILD_RECURSIVELY(frame, 'charge_mat_ctrl')
 	if mat_ctrl ~= nil then
@@ -712,6 +713,7 @@ function CLEAR_RELICMANAGER_EXP()
 
 	local do_exp = GET_CHILD_RECURSIVELY(frame, 'do_exp')
 	do_exp:ShowWindow(1)
+	do_exp:EnableHitTest(1)
 
 	local mat_ctrl = GET_CHILD_RECURSIVELY(frame, 'exp_mat_ctrl')
 	if mat_ctrl ~= nil then

@@ -12212,7 +12212,7 @@ return GET_ABIL_LEVEL(self, &quot;Fletcher6&quot;) * 10"/>
             </ToolScp>
         </updateEvent>
     </PadSkill>
-    <PadSkill Name="Giltine_Ground_Pad" CheckerType="0" Dist="4.5789022" Angle="-1.2524811" Range="48" AutoPos="1" AutoDir="1" ApplyFlyMon="1" AllowOverlap="1" IsMagicType="0" IsMineType="0">
+    <PadSkill Name="Giltine_Ground_Pad" CheckerType="0" Dist="4.5789022" Angle="-1.2524811" Range="48" ApplyFlyMon="1" AllowOverlap="1" EnableSearch="0" IsMagicType="0" IsMineType="0">
         <createEvent>
             <ToolScp Scp="C_PAD_EFFECT_POS" Client="YES" UseSleep="NO">
                 <Str_Arg Str="F_ground196_levitation_violet_att_loop" Arg="1"/>
@@ -12239,7 +12239,7 @@ return GET_ABIL_LEVEL(self, &quot;Fletcher6&quot;) * 10"/>
             <ToolScp Scp="PAD_MOVE_NEAR_TARGET_FIX" Client="NO" UseSleep="NO">
                 <Str Str="ENEMY"/>
                 <Num Num="180"/>
-                <Num Num="80"/>
+                <Num Num="70"/>
                 <Num Num="0"/>
                 <Num Num="0"/>
                 <Num Num="30"/>
