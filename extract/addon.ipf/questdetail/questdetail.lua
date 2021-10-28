@@ -20,13 +20,32 @@ function QUESTDETAIL_INFO(questID, xPos)
 	local questCls = GetClassByType("QuestProgressCheck", questID);
 	local cls = GetClassByType("QuestProgressCheck_Auto", questID);
 
+	local titleText
 	local titleStory = 'None';
 	local pc = GetMyPCObject();
 	local result = SCR_QUEST_CHECK_C(pc, questCls.ClassName);
 	local State = CONVERT_STATE(result);
     local sObj = GetSessionObject(pc, 'ssn_klapeda')
-	local titleText = GET_QUEST_DETAIL_TITLE(questCls, sObj);    
+    
+	if questCls.QuestMode == 'REPEAT' then
+		if sObj ~= nil then
+			if questCls.Repeat_Count ~= 0 then
+				titleText = questCls.Name..ScpArgMsg("Auto__-_BanBog({Auto_1}/{Auto_2})","Auto_1", sObj[questCls.QuestPropertyName..'_R'] + 1, "Auto_2",questCls.Repeat_Count)
+			else
+				titleText = questCls.Name..ScpArgMsg("Auto__-_BanBog({Auto_1}/MuHan)","Auto_1", sObj[questCls.QuestPropertyName..'_R'])
+			end
+		end
+	elseif questCls.QuestMode == 'PARTY' then
+	    if sObj ~= nil then
+	        titleText = questCls.Name..ScpArgMsg("Auto__-_BanBog({Auto_1}/{Auto_2})","Auto_1", sObj.PARTY_Q_COUNT1 + 1, "Auto_2",CON_PARTYQUEST_DAYMAX1)
+	    end
+	end
 	
+	if titleText == nil then
+	    titleText = questCls.Name
+	end
+	
+	titleText = "["..ScpArgMsg("Level{Level}","Level",questCls.Level).."] "..titleText;
 	titleStory = questCls[State..'Story'];
 
 	y = BOX_CREATE_RICHTEXT(box, "title", y, 20, "{@st41}"..titleText);
@@ -41,7 +60,7 @@ function QUESTDETAIL_INFO(questID, xPos)
 		end
 	end
 	
-	y = MAKE_QUESTINFO_BY_IES(box, questCls, 20, y, s_obj, result, 1);
+	y = MAKE_QUESTINFO_BY_IES(box, questCls, 20, y + 5, s_obj, result, 1);
 
     if titleStory ~= 'None' and titleStory ~= questCls[State..'Desc'] then
     	y = BOX_CREATE_RICHTEXT(box, "story", y + 10, 20, "{#150800}{b}"..titleStory);
@@ -70,53 +89,32 @@ function QUESTDETAIL_INFO(questID, xPos)
     	y = MAKE_BASIC_REWARD_BUFF_CTRL(box, cls, y);
     	y = MAKE_BASIC_REWARD_HONOR_CTRL(box, cls, y);
     	y = MAKE_BASIC_REWARD_PCPROPERTY_CTRL(box, cls, y);
-    	y = MAKE_BASIC_REWARD_JOURNEYSHOP_CTRL(box, cls, y);
     end
 
 	local succExp = cls.Success_Exp;
-	local succJobExp = 0;
 	if repeat_reward_exp > 0 then
 	    succExp = succExp + repeat_reward_exp
 	end
 	
-    if succExp > 0 then
-        succJobExp = succJobExp + math.floor(succExp * 77 /100)
-    end
-	
 	if cls.Success_Lv_Exp > 0 then
-        local xpIES = GetClass('Xp', pc.Lv)
+        local xpIES = GetClass('Xp', questCls.Level)
         if xpIES ~= nil then
             local lvexpvalue =  math.floor(xpIES.QuestStandardExp * cls.Success_Lv_Exp)
-            if lvexpvalue ~= nil and lvexpvalue > 0 and pc.Lv < PC_MAX_LEVEL then
+            if lvexpvalue ~= nil and lvexpvalue > 0 then
 	            succExp = succExp + lvexpvalue
-            end
-            local lvjobexpvalue =  math.floor(xpIES.QuestStandardJobExp * cls.Success_Lv_Exp)
-            if lvjobexpvalue ~= nil and lvjobexpvalue > 0 and GetJobLv(pc) < 15 then
-	            succJobExp = succJobExp + lvjobexpvalue
             end
         end
     end
     
 	if succExp > 0 then
-	    succExp = GET_COMMAED_STRING(succExp)
-	    y = y + 5
-		y = BOX_CREATE_RICHTEXT(box, "t_successExp", y, 20, ScpArgMsg("Auto_{@st41}KyeongHeomChi_:_") .."{s20}{ol}{#FFFF00}"..  succExp.."{/}", 10);
-		local tempY = y
-		y = MAKE_QUESTINFO_REWARD_LVUP(box, questCls, 20, y, '{@st41b}')
-		if tempY ~= y then
-		    y = y - 5
-		end
-	end
-	if succJobExp > 0 then
-	    succJobExp = GET_COMMAED_STRING(succJobExp)
-		y = BOX_CREATE_RICHTEXT(box, "t_successJobExp", y, 20, ScpArgMsg("SuccessJobExpGiveMSG1") .."{s20}{#FFFF00}"..  succJobExp.."{/}", 10);
+		y = BOX_CREATE_RICHTEXT(box, "t_successExp", y, 20, ScpArgMsg("Auto_{@st41}KyeongHeomChi_:_") .."{s20}{ol}{#FFFF00}"..  succExp.."{/}");
+		
+		y = MAKE_QUESTINFO_REWARD_LVUP(box, questCls, 10, y)
 	end
 
 	y = MAKE_BASIC_REWARD_ITEM_CTRL(box, cls, y);
     
     y = MAKE_BASIC_REWARD_RANDOM_CTRL(box, questCls, cls, y + 20);
-    
-    y = MAKE_REWARD_STEP_ITEM_CTRL(box, questCls, cls, y, 'SUCCESS')
     
 	y = MAKE_BASIC_REWARD_REPE_CTRL(box, questCls, cls, y + 20);
 
@@ -131,30 +129,6 @@ function QUESTDETAIL_INFO(questID, xPos)
 	box:Resize(box:GetWidth(), y);
 	frame:Resize(xPos, frame:GetY(), frame:GetWidth(), y + 100);
 	frame:Invalidate()
-end
-
-function GET_QUEST_DETAIL_TITLE(questCls, sObj)
-    local titleText = nil;
-    if questCls.QuestMode == 'REPEAT' then
-		if sObj ~= nil then
-			if questCls.Repeat_Count ~= 0 then
-				titleText = questCls.Name..ScpArgMsg("Auto__-_BanBog({Auto_1}/{Auto_2})","Auto_1", sObj[questCls.QuestPropertyName..'_R'] + 1, "Auto_2",questCls.Repeat_Count);
-			else
-				titleText = questCls.Name..ScpArgMsg("Auto__-_BanBog({Auto_1}/MuHan)","Auto_1", sObj[questCls.QuestPropertyName..'_R'])
-			end
-		end
-	elseif questCls.QuestMode == 'PARTY' then
-	    if sObj ~= nil then
-	        titleText = questCls.Name..ScpArgMsg("Auto__-_BanBog({Auto_1}/{Auto_2})","Auto_1", sObj.PARTY_Q_COUNT1 + 1, "Auto_2",CON_PARTYQUEST_DAYMAX1)
-	    end
-	end
-	
-	if titleText == nil then
-	    titleText = questCls.Name;
-	end
-	
-	titleText = "["..ScpArgMsg("Level{Level}","Level",questCls.Level).."] "..titleText;    
-    return titleText;
 end
 
 function MAKE_DETAIL_TAKE_CTRL(box, cls, y)
@@ -215,7 +189,7 @@ function MAKE_ABANDON_CTRL(frame, box, y)
     
     local curquest = session.GetUserConfig("CUR_QUEST", 0);
     local StrScript = string.format("EXEC_ABANDON_QUEST(%d)", curquest);
-    abandonBtn:SetEventScript(ui.LBUTTONUP, StrScript, true);
+    abandonBtn:SetEventScript(ui.LBUTTONUP, StrScript);
 	abandonBtn:SetOverSound('button_over');
 	abandonBtn:SetClickSound('button_click_big');
 
