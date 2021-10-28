@@ -1,92 +1,10 @@
 function ITEMDUNGEON_ON_INIT(addon, frame)
-
-	addon:RegisterMsg('DUNGON_EXIT', 'DUNGON_ON_MSG');
-	addon:RegisterMsg('REQ_ITEM_DUNGEON', 'ITEM_DUNGEON_FOR_PARTY_ON_MSG');
-	addon:RegisterMsg('EXC_ITEM_DUNGEON', 'ITEM_DUNGEON_FOR_PARTY_ON_MSG');
-	addon:RegisterMsg('DISAGREE_ITEM_DUNGEON', 'ITEM_DUNGEON_FOR_PARTY_ON_MSG');
-
-	addon:RegisterMsg('ITEMDUNGEON_DROP_ITEM', 'UPDATEA_ITEMDUNGEON_DROP_ITEM');
-	addon:RegisterMsg('ITEMDUNGEON_STONE_ITEM', 'UPDATEA_ITEMDUNGEON_STONE_ITEM');
-end
-
-function DUNGON_ON_MSG(fram, msg, argStr, argNum)
-	ui.MsgBox(ClMsg("DoYouLeaveFromDungeon"), "DUNGEON_OWER_LEAVE()", "None");
-end
-
-function ITEM_DUNGEON_FOR_PARTY_ON_MSG(frame, msg, argStr, argNum)
-	if msg == "DISAGREE_ITEM_DUNGEON" then
-		ITEMDUNGEN_UI_CLOASE(frame);
-		return;
-	elseif msg == "EXC_ITEM_DUNGEON" then
-		local agrBtn = frame:GetChild("btn_excute");
-		agrBtn:SetEnable(1);
-	elseif msg == "REQ_ITEM_DUNGEON" then
-		-- æÀƒ…πÃΩ∫∆Æ∞° ø‰√ª¿ª πﬁ¿Ω
-		if 0 == argNum then
-			local str = ScpArgMsg("DoYouOpenItemDungeon{Name}", "Name", argStr);
-			local okScript = string.format("AGREE_OPEN_ITEM_DUNGEON_UI('%s', 1)", argStr);
-			local noScript = string.format("AGREE_OPEN_ITEM_DUNGEON_UI('%s', 0)", argStr);
-			ui.MsgBox(str, okScript, noScript);
-			return;	
-		end
-
-		local frame = ui.GetFrame("itemdungeon");
-		if frame:IsVisible() == 0 then
-			frame:ShowWindow(1);
-		end
-
-		frame:SetUserValue("Name", argStr);
-		return;
-	end
-end
-
-function AGREE_OPEN_ITEM_DUNGEON_UI(targetName, answer)
-	
-	if 1 == answer then
-		local frame = ui.GetFrame("itemdungeon");
-		frame:SetUserValue("Name", targetName);
-		frame:SetUserValue("OPEN_UI", 1);
-		if frame:IsVisible() == 0 then
-			frame:ShowWindow(1);
-		end
-
-		local agrBtn = frame:GetChild("btn_excute");
-		agrBtn:SetEnable(0);
-	end
-	
-	Alchemist.AnswerItemDungeon(targetName, answer)
-end
-
-function DUNGEON_OWER_LEAVE()
-	control.RequesDungeonLeave();
-end
-
-function SET_LOCK_ITEM_AWEKING(targetItem, stoneItem)
-	if nil == targetItem then
-		targetItem = 'None'
-	end
-
-	if nil == stoneItem then
-		stoneItem = "None"
-	end
-	local invframe = ui.GetFrame("inventory");
-
-	invframe:SetUserValue("ITEM_GUID_IN_AWAKEN", targetItem);
-	if "None" ~= stoneItem then
-		invframe:SetUserValue("STONE_ITEM_GUID_IN_AWAKEN", stoneItem);
-	end
-
-	INVENTORY_ITEM_PROP_UPDATE(invframe, 'ITEM_PROP_UPDATE', targetItem);
-	INVENTORY_ITEM_PROP_UPDATE(invframe, 'ITEM_PROP_UPDATE', stoneItem);
-end
-
-function OPEN_ITEMDUNGEON(frame)
-	ITEMDUNGEON_CLEARUI(frame);
-	ui.OpenFrame("inventory");
+	addon:RegisterMsg('SUCCESS_ITEM_AWAKENING', 'ITEMDUNGEON_CLEARUI');
+	addon:RegisterMsg('UPDATE_SPEND_ITEM', 'ITEMDUNGEON_INIT_NEEDITEM');
 end
 
 function UPDATE_ITEMDUNGEON_CURRENT_ITEM(frame)
-	local targetSlot = GET_CHILD(frame, "targetSlot");
+	local targetSlot = GET_CHILD_RECURSIVELY(frame, "targetSlot");
 	local invItem = GET_SLOT_ITEM(targetSlot);
 	local itemGUID = "None";
 	if invItem == nil then
@@ -94,10 +12,8 @@ function UPDATE_ITEMDUNGEON_CURRENT_ITEM(frame)
 	else
 		local obj = GetIES(invItem:GetObject());
 		itemGUID = invItem:GetIESID();
-		local slotName = GET_CHILD(frame, "slotName");
+		local slotName = GET_CHILD_RECURSIVELY(frame, "slotName");
 		slotName:SetTextByKey("value", GET_FULL_NAME(obj));
-		local pr_txt = GET_CHILD(frame, "nowPotentialStr");
-		pr_txt:ShowWindow(1);
 
 		local tempObj = CreateIESByID("Item", obj.ClassID);
 		if nil == tempObj then
@@ -109,215 +25,73 @@ function UPDATE_ITEMDUNGEON_CURRENT_ITEM(frame)
 			refreshScp = _G[refreshScp];
 			refreshScp(tempObj);
 		end	
-
-		frame:RemoveChild('tooltip_only_pr');
-		local nowPotential = frame:CreateControlSet('tooltip_only_pr', 'tooltip_only_pr', 30, pr_txt:GetY() - pr_txt:GetHeight());
-		tolua.cast(nowPotential, "ui::CControlSet");
-		local pr_gauge = GET_CHILD(nowPotential,'pr_gauge','ui::CGauge')
-		pr_gauge:SetPoint(obj.PR, tempObj.PR);
-		pr_txt = GET_CHILD(nowPotential,'pr_text','ui::CGauge')
-		pr_txt:SetVisible(0);
 		
 		DestroyIES(tempObj);
-
-		local needItem, needCount = GET_ITEM_AWAKENING_PRICE(obj);
-		local needItemCls = GetClass("Item", needItem);
-
-		local slot_needitem = GET_CHILD(frame, "slot_needitem"); 
-		SET_SLOT_ITEM_CLS(slot_needitem, needItemCls);
-		SET_SLOT_COUNT_TEXT(slot_needitem, needCount);
-
-		local needitemcount = GET_CHILD(frame, "needitemcount");
-		local txt = needItemCls.Name .. " - " .. needCount .. " " .. ClMsg("Piece");
-		needitemcount:SetTextByKey("value", txt);
-	end
-
-	local name = frame:GetUserValue("Name");
-	if "None" ~= name then
-		local stoneSlot = GET_CHILD(frame, "stoneSlot");
-		stonItem = GET_SLOT_ITEM(stoneSlot);
-		local stonGUID = nil;
-		if stonItem ~= nil then
-			Alchemist.SendStoentemProp(name, stonItem:GetIESID())
-		end
-		Alchemist.SendTargetItemProp(name, itemGUID)
 		
+		ITEMDUNGEON_UPDATE_PRICE(frame, obj);
 	end
 end
 
-function UPDATEA_ITEMDUNGEON_DROP_ITEM(frame, msg, argStr, agrNum)
-	local name = frame:GetUserValue("Name");
-	if argStr ~= name then
-		ITEMDUNGEN_UI_CLOASE(frame);
-		return;
-	end
-
-	local targetItem = session.hardSkill.GetReciveItem();
-	local frame = ui.GetFrame("itemdungeon");
-	if nil == targetItem then
-		ITEMDUNGEON_CLEARUI(frame);
-		return;
-	end
-
-	local obj = GetIES(targetItem);
-	local itemCls = GetClass("Item", obj.ClassName);
-	local slot = frame:GetChild("targetSlot");
-	slot = tolua.cast(slot, slot:GetClassString());
-	SET_SLOT_ITEM_CLS(slot, itemCls);
-		local slotName = GET_CHILD(frame, "slotName");
-		slotName:SetTextByKey("value", GET_FULL_NAME(obj));
-		local pr_txt = GET_CHILD(frame, "nowPotentialStr");
-		pr_txt:ShowWindow(1);
-
-		local tempObj = CreateIESByID("Item", obj.ClassID);
-		if nil == tempObj then
-			return;
-		end
-
-		local refreshScp = tempObj.RefreshScp;
-		if refreshScp ~= "None" then
-			refreshScp = _G[refreshScp];
-			refreshScp(tempObj);
-		end	
-
-		frame:RemoveChild('tooltip_only_pr');
-		local nowPotential = frame:CreateControlSet('tooltip_only_pr', 'tooltip_only_pr', 30, pr_txt:GetY() - pr_txt:GetHeight());
-		tolua.cast(nowPotential, "ui::CControlSet");
-		local pr_gauge = GET_CHILD(nowPotential,'pr_gauge','ui::CGauge')
-		pr_gauge:SetPoint(obj.PR, tempObj.PR);
-		pr_txt = GET_CHILD(nowPotential,'pr_text','ui::CGauge')
-		pr_txt:SetVisible(0);
-		
-		DestroyIES(tempObj);
-
-		local needItem, needCount = GET_ITEM_AWAKENING_PRICE(obj);
-		local needItemCls = GetClass("Item", needItem);
-
-		local slot_needitem = GET_CHILD(frame, "slot_needitem"); 
-		SET_SLOT_ITEM_CLS(slot_needitem, needItemCls);
-		SET_SLOT_COUNT_TEXT(slot_needitem, needCount);
-
-		local needitemcount = GET_CHILD(frame, "needitemcount");
-		local txt = needItemCls.Name .. " - " .. needCount .. " " .. ClMsg("Piece");
-		needitemcount:SetTextByKey("value", txt);
-end
-
-function UPDATEA_ITEMDUNGEON_STONE_ITEM(frame, msg, argStr, agrNum)
-	local name = frame:GetUserValue("Name");
-	if argStr ~= name then
-		ITEMDUNGEN_UI_CLOASE(frame);
-		return;
-	end
-
-	local targetItem = session.hardSkill.GetReciveStoneItem();
-	local frame = ui.GetFrame("itemdungeon");
-	if nil == targetItem then
-		ITEMDUNGEON_CLEARUI(frame);
-		return;
-	end
-
-	local stoneSlot = GET_CHILD(frame, "stoneSlot");
-	local obj = GetIES(targetItem);
-	local itemCls = GetClass("Item", obj.ClassName);
-	stoneSlot = tolua.cast(stoneSlot, stoneSlot:GetClassString());
-	SET_SLOT_ITEM_CLS(stoneSlot, itemCls);
-end
-
-function SCR_ITEMDUNGEN_UI_CLOASE()
-	local frame = ui.GetFrame("itemdungeon");
-	ITEMDUNGEN_UI_CLOASE(frame);
-end
-
-function ITEMDUNGEN_UI_CLOASE(frame)
-	local name = frame:GetUserValue("Name");
-	local open = frame:GetUserIValue("OPEN_UI");
-	if "None" ~= name  then
-		if  1 == open then
-			session.hardSkill.CloseItemDungeon();
-		end
-		
-		Alchemist.CloseItemDungeon(name);
-
-		frame:SetUserValue("Name", "None");
-		frame:SetUserValue("OPEN_UI", 0);
-	end
-
+function ITEMDUNGEN_UI_CLOSE(frame)
 	ui.CloseFrame("itemdungeon");
+	ui.CloseFrame('inventory');
+	
+	ITEMDUNGEON_CLEARUI(frame)
+	INVENTORY_SET_CUSTOM_RBTNDOWN("None");
 end
 
 function ITEMDUNGEON_CLEARUI(frame)
+	ITEMDUNGEON_CLEAR_TARGET(frame);
+	ITEMDUNGEON_BUY_ITEM_ENABLEHITTEST();
+	ITEMDUNGEON_RESET_STONE(frame);
+	ITEMDUNGEON_RESET_ABRASIVE(frame);
 
-	local targetSlot = GET_CHILD(frame, "targetSlot");
-	CLEAR_SLOT_ITEM_INFO(targetSlot);
-
-	local stoneSlot = GET_CHILD(frame, "stoneSlot");
-	CLEAR_SLOT_ITEM_INFO(stoneSlot);
-
-	local slotName = GET_CHILD(frame, "slotName");
-	slotName:SetTextByKey("value", "");
-	GET_CHILD(frame, "nowPotentialStr"):ShowWindow(0);
-	frame:RemoveChild('tooltip_only_pr');
-
-	local slot_needitem = GET_CHILD(frame, "slot_needitem"); 
-	CLEAR_SLOT_ITEM_INFO(slot_needitem);
-
-	local needitemcount = GET_CHILD(frame, "needitemcount");
-	needitemcount:SetTextByKey("value", "");
-	
-	local skillLevel = GET_CHILD(frame, "SkillLevel");
-	local ItemAwakening = GetSkill(GetMyPCObject(), 'Alchemist_ItemAwakening');
-	if nil == ItemAwakening or nil == skillLevel then
-		return;
-	end
-	skillLevel:SetTextByKey("value", ItemAwakening.Level);
-	local bodyGbox	= frame:GetTopParentFrame();
-
-	local partySlot = GET_CHILD(bodyGbox, "partySlot"); 
-	partySlot:RemoveAllChild();
-	
-	local count = session.party.GetAlivePartyMemberList() -- ∆ƒ∆ºø¯¿Ã æ¯¿∏∏È 0¿ªƒ´øÓ∆Æ, øÎ∫¥ ∆˜«‘
-	local number = math.min(ItemAwakening.Level,count); 
-	if count == 0 then-- ±‚∫ª¿˚¿∏∑Œ ≥™¥¬ √ﬂ∞°«ÿ¡÷¿⁄
-		number = 1;
-	end
-	local maxCount = 4;
-
-	local color = 0;
-	for first = 0, maxCount do
-		local pic = partySlot:CreateOrGetControl("picture", "Party"..first , 25, 25, ui.CENTER_HORZ, ui.TOP, first*20, 2, 0, 0)
-		pic = tolua.cast(pic, "ui::CPicture");
-		pic:SetEnableStretch(1);
-		pic:SetImage("house_change_man");
-
-		-- ∏∏æ‡ ªÁ∂˜¿Ã ¿÷≥ƒ, ¿Ã∞« ≈◊Ω∫∆ÆøÎ
-		if number > 0 then
-			pic:SetColorTone("00000000"); 
-			number = number - 1;
-			color = color + 1;
-		else
-			pic:SetColorTone("22FFFFFF");
-		end
-	end
-	local partyCount =GET_CHILD(frame, "partyCount");
-	partyCount:SetTextByKey("value", "(" .. color .."/"..math.min(maxCount+1, ItemAwakening.Level)..")");
+	ITEMDUNGEON_UPDATE_PRICE(frame);
 end
 
-function ITEMDUNGEON_DROP_ITEM(parent, ctrl)
-	local frame				= parent:GetTopParentFrame();
-	local name = frame:GetUserValue("Name");
-	local open = frame:GetUserIValue("OPEN_UI");
-	
-	if "None" ~= name  and 1 == open then
-		local str = ScpArgMsg("WaitDroppingItemFromParty{Name}", "Name", name);
-		ui.SysMsg(str);
-		return;
-	end
+function ITEMDUNGEON_RESET_STONE(parent, ctrl)
+	local frame = parent:GetTopParentFrame();
+	local stoneSlot = GET_CHILD_RECURSIVELY(frame, "stoneSlot");
+	local stoneItemCls = GetClass('Item', 'misc_awakeningStone1');
+	local icon = imcSlot:SetImage(stoneSlot, stoneItemCls.Icon);
+	icon:SetColorTone('FFFF0000');
 
-	local liftIcon 			= ui.GetLiftIcon();
-	local slot 			    = tolua.cast(ctrl, ctrl:GetClassString());
-	local iconInfo			= liftIcon:GetInfo();
-	local invItem, isEquip = GET_PC_ITEM_BY_GUID(iconInfo:GetIESID());
+	local stoneCountText = GET_CHILD_RECURSIVELY(frame, 'stoneCountText');
+	stoneCountText:SetColorTone('FFFF0000');
+	stoneCountText:SetTextByKey('cur', '0');
+
+	local stoneInfoText = GET_CHILD_RECURSIVELY(frame, 'stoneInfoText');
+	imcRichText:SetColorBlend(stoneInfoText, true, 2,  0xFFFFFFFF, 0xFFFFBB00);
+	stoneInfoText:ShowWindow(1);
+
+	local stoneNameText = GET_CHILD_RECURSIVELY(frame, 'stoneNameText');
+	stoneNameText:ShowWindow(0);
+end
+
+function ITEMDUNGEON_RESET_ABRASIVE(parent, ctrl)
+	local frame = parent:GetTopParentFrame();
 	
+	local abrasiveSlot = GET_CHILD_RECURSIVELY(frame, "abrasiveSlot");
+	abrasiveSlot:ClearIcon();
+	
+	local abrasiveCountText = GET_CHILD_RECURSIVELY(frame, 'abrasiveCountText');
+	abrasiveCountText:SetColorTone('FFFF0000');
+	abrasiveCountText:SetTextByKey('cur', '0');
+
+	local abrasiveInfoText = GET_CHILD_RECURSIVELY(frame, 'abrasiveInfoText');
+	imcRichText:SetColorBlend(abrasiveInfoText, true, 2,  0xFFFFFFFF, 0xFFFFBB00);
+	abrasiveInfoText:ShowWindow(1);
+
+	local abrasiveNameText = GET_CHILD_RECURSIVELY(frame, 'abrasiveNameText');
+	abrasiveNameText:ShowWindow(0);
+end
+
+function ITEMDUNGEON_DROP_ITEM(parent, ctrl)	
+	local frame = parent:GetTopParentFrame();
+	local liftIcon = ui.GetLiftIcon();
+	local slot = tolua.cast(ctrl, ctrl:GetClassString());
+	local iconInfo = liftIcon:GetInfo();
+	local invItem, isEquip = GET_PC_ITEM_BY_GUID(iconInfo:GetIESID());	
 	if nil == invItem then
 		return;
 	end
@@ -333,56 +107,24 @@ function ITEMDUNGEON_DROP_ITEM(parent, ctrl)
 	end
 
 	local itemObj = GetIES(invItem:GetObject());	
-	if false == IS_EQUIP(itemObj) then
-		ui.SysMsg(ClMsg("WrongDropItem"));
+	if IS_ENABLE_GIVE_HIDDEN_PROP_ITEM(itemObj) == false then
+		ui.SysMsg(ClMsg('ItemIsNotEnchantable1'));
 		return;
 	end
 
-	if invItem.isLockState then 
-		ui.SysMsg(ClMsg("MaterialItemIsLock"));
-		return;
-	end
-
-	if itemObj.HiddenProp == "None" then
-		ui.SysMsg(ClMsg("ThisItemIsNotAbleToWakenUp"));
-		return;
-	end
-
---if itemObj.IsAwaken == 1 then
---	ui.SysMsg(ClMsg("ThisItemIsAlreadyAwaken"));
---	return;
---end
-
-	if itemObj.PR <= 0 then
-		ui.SysMsg(ClMsg("NoMorePotential"));
-		return;
-	end
-
-	SET_SLOT_ITEM(slot, invItem, invItem.count);
-	UPDATE_ITEMDUNGEON_CURRENT_ITEM(frame);
-
+	SET_SLOT_ITEM(slot, invItem, invItem.count);	
+	UPDATE_ITEMDUNGEON_CURRENT_ITEM(frame);	
 end
 
-function ITEMDUNGEON_DROP_WEALTH_ITEM(parent, ctrl)
-	local frame				= parent:GetTopParentFrame();
-	local name = frame:GetUserValue("Name");
-	local open = frame:GetUserIValue("OPEN_UI");
-	
-	if "None" ~= name  and 1 == open then
-		local str = ScpArgMsg("WaitDroppingItemFromParty{Name}", "Name", name);
-		ui.SysMsg(str);
-		return;
-	end
-
-	local liftIcon 			= ui.GetLiftIcon();
-	local slot 			    = tolua.cast(ctrl, ctrl:GetClassString());
-	local iconInfo			= liftIcon:GetInfo();
-	local invItem, isEquip  = GET_PC_ITEM_BY_GUID(iconInfo:GetIESID());
-	
+function ITEMDUNGEON_DROP_WEALTH_ITEM(parent, ctrl)	
+	local frame = parent:GetTopParentFrame();
+	local liftIcon = ui.GetLiftIcon();
+	local slot = tolua.cast(ctrl, ctrl:GetClassString());
+	local iconInfo = liftIcon:GetInfo();
+	local invItem, isEquip  = GET_PC_ITEM_BY_GUID(iconInfo:GetIESID());	
 	if nil == invItem then
 		return;
 	end
-
 	if nil ~= isEquip then
 		ui.SysMsg(ClMsg("CannotDropItem"));
 		return;
@@ -393,30 +135,63 @@ function ITEMDUNGEON_DROP_WEALTH_ITEM(parent, ctrl)
 		return;
 	end
 
-	local itemObj = GetIES(invItem:GetObject());	
-	if false == IS_ITEM_AWAKENING_STONE(itemObj) then
-		ui.SysMsg(ClMsg("WrongDropItem"));
-		return;
-	end
-
+	local itemObj = GetIES(invItem:GetObject());		
 	if itemObj.ItemLifeTimeOver > 0 then
 		ui.SysMsg(ScpArgMsg('LessThanItemLifeTime'));
 		return;
 	end
 
-	SET_SLOT_ITEM(slot, invItem, invItem.count);
-
-	if "None" ~= name then
-		local targetSlot = GET_CHILD(frame, "targetSlot");
-		local invItem = GET_SLOT_ITEM(targetSlot);
-		if nil ~= invItem then
-			Alchemist.SendTargetItemProp(name, invItem:GetIESID())
+	if slot:GetName() == 'stoneSlot' then
+		if false == IS_ITEM_AWAKENING_STONE(itemObj) then
+			ui.SysMsg(ClMsg("WrongDropItem"));
+			return;
 		end
-		Alchemist.SendStoentemProp(name, iconInfo:GetIESID())
-	end
-end
-function EXEC_ITEM_DUNGEON(parent, ctrl)
 	
+		local icon = imcSlot:SetItemInfo(slot, invItem, invItem.count);
+		icon:SetColorTone('FFFFFFFF');
+		
+		local stoneCountText = GET_CHILD_RECURSIVELY(frame, 'stoneCountText');
+		stoneCountText:SetColorTone('FFFFFFFF');
+		stoneCountText:SetTextByKey('cur', '1');
+
+		local stoneInfoText = GET_CHILD_RECURSIVELY(frame, 'stoneInfoText');
+		stoneInfoText:ShowWindow(0);
+
+		local stoneNameText = GET_CHILD_RECURSIVELY(frame, 'stoneNameText');
+		stoneNameText:SetTextByKey('name', itemObj.Name);
+		stoneNameText:ShowWindow(1);
+	elseif slot:GetName() == 'abrasiveSlot' then
+		if itemObj.StringArg ~= "AbrasiveStone" then
+			ui.SysMsg(ClMsg("WrongDropItem"));
+			return;
+		end
+
+		local icon = imcSlot:SetItemInfo(slot, invItem, invItem.count);
+		icon:SetColorTone('FFFFFFFF');
+
+		local abrasiveCountText = GET_CHILD_RECURSIVELY(frame, 'abrasiveCountText');
+		abrasiveCountText:SetColorTone('FFFFFFFF');
+		abrasiveCountText:SetTextByKey('cur', '1');
+
+		local abrasiveInfoText = GET_CHILD_RECURSIVELY(frame, 'abrasiveInfoText');
+		abrasiveInfoText:ShowWindow(0);
+
+		local abrasiveNameText = GET_CHILD_RECURSIVELY(frame, 'abrasiveNameText');
+		abrasiveNameText:SetTextByKey('name', itemObj.Name);
+		abrasiveNameText:ShowWindow(1);
+	end
+
+	
+end
+
+function EXEC_ITEM_DUNGEON(parent, ctrl)
+	local frame = parent:GetTopParentFrame();
+	local titleInput = GET_CHILD_RECURSIVELY(frame, 'titleInput');	
+	if titleInput:GetText() == nil or titleInput:GetText() == '' then
+		ui.MsgBox(ClMsg('InputTitlePlease'));
+		return;
+	end
+
 	local mapCls = GetClass("Map", session.GetMapName());
 	if nil == mapCls then
 		return;
@@ -427,118 +202,426 @@ function EXEC_ITEM_DUNGEON(parent, ctrl)
 		return;
 	end
 
-	if 'd_itemdungeon_1' == mapCls.ClassName then
-		ui.SysMsg(ClMsg('DonExecSkill'));
+	local reqitemCount = GET_CHILD_RECURSIVELY(frame, 'reqitemCount');
+	if tonumber(reqitemCount:GetTextByKey('txt')) < 1 then
+		ui.SysMsg(ClMsg('NotEnoughRecipe'));
 		return;
 	end
 
-	local frame = parent:GetTopParentFrame();
-	
-	local open = frame:GetUserIValue("OPEN_UI");
-	if 1 == open then
-		_EXEC_ITEM_DUNGEON();
+	local slot_needitem = GET_CHILD_RECURSIVELY(frame, 'slot_needitem');
+	local material = session.GetInvItemByName(slot_needitem:GetUserValue('NEED_ITEM_CLASSNAME'));
+	if nil == material then
 		return;
 	end
 
-	local targetSlot = GET_CHILD(frame, "targetSlot");
-	local invItem = GET_SLOT_ITEM(targetSlot);
-	if invItem == nil then
-		return;
-	end
-
-	local obj = GetIES(invItem:GetObject());
-	local needItem, needCount = GET_ITEM_AWAKENING_PRICE(obj);
-	local needItemCls = GetClass("Item", needItem);
-	local name = frame:GetUserValue("Name");
-	if "None" == name then
-		local nedItem = session.GetInvItemByName(needItemCls.ClassName);
-		if nil == nedItem or nedItem.count < needCount then
-		ui.SysMsg(ClMsg("NotEnoughRecipe"));
-		return;
-	end
-	else
-	end
-	if true == invItem.isLockState then
+	if true == material.isLockState then
 		ui.SysMsg(ClMsg("MaterialItemIsLock"));
 		return;
 	end
 
-	if "None" == name then
-	ui.MsgBox(ClMsg("IfAwakenItem_PotentialIsConsumed_Continue?"), "_EXEC_ITEM_DUNGEON", "None");
+	local moneyInput = GET_CHILD_RECURSIVELY(frame, "MoneyInput");
+	local price = GET_NOT_COMMAED_NUMBER(moneyInput:GetText());
+	if price <= 0 then
+		ui.SysMsg(ClMsg("InputPriceMoreThanOne"));
+		return;
+	end
+
+	local pc = GetMyPCObject();
+	local x, y, z = GetPos(pc);
+	if 0 == IsFarFromNPC(pc, x, y, z, 50) then
+		ui.SysMsg(ClMsg("TooNearFromNPC"));	
+		return 0;
+	end
+
+	local priceInfo = session.autoSeller.CreateToGroup("Awakening");
+	priceInfo.classID = GetClass("Skill", 'Alchemist_ItemAwakening').ClassID;
+	priceInfo.price = price;
+	session.autoSeller.RequestRegister('Awakening', 'Awakening', titleInput:GetText(), 'Alchemist_ItemAwakening');    
+end
+
+function OPEN_ITEMDUNGEON_SELLER()
+	local frame = ui.GetFrame('itemdungeon');
+	ITEMDUNGEON_CLEARUI(frame);
+	ITEMDUNGEON_INIT_FOR_SELLER(frame);	
+	frame:ShowWindow(1);
+	ui.OpenFrame("inventory");
+end
+
+function ITEMDUNGEON_INIT_FOR_SELLER(frame)
+	ITEMDUNGEON_INIT_TAB(frame, 1);
+	ITEMDUNGEON_SHOW_BOX(frame, 1, 0, 1);
+	ITEMDUNGEON_INIT_NEEDITEM(frame);
+	ITEMDUNGEON_SET_TITLE(frame, true);
+	ITEMDUNGEON_INIT_USER_PRICE(frame);
+end
+
+function ITEMDUNGEON_SHOW_BOX(frame, seller, buyer, isSeller)
+	local buyerBox = GET_CHILD_RECURSIVELY(frame, 'buyerBox');
+	local sellerBox = GET_CHILD_RECURSIVELY(frame, 'sellerBox');
+	local needBox = GET_CHILD_RECURSIVELY(frame, 'needBox');
+	local targetSlot = GET_CHILD_RECURSIVELY(frame, 'targetSlot');
+	local titlepicture = GET_CHILD_RECURSIVELY(frame, 'titlepicture');
+	local sellerBtnBox = GET_CHILD_RECURSIVELY(frame, 'sellerBtnBox');
+	local buyerBtnBox = GET_CHILD_RECURSIVELY(frame, 'buyerBtnBox');
+
+	sellerBox:ShowWindow(seller);
+	needBox:ShowWindow(isSeller);
+	sellerBtnBox:ShowWindow(seller);
+
+	titlepicture:ShowWindow(buyer);
+	targetSlot:ShowWindow(buyer);
+	buyerBox:ShowWindow(buyer);
+	buyerBtnBox:ShowWindow(buyer);
+end
+
+function ITEMDUNGEON_INIT_NEEDITEM(frame)
+	local slot_needitem = GET_CHILD_RECURSIVELY(frame, 'slot_needitem');
+	local reqitemNameStr = GET_CHILD_RECURSIVELY(frame, 'reqitemNameStr');
+	local reqitemCount = GET_CHILD_RECURSIVELY(frame, 'reqitemCount');
+
+	local needItemClassName = GET_ITEM_AWAKENING_PRICE();
+	local needItemCls = GetClass('Item', needItemClassName);
+	SET_SLOT_ITEM_CLS(slot_needitem, needItemCls);
+	slot_needitem:SetUserValue('NEED_ITEM_CLASSNAME', needItemClassName);
+	reqitemNameStr:SetTextByKey('txt', needItemCls.Name);
+
+	local invItem = session.GetInvItemByName(needItemClassName);
+	local count = 0;
+	if invItem ~= nil then
+		count = invItem.count;
+	end
+	reqitemCount:SetTextByKey('txt', count);
+end
+
+function OPEN_ITEMDUNGEON_BUYER(groupName, sellType, handle)
+	if groupName == 'None' then
+		return;
+	end
+
+	local frame = ui.GetFrame('itemdungeon');
+	frame:SetUserValue('HANDLE', handle);
+
+	local sellerMode = 0;
+	if handle == session.GetMyHandle() then
+		sellerMode = 1;
+    	frame:SetUserValue('SELLER_MODE', 1);
+    else
+    	frame:SetUserValue('SELLER_MODE', 0);
+    end
+    ITEMDUNGEON_INIT_TAB(frame, 0);
+	ITEMDUNGEON_INIT_FOR_BUYER(frame, sellerMode);
+	frame:ShowWindow(1);
+	ui.OpenFrame('inventory');
+	
+	INVENTORY_SET_CUSTOM_RBTNDOWN("ITEMDUNGEON_INV_RBTN")	
+end
+
+function ITEMDUNGEON_INIT_FOR_BUYER(frame, isSeller)
+	ITEMDUNGEON_SHOW_BOX(frame, 0, 1, isSeller);
+	if isSeller == 1 then
+		ITEMDUNGEON_INIT_NEEDITEM(frame);
+	end
+	ITEMDUNGEON_SET_TITLE(frame, false);
+	ITEMDUNGEON_SET_OFFSET_BUY_BTN(frame);
+	ITEMDUNGEON_RESET_STONE(frame);
+	ITEMDUNGEON_RESET_ABRASIVE(frame);
+end
+
+function ITEMDUNGEON_SET_OFFSET_BUY_BTN(frame)
+	local closeShopBtn = GET_CHILD_RECURSIVELY(frame, 'closeShopBtn');
+	local buyBtn = GET_CHILD_RECURSIVELY(frame, 'buyBtn');	
+	if frame:GetUserIValue('SELLER_MODE') == 1 then
+		closeShopBtn:ShowWindow(1);
+		buyBtn:SetOffset(buyBtn:GetOriginalX(), buyBtn:GetY());		
 	else
-		local okScp = string.format("Alchemist.ReqExcItemDungeon('%s')", name);
-		local noscp = string.format("Alchemist.CloseItemDungeon('%s')", name);
-		ui.MsgBox(ClMsg("IfAwakenItem_PotentialIsConsumed_Continue?"), okScp, noscp);
+		closeShopBtn:ShowWindow(0);
+		buyBtn:SetOffset(frame:GetWidth() / 2 - buyBtn:GetWidth() / 2, buyBtn:GetY());		
 	end
 end
 
-function _EXEC_ITEM_DUNGEON()
-	local frame = ui.GetFrame("itemdungeon");
-	local name = frame:GetUserValue("Name");
-	local invItem = nil;
-	local stonItem = nil;
-	if "None" == name then
-	local targetSlot = GET_CHILD(frame, "targetSlot");
-		invItem = GET_SLOT_ITEM(targetSlot);
-	if invItem == nil then
+function ITEMDUNGEON_SET_TITLE(frame, isSeller)
+	local titleText = GET_CHILD_RECURSIVELY(frame, 'titleText');
+	local title = '';
+	if isSeller == true then
+		title = ClMsg('OpenAwakeningShop');
+	else
+		local awakeningSkl = GetClass('Skill', 'Alchemist_ItemAwakening');
+		title = awakeningSkl.Name;
+	end
+	titleText:SetTextByKey('title', title);
+end
+
+function _ITEMDUNGEON_BUY_ITEM(checkRebuildFlag)
+	local frame = ui.GetFrame('itemdungeon');
+	local targetSlot = GET_CHILD_RECURSIVELY(frame, 'targetSlot');
+	local targetIcon = targetSlot:GetIcon();
+	if targetIcon == nil then
+		ui.SysMsg(ClMsg('NotExistTargetItem'));
 		return;
 	end
+
+	local targetItemGuid = targetIcon:GetInfo():GetIESID();
+	local targetItem = session.GetInvItemByGuid(targetItemGuid);
+	if targetItem == nil then
+		return;
+	end
+
+	local stoneSlot = GET_CHILD_RECURSIVELY(frame, 'stoneSlot');
+	local stoneIcon = stoneSlot:GetIcon();
+	local materialItemGuid = '0';
+	if stoneIcon ~= nil then
+		materialItemGuid = stoneIcon:GetInfo():GetIESID();
+	end
+
+	local abrasiveSlot = GET_CHILD_RECURSIVELY(frame, 'abrasiveSlot');
+	local abrasiveIcon = abrasiveSlot:GetIcon();
+	local secondmaterialItemGuid = '0';
+	if abrasiveIcon ~= nil then
+		secondmaterialItemGuid = abrasiveIcon:GetInfo():GetIESID();
+	end
+
+
+	local targetItemObj = targetItem:GetObject();
+	if targetItemObj == nil then
+		return;
+	end
+
+	targetItemObj = GetIES(targetItemObj);
+	if materialItemGuid == '0' and targetItemObj.PR <= 0 then
+		ui.SysMsg(ClMsg("NoMorePotential"));
+		return;
+	end
+
+	if checkRebuildFlag ~= false then
+		if TryGetProp(targetItemObj, 'Rebuildchangeitem', 0) > 0 then
+			ui.MsgBox(ScpArgMsg('IfUDoCannotExchangeWeaponType'), '_ITEMDUNGEON_BUY_ITEM(false)', 'None');
+			return;
+		end
+	end
+
+	local sklCls = GetClass('Skill', 'Alchemist_ItemAwakening');
+	local handle = frame:GetUserIValue('HANDLE');	
+	session.autoSeller.BuyWithPluralMaterialItem(handle, sklCls.ClassID, AUTO_SELL_AWAKENING, targetItemGuid, materialItemGuid, secondmaterialItemGuid);
+end
+
+function ITEMDUNGEON_BUY_ITEM(parent, ctrl)
+	local frame = ui.GetFrame('itemdungeon');
+	local stoneSlot = GET_CHILD_RECURSIVELY(frame, 'stoneSlot');
+	local stoneIcon = stoneSlot:GetIcon();
+	local materialItemGuid = '0';
+	if stoneIcon ~= nil then
+		materialItemGuid = stoneIcon:GetInfo():GetIESID();
+	end
+	
+	local abrasiveSlot = GET_CHILD_RECURSIVELY(frame, 'abrasiveSlot');
+	local abrasiveIcon = abrasiveSlot:GetIcon();
+	local awakematerialItemGuid = '0';
+	if abrasiveIcon ~= nil then
+		awakematerialItemGuid = abrasiveIcon:GetInfo():GetIESID();
+	end
+
+	local warningmsg;
+
+	if awakematerialItemGuid == '0' then
+	    ui.SysMsg(ClMsg("NoMoreAbrasive"))
+	    return
+	else
+		warningmsg = ClMsg("IsSureUseAbrasive")..' {nl}';
+	end
+
+	if materialItemGuid == '0' then
+	    ui.SysMsg(ClMsg("NoMoreAbrasive"))
+	    return
+	end
+
+	-- Îì±Î°ùÌïú Ïû¨Î£å ÏïÑÏù¥ÌÖú Ìï¥Ï†ú Î™ªÌïòÍ≤å
+	local buyerBox = GET_CHILD_RECURSIVELY(frame, 'buyerBox');
+	buyerBox:EnableHitTest(0);
+
+	warningmsg = warningmsg .. ClMsg("IsSureItemdungeon");	
+	WARNINGMSGBOX_FRAME_OPEN(warningmsg, '_ITEMDUNGEON_BUY_ITEM', 'ITEMDUNGEON_BUY_ITEM_ENABLEHITTEST');
+end
+
+function ITEMDUNGEON_BUY_ITEM_ENABLEHITTEST()
+	local frame = ui.GetFrame('itemdungeon');
+	local buyerBox = GET_CHILD_RECURSIVELY(frame, 'buyerBox');
+	buyerBox:EnableHitTest(1);
+end
+
+function ITEMDUNGEON_CLOSE_SHOP(parent, ctrl)
+	session.autoSeller.Close('Awakening');	
+	ITEMDUNGEN_UI_CLOSE(parent:GetTopParentFrame());
+end
+
+function ITEMDUNGEON_UPDATE_PRICE(frame, targetItem)
+	local priceValueText = GET_CHILD_RECURSIVELY(frame, 'priceValueText');
+	if targetItem == nil then
+		priceValueText:SetText(0);
+		return;
+	end
+
+	local clsName, cnt = GET_ITEM_AWAKENING_PRICE(targetItem);
+	local groupInfo = session.autoSeller.GetByIndex('Awakening', 0);		
+	local price = cnt * groupInfo.price;
+	priceValueText:SetText(price);
+end
+
+function ITEMDUNGEON_INIT_TAB(frame, sellerMode)	
+	local sellerTab = GET_CHILD_RECURSIVELY(frame, 'sellerTab');	
+	sellerTab:SelectTab(0);
+	if sellerMode == 1 then
+		sellerTab:ShowWindow(0);
+	else
+		if frame:GetUserIValue('SELLER_MODE') ~= 1 then
+			sellerTab:ShowWindow(0);
+		else
+			sellerTab:ShowWindow(1);	
+		end
+	end
+end
+
+function ITEMDUNGEON_UPDATE_SELLER(parent, ctrl)
+	local frame = parent:GetTopParentFrame();
+	local buyBtn = GET_CHILD_RECURSIVELY(frame,'buyBtn')
+	buyBtn:ShowWindow(1)
+
+	local closeShopBtn = GET_CHILD_RECURSIVELY(frame,'closeShopBtn')
+	closeShopBtn:SetGravity(ui.RIGHT,ui.CENTER_VERT)
+end
+
+function ITEMDUNGEON_UPDATE_HISTORY(parent, ctrl)
+	local frame = parent:GetTopParentFrame();
+	local historyStrBox = GET_CHILD_RECURSIVELY(frame, 'historyListBox');
+	historyStrBox:RemoveAllChild();
+
+	if ctrl ~= nil then
+		local buyBtn = GET_CHILD_RECURSIVELY(frame,'buyBtn')
+		buyBtn:ShowWindow(0)
+		local closeShopBtn = GET_CHILD_RECURSIVELY(frame,'closeShopBtn')
+		closeShopBtn:SetGravity(ui.CENTER_HORZ,ui.CENTER_VERT)
+	end
+
+	local cnt = session.autoSeller.GetHistoryCount('Awakening');	
+	for i = cnt -1 , 0, -1 do
+		local info = session.autoSeller.GetHistoryByIndex('Awakening', i);
+		local ctrlSet = historyStrBox:CreateControlSet("squire_rpair_history", "CTRLSET_" .. i,  ui.CENTER_HORZ, ui.TOP, 0, 0, 0, 0);
+
+		local sList = StringSplit(info:GetHistoryStr(), "#");
+		local userName = sList[1];
+		local UserName = GET_CHILD(ctrlSet, "UserName");
+        local itemCls = GetClass('Item', sList[2]);        
+		UserName:SetTextByKey("value", ScpArgMsg('{USER}Awaken{ITEM}', 'USER', userName, 'ITEM', itemCls.Name));        
+        ctrlSet:Resize(ctrlSet:GetWidth(), UserName:GetHeight());
+
+        local itemName = ctrlSet:GetChild('itemName');
+        local price = ctrlSet:GetChild('price');
+        itemName:ShowWindow(0);
+		price:ShowWindow(0);	
+	end
+
+	GBOX_AUTO_ALIGN(historyStrBox, 20, 10, 10, true, false);
+end
+
+function ITEMDUNGEON_CLEAR_TARGET(parent, ctrl)
+	local frame = parent:GetTopParentFrame();
+	local targetSlot = GET_CHILD_RECURSIVELY(frame, "targetSlot");
+	CLEAR_SLOT_ITEM_INFO(targetSlot);
+
+	local slotName = GET_CHILD_RECURSIVELY(frame, "slotName");
+	slotName:SetTextByKey("value", "");
+end
+
+function ITEMDUNGEON_INIT_USER_PRICE(frame)	
+	PROCESS_USER_SHOP_PRICE('Alchemist_ItemAwakening', GET_CHILD_RECURSIVELY(frame, 'moneyInput'));
+end
+
+function ITEMDUNGEON_INV_RBTN(itemobj, invslot, invguid)
+	local frame = ui.GetFrame("itemdungeon");
+	if frame == nil then
+		return
+	end
+
+	if invslot:IsSelected() == 1 then
+		ITEMDUNGEON_CLEARUI(frame)
+	else
+		local invItem, isEquip = GET_PC_ITEM_BY_GUID(invguid);	
+		if nil == invItem then
+			return;
+		end
+	
+		if nil ~= isEquip then
+			ui.SysMsg(ClMsg("CannotDropItem"));
+			return;
+		end
+
 		if true == invItem.isLockState then
 			ui.SysMsg(ClMsg("MaterialItemIsLock"));
 			return;
 		end
-
-		local stoneSlot = GET_CHILD(frame, "stoneSlot");
-		stonItem = GET_SLOT_ITEM(stoneSlot);
-		if stonItem ~= nil and true == stonItem.isLockState then
-		ui.SysMsg(ClMsg("MaterialItemIsLock"));
-		end
-	else
-		invItem = session.hardSkill.GetReciveItem();
-	end
-
-	if invItem == nil then
-		return;
-	end
-
-	if "None" == name then
-	session.ResetItemList();
-	session.AddItemID(invItem:GetIESID());
-		if nil ~= stonItem then
-			session.AddItemID(stonItem:GetIESID());
-		end
-	local resultlist = session.GetItemIDList();
-	item.DialogTransaction("ITEM_AWAKENING_TX", resultlist);
-	else
-		local iesID = session.hardSkill.GetReciveItemGUID();
-		local obj = GetIES(invItem);
-		if nil == iesID or nil == obj then
-			return;
-		end
-
-		local stoneGUID = session.hardSkill.GetReciveStoneItemGUID();
+	
+		local itemObj = GetIES(invItem:GetObject());
+		local targetSlot = GET_CHILD_RECURSIVELY(frame, "targetSlot");
+		if IS_EQUIP(itemObj) == true then
+			-- Ïû•ÎπÑ Îì±Î°ù		
+			if IS_ENABLE_GIVE_HIDDEN_PROP_ITEM(itemObj) == false then
+				ui.SysMsg(ClMsg('ItemIsNotEnchantable1'));
+				return;
+			end
 		
-		local needItem, needCount = GET_ITEM_AWAKENING_PRICE(obj);
-		local nedItem = session.GetInvItemByName(needItem);
-		if nedItem == nil then
-			ui.SysMsg(ClMsg("NotEnoughRecipe"));
-			Alchemist.RequestItemDungeon(name);
-			return;
-		end
-		if  nedItem.count < needCount then
-			ui.SysMsg(ClMsg("NotEnoughRecipe"));
-			Alchemist.RequestItemDungeon(name);
-			return;
-		end
+			SET_SLOT_ITEM(targetSlot, invItem, invItem.count);	
+			UPDATE_ITEMDUNGEON_CURRENT_ITEM(frame);	
+		
+		elseif IS_ITEM_AWAKENING_STONE(itemObj) == true then
+			if GET_SLOT_ITEM(targetSlot) == nil then
+				return;
+			end
 
-		Alchemist.ExcuteItemDungeon(name, iesID, stoneGUID);
+			-- Í∞ÅÏÑ±ÏÑù
+			if itemObj.ItemLifeTimeOver > 0 then
+				ui.SysMsg(ScpArgMsg('LessThanItemLifeTime'));
+				return;
+			end
+
+			local stoneSlot = GET_CHILD_RECURSIVELY(frame, "stoneSlot");
+			local icon = imcSlot:SetItemInfo(stoneSlot, invItem, invItem.count);
+			icon:SetColorTone('FFFFFFFF');
+				
+			local stoneCountText = GET_CHILD_RECURSIVELY(frame, 'stoneCountText');
+			stoneCountText:SetColorTone('FFFFFFFF');
+			stoneCountText:SetTextByKey('cur', '1');
+		
+			local stoneInfoText = GET_CHILD_RECURSIVELY(frame, 'stoneInfoText');
+			stoneInfoText:ShowWindow(0);
+		
+			local stoneNameText = GET_CHILD_RECURSIVELY(frame, 'stoneNameText');
+			stoneNameText:SetTextByKey('name', itemObj.Name);
+			stoneNameText:ShowWindow(1);
+
+		elseif itemObj.StringArg == "AbrasiveStone" then
+			if GET_SLOT_ITEM(targetSlot) == nil then
+				return;
+			end
+			
+			-- Í∞ÅÏÑ± Ïó∞ÎßàÏû¨
+			local abrasiveslot = GET_CHILD_RECURSIVELY(frame, "abrasiveSlot");
+
+			local icon = imcSlot:SetItemInfo(abrasiveslot, invItem, invItem.count);
+			icon:SetColorTone('FFFFFFFF');
+		
+			local abrasiveCountText = GET_CHILD_RECURSIVELY(frame, 'abrasiveCountText');
+			abrasiveCountText:SetColorTone('FFFFFFFF');
+			abrasiveCountText:SetTextByKey('cur', '1');
+		
+			local abrasiveInfoText = GET_CHILD_RECURSIVELY(frame, 'abrasiveInfoText');
+			abrasiveInfoText:ShowWindow(0);
+		
+			local abrasiveNameText = GET_CHILD_RECURSIVELY(frame, 'abrasiveNameText');
+			abrasiveNameText:SetTextByKey('name', itemObj.Name);
+			abrasiveNameText:ShowWindow(1);
+
+		else
+			ui.SysMsg(ClMsg("WrongDropItem"));
+		end	
 	end
 
-	frame:SetUserValue("Name" , "None");
-	frame:SetUserValue("OPEN_UI", 0);
-
-	ITEMDUNGEON_CLEARUI(frame);
-	session.hardSkill.CloseItemDungeon();
-	frame:ShowWindow(0);
 end
-

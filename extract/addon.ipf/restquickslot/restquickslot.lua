@@ -12,16 +12,16 @@ end
 
 function RESTQUICKSLOT_UPDATE_HOTKEYNAME(frame)
 	for i = 0, MAX_RESTSLOT_CNT-1 do
-		local slot 			= frame:GetChild("slot"..i+1);
+		local slot = frame:GetChild("slot"..i+1);
 		tolua.cast(slot, "ui::CSlot");
-		local slotString 	= 'QuickSlotExecute'..(i+1);
-		local text 			= hotKeyTable.GetHotKeyString(slotString);
-		slot:SetText('{s14}{#f0dcaa}{b}{ol}'..text, 'default', 'left', 'top', 2, 1);
+		local slotString = 'QuickSlotExecute'..(i+1);
+		local text = hotKeyTable.GetHotKeyString(slotString);
+		slot:SetText('{s14}{#f0dcaa}{b}{ol}'..text, 'default', ui.LEFT, ui.TOP, 2, 1);
 	end
 end;
 
 function RESTQUICKSLOT_ON_ITEM_CHANGE(frame)
-	-- ¿ì¼± °Á´Ù ¾÷µ¥ÀÌÆ® ÇÏ´Â°Å·Î
+	-- ï¿½ì¼± ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½Ï´Â°Å·ï¿½
 	if frame:IsVisible() == 1 then
 		ON_RESTQUICKSLOT_OPEN(frame);
 	end
@@ -36,7 +36,7 @@ function ON_RESTQUICKSLOT_OPEN(frame, msg, argStr, argNum)
 		if cls ~= nil then
 			if cls.VisibleScript == "None" or _G[cls.VisibleScript]() == 1 then
 				if scp ~= "None" then
-					local slot 			  = GET_CHILD(frame, "slot"..slotIndex, "ui::CSlot");
+					local slot = GET_CHILD(frame, "slot"..slotIndex, "ui::CSlot");
 					if slot ~= nil then
 						slot:ReleaseBlink();
 						slot:ClearIcon();
@@ -58,6 +58,20 @@ function ON_RESTQUICKSLOT_OPEN(frame, msg, argStr, argNum)
 		local joystickQuickFrame = ui.GetFrame('joystickquickslot')
 		joystickQuickFrame:ShowWindow(0);
 	end
+
+	OPEN_REST_QUICKSLOT(frame);
+end
+
+function OPEN_REST_QUICKSLOT(frame)
+end
+
+function QSLOT_ENABLE_ENCHANT_CRAFT()
+	local abil = session.GetAbilityByName("Enchanter_Bomb")
+	if abil ~= nil then
+		return 1;
+	end
+
+	return 0;
 end
 
 function QSLOT_ENABLE_ARROW_CRAFT()
@@ -69,12 +83,31 @@ function QSLOT_ENABLE_ARROW_CRAFT()
 	return 0;
 end
 
-function QSLOT_ENABLE_DIPELLER_CRAFT()
+function QSLOT_ENABLE_DISPELLER_CRAFT()
 	local abil = session.GetAbilityByName("Pardoner_Dispeller")
 	if abil ~= nil then
 		return 1;
 	end
 
+	return 0;
+end
+
+function QSLOT_ENABLE_OMAMORI_CRAFT()
+	local abil = session.GetAbilityByName("Omamori")
+	if abil ~= nil then
+		return 1;
+	end
+
+	return 0;
+end
+
+function QSLOT_ENABLE_FLUTING_KEYBOARD()
+	if FLUTING_ENABLED ~= 1 then
+		return 0;
+	end
+	if IS_EXIST_JOB_IN_HISTORY(3012) == true then
+		return 1;
+	end
 	return 0;
 end
 
@@ -91,6 +124,10 @@ end
 
 function ON_RESTQUICKSLOT_CLOSE(frame, msg, argStr, argNum)
 
+	local flutFrame = ui.GetFrame("fluting_keyboard");
+	if flutFrame:IsVisible() == 1 then
+		flutFrame:ShowWindow(0);
+	end
 	frame:ShowWindow(0);
 
 	if IsJoyStickMode() == 0 then
@@ -106,7 +143,6 @@ end
 
 function SET_REST_QUICK_SLOT(slot, cls)
 
-	slot:SetEventScript(ui.LBUTTONUP, cls.Script);
 	slot:SetUserValue("REST_TYPE", cls.ClassID);
 	
 	local icon 	= CreateIcon(slot);
@@ -133,7 +169,7 @@ function SET_REST_QUICK_SLOT(slot, cls)
 			slot:GetIcon():SetGrayStyle(1);
 		end
 
-		slot:GetIcon():SetText('{s18}{ol}{b}'.. itemCount, 'count', 'right', 'bottom', -2, 1);
+		slot:GetIcon():SetText('{s18}{ol}{b}'.. itemCount, 'count', ui.RIGHT, ui.BOTTOM, -2, 1);
 	end
 
 	local enableScp = cls.EnableScript;
@@ -144,18 +180,38 @@ function SET_REST_QUICK_SLOT(slot, cls)
 			icon:SetGrayStyle(1);
 		end
 	end
+	if QSLOT_ENABLE_INDUN(cls) == false then
+		slot:GetIcon():SetGrayStyle(1);
+		
+	else
+		slot:SetEventScript(ui.LBUTTONUP, cls.Script);
+	end
+	
+
 end
 
 function REST_SLOT_USE(frame, slotIndex)
 
 	if GetCraftState() == 1 then
-		ui.SysMsg(ClMsg("prosessItemCraft"));
+		ui.SysMsg(ClMsg("CHATHEDRAL53_MQ03_ITEM02"));
 		return;
 	end
 
 	local slot = GET_CHILD(frame, "slot"..slotIndex+1, "ui::CSlot");	
+	if slot == nil then
+		return;
+	end
 	local type = slot:GetUserValue("REST_TYPE");
 	local cls = GetClassByType("restquickslotinfo", type);	
+	
+	if QSLOT_ENABLE_INDUN(cls) == false then
+		return;
+	end
+
+	if cls == nil then
+		return;
+	end
+
 	local scp = _G[cls.Script];
 	if scp == nil then
 		print(cls.Script);
@@ -164,26 +220,59 @@ function REST_SLOT_USE(frame, slotIndex)
 	scp();
 end
 
-function REQUEST_JOURNAL_UPDATE()
-	
-	control.CustomCommand("REQUEST_JOURNAL_RANK_UPDATE", 0, 0);
-end
-
 function REQUEST_OPEN_JORUNAL_CRAFT()
+    if GetCraftState() == 1 then
+        ui.SysMsg(ClMsg('CHATHEDRAL53_MQ03_ITEM02'));
+        return;
+    end
+
 	local frame = ui.GetFrame("itemcraft");
 	if frame ~= nil then
-		SET_CRAFT_IDSPACE(frame, "Recipe");
-		SET_ITEM_CRAFT_UINAME("itemcraft");
-		ui.OpenFrame("itemcraft");
-		CRAFT_OPEN(frame);
+		if frame:IsVisible() == 1 then
+			ui.CloseFrame("itemcraft");
+		else			
+			SET_CRAFT_IDSPACE(frame, "Recipe");
+			SET_ITEM_CRAFT_UINAME("itemcraft");
+			ui.OpenFrame("itemcraft");
+			CRAFT_OPEN(frame);
+		end
+		
 	end
 end
 
+function OPEN_ENCHENCT_CRAFT()
+    if GetCraftState() == 1 then
+        ui.SysMsg(ClMsg('CHATHEDRAL53_MQ03_ITEM02'));
+        return;
+    end
+
+	local abil = session.GetAbilityByName("Enchanter_Bomb")
+	if nil == abil then
+		return;
+	end
+
+	local obj = GetIES(abil:GetObject());
+	local frame = ui.GetFrame("itemcraft_fletching");
+	local title = frame:GetChild("title");
+	title:SetTextByKey("value",  obj.Name);
+	SET_ITEM_CRAFT_UINAME("itemcraft_fletching");
+	SET_CRAFT_IDSPACE(frame, "Recipe_ItemCraft", obj.ClassName, obj.Level);
+	CREATE_CRAFT_ARTICLE(frame);
+	ui.ToggleFrame("itemcraft_fletching");
+end
+
 function OPEN_ARROW_CRAFT()
+    if GetCraftState() == 1 then
+        ui.SysMsg(ClMsg('CHATHEDRAL53_MQ03_ITEM02'));
+        return;
+    end
+
 	local abil = session.GetAbilityByName("Fletching")
 	if abil ~= nil then
 		local obj = GetIES(abil:GetObject());
 		local frame = ui.GetFrame("itemcraft_fletching");
+		local title = frame:GetChild("title");
+		title:SetTextByKey("value",  obj.Name);
 		SET_ITEM_CRAFT_UINAME("itemcraft_fletching");
 		SET_CRAFT_IDSPACE(frame, "Recipe_ItemCraft", obj.ClassName, obj.Level);
 		CREATE_CRAFT_ARTICLE(frame);
@@ -192,15 +281,62 @@ function OPEN_ARROW_CRAFT()
 
 end
 
-function OPEN_DIPELLER_CRAFT()
+function OPEN_OMAMORI_CRAFT()
+    if GetCraftState() == 1 then
+        ui.SysMsg(ClMsg('CHATHEDRAL53_MQ03_ITEM02'));
+        return;
+    end
+
+	local abil = session.GetAbilityByName("Omamori")
+	if nil == abil then
+		return;
+	end
+	
+	local obj = GetIES(abil:GetObject());
+	local frame = ui.GetFrame("itemcraft_fletching");
+	local title = frame:GetChild("title");
+	title:SetTextByKey("value",  obj.Name);
+	SET_ITEM_CRAFT_UINAME("itemcraft_alchemist");
+	SET_CRAFT_IDSPACE(frame, "Recipe_ItemCraft", obj.ClassName, obj.Level);
+	CREATE_CRAFT_ARTICLE(frame);
+	ui.ToggleFrame("itemcraft_fletching");
+	
+end
+
+function OPEN_FLUTING_KEYBOARD()
+    if GetCraftState() == 1 then
+        ui.SysMsg(ClMsg('CHATHEDRAL53_MQ03_ITEM02'));
+        return;
+	end
+	
+	if FLUTING_ENABLED ~= 1 then
+		return;
+	end
+
+	if IS_EXIST_JOB_IN_HISTORY(3012) ~= true then
+		return;
+	end
+	
+	local frame = ui.GetFrame("fluting_keyboard");
+	ON_FLUTING_KEYBOARD_OPEN(frame);
+end
+
+function OPEN_DISPELLER_CRAFT()
+    if GetCraftState() == 1 then
+        ui.SysMsg(ClMsg('CHATHEDRAL53_MQ03_ITEM02'));
+        return;
+    end
+
 	local abil = session.GetAbilityByName("Pardoner_Dispeller")
 	if abil ~= nil then
 		local obj = GetIES(abil:GetObject());
-		local frame = ui.GetFrame("itemcraft_alchemist");
-		SET_ITEM_CRAFT_UINAME(frame, "itemcraft_alchemist");
-		SET_CRAFT_IDSPACE("Recipe_ItemCraft", obj.ClassName, obj.Level);
+		local frame = ui.GetFrame("itemcraft_fletching");
+		local title = frame:GetChild("title");
+		title:SetTextByKey("value",  obj.Name);
+		SET_ITEM_CRAFT_UINAME("itemcraft_alchemist");
+		SET_CRAFT_IDSPACE(frame, "Recipe_ItemCraft", obj.ClassName, obj.Level);
 		CREATE_CRAFT_ARTICLE(frame);
-		ui.ToggleFrame("itemcraft_alchemist");
+		ui.ToggleFrame("itemcraft_fletching");
 		
 	end
 
@@ -218,23 +354,39 @@ function CHECK_CAMPFIRE_ENABLE(x, y, z)
 end
 
 function REQUEST_CAMPFIRE()
-local camfireitem = session.GetInvItemByName('misc_campfireKit');
+    if GetCraftState() == 1 then
+        ui.SysMsg(ClMsg('CHATHEDRAL53_MQ03_ITEM02'));
+        return;
+    end
+
+    local camfireitem = session.GetInvItemByName('misc_campfireKit');
 	if camfireitem == nil then
 		ui.AlarmMsg("NotCampfireKit");
 	return
 	end
-
-item.CellSelect(30, "F_sys_select_ground_blue", "EXEC_CAMPFIRE", "CHECK_CAMPFIRE_ENABLE", "WhereToMakeCampFire?", "{@st64}");
+	
+	item.CellSelect(30, "F_sys_select_ground_blue", "EXEC_CAMPFIRE", "CHECK_CAMPFIRE_ENABLE", "WhereToMakeCampFire?", "{@st64}", "F_sys_select_gorund_red"); 
 end
 
 function CLOSE_REST_QUICKSLOT(frame)
-	item.CellSelect(0, "F_sys_select_ground_blue", "EXEC_CAMPFIRE", "CHECK_CAMPFIRE_ENABLE", "WhereToMakeCampFire?", "{@st64}");
+	item.CellSelect(0, "F_sys_select_ground_blue", "EXEC_CAMPFIRE", "CHECK_CAMPFIRE_ENABLE", "WhereToMakeCampFire?", "{@st64}", "None");
 end
 
 function EXEC_CAMPFIRE(x, y, z)
 	control.CustomCommand("PUT_CAMPFIRE", x, z);
 end
 
+
+function QSLOT_VISIBLE_ENCHNTE_CRAFT()
+	local pc = GetMyPCObject();
+	local pcjobinfo = GetClass('Job', pc.JobName)
+	local pcCtrlType = pcjobinfo.CtrlType
+	if pcCtrlType == "Scout" then
+		return 1;
+	end
+
+	return 0;
+end
 
 function QSLOT_VISIBLE_DISPELLER_CRAFT()
 	local pc = GetMyPCObject();
@@ -247,25 +399,34 @@ function QSLOT_VISIBLE_DISPELLER_CRAFT()
 	return 0;
 end
 
-function QSLOT_ENABLE_DISPELLER_CRAFT()
-	local abil = session.GetAbilityByName("Pardoner_Dispeller")
-	if abil ~= nil then
+function QSLOT_VISIBLE_FLUTING_KEYBOARD()
+	if FLUTING_ENABLED ~= 1 then
+		return 0;
+	end
+	if IS_EXIST_JOB_IN_HISTORY(3012) == true then
 		return 1;
 	end
-
 	return 0;
 end
 
-function OPEN_DISPELLER_CRAFT()
-	local abil = session.GetAbilityByName("Pardoner_Dispeller")
-	if abil ~= nil then
-		local obj = GetIES(abil:GetObject());
-		local frame = ui.GetFrame("itemcraft_alchemist");
-		SET_ITEM_CRAFT_UINAME("itemcraft_alchemist");
-		SET_CRAFT_IDSPACE(frame, "Recipe_ItemCraft", obj.ClassName, obj.Level);
-		CREATE_CRAFT_ARTICLE(frame);
-		ui.ToggleFrame("itemcraft_alchemist");
-		
-	end
+function QSLOT_ENABLE_INDUN(cls)
+	if  session.world.IsIntegrateServer() == true or
+		session.world.IsIntegrateIndunServer() == true or
+	    session.IsMissionMap() == true or 
+		session.world.IsDungeon() == true then    
+	    if cls.IndunEnabled == "true" then
+			return true;
+		else
+			return false;
+		end
+    end
+	return true;
+end
 
+function QSLOT_VISIBLE_CRAFT_SPELL_BOOK()
+	local runecasterCls = GetClass('Job', 'Char2_17');
+	if IS_HAD_JOB(runecasterCls.ClassID) == true then
+		return 1;
+	end
+	return 0;
 end

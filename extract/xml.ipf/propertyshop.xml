@@ -1,12 +1,101 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by IMC (IMCGames Co., Ltd) -->
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by imc (imc) -->
 <PropertyShop>
-  <Shop Name="PVPShop" PointScript="GET_PVP_POINT">
-    <Item Script="PVP_CARD" Name="expCard1" Count="1" Price="50" DailyBuyLimit="1"/>
-  <Item Script="None" Name="egg_007" Count="1" Price="20000" DailyBuyLimit="1"/>
+	<Shop Name="PVPShop" PointScript="GET_PVP_POINT">
+		<Item Script="None" Name="egg_007" Count="1" Price="18000" DailyBuyLimit="1"/>
+		<Item Script="None" Name="NECK05_005" Count="1" Price="4320" DailyBuyLimit="1"/>
+		<Item Script="None" Name="BRC05_005" Count="1" Price="2880" DailyBuyLimit="1"/>
+		<Item Script="None" Name="NECK05_007" Count="1" Price="4320" DailyBuyLimit="1"/>
+		<Item Script="None" Name="BRC05_007" Count="1" Price="2880" DailyBuyLimit="1"/>
+		<Item Script="None" Name="NECK05_006" Count="1" Price="4320" DailyBuyLimit="1"/>
+		<Item Script="None" Name="BRC05_006" Count="1" Price="2880" DailyBuyLimit="1"/>
 		<Item Script="None" Name="Hat_628134" Count="1" Price="3500" DailyBuyLimit="1"/>
 		<Item Script="None" Name="Hat_628135" Count="1" Price="3500" DailyBuyLimit="1"/>
-		<Item Script="None" Name="misc_gemExpStone02" Count="1" Price="180" DailyBuyLimit="1"/>
-		<Item Script="None" Name="Drug_PvP_MSPD3" Count="1" Price="60" DailyBuyLimit="1"/>
+		<Item Script="None" Name="Hat_628025" Count="1" Price="3500" DailyBuyLimit="1"/>
+		<Item Script="None" Name="Hat_628092" Count="1" Price="3500" DailyBuyLimit="1"/>
+		<Item Script="None" Name="Hat_628111" Count="1" Price="3500" DailyBuyLimit="1"/>
+		<Item Script="None" Name="Hat_628119" Count="1" Price="3500" DailyBuyLimit="1"/>
+		<Item Script="None" Name="Hat_628086" Count="1" Price="3500" DailyBuyLimit="1"/>
+		<Item Script="None" Name="Hat_628019" Count="1" Price="3500" DailyBuyLimit="1"/>
+		<Item Script="None" Name="Hat_628071" Count="1" Price="3500" DailyBuyLimit="1"/>
+		<Item Script="None" Name="GIMMICK_Drug_PMATK2" Count="5" Price="80" DailyBuyLimit="3"/>
+		<Item Script="None" Name="GIMMICK_Drug_Restore01" Count="5" Price="80" DailyBuyLimit="3"/>
+		<Item Script="None" Name="GIMMICK_Drug_PMDEF2" Count="5" Price="80" DailyBuyLimit="3"/>
+		<Item Script="None" Name="misc_gemExpStone_randomQuest5" Count="1" Price="1200" DailyBuyLimit="1"/>
+		<Item Script="None" Name="Uphille_Power_Potion1" Count="1" Price="20" DailyBuyLimit="0"/>
+	</Shop>
+	<Shop Name="MINEShop" PointScript="GET_PVP_MINE_POINT">
+		<Item Script="None" Name="Point_Stone_100" Count="1" Price="200" DailyBuyLimit="0"/>
+		<Item Script="None" Name="Premium_item_transcendence_Stone" Count="1" Price="2000" DailyBuyLimit="1"/>
+		<Item Script="None" Name="Drug_Event_Looting_Potion" Count="1" Price="100" DailyBuyLimit="0"/>
+		<Item Script="None" Name="Potion_Demon_Low_DMG_UP_Mine" Count="1" Price="550" DailyBuyLimit="0"/>
+		<Item Script="None" Name="Potion_MIX_Low_DMG_UP_Mine" Count="1" Price="550" DailyBuyLimit="0"/>
+		<Item Script="None" Name="Potion_Bug_Low_DMG_UP_Mine" Count="1" Price="550" DailyBuyLimit="0"/>
+		<Item Script="None" Name="Potion_Plant_Low_DMG_UP_Mine" Count="1" Price="550" DailyBuyLimit="0"/>
+		<Item Script="None" Name="Potion_Wild_Low_DMG_UP_Mine" Count="1" Price="550" DailyBuyLimit="0"/>
+		<Item Script="None" Name="Potion_Demon_Low_DMG_DOWN_Mine" Count="1" Price="300" DailyBuyLimit="0"/>
+		<Item Script="None" Name="Potion_MIX_Low_DMG_DOWN_Mine" Count="1" Price="300" DailyBuyLimit="0"/>
+		<Item Script="None" Name="Potion_Bug_Low_DMG_DOWN_Mine" Count="1" Price="300" DailyBuyLimit="0"/>
+		<Item Script="None" Name="Potion_Plant_Low_DMG_DOWN_Mine" Count="1" Price="300" DailyBuyLimit="0"/>
+		<Item Script="None" Name="Potion_Wild_Low_DMG_DOWN_Mine" Count="1" Price="300" DailyBuyLimit="0"/>
+	</Shop>
+	<Shop Name="PvpMineBattleShop" PointScript="GET_PVP_BATTLE_POINT">
+		<Item Script="None" Name="PVP_SWD05_103" Count="1" Price="1" DailyBuyLimit="1"/>
+		<Item Script="None" Name="PVP_TSW05_103" Count="1" Price="1" DailyBuyLimit="1"/>
+		<Item Script="None" Name="PVP_STF05_103" Count="1" Price="1" DailyBuyLimit="1"/>
+		<Item Script="None" Name="PVP_TBW05_103" Count="1" Price="1" DailyBuyLimit="1"/>
+		<Item Script="None" Name="PVP_BOW05_103" Count="1" Price="1" DailyBuyLimit="1"/>
+		<Item Script="None" Name="PVP_MAC05_103" Count="1" Price="1" DailyBuyLimit="1"/>
+		<Item Script="None" Name="PVP_TMAC05_105" Count="1" Price="1" DailyBuyLimit="1"/>
+		<Item Script="None" Name="PVP_SPR05_103" Count="1" Price="1" DailyBuyLimit="1"/>
+		<Item Script="None" Name="PVP_TSP05_103" Count="1" Price="1" DailyBuyLimit="1"/>
+		<Item Script="None" Name="PVP_TSF05_103" Count="1" Price="1" DailyBuyLimit="1"/>
+		<Item Script="None" Name="PVP_RAP05_103" Count="1" Price="1" DailyBuyLimit="1"/>
+		<Item Script="None" Name="PVP_CAN05_105" Count="1" Price="1" DailyBuyLimit="1"/>
+		<Item Script="None" Name="PVP_MUS05_103" Count="1" Price="1" DailyBuyLimit="1"/>
+		<Item Script="None" Name="PVP_DAG05_103" Count="1" Price="1" DailyBuyLimit="1"/>
+		<Item Script="None" Name="PVP_PST05_103" Count="1" Price="1" DailyBuyLimit="1"/>
+		<Item Script="None" Name="PVP_SHD05_103" Count="1" Price="1" DailyBuyLimit="1"/>
+		<Item Script="None" Name="PVP_HAND05_107" Count="1" Price="1" DailyBuyLimit="1"/>
+		<Item Script="None" Name="PVP_FOOT05_107" Count="1" Price="1" DailyBuyLimit="1"/>
+		<Item Script="None" Name="PVP_LEG05_107" Count="1" Price="1" DailyBuyLimit="1"/>
+		<Item Script="None" Name="PVP_TOP05_107" Count="1" Price="1" DailyBuyLimit="1"/>
+		<Item Script="None" Name="PVP_HAND05_108" Count="1" Price="1" DailyBuyLimit="1"/>
+		<Item Script="None" Name="PVP_FOOT05_108" Count="1" Price="1" DailyBuyLimit="1"/>
+		<Item Script="None" Name="PVP_LEG05_108" Count="1" Price="1" DailyBuyLimit="1"/>
+		<Item Script="None" Name="PVP_TOP05_108" Count="1" Price="1" DailyBuyLimit="1"/>
+		<Item Script="None" Name="PVP_HAND05_109" Count="1" Price="1" DailyBuyLimit="1"/>
+		<Item Script="None" Name="PVP_FOOT05_109" Count="1" Price="1" DailyBuyLimit="1"/>
+		<Item Script="None" Name="PVP_LEG05_109" Count="1" Price="1" DailyBuyLimit="1"/>
+		<Item Script="None" Name="PVP_TOP05_109" Count="1" Price="1" DailyBuyLimit="1"/>
+		<Item Script="None" Name="PVP_NECK04_115" Count="1" Price="1" DailyBuyLimit="1"/>
+		<Item Script="None" Name="PVP_NECK04_116" Count="1" Price="1" DailyBuyLimit="1"/>
+		<Item Script="None" Name="PVP_NECK04_117" Count="1" Price="1" DailyBuyLimit="1"/>
+		<Item Script="None" Name="PVP_NECK04_118" Count="1" Price="1" DailyBuyLimit="1"/>
+		<Item Script="None" Name="PVP_NECK04_119" Count="1" Price="1" DailyBuyLimit="1"/>
+		<Item Script="None" Name="PVP_BRC04_115" Count="2" Price="1" DailyBuyLimit="1"/>
+		<Item Script="None" Name="PVP_BRC04_116" Count="2" Price="1" DailyBuyLimit="1"/>
+		<Item Script="None" Name="PVP_BRC04_117" Count="2" Price="1" DailyBuyLimit="1"/>
+		<Item Script="None" Name="PVP_BRC04_118" Count="2" Price="1" DailyBuyLimit="1"/>
+		<Item Script="None" Name="PVP_BRC04_119" Count="2" Price="1" DailyBuyLimit="1"/>
+		<Item Script="None" Name="PVP_TRK05_102" Count="1" Price="1" DailyBuyLimit="1"/>
+	</Shop>
+	<Shop Name="GUILD_CONTRIBUTION_SHOP" PointScript="GET_GUILD_CONTRIBUTION_POINT">
+		<Item Script="None" Name="BRC99_114_guildshop_7d" Count="1" Price="1000" DailyBuyLimit="0"/>
+		<Item Script="None" Name="NECK99_102_guildshop_7d" Count="1" Price="4000" DailyBuyLimit="0"/>
+		<Item Script="None" Name="Ghaca_Guild_Contribution_Shop_MISC" Count="1" Price="20" DailyBuyLimit="0"/>
+	</Shop>
+	<Shop Name="GUILD_MILEAGE_SHOP" PointScript="GET_GUILD_MILEAGE_POINT">
+		<Item Script="None" Name="GuildQuestEnterCount_1add" Count="1" Price="5000" DailyBuyLimit="0"/>
+	</Shop>
+	<Shop Name="CONTENTS_TOTAL_SHOP" PointScript="GET_CONTENTS_TOTAL_POINT">
+		<Item Script="None" Name="Gesture_Wave" Count="1" Price="3000" DailyBuyLimit="0" AccountNeedProperty="ContentsTotalShop_1911_1"/>
+		<Item Script="None" Name="LENS01_015" Count="1" Price="1500" DailyBuyLimit="0" AccountNeedProperty="ContentsTotalShop_1911_2"/>
+		<Item Script="None" Name="LENS01_016" Count="1" Price="1500" DailyBuyLimit="0" AccountNeedProperty="ContentsTotalShop_1911_3"/>
+		<Item Script="None" Name="Chat_Balloon_RollingDoor_Pink_90d" Count="1" Price="1200" DailyBuyLimit="0" AccountNeedProperty="ContentsTotalShop_1911_4"/>
+		<Item Script="None" Name="Chat_Balloon_RollingDoor_BlueSky_90d" Count="1" Price="1200" DailyBuyLimit="0" AccountNeedProperty="ContentsTotalShop_1911_5"/>
+		<Item Script="None" Name="ABAND01_147" Count="1" Price="1000" DailyBuyLimit="0" AccountNeedProperty="ContentsTotalShop_1911_6"/>
+		<Item Script="None" Name="motion_medeina_emotion01" Count="1" Price="700" DailyBuyLimit="0" AccountNeedProperty="ContentsTotalShop_1911_7"/>
+		<Item Script="None" Name="motion_medeina_emotion02" Count="1" Price="700" DailyBuyLimit="0" AccountNeedProperty="ContentsTotalShop_1911_8"/>
 	</Shop>
 </PropertyShop>
