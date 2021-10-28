@@ -21,11 +21,9 @@ end
 
 
 function CHANGEJOB_OPEN(frame)
-
 	CHANGEJOB_SIZE_UPDATE(frame)
 	UPDATE_CHANGEJOB(frame);
 	frame:Invalidate();
-
 end
 
 
@@ -74,7 +72,6 @@ function CHANGEJOB_CHECK_QUEST_SCP_CONDITION_IGNORE_SELECTEDJOB(questname)
 	local req_script_check = 0
 	local pc = GetMyPCObject();
 
-	-- 퀘스트 함수 채크  
     if questIES.Check_Script == 0 then
 		return 1
     elseif questIES.Script_Condition == 'AND' then
@@ -149,6 +146,25 @@ function CJ_JOB_PROPERTYQUESTCHECK()
 	return 1
 end
 
+function CJ_JOB_GENDERCHECK(jobid)
+	local jobinfo = GetClassByType('Job', jobid);
+	local jobGender = TryGetProp(jobinfo, 'Gender');
+	local myGender = GETMYPCGENDER();	
+
+	if myGender == nil or jobGender == nil then
+		return 0;
+	end
+	if jobGender == 'Male' then
+		if myGender ~= 1 then
+			return 0;
+		end		
+	elseif jobGender == 'Female' then
+		if myGender ~= 2 then
+			return 0;
+		end
+	end	
+	return 1;
+end
 
 function CJ_UPDATE_RIGHT_INFOMATION(frame, jobid, infotype, nowcircle)	
 
@@ -164,22 +180,18 @@ function CJ_UPDATE_RIGHT_INFOMATION(frame, jobid, infotype, nowcircle)
 	local myIconInfo = info.GetIcon( session.GetMyHandle() );
 	local headIndex = myIconInfo:GetHeadIndex();
 	
-	-- 사진 바꾸기
 	local charpic = GET_CHILD(frame, "class_image", "ui::CPicture");
 	local charimgName = ui.CaptureFullStdImage(jobid, GETMYPCGENDER(), headIndex);
 	charpic:SetImage(charimgName);
 
-	-- 직업명, 서클, 설명
 	local groupbox_infotext = frame:GetChild('groupbox_infotext');
 	
 
-	local jobclassname_richtext = GET_CHILD(groupbox_infotext, "className", "ui::CRichText");
-	--jobclassname_richtext:SetText(jobinfo.Name);
-	jobclassname_richtext:SetTextByKey("param_name", jobinfo.Name);
+	local jobclassname_richtext = GET_CHILD(groupbox_infotext, "className", "ui::CRichText");	
+	jobclassname_richtext:SetTextByKey("param_name", GET_JOB_NAME(jobinfo));
 
 
-	local jobclasscircle_richtext = GET_CHILD(groupbox_infotext, "classCircle", "ui::CRichText");
-	--local jobcircle = session.GetJobGrade(jobid)
+	local jobclasscircle_richtext = GET_CHILD(groupbox_infotext, "classCircle", "ui::CRichText");	
 	local jobcircle = nowcircle
 
 	if jobcircle == 0 then
@@ -189,39 +201,16 @@ function CJ_UPDATE_RIGHT_INFOMATION(frame, jobid, infotype, nowcircle)
 			jobclasscircle_richtext:ShowWindow(0)
 		end
 	elseif jobcircle == 1 then
-		jobclasscircle_richtext:ShowWindow(0) -- 1서클
+		jobclasscircle_richtext:ShowWindow(0) 
 	else
 		jobclasscircle_richtext:ShowWindow(1)
 		jobclasscircle_richtext:SetTextByKey('param_circle',jobcircle);
 	end
 
-	local captionstr = 'Caption'..nowcircle
-	--local captionstr = 'Caption'
-
+	local captionstr = 'Caption'..nowcircle	
 	local jobclasscaption_richtext = GET_CHILD(frame, "classExplain", "ui::CRichText");
 	jobclasscaption_richtext:SetTextByKey("param_explain",jobinfo[captionstr]);
 
-	-- 별점 넣기
-	--[[
-	local ratingstr = jobinfo.Rating
-	ratingstr_arg = {}
-
-	for i = 1, 2 do -- 혹시 별점 항목이 늘어난다면 이 3을 늘릴 것
-		ratingstr_arg[i] = string.sub(ratingstr,2*i-1,2*i-1)
-		ratingstr_arg[i] = ratingstr_arg[i] + 0
-
-		local starrating = ''
-		for i = 1 , ratingstr_arg[i] do
-			starrating = starrating .. ScpArgMsg('StarRating')
-		end
-
-		local ratingtextname = 'classRating'..i
-		local ratingText = frame:GetChild(ratingtextname);
-		
-		ratingText:SetTextByKey("rating", starrating);
-	end]]
-
-	-- 설명 넣기
 	local ratingstr = jobinfo.Rating
 	
 	local ratingText1 = frame:GetChild('classRating1');
@@ -231,7 +220,7 @@ function CJ_UPDATE_RIGHT_INFOMATION(frame, jobid, infotype, nowcircle)
 	ratingText2:SetTextByKey("rating", jobinfo.ControlDifficulty);
 	
 
-	-- 스킬슬롯
+	
 	local skillsGbox = frame:GetChild('groupbox_skills');
 	skillsGbox:RemoveAllChild();
 
@@ -240,9 +229,8 @@ function CJ_UPDATE_RIGHT_INFOMATION(frame, jobid, infotype, nowcircle)
 	for i = 0 , cnt - 1 do
 		local cls = GetClassByIndexFromList(clslist, i);
 
-		local tempstr  = string.sub(cls.ClassName,1,string.len(cls.ClassName)-2)
-	
-		if tempstr == jobinfo.ClassName and cls.UnlockGrade < jobcircle+1 then
+		local checkJobName = jobinfo.ClassName .. '_';
+		if string.find(cls.ClassName, checkJobName) ~= nil and cls.UnlockGrade < jobcircle+1 then
 			jobskills[#jobskills+1] = cls.SkillName
 		end
 	end
@@ -253,7 +241,7 @@ function CJ_UPDATE_RIGHT_INFOMATION(frame, jobid, infotype, nowcircle)
 	local margin_y = 0;
 	local margin_x_per_eachpic = 4;
 	local margin_y_per_eachpic = 5;
-	local skillsPerALine = 5
+	local skillsPerALine = 6
 	for i = 1, #jobskills do
 
 		local skillClass = GetClass("Skill", jobskills[i])
@@ -284,25 +272,48 @@ function CJ_UPDATE_RIGHT_INFOMATION(frame, jobid, infotype, nowcircle)
 
 	end
 	
-	-- 전직 버튼 처리
+	
 	local mbg = frame:GetChild("mbg");
 	local jobchangebutton = GET_CHILD(mbg, "class_select", "ui::CButton");
 	--skillslot:SetOverSound('win_open')
 	local canChangeJob = session.CanChangeJob();
-
+    jobchangebutton:ShowWindow(0);
+    
+    local jobCircleValue = session.GetJobGrade(jobinfo.ClassID);
+    
+    if jobinfo.HiddenJob == "YES" and jobCircleValue <= 0 then
+    	local pcEtc = GetMyEtcObject();
+    	if pcEtc["HiddenJob_"..jobinfo.ClassName] ~= 300 and IS_KOR_TEST_SERVER() == false then
+    	    return
+    	end
+    end
+    local pc = GetMyPCObject();
+    local preFuncName = TryGetProp(jobinfo, 'PreFunction')
+    if preFuncName ~= nil and preFuncName ~= 'None' then
+        local preFunc = _G[preFuncName]
+        if preFunc ~= nil then
+            local result = preFunc(pc)
+            if result == 'NO' then
+                return
+            end
+        end
+    end
 	if canChangeJob == true and CHANGEJOB_CHECK_QUEST_SCP_CONDITION_IGNORE_SELECTEDJOB(jobinfo[stringtest]) == 1 then
 
 		if infotype == CHANGE_JOB_TYPE_HAVE then
 			jobchangebutton:ShowWindow(0);
 		else
 			if CJ_JOB_PROPERTYQUESTCHECK() == 1 then
-				if session.GetPcTotalJobGrade() <= JOB_CHANGE_MAX_RANK then
-					jobchangebutton:SetEventScript(ui.LBUTTONDOWN, 'CJ_CLICK_CHANGEJOBBUTTON')
-					jobchangebutton:SetEventScriptArgNumber(ui.LBUTTONDOWN, jobid);	
-					jobchangebutton:ShowWindow(1);
+				if CJ_JOB_GENDERCHECK(jobid) == 1 then
+					if session.GetPcTotalJobGrade() < JOB_CHANGE_MAX_RANK then
+						jobchangebutton:SetEventScript(ui.LBUTTONDOWN, 'CJ_CLICK_CHANGEJOBBUTTON')
+						jobchangebutton:SetEventScriptArgNumber(ui.LBUTTONDOWN, jobid);	
+						jobchangebutton:ShowWindow(1);
+					else
+						jobchangebutton:ShowWindow(0);						
+					end
 				else
 					jobchangebutton:ShowWindow(0);
-					ui.SysMsg(ScpArgMsg('Auto_aJig_KuHyeonDoeJi_aneun_JeonJig_KweSeuTeuipNiDa.'));
 				end
 			else
 				jobchangebutton:ShowWindow(0);
@@ -324,7 +335,7 @@ function CJ_CLICK_CHANGEJOBBUTTON(frame, slot, argStr, argNum)
 	local nowjobID = GetClass("Job", nowjobName).ClassID;
 	local havepts = GetRemainSkillPts(pc, nowjobID);
 	
-	--if havepts > 0 then -- 전직시 포인트 남아있으면 전직 막는 소스
+	--if havepts > 0 then 
 		--ui.SysMsg(ScpArgMsg('PlzConsumeRemainSkillPts'));
 		--return;
 	--end
@@ -341,7 +352,7 @@ end
 
 function EXEC_CHANGE_JOB()
 
-	control.CustomCommand("CLICK_CHANGEJOB_BUTTON", exechangejobid) -- 서버에서 jobid를 jobChanging에 저장
+	control.CustomCommand("CLICK_CHANGEJOB_BUTTON", exechangejobid) 
 	ui.CloseFrame('changejob')
 
 end
@@ -389,150 +400,157 @@ function UPDATE_CHANGEJOB(frame)
 	
 	for i = 0 , cnt - 1 do
 		local cls = GetClassByIndexFromList(clslist, i);
-
-		local ishave = IS_HAD_JOB(cls.ClassID);
-		local clsRank = cls.Rank;
-
-		local totaljobcount = session.GetPcTotalJobGrade()
-		local stringtest = 'ChangeJobQuest'..totaljobcount
-		local changejobquestname = cls[stringtest]
-		local flag = 1
-
-		
-
-		local jobCircle = session.GetJobGrade(cls.ClassID)
-
-		--시작점에 따라 전직 퀘스트가 달라지는 경우가 있어서 여기서 처리한다
-		local ChangeJobQuestCircleText = "ChangeJobQuestCircle"..jobCircle+1
-		local pc = GetMyPCObject();
-		local sObj = GetSessionObject(pc, 'ssn_klapeda')
-		--시작지점에 따라서 뒤에 ChangeJobQuestCircle_jobCircle+1_1 혹은 _2 컬럼에서 퀘스트 이름을 가져옴
-		if sObj.QSTARTZONETYPE == "StartLine1" then
-			ChangeJobQuestCircleText = ChangeJobQuestCircleText.."_1"	
-		elseif sObj.QSTARTZONETYPE == "StartLine2" then
-			ChangeJobQuestCircleText = ChangeJobQuestCircleText.."_2"
-		end
-		
-		local nowjobID = GetClassByType("Job", cls.ClassID);
-
-
-
-		--[[
-		if changejobquestname ~= 'None' then
-			if CHANGEJOB_CHECK_QUEST_SCP_CONDITION_IGNORE_SELECTEDJOB(changejobquestname) ~= 1 then
-				flag = 0
-			end
-		else
-			flag =0
-		end
-		]]
-		if ishave == 1 then -- 갖고 있다면 랭크 검사 해서 랭크에 맞는 배열에 추가
-
-			local subindex = #hadjobarray + 1
-			hadjobarray[subindex] = {}
-			hadjobarray[subindex][1] = cls.ClassID
-
-			if canChangeJob == true then
-				hadjobarray[subindex][2] = CHANGE_JOB_TYPE_CAN_UPGRADE -- 이미가졌으며 업글 가능한 얘들이라고 마크;
-			else
-				hadjobarray[subindex][2] = CHANGE_JOB_TYPE_HAVE -- 이미가진얘들이라고 마크;
-			end
-
-			hadjobarray[subindex][3] = cls.Name
-			hadjobarray[subindex][4] = session.GetChangeJobHotRank(cls.ClassName);
-			
-			-- 예외처리 3서클로 전직했으면 더이상 전직이 불가능하고, 해당 프로퍼티가 없기 때문에 예외처리를 한다.
-			if jobCircle+1 >= 4 then
-				hadjobarray[subindex][5] = "None"
-			else
-				hadjobarray[subindex][5] = nowjobID[ChangeJobQuestCircleText]
-			end
-
-
-			if pcjobinfo.ClassID == cls.ClassID then
-				pcjobinfotype = hadjobarray[subindex][2]
-			end
-
-		else -- 갖고 있지는 않으나 전직은 가능한 얘들
-		
-			if cls.CtrlType == pcCtrlType then
-				--[[
-				local totaljobcount = session.GetPcTotalJobGrade()
-				local stringtest = 'ChangeJobQuest'..totaljobcount
-				local changejobquestname = cls[stringtest]
-				local flag = 1
-				if changejobquestname ~= 'None' then
-					if CHANGEJOB_CHECK_QUEST_SCP_CONDITION_IGNORE_SELECTEDJOB(changejobquestname) ~= 1 then
-						flag = 0
-					end
-				end
-				]]--
-
-				if clsRank <= session.GetPcTotalJobGrade()+1 then
-				-- 히든 직업 체크는 나중에 여기에 끼워두면 된다
-					if clsRank <= session.GetPcTotalJobGrade() then
-						if cls.HiddenJob == "NO" then 						
-							local subindex = #hadjobarray + 1
-							hadjobarray[subindex] = {}
-							hadjobarray[subindex][1] = cls.ClassID	
-							hadjobarray[subindex][2] = CHANGE_JOB_TYPE_HAVE_NOT -- 새로 출현은 아니나 한번도 안찍은 얘들이라고 마크;	
-							hadjobarray[subindex][3] = cls.Name
-							hadjobarray[subindex][4] = session.GetChangeJobHotRank(cls.ClassName);	
-							hadjobarray[subindex][5] = nowjobID[ChangeJobQuestCircleText]			
-						elseif cls.HiddenJob == "YES" then
-							local pcEtc = GetMyEtcObject();
-							if pcEtc["HiddenJob_"..cls.ClassName] == 300 then
-								local subindex = #hadjobarray + 1
-								hadjobarray[subindex] = {}
-								hadjobarray[subindex][1] = cls.ClassID	
-								hadjobarray[subindex][2] = CHANGE_JOB_TYPE_NEW -- 새로 출현은 아니나 한번도 안찍은 얘들이라고 마크;	
-								hadjobarray[subindex][3] = cls.Name
-								hadjobarray[subindex][4] = session.GetChangeJobHotRank(cls.ClassName);	
-								hadjobarray[subindex][5] = nowjobID[ChangeJobQuestCircleText]	
-							end
-						end
-					elseif cls.HiddenJob == "NO" then
-						if canChangeJob == true then
-							local subindex = #hadjobarray + 1
-							hadjobarray[subindex] = {}
-							hadjobarray[subindex][1] = cls.ClassID
-							hadjobarray[subindex][2] = CHANGE_JOB_TYPE_NEW -- 새로운얘들이라고 마크;	
-							hadjobarray[subindex][3] = cls.Name
-							hadjobarray[subindex][4] = session.GetChangeJobHotRank(cls.ClassName);			
-							hadjobarray[subindex][5] = nowjobID[ChangeJobQuestCircleText]				
-						end
-					--히든 직업 관련 처리 && 랭크와 관계 있는 애임. 랭크와 관계없는 히든 직업이 나온다면 추가 수정해야함
-					elseif cls.HiddenJob == "YES" then
-						if canChangeJob == true then
-							local pcEtc = GetMyEtcObject();
-							if pcEtc["HiddenJob_"..cls.ClassName] == 300 then
-								local subindex = #hadjobarray + 1
-								hadjobarray[subindex] = {}
-								hadjobarray[subindex][1] = cls.ClassID
-								hadjobarray[subindex][2] = CHANGE_JOB_TYPE_NEW -- 새로운얘들이라고 마크;	
-								hadjobarray[subindex][3] = cls.Name
-								hadjobarray[subindex][4] = session.GetChangeJobHotRank(cls.ClassName);		
-								hadjobarray[subindex][5] = nowjobID[ChangeJobQuestCircleText]					
-							end
-						end
-					end
-				end
-			end
-
-
-			if pcjobinfo.ClassID == cls.ClassID then
-				pcjobinfotype = hadjobarray[subindex][2]
-			end
-
-		end
+        local jobCircle = session.GetJobGrade(cls.ClassID)
+		if cls.MaxCircle > jobCircle then
+    		local ishave = IS_HAD_JOB(cls.ClassID);
+    		local clsRank = cls.Rank;
+    
+    		local totaljobcount = session.GetPcTotalJobGrade()
+    		local stringtest = 'ChangeJobQuest'..totaljobcount
+    		local changejobquestname = cls[stringtest]
+    		local flag = 1
+    
+    		local ChangeJobQuestCircleText = "ChangeJobQuestCircle"..jobCircle+1
+    		local pc = GetMyPCObject();
+    		local sObj = GetSessionObject(pc, 'ssn_klapeda')
+    		
+    		if sObj.QSTARTZONETYPE == "StartLine1" then
+    			ChangeJobQuestCircleText = ChangeJobQuestCircleText.."_1"	
+    		elseif sObj.QSTARTZONETYPE == "StartLine2" then
+    			ChangeJobQuestCircleText = ChangeJobQuestCircleText.."_2"
+    		end
+    		
+    		local nowjobID = GetClassByType("Job", cls.ClassID);
+    
+    
+    
+    --		if changejobquestname ~= 'None' then
+    --			if CHANGEJOB_CHECK_QUEST_SCP_CONDITION_IGNORE_SELECTEDJOB(changejobquestname) ~= 1 then
+    --				flag = 0
+    --			end
+    --		else
+    --			flag =0
+    --		end
+    
+    		if ishave == 1 then 
+    
+    			local subindex = #hadjobarray + 1
+    			hadjobarray[subindex] = {}
+    			hadjobarray[subindex][1] = cls.ClassID
+    
+    			if canChangeJob == true then
+    				hadjobarray[subindex][2] = CHANGE_JOB_TYPE_CAN_UPGRADE 
+    			else
+    				hadjobarray[subindex][2] = CHANGE_JOB_TYPE_HAVE 
+    			end
+    
+    			hadjobarray[subindex][3] = cls.Name
+    			hadjobarray[subindex][4] = session.GetChangeJobHotRank(cls.ClassName);
+    			
+    			
+    			if jobCircle+1 >= 4 then
+    				hadjobarray[subindex][5] = "None"
+    			else
+    				hadjobarray[subindex][5] = nowjobID[ChangeJobQuestCircleText]
+    			end
+    
+    
+    			if pcjobinfo.ClassID == cls.ClassID then
+    				pcjobinfotype = hadjobarray[subindex][2]
+    			end
+    
+    		else 
+    
+    			if cls.CtrlType == pcCtrlType then
+    			
+    --			local totaljobcount = session.GetPcTotalJobGrade()
+    --				local stringtest = 'ChangeJobQuest'..totaljobcount
+    --				local changejobquestname = cls[stringtest]
+    --				local flag = 1
+    --				if changejobquestname ~= 'None' then
+    --					if CHANGEJOB_CHECK_QUEST_SCP_CONDITION_IGNORE_SELECTEDJOB(changejobquestname) ~= 1 then
+    --						flag = 0
+    --					end
+    --				end
+    
+    				if clsRank <= session.GetPcTotalJobGrade()+1 then
+    				
+    					if clsRank <= session.GetPcTotalJobGrade() then
+    						if cls.HiddenJob == "NO" then 						
+    						local subindex = #hadjobarray + 1
+    						hadjobarray[subindex] = {}
+    						hadjobarray[subindex][1] = cls.ClassID	
+    						hadjobarray[subindex][2] = CHANGE_JOB_TYPE_HAVE_NOT 
+    						hadjobarray[subindex][3] = cls.Name
+    						hadjobarray[subindex][4] = session.GetChangeJobHotRank(cls.ClassName);						
+    							hadjobarray[subindex][5] = nowjobID[ChangeJobQuestCircleText]	
+    						elseif cls.HiddenJob == "YES" then
+--    							local pcEtc = GetMyEtcObject();
+--    							if pcEtc["HiddenJob_"..cls.ClassName] == 300 or IS_KOR_TEST_SERVER() or IS_KOR_JOB_EXEMPTION_PERIOD(cls.ClassName) == 'YES' then
+--    							    local questIES = GetClass('QuestProgressCheck',nowjobID[ChangeJobQuestCircleText])
+--    							    local req_joblvup = SCR_QUEST_CHECK_MODULE_JOBLVUP(pc, questIES)
+--    							    local req_joblvdown = SCR_QUEST_CHECK_MODULE_JOBLVDOWN(pc, questIES)
+--    						    print('SSSSSSSSSSSSSSSSS',cls.Name,nowjobID[ChangeJobQuestCircleText])
+--    							    if req_joblvup == 'YES' and req_joblvdown == 'YES' then
+--    						    print('HHHHHHHHH',cls.Name)
+        								local subindex = #hadjobarray + 1
+        								hadjobarray[subindex] = {}
+        								hadjobarray[subindex][1] = cls.ClassID	
+        								hadjobarray[subindex][2] = CHANGE_JOB_TYPE_NEW 
+        								hadjobarray[subindex][3] = cls.Name
+        								hadjobarray[subindex][4] = session.GetChangeJobHotRank(cls.ClassName);	
+        								hadjobarray[subindex][5] = nowjobID[ChangeJobQuestCircleText]	
+--        							end
+--    							end
+    						end
+    					elseif cls.HiddenJob == "NO" then
+    						if canChangeJob == true then
+    							local subindex = #hadjobarray + 1
+    							hadjobarray[subindex] = {}
+    							hadjobarray[subindex][1] = cls.ClassID
+    							hadjobarray[subindex][2] = CHANGE_JOB_TYPE_NEW 
+    							hadjobarray[subindex][3] = cls.Name
+    							hadjobarray[subindex][4] = session.GetChangeJobHotRank(cls.ClassName);							
+    							hadjobarray[subindex][5] = nowjobID[ChangeJobQuestCircleText]				
+    						end
+    					
+    					elseif cls.HiddenJob == "YES" then
+    						if canChangeJob == true then
+--    							local pcEtc = GetMyEtcObject();
+--    							if pcEtc["HiddenJob_"..cls.ClassName] == 300 or IS_KOR_TEST_SERVER() or IS_KOR_JOB_EXEMPTION_PERIOD(cls.ClassName) == 'YES'  then
+--    							    local questIES = GetClass('QuestProgressCheck',nowjobID[ChangeJobQuestCircleText])
+--    							    local req_joblvup = SCR_QUEST_CHECK_MODULE_JOBLVUP(pc, questIES)
+--    							    local req_joblvdown = SCR_QUEST_CHECK_MODULE_JOBLVDOWN(pc, questIES)
+--    							    if req_joblvup == 'YES' and req_joblvdown == 'YES' then
+        								local subindex = #hadjobarray + 1
+        								hadjobarray[subindex] = {}
+        								hadjobarray[subindex][1] = cls.ClassID
+        								hadjobarray[subindex][2] = CHANGE_JOB_TYPE_NEW 
+        								hadjobarray[subindex][3] = cls.Name
+        								hadjobarray[subindex][4] = session.GetChangeJobHotRank(cls.ClassName);			
+        								hadjobarray[subindex][5] = nowjobID[ChangeJobQuestCircleText]	
+--        							end
+--    							end
+    						end
+    					end
+    				end
+    			end
+    
+    
+    			if pcjobinfo.ClassID == cls.ClassID then
+    				pcjobinfotype = hadjobarray[subindex][2]
+    			end
+    
+    		end
+    	end
 	end
 
-	-- 전직순위 hot표시
+	
 	local firstHotJobID = 0;
 	local secontHotJobID = 0;
 	local hotCount = 0;
 	for i = 1, 2 do
-		if i == 2 and #hadjobarray < 4 then		-- 1차전직때는 1개, 그이후 2개 표시
+		if i == 2 and #hadjobarray < 4 then		
 			break;
 		end
 
@@ -550,9 +568,14 @@ function UPDATE_CHANGEJOB(frame)
 		hotCount = 0;
 	end
 
+	local job_select_guide_start = groupbox_main:CreateOrGetControlSet("job_select_guide_start", "job_select_guide_start", 0, 0);
+	AUTO_CAST(job_select_guide_start)
+	local job_pic = GET_CHILD(job_select_guide_start, "job_pic");
+	local jobSelectGuideImg = job_select_guide_start:GetUserConfig("Icon_"..pcCtrlType);
+	job_pic:SetImage(jobSelectGuideImg);
 	local totaljobgrade = session.GetPcTotalJobGrade()
 
-	-- 실제 생성. 일단 새 직업들 보여주는 부분
+	local jobguide_height = job_select_guide_start:GetHeight();
 	local jobsPerALine = 3
 	local jobbox_width = 280
 	local jobbox_height = 134
@@ -561,7 +584,7 @@ function UPDATE_CHANGEJOB(frame)
 	local sum_margin_y = 40
 	local margin_x_per_eachpic = 20
 	local margin_y_per_eachpic = 10
-	
+
 	local  drawnewjobcnt = 0
 	for i = 1, #hadjobarray do
 		if hadjobarray[i][2] ~= CHANGE_JOB_TYPE_HAVE then
@@ -569,95 +592,105 @@ function UPDATE_CHANGEJOB(frame)
 		end
 	end
 
-	local howmanyline = math.ceil(drawnewjobcnt/jobsPerALine)	
+	local howmanyline = math.ceil(drawnewjobcnt / jobsPerALine);	
 	
-	local groupbox_sub_newjob = groupbox_main:CreateOrGetControlSet('groupbox_sub', 'groupbox_sub_newjob', 0, 0)
-	groupbox_sub_newjob:Resize(groupbox_sub_newjob:GetWidth(), (howmanyline * (jobbox_height + margin_y_per_eachpic * 11)) + sum_margin_y)
-	local cjobGbox = groupbox_sub_newjob:GetChild('changeJobGbox');
-	cjobGbox:Resize(groupbox_sub_newjob:GetWidth(),groupbox_sub_newjob:GetHeight() + 10)
+	local groupbox_sub_newjob = groupbox_main:CreateOrGetControlSet('groupbox_sub', 'groupbox_sub_newjob', 0, jobguide_height);
+	local cjobGbox = GET_CHILD(groupbox_sub_newjob, 'changeJobGbox');
+	if totaljobgrade < JOB_CHANGE_MAX_RANK then
+		groupbox_sub_newjob:Resize(groupbox_sub_newjob:GetWidth(), (howmanyline * (jobbox_height + margin_y_per_eachpic )) + sum_margin_y);
 
-	cjobGbox = tolua.cast(cjobGbox, "ui::CGroupBox");
-	cjobGbox:RemoveAllChild();
-
-	local changeJob_richtext = groupbox_sub_newjob:GetChild('changeJob_richtext');
-	--changeJob_richtext:SetText("{@st44}"..(totaljobgrade+1)..ScpArgMsg("Auto_{@st44}Daeum_LaengKeu_KeulLaeSeu_JeongBo"))
-	changeJob_richtext:SetText(ScpArgMsg("Auto_{@st44}Daeum_LaengKeu_KeulLaeSeu_JeongBo"))
-	local index =1
-	for i = 1, #hadjobarray do
-
-		if hadjobarray[i][2] ~= CHANGE_JOB_TYPE_HAVE then
-			--직업 컨트롤 셋 생성
-			--이미 3써클을 찍었을 땐, 보여주지 말자.
-
-			if session.GetJobGrade(hadjobarray[i][1]) <= 2 and hadjobarray[i][5] ~= "None" then
-				local row = math.floor((index - 1) / jobsPerALine);
-				local col = (index - 1)  % jobsPerALine;
-				local x = margin_x + col * (jobbox_width + margin_x_per_eachpic);
-				local y = (cjobGbox:GetHeight() - jobbox_height)  - ( margin_y + row * (jobbox_height + margin_y_per_eachpic));
-	
-				local subClassCtrl = cjobGbox:CreateOrGetControlSet('jobinfo', hadjobarray[i][2]..'_CJ_A_JOBRANK_'..index , x + 130, y);
-				local button = GET_CHILD(subClassCtrl, "button", "ui::CButton");
-	
-				if hadjobarray[i][2] == CHANGE_JOB_TYPE_CAN_UPGRADE then
-					button:SetImage("btn_upclass");	
-				elseif hadjobarray[i][2] == CHANGE_JOB_TYPE_HAVE then
-					button:SetImage("btn_enclass");	
-				elseif hadjobarray[i][2] == CHANGE_JOB_TYPE_HAVE_NOT then
-					button:SetImage("btn_unclass");	
-				elseif hadjobarray[i][2] == CHANGE_JOB_TYPE_NEW then
-					button:SetImage("btn_newclass");	
-				else
-					print('error')
-				end
-
-	
-				local jobnameCtrl = GET_CHILD(subClassCtrl, "jobname", "ui::CRichText");
-				local jobName = hadjobarray[i][3];
-
-				-- hot직업 체크 부분. 이부분 수정하면됨
-				if hadjobarray[i][1] == firstHotJobID or hadjobarray[i][1] == secontHotJobID then
-					local charpic = GET_CHILD(subClassCtrl, "hotimg", "ui::CPicture");
-					charpic:SetImage("class_hot_img")
-				end
-
-				jobnameCtrl:SetTextByKey("param_jobcname", jobName);
-
-				local jobclassCtrl = GET_CHILD(subClassCtrl, "jobclass", "ui::CRichText");
-				local jobclass = session.GetJobGrade(hadjobarray[i][1])
+		local rankRollBackBtn = GET_CHILD(groupbox_sub_newjob, 'rankRollBackBtn');
+		rankRollBackBtn:ShowWindow(0);
 		
-				if jobclass > 0 then
-					button:SetImage("btn_upclass");	
-					jobclassCtrl:SetTextByKey("param_jobclass", jobclass+1);
-					jobclassCtrl:ShowWindow(1)
-				else
-					jobclassCtrl:ShowWindow(0)	
-				end
+		cjobGbox:Resize(groupbox_sub_newjob:GetWidth(), groupbox_sub_newjob:GetHeight() + 10)
+		cjobGbox:RemoveAllChild();
 
-				local tempstr = hadjobarray[i][2]..(jobclass+1)
+		local changeJob_richtext = groupbox_sub_newjob:GetChild('changeJob_richtext');	
+		changeJob_richtext:SetText(ScpArgMsg("Auto_{@st44}Daeum_LaengKeu_KeulLaeSeu_JeongBo"));	
+		changeJob_richtext:SetGravity(ui.LEFT, ui.TOP);
+		changeJob_richtext:SetOffset(30, 10);
+
+		local labelline = groupbox_sub_newjob:GetChild('labelline');
+		labelline:SetGravity(ui.LEFT, ui.TOP);
+		labelline:SetOffset(30, changeJob_richtext:GetHeight() + 18);
+
+		local index =1
+		for i = 1, #hadjobarray do
+
+			if hadjobarray[i][2] ~= CHANGE_JOB_TYPE_HAVE then
+				
+	            if session.GetJobGrade(hadjobarray[i][1]) <= 2 then
+					local row = math.floor((index - 1) / jobsPerALine);
+					local col = (index - 1)  % jobsPerALine;
+					local x = margin_x + col * (jobbox_width + margin_x_per_eachpic);
+					local y = (cjobGbox:GetHeight() - jobbox_height)  - ( margin_y + row * (jobbox_height + margin_y_per_eachpic));
+		
+					local subClassCtrl = cjobGbox:CreateOrGetControlSet('jobinfo', hadjobarray[i][2]..'_CJ_A_JOBRANK_'..index , x + 130, y);
+					local button = GET_CHILD(subClassCtrl, "button", "ui::CButton");
+		
+					if hadjobarray[i][2] == CHANGE_JOB_TYPE_CAN_UPGRADE then
+						button:SetImage("btn_upclass");	
+					elseif hadjobarray[i][2] == CHANGE_JOB_TYPE_HAVE then
+						button:SetImage("btn_enclass");	
+					elseif hadjobarray[i][2] == CHANGE_JOB_TYPE_HAVE_NOT then
+						button:SetImage("btn_unclass");	
+					elseif hadjobarray[i][2] == CHANGE_JOB_TYPE_NEW then
+						button:SetImage("btn_newclass");	
+					else
+						print('error')
+					end
+
+		
+					local jobnameCtrl = GET_CHILD(subClassCtrl, "jobname", "ui::CRichText");
+					local jobName = hadjobarray[i][3];
+
+					
+					if hadjobarray[i][1] == firstHotJobID or hadjobarray[i][1] == secontHotJobID then
+						local charpic = GET_CHILD(subClassCtrl, "hotimg", "ui::CPicture");
+						charpic:SetImage("class_hot_img")
+					end
+
+					jobnameCtrl:SetTextByKey("param_jobcname", jobName);
+
+					local jobclassCtrl = GET_CHILD(subClassCtrl, "jobclass", "ui::CRichText");
+					local jobclass = session.GetJobGrade(hadjobarray[i][1])
 			
-				button:SetEventScript(ui.LBUTTONDOWN, 'CJ_CLICK_INFO')
-				button:SetEventScriptArgNumber(ui.LBUTTONDOWN, hadjobarray[i][1]);	
-				button:SetEventScriptArgString(ui.LBUTTONDOWN, tempstr);	
+					if jobclass > 0 then
+						button:SetImage("btn_upclass");	
+						jobclassCtrl:SetTextByKey("param_jobclass", jobclass+1);
+						jobclassCtrl:ShowWindow(1)
+					else
+						jobclassCtrl:ShowWindow(0)	
+					end
 
-				index = index +1
+					local tempstr = hadjobarray[i][2]..(jobclass+1)
+					
+					button:SetEventScript(ui.LBUTTONDOWN, 'CJ_CLICK_INFO')
+					button:SetEventScriptArgNumber(ui.LBUTTONDOWN, hadjobarray[i][1]);	
+					button:SetEventScriptArgString(ui.LBUTTONDOWN, tempstr);	
+
+					index = index +1
+				end
 			end
 		end
-
-		
-
+	else
+		groupbox_sub_newjob:Resize(groupbox_sub_newjob:GetWidth(), 0);
 	end
 
-	-- 이전 정보들 추가
+	
 	for i = 0, totaljobgrade-1 do
 
 		local index = totaljobgrade - i
-		-- 현재 직업과 아닌 얘들 나누자
+		
 		local mains = session.GetMainSession();
 		local jobhistorysession = mains.jobHistory
 		local jobhistorycount = jobhistorysession:GetJobHistoryCount()
 
-		local groupbox_sub_oldjob = groupbox_main:CreateOrGetControlSet('groupbox_sub', 'groupbox_sub_oldjob'..index, 0, (10 + groupbox_sub_newjob:GetHeight() + 10) + (i * (jobbox_height + 60)) )
+		local groupbox_sub_oldjob = groupbox_main:CreateOrGetControlSet('groupbox_sub', 'groupbox_sub_oldjob'..index, 0, (10 + groupbox_sub_newjob:GetHeight() + 10 + jobguide_height + 10) + (i * (jobbox_height + 60)) )
 		groupbox_sub_oldjob:Resize(groupbox_sub_oldjob:GetWidth(), jobbox_height + margin_y_per_eachpic + sum_margin_y)
+
+		local rankRollBackBtn = GET_CHILD(groupbox_sub_oldjob, 'rankRollBackBtn');
+		rankRollBackBtn:ShowWindow(0);
 
 		local cjobGbox = groupbox_sub_oldjob:GetChild('changeJobGbox');
 		cjobGbox:Resize(groupbox_sub_oldjob:GetWidth(),groupbox_sub_oldjob:GetHeight())
@@ -667,7 +700,7 @@ function UPDATE_CHANGEJOB(frame)
 		
 		if index == totaljobgrade then
 
-			-- 지금 직업	
+			
 			local jobhistory = jobhistorysession:GetJobHistory(index-1);
 			local jobinfoclass = GetClassByType('Job', jobhistory.jobID)
 
@@ -682,7 +715,7 @@ function UPDATE_CHANGEJOB(frame)
 
 			
 			local jobnameCtrl = GET_CHILD(subClassCtrl, "jobname", "ui::CRichText");
-			local jobName = jobinfoclass.Name
+			local jobName = GET_JOB_NAME(jobinfoclass);
 
 			jobnameCtrl:SetTextByKey("param_jobcname", jobName);
 
@@ -690,7 +723,7 @@ function UPDATE_CHANGEJOB(frame)
 			local jobclass = jobhistory.grade
 
 			if jobclass > 1 then
-				-- 이것도 서클 있는지에 따라서 바꿀 것
+				
 				button:SetImage("btn_upclass");	
 				jobclassCtrl:SetTextByKey("param_jobclass", jobclass);
 				jobclassCtrl:ShowWindow(1)
@@ -718,7 +751,7 @@ function UPDATE_CHANGEJOB(frame)
 			button:SetEventScriptArgString(ui.LBUTTONDOWN, tempstr);	
 		else
 
-			-- 예전 직업
+			
 			local jobhistory = jobhistorysession:GetJobHistory(index-1);
 			local jobinfoclass = GetClassByType('Job', jobhistory.jobID)
 
@@ -738,7 +771,7 @@ function UPDATE_CHANGEJOB(frame)
 			local button = GET_CHILD(subClassCtrl, "button", "ui::CButton");
 
 			local jobnameCtrl = GET_CHILD(subClassCtrl, "jobname", "ui::CRichText");
-			local jobName = jobinfoclass.Name
+			local jobName = GET_JOB_NAME(jobinfoclass);
 
 			jobnameCtrl:SetTextByKey("param_jobcname", jobName);
 
@@ -746,7 +779,7 @@ function UPDATE_CHANGEJOB(frame)
 			local jobclass = jobhistory.grade
 
 			if jobclass > 1 then
-				-- 이것도 서클 있는지에 따라서 바꿀 것
+				
 				button:SetImage("btn_upclass");	
 				jobclassCtrl:SetTextByKey("param_jobclass", jobclass);
 				jobclassCtrl:ShowWindow(1)
@@ -784,7 +817,7 @@ function UPDATE_CHANGEJOB(frame)
 	local jobhistorysession = mains.jobHistory
 	local jobhistory = jobhistorysession:GetJobHistory(totaljobgrade-1);
 
-	CJ_UPDATE_RIGHT_INFOMATION(frame, pcjobinfo.ClassID,pcjobinfotype,jobhistory.grade)
+	CJ_UPDATE_RIGHT_INFOMATION(frame, pcjobinfo.ClassID, pcjobinfotype, jobhistory.grade);
 
 	local scrollBarCurLine = cjobGbox:GetCurLine();
 	cjobGbox:SetCurLine(0);
@@ -825,10 +858,31 @@ function CJ_CLICK_INFO(frame, slot, argStr, argNum)
 	local tempstring2 = string.sub(argStr,2,string.len(argStr))
 	local tempint2 = tempstring2 + 0
 
-	if tempint2 > 10 then -- job.xml에 caption(circle) 항목 추가 필요
+	if tempint2 > 10 then 
 	    tempint2 = 10
 	end
 
 	local originalframe = ui.GetFrame("changejob");
 	CJ_UPDATE_RIGHT_INFOMATION(originalframe, argNum, tempint,tempint2)
+end
+
+
+function CHANGEJOB_SHOW_RANKROLLBACK()
+	local lastJobGrade = session.GetPcTotalJobGrade();
+	local pc = GetMyPCObject();
+	local frame = ui.GetFrame('changejob');    
+    local lastJobBox = GET_CHILD_RECURSIVELY(frame, 'groupbox_sub_oldjob'..lastJobGrade);
+    local rankRollBackBtn = GET_CHILD(lastJobBox, 'rankRollBackBtn');
+    rankRollBackBtn:ShowWindow(1);
+
+	if pc.LastRankRollbackIndex >= lastJobGrade then
+		rankRollBackBtn:SetColorTone('FF444444');
+		rankRollBackBtn:SetTextTooltip(ScpArgMsg('CannotBecause{LAST_INDEX}', 'LAST_INDEX', pc.LastRankRollbackIndex));
+		rankRollBackBtn:SetUserValue('ENABLE_RANKROLLBACK', 'NO');
+	end
+end
+
+function ON_CHANGE_JOB_SELECT_GUIDE_START(frame, btn)
+	ui.CloseFrame("changejob")
+	ui.OpenFrame("job_select_guide");
 end
