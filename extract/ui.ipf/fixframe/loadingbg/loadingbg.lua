@@ -1,5 +1,48 @@
 
+function GET_LOADING_IMG_RANDOM_CLSID(clsList, cnt, loadingType)
 
+	local list = {};
+	for i = 0 , cnt - 1 do
+		local cls = GetClassByIndexFromList(clsList, i);
+		if cls.LoadingType == loadingType then
+			list[#list+1] = cls.ClassID;
+		end
+	end
+
+	if #list > 0 then
+		local index = OSRandom(1, #list);
+		return list[index];
+	end
+
+	return 0;
+end
+
+function CHANGE_LOADING_IMG_URLSTR()
+
+	local clsList, cnt  = GetClassList("loading_img");
+	local currentLoadingType = 'LoadingDefault';
+	if session.GetWasBarrack() == true then 
+		currentLoadingType = 'LoadingFirst'
+	elseif GetClass("Map", GetZoneName(pc)).MapType == 'City' then
+		currentLoadingType = 'LoadingCity'
+	end
+	
+	local clsID = GET_LOADING_IMG_RANDOM_CLSID(clsList, cnt, currentLoadingType);
+
+	if clsID == 0 and currentLoadingType == 'LoadingFirst' then
+		currentLoadingType = 'LoadingCity';
+		clsID = GET_LOADING_IMG_RANDOM_CLSID(clsList, cnt, currentLoadingType);
+	end
+
+	if clsID == 0 then
+		currentLoadingType = 'LoadingDefault';
+		clsID = GET_LOADING_IMG_RANDOM_CLSID(clsList, cnt, currentLoadingType);
+	end
+	local cls = GetClassByTypeFromList(clsList, clsID);
+	local url = config.GetLoadingImgURL();
+	local urlStr = string.format("%s%s", url, cls.FileName);
+	return urlStr, cls;
+end
 
 function LOADINGBG_ON_INIT(addon, frame)
 
@@ -15,20 +58,35 @@ function LOADINGBG_ON_INIT(addon, frame)
 	local pic = GET_CHILD(frame, "pic", "ui::CWebPicture");
 	pic:Resize(frame:GetWidth(), frame:GetHeight());
 
-	local url = config.GetLoadingImgURL();
-	local urlCnt = config.GetLoadingImgCount();
-
-	local urlIndex = OSRandom(1, urlCnt);
-	local urlStr = string.format("%s%d.jpg", url, urlIndex);
+	local urlStr, cls = CHANGE_LOADING_IMG_URLSTR();
 	pic:SetUrlInfo(urlStr);
 
 	local tipGroupbox 		= frame:GetChild('tip');
     local tipCtl 			= tipGroupbox:GetChild('gametip');
+	local faqGroupbox 		= GET_CHILD_RECURSIVELY(frame,'faq')
+	local faqCtl 			= GET_CHILD_RECURSIVELY(frame,'gamefaq')
+	
+	if cls ~= nil then
+		local isVisible = 0;
 
+		if cls.FAQ_Hide == "NO" then
+			isVisible = 1;
+		else
+			isVisible = 0;
+		end
+		--faqGroupbox:SetVisible(isVisible);
+
+		if cls.Tooltip_Hide == "NO" then
+			isVisible = 1;
+		else
+			isVisible = 0;
+		end
+		tipGroupbox:SetVisible(isVisible);
+	end
+	
 	local gauge = frame:GetChild("gauge");
 	gauge:Resize(frame:GetWidth(), gauge:GetHeight());
 
-	
 	local nowjobtype = config.GetConfig("LastJobCtrltype");
 	local nowlevel = config.GetConfigInt("LastPCLevel", 0);
 
@@ -65,16 +123,6 @@ function LOADINGBG_ON_INIT(addon, frame)
 	    return
 	end
 	
---	for i = 1, cnt*5 do -- 그냥 무한루프�?막기 ?�함. 조건??맞는 ?�이 ?�올?�까지 골라본다.
---	
---		tipClass = GetClassByIndexFromList(clsList, OSRandom(0, cnt  - 1));
---		if tipClass.MinLv <= nowlevel and tipClass.MaxLv >= nowlevel then
---			if tipClass.Job == 'All' or tipClass.Job == nowjobtype then
---				break;
---			end
---		end
---
---	end
 	local txt = '{#f0dcaa}{s20}{ol}{gr gradation2}'..ScpArgMsg("Todays_Tip") ..tipClass.Text;
 	tipCtl:SetText(txt);
 	tipGroupbox:Resize(tipCtl:GetWidth()+40, tipGroupbox:GetHeight());
@@ -84,10 +132,8 @@ function LOADINGBG_ON_INIT(addon, frame)
 	local faqClass  = GetClassByIndexFromList(faqclsList, OSRandom(0, faqcnt  - 1));
 	local faqtxt = '{#f0dcaa}{s18}{ol}{gr gradation2}'..faqClass.Text;
 
-	local faqCtl 			= GET_CHILD_RECURSIVELY(frame,'gamefaq')
-	faqCtl:SetText(faqtxt);
-	local faqGroupbox 		= GET_CHILD_RECURSIVELY(frame,'faq')
-	faqGroupbox:Resize(faqCtl:GetWidth()+70, faqCtl:GetHeight() + 50);
+	--faqCtl:SetText(faqtxt);
+	--faqGroupbox:Resize(faqCtl:GetWidth()+70, faqCtl:GetHeight() + 50);
 	
 	frame:Invalidate();
 
@@ -115,4 +161,3 @@ function DO_RESIZE_BY_CLIENT_SIZE(frame)
 	
 	frame:Invalidate();
 end
-
