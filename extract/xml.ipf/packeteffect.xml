@@ -23312,8 +23312,6 @@
 		<Effect Name="I_anvil_dead003_mesh_diamond"/>
 		<Effect Name="I_anvil_dead003_mesh_gold"/>
 		<Effect Name="I_anvil_dead003_mesh_platinum"/>
-		<Effect Name="I_anvil_dead004_mesh_glacier"/>
-		<Effect Name="I_anvil_dead004_mesh_moth"/>
 	</Category>
 	<Category ID="130">
 		<Effect Name="E_Cleric_StoneShower"/>

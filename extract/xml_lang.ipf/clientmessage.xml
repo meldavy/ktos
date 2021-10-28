@@ -85,7 +85,7 @@
 		<Class ClassID="327" ClassName="DPSMsg{DPS}{Damage}{Time}" Data="{ol}{#00ff00}DPS:{DPS} {#ff0000}TotalDamage:{Damage} {#ffff00}Sec:{Time}"/>
 		<Class ClassID="328" ClassName="IndunMultipleItemError" Data="비정상적인 배수 토큰을 소유중입니다. 공지사항 ★ 2/28(목) 정기점검 후 발생한 문제 ★ 을 확인 부탁드립니다."/>
 		<Class ClassID="329" ClassName="NotValidMsg" Data="올바르지 않은 메시지입니다."/>
-    <Class ClassID="330" ClassName="SavingUserInfo" Data="캐릭터 정보를 저장중입니다."/>
+		<Class ClassID="330" ClassName="SavingUserInfo" Data="캐릭터 정보를 저장중입니다."/>
 	</Category>
 	<Category Name="Skill">
 		<Class ClassID="500" ClassName="CannotGetSkill{NAME}" Data="[{NAME}] 스킬을 습득할 수 없습니다."/>
@@ -401,11 +401,11 @@
 		<Class ClassID="2339" ClassName="ReinforceBroke{BEFORE}{ITEM}" Data="[{BEFORE}{ITEM}] 강화에 실패하여 장비가 파괴되었습니다."/>
 		<Class ClassID="2340" ClassName="MustAddIcorToSlot" Data="장착할 아이커를 등록해야 합니다."/>
 		<Class ClassID="2341" ClassName="ExceedItemGetLimit" Data="획득 가능한 아이템 최대 수량을 초과 하였습니다."/>
-<Class ClassID="2352" ClassName="GlobalCool{num}" Data="무적에 관련된 특성이나 기능은 {num}초 뒤 ON/OFF가 가능 합니다."/>
+		<Class ClassID="2352" ClassName="GlobalCool{num}" Data="무적에 관련된 특성이나 기능은 {num}초 뒤 ON/OFF가 가능 합니다."/>
 		<Class ClassID="2356" ClassName="ExceedWeeklyMaxMiscPvPMine{count}{count1}" Data="용병단 증표 지급 중 주간 최대 획득 개수[{count}]를 초과하여 {count1}개가 소멸되었습니다."/>
 		<Class ClassID="2357" ClassName="ExceedWeeklyMaxMiscPvPMine{count}{count1}{count2}" Data="용병단 증표 {count}개 지급 중 주간 획득 개수를 초과하여 {count1}개가 제외된 {count2}개가 지급되었습니다."/>
 		<Class ClassID="2358" ClassName="IncreaseCountUp{count}" Data="+{count}"/>
-    <Class ClassID="2359" ClassName="AllProductSoldOut" Data="상품이 매진되었습니다."/>
+		<Class ClassID="2359" ClassName="AllProductSoldOut" Data="상품이 매진되었습니다."/>
 	</Category>
 	<Category Name="ClassContents">
 		<Class ClassID="2500" ClassName="FullWeeklyGainClassResetExp" Data="주간 획득 가능한 클래스 변경 포인트를 모두 달성하였습니다."/>
@@ -9332,7 +9332,7 @@
 		<Class ClassID="91058" ClassName="Casual_Legend_Boss_Moringponia_TYPE1" Data="나비목 접선지: 레전드(1인) 진입"/>
 		<Class ClassID="91059" ClassName="Casual_Legend_Boss_Moringponia_TYPE2" Data="나비목 접선지: 레전드(1인) 진입"/>
 		<Class ClassID="91062" ClassName="Legend_Boss_Glacier_Solo" Data="하얀 마녀의 숲 : 레전드 레이드 (1인)"/>
-<Class ClassID="91070" ClassName="MORINGPONIA_HARD_SOLO_ORBITEM_GIVE_MSG1" Data="1단계"/>
+		<Class ClassID="91070" ClassName="MORINGPONIA_HARD_SOLO_ORBITEM_GIVE_MSG1" Data="1단계"/>
 		<Class ClassID="91071" ClassName="MORINGPONIA_HARD_SOLO_ORBITEM_GIVE_MSG2" Data="2단계"/>
 		<Class ClassID="91072" ClassName="MORINGPONIA_HARD_SOLO_ORBITEM_GIVE_MSG3" Data="3단계"/>
 		<Class ClassID="91073" ClassName="MORINGPONIA_HARD_SOLO_ORBITEM_GIVE_MSG4" Data="4단계"/>
@@ -15444,7 +15444,7 @@
 		<Class ClassID="560031" ClassName="motion_bakarine_emotion59" Data="{nl} {nl}사용한 캐릭터가 채팅 이모티콘을 흭득합니다.{nl} {nl}{#FF0000}사용 후 복구가 불가능합니다.{nl} {nl}{@st66d_y}이모티콘을 습득하시겠습니까?"/>
 		<Class ClassID="560032" ClassName="motion_bakarine_emotion61" Data="{nl} {nl}사용한 캐릭터가 채팅 이모티콘을 흭득합니다.{nl} {nl}{#FF0000}사용 후 복구가 불가능합니다.{nl} {nl}{@st66d_y}이모티콘을 습득하시겠습니까?"/>
 		<Class ClassID="560033" ClassName="ShellyPennington_emotion01" Data="{nl} {nl}사용한 캐릭터가 채팅 이모티콘을 흭득합니다.{nl} {nl}{#FF0000}사용 후 복구가 불가능합니다.{nl} {nl}{@st66d_y}이모티콘을 습득하시겠습니까?"/>
-</Category>
+	</Category>
 	<Category Name="Gesture">
 		<Class ClassID="570000" ClassName="Already_Gesture" Data="이미 보유한 제스처입니다."/>
 		<Class ClassID="570001" ClassName="Gesture_WAVE" Data="{nl} {nl}모든 캐릭터가 제스처를 흭득합니다.{nl} {nl}{@st66d_y}제스처를 습득하시겠습니까?"/>
@@ -15476,7 +15476,7 @@
 		<Class ClassID="590004" ClassName="Weekly_Total_Point_Get_Success_Msg_command" Data="{#33FF33}현재 누적된 통합 포인트 : {TotalPoint}{nl}(주간 획득 가능한 통합 포인트 : {NowPoint}/{MaxPoint}){/}"/>
 		<Class ClassID="590005" ClassName="CONTENTS_TOTAL_POINT_extract" Data="통합 포인트 교환"/>
 		<Class ClassID="590006" ClassName="SEASONOFF_CONTENTS_TOTAL_SHOP" Data="시즌오프 콘텐츠 통합 상점"/>
-		<Class ClassID="590007" ClassName="CONTENTS_TOTAL_POINT_extract_tooltip" Data="아이템을 교환하여 콘텐츠 통합 포인트를 획득할 수 있습니다{nl} - 마정석 1개 = 200포인트{nl} - 신비한 서 낱장 1개 = 200포인트{nl} - 프락토늄 1개 = 200포인트{nl} - 축복받은 조각 1개 = 20포인트"/>
+		<Class ClassID="590007" ClassName="CONTENTS_TOTAL_POINT_extract_tooltip" Data="아이템을 교환하여 콘텐츠 통합 포인트를 획득할 수 있습니다{nl} - 그을린 텔하르샤의 의장품 1개 = 300포인트{nl} - 글레이시어 심장 1개 = 300포인트{nl} - 모스 탈크 파우더 1개 = 300포인트{nl} - 브리키나이트 1개 = 300포인트{nl} - 마정석 1개 = 200포인트{nl} - 신비한 서 낱장 1개 = 200포인트{nl} - 프락토늄 1개 = 200포인트{nl} - 축복받은 조각 1개 = 20포인트"/>
 	</Category>
 	<Category Name="RiftDungeon">
 		<Class ClassID="591000" ClassName="Rift_Dungeon_Select_Level" Data="{Level} 단계 차원 붕괴 입장"/>

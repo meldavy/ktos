@@ -65,15 +65,7 @@ function IS_MORU_NOT_DESTROY_TARGET_ITEM(moruItem)
     if moruItem.StringArg == 'unique_gold_Moru' then
         return true, 'ruby'
     end
-
-    if moruItem.StringArg == 'Legenda' then
-        return true, 'Legenda'
-    end
-
-    if moruItem.StringArg == 'Luciferi' then
-        return true, 'Luciferi'
-    end
-
+    
     return false, 'None';
 end
 
@@ -93,22 +85,6 @@ end
 function REINFORCE_ABLE_131014(item, moru_item)              
     if item.ItemType ~= 'Equip' then
         return 0;
-    end
-    
-    if moru_item ~= nil and TryGetProp(moru_item, 'StringArg2', 'None') == 'contents_moru' then  -- 레전드 전용 모루인 경우        
-        if TryGetProp(item, 'Reinforce_2', 0) >= 31 then -- 콘텐츠 모루 인 경우, 31강 이상에서 사용 불가
-            return 0
-        end
-
-        if  TryGetProp(moru_item, 'StringArg', 'None') == "Luciferi" then
-            if TryGetProp(item, 'StringArg', 'None') ~= "Luciferi" and TryGetProp(item, 'StringArg', 'None') ~= "Acc_EP12" then
-                return 0
-            end
-        else
-            if TryGetProp(item, 'StringArg', 'None') ~= TryGetProp(moru_item, 'StringArg', 'None') then            
-                return 0
-            end
-        end
     end
     
     if item.Reinforce_Type ~= "Moru" or item.LifeTime > 0 then
@@ -239,9 +215,7 @@ function GET_REINFORCE_PRICE(fromItem, moruItem, pc)
         value = 0;
     end
     
-    if  moruItem.StringArg == 'DIAMOND' and reinforcecount > 1 then
-        value = value + (value_diamond * 2.1)
-    elseif TryGetProp(moruItem, 'StringArg2', 'None') == 'contents_moru' and reinforcecount > 1 then -- 콘텐츠 모루는 강화 비용 3배        
+    if moruItem.StringArg == 'DIAMOND' and reinforcecount > 1 then
         value = value + (value_diamond * 2.1)
     end
 

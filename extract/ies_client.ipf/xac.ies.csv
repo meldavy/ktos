@@ -5716,8 +5716,6 @@ ClassID,ClassName,Mesh,Path,ArmbandInfo,UseAlpha,IsJiggleBoneHair
 201791,Hat025_yellow,char_hi\pc\accessory\accessory_hat025_yellow.xac,char_texture\pc\accessory\,,NO,
 201792,anvil_ruby,char_hi\monster\anvil_ruby_set.xac,char_texture\npc\anvil\,,NO,
 201794,anvil_diamond,char_hi\monster\anvil_diamond_set.xac,char_texture\monster\anvil\diamond\,,NO,
-201798,anvil_glacier,char_hi\npc\anvil\anvil_set.xac,char_texture\npc\anvil\glacier\,,NO,
-201799,anvil_moth,char_hi\npc\anvil\anvil_set.xac,char_texture\npc\anvil\moth\,,NO,
 205001,warrior_f_hair_lightsalmon,char_hi\pc\faces\warrior_f\shorthair\shorthair_Warrior_f_hair_std.xac,char_texture\pc\face\hair_f_lightsalmon\,,NO,
 205002,warrior_f_hair2_lightsalmon,char_hi\pc\faces\warrior_f\longhair\longhair_Warrior_f_hair_std.xac,char_texture\pc\face\hair_f_lightsalmon\,,NO,
 205003,warrior_f_hair3_lightsalmon,char_hi\pc\faces\warrior_f\semilonghair\semilonghair_Warrior_f_hair_std.xac,char_texture\pc\face\hair_f_lightsalmon\,,NO,
