@@ -143,11 +143,15 @@ function INV_APPLY_TO_ALL_SLOT(func, ...)
 
 		local frame = ui.GetFrame("inventory");
 		local group = GET_CHILD(frame, 'inventoryGbox', 'ui::CGroupBox')
-		local tree_box = GET_CHILD(group, 'treeGbox','ui::CGroupBox')
-		local tree = GET_CHILD(tree_box, 'inventree','ui::CTreeControl')
+		
+
+		for typeNo = 1, #g_invenTypeStrList do
+			local tree_box = GET_CHILD(group, 'treeGbox_'.. g_invenTypeStrList[typeNo],'ui::CGroupBox')
+			local tree = GET_CHILD(tree_box, 'inventree_'.. g_invenTypeStrList[typeNo],'ui::CTreeControl')
 		local slotSet = GET_CHILD(tree,SLOTSET_NAMELIST[i],'ui::CSlotSet')	
 
 		APPLY_TO_ALL_ITEM_SLOT(slotSet, func, ...);
+		end;
 
 		frame:Invalidate();
 	end
@@ -159,7 +163,8 @@ end
 function EQP_APPLY_TO_ALL_SLOT(func, ...)
 
 	local frame = ui.GetFrame("inventory");
-	for i = 0 , item.GetEquipSpotCount() - 1 do
+	local spotCount = item.GetEquipSpotCount() - 1;
+	for i = 0 , spotCount do
 		local spotName = item.GetEquipSpotName(i);
 		if  spotName  ~=  nil  then
 			local slot = GET_CHILD(frame, spotName, "ui::CSlot");
@@ -179,8 +184,9 @@ end
 function PC_APPLY_TO_ALL_ITEM(func, ...)
 
 	INV_APPLY_TO_ALL_SLOT(func, ...)
-
-	for i = 0 , item.GetEquipSpotCount() - 1 do
+	
+	local spotCount = item.GetEquipSpotCount() - 1;
+	for i = 0 , spotCount do
 		local spotName = item.GetEquipSpotName(i);
 		if  spotName  ~=  nil  then
 			local slot = GET_CHILD(frame, spotName, "ui::CSlot");
@@ -302,21 +308,42 @@ function INV_GET_SLOTSET_NAME_BY_ITEMGUID(itemGUID)
 
 end
 
+function INV_GET_SLOT_BY_TYPE(type, frame, isAll)
+	local invitem = session.GetInvItemByType(type);
+	if invitem == nil then
+		return;
+	end
+	local slot = INV_GET_SLOT_BY_ITEMGUID(invitem:GetIESID(), frame, isAll);
+	return slot;
+end
+
 function INV_GET_SLOT_BY_ITEMGUID(itemGUID, frame)
 
 	if frame == nil then
 		frame = ui.GetFrame("inventory");
 	end
 
+	local invItem = session.GetInvItemByGuid(itemGUID);
+	if invItem == nil then
+		return;
+	end
+
+	local itemCls = GetClassByType("Item", invItem.type);
+	local typeStr = "Item"	
+	if itemCls.ItemType == "Equip" then
+		typeStr = itemCls.ItemType; 
+	end	
+
+
 	local group = GET_CHILD(frame, 'inventoryGbox', 'ui::CGroupBox')
-	local tree_box = GET_CHILD(group, 'treeGbox','ui::CGroupBox')
-	local tree = GET_CHILD(tree_box, 'inventree','ui::CTreeControl')
+	local tree_box = GET_CHILD(group, "treeGbox_" .. typeStr,'ui::CGroupBox')
+	local tree = GET_CHILD(tree_box, "inventree_" .. typeStr,'ui::CTreeControl')
 	local slotsetname = INV_GET_SLOTSET_NAME_BY_ITEMGUID(itemGUID)
 	if slotsetname == nil then
 		return nil;
 	end
 
-	local slotSet	= GET_CHILD(tree, slotsetname, "ui::CSlotSet");
+	local slotSet = GET_CHILD(tree, slotsetname, "ui::CSlotSet");
 	if slotSet == nil then
 		return nil;
 	end
@@ -327,10 +354,21 @@ end
 
 function INV_GET_SLOTSET_BY_ITEMID(itemGUID)
 
+	local invItem = session.GetInvItemByGuid(itemGUID);
+	if invItem == nil then
+		return;
+	end
+
+	local itemCls = GetClassByType("Item", invItem.type);
+	local typeStr = "Item"	
+	if itemCls.ItemType == "Equip" then
+		typeStr = itemCls.ItemType; 
+	end	
+
 	local frame = ui.GetFrame("inventory");
 	local group = GET_CHILD(frame, 'inventoryGbox', 'ui::CGroupBox')
-	local tree_box = GET_CHILD(group, 'treeGbox','ui::CGroupBox')
-	local tree = GET_CHILD(tree_box, 'inventree','ui::CTreeControl')
+	local tree_box = GET_CHILD(group, "treeGbox_" .. typeStr,'ui::CGroupBox')
+	local tree = GET_CHILD(tree_box, "inventree_" .. typeStr,'ui::CTreeControl')
 	local slotsetname = INV_GET_SLOTSET_NAME_BY_ITEMGUID(itemGUID)
 	local slotSet	= GET_CHILD(tree, slotsetname, "ui::CSlotSet");
 	return slotSet
@@ -340,12 +378,23 @@ end
 
 function INV_GET_SLOTSET_BY_INVINDEX(index)
 
-	local invFrame     	= ui.GetFrame("inventory");
-	local invGbox		= invFrame:GetChild('inventoryGbox');
-	local treeGbox		= invGbox:GetChild('treeGbox');
-	local tree		    = treeGbox:GetChild('inventree');
-	local slotsetname	= GET_SLOTSET_NAME(index)
-	local slotSet		= GET_CHILD(tree,slotsetname,"ui::CSlotSet")
+	local invItem = session.GetInvItemByGuid(itemGUID);
+	if invItem == nil then
+		return;
+	end
+
+	local itemCls = GetClassByType("Item", invItem.type);
+	local typeStr = "Item"	
+	if itemCls.ItemType == "Equip" then
+		typeStr = itemCls.ItemType; 
+	end	
+
+	local invFrame = ui.GetFrame("inventory");
+	local invGbox = invFrame:GetChild('inventoryGbox');
+	local treeGbox = invGbox:GetChild("treeGbox_" .. typeStr);
+	local tree = treeGbox:GetChild("inventree_" .. typeStr);
+	local slotsetname = GET_SLOTSET_NAME(index)
+	local slotSet = GET_CHILD(tree,slotsetname,"ui::CSlotSet")
 
 	return slotSet
 end
@@ -385,12 +434,7 @@ function INV_NOTIFY_FORCE_FINISH()
 		end
 
 		sysframe:SetUserValue("_NOTIFY_TIME", imcTime.GetAppTime() + 2.0);
-
-		--sysframe:SetEffect("sysmenu_MouseMove", ui.UI_TEMP0);
-		--sysframe:StartEffect(ui.UI_TEMP0);	
-
-		sysframe:RunUpdateScript("SYSMENU_PLAY_ITEM_GET", 0.0);
-		--sysframe:RunUpdateScript("SYSMENU_AUTO_LOST_FOCUS", 0.0);
+		sysframe:RunUpdateScript("SYSMENU_PLAY_ITEM_GET", 0.0);		
 	end
 end
 
@@ -405,17 +449,6 @@ function SYSMENU_PLAY_ITEM_GET(frame, elapsedTime)
 
 	return 1;
 
-end
-
-function SYSMENU_AUTO_LOST_FOCUS(frame, elapsedTime)
-	--[[
-	if elapsedTime > 1.5 then
-		frame:SetEffect("sysmenu_LostFocus", ui.UI_TEMP0);
-		frame:StartEffect(ui.UI_TEMP0);		
-		return 0;
-	end
-	]]
-	return 1;
 end
 
 function INV_FORCE_NOTIFY(itemID, x, y, delayTime)
@@ -477,7 +510,7 @@ function INVENTORY_SET_ICON_SCRIPT(scriptName, getArgScript)
 		return;
 	end
 
-	INVENTORY_LIST_GET(frame);
+	INVENTORY_UPDATE_ICONS(frame);
 end
 
 function INVENTORY_SET_CUSTOM_RBTNDOWN(scriptName)
@@ -490,52 +523,115 @@ function INVENTORY_SET_CUSTOM_RDBTNDOWN(scriptName)
 	frame:SetUserValue("CUSTOM_RDBTN_SCP", scriptName);
 end
 
+function GET_ITEM_ICON_IMAGE_BY_TAG_INFO(props, clsID)
+    local newobj = CreateIESByID("Item", clsID);
+	if props ~= 'nullval' then
+		SetModifiedPropertiesString(newobj, props);
+	end
+
+	local ret = GET_ITEM_ICON_IMAGE(newobj);
+	DestroyIES(newobj);
+	return ret;
+end
+
+function GET_ITEM_ICON_IMAGE(itemCls, gender)
+
+	local iconImg = itemCls.Icon;
+		
+	-- costume icon is decided by PC's gender
+    if itemCls.ItemType == 'Equip' and (itemCls.ClassType == 'Outer' or  itemCls.ClassType  == 'SpecialCostume') then
+    	local tempiconname =  ' ';
+    	local origin = itemCls.TooltipImage;
+    	local reverseIconName = origin:reverse();
+    	local underBarIndex = string.find(reverseIconName, '_');
+    	
+    	if underBarIndex ~= nil then
+            tempiconname = string.sub(reverseIconName, 0, underBarIndex-1);
+    		tempiconname = tempiconname:reverse();
+    	end
+
+        if tempiconname == "both" then
+                local bothIndex = string.find(origin, '_both');
+                iconImg = string.sub(itemCls.TooltipImage, 0, bothIndex - 1);
+
+    	elseif tempiconname ~= "m" and tempiconname ~= "f" then
+    		if gender == nil then
+    			gender = GETMYPCGENDER();
+    		end
+    
+        	if gender == 1 then
+        		iconImg = itemCls.Icon.."_m"
+        	else
+        		iconImg = itemCls.Icon.."_f"
+        	end
+    	end    	
+	elseif itemCls.ItemType == 'Equip' then
+		local faceID = TryGetProp(itemCls, 'BriquettingIndex');
+		if nil ~= faceID and tonumber(faceID) > 0 then
+			faceID = tonumber(faceID);
+			 local cls = GetClassByType('Item', faceID)
+			 if nil ~= cls then
+				iconImg = cls.Icon;
+			 end
+		end
+	elseif itemCls.GroupName == "ExpOrb" then
+		local exp = TryGetProp(itemCls, "ItemExpString");
+		local maxExp = TryGetProp(itemCls, "NumberArg1");
+		if exp ~= nil and maxExp ~= nil then 
+			iconImg = GET_LEGENDEXPPOTION_ICON_IMAGE(itemCls);
+		end
+	end
+	return iconImg;
+
+end
 
 function UPDATE_ETC_ITEM_SLOTSET(slotset, etcType, tooltipType)
-		
+	local slotCnt = slotset:GetSlotCount();
+	for i = 0, slotCnt - 1 do
+		local tempSlot = slotset:GetSlotByIndex(i)
+		DESTROY_CHILD_BYNAME(tempSlot, "styleset_")		
+	end
+
 	slotset:ClearIconAll();
+    slotset:SetSkinName("invenslot2")
 
 	local itemList = session.GetEtcItemList(etcType);
 	local index = itemList:Head();
-			
+
 	while itemList:InvalidIndex() ~= index do
+		
 		local invItem = itemList:Element(index);
 		local slot = slotset:GetSlotByIndex(invItem.invIndex);
 		if slot == nil then
 			slot = GET_EMPTY_SLOT(slotset);
 		end
 
-		local itemCls = GetClassByType("Item", invItem.type);
-		local iconImg = itemCls.Icon;
-		-- costume icon is decided by PC's gender
-    	if itemCls.ItemType == 'Equip' and itemCls.ClassType == 'Outer' then
+		local itemCls = GetIES(invItem:GetObject());
+		local iconImg = GET_ITEM_ICON_IMAGE(itemCls);
 
-			local tempiconname = string.sub(itemCls.Icon, string.len(itemCls.Icon) - 1 );
-
-			if tempiconname ~= "_m" and tempiconname ~= "_f" then
-            local pc = GetMyPCObject();
-    	    if pc.Gender == 1 then
-        	    iconImg = itemCls.Icon.."_m"
-        	else
-        	    iconImg = itemCls.Icon.."_f"
-        	end
-        end
-		
-
-        end
-		
 		SET_SLOT_IMG(slot, iconImg)
 		SET_SLOT_COUNT(slot, invItem.count)
-		SET_SLOT_COUNT_TEXT(slot, invItem.count);
+
+        local icon = slot:GetIcon();
+
+        if itemCls.ItemType == 'Equip' then
+		    local resultLifeTimeOver = IS_LIFETIME_OVER(itemCls)
+		    local result = CHECK_EQUIPABLE(invItem.type);        
+		    if (result ~= "OK") or (resultLifeTimeOver == 1) then
+			    icon:SetColorTone("FFFF0000");		
+		end	    
+		    if IS_NEED_APPRAISED_ITEM(invItem:GetIESID()) or IS_NEED_RANDOM_OPTION_ITEM(invItem:GetIESID()) then
+			    icon:SetColorTone("FFFF0000");		
+		    end
+	    end	
+
 		SET_SLOT_IESID(slot, invItem:GetIESID())
-		local icon = slot:GetIcon();
-		SET_ITEM_TOOLTIP_TYPE(icon, itemCls.ClassID, itemCls);
+        SET_SLOT_ITEM_TEXT_USE_INVCOUNT(slot, invItem, itemCls, nil)
+		SET_SLOT_STYLESET(slot, itemCls)
+		slot:SetMaxSelectCount(invItem.count);
+		
 		icon:SetTooltipArg(tooltipType, invItem.type, invItem:GetIESID());
-		local itemObj = GetIES(invItem:GetObject());
-		local noTrade = TryGetProp(itemObj, "BelongingCount");
-		if nil ~= noTrade then
-			icon:SetNoTradeCount(noTrade);
-		end
+		SET_ITEM_TOOLTIP_TYPE(icon, itemCls.ClassID, itemCls, tooltipType);		
 
 		index = itemList:Next(index);
 	end
@@ -543,12 +639,70 @@ function UPDATE_ETC_ITEM_SLOTSET(slotset, etcType, tooltipType)
 end
 
 function GET_DRAG_INVITEM_INFO()
-	local liftIcon 			= ui.GetLiftIcon();
-	local iconParentFrame 	= liftIcon:GetTopParentFrame();
-	local slot 			    = tolua.cast(control, 'ui::CSlot');
-	local iconInfo			= liftIcon:GetInfo();
+	local liftIcon = ui.GetLiftIcon();
+	local iconParentFrame = liftIcon:GetTopParentFrame();
+	local slot = tolua.cast(control, 'ui::CSlot');
+	local iconInfo = liftIcon:GetInfo();
 	local invenItemInfo = session.GetInvItemByGuid(iconInfo:GetIESID());
 	return invenItemInfo;
 end
 
+function SET_SLOT_INFO_FOR_WAREHOUSE(slot, invItem, tooltipType)    
+    local itemCls = GetIES(invItem:GetObject());
+	local iconImg = GET_ITEM_ICON_IMAGE(itemCls);
+    SET_SLOT_IMG(slot, iconImg)
+	SET_SLOT_COUNT(slot, invItem.count)
+	
+    local icon = slot:GetIcon();
+    
+    if itemCls.ItemType == 'Equip' then
+		local resultLifeTimeOver = IS_LIFETIME_OVER(itemCls)
+		local result = CHECK_EQUIPABLE(invItem.type);        
+		if (result ~= "OK") or (resultLifeTimeOver == 1) then
+			icon:SetColorTone("FFFF0000");		
+		end	    
+		if IS_NEED_APPRAISED_ITEM(invItem:GetIESID()) or IS_NEED_RANDOM_OPTION_ITEM(invItem:GetIESID()) then
+			icon:SetColorTone("FFFF0000");		
+		end
+	end	
 
+	SET_SLOT_IESID(slot, invItem:GetIESID())
+    SET_SLOT_ITEM_TEXT_USE_INVCOUNT(slot, invItem, itemCls, nil)
+	SET_SLOT_STYLESET(slot, itemCls)
+	slot:SetMaxSelectCount(invItem.count);
+	
+	icon:SetTooltipArg(tooltipType, invItem.type, invItem:GetIESID());
+	SET_ITEM_TOOLTIP_TYPE(icon, itemCls.ClassID, itemCls, tooltipType);		
+end
+
+function GET_INV_ITEM_COUNT_BY_PROPERTY(propCondList)	
+    local itemList = session.GetInvItemList();
+    local index = itemList:Head();
+    local count = 0;
+    local matchedList = {};
+    while itemList:InvalidIndex() ~= index do
+        local invItem = itemList:Element(index);
+        if invItem ~= nil and invItem:GetObject() ~= nil then
+	        local itemObj = GetIES(invItem:GetObject());
+            local matched = true;
+            for i = 1, #propCondList do
+                local cond = propCondList[i];
+	            if TryGetProp(itemObj, cond.Name) ~= cond.Value then
+                    matched = false;
+                    break;
+                end
+            end
+
+            if matched == true then
+                if itemObj.MaxStack > 1 then
+	                count = count + invItem.count;
+	            else -- 비스택형 아이템
+		            count = count + 1;
+		        end
+	            matchedList[#matchedList + 1] = invItem;
+            end
+	    end
+        index = itemList:Next(index);
+    end
+    return count, matchedList;
+end
