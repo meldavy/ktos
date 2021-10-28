@@ -22,7 +22,7 @@ function ITEM_BALLOON_COMMON(handle, itemObj, tooltipEnum, duration, delaySec, s
 
     local forgeryItem, forgeryObj = nil;
 	if itemObj == nil then
-        if modifiedString == nil then
+        if modifiedString == nil or modifiedString == "None" then
 		    return;
 		else
 			forgeryItem = session.link.CreateOrGetGCLinkObject(itemID, modifiedString);			

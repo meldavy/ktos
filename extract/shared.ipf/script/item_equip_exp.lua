@@ -1,5 +1,6 @@
 ﻿-- item_equip_exp.lua
 
+-- cpp로 이전됨, 사용하지 않음
 function GET_MORE_EXP_BOOST_TOKEN(pc)
 	local sumExp = 0.0;
 	sumExp = sumExp + IsBuffAppliedEXP(pc, 'Premium_boostToken');	-- 경험의 서 경험치
@@ -12,7 +13,7 @@ end
 
 function GET_MORE_LEGEND_EXP_UP_CARD(pc)
 	local sumExp = 0.0;
-	sumExp = sumExp + IsBuffAppliedEXP(pc, 'CARD_ExpUP_LV1');	-- 레전드 카드 ---
+	sumExp = sumExp + IsBuffAppliedEXP(pc, 'CARD_ExpUP_LV1');	-- 레전드 카드 ---	
 	sumExp = sumExp + IsBuffAppliedEXP(pc, 'CARD_ExpUP_LV2');	-- 레전드 카드 ---
 	sumExp = sumExp + IsBuffAppliedEXP(pc, 'CARD_ExpUP_LV3');	-- 레전드 카드 ---
 	sumExp = sumExp + IsBuffAppliedEXP(pc, 'CARD_ExpUP_LV4');	-- 레전드 카드 ---
@@ -22,7 +23,7 @@ function GET_MORE_LEGEND_EXP_UP_CARD(pc)
 	sumExp = sumExp + IsBuffAppliedEXP(pc, 'CARD_ExpUP_LV8');	-- 레전드 카드 ---
 	sumExp = sumExp + IsBuffAppliedEXP(pc, 'CARD_ExpUP_LV9');	-- 레전드 카드 ---
 	sumExp = sumExp + IsBuffAppliedEXP(pc, 'CARD_ExpUP_LV10');	-- 레전드 카드 ---
-	sumExp = sumExp + IsBuffAppliedEXP(pc, 'CARD_ExpUP_bayl_LV1');
+	sumExp = sumExp + IsBuffAppliedEXP(pc, 'CARD_ExpUP_bayl_LV1');	
 	sumExp = sumExp + IsBuffAppliedEXP(pc, 'CARD_ExpUP_bayl_LV2');
 	sumExp = sumExp + IsBuffAppliedEXP(pc, 'CARD_ExpUP_bayl_LV3');
 	sumExp = sumExp + IsBuffAppliedEXP(pc, 'CARD_ExpUP_bayl_LV4');
@@ -201,6 +202,7 @@ function GET_MORE_ANCIENT_EXP(pc)
 	return sumExp;
 end
 
+-- cpp로 이전됨, 더 이상 사용하지 않음
 function GET_MORE_EVENT_EXP_JAEDDURY(pc)
 	local sumExp = 0.0;
 	if "YES" == IsBuffApplied(pc, 'Event_CharExpRate') then
@@ -341,4 +343,167 @@ function GET_WEAPON_PARAM_LIST(item, list)
 		list[i+2] = prop:GetExPropByIndex(i);
 	end
 
+end
+
+-- 일반 경험의 서
+function SCR_BUFF_ENTER_Premium_boostToken(self, buff, arg1, arg2, over)
+	local id = TryGetProp(buff, 'ClassID', 0)
+	if id > 0 then
+		local cls = GetClassByType('Buff', id)
+		if cls ~= nil then
+			local rate = TryGetProp(cls, 'BuffExpUP', 0)
+			local before = GetExProp(self, 'Premium_boostToken_rate')
+			SetExProp(self, 'Premium_boostToken_rate', before + rate)
+		end
+	end
+end
+function SCR_BUFF_LEAVE_Premium_boostToken(self, buff, arg1, arg2, over)
+	local id = TryGetProp(buff, 'ClassID', 0)
+	if id > 0 then
+		local cls = GetClassByType('Buff', id)
+		if cls ~= nil then
+			local rate = TryGetProp(cls, 'BuffExpUP', 0)
+			local before = GetExProp(self, 'Premium_boostToken_rate')
+			local after = before - rate
+			if after < 0 then
+				after = 0
+			end
+			SetExProp(self, 'Premium_boostToken_rate', after)
+		end
+	end
+end
+-- 4배
+function SCR_BUFF_ENTER_Premium_boostToken02(self, buff, arg1, arg2, over)
+	local id = TryGetProp(buff, 'ClassID', 0)
+	if id > 0 then
+		local cls = GetClassByType('Buff', id)
+		if cls ~= nil then
+			local rate = TryGetProp(cls, 'BuffExpUP', 0)
+			local before = GetExProp(self, 'Premium_boostToken_rate')
+			SetExProp(self, 'Premium_boostToken_rate', before + rate)
+		end
+	end
+end
+function SCR_BUFF_LEAVE_Premium_boostToken02(self, buff, arg1, arg2, over)
+	local id = TryGetProp(buff, 'ClassID', 0)
+	if id > 0 then
+		local cls = GetClassByType('Buff', id)
+		if cls ~= nil then
+			local rate = TryGetProp(cls, 'BuffExpUP', 0)
+			local before = GetExProp(self, 'Premium_boostToken_rate')
+			local after = before - rate
+			if after < 0 then
+				after = 0
+			end
+			SetExProp(self, 'Premium_boostToken_rate', after)
+		end
+	end
+end
+-- 8배
+function SCR_BUFF_ENTER_Premium_boostToken03(self, buff, arg1, arg2, over)
+	local id = TryGetProp(buff, 'ClassID', 0)
+	if id > 0 then
+		local cls = GetClassByType('Buff', id)
+		if cls ~= nil then
+			local rate = TryGetProp(cls, 'BuffExpUP', 0)
+			local before = GetExProp(self, 'Premium_boostToken_rate')
+			SetExProp(self, 'Premium_boostToken_rate', before + rate)
+		end
+	end
+end
+function SCR_BUFF_LEAVE_Premium_boostToken03(self, buff, arg1, arg2, over)
+	local id = TryGetProp(buff, 'ClassID', 0)
+	if id > 0 then
+		local cls = GetClassByType('Buff', id)
+		if cls ~= nil then
+			local rate = TryGetProp(cls, 'BuffExpUP', 0)
+			local before = GetExProp(self, 'Premium_boostToken_rate')
+			local after = before - rate
+			if after < 0 then
+				after = 0
+			end
+			SetExProp(self, 'Premium_boostToken_rate', after)
+		end
+	end
+end
+
+function SCR_BUFF_ENTER_Premium_boostToken04(self, buff, arg1, arg2, over)
+	local id = TryGetProp(buff, 'ClassID', 0)
+	if id > 0 then
+		local cls = GetClassByType('Buff', id)
+		if cls ~= nil then
+			local rate = TryGetProp(cls, 'BuffExpUP', 0)
+			local before = GetExProp(self, 'Premium_boostToken_rate')
+			SetExProp(self, 'Premium_boostToken_rate', before + rate)
+		end
+	end
+end
+function SCR_BUFF_LEAVE_Premium_boostToken04(self, buff, arg1, arg2, over)
+	local id = TryGetProp(buff, 'ClassID', 0)
+	if id > 0 then
+		local cls = GetClassByType('Buff', id)
+		if cls ~= nil then
+			local rate = TryGetProp(cls, 'BuffExpUP', 0)
+			local before = GetExProp(self, 'Premium_boostToken_rate')
+			local after = before - rate
+			if after < 0 then
+				after = 0
+			end
+			SetExProp(self, 'Premium_boostToken_rate', after)
+		end
+	end
+end
+-- 16배
+function SCR_BUFF_ENTER_Premium_boostToken05(self, buff, arg1, arg2, over)
+	local id = TryGetProp(buff, 'ClassID', 0)
+	if id > 0 then
+		local cls = GetClassByType('Buff', id)
+		if cls ~= nil then
+			local rate = TryGetProp(cls, 'BuffExpUP', 0)
+			local before = GetExProp(self, 'Premium_boostToken_rate')
+			SetExProp(self, 'Premium_boostToken_rate', before + rate)
+		end
+	end
+end
+function SCR_BUFF_LEAVE_Premium_boostToken05(self, buff, arg1, arg2, over)
+	local id = TryGetProp(buff, 'ClassID', 0)
+	if id > 0 then
+		local cls = GetClassByType('Buff', id)
+		if cls ~= nil then
+			local rate = TryGetProp(cls, 'BuffExpUP', 0)
+			local before = GetExProp(self, 'Premium_boostToken_rate')
+			local after = before - rate
+			if after < 0 then
+				after = 0
+			end
+			SetExProp(self, 'Premium_boostToken_rate', after)
+		end
+	end
+end
+-- 32배
+function SCR_BUFF_ENTER_Premium_boostToken06(self, buff, arg1, arg2, over)
+	local id = TryGetProp(buff, 'ClassID', 0)
+	if id > 0 then
+		local cls = GetClassByType('Buff', id)
+		if cls ~= nil then
+			local rate = TryGetProp(cls, 'BuffExpUP', 0)
+			local before = GetExProp(self, 'Premium_boostToken_rate')
+			SetExProp(self, 'Premium_boostToken_rate', before + rate)
+		end
+	end
+end
+function SCR_BUFF_LEAVE_Premium_boostToken06(self, buff, arg1, arg2, over)
+	local id = TryGetProp(buff, 'ClassID', 0)
+	if id > 0 then
+		local cls = GetClassByType('Buff', id)
+		if cls ~= nil then
+			local rate = TryGetProp(cls, 'BuffExpUP', 0)
+			local before = GetExProp(self, 'Premium_boostToken_rate')
+			local after = before - rate
+			if after < 0 then
+				after = 0
+			end
+			SetExProp(self, 'Premium_boostToken_rate', after)
+		end
+	end
 end

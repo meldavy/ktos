@@ -4,6 +4,7 @@
 function WHISPER_CHAT(commname)
 
 	local	setText = string.format('\"%s ', commname);
+	
 	SET_CHAT_TEXT(setText);
 
 end
@@ -31,7 +32,7 @@ function CHAT_MAXLEN_MSG(frame, ctrl, maxLen)
 	ui.SysMsg( ScpArgMsg("ChatMsgLimitedBy{Max}Byte_EmoticonCanTakeLotsOfByte","Max", maxLen));
 end
 
-function SET_CHAT_TEXT(txt)
+function SET_CHAT_TEXT_TO_CHATFRAME(txt)
 	local chatFrame = GET_CHATFRAME();
 	local edit = chatFrame:GetChild('mainchat');
 
@@ -42,7 +43,6 @@ function SET_CHAT_TEXT(txt)
 	edit:SetText(txt);
 	editCtrl:AcquireFocus();
 end
-
 
 g_uiChatHandler = nil;
 function UI_CHAT(msg)

@@ -1,4 +1,4 @@
-<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by imc (imc) -->
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by imc (imc) -->
 <Category>
 	<ReadXml Name="bonescale"/>
 	<ReadXml Name="item_goddess_reinforce"/>
@@ -333,6 +333,7 @@
 	<ReadXml Name="item_ark_material"/>
 	<ReadXml Name="item_ark_material_belong"/>
 	<ReadXml Name="item_gem_bernice"/>
+	<ReadXml Name="ride_pet"/>
 	<ReadXml Name="rank_system\KOR_rank_system_season_table"/>
 	<ReadXml Name="rank_system_reward_list"/>
 	<ReadXml Name="Monster_BountyHunt"/>

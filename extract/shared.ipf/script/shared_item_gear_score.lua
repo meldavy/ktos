@@ -93,7 +93,7 @@ function GET_ENCHANT_OPTION_PORTION(item)
     return math.floor(portion + 0.5) / 100
 end
 
-function GET_GEAR_SCORE(item)
+function GET_GEAR_SCORE(item, pc)
     if TryGetProp(item, 'StringArg', 'None') == 'WoodCarving' then 
         return 0
     end
@@ -144,17 +144,36 @@ function GET_GEAR_SCORE(item)
         return 0
     end
 
+    local is_sub_slot = false
+    if IsServerSection() == 1 then
+        local guid = GetIESID(item)
+        local sub = GetEquipItem(pc, 'LH_SUB');
+        if sub ~= nil and GetIESID(sub) == guid then
+            is_sub_slot = true
+        end
+        sub = GetEquipItem(pc, 'RH_SUB');
+        if sub ~= nil and GetIESID(sub) == guid then
+            is_sub_slot = true
+        end        
+    else        
+        local guid = GetIESID(item)
+        local sub = session.GetEquipItemBySpot(ES_LH_SUB)
+        if sub ~= nil and sub:GetIESID() == guid then	
+            is_sub_slot = true
+        end
+
+        sub = session.GetEquipItemBySpot(ES_RH_SUB)
+        if sub ~= nil and sub:GetIESID() == guid then	
+            is_sub_slot = true
+        end        
+    end
+
+
     if type == 'SEAL' then
         reinforce = GET_CURRENT_SEAL_LEVEL(item)        
         local ret = ((0.7 *(100*reinforce))+((1000*grade)+(1*use_lv)) * 0.3)*0.26        
         return math.floor(ret + 0.5)
-    elseif type == 'RELIC' then
-        -- reinforce = TryGetProp(item, 'Relic_LV', 1)              
-        -- if IsServerSection() ~= 1 and app.IsBarrackMode() == true then
-        --     reinforce = TryGetProp(GetMyAccountObj(), 'Relic_LV', 1)              
-        -- end
-        -- local ret = ((0.7 *(50*reinforce))+((900*grade)+(1*use_lv)) * 0.3)*0.26
-        -- return math.floor(ret + 0.5)
+    elseif type == 'RELIC' then        
         return 0
     elseif type == 'ARK' then
         local ark_lv = TryGetProp(item, 'ArkLevel', 1)
@@ -172,6 +191,8 @@ function GET_GEAR_SCORE(item)
         local enchant_portion = 1       -- 인챈트 쥬얼 비율(max치 대비)
         local random_option_penalty = 0
         local enchant_option_penalty = 0
+
+        local gem_point = 0        
 
         if type ~= 'RING' and type ~= 'NECK' then
             -- 고정 아이커 레벨 체크
@@ -212,7 +233,47 @@ function GET_GEAR_SCORE(item)
             -- 인챈트 수치
             local enchant_portion = GET_ENCHANT_OPTION_PORTION(item)            
             diff = 1 - enchant_portion
-            enchant_option_penalty = 0.05 * diff -- 5% 비중            
+            enchant_option_penalty = 0.05 * diff -- 5% 비중
+
+            -- 젬 소켓 수치
+            local max_socket_count = TryGetProp(item, 'MaxSocket_COUNT', 0)
+            local start_idx = 0
+            local _lv = TryGetProp(item, 'UseLv', 1)
+            if grade >= 6 then
+                max_socket_count = GET_MAX_GODDESS_NORMAL_SOCKET_COUNT(_lv)
+            end
+            for start_idx = 0, max_socket_count do
+                local gem_id = 0
+                local gem_lv = 0
+                if IsServerSection() == 1 then
+                    gem_id, gem_lv = GetItemSocketInfo(item, start_idx)
+                else
+                    local inv_item = session.GetInvItemByGuid(GetIESID(item))
+                    if inv_item == nil then
+                        inv_item = session.GetEquipItemByGuid(GetIESID(item))
+                    end
+                    if inv_item ~= nil then
+                        gem_id = inv_item:GetEquipGemID(start_idx)
+                        gem_lv = inv_item:GetEquipGemLv(start_idx)                        
+                    end
+                end
+                   
+                if gem_id ~= 0 and gem_id ~= 643817 then
+                    local gem_cls = GetClassByType('Item', gem_id)
+                    if gem_cls ~= nil then
+                        local gem_type = TryGetProp(gem_cls, 'GemType', 'None')                                
+                        if gem_type == 'Gem_High_Color' then
+                            gem_lv = math.ceil(gem_lv * 0.15)                        
+                        end
+
+                        if TryGetProp(gem_cls, 'StringArg', 'None') == 'SkillGem' then
+                            gem_lv = 0
+                        end
+
+                        gem_point = gem_point + gem_lv
+                    end
+                end
+            end
         end
                 
         local avg_lv = math.floor((use_lv * 0.5) + ((icor_lv + use_lv + random_icor_lv) * 0.33334 * 0.5) + 0.5)
@@ -250,12 +311,20 @@ function GET_GEAR_SCORE(item)
                     elseif group == 'Disnai' then
                         set_advantage = 1 
                     end
+
+                    if TryGetProp(set_cls, 'ClassName', 'None') == 'Set_Ezera' or TryGetProp(set_cls, 'ClassName', 'None') == 'Set_Karys' then
+                        set_advantage = 0.9
+                    end
+                end
+            else
+                if is_sub_slot == true then
+                    set_advantage = 1
                 end
             end
         end        
         set_option = 1 - random_option_penalty - enchant_option_penalty        
         local ret = 0.5 * ( (4*transcend) + (3*reinforce)) + ( (30*grade) + (1.66*avg_lv) )*0.5
-        ret = ret * set_option * set_advantage + add_acc
+        ret = ret * set_option * set_advantage + add_acc + gem_point
         
         return math.floor(ret + 0.5)
     end
@@ -274,7 +343,7 @@ function GET_PLAYER_GEAR_SCORE(pc)
             if equipItem ~= nil and equipItem:GetIESID() ~= '0' then
                 local invitem = GET_ITEM_BY_GUID(equipItem:GetIESID());
                 local itemobj = GetIES(invitem:GetObject());
-                score = score + GET_GEAR_SCORE(itemobj)
+                score = score + GET_GEAR_SCORE(itemobj, pc)
             end            
         end        
         
@@ -299,7 +368,7 @@ function GET_PLAYER_GEAR_SCORE(pc)
         for i = 1, #equipList do
             local itemobj = equipList[i]
             if itemobj ~= nil then
-                score = score + GET_GEAR_SCORE(itemobj)
+                score = score + GET_GEAR_SCORE(itemobj, pc)
             end
         end
 

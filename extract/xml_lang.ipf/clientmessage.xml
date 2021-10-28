@@ -489,7 +489,7 @@
 		<Class ClassID="2384" ClassName="IsNotRegister" Data="활성화되지 않은 아이템입니다."/>
 		<Class ClassID="2385" ClassName="GoddessGradeItemOnly" Data="가디스 등급의 아이템만 가능합니다."/>
 		<Class ClassID="2386" ClassName="NoSelectedItem" Data="선택된 아이템이 없습니다."/>
-		<Class ClassID="2387" ClassName="TryRandomOptionPresetEngrave" Data="선택된 아이템과 재료로 각인 저장을 시도하시겠습니까?"/>
+		<Class ClassID="2387" ClassName="TryRandomOptionPresetEngrave" Data="저장한 각인은 {#0000ff}캐릭터에 귀속{/}됩니다.{nl}선택된 아이템과 재료로 각인 저장을 시도하시겠습니까?"/>
 		<Class ClassID="2388" ClassName="EngravePageNumber{index}" Data="{index}번 각인"/>
 		<Class ClassID="2389" ClassName="SameOptionEngravedAlready" Data="이미 동일한 옵션의 각인이 저장되어 있습니다."/>
 		<Class ClassID="2390" ClassName="GlassLevelIsLow" Data="돋보기의 레벨보다 장비의 레벨이 높습니다."/>
@@ -518,7 +518,7 @@
 		<Class ClassID="2506" ClassName="DoYouWantCtrlTypeReset" Data="계열 변경을 하시겠습니까?"/>
 		<Class ClassID="2507" ClassName="ArcherCannotDashInBattleState" Data="아처 클래스는 전투 중에 대시를 할 수 없습니다."/>
 		<Class ClassID="2508" ClassName="WarningPartyMemberLongDistance" Data="[경고!] 파티원과의 거리가 200 이상입니다. 파티원과 가까이 모이세요."/>
-	</Category>
+		</Category>
 	<Category Name="CannotGetSkillMessage">
 		<Class ClassID="2600" ClassName="CannotGetSkillMessage_Doppelsoeldner_Zucken" Data="[스킬] 존하우 1레벨 이상 필요"/>
 		<Class ClassID="2601" ClassName="CannotGetSkillMessage_Doppelsoeldner_Redel" Data="[스킬] 츠켄 1레벨 이상 필요"/>
@@ -1007,7 +1007,7 @@
 		<Class ClassID="4380" ClassName="QuestCleared_ALL_msg_1" Data="사용할 수 없습니다{nl}이미 해당 에피소드의 모든 퀘스트가 완료 상태입니다."/>
 		<Class ClassID="4381" ClassName="QuestCleared_ALL_msg_2" Data="사용할 수 없습니다{nl}해당 에피소드에 클리어할 수 있는 퀘스트가 없습니다."/>
 		<Class ClassID="4382" ClassName="tooltip_reward_ratio_open_list" Data="사용 시 각 확률에 따라 아이템을 획득합니다."/>
-		<Class ClassID="4383" ClassName="GET_CONTENTS_TOTAL_POINT{count}" Data="포인트를 획득했습니다: [{#33FF33}콘텐츠 통합 포인트{/}]x{#33FF33}{count}}{/}"/>
+		<Class ClassID="4383" ClassName="GET_CONTENTS_TOTAL_POINT{count}" Data="포인트를 획득했습니다: [{#33FF33}콘텐츠 통합 포인트{/}]x{#33FF33}{count}{/}"/>
 		<Class ClassID="4384" ClassName="tooltip_reward_ratio_open_list_spendcount" Data="사용 시 {COUNT}개를 소비하고 각 균등 확률에 따라 아이템을 획득합니다.{nl}"/>
 		<Class ClassID="4385" ClassName="Enough_Relic_Gem_DiscountStone" Data="여신의 축복석 요구 수량이 0 입니다.{nl}더 이상 할인 쿠폰을 투입하여도 여신의 축복석 할인은 적용되지 않습니다."/>
 		<Class ClassID="4386" ClassName="HairAccCubeBonus{COUNT}" Data="여신의 큐브 {COUNT}회차 추가보상이 지급되었습니다."/>
@@ -1037,10 +1037,21 @@
 		<Class ClassID="4411" ClassName="ClassMisc" Data="전용 재료"/>
 		<Class ClassID="4412" ClassName="CantInheritIcorEquip" Data="아이커가 장착되어 있는 아이템은 계승할 수 없습니다.{nl}아이커 장착 해제 후 다시 시도해주세요."/>
 		<Class ClassID="4413" ClassName="ItemDecomposeMistakeWarningPropMessage" Data="{#FE7E00}{s25}분해 실수 발생 가능성 높음{nl}{/}{/}{s18}분해 실수가 잦은 아이템이 포함되어 있습니다.{nl} {nl}{#FE7E00}{ITEMLIST}{/}{/}{nl} {nl}{DEFAULTMSG}"/>
+		<Class ClassID="4414" ClassName="TitleAllItemPropertyResetAlert" Data="{#FE7E00}{s30}모든 옵션이 초기화됩니다!{/}{/}"/>
+		<Class ClassID="4415" ClassName="TitleAllItemPropertyAlert" Data="{#FE7E00}{s30}옵션이 일부만 계승됩니다!{/}{/}"/>
+		<Class ClassID="4416" ClassName="AllItemPropertyResetAlert" Data="{s22}재료 장비가 {#FE7E00}11강 10초월{/} 미만으로서{nl} {#FE7E00}재료 장비, 강화, 초월, 인챈트, 장착된 젬{/}을{nl} 비롯한 모든 옵션이 초기화됩니다."/>
+		<Class ClassID="4417" ClassName="AllItemPropertyAlert" Data="{s22}{#FE7E00}강화, 인챈트 수치가 2/3 만큼 계승{/}되며{nl} {#FE7E00}22강 이상은 14강으로{/}계승됩니다.{nl} {nl}이를 제외한 모든 옵션(초월, 장착된 젬 등)은{nl}초기화됩니다."/>
+		<Class ClassID="4418" ClassName="ReallyGoddessInherit" Data="정말로 계승하시려면{nl} 다음 단어를 입력해 주세요."/>
 		<Class ClassID="4419" ClassName="SelectBuffItemPlz" Data="손질할 아이템을 선택해 주세요."/>
 		<Class ClassID="4420" ClassName="AlreadyMaxOptionValue" Data="이미 최대 수치에 도달한 옵션입니다."/>
+		<Class ClassID="4421" ClassName="ExceedAccountPropertyCount" Data="보유 가능한 최대 횟수를 초과하게 됩니다. 소모후에 다시 시도해 주세요."/>
+		<Class ClassID="4422" ClassName="TOSHero_EnableEntryCount" Data="영웅담 입장 횟수 1회 획득"/>
 		<Class ClassID="4423" ClassName="{use}ectonite{get}" Data="엑토나이트 [{#33FF33}{use}{/}]개를 소모해 [{#33FF33}{get}{/}]의 마력을 충전했습니다."/>
 		<Class ClassID="4424" ClassName="EquipMainWeaponFirst" Data="주 장비를 먼저 착용해야 합니다."/>
+		<Class ClassID="4428" ClassName="ReallyRegisterForCabinet" Data="등록한 무기/방어구는 {#0000ff}가디스 등급의 장비에만 아이커 부여가 가능{/}합니다.{nl} {nl}등록한 아이템은 복구가 불가능합니다.{nl}정말 등록하시겠습니까?"/>
+		<Class ClassID="4429" ClassName="EngravedOptionExist" Data="{#FE7E00}저장된 옵션이 있습니다!{/}"/>
+		<Class ClassID="4430" ClassName="ReallyEngraveOption" Data="{#FE7E00}각인은 캐릭터에 귀속되며, 기존 옵션은 복구되지 않습니다.{/}{nl}선택한 아이템과 재료로 각인 저장을 시도하시겠습니까?"/>
+		<Class ClassID="4457" ClassName="DontUseItem" Data="사용할 수 없는 아이템입니다."/>
 		</Category>
 	<Category Name="ItemTooltip">
 		<Class ClassID="5001" ClassName="CoolDown : {Sec} Sec" Data="재사용 대기시간 : {Sec}초"/>
@@ -1373,7 +1384,7 @@
 	</Category>
 	<Category Name="Message">
 		<Class ClassID="10000" ClassName="Name" Data="이름"/>
-		<Class ClassID="10001" Data="이름은 공백을 포함하여{nl}영문 16자, 한글 8자를{nl}초과할 수 없습니다"/>
+		<Class ClassID="10001" ClassName="NameTooLong" Data="이름은 공백을 포함하여{nl}영문 16자, 한글 8자를{nl}초과할 수 없습니다"/>
 		<Class ClassID="10003" Data="3초 후 로그인 모드로 이동합니다"/>
 		<Class ClassID="10004" Data="서버에 접속할 수가 없습니다"/>
 		<Class ClassID="10005" Data="아이디가 허용하는 길이를 초과합니다"/>
@@ -1826,6 +1837,9 @@
 		<Class ClassID="10588" ClassName="{num}SilverLimitOver" Data="실버를 {num} 이상 소지시 사용이 불가능합니다."/>
 		<Class ClassID="10589" ClassName="LuciferiExtract_Help" Data="루시페리 계열 액세서리의 강화/초월/포텐셜을 추출하여 속성이 저장된 2장의 스크롤을 생성합니다{nl}{nl}해당 스크롤은 캐릭터 귀속된 같은 종류의 루시페리 계열 액세서리에 사용 가능합니다.{nl}속성이 추출된 액세서리만 액세서리 분해가 가능합니다."/>
 		<Class ClassID="10593" ClassName="TooManyItemBuy{name}{count}" Data="정말로 [{#0054FF}{name}{/}] [{#FF0000}{count}{/}]개를 구매하시겠습니까?"/>
+		<Class ClassID="10594" ClassName="NotEnoughMasterPiece" Data="아츠 습득 비용이 부족합니다.{nl}현재 보유한 신비한 서 개수를 확인하세요."/>
+		<Class ClassID="10595" ClassName="ReallyDecompose" Data="정말 분해하시겠습니까?"/>
+		<Class ClassID="10596" ClassName="DontDecomposeNoTrade" Data="거래 불가 아이템은 분해할 수 없습니다."/>
 	</Category>
 	<Category Name="FoodTable">
 		<Class ClassID="20001" ClassName="IncreaseHP{Value}For{Time}Minute" Data="{Time}분 동안 HP가 {Value}% 증가합니다."/>
@@ -10148,6 +10162,13 @@
 		<Class ClassID="100114" ClassName="BountyHuntStart" Data="에서{nl}지명 수배 몬스터가 목격되었습니다."/>
 		<Class ClassID="100115" ClassName="BountyHuntSuccess" Data="바운티 헌트 성공"/>
 		<Class ClassID="100116" ClassName="BountyHuntStartMsg" Data="바운티 헌트를 시작합니다."/>
+		<Class ClassID="100117" ClassName="BountyHuntEncounterNPC" Data="마족 상인이 나타났습니다!{nl}상인을 떠나보내기 전 까진 지역 이동이 불가능합니다."/>
+		<Class ClassID="100118" ClassName="BountyNpcShop" Data="물물교환"/>
+		<Class ClassID="100119" ClassName="BountyNpcShop_Trade_Sucess" Data="거래에 만족한 마족 상인이 발길을 돌립니다."/>
+		<Class ClassID="100120" ClassName="BountyNpcShop_Trade_Fail" Data="마족 상인이 물건만 가져간 채로 도망가려합니다!"/>
+		<Class ClassID="100121" ClassName="BountyMonMark" Data="수배자"/>
+		<Class ClassID="100122" ClassName="BountyBossMark" Data="수배자 보스"/>
+		<Class ClassID="100123" ClassName="BountyBattleSkipMSG" Data="수배자들이 나타났습니다!{nl}하지만 탈 것이 쫓아냈습니다.{nl} {nl}{icon}"/>
 	</Category>
 	<Category Name="Party">
 		<Class ClassID="101001" ClassName="GULID_OUT" Data="길드 탈퇴"/>
@@ -10592,6 +10613,28 @@
 		<Class ClassID="102477" ClassName="ChangeAncientDefenseDeckTabName" Data="이름 변경"/>
 		<Class ClassID="102478" ClassName="bosscoopshop" Data="보스 협동전 훈장 상점"/>
 		<Class ClassID="102479" ClassName="CS_Indun_NoEnter" Data="입장이 불가능합니다"/>
+		<Class ClassID="102480" ClassName="JoinChannel" Data="이 채팅방에 입장하시겠습니까?"/>
+		<Class ClassID="102481" ClassName="UserJoined" Data="&lt;{name}&gt; 님이 입장하셨습니다."/>
+		<Class ClassID="102482" ClassName="Unknown" Data="&lt;알수없음&gt;"/>
+		<Class ClassID="102483" ClassName="LeaveChannel" Data="나가기"/>
+		<Class ClassID="102484" ClassName="LeaveChannelConfirm" Data="정말 나가시겠습니까?"/>
+		<Class ClassID="102485" ClassName="PinMessage" Data="공지로 등록"/>
+		<Class ClassID="102486" ClassName="DeleteMessageDesc" Data="삭제된 메시지는 내 채팅방에서만 적용되며 상대방의 채팅방에서는 삭제되지 않습니다. 삭제하시겠습니까?"/>
+		<Class ClassID="102487" ClassName="OnlineUserCount" Data="온라인 {count}"/>
+		<Class ClassID="102488" ClassName="OfflineUserCount" Data="오프라인 {count}"/>
+		<Class ClassID="102489" ClassName="MessageTooOld" Data="너무 오래된 메시지입니다."/>
+		<Class ClassID="102490" ClassName="AlreadyPinned" Data="이미 공지로 등록된 메시지입니다."/>
+		<Class ClassID="102491" ClassName="IncorrectPassword" Data="비밀번호가 일치하지 않습니다."/>
+		<Class ClassID="102492" ClassName="EnterPassword" Data="비밀번호를 입력하세요"/>
+		<Class ClassID="102493" ClassName="InternalError" Data="내부 오류가 발생했습니다. 다시 시도해주세요."/>
+		<Class ClassID="102494" ClassName="PasswordTooShort" Data="비밀번호가 너무 짧습니다"/>
+		<Class ClassID="102495" ClassName="Settings" Data="설정"/>
+		<Class ClassID="102496" ClassName="YouWereKicked" Data="'{name}' 채팅방에서 추방당했습니다."/>
+		<Class ClassID="102497" ClassName="CantJoinKickedChannel" Data="추방당한 채팅방은 다시 입장할 수 없습니다."/>
+		<Class ClassID="102498" ClassName="EntrustHead" Data="방장 위임"/>
+		<Class ClassID="102499" ClassName="KickConfirm" Data="정말 추방하시겠습니까?{nl}이 유저가 보냈던 모든 메시지가 삭제되며, 다시는 이 채팅방에 들어올 수 없습니다."/>
+		<Class ClassID="102501" ClassName="MaxChannelExceed" Data="더 이상 채팅방을 만들 수 없습니다."/>
+		<Class ClassID="102502" ClassName="SuccessJoinedNewbieGuild" Data="성장 지원길드에 가입되었습니다."/>
 	</Category>
 	<Category Name="EqupClasses">
 		<Class ClassID="103001" ClassName="THSword" Data="양손검"/>
@@ -14860,6 +14903,7 @@
 		<Class ClassID="300204" ClassName="Premium_boostToken05" Data="x16 경험의 서"/>
 		<Class ClassID="300205" ClassName="Premium_boostToken06" Data="x32 경험의 서"/>
 		<Class ClassID="300206" ClassName="IsAppliedPremiumBoostToken" Data="이미 경험의 서 아이템이 활성화 중에 있습니다."/>
+		<Class ClassID="300207" ClassName="PVPMineShopWeeklyResetDateTime" Data="{@st66d_y}※ 주간 구매 가능 수량은{nl}{@st66d_y}{#FF0000}토요일 오전 6시{/}에 초기화됩니다."/>
 	</Category>
 	<Category Name="TPHistory">
 		<Class ClassID="301001" ClassName="RemainLogoutPC" Data="로그아웃 PC 만들기"/>
@@ -15417,6 +15461,21 @@
 		<Class ClassID="302581" ClassName="EVENT_2107_FISHING_CHECK_MESSAGE1{BAIT}{TRADE}" Data="{#0033FF}[돌아온 수박 낚시]{/}{nl}[이벤트] 문어발 미끼 일일 수령 횟수 {#0033FF}({BAIT}/1회){/}{nl}이벤트 기간 중 [수박 낚시] 시원한 수박 교환 횟수 {#0033FF}({TRADE}/150회){/}{nl}{#FF3333}※일일 수령 횟수는 매일 오전 6시 초기화 됩니다.{nl}※이벤트 기간 중 [수박 낚시] 시원한 수박의 최대 교환 교환 횟수는 150개 이며, 이후 교환 시 버프만 획득 가능합니다.{/}"/>
 		<Class ClassID="302582" ClassName="EVENT_2107_FISHING_CHECK_MESSAGE2{TIME}{CHECK}" Data="{#0033FF}[돌아온 수박 낚시 출석 이벤트]{/}{nl}토요일, 일요일 1시간 접속 시 마다 '시원한 수박' 지급!{nl}일일 수령 횟수 {#0033FF}({CHECK}/2){/}{nl}접속 시간 {#0033FF}({TIME}/120분){/}{nl}{#FF3333}※일일 제한은 매일 오전 06시에 초기화 됩니다.{/}"/>
 		<Class ClassID="302583" ClassName="NEWUSER_BUFF_MSG" Data="{#FF0000}※신규/복귀 유저 지원 버프가 종료되었습니다. 스크롤을 다시 사용해주세요.{/}"/>
+		<Class ClassID="302584" ClassName="EVENT_2108_ARCHEOLOGY_SEARCH_1" Data="{#0033FF}유물 발굴중{/}"/>
+		<Class ClassID="302585" ClassName="EVENT_2108_ARCHEOLOGY_SEARCH_2" Data="{#FF3333}※수상한 흙더미를 발견했습니다.{/}{nl}흙더미는 30초 후 사라집니다. 흙더미에 다가가 상호작용 하세요"/>
+		<Class ClassID="302586" ClassName="EVENT_2108_ARCHEOLOGY_SEARCH_3" Data="{#FF3333}이 주변은 이미 찾아봤습니다.{/}"/>
+		<Class ClassID="302587" ClassName="EVENT_2108_ARCHEOLOGY_NPC_NAME" Data="{#0033FF}흙더미{/}"/>
+		<Class ClassID="302588" ClassName="EVENT_2108_ARCHEOLOGY_SEARCH_4" Data="{#FF0000}※참여 횟수가 초과하였습니다.{/}"/>
+		<Class ClassID="302589" ClassName="EVENT_2108_ARCHEOLOGY_SEARCH_5" Data="{#FF3333}※고고학자의 총명함이 반응합니다.{nl}계속 찾다 보면 유물을 발견할 수 있을 것 같습니다.{/}"/>
+		<Class ClassID="302590" ClassName="EVENT_2108_ARCHEOLOGY_SEL1" Data="{#003399}[유물 이벤트]{/}이벤트 안내"/>
+		<Class ClassID="302591" ClassName="EVENT_2108_ARCHEOLOGY_SEL2" Data="{#003399}[유물 이벤트]{/}숨겨진 유물 찾기"/>
+		<Class ClassID="302592" ClassName="EVENT_2108_ARCHEOLOGY_SEL3" Data="{#003399}[유물 이벤트]{/}유물 감정하기"/>
+		<Class ClassID="302593" ClassName="EVENT_2108_ARCHEOLOGY_SHOP" Data="{#003399}[유물 이벤트]{/}이벤트 상점"/>
+		<Class ClassID="302594" ClassName="EVENT_2108_ARCHEOLOGY_EP12_SHOP" Data="{#003399}[EP-12] 아이템 스크롤 상점{/}"/>
+		<Class ClassID="302595" ClassName="EVENT_2108_ARCHEOLOGY_CHECK_SEL1" Data="{#003399}[이벤트] 미감정 유물 상자 S{/} 감정하기"/>
+		<Class ClassID="302596" ClassName="EVENT_2108_ARCHEOLOGY_CHECK_SEL2" Data="{#003399}[이벤트] 미감정 유물 상자 A{/} 감정하기"/>
+		<Class ClassID="302597" ClassName="EVENT_2108_ARCHEOLOGY_MSG1" Data="{#003399}{CNT}개의 유물을 감정하였습니다.{/}"/>
+		<Class ClassID="302598" ClassName="EVENT_2108_ARCHEOLOGY_CHECK_SEL3" Data="감정을 원하는 아이템 개수를 입력해주세요.{nl}미감정 유물 상자에서 획득 가능한 등급은 아래와 같습니다.{nl}- [이벤트] 미감정 유물 상자 S = {#003399}S ~ B{/}{nl}- [이벤트] 미감정 유물 상자 A = {#003399}A ~ C{/}{nl}교환 가능 개수 {#003399}[0~{MAX}]{/}{nl}{#FF3333}※ 한번에 최대 10개 까지 교환 가능합니다.{/}"/>
 		<Class ClassID="302599" ClassName="EP13CARE_TRADE4" Data="온전한 신력의 조각 / 검붉은 영혼석 교환"/>
 		<Class ClassID="302600" ClassName="GoddessCare_UniqueMaterial" Data="여신 / 마신 방어구 재료 교환"/>
 		<Class ClassID="302601" ClassName="REGULAR_BURNING_EVENT_MYTHIC_AUTO_RESET_SUCCESS" Data="성공적으로 입장횟수를 초기화했습니다!"/>
@@ -15433,6 +15492,20 @@
 		<Class ClassID="302612" ClassName="EVENT_2107_FISHING_KR_WORLD_MSG" Data='축하합니다!{nl}"{TIMENAME}"님이 황금 낚시 이벤트에서 "{ITEM}"을(를) 획득하였습니다!'/>
 		<Class ClassID="302613" ClassName="EP13CARE_TRADE6" Data="[2021] 바이보라 스크롤"/>
 		<Class ClassID="302614" ClassName="GoddessCare_Vibora" Data="[2021] 바이보라 스크롤"/>
+		<Class ClassID="302615" ClassName="EVENT_2108_ARCHEOLOGY_CHECK_MSG_TITLE_A" Data="{#0066FF}[이벤트 칭호 현황]{/}{nl}황금 여신상 유물 S 등급 획득하기 ({#0066FF}{T1}{/}/1){nl}{nl}황금 여신상 유물 A 등급 획득하기 ({#0066FF}{T2}{/}/1){nl}황금 여신상 유물 B 등급 획득하기 ({#0066FF}{T3}{/}/1){nl}황금 여신상 유물 C 등급 획득하기 ({#0066FF}{T4}{/}/1){nl}"/>
+		<Class ClassID="302616" ClassName="EVENT_2108_ARCHEOLOGY_CHECK_MSG_TITLE_B" Data="{#0066FF}[이벤트 칭호 현황]{/}{nl}순은 여신상 유물 S 등급 획득하기 ({#0066FF}{T1}{/}/1){nl}{nl}순은 여신상 유물 A 등급 획득하기 ({#0066FF}{T2}{/}/1){nl}순은 여신상 유물 B 등급 획득하기 ({#0066FF}{T3}{/}/1){nl}순은 여신상 유물 C 등급 획득하기 ({#0066FF}{T4}{/}/1){nl}"/>
+		<Class ClassID="302617" ClassName="EVENT_2108_ARCHEOLOGY_CHECK_MSG_TITLE_C" Data="{#0066FF}[이벤트 칭호 현황]{/}{nl}청동 여신상 유물 S 등급 획득하기 ({#0066FF}{T1}{/}/1){nl}{nl}청동 여신상 유물 A 등급 획득하기 ({#0066FF}{T2}{/}/1){nl}청동 여신상 유물 B 등급 획득하기 ({#0066FF}{T3}{/}/1){nl}청동 여신상 유물 C 등급 획득하기 ({#0066FF}{T4}{/}/1){nl}"/>
+		<Class ClassID="302618" ClassName="EVENT_2108_ARCHEOLOGY_CHECK_MSG_TITLE_D" Data="{#0066FF}[이벤트 칭호 현황]{/}{nl}유물 발굴 200회 달성 ({#0066FF}{T5}{/}/200)"/>
+		<Class ClassID="302619" ClassName="EVENT_2108_ARCHEOLOGY_TITLE_CHECK_SEL1" Data="{#0033FF}[이벤트 칭호 - 금나와라 뚝딱]{/}"/>
+		<Class ClassID="302620" ClassName="EVENT_2108_ARCHEOLOGY_TITLE_CHECK_SEL2" Data="{#0033FF}[이벤트 칭호 - 은나와라 뚝딱]{/}"/>
+		<Class ClassID="302621" ClassName="EVENT_2108_ARCHEOLOGY_TITLE_CHECK_SEL3" Data="{#0033FF}[이벤트 칭호 - 청동나와라 뚝딱]{/}"/>
+		<Class ClassID="302622" ClassName="EVENT_2108_ARCHEOLOGY_TITLE_CHECK_SEL4" Data="{#0033FF}[이벤트 칭호 - 명예 고고학 협회 회원]{/}"/>
+		<Class ClassID="302623" ClassName="EVENT_2108_ARCHEOLOGY_SEL4" Data="{#003399}[유물 이벤트]{/}칭호 획득하기"/>
+		<Class ClassID="302624" ClassName="EVENT_2108_ARCHEOLOGY_SEARCH_6" Data="{#FF0000}※탐사 횟수가 초과하였습니다.{/}"/>
+		<Class ClassID="302625" ClassName="EVENT_2108_ARCHEOLOGY_CHECK_MSG" Data="{#0066FF}[유물 찾기 이벤트 현황]{/}{nl}일일 고고학 협회 교환권 획득량 (({#0066FF}{COIN}{/}/100){nl}일일 유물찾기 횟수 제한 (({#0066FF}{COUNT}{/}/10){nl}전체 유물찾기 횟수 (({#0066FF}{TOTAL}{/}){nl}{#FF3333}※ 사냥을 통한 유물 상자는 이벤트 버프 적용 중에만 획득 가능합니다.{/}{nl}{#FF3333}※ 일일 제한은 매일 06시 초기화 됩니다.{/}"/>
+		<Class ClassID="302626" ClassName="EVENT_2108_ARCHEOLOGY_SHOP2" Data="{#003399}[유물 이벤트]{/}유물 교환 상점"/>
+		<Class ClassID="302627" ClassName="EVENT_2108_ARCHEOLOGY_SEARCH_7" Data="{#FF0000}※이 지역에서는 더이상 유물을 찾을 수 없을 것 같다.{/}"/>
+		<Class ClassID="302628" ClassName="EVENT_2108_ARCHEOLOGY_SEARCH_8" Data="{#FF0000}※주위를 찾아보면 유물을 발견할 수 있을 것 같다.{nl}더 이동해보자.{/}"/>
 		</Category>
 	<Category Name="Account">
 		<Class ClassID="303001" ClassName="MaxAccountWarehouseCount" Data="팀 창고"/>
@@ -15591,6 +15664,18 @@
 		<Class ClassID="501283" ClassName="WarpBanBountyHunt" Data="빠른 이동 기능을 사용할 수 없는 콘텐츠를 진행 중입니다."/>
 		<Class ClassID="501284" ClassName="BountyHuntBoss_Chat01" Data="요녀석, 기절해버렸구나!!"/>
 		<Class ClassID="501285" ClassName="BountyHuntStartDistanceCheck" Data="지령서는 지명수배 게시판 앞에서 사용해야 합니다."/>
+		<Class ClassID="501286" ClassName="BountyHuntBoss_Chat02" Data="물컥 물컥!"/>
+		<Class ClassID="501287" ClassName="BountyHuntBoss_Chat03" Data="물물교환한다"/>
+		<Class ClassID="501288" ClassName="BountyHuntBoss_Chat04" Data="싸운다"/>
+		<Class ClassID="501289" ClassName="BountyHuntBoss_Chat05" Data="물컥~"/>
+		<Class ClassID="501290" ClassName="BountyHuntBoss_Chat06" Data="설득한다"/>
+		<Class ClassID="501291" ClassName="BountyHuntBoss_Chat07" Data="정중히 인사한다"/>
+		<Class ClassID="501292" ClassName="BountyHuntBoss_Chat08" Data="어서 비키라고 화낸다"/>
+		<Class ClassID="501293" ClassName="BountyHuntBoss_Chat09" Data="당신의 말에 감명받은 금동이는 자리를 떠났다."/>
+		<Class ClassID="501294" ClassName="BountyHuntBoss_Chat10" Data="당신의 말에 화가 난 금동이가 공격해온다!"/>
+		<Class ClassID="501295" ClassName="BountyHuntBoss_Chat11" Data="저항했지만 빠져나오는데 실패했다!"/>
+		<Class ClassID="501296" ClassName="BountyHuntBoss_Chat12" Data="빠져나오는데 성공했다!"/>
+		<Class ClassID="501297" ClassName="BountyHuntBoss_Chat13" Data="잡아먹혔다!{nl}상호작용으로 저항할 수 있을 것 같다."/>
 	</Category>
 	<Category Name="GEM_GACHA">
 		<Class ClassID="510001" ClassName="GEM_GACHA_SEL1" Data="젬 1회 뽑기"/>
@@ -17040,6 +17125,7 @@
 		<Class ClassID="1006012" ClassName="REPUTATION_COIN_USE_SUCCESS{ITEMNAME}{BEFORE}{AFTER}" Data="{ITEMNAME}: {BEFORE} → {AFTER}"/>
 		<Class ClassID="1006013" ClassName="REPUTATION_COIN_LIMIT_MSG{DAILY}{WEEKLY}" Data="{#FF6D00}- 필드 / 챌린지로 획득 가능한 명성도 아이템 -{/}{nl}일일 획득량{#FF0000}({DAILY}/60){/}{nl}주간 획득량{#FF0000}({WEEKLY}/300){/}{nl}{nl}　{nl}{#FF6D00}- 획득처 정보 -{/}{nl}Episode13 일반 필드{nl}Episode13 지역 챌린지 모드 3단 이상(10개){nl}Episode13 지역 챌린지 모드 : 분열 특이점(10개)"/>
 		<Class ClassID="1006014" ClassName="REPUTATION_POSSIBLEQUEST{QUESTNAME}{ZONE}" Data="{#FF0000}※ 경고 ※{/}{nl}선택하신 콘텐츠와 관련한 명성 퀘스트가 있습니다.{nl}시작 가능한 퀘스트 : {#003399}{QUESTNAME}{/}{nl}시작 위치 : {#003399}{ZONE}{/}"/>
+		<Class ClassID="1006016" ClassName="REPUTATION_SHOP_NO_MONEY" Data="잔액이 부족합니다"/>
 	</Category>
 	<Category Name="reputation_npc">
 		<Class ClassID="1007000" ClassName="NEED_OPEN_REPUTATION" Data="Episode13의 퀘스트 [끝나지 않은 위협]을 완료 후 진행 가능한{nl}[왕국 재건단]퀘스트를 완료하면 명성을 이용할 수 있습니다."/>
@@ -17158,6 +17244,7 @@
 		<Class ClassID="1030001" ClassName="success_ratio" Data="성공률 {ratio}%"/>
 		<Class ClassID="1030002" ClassName="IsNotAetherGem" Data="에테르 젬 아이템을 선택해 주세요."/>
 		<Class ClassID="1030003" ClassName="ReallyDoAetherGemReinforce" Data="{name} 아이템을 강화합니다. 계속하시겠습니까?"/>
+		<Class ClassID="1030004" ClassName="CantUseAetherGemUpgradeToken" Data="베르니케 파편 던전 클리어 이후에 사용 가능합니다."/>
 	</Category>
 	<Category Name="unknown_santuary">
 		<Class ClassID="1040000" ClassName="UNKNOWN_SANTUARY_GATE_CLMSG_INFO" Data="{#0000FF}[미지의 성역] 안내{/}"/>
@@ -17183,10 +17270,41 @@
 		<Class ClassID="1040020" ClassName="UNKNOWN_SANTUARY_GATE_CLMSG_PAY_WARNING_6" Data="[성역의 가호] 효과를 획득하기 위해 {Cost}실버가 소모됩니다. 효과를 획득하시겠습니까?"/>
 		<Class ClassID="1040021" ClassName="UNKNOWN_SANTUARY_GATE_CLMSG_BUFF_CHECK_1" Data="보유중인 [성역의 가호] 버프가 없습니다. {nl}[성역의 가호]버프를 보유한 상태여야 입장이 가능합니다."/>
 	</Category>
+	<Category Name="RidePet">
+		<Class ClassID="1041000" ClassName="RidePet_Regedit_Success_Msg_1" Data="탈 것 탑승 스킬이 등록되었습니다.{nl}스킬과 특성(F3)의 공용탭에 탈 것 탑승 스킬이 추가되었습니다."/>
+		<Class ClassID="1041001" ClassName="RidePet_Regedit_Success_Msg_2" Data="새로운 탈 것이 등록되었습니다{nl}컴패니언(F9)을 이용하여 등록된 탈 것을 확인해보세요"/>
+		<Class ClassID="1041010" ClassName="RidePet_Summon_Fail_Msg_1" Data="이미 등록된 탈 것 입니다."/>
+		<Class ClassID="1041011" ClassName="RidePet_Summon_Fail_Msg_2" Data="컴패니언에 탑승한 상태에서는 사용할 수 없습니다"/>
+		<Class ClassID="1041012" ClassName="RidePet_Summon_Fail_Msg_3" Data="악마에 탑승한 상태에서는 사용할 수 없습니다"/>
+		<Class ClassID="1041013" ClassName="RidePet_Summon_Fail_Msg_4" Data="선택된 탈 것이 없습니다.{nl}먼저 탈 것을 선택해주세요"/>
+		<Class ClassID="1041014" ClassName="RidePet_Summon_Fail_Msg_5" Data="탈 것에 탑승한 상태에서는 사용할 수 없습니다"/>
+		<Class ClassID="1041051" ClassName="RidePet_GetItem_Success_msg_1" Data="업적을 완료하여 탈 것 등록증을 획득했습니다{nl}인벤토리를 확인해주세요"/>
+		<Class ClassID="1041071" ClassName="RidePet_Not_Selected" Data="선택된 탈 것이 없습니다."/>
+		<Class ClassID="1041072" ClassName="RidePet_Not_Select_CoolTime" Data="탈 것 선택 재사용 대기시간이 적용중입니다."/>
+		<Class ClassID="1041073" ClassName="RidePet_Impossible_Select_Target" Data="대상이 탈 것에 탑승 중입니다."/>
+	</Category>
 	<Category Name="trade_select_item_set">
 		<Class ClassID="1050001" ClassName="trade_select_item_set_1" Data="드라코나스 {@st66d_y}리느키 시트{/} 세트 {@st66d_y}(마법 계열){/}{/}"/>
 		<Class ClassID="1050002" ClassName="trade_select_item_set_2" Data="드라코나스 {@st66d_y}카이트 무어{/} 세트 {@st66d_y}(추가 대미지 계열){/}{/}"/>
 		<Class ClassID="1050003" ClassName="trade_select_item_set_3" Data="드라코나스 {@st66d_y}파시우테스{/} 세트 {@st66d_y}(물리 계열){/}{/}"/>
 		<Class ClassID="1050004" ClassName="trade_select_item_set_4" Data="드라코나스 {@st66d_y}프리에노{/} 세트 {@st66d_y}(물리 광역 계열){/}{/}"/>
+		<Class ClassID="1050005" ClassName="trade_select_item_set_m_ep13raincoat01" Data="산들림 기린 우비 세트 (남)"/>
+		<Class ClassID="1050006" ClassName="trade_select_item_set_f_ep13raincoat01" Data="산들림 기린 우비 세트 (여)"/>
+		<Class ClassID="1050007" ClassName="trade_select_item_set_m_ep13raincoat01_1" Data="산들림 오리 우비 세트 (남)"/>
+		<Class ClassID="1050008" ClassName="trade_select_item_set_f_ep13raincoat01_1" Data="산들림 오리 우비 세트 (여)"/>
+		<Class ClassID="1050009" ClassName="trade_select_item_set_m_ep13raincoat02" Data="산들림 붕어 우비 세트 (남)"/>
+		<Class ClassID="1050010" ClassName="trade_select_item_set_f_ep13raincoat02" Data="산들림 붕어 우비 세트 (여)"/>
+		<Class ClassID="1050011" ClassName="trade_select_item_set_m_ep13raincoat02_1" Data="산들림 호롱아귀 우비 세트 (남)"/>
+		<Class ClassID="1050012" ClassName="trade_select_item_set_f_ep13raincoat02_1" Data="산들림 호롱아귀 우비 세트 (여)"/>
+		<Class ClassID="1050013" ClassName="trade_select_item_set_m_ep13raincoat03" Data="산들림 국방 우의 세트 (남)"/>
+		<Class ClassID="1050014" ClassName="trade_select_item_set_f_ep13raincoat03" Data="산들림 국방 우의 세트 (여)"/>
+		<Class ClassID="1050015" ClassName="trade_select_item_set_m_ep13raincoat03_1" Data="산들림 검은 우의 세트 (남)"/>
+		<Class ClassID="1050016" ClassName="trade_select_item_set_f_ep13raincoat03_1" Data="산들림 검은 우의 세트 (여)"/>
+		<Class ClassID="1050017" ClassName="trade_select_item_set_m_ep13raincoat01_2" Data="산들림 상어 우비 세트 (남)"/>
+		<Class ClassID="1050018" ClassName="trade_select_item_set_f_ep13raincoat01_2" Data="산들림 상어 우비 세트 (여)"/>
+		<Class ClassID="1050019" ClassName="trade_select_item_set_m_ep13raincoat02_2" Data="산들림 우파루파 우비 세트 (남)"/>
+		<Class ClassID="1050020" ClassName="trade_select_item_set_f_ep13raincoat02_2" Data="산들림 우파루파 우비 세트 (여)"/>
+		<Class ClassID="1050021" ClassName="trade_select_item_set_m_ep13raincoat03_2" Data="산들림 노란 우의 세트 (남)"/>
+		<Class ClassID="1050022" ClassName="trade_select_item_set_f_ep13raincoat03_2" Data="산들림 노란 우의 세트 (여)"/>
 	</Category>
 </idspace>

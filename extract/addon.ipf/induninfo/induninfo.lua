@@ -248,7 +248,6 @@ function INDUNINFO_CREATE_CATEGORY(frame)
     local indunClsList, cnt = GetClassList('Indun');
     for i = 0, cnt - 1 do
         local indunCls = GetClassByIndexFromList(indunClsList, i);
-        
         if indunCls ~= nil and indunCls.Category ~= 'None' and enableCreate(indunCls.DungeonType) == true then
             local groupID = TryGetProp(indunCls,"GroupID","None");
             if groupID ~= 'None' and isFavorite(groupID) == true then
@@ -1586,6 +1585,10 @@ function INDUNINFO_SORT_BY_LEVEL(parent, ctrl)
     if infoBox:IsVisible() == 0 then 
         return;
     end
+
+    local tab = GET_CHILD(topFrame, "tab");
+    local index = tab:GetSelectItemIndex();
+    
     local groupID = topFrame:GetUserValue('SELECT')
     local radioBtn = GET_CHILD_RECURSIVELY(topFrame, 'lvAscendRadio');
     local selectedBtn = radioBtn:GetSelectedButton();
@@ -1593,11 +1596,15 @@ function INDUNINFO_SORT_BY_LEVEL(parent, ctrl)
         if groupID ~= "Challenge" then
             table.sort(g_selectedIndunTable, SORT_BY_LEVEL_BASE_NAME);
         end
+
+        local is_raid_tab = index == 2;
+        if is_raid_tab == true and groupID ~= "Gtower" then
+            table.sort(g_selectedIndunTable, SORT_RAID_BY_RAID_TYPE);
+        end
     else
         table.sort(g_selectedIndunTable, SORT_BY_LEVEL_REVERSE);
     end
-    local tab = GET_CHILD(topFrame, "tab");
-    local index = tab:GetSelectItemIndex();
+
     local SCROLL_WIDTH = 20
     if index == 6 then
         SCROLL_WIDTH = 0
@@ -1610,6 +1617,7 @@ function INDUNINFO_SORT_BY_LEVEL(parent, ctrl)
     firstChild = tolua.cast(firstChild, 'ui::CControlSet');
         startY = firstChild:GetY();    
     end
+    
     for i = 1, #g_selectedIndunTable do
         local indunCls = g_selectedIndunTable[i];        
         local detailCtrl = indunListBox:GetChild('DETAIL_CTRL_'..indunCls.ClassID);        
@@ -1668,6 +1676,24 @@ function SORT_BY_LEVEL_REVERSE(a, b)
         return a.Name < b.Name
     end
     return tonumber(a.Level) > tonumber(b.Level)
+end
+
+function SORT_RAID_BY_RAID_TYPE(a, b)
+    if TryGetProp(a, "DungeonType", "None") ~= "Raid" or TryGetProp(b, "DungeonType", "None") ~= "Raid" then
+        return false;
+    end
+
+    local function substitution_raid_type(raid_type)
+        if raid_type == "PartyNormal" then return 0;
+        elseif raid_type == "PartyHard" then return 1;
+        elseif raid_type == "Solo" then return 2;
+        elseif raid_type == "AutoNormal" then return 3;
+        elseif raid_type == "AutoHard" then return 4; end
+    end
+
+    local difficulty_a = substitution_raid_type(TryGetProp(a, "RaidType", "None"));
+    local difficulty_b = substitution_raid_type(TryGetProp(b, "RaidType", "None"));
+    return difficulty_a < difficulty_b;
 end
 
 function INDUNINFO_OPEN_INDUN_MAP(parent, ctrl)
@@ -2009,6 +2035,10 @@ function SCR_OPEN_OBSERVE_TEAMBATTLE()
 end
 
 function REQ_OPEN_SOLO_DUNGEON_RANKING_UI()
+    if session.world.IsIntegrateServer() == true or IsPVPField(pc) == 1 or IsPVPServer(pc) == 1 then
+        ui.SysMsg(ScpArgMsg('ThisLocalUseNot'));
+        return;
+    end
     pc.ReqExecuteTx("SEND_SOLO_DUNGEON_RANKING_FULL","None")
     ui.CloseFrame('induninfo')
 end

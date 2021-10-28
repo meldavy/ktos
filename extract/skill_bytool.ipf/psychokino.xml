@@ -266,7 +266,7 @@ return value"/>
                             <Str Str="voice_wiz_m_gravitypole_shot"/>
                             <Str Str="voice_wiz_gravitypole_shot"/>
                         </Scp>
-                        <Scp Scp="SKL_CONSUME_SP" Client="NO" UseSleep="NO" Time="550" LoopTime="500">
+                        <Scp Scp="SKL_CONSUME_SP" Client="NO" UseSleep="NO" Time="550" LoopTime="1000">
                             <Num Num="8" UseFunc="1" FuncTxt="local value = 47 local lv = self.Lv local bylvCorrect = lv - 300 if bylvCorrect &lt; 0 then     bylvCorrect = bylvCorrect * 2.75 / 1000 elseif bylvCorrect >= 0 then     bylvCorrect = bylvCorrect * 1.25 / 1000 end value = value * (1 + bylvCorrect) local abil = GetAbility(self, &quot;Psychokino20&quot;) if abil ~= nil and abil.ActiveState == 1 then value = value * 1.2 end return math.floor(value)"/>
                         </Scp>
                         <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="550">

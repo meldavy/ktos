@@ -18221,6 +18221,16 @@ if self.HP == 0 then return 1; else return 0; end;">
             </ToolScp>
         </StartList>
     </AI>
+    <AI Name="RidePet_Run" UpdateMS="1000" ActiveMessageMapInBattle="1">
+        <List>
+            <ToolScp Scp="SAI_FUNC2_DIRECT" Client="NO" UseSleep="NO">
+                <Str Str="SAI_RIDE_PET_RUN"/>
+            </ToolScp>
+        </List>
+        <StartList>
+            <ToolScp Scp="EnableAIOutOfPC" Client="NO" UseSleep="NO"/>
+        </StartList>
+    </AI>
     <AI Name="Run_Away_Hit" ActiveMessageMapInBattle="1"/>
     <AI Name="SAI_BASIC_BOSS_300" ActiveMessageMapInBattle="1">
         <List>

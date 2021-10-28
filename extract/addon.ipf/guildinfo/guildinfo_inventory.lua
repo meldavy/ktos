@@ -66,17 +66,38 @@ function GUILDINFO_INVEN_UPDATE_INVENTORY(frame, msg, argStr, argNum)
     end, false, slotset);
 end
 
-function GUILDINFO_INVEN_ITEM_CLICK(parent, slot)
-    local isLeader = AM_I_LEADER(PARTY_GUILD);
-	if 0 == isLeader then
-		ui.SysMsg(ScpArgMsg("OnlyLeaderAbleToDoThis"));
-		return;
-	end
+function callback_GUILDINFO_INVEN_ITEM_CLICK(code, ret_json, argList)
+    if code ~= 200 then        
+        SHOW_GUILD_HTTP_ERROR(code, "1", "callback_GUILDINFO_INVEN_ITEM_CLICK") -- 권한 없음
+        return
+    end
 
+    if ret_json == 'True' then
+        local itemClassName = argList[1]
+        local itemCount = tonumber(argList[2])
+        local itemID = argList[3]
+        GUILDINVEN_SEND_INIT(itemClassName, itemCount, itemID);        
+    else
+        SHOW_GUILD_HTTP_ERROR(code, "1", "callback_GUILDINFO_INVEN_ITEM_CLICK") -- 권한 없음
+    end
+end
+
+function GUILDINFO_INVEN_ITEM_CLICK(parent, slot)    
     local itemClassName = slot:GetUserValue('ITEM_CLASS_NAME');
     local itemCount = slot:GetUserIValue('ITEM_COUNT');
     local itemID = slot:GetUserValue('ITEM_ID');
-    GUILDINVEN_SEND_INIT(itemClassName, itemCount, itemID);
+
+    local isLeader = AM_I_LEADER(PARTY_GUILD);
+    if isLeader == 1 then
+        GUILDINVEN_SEND_INIT(itemClassName, itemCount, itemID);
+    else
+        local argList = {}
+        table.insert(argList, tostring(itemClassName))
+        table.insert(argList, tostring(itemCount))
+        table.insert(argList, tostring(itemID))
+        CheckClaim('callback_GUILDINFO_INVEN_ITEM_CLICK', 20, argList)
+    end
+    
 end
 
 function ON_GUILD_ASSET_LOG(frame, msg, argStr, argNum)

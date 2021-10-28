@@ -4,7 +4,6 @@ function C_get_leticia_start_and_end_time()
     local endTime = TryGetProp(GetClassByType('leticia_date', 1), "EndTime", "None")
 
 	return startTime, endTime
-
 end
 
 
@@ -13,6 +12,14 @@ function MINIMIZED_LETICIA_BUTTON_ON_INIT(addon, frame)
 end
 
 function MINIMIZED_LETICIA_BUTTON_CHECK(frame)
+	local openLeticiaBtn = GET_CHILD_RECURSIVELY(frame, 'openLeticiaBtn')
+
+	if config.GetServiceNation() ~= 'KOR' then
+		openLeticiaBtn:SetEnable(0)
+		frame:ShowWindow(0)
+		return
+	end
+
 	local mapprop = session.GetCurrentMapProp()
 	local mapCls = GetClassByType("Map", mapprop.type)
 
@@ -33,7 +40,6 @@ function MINIMIZED_LETICIA_BUTTON_CHECK(frame)
 end
 
 function MINIMIZED_LETICIA_REMAIN_TIME(frame)
-
 	local StartTime, EndTime = C_get_leticia_start_and_end_time()
 
 	local getnow = geTime.GetServerSystemTime()
@@ -65,11 +71,18 @@ function UPDATE_MINIMIZED_LETICIA_REMAIN_TIME(ctrl)
 end
 
 function UPDATE_MINIMIZED_LETICIA_TIME_CTRL(ctrl, remainsec, now, StartTime, EndTime, frame)
+	local openLeticiaBtn = GET_CHILD_RECURSIVELY(frame, 'openLeticiaBtn')
+
+	if config.GetServiceNation() ~= 'KOR' then
+		openLeticiaBtn:SetEnable(0)
+		frame:ShowWindow(0)
+		return 0
+	end
+
 	if StartTime == nil or EndTime == nil or EndTime == nil then
 		return 0
 	end
 
-	local openLeticiaBtn = GET_CHILD_RECURSIVELY(frame, 'openLeticiaBtn')
 	if date_time.is_later_than(now, StartTime) and date_time.is_later_than(EndTime,now) then
 		openLeticiaBtn:SetEnable(1)
 	else
@@ -192,5 +205,9 @@ function UPDATE_MINIMIZED_LETICIA_TIME_CTRL(ctrl, remainsec, now, StartTime, End
 end
 
 function MINIMIZED_LETICIA_BUTTON_CLICK()
+	if config.GetServiceNation() ~= 'KOR' then
+		return
+	end
+
 	LETICIA_CUBE_OPEN()
 end

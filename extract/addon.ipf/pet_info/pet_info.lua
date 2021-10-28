@@ -83,9 +83,13 @@ end
 function PET_INFO_CLOSE(frame)
 	ui.CloseFrame("inventory");
 	frame:SetUserValue("IS_OPEN_BY_NPC","NO")
-	--ui.CloseFrame("pet_list");
 
 	local frame = ui.GetFrame("companionlist");
+	if frame:IsVisible() == 1 then
+		frame:ShowWindow(0);
+	end
+
+	local frame = ui.GetFrame("petlist");
 	if frame:IsVisible() == 1 then
 		frame:ShowWindow(0);
 	end
@@ -94,9 +98,25 @@ end
 function OPEN_PET_LIST(parent,ctrl,argStr,argNum)
 
 	local frame = ui.GetFrame("companionlist");
+	local frame2 = ui.GetFrame("petlist");
+
 	if frame:IsVisible() == 0 then
 		COMPANIONLIST_OPEN(parent:GetTopParentFrame());
 		frame:ShowWindow(1);
+		frame2:ShowWindow(0);
+	else 
+		frame:ShowWindow(0);
+	end	
+end
+
+function OPEN_RIDE_PET_LIST(parent,ctrl,argStr,argNum)
+
+	local frame = ui.GetFrame("petlist");
+	local frame2 = ui.GetFrame("companionlist");
+	if frame:IsVisible() == 0 then
+		PETLIST_OPEN(parent:GetTopParentFrame());
+		frame:ShowWindow(1);
+		frame2:ShowWindow(0);
 	else 
 		frame:ShowWindow(0);
 	end	

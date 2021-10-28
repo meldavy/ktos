@@ -299,3 +299,16 @@ function SCR_DEL_EXPROP_C(name)
 	local pc = GetMyPCObject()
 	DelExProp(pc, name)
 end
+
+function REQ_RIDE_RIDEPET_C(skillType)
+	local skill = session.GetSkill(skillType)
+	if skill == nil then
+		return 0
+	end
+
+	-- need to manage client exception
+
+	ride_pet.RequestSummonRidePet()
+
+	return 0
+end

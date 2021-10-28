@@ -2703,172 +2703,6 @@ function IMCLOG_CONTENT_SPACING(tag, ...)
     ImcContentLog(tag, logMsg)
 end
 
-function SCR_TEXT_HIGHLIGHT(dialogClassName, text)
-    local targetZoneWordList = { }
-    local targetMonWordList = { }
-
-    local exceptList, exceptcnt = GetClassList("DialogExceptionText");
-    local exceptdialog = { }
-    local exceptword = { }
-    for i = 0, exceptcnt - 1 do
-        local cls = GetClassByIndexFromList(exceptList, i);
-        local clstype = TryGetProp(cls, 'Type', 'None')
-        local clsword = TryGetProp(cls, 'Word', 'None')
-        local clsdialog = TryGetProp(cls, 'Dialog', 'None')
-        if clstype == 'WORD' then
-            exceptdialog[#exceptdialog + 1] = clsdialog
-            exceptword[#exceptword + 1] = SCR_STRING_CUT(clsword)
-        end
-    end
-
-    local exceptIndex = table.find(exceptdialog, dialogClassName)
-
-    --    if #TEXT_ZONENAMELIST == 0 then
-    --        local maplist, mapcnt  = GetClassList("Map");
-    --        for i = 0 , mapcnt - 1 do
-    --            local cls = GetClassByIndexFromList(maplist, i);
-    --            local zoneName = TryGetProp(cls,'Name', 'None')
-    --            if zoneName ~= 'None' and table.find(TEXT_ZONENAMELIST, zoneName) == 0 then
-    --                TEXT_ZONENAMELIST[#TEXT_ZONENAMELIST + 1] = zoneName
-    --            end
-    --        end
-    --
-    --        local arealist, areacnt  = GetClassList("Map_Area");
-    --        for i = 0 , areacnt - 1 do
-    --            local cls = GetClassByIndexFromList(arealist, i);
-    --            local zoneName = TryGetProp(cls,'Name', 'None')
-    --            if zoneName ~= 'None' and table.find(TEXT_ZONENAMELIST, zoneName) == 0 then
-    --                TEXT_ZONENAMELIST[#TEXT_ZONENAMELIST + 1] = zoneName
-    --            end
-    --        end
-    --    end
-
-    local maxi1 = #TEXT_ZONENAMELIST
-    for i = 1, maxi1 do
-        local findIndex = string.find(text, TEXT_ZONENAMELIST[i])
-        if findIndex ~= nil then
-            local beforeChar = string.sub(text, findIndex - 1, findIndex - 1)
-            local beforeNum = string.byte(beforeChar)
-            if findIndex == 1 or beforeChar == ' ' or(beforeNum >= 33 and beforeNum <= 47) or(beforeNum >= 58 and beforeNum <= 64) or(beforeNum >= 91 and beforeNum <= 96) or(beforeNum >= 123 and beforeNum <= 126) then
-                if exceptIndex == 0 then
-                    targetZoneWordList[#targetZoneWordList + 1] = TEXT_ZONENAMELIST[i]
-                else
-                    if table.find(exceptword[exceptIndex], TEXT_ZONENAMELIST[i]) == 0 then
-                        targetZoneWordList[#targetZoneWordList + 1] = TEXT_ZONENAMELIST[i]
-                    end
-                end
-            end
-        end
-    end
-
-    --    if #TEXT_MONNAMELIST == 0 then
-    --        local monlist, moncnt  = GetClassList("Monster");
-    --        for i = 0 , moncnt - 1 do
-    --            local cls = GetClassByIndexFromList(monlist, i);
-    --            local monName = TryGetProp(cls,'Name', 'None')
-    --            if monName ~= 'None' and table.find(TEXT_ZONENAMELIST, monName) == 0 then
-    --                TEXT_MONNAMELIST[#TEXT_MONNAMELIST + 1] = monName
-    --            end
-    --        end
-    --    end
-
-
-    local maxi2 = #TEXT_MONNAMELIST
-    for i = 1, maxi2 do
-        local findIndex = string.find(text, TEXT_MONNAMELIST[i])
-        if findIndex ~= nil then
-            local beforeChar = string.sub(text, findIndex - 1, findIndex - 1)
-            local beforeNum = string.byte(beforeChar)
-            if findIndex == 1 or beforeChar == ' ' or(beforeNum >= 33 and beforeNum <= 47) or(beforeNum >= 58 and beforeNum <= 64) or(beforeNum >= 91 and beforeNum <= 96) or(beforeNum >= 123 and beforeNum <= 126) then
-                if exceptIndex == 0 then
-                    targetMonWordList[#targetMonWordList + 1] = TEXT_MONNAMELIST[i]
-                else
-                    if table.find(exceptword[exceptIndex], TEXT_MONNAMELIST[i]) == 0 then
-                        targetMonWordList[#targetMonWordList + 1] = TEXT_MONNAMELIST[i]
-                    end
-                end
-            end
-        end
-    end
-
-    if #targetZoneWordList > 0 then
-        for i = 1, #targetZoneWordList - 1 do
-            for r = i + 1, #targetZoneWordList do
-                if string.len(targetZoneWordList[i]) < string.len(targetZoneWordList[r]) then
-                    local tempStr = targetZoneWordList[i]
-                    targetZoneWordList[i] = targetZoneWordList[r]
-                    targetZoneWordList[r] = tempStr
-                end
-            end
-        end
-    end
-
-    if #targetMonWordList > 0 then
-        for i = 1, #targetMonWordList - 1 do
-            for r = i + 1, #targetMonWordList do
-                if string.len(targetMonWordList[i]) < string.len(targetMonWordList[r]) then
-                    local tempStr = targetMonWordList[i]
-                    targetMonWordList[i] = targetMonWordList[r]
-                    targetMonWordList[r] = tempStr
-                end
-            end
-        end
-    end
-
-    local sameZoneWordlist = CHECK_WORD_GET_LIST(targetZoneWordList);
-    if #targetZoneWordList > 0 then
-        for i = 1, #targetZoneWordList do
-            text = string.gsub(text, targetZoneWordList[i], '{#003399}' .. targetZoneWordList[i] .. '{/}');
-        end
-    end
-
-            -- 같은 단어 목록에 추가로 색깔 지정된 부분 삭제
-            if #sameZoneWordlist > 0 then
-               for r = 1, #sameZoneWordlist do
-                    local word = sameZoneWordlist[r];
-                    if word ~= nil then
-                 local sampleText = '{#003399}{#003399}'..word..'{/}';
-                        local findText = string.find(text, sampleText);
-                        if findText ~= nil then
-                     text = string.gsub(text, sampleText, '{#003399}'..word);
-               end
-            end
-        end
-    end
-
-    if #targetMonWordList > 0 then
-        for i = 1, #targetMonWordList do
-            text = string.gsub(text, targetMonWordList[i], '{#003399}' .. targetMonWordList[i] .. '{/}');
-        end
-    end
-
-    return text;
-end
-
-function CHECK_WORD_GET_LIST(list)
-    local same_word_list = {};
-    if #list > 0 then
-        for i = 1, #list - 1 do
-            for r = i + 1, #list do
-                if string.find(list[i], list[r]) ~= nil then
-                    local ilen = string.len(list[i]);
-                    local rlen = string.len(list[r]);
-                    
-                    if ilen > rlen then
-                        same_word_list[#same_word_list + 1] = list[r];
-                    elseif ilen < rlen then
-                        same_word_list[#same_word_list + 1] = list[i];
-                    else
-                        same_word_list[#same_word_list + 1] = list[i];
-                    end
-                end
-            end
-        end
-    end
-
-    return same_word_list;
-end
-
 function GET_DATE_BY_DATE_STRING(dateString)
     -- yyyy-mm-dd hh:mm:ss
     local tIndex = string.find(dateString, ' ');
@@ -3523,24 +3357,28 @@ function GET_AUTO_MEMBER_JOIN_GUILD_IDX(groupid, nation)
             return "1137058231881971";
         end
     elseif nation == 'GLOBAL_JP' then
-        if groupid == 1202 then
+        if groupid == 1202 then --사내 JPN
             return '32461362823197'
-        elseif groupid == 1007 then
+        elseif groupid == 1201 then --사내 JPN_LIVE
+            return '820338753567'
+        elseif groupid == 1007 then --라다
             return '1295027129097010'
-        elseif groupid == 1008 then
+        elseif groupid == 1008 then --달리아
             return '1294769431133037'
         end
     elseif nation == 'GLOBAL' then
-        if groupid == 1001 then
+        if groupid == 1201 then --사내 STM
+            return '103371272880147'
+        elseif groupid == 1101 then --사내 JPN_LIVE
+            return '29025388986425'
+        elseif groupid == 1001 then --아래부턴 라이브
             return '506544147923578'
-        elseif groupid == 1003 then
+        elseif groupid == 1003 then 
             return '377991481786398'
         elseif groupid == 1004 then 
             return '693014448046952'
         elseif groupid == 1005 then
             return '578656648822807' 
-        elseif groupid == 1201 then
-            return '103371272880147'
         end    
     end
 

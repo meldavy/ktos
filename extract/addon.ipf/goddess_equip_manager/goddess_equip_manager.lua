@@ -2112,7 +2112,7 @@ local function _GODDESS_MGR_RANDOMOPTION_GET_PAGE_NAME(index)
 	end
 end
 
-local function _GODDESS_MGR_MAKE_RANDOM_OPTION_TEXT(gBox, item_obj, option_list)
+function _GODDESS_MGR_MAKE_RANDOM_OPTION_TEXT(gBox, item_obj, option_list)
 	local tooltip_equip_property_CSet = gBox:CreateOrGetControlSet('tooltip_equip_property_narrow', 'tooltip_equip_property_narrow', 0, 0)
 	local labelline = GET_CHILD_RECURSIVELY(tooltip_equip_property_CSet, 'labelline')
 	labelline:ShowWindow(0)
@@ -2507,6 +2507,11 @@ function GODDESS_MGR_RANDOMOPTION_ENGRAVE_REG_ITEM(frame, inv_item, item_obj, sp
 	local randomoption_bg = GET_CHILD_RECURSIVELY(frame, 'randomoption_bg')
 	local index = randomoption_bg:GetUserValue('PRESET_INDEX')
 	local before_option = GET_ENGRAVED_OPTION_BY_INDEX_SPOT(etc, index, spot)
+	if before_option ~= nil then
+		slot:SetUserValue('BEFORE_OPTION_EXIST', 1)
+	else
+		slot:SetUserValue('BEFORE_OPTION_EXIST', 0)
+	end
 	local rand_engrave_before_inner = GET_CHILD_RECURSIVELY(frame, 'rand_engrave_before_inner')
 	rand_engrave_before_inner:RemoveChild('tooltip_equip_property_narrow')
 	_GODDESS_MGR_MAKE_RANDOM_OPTION_TEXT(rand_engrave_before_inner, nil, before_option)
@@ -2535,8 +2540,13 @@ function GODDESS_MGR_RANDOMOPTION_ENGRAVE_EXEC(parent, btn)
 	end
 
 	local yesscp = string.format('_GODDESS_MGR_RANDOMOPTION_ENGRAVE_EXEC()')
-	local msgbox = ui.MsgBox(ClMsg('TryRandomOptionPresetEngrave'), yesscp, 'None')
-	SET_MODAL_MSGBOX(msgbox)
+	local before_option = rand_engrave_slot:GetUserIValue('BEFORE_OPTION_EXIST')
+	if before_option == 1 then
+		WARNINGMSGBOX_EX_ENGRAVE_OPEN()
+	else
+		local msgbox = ui.MsgBox(ClMsg('TryRandomOptionPresetEngrave'), yesscp, 'None')
+		SET_MODAL_MSGBOX(msgbox)
+	end
 end
 
 function _GODDESS_MGR_RANDOMOPTION_ENGRAVE_EXEC()
@@ -4020,9 +4030,9 @@ local function GODDESS_MAKE_DROPLIST_INIT(frame)
     local group_list = GET_CHILD_RECURSIVELY(frame, 'make_item_kind_droplist')
     group_list:ClearItems()
     local group_index = 1
-    group_list:AddItem(0, ClMsg('PartyShowAll'))
+    group_list:AddItem(0, '{@st42b}'..ClMsg('PartyShowAll')..'{/}')
 	for _group, list in pairsByKeys(_goddessRecipeTable) do
-    	group_list:AddItem(group_index, _group)
+    	group_list:AddItem(group_index, '{@st42b}'.._group..'{/}')
     	group_list:SetUserValue('GROUP_INDEX_' .. group_index, _group)
     	group_index = group_index + 1
    	end
@@ -4030,10 +4040,10 @@ local function GODDESS_MAKE_DROPLIST_INIT(frame)
     local type_list = GET_CHILD_RECURSIVELY(frame, 'make_item_type_droplist')
     type_list:ClearItems()
     local type_index = 1
-    type_list:AddItem(0, ClMsg('PartyShowAll'))
+    type_list:AddItem(0, '{@st42b}'..ClMsg('PartyShowAll')..'{/}')
     for _type, list in pairsByKeys(_goddessRecipeTableByGroupName) do
 		if _type ~= 'Armor' then -- 방어구는 재료별로 따로 하기로 함
-	    	type_list:AddItem(type_index, ClMsg(_type))
+	    	type_list:AddItem(type_index, '{@st42b}'..ClMsg(_type)..'{/}')
 	    	type_list:SetUserValue('GROUPNAME_INDEX_' .. type_index, _type)
 	    	type_index = type_index + 1
     	end
@@ -4044,7 +4054,7 @@ local function GODDESS_MAKE_DROPLIST_INIT(frame)
 		if material ~= 'None' then
 			clmsg = clmsg..'-'..ClMsg(material)
 		end
-		type_list:AddItem(type_index, clmsg)
+		type_list:AddItem(type_index, '{@st42b}'..clmsg..'{/}')
 	    type_list:SetUserValue('GROUPNAME_INDEX_' .. type_index, 'Armor')
 	    type_list:SetUserValue('MATERIAL_OPTION_' .. type_index, material)
 	    type_index = type_index + 1
@@ -4347,10 +4357,20 @@ end
 
 function ON_SUCCESS_GODDESS_MAKE_EXEC(frame, msg, arg_str, arg_num)
 	ui.SetHoldUI(false)
+	local main_tab = GET_CHILD_RECURSIVELY(frame, 'main_tab')
+	local index = main_tab:GetSelectItemIndex()
+	if index == 4 then
+		GODDESS_MGR_INHERIT_CLEAR(frame)
+	end
 end
 
 function ON_FAILED_GODDESS_MAKE_EXEC(frame, msg, arg_str, arg_num)
 	ui.SetHoldUI(false)
+	local main_tab = GET_CHILD_RECURSIVELY(frame, 'main_tab')
+	local index = main_tab:GetSelectItemIndex()
+	if index == 4 then
+		GODDESS_MGR_INHERIT_CLEAR(frame)
+	end
 end
 -- 제작 끝
 
@@ -4575,12 +4595,21 @@ function GODDESS_MGR_INHERIT_REG_ITEM(frame, inv_item, item_obj)
 
 	local name_str = dic.getTranslatedStr(TryGetProp(item_obj, 'Name', 'None'))
 	local before_reinf = TryGetProp(item_obj, 'Reinforce_2', 0)
+	local before_trans = TryGetProp(item_obj, 'Transcend', 0)
 	if before_reinf > 0 then
 		name_str = string.format('+%d %s', before_reinf, name_str)
 	end
 	local before_name = GET_CHILD_RECURSIVELY(frame, 'inherit_before_item_name')
 	before_name:SetTextByKey('name', name_str)
 
+	local before_reinf_txt = GET_CHILD_RECURSIVELY(frame, 'inherit_before_item_reinf')
+	before_reinf_txt:SetTextByKey('value', before_reinf)
+	before_reinf_txt:ShowWindow(1)
+
+	local before_trans_txt = GET_CHILD_RECURSIVELY(frame, 'inherit_before_item_trans')
+	before_trans_txt:SetTextByKey('value', before_trans)
+	before_trans_txt:ShowWindow(1)
+	
 	local before_enchant = GET_CHILD_RECURSIVELY(frame, 'inherit_before_item_enchant')
 	local enchant_txt = GET_RANDOM_OPTION_RARE_CLIENT_TEXT(item_obj)
 	before_enchant:SetTextByKey('value', enchant_txt)
@@ -4604,6 +4633,14 @@ function GODDESS_MGR_INHERIT_CLEAR(frame)
 	local before_name = GET_CHILD_RECURSIVELY(frame, 'inherit_before_item_name')
 	before_name:SetTextByKey('name', '')
 
+	local before_reinf = GET_CHILD_RECURSIVELY(frame, 'inherit_before_item_reinf')
+	before_reinf:SetTextByKey('value', 0)
+	before_reinf:ShowWindow(0)
+
+	local before_trans = GET_CHILD_RECURSIVELY(frame, 'inherit_before_item_trans')
+	before_trans:SetTextByKey('value', 0)
+	before_trans:ShowWindow(0)
+	
 	local before_enchant = GET_CHILD_RECURSIVELY(frame, 'inherit_before_item_enchant')
 	before_enchant:SetTextByKey('value', '')
 
@@ -4649,71 +4686,95 @@ function GODDESS_MGR_INHERIT_EXEC(parent, btn)
 	local selected_id = list_bg:GetUserIValue('NOW_SELECT_ITEM_ID')
 	if selected_id <= 0 then return end
 
-	local selected_lv = TryGetProp(GetClassByNumProp("Item", "ClassID", selected_id), "UseLv", 1)	
+	local selected_cls = GetClassByType("Item", selected_id)
+	if selected_cls == nil then return end
+
+	local selected_lv = TryGetProp(selected_cls, "UseLv", 1)
 	if TryGetProp(GetMyPCObject(), 'Lv', 1) < tonumber(selected_lv) then
-		ui.SysMsg(ScpArgMsg("CannotBecauseLowLevel{LEVEL}", "LEVEL", selected_lv));
+		ui.SysMsg(ScpArgMsg("CannotBecauseLowLevel{LEVEL}", "LEVEL", selected_lv))
 		return	
 	end
 
-	local clmsg = ScpArgMsg('ReallyDoCraftByInherit{mat}', 'mat', item_name)
+	local clmsg = 'AllItemPropertyResetAlert'
 	if TryGetProp(item_obj, 'Transcend', 'None') == 10 and TryGetProp(item_obj, 'Reinforce_2', 'None') > 10 then
-		clmsg = ScpArgMsg('ReallyDoCraftByInheritAddReinforce{mat}', 'mat', item_name)
+		clmsg = 'AllItemPropertyAlert'
 	end
 
-	local yesscp = string.format('WARNINGMSGBOX_FRAME_INHERIT(%d, %d)', TryGetProp(item_obj, 'ClassID', 0), selected_id)
-	local msgbox = ui.MsgBox(clmsg, yesscp, '')
-	SET_MODAL_MSGBOX(msgbox)
+	local item_classtype = TryGetProp(item_obj, 'ClassType', 'None')
+	local select_classtype = TryGetProp(selected_cls, 'ClassType', 'None')
+	local yesscp = '_GODDESS_MGR_INHERIT_EXEC'
+	if item_classtype ~= select_classtype then
+		yesscp = 'WARNINGMSGBOX_FRAME_INHERIT'
 	end
 
-function WARNINGMSGBOX_FRAME_INHERIT(itemid, selected_id)
-	local itemType = TryGetProp(GetClassByNumProp("Item", "ClassID", itemid), "ClassType", "None")
-	local selectedType = TryGetProp(GetClassByNumProp("Item", "ClassID", selected_id), "ClassType", "None")
+	local option = {}
+	option.ChangeTitle = "TitleAllItemPropertyResetAlert"
+	option.CompareTextColor = nil
+	option.CompareTextDesc = ClMsg('ReallyGoddessInherit')
+
+	WARNINGMSGBOX_EX_FRAME_OPEN(frame, nil, clmsg .. ';Succession/' .. yesscp, 0, option)
+end
+
+function WARNINGMSGBOX_FRAME_INHERIT()
+	local from_frame = ui.GetFrame('goddess_equip_manager')
+	if from_frame:IsVisible() == 0 then return end
+
+	local slot = GET_CHILD_RECURSIVELY(from_frame, 'inherit_slot_before')
+	local guid = slot:GetUserValue('ITEM_GUID')
+	if guid == 'None' then return end
 	
-	if itemType ~= selectedType then
-	ui.OpenFrame("warningmsgbox")
-		local itemName = TryGetProp(GetClassByNumProp("Item", "ClassID", itemid), "Name", "None")
-		local selectedName = TryGetProp(GetClassByNumProp("Item", "ClassID", selected_id), "Name", "None")
+	local inv_item = session.GetInvItemByGuid(guid)
+	if inv_item == nil then return end
 
-		local clmsg = ScpArgMsg('OtherSlotEquipMent{ITEM1}{ITEM2}', 'ITEM1', itemName, 'ITEM2', selectedName);
+	local item_obj = GetIES(inv_item:GetObject())
+
+	local list_bg = GET_CHILD_RECURSIVELY(from_frame, 'inherit_inner_bg')
+	local selected_id = list_bg:GetUserIValue('NOW_SELECT_ITEM_ID')
+	if selected_id <= 0 then return end
+
+	local selected_cls = GetClassByType("Item", selected_id)
+	if selected_cls == nil then return end
+	
+	ui.OpenFrame("warningmsgbox")
+	local itemName = TryGetProp(item_obj, "Name", "None")
+	local selectedName = TryGetProp(selected_cls, "Name", "None")
+
+	local clmsg = ScpArgMsg('OtherSlotEquipMent{ITEM1}{ITEM2}', 'ITEM1', itemName, 'ITEM2', selectedName)
 
 	local frame = ui.GetFrame('warningmsgbox')
-		frame:EnableHide(1);
+	frame:EnableHide(1)
 	
 	local warningText = GET_CHILD_RECURSIVELY(frame, "warningtext")
 	warningText:SetText(clmsg)
 
 	local yesBtn = GET_CHILD_RECURSIVELY(frame, "yes")
-		tolua.cast(yesBtn, "ui::CButton");
+	tolua.cast(yesBtn, "ui::CButton")
 	local noBtn = GET_CHILD_RECURSIVELY(frame, "no")
-		tolua.cast(noBtn, "ui::CButton");
+	tolua.cast(noBtn, "ui::CButton")
 
-		yesBtn:SetEventScript(ui.LBUTTONUP, '_GODDESS_MGR_INHERIT_EXEC');
-		yesBtn:SetEventScriptArgNumber(ui.LBUTTONUP, selected_id);
+	yesBtn:SetEventScript(ui.LBUTTONUP, '_GODDESS_MGR_INHERIT_EXEC')
 
 	local buttonMargin = noBtn:GetMargin()
 	local warningbox = GET_CHILD_RECURSIVELY(frame, 'warningbox')
 	local totalHeight = warningbox:GetY() + warningText:GetY() + warningText:GetHeight() + noBtn:GetHeight() + 2 * buttonMargin.bottom
 
-		yesBtn:ShowWindow(1);
-		noBtn:ShowWindow(1);
+	yesBtn:ShowWindow(1)
+	noBtn:ShowWindow(1)
 
 	local input_frame = GET_CHILD_RECURSIVELY(frame, "input")
 	local showTooltipCheck = GET_CHILD_RECURSIVELY(frame, "cbox_showTooltip")
 	local okBtn = GET_CHILD_RECURSIVELY(frame, "ok")
 	showTooltipCheck:ShowWindow(0)
 	input_frame:ShowWindow(0)
-		okBtn:ShowWindow(0);
+	okBtn:ShowWindow(0)
 
 	local bg = GET_CHILD_RECURSIVELY(frame, 'bg')
 	warningbox:Resize(warningbox:GetWidth(), totalHeight)
 	bg:Resize(bg:GetWidth(), totalHeight)
 	frame:Resize(frame:GetWidth(), totalHeight)
-	else
-		_GODDESS_MGR_INHERIT_EXEC(0, 0, 0, selected_id)
-	end
 end
 
-function _GODDESS_MGR_INHERIT_EXEC(notuse1, notuse2, notuse3, class_id)
+function _GODDESS_MGR_INHERIT_EXEC()
 	ui.CloseFrame("warningmsgbox")
 
 	local frame = ui.GetFrame('goddess_equip_manager')
@@ -4721,7 +4782,11 @@ function _GODDESS_MGR_INHERIT_EXEC(notuse1, notuse2, notuse3, class_id)
 	local guid = slot:GetUserValue('ITEM_GUID')
 	if guid == 'None' then return end
 
-	local arg_list = string.format('%d', class_id)
+	local list_bg = GET_CHILD_RECURSIVELY(frame, 'inherit_inner_bg')
+	local selected_id = list_bg:GetUserIValue('NOW_SELECT_ITEM_ID')
+	if selected_id <= 0 then return end
+	
+	local arg_list = string.format('%d', selected_id)
 
 	pc.ReqExecuteTx_Item('GODDESS_CRAFT_EQUIP_BY_INHERIT', guid, arg_list)
 end

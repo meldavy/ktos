@@ -132,9 +132,27 @@ function GUILDINFO_DETAIL_OPEN(addon, frame)
 end
 
 function OPEN_REQUEST_GUILDJOIN_CHECK()
-    local guildidx = GET_GUILD_MEMBER_JOIN_AUTO_GUILD_IDX();
-    if guildidx ~= "0" and guildidx == g_guildIdx then
-        control.CustomCommand("REQ_SERVER_GUILD_OUT_DATE_CHECK", 0);
+    local guildidx = GET_GUILD_MEMBER_JOIN_AUTO_GUILD_IDX();    
+
+    if guildidx ~= "0" then
+        local aObj = GetMyAccountObj();
+        local lastGuildOutDay = TryGetProp(aObj, "LastServerGuildOutDay", "None");
+        if lastGuildOutDay ~= "None" then
+            local addTime = 10080; -- 7일
+            local lastTime = imcTime.GetSysTimeByStr(lastGuildOutDay);
+            local enterEnableTime = imcTime.AddSec(lastTime, (addTime * 60));
+            local nowTime = geTime.GetServerSystemTime()
+            local difSec = imcTime.GetDifSec(enterEnableTime, nowTime);
+            if difSec > 0 then
+                local remainDay = math.floor((((difSec / 60) / 60) / 24));
+                local remainHour = math.floor(((difSec / 60) / 60) % 24);
+                local remainMin = math.floor((difSec / 60) % 60);
+                local remainSec = math.floor(difSec % 60);                
+                addon.BroadMsg('NOTICE_Dm_scroll', ScpArgMsg("CantJoinServerGuild{days}{day}{hour}{min}{sec}", "days", math.floor(((addTime / 60) / 24)), "day", remainDay, "hour", remainHour, "min", remainMin, "sec", remainSec), 5);                
+                return;
+            end
+        end
+        packet.ReqSelfInviteNewbieGuild()
         return;
     end
 

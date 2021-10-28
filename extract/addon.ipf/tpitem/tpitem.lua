@@ -1955,15 +1955,9 @@ function TPSHOP_TPITEMLIST_TYPEDROPLIST(alignmentgbox, clsID)
 	return false;
 end
 
+local frame, alignTypeList, typeIndex, mainSubGbox 
+
 function TPSHOP_SORT_LIST(a, b)
-	local frame = ui.GetFrame("tpitem");
-	local leftgFrame = frame:GetChild("leftgFrame");	
-	local leftgbox = leftgFrame:GetChild("leftgbox");
-	local alignmentgbox = GET_CHILD(leftgbox,"alignmentgbox");	
-	local alignTypeList = GET_CHILD_RECURSIVELY(frame,"alignTypeList");	
-	local typeIndex = alignTypeList:GetSelItemIndex();
-	
-	local mainSubGbox = GET_CHILD_RECURSIVELY(frame,"mainSubGbox");
 	local itemcset1 = mainSubGbox:GetControlSet('tpshop_item', 'eachitem_'..a);
 	local itemcset2 = mainSubGbox:GetControlSet('tpshop_item', 'eachitem_'..b);
 	if (itemcset1 == nil) or  (itemcset2 == nil)then
@@ -2037,10 +2031,15 @@ function TPSHOP_TPITEM_ALIGN_LIST(cnt)
 	local srcTable = {};
 	for i = 1, cnt do
 		srcTable[#srcTable + 1] = i;
-		table.sort(srcTable, TPSHOP_SORT_LIST);
 	end
-	local frame = ui.GetFrame("tpitem");
-	local mainSubGbox = GET_CHILD_RECURSIVELY(frame,"mainSubGbox");	
+	
+	frame = ui.GetFrame("tpitem");
+	alignTypeList = GET_CHILD_RECURSIVELY(frame,"alignTypeList");	
+	typeIndex = alignTypeList:GetSelItemIndex();
+	mainSubGbox = GET_CHILD_RECURSIVELY(frame,"mainSubGbox");
+	
+	table.sort(srcTable, TPSHOP_SORT_LIST);
+
 	local x = 0;
 	local y = 0;
 	for i = 1, cnt do

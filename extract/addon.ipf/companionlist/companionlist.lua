@@ -34,6 +34,8 @@ end
 function ON_OPEN_COMPANIONLIST()
 	local frame = ui.GetFrame("companionlist");
 	frame:ShowWindow(1);
+	frame:SetGravity(ui.RIGHT, ui.BOTTOM);
+	frame:SetMargin(0, 0, 350, 70);
 	UPDATE_COMPANIONLIST(frame);
 end
 
@@ -103,6 +105,7 @@ local function  USE_COMPANION_ICON_AFTER_ACTION(parent, ctrl, argStr, argNum)
 
 	if canClose == true then
 		CLOSE_COMPANIONLIST();
+		CLOSE_PETLIST();
 	end
 end
 

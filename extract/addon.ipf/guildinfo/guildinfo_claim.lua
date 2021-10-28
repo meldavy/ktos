@@ -57,17 +57,17 @@ function ON_CLAIM_GET(code, ret_json) -- run once on zone enter
         end
         local authIndex = math.floor(authIdx/10)
         local layoutName = nil
-        if authIndex == 1 then -- guild manager
+        if authIndex < 10 then -- guild manager
             layoutName = "claimCheckbox2"
-        elseif authIndex == 10 then -- fund manager
+        elseif authIndex < 20 then -- fund manager
             layoutName = "claimCheckbox3"
-        elseif authIndex == 20 then -- community manager
+        elseif authIndex < 30 then -- community manager
             layoutName = "claimCheckbox4"
-        elseif authIndex == 30 then -- pvp manager
+        elseif authIndex < 40 then -- pvp manager
             layoutName = "claimCheckbox5"
-        elseif authIndex == 40 then -- contents manager
+        elseif authIndex < 50 then -- contents manager
             layoutName = "claimCheckbox6"
-		elseif authIndex == 50 then	-- housing manager
+		elseif authIndex < 60 then	-- housing manager
 			layoutName = "claimCheckbox7"
         end
         authlist[i] = { authName, authIdx }
@@ -573,3 +573,4 @@ function GUILDMEMBER_LIST_GET_SCROLL(parent, ctrl)
         end
     end
 end
+

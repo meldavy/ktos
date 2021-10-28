@@ -237,6 +237,11 @@ ClassID,ClassName,Name,UseDaily,UseWeekly
 6159,EVENT_2106_Title_1,칭호 - Golden Watermelon,NO,NO
 6160,EVENT_2106_Title_2,칭호 - Silver Watermelon,NO,NO
 6161,EVENT_2106_Title_3,칭호 - Bronze Watermelon,NO,NO
+6162,EVENT_Best_Painter_3rd,3rd Best Painter,NO,NO
+6163,TITLE_Event_2108_Relic_A,칭호 - 금 나와라 뚝딱,NO,NO
+6164,TITLE_Event_2108_Relic_B,칭호 - 은 나와라 뚝딱,NO,NO
+6165,TITLE_Event_2108_Relic_C,칭호 - 동 나와라 뚝딱,NO,NO
+6166,TITLE_Event_2108_Relic_D,칭호 - 명예 고고학 협회 회원,NO,NO
 7001,PardonerAbility,기부 레벨,NO,NO
 7002,TaxAbility,세금 납부 레벨,NO,NO
 8001,FreeDungeon_under_68_1,시카리오스 기믹,NO,NO
@@ -288,4 +293,7 @@ ClassID,ClassName,Name,UseDaily,UseWeekly
 22003,Boss_Co_Op_3,보스 협동전 훈장 칭호,NO,NO
 22004,Boss_Co_Op_4,보스 협동전 훈장 칭호,NO,NO
 22005,Boss_Co_Op_5,보스 협동전 훈장 칭호,NO,NO
+30001,Achieve_RidePet_2,탈 것 보상 칭호,NO,NO
+30002,Achieve_RidePet_3,탈 것 보상 칭호,NO,NO
+30003,Achieve_RidePet_4,탈 것 보상 칭호,NO,NO
 40001,Achieve_TOSHero_1,영웅담 클리어,NO,NO

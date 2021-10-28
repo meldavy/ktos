@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by IMCGames Co., Ltd (IMCGames Co., Ltd) -->
+<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by imc (imc) -->
 <EmitterList>
+	<battle name="E_ep13raincoat001" filename="E_ep13raincoat001" loop="false" nodecount="13" xml="E_ep13raincoat001.xml" paused="NO" is2D="FALSE" softParticleFactor="0" useReverse="0" preScale="1" useAttach="TRUE" preScaleXYZ="1.0/1.0/1.0" attachNodeName="None"/>
 	<battle name="E_effect_ep13tcance" filename="E_effect_ep13tcance" loop="true" nodecount="13" xml="E_effect_ep13tcance.xml" paused="NO" is2D="FALSE" softParticleFactor="0" useReverse="0" preScale="1" useAttach="FALSE" preScaleXYZ="1.0/1.0/1.0" attachNodeName="None"/>
 	<battle name="E_light153_blue" filename="E_light153_blue" loop="true" nodecount="6" xml="E_light153_blue.xml" paused="NO" is2D="FALSE" softParticleFactor="20" useReverse="0" preScale="1" useAttach="FALSE" preScaleXYZ="1.0/1.0/1.0" attachNodeName="None"/>
 	<battle name="E_wave001_loop" filename="E_wave001_loop" loop="true" nodecount="6" xml="E_wave001_loop.xml" paused="NO" is2D="FALSE" softParticleFactor="20" useReverse="0" preScale="1" useAttach="FALSE" preScaleXYZ="1.0/1.0/1.0" attachNodeName="None"/>

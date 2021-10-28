@@ -4604,17 +4604,6 @@
 			<img name="bottomcore" imgrect="542 53 50 1"/>
 			<img name="bottomright" imgrect="593 53 150 1"/>
 		</skin>
-		<skin name="base_btn_shadow" texture="\skin\guild_community.tga">
-			<img name="topleft" imgrect="282 48 29 15"/>
-			<img name="topcore" imgrect="312 48 30 15"/>
-			<img name="topright" imgrect="343 48 29 15"/>
-			<img name="bodyleft" imgrect="282 64 29 5"/>
-			<img name="bodycore" imgrect="312 64 30 5"/>
-			<img name="bodyright" imgrect="343 64 29 5"/>
-			<img name="bottomleft" imgrect="282 70 29 15"/>
-			<img name="bottomcore" imgrect="312 70 30 15"/>
-			<img name="bottomright" imgrect="343 70 29 15"/>
-		</skin>
 		<skin name="housing_property_list_bg" texture="\skin\housing_workroom.tga">
 			<img name="topleft" imgrect="581 55 30 30"/>
 			<img name="topcore" imgrect="612 55 30 30"/>
@@ -4648,6 +4637,72 @@
 			<img name="bottomcore" imgrect="785 14 5 1"/>
 			<img name="bottomright" imgrect="791 14 40 1"/>
 		</skin>
+		<skin name="guild_community_tab_line" texture="\skin\guild_community.tga">
+			<img name="topleft" imgrect="275 51 1 10"/>
+			<img name="topcore" imgrect="277 51 1 10"/>
+			<img name="topright" imgrect="279 51 1 10"/>
+			<img name="bodyleft" imgrect="275 62 1 10"/>
+			<img name="bodycore" imgrect="277 62 1 10"/>
+			<img name="bodyright" imgrect="279 62 1 10"/>
+			<img name="bottomleft" imgrect="275 73 1 10"/>
+			<img name="bottomcore" imgrect="277 73 1 10"/>
+			<img name="bottomright" imgrect="279 73 1 10"/>
+		</skin>
+		<skin name="guild_community_notice" texture="\skin\guild_community.tga">
+			<img name="topleft" imgrect="217 51 20 20"/>
+			<img name="topcore" imgrect="238 51 15 20"/>
+			<img name="topright" imgrect="254 51 20 20"/>
+			<img name="bodyleft" imgrect="217 72 20 4"/>
+			<img name="bodycore" imgrect="238 72 15 4"/>
+			<img name="bodyright" imgrect="254 72 20 4"/>
+			<img name="bottomleft" imgrect="217 77 20 20"/>
+			<img name="bottomcore" imgrect="238 77 15 20"/>
+			<img name="bottomright" imgrect="254 77 20 20"/>
+		</skin>
+		<skin name="guild_community_notice_label" texture="\skin\guild_community.tga">
+			<img name="topleft" imgrect="279 42 15 1"/>
+			<img name="topcore" imgrect="295 42 15 1"/>
+			<img name="topright" imgrect="311 42 15 1"/>
+			<img name="bodyleft" imgrect="279 44 15 1"/>
+			<img name="bodycore" imgrect="295 44 15 1"/>
+			<img name="bodyright" imgrect="311 44 15 1"/>
+			<img name="bottomleft" imgrect="279 46 15 1"/>
+			<img name="bottomcore" imgrect="295 46 15 1"/>
+			<img name="bottomright" imgrect="311 46 15 1"/>
+		</skin>
+		<skin name="base_btn_shadow" texture="\skin\guild_community.tga">
+			<img name="topleft" imgrect="282 48 29 15"/>
+			<img name="topcore" imgrect="312 48 30 15"/>
+			<img name="topright" imgrect="343 48 29 15"/>
+			<img name="bodyleft" imgrect="282 64 29 5"/>
+			<img name="bodycore" imgrect="312 64 30 5"/>
+			<img name="bodyright" imgrect="343 64 29 5"/>
+			<img name="bottomleft" imgrect="282 70 29 15"/>
+			<img name="bottomcore" imgrect="312 70 30 15"/>
+			<img name="bottomright" imgrect="343 70 29 15"/>
+		</skin>
+		<skin name="guild_community_notice_select_cursoron" texture="\skin\guild_community.tga">
+			<img name="topleft" imgrect="446 0 17 17"/>
+			<img name="topcore" imgrect="464 0 17 17"/>
+			<img name="topright" imgrect="482 0 17 17"/>
+			<img name="bodyleft" imgrect="446 18 17 5"/>
+			<img name="bodycore" imgrect="464 18 17 5"/>
+			<img name="bodyright" imgrect="482 18 17 5"/>
+			<img name="bottomleft" imgrect="446 24 17 17"/>
+			<img name="bottomcore" imgrect="464 24 17 17"/>
+			<img name="bottomright" imgrect="482 24 17 17"/>
+		</skin>
+		<skin name="guild_community_notice_select_clicked" texture="\skin\guild_community.tga">
+			<img name="topleft" imgrect="446 0 17 17"/>
+			<img name="topcore" imgrect="464 0 17 17"/>
+			<img name="topright" imgrect="482 0 17 17"/>
+			<img name="bodyleft" imgrect="446 18 17 5"/>
+			<img name="bodycore" imgrect="464 18 17 5"/>
+			<img name="bodyright" imgrect="482 18 17 5"/>
+			<img name="bottomleft" imgrect="446 24 17 17"/>
+			<img name="bottomcore" imgrect="464 24 17 17"/>
+			<img name="bottomright" imgrect="482 24 17 17"/>
+		</skin>
 		<skin name="base_btn_select" texture="\skin\pip_test.tga">
 			<img name="topleft" imgrect="1585 1172 45 32"/>
 			<img name="topcore" imgrect="1631 1172 10 32"/>
@@ -4659,7 +4714,18 @@
 			<img name="bottomcore" imgrect="1631 1221 10 32"/>
 			<img name="bottomright" imgrect="1642 1221 45 32"/>
 		</skin>
-	<skin name="alchemist_ui_slotframe_9patch" texture="\skin\glimoire_skin.tga">
+		<skin name="guild_community_notice_detail" texture="\skin\guild_community.tga">
+			<img name="topleft" imgrect="129 181 30 30"/>
+			<img name="topcore" imgrect="160 181 30 30"/>
+			<img name="topright" imgrect="191 181 30 30"/>
+			<img name="bodyleft" imgrect="129 212 30 30"/>
+			<img name="bodycore" imgrect="160 212 30 30"/>
+			<img name="bodyright" imgrect="191 212 30 30"/>
+			<img name="bottomleft" imgrect="129 243 30 30"/>
+			<img name="bottomcore" imgrect="160 243 30 30"/>
+			<img name="bottomright" imgrect="191 243 30 30"/>
+		</skin>
+		<skin name="alchemist_ui_slotframe_9patch" texture="\skin\glimoire_skin.tga">
 			<img name="topleft" imgrect="594 416 20 20"/>
 			<img name="topcore" imgrect="615 416 20 20"/>
 			<img name="topright" imgrect="636 416 20 20"/>
@@ -8123,6 +8189,10 @@
 		<image name="Collar_TOSHero_4" file="\skin\Collar_skin.tga" imgrect="186 62 30 30"/>
 		<image name="Collar_TOSHero_5" file="\skin\Collar_skin.tga" imgrect="217 62 30 30"/>
 		<image name="Collar_TOSHero_6" file="\skin\Collar_skin.tga" imgrect="0 93 30 30"/>
+		<image name="Collar_golden_shovel" file="\skin\Collar_skin.tga" imgrect="31 93 30 30" CMM_Caption="고고학 이벤트_황금 삽"/>
+		<image name="Collar_give_me_gold" file="\skin\Collar_skin.tga" imgrect="62 93 30 30" CMM_Caption="고고학 이벤트_모자 3종"/>
+		<image name="Collar_give_me_silver" file="\skin\Collar_skin.tga" imgrect="93 93 30 30"/>
+		<image name="Collar_give_me_bronze" file="\skin\Collar_skin.tga" imgrect="124 93 30 30"/>
 	</imagelist>
 	<imagelist category="testse_image">
 		<image name="indun_soulcrystal_bg" file="\skin\indun_skin.tga" imgrect="614 552 84 86" CMM_Caption="소울크리스탈 횟수제한 UI"/>
@@ -9476,6 +9546,9 @@
 		<image name="inventory_ark" file="\skin\pip_test2.tga" imgrect="39 637 38 61" CMM_Caption="아크 탭"/>
 		<image name="inventory_ark_cursoron" file="\skin\pip_test2.tga" imgrect="78 637 38 61"/>
 		<image name="inventory_ark_clicked" file="\skin\pip_test2.tga" imgrect="0 637 38 61"/>
+		<image name="ridepet_short_btn" file="\skin\pip_test2.tga" imgrect="117 513 35 35" CMM_Caption="탈 것 버튼"/>
+		<image name="ridepet_short_btn_cursoron" file="\skin\pip_test2.tga" imgrect="153 513 35 35"/>
+		<image name="ridepet_short_btn_clicked" file="\skin\pip_test2.tga" imgrect="153 513 35 35"/>
 		<image name="journey_career_btn_mark" file="\skin\pip_test.tga" imgrect="1792 1025 26 29" CMM_Caption="장비보관함 버튼"/>
 		<image name="inventory_quest" file="\skin\pip_test2.tga" imgrect="39 699 38 61" CMM_Caption="인벤토리_퀘스트"/>
 		<image name="inventory_quest_cursoron" file="\skin\pip_test2.tga" imgrect="78 699 38 61"/>
@@ -12651,6 +12724,11 @@
 		<image name="icon_TOSHero_Buff_Summon_1" file="\icon\buff_icon5.tga" imgrect="640 512 128 128" CMM_Caption="소환수 강화 1"/>
 		<image name="icon_TOSHero_Buff_Summon_2" file="\icon\buff_icon5.tga" imgrect="768 512 128 128" CMM_Caption="소환수 강화 2"/>
 		<image name="icon_TOSHero_Buff_Summon_3" file="\icon\buff_icon5.tga" imgrect="896 512 128 128" CMM_Caption="소환수 강화 3"/>
+		<image name="icon_buff_ridepet_AshLion" file="\icon\buff_icon5.tga" imgrect="256 640 128 128" CMM_Caption="애시라이온"/>
+		<image name="icon_buff_ridepet_KogiBird" file="\icon\buff_icon5.tga" imgrect="384 640 128 128" CMM_Caption="코기버드"/>
+		<image name="icon_buff_ridepet_HelioGriffin" file="\icon\buff_icon5.tga" imgrect="512 640 128 128" CMM_Caption="헬리오그리핀"/>
+		<image name="icon_buff_ridepet_NautilusSnail" file="\icon\buff_icon5.tga" imgrect="640 640 128 128" CMM_Caption="앵무달풍"/>
+		<image name="icon_buff_ridepet_PolarReindeer" file="\icon\buff_icon5.tga" imgrect="768 640 128 128" CMM_Caption="북극순록"/>
 		<image name="icon_Vasilissa_Petrify" file="\icon\buff_icon5.tga" imgrect="896 640 128 128" CMM_Caption="석화"/>
 		<image name="icon_Vasilissa_AquaPrison" file="\icon\buff_icon5.tga" imgrect="0 768 128 128" CMM_Caption="물감옥"/>
 		<image name="icon_Vasilissa_Unrecovery" file="\icon\buff_icon5.tga" imgrect="128 768 128 128" CMM_Caption="회복 불가"/>
@@ -12671,6 +12749,8 @@
 		<image name="icon_Vasilissa_ThunderStroke" file="\icon\buff_icon5.tga" imgrect="0 1024 128 128" CMM_Caption="낙뢰"/>
 		<image name="icon_Vasilissa_BreakWater" file="\icon\buff_icon5.tga" imgrect="128 1024 128 128" CMM_Caption="방파제"/>
 		<image name="icon_TOSHero_Buff_Random_1" file="\icon\buff_icon5.tga" imgrect="256 1024 128 128" CMM_Caption="랜덤 버프"/>
+		<image name="icon_Event_2108_Archeology" file="\icon\buff_icon5.tga" imgrect="384 1024 128 128" CMM_Caption="고고학 버프"/>
+		<image name="icon_ridepet_ep13raincoat_buff" file="\icon\buff_icon5.tga" imgrect="512 1024 128 128" CMM_Caption="금붕어 버프"/>
 	</imagelist>
 	<imagelist category="housing_bufficon">
 		<image name="icon_Weapon_Klaida" file="\icon\icon_hosing_buff.tga" imgrect="0 0 128 128"/>
@@ -13279,6 +13359,7 @@
 		<image name="plate_achieve_contest_Event" file="\skin\user_title_skin.tga" imgrect="430 364 214 34" CMM_Caption="일본 서버 일러스트 공모전 보상"/>
 		<image name="plate_achieve_Giltine_clear_2_01" file="\skin\user_title_skin.tga" imgrect="0 399 214 34" CMM_Caption="길티네 개편_클리어 동"/>
 		<image name="plate_achieve_Giltine_clear_2_02" file="\skin\user_title_skin.tga" imgrect="215 399 214 34" CMM_Caption="길티네 개편_클리어 은"/>
+		<image name="plate_achieve_contest_Event_3rd" file="\skin\user_title_skin.tga" imgrect="430 399 214 34" CMM_Caption="일본 서버 일러스트 공모전 보상_3rd"/>
 		<image name="plate_achieve_Vasilisa_first_kill" file="\skin\user_title_skin.tga" imgrect="645 394 214 34" CMM_Caption="바실리사_퍼스트"/>
 		<image name="plate_achieve_Vasilisa_clear_01" file="\skin\user_title_skin.tga" imgrect="0 434 214 34" CMM_Caption="바실리사_클리어 동"/>
 		<image name="plate_achieve_Vasilisa_clear_02" file="\skin\user_title_skin.tga" imgrect="215 434 214 34" CMM_Caption="바실리사_클리어 은"/>
@@ -13417,6 +13498,14 @@
 		<image name="icon_skintone_06_f10" file="\skin\skinhair\icon_skintone_06_f10.png" imgrect="0 0 80 80"/>
 		<image name="icon_skintone_06_f11" file="\skin\skinhair\icon_skintone_06_f11.png" imgrect="0 0 80 80"/>
 		<image name="icon_skintone_06_f12" file="\skin\skinhair\icon_skintone_06_f12.png" imgrect="0 0 80 80"/>
+	</imagelist>
+	<imagelist category="ridepet">
+		<image name="ridepet_AshLion" file="\icon\ridepet.tga" imgrect="0 0 80 80" CMM_Caption="애시라이온"/>
+		<image name="ridepet_KogiBird" file="\icon\ridepet.tga" imgrect="80 0 80 80" CMM_Caption="코기버드"/>
+		<image name="ridepet_HelioGriffin" file="\icon\ridepet.tga" imgrect="160 0 80 80" CMM_Caption="헬리오그리핀"/>
+		<image name="ridepet_NautilusSnail" file="\icon\ridepet.tga" imgrect="240 0 80 80" CMM_Caption="앵무달풍"/>
+		<image name="ridepet_PolarReindeer" file="\icon\ridepet.tga" imgrect="320 0 80 80" CMM_Caption="북극순록"/>
+		<image name="ridepet_ep13raincoat" file="\icon\ridepet.tga" imgrect="400 0 80 80" CMM_Caption="금붕어"/>
 	</imagelist>
 	<effectimagelist category="effectlist">
 		<image name="blue_orb" file="\icon\blue_orb.tga" imgrect="0 0 256 256"/>

@@ -205,20 +205,7 @@ function UPDATE_RELIC_GEM_MANAGER_REINFORCE(frame)
 		local inv_misc = session.GetInvItemByName(misc_name)
 		local inv_stone = session.GetInvItemByName(stone_name)
 
-		local rmat_1 = GET_CHILD_RECURSIVELY(frame, 'rmat_1')
-		local rmat_1_slot = GET_CHILD(rmat_1, 'mat_slot', 'ui::CSlot')
-		local misc_cnt = rmat_1_slot:GetUserIValue('NEED_COUNT')
-		if misc_cnt > 0 and (inv_misc == nil or inv_misc.count < misc_cnt) then
-			clear_flag = true
-		end
-		
-		local rmat_2 = GET_CHILD_RECURSIVELY(frame, 'rmat_2')
-		local rmat_2_slot = GET_CHILD(rmat_2, 'mat_slot', 'ui::CSlot')
-		local stone_cnt = rmat_2_slot:GetUserIValue('NEED_COUNT')
-		if stone_cnt > 0 and (inv_stone == nil or inv_stone.count < stone_cnt) then
-			clear_flag = true
-		end
-
+		local stone_discount = 0
 		local slotSet = GET_CHILD_RECURSIVELY(frame, 'rslotlist_discount')
 		for i = 0, slotSet:GetSelectedSlotCount() - 1 do
 			local slot = slotSet:GetSelectedSlot(i)
@@ -231,6 +218,28 @@ function UPDATE_RELIC_GEM_MANAGER_REINFORCE(frame)
 				clear_flag = true
 				break
 			end
+
+			local stone = tonumber(slot:GetUserValue("DISCOUNT_STONE"))
+			stone_discount = stone_discount + (prevCnt * stone)
+		end
+
+		local rmat_1 = GET_CHILD_RECURSIVELY(frame, 'rmat_1')
+		local rmat_1_slot = GET_CHILD(rmat_1, 'mat_slot', 'ui::CSlot')
+		local misc_cnt = rmat_1_slot:GetUserIValue('NEED_COUNT')
+		if misc_cnt > 0 and (inv_misc == nil or inv_misc.count < misc_cnt) then
+			clear_flag = true
+		end
+		
+		local rmat_2 = GET_CHILD_RECURSIVELY(frame, 'rmat_2')
+		local rmat_2_slot = GET_CHILD(rmat_2, 'mat_slot', 'ui::CSlot')
+		local stone_cnt = rmat_2_slot:GetUserIValue('NEED_COUNT')
+		local inv_cnt = 0
+		if inv_stone ~= nil then
+			inv_cnt = inv_stone.count
+		end
+
+		if stone_cnt > 0 and inv_cnt < stone_cnt - stone_discount then
+			clear_flag = true
 		end
 
 		if clear_flag == true then

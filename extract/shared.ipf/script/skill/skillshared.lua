@@ -364,3 +364,7 @@ function CHECK_SKILL_REQSTANCE(skill, checkReqStance)
 	
 	return 0;
 end
+
+function SCR_GET_FOODTABLE_PRICE(shopClassName, mapClassName, buffClassName, abilList)
+	return 0;
+end

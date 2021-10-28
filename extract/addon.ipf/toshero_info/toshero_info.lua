@@ -5,12 +5,13 @@ function TOSHERO_INFO_ON_INIT(addon, frame)
     addon:RegisterMsg('TOSHERO_INFO_NEXT_STAGE', 'ON_TOSHERO_INFO_NEXT_STAGE')
     addon:RegisterMsg('TOSHERO_HIDDEN_BUFF_ADD', 'ON_TOSHERO_HIDDEN_BUFF_ADD')
     addon:RegisterMsg('TOSHERO_ZONE_ENTER', 'ON_TOSHERO_ZONE_ENTER')
+    addon:RegisterMsg('TOSHERO_STAGE_END', 'ON_TOSHERO_STAGE_CLEAR')
 end
 
 g_toshero_reinforce_image = "None"
 g_toshero_group_index = 200000
 g_next_stage_time = 0
-
+g_stage_start = false
 -- AddOnMsg
 function ON_TOSHERO_INFO_GET()
     local frame = ui.GetFrame('toshero_info')
@@ -26,6 +27,16 @@ function ON_TOSHERO_INFO_GET()
     TOSHERO_INFO_SET_REINFORCE(frame)
     TOSHERO_INFO_SET_ATTRIBUTE(frame)
     TOSHERO_INFO_SET_ATTRIBUTE_INFO(frame)
+end
+
+function ON_TOSHERO_STAGE_CLEAR()
+    local frame = ui.GetFrame('toshero_info')
+    if frame == nil then
+        return
+    end
+
+    g_stage_start = false
+    GET_CHILD_RECURSIVELY(frame, 'ready'):SetSkinName("test_gray_button")
 end
 
 function ON_TOSHERO_INFO_POINT()
@@ -44,7 +55,7 @@ function ON_TOSHERO_INFO_SET_STAGE(frame, msg, argStr, stage)
     if frame == nil then
         return
     end
-
+    g_stage_start = true
     GET_CHILD_RECURSIVELY(frame, 'title'):SetTextByKey("stage", stage)
 end
 
@@ -164,9 +175,17 @@ end
 
 -- Request
 function TOSHERO_INFO_REQUEST_READY()
+    local frame = ui.GetFrame("toshero_info")
+    local skin = ""
     if GetTOSHeroState() == 1 then
         toshero.RequestReady(0)
+        skin = "test_gray_button"
     else
         toshero.RequestReady(1)
+        skin = "hero_btn_green2"
+    end
+
+    if g_stage_start == false then
+        GET_CHILD_RECURSIVELY(frame, 'ready'):SetSkinName(skin)
     end
 end

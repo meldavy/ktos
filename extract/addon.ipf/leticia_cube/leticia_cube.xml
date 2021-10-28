@@ -9,7 +9,7 @@
 	<option closebutton="false"/>
 	<sound opensound="inven_win_open" closesound="inven_win_close"/>
 	<animation frameOpenAnim="chat_balloon_start" frameCloseAnim="chat_balloon_end" margin="-100 -100 0 0"/>
-	<script OpenScp="LETICIA_CUBE_OPEN" CloseScp="LETICIA_CUBE_CLOSE"/>
+	<script OpenScp="" CloseScp="LETICIA_CUBE_CLOSE"/>
 	<userconfig TP_IMG="icon_item_tpBox_30" ITEM_LIST_INTERVAL="-3"/>
 	<controls>
 		<groupbox name="headerBox" rect="0 0 862 72" margin="0 0 0 0" layout_gravity="left top" skin="TPshop_title"/>

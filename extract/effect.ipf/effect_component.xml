@@ -509,6 +509,7 @@
 	<Particle name="circle017" texture="circle017" width="4.00" height="4.00" pivot_x="0.50" pivot_y="0.50" texel_x="0" texel_y="0" texel_width="160" texel_height="160"/>
 	<Particle name="circle017_2" texture="circle017" width="5.00" height="5.00" pivot_x="0.50" pivot_y="0.50" texel_x="0" texel_y="0" texel_width="128" texel_height="128"/>
 	<Particle name="line001" texture="line001" width="10.00" height="10.00" pivot_x="0.50" pivot_y="0.50" texel_x="0" texel_y="0" texel_width="64" texel_height="64"/>
+	<Texture name="texture_trail004" texture="trail004" width="1.00" height="1.00" pivot_x="1" pivot_y="0.5" texel_x="0" texel_y="0" texel_width="256" texel_height="128"/>
 	<Texture name="skillrange_donut75_4" texture="skillrange_donut75_4" width="1.00" height="1.00" pivot_x="0.50" pivot_y="0.50" texel_x="0" texel_y="0" texel_width="512" texel_height="512"/>
 	<Texture name="skillrange_donut75_2" texture="skillrange_donut75_2" width="1.00" height="1.00" pivot_x="0.50" pivot_y="0.50" texel_x="0" texel_y="0" texel_width="512" texel_height="512"/>
 	<Texture name="skillrange_donut75_1" texture="skillrange_donut75_1" width="1.00" height="1.00" pivot_x="0.50" pivot_y="0.50" texel_x="0" texel_y="0" texel_width="512" texel_height="512"/>
@@ -576,6 +577,7 @@
 	<Texture name="texture_fire007_2" texture="fire007" width="2.00" height="2.00" pivot_x="0.50" pivot_y="0.50" texel_x="0" texel_y="0" texel_width="128" texel_height="128"/>
 	<Texture name="texture_fire007" texture="fire007" width="2.00" height="2.00" pivot_x="0.50" pivot_y="1.00" texel_x="0" texel_y="0" texel_width="128" texel_height="128"/>
 	<Texture name="texture_fire006_alpha" texture="fire006_alpha" width="2.00" height="2.00" pivot_x="0.50" pivot_y="0.50" texel_x="0" texel_y="0" texel_width="128" texel_height="128"/>
+	<Texture name="texture_fire006_blue2" texture="fire006_blue" width="2.00" height="2.00" pivot_x="0.50" pivot_y="1" texel_x="0" texel_y="0" texel_width="128" texel_height="128"/>
 	<Texture name="texture_fire006_blue" texture="fire006_blue" width="2.00" height="2.00" pivot_x="0.50" pivot_y="0.50" texel_x="0" texel_y="0" texel_width="128" texel_height="128"/>
 	<Texture name="texture_fire006_1" texture="fire006_1" width="2.00" height="2.00" pivot_x="0.50" pivot_y="0.50" texel_x="0" texel_y="0" texel_width="128" texel_height="128"/>
 	<Texture name="texture_fire006" texture="fire006" width="2.00" height="2.00" pivot_x="0.50" pivot_y="0.50" texel_x="0" texel_y="0" texel_width="128" texel_height="128"/>
@@ -732,17 +734,18 @@
 	<Trail name="dash001" texture="dash001" height="5.00" texel_x="0" texel_y="0" texel_width="32" texel_height="16"/>
 	<Trail name="smoke002" texture="smoke002" height="10.00" texel_x="512" texel_y="512" texel_width="64" texel_height="64"/>
 	<Model name="effect_ep13tcance" model="effect_ep13tcance.xac" motion="effect_ep13tcance_ani.xsm" texturepath="effect\high\modeltexture\" overlap="true" AlphaType="TEST"/>
-	<Model name="long_sphere010" model="long_sphere010.xac" motion="None" texturepath="effect\high\modeltexture\" overlap="false" AlphaType="BLEND"/>
-	<Model name="long_sphere009" model="long_sphere009.xac" motion="None" texturepath="effect\high\modeltexture\" overlap="false" AlphaType="BLEND"/>
-	<Model name="long_sphere006_1" model="long_sphere006_1.xac" motion="None" texturepath="effect\high\modeltexture\" overlap="false" AlphaType="BLEND"/>
-	<Model name="long_sphere008" model="long_sphere008.xac" motion="None" texturepath="effect\high\modeltexture\" overlap="false" AlphaType="BLEND"/>
-	<Model name="long_sphere007" model="long_sphere007.xac" motion="None" texturepath="effect\high\modeltexture\" overlap="false" AlphaType="BLEND"/>
-	<Model name="long_sphere006" model="long_sphere006.xac" motion="None" texturepath="effect\high\modeltexture\" overlap="false" AlphaType="BLEND"/>
-	<Model name="long_sphere005" model="long_sphere005.xac" motion="None" texturepath="effect\high\modeltexture\" overlap="false" AlphaType="BLEND"/>
-	<Model name="long_sphere004" model="long_sphere004.xac" motion="None" texturepath="effect\high\modeltexture\" overlap="false" AlphaType="BLEND"/>
-	<Model name="long_sphere003" model="long_sphere003.xac" motion="None" texturepath="effect\high\modeltexture\" overlap="false" AlphaType="BLEND"/>
-	<Model name="long_sphere002" model="long_sphere002.xac" motion="None" texturepath="effect\high\modeltexture\" overlap="false" AlphaType="BLEND"/>
-	<Model name="long_sphere001" model="long_sphere001.xac" motion="None" texturepath="effect\high\modeltexture\" overlap="false" AlphaType="BLEND"/>
+	<Model name="long_sphere011" model="long_sphere011.xac" motion="None" texturepath="effect\high\modeltexture\" overlap="true" AlphaType="BLEND"/>
+	<Model name="long_sphere010" model="long_sphere010.xac" motion="None" texturepath="effect\high\modeltexture\" overlap="true" AlphaType="BLEND"/>
+	<Model name="long_sphere009" model="long_sphere009.xac" motion="None" texturepath="effect\high\modeltexture\" overlap="true" AlphaType="BLEND"/>
+	<Model name="long_sphere006_1" model="long_sphere006_1.xac" motion="None" texturepath="effect\high\modeltexture\" overlap="true" AlphaType="BLEND"/>
+	<Model name="long_sphere008" model="long_sphere008.xac" motion="None" texturepath="effect\high\modeltexture\" overlap="true" AlphaType="BLEND"/>
+	<Model name="long_sphere007" model="long_sphere007.xac" motion="None" texturepath="effect\high\modeltexture\" overlap="true" AlphaType="BLEND"/>
+	<Model name="long_sphere006" model="long_sphere006.xac" motion="None" texturepath="effect\high\modeltexture\" overlap="true" AlphaType="BLEND"/>
+	<Model name="long_sphere005" model="long_sphere005.xac" motion="None" texturepath="effect\high\modeltexture\" overlap="true" AlphaType="BLEND"/>
+	<Model name="long_sphere004" model="long_sphere004.xac" motion="None" texturepath="effect\high\modeltexture\" overlap="true" AlphaType="BLEND"/>
+	<Model name="long_sphere003" model="long_sphere003.xac" motion="None" texturepath="effect\high\modeltexture\" overlap="true" AlphaType="BLEND"/>
+	<Model name="long_sphere002" model="long_sphere002.xac" motion="None" texturepath="effect\high\modeltexture\" overlap="true" AlphaType="BLEND"/>
+	<Model name="long_sphere001" model="long_sphere001.xac" motion="None" texturepath="effect\high\modeltexture\" overlap="true" AlphaType="BLEND"/>
 	<Model name="hawk_vibora_mesh" model="hawk_vibora_mesh.xac" motion="None" texturepath="effect\high\modeltexture\" overlap="false" AlphaType="BLEND"/>
 	<Model name="Little_rubeta_mesh" model="Little_rubeta_mesh.xac" motion="None" texturepath="effect\high\modeltexture\" overlap="false" AlphaType="BLEND"/>
 	<Model name="effect_ep13stem_crossbow" model="effect_ep13stem_crossbow.xac" motion="None" texturepath="effect\high\modeltexture\" overlap="false" AlphaType="BLEND"/>
@@ -1804,6 +1807,12 @@
 	<Digit name="digit_damage_blue" texture="digit_damage_blue" overkilltexture="" width="3.00" height="4.00" pivot_x="0.00" pivot_y="0.50" texel_x="0.00" texel_y="0.00" texel_width="100.00" texel_height="128.00" randomangle="false"/>
 	<Digit name="Digitdamage" texture="digit_damage" overkilltexture="" width="3.00" height="4.00" pivot_x="0.00" pivot_y="0.50" texel_x="0.00" texel_y="0.00" texel_width="100.00" texel_height="128.00" randomangle="false"/>
 	<Digit name="DigitExpup" texture="digit_expup" overkilltexture="" width="3.00" height="5.00" pivot_x="0.50" pivot_y="0.50" texel_x="0.00" texel_y="0.00" texel_width="48.00" texel_height="60.00" randomangle="false"/>
+	<Screen name="UI_screen_frozen01" texture="screen_frozen01" width="5.00" height="5.00" pivot_x="0.50" pivot_y="0.50" texel_x="0" texel_y="0" texel_width="1920" texel_height="1080" loop="false" count="0" pitch="1" ticktime="0.00"/>
+	<Screen name="UI_screen_stone04" texture="screen_stone04" width="5.00" height="5.00" pivot_x="0.50" pivot_y="0.50" texel_x="0" texel_y="0" texel_width="1920" texel_height="1080" loop="false" count="0" pitch="1" ticktime="0.00"/>
+	<Screen name="UI_chain_base_2" texture="chain_base_2" width="2.5" height="5" pivot_x="0.50" pivot_y="0.50" texel_x="0" texel_y="0" texel_width="512" texel_height="128" loop="false" count="0" pitch="1" ticktime="0.00"/>
+	<Screen name="UI_screen_stone03" texture="screen_stone03" width="5.00" height="5.00" pivot_x="0.50" pivot_y="0.50" texel_x="0" texel_y="0" texel_width="1920" texel_height="1080" loop="false" count="0" pitch="1" ticktime="0.00"/>
+	<Screen name="UI_screen_stone02" texture="screen_stone02" width="5.00" height="5.00" pivot_x="0.50" pivot_y="0.50" texel_x="0" texel_y="0" texel_width="1920" texel_height="1080" loop="false" count="0" pitch="1" ticktime="0.00"/>
+	<Screen name="UI_screen_stone01" texture="screen_stone01" width="5.00" height="5.00" pivot_x="0.50" pivot_y="0.50" texel_x="0" texel_y="0" texel_width="1920" texel_height="1080" loop="false" count="0" pitch="1" ticktime="0.00"/>
 	<Screen name="UI_screen_frozen" texture="screen_frozen" width="5.00" height="5.00" pivot_x="0.50" pivot_y="0.50" texel_x="0" texel_y="0" texel_width="1920" texel_height="1080" loop="false" count="0" pitch="1" ticktime="0.00"/>
 	<Screen name="UI_complete_logo" texture="complete_logo" width="5.00" height="5.00" pivot_x="0.50" pivot_y="0.50" texel_x="0" texel_y="0" texel_width="256" texel_height="256" loop="false" count="16" pitch="4" ticktime="0.05"/>
 	<Screen name="UI_complete_logo_add" texture="complete_logo_add" width="5.00" height="5.00" pivot_x="0.50" pivot_y="0.50" texel_x="0" texel_y="0" texel_width="256" texel_height="64" loop="false" count="16" pitch="2" ticktime="0.05"/>

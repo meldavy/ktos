@@ -221,11 +221,17 @@ function GET_VALID_LEGEND_PREFIX_MATERIAL_COUNT_C(needItemName)
 		local guid = guidList:Get(i);
 		local invItem = itemList:GetItemByGuid(guid);
         if invItem ~= nil and invItem:GetObject() ~= nil and (exceptLock ~= true or invItem.isLockState == false) then
-	        local item_obj = GetIES(invItem:GetObject());
-			if TryGetProp(item_obj, 'StringArg', 'None') == 'Legend_ExpPotion_2_complete' and TryGetProp(item_obj, 'NumberArg2', 0) >= lv then
-				count = count + invItem.count			
+			local item_obj = GetIES(invItem:GetObject());
+			if needItemName == "Legend_ExpPotion_2_complete" then
+				if TryGetProp(item_obj, 'StringArg', 'None') == 'Legend_ExpPotion_2_complete' and TryGetProp(item_obj, 'NumberArg2', 0) >= lv then
+					count = count + invItem.count			
+				end 
+			elseif needItemName == "Legend_Misc_Moringponia" or needItemName == "Legend_Misc_Misrus" then
+				if TryGetProp(item_obj, 'ClassName', 'None') == needItemName then
+					count = count + invItem.count
+				end
 			end
-	    end
+		end
 	end
 
     return count;

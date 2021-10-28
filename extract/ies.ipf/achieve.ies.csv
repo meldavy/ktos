@@ -128,6 +128,11 @@ ClassID,NeedCount,ClassName,Group,Category,Name,Desc,Icon,Hidden,DescTitle,Rewar
 2160,1,EVENT_2106_Title_1,AchievePoint,이벤트,{img Collar_Golden_Watermelon 24 24} Golden Watermelon,Golden Watermelon(이벤트),icon_item_Misc_00021,YES,Golden Watermelon,,False,EVENT_2106_Title_1,NO,,,,,NO,YES,
 2161,1,EVENT_2106_Title_2,AchievePoint,이벤트,{img Collar_Silver_Watermelon 24 24} Silver Watermelon,Silver Watermelon(이벤트),icon_item_Misc_00021,YES,Silver Watermelon,,False,EVENT_2106_Title_2,NO,,,,,NO,YES,
 2162,1,EVENT_2106_Title_3,AchievePoint,이벤트,{img Collar_Bronze_Watermelon 24 24} Bronze Watermelon,Bronze Watermelon(이벤트),icon_item_Misc_00021,YES,Bronze Watermelon,,False,EVENT_2106_Title_3,NO,,,,,NO,YES,
+2163,1,EVENT_Best_Painter_3rd,AchievePoint,이벤트,3rd Best Painter,3rd 최고의 화가입니다.,icon_item_Misc_00021,YES,Best Painter,,False,EVENT_Best_Painter_3rd,NO,,,,,NO,YES,plate_achieve_contest_Event_3rd
+2164,1,TITLE_Event_2108_Relic_A,AchievePoint,이벤트,{img Collar_give_me_gold 24 24} 금 나와라 뚝딱,황금 유물을 종류별로 모았습니다.(이벤트),icon_item_Misc_00021,YES,이벤트 - 금 나와라 뚝딱,,False,TITLE_Event_2108_Relic_A,NO,,,,,NO,YES,
+2165,1,TITLE_Event_2108_Relic_B,AchievePoint,이벤트,{img Collar_give_me_silver 24 24} 은 나와라 뚝딱,순은 유물을 종류별로 모았습니다.(이벤트),icon_item_Misc_00021,YES,이벤트 - 은 나와라 뚝딱,,False,TITLE_Event_2108_Relic_B,NO,,,,,NO,YES,
+2166,1,TITLE_Event_2108_Relic_C,AchievePoint,이벤트,{img Collar_give_me_bronze 24 24} 동 나와라 뚝딱,청동 유물을 종류별로 모았습니다.(이벤트),icon_item_Misc_00021,YES,이벤트 - 동 나와라 뚝딱,,False,TITLE_Event_2108_Relic_C,NO,,,,,NO,YES,
+2167,1,TITLE_Event_2108_Relic_D,AchievePoint,이벤트,{img Collar_golden_shovel 24 24} 명예 고고학 협회 회원,유물을 찾기 위해 삽질을 200회 달성하였습니다.(이벤트),icon_item_Misc_00021,YES,이벤트 - 명예 고고학 협회 회원,,False,TITLE_Event_2108_Relic_D,NO,,,,,NO,YES,
 3001,10,Pardoner10,AchievePoint,스킬,자선가,주문서를 더욱 열심히 팔면 기부를 더 많이 할 수 있습니다.,icon_item_Misc_00021,YES,기부 10번,,True,PardonerAbility,NO,,,,,NO,NO,
 3002,50,Pardoner50,AchievePoint,스킬,일반 파드너,사람들 사이에서 당신의 디스펠러는 큰 인기입니다.,icon_item_Misc_00021,YES,기부 50번,,True,PardonerAbility,NO,,,,,NO,NO,
 3003,100,Pardoner100,AchievePoint,스킬,상급 파드너,기부를 행한만큼 그간 당신이 취한 이득은 끝이 없겠죠?,icon_item_Misc_00021,YES,기부 100번,,True,PardonerAbility,NO,,,,,NO,NO,
@@ -335,5 +340,17 @@ ClassID,NeedCount,ClassName,Group,Category,Name,Desc,Icon,Hidden,DescTitle,Rewar
 120003,1,Boss_Co_Op_3,AchievePoint,보스 협동전,Raging Imperator,보스 협동전 훈장 교환 칭호,icon_item_Misc_00021,NO,Raging Imperator,,True,Boss_Co_Op_3,YES,,,,,NO,YES,plate_achieve_coop_boss_Rank1
 120004,1,Boss_Co_Op_4,AchievePoint,보스 협동전,Raid Veteran,보스 협동전 훈장 교환 칭호,icon_item_Misc_00021,NO,Raid Veteran,,True,Boss_Co_Op_4,YES,,,,,NO,YES,plate_achieve_coop_boss_20
 120005,1,Boss_Co_Op_5,AchievePoint,보스 협동전,Eternal Warrior,보스 협동전 훈장 교환 칭호,icon_item_Misc_00021,NO,Eternal Warrior,,True,Boss_Co_Op_5,YES,,,,,NO,YES,plate_achieve_coop_boss_100
+130001,200,Achieve_RidePet_2,AchievePoint,탈 것,청산유수,영웅담 10분 내로 클리어 200회 완료,icon_item_Misc_00021,NO,청산유수,,True,Achieve_RidePet_2,NO,,,,ACHIEVE_REWARD_RIDEPET_2,NO,NO,
+130002,500,Achieve_RidePet_3,AchievePoint,탈 것,집행자,바운티 헌트 500회 완료,icon_item_Misc_00021,NO,집행자,,True,Achieve_RidePet_3,NO,,,,ACHIEVE_REWARD_RIDEPET_3,NO,NO,
+130003,150,Achieve_RidePet_4,AchievePoint,탈 것,뱀 조련사,성자의 기도소(파티) 150회 완료,icon_item_Misc_00021,NO,뱀 조련사,,True,Achieve_RidePet_4,NO,,,,ACHIEVE_REWARD_RIDEPET_4,NO,NO,
+130004,30,Achieve_RidePet_2_1,AchievePoint,탈 것,능숙한 이야기꾼,영웅담 10분 내로 클리어 30회 완료,icon_item_Misc_00021,NO,능숙한 이야기꾼,,True,Achieve_RidePet_2,NO,,,,,NO,NO,
+130005,90,Achieve_RidePet_2_2,AchievePoint,탈 것,현란한 말솜씨,영웅담 10분 내로 클리어 90회 완료,icon_item_Misc_00021,NO,현란한 말솜씨,,True,Achieve_RidePet_2,NO,,,,,NO,NO,
+130006,150,Achieve_RidePet_2_3,AchievePoint,탈 것,애청자,영웅담 10분 내로 클리어 150회 완료,icon_item_Misc_00021,NO,애청자,,True,Achieve_RidePet_2,NO,,,,,NO,NO,
+130007,50,Achieve_RidePet_3_1,AchievePoint,탈 것,능숙한 추격자,바운티 헌트 50회 완료,icon_item_Misc_00021,NO,능숙한 추격자,,True,Achieve_RidePet_3,NO,,,,,NO,NO,
+130008,100,Achieve_RidePet_3_2,AchievePoint,탈 것,발빠른 추격자,바운티 헌트 100회 완료,icon_item_Misc_00021,NO,발빠른 추격자,,True,Achieve_RidePet_3,NO,,,,,NO,NO,
+130009,300,Achieve_RidePet_3_3,AchievePoint,탈 것,신뢰받는,바운티 헌트 300회 완료,icon_item_Misc_00021,NO,신뢰받는,,True,Achieve_RidePet_3,NO,,,,,NO,NO,
+130010,10,Achieve_RidePet_4_1,AchievePoint,탈 것,능숙한 뱀 사냥꾼,성자의 기도소(파티) 10회 완료,icon_item_Misc_00021,NO,능숙한 뱀 사냥꾼,,True,Achieve_RidePet_4,NO,,,,,NO,NO,
+130011,50,Achieve_RidePet_4_2,AchievePoint,탈 것,거울 좀 다뤄 본,성자의 기도소(파티) 50회 완료,icon_item_Misc_00021,NO,거울 좀 다뤄 본,,True,Achieve_RidePet_4,NO,,,,,NO,NO,
+130012,110,Achieve_RidePet_4_3,AchievePoint,탈 것,석화 면역,성자의 기도소(파티) 110회 완료,icon_item_Misc_00021,NO,석화 면역,,True,Achieve_RidePet_4,NO,,,,,NO,NO,
 140001,1,Achieve_TOSHero_1,AchievePoint,영웅담,이름 없는 영웅,영웅담을 클리어하였습니다.,icon_item_Misc_00021,NO,영웅담 1회 클리어,,True,Achieve_TOSHero_1,NO,,,,,NO,NO,
 140002,150,Achieve_TOSHero_2,AchievePoint,영웅담,{img Collar_TOSHero_1 30 30}{img Collar_TOSHero_2 30 30}{img Collar_TOSHero_3 30 30}{img Collar_TOSHero_4 30 30}{img Collar_TOSHero_5 30 30}{img Collar_TOSHero_6 30 30},영웅담을 150회 클리어 했습니다.,icon_item_Misc_00021,NO,영웅담 150회 클리어,,True,Achieve_TOSHero_1,NO,,,,,NO,NO,

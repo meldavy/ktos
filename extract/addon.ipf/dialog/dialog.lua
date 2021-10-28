@@ -104,7 +104,7 @@ function DIALOG_TEXTVIEW(frame, msg, argStr)
 	else
 		text = argStr;
 	end
-    text = SCR_TEXT_HIGHLIGHT(argStr,text)
+    text = ui.HighlightText(text, "{#003399}", argStr)
 
 	if DialogTable ~= nil then
 		if DialogTable.Caption ~= 'None' then

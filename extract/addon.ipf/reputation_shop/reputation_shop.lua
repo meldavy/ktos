@@ -518,7 +518,8 @@ function REPUTATION_SHOP_BUY_LIST_ADD_PRE(frame, ctrl, className)
         end
 
         -- 등록할 수 없다면 리턴
-        if buyAbleCount == 0 then
+        if buyAbleCount <= 0 then
+            ui.SysMsg(ClMsg("REPUTATION_SHOP_NO_MONEY"))
             return
         end
 
@@ -552,6 +553,7 @@ function REPUTATION_SHOP_BUY_LIST_ADD(frame, addCount, editFrame, className)
     -- 가격 검사
     local expectPrice = REPUTATION_SHOP_GET_TOTAL_PRICE() + productCls.Price * addCount
     if expectPrice > REPUTATION_SHOP_GET_COIN_COUNT() then
+        ui.SysMsg(ClMsg("REPUTATION_SHOP_NO_MONEY"))
         return
     end
 

@@ -154,3 +154,12 @@ function BOUNTYHUNT_MILESTONE_RESET()
     ui.CloseFrame("bountyhunt_milestone");
 end
 
+function UPDATE_BOUNTYHUNT_MON_MARK(monhandle, x, y, z, isAlive, MonRank)
+    if isAlive == 1 and MonRank == 'Normal' then
+        session.minimap.AddIconInfo(monhandle, "trasuremapmark", x, y, z, ClMsg('BountyMonMark'), true, nil, 1);
+    elseif isAlive == 1 and MonRank == 'Boss' then
+        session.minimap.AddIconInfo(monhandle, "trasuremapmark", x, y, z, ClMsg('BountyBossMark'), true, nil, 2);
+	else
+		session.minimap.RemoveIconInfo(monhandle);
+	end
+end

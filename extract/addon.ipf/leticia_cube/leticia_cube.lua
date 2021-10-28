@@ -17,8 +17,8 @@ function LETICIA_CUBE_OPEN(frame)
 	LETICIA_CUBE_LIST_UPDATE(frame);
 	frame:ShowWindow(1);
 	if config.GetServiceNation() ~= "KOR" then
-		local infoText = GET_CHILD_RECURSIVELY(frame,"infoText")
-		infoText:SetText("")
+		GET_CHILD_RECURSIVELY(frame,"openBtn2"):ShowWindow(0)
+		GET_CHILD_RECURSIVELY(frame,"openBtn"):SetMargin(0, 0, 0, 40);
 		session.shop.RequestUsedMedalTotal()
 	end
 end

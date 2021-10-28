@@ -152,6 +152,8 @@ ClassID,Count,Price,ClassName,ItemClassName,Group,GachaType,RewardGroup,PreCheck
 182,11,999,Gacha_HairAcc_ReSale010_M_JP,Gacha_HairAcc_ReSale010_M_JP,CUBE,hair,GACHA_HAIRACC_ReSale_001_M_JP,,GACHA_HAIRACC_ReSale_001_M_JP,1,CUBE,NO,,
 183,1,999,Gacha_HairAcc_ReSale001_F_JP,Gacha_HairAcc_ReSale001_F_JP,CUBE,hair,GACHA_HAIRACC_ReSale_001_F_JP,,GACHA_HAIRACC_ReSale_001_F_JP,1,CUBE,NO,,
 184,11,999,Gacha_HairAcc_ReSale010_F_JP,Gacha_HairAcc_ReSale010_F_JP,CUBE,hair,GACHA_HAIRACC_ReSale_001_F_JP,,GACHA_HAIRACC_ReSale_001_F_JP,1,CUBE,NO,,
+185,11,999,Fifth_Anniversary_Cube_010,Fifth_Anniversary_Cube_010,CUBE,hair,GACHA_HAIRACC_Fifth_Anniversary_TWN,,GACHA_HAIRACC_Fifth_Anniversary_TWN,1,CUBE,NO,,
+186,1,999,TWN_Gacha_HairAcc_Bonus_14d,TWN_Gacha_HairAcc_Bonus_14d,CUBE,hair,GACHA_HAIRACC_Fifth_TWN_BONUS,,GACHA_HAIRACC_Fifth_TWN_BONUS,1,CUBE,NO,,
 187,1,999,Gacha_HairAcc_ReSale001_M_STM,Gacha_HairAcc_ReSale001_M_STM,CUBE,hair,GACHA_HAIRACC_ReSale_001_M_STM,,GACHA_HAIRACC_ReSale_001_M_STM,1,CUBE,NO,,
 188,11,999,Gacha_HairAcc_ReSale010_M_STM,Gacha_HairAcc_ReSale010_M_STM,CUBE,hair,GACHA_HAIRACC_ReSale_001_M_STM,,GACHA_HAIRACC_ReSale_001_M_STM,1,CUBE,NO,,
 189,1,999,Gacha_HairAcc_ReSale001_F_STM,Gacha_HairAcc_ReSale001_F_STM,CUBE,hair,GACHA_HAIRACC_ReSale_001_F_STM,,GACHA_HAIRACC_ReSale_001_F_STM,1,CUBE,NO,,

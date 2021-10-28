@@ -5,7 +5,7 @@ function RELICMANAGER_ON_INIT(addon, frame)
 	addon:RegisterMsg('MSG_SUCCESS_RELIC_EXP', 'RELICMANAGER_EXP_UP_END')
 	addon:RegisterMsg('MSG_SUCCESS_RELIC_SOCKET', 'SUCCESS_RELIC_SOCKET')
 	addon:RegisterMsg('UPDATE_RELIC_EQUIP', 'UPDATE_RELICMANAGER_VISIBLE')
-	addon:RegisterMsg('GAME_START', 'RELIC_AUTO_CHARGE');
+	addon:RegisterMsg('RELIC_AUTO_CHARGE', 'RELIC_AUTO_CHARGE');
 end
 
 function ON_OPEN_DLG_RELICMANAGER(frame)
@@ -495,7 +495,20 @@ function RELIC_AUTO_CHARGE()
 
 	local zoneName = GetZoneName()
 	local map = GetClass("Map",zoneName)		
-	if TryGetProp(map, "MapType", "None") ~= "City" then
+
+
+	
+	local keyword = TryGetProp(map, "Keyword", "None")
+    local keyword_table = SCR_STRING_CUT(keyword, ';')
+    
+    local drop_bounty_ticket = 0
+    for i = 1, #keyword_table do
+        if keyword_table[i] == 'SilverDrop' then
+            drop_bounty_ticket = 1
+        end
+    end
+
+	if TryGetProp(map, "MapType", "None") ~= "City" and drop_bounty_ticket == 0 then
 		return
 	end
 

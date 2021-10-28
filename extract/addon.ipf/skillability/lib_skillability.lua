@@ -77,14 +77,7 @@ function SKILLABILITY_GET_ABILITY_NAME_LIST(jobClsName, jobEngName)
         if groupClass ~= nil then
             local abilClass = GetClass("Ability", groupClass.ClassName);
             if abilClass ~= nil then
-                -- 아츠의 경우 해당 아츠를 보유중일 때에만 표기한다. KS.001
-                if abilClass.Hidden ~= 1 then
-                    retList[#retList+1] = groupClass.ClassName;
-                else
-                    if session.GetAbilityByName(groupClass.ClassName) then
-                        retList[#retList+1] = groupClass.ClassName;
-                    end
-                end
+                retList[#retList+1] = groupClass.ClassName;
             end
         end
     end

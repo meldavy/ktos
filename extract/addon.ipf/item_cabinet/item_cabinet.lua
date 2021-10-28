@@ -5,7 +5,6 @@ g_materialItem = {}
 function ITEM_CABINET_ON_INIT(addon, frame)
 	addon:RegisterMsg('UPDATE_ITEM_CABINET_LIST', 'ITEM_CABINET_CREATE_LIST');
 	addon:RegisterMsg('ITEM_CABINET_SUCCESS_ENCHANT', 'ITEM_CABINET_SUCCESS_GODDESS_ENCHANT');
-
 	addon:RegisterMsg('ON_UI_TUTORIAL_NEXT_STEP', 'ITEM_CABINET_UI_TUTORIAL_CHECK')
 end
 
@@ -300,7 +299,7 @@ function ITEM_CABINET_CREATE_LIST(frame)
 				group = "VIBORA";
 			end
 			equipTab:ChangeCaptionOnly(0,"{@st66b}{s16}"..ClMsg("Vibora"),false)
-
+			
 			local tuto_icon_1 = GET_CHILD_RECURSIVELY(frame, "UITUTO_ICON_1")
 			local tuto_icon_2 = GET_CHILD_RECURSIVELY(frame, "UITUTO_ICON_2")
 			local Is_UITUTO_Prog1 = GetUITutoProg("UITUTO_EQUIPCACABINET1")
@@ -315,6 +314,7 @@ function ITEM_CABINET_CREATE_LIST(frame)
 			else
 				tuto_icon_2:ShowWindow(1);
 			end
+			
 		elseif category == "Armor" then
 			if equipTabIndex == 0 then		
 				group = "GODDESS_EVIL";
@@ -435,8 +435,8 @@ function SEARCH_ITEM_CABINET_KEY()
 	frame:ReserveScript("SEARCH_ITEM_CABINET", 0.3, 1);
 end
 
-function SEARCH_ITEM_CABINET(a,b,c)
-	ITEM_CABINET_CREATE_LIST(a);
+function SEARCH_ITEM_CABINET(frame)
+	ITEM_CABINET_CREATE_LIST(frame);
 end
 
 function ITEM_CABINET_MATCH_NAME(listCls, cap)
@@ -455,9 +455,18 @@ function ITEM_CABINET_MATCH_NAME(listCls, cap)
 	local itemCls = GetClass('Item', itemClsName);
 	if itemCls == nil then return; end
 
-	local itemName = TryGetProp(itemCls, 'Name');
+	local itemname = string.lower(dictionary.ReplaceDicIDInCompStr(TryGetProp(itemCls, 'Name')));
+	--접두어도 포함시켜 검색해야되기 때문에, 접두를 찾아서 있으면 붙여주는 작업
+	local prefixClassName = TryGetProp(itemCls, "LegendPrefix")
+	if prefixClassName ~= nil and prefixClassName ~= "None" then
+		local prefixCls = GetClass('LegendSetItem', prefixClassName)
+		local prefixName = string.lower(dictionary.ReplaceDicIDInCompStr(prefixCls.Name));
+		itemname = prefixName .. " " .. itemname;
+	end
 
-	if string.find(itemName, cap) ~= nil then
+	local tempcap = string.lower(cap);
+
+	if string.find(itemname, tempcap) ~= nil then
 		return true;
 	end
 
@@ -605,17 +614,25 @@ function ITEM_CABINET_UPGRADE_TAB(parent, ctrl)
 	local frame = parent:GetTopParentFrame();
 	local tab = GET_CHILD_RECURSIVELY(frame, "upgrade_tab");
 	local index = tab:GetSelectItemIndex();
-	if index == 1 then 
-		GET_CHILD_RECURSIVELY(frame,"upgradegbox"):ShowWindow(1);
-		GET_CHILD_RECURSIVELY(frame,"slot"):ShowWindow(0);
-		GET_CHILD_RECURSIVELY(frame,"slot2"):ShowWindow(0);
-		GET_CHILD_RECURSIVELY(frame,"registerbtn"):ShowWindow(1);
+	local category = frame:GetUserValue("CATEGORY");
+
+	GET_CHILD_RECURSIVELY(frame,"upgradegbox"):ShowWindow(index);
+	GET_CHILD_RECURSIVELY(frame,"registerbtn"):ShowWindow(index);
+	GET_CHILD_RECURSIVELY(frame,"infotxt"):ShowWindow(index);
+	GET_CHILD_RECURSIVELY(frame,"next_item_gb"):ShowWindow(index);
+	GET_CHILD_RECURSIVELY(frame,"acctxt"):ShowWindow(0);
+	GET_CHILD_RECURSIVELY(frame,"belongingtxt"):ShowWindow(0);
+	GET_CHILD_RECURSIVELY(frame,"slot"):ShowWindow(0);
+	GET_CHILD_RECURSIVELY(frame,"slot2"):ShowWindow(0);
+
+	if index == 1 then -- 등록 / 업그레이드 탭
 		GET_CHILD_RECURSIVELY(frame,"enchantbtn"):ShowWindow(0);
-		GET_CHILD_RECURSIVELY(frame,"infotxt"):ShowWindow(1);
 		GET_CHILD_RECURSIVELY(frame,"pricetxt"):ShowWindow(0);
 		GET_CHILD_RECURSIVELY(frame,"optionGbox"):ShowWindow(0);
-		GET_CHILD_RECURSIVELY(frame,"belongingtxt"):ShowWindow(0);
-		GET_CHILD_RECURSIVELY(frame,"next_item_gb"):ShowWindow(1);
+
+		if category == "Accessory" then
+			GET_CHILD_RECURSIVELY(frame,"acctxt"):ShowWindow(1);
+		end
 
 		local max = GET_CHILD_RECURSIVELY(frame, 'registerbtn'):GetTextByKey("name");		
 		if max == "MAX" then
@@ -624,34 +641,22 @@ function ITEM_CABINET_UPGRADE_TAB(parent, ctrl)
 		else
 			INVENTORY_SET_CUSTOM_RBTNDOWN("ITEM_CABINET_MATERIAL_INV_BTN");
 		end
-		if category == "Accessory" then
-			GET_CHILD_RECURSIVELY(frame,"acctxt"):ShowWindow(1);
-		else
-			GET_CHILD_RECURSIVELY(frame,"acctxt"):ShowWindow(0);
-		end
 
-	elseif index == 0 then
-		local category = frame:GetUserValue("CATEGORY");
-		GET_CHILD_RECURSIVELY(frame,"upgradegbox"):ShowWindow(0);
-		GET_CHILD_RECURSIVELY(frame,"registerbtn"):ShowWindow(0);
+	elseif index == 0 then -- 아이커 부여/ 생성 탭
 		GET_CHILD_RECURSIVELY(frame,"enchantbtn"):ShowWindow(1);
-		GET_CHILD_RECURSIVELY(frame,"infotxt"):ShowWindow(0);
-		GET_CHILD_RECURSIVELY(frame,"acctxt"):ShowWindow(0);
 		GET_CHILD_RECURSIVELY(frame,"pricetxt"):ShowWindow(1);
 		GET_CHILD_RECURSIVELY(frame,"optionGbox"):ShowWindow(1);
-		GET_CHILD_RECURSIVELY(frame,"next_item_gb"):ShowWindow(0);
 
 		ITEM_CABINET_ENCHANT_TEXT_SETTING(frame, category, index);
 
 		if category == "Weapon" or category == "Armor" then
-			GET_CHILD_RECURSIVELY(frame,"slot"):ShowWindow(1);		
-			GET_CHILD_RECURSIVELY(frame,"slot2"):ShowWindow(0);			
-			GET_CHILD_RECURSIVELY(frame,"belongingtxt"):ShowWindow(0);
-			INVENTORY_SET_CUSTOM_RBTNDOWN("ITEM_CABINET_INV_BTN");
 			local inven = ui.GetFrame('inventory');
 			if inven:IsVisible() == 0 then inven:ShowWindow(1); end
+
+			GET_CHILD_RECURSIVELY(frame,"slot"):ShowWindow(1);		
+			INVENTORY_SET_CUSTOM_RBTNDOWN("ITEM_CABINET_INV_BTN");
+
 		else
-			GET_CHILD_RECURSIVELY(frame,"slot"):ShowWindow(0);
 			GET_CHILD_RECURSIVELY(frame,"slot2"):ShowWindow(1);
 			GET_CHILD_RECURSIVELY(frame,"belongingtxt"):ShowWindow(1);
 			INVENTORY_SET_CUSTOM_RBTNDOWN("None");
@@ -686,18 +691,18 @@ function ITEM_CABINET_REGISTER_SECTION(frame, category, itemType, curLv)
 	local isRegister = TryGetProp(aObj, itemCls.AccountProperty, 0);
 	local maxLv = itemCls.MaxUpgrade;	
 	local registerBtn = GET_CHILD_RECURSIVELY(frame, 'registerbtn');
-	local upgrade_tab = GET_CHILD_RECURSIVELY(frame, 'upgrade_tab');
+	local upgradeTab = GET_CHILD_RECURSIVELY(frame, 'upgrade_tab');
 	registerBtn:SetTextByKey("name", "MAX");
 	registerBtn:SetEnable(0);	
 	GET_CHILD_RECURSIVELY(frame, "upgradegbox"):RemoveAllChild();	
 	if (category == "Weapon" or category == "Armor" or category == 'Accessory') and maxLv ~= 1 then		
 		if curLv == maxLv and isRegister == 1 then
-			upgrade_tab:ChangeCaptionOnly(1,"{@st66b}{s16}"..ClMsg("Upgrade"),false)
+			upgradeTab:ChangeCaptionOnly(1,"{@st66b}{s16}"..ClMsg("Upgrade"),false)
 			return;
 		end
 	else
 		if isRegister == 1 then
-			upgrade_tab:ChangeCaptionOnly(1,"{@st66b}{s16}"..ClMsg("Register"),false)
+			upgradeTab:ChangeCaptionOnly(1,"{@st66b}{s16}"..ClMsg("Register"),false)
 			return;
 		end
 	end
@@ -707,16 +712,45 @@ function ITEM_CABINET_REGISTER_SECTION(frame, category, itemType, curLv)
 	ITEM_CABINET_DRAW_MATERIAL(frame, materialTable, curLv+1, maxLv);
 end
 
-function ITEM_CABINET_EXCUTE_REGISTER(parent, self)		
+function ITEM_CABINET_EXCUTE_REGISTER(parent, self)
+	local frame = parent:GetTopParentFrame()
+	local selectIndex = 0
+	for k,v in pairs(g_selectedItem) do
+		selectIndex = selectIndex + 1
+	end
+	
+	local mat_count = 0
+	for _, v in pairs(g_materialItem) do
+		for k, v1 in pairs(v) do
+			if k == 'name' then
+				if v1 ~= 'Vis' and IS_ACCOUNT_COIN(v1) == false then
+					mat_count = mat_count +1
+				end
+			end
+		end
+	end
+
+	if selectIndex ~= mat_count then
+		ui.SysMsg(ClMsg('Auto_JaeLyoKa_BuJogHapNiDa.'))
+		return
+	end
+
+	local clmsg = ClMsg('ReallyRegisterForCabinet')
+	local msgbox = ui.MsgBox(clmsg, '_ITEM_CABINET_EXCUTE_REGISTER()', 'None')
+	SET_MODAL_MSGBOX(msgbox)
+end
+
+function _ITEM_CABINET_EXCUTE_REGISTER()
+	local frame = ui.GetFrame('item_cabinet')
 	session.ResetItemList();
 	local selectIndex = 0
 	for k,v in pairs(g_selectedItem) do
 		session.AddItemID(k, v);
 		selectIndex = selectIndex + 1;
 	end
-	local category = parent:GetUserValue("CATEGORY");
-	local itemType = parent:GetUserIValue("ITEM_TYPE");
-	local targetLv = parent:GetUserIValue("TARGET_LV");
+	local category = frame:GetUserValue("CATEGORY");
+	local itemType = frame:GetUserIValue("ITEM_TYPE");
+	local targetLv = frame:GetUserIValue("TARGET_LV");
 	local itemCls = GetClassByType("cabinet_"..string.lower(category), itemType);
 	local itemName = itemCls.ClassName;
 	
@@ -731,17 +765,17 @@ function ITEM_CABINET_EXCUTE_REGISTER(parent, self)
 		end
 	end
 
-	if selectIndex ~= mat_count then		
+	if selectIndex ~= mat_count then
 		ui.SysMsg(ClMsg('Auto_JaeLyoKa_BuJogHapNiDa.'))
 		return;
 	end
 
-	local argStrList = NewStringList() ;   
+	local argStrList = NewStringList();
     argStrList:Add(category);
 	argStrList:Add(itemType);
 	argStrList:Add(targetLv);
-	local resultlist = session.GetItemIDList();		
-	item.DialogTransaction("REGISTER_CABINET_ITEM", resultlist, '', argStrList);			
+	local resultlist = session.GetItemIDList();
+	item.DialogTransaction("REGISTER_CABINET_ITEM", resultlist, '', argStrList);
 end
 
 local function SORT_BY_NAME(a, b)

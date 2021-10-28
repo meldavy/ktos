@@ -188,7 +188,7 @@ function EARTHTOWERSHOP_BUY_ITEM_RESULT(frame, msg, argStr, argNum)
         if count == 'None' then
             count = '0'
         end
-        
+
         propertyRemain:SetTextByKey('itemCount', GET_COMMAED_STRING(count))
 
     elseif shopType == "SilverGachaShop" then
@@ -577,6 +577,11 @@ function EARTH_TOWER_INIT(frame, shopType)
         event_gb:ShowWindow(0);
     end
 
+    local resetDatetime = GET_CHILD_RECURSIVELY(frame, 'resetDatetime')
+    if resetDatetime ~= nil then
+        resetDatetime:ShowWindow(0)
+    end
+
     local title = GET_CHILD(frame, 'title', 'ui::CRichText')
     local close = GET_CHILD(frame, 'close');
     if shopType == 'EarthTower' or shopType == 'EarthTower2' then
@@ -596,7 +601,11 @@ function EARTH_TOWER_INIT(frame, shopType)
         close:SetTextTooltip(ScpArgMsg('CloseUI{NAME}', 'NAME', ScpArgMsg("EVENT_HALLOWEEN_SHOP_NAME")));
     elseif shopType == 'PVPMine' then
         title:SetText('{@st43}'..ScpArgMsg("pvp_mine_shop_name"));
-        close:SetTextTooltip(ScpArgMsg('CloseUI{NAME}', 'NAME', ScpArgMsg("pvp_mine_shop_name")));        
+        close:SetTextTooltip(ScpArgMsg('CloseUI{NAME}', 'NAME', ScpArgMsg("pvp_mine_shop_name")));
+        if resetDatetime ~= nil then
+            resetDatetime:SetText(ClMsg('PVPMineShopWeeklyResetDateTime'))
+            resetDatetime:ShowWindow(1)
+        end
         EARTH_TOWER_SET_PROPERTY_COUNT(propertyRemain, 'misc_pvp_mine2', "MISC_PVP_MINE2")    
     elseif shopType == 'MCShop1' then
         title:SetText('{@st43}'..ScpArgMsg("MASSIVE_CONTENTS_SHOP_NAME"));
@@ -716,6 +725,9 @@ function EARTH_TOWER_INIT(frame, shopType)
         close:SetTextTooltip(ScpArgMsg('CloseUI{NAME}', 'NAME', ScpArgMsg("GabijaCertificate_shop")));        
         EARTH_TOWER_SET_PROPERTY_COUNT(propertyRemain, 'dummy_GabijaCertificate', "GabijaCertificate")
         pointbuyBtn:ShowWindow(1)
+    elseif string.find(shopType, 'BOUNTY_NPC_TRADE_SHOP_') ~= nil then
+        title:SetText('{@st43}'..ScpArgMsg('BountyNpcShop'));
+        close:SetTextTooltip(ScpArgMsg('CloseUI{NAME}', 'NAME', ScpArgMsg("BountyNpcShop")));
     else
         title:SetText('{@st43}'..ScpArgMsg(shopType));
         close:SetTextTooltip(ScpArgMsg('CloseUI{NAME}', 'NAME', ScpArgMsg("EventShop")));
@@ -916,13 +928,13 @@ function EXCHANGE_CREATE_TREE_NODE_CTRL(ctrlset, cls, shopType)
     local itemIcon = GET_CHILD(ctrlset, "itemIcon")
     local minHeight = itemIcon:GetHeight() + startY + 10;
 
-    if recipecls["Item_2_1"]~= "None" then
+    if recipecls["Item_2_1"]~= "None" or string.find(shopType, 'BOUNTY_NPC_TRADE_SHOP_') ~= nil then
         local itemCountGBox = GET_CHILD_RECURSIVELY(ctrlset, "gbox");
         if itemCountGBox ~= nil then
             itemCountGBox:ShowWindow(0);
         end
     end
-    
+
     itemName:SetTextByKey("value", targetItem.Name .. " [" .. recipecls.TargetItemCnt .. ScpArgMsg("Piece") .. "]");
     
     if targetItem.StringArg == "EnchantJewell" and cls.TargetItemAppendProperty ~= 'None' then
@@ -1801,19 +1813,31 @@ function UPDATE_EARTHTOWERSHOP_CHANGECOUNT(parent, ctrl)
 end
 
 function EARTHTOWERSHOP_CHANGECOUNT_NUM_CHANGE(ctrlset,change)
-    
+    local recipecls = GetClass('ItemTradeShop', ctrlset:GetName());
+
     local edit_itemcount = GET_CHILD_RECURSIVELY(ctrlset, "itemcount");
     local countText = tonumber(edit_itemcount:GetText());
     if countText == nil then
         countText = 0
     end
     countText = countText + change
+    
+    local target_acc = TryGetProp(recipecls, 'TargetAccountProperty', 'None')
+    local max_target_acc = TryGetProp(recipecls, 'MaxTargetAccountProperty', 9999)
+
+    if target_acc ~= 'None' then
+        local now = TryGetProp(GetMyAccountObj(), target_acc, 0)
+        if now + countText > max_target_acc then
+            countText = countText - 1
+        end
+    end
+
     if countText < 0 then
         countText = 0
-    elseif countText>9999 then
+    elseif countText > 9999 then
         countText = 9999
     end
-    local recipecls = GetClass('ItemTradeShop', ctrlset:GetName());
+    
     if recipecls.NeedProperty ~= 'None' then
 		local sObj = GetSessionObject(GetMyPCObject(), "ssn_shop");
         local sCount = TryGetProp(sObj, recipecls.NeedProperty); 
@@ -1930,4 +1954,26 @@ function REQ_BOSS_CO_OP_SHOP_OPEN()
     local frame = ui.GetFrame("earthtowershop")
     frame:SetUserValue("SHOP_TYPE", 'BOSS_COOP_SHOP')
     ui.OpenFrame('earthtowershop')
+end
+
+
+function REQ_BOUNTYHUNT_NPC_TRADE_SHOP_OPEN()
+    local frame = ui.GetFrame("earthtowershop")
+    local pcetc = GetMyEtcObject()
+    local tradeitem = TryGetProp(pcetc, 'BountyHunt_NPC_TradeItem', 'None')
+    if tradeitem == nil then return end
+    local shoptype = TryGetProp(GetClassByStrProp('ItemTradeShop', 'Item_1_1', tradeitem), 'ShopType', 'None')
+
+    frame:SetUserValue("SHOP_TYPE", shoptype)
+    ui.OpenFrame('earthtowershop')
+end
+
+function REQ_BOUNTYHUNT_NPC_TRADE_SHOP_CLOSE()
+    local frame = ui.GetFrame("earthtowershop")
+    if frame == nil then return end
+
+    local shoptype = frame:GetUserValue("SHOP_TYPE")
+    if string.find(shoptype, 'BOUNTY_NPC_TRADE_SHOP_') ~= nil then
+        ui.CloseFrame('earthtowershop')
+    end
 end

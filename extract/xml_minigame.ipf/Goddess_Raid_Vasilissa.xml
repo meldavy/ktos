@@ -133,6 +133,17 @@
                                 <Str Str="Vasilissa_clear_gold"/>
                                 <Num Num="180"/>
                             </ToolScp>
+                            <ToolScp Scp="MGAME_EXEC_GIVE_TAKE_SOBJ_ACHIEVE2_TX" Client="NO" UseSleep="NO">
+                                <Str Str="None"/>
+                                <Str Str="None"/>
+                                <Str Str="None"/>
+                                <Str Str="None"/>
+                                <Str Str="Achieve_RidePet_4/1"/>
+                                <Str Str="None"/>
+                                <Str Str="None"/>
+                                <Num Num="0"/>
+                                <Str Str="None"/>
+                            </ToolScp>
                         </execList>
                     </Event>
                 </StageEvents>
@@ -457,7 +468,7 @@
                         </execList>
                     </Event>
                     <Event eventName="timer_start">
-                        <condList>                        
+                        <condList>
                             <ToolScp Scp="GAME_ST_EVT_COND_VALUE" Client="NO" UseSleep="NO">
                                 <Str Str="TIMER_REMAIN_TIME"/>
                                 <Str Str="OVER"/>

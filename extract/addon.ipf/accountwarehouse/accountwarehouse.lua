@@ -234,7 +234,7 @@ function PUT_ACCOUNT_ITEM_TO_WAREHOUSE_BY_INVITEM(frame, invItem, slot, fromFram
             end
         end
 
-        if invItem.count > 1 then
+        if invItem.count > 1 or geItemTable.IsStack(obj.ClassID) == 1 then
             INPUT_NUMBER_BOX(frame, ScpArgMsg("InputCount"), "EXEC_PUT_ITEM_TO_ACCOUNT_WAREHOUSE", maxCnt, 1, maxCnt, nil, tostring(invItem:GetIESID()));
         else
             if maxCnt <= 0 then
@@ -242,18 +242,21 @@ function PUT_ACCOUNT_ITEM_TO_WAREHOUSE_BY_INVITEM(frame, invItem, slot, fromFram
                 return;
             end
 
-            local slotset = GET_CHILD_RECURSIVELY(frame, 'slotset');
-            local goal_index = get_valid_index()                  
+            -- goal_index
+            local goal_index = get_valid_index()      
+            
+            -- Check Life Time
             if invItem.hasLifeTime == true then
                 local yesscp = string.format('PUT_ACCOUNT_ITEM_TO_WAREHOUSE_BY_INVITEM_MSG_YESSCP("%s", "%s")', invItem:GetIESID(), tostring(invItem.count));
                 ui.MsgBox(ScpArgMsg('PutLifeTimeItemInWareHouse{NAME}', 'NAME', itemCls.Name), yesscp, 'None');
                 return;
             end
 
-            -- 여기서 아이템 입고 요청
-            item.PutItemToWarehouse(IT_ACCOUNT_WAREHOUSE, invItem:GetIESID(), tostring(invItem.count), frame:GetUserIValue("HANDLE"), goal_index)            
-            new_add_item[#new_add_item + 1] = invItem:GetIESID()
+            -- 아이템 입고 요청
+            item.PutItemToWarehouse(IT_ACCOUNT_WAREHOUSE, invItem:GetIESID(), tostring(invItem.count), frame:GetUserIValue("HANDLE"), goal_index)
 
+            -- new 표시
+            new_add_item[#new_add_item + 1] = invItem:GetIESID()
             if geItemTable.IsStack(obj.ClassID) == 1 then
                 new_stack_add_item[#new_stack_add_item + 1] = obj.ClassID
             end
@@ -338,15 +341,17 @@ function EXEC_PUT_ITEM_TO_ACCOUNT_WAREHOUSE(frame, count, inputframe)
         return;
     end
 
-    local slotset = GET_CHILD_RECURSIVELY(frame, 'slotset');
+    -- godl_index
     local goal_index = get_valid_index()    
-
     local exist, index = get_exist_item_index(insertItem)
     if exist == true and index >= 0 then
         goal_index = index
     end
     
+    -- 아이템 입고 요청
     item.PutItemToWarehouse(IT_ACCOUNT_WAREHOUSE, iesid, tostring(count), frame:GetUserIValue("HANDLE"), goal_index);
+
+    -- new 표시
     new_add_item[#new_add_item + 1] = iesid
     if geItemTable.IsStack(insertItem.ClassID) == 1 then
         new_stack_add_item[#new_stack_add_item + 1] = insertItem.ClassID

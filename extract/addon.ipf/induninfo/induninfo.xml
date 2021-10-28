@@ -99,7 +99,7 @@
         <groupbox name="mapInfoWrapper_dummy" parent="mapInfoBox" rect="0 0 380 155" margin="15 33 0 0" scrollbar="false" layout_gravity="left top" skin="test_frame_midle"/>
 		<groupbox name="mapInfoWrapper" parent="mapInfoWrapper_dummy" rect="0 0 380 162" margin="2 0 0 0" layout_gravity="left top" skin="none"/>
         <richtext name="mapInfoMission" parent="mapInfoWrapper" rect="0 0 360 30" margin="0 0 0 0" layout_gravity="left top" caption="{@sti1c}{s14}미션"/>
-        <richtext name="mapInfoPattern" parent="mapInfoWrapper" rect="0 0 360 30" margin="0 0 0 0" layout_gravity="left top" caption="{@sti1c}{s14}맵 패턴"/>
+        <richtext name="mapInfoPattern" parent="mapInfoWrapper" rect="0 0 60 30" margin="0 0 0 0" layout_gravity="left top" caption="{@sti1c}{s14}맵 패턴" fixwidth="true"/>
         <richtext name="mapInfoMissionText" parent="mapInfoWrapper" rect="0 0 280 30" margin="50 0 0 0" layout_gravity="left top" fixwidth="true" format="{s14}%s" param1="text" param1_def="내용" fontname="brown_18_b"/>
         <richtext name="mapInfoPatternText1" parent="mapInfoWrapper" rect="0 0 280 30" margin="50 0 0 0" layout_gravity="left top" fixwidth="true" format="{s14}%s" param1="text" param1_def="내용" fontname="brown_18_b"/>
         <richtext name="mapInfoPatternText2" parent="mapInfoWrapper" rect="0 0 280 30" margin="50 0 0 0" layout_gravity="left top" fixwidth="true" format="{s14}%s" param1="text" param1_def="내용" fontname="brown_18_b"/>

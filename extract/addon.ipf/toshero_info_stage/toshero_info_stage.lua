@@ -41,8 +41,16 @@ function ON_TOSHERO_STAGE_START(frame, msg, argStr, stage)
 
         width = width + 96
     end
+
+    ReserveScript("CLOSE_TOSHERO_INFO_STAGE()", 3);
+
 end
 
 function TOSHERO_INFO_STAGE_CLOSE()
+    ui.CloseFrame("fulldark")
+end
+
+function CLOSE_TOSHERO_INFO_STAGE()
+    ui.CloseFrame("toshero_info_stage")
     ui.CloseFrame("fulldark")
 end

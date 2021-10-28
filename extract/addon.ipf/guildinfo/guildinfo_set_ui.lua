@@ -74,9 +74,6 @@ function SET_UI_BY_CLAIM(code, ret_json)
     local neutralCheck = GET_CHILD_RECURSIVELY(frame, 'neutralCheck')
     neutralCheck:SetEnable(isLeader)
 
-    local postNewTxt = GET_CHILD_RECURSIVELY(frame, 'writeOnelineBoardBtn')
-    postNewTxt:SetEnable(isLeader)
-
     local promoteEdit = GET_CHILD_RECURSIVELY(frame, 'regPromoteText')
     promoteEdit:SetEnable(isLeader)
 

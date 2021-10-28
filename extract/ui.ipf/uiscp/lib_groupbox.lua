@@ -16,21 +16,26 @@ function QUEST_GBOX_AUTO_ALIGN(frame, GroupCtrl, starty, spacey, gboxaddy) -- qu
 	end
 end
 
-function GBOX_AUTO_ALIGN(gbox, starty, spacey, gboxaddy, alignByMargin, autoResizeGroupBox, onlyAlignVisible)
-    if onlyAlignVisible == nil then
-        onlyAlignVisible = false;
-    end
+function GBOX_AUTO_ALIGN(gbox, starty, spacey, gboxaddy, alignByMargin, autoResizeGroupBox, onlyAlignVisible, reverse)
+	if type(gbox) == "table" then
+		local argtbl = gbox
+		gbox = argtbl.gbox
+		starty = argtbl.starty
+		spacey = argtbl.spacey
+		gboxaddy = argtbl.gboxaddy
+		alignByMargin = argtbl.alignByMargin
+		autoResizeGroupBox = argtbl.autoResizeGroupBox
+		onlyAlignVisible = argtbl.onlyAlignVisible
+		reverse = argtbl.reverse
+	end
 	local cnt = gbox:GetChildCount();
 	local y = starty;
-	for i = 0, cnt - 1 do
+
+	local do_align = function(i)
 		local ctrl = gbox:GetChildByIndex(i);
-        local needToAlign = true;
-        if onlyAlignVisible and ctrl:IsVisible() == 0 then
-            needToAlign = false
-        end
-		if ctrl:GetName() ~= "_SCR" and needToAlign then
+		if ctrl:GetName() ~= "_SCR" and (not onlyAlignVisible or ctrl:IsVisible() ~= 0) then
 			
-			if alignByMargin == true then
+			if alignByMargin then
 				local rect = ctrl:GetMargin();
 				ctrl:SetMargin(rect.left, y, rect.right, rect.bottom);
 			else
@@ -40,8 +45,14 @@ function GBOX_AUTO_ALIGN(gbox, starty, spacey, gboxaddy, alignByMargin, autoResi
 			y = y + ctrl:GetHeight() + spacey;
 		end
 	end
+
+	if reverse then
+		for i = cnt - 1, 0, -1 do do_align(i) end
+	else
+		for i = 0, cnt - 1 do do_align(i) end
+	end
 	
-	if autoResizeGroupBox ~= false then
+	if autoResizeGroupBox then
 		gbox:Resize(gbox:GetWidth(), y + gboxaddy);
 	end
 end

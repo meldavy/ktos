@@ -1,5 +1,5 @@
 -- 낚시 사전 체크 --
-function SCR_FISHING_PRE_CHECK(pc,argnum2)
+function SCR_FISHING_PRE_CHECK(pc)
     local isWater = 0;
     for i = 1, 5 do
         local fx, fy, fz = GetFrontPos(pc, i * 5);
@@ -21,13 +21,13 @@ function SCR_FISHING_PRE_CHECK(pc,argnum2)
         return "FAIL", "BattleState";
     end
     
-    if argnum2 == 0 then
+    -- if argnum2 == 0 then
         if CheckFishingSuccessCount(pc) == 0 then
             -- 낚시 성공 최대 횟수를 초과했습니다 --
             SendSysMsg(pc, 'ExceedFishingSuccessCount');
             return "FAIL", "FishingSuccessCountIsFull";
         end
-    end
+    -- end
     
     if IsFullFishingItemBag(pc) == 1 then
         -- 살림통이 꽉 찼습니다 --
@@ -100,7 +100,7 @@ function SCR_PRE_FISHING_ROD(self, argstring, argnum1, argnum2)
                 return 0;
             end
             
-            local checkRet, errLog = SCR_FISHING_PRE_CHECK(self,argnum1);
+            local checkRet, errLog = SCR_FISHING_PRE_CHECK(self);
             if checkRet ~= 'SUCCESS' then
                 return 0;
             end

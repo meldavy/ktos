@@ -1432,12 +1432,12 @@ function CHECK_GEAR_SCORE_FOR_CONTENTS(pc, indun_cls)
 		-- vasilissa
 		if string.find(indun_cls.ClassName, "Goddess_Raid_Vasilissa") ~= nil then
 			if indun_cls.ClassName == "Goddess_Raid_Vasilissa" then
-				if gear_score < 460 then
+				if gear_score < 470 then
 					SendSysMsg(pc, "LowEquipedItemGearScore");
 					return false;
 				end
 			elseif indun_cls.ClassName == "Goddess_Raid_Vasilissa_Auto" then
-				if gear_score < 445 then
+				if gear_score < 450 then
 					SendSysMsg(pc, "LowEquipedItemGearScore");
 					return false;
 				end

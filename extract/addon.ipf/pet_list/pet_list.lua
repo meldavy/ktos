@@ -71,11 +71,17 @@ function UI_TOGGLE_PETLIST()
 		local companionlist_frame = ui.GetFrame("companionlist");
 		if companionlist_frame:IsVisible() == 0 then
 			ON_OPEN_COMPANIONLIST();
-			companionlist_frame:ShowWindow(1);
 		else
 			-- 펫 목록이 열려있는데 한번 더 누르는 경우
 			ui.SysMsg(ClMsg("SummonedPetDoesNotExist")); 
 		end	
+
+		-- 소환된 컴패니언이 없다면 컴패니언 리스트를 연다.
+		local petlist_frame = ui.GetFrame("petlist");
+		if petlist_frame:IsVisible() == 0 then
+			ON_OPEN_PETLIST();
+		end	
+		
 		return;		
 	end
 
@@ -85,6 +91,12 @@ function UI_TOGGLE_PETLIST()
 		companionlist_frame:ShowWindow(0);
 	end
 	
+	-- 펫 목록이 열려 있다면 닫기.
+	local petlist_frame = ui.GetFrame("petlist");	
+	if petlist_frame:IsVisible() == 1 then
+		petlist_frame:ShowWindow(0);
+	end
+
 	SETUP_PET_INFO(pet, hawk)
 
 end

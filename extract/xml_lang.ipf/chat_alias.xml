@@ -85,5 +85,6 @@
 		<Class ClassID="97" ClassName="/fishingcat" Alias="/수박" ConvertWhenSend="1"/>
 		<Class ClassID="98" ClassName="/fishingcheck" Alias="/주말접속" ConvertWhenSend="1"/>
 		<Class ClassID="99" ClassName="/goldfish" Alias="/황금낚시" ConvertWhenSend="1"/>
+		<Class ClassID="100" ClassName="/relic" Alias="/유물" ConvertWhenSend="1"/>
 	</Category>
 </idspace>

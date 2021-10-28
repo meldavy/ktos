@@ -1645,3 +1645,15 @@ end
 function EP13STEM_EFFECT_2106_LEAVE(actor, obj, buff)
     effect.DetachActorEffect(actor, "E_effect_ep13stem", 0.0);
 end
+
+-- 둥실 둥실 오리 가족
+function EFFECT_EP13RAINCOAT_BUFF_ENTER(actor, obj, buff)
+end
+
+function EFFECT_EP13RAINCOAT_BUFF_UPDATE(actor, obj, buff)
+    SCR_CREATE_FAIRY_GROUND(actor:GetHandleVal(), "effect_ep13raincoat");
+end
+
+function EFFECT_EP13RAINCOAT_BUFF_LEAVE(actor, obj, buff)
+	SCR_REMOVE_FAIRY_GROUND(actor:GetHandleVal(), "effect_ep13raincoat");
+end

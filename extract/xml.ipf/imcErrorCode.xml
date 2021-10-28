@@ -122,6 +122,7 @@
 	<Code Code="FATAL_FILE_LOAD" Team="tos_team" Category="DATA" SubCategory="" Logger="root" Enabled="YES" CallStack="NO" Desc="해당 파일을 불러오는데 실패하였습니다."/>
 	<Code Code="FATAL_FILE_LOAD_CONTENTDESIGN" Team="CONTENTDESIGN" Category="DATA" SubCategory="" Logger="root" Enabled="YES" CallStack="NO" Desc="해당 파일을 불러오는데 실패하였습니다."/>
 	<Code Code="FATAL_FILE_LOAD_SYSTEMDESIGN" Team="SYSTEMDESIGN" Category="DATA" SubCategory="" Logger="root" Enabled="YES" CallStack="NO" Desc="해당 파일을 불러오는데 실패하였습니다."/>
+	<Code Code="FATAL_FILE_SAVE" Team="tos_team" Category="DATA" SubCategory="" Logger="root" Enabled="YES" CallStack="NO" Desc="파일 저장에 실패하였습니다."/>
 	<Code Code="PATHENGINE_INVALID_POS" Team="tos_team" Category="DATA" SubCategory="" Logger="root" Enabled="YES" CallStack="NO" Desc="해당 파일을 저장하는데 실패하였습니다."/>
 	<Code Code="FATAL_BROKEN_FILE" Team="tos_team" Category="DATA" SubCategory="" Logger="root" Enabled="YES" CallStack="NO" Desc="해당 파일이 비정상적입니다."/>
 	<Code Code="ERROR_SERVICE_NATION" Team="tos_team" Category="DATA" SubCategory="" Logger="root" Enabled="YES" CallStack="NO" Desc="서버의 국가 설정이 비정상 적입니다. server_config.xml을 확인하세요."/>
@@ -666,4 +667,7 @@
 	<Code Code="ERROR_FAILED_START_WATCHDOG" Team="PROGRAM" Category="ERROR" SubCategory="" Logger="root" Enabled="YES" CallStack="NO" Desc="Watchdog 프로세스 시작에 실패했습니다."/>
 	<Code Code="INFO_NEXON_MARKET" Team="tos_team" Category="INFO" SubCategory="" Logger="root" Enabled="NO" CallStack="NO" Desc="개발용 정보"/>
   <Code Code="INFO_TRACE_G_Contribution" Team="tos_team" Category="INFO" SubCategory="" Logger="root" Enabled="YES" CallStack="NO" Desc="길드 기여도 분배 추적"/>
+	<Code Code="ERROR_GUILD_COMMUNITY" Team="PROGRAM" Category="GUILD" SubCategory="GUILD_COMMUNITY" Logger="root" Enabled="YES" CallStack="NO" Desc="길드 커뮤니티 에러"/>
+	<Code Code="WARNING_GUILD_COMMUNITY" Team="PROGRAM" Category="GUILD" SubCategory="GUILD_COMMUNITY" Logger="root" Enabled="YES" CallStack="NO" Desc="길드 커뮤니티 경고"/>
+	<Code Code="INFO_GUILD_COMMUNITY" Team="PROGRAM" Category="GUILD" SubCategory="GUILD_COMMUNITY" Logger="root" Enabled="NO" CallStack="NO" Desc="길드 커뮤니티 정보"/>
 </imcErrorCode>

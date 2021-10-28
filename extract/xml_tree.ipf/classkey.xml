@@ -5337,6 +5337,66 @@
         <Key Name="UITUTO_GLASS3" Value="109478"/>
         <Key Name="UITUTO_GODDESSEQUIP1" Value="109481"/>
         <Key Name="UITUTO_GODDESSEQUIP2" Value="109477"/>
+        <Key Name="AchieveReward_Achieve_RidePet_2" Value="109546"/>
+        <Key Name="AchieveReward_Achieve_RidePet_3" Value="109532"/>
+        <Key Name="AchieveReward_Achieve_RidePet_4" Value="109527"/>
+        <Key Name="EVENT_2108_ARCHEOLOGY_PLAY_TIME" Value="109524"/>
+        <Key Name="EVENT_2108_ARCHEOLOGY_SEARCH_COIN_COUNT" Value="109533"/>
+        <Key Name="EVENT_2108_ARCHEOLOGY_SEARCH_COUNT" Value="109503"/>
+        <Key Name="EVENT_2108_ARCHEOLOGY_SEARCH_ZONE_CHECK" Value="109536"/>
+        <Key Name="EVENT_2108_ARCHEOLOGY_SHOP_1" Value="109497"/>
+        <Key Name="EVENT_2108_ARCHEOLOGY_SHOP_10" Value="109526"/>
+        <Key Name="EVENT_2108_ARCHEOLOGY_SHOP_11" Value="109494"/>
+        <Key Name="EVENT_2108_ARCHEOLOGY_SHOP_12" Value="109534"/>
+        <Key Name="EVENT_2108_ARCHEOLOGY_SHOP_13" Value="109520"/>
+        <Key Name="EVENT_2108_ARCHEOLOGY_SHOP_14" Value="109522"/>
+        <Key Name="EVENT_2108_ARCHEOLOGY_SHOP_15" Value="109523"/>
+        <Key Name="EVENT_2108_ARCHEOLOGY_SHOP_16" Value="109543"/>
+        <Key Name="EVENT_2108_ARCHEOLOGY_SHOP_17" Value="109525"/>
+        <Key Name="EVENT_2108_ARCHEOLOGY_SHOP_18" Value="109535"/>
+        <Key Name="EVENT_2108_ARCHEOLOGY_SHOP_19" Value="109537"/>
+        <Key Name="EVENT_2108_ARCHEOLOGY_SHOP_2" Value="109518"/>
+        <Key Name="EVENT_2108_ARCHEOLOGY_SHOP_20" Value="109539"/>
+        <Key Name="EVENT_2108_ARCHEOLOGY_SHOP_21" Value="109512"/>
+        <Key Name="EVENT_2108_ARCHEOLOGY_SHOP_22" Value="109541"/>
+        <Key Name="EVENT_2108_ARCHEOLOGY_SHOP_23" Value="109507"/>
+        <Key Name="EVENT_2108_ARCHEOLOGY_SHOP_24" Value="109516"/>
+        <Key Name="EVENT_2108_ARCHEOLOGY_SHOP_25" Value="109493"/>
+        <Key Name="EVENT_2108_ARCHEOLOGY_SHOP_3" Value="109501"/>
+        <Key Name="EVENT_2108_ARCHEOLOGY_SHOP_4" Value="109508"/>
+        <Key Name="EVENT_2108_ARCHEOLOGY_SHOP_5" Value="109529"/>
+        <Key Name="EVENT_2108_ARCHEOLOGY_SHOP_6" Value="109499"/>
+        <Key Name="EVENT_2108_ARCHEOLOGY_SHOP_7" Value="109549"/>
+        <Key Name="EVENT_2108_ARCHEOLOGY_SHOP_8" Value="109521"/>
+        <Key Name="EVENT_2108_ARCHEOLOGY_SHOP_9" Value="109506"/>
+        <Key Name="EVENT_2108_ARCHEOLOGY_TITLE_A_COUNT" Value="109492"/>
+        <Key Name="EVENT_2108_ARCHEOLOGY_TITLE_B_COUNT" Value="109528"/>
+        <Key Name="EVENT_2108_ARCHEOLOGY_TITLE_C_COUNT" Value="109509"/>
+        <Key Name="EVENT_2108_ARCHEOLOGY_TITLE_D_COUNT" Value="109500"/>
+        <Key Name="EVENT_2108_TICKET_COIN_COUNT" Value="109495"/>
+        <Key Name="RidePet_1" Value="109514"/>
+        <Key Name="RidePet_1000" Value="109519"/>
+        <Key Name="RidePet_2" Value="109540"/>
+        <Key Name="RidePet_3" Value="109505"/>
+        <Key Name="RidePet_4" Value="109502"/>
+        <Key Name="RidePet_5" Value="109530"/>
+        <Key Name="RidePet_6" Value="109542"/>
+        <Key Name="RidePet_Unlock" Value="109510"/>
+        <Key Name="SelectedRidePet" Value="109545"/>
+        <Key Name="TITLE_Event_2108_Relic_A_1_CHECK" Value="109531"/>
+        <Key Name="TITLE_Event_2108_Relic_A_2_CHECK" Value="109547"/>
+        <Key Name="TITLE_Event_2108_Relic_A_3_CHECK" Value="109538"/>
+        <Key Name="TITLE_Event_2108_Relic_A_4_CHECK" Value="109496"/>
+        <Key Name="TITLE_Event_2108_Relic_B_1_CHECK" Value="109498"/>
+        <Key Name="TITLE_Event_2108_Relic_B_2_CHECK" Value="109511"/>
+        <Key Name="TITLE_Event_2108_Relic_B_3_CHECK" Value="109513"/>
+        <Key Name="TITLE_Event_2108_Relic_B_4_CHECK" Value="109544"/>
+        <Key Name="TITLE_Event_2108_Relic_C_1_CHECK" Value="109504"/>
+        <Key Name="TITLE_Event_2108_Relic_C_2_CHECK" Value="109548"/>
+        <Key Name="TITLE_Event_2108_Relic_C_3_CHECK" Value="109515"/>
+        <Key Name="TITLE_Event_2108_Relic_C_4_CHECK" Value="109517"/>
+        <Key Name="RidePet_7" Value="109551"/>
+        <Key Name="PVPMineShopResetTime" Value="109552"/>
     </KeyIDSpc>
     <KeyIDSpc Name="PCEtc">
         <Key Name="Kill_boss_Clymen_Q2" Value="7788"/>
@@ -14410,6 +14470,31 @@
         <Key Name="Kill_boss_Bounty03" Value="109439"/>
         <Key Name="Kill_boss_Bounty04" Value="109442"/>
         <Key Name="Kill_boss_Vasilissa_Solo" Value="109483"/>
+        <Key Name="BountyHunt_Difficult" Value="109490"/>
+        <Key Name="BountyHunt_NPC_TradeItem" Value="109491"/>
+        <Key Name="Kill_boss_Bounty01_Hard" Value="109486"/>
+        <Key Name="Kill_boss_Bounty02_Hard" Value="109485"/>
+        <Key Name="Kill_boss_Bounty03_Hard" Value="109489"/>
+        <Key Name="Kill_boss_Bounty04_Hard" Value="109487"/>
+        <Key Name="SelectedRidePet" Value="109484"/>
+        <Key Name="isRideKeep" Value="109488"/>
+        <Key Name="PrevEquipItem_ARK" Value="109569"/>
+        <Key Name="PrevEquipItem_BOOTS" Value="109562"/>
+        <Key Name="PrevEquipItem_GLOVES" Value="109553"/>
+        <Key Name="PrevEquipItem_HAT" Value="109564"/>
+        <Key Name="PrevEquipItem_HAT_L" Value="109554"/>
+        <Key Name="PrevEquipItem_HAT_T" Value="109559"/>
+        <Key Name="PrevEquipItem_LH" Value="109565"/>
+        <Key Name="PrevEquipItem_LH_SUB" Value="109560"/>
+        <Key Name="PrevEquipItem_NECK" Value="109566"/>
+        <Key Name="PrevEquipItem_PANTS" Value="109556"/>
+        <Key Name="PrevEquipItem_RELIC" Value="109563"/>
+        <Key Name="PrevEquipItem_RH" Value="109555"/>
+        <Key Name="PrevEquipItem_RH_SUB" Value="109558"/>
+        <Key Name="PrevEquipItem_RING1" Value="109561"/>
+        <Key Name="PrevEquipItem_RING2" Value="109557"/>
+        <Key Name="PrevEquipItem_SEAL" Value="109567"/>
+        <Key Name="PrevEquipItem_SHIRT" Value="109568"/>
     </KeyIDSpc>
     <KeyIDSpc Name="GuildMember">
         <Key Name="Name" Value="9011"/>
@@ -23274,6 +23359,7 @@
         <Key Name="MG_Last_F_BRACKEN_UNIQUE_MQ1_MGAME" Value="109094"/>
         <Key Name="MG_Last_F_NICOPOLIS_UNIQUE_MQ1_MGAME" Value="109095"/>
         <Key Name="MG_Last_Goddess_Raid_Vasilissa_Solo" Value="109482"/>
+        <Key Name="EVENT_2108_ARCHEOLOGY_BON_COUNT" Value="109550"/>
     </KeyIDSpc>
     <KeyIDSpc Name="Monster">
         <Key Name="MaxHate" Value="6671"/>

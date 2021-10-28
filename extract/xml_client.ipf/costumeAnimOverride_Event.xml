@@ -1015,21 +1015,21 @@
 			<Motion Name="ASTD_RIDE">
 				<Job Name="All">
 					<Event>
-						<Particle frame="0" attachNode="Bip01 R Clavicle twist2" particleName="F_fire045_retiarii" useAttach="true" hiddenObj="false" scale="1.25" pause="true" use2DEffect="true" soft2DValue="0"/>
+						<Particle frame="0" attachNode="Bip01 R Clavicle twist2" particleName="F_fire045_retiarii" useAttach="true" hiddenObj="false" scale="1.5" pause="true" use2DEffect="true" soft2DValue="0"/>
 					</Event>
 				</Job>
 			</Motion>
 			<Motion Name="STD_RIDE">
 				<Job Name="All">
 					<Event>
-						<Particle frame="0" attachNode="Bip01 R Clavicle twist2" particleName="F_fire045_retiarii" useAttach="true" hiddenObj="false" scale="1.25" pause="true" use2DEffect="true" soft2DValue="0"/>
+						<Particle frame="0" attachNode="Bip01 R Clavicle twist2" particleName="F_fire045_retiarii" useAttach="true" hiddenObj="false" scale="1.5" pause="true" use2DEffect="true" soft2DValue="0"/>
 					</Event>
 				</Job>
 			</Motion>
 			<Motion Name="STD">
 				<Job Name="All">
 					<Event>
-						<Particle frame="0" attachNode="Bip01 R Clavicle twist2" particleName="F_fire045_retiarii" useAttach="true" hiddenObj="false" scale="1.25" pause="true" use2DEffect="true" soft2DValue="0"/>
+						<Particle frame="0" attachNode="Bip01 R Clavicle twist2" particleName="F_fire045_retiarii" useAttach="true" hiddenObj="false" scale="1.5" pause="true" use2DEffect="true" soft2DValue="0"/>
 					</Event>
 				</Job>
 			</Motion>
@@ -1047,21 +1047,21 @@
 			<Motion Name="ASTD_RIDE">
 				<Job Name="All">
 					<Event>
-						<Particle frame="0" attachNode="Bip01 R Clavicle twist2" particleName="F_fire045_retiarii" useAttach="true" hiddenObj="false" scale="1.25" pause="true" use2DEffect="true" soft2DValue="0"/>
+						<Particle frame="0" attachNode="Bip01 R Clavicle twist2" particleName="F_fire045_retiarii" useAttach="true" hiddenObj="false" scale="1.5" pause="true" use2DEffect="true" soft2DValue="0"/>
 					</Event>
 				</Job>
 			</Motion>
 			<Motion Name="STD_RIDE">
 				<Job Name="All">
 					<Event>
-						<Particle frame="0" attachNode="Bip01 R Clavicle twist2" particleName="F_fire045_retiarii" useAttach="true" hiddenObj="false" scale="1.25" pause="true" use2DEffect="true" soft2DValue="0"/>
+						<Particle frame="0" attachNode="Bip01 R Clavicle twist2" particleName="F_fire045_retiarii" useAttach="true" hiddenObj="false" scale="1.5" pause="true" use2DEffect="true" soft2DValue="0"/>
 					</Event>
 				</Job>
 			</Motion>
 			<Motion Name="STD">
 				<Job Name="All">
 					<Event>
-						<Particle frame="0" attachNode="Bip01 R Clavicle twist2" particleName="F_fire045_retiarii" useAttach="true" hiddenObj="false" scale="1.25" pause="true" use2DEffect="true" soft2DValue="0"/>
+						<Particle frame="0" attachNode="Bip01 R Clavicle twist2" particleName="F_fire045_retiarii" useAttach="true" hiddenObj="false" scale="1.5" pause="true" use2DEffect="true" soft2DValue="0"/>
 					</Event>
 				</Job>
 			</Motion>
@@ -1079,21 +1079,21 @@
 			<Motion Name="ASTD_RIDE">
 				<Job Name="All">
 					<Event>
-						<Particle frame="0" attachNode="Bip01 R Clavicle twist2" particleName="F_fire045_retiarii" useAttach="true" hiddenObj="false" scale="1.25" pause="true" use2DEffect="true" soft2DValue="0"/>
+						<Particle frame="0" attachNode="Bip01 R Clavicle twist2" particleName="F_fire045_retiarii" useAttach="true" hiddenObj="false" scale="1.5" pause="true" use2DEffect="true" soft2DValue="0"/>
 					</Event>
 				</Job>
 			</Motion>
 			<Motion Name="STD_RIDE">
 				<Job Name="All">
 					<Event>
-						<Particle frame="0" attachNode="Bip01 R Clavicle twist2" particleName="F_fire045_retiarii" useAttach="true" hiddenObj="false" scale="1.25" pause="true" use2DEffect="true" soft2DValue="0"/>
+						<Particle frame="0" attachNode="Bip01 R Clavicle twist2" particleName="F_fire045_retiarii" useAttach="true" hiddenObj="false" scale="1.5" pause="true" use2DEffect="true" soft2DValue="0"/>
 					</Event>
 				</Job>
 			</Motion>
 			<Motion Name="STD">
 				<Job Name="All">
 					<Event>
-						<Particle frame="0" attachNode="Bip01 R Clavicle twist2" particleName="F_fire045_retiarii" useAttach="true" hiddenObj="false" scale="1.25" pause="true" use2DEffect="true" soft2DValue="0"/>
+						<Particle frame="0" attachNode="Bip01 R Clavicle twist2" particleName="F_fire045_retiarii" useAttach="true" hiddenObj="false" scale="1.5" pause="true" use2DEffect="true" soft2DValue="0"/>
 					</Event>
 				</Job>
 			</Motion>
@@ -1111,21 +1111,21 @@
 			<Motion Name="ASTD_RIDE">
 				<Job Name="All">
 					<Event>
-						<Particle frame="0" attachNode="Bip01 R Clavicle twist2" particleName="F_fire045_retiarii" useAttach="true" hiddenObj="false" scale="1.25" pause="true" use2DEffect="true" soft2DValue="0"/>
+						<Particle frame="0" attachNode="Bip01 R Clavicle twist2" particleName="F_fire045_retiarii" useAttach="true" hiddenObj="false" scale="1.5" pause="true" use2DEffect="true" soft2DValue="0"/>
 					</Event>
 				</Job>
 			</Motion>
 			<Motion Name="STD_RIDE">
 				<Job Name="All">
 					<Event>
-						<Particle frame="0" attachNode="Bip01 R Clavicle twist2" particleName="F_fire045_retiarii" useAttach="true" hiddenObj="false" scale="1.25" pause="true" use2DEffect="true" soft2DValue="0"/>
+						<Particle frame="0" attachNode="Bip01 R Clavicle twist2" particleName="F_fire045_retiarii" useAttach="true" hiddenObj="false" scale="1.5" pause="true" use2DEffect="true" soft2DValue="0"/>
 					</Event>
 				</Job>
 			</Motion>
 			<Motion Name="STD">
 				<Job Name="All">
 					<Event>
-						<Particle frame="0" attachNode="Bip01 R Clavicle twist2" particleName="F_fire045_retiarii" useAttach="true" hiddenObj="false" scale="1.25" pause="true" use2DEffect="true" soft2DValue="0"/>
+						<Particle frame="0" attachNode="Bip01 R Clavicle twist2" particleName="F_fire045_retiarii" useAttach="true" hiddenObj="false" scale="1.5" pause="true" use2DEffect="true" soft2DValue="0"/>
 					</Event>
 				</Job>
 			</Motion>
@@ -2043,6 +2043,87 @@
 				<Job Name="All" LoopTime="0">
 					<Event>
 						<Particle frame="5" attachNode="None" particleName="F_light175_red" useAttach="false" hiddenObj="false" scale="0.5" pause="false" use2DEffect="false" soft2DValue="20"/>
+					</Event>
+				</Job>
+			</Motion>
+		</Class>
+		<Class Costume="ep13raincoat01">
+			<Motion Name="EP13RAINCOAT">
+				<Job Name="All" LoopTime="0">
+					<Event>
+						<Particle frame="6" attachNode="None" particleName="E_ep13raincoat001" useAttach="false" hiddenObj="false" scale="1" pause="false" use2DEffect="false" soft2DValue="20"/>
+					</Event>
+				</Job>
+			</Motion>
+		</Class>
+		<Class Costume="ep13raincoat02">
+			<Motion Name="EP13RAINCOAT">
+				<Job Name="All" LoopTime="0">
+					<Event>
+						<Particle frame="6" attachNode="None" particleName="E_ep13raincoat001" useAttach="false" hiddenObj="false" scale="1" pause="false" use2DEffect="false" soft2DValue="20"/>
+					</Event>
+				</Job>
+			</Motion>
+		</Class>
+		<Class Costume="ep13raincoat03">
+			<Motion Name="EP13RAINCOAT">
+				<Job Name="All" LoopTime="0">
+					<Event>
+						<Particle frame="6" attachNode="None" particleName="E_ep13raincoat001" useAttach="false" hiddenObj="false" scale="1" pause="false" use2DEffect="false" soft2DValue="20"/>
+					</Event>
+				</Job>
+			</Motion>
+		</Class>
+		<Class Costume="ep13raincoat01_1">
+			<Motion Name="EP13RAINCOAT">
+				<Job Name="All" LoopTime="0">
+					<Event>
+						<Particle frame="6" attachNode="None" particleName="E_ep13raincoat001" useAttach="false" hiddenObj="false" scale="1" pause="false" use2DEffect="false" soft2DValue="20"/>
+					</Event>
+				</Job>
+			</Motion>
+		</Class>
+		<Class Costume="ep13raincoat02_1">
+			<Motion Name="EP13RAINCOAT">
+				<Job Name="All" LoopTime="0">
+					<Event>
+						<Particle frame="6" attachNode="None" particleName="E_ep13raincoat001" useAttach="false" hiddenObj="false" scale="1" pause="false" use2DEffect="false" soft2DValue="20"/>
+					</Event>
+				</Job>
+			</Motion>
+		</Class>
+		<Class Costume="ep13raincoat03_1">
+			<Motion Name="EP13RAINCOAT">
+				<Job Name="All" LoopTime="0">
+					<Event>
+						<Particle frame="6" attachNode="None" particleName="E_ep13raincoat001" useAttach="false" hiddenObj="false" scale="1" pause="false" use2DEffect="false" soft2DValue="20"/>
+					</Event>
+				</Job>
+			</Motion>
+		</Class>
+		<Class Costume="ep13raincoat01_2">
+			<Motion Name="EP13RAINCOAT">
+				<Job Name="All" LoopTime="0">
+					<Event>
+						<Particle frame="6" attachNode="None" particleName="E_ep13raincoat001" useAttach="false" hiddenObj="false" scale="1" pause="false" use2DEffect="false" soft2DValue="20"/>
+					</Event>
+				</Job>
+			</Motion>
+		</Class>
+		<Class Costume="ep13raincoat02_2">
+			<Motion Name="EP13RAINCOAT">
+				<Job Name="All" LoopTime="0">
+					<Event>
+						<Particle frame="6" attachNode="None" particleName="E_ep13raincoat001" useAttach="false" hiddenObj="false" scale="1" pause="false" use2DEffect="false" soft2DValue="20"/>
+					</Event>
+				</Job>
+			</Motion>
+		</Class>
+		<Class Costume="ep13raincoat03_2">
+			<Motion Name="EP13RAINCOAT">
+				<Job Name="All" LoopTime="0">
+					<Event>
+						<Particle frame="6" attachNode="None" particleName="E_ep13raincoat001" useAttach="false" hiddenObj="false" scale="1" pause="false" use2DEffect="false" soft2DValue="20"/>
 					</Event>
 				</Job>
 			</Motion>
@@ -4383,6 +4464,87 @@
 				<Job Name="All" LoopTime="0">
 					<Event>
 						<Particle frame="5" attachNode="None" particleName="F_light175_red" useAttach="false" hiddenObj="false" scale="0.5" pause="false" use2DEffect="false" soft2DValue="20"/>
+					</Event>
+				</Job>
+			</Motion>
+		</Class>
+		<Class Costume="ep13raincoat01">
+			<Motion Name="EP13RAINCOAT">
+				<Job Name="All" LoopTime="0">
+					<Event>
+						<Particle frame="6" attachNode="None" particleName="E_ep13raincoat001" useAttach="false" hiddenObj="false" scale="1" pause="false" use2DEffect="false" soft2DValue="20"/>
+					</Event>
+				</Job>
+			</Motion>
+		</Class>
+		<Class Costume="ep13raincoat02">
+			<Motion Name="EP13RAINCOAT">
+				<Job Name="All" LoopTime="0">
+					<Event>
+						<Particle frame="6" attachNode="None" particleName="E_ep13raincoat001" useAttach="false" hiddenObj="false" scale="1" pause="false" use2DEffect="false" soft2DValue="20"/>
+					</Event>
+				</Job>
+			</Motion>
+		</Class>
+		<Class Costume="ep13raincoat03">
+			<Motion Name="EP13RAINCOAT">
+				<Job Name="All" LoopTime="0">
+					<Event>
+						<Particle frame="6" attachNode="None" particleName="E_ep13raincoat001" useAttach="false" hiddenObj="false" scale="1" pause="false" use2DEffect="false" soft2DValue="20"/>
+					</Event>
+				</Job>
+			</Motion>
+		</Class>
+		<Class Costume="ep13raincoat01_1">
+			<Motion Name="EP13RAINCOAT">
+				<Job Name="All" LoopTime="0">
+					<Event>
+						<Particle frame="6" attachNode="None" particleName="E_ep13raincoat001" useAttach="false" hiddenObj="false" scale="1" pause="false" use2DEffect="false" soft2DValue="20"/>
+					</Event>
+				</Job>
+			</Motion>
+		</Class>
+		<Class Costume="ep13raincoat02_1">
+			<Motion Name="EP13RAINCOAT">
+				<Job Name="All" LoopTime="0">
+					<Event>
+						<Particle frame="6" attachNode="None" particleName="E_ep13raincoat001" useAttach="false" hiddenObj="false" scale="1" pause="false" use2DEffect="false" soft2DValue="20"/>
+					</Event>
+				</Job>
+			</Motion>
+		</Class>
+		<Class Costume="ep13raincoat03_1">
+			<Motion Name="EP13RAINCOAT">
+				<Job Name="All" LoopTime="0">
+					<Event>
+						<Particle frame="6" attachNode="None" particleName="E_ep13raincoat001" useAttach="false" hiddenObj="false" scale="1" pause="false" use2DEffect="false" soft2DValue="20"/>
+					</Event>
+				</Job>
+			</Motion>
+		</Class>
+		<Class Costume="ep13raincoat01_2">
+			<Motion Name="EP13RAINCOAT">
+				<Job Name="All" LoopTime="0">
+					<Event>
+						<Particle frame="6" attachNode="None" particleName="E_ep13raincoat001" useAttach="false" hiddenObj="false" scale="1" pause="false" use2DEffect="false" soft2DValue="20"/>
+					</Event>
+				</Job>
+			</Motion>
+		</Class>
+		<Class Costume="ep13raincoat02_2">
+			<Motion Name="EP13RAINCOAT">
+				<Job Name="All" LoopTime="0">
+					<Event>
+						<Particle frame="6" attachNode="None" particleName="E_ep13raincoat001" useAttach="false" hiddenObj="false" scale="1" pause="false" use2DEffect="false" soft2DValue="20"/>
+					</Event>
+				</Job>
+			</Motion>
+		</Class>
+		<Class Costume="ep13raincoat03_2">
+			<Motion Name="EP13RAINCOAT">
+				<Job Name="All" LoopTime="0">
+					<Event>
+						<Particle frame="6" attachNode="None" particleName="E_ep13raincoat001" useAttach="false" hiddenObj="false" scale="1" pause="false" use2DEffect="false" soft2DValue="20"/>
 					</Event>
 				</Job>
 			</Motion>

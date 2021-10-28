@@ -585,3 +585,34 @@ function QUICKSLOT_MAKE_GAUGE(slot)
 	gauge:SetDrawStyle(ui.GAUGE_DRAW_CELL);
 	gauge:SetSkinName("dot_skillslot");
 end
+
+function GET_LAST_CHILD(obj, class, pred)
+	local i = obj:GetChildCount() - 1
+	while true do
+		local child = obj:GetChildByIndex(i)
+		if not child then return nil end
+		if not class or child:GetClassString() == class then
+			child = AUTO_CAST(child)
+			if not pred or pred(child) then
+				return child
+			end
+		end
+		i = i - 1
+	end
+end
+
+function GET_FIRST_CHILD(obj, class, pred)
+	local i = 0
+	while true do
+		local child = obj:GetChildByIndex(i)
+		if not child then return nil end
+		if not class or child:GetClassString() == class then
+			child = AUTO_CAST(child)
+			if not pred or pred(child) then
+				return child
+			end
+		end
+		i = i + 1
+	end
+end
+

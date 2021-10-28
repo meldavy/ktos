@@ -2,6 +2,12 @@
 <!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by IMCGames Co., Ltd (IMCGames Co., Ltd) -->
 <!-- edited with XMLSpy v2006 U (http://www.altova.com) by Administrator (EMBRACE) -->
 <TextureInfo>
+	<Texture Name="screen_stone04" File="screen_stone04.tga" Size="1920 1080"/>
+	<Texture Name="screen_frozen01" File="screen_frozen01.tga" Size="1920 1080"/>
+	<Texture Name="chain_base_2" File="chain_base_2.dds" Size="512 128"/>
+	<Texture Name="screen_stone03" File="screen_stone03.tga" Size="1920 1080"/>
+	<Texture Name="screen_stone02" File="screen_stone02.tga" Size="1920 1080"/>
+	<Texture Name="screen_stone01" File="screen_stone01.tga" Size="1920 1080"/>
 	<Texture Name="screen_frozen" File="screen_frozen.tga" Size="1920 1080"/>
 	<Texture Name="complete_logo_add" File="complete_logo_add.tga" Size="512 512"/>
 	<Texture Name="complete_logo" File="complete_logo.tga" Size="1024 1024"/>

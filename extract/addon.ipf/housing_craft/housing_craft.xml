@@ -35,15 +35,15 @@
 		<!--재화 목록 그룹박스-->
 		<groupbox name="maingbox" parent="leftgbox" rect="0 0 586 833" margin="0 80 30 0" layout_gravity="right top" draw="true" resizebyparent="false" tabname="Itembox1" skin="test_frame_midle_light" scrollbar="true"/>
 		<!--재화 현황판 그룹박스-->
-		<groupbox name="subgbox" parent="rightgbox" rect="0 0 515 893" margin="17 33 0 0" layout_gravity="left top" draw="false" hittestbox="false" resizebyparent="false" skin=""/>
+		<groupbox name="subgbox" parent="rightgbox" rect="0 0 515 893" margin="17 33 0 0" layout_gravity="left top" draw="false" hittestbox="false" resizebyparent="false" skin="" fixwidth="true"/>
 		<groupbox name="statusgbox" parent="subgbox" rect="0 0 515 750" margin="0 0 0 0" layout_gravity="left top" draw="true" hittestbox="false" resizebyparent="false" skin="test_frame_midle_light"/>
 		
-		<richtext name="remainTimeText" rect="0 0 300 30" parent="subgbox" margin="0 0 0 110" layout_gravity="left bottom" format="{s17}재화 수령까지 남은 시간 : %s일 %s시간 %s분" param1="day" param1_def="3" param2="hour" param2_def="14" param3="min" param3_def="30" fontname="white_16_ol"/>
-		<richtext name="completeText" rect="0 0 300 30" parent="subgbox" margin="0 0 0 110" layout_gravity="left bottom" caption="{s17}재화 수령까지 남은 시간 : 완료" fontname="white_16_ol"/>
-		<richtext name="couponText" rect="0 0 300 100" parent="subgbox" margin="0 0 0 0" layout_gravity="left bottom" format="{s17}적용 중인 효과 - %s" param1="effect" fontname="white_16_ol" resizebytext="false"/>
+		<richtext name="remainTimeText" rect="0 0 510 30" parent="subgbox" margin="0 762 0 0" layout_gravity="left top" format="{s17}재화 수령까지 남은 시간 : %s일 %s시간 %s분" param1="day" param1_def="3" param2="hour" param2_def="14" param3="min" param3_def="30" fontname="white_16_ol" fixwidth="true"/>
+		<richtext name="completeText" rect="0 0 510 30" parent="subgbox" margin="0 762 0 0" layout_gravity="left top" caption="{s17}재화 수령까지 남은 시간 : 완료" fontname="white_16_ol"/>
+		<richtext name="couponText" rect="0 0 300 100" parent="subgbox" margin="0 0 0 -10" layout_gravity="left bottom" format="{s17}적용 중인 효과 - %s" param1="effect" fontname="white_16_ol" resizebytext="false"/>
 
-		<button name="couponbtn" parent="subgbox" rect="0 0 144 50" margin="0 0 150 2" layout_gravity="right bottom" LBtnUpScp="HOUSING_CRAFT_OPEN_COUPON" skin="test_red_button" format="{@st41b}{s16}%s" oversound="button_cursor_over_3" param1="value" param1_def="쿠폰" MouseOffAnim="btn_mouseoff" MouseOnAnim="btn_mouseover" clicksound="button_click_big"/>
-		<button name="receivebtn" parent="subgbox" rect="0 0 144 50" margin="0 0 0 2" layout_gravity="right bottom" LBtnUpScp="HOUSING_CRAFT_GET_REWARD" skin="test_red_button" format="{@st41b}{s16}%s" oversound="button_cursor_over_3" param1="value" param1_def="재화 수령" MouseOffAnim="btn_mouseoff" MouseOnAnim="btn_mouseover" clicksound="button_click_big"/>
+		<button name="couponbtn" parent="subgbox" rect="0 0 144 50" margin="0 0 150 2" layout_gravity="right bottom" LBtnUpScp="HOUSING_CRAFT_OPEN_COUPON" skin="test_red_button" format="{@st41b}{s16}%s" oversound="button_cursor_over_3" param1="value" param1_def="쿠폰" MouseOffAnim="btn_mouseoff" MouseOnAnim="btn_mouseover" clicksound="button_click_big" resizebytext="false" updateparent="false"/>
+		<button name="receivebtn" parent="subgbox" rect="0 0 144 50" margin="0 0 0 2" layout_gravity="right bottom" LBtnUpScp="HOUSING_CRAFT_GET_REWARD" skin="test_red_button" format="{@st41b}{s16}%s" oversound="button_cursor_over_3" param1="value" param1_def="재화 수령" MouseOffAnim="btn_mouseoff" MouseOnAnim="btn_mouseover" clicksound="button_click_big" resizebytext="false" updateparent="false"/>
 		
 		<groupbox name="couponBox" rect="0 0 280 195" margin="0 0 80 205" layout_gravity="right bottom" skin="collection_complete"/>
 		<richtext name="couponTitleText" rect="0 0 100 30" parent="couponBox" margin="10 10 0 0" layout_gravity="left top" caption="{s17}쿠폰 목록" fontname="white_16_ol"/>

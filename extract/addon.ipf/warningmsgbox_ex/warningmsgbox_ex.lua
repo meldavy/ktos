@@ -66,7 +66,7 @@ function WARNINGMSGBOX_EX_FRAME_OPEN(frame, msg, argStr, argNum, option)
 
 
 		compareHeight = compareText:GetHeight()
-		compareText:SetMargin(0, 0, 0, 130 + compareHeight)
+		-- compareText:SetMargin(0, 0, 0, 170)
 
 		input_frame:ShowWindow(1)
 		input_frame:SetText('')
@@ -118,13 +118,11 @@ function _WARNINGMSGBOX_EX_FRAME_OPEN_YES(parent, ctrl, argStr, argNum)
 	local yesScp = ''
 	if arg_list ~= nil then
 		if #arg_list > 0 then
-			print(arg_list[1])
 			compare_msg = ClMsg(arg_list[1])
 		end
 
 		if #arg_list > 1 then
 			yesScp = arg_list[2]
-			print(yesScp)
 		end
 	end
 	compare_msg = dic.getTranslatedStr(compare_msg);
@@ -141,12 +139,18 @@ function _WARNINGMSGBOX_EX_FRAME_OPEN_YES(parent, ctrl, argStr, argNum)
 		scp()
 	end
 
+	local warningbox = GET_CHILD_RECURSIVELY(parent, 'warningbox')
+	warningbox:RemoveChild('option_compare')
+
 	ui.CloseFrame("warningmsgbox_ex")
 	ui.CloseFrame("item_tooltip")
 end
 
 function _WARNINGMSGBOX_EX_FRAME_OPEN_NO(parent, ctrl, argStr, argNum)
 	IMC_LOG("INFO_NORMAL", "_WARNINGMSGBOX_EX_FRAME_OPEN_NO")
+
+	local warningbox = GET_CHILD_RECURSIVELY(parent, 'warningbox')
+	warningbox:RemoveChild('option_compare')
 
 	ui.CloseFrame("warningmsgbox_ex")
 	ui.CloseFrame("item_tooltip")
@@ -326,4 +330,91 @@ function ON_UNKNOWN_SANTUARTY_GET_BUFF(argStr)
 		print("ON_UNKNOWN_SANTUARTY_GET_BUFF", first, second);
 		ReqUnknownSantuartyBuff(first, second);
 	end
+end
+
+function WARNINGMSGBOX_EX_ENGRAVE_OPEN()
+	ui.OpenFrame("warningmsgbox_ex")
+	local frame = ui.GetFrame('warningmsgbox_ex')
+	
+	local warningTitle = GET_CHILD_RECURSIVELY(frame, "warningtitle")
+	warningTitle:SetText(ClMsg('EngravedOptionExist'))
+
+	local warningText = GET_CHILD_RECURSIVELY(frame, "warningtext")
+	warningText:SetText(ClMsg('ReallyEngraveOption'))
+
+	local compareText = GET_CHILD_RECURSIVELY(frame, "comparetext")
+	compareText:ShowWindow(0)
+
+	local input = GET_CHILD_RECURSIVELY(frame, "input")
+	input:SetText(dic.getTranslatedStr(ClMsg('None')))
+	input:ShowWindow(0)
+    
+	local warningbox = GET_CHILD_RECURSIVELY(frame, 'warningbox')
+	warningbox:RemoveChild('option_compare')
+	local compare_top = 20
+	local compare_ctrl = warningbox:CreateOrGetControlSet('engrave_warning_compare', 'option_compare', 90, warningText:GetY() + warningText:GetHeight() + compare_top)
+
+	if compare_ctrl ~= nil then
+		local etc = GetMyEtcObject()
+		if etc == nil then
+			ui.CloseFrame('warningmsgbox_ex')
+			return
+		end
+
+		local from_frame = ui.GetFrame('goddess_equip_manager')
+		local randomoption_bg = GET_CHILD_RECURSIVELY(from_frame, 'randomoption_bg')
+		local index = randomoption_bg:GetUserValue('PRESET_INDEX')
+
+		local rand_equip_list = GET_CHILD_RECURSIVELY(from_frame, 'rand_equip_list')
+		local spot = rand_equip_list:GetSelItemKey()
+
+		local slot = GET_CHILD_RECURSIVELY(from_frame, 'rand_engrave_slot')
+		local guid = slot:GetUserValue('ITEM_GUID')
+		local inv_item = session.GetEquipItemBySpot(item.GetEquipSpotNum(spot))
+		if inv_item == nil then
+			ui.CloseFrame('warningmsgbox_ex')
+			return
+		end
+
+		local item_obj = GetIES(inv_item:GetObject())
+
+		local current_inner = GET_CHILD_RECURSIVELY(frame, 'current_inner')
+		current_inner:RemoveChild('tooltip_equip_property_narrow')
+		_GODDESS_MGR_MAKE_RANDOM_OPTION_TEXT(current_inner, item_obj)
+	
+		local before_option = GET_ENGRAVED_OPTION_BY_INDEX_SPOT(etc, index, spot)
+		if before_option == nil then
+			ui.CloseFrame('warningmsgbox_ex')
+			return
+		end
+
+		local before_inner = GET_CHILD_RECURSIVELY(frame, 'before_inner')
+		before_inner:RemoveChild('tooltip_equip_property_narrow')
+		_GODDESS_MGR_MAKE_RANDOM_OPTION_TEXT(before_inner, nil, before_option)
+	end
+	
+	local yes_arg = 'None/_GODDESS_MGR_RANDOMOPTION_ENGRAVE_EXEC'
+	local yesBtn = GET_CHILD_RECURSIVELY(frame, "yes")
+	tolua.cast(yesBtn, "ui::CButton")
+	yesBtn:SetEventScript(ui.LBUTTONUP, '_WARNINGMSGBOX_EX_FRAME_OPEN_YES')
+	yesBtn:SetEventScriptArgString(ui.LBUTTONUP, yes_arg)
+	
+	local noBtn = GET_CHILD_RECURSIVELY(frame, "no")
+	tolua.cast(noBtn, "ui::CButton")
+	noBtn:SetEventScript(ui.LBUTTONUP, '_WARNINGMSGBOX_EX_FRAME_OPEN_NO')
+	
+	local okBtn = GET_CHILD_RECURSIVELY(frame, "ok")
+	tolua.cast(okBtn, "ui::CButton")
+	
+	yesBtn:ShowWindow(1)
+	noBtn:ShowWindow(1)
+	okBtn:ShowWindow(0)
+	
+	local buttonMargin = noBtn:GetMargin()
+	local totalHeight = warningbox:GetY() + warningText:GetY() + warningText:GetHeight() + compare_ctrl:GetHeight() + noBtn:GetHeight() + 2 * buttonMargin.bottom + compare_top
+	warningbox:Resize(warningbox:GetWidth(), totalHeight)
+	
+	local bg = GET_CHILD_RECURSIVELY(frame, 'bg')
+	bg:Resize(bg:GetWidth(), totalHeight)
+	frame:Resize(frame:GetWidth(), totalHeight)
 end

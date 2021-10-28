@@ -44,3 +44,4 @@ ClassID,ClassName,Script,Name,Factor1,Factor2,Factor3,Factor4
 44,ABIL,ABIL,특성 습득,특성 검색,적용 특성 레벨,,
 45,ItemDeleteAll,SCR_ITEM_DELETE_ALL,인벤토리 모든 아이템삭제,,,,
 46,reward_QA,SCR_REWARD_CHAT,큐브 확률 확인,ClassName,개봉 횟수,,
+47,event_time_QA,SCR_EV_TIME_QA,아이템삭제 날짜 확인,ClassName,ClassID,,

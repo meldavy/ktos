@@ -1682,9 +1682,9 @@ function SCR_Get_BLKABLE(self)
 
     local enableBlockBuff = TryGetProp(self, "BLKABLE_BM", 0);
     if enableBlockBuff >= 1 then
-        value = enableBlockBuff
+        value = value + enableBlockBuff
     end
-    
+
     if value > 2 then
         value = 2
     end
@@ -2652,6 +2652,10 @@ function SCR_Get_MSPD(self)
     -- 최대 이속 제한 --
     if value > 60 then
         value = 60;
+
+        if GetExProp(self, 'RIDE_PET_MSPD_LIMIT_INCREASE') > 0 then
+            value = value + GetExProp(self, 'RIDE_PET_MSPD_LIMIT_INCREASE')
+        end
     end
     
     local byBonus = TryGetProp(self, "MSPD_Bonus");
