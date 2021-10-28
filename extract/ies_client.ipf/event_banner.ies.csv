@@ -1,4 +1,7 @@
 ClassID,StartTimeYYYYMM,StartTimeDDHHMM,NewTimeYYYYMM,NewTimeDDHHMM,EndTimeYYYYMM,EndTimeDDHHMM,DeadlineTimeYYYYMM,DeadlineTimeDDHHMM,ExchangeTimeYYYYMM,ExchangeTimeDDHHMM,ClassName,Name,ImagePath,url,UserCommand1,UserCommand2,UserCommand3,ShowType
+996620,202110,280900,202111,20000,202111,250700,202111,200000,0,0,Sadu_specialedition,사두 패키지,Sadu_specialedition,http://tos.nexon.com/news/update/view.aspx?n4ArticleSN=2547,,,,
+996630,202111,10000,202111,60000,202112,10000,202111,260000,0,0,event2111_Burning,주말 앤 버닝 - 11월,event2111_Burning,http://tos.nexon.com/news/events/view.aspx?n4ArticleSN=352&n4ArticleCategorySN=1,,,,
+996640,202111,10000,202111,60000,202112,10000,202111,260000,0,0,event2111_VaivoraReward,바이보라 출석 - 11월,event2111_VaivoraReward,http://tos.nexon.com/news/events/view.aspx?n4ArticleSN=353&n4ArticleCategorySN=1,,,,
 996650,202110,140900,202110,190000,202111,250700,202111,200000,0,0,211014_goddesscube,축복받은 여신의 큐브 - 10월,211014_goddesscube,http://tos.nexon.com/news/update/view.aspx?n4ArticleSN=2534,,,,
 996660,202110,140900,202110,190000,202111,110700,202111,60000,0,0,event2110_HwEvt,할로윈 이벤트,event2110_HwEvt,http://tos.nexon.com/news/events/view.aspx?n4ArticleSN=351&n4ArticleCategorySN=1,,,,
 996670,202110,140900,202110,190000,202111,250700,202111,200000,0,0,event211014_DevilsTemptation,마신의 유혹 - 10월,event211014_DevilsTemptation,http://tos.nexon.com/news/events/view.aspx?n4ArticleSN=350&n4ArticleCategorySN=1,,,,
