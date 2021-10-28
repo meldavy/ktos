@@ -1,6 +1,6 @@
 ---- lib_ui.lua
 
-function REGISTERR_LASTUIOPEN_POS(frame) --pc_command.lua�� �̸� ������ ����ص־� ��
+function REGISTERR_LASTUIOPEN_POS(frame) --pc_command.lua�� �̸� ������ ����ص־� ��
 
 	local text = string.format("/lastuiopenpos %s",frame:GetName());
 	ui.Chat(text);
@@ -106,7 +106,7 @@ function SET_CHILD_TEXT_BY_KEY(frame, childName, key, value)
 	end
 end
 
-function GET_CHILD_BYNAME(frame, searchname)
+function GET_CHILD_CNT_BYNAME(frame, searchname)
 	local searchCount = 0;
 	local cnt = frame:GetChildCount();
 	for  i = 0, cnt -1 do
@@ -155,15 +155,25 @@ function HIDE_CHILD(frame, name)
 	end
 end
 
-function SHOW_CHILD_BY_USERVALUE(frame, valueName, value, isVisible)
+--다른 유저 숙소 방문시에는 [캐릭 생성, 삭제, 숙소 이동, ▲, ▼, 로그아웃, 게임종료] 버튼 숨김
+function SHOW_BTNS(frame, onoff)
+	local createCharBtn = GET_CHILD_RECURSIVELY(frame, "button_new_char")
+	local deleteCharBtn = GET_CHILD_RECURSIVELY(frame, "button_char_del")
+	local barrackChangeBtn = GET_CHILD_RECURSIVELY(frame, "button_barrack_change")
+	local upBtn = GET_CHILD_RECURSIVELY(frame, "button_up")
+	local downBtn = GET_CHILD_RECURSIVELY(frame, "button_down")
+	createCharBtn:ShowWindow(onoff);
+	deleteCharBtn:ShowWindow(onoff);
+	barrackChangeBtn:ShowWindow(onoff)
+	upBtn:ShowWindow(onoff)
+	downBtn:ShowWindow(onoff)
 
-	local cnt = frame:GetChildCount();
-	for  i = 0, cnt -1 do
-		local slot = frame:GetChildByIndex(i);
-		if slot:GetUserValue(valueName) == value then
-			slot:ShowWindow(isVisible);
-		end
-	end
+
+	local exitFrame = ui.GetFrame("barrack_exit")
+	local logoutBtn = GET_CHILD_RECURSIVELY(exitFrame, "logout")
+	local exitBtn = GET_CHILD_RECURSIVELY(exitFrame, "exit")
+	logoutBtn:ShowWindow(onoff)
+	exitBtn:ShowWindow(onoff)
 end
 
 function DESTROY_CHILD_BYNAME_EXCEPT(frame, searchname, exceptName)
@@ -244,10 +254,13 @@ function GET_CHILD_MAX_Y(ctrl)
 	return maxY;
 end
 
+function SET_TEXT(parentCtrl, textCtrlName, key, value)
+	local ctrl = GET_CHILD(parentCtrl, textCtrlName, "ui::CRichText");
+	ctrl:SetTextByKey(key, value);
+end
 function GET_CHILD(frame, name, typeName)
 
 	if frame == nil then
-		DumpCallStack();
 		return nil;
 	end	
 	
@@ -416,7 +429,8 @@ function GET_LOCAL_MOUSE_POS(ctrl)
 end
 
 function SET_EVENT_SCRIPT_RECURSIVELY(frame, type, funcName)
-	frame:SetEventScript(type, funcName);
+    local byFullString = string.find(funcName, '%(') ~= nil;
+	frame:SetEventScript(type, funcName, byFullString);
 	local cnt = frame:GetChildCount();
 	for i = 0, cnt - 1 do
 		local child = frame:GetChildByIndex(i);
@@ -458,4 +472,116 @@ function GET_WORLDMAP_POSITION(worldMapString)
 			end
 
 			return x, y, dir, index;
+end
+
+function GET_REMAIN_LIFE_TIME(lifeTime)
+    local sysTime = geTime.GetServerSystemTime();
+	local endTime = imcTime.GetSysTimeByStr(lifeTime);
+	local difSec = imcTime.GetDifSec(endTime, sysTime);
+
+    return difSec;
+end
+
+function GET_OFFSET_IN_SCREEN(x, y, width, height)
+    return x, y;
+end
+
+function GET_CONFIG_HUD_OFFSET(frame, defaultX, defaultY)
+    local name = frame:GetName();
+    if config.IsExistHUDConfig(name) ~= 1 then
+        return defaultX, defaultY;
+    end
+    local x = math.floor(config.GetHUDConfigXRatio(name) * ui.GetClientInitialWidth());
+    local y = math.floor(config.GetHUDConfigYRatio(name) * ui.GetClientInitialHeight());
+
+    -- clamping
+    local width = option.GetClientWidth() - frame:GetWidth();
+    local height = option.GetClientHeight() - frame:GetHeight();
+    x = math.max(0, x);
+    x = math.min(x, width);
+    y = math.max(0, y);
+    y = math.min(y, height);
+    return x, y;
+end
+
+function SET_CONFIG_HUD_OFFSET(frame)
+    local x = frame:GetX();
+    local y = frame:GetY();
+    local pos = frame:FramePosToScreenPos(x, y);
+    x = pos.x;
+    y = pos.y;
+    
+    local name = frame:GetName();
+    local width = option.GetClientWidth();
+    local height = option.GetClientHeight(); 
+
+    config.SetHUDConfigRatio(name, x / width, y / height);
+end
+
+function SHOW_GUILD_HTTP_ERROR(code, msg, funcName)
+	local errNamePrefix = 'WebService_';
+	local errName = errNamePrefix;
+	if code == '0' then
+		 -- 클라<->웹서버가 아닌 클라<->존<->웹서버 경유해서 갔을때 웹서버가 다운된 상태인 경우, 
+		 -- 존에서 RunClientScript사용해서 클라로 보내주고, 코드에는 문자열로 "0"을 전달해줌
+		ShowErrorInfoMsg('CannotConnectWebServer');
+		return
+	end 
+	if code == nil then
+		local splitmsg = StringSplit(msg, " ");
+		code = splitmsg[1];
+		errName = errName .. code
+		local errString = "code:" .. code .. ", msg:" .. msg .. ", funcName:" .. funcName .. " errName:" ..  ClMsg(errName);
+		IMC_LOG("ERROR_WEBSERVICE_SCRIPT", errString)
+		ShowErrorInfoMsg('CannotConnectWebServer');
+		return
+	end
+	local splitStr = StringSplit(msg, " ");
+	errName = errName .. splitStr[1];
+	local errString = "code:" .. code .. ", msg:" .. msg .. ", funcName:" .. funcName .. " errName:" ..  ClMsg(errName);
+	IMC_LOG("ERROR_WEBSERVICE_SCRIPT", errString)
+	
+	if errName == errNamePrefix then
+		ShowErrorInfoMsg('CannotConnectWebServer');
+	else
+	ui.MsgBox(ClMsg(errName));
+end
+end
+
+function GET_JOB_MAX_CIRCLE(jobcls)
+	local maxCircle = TryGetProp(jobcls, "MaxCircle")	
+	if maxCircle ~= nil then
+		return maxCircle;
+	end
+	return 1;
+end
+
+function SET_FRAME_OFFSET_TO_RIGHT_TOP(frame, targetFrame)
+    local x = targetFrame:GetGlobalX()+targetFrame:GetWidth();
+    local y = targetFrame:GetGlobalY();
+
+    if x > ui.GetClientInitialWidth()-frame:GetWidth() then
+        x = ui.GetClientInitialWidth()-frame:GetWidth();
+    end
+    frame:SetOffset(x, y)
+end
+
+imcRichText = {
+	SetColorBlend = function(self, richtext, isStart, blendTime, color1, color2)
+		richtext:StopColorBlend();
+		if isStart == false then
+			return;
+		end
+		richtext:SetColorBlend(blendTime, color1, color2, true);
+	end,
+};
+
+function QUICKSLOT_MAKE_GAUGE(slot)
+	local x = 2;
+	local y = slot:GetHeight() - 11;
+	local width  = 45;
+	local height = 10;
+	local gauge = slot:MakeSlotGauge(x, y, width, height);
+	gauge:SetDrawStyle(ui.GAUGE_DRAW_CELL);
+	gauge:SetSkinName("dot_skillslot");
 end
