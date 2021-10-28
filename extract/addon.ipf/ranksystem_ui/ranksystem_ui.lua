@@ -191,7 +191,7 @@ function RANKSYSTEM_MY_DATA_INIT(argStr)
 
     if emblemImgName ~= 'None' then
         iconPic:SetFileName(emblemImgName)
-    else
+    elseif guildID ~= '' then
         guild.ReqEmblemImage(guildID, worldID)
     end
 

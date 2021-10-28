@@ -501,6 +501,9 @@
 		<Class ClassID="2398" ClassName="ReallyDoCraftByInheritAddReinforce{mat}" Data="장비 계승을 통한 제작 시{nl}{#0001ff}[{mat}]{/}아이템 및{nl}{#ff0000}강화 수치와 인챈트 수치의 일부를 제외한{nl}장착된 젬 및 모든 옵션이 사라집니다.{/}{nl}계속하시겠습니까?"/>
 		<Class ClassID="2399" ClassName="ReallyDoCraftByConvert{item1}{item2}" Data="{#0001ff}[{item1}]{/}을/를{nl}{#0001ff}[{item2}]{/}로{nl}정말 변경 하시겠습니까?{nl} {nl}{#ff0100}(계열 변경 시 각성 옵션이 사라집니다.){/}"/>
 		<Class ClassID="2400" ClassName="AppliedEngraveOption" Data="각인된 옵션이 적용되었습니다."/>
+		<Class ClassID="2402" ClassName="Need8Transcend" Data="8초월 이상인 아이템만 가능합니다."/>
+		<Class ClassID="2403" ClassName="Need440UseLv" Data="440레벨 이상인 아이템만 가능합니다."/>
+		<Class ClassID="2404" ClassName="NeedLegendGrade" Data="레전드 등급 이상인 아이템만 가능합니다."/>		
 	</Category>
 	<Category Name="ClassContents">
 		<Class ClassID="2500" ClassName="FullWeeklyGainClassResetExp" Data="주간 획득 가능한 클래스 변경 포인트를 모두 달성하였습니다."/>

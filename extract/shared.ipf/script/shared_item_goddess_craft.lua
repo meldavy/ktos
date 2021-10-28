@@ -102,19 +102,19 @@ item_goddess_craft.check_enable_inherit_item = function(item)
 	-- 최소 레전드는 되어야 계승 가능
 	local grade = TryGetProp(item, 'ItemGrade', 0)
 	if grade < 5 then
-		return false
+		return false, 'NeedLegendGrade'
 	end
 
 	-- 440제 부터 계승 가능
 	local use_lv = TryGetProp(item, 'UseLv', 1)
 	if use_lv < 440 then
-		return false
+		return false, 'Need440UseLv'
 	end
 
 	-- 8초월 이상만 가능
 	local trans_value = TryGetProp(item, 'Transcend', 0)
 	if trans_value < 8 then
-		return false
+		return false, 'Need8Transcend'
 	end
 
 	-- 계승 대상 아이템 그룹이 존재하는가
@@ -145,16 +145,11 @@ item_goddess_craft.check_enable_inherit_legend_item = function(item)
 	-- 이벤트 장비는 바로 계승 가능
 	local is_event_item = TryGetProp(item, 'EventItem', 0)	
 	if is_event_item == 1 then		
-		return true
-	else
-		local name = TryGetProp(item, 'InheritanceItemName', 'None')        
-        if string.find(name, 'Galimybe') ~= nil then            
-            return true
-        end
+		return true	
 	end
 
 	-- 이벤트 장비가 아니면 아이커가 없어야 함
-	if IS_ENABLE_RELEASE_OPTION(item) == false then		
+	if IS_ENABLE_RELEASE_OPTION_2(item) == false then
 		return true
 	end
 

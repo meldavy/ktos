@@ -3187,6 +3187,7 @@ function GODDESS_MGR_SOCKET_REG_ITEM(frame, inv_item, item_obj)
 		armor_tooltip:ShowWindow(1)
 	end
 
+
 	GODDESS_MGR_SOCKET_NORMAL_UPDATE(frame)
 	GODDESS_MGR_SOCKET_AETHER_UPDATE(frame)
 end
@@ -4296,18 +4297,28 @@ function GODDESS_MGR_INHERIT_INV_RBTN(item_obj, slot, guid)
 end
 
 function GODDESS_MGR_INHERIT_REG_ITEM(frame, inv_item, item_obj)
-	if item_goddess_craft.check_enable_inherit_item(item_obj) == false then
+	local ret, msg = item_goddess_craft.check_enable_inherit_item(item_obj)
+	if ret == false then		
+		if msg ~= nil then
+			ui.SysMsg(ClMsg(msg))
+		else
 		ui.SysMsg(ClMsg('IMPOSSIBLE_ITEM'))
+		end
 		return
 	end
 
 	local grade = TryGetProp(item_obj, 'ItemGrade', 0)
 	if grade == 5 then		
 		if item_goddess_craft.check_enable_inherit_legend_item(item_obj) == false then
-			if IS_ENABLE_RELEASE_OPTION(item_obj) == false then				
+			local ret1, msg1 = IS_ENABLE_RELEASE_OPTION(item_obj)			
+			if ret1 == false then
 				ui.SysMsg(ClMsg('CantInheritIcorEquip'))
 			else
+				if msg1 ~= nil then
+					ui.SysMsg(ClMsg(msg1))
+				else
 				ui.SysMsg(ClMsg('IMPOSSIBLE_ITEM'))
+			end
 			end
 			return
 		end
