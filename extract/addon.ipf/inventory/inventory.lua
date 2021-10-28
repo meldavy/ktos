@@ -2137,38 +2137,6 @@ function REQUEST_SUMMON_BOSS_TX()
 	item.UseByGUID(invItem:GetIESID());
 end
 
-
-function BEFORE_USE_TEST_SCROLL_TX()
-	local invFrame = ui.GetFrame("inventory");
-	local itemGuid = invFrame:GetUserValue("REQ_USE_ITEM_GUID");
-	local invItem = session.GetInvItemByGuid(itemGuid)
-	
-	if nil == invItem then
-		return;
-	end
-	
-	if true == invItem.isLockState then
-		ui.SysMsg(ClMsg("MaterialItemIsLock"));
-		return;
-	end
-	
-	local stat = info.GetStat(session.GetMyHandle());		
-	if stat.HP <= 0 then
-		return;
-	end
-	
-	local itemtype = invItem.type;
-	local curTime = item.GetCoolDown(itemtype);
-	if curTime ~= 0 then
-		imcSound.PlaySoundEvent("skill_cooltime");
-		return;
-	end
-	
-	item.UseByGUID(invItem:GetIESID());
-end
-
-
-
 --아이템의 사용
 function INVENTORY_RBDOUBLE_ITEMUSE(frame, object, argStr, argNum)
 	local pc = GetMyPCObject();
@@ -4521,45 +4489,6 @@ function INVENTORY_TREE_OPENOPTION_CHANGE(parent, ctrl, strarg, numarg)
 	end
 end
 
-function BEFORE_USE_QUEST_CLEAR_SCROLL(invItem)	
-	if invItem == nil then
-		return;
-	end
-
-	local invFrame = ui.GetFrame("inventory");	
-	local itemobj = GetIES(invItem:GetObject());
-	if itemobj == nil then
-		return;
-	end
-	invFrame:SetUserValue("REQ_USE_ITEM_GUID", invItem:GetIESID());
-	
-	local pc = GetMyPCObject();
-
-	local textmsg = string.format("{#ff0000}[ %s ]{/}{nl}%s", itemobj.Name, ScpArgMsg("isrealUseQuestClearScroll_Msg_1"));
-	ui.MsgBox_NonNested(textmsg, itemobj.Name, "REQUEST_USE_QUEST_CLEAR_SCROLL_TX", "None");
-	return;
-end
-
-function BEFORE_USE_TEST_SCROLL(invItem)	
-	if invItem == nil then
-		return;
-	end
-
-	local invFrame = ui.GetFrame("inventory");	
-	local itemobj = GetIES(invItem:GetObject());
-	if itemobj == nil then
-		return;
-	end
-	invFrame:SetUserValue("REQ_USE_ITEM_GUID", invItem:GetIESID());
-	
-	local pc = GetMyPCObject();
-
-	local textmsg = string.format("{#ff0000}[ %s ]{/}{nl}%s", itemobj.Name, ScpArgMsg("isrealUseQuestClearScroll_Msg_1"));
-	ui.MsgBox_NonNested(textmsg, itemobj.Name, "BEFORE_USE_TEST_SCROLL_TX", "None");
-	return;
-end
-
-
 function BEFORE_APPLIED_NON_EQUIP_ITEM_OPEN(invItem)	
 	if invItem == nil then
 		return;
@@ -5041,4 +4970,53 @@ function RUN_CLIENT_USE_MULTIPLE_MISC_PVP_MINE2_USEOVER(count)
 	session.AddItemID(multiple_misc_pvp_mine2_item_id, count)
     local resultlist = session.GetItemIDList()
     item.DialogTransaction("MULTIPLE_USE_MISC_PVP_MINE2", resultlist)
+end
+
+-- 다수 콘텐츠 통합 포인트 사용
+local multiple_contentsPoint_item_id = '0'
+
+function CLIENT_USE_MULTIPLE_CONTENTS_TOTAL_POINT(item_obj)
+	multiple_contentsPoint_item_id = '0'
+	local item = GetIES(item_obj:GetObject())	
+	
+	if GetCraftState() == 1 then
+		return;
+	end
+
+	if true == BEING_TRADING_STATE() then
+		return;
+	end
+	
+	local invItem = session.GetInvItemByGuid(item_obj:GetIESID())	
+	if nil == invItem then
+		return;
+	end
+	if true == invItem.isLockState then
+		ui.SysMsg(ClMsg("MaterialItemIsLock"));
+		return;
+	end
+	
+	CHECK_CLIENT_USE_CONTENTS_TOTAL_POINT(invItem:GetIESID())
+end
+
+function CHECK_CLIENT_USE_CONTENTS_TOTAL_POINT(item_id)
+	local invItem = session.GetInvItemByGuid(tostring(item_id))
+	local itemObj = GetIES(invItem:GetObject());	
+	
+	if TryGetProp(itemObj, 'MaxStack', 0) == 1 or invItem.count == 1 then		
+		multiple_contentsPoint_item_id = tostring(item_id)
+		RUN_CLIENT_USE_CONTENTS_TOTAL_POINT(1)
+	else
+		local titleText = ScpArgMsg("INPUT_CNT_D_D", "Auto_1", 1, "Auto_2", invItem.count);
+		INPUT_NUMBER_BOX(nil, titleText, "RUN_CLIENT_USE_CONTENTS_TOTAL_POINT", 1, 1, invItem.count);	
+		multiple_contentsPoint_item_id = tostring(item_id)
+	end
+end
+
+function RUN_CLIENT_USE_CONTENTS_TOTAL_POINT(count)	
+	session.ResetItemList();
+    local pc = GetMyPCObject();
+    session.AddItemID(multiple_contentsPoint_item_id, count)    
+    local resultlist = session.GetItemIDList()
+    item.DialogTransaction("MULTIPLE_USE_CONTENTS_TOTAL", resultlist)
 end

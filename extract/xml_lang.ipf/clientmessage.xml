@@ -283,6 +283,7 @@
 		<Class ClassID="2122" ClassName="Success_Opt_Change_clientScpMsg_1" Data="세트 옵션이 변경되었습니다{nl}변경된 세트 옵션 : {#3366FF} {OPTION} {/}"/>
 		<Class ClassID="2123" ClassName="Success_Opt_Change_clientScpMsg_2" Data="고정 아이커 옵션이 변경되었습니다{nl}변경된 옵션 : {#3366FF} {OPTION} {/}"/>
 		<Class ClassID="2124" ClassName="GoddessReinforceCard_Not_Equip" Data="여신 강화용 카드는 착용할 수 없습니다."/>
+		<Class ClassID="2125" ClassName="DO_NOT_EnableArkLvup" Data="해당 아크는 합성/이전이 불가능합니다."/>
 	</Category>
 	<Category Name="ItemContents">
 		<Class ClassID="2200" ClassName="ClickSocketTargetItem" Data="소켓을 추가 할 아이템을 선택해주세요"/>
@@ -916,6 +917,7 @@
 		<Class ClassID="4372" ClassName="BEFORE_APPLIED_YESSCP_OPEN_DO_NOT_TRADE_MSG" Data="{nl} {nl}사용으로 획득한 아이템은 되돌릴 수 없습니다.{nl} {nl}{#ff0000}획득한 아이템은 거래가 불가능합니다.{/}{/}{nl}{@st66d_y}{s20}{nl} {nl}정말 사용하시겠습니까?"/>
 		<Class ClassID="4373" ClassName="IfLimitOver_misc_pvp_mine2_MAX" Data="주간 용병단 증표 획득량이 최대치에 도달하여 사용할 수 없습니다."/>
 		<Class ClassID="4374" ClassName="IfLimitOver_misc_pvp_mine2_OVERUSE" Data="입력한 수량이{nl}주간 용병단 증표 최대 획득량을 초과하여{nl}용병단 증표 쿠폰이 {#ff0000}{COUNT}{/}{/}개만 소비됩니다.{/}{/}{nl}{@st66d_y}{s20}{nl} {nl}정말 사용하시겠습니까?"/>
+		<Class ClassID="4383" ClassName="GET_CONTENTS_TOTAL_POINT{count}" Data="+{count} 콘텐츠 통합 포인트"/>
 	</Category>
 	<Category Name="ItemTooltip">
 		<Class ClassID="5001" ClassName="CoolDown : {Sec} Sec" Data="재사용 대기시간 : {Sec}초"/>
@@ -1024,7 +1026,7 @@
 		<Class ClassID="5104" ClassName="tooltip_DeflectGravitation" Data=" - 사이코키노 모든 스킬 레벨{img green_up_arrow 16 16}1{nl} {nl}편향인력{nl} - 그라비티 폴 시전 중 넉백, 넉다운 면역{nl} - 그라비티 폴 시전 중 0.5초 마다 부채꼴 범위 타격{nl}(현재 레벨의 그라비티 폴 스킬 계수 50%로 피해){nl} - 대상이 몬스터면 매 타격 마다 조금씩 끌어당김{nl} - 그라비티폴 채널링 종료 시 원형 범위 추가 타격{nl}(현재 레벨의 그라비티 폴 스킬 계수 1000%로 피해){nl} - 최대 대상 수 20{nl} {nl}편향인력은 채널링으로 판정되지 않음"/>
 		<Class ClassID="5105" ClassName="tooltip_Necrosis" Data=" - 소각 스킬 레벨{img green_up_arrow 16 16}3{nl}  - 판데믹 스킬 범위{img green_up_arrow 16 16}60%{nl} {nl}괴사{nl} - 판데믹 [공황] 받는 마법 피해 효과 최대치 50% 증가{nl}(보유한 디버프 개수 당 30%로 변경){nl} - 판데믹 시전 시 현재 레벨의 [소각], [흑사병 증기] 디버프 부여{nl} - 판데믹 시전 시 적 몬스터에게 4초 동안 [이동불가] 디버프 부여{nl} - 최대 대상 수 20{nl} {nl}장착 해제 시 괴사로 부여한 [소각], [흑사병 증기] 및 [이동불가] 디버프 제거"/>
 		<Class ClassID="5106" ClassName="tooltip_AwakeningRune" Data=" - 룬 캐스터 모든 스킬 레벨{img green_up_arrow 16 16}1{nl} {nl}각성의 룬{nl} - [룬캐스터: 캐스팅] 버프 최대 중첩 5로 변경{nl} - [룬캐스터: 캐스팅] 중첩 당 룬 캐스터 스킬로 주는 대미지{img green_up_arrow 16 16}20%{nl} - [룬캐스터 : 캐스팅] 5 중첩 일 때, 돌의 룬 시전 시 [룬캐스터 : 캐스팅]을 3 중첩 소모하고{nl} 돌의 룬 스킬 재사용 대기시간 초기화"/>
-		<Class ClassID="5107" ClassName="tooltip_AddDamageSword" Data="{nl} {nl}반향{nl} - 공격 시 20% 확률로 추가 대미지 능력치 100% 최종 증가"/>
+		<Class ClassID="5107" ClassName="tooltip_AddDamageSword" Data="{nl} {nl}반향{nl} - 공격 시 20% 확률로 추가 대미지 능력치 100% 최종 증가{nl} {nl}다른 반향 효과와 중복되지 않음"/>
 		<Class ClassID="5108" ClassName="tooltip_SlashSpace" Data=" - 로델레로 모든 스킬 레벨{img green_up_arrow 16 16}1{nl}  - 몬타노 스킬 레벨{img green_up_arrow 16 16}2{nl} {nl}공간베기{nl} - 몬타노 시전 시 전방의 적 20명에게{nl}동일한 스킬 공격력으로 추가 타격(때리기 속성){nl} - 추가 타격은 몬타노와 동일한 스킬로 판정"/>
 		<Class ClassID="5109" ClassName="tooltip_BlossomBlader_BlossomSlash" Data=" - 매화 베기 스킬 레벨 {img green_up_arrow 16 16} 2{nl}  - 매화 베기 재사용 대기시간 15초 감소{nl} {nl}화산검법{nl} - 매화 베기가 한 대상이 아닌 주변 최대 4명의 대상에게 순차적으로 대미지를 입힘"/>
 		<Class ClassID="5110" ClassName="tooltip_TimeRush" Data=" - 퀵 캐스트 스킬 레벨{img green_up_arrow 16 16}2{nl} {nl}타임러시{nl} - 퀵 캐스트 지속 중 퀵 캐스트 스킬 레벨 * 3.5%만큼 주는 대미지 증가{nl}  - 타임 포워드 적용 스킬{img green_up_arrow 16 16}2 "/>
@@ -1046,7 +1048,7 @@
 		<Class ClassID="5126" ClassName="tooltip_Tuning_Lv4" Data="{nl} {nl}{@st66d}{s15} - 바시타 싯디 연타 수 {img green_up_arrow 16 16}1"/>
 		<Class ClassID="5127" ClassName="tooltip_SacredArmor_Lv4" Data="{nl} {nl}{@st66d}{s15} - 아스페르길룸 스킬 계수 30% 최종 증가"/>
 		<Class ClassID="5128" ClassName="tooltip_Grind_Lv4" Data="{nl} {nl}{@st66d}{s15} - 자우스트 재사용 대기시간 10초 감소{nl} - 자우스트 시전 시 기마대를 소환하여 주변 범위 대미지{nl}(스킬 계수 현재 레벨 기간테 마르샤와 동일){nl} - 최대 대상 수 10{/}{/}{nl} {nl}PVP 지역에서 스킬 계수 기간테 마르샤의 50%로 변경"/>
-		<Class ClassID="5129" ClassName="tooltip_AddDamageSword_Lv4" Data="{nl} {nl}{@st66d}{s15}반향{nl} - 공격 시 20% 확률로 추가 대미지 능력치 150% 최종 증가"/>
+		<Class ClassID="5129" ClassName="tooltip_AddDamageSword_Lv4" Data="{nl} {nl}{@st66d}{s15}반향{nl} - 공격 시 20% 확률로 추가 대미지 능력치 150% 최종 증가{nl} {nl}다른 반향 효과와 중복되지 않음"/>
 		<Class ClassID="5130" ClassName="tooltip_SlashSpace_Lv4" Data="{nl} {nl}{@st66d}{s15} - 슈팅스타 방패 물리 방어력 35% 추가 적용"/>
 		<Class ClassID="5131" ClassName="tooltip_BlossomBlader_BlossomSlash_Lv4" Data="{nl} {nl}{@st66d}{s15} - 어검술 최종 대미지 {img green_up_arrow 16 16}100%"/>
 		<Class ClassID="5132" ClassName="tooltip_DualSword_Lv4" Data="{nl} {nl}{@st66d}{s15} - 뮬리넷 최종 대미지 {img green_up_arrow 16 16}100%"/>
@@ -1081,6 +1083,23 @@
 		<Class ClassID="5161" ClassName="tooltip_KnifeSpread_Lv4" Data="{nl} {nl}{@st66d}{s15} - 페이탈 룰렛 최종 대미지 {img green_up_arrow 16 16}100%"/>
 		<Class ClassID="5162" ClassName="tooltip_LeverAction_Lv4" Data="{nl} {nl}{@st66d}{s15} - 핀포인트 파이어 최종 대미지 {img green_up_arrow 16 16}100%"/>
 		<Class ClassID="5163" ClassName="tooltip_ClusterShot_Lv4" Data="{nl} {nl}{@st66d}{s15} - 블록 앤드 샷 발사 속도 2배"/>
+		<Class ClassID="5164" ClassName="tooltip_Extinction" Data=" - 엘리멘탈리스트 모든 스킬 레벨 {img green_up_arrow 16 16}1{nl}  - 엘리멘탈 버스트 스킬에 섬멸 효과 추가{nl} {nl}섬멸{nl} - 엘리멘탈 버스트 시전 시 전방에 섬멸 광선 발사{nl} - 최대 대상 수 20, 타격 수 3{nl} - 같은 대상에게 중복 타격 불가능{nl} - 속성은 스킬 레벨 합이 제일 높은 속성으로 결정 됨{nl} {nl}스킬 레벨 합{nl} - 불 : 파이어 클러 + 메테오{nl} - 얼음 : 헤일 + 블리자드 스톰{nl} - 전기 : 일렉트로큐트 + 라이트닝 오브{nl}(투자한 스킬 포인트만 계산){nl} {nl}섬멸은 캐스팅으로 판정되지 않음"/>
+		<Class ClassID="5165" ClassName="tooltip_Extinction_Lv4" Data="{nl} {nl}{@st66d}{s15}[섬멸 속성]에 따라 아래 효과 적용{nl} - 불 : 파이어 클러 최종 대미지 {img green_up_arrow 16 16}100%{nl} - 얼음 : 블리자드 스톰 최종 대미지 {img green_up_arrow 16 16}100%{nl} - 전기 : 라이트닝 오브 전기 결정 연타 수 {img green_up_arrow 16 16}1{nl} {nl}아이템 장착 해제 시 30초동안 Lv4 효과를 받을 수 없음"/>
+		<Class ClassID="5166" ClassName="tooltip_ShakeFoot" Data=" - 몽크 모든 스킬 레벨 {img green_up_arrow 16 16}1{nl} - 장착 후 3초 후부터 [진각] 효과 발동{nl} {nl}진각{nl}  - 몽크 스킬로 공격 시 자신 주변 100범위의 적에게 때리기 속성으로 타격{nl}  - 재사용 대기시간 5초{nl}  - [금종조 : 해방] 버프 중에는 재사용 대기시간 2초 감소{nl}  - 스킬 계수, 현재 레벨의 쌍쇄공의 20%{nl}  - 대상 수 15, 연타 수 2{nl}  - 단일 대상일 경우 2배의 대미지를 입히는 [진각 : 극]이 시전 됨"/>
+		<Class ClassID="5167" ClassName="tooltip_ShakeFoot_Lv4" Data="{nl} {nl}{@st66d}{s15} - 쌍쇄공 시전 시 타격 주기마다 [철사장 : 권] 발동{nl} {nl}철사장 : 권{nl} - 스킬계수 현재 레벨의 철사장의 27.5%"/>
+		<Class ClassID="5168" ClassName="tooltip_RedTigerNail" Data=" - 백호령 스킬 레벨{img green_up_arrow 16 16}3{nl} {nl}적호조{nl}  - 백호령 타격 수 {img green_up_arrow 16 16}3{nl}  - 백호령 명중 시 무속성 취약 디버프를 부여{nl}  - 디버프 지속시간 5초{nl}  - 시전자가 디버프 대상에게 무속성 마법 공격으로 피해를 줄 때 대미지 증가 {img green_up_arrow 16 16}100% {nl} {nl}적호조 아이템 장착 해제 시 디버프 효과 미적용"/>
+		<Class ClassID="5169" ClassName="tooltip_RedTigerNail_Lv4" Data="{nl} {nl}{@st66d}{s15} - 바람의 식신령 최종 대미지 {img green_up_arrow 16 16}100%"/>
+		<Class ClassID="5170" ClassName="tooltip_Distortion" Data=" - 세이지 모든 스킬 레벨 {img green_up_arrow 16 16}1{nl}  - 홀 오브 다크니스 시전 시 지정 범위 내 적 최대 10명에게 [공간 왜곡] 디버프 10초부여{nl} {nl}왜곡{nl} - 마이크로 디멘션을 사용할 때마다 400범위 내 [공간 왜곡] 디버프 대상에게 무속성 마법 피해{nl}(현재 레벨의 홀 오브 다크니스의 35%){nl} {nl}왜곡은 캐스팅으로 판정되지 않음"/>
+		<Class ClassID="5171" ClassName="tooltip_Distortion_Lv4" Data="{nl} {nl}{@st66d}{s15} - 얼티밋 디멘션 최종 대미지 {img green_up_arrow 16 16}100%"/>
+		<Class ClassID="5172" ClassName="tooltip_Fire_Extinction" Data="{nl} {nl}{@st66d}{s15}{#ff4444}바이보라 스태프 - 섬멸{nl}[섬멸 속성 : 불]{/}{/}{/}{nl}스킬 레벨 합 {nl} : 파이어 클러 스킬 레벨 + 메테오 스킬 레벨 {nl}스킬 계수 {nl}  현재 레벨의 엘리멘탈 버스트의 4% x 스킬 레벨 합"/>
+		<Class ClassID="5173" ClassName="tooltip_Ice_Extinction" Data="{nl} {nl}{@st66d}{s15}{#4444ff}바이보라 스태프 - 섬멸{nl}[섬멸 속성 : 얼음]{/}{/}{/}{nl}스킬 레벨 합 {nl} : 헤일 스킬 레벨 + 블리자드 스톰 스킬 레벨 {nl}스킬 계수 {nl}  현재 레벨의 엘리멘탈 버스트의 4% x 스킬 레벨 합"/>
+		<Class ClassID="5174" ClassName="tooltip_Lightning_Extinction" Data="{nl} {nl}{@st66d}{s15}{#ffc500}바이보라 스태프 - 섬멸{nl}[섬멸 속성 : 전기]{/}{/}{/}{nl}스킬 레벨 합 {nl} : 일렉트로큐트 스킬 레벨 + 라이트닝 오브 스킬 레벨 {nl}스킬 계수 {nl}  현재 레벨의 엘리멘탈 버스트의 4% x 스킬 레벨 합"/>
+		<Class ClassID="5175" ClassName="tooltip_DivineShock" Data=" - 크리비 모든 스킬 레벨 {img green_up_arrow 16 16}1{nl}  - 장착 시 [광휘] 디버프의 최대 중첩이 60으로 변경 {nl} {nl}성뢰{nl}  - [광휘] 디버프 중첩이 51이상인 적을 공격 시 효과 발동{nl}  - 스킬 계수 현재 레벨의 파이어티의 150%{nl}  - 연타 수 4{nl}  - 효과 발동 시 대상의 디버프 중첩 50 소모{nl} {nl}'[아츠] 자이바스 : 카타툼보'의 공격은 [광휘] 디버프 중첩을 3개씩 증가시킴"/>
+		<Class ClassID="5176" ClassName="tooltip_DivineShock_Lv4" Data="{nl} {nl}{@st66d}{s15} - 자이바스 최종 대미지 {img green_up_arrow 16 16}100%"/>
+		<Class ClassID="5177" ClassName="tooltip_Sabotage" Data=" - 아웃로 모든 스킬 레벨 {img green_up_arrow 16 16}1{nl}  - 난동 부리기 시전 후 적에게 받는 피해 증가, 받는 피해 회피 불가 효과 제거{nl}  {nl}파괴공작{nl}  - 난동 부리기 시전 시 공격 마다 추가 공격 발생{nl}  - 스킬 계수 현재 레벨의 난동 부리기와 동일{nl}  - 추가 공격 대상 수 18"/>
+		<Class ClassID="5178" ClassName="tooltip_Sabotage_Lv4" Data="{nl} {nl}{@st66d}{s15} - 난사 최종 대미지 {img green_up_arrow 16 16}100%"/>
+		<Class ClassID="5179" ClassName="tooltip_AddDamageSubWeapon" Data="{nl} {nl}반향{nl} - 공격 시 20% 확률로 추가 대미지 능력치 100% 최종 증가{nl} {nl}다른 반향 효과와 중복되지 않음"/>
+		<Class ClassID="5180" ClassName="tooltip_AddDamageSubWeapon_Lv4" Data="{nl} {nl}{@st66d}{s15}반향{nl} - 공격 시 20% 확률로 추가 대미지 능력치 150% 최종 증가{nl} {nl}다른 반향 효과와 중복되지 않음"/>
 	</Category>
 	<Category Name="PeriodicTitle">
 		<Class ClassID="6001" ClassName="TournamentChampion" Data="토너먼트 챔피언"/>
@@ -2079,6 +2098,8 @@
 		<Class ClassID="21420" ClassName="SoloBuffSelect{buffName}" Data="{#FFFF00}{buffName}{/} 버프는 파티원 중에서 한명만 선택할 수 있습니다."/>
 		<Class ClassID="21421" ClassName="InstrumentKeyboardClose" Data="악기연주를 닫습니다."/>
 		<Class ClassID="21422" ClassName="ImpossibleInstrumentState" Data="악기연주 상태에서는 불가능한 동작입니다."/>
+		<Class ClassID="21423" ClassName="TP_Cube" Data="큐브"/>
+		<Class ClassID="21424" ClassName="TP_Package" Data="패키지"/>
 	</Category>
 	<Category Name="ChatText">
 		<Class ClassID="22001" ClassName="Guard" Data="방어"/>
@@ -9785,6 +9806,7 @@
 		<Class ClassID="92087" ClassName="Orgel_MSG5" Data="악기 연주 도중에는 사용할 수 없습니다."/>
 		<Class ClassID="92088" ClassName="Instrument_MSG" Data="악기 사용이 불가능한 상태입니다."/>
 		<Class ClassID="92089" ClassName="Instrument_MSG2" Data="악기 연주 도중에는 친선 대결이 불가능합니다."/>
+		<Class ClassID="92091" ClassName="GACHA_SITEM_GET_ALLMSG_10" Data="{s24}축하드립니다!{nl}{PC} 님이 축복받은 여신의 큐브에서{nl}{ITEMNAME} 를(을) 획득하셨습니다!"/>
 	</Category>
 	<Category Name="BattleText">
 		<Class ClassID="100001" ClassName="ADD_DAMAGE_{Auto_1}!" Data="추가 대미지 {Auto_1}!"/>
@@ -13927,6 +13949,9 @@
 		<Class ClassID="138414" ClassName="ChallengeExpertModeReset_MSG2" Data="챌린지 모드 : 분열 특이점 1회 추가 횟수를 받으셨습니다"/>
 		<Class ClassID="138415" ClassName="Auto_jungbo_jeondal_jung" Data="거짓 정보를 전달하는 중.."/>
 		<Class ClassID="138416" ClassName="AutoMatchingEnableCountUp" Data="자동 매칭 입장 가능 횟수가 1 증가했습니다."/>
+		<Class ClassID="138418" ClassName="Auto_Dont_Have_2020_ARBORDAY_Neck" Data="2020 근본 네클리스를 가지고 있지 않습니다."/>
+		<Class ClassID="138419" ClassName="Auto_Dont_Have_2020_ARBORDAY_Brc" Data="2020 근본 브레이슬릿을 가지고 있지 않습니다."/>
+		<Class ClassID="138420" ClassName="Auto_Dont_Have_Upgrade_scroll" Data="업그레이드 스크롤을 가지고 있지 않습니다."/>
 	</Category>
 	<Category Name="SkillMsg">
 		<Class ClassID="200001" ClassName="DontBuildCampThisAria" Data="해당 지역에서는 거점을 설치할 수 없습니다."/>
@@ -14927,6 +14952,45 @@
 		<Class ClassID="302410" ClassName="Recieved_Success" Data="수령 완료"/>
 		<Class ClassID="302411" ClassName="SUPPLY_TITLE_GIVE_ITEM_SEL1" Data="칭호- '오르샤의 작은 영웅' 수령"/>
 		<Class ClassID="302412" ClassName="SUPPLY_TITLE_GIVE_ITEM_SEL2" Data="칭호- '냉혈한' 수령"/>
+		<Class ClassID="302376" ClassName="EVENT_2101_ARBOR_DAY_MSG1" Data="{#3366FF}금일 보상을 수령하였습니다.{/}{nl}{#FF0000} ※이벤트 기간 : 04월02일 오전 06시 ~ 04월06일 오전 06시 까지 총 4회{/}"/>
+		<Class ClassID="302377" ClassName="EVENT_2101_ARBOR_DAY_MSG2{TIME}" Data="{#00BFFF}[식목일 이벤트 출석체크]{/}{nl}3시간 접속 시 보상 획득{#3366FF}({TIME}/180분){/}{nl}{#FF0000}※이벤트 기간 : 04월02일 오전 06시 ~ 04월06일 오전 06시 까지 총 4회{/}"/>
+		<Class ClassID="302378" ClassName="EVENT_2101_ARBOR_DAY_MSG3" Data="{#3366FF}이벤트 기간이 아닙니다.{/}{nl}{#FF0000} ※이벤트 기간 : 04월02일 오전 06시 ~ 04월06일 오전 06시 까지 총 4회{/}"/>
+		<Class ClassID="302379" ClassName="EVENT_2101_ARBOR_DAY_MSG4{COIN1}{COIN2}{COIN3}{COIN4}{TIME}{POINT}" Data="{#00BFFF}[식목일 이벤트 현황]{/}{nl}[이벤트] 식목일 새싹 일일 획득 ({#3366FF}{COIN1}{/}/1000){nl}[이벤트] 정수 - 나뭇잎 일일 획득 ({#3366FF}{COIN2}{/}/100){nl}[이벤트] 정수 - 나뭇가지 일일 획득 ({#3366FF}{COIN3}{/}/20){nl}[이벤트] 1 시간 마다 성장의 정수 1개 획득 ({#3366FF}{TIME}{/}분 /180분, {#3366FF}{COIN4}{/}개/3개){nl}식목일 이벤트 포인트 현황 ({#3366FF}{POINT}{/} P){nl}{#FF0000}※ 일일 획득량 제한은 매일 오전 06시 초기화 됩니다.{/}"/>
+		<Class ClassID="302380" ClassName="EVENT_2103_ARBOR_DAY_MSG1" Data="식목일 접속 보상을 획득하였습니다."/>
+		<Class ClassID="302381" ClassName="EVENT_2103_ARBOR_DAY_MSG2" Data="기존 유저는 3월 25일 점검 후 생성 캐릭터만 참여 가능합니다."/>
+		<Class ClassID="302382" ClassName="EVENT_2103_ARBOR_DAY_MSG3" Data="팀당 1회만 참여 가능합니다."/>
+		<Class ClassID="302383" ClassName="EVENT_2103_ARBOR_DAY_MSG4" Data="450레벨 미만의 캐릭터만 참여 가능합니다."/>
+		<Class ClassID="302384" ClassName="EVENT_2103_ARBOR_DAY_MSG5" Data="성장 지원을 받는다. [ 팀 기준 남은 횟수 : {#FF0000}{COUNT}{/} ] 회"/>
+		<Class ClassID="302385" ClassName="EVENT_2103_ARBOR_DAY_SEL1" Data="{#003399}[식목일]{/} 이벤트 안내"/>
+		<Class ClassID="302386" ClassName="EVENT_2103_ARBOR_DAY_SEL2" Data="{#003399}[식목일]{/} 이벤트 상점"/>
+		<Class ClassID="302387" ClassName="EVENT_2103_ARBOR_DAY_SEL3" Data="{#003399}[식목일]{/} 성장 지원 안내"/>
+		<Class ClassID="302388" ClassName="EVENT_2103_ARBOR_DAY_SEL4" Data="{#003399}[식목일]{/} 성장 지원 참여"/>
+		<Class ClassID="302389" ClassName="EVENT_2103_ARBOR_DAY_SHOP_EP" Data="{#003399}[EP12-1]{/} 스크롤 상점"/>
+		<Class ClassID="302390" ClassName="EVENT_2103_ARBOR_DAY_SHOP_POINT{POINT}{SHOPLANK}" Data="현재 이벤트 포인트 : {#FF0000}{POINT}{/} 이용 가능 상점 : {#FF0000}{SHOPLANK}{/}"/>
+		<Class ClassID="302391" ClassName="EVENT_2103_ARBOR_DAY_POINT_MSG{SHOP}" Data="현재 이용 가능한 상점 등급 : {#FF0000}{SHOP}{/}"/>
+		<Class ClassID="302392" ClassName="EVENT_2103_ARBOR_DAY_SEL6" Data="[Tip] 이벤트 안내{nl} 획득하신 이벤트 아이템을 이벤트 포인트 혹은 이벤트 새싹과 교환할 수 있습니다.{nl}[이벤트] 정수 - 나뭇잎 : 1p 혹은 '[이벤트] 식목일 새싹' 1개{nl}[이벤트] 정수 - 나뭇가지 : 10p 혹은 '[이벤트] 식목일 새싹' 10개{nl}[이벤트] 성장의 정수 : 100p 혹은 '[이벤트] 식목일 새싹' 100개{nl}{#ff0000}※교환으로 획득한 새싹은 일일 제한에 포함되지 않습니다.{/}{nl} 교환 가능 개수 [0~{MAX}]"/>
+		<Class ClassID="302393" ClassName="EVENT_2103_ARBOR_DAY_SHOP_C" Data="{#003399}[식목일]{/} C등급 이벤트 상점"/>
+		<Class ClassID="302394" ClassName="EVENT_2103_ARBOR_DAY_SHOP_B" Data="{#003399}[식목일]{/} B등급 이벤트 상점"/>
+		<Class ClassID="302395" ClassName="EVENT_2103_ARBOR_DAY_SHOP_A" Data="{#003399}[식목일]{/} A등급 이벤트 상점"/>
+		<Class ClassID="302396" ClassName="EVENT_2103_ARBOR_DAY_SHOP_S" Data="{#003399}[식목일]{/} S등급 이벤트 상점"/>
+		<Class ClassID="302397" ClassName="EVENT_2103_ARBOR_DAY_SHOP_TR" Data="{#003399}[식목일]{/} 이벤트 새싹 교환 상점"/>
+		<Class ClassID="302398" ClassName="EVENT_2103_ARBOR_DAY_SHOP_TR_SEL" Data="{#003399}[식목일]{/} 새싹,포인트 교환"/>
+		<Class ClassID="302399" ClassName="EVENT_2103_ARBOR_DAY_TRADE1" Data="{#003399}[식목일]{/}정수 - 나뭇잎 포인트 교환"/>
+		<Class ClassID="302400" ClassName="EVENT_2103_ARBOR_DAY_TRADE2" Data="{#003399}[식목일]{/}정수 - 나뭇가지 포인트 교환"/>
+		<Class ClassID="302401" ClassName="EVENT_2103_ARBOR_DAY_TRADE3" Data="{#003399}[식목일]{/} 성장의 정수 포인트 교환"/>
+		<Class ClassID="302402" ClassName="EVENT_2103_POLICE_SEL1" Data="{#0066FF}[도둑잡아라]{/} 이벤트 안내"/>
+		<Class ClassID="302403" ClassName="POLICEShop2103_1" Data="{#0066FF}[도둑잡아라]{/} 이벤트 상점"/>
+		<Class ClassID="302404" ClassName="POLICEShop2103_2" Data="{#0066FF}[EP12-1]{/} 스크롤 상점"/>
+		<Class ClassID="302405" ClassName="POLICE_CHAT_1" Data="몬스터들이 물건을 훔치다니 걱정이군"/>
+		<Class ClassID="302406" ClassName="POLICE_CHAT_2" Data="만나서 반갑네"/>
+		<Class ClassID="302407" ClassName="POLICE_CHAT_3" Data="몬스터 놈들이 훔쳐간 물건을 가져왔소?"/>
+		<Class ClassID="302408" ClassName="EVENT_EVENT_2103_POLICE_CHECK_MESSAGE{TIME}{COIN}{ITEM}" Data="도둑 잡아라 이벤트{nl}[이벤트] 도둑맞은 물건 일일 획득량 {#0066FF}({COIN}/300){/}{nl}일일 [이벤트] 사건 수첩 획득 개수 {#0066FF}({TIME}/120분, {ITEM}/4개){/}{nl}{#FF3333}※ [이벤트] 사건 수첩은 30분당 1개 획득할 수 있습니다.{/}{nl}{#FF3333}※ [이벤트] 도둑맞은 물건의 일일 획득 제한은 매일 오전 06시 초기화 됩니다.{/}"/>
+		<Class ClassID="302413" ClassName="EVENT_2103_AC_GIVE_SEL1" Data="{#003399}드라코나스 리느키 시트 계열 액세서리 세트{/} 수령하기"/>
+		<Class ClassID="302414" ClassName="EVENT_2103_AC_GIVE_SEL2" Data="{#003399}드라코나스 카이트 무어 계열 액세서리 세트{/} 수령하기"/>
+		<Class ClassID="302415" ClassName="EVENT_2103_AC_GIVE_SEL3" Data="{#003399}드라코나스 파시우테스 계열 액세서리 세트{/} 수령하기"/>
+		<Class ClassID="302416" ClassName="EVENT_2103_AC_GIVE_SEL4" Data="{#003399}드라코나스 프리에노 계열 액세서리 세트{/} 수령하기"/>
+		<Class ClassID="302417" ClassName="EVENT_VIBORA_TICKET" Data="{#FF3333}이벤트 바이보라 합성 이용 가능 횟수가 1회 추가되었습니다.{/}"/>
+		<Class ClassID="302418" ClassName="EVENT_VIBORA_TICKET2" Data="{#FF3333}이벤트 바이보라 합성 이용 가능 횟수를 모두 사용했을 경우에만 사용 가능 합니다.{/}"/>
 	</Category>
 	<Category Name="Account">
 		<Class ClassID="303001" ClassName="MaxAccountWarehouseCount" Data="팀 창고"/>
@@ -15579,7 +15643,7 @@
 		<Class ClassID="820004" ClassName="AncientCompseResultRemove" Data="먼저 생성된 어시스터를 슬롯에서 제거해주세요."/>
 		<Class ClassID="820005" ClassName="AncientNotSameRarity" Data="동일한 등급의 어시스터만 가능합니다"/>
 		<Class ClassID="820006" ClassName="AncientTooEarlyRequest" Data="잠시 후에 시도해주세요."/>
-		<Class ClassID="820007" ClassName="AncientSellMsg" Data="{monName} 를 제거하시겠습니까?"/>
+		<Class ClassID="820007" ClassName="AncientSellMsg" Data="{monName} 를 제거하시겠습니까?{nl}{#ff0000}※ 해당 어시스터의 모든 정보가 삭제되며, {nl}삭제 후 복구가 불가능합니다."/>
 		<Class ClassID="820008" ClassName="AncientCannotEnterDungeon" Data="이전 구간을 클리어해야 진행할 수 있습니다."/>
 		<Class ClassID="820009" ClassName="AncientDungeonNextLevel" Data="다음 구간 진행"/>
 		<Class ClassID="820010" ClassName="AncientReturn" Data="종료하기"/>
@@ -15955,6 +16019,7 @@
 		<Class ClassID="514064" ClassName="GILTINE_HOLD_POSITION_NOTICE_MSG" Data="{#ff6d00}검은연기{/}가 생성되었습니다."/>
 		<Class ClassID="514065" ClassName="GILTINE_DEMONICS_LANCE_NOTICE_MSG" Data="{#ff6d00}공포의 선언{/}가 잠시 후 발동 됩니다."/>
 		<Class ClassID="514066" ClassName="GLACIER_WITCH_COLD_CHANGE_TOOLTIP" Data="6초 마다 중첩되며 특정 버프로 무효화할 수 있습니다. 특정 스킬 피격 또는 회피시 더 빨리 중첩됩니다.{nl}1~9스택 : 이상 없음.{nl}10~19스택 : 이동속도 20% 감소, 보스에게 받는 대미지 50%증가.{nl}20~29스택 : 자신의 최종 대미지30% 하향{nl}30~39스택 : 10초마다 주변 50범위에 2초간 [결빙]/ 100범위 10초마다 대미지 40,000 부여.{nl}40(Max)：보스에 받는 대미지 50%증가(총 100%), 자신의 방어력 50% 1회 하향./ 매 초당, 고정 대미지 15,000씩 피해를 받으며, [마녀의 분노] 스택에 따라서 대미지가 증가됩니다.{nl}{#FF0000}※ 글레이시어가 타겟으로 지정한 대상은 10초 마다 1씩 중첩됩니다"/>
+		<Class ClassID="514069" ClassName="PBETA_BATTLE_FIELD_FAIL_MSG" Data="크루비나의 장치가 제거 됩니다."/>
 	</Category>
 	<Category Name="SoloDungeon">
 		<Class ClassID="513001" ClassName="SoloDungeonStageMSG" Data="스테이지의 몬스터가 몰려옵니다. 모두 처치해 주세요!"/>
@@ -16202,6 +16267,9 @@
 		<Class ClassID="560046" ClassName="motion_medeina_emotion06" Data="{nl} {nl}사용한 캐릭터가 채팅 이모티콘을 흭득합니다.{nl} {nl}{#FF0000}사용 후 복구가 불가능합니다.{nl} {nl}{@st66d_y}이모티콘을 습득하시겠습니까?"/>
 		<Class ClassID="560047" ClassName="SorshaHutton_emotion01" Data="{nl} {nl}사용한 캐릭터가 채팅 이모티콘을 흭득합니다.{nl} {nl}{#FF0000}사용 후 복구가 불가능합니다.{nl} {nl}{@st66d_y}이모티콘을 습득하시겠습니까?"/>
 		<Class ClassID="560048" ClassName="malsuns_emotion82" Data="{nl} {nl}사용한 캐릭터가 채팅 이모티콘을 흭득합니다.{nl} {nl}{#FF0000}사용 후 복구가 불가능합니다.{nl} {nl}{@st66d_y}이모티콘을 습득하시겠습니까?"/>
+		<Class ClassID="560049" ClassName="motion_popo_emotion01" Data="{nl} {nl}사용한 캐릭터가 채팅 이모티콘을 흭득합니다.{nl} {nl}{#FF0000}사용 후 복구가 불가능합니다.{nl} {nl}{@st66d_y}이모티콘을 습득하시겠습니까?"/>
+		<Class ClassID="560050" ClassName="motion_popo_emotion02" Data="{nl} {nl}사용한 캐릭터가 채팅 이모티콘을 흭득합니다.{nl} {nl}{#FF0000}사용 후 복구가 불가능합니다.{nl} {nl}{@st66d_y}이모티콘을 습득하시겠습니까?"/>
+		<Class ClassID="560051" ClassName="motion_popo_emotion03" Data="{nl} {nl}사용한 캐릭터가 채팅 이모티콘을 흭득합니다.{nl} {nl}{#FF0000}사용 후 복구가 불가능합니다.{nl} {nl}{@st66d_y}이모티콘을 습득하시겠습니까?"/>
 	</Category>
 	<Category Name="Gesture">
 		<Class ClassID="570000" ClassName="Already_Gesture" Data="이미 보유한 제스처입니다."/>
@@ -16218,6 +16286,8 @@
 		<Class ClassID="570011" ClassName="Gesture_SPOTLIGHT" Data="{nl} {nl}모든 캐릭터가 제스처를 흭득합니다.{nl} {nl}{@st66d_y}제스처를 습득하시겠습니까?"/>
 		<Class ClassID="570012" ClassName="Gesture_BASEBALL" Data="{nl} {nl}모든 캐릭터가 제스처를 흭득합니다.{nl} {nl}{@st66d_y}제스처를 습득하시겠습니까?"/>
 		<Class ClassID="570013" ClassName="Gesture_WIGGLE" Data="{nl} {nl}모든 캐릭터가 제스처를 흭득합니다.{nl} {nl}{@st66d_y}제스처를 습득하시겠습니까?"/>
+		<Class ClassID="570014" ClassName="Gesture_SHOOTDANCE" Data="{nl} {nl}모든 캐릭터가 제스처를 흭득합니다.{nl} {nl}{@st66d_y}제스처를 습득하시겠습니까?"/>
+		<Class ClassID="570015" ClassName="Gesture_CHEER" Data="{nl} {nl}모든 캐릭터가 제스처를 흭득합니다.{nl} {nl}{@st66d_y}제스처를 습득하시겠습니까?"/>
 	</Category>
 	<Category Name="ChatBalloon">
 		<Class ClassID="580000" ClassName="ChatBalloon_YESSCP_message1" Data="{nl} {nl}모든 캐릭터가 말풍선 스킨을 획득하며, 캐릭터 설정에서 말풍선 스킨을 변경할 수 있습니다.{nl}"/>
@@ -16234,7 +16304,7 @@
 		<Class ClassID="590004" ClassName="Weekly_Total_Point_Get_Success_Msg_command" Data="{#33FF33}현재 누적된 통합 포인트 : {TotalPoint}{nl}(주간 획득 가능한 통합 포인트 : {NowPoint}/{MaxPoint}){/}"/>
 		<Class ClassID="590005" ClassName="CONTENTS_TOTAL_POINT_extract" Data="통합 포인트 교환"/>
 		<Class ClassID="590006" ClassName="SEASONOFF_CONTENTS_TOTAL_SHOP" Data="시즌오프 콘텐츠 통합 상점"/>
-		<Class ClassID="590007" ClassName="CONTENTS_TOTAL_POINT_extract_tooltip" Data="아이템을 교환하여 콘텐츠 통합 포인트를 획득할 수 있습니다{nl} - 그을린 텔하르샤의 의장품 1개 = 300포인트{nl} - 정제된 글레이시어 심장 1개 = 300포인트{nl} - 정제된 모스 탈크 파우더 1개 = 300포인트{nl} - 브리키나이트 1개 = 300포인트{nl} - 마정석 1개 = 200포인트{nl} - 신비한 서 낱장 1개 = 200포인트{nl} - 프락토늄 1개 = 200포인트{nl} - 축복받은 조각 1개 = 20포인트 {nl} - 여신의 축복석 1개 = 200포인트"/>
+		<Class ClassID="590007" ClassName="CONTENTS_TOTAL_POINT_extract_tooltip" Data="아이템을 교환하여 콘텐츠 통합 포인트를 획득할 수 있습니다{nl} - 그을린 텔하르샤의 의장품 1개 = 300포인트{nl} - 정제된 글레이시어 심장 1개 = 300포인트{nl} - 정제된 모스 탈크 파우더 1개 = 300포인트{nl} - 브리키나이트 1개 = 300포인트{nl} - 마정석 1개 = 200포인트{nl} - 신비한 서 낱장 1개 = 200포인트{nl} - 프락토늄 1개 = 200포인트{nl} - 축복받은 조각 1개 = 20포인트 {nl} - 여신의 축복석 1개 = 200포인트{nl} - 스키아클립스 깃털 1개 = 50포인트{nl} - 대지의 파편 1개 = 1포인트{nl} - 대지의 탑 몬스터 정수 1개 = 4포인트{nl} - 벨코퍼 영혼 조각 1개 = 100포인트{nl} - 모스 파우더 1개 = 30포인트"/>
 		<Class ClassID="590008" ClassName="EP13_Point_Get_Success_Msg{Name}{Point}{TotalPoint}" Data="{#33FF33}{Point}의 {Name}를 획득했습니다.{nl}(현재 누적된 {Name} : {TotalPoint}){/}"/>
 	</Category>
 	<Category Name="RiftDungeon">

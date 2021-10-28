@@ -505,6 +505,12 @@
 	<Particle name="circle017" texture="circle017" width="4.00" height="4.00" pivot_x="0.50" pivot_y="0.50" texel_x="0" texel_y="0" texel_width="160" texel_height="160"/>
 	<Particle name="circle017_2" texture="circle017" width="5.00" height="5.00" pivot_x="0.50" pivot_y="0.50" texel_x="0" texel_y="0" texel_width="128" texel_height="128"/>
 	<Particle name="line001" texture="line001" width="10.00" height="10.00" pivot_x="0.50" pivot_y="0.50" texel_x="0" texel_y="0" texel_width="64" texel_height="64"/>
+	<Texture name="skillrange_squar_1" texture="skillrange_squar_1" width="1.00" height="1.00" pivot_x="0.50" pivot_y="0" texel_x="0" texel_y="0" texel_width="128" texel_height="512"/>
+	<Texture name="skillrange_squar_2" texture="skillrange_squar_2" width="1.00" height="1.00" pivot_x="0.50" pivot_y="0" texel_x="0" texel_y="0" texel_width="128" texel_height="512"/>
+	<Texture name="skillrange_squar" texture="skillrange_squar" width="1.00" height="1.00" pivot_x="0.50" pivot_y="0" texel_x="0" texel_y="0" texel_width="128" texel_height="512"/>
+	<Texture name="skillrange_360" texture="skillrange_360" width="1.00" height="1.00" pivot_x="0.50" pivot_y="0.50" texel_x="0" texel_y="0" texel_width="512" texel_height="512"/>
+	<Texture name="skillrange_360_1" texture="skillrange_360_1" width="1.00" height="1.00" pivot_x="0.50" pivot_y="0.50" texel_x="0" texel_y="0" texel_width="512" texel_height="512"/>
+	<Texture name="skillrange_360_2" texture="skillrange_360_2" width="1.00" height="1.00" pivot_x="0.50" pivot_y="0.50" texel_x="0" texel_y="0" texel_width="512" texel_height="512"/>
 	<Texture name="circle057_2" texture="circle057_2" width="1.00" height="1.00" pivot_x="0.50" pivot_y="0.50" texel_x="0" texel_y="0" texel_width="512" texel_height="512"/>
 	<Texture name="circle057_1" texture="circle057_1" width="1.00" height="1.00" pivot_x="0.50" pivot_y="0.50" texel_x="0" texel_y="0" texel_width="512" texel_height="512"/>
 	<Texture name="circle056_2" texture="circle056_2" width="1.00" height="1.00" pivot_x="0.50" pivot_y="0.50" texel_x="0" texel_y="0" texel_width="512" texel_height="512"/>
@@ -519,6 +525,8 @@
 	<Texture name="skillrange_donut0" texture="skillrange_donut0" width="1.00" height="1.00" pivot_x="0.50" pivot_y="0.50" texel_x="0" texel_y="0" texel_width="512" texel_height="512"/>
 	<Texture name="skillrange_270" texture="skillrange_270" width="1.00" height="1.00" pivot_x="0.50" pivot_y="0.50" texel_x="0" texel_y="0" texel_width="512" texel_height="512"/>
 	<Texture name="skillrange_240" texture="skillrange_240" width="1.00" height="1.00" pivot_x="0.50" pivot_y="0.50" texel_x="0" texel_y="0" texel_width="512" texel_height="512"/>
+	<Texture name="skillrange_135_4" texture="skillrange_135_4" width="1.00" height="1.00" pivot_x="0.50" pivot_y="0.50" texel_x="0" texel_y="0" texel_width="512" texel_height="512"/>
+	<Texture name="skillrange_135_2" texture="skillrange_135_2" width="1.00" height="1.00" pivot_x="0.50" pivot_y="0.50" texel_x="0" texel_y="0" texel_width="512" texel_height="512"/>
 	<Texture name="skillrange_135_1" texture="skillrange_135_1" width="1.00" height="1.00" pivot_x="0.50" pivot_y="0.50" texel_x="0" texel_y="0" texel_width="512" texel_height="512"/>
 	<Texture name="skillrange_135" texture="skillrange_135" width="1.00" height="1.00" pivot_x="0.50" pivot_y="0.50" texel_x="0" texel_y="0" texel_width="512" texel_height="512"/>
 	<Texture name="skillrange_180" texture="skillrange_180" width="1.00" height="1.00" pivot_x="0.50" pivot_y="0.50" texel_x="0" texel_y="0" texel_width="512" texel_height="512"/>
@@ -677,6 +685,10 @@
 	<Sprite name="sprit001_alpha" texture="sprit001_alpha" width="5.00" height="5.00" pivot_x="0.50" pivot_y="0.50" texel_x="0" texel_y="0" texel_width="64" texel_height="64" loop="false" count="16" pitch="4" ticktime="0.04"/>
 	<Sprite name="sprit001" texture="sprit001" width="5.00" height="5.00" pivot_x="0.50" pivot_y="0.50" texel_x="0" texel_y="0" texel_width="64" texel_height="64" loop="false" count="16" pitch="4" ticktime="0.04"/>
 	<Sprite name="sprit005" texture="sprit005" width="5.00" height="5.00" pivot_x="0.50" pivot_y="0.50" texel_x="0" texel_y="0" texel_width="64" texel_height="64" loop="false" count="16" pitch="4" ticktime="0.05"/>
+	<Ray name="rize005_2_alpha" texture="rize005_2_alpha" height="3.00" texel_x="0" texel_y="0" texel_width="512" texel_height="128" texel_speed="0.00" loopingwidth="0.00" loop="true" count="4" pitch="2" ticktime="0.10"/>
+	<Ray name="rize004_2_alpha" texture="rize004_2_alpha" height="3.00" texel_x="0" texel_y="0" texel_width="512" texel_height="128" texel_speed="0.00" loopingwidth="0.00" loop="true" count="4" pitch="2" ticktime="0.10"/>
+	<Ray name="rize003_2" texture="rize003_2" height="5.00" texel_x="0" texel_y="0" texel_width="512" texel_height="128" texel_speed="0.00" loopingwidth="0.00" loop="true" count="4" pitch="4" ticktime="0.10"/>
+	<Ray name="rize005_2" texture="rize005_2" height="3.00" texel_x="0" texel_y="0" texel_width="512" texel_height="128" texel_speed="0.00" loopingwidth="0.00" loop="true" count="4" pitch="4" ticktime="0.10"/>
 	<Ray name="rize005_alpha" texture="rize005_alpha" height="3.00" texel_x="0" texel_y="0" texel_width="128" texel_height="32" texel_speed="0.00" loopingwidth="0.00" loop="true" count="4" pitch="4" ticktime="0.10"/>
 	<Ray name="rize004_alpha" texture="rize004_alpha" height="3.00" texel_x="0" texel_y="0" texel_width="128" texel_height="32" texel_speed="0.00" loopingwidth="0.00" loop="true" count="4" pitch="4" ticktime="0.10"/>
 	<Ray name="rize003_alpha" texture="rize003_alpha" height="5.00" texel_x="0" texel_y="0" texel_width="128" texel_height="32" texel_speed="0.00" loopingwidth="0.00" loop="true" count="4" pitch="4" ticktime="0.10"/>
@@ -709,6 +721,8 @@
 	<Trail name="dash001_pink" texture="dash001_pink" height="5.00" texel_x="0" texel_y="0" texel_width="32" texel_height="16"/>
 	<Trail name="dash001" texture="dash001" height="5.00" texel_x="0" texel_y="0" texel_width="32" texel_height="16"/>
 	<Trail name="smoke002" texture="smoke002" height="10.00" texel_x="512" texel_y="512" texel_width="64" texel_height="64"/>
+	<Model name="wing_ep13dessert" model="wing_ep13dessert.xac" motion="None" texturepath="effect\high\modeltexture\" overlap="true" AlphaType="BLEND"/>
+	<Model name="mafia_wanted" model="mafia_wanted.xac" motion="mafia_wanted_ani.xsm" texturepath="effect\high\modeltexture\" overlap="false" AlphaType="BLEND"/>
 	<Model name="ep13cherryblossom_test" model="ep13cherryblossom_test.xac" motion="ep13cherryblossom_test_ani.xsm" texturepath="effect\high\modeltexture\" overlap="true" AlphaType="BLEND"/>
 	<Model name="ep13cherryblossom" model="ep13cherryblossom.xac" motion="ep13cherryblossom_ani.xsm" texturepath="effect\high\modeltexture\" overlap="true" AlphaType="BLEND"/>
 	<Model name="caltrops_mesh" model="caltrops_mesh.xac" motion="None" texturepath="char_texture\npc\skill\" overlap="true" AlphaType="BLEND"/>

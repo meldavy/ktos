@@ -187,4 +187,9 @@
 		<Element Name="medeinacon2" root="medeinacon2" atlas="medeinacon2" json="medeinacon2" scale="0.7" offsetX="-10" offsetY="-5" animation="animation"/>
 		<Element Name="medeinacon3" root="medeinacon3" atlas="medeinacon3" json="medeinacon3" scale="0.5" offsetX="-3" offsetY="-10" animation="animation"/>
 	</Spine>
+	<Spine>
+		<Element Name="popocon1" root="popocon1" atlas="popocon1" json="popocon1" scale="0.8" offsetX="-2" offsetY="0" animation="animation"/>
+		<Element Name="popocon2" root="popocon2" atlas="popocon2" json="popocon2" scale="1" offsetX="0" offsetY="0" animation="animation"/>
+		<Element Name="popocon3" root="popocon3" atlas="popocon3" json="popocon3" scale="1" offsetX="-3" offsetY="0" animation="animation"/>
+	</Spine>
 </List>

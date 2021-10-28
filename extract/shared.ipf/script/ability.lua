@@ -1512,6 +1512,7 @@ function SCR_ABIL_STATCHANGE_Kriwi_ACTIVE(self, ability)
     Invalidate(self, "MNA");
 
     AddBuff(self, self, "Kriwi_ClassTypeChange_Buff", 1, 0, 0, 1)
+    SCR_AFTER_STATCHANGE_CLERIC(self, 0, 'Kriwi')
 end
 
 function SCR_ABIL_STATCHANGE_Kriwi_INACTIVE(self, ability)
@@ -1524,6 +1525,7 @@ function SCR_ABIL_STATCHANGE_Kriwi_INACTIVE(self, ability)
     Invalidate(self, "MNA");
 
     RemoveBuff(self, "Kriwi_ClassTypeChange_Buff")
+    SCR_AFTER_STATCHANGE_CLERIC(self, 1, 'Kriwi')
 end
 
 function SCR_ABIL_STATCHANGE_Dievdirbys_ACTIVE(self, ability)
@@ -1556,6 +1558,7 @@ function SCR_ABIL_STATCHANGE_Paladin_ACTIVE(self, ability)
     Invalidate(self, "MNA");
 
     AddBuff(self, self, "Paladin_ClassTypeChange_Buff", 1, 0, 0, 1)
+    SCR_AFTER_STATCHANGE_CLERIC(self, 1, 'Paladin')
 end
 
 function SCR_ABIL_STATCHANGE_Paladin_INACTIVE(self, ability)
@@ -1568,6 +1571,7 @@ function SCR_ABIL_STATCHANGE_Paladin_INACTIVE(self, ability)
     Invalidate(self, "MNA");
 
     RemoveBuff(self, "Paladin_ClassTypeChange_Buff")
+    SCR_AFTER_STATCHANGE_CLERIC(self, 0, 'Paladin')
 end
 
 function SCR_ABIL_STATCHANGE_Pardoner_ACTIVE(self, ability)
@@ -1600,6 +1604,7 @@ function SCR_ABIL_STATCHANGE_Druid_ACTIVE(self, ability)
     Invalidate(self, "MNA");
 
     AddBuff(self, self, "Druid_ClassTypeChange_Buff", 1, 0, 0, 1)
+    SCR_AFTER_STATCHANGE_CLERIC(self, 0, 'Druid')
 end
 
 function SCR_ABIL_STATCHANGE_Druid_INACTIVE(self, ability)
@@ -1612,6 +1617,7 @@ function SCR_ABIL_STATCHANGE_Druid_INACTIVE(self, ability)
     Invalidate(self, "MNA");
 
     RemoveBuff(self, "Druid_ClassTypeChange_Buff")
+    SCR_AFTER_STATCHANGE_CLERIC(self, 1, 'Druid')
 end
 
 function SCR_ABIL_STATCHANGE_Chaplain_ACTIVE(self, ability)
@@ -1624,6 +1630,7 @@ function SCR_ABIL_STATCHANGE_Chaplain_ACTIVE(self, ability)
     Invalidate(self, "MNA");
 
     AddBuff(self, self, "Chaplain_ClassTypeChange_Buff", 1, 0, 0, 1)
+    SCR_AFTER_STATCHANGE_CLERIC(self, 1, 'Chaplain')
 end
 
 function SCR_ABIL_STATCHANGE_Chaplain_INACTIVE(self, ability)
@@ -1636,6 +1643,7 @@ function SCR_ABIL_STATCHANGE_Chaplain_INACTIVE(self, ability)
     Invalidate(self, "MNA");
 
     RemoveBuff(self, "Chaplain_ClassTypeChange_Buff")
+    SCR_AFTER_STATCHANGE_CLERIC(self, 0, 'Chaplain')
 end
 
 function SCR_ABIL_Templar8_ACTIVE(self, ability)

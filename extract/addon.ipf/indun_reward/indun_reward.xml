@@ -21,7 +21,7 @@
 		<richtext name="textRewardList" rect="0 0 100 30" margin="110 223 0 0" layout_gravity="left top" caption="{@st43b}{s18}획득 보상" fontname="white_18_ol"/>
 		<richtext name="textMultipleRate" rect="0 0 100 30" margin="0 223 130 0" layout_gravity="right top" caption="{@st66d_y}배수권 효과 보상 x" fontname="yellow_18_ol"/>
 		<richtext name="textMultipleRate_value" rect="0 0 100 30" margin="0 223 110 0" layout_gravity="right top" caption="{@st66d_y}0" fontname="yellow_18_ol"/>
-		<richtext name="textReturn" rect="0 0 100 30" margin="85 0 0 55" layout_gravity="left bottom" caption="60초 후 입구로 돌아갑니다." fontname="brown_18"/>
+		<richtext name="textReturn" rect="0 0 100 30" margin="85 0 0 55" layout_gravity="left bottom" caption="잠시 후 입구로 돌아갑니다." fontname="brown_18"/>
 		<picture name="picRanking" rect="0 0 141 141" margin="0 75 45 0" layout_gravity="right top" image="test_indun_S"/>
 		<picture name="picribbon" rect="0 0 112 164" margin="35 6 0 0" layout_gravity="left top" image="test_indun_ribbon"/>
 		<button name="btnClose" rect="0 0 44 44" margin="0 20 35 0" layout_gravity="right top" LBtnUpArgNum="" LBtnUpScp="SCR_INDUN_REWARD_CLOSE" clicksound="button_click_big" image="testclose_button" oversound="button_over" texttooltip="닫기"/>

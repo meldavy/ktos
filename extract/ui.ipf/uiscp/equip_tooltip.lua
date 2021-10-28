@@ -1941,7 +1941,12 @@ function DRAW_CANNOT_REINFORCE(tooltipframe, invitem, yPos, mainframename)
 	    enchant_flag = 1
 	end
 
-	if reinforce_flag == 0 and transcend_flag == 0 and extract_flag == 0 and socket_flag == 0 and briquet_flag == 0 and exchange_flag == 0 and awaken_flag == 0 and decomposeAble_flag == 0 and enchant_flag == 0 then
+	local arklvup_flag = 0
+	if TryGetProp(invitem, 'EnableArkLvup', 0) == 1 then
+	    arklvup_flag = 1
+	end
+	
+	if reinforce_flag == 0 and transcend_flag == 0 and extract_flag == 0 and socket_flag == 0 and briquet_flag == 0 and exchange_flag == 0 and awaken_flag == 0 and decomposeAble_flag == 0 and enchant_flag == 0 and arklvup_flag == 0 then
 		return yPos
 	end
 
@@ -1976,6 +1981,7 @@ function DRAW_CANNOT_REINFORCE(tooltipframe, invitem, yPos, mainframename)
 	text = _APPEND_LIMITATION_TEXT(exchange_flag, text, CSet:GetUserConfig("EXCHANGE_TEXT"));
 	text = _APPEND_LIMITATION_TEXT(awaken_flag, text, CSet:GetUserConfig("AWAKEN_TEXT"));
 	text = _APPEND_LIMITATION_TEXT(enchant_flag, text, CSet:GetUserConfig("ENCHANT_TEXT"))
+	text = _APPEND_LIMITATION_TEXT(arklvup_flag, text, CSet:GetUserConfig("ARKLVUP_VALID_TEXT"))
 
 	if text:sub(-#', ') == ', ' then
 		text = text:sub(0, text:len() - 2);
@@ -2389,7 +2395,10 @@ function ITEM_TOOLTIP_ARK(tooltipframe, invitem, strarg, usesubframe)
 	ypos = DRAW_ARK_LV(tooltipframe, invitem, ypos, mainframename); 			-- 레벨, 레벨에 따른 아크 옵션 증가 값
 
 	ypos = DRAW_ARK_OPTION(tooltipframe, invitem, ypos, mainframename); 		-- 아크 옵션
-	ypos = DRAW_ARK_EXP(tooltipframe, invitem, ypos, mainframename)				-- 아크 경험치
+	
+	if TryGetProp(invitem, 'EnableArkLvup', 0) == 0 then
+		ypos = DRAW_ARK_EXP(tooltipframe, invitem, ypos, mainframename)				-- 아크 경험치
+	end
 
 	ypos = DRAW_EQUIP_MEMO(tooltipframe, invitem, ypos, mainframename); 		-- 아이템 제작 시 들어간 메모
 	ypos = DRAW_EQUIP_ARK_DESC(tooltipframe, invitem, ypos, mainframename); 		-- 각종 설명문

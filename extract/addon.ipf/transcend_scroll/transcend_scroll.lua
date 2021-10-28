@@ -570,6 +570,9 @@ function TRANSCEND_SCROLL_UI_RESET()
 	local text_name = GET_CHILD(frame, "text_name");
 	local text_itemtranscend = frame:GetChild("text_itemtranscend");	
 
+	local text_title = GET_CHILD(frame, "text_title");
+	text_title:SetTextByKey("value", "");
+	
 	text_name:ShowWindow(0);
 	text_itemtranscend:ShowWindow(0);
 end

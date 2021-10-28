@@ -339,7 +339,10 @@ function GET_ATK_PROP_LIST()
     list[#list+1] = "Magic_Ice_Atk";
     list[#list+1] = "Magic_Soul_Atk";
     list[#list+1] = "Magic_Dark_Atk";
-	list[#list+1] = "ResAdd_Damage";
+    list[#list+1] = "Magic_Melee_Atk";
+    list[#list+1] = "Magic_Fire_Atk";
+    list[#list+1] = "Magic_Lightning_Atk";
+    list[#list+1] = "ResAdd_Damage";
 	return list;
 
 end

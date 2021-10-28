@@ -81,3 +81,4 @@ ClassID,GenType,Lv,Range,GenRange,RespawnTime,MaxPop,Minimap,Hide,UseAIOufOfPC,A
 5263,5263,1,40,1,1,1,2,0,0,0,0,0,Ev_Npc_baby_marnoks,[신년맞이 이벤트] 말순이,,,,,,,EVENT_2101_NEW_YEAR_NPC,,,NO,YES,NO,Neutral,,,,
 5265,10101,1,40,1,1,1,2,0,0,0,0,0,reputation_Board1,[왕국 재건단] 게시판,,,,,,,REPUTATION_QUEST_BOARD_01,,,NO,YES,NO,Neutral,,,,
 5269,10105,1,40,1,1,1,2,0,0,0,0,0,npc_huevill_female_1_Ev_2,[화이트데이 이벤트]{nl}큐비트,,,,,,,EVENT_2103_WHITEDAY_CANDY,,,NO,YES,NO,Netul,,,,
+5272,10108,1,40,1,1,1,2,0,0,0,0,0,npc_kupole_3_event,[식목일]{nl}큐폴 잘리아스,,,,,,,EVENT_2103_ARBOR_DAY_NPC,,,NO,YES,NO,Neutral,,,,

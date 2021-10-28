@@ -459,6 +459,9 @@ return value"/>
                     <Angle Angle="0"/>
                     <Str Str="Elemental_Burst_Pad_Fire2"/>
                 </Scp>
+                <Scp Scp="SKL_RUN_SCRIPT" Client="NO" UseSleep="NO" Time="680">
+                    <Str Str="SCR_VIBORA_STAFF_ATTACK"/>
+                </Scp>
             </EtcList>
         </MainSkl>
     </Skill>

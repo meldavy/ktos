@@ -708,8 +708,10 @@ return value"/>
                     <Str Str="Dummy_bufficon"/>
                     <Num Num="0"/>
                 </Scp>
-                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="0">
+		<Scp Scp="C_EFFECT_BY_BUFF" Client="YES" UseSleep="NO" Time="0">
                     <Str_Arg Str="I_wizard_whitetigerhowling1" Arg="2.3"/>
+		    <Str_Arg Str="I_wizard_viboraTiger" Arg="2.3"/>
+		    <Str Str="ITEM_BUFF_VIBORA_STAFF_ONMYOJI"/>
                     <Str Str="Dummy_emitter"/>
                     <Num Num="0"/>
                 </Scp>

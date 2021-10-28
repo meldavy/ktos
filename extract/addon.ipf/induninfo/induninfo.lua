@@ -70,13 +70,13 @@ function INDUNINFO_UI_OPEN(frame, index)
     elseif imcTime.IsLaterThan(now_time, boruta_endtime) ~= 0 then
         boruta.RequestBorutaNowWeekNum();
     end
-		
-    INDUNINFO_RESET_USERVALUE(frame);
-	INDUNINFO_CREATE_CATEGORY(frame);
+
     local tab = GET_CHILD_RECURSIVELY(frame, "tab");
     tab:SelectTab(index);
-	local index = tab:GetSelectItemIndex();
-	TOGGLE_INDUNINFO(frame,index)
+    TOGGLE_INDUNINFO(frame,index)
+    
+    INDUNINFO_RESET_USERVALUE(frame);
+	INDUNINFO_CREATE_CATEGORY(frame);
 end
 
 function SET_WEEKLYBOSS_INDUN_COUNT(frame)

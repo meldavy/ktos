@@ -474,6 +474,10 @@
         <Key Name="Relic_LV" Value="107798"/>
         <Key Name="Ev_EventType" Value="107859"/>
         <Key Name="PremiumEquip" Value="108061"/>
+        <Key Name="Magic_Fire_Atk" Value="108280"/>
+        <Key Name="Magic_Lightning_Atk" Value="108282"/>
+        <Key Name="Magic_Melee_Atk" Value="108281"/>
+        <Key Name="EnableArkLvup" Value="108323"/>
     </KeyIDSpc>
     <KeyIDSpc Name="Party">
         <Key Name="P_PARTY_Q_040" Value="53"/>
@@ -4607,6 +4611,86 @@
         <Key Name="WhiteDayShop2103_SHOP2_4" Value="108193"/>
         <Key Name="GIVE_ExchangeACC_Book_450" Value="108196"/>
         <Key Name="EVENT_2103_WHITEDAY_TIME_REWARD_ITEM" Value="108197"/>
+        <Key Name="CONTENTS_TOTAL_SHOP_POSE_14" Value="108217"/>
+        <Key Name="CONTENTS_TOTAL_SHOP_POSE_15" Value="108220"/>
+        <Key Name="ContentsTotalShop_2103_1" Value="108223"/>
+        <Key Name="ContentsTotalShop_2103_10" Value="108238"/>
+        <Key Name="ContentsTotalShop_2103_11" Value="108264"/>
+        <Key Name="ContentsTotalShop_2103_12" Value="108218"/>
+        <Key Name="ContentsTotalShop_2103_13" Value="108252"/>
+        <Key Name="ContentsTotalShop_2103_2" Value="108256"/>
+        <Key Name="ContentsTotalShop_2103_3" Value="108231"/>
+        <Key Name="ContentsTotalShop_2103_4" Value="108210"/>
+        <Key Name="ContentsTotalShop_2103_5" Value="108225"/>
+        <Key Name="ContentsTotalShop_2103_6" Value="108229"/>
+        <Key Name="ContentsTotalShop_2103_7" Value="108228"/>
+        <Key Name="ContentsTotalShop_2103_8" Value="108234"/>
+        <Key Name="ContentsTotalShop_2103_9" Value="108237"/>
+        <Key Name="EVENT_2103_ARBOR_DAY_1_COIN_COUNT" Value="108222"/>
+        <Key Name="EVENT_2103_ARBOR_DAY_2_COIN_COUNT" Value="108276"/>
+        <Key Name="EVENT_2103_ARBOR_DAY_3_COIN_COUNT" Value="108261"/>
+        <Key Name="EVENT_2103_ARBOR_DAY_4_COIN_COUNT" Value="108212"/>
+        <Key Name="EVENT_2103_ARBOR_DAY_GROW_UP_COUNT" Value="108247"/>
+        <Key Name="EVENT_2103_ARBOR_DAY_PLAY_TIME" Value="108254"/>
+        <Key Name="EVENT_2103_ARBOR_DAY_POINT" Value="108221"/>
+        <Key Name="EVENT_2103_ARBOR_DAY_SHOP_A_1" Value="108249"/>
+        <Key Name="EVENT_2103_ARBOR_DAY_SHOP_A_2" Value="108255"/>
+        <Key Name="EVENT_2103_ARBOR_DAY_SHOP_A_3" Value="108248"/>
+        <Key Name="EVENT_2103_ARBOR_DAY_SHOP_A_4" Value="108279"/>
+        <Key Name="EVENT_2103_ARBOR_DAY_SHOP_A_5" Value="108267"/>
+        <Key Name="EVENT_2103_ARBOR_DAY_SHOP_A_6" Value="108215"/>
+        <Key Name="EVENT_2103_ARBOR_DAY_SHOP_A_7" Value="108243"/>
+        <Key Name="EVENT_2103_ARBOR_DAY_SHOP_A_8" Value="108245"/>
+        <Key Name="EVENT_2103_ARBOR_DAY_SHOP_A_9" Value="108250"/>
+        <Key Name="EVENT_2103_ARBOR_DAY_SHOP_B_1" Value="108246"/>
+        <Key Name="EVENT_2103_ARBOR_DAY_SHOP_B_10" Value="108240"/>
+        <Key Name="EVENT_2103_ARBOR_DAY_SHOP_B_11" Value="108273"/>
+        <Key Name="EVENT_2103_ARBOR_DAY_SHOP_B_2" Value="108272"/>
+        <Key Name="EVENT_2103_ARBOR_DAY_SHOP_B_3" Value="108214"/>
+        <Key Name="EVENT_2103_ARBOR_DAY_SHOP_B_4" Value="108268"/>
+        <Key Name="EVENT_2103_ARBOR_DAY_SHOP_B_5" Value="108270"/>
+        <Key Name="EVENT_2103_ARBOR_DAY_SHOP_B_6" Value="108236"/>
+        <Key Name="EVENT_2103_ARBOR_DAY_SHOP_B_7" Value="108207"/>
+        <Key Name="EVENT_2103_ARBOR_DAY_SHOP_B_8" Value="108209"/>
+        <Key Name="EVENT_2103_ARBOR_DAY_SHOP_B_9" Value="108241"/>
+        <Key Name="EVENT_2103_ARBOR_DAY_SHOP_C_1" Value="108239"/>
+        <Key Name="EVENT_2103_ARBOR_DAY_SHOP_C_10" Value="108278"/>
+        <Key Name="EVENT_2103_ARBOR_DAY_SHOP_C_11" Value="108260"/>
+        <Key Name="EVENT_2103_ARBOR_DAY_SHOP_C_2" Value="108242"/>
+        <Key Name="EVENT_2103_ARBOR_DAY_SHOP_C_3" Value="108253"/>
+        <Key Name="EVENT_2103_ARBOR_DAY_SHOP_C_4" Value="108232"/>
+        <Key Name="EVENT_2103_ARBOR_DAY_SHOP_C_5" Value="108265"/>
+        <Key Name="EVENT_2103_ARBOR_DAY_SHOP_C_6" Value="108271"/>
+        <Key Name="EVENT_2103_ARBOR_DAY_SHOP_C_7" Value="108235"/>
+        <Key Name="EVENT_2103_ARBOR_DAY_SHOP_C_8" Value="108208"/>
+        <Key Name="EVENT_2103_ARBOR_DAY_SHOP_C_9" Value="108263"/>
+        <Key Name="EVENT_2103_ARBOR_DAY_SHOP_EP_1" Value="108224"/>
+        <Key Name="EVENT_2103_ARBOR_DAY_SHOP_EP_2" Value="108251"/>
+        <Key Name="EVENT_2103_ARBOR_DAY_SHOP_EP_3" Value="108257"/>
+        <Key Name="EVENT_2103_ARBOR_DAY_SHOP_EP_4" Value="108277"/>
+        <Key Name="EVENT_2103_ARBOR_DAY_SHOP_S_1" Value="108262"/>
+        <Key Name="EVENT_2103_ARBOR_DAY_SHOP_S_2" Value="108227"/>
+        <Key Name="EVENT_2103_ARBOR_DAY_SHOP_S_3" Value="108216"/>
+        <Key Name="EVENT_2103_ARBOR_DAY_SHOP_S_4" Value="108219"/>
+        <Key Name="EVENT_2103_ARBOR_DAY_SHOP_S_5" Value="108230"/>
+        <Key Name="EVENT_2103_ARBOR_DAY_SHOP_S_6" Value="108213"/>
+        <Key Name="EVENT_2103_ARBOR_DAY_SHOP_S_7" Value="108211"/>
+        <Key Name="EVENT_2103_ARBOR_DAY_SHOP_S_8" Value="108259"/>
+        <Key Name="EVENT_2103_ARBOR_DAY_SHOP_S_9" Value="108226"/>
+        <Key Name="Event_2103_NEW_USER" Value="108233"/>
+        <Key Name="HaveEmoticon_122" Value="108266"/>
+        <Key Name="HaveEmoticon_123" Value="108258"/>
+        <Key Name="HaveEmoticon_124" Value="108274"/>
+        <Key Name="HaveEmoticon_5015" Value="108275"/>
+        <Key Name="HaveEmoticon_5016" Value="108244"/>
+        <Key Name="HaveEmoticon_5017" Value="108269"/>
+        <Key Name="cherryblossom_thema" Value="108297"/>
+        <Key Name="dress_cherryblossom_1" Value="108296"/>
+        <Key Name="dress_cherryblossom_2" Value="108293"/>
+        <Key Name="dress_cherryblossom_3" Value="108292"/>
+        <Key Name="dress_cherryblossom_4" Value="108294"/>
+        <Key Name="dress_cherryblossom_5" Value="108295"/>
+        <Key Name="dress_cherryblossom_6" Value="108291"/>
     </KeyIDSpc>
     <KeyIDSpc Name="PCEtc">
         <Key Name="Kill_boss_Clymen_Q2" Value="7788"/>
@@ -13240,6 +13324,14 @@
         <Key Name="Hide_3245" Value="108199"/>
         <Key Name="Hide_3246" Value="108198"/>
         <Key Name="Hide_2612" Value="108206"/>
+        <Key Name="HaveEmoticon_122" Value="108286"/>
+        <Key Name="HaveEmoticon_123" Value="108285"/>
+        <Key Name="HaveEmoticon_124" Value="108289"/>
+        <Key Name="HaveEmoticon_5015" Value="108283"/>
+        <Key Name="HaveEmoticon_5016" Value="108287"/>
+        <Key Name="HaveEmoticon_5017" Value="108288"/>
+        <Key Name="Pose_CHEER" Value="108290"/>
+        <Key Name="Pose_SHOOTDANCE" Value="108284"/>
     </KeyIDSpc>
     <KeyIDSpc Name="GuildMember">
         <Key Name="Name" Value="9011"/>

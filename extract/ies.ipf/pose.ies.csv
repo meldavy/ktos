@@ -51,3 +51,5 @@ ClassID,DefaultLearn,NextPoseCount,PoseLevel,RewardCheckCount,ClassName,Name,Fil
 51,0,0,0,1,SQUAT,스쿼트,pc_pose_lean01,icon_gesture_squat,Reward,,true,,,,,,CONTENTS_TOTAL_SHOP_POSE_11
 52,0,0,0,1,SPOTLIGHT,갱스터,pc_pose_lean01,icon_gesture_gangster,Reward,,true,,,,,,CONTENTS_TOTAL_SHOP_POSE_12
 53,0,0,0,1,WIGGLE,씰룩씰룩,pc_pose_lean01,icon_gesture_wiggle,Reward,,true,,,,,,CONTENTS_TOTAL_SHOP_POSE_13
+54,0,0,0,1,SHOOTDANCE,망치춤,pc_pose_lean01,icon_item_shootdance,Reward,,true,,,,,,CONTENTS_TOTAL_SHOP_POSE_14
+55,0,0,0,1,CHEER,응원,pc_pose_lean01,icon_item_cheer,Reward,,true,,,,,,CONTENTS_TOTAL_SHOP_POSE_15

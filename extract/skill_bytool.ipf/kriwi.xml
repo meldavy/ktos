@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by imc (imc) -->
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by imc (imc) -->
 <ToolSkill>
     <Skill Name="Kriwi_Daino">
         <MainSkl JumpFlee="NO" MSPDToUsePos="0" ScrLock="None">
@@ -148,7 +148,6 @@
                 <Scp Scp="SKL_RUN_SCRIPT" Client="NO" UseSleep="NO" Time="400">
                     <Str Str="SKL_RUN_PIETY"/>
                 </Scp>
-
             </EtcList>
         </MainSkl>
     </Skill>

@@ -78,6 +78,16 @@ function C_SKL_LOCK_ROTATE_ABIL(actor, obj, abilName, isOn)
     end
 end
 
+function C_EFFECT_BY_BUFF(actor, obj, effectName1, scale1, effectName2, scale2, buffName, nodeName, lifeTime)
+    local handle = actor:GetHandleVal();
+    local buff = info.GetBuffByName(handle, buffName)
+    if buff ~= nil then
+        C_EFFECT(actor, obj, effectName2, scale2, nodeName, lifeTime)
+    else
+        C_EFFECT(actor, obj, effectName1, scale1, nodeName, lifeTime)
+    end
+end
+
 function C_EFFECT(actor, obj, effectName, scale, nodeName, lifeTime)
     
     if lifeTime == nil then

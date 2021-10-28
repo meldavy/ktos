@@ -2,6 +2,10 @@
 <!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by imc (imc) -->
 <!-- edited with XMLSpy v2006 U (http://www.altova.com) by Administrator (EMBRACE) -->
 <TextureInfo>
+	<Texture Name="rize004_2_alpha" File="rize004_2_alpha.dds" Size="512 128"/>
+	<Texture Name="rize003_2" File="rize003_2.dds" Size="512 128"/>
+	<Texture Name="rize005_2" File="rize005_2.dds" Size="512 128"/>
+	<Texture Name="rize005_2_alpha" File="rize005_2_alpha.dds" Size="512 128"/>
 	<Texture Name="card_base_last_goddess" File="card_base_last_goddess.dds" Size="256 256"/>
 	<Texture Name="card_decal_add_sheet_goddess" File="card_decal_add_sheet_goddess.dds" Size="512 512"/>
 	<Texture Name="card_decal_sheet_goddess" File="card_decal_sheet_goddess.dds" Size="512 512"/>
@@ -71,6 +75,14 @@
 	<Texture Name="skillrange_donut0" File="skillrange_donut0.dds" Size="512 512"/>
 	<Texture Name="skillrange_270" File="skillrange_270.dds" Size="512 512"/>
 	<Texture Name="skillrange_240" File="skillrange_240.dds" Size="512 512"/>
+	<Texture Name="skillrange_135_2" File="skillrange_135_2.dds" Size="512 512"/>
+	<Texture Name="skillrange_135_4" File="skillrange_135_4.dds" Size="512 512"/>
+	<Texture Name="skillrange_squar_1" File="skillrange_square_1.dds" Size="128 512"/>
+	<Texture Name="skillrange_squar_2" File="skillrange_square_2.dds" Size="128 512"/>
+	<Texture Name="skillrange_squar" File="skillrange_squar.dds" Size="128 512"/>
+	<Texture Name="skillrange_360" File="skillrange_360.dds" Size="512 512"/>
+	<Texture Name="skillrange_360_1" File="skillrange_360_1.dds" Size="512 512"/>
+	<Texture Name="skillrange_360_2" File="skillrange_360_2.dds" Size="512 512"/>
 	<Texture Name="skillrange_135_1" File="skillrange_135_1.dds" Size="512 512"/>
 	<Texture Name="skillrange_135" File="skillrange_135.dds" Size="512 512"/>
 	<Texture Name="skillrange_180" File="skillrange_180.dds" Size="512 512"/>

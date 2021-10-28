@@ -215,6 +215,11 @@ function ARK_RELOCATION_REG_SRC_ITEM(frame, itemID)
 	
 	local itemObj = GetIES(invItem:GetObject());
 
+	if TryGetProp(itemObj, 'EnableArkLvup', 0) == 1 then
+		ui.SysMsg(ClMsg('DO_NOT_EnableArkLvup'))
+		return
+	end
+
 	local slot1_bg_image = GET_CHILD_RECURSIVELY(frame, "slot1_bg_image");
 	slot1_bg_image:ShowWindow(0);
 
@@ -286,6 +291,11 @@ function ARK_RELOCATION_REG_DEST_ITEM(frame, itemID)
 	
 	local src_Obj = GetIES(src_item:GetObject());
     local dest_Obj = GetIES(invItem:GetObject());
+
+	if TryGetProp(src_Obj, 'EnableArkLvup', 0) == 1 or TryGetProp(dest_Obj, 'EnableArkLvup', 0) == 1 then
+		ui.SysMsg(ClMsg('DO_NOT_EnableArkLvup'))
+		return		
+	end
 
     if shared_item_ark.is_valid_condition_for_copy(dest_Obj, src_Obj) == false then
 		ui.SysMsg(ClMsg('DestItemLvHigh'));

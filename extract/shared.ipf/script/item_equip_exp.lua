@@ -1,4 +1,4 @@
--- item_equip_exp.lua
+﻿-- item_equip_exp.lua
 
 function GET_MORE_EXP_BOOST_TOKEN(pc)
 	local sumExp = 0.0;
@@ -96,6 +96,7 @@ function GET_MORE_EVENT_EXP(pc)
 	sumExp = sumExp + IsBuffAppliedEXP(pc, 'Event_Steam_Carnival_Fire_2'); --스팀 카니발 불꽃축제 이벤트 --
 	sumExp = sumExp + IsBuffAppliedEXP(pc, 'Event_ep11_Expup'); --자라나라 나무나무 주말 앤 버닝 이벤트 -- --EVENT_1903_WEEKEND
 	sumExp = sumExp + IsBuffAppliedEXP(pc, 'Event_ep11_Expup_base'); --자라나라 나무나무 주말 앤 버닝 이벤트 --
+	sumExp = sumExp + IsBuffAppliedEXP(pc, 'Event_Monster_EXP_UP'); --해외 페이스북 컴패니언 이벤트
 --	sumExp = sumExp + IsBuffAppliedEXP(pc, 'EVENT1909_FULLMOON_BUFF_EXP_1'); --[보름달 키우기 대작전] 경험치 획득량 증가 1단계
 --	sumExp = sumExp + IsBuffAppliedEXP(pc, 'EVENT1909_FULLMOON_BUFF_EXP_2'); --[보름달 키우기 대작전] 경험치 획득량 증가 2단계
 --	sumExp = sumExp + IsBuffAppliedEXP(pc, 'EVENT1909_FULLMOON_BUFF_EXP_3'); --[보름달 키우기 대작전] 경험치 획득량 증가 3단계
@@ -150,12 +151,19 @@ function GET_MORE_EVENT_EXP(pc)
 	if  TryGetProp(pc, 'Lv', 0) < 450 then
 	    sumExp = sumExp + IsBuffAppliedEXP(pc, 'ITEM_BUFF_2020ArborDay_ExpUP'); --2020 근본--
 	end
+	if  TryGetProp(pc, 'Lv', 0) < 460 then
+	    sumExp = sumExp + IsBuffAppliedEXP(pc, 'ITEM_BUFF_2021ArborDay_ExpUP'); --2021 근본--
+	end
 	if  TryGetProp(pc, 'Lv', 0) < PC_MAX_LEVEL then
 	    sumExp = sumExp + IsBuffAppliedEXP(pc, 'pet_sparrow_thanksgivng_buff'); --달맞이 참새 동행 버프--
 	end
-	
+
 	if  TryGetProp(pc, 'Lv', 0) < PC_MAX_LEVEL then
 	    sumExp = sumExp + IsBuffAppliedEXP(pc, 'pet_winter_rabbit_buff'); --하얀 눈 토끼 동행 버프--
+	end
+
+	if  TryGetProp(pc, 'Lv', 0) < PC_MAX_LEVEL then
+	    sumExp = sumExp + IsBuffAppliedEXP(pc, 'pet_arborday_rabbit_buff'); -- 근본 토끼 동행 버프--
 	end
 	
 	if  TryGetProp(pc, 'Lv', 0) < PC_MAX_LEVEL then

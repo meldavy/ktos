@@ -107,6 +107,9 @@ function GET_COMMON_PROP_LIST()
         'Magic_Earth_Atk',
         'Magic_Soul_Atk',
         'Magic_Dark_Atk',
+        'Magic_Melee_Atk',
+        'Magic_Fire_Atk',
+        'Magic_Lightning_Atk',
         'ALLSTAT'
     };
 end

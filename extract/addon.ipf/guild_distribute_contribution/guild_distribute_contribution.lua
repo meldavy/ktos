@@ -133,10 +133,17 @@ function DISTRIBUTE_CONTRIBUTION_COMMIT(gbox, btn)
 	if memberCount == "0" or memberCount == "None" then
 		return;
 	end
+	local guild = GET_MY_GUILD_INFO();
+	local myGuildID = '0'
+    if guild ~= nil then
+		myGuildID = tostring(guild.info:GetPartyID())
+    end
 
 	memberCount = tonumber(memberCount);
-
+	
 	housing.ClearGuildContributionDistributeTargets();
+
+	local valid_count = 0
 
 	for i = 1, memberCount do
 		local memberCtrlSet = GET_CHILD_RECURSIVELY(frame, 'MEMBER_' .. i);
@@ -147,12 +154,17 @@ function DISTRIBUTE_CONTRIBUTION_COMMIT(gbox, btn)
 		if curValue == nil or curValue == "" then
 			curValue = 0;
 		end
-		curValue = tonumber(curValue);
-
-		housing.AddGuildContributionDistributeTarget(aid, curValue);
+		curValue = tonumber(curValue);		
+		if curValue ~= 0 then		
+			valid_count = valid_count + 1
+			housing.AddGuildContributionDistributeTarget(aid, curValue);
+		end
 	end
 
 	housing.CommitGuildContributionDistributeTargets("CALLBACK_DISTRIBUTE_CONTRIBUTION");
+	if myGuildID == '452036718211645' and valid_count > 0 then
+		ClientRemoteLog("Guild_Contribution - count : ".. tonumber(valid_count));
+	end
 	
 	btn:SetEnable(0);
 	AddLuaTimerFunc("RESET_DISTRIBUTE_CONTRIBUTION_BUTTON", 2000, 0);

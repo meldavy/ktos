@@ -622,7 +622,6 @@ return value"/>
             </HitList>
             <EtcList>
                 <Scp Client="NO" Scp="SORCERER_EQUIP_SUBCARD_CHECK" Time="0" UseSleep="NO"/>
-                <Scp Client="NO" Scp="SKL_CANCEL_IF_NOTARGET" Time="0" UseSleep="NO"/>
                 <Scp Client="YES" Scp="C_VOICE_SOUND" Time="0" UseSleep="NO">
                     <Str Str="voice_wiz_m_morph_shot"/>
                     <Str Str="voice_wiz_morph_shot"/>

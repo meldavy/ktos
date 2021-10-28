@@ -82,5 +82,6 @@ ClassID,GenType,Lv,Range,GenRange,RespawnTime,MaxPop,Minimap,Hide,UseAIOufOfPC,A
 5254,5254,1,40,1,1,1,2,0,0,0,0,0,reputation_Board1,[왕국 재건단] 게시판,,,,,,,REPUTATION_QUEST_BOARD_01,,,NO,YES,NO,Neutral,,,,
 5257,5257,1,40,1,1,1,2,0,0,0,0,0,npc_huevill_female_1_Ev_2,[화이트데이 이벤트]{nl}큐비트,,,,,,,EVENT_2103_WHITEDAY_CANDY,,,NO,YES,NO,Neutral,,,,
 5260,5260,1,40,1,1,1,2,0,0,0,0,0,npc_SHM_masterEv,[이벤트]{nl}섀도우맨서 마스터,,,,,,,EVENT_2103_WHITEDAY_CANDY_PRESENT,,,NO,YES,NO,Neutral,,,EVENT_2103_WHITEDAY_SHM_PRESENT_COUNT,
+5264,5264,1,40,1,1,1,2,0,0,0,0,0,npc_kupole_3_event,[식목일]{nl}큐폴 잘리아스,,,,,,,EVENT_2103_ARBOR_DAY_NPC,,,NO,YES,NO,Neutral,,,,
 5267,5267,1,40,1,1,1,2,0,0,0,0,0,npc_MIKO_masterEv,"[이벤트]{nl}무녀 마스터  ",,,,,,,EVENT_2103_WHITEDAY_CANDY_PRESENT,,,NO,YES,NO,Neutral,,,EVENT_2103_WHITEDAY_MIKO_PRESENT_COUNT,
 5268,5268,1,40,1,1,1,2,0,0,0,0,0,npc_RUN_masterEv,[이벤트]{nl}룬캐스터 마스터,,,,,,,EVENT_2103_WHITEDAY_CANDY_PRESENT,,,NO,YES,NO,Neutral,,,EVENT_2103_WHITEDAY_RUN_PRESENT_COUNT,

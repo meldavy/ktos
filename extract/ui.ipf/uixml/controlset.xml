@@ -490,7 +490,7 @@
 		</controls>
 	</controlset>
 	<controlset name="tooltip_equip_cannot_reinforce" hittest="true" width="410" height="50">
-		<userconfig BOTTOM_MARGIN="10" TEXT_FONT="{#62100c}" REINFORCE_TEXT="강화 불가" TRANSCEND_TEXT="초월 불가" EXTRACT_TEXT="아이커 추출 불가" SOCKET_TEXT="소켓 추출 불가" BRIQUET_TEXT="외형 변경 추출 불가" EXCHANGE_TEXT="{#00fec5}{ol}계열 변경 가능(1월 24일까지){/}" AWAKEN_TEXT="각성 불가" DECOMPOSEABLE_TEXT="분해 불가" ENCHANT_TEXT="인챈트 불가" BRIQUET_VALID_TEXT="외형 변경 적용 불가"/>
+		<userconfig BOTTOM_MARGIN="10" TEXT_FONT="{#62100c}" REINFORCE_TEXT="강화 불가" TRANSCEND_TEXT="초월 불가" EXTRACT_TEXT="아이커 추출 불가" SOCKET_TEXT="소켓 추출 불가" BRIQUET_TEXT="외형 변경 추출 불가" EXCHANGE_TEXT="{#00fec5}{ol}계열 변경 가능(1월 24일까지){/}" AWAKEN_TEXT="각성 불가" DECOMPOSEABLE_TEXT="분해 불가" ENCHANT_TEXT="인챈트 불가" BRIQUET_VALID_TEXT="외형 변경 적용 불가" ARKLVUP_VALID_TEXT="아크 합성/이전 불가"/>
 		<controls>
 			<labelline name="labelline" margin="-2 0 0 0" rect="0 0 390 3" skin="labelline_def_2" layout_gravity="center top"/>
 			<richtext name="socket_text" layout_gravity="left top" rect="0 0 390 45" margin="17 7 0 0" fixwidth="true" format="" hittest="false" textalign="left center" fontname="brown_16"/>

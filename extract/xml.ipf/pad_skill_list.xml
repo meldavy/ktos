@@ -5380,7 +5380,7 @@ return 40000 + obj.Level * 10000"/>
                 <Num Num="10" UseFunc="1" FuncTxt="return 4 + obj.Level * 1"/>
             </ToolScp>
             <ToolScp Scp="C_PAD_EFFECT_POS" Client="YES" UseSleep="NO">
-                <Str_Arg Str="F_cleric_zaibas_ground" Arg="1.9"/>
+                <Str_Arg Str="F_cleric_zaibas_ground" Arg="1.6"/>
                 <Pos Angle="0" Dist="0"/>
                 <Num Num="0"/>
                 <Str_Arg Str="None" Arg="1"/>
@@ -5428,7 +5428,7 @@ return 40000 + obj.Level * 10000"/>
                 <Num Num="10" UseFunc="1" FuncTxt="return 4 + obj.Level * 1"/>
             </ToolScp>
             <ToolScp Scp="C_PAD_EFFECT_POS" Client="YES" UseSleep="NO">
-                <Str_Arg Str="F_cleric_zaibas_ground" Arg="5.8000002"/>
+                <Str_Arg Str="F_cleric_zaibas_ground" Arg="4.3"/>
                 <Pos Angle="0" Dist="0"/>
                 <Num Num="0"/>
                 <Str_Arg Str="None" Arg="1"/>
@@ -14389,7 +14389,7 @@ return value"/>
         </createEvent>
         <updateEvent>
             <ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
-                <Num Num="-500"/>
+                <Num Num="-1000"/>
                 <Num Num="9999999"/>
             </ToolScp>
             <ToolScp Scp="PAD_DAMAGE_ENEMY" Client="NO" UseSleep="NO">
@@ -14421,7 +14421,7 @@ return value"/>
                 <Num Num="1"/>
             </ToolScp>
             <ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
-                <Num Num="30000"/>
+                <Num Num="10000"/>
                 <Num Num="1"/>
             </ToolScp>
         </createEvent>
@@ -14433,14 +14433,14 @@ return value"/>
                 <Str Str="PBETA_BIG_STORM_DEBUFF"/>
                 <Num Num="1"/>
                 <Num Num="0"/>
-                <Num Num="30000"/>
+                <Num Num="10000"/>
                 <Num Num="1"/>
                 <Num Num="100"/>
             </ToolScp>
         </enterEvent>
         <updateEvent>
             <ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
-                <Num Num="-500"/>
+                <Num Num="-1000"/>
                 <Num Num="9999999"/>
             </ToolScp>
             <ToolScp Scp="PAD_DAMAGE_ENEMY" Client="NO" UseSleep="NO">
@@ -25066,6 +25066,16 @@ return 3 + obj.Level * 0.5"/>
                 <Num Num="1"/>
             </ToolScp>
         </createEvent>
+        <enterEvent>
+            <ToolScp Scp="PAD_TGT_SCRIPT" Client="NO" UseSleep="NO">
+                <Str Str="SCR_UNIQUE_GLACIER_SNOW_STORM_ENTER"/>
+            </ToolScp>
+        </enterEvent>
+        <leaveEvent>
+            <ToolScp Scp="PAD_TGT_SCRIPT" Client="NO" UseSleep="NO">
+                <Str Str="SCR_UNIQUE_GLACIER_SNOW_STORM_LEAVE"/>
+            </ToolScp>
+        </leaveEvent>
         <destroyEvent>
             <ToolScp Scp="PAD_FUNC_UPDATE_DIRECT" Client="NO" UseSleep="NO">
                 <Str Str="SCR_UNIQUE_GLACIER_SNOW_STORM_DESTROY"/>
@@ -25195,6 +25205,11 @@ return 3 + obj.Level * 0.5"/>
                 <Num Num="1"/>
             </ToolScp>
         </createEvent>
+        <leaveEvent>
+            <ToolScp Scp="PAD_TGT_SCRIPT" Client="NO" UseSleep="NO">
+                <Str Str="SCR_UNIQUE_PBETA_BATTLE_FIELD_LEAVE"/>
+            </ToolScp>
+        </leaveEvent>
         <updateEvent>
             <ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
                 <Num Num="-1000"/>
@@ -25242,12 +25257,17 @@ return 3 + obj.Level * 0.5"/>
                 <Num Num="15000"/>
                 <Num Num="1"/>
             </ToolScp>
+            <ToolScp Scp="PAD_USEABLE_PC" Client="NO" UseSleep="NO"/>
         </createEvent>
-        <enterEvent>
-            <ToolScp Scp="PAD_TGT_SCRIPT" Client="NO" UseSleep="NO">
-                <Str Str="SCR_UNIQUE_PBETA_BREATH_ICERINK_ENTER"/>
+        <leaveEvent>
+            <ToolScp Scp="PAD_TGT_BUFF_REMOVE" Client="NO" UseSleep="NO">
+                <Str Str="ENEMY"/>
+                <Num Num="0"/>
+                <Num Num="0"/>
+                <Str Str="PBETA_FREEZ_BREATH_BUFF"/>
+                <Num Num="0"/>
             </ToolScp>
-        </enterEvent>
+        </leaveEvent>
         <updateEvent>
             <ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
                 <Num Num="-500"/>
@@ -25261,6 +25281,17 @@ return 3 + obj.Level * 0.5"/>
                 <Num Num="0"/>
                 <Num Num="0"/>
                 <Str Str="None"/>
+            </ToolScp>
+            <ToolScp Scp="PAD_BUFF_ENEMY" Client="NO" UseSleep="NO">
+                <Str Str="ENEMY"/>
+                <Num Num="0"/>
+                <Num Num="0"/>
+                <Str Str="PBETA_FREEZ_BREATH_BUFF"/>
+                <Num Num="99"/>
+                <Num Num="0"/>
+                <Num Num="0"/>
+                <Num Num="1"/>
+                <Num Num="100"/>
             </ToolScp>
         </updateEvent>
     </PadSkill>
@@ -25375,7 +25406,7 @@ return 3 + obj.Level * 0.5"/>
                 <Str Str="PBETA_UNIQUE_SLOW_DEBUFF"/>
                 <Num Num="1"/>
                 <Num Num="0"/>
-                <Num Num="10000"/>
+                <Num Num="5000"/>
                 <Num Num="1"/>
                 <Num Num="100"/>
             </ToolScp>

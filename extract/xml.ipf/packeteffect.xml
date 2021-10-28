@@ -826,6 +826,9 @@
         <Effect Name="F_rize004_dark_damballa"/>
         <Effect Name="F_moru_5"/>
         <Effect Name="F_moru_4"/>
+        <Effect Name="F_buff_basic046_red##2"/>
+        <Effect Name="F_spread_out029_red##3"/>
+        <Effect Name="I_smoke044_dark##3"/>
     </Category>
     <Category ID="144">
         <Effect Name="F_pc_CardBook_ground_dark"/>
@@ -6077,6 +6080,16 @@
 		<Effect Name="F_light111_blue_star "/>
 		<Effect Name="I_light005_blue_attach"/>
 		<Effect Name="F_blackfall001"/>
+		<Effect Name="I_laser_vibora_red"/>
+		<Effect Name="I_laser_vibora_blue"/>
+		<Effect Name="I_laser_vibora_yellow"/>
+		<Effect Name="F_hit009_water3"/>
+		<Effect Name="F_vibora_lightning"/>
+		<Effect Name="F_burstup007_smoke3"/>
+		<Effect Name="I_wizard_viboraTiger"/>
+		<Effect Name="F_scratch_001"/>
+		<Effect Name="swd_blow_critical1"/>
+		<Effect Name="FEED3"/>
 	</Category>
 	<Category ID="28">
 		<Effect Name="F_explosion006_green#Dummy_skl2_shot"/>

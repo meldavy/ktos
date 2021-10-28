@@ -50,5 +50,7 @@
 	<ReadXml Name="camerasetuplimits"/>
 	<ReadXml Name="indunInfo_button"/>
 	<ReadXml Name="item_restrict"/>
+	<ReadXml Name="skill_range_color"/>
+	<ReadXml Name="item_top_render"/>
 </Category>
 <!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by dd (IMCGames Co., Ltd) -->

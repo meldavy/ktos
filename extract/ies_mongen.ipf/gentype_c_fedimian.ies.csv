@@ -66,3 +66,4 @@ ClassID,GenType,Lv,Range,GenRange,RespawnTime,MaxPop,Minimap,Hide,UseAIOufOfPC,A
 5244,5244,1,40,1,1,1,2,0,0,1,0,0,npc_city_alchemist,[전문 알케미스트]{nl}쿼바스트,,,,,,,ALCHEIST_EXPERT_NPC_FEDIMIAN,,,NO,YES,NO,Neutral,,,,
 5245,5245,1,40,1,1,1,2,0,0,0,0,0,reputation_Board1,[왕국 재건단] 게시판,,,,,,,REPUTATION_QUEST_BOARD_01,,,NO,YES,NO,Neutral,,,,
 5248,5248,1,40,1,1,1,2,0,0,0,0,0,npc_huevill_female_1_Ev_2,[화이트데이 이벤트]{nl}큐비트,,,,,,,EVENT_2103_WHITEDAY_CANDY,,,NO,YES,NO,Neutral,,,,
+5251,5251,1,40,1,1,1,2,0,0,0,0,0,npc_kupole_3_event,[식목일]{nl}큐폴 잘리아스,,,,,,,EVENT_2103_ARBOR_DAY_NPC,,,NO,YES,NO,Neutral,,,,

@@ -204,7 +204,7 @@
                     <Str Str="None" />
                     <Num Num="0" />
 		</Scp>
-                <Scp Scp="SKL_BUFF" Client="NO" UseSleep="NO" Time="3200">
+		<Scp Scp="SKL_BUFF" Client="NO" UseSleep="NO" Time="3600">
                     <Str Str="Rampage_After_Buff"/>
                     <Num Num="1"/>
                     <Num Num="0"/>
@@ -336,7 +336,7 @@
                             <Str Str="voice_scout_m_rampage_cast_4"/>
                             <Str Str="voice_scout_f_rampage_cast_4"/>
                         </Scp>
-                        <Scp Scp="SKL_BUFF" Client="NO" UseSleep="NO" Time="3200">
+                        <Scp Scp="SKL_BUFF" Client="NO" UseSleep="NO" Time="3600">
                             <Str Str="Rampage_After_Buff"/>
                             <Num Num="1"/>
                             <Num Num="0"/>

@@ -840,6 +840,14 @@
 		<image name="icon_item_ep13toswinter03_2_m" file="\icon\equip\icon_item_ep13toswinter03_2_m.png" imgrect="0 0 256 256"/>
 		<image name="icon_item_ep13toswinter03_f" file="\icon\equip\icon_item_ep13toswinter03_f.png" imgrect="0 0 256 256"/>
 		<image name="icon_item_ep13toswinter03_m" file="\icon\equip\icon_item_ep13toswinter03_m.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_6th_Arbor_Day_Costume_m" file="\icon\equip\icon_item_6th_Arbor_Day_Costume_m.png" imgrect="0 0 256 256" CMM_Caption="21년 식목일 코스튬"/>
+		<image name="icon_item_6th_Arbor_Day_Costume_f" file="\icon\equip\icon_item_6th_Arbor_Day_Costume_f.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13cherryblossom02_2_f" file="\icon\equip\icon_item_ep13cherryblossom02_2_f.png" imgrect="0 0 256 256" CMM_Caption="통합콘텐츠 21년 3월테마 코스튬 6종"/>
+		<image name="icon_item_ep13cherryblossom02_2_m" file="\icon\equip\icon_item_ep13cherryblossom02_2_m.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13cherryblossom03_2_f" file="\icon\equip\icon_item_ep13cherryblossom03_2_f.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13cherryblossom03_2_m" file="\icon\equip\icon_item_ep13cherryblossom03_2_m.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13cherryblossom03_f" file="\icon\equip\icon_item_ep13cherryblossom03_f.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13cherryblossom03_m" file="\icon\equip\icon_item_ep13cherryblossom03_m.png" imgrect="0 0 256 256"/>
 	</imagelist>
 	<imagelist category="256_costume_icons">
 		<image name="icon_item_Alchemist_f" file="\icon\equip\Alchemist_f_icon.png" imgrect="0 0 256 256" CMM_Caption="알케미스트"/>
@@ -3630,6 +3638,8 @@
 		<image name="icon_item_necklace_queens_03" file="\icon\acc\icon_item_necklace_queens_03.png" imgrect="0 0 256 256"/>
 		<image name="icon_item_bracelet_queens_07" file="\icon\acc\icon_item_bracelet_queens_07.png" imgrect="0 0 256 256"/>
 		<image name="icon_item_necklace_queens_07" file="\icon\acc\icon_item_necklace_queens_07.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_bracelet_2021ArborDay" file="\icon\acc\icon_item_bracelet_2021ArborDay.png" imgrect="0 0 256 256" CMM_Caption="2021 식목일 팔찌"/>
+		<image name="icon_item_necklace_2021ArborDay" file="\icon\acc\icon_item_necklace_2021ArborDay.png" imgrect="0 0 256 256" CMM_Caption="2021 식목일 목걸이"/>
 	</imagelist>
 	<imagelist category="hair_accesory">
 		<image name="hairacc_1_egg" file="\icon\hairacc\hairacc_1_egg.png" imgrect="0 0 256 256"/>
@@ -5841,6 +5851,7 @@
 		<image name="icon_item_token_guild_1" file="\icon\item\icon_item_token_guild_1.png" imgrect="0 0 128 128" CMM_Caption="길드원 증표 "/>
 		<image name="icon_item_solidarity_medal" file="\icon\item\icon_item_solidarity_medal.png" imgrect="0 0 128 128" CMM_Caption="결속의 증표"/>
 		<image name="icon_item_Dimensional_censer" file="\icon\item\icon_item_Dimensional_censer.png" imgrect="0 0 128 128" CMM_Caption="차원 향로"/>
+		<image name="icon_item_ore_talt_blue" file="\icon\item\icon_item_ore_talt_blue.png" imgrect="0 0 128 128" CMM_Caption="신비한 탈트"/>
 		<image name="icon_item_wakepowder" file="\icon\item\icon_item_wakepowder.png" imgrect="0 0 80 80" CMM_Caption="각성가루"/>
 		<image name="icon_item_Vernike_Potion" file="\icon\item\icon_item_Vernike_Potion.png" imgrect="0 0 128 128" CMM_Caption="베르니케 파편 포션"/>
 		<image name="icon_item_training_flute" file="\icon\item\icon_item_training_flute.png" imgrect="0 0 128 128" CMM_Caption="훈련용 피리"/>
@@ -6199,6 +6210,8 @@
 		<image name="icon_item_Kruvina_fragment" file="\icon\item\icon_item_Kruvina_fragment.png" imgrect="0 0 256 256" CMM_Caption="크루비나 파편"/>
 		<image name="icon_item_Master_Vote_BOX" file="\icon\item\icon_item_Master_Vote_BOX.png" imgrect="0 0 128 128" CMM_Caption="[당신의 마스터] 투표 보상"/>
 		<image name="icon_item_Event_costume_2008" file="\icon\item\icon_item_Event_costume_2008.png" imgrect="0 0 128 128" CMM_Caption="[당신의 마스터] 수박 코스튬 상자"/>
+		<image name="icon_item_yujafish" file="\icon\item\icon_item_yujafish.png" imgrect="0 0 128 128" CMM_Caption="[이벤트] 유자 물고기"/>
+		<image name="icon_item_yujabox" file="\icon\item\icon_item_yujabox.png" imgrect="0 0 256 256" CMM_Caption="[이벤트] 달콤한 유자"/>
 		<image name="icon_item_TelHarsha_neck" file="\icon\item\icon_item_TelHarsha_neck.png" imgrect="0 0 128 128" CMM_Caption="헬하르샤 목걸이"/>
 		<image name="icon_item_low_moth_stone" file="\icon\item\icon_item_low_moth_stone.png" imgrect="0 0 128 128" CMM_Caption="바이올렛틴 크리스탈_하위버전"/>
 		<image name="icon_item_goddess_box" file="\icon\item\icon_item_goddess_box.png" imgrect="0 0 256 256" CMM_Caption="여신의 가호 상자"/>
@@ -6356,7 +6369,16 @@
 		<image name="icon_item_2103_WhiteDay_Box" file="\icon\item\icon_item_2103_WhiteDay_Box.png" imgrect="0 0 256 256" CMM_Caption="21년 화이트데이 상자"/>
 		<image name="icon_item_reputation_relief_blue" file="\icon\item\icon_item_reputation_relief_blue.png" imgrect="0 0 256 256" CMM_Caption="명성 증가 쿠폰"/>
 		<image name="icon_item_Gold_Jpn_Episode_13_Event" file="\icon\item\icon_item_Gold_Jpn_Episode_13_Event.png" imgrect="0 0 128 128" CMM_Caption="일본서버_에피소드13 아이템"/>
+		<image name="icon_item_Relic_exp_refine_conversion_color" file="\icon\item\icon_item_Relic_exp_refine_conversion_color.png" imgrect="0 0 256 256" CMM_Caption="이벤트 권능의 숨결 정화제"/>
 		<image name="icon_item_gem_selectbox_color" file="\icon\item\icon_item_gem_selectbox_color.png" imgrect="0 0 256 256" CMM_Caption="스킬 젬 뽑기 상자"/>
+		<image name="icon_item_2103_leaf" file="\icon\item\icon_item_2103_leaf.png" imgrect="0 0 128 128" CMM_Caption="이벤트 나뭇잎 정수"/>
+		<image name="icon_item_2103_twig" file="\icon\item\icon_item_2103_twig.png" imgrect="0 0 128 128" CMM_Caption="이벤트 나뭇가지 정수"/>
+		<image name="icon_item_2103_growup" file="\icon\item\icon_item_2103_growup.png" imgrect="0 0 128 128" CMM_Caption="이벤트 성장의 정수"/>
+		<image name="icon_item_chick_umbrella" file="\icon\item\icon_item_chick_umbrella.png" imgrect="0 0 256 256" CMM_Caption="병아리 우산"/>
+		<image name="icon_item_popo_balloon" file="\icon\item\icon_item_popo_balloon.png" imgrect="0 0 256 256" CMM_Caption="포포리온 풍선"/>
+		<image name="icon_item_2020ArborDay_necklace_Upgrade" file="\icon\item\icon_item_2020ArborDay_necklace_Upgrade.png" imgrect="0 0 256 256" CMM_Caption="2020 근본 네클리스 업그레이드 스크롤"/>
+		<image name="icon_item_2020ArborDay_bracelet_Upgrade" file="\icon\item\icon_item_2020ArborDay_bracelet_Upgrade.png" imgrect="0 0 256 256" CMM_Caption="2020 근본 브레이슬릿 업그레이드 스크롤"/>
+		<image name="icon_item_defensive_potion_lv2" file="\icon\item\icon_item_defensive_potion_lv2.png" imgrect="0 0 128 128" CMM_Caption="[주간 보스 레이드] 레티샤 특제 포션 Lv.2"/>
 	</imagelist>
 	<imagelist category="housing">
 		<image name="icon_item_h_bigplant_set_01_green" file="\icon\housing\icon_item_h_bigplant_set_01_green.png" imgrect="0 0 256 256" CMM_Caption="[길드 하우징] 화단_01(초록색)"/>
@@ -8253,6 +8275,13 @@
 		<image name="icon_item_toy_ep13cherryblossom" file="\icon\payment\icon_item_toy_ep13cherryblossom.png" imgrect="0 0 256 256"/>
 		<image name="icon_item_wing_ep13cherryblossom" file="\icon\payment\icon_item_wing_ep13cherryblossom.png" imgrect="0 0 256 256"/>
 		<image name="icon_item_boruta_wing" file="\icon\payment\icon_item_boruta_wing.png" imgrect="0 0 256 256" CMM_Caption="보루타 날개"/>
+		<image name="icon_item_selectbox_ep13cherryblossom03" file="\icon\payment\icon_item_selectbox_ep13cherryblossom03.png" imgrect="0 0 256 256" CMM_Caption="통합콘텐츠 21년 3월테마 03 선택상자"/>
+		<image name="icon_item_2021_ArborDay_Package_All" file="\icon\payment\icon_item_2021_ArborDay_Package_All.png" imgrect="0 0 256 256" CMM_Caption="2021 식목일 특판 패키지_5종"/>
+		<image name="icon_item_2021_ArborDay_Package_BattleA" file="\icon\payment\icon_item_2021_ArborDay_Package_BattleA.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_2021_ArborDay_Package_BattleB" file="\icon\payment\icon_item_2021_ArborDay_Package_BattleB.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_2021_ArborDay_Package_Growth02" file="\icon\payment\icon_item_2021_ArborDay_Package_Growth02.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_2020_ArborDay_Package_Acc_Upgrade" file="\icon\payment\icon_item_2020_ArborDay_Package_Acc_Upgrade.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_arborday_rabbit" file="\icon\payment\icon_item_arborday_rabbit.png" imgrect="0 0 256 256"/>
 	</imagelist>
 	<imagelist category="seal">
 		<image name="icon_seal_yellow_cc_A1" file="\icon\seal\seal_yellow_cc_A1.tga" imgrect="0 0 80 80"/>

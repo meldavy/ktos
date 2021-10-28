@@ -1061,7 +1061,29 @@ end
     for i = beginLv, maxLevel do
         caption = caption .. "Lv."..i;
         caption = caption .. "," .. originCaption;
+        if i == beginLv and className == "Elementalist_ElementalEssence" then
+            local pc = GetMyPCObject()
+            local att = GetExProp(pc, "Vibora_Skill_Attribute_Cl")
+            local skillAtt = "None"
+            local addDesc = "tooltip_"
+            if att == 1 then
+                skillAtt = "Fire"
+            elseif att == 2 then
+                skillAtt = "Ice"
+            elseif att == 3 then
+                skillAtt = "Lightning"
+            elseif att == 0 then
+                skillAtt = "None"
+            end
+
+            if skillAtt ~= "None" then
+                addDesc = addDesc .. skillAtt .. "_Extinction"
+                local caption2 = ScpArgMsg(addDesc)
+                caption = caption .. caption2
+            end
+        end
     end
+
 
     return caption;
  end

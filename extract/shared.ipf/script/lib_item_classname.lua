@@ -16,7 +16,8 @@ function GET_INDUN_MULTIPLE_ITEM_LIST()
             'Event_dungeoncount_11',
             'Event_dungeoncount_12',
             'Event_dungeoncount_13',
-            'Event_dungeoncount_14'};           
+            'Event_dungeoncount_14',
+            'Event_dungeoncount_15'};            
 end
 
 function IS_INDUN_MULTIPLE_ITEM(itemClassName)

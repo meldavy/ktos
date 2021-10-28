@@ -123,6 +123,12 @@ function ARK_COMPOSITION_INV_RBTNDOWN(itemObj, slot)
     end
     
     local itemObj = GetIES(invItem:GetObject());
+	
+	if TryGetProp(itemObj, 'EnableArkLvup', 0) == 1 then
+		ui.SysMsg(ClMsg('DO_NOT_EnableArkLvup'))
+		return
+	end 
+
 	if TryGetProp(itemObj, 'StringArg', 'None') == 'Ark' then
 		-- 합성에 사용할 아크 아이템 등록
         ARK_COMPOSITION_REG_ARK_ITEM(frame, iconInfo:GetIESID(), invItem, itemObj);
@@ -162,7 +168,7 @@ function ARK_COMPOSITION_ARK_ITEM_DROP(frame, icon, argStr, argNum)
 	if frame == nil then
 		return;
     end
-    
+
 	local liftIcon = ui.GetLiftIcon();
 	local FromFrame = liftIcon:GetTopParentFrame();
     if FromFrame:GetName() == 'inventory' then        
@@ -190,7 +196,10 @@ function ARK_COMPOSITION_REG_ARK_ITEM(frame, itemID, invItem, itemObj)
         ui.SysMsg(ClMsg('MaterialItemIsLock'));
 		return;
     end
-    
+    if TryGetProp(itemObj, 'EnableArkLvup', 0) == 1 then
+		ui.SysMsg(ClMsg('DO_NOT_EnableArkLvup'))
+		return
+	end 
     local current_lv = TryGetProp(itemObj, 'ArkLevel', -1)
     local max_lv = TryGetProp(itemObj, 'MaxArkLv', -1)
 

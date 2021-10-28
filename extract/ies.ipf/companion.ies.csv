@@ -39,8 +39,10 @@ ClassID,RideMSPD,MaxVehicle,OffsetY,RidingOffsetY,AddSpeed,JobID,LifeMin,ClassNa
 38,4,1,1.3,0,50,0,0,pet_hedgehog,,0,NO,YES,NO,NO,,YES,YES,pet_hedgehog_buff
 39,4,1,0,5,50,0,0,pet_policedog,,0,NO,YES,NO,NO,,YES,YES,pet_policedog_buff
 40,4,1,0,5.1,50,0,0,pet_cadet_armadillo,,0,NO,YES,NO,NO,,YES,YES,pet_cadet_armadillo_buff
+41,4,1,0,0,50,0,0,pet_new_penguin,,11,NO,YES,NO,NO,,YES,YES,pet_penguin_buff
 42,4,1,0,0,50,0,0,pet_sparrow_Thanksgiving,,12,NO,YES,NO,NO,,YES,YES,pet_sparrow_thanksgivng_buff
 43,4,1,0,5,50,0,0,pet_dalmatian,,0,NO,YES,NO,NO,,YES,YES,pet_dalmatian_buff
 44,4,1,2,3,50,0,0,pet_winter_rabbit,,0,NO,YES,NO,NO,,YES,YES,pet_winter_rabbit_buff
 45,4,1,2,2,50,0,0,pet_twnpanda,,0,NO,YES,NO,NO,,YES,YES,pet_twnpanda_buff
 46,4,1,0,5,50,0,0,pet_robot_dog,,0,NO,YES,NO,NO,,YES,YES,pet_robot_dog_buff
+48,4,1,2,3,50,0,0,pet_arborday_rabbit,,0,NO,YES,NO,NO,,YES,YES,pet_arborday_rabbit_buff

@@ -218,34 +218,3 @@ function GET_GEM_PROTECT_NEED_COUNT(gemObj)
 
     return TryGetProp(cls, 'NeedCount', 999999)
 end
-
-
-
-
-
-
-function SCR_PRECHECK_TEST_DUMMY_SCR_USE_SCROLL(self)
-    if OnKnockDown(self) == 'YES' then
-        return 0;
-	end
-	
-	local currentZone = GetZoneName(self)
-	if currentZone ~= "c_Klaipe" and currentZone ~= "c_orsha" and currentZone ~= "c_fedimian" then
-		SendAddOnMsg(self, "NOTICE_Dm_!", ScpArgMsg("AllowedInTown"), 3);
-		return 0;
-	end
-
-	if IsMyPCFriendlyFighting(self) == 1 then
-		SendAddOnMsg(self, "NOTICE_Dm_!", ScpArgMsg("Card_Summon_check_PVP"), 3);
-		return 0;
-	end
-
-	local sObj = GetSessionObject(self, 'ssn_klapeda')
-	if sObj == nil then
-		return 0;
-	end
-
-	return 1;
-end
-
-

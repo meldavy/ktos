@@ -38,7 +38,7 @@
 		<Class ClassID="42" ClassName="/candy_orsha" Alias="/화이트데이 오르샤" ConvertWhenSend="1"/>
 		<Class ClassID="43" ClassName="/candy_fedimian" Alias="/화이트데이 페디미안" ConvertWhenSend="1"/>
 		<Class ClassID="44" ClassName="/guildmileage" Alias="/길드마일리지" ConvertWhenSend="1"/>
-		<Class ClassID="45" ClassName="/treeday" Alias="/식목일" ConvertWhenSend="1"/>
+		<Class ClassID="45" ClassName="/arborday" Alias="/식목일" ConvertWhenSend="1"/>
 		<Class ClassID="46" ClassName="/badge" Alias="/뱃지" ConvertWhenSend="1"/>
 		<!-- <Class ClassID="47" ClassName="/snowwitch" Alias="/하얀마녀" ConvertWhenSend="1"/> -->
 		<Class ClassID="48" ClassName="/jewel" Alias="/보석" ConvertWhenSend="1"/>
@@ -74,5 +74,7 @@
 		<Class ClassID="80" ClassName="/choco" Alias="/발렌타인" ConvertWhenSend="1"/>
 		<Class ClassID="83" ClassName="/lucky" Alias="/럭키" ConvertWhenSend="1"/>
 		<Class ClassID="82" ClassName="/gift" Alias="/선물" ConvertWhenSend="1"/>
+		<Class ClassID="84" ClassName="/arbordaycheck" Alias="/출석" ConvertWhenSend="1"/>
+		<Class ClassID="85" ClassName="/theif" Alias="/도둑" ConvertWhenSend="1"/>
 	</Category>
 </idspace>

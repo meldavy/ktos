@@ -9875,7 +9875,7 @@
 			<Trigger>
 				<ExecList>
 					<ToolScp Scp="SPCI_GEM_SKILLUP" Client="NO" UseSleep="NO">
-						<Str Str="Daoshi_BegoneDemon"/>
+						<Str Str="Daoshi_FlameRadiation"/>
 						<Num Num="-1"/>
 					</ToolScp>
 				</ExecList>
@@ -9885,7 +9885,7 @@
 			<Trigger>
 				<ExecList>
 					<ToolScp Scp="SPCI_GEM_SKILLUP" Client="NO" UseSleep="NO">
-						<Str Str="Daoshi_BegoneDemon"/>
+						<Str Str="Daoshi_FlameRadiation"/>
 						<Num Num="1"/>
 					</ToolScp>
 				</ExecList>

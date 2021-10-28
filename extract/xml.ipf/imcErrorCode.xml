@@ -664,4 +664,5 @@
 	<Code Code="ERROR_OTP_TAIWAN" Team="PROGRAM" Category="ERROR" SubCategory="" Logger="root" Enabled="YES" CallStack="NO" Desc="성물 레이드 관련 에러"/>
 	<Code Code="ERROR_FAILED_START_WATCHDOG" Team="PROGRAM" Category="ERROR" SubCategory="" Logger="root" Enabled="YES" CallStack="NO" Desc="Watchdog 프로세스 시작에 실패했습니다."/>
 	<Code Code="INFO_NEXON_MARKET" Team="tos_team" Category="INFO" SubCategory="" Logger="root" Enabled="NO" CallStack="NO" Desc="개발용 정보"/>
+  <Code Code="INFO_TRACE_G_Contribution" Team="tos_team" Category="INFO" SubCategory="" Logger="root" Enabled="YES" CallStack="NO" Desc="길드 기여도 분배 추적"/>
 </imcErrorCode>

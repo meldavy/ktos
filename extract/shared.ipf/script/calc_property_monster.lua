@@ -313,11 +313,12 @@ function SCR_GET_MON_JOBEXP(self)
 end
 
 function SCR_Get_MON_DEF(self)
+    
     local fixedDEF = TryGetProp(self, "FixedDefence");
     if fixedDEF ~= nil and fixedDEF > 0 then
         return fixedDEF;
     end
-    
+
     local originDef = GetExProp(self, "MON_ORIGIN_DEF");
 
     local lv = TryGetProp(self, "Lv");
@@ -367,7 +368,7 @@ function SCR_Get_MON_DEF(self)
 --    value = value * JAEDDURY_MON_DEF_RATE;      -- JAEDDURY
     
     value = value + byBuff + byRateBuff;
-
+    
     local decRatio = TryGetProp(self, 'DEF_RATE_MUL_BM', 1);
     if IsBuffApplied(self, 'Tenacity_Buff') == 'YES' or TryGetProp(self, 'MonRank', 'None') == 'Boss' then
         decRatio = 1 - ((1 - decRatio) * 0.5)
@@ -383,7 +384,7 @@ function SCR_Get_MON_DEF(self)
         local starrank = GetExProp(self,'STARRANK',99)
         value = value * SCR_ANCIENT_INFO_RATE_CALC(rarity,starrank,"DefRate")
     end
-
+    
     if value < 0 then
         value = 0;
     end
@@ -2294,36 +2295,41 @@ function SCR_MON_ITEM_ARMOR_CALC(self, defType)
     end
     
     if defType ~= nil then
-        local defClass = GetClass("item_grade", "armorMaterial_" .. defType);
-        local armorMaterial = TryGetProp(self, "ArmorMaterial", "None");
-        local defRatio = TryGetProp(defClass, armorMaterial, 1);
-        -- 물리 방어력, 마법 방어력 평균치 적용 --
-        if statTypeClass ~= nil then
-            local averge_def = TryGetProp(statTypeClass, "AVERAGE_DEF", nil);
-            if averge_def ~= nil and averge_def ~= 0 then
-                local defTypeList = {"DEF", "MDEF"}
-                local defRatioTable = {};
-                for i = 1, #defTypeList do
-                    local defClassType = GetClass("item_grade", "armorMaterial_" .. defTypeList[i]);
-                    defRatioTable[#defRatioTable + 1] = TryGetProp(defClassType, armorMaterial, 1);
-                end
+        local defRatio = 1 --천/판금/가죽 방어타입에 따른 물/마방 편차 제거(유체 방어력기준으로 통일)
+    
+        -- local defClass = GetClass("item_grade", "armorMaterial_" .. defType);
+        -- local armorMaterial = TryGetProp(self, "ArmorMaterial", "None");        
+        -- local defRatio = TryGetProp(defClass, armorMaterial, 1);
                 
-                if averge_def == 1 then
-                    if defRatioTable[1] >= defRatioTable[2] then
-                        defRatio = defRatioTable[2];
-                    else
-                        defRatio = defRatioTable[1];
-                    end
-                elseif averge_def == 2 then
-                    if defRatioTable[1] >= defRatioTable[2] then
-                        defRatio = defRatioTable[1];
-                    else
-                        defRatio = defRatioTable[2];
-                    end
-                end
-            end
-        end
+        -- -- 물리 방어력, 마법 방어력 평균치 적용 --
+        -- if statTypeClass ~= nil then
+        --     local averge_def = TryGetProp(statTypeClass, "AVERAGE_DEF", nil);
+        --     if averge_def ~= nil and averge_def ~= 0 then
+        --         local defTypeList = {"DEF", "MDEF"}
+        --         local defRatioTable = {};
+        --         for i = 1, #defTypeList do
+        --             local defClassType = GetClass("item_grade", "armorMaterial_" .. defTypeList[i]);
+        --             defRatioTable[#defRatioTable + 1] = TryGetProp(defClassType, armorMaterial, 1);
+        --         end
         
+        --         if averge_def == 1 then
+        --             if defRatioTable[1] >= defRatioTable[2] then
+        --                 defRatio = defRatioTable[2];
+        --             else
+        --                 defRatio = defRatioTable[1];
+        --             end
+        --         elseif averge_def == 2 then
+        --             if defRatioTable[1] >= defRatioTable[2] then
+        --                 defRatio = defRatioTable[1];
+        --             else
+        --                 defRatio = defRatioTable[2];
+        --             end
+        --         elseif averge_def == 3 then
+        --             defRatio = (defRatioTable[1] + defRatioTable[2])/2
+        --         end
+        --     end
+        -- end
+
         if defRatio ~= nil then
             value = value * defRatio;
         end
@@ -2468,6 +2474,18 @@ function SCR_MON_STAT_RATE(self, prop)
         local statTypeClass = GetClass("Stat_Monster_Type", statType);
         if statTypeClass ~= nil then
             statTypeRate = TryGetProp(statTypeClass, prop, statTypeRate);
+            -----------------------------------------62주차 스탯타입 유지 예외처리----
+            if statTypeClass.ClassName == "Weekly_Boss" or statTypeClass.ClassName == "Weekly_Boss_Tiny" then
+                local week_num = Weeklyboss_GetNowWeekNum()
+                if week_num ~= nil and week_num == 62 then
+                    if prop == "DEF" then
+                        statTypeRate = 425
+                    elseif prop == "MDEF" then
+                        statTypeRate = 425
+                    end
+                end
+            end
+            ------------------------------------------------------------------------
         end
     end
     

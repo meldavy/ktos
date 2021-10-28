@@ -234,6 +234,9 @@
                                 <Str Str="End"/>
                                 <Num Num="0"/>
                             </ToolScp>
+                        <ToolScp Scp="GAME_ST_EVT_EXEC_STAGE_DISABLE" Client="NO" UseSleep="NO">
+                                <Str Str="RemoveBuff"/>
+                            </ToolScp>
                         </execList>
                     </Event>
                     <Event execCount="1" eventName="스코어보드">
@@ -265,6 +268,18 @@
                                 <Str Str="{@st55_a}10초 후 입장했던 곳으로 돌아갑니다."/>
                                 <Str Str="Clear"/>
                                 <Num Num="5"/>
+                            </ToolScp>
+                        </execList>
+                    </Event>
+                </StageEvents>
+            </Stage>
+        <Stage Name="RemoveBuff">
+                <ObjList/>
+                <StageEvents>
+                    <Event execMS="3000" eventName="RemoveBuff">
+                        <execList>
+                            <ToolScp Scp="MGAME_EXEC_ACTORSCP" Client="NO" UseSleep="NO">
+                                <Str Str="SCR_WEEKLY_BOSS_REMOVE_BUFF"/>
                             </ToolScp>
                         </execList>
                     </Event>

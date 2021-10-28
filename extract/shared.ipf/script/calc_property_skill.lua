@@ -318,11 +318,6 @@ function SCR_Get_SpendSP_Praise(skill)
         decsp = value * zeminaSP
     end
    
-    local hochmaSP = GetExProp(pc, "HOCHMA_BUFF_SP");
-    if hochmaSP ~= 0 then
-        decsp = value * hochmaSP
-    end
-
     value = value - decsp;
     
     --burning_event
@@ -16131,6 +16126,80 @@ function SCR_Get_SkillFactor_OneManRush(skill)
     local pc = GetSkillOwner(skill)
     local skl = GetSkill(pc, "Cataphract_Rush")
     local value = TryGetProp(skl, "SkillFactor", 0)
+    
+    return value
+end
+
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
+function SCR_Get_SkillFactor_Micro_Distortion(skill)
+    local pc = GetSkillOwner(skill)
+    local skl = GetSkill(pc, "Sage_HoleOfDarkness")
+    local value = math.floor(TryGetProp(skl, "SkillFactor", 0) * 6)
+    
+    value = value * 0.35
+
+    return value
+end
+
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
+function SCR_Get_SkillFactor_Extinction(skill)
+    local pc = GetSkillOwner(skill)
+    local skl = GetSkill(pc, "Elementalist_ElementalEssence")
+    local rate = 0.04
+    local sklLevel = GetExProp(pc, "Skill_Level_Sum")
+    local value = math.floor(TryGetProp(skl, "SkillFactor", 0))
+    
+    value = value * rate * sklLevel
+
+    return value
+end
+
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
+function SCR_Get_SkillFactor_ShakeFoot(skill)
+    local pc = GetSkillOwner(skill)
+    local skl = GetSkill(pc, "Monk_DoublePunch")
+    local value = math.floor(TryGetProp(skl, "SkillFactor", 0) * 24)
+
+    value = value * 0.2
+    
+    return value
+end
+
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
+function SCR_Get_SkillFactor_ShakeFoot_OneTarget(skill)
+    local pc = GetSkillOwner(skill)
+    local skl = GetSkill(pc, "Monk_DoublePunch")
+    local value = math.floor(TryGetProp(skl, "SkillFactor", 0) * 24)
+    
+    value = value * 0.2
+    value = value * 2
+    
+    return value
+end
+
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
+function SCR_Get_SkillFactor_ShakeFoot_LV4(skill)
+    local pc = GetSkillOwner(skill)
+    local skl = GetSkill(pc, "Monk_PalmStrike")
+    local value = math.floor(TryGetProp(skl, "SkillFactor", 0) * 0.275)
+    
+    return value
+end
+
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
+function SCR_Get_SkillFactor_DivineShock(skill)
+    local pc = GetSkillOwner(skill)
+    local skl = GetSkill(pc, "Kriwi_Melstis")
+    local value = math.floor(TryGetProp(skl, "SkillFactor", 0) * 1.5)
+
+    return value
+end
+
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
+function SCR_Get_SkillFactor_VIBORA_OUTLAW(skill)
+    local pc = GetSkillOwner(skill)
+    local skl = GetSkill(pc, "OutLaw_Rampage")
+    local value = math.floor(TryGetProp(skl, "SkillFactor", 0))
     
     return value
 end

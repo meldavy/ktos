@@ -1136,9 +1136,14 @@ function MOTION_EMOTICON_ON(parent, ctrl)
 	if emoCls == nil then
 		return;
 	end
-
+		
+	local spineToolTip = emoCls.IconSpine;
+	local spineInfo = geSpine.GetSpineInfo(spineToolTip);
+								
 	ctrl:SetIsStopAnim(false);
 	ctrl:SetDurationTime(emoCls.IconSpineDurationTime);
+	ctrl:CreateSpineActor(spineInfo:GetRoot(), spineInfo:GetAtlas(), spineInfo:GetJson(), "", spineInfo:GetAnimation());
+
 end
 
 local json = require "json_imc"

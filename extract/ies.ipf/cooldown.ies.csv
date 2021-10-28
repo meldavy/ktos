@@ -1423,3 +1423,4 @@ ClassID,OverHeatResetTime,ClassName,IsOverHeat,ReducePlayOnly,ForceReset
 4175,5000,EventHPItem,NO,FALSE,NO
 4176,5000,EventSPItem,NO,FALSE,NO
 4177,5000,ArquebusierWeapon,NO,FALSE,NO
+4183,180000,LootingChance2,NO,FALSE,YES

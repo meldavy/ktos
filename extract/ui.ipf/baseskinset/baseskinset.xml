@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by imc (imc) -->
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by imc (imc) -->
 <!-- edited with XMLSpy v2008 sp1 (http://www.altova.com) by MintPC (Mi) -->
 <skinset name="Base">
 	<skinlist category="frames">
@@ -6717,6 +6717,14 @@
 			<img name="barmiddle" imgrect="272 1184 10 10"/>
 			<img name="barright" imgrect="283 1184 10 10"/>
 		</skin>
+		<skin name="gauge_red" texture="\skin\HUD.tga">
+			<img name="bgleft" imgrect="511 578 10 10"/>
+			<img name="bgmiddle" imgrect="522 578 10 10"/>
+			<img name="bgright" imgrect="533 578 10 10"/>
+			<img name="barleft" imgrect="511 600 10 10"/>
+			<img name="barmiddle" imgrect="522 600 10 10"/>
+			<img name="barright" imgrect="533 600 10 10"/>
+		</skin>
 	</skinlist>
 	<skinlist category="labellines">
 		<skin name="labelline_def_5" texture="\skin\tooltip_skin_3.tga">
@@ -7359,6 +7367,9 @@
 		<image name="test_companion_34" file="\icon\companion.tga" imgrect="808 738 100 122" CMM_Caption="어시스턴트 로봇_탭버튼"/>
 		<image name="test_companion_34_cursoron" file="\icon\companion.tga" imgrect="909 738 100 122"/>
 		<image name="test_companion_34_clicked" file="\icon\companion.tga" imgrect="909 738 100 122"/>
+		<image name="test_companion_35" file="\icon\companion.tga" imgrect="0 861 100 122" CMM_Caption="근본 토끼_탭버튼"/>
+		<image name="test_companion_35_cursoron" file="\icon\companion.tga" imgrect="101 861 100 122"/>
+		<image name="test_companion_35_clicked" file="\icon\companion.tga" imgrect="101 861 100 122"/>
 		<image name="test_com_ability" file="\skin\pip_test.tga" imgrect="1832 851 54 35" CMM_Caption="컴패니언_특성플러스"/>
 		<image name="test_com_ability_cursoron" file="\skin\pip_test.tga" imgrect="1832 887 54 35"/>
 		<image name="test_com_ability_clicked" file="\skin\pip_test.tga" imgrect="1832 923 54 35"/>
@@ -7770,6 +7781,7 @@
 		<image name="indun_icon_event_s_eng" file="\skin\indun_skin.tga" imgrect="818 573 27 20" CMM_Caption="던전 이벤트 표시 : 소_영문"/>
 		<image name="re_appraisal_image2" file="\skin\Appraiser_skin.tga" imgrect="706 0 312 312" CMM_Caption="레어 인챈트 쥬얼 마법진"/>
 		<image name="re_appraisal_image2_1" file="\skin\Appraiser_skin.tga" imgrect="161 314 337 190" CMM_Caption="레어 인챈트 쥬얼 마법진_누운것"/>
+		<image name="pp_point_icon" file="\skin\pip_test2.tga" imgrect="895 31 35 36" CMM_Caption="스팀 홈프리미엄 포인트 아이콘"/>
 		<image name="Icon_seat_handle_1" file="\skin\PVP_skin.tga" imgrect="1829 216 28 28" CMM_Caption="공성탑 운전아이콘 _1"/>
 		<image name="Icon_seat_handle_2" file="\skin\PVP_skin.tga" imgrect="1858 216 28 28" CMM_Caption="공성탑 운전아이콘 _2"/>
 		<image name="Icon_seat_handle_3" file="\skin\PVP_skin.tga" imgrect="1887 216 28 28" CMM_Caption="공성탑 운전아이콘 _3"/>
@@ -8961,6 +8973,33 @@
 		<image name="gold_jpn_Ep13_btn" file="\skin\pip_test.tga" imgrect="1585 1099 72 72" CMM_Caption="일본서버 에피소드13 이벤트 버튼"/>
 		<image name="gold_jpn_Ep13_btn_cursoron" file="\skin\pip_test.tga" imgrect="1658 1099 72 72"/>
 		<image name="gold_jpn_Ep13_btn_clicked" file="\skin\pip_test.tga" imgrect="1731 1099 72 72"/>
+		<image name="god_pro_world_button_small" file="\skin\button_small.tga" imgrect="0 0 65 62" CMM_Caption="여신의 가호 스몰버튼"/>
+		<image name="god_pro_world_button_small_cursoron" file="\skin\button_small.tga" imgrect="66 0 65 62"/>
+		<image name="god_pro_world_button_small_clicked" file="\skin\button_small.tga" imgrect="132 0 65 62"/>
+		<image name="tutorial_content_button_small" file="\skin\button_small.tga" imgrect="198 0 58 61" CMM_Caption="튜토리얼 스몰버튼"/>
+		<image name="tutorial_content_button_small_cursoron" file="\skin\button_small.tga" imgrect="257 0 58 61"/>
+		<image name="tutorial_content_button_small_clicked" file="\skin\button_small.tga" imgrect="316 0 58 61"/>
+		<image name="btn_housing_editmode_small" file="\skin\button_small.tga" imgrect="375 0 61 54" CMM_Caption="길드하우징 스몰버튼"/>
+		<image name="btn_housing_editmode_small_cursoron" file="\skin\button_small.tga" imgrect="437 0 61 54"/>
+		<image name="btn_housing_editmode_small_clicked" file="\skin\button_small.tga" imgrect="437 0 61 54"/>
+		<image name="news_btn_small" file="\skin\button_small.tga" imgrect="0 63 60 60" CMM_Caption="뉴스 스몰버튼"/>
+		<image name="news_btn_small_cursoron" file="\skin\button_small.tga" imgrect="61 63 60 60"/>
+		<image name="news_btn_small_clicked" file="\skin\button_small.tga" imgrect="122 63 60 60"/>
+		<image name="journal_pvp_icon_small" file="\skin\button_small.tga" imgrect="183 63 60 60" CMM_Caption="PVP 스몰버튼"/>
+		<image name="journal_pvp_icon_small_cursoron" file="\skin\button_small.tga" imgrect="244 63 60 60"/>
+		<image name="journal_pvp_icon_small_clicked" file="\skin\button_small.tga" imgrect="244 63 60 60"/>
+		<image name="steam_shop2_btn_small" file="\skin\button_small.tga" imgrect="305 63 60 58" CMM_Caption="TP샵 스몰버튼"/>
+		<image name="steam_shop2_btn_small_cursoron" file="\skin\button_small.tga" imgrect="366 63 60 58"/>
+		<image name="steam_shop2_btn_small_clicked" file="\skin\button_small.tga" imgrect="427 63 60 58"/>
+		<image name="pvpmine_shop_btn_small" file="\skin\button_small.tga" imgrect="499 0 62 55" CMM_Caption="용병단_스몰버튼"/>
+		<image name="pvpmine_shop_btn_small_cursoron" file="\skin\button_small.tga" imgrect="562 0 62 55"/>
+		<image name="pvpmine_shop_btn_small_clicked" file="\skin\button_small.tga" imgrect="625 0 62 55"/>
+		<image name="steam_shop_btn_small" file="\skin\button_small.tga" imgrect="488 63 60 58"/>
+		<image name="steam_shop_btn_small_cursoron" file="\skin\button_small.tga" imgrect="549 63 60 58"/>
+		<image name="steam_shop_btn_small_clicked" file="\skin\button_small.tga" imgrect="610 63 60 58"/>
+		<image name="ep13_event_btn_small" file="\skin\button_small.tga" imgrect="0 124 64 64"/>
+		<image name="ep13_event_btn_small_cursoron" file="\skin\button_small.tga" imgrect="65 124 64 64"/>
+		<image name="ep13_event_btn_small_clicked" file="\skin\button_small.tga" imgrect="130 124 64 64"/>
 	</imagelist>
 	<imagelist category="yiseul_button">
 		<image name="pvpmine_shop_btn" file="\skin\pip_test.tga" imgrect="2049 61 66 59" CMM_Caption="용병단 증표 ui 버튼"/>
@@ -9439,6 +9478,7 @@
 		<image name="companion_pet_winter_rabbit" file="\icon\companion_Velhider.tga" imgrect="80 400 80 80"/>
 		<image name="companion_pet_robot_dog" file="\icon\companion_Velhider.tga" imgrect="160 400 80 80"/>
 		<image name="companion_pet_twnpanda" file="\icon\companion_Velhider.tga" imgrect="240 400 80 80"/>
+		<image name="companion_pet_arborday_rabbit" file="\icon\companion_Velhider.tga" imgrect="320 400 80 80"/>
 		<image name="bg_w" file="\skin\button.tga" imgrect="252 974 50 50"/>
 		<image name="barrack_signboard" file="\skin\barrack.tga" imgrect="356 0 257 192"/>
 		<image name="barrack_attack_icon" file="\skin\barrack.tga" imgrect="59 720 55 61"/>
@@ -10089,6 +10129,9 @@
 		<image name="baiga_emotion01" file="\icon\emoticon\baiga_emotion01.png" imgrect="0 0 128 128"/>
 		<image name="Zanas_emotion01" file="\icon\emoticon\Zanas_emotion01.png" imgrect="0 0 128 128"/>
 		<image name="SorshaHutton_emotion01" file="\icon\emoticon\SorshaHutton_emotion01.png" imgrect="0 0 128 128"/>
+		<image name="popo_emotion01" file="\icon\emoticon\popo_emotion01.png" imgrect="0 0 128 128"/>
+		<image name="popo_emotion02" file="\icon\emoticon\popo_emotion02.png" imgrect="0 0 128 128"/>
+		<image name="popo_emotion03" file="\icon\emoticon\popo_emotion03.png" imgrect="0 0 128 128"/>
 	</imagelist>
 	<imagelist category="itemtooltip_image">
 		<image name="circle_gem" file="\skin\tooltip_skin_3.tga" imgrect="805 228 30 30"/>
@@ -10705,6 +10748,8 @@
 		<image name="icon_gesture_nyang" file="\icon\social.tga" imgrect="244 649 80 80"/>
 		<image name="icon_gesture_gangster" file="\icon\social.tga" imgrect="325 649 80 80"/>
 		<image name="icon_gesture_wiggle" file="\icon\social.tga" imgrect="406 649 80 80"/>
+		<image name="icon_item_shootdance" file="\icon\social.tga" imgrect="1 730 80 80"/>
+		<image name="icon_item_cheer" file="\icon\social.tga" imgrect="82 730 80 80"/>
 	</imagelist>
 	<imagelist>
 		<image name="chat_page_arrow_left" file="\skin\mainframe_A.tga" imgrect="766 943 40 40"/>
@@ -11876,6 +11921,7 @@
 		<image name="icon_AUTO_MATCHING2_BLOW_HEAL_BUFF" file="\icon\buff_icon4.tga" imgrect="128 896 128 128" CMM_Caption="타격 힐"/>
 		<image name="icon_pet_twnpanda" file="\icon\buff_icon4.tga" imgrect="256 896 128 128" CMM_Caption="판다"/>
 		<image name="icon_Event_Yugwa" file="\icon\buff_icon4.tga" imgrect="384 896 128 128" CMM_Caption="2021_설날 유과 버프"/>
+		<image name="icon_pet_arborday_rabbit_buff" file="\icon\buff_icon5.tga" imgrect="0 128 128 128" CMM_Caption="근본 토끼 버프"/>
 	</imagelist>
 	<imagelist category="housing_bufficon">
 		<image name="icon_Weapon_Klaida" file="\icon\icon_hosing_buff.tga" imgrect="0 0 128 128"/>

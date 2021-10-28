@@ -985,7 +985,7 @@ function SCR_Get_MINPATK_SUB(self)
     end
     
     local value = defaultValue + byLevel + byStat + byItem;
-    
+
     local maxAtk = 0;
     local maxAtkList = { "MAXATK", "PATK", "ADD_MAXATK" };
     for i = 1, #maxAtkList do
@@ -1172,7 +1172,7 @@ function SCR_Get_MINMATK(self)
     end
     
     local value = defaultValue + byLevel + byStat + byItem;
-    
+
     local maxAtk = 0;
     local maxAtkList = { "MATK", "ADD_MATK", "ADD_MAXATK" };
     for i = 1, #maxAtkList do
@@ -3796,9 +3796,10 @@ function SCR_GET_Gun_Atk(pc)
 end
 
 function SCR_GET_Magic_Melee_Atk(pc)
-    -- 아이템에서는 사용하지 않아 아이템에 대한 추가치 로직은 없음
-    -- 만약 아이템에서 사용하게 되면 로직 추가해야함
-    local byItem = 0;
+    local byItem = GetSumOfEquipItem(pc, "Magic_Melee_Atk");
+    if byItem == nil then
+        byItem = 0;
+    end
     
     local byBuff = TryGetProp(pc, "Magic_Melee_Atk_BM");
     if byBuff == nil then
@@ -3811,9 +3812,10 @@ function SCR_GET_Magic_Melee_Atk(pc)
 end
 
 function SCR_GET_Magic_Fire_Atk(pc)
-    -- 아이템에서는 사용하지 않아 아이템에 대한 추가치 로직은 없음
-    -- 만약 아이템에서 사용하게 되면 로직 추가해야함
-    local byItem = 0;
+    local byItem = GetSumOfEquipItem(pc, "Magic_Fire_Atk");
+    if byItem == nil then
+        byItem = 0;
+    end
     
     local byBuff = TryGetProp(pc, "Magic_Fire_Atk_BM");
     if byBuff == nil then
@@ -3842,9 +3844,10 @@ function SCR_GET_Magic_Ice_Atk(pc)
 end
 
 function SCR_GET_Magic_Lightning_Atk(pc)
-    -- 아이템에서는 사용하지 않아 아이템에 대한 추가치 로직은 없음
-    -- 만약 아이템에서 사용하게 되면 로직 추가해야함
-    local byItem = 0;
+    local byItem = GetSumOfEquipItem(pc, "Magic_Lightning_Atk");
+    if byItem == nil then
+        byItem = 0;
+    end
     
     local byBuff = TryGetProp(pc, "Magic_Lightning_Atk_BM");
     if byBuff == nil then
