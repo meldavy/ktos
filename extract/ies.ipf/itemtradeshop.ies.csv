@@ -1175,6 +1175,7 @@ ClassID,Arg1,Arg2,RecipeTime,SuccessRatio,LevelByFail,TargetItemCnt,Item_1_1_Cnt
 10206,5,0,8,0,0,1,800,0,0,0,0,0,0,0,0,0,0,0,0,0,TeamBattleLeagueShop_6,TeamBattleLeagueShop,Recipe,,Drag,Action,Drag,Drag,,,,CRAFT,Gesture_RUSTLE,,TeamBattleLeagueShop_1,dummy_TeamBattleCoin,,,,,,,,,,,,
 10207,5,0,8,0,0,1,1000,0,0,0,0,0,0,0,0,0,0,0,0,0,TeamBattleLeagueShop_7,TeamBattleLeagueShop,Recipe,,Drag,Action,Drag,Drag,,,,CRAFT,EngraveSlotExtension_Ticket_TeamBattleLeague,,TeamBattleLeagueShop_2,dummy_TeamBattleCoin,,,,,,,,,,,,
 10208,5,0,8,0,0,1,800,0,0,0,0,0,0,0,0,0,0,0,0,0,TeamBattleLeagueShop_8,TeamBattleLeagueShop,Recipe,,Drag,Action,Drag,Drag,,,,CRAFT,selectbox_ep13ge02_1,,,dummy_TeamBattleCoin,,,,,,,,,,,,
+10209,5,0,8,0,0,1,800,0,0,0,0,0,0,0,0,0,0,0,0,0,TeamBattleLeagueShop_9,TeamBattleLeagueShop,Recipe,,Drag,Action,Drag,Drag,,,,CRAFT,Gesture_LUCHADOR,,TeamBattleLeagueShop_3,dummy_TeamBattleCoin,,,,,,,,,,,,
 11001,5,0,8,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,BOUNTY_NPC_TRADE_SHOP_1,BOUNTY_NPC_TRADE_SHOP_1,Recipe,,Drag,Action,Drag,Drag,,,,CRAFT,HighColorGem_UpgradeToken_460,,,bountyhunt_boss_misc01,,,,,,,,,,,,
 11002,5,0,8,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,BOUNTY_NPC_TRADE_SHOP_2,BOUNTY_NPC_TRADE_SHOP_2,Recipe,,Drag,Action,Drag,Drag,,,,CRAFT,HighColorGem_UpgradeToken_460,,,bountyhunt_boss_misc02,,,,,,,,,,,,
 11003,5,0,8,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,BOUNTY_NPC_TRADE_SHOP_3,BOUNTY_NPC_TRADE_SHOP_3,Recipe,,Drag,Action,Drag,Drag,,,,CRAFT,HighColorGem_UpgradeToken_460,,,bountyhunt_boss_misc03,,,,,,,,,,,,

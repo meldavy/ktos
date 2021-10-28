@@ -183,8 +183,9 @@ function DRAW_ETC_DESC_TOOLTIP(tooltipframe, invitem, yPos, mainframename)
 	end
 
 	-------- 확률 공개 큐브일 경우 reward_ratio_open_list.xml에서 툴팁을 불러온다
+	local Desc = ClMsg('tooltip_reward_ratio_open_list')
 	if false == customSet and (TryGetProp(invitem, "GroupName", "None") == "Cube" or TryGetProp(invitem, "GroupName", "None") == "Premium" or TryGetProp(invitem, "GroupName", "None") == "Misc" or TryGetProp(invitem, "GroupName", "None") == "Drug") then
-		local Desc = ClMsg('tooltip_reward_ratio_open_list')
+
 		local cls_list, cls_cnt = GetClassList("reward_ratio_open_list")
         local TableGroup = TryGetProp(invitem, 'StringArg', 'None')
   		local Tablelist = {}
@@ -240,17 +241,22 @@ function DRAW_ETC_DESC_TOOLTIP(tooltipframe, invitem, yPos, mainframename)
 			Desc = ScpArgMsg("tooltip_reward_ratio_open_list_sklgem", "COUNT", count)
 		end
 
-		descRichtext:SetText(Desc)
-
 	elseif false == customSet then
-		descRichtext:SetText(invitem.Desc);
+		Desc = invitem.Desc		
 	end
+
+	Desc = DRAW_COLLECTION_INFO(invitem, Desc)
+	
+	descRichtext:SetText(Desc)
 
 	tolua.cast(CSet, "ui::CControlSet");
 	local BOTTOM_MARGIN = CSet:GetUserConfig("BOTTOM_MARGIN"); -- 맨 아랫쪽 여백
 	CSet:Resize(CSet:GetWidth(), descRichtext:GetHeight() + BOTTOM_MARGIN);
 	gBox:Resize(gBox:GetWidth(),gBox:GetHeight()+CSet:GetHeight())
-	return CSet:GetHeight() + CSet:GetY();
+
+	yPos = CSet:GetHeight() + CSet:GetY();
+
+	return yPos
 
 end
 

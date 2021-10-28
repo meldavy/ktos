@@ -1755,3 +1755,71 @@ end
 function LuchadorComboClientScp_LEAVE(actor, obj, buff)
     actor:SetAuraInfo("None");
 end
+
+function OOBE_Possession_Buff_LEAVE(actor, obj, buff)
+    -- actor:GetAnimation():ResetAnim();
+    -- actor:GetAnimation():PlayFixAnim('SKL_OOBE_READY', 1.8, 0);
+    local maleVoice = "voice_cleric_m_possession_shot"
+    local femaleVoice = "voice_cleric_f_possession_shot"
+    C_VOICE_SOUND(actor, obj, maleVoice, femaleVoice)
+end
+
+function OOBE_Prakriti_Buff_ENTER(actor, obj, buff)
+
+end
+
+function OOBE_Prakriti_Buff_LEAVE(actor, obj, buff)
+    -- actor:GetAnimation():ResetAnim();
+    -- actor:GetAnimation():PlayFixAnim('SKL_OOBE_READY', 1.8, 0);
+    local maleVoice = "voice_cleric_m_prakriti_shot"
+    local femaleVoice = "voice_cleric_f_prakriti_shot"
+    C_VOICE_SOUND(actor, obj, maleVoice, femaleVoice)
+end
+
+function OOBE_Anila_Buff_ENTER(actor, obj, buff)
+
+end
+
+function OOBE_Anila_Buff_LEAVE(actor, obj, buff)
+    -- actor:GetAnimation():ResetAnim();
+    -- actor:GetAnimation():PlayFixAnim('SKL_OOBE_READY', 1.8, 0);
+    local maleVoice = "voice_cleric_m_anila_shot"
+    local femaleVoice = "voice_cleric_f_anila_shot"
+    C_VOICE_SOUND(actor, obj, maleVoice, femaleVoice)
+end
+
+function OOBE_Tanoti_Buff_ENTER(actor, obj, buff)
+
+end
+
+function OOBE_Tanoti_Buff_LEAVE(actor, obj, buff)
+    -- actor:GetAnimation():ResetAnim();
+    -- actor:GetAnimation():PlayFixAnim('SKL_OOBE_READY', 1.8, 0);
+    local maleVoice = "voice_cleric_m_tanoti_shot"
+    local femaleVoice = "voice_cleric_f_tanoti_shot"
+    C_VOICE_SOUND(actor, obj, maleVoice, femaleVoice)
+end
+
+function OOBE_Patati_Buff_ENTER(actor, obj, buff)
+
+end
+
+function OOBE_Patati_Buff_LEAVE(actor, obj, buff)
+    -- actor:GetAnimation():ResetAnim();
+    -- actor:GetAnimation():PlayFixAnim('SKL_OOBE_READY', 1.8, 0);
+    local maleVoice = "voice_cleric_m_patati_shot"
+    local femaleVoice = "voice_cleric_f_patati_shot"
+    C_VOICE_SOUND(actor, obj, maleVoice, femaleVoice)
+end
+
+function OOBE_Moksha_Buff_ENTER(actor, obj, buff)
+
+end
+
+function OOBE_Moksha_Buff_LEAVE(actor, obj, buff)
+    -- actor:GetAnimation():ResetAnim();
+    -- actor:GetAnimation():PlayFixAnim('SKL_OOBE_READY', 1.8, 0);
+    local maleVoice = "voice_cleric_m_moksha_shot"
+    local femaleVoice = "voice_cleric_f_moksha_shot"
+    C_VOICE_SOUND(actor, obj, maleVoice, femaleVoice)
+end

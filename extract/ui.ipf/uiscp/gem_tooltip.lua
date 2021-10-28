@@ -170,7 +170,11 @@ function DRAW_GEM_DESC_TOOLTIP(tooltipframe, invitem, yPos, mainframename)
 	local CSet = gBox:CreateOrGetControlSet('tooltip_gem_desc', 'tooltip_gem_desc', 0, yPos);
 	local descRichtext= GET_CHILD(CSet,'desc_text','ui::CRichText')
 
-	descRichtext:SetText(invitem.Desc)
+	local desc = invitem.Desc
+
+	desc = DRAW_COLLECTION_INFO(invitem, desc)
+
+	descRichtext:SetText(desc)
 
 	tolua.cast(CSet, "ui::CControlSet");
 	local BOTTOM_MARGIN = CSet:GetUserConfig("BOTTOM_MARGIN"); -- 맨 아랫쪽 여백

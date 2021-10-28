@@ -79,6 +79,7 @@
 		<MainSkl ScrLock="None" JumpFlee="NO" MSPDToUsePos="0">
 			<HitList>
 				<Frame Type="SQUARE" Time="0" HitCount="1" TermMin="0" TermMax="0" PosType="0" Dist="0" RandDist="0" RandomPerHit="0" Angle="0" Width="35" Length="120" SklAngle="0.17453292" AniTime="200" RotAngle="0" ForceATK="1"/>
+				<Frame Type="SQUARE" Time="100" HitCount="1" TermMin="0" TermMax="0" PosType="0" Dist="0" RandDist="0" RandomPerHit="0" Angle="0" Width="35" Length="120" SklAngle="0.17453292" AniTime="200" RotAngle="0" ForceATK="1"/>
 			</HitList>
 			<EtcList>
 				<Scp Client="NO" Scp="SKL_SET_IMMUNE_STATE" Time="0" UseSleep="NO">
@@ -94,7 +95,7 @@
 					<Num Num="1" UseFunc="1" FuncTxt="
 return obj.Level;"/>
 					<Num Num="0"/>
-					<Num Num="15000"/>
+					<Num Num="30000"/>
 					<Num Num="1"/>
 					<Num Num="100"/>
 					<Num Num="0"/>
@@ -156,6 +157,7 @@ return obj.Level;"/>
 		<MainSkl JumpFlee="NO" MSPDToUsePos="0" ScrLock="None">
 			<HitList>
 				<Frame Angle="0" AniTime="250" Dist="0" ForceATK="0" HitCount="1" Length="150" PosType="0" RandDist="0" RandomPerHit="0" RotAngle="0" SklAngle="0.17453292" TermMax="0" TermMin="0" Time="50" Type="SQUARE" Width="25"/>
+				<Frame Angle="0" AniTime="250" Dist="0" ForceATK="0" HitCount="1" Length="150" PosType="0" RandDist="0" RandomPerHit="0" RotAngle="0" SklAngle="0.17453292" TermMax="0" TermMin="0" Time="200" Type="SQUARE" Width="25"/>
 			</HitList>
 			<EtcList>
 				<Scp Client="NO" Scp="SKL_SET_IMMUNE_STATE" Time="0" UseSleep="NO">
@@ -650,7 +652,7 @@ return obj.Level;"/>
 					<Num Num="0"/>
 					<Str Str="None"/>
 				</Scp>
-				<Scp Scp="SKL_SET_TARGET_SQUARE" Client="NO" UseSleep="NO" Time="200" LoopTime="300">
+				<Scp Scp="SKL_SET_TARGET_SQUARE" Client="NO" UseSleep="NO" Time="200" LoopTime="110">
 					<Pos Angle="0" Dist="0"/>
 					<Num Num="0"/>
 					<Num Num="250"/>
@@ -662,7 +664,7 @@ return obj.Level;"/>
                 	return value"/>
 					<Num Num="2"/>
 				</Scp>
-				<Scp Scp="SKL_TGT_KNOCKDOWN" Client="NO" UseSleep="NO" Time="201" LoopTime="500">
+				<Scp Scp="SKL_TGT_KNOCKDOWN" Client="NO" UseSleep="NO" Time="201" LoopTime="250">
 					<Num Num="4"/>
 					<Num Num="2"/>
 					<Num Num="80"/>
@@ -671,13 +673,13 @@ return obj.Level;"/>
 					<Num Num="1"/>
 					<Num Num="5"/>
 				</Scp>
-				<Scp Scp="SKL_TGT_DMG" Client="NO" UseSleep="NO" Time="201" LoopTime="300">
+				<Scp Scp="SKL_TGT_DMG" Client="NO" UseSleep="NO" Time="201" LoopTime="110">
 					<Num Num="1"/>
 				</Scp>
-				<Scp Scp="SKL_CONSUME_SP" Client="NO" UseSleep="NO" Time="800" LoopTime="1000">
+				<Scp Scp="SKL_CONSUME_SP" Client="NO" UseSleep="NO" Time="800" LoopTime="500">
 					<Num Num="4" UseFunc="1" FuncTxt="local value = 42 local lv = self.Lv local bylvCorrect = lv - 300 if bylvCorrect &lt; 0 then     bylvCorrect = bylvCorrect * 2.75 / 1000 elseif bylvCorrect >= 0 then     bylvCorrect = bylvCorrect * 1.25 / 1000 end value = value * (1 + bylvCorrect) return math.floor(value)"/>
 				</Scp>
-				<Scp Scp="SKL_CHECK_CHARGETIME" Client="NO" UseSleep="NO" Time="800" LoopTime="500">
+				<Scp Scp="SKL_CHECK_CHARGETIME" Client="NO" UseSleep="NO" Time="800" LoopTime="250">
 					<Num Num="1"/>
 					<Num Num="1"/>
 				</Scp>

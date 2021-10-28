@@ -3692,3 +3692,53 @@ function UQ_GET_JOB_SETTING_JOB(JobClassName) -- job_unlockquest.xml에서 cls�
         return nil;
     end
 end
+
+_collection_item_list = nil;
+_collection_list_by_item = nil
+function make_collection_item_list()
+	if _collection_item_list == nil then
+        _collection_item_list = {};
+        _collection_list_by_item = {}
+	end
+
+	local list, cnt = GetClassList("Collection");
+	for i = 0, cnt - 1 do
+		local cls = GetClassByIndexFromList(list, i);
+		if cls ~= nil then
+			if TryGetProp(cls, "Journal", "FALSE") == "TRUE" then
+				for j = 1, 9 do
+					local prop_name = "ItemName_"..tostring(j);
+					local name = TryGetProp(cls, prop_name, "None");
+					local collection_name = TryGetProp(cls, 'Name', 'None')
+					if name ~= "None" then
+						_collection_item_list[name] = 1;
+						if _collection_list_by_item[name] == nil then
+							_collection_list_by_item[name] = {}
+						end
+
+						_collection_list_by_item[name][collection_name] = 1
+					end
+				end
+			end
+		end
+	end
+end
+
+make_collection_item_list()
+
+function is_collection_item(class_name)
+	if _collection_item_list == nil then
+		make_collection_item_list();
+	end
+
+	if _collection_item_list[class_name] == nil then return false;
+	else return true; end
+end
+
+function get_collection_name_by_item(item_name)
+    if _collection_item_list == nil then
+		make_collection_item_list();
+    end
+    
+    return _collection_list_by_item[item_name]
+end

@@ -1328,6 +1328,8 @@ function DRAW_EQUIP_DESC(tooltipframe, invitem, yPos, mainframename)
 
 	local desc = GET_ITEM_TOOLTIP_DESC(invitem);
 	
+	desc = DRAW_COLLECTION_INFO(invitem, desc)
+
 	if desc == "" or desc == " " then -- 일단 그릴 설명이 있는지 검사. 없으면 컨트롤 셋 자체를 안만듬
 		return yPos
 	end
@@ -2109,6 +2111,25 @@ function DRAW_AVAILABLE_PROPERTY(tooltipframe, invitem, yPos,mainframename)
 
 	gBox:Resize(gBox:GetWidth(),gBox:GetHeight() + tooltip_available_property_CSet:GetHeight())
 	return tooltip_available_property_CSet:GetHeight() + tooltip_available_property_CSet:GetY();
+end
+
+function DRAW_COLLECTION_INFO(invitem, desc)
+	local item_name = TryGetProp(invitem, 'ClassName', 'None')
+
+	if is_collection_item(item_name) == false then
+		return desc
+	end
+
+	local text = '{@st41b}{#00ee00}'	
+	local col_list = get_collection_name_by_item(item_name)
+
+	for k, v in pairs(col_list) do
+		text = text .. k .. '{nl}'
+	end
+
+	desc = desc .. '{nl} {nl}' .. text
+
+	return desc
 end
 
 function DRAW_EQUIP_TRADABILITY(tooltipframe, invitem, yPos, mainframename)

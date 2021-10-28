@@ -52,8 +52,8 @@ ClassID,Value,ClassName,Desc,UseInScript
 193,6,MAX_RANDOM_OPTION_COUNT,아이템 재감정에서 최대 보여지는 옵션 개수,YES
 194,6,JUNK_SILVER_GACHA_BUY_COUNT_RESET_HOUR,일일 젬 가챠 누적 횟수가 초기화되는 시간,YES
 195,1,LEGEND_CARD_SLOT_COUNT,레전드 카드 슬롯수,YES
-196,2000,CONSUME_SILVER_WHEN_UNEQUIP_MONSTER_CARD,일반 몬스터카드 뺄때 등급 떨어지지않으려면 별당 소모되는 실버,YES
-197,10000,CONSUME_SILVER_WHEN_UNEQUIP_LEGEND_CARD,전설 몬스터카드 뺄때 등급 떨어지지않으려면 별당 소모되는 실버,YES
+196,400,CONSUME_SILVER_WHEN_UNEQUIP_MONSTER_CARD,일반 몬스터카드 뺄때 등급 떨어지지않으려면 별당 소모되는 실버,YES
+197,2000,CONSUME_SILVER_WHEN_UNEQUIP_LEGEND_CARD,전설 몬스터카드 뺄때 등급 떨어지지않으려면 별당 소모되는 실버,YES
 198,6,MAX_OPTION_EXTRACT_COUNT,아이템 옵션 추출 UI 에서 보여지는 최대 옵션 개수,YES
 199,5,MAX_RECIPE_MATERIAL_COUNT,제작서 제작 재료 최대 개수,YES
 200,1,GODDESS_CARD_SLOT_COUNT,여신카드 카드 슬롯수,YES

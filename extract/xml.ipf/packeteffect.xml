@@ -430,7 +430,22 @@
         <Effect Name="F_spread_in030_ice4"/>
         <Effect Name="F_explosion98_rize_4"/>
         <Effect Name="master_Luchador"/>
-    </Category>
+        <Effect Name="Keraunos_Electrode_Effect_Pad"/>
+        <Effect Name="I_force095_trail_slash6"/>
+        <Effect Name="E_warrior_f_BubbleStick"/>
+        <Effect Name="E_warrior_Embowel_shot"/>
+        <Effect Name="E_soul"/>
+        <Effect Name="E_PC_wateringcan"/>
+        <Effect Name="E_PC_snowflower"/>
+        <Effect Name="E_cleric_rada_ground"/>
+        <Effect Name="F_cleric_rada_ground_red"/>
+        <Effect Name="E_cleric_rada_ground_red"/>
+        <Effect Name="E_cleric_resurrection_ground_red"/>
+    <Effect Name="F_cleric_patati_explosion"/>
+		<Effect Name="skl_eff_yuchae_start_2"/>
+		<Effect Name="skl_eff_yuchae_end_2"/>
+        <Effect Name="master_Sadhu_re"/>
+	</Category>
     <Category ID="132">
         <Effect Name="I_arrow005_mash2_red#Dummy_back_arrow04"/>
         <Effect Name="EVENT_2004_UPHILL_MISSION"/>
@@ -536,6 +551,18 @@
         <Effect Name="F_ground160_poison"/>
         <Effect Name="Archer_JincanGu_Vibora"/>
         <Effect Name="I_archer_wugu2_force_mash"/>
+        <Effect Name="F_pattern025_loop"/>
+        <Effect Name="I_wave002_mesh"/>
+        <Effect Name="Sadhu_Anila_Effect_Pad"/>
+        <Effect Name="I_wave002_mesh_red"/>
+        <Effect Name="Sadhu_Anila_Vibora_Effect_Pad"/>
+        <Effect Name="F_wizard_maze_cast_ground"/>
+        <Effect Name="F_ground177_blue"/>
+        <Effect Name="F_buff_basic010_mint"/>
+        <Effect Name="F_burstup047_mint"/>
+        <Effect Name="F_explosion086_mint"/>
+        <Effect Name="F_spread_in014_circle_mint"/>
+        <Effect Name="F_spread_out026_mint"/>
     </Category>
     <Category ID="70">
         <Effect Name="EVENT_2001_NEWYEAR_INIT_PAD"/>
@@ -7959,6 +7986,9 @@
         <Effect Name="F_smoke021_green2"/>
         <Effect Name="skl12_spear"/>
         <Effect Name="I_stone005_explosion_mash_force_dark_loop##0.3"/>
+        <Effect Name="Sadhu_Prakriti_Pad"/>
+        <Effect Name="Sadhu_Moksha_Pad"/>
+        <Effect Name="F_smoke125"/>
     </Category>
     <Category ID="27">
         <Effect Name="SAPPER_TRAP_Sapper_BroomTrap"/>

@@ -178,7 +178,7 @@ function GUILDMEMBER_LIST_GET()
     end
 end
 
-function ON_PLAYER_MEMBER_TITLE_GET(code, ret_json)
+function ON_PLAYER_MEMBER_TITLE_GET(code, ret_json)    
     if ret_json == "\"null\"" or ret_json == "" then
         return
     end
@@ -527,6 +527,8 @@ function GUILDMEMBER_LIST_CREATE(frame, page)
     local edit = GET_CHILD_RECURSIVELY(frame, "memberSearch");
     local cap = edit:GetText();
 
+    local call_count = 0
+
     for i = 0, count - 1 do
         local partyMemberInfo = list:Element(i)
         if partyMemberInfo:GetAID() ~= guild.info:GetLeaderAID() then
@@ -571,7 +573,8 @@ function GUILDMEMBER_LIST_CREATE(frame, page)
                 if aidx_claimIDTable[tostring(partyMemberInfo:GetAID())] ~= nil then
                     memberTitleList:SelectItemByKey(aidx_claimIDTable[tostring(partyMemberInfo:GetAID())])
                 else
-                    GetPlayerMemberTitle("ON_PLAYER_MEMBER_TITLE_GET", partyMemberInfo:GetAID())
+                    call_count = call_count + 1
+                    ReserveScript('GET_PLAYER_MEMBER_TITLE(\"' .. partyMemberInfo:GetAID() .. "\")", call_count * 0.15)                     
                 end     
             end       
         end
@@ -583,6 +586,10 @@ function GUILDMEMBER_LIST_CREATE(frame, page)
         curPage = curPage + 1
         GUILDMEMBER_LIST_CREATE(frame, curPage)
     end
+end
+
+function GET_PLAYER_MEMBER_TITLE(aid)
+    GetPlayerMemberTitle("ON_PLAYER_MEMBER_TITLE_GET", aid)
 end
 
 function GUILDMEMBER_LIST_GET_SCROLL(parent, ctrl)

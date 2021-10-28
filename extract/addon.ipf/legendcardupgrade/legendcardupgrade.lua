@@ -238,6 +238,13 @@ function LEGENDCARD_MATERIAL_SET_SLOT(slot, invItem)
 		ui.SysMsg(ClMsg("WrongDropItem")); -- 기간이 만료된 아이템이거나 등록할 수 없는 아이템입니다.
 		return
 	end
+		
+	if TryGetProp(obj, "ClassName", "None") == "Goddess_card_Reinforce" and TryGetProp(legendSlotItemIES, "ClassName", "None") == "Goddess_card_Reinforce" then
+		if obj.Level > legendSlotItemIES.Level then
+			ui.SysMsg(ClMsg("DontUseCardLevelOver"));
+			return
+		end
+	end
 
 	local cls = LEGENDCARD_GET_REINFORCE_CLASS(legendCardLv,obj.Reinforce_Type,namespace)
 	LEGENDCARD_SET_MATERIAL_ITEM(frame,cls,obj)
@@ -382,6 +389,17 @@ function DO_LEGENDCARD_UPGRADE_LBTNUP(frame, slot, argStr, argNum)
 	local levelWarning = false
 	if legendCardLv < materialCardLvMax then
 		levelWarning = true;
+		if TryGetProp(legendCardObj, "ClassName", "None") == "Goddess_card_Reinforce" then
+			for i = 1, #materialCardObjList do
+				if TryGetProp(materialCardObjList[i], "ClassName", "None") == "Goddess_card_Reinforce" then
+					local materialCardLv = GET_ITEM_LEVEL(materialCardObjList[i])
+					if materialCardLv > legendCardLv then
+						ui.SysMsg(ClMsg("DontUseCardLevelOver"));
+						return
+					end
+				end
+			end
+		end
 	end
 
 	local namespace = LEGENDCARD_REINFORCE_GET_MAIN_CARD_NAMESPACE(legendCardObj)

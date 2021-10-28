@@ -560,6 +560,10 @@
 		<image name="icon_cler_SadhuSoul" file="\icon\skill\cleric\icon_cler_SadhuSoul.png" imgrect="0 0 128 128" CMM_Caption="사두 영혼"/>
 		<image name="icon_healingwave_buff" file="\icon\skill\cleric\icon_healingwave_buff.png" imgrect="0 0 128 128" CMM_Caption="아크 치유의 물결"/>
 		<image name="icon_cler_GrandCross" file="\icon\skill\cleric\icon_cler_GrandCross.png" imgrect="0 0 128 128" CMM_Caption="그랜드 크로스"/>
+		<image name="icon_cler_Tanoti" file="\icon\skill\cleric\icon_cler_Tanoti.png" imgrect="0 0 128 128" CMM_Caption="타노티"/>
+		<image name="icon_cler_Moksha" file="\icon\skill\cleric\icon_cler_Moksha.png" imgrect="0 0 128 128" CMM_Caption="모크샤"/>
+		<image name="icon_cler_Anila" file="\icon\skill\cleric\icon_cler_Anila.png" imgrect="0 0 128 128" CMM_Caption="에니라"/>
+		<image name="icon_cler_Patati" file="\icon\skill\cleric\icon_cler_Patati.png" imgrect="0 0 128 128" CMM_Caption="파타티"/>
 	</imagelist>
 	<imagelist category="warrior_skillicon">
 		<image name="icon_warri_thrust" file="\icon\skill\warrior\icon_warri_thrust.png" imgrect="0 0 128 128" CMM_Caption="쓰러스트"/>
@@ -3181,6 +3185,20 @@
 		<image name="ability_cleric_Exorcist28" file="\icon\icon_ability_cleric08.tga" imgrect="768 640 128 128" CMM_Caption="그랜드 크로스 : 강화"/>
 		<image name="ability_cleric_Exorcist29" file="\icon\icon_ability_cleric08.tga" imgrect="896 640 128 128" CMM_Caption="그랜드 크로스 : 상급 강화"/>
 		<image name="ability_cleric_chaplain30" file="\icon\icon_ability_cleric08.tga" imgrect="0 768 128 128" CMM_Caption="채플린: 추가 대미지"/>
+		<image name="ability_cleric_Sadhu36" file="\icon\icon_ability_cleric08.tga" imgrect="128 768 128 128" CMM_Caption="에니라: 강화"/>
+		<image name="ability_cleric_Sadhu41" file="\icon\icon_ability_cleric08.tga" imgrect="256 768 128 128" CMM_Caption="에니라: 상급 강화"/>
+		<image name="ability_cleric_Sadhu37" file="\icon\icon_ability_cleric08.tga" imgrect="384 768 128 128" CMM_Caption="타노티: 강화"/>
+		<image name="ability_cleric_Sadhu42" file="\icon\icon_ability_cleric08.tga" imgrect="512 768 128 128" CMM_Caption="타노티: 상급 강화"/>
+		<image name="ability_cleric_Sadhu38" file="\icon\icon_ability_cleric08.tga" imgrect="640 768 128 128" CMM_Caption="파타티: 강화"/>
+		<image name="ability_cleric_Sadhu43" file="\icon\icon_ability_cleric08.tga" imgrect="768 768 128 128" CMM_Caption="파타티: 상급 강화"/>
+		<image name="ability_cleric_Sadhu39" file="\icon\icon_ability_cleric08.tga" imgrect="896 768 128 128" CMM_Caption="모크샤: 강화"/>
+		<image name="ability_cleric_Sadhu44" file="\icon\icon_ability_cleric08.tga" imgrect="0 896 128 128" CMM_Caption="모크샤: 상급 강화"/>
+		<image name="ability_cleric_Sadhu40" file="\icon\icon_ability_cleric08.tga" imgrect="128 896 128 128" CMM_Caption="프라크리티: 강화"/>
+		<image name="ability_cleric_Sadhu45" file="\icon\icon_ability_cleric08.tga" imgrect="256 896 128 128" CMM_Caption="프라크리티: 상급 강화"/>
+		<image name="ability_cleric_Sadhu35" file="\icon\icon_ability_cleric08.tga" imgrect="384 896 128 128" CMM_Caption="유체 숙련: 떠도는 유체"/>
+		<image name="ability_cleric_Sadhu46" file="\icon\icon_ability_cleric08.tga" imgrect="512 896 128 128" CMM_Caption="프라크리티: 고행"/>
+		<image name="ability_cleric_Zealot17" file="\icon\icon_ability_cleric08.tga" imgrect="640 896 128 128" CMM_Caption="블라인드 페이쓰: 강화"/>
+		<image name="ability_cleric_Zealot18" file="\icon\icon_ability_cleric08.tga" imgrect="768 896 128 128" CMM_Caption="블라인드 페이쓰: 상급 강화"/>
 	</imagelist>
 	<imagelist category="abilityicon_common">
 		<image name="ability_common_DaggerMastery" file="\icon\icon_ability_common.tga" imgrect="0 0 128 128" CMM_Caption="단검 마스터리"/>

@@ -2,6 +2,14 @@
 <!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by imc (imc) -->
 <ToolSkill>
 	<Skill Name="TosRangerFormChange_RedM">
+		<EnableScripts>
+			<ToolScp Scp="SKL_CHECK_BY_SCRIPT" Client="NO" UseSleep="NO">
+				<Str Str="SCR_SKL_CHECK_TRANSFORM"/>
+			</ToolScp>
+			<ToolScp Scp="SKL_CHECK_BY_SCRIPT_C" Client="YES" UseSleep="NO">
+				<Str Str="SCR_SKL_CHECK_TRANSFORM_C"/>
+			</ToolScp>
+		</EnableScripts>
 		<MainSkl JumpFlee="NO" MSPDToUsePos="0" ScrLock="None">
 			<HitList>
 				<Frame Angle="0" AniTime="99999" Dist="0" ForceATK="0" HitCount="1" Length="30" PosType="0" RandDist="0" RandomPerHit="0" RotAngle="0" SklAngle="0.17453292" TermMax="0" TermMin="0" Time="99799" Type="FAN" Width="30"/>
@@ -40,6 +48,14 @@
 		</MainSkl>
 	</Skill>
 	<Skill Name="TosRangerFormChange_RedF">
+		<EnableScripts>
+			<ToolScp Scp="SKL_CHECK_BY_SCRIPT" Client="NO" UseSleep="NO">
+				<Str Str="SCR_SKL_CHECK_TRANSFORM"/>
+			</ToolScp>
+			<ToolScp Scp="SKL_CHECK_BY_SCRIPT_C" Client="YES" UseSleep="NO">
+				<Str Str="SCR_SKL_CHECK_TRANSFORM_C"/>
+			</ToolScp>
+		</EnableScripts>
 		<MainSkl JumpFlee="NO" MSPDToUsePos="0" ScrLock="None">
 			<HitList>
 				<Frame Angle="0" AniTime="99999" Dist="0" ForceATK="0" HitCount="1" Length="30" PosType="0" RandDist="0" RandomPerHit="0" RotAngle="0" SklAngle="0.17453292" TermMax="0" TermMin="0" Time="99799" Type="FAN" Width="30"/>
@@ -78,6 +94,14 @@
 		</MainSkl>
 	</Skill>
 	<Skill Name="TosRangerFormChange_Pink">
+		<EnableScripts>
+			<ToolScp Scp="SKL_CHECK_BY_SCRIPT" Client="NO" UseSleep="NO">
+				<Str Str="SCR_SKL_CHECK_TRANSFORM"/>
+			</ToolScp>
+			<ToolScp Scp="SKL_CHECK_BY_SCRIPT_C" Client="YES" UseSleep="NO">
+				<Str Str="SCR_SKL_CHECK_TRANSFORM_C"/>
+			</ToolScp>
+		</EnableScripts>
 		<MainSkl JumpFlee="NO" MSPDToUsePos="0" ScrLock="None">
 			<HitList>
 				<Frame Angle="0" AniTime="99999" Dist="0" ForceATK="0" HitCount="1" Length="30" PosType="0" RandDist="0" RandomPerHit="0" RotAngle="0" SklAngle="0.17453292" TermMax="0" TermMin="0" Time="99799" Type="FAN" Width="30"/>
@@ -116,6 +140,14 @@
 		</MainSkl>
 	</Skill>
 	<Skill Name="TosRangerFormChange_Blue">
+		<EnableScripts>
+			<ToolScp Scp="SKL_CHECK_BY_SCRIPT" Client="NO" UseSleep="NO">
+				<Str Str="SCR_SKL_CHECK_TRANSFORM"/>
+			</ToolScp>
+			<ToolScp Scp="SKL_CHECK_BY_SCRIPT_C" Client="YES" UseSleep="NO">
+				<Str Str="SCR_SKL_CHECK_TRANSFORM_C"/>
+			</ToolScp>
+		</EnableScripts>
 		<MainSkl JumpFlee="NO" MSPDToUsePos="0" ScrLock="None">
 			<HitList>
 				<Frame Angle="0" AniTime="99999" Dist="0" ForceATK="0" HitCount="1" Length="30" PosType="0" RandDist="0" RandomPerHit="0" RotAngle="0" SklAngle="0.17453292" TermMax="0" TermMin="0" Time="99799" Type="FAN" Width="30"/>
@@ -154,6 +186,14 @@
 		</MainSkl>
 	</Skill>
 	<Skill Name="TosRangerFormChange_Yellow">
+		<EnableScripts>
+			<ToolScp Scp="SKL_CHECK_BY_SCRIPT" Client="NO" UseSleep="NO">
+				<Str Str="SCR_SKL_CHECK_TRANSFORM"/>
+			</ToolScp>
+			<ToolScp Scp="SKL_CHECK_BY_SCRIPT_C" Client="YES" UseSleep="NO">
+				<Str Str="SCR_SKL_CHECK_TRANSFORM_C"/>
+			</ToolScp>
+		</EnableScripts>
 		<MainSkl JumpFlee="NO" MSPDToUsePos="0" ScrLock="None">
 			<HitList>
 				<Frame Angle="0" AniTime="99999" Dist="0" ForceATK="0" HitCount="1" Length="30" PosType="0" RandDist="0" RandomPerHit="0" RotAngle="0" SklAngle="0.17453292" TermMax="0" TermMin="0" Time="99799" Type="FAN" Width="30"/>
@@ -192,6 +232,14 @@
 		</MainSkl>
 	</Skill>
 	<Skill Name="TosRangerFormChange_Green">
+		<EnableScripts>
+			<ToolScp Scp="SKL_CHECK_BY_SCRIPT" Client="NO" UseSleep="NO">
+				<Str Str="SCR_SKL_CHECK_TRANSFORM"/>
+			</ToolScp>
+			<ToolScp Scp="SKL_CHECK_BY_SCRIPT_C" Client="YES" UseSleep="NO">
+				<Str Str="SCR_SKL_CHECK_TRANSFORM_C"/>
+			</ToolScp>
+		</EnableScripts>
 		<MainSkl JumpFlee="NO" MSPDToUsePos="0" ScrLock="None">
 			<HitList>
 				<Frame Angle="0" AniTime="99999" Dist="0" ForceATK="0" HitCount="1" Length="30" PosType="0" RandDist="0" RandomPerHit="0" RotAngle="0" SklAngle="0.17453292" TermMax="0" TermMin="0" Time="99799" Type="FAN" Width="30"/>

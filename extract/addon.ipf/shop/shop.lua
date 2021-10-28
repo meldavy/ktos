@@ -287,6 +287,11 @@ function SHOP_BUTTON_SELL(frame, slot, argStr, argNum)
 end
 
 function IS_SHOP_SELL(invitem, maxStack, frame)
+	local reputationShopFrame = ui.GetFrame("reputation_shop");
+	if reputationShopFrame:IsVisible() == 1 then
+		return 0;
+	end
+	
 	if frame == nil then
 		frame = ui.GetFrame('shop');
 	end

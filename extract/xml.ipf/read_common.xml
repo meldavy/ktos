@@ -355,4 +355,5 @@
 	<ReadXml Name="screen_effect_list"/>
 	<ReadXml Name="relic_gem_table"/>
 	<ReadXml Name="contents_alert_table"/>
+	<ReadXml Name="tpitemCustomResetTime"/>
 </Category>

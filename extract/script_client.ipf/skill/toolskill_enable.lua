@@ -687,6 +687,14 @@ function SCR_SKL_CHECK_BATTLESTATE_C(actor, skl)
     return 0;
 end
 
+function SCR_SADHU_USESKILL_BUFF_C(actor, skl, buffName)
+    if actor:GetBuff():GetBuff("OOBE_Soulmaster_Buff") == nil and actor:GetBuff():GetBuff("OOBE_Soulmaster_Sadhu35_Buff") == nil then
+        return 0;
+    end
+
+    return 1;
+end
+
 function SCR_SKL_CHECK_BATTLESTATE_AND_MOVING_C(actor, skl)
     local pc = GetMyPCObject()
     if IsBattleState(pc) == 0 and control.IsMoving(false) == 0 then
@@ -703,4 +711,13 @@ function SCR_CHECK_MAINCARD_SUMMON_STATE_C(actor, skl)
     end
 
     return 0
+end
+
+function SCR_SKL_CHECK_TRANSFORM_C(actor, skl)
+    local pc = GetMyPCObject()
+    if GetExProp(pc, "Transform_Half_Lycan") == 0 then
+        return 1;
+    end
+
+    return 0;
 end

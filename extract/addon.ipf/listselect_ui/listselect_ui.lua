@@ -56,6 +56,7 @@ function ATTENDANCE_LIST_CHECK(frame)
 		scrollbar = true;
 	end
 
+	local ctrlIdx = 1
 	for i = 1, curcnt do
 		local attendancestr = curlist[i];
 		local strlist = StringSplit(attendancestr, ";");
@@ -63,8 +64,8 @@ function ATTENDANCE_LIST_CHECK(frame)
 		local classname = strlist[2];
 
 		local attendanceData = session.attendance.GetAttendanceData(classid);
-		if attendanceData ~= nil then
-			local ctrlset = list:CreateOrGetControlSet("listselect", "listselect_"..classid, 0, (i - 1)*height);
+		if attendanceData ~= nil and CHECK_ATTENDANCE_VALID(classid) == true then
+			local ctrlset = list:CreateOrGetControlSet("listselect", "listselect_"..classid, 0, (ctrlIdx - 1)*height);
 			AUTO_CAST(ctrlset)
 			if scrollbar == true then
 				ctrlset:Resize(ctrlset:GetUserConfig("SCROLL_BAR_TRUE_WIDTH"), ctrlset:GetHeight());
@@ -73,6 +74,7 @@ function ATTENDANCE_LIST_CHECK(frame)
 			end
 
 			ATTENDANCE_CTRLSET(list, ctrlset, classid, classname);
+			ctrlIdx = ctrlIdx + 1
 		end
 
 	end
@@ -134,5 +136,25 @@ function ATTENDANCE_CTRLSET(list, classCtrl, AttendanceID, AttendanceName)
 	else
 		addBtn:SetSkinName('test_red_button');
 	end
+end
 
+function CHECK_ATTENDANCE_VALID(AttendanceID)
+	local LastRewardData = session.attendance.GetLastRewardData(AttendanceID);
+	if LastRewardData ~= nil then
+		local attendanceData = session.attendance.GetAttendanceData(AttendanceID);				
+		local attendanceCls = GetClassByType('TPEventAttendance', AttendanceID);
+		local todayDayOffset;
+		if attendanceCls.AttendancePass == 'YES' then
+			return true
+		else
+			todayDayOffset = LastRewardData.dayOffset + 1;
+		end
+		
+		local attendanceClassData = session.attendance.GetAttendanceClassData(AttendanceID, todayDayOffset);
+		if attendanceClassData == nil then
+			return false
+		end
+	end
+
+	return true
 end

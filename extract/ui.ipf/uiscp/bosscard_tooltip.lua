@@ -220,10 +220,14 @@ function DRAW_BOSSCARD_ADDSTAT_TOOLTIP(tooltipframe, invitem, yPos, mainframenam
 			tempText2 = "";
 		end
 		local textDesc = string.format("%s{nl}%s{/}", tempText1, tempText2)	
+		textDesc = DRAW_COLLECTION_INFO(invitem, textDesc)
+
 		desc_text:SetTextByKey("text", textDesc);
 		CSet:Resize(CSet:GetWidth(), desc_text:GetHeight() + desc_text:GetOffsetY());
 	else
-		desc_text:SetTextByKey("text", invitem.Desc);
+		local textDesc = invitem.Desc
+		textDesc = DRAW_COLLECTION_INFO(invitem, textDesc)
+		desc_text:SetTextByKey("text", textDesc);
 		CSet:Resize(CSet:GetWidth(), desc_text:GetHeight() + desc_text:GetOffsetY());
 	end
 	

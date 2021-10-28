@@ -77,7 +77,13 @@
             <ToolScp Scp="SKL_KEY_DYNAMIC_CASTING" Client="YES" UseSleep="NO">
                 <Num Num="0"/>
                 <Num Num="0"/>
-                <Num Num="0.5"/>
+                <Num Num="0.5" UseFunc="1" FuncTxt="local value = 0.5
+local pc = GetMyPCObject()
+if GetExProp(pc, 'ITEM_VIBORA_Ema_LV4') > 0 then
+    value = 15
+end 
+
+return value"/>
                 <Num Num="0"/>
                 <Num Num="0"/>
                 <Num Num="0"/>
@@ -86,7 +92,13 @@
                 <Num Num="0"/>
                 <Num Num="0"/>
                 <Num Num="1"/>
-                <Num Num="1"/>
+                <Num Num="1" UseFunc="1" FuncTxt="local value = 1
+local pc = GetMyPCObject()
+if GetExProp(pc, 'ITEM_VIBORA_Ema_LV4') > 0 then
+    value = 0
+end 
+
+return value"/>
                 <Str_Arg Str="None" Arg="1"/>
                 <Str Str="None"/>
                 <Num Num="0"/>
@@ -95,7 +107,7 @@
                 <Num Num="1"/>
                 <Num Num="45"/>
                 <Num Num="0"/>
-                <Num Num="1"/>
+                <Num Num="0"/>
                 <Num Num="0"/>
                 <Str Str=""/>
                 <Str Str=""/>

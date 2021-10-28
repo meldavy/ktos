@@ -323,6 +323,12 @@ ClassID,ClassName,Name,UseDaily,UseWeekly
 50056,UQ_Char1_23_Unlock_Costume_6,[루차도르] 코스튬 : 업적 6,NO,NO
 50057,UQ_Char1_23_Unlock_Costume_7,[루차도르] 코스튬 : 업적 7,NO,NO
 50058,UQ_Char1_23_AllClear,[루차도르] 마스터 의뢰 완료,NO,NO
+50059,UQ_Char4_6_Unlock_Costume,[사두] Paramahamsa,NO,NO
+50060,UQ_Char4_6_Unlock_Costume_1,[사두] 코스튬 : 업적 1,NO,NO
+50061,UQ_Char4_6_Unlock_Costume_2,[사두] 코스튬 : 업적 2,NO,NO
+50062,UQ_Char4_6_Unlock_Costume_3,[사두] 코스튬 : 업적 3,NO,NO
+50063,UQ_Char4_6_Unlock_Costume_4,[사두] 코스튬 : 업적 4,NO,NO
+50064,UQ_Char4_6_Unlock_Costume_5,[사두] 코스튬 : 업적 5,NO,NO
 60000,WeeklyRankClass_1,Highlander,NO,NO
 60001,WeeklyRankClass_2,Peltasta,NO,NO
 60002,WeeklyRankClass_3,Hoplite,NO,NO

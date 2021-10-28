@@ -323,3 +323,86 @@ function SCR_ENABLE_GET_SKILL_Bulletmarker_NapalmBullet(pc, skillClsName)
 	return true;
 end
 
+function SCR_ENABLE_GET_SKILL_Sadhu_Possession(pc, skillClsName)
+	local palmstrikeSkl = nil;
+	if IsServerObj(pc) == 1 then
+		palmstrikeSkl = GetSkill(pc, 'Sadhu_Soulmaster');
+	else
+		palmstrikeSkl = session.GetSkillByName('Sadhu_Soulmaster');
+	end
+
+	if palmstrikeSkl == nil then
+		return false;
+	end
+	return true;
+end
+
+function SCR_ENABLE_GET_SKILL_Sadhu_Prakriti(pc, skillClsName)
+	local palmstrikeSkl = nil;
+	if IsServerObj(pc) == 1 then
+		palmstrikeSkl = GetSkill(pc, 'Sadhu_Soulmaster');
+	else
+		palmstrikeSkl = session.GetSkillByName('Sadhu_Soulmaster');
+	end
+
+	if palmstrikeSkl == nil then
+		return false;
+	end
+	return true;
+end
+
+function SCR_ENABLE_GET_SKILL_Sadhu_Anila(pc, skillClsName)
+	local palmstrikeSkl = nil;
+	if IsServerObj(pc) == 1 then
+		palmstrikeSkl = GetSkill(pc, 'Sadhu_Soulmaster');
+	else
+		palmstrikeSkl = session.GetSkillByName('Sadhu_Soulmaster');
+	end
+
+	if palmstrikeSkl == nil then
+		return false;
+	end
+	return true;
+end
+
+function SCR_ENABLE_GET_SKILL_Sadhu_Tanoti(pc, skillClsName)
+	local palmstrikeSkl = nil;
+	if IsServerObj(pc) == 1 then
+		palmstrikeSkl = GetSkill(pc, 'Sadhu_Soulmaster');
+	else
+		palmstrikeSkl = session.GetSkillByName('Sadhu_Soulmaster');
+	end
+
+	if palmstrikeSkl == nil then
+		return false;
+	end
+	return true;
+end
+
+function SCR_ENABLE_GET_SKILL_Sadhu_Patati(pc, skillClsName)
+	local palmstrikeSkl = nil;
+	if IsServerObj(pc) == 1 then
+		palmstrikeSkl = GetSkill(pc, 'Sadhu_Soulmaster');
+	else
+		palmstrikeSkl = session.GetSkillByName('Sadhu_Soulmaster');
+	end
+
+	if palmstrikeSkl == nil then
+		return false;
+	end
+	return true;
+end
+
+function SCR_ENABLE_GET_SKILL_Sadhu_Moksha(pc, skillClsName)
+	local palmstrikeSkl = nil;
+	if IsServerObj(pc) == 1 then
+		palmstrikeSkl = GetSkill(pc, 'Sadhu_Soulmaster');
+	else
+		palmstrikeSkl = session.GetSkillByName('Sadhu_Soulmaster');
+	end
+
+	if palmstrikeSkl == nil then
+		return false;
+	end
+	return true;
+end

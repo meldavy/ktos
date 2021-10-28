@@ -1,5 +1,6 @@
 ClassID,ClassName,TargetJob,MasterQuest,TargetClass,Is_Lock_aObj,QuestKeyward
 1,UQ_Char1_23,Char1_23,UQ_Char1_23_PRE1;UQ_Char1_23_PRE2,,,
+2,UQ_Char4_6,Char4_6,UQ_Char4_6_PRE2;,,,
 1001,UQ_Char1_23_Unlock_Job,Char1_23,UQ_Char1_23_PRE1,UQ_Char1_23,UQ_Char1_23_PRE1,
 1002,UQ_Char1_23_Unlock_Costume,Char1_23,UQ_Char1_23_PRE2,UQ_Char1_23,UQ_Char1_23_PRE2,
 1101,UQ_Char1_23_Unlock_Job_1,Char1_23,UQ_Char1_23_PRE1,UQ_Char1_23_Unlock_Job,UQ_Char1_23_PRE1,
@@ -12,3 +13,9 @@ ClassID,ClassName,TargetJob,MasterQuest,TargetClass,Is_Lock_aObj,QuestKeyward
 1203,UQ_Char1_23_Unlock_Costume_3,Char1_23,UQ_Char1_23_PRE2,UQ_Char1_23_Unlock_Costume,UQ_Char1_23_PRE2,
 1204,UQ_Char1_23_Unlock_Costume_4,Char1_23,UQ_Char1_23_PRE2,UQ_Char1_23_Unlock_Costume,UQ_Char1_23_PRE2,WEEKLY_BOSS_REWARD
 1205,UQ_Char1_23_Unlock_Costume_5,Char1_23,UQ_Char1_23_PRE2,UQ_Char1_23_Unlock_Costume,UQ_Char1_23_PRE2,
+2002,UQ_Char4_6_Unlock_Costume,Char4_6,UQ_Char4_6_PRE2,UQ_Char4_6,UQ_Char4_6_PRE2,
+2201,UQ_Char4_6_Unlock_Costume_1,Char4_6,UQ_Char4_6_PRE2,UQ_Char4_6_Unlock_Costume,UQ_Char4_6_PRE2,Fishing
+2202,UQ_Char4_6_Unlock_Costume_2,Char4_6,UQ_Char4_6_PRE2,UQ_Char4_6_Unlock_Costume,UQ_Char4_6_PRE2,Bounty_Hunt
+2203,UQ_Char4_6_Unlock_Costume_3,Char4_6,UQ_Char4_6_PRE2,UQ_Char4_6_Unlock_Costume,UQ_Char4_6_PRE2,
+2204,UQ_Char4_6_Unlock_Costume_4,Char4_6,UQ_Char4_6_PRE2,UQ_Char4_6_Unlock_Costume,UQ_Char4_6_PRE2,
+2205,UQ_Char4_6_Unlock_Costume_5,Char4_6,UQ_Char4_6_PRE2,UQ_Char4_6_Unlock_Costume,UQ_Char4_6_PRE2,TOSHero_CLEAR

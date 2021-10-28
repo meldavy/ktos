@@ -3339,6 +3339,16 @@ function SCR_ABIL_ENMASCARADO_INACTIVE(self, ability)
     RemoveBuff(self, "Enmascarado_Buff");
 end
 
+function SCR_ABIL_Sadhu35_ACTIVE(self, ability)
+    RemoveBuff(self, "OOBE_Soulmaster_Buff");
+    RemoveBuff(self, "OOBE_Soulmaster_Sadhu35_Buff");
+end
+
+function SCR_ABIL_Sadhu35_INACTIVE(self, ability)
+    RemoveBuff(self, "OOBE_Soulmaster_Buff");
+    RemoveBuff(self, "OOBE_Soulmaster_Sadhu35_Buff");
+end
+
 function SCR_ABIL_SHIELDSTRIKE_ACTIVE(self, ability)
     SetExProp(self, "IS_SHIELDSTRIKE_ABIL", 1);
     RemoveBuff(self, "HardShield_Buff");
@@ -3384,5 +3394,16 @@ function SCR_ABIL_Luchador12_INACTIVE(self, ability)
 
         InvalidateSkill(self, skill.ClassName);
         SendSkillProperty(self, skill);
+    end
+end
+
+function SCR_ABIL_Miko10_ACTIVE(self, ability)
+
+end
+
+function SCR_ABIL_Miko10_INACTIVE(self, ability)    
+    local bufflist = {'Honor_Buff', 'Wish_Buff', 'Safety_Buff', 'Healthy_Buff', 'Money_Buff', 'Omikuji_Durability_Buff', 'ITEM_VIBORA_Ema_Buff'}
+    for i = 1, #bufflist do
+        RemoveBuff(self, bufflist[i]);
     end
 end

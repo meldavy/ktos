@@ -2850,6 +2850,16 @@ function TPSHOP_ITEM_TO_BASKET_PREPROCESSOR(parent, control, tpitemname, tpitem_
 		else
 			ui.MsgBox(ScpArgMsg("SelectPurchaseRestrictedItemByWeekly","Value", obj.AccountLimitWeeklyCount, "Value2", obj.AccountLimitWeeklyCount - curBuyCount), string.format("TPSHOP_ITEM_TO_BASKET('%s', %d)", tpitemname, classid), "None");			
 		end
+	elseif limit == 'CUSTOM' then
+		local prop = TryGetProp(obj, 'AccountLimitCustomCountProperty', 'None')
+		local accObj = GetMyAccountObj(pc)
+		local curBuyCount = TryGetProp(accObj, prop, 0)
+		if curBuyCount >= obj.AccountLimitCustomCount then
+			ui.MsgBox_OneBtnScp(ScpArgMsg("PurchaseItemExceeded","Value", obj.AccountLimitCustomCount), "")
+            return false;
+		else
+			ui.MsgBox(ScpArgMsg("SelectPurchaseRestrictedItemByCustom","Value", obj.AccountLimitCustomCount, "Value2", obj.AccountLimitCustomCount - curBuyCount), string.format("TPSHOP_ITEM_TO_BASKET('%s', %d)", tpitemname, classid), "None");
+		end
 	elseif TPITEM_IS_ALREADY_PUT_INTO_BASKET(parent:GetTopParentFrame(), obj) == true then
 		ui.MsgBox(ClMsg("AleadyPutInBasketReallyBuy?"), string.format("TPSHOP_ITEM_TO_BASKET('%s', %d)", tpitemname, classid), "None");	
 	elseif TryGetProp(obj, 'ItemSocial', 'None') == 'Gesture' then
@@ -4036,6 +4046,15 @@ function TPITEM_SET_ENABLE_BY_LIMITATION(buyBtn, tpitemCls)
 		local accObj = GetMyAccountObj(pc)
 		local curBuyCount = TryGetProp(accObj, prop, 0)		
 		if curBuyCount >= tpitemCls.AccountLimitWeeklyCount then
+			buyBtn:SetSkinName('test_gray_button');
+			buyBtn:SetText(ClMsg('ITEM_IsPurchased0'))
+			buyBtn:EnableHitTest(0)
+		end
+	elseif limit == 'CUSTOM' then
+		local prop = TryGetProp(tpitemCls, 'AccountLimitCustomCountProperty', 'None')		
+		local accObj = GetMyAccountObj(pc)
+		local curBuyCount = TryGetProp(accObj, prop, 0)		
+		if curBuyCount >= tpitemCls.AccountLimitCustomCount then
 			buyBtn:SetSkinName('test_gray_button');
 			buyBtn:SetText(ClMsg('ITEM_IsPurchased0'))
 			buyBtn:EnableHitTest(0)

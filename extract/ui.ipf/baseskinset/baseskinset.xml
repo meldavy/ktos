@@ -11550,6 +11550,7 @@
 		<image name="icon_item_cheer" file="\icon\social.tga" imgrect="82 730 80 80"/>
 		<image name="icon_gesture_ClockworkDance" file="\icon\social.tga" imgrect="163 730 80 80"/>
 		<image name="icon_gesture_RustleDance" file="\icon\social.tga" imgrect="244 730 80 80"/>
+		<image name="icon_gesture_Luchador" file="\icon\social.tga" imgrect="325 730 80 80"/>
 	</imagelist>
 	<imagelist>
 		<image name="chat_page_arrow_left" file="\skin\mainframe_A.tga" imgrect="766 943 40 40"/>
@@ -13592,6 +13593,7 @@
 		<image name="plate_achieve_Luchador_weekraid" file="\skin\user_title_skin.tga" imgrect="430 889 214 34" CMM_Caption="주보레 루차도르"/>
 		<image name="plate_achieve_relic_gem_first" file="\skin\user_title_skin.tga" imgrect="0 924 214 34" CMM_Caption="성물젬 10강_퍼스트"/>
 		<image name="plate_achieve_relic_gem_clear" file="\skin\user_title_skin.tga" imgrect="215 924 214 34" CMM_Caption="성물젬 10강_일반"/>
+		<image name="plate_achieve_Saduh" file="\skin\user_title_skin.tga" imgrect="430 924 214 34" CMM_Caption="사두 퀘스트 칭호"/>
 	</imagelist>
 	<imagelist category="skin_hair">
 		<image name="icon_skintone_01_m01" file="\skin\skinhair\icon_skintone_01_m01.png" imgrect="0 0 80 80" CMM_Caption="남성 01"/>

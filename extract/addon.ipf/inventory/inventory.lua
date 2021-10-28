@@ -29,7 +29,7 @@ end
 local invenTitleName = nil
 local clickedLockItemSlot = nil
 
-g_shopList = {"companionshop", "housing_shop", "shop", "exchange", "oblation_sell"};
+g_shopList = {"companionshop", "housing_shop", "shop", "exchange", "oblation_sell", "reputation_shop"};
 g_invenTypeStrList = {"All", "Equip", "Consume", "Recipe", "Card", "Etc", "Gem", "Premium", "Housing", "Quest"};
 
 local _invenCatOpenOption = {}; -- key: cid, value: {key: CategoryName, value: IsToggle}
@@ -1872,10 +1872,13 @@ function INVENTORY_RBDC_ITEMUSE(frame, object, argStr, argNum)
 	local frame = ui.GetFrame("shop");
 	local companionshop = ui.GetFrame('companionshop');
 	local housingShopFrame = ui.GetFrame("housing_shop");
+	local reputationShopFrame = ui.GetFrame("reputation_shop");
 	if companionshop:IsVisible() == 1 then
 		frame = companionshop:GetChild('foodBox');
 	elseif housingShopFrame:IsVisible() == 1 then
 		frame = GET_CHILD_RECURSIVELY(housingShopFrame, "gbox_bottom");
+	elseif reputationShopFrame:IsVisible() == 1 then
+		frame = reputationShopFrame
 	end
 
 	if frame:IsVisible() == 1 then
@@ -1925,6 +1928,16 @@ function INVENTORY_RBDC_ITEMUSE(frame, object, argStr, argNum)
 				return;
 			else
 	        	ui.SysMsg(ClMsg("CannotSellMore"));
+			end
+		elseif IS_REPUTATION_SHOP_SELL(invitem, Itemclass.MaxStack, frame) == 1 then
+			if keyboard.IsKeyPressed("LSHIFT") == 1 then
+				local sellableCount = invitem.count;
+				local titleText = ScpArgMsg("INPUT_CNT_D_D", "Auto_1", 1, "Auto_2", sellableCount);
+				INPUT_NUMBER_BOX(invFrame, titleText, "EXEC_REPUTATION_SHOP_SELL", 1, 1, sellableCount);
+				invFrame:SetUserValue("SELL_ITEM_GUID", invitem:GetIESID());
+			else
+				-- 상점 Sell Slot으로 넘긴다.
+				REPUTATION_SHOP_SELL(invitem, 1, frame);
 			end
 		end
 
@@ -2267,10 +2280,13 @@ function INVENTORY_RBDOUBLE_ITEMUSE(frame, object, argStr, argNum)
 	local frame = ui.GetFrame("shop");
 	local companionshop = ui.GetFrame('companionshop');
 	local housingShopFrame = ui.GetFrame("housing_shop");
+	local reputationShopFrame = ui.GetFrame("reputation_shop");
 	if companionshop:IsVisible() == 1 then
 		frame = companionshop:GetChild('foodBox');
 	elseif housingShopFrame:IsVisible() == 1 then
 		frame = GET_CHILD_RECURSIVELY(housingShopFrame, "gbox_bottom");
+	elseif reputationShopFrame:IsVisible() == 1 then
+		frame = reputationShopFrame
 	end	
 
 	if frame:IsVisible() == 0 then
@@ -2317,7 +2333,11 @@ function INVENTORY_RBDOUBLE_ITEMUSE(frame, object, argStr, argNum)
 		else
 	        ui.SysMsg(ClMsg("CannotSellMore"));
             return;
-        end
+		end
+	elseif IS_REPUTATION_SHOP_SELL(invitem, Itemclass.MaxStack, frame) == 1 then
+		-- 상점 Sell Slot으로 넘긴다.
+		REPUTATION_SHOP_SELL(invitem, 1, frame);
+		return;
 	end
 
 	ui.SysMsg(ClMsg("CannoTradeToNPC"));

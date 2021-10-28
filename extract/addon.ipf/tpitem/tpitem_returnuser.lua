@@ -542,7 +542,7 @@ function  TPITEM_RETURNUSER_ENABLE_BY_LIMITATION(tpitemCls, itemcset )
 	local curBuyCount = session.shop.GetCurrentBuyLimitCount(shopType, tpitemCls.ClassID, itemCls.ClassID);    
 	local accountLimitCount = TryGetProp(tpitemCls, 'AccountLimitCount');
 
-	local limit = GET_LIMITATION_TO_BUY(tpitemCls.ClassID);	
+	local limit = GET_LIMITATION_TO_BUY_WITH_SHOPTYPE(tpitemCls.ClassID, shopType);	
 
 	local itemobj = GetClass("Item", tpitemCls.ItemClassName)
 
@@ -590,6 +590,15 @@ function  TPITEM_RETURNUSER_ENABLE_BY_LIMITATION(tpitemCls, itemcset )
 		local accObj = GetMyAccountObj(pc)
 		local curBuyCount = TryGetProp(accObj, prop, 0)		
 		if curBuyCount >= tpitemCls.AccountLimitWeeklyCount then
+			buyBtn:SetSkinName('test_gray_button');
+			buyBtn:SetText(ClMsg('ITEM_IsPurchased0'))
+			buyBtn:EnableHitTest(0)
+		end
+	elseif limit == 'CUSTOM' then
+		local prop = TryGetProp(tpitemCls, 'AccountLimitCustomCountProperty', 'None')		
+		local accObj = GetMyAccountObj(pc)
+		local curBuyCount = TryGetProp(accObj, prop, 0)		
+		if curBuyCount >= tpitemCls.AccountLimitCustomCount then
 			buyBtn:SetSkinName('test_gray_button');
 			buyBtn:SetText(ClMsg('ITEM_IsPurchased0'))
 			buyBtn:EnableHitTest(0)
@@ -676,7 +685,16 @@ function TPSHOP_ITEM_TO_RETURNUSER_BUY_BASKET_PREPROCESSOR(parent, control, tpit
 			ui.MsgBox_OneBtnScp(ScpArgMsg("PurchaseItemExceeded","Value", obj.AccountLimitWeeklyCount), "")
             return false;
 		else
-			ui.MsgBox(ScpArgMsg("SelectPurchaseRestrictedItemByWeekly","Value", obj.AccountLimitWeeklyCount, "Value2", obj.AccountLimitWeeklyCount - curBuyCount), string.format("TPSHOP_ITEM_TO_NEWBIE_BUY_BASKET('%s', %d)", tpitemname, classid), "None");
+			ui.MsgBox(ScpArgMsg("SelectPurchaseRestrictedItemByWeekly","Value", obj.AccountLimitWeeklyCount, "Value2", obj.AccountLimitWeeklyCount - curBuyCount), string.format("TPSHOP_ITEM_TO_RETURNUSER_BUY_BASKET('%s', %d)", tpitemname, classid), "None");
+		end
+	elseif limit == 'CUSTOM' then
+		local prop = TryGetProp(obj, 'AccountLimitCustomCountProperty', 'None')
+		local curBuyCount = TryGetProp(GetMyAccountObj(), prop, 0)
+		if curBuyCount >= obj.AccountLimitCustomCount then
+			ui.MsgBox_OneBtnScp(ScpArgMsg("PurchaseItemExceeded","Value", obj.AccountLimitCustomCount), "")
+            return false;
+		else
+			ui.MsgBox(ScpArgMsg("SelectPurchaseRestrictedItemByCustom","Value", obj.AccountLimitCustomCount, "Value2", obj.AccountLimitCustomCount - curBuyCount), string.format("TPSHOP_ITEM_TO_RETURNUSER_BUY_BASKET('%s', %d)", tpitemname, classid), "None");
 		end
 	elseif TPITEM_IS_ALREADY_PUT_INTO_BASKET(parent:GetTopParentFrame(), obj) == true then
 		ui.MsgBox(ClMsg("AleadyPutInBasketReallyBuy?"), string.format("TPSHOP_ITEM_TO_RETURNUSER_BUY_BASKET('%s', %d)", tpitemname, classid), "None");	

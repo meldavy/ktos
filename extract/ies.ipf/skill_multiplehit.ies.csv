@@ -261,7 +261,7 @@ ClassID,HitCount,ClassName
 260,22,Monk_DoublePunch
 261,1,Monk_PalmStrike
 262,2,Monk_HandKnife
-263,16,Monk_EnergyBlast
+263,20,Monk_EnergyBlast
 264,1,Monk_1InchPunch
 265,2,Monk_God_Finger_Flicking
 266,28,Pardoner_DiscernEvil
@@ -285,7 +285,7 @@ ClassID,HitCount,ClassName
 284,10,Miko_Hamaya
 285,10,Zealot_Immolation
 286,16,Zealot_FanaticIllusion
-287,20,Zealot_BlindFaith
+287,5,Zealot_BlindFaith
 288,10,Zealot_EmphasisTrust
 289,8,Exorcist_Rubric
 290,1,Exorcist_Entity
@@ -377,3 +377,8 @@ ClassID,HitCount,ClassName
 376,10,Assassin_ViboraAtk
 377,6,Luchador_Vibora_DobleAtaque
 378,10,Luchador_Golpear
+379,3,Sadhu_Anila
+380,4,Sadhu_Tanoti
+381,9,Sadhu_Patati
+382,30,Sadhu_Moksha
+383,17,Matador_Muleta_Faena

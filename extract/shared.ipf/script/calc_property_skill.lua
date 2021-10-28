@@ -1553,7 +1553,7 @@ function SCR_Get_SkillFactor_Reinforce_Ability(skill)
         		if abil_level == 10 then
         			add_value = TryGetProp(hidden_abil_cls, "AddFactor", 0) * 0.01
         		end
-        		value = value * (1 + (abil_level * add_factor) + add_value);
+                value = value * (1 + (abil_level * add_factor) + add_value);
         	end
         end
     end
@@ -6365,20 +6365,18 @@ end
 
 -- done , 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_GET_Possession_Ratio(skill)
-
-    local pc = GetSkillOwner(skill);
-    local abil = GetAbility(pc, "Sadhu12") 
-    local value = 0
-    if abil ~= nil then 
-        return SCR_ABIL_ADD_SKILLFACTOR_TOOLTIP(abil);
-    end
-
+    local value = TryGetProp(skill, "Level", 1) * 0.3 + 1
+    return value
 end
 
 -- done , 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_GET_Possession_Ratio2(skill)
-    local value = skill.Level * 1 + 4;
-    return math.floor(value)
+    local value = 7
+    local pc = GetSkillOwner(skill);
+    if IsPVPField(pc) == 1 and value > 2 then
+        value = math.floor((math.max(0, value-2)^0.5))+math.min(2, value)
+    end
+    return value;
 end
 
 -- done , 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
@@ -11194,7 +11192,7 @@ end
 
 -- done , 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_GET_Prakriti_Ratio(skill)
-    local value = skill.Level * 2
+    local value = skill.Level + 5
     
     return value
 end
@@ -17466,7 +17464,7 @@ end
 -- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_GET_Incineration_Ratio(skill)
     local pc = GetSkillOwner(skill);
-    local value = 4
+    local value = 8
     if IsPVPField(pc) == 1 and value > 2 then
         value = math.floor((math.max(0, value-2)^0.5))+math.min(2, value)
     end
@@ -17626,6 +17624,33 @@ function SCR_Get_SkillFactor_Skarphuggning(skill)
 end
 
 -- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
+function SCR_GET_Tanoti_Ratio(skill)
+    local pc = GetSkillOwner(skill)
+    local value = TryGetProp(skill, "Level", 0) * 4.5 + 35
+    return value;
+end 
+
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
+function SCR_GET_Patati_Ratio(skill)
+    local pc = GetSkillOwner(skill)
+    local value = TryGetProp(skill, "Level", 0) * 4.5 + 35
+    return value;
+end 
+
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
+function SCR_GET_SoulMaster_Ratio(skill)
+    local pc = GetSkillOwner(skill)
+    local value = TryGetProp(skill, "Level", 0) * 3 + 15
+    return value;
+end
+
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
+function SCR_GET_Anila_Ratio(skill)
+    local value = TryGetProp(skill, "Level", 0) * 3 + 45
+    return value;
+end
+
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_GET_Golpear_Ratio(skill)
     local pc = GetSkillOwner(skill);
     local value = 5
@@ -17733,4 +17758,54 @@ function SCR_Get_SkillFactor_Rodando(skill)
     local value = math.floor(TryGetProp(skl, "SkillFactor", 0) * 0.35) 
     
     return value
+end
+
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
+function SCR_GET_Prakriti_Ratio2(skill)
+    local value = 10
+    local pc = GetSkillOwner(skill);
+    if IsPVPField(pc) == 1 and value > 2 then
+        value = math.floor((math.max(0, value-2)^0.5))+math.min(2, value)
+    end
+    return value;
+end
+
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
+function SCR_GET_Anila_Ratio2(skill)
+    local value = 7
+    local pc = GetSkillOwner(skill);
+    if IsPVPField(pc) == 1 and value > 2 then
+        value = math.floor((math.max(0, value-2)^0.5))+math.min(2, value)
+    end
+    return value;
+end
+
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
+function SCR_GET_Tanoti_Ratio2(skill)
+    local value = 5
+    local pc = GetSkillOwner(skill);
+    if IsPVPField(pc) == 1 and value > 2 then
+        value = math.floor((math.max(0, value-2)^0.5))+math.min(2, value)
+    end
+    return value;
+end
+
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
+function SCR_GET_Patati_Ratio2(skill)
+    local value = 10
+    local pc = GetSkillOwner(skill);
+    if IsPVPField(pc) == 1 and value > 2 then
+        value = math.floor((math.max(0, value-2)^0.5))+math.min(2, value)
+    end
+    return value;
+end
+
+-- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
+function SCR_GET_Moksha_Ratio2(skill)
+    local value = 10
+    local pc = GetSkillOwner(skill);
+    if IsPVPField(pc) == 1 and value > 2 then
+        value = math.floor((math.max(0, value-2)^0.5))+math.min(2, value)
+    end
+    return value;
 end

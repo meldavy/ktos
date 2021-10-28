@@ -1431,7 +1431,7 @@ function INDUNINFO_SET_RESTRICT_SKILL(frame,indunCls)
     restrictSkillBox:ShowWindow(0);
     local mapName = TryGetProp(indunCls, "MapName");
     local dungeonType = TryGetProp(indunCls, "DungeonType");
-    local isLegendRaid = BoolToNumber(dungeonType == "Raid" or dungeonType == "GTower");
+    local isLegendRaid = BoolToNumber(dungeonType == "Raid" or dungeonType == "GTower" or string.find(dungeonType, "MythicDungeon") == 1);
 
     if mapName ~= nil and mapName ~= "None" then
         local indunMap = GetClass("Map", mapName);
@@ -3627,7 +3627,7 @@ function REQ_RAID_SOLO_UI_OPEN(frame, ctrl)
     end
 
     local indun_classid = tonumber(ctrl:GetUserValue("MOVE_INDUN_CLASSID"));
-	local indun_cls = GetClassByType("Indun", indun_classid);
+    local indun_cls = GetClassByType("Indun", indun_classid);
     local dungeon_type = TryGetProp(indun_cls, "DungeonType", "None");
     local sub_type = TryGetProp(indun_cls, "SubType", "None");
     if dungeon_type ~= "Raid" and sub_type ~= "Casual" then

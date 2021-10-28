@@ -215,6 +215,9 @@ function EQUIP_CARDSLOT_DRAW_ADDSTAT_TOOLTIP(tooltipframe, yPos, cardID)
 			tempText2 = "";
 		end
 		local textDesc = string.format("%s{nl}%s{/}", tempText1, tempText2);	
+
+		textDesc = DRAW_COLLECTION_INFO(cls, textDesc)
+
 		desc_text:SetTextByKey("text", textDesc);
 		CSet:Resize(CSet:GetWidth(), desc_text:GetHeight() + desc_text:GetOffsetY());
 	end

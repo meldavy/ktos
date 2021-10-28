@@ -72,6 +72,10 @@ function PACKAGELIST_EDIT_ON_TYPING(parent, ctrl)
 			textEdit:SetText(tpItemCls.AccountLimitWeeklyCount);
 			ui.SysMsg(ScpArgMsg("PurchaseItemExceeded", "Value", tpItemCls.AccountLimitWeeklyCount));
 			return;
+		elseif limit == 'CUSTOM' and curCount + 1 > tpItemCls.AccountLimitWeeklyCount then
+			textEdit:SetText(tpItemCls.AccountLimitCustomCount);
+			ui.SysMsg(ScpArgMsg("PurchaseItemExceeded", "Value", tpItemCls.AccountLimitCustomCount));
+			return;
 		end
 	end
 	local resCnt = math.min(20, curCount); -- 장바구니 개수까지만 

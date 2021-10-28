@@ -89,15 +89,12 @@
     </Skill>
     <Skill Name="Zealot_BlindFaith">
         <MainSkl JumpFlee="NO" MSPDToUsePos="0" ScrLock="None">
-            <EtcList>
-                <Scp Client="NO" Scp="SKL_BUFF" Time="0" UseSleep="NO">
-                    <Str Str="BlindFaith_Buff"/>
-                    <Num FuncTxt="return obj.Level;" Num="0" UseFunc="1"/>
-                    <Num Num="0"/>
-                    <Num Num="40000"/>
-                    <Num Num="1"/>
-                    <Num Num="100"/>
-                    <Num Num="0"/>
+            <HitList>
+				<Frame Type="SQUARE" Time="9999999" HitCount="1" TermMin="0" TermMax="0" PosType="0" Dist="0" RandDist="0" RandomPerHit="0" Angle="0" Width="35" Length="120" SklAngle="0.17453292" AniTime="200" RotAngle="0" ForceATK="1"/>
+			</HitList>
+			<EtcList>
+                <Scp Scp="SKL_RUN_SCRIPT" Client="NO" UseSleep="NO" Time="0">
+                    <Str Str="SCR_BLINDFAITH_SP"/>
                 </Scp>
                 <Scp Client="YES" Scp="C_SOUND" Time="0" UseSleep="NO">
                     <Str Str="skl_eff_zealot_blindfaith_shot"/>
@@ -110,6 +107,38 @@
                     <Str_Arg Arg="2" Str="F_buff_cleric_blindfaith"/>
                     <Str Str="None"/>
                     <Num Num="0"/>
+                </Scp>
+                <Scp Scp="C_EFFECT_POS" Client="YES" UseSleep="NO" Time="550">
+                    <Str_Arg Str="F_scout_Birthceremony_explosion" Arg="1"/>
+                    <Pos Angle="0" Dist="7" Height="15"/>
+                    <Num Num="0"/>
+                    <Str Str="None"/>
+                </Scp>
+                <Scp Client="NO" Scp="SKL_SET_TARGET_CIRCLE" Time="0" UseSleep="NO">
+                    <Pos Angle="0" Dist="0"/>
+                    <Num Num="120"/>
+                    <Num Num="5"/>
+                    <Num Num="2"/>
+                    <Num Num="0"/>
+                    <Num Num="1"/>
+                    <Num Num="1"/>
+                    <Num Num="0"/>
+                    <Num Num="1"/>
+                </Scp>
+                <Scp Client="NO" Scp="SKL_TGT_DMG" Time="580" UseSleep="NO">
+                    <Num Num="1"/>
+                    <Num Num="1"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="SKL_TGT_BUFF_ABIL" Client="NO" UseSleep="NO" Time="0">
+                    <Str Str="Zealot7"/>
+                    <Str Str="BlindFaith_Debuff"/>
+                    <Num Num="0" UseFunc="1" FuncTxt="return obj.Level;"/>
+                    <Num Num="0"/>
+                    <Num Num="10000"/>
+                    <Num Num="0"/>
+                    <Num Num="1"/>
+                    <Num Num="100"/>
                 </Scp>
             </EtcList>
         </MainSkl>
@@ -185,70 +214,34 @@
 		</MainSkl>
 	</Skill>
 	<Skill Name="Zealot_Fanaticism">
-		<MainSkl JumpFlee="NO" MSPDToUsePos="0" ScrLock="None">
+		<MainSkl ScrLock="None" JumpFlee="NO" MSPDToUsePos="0">
 			<EtcList>
-				<Scp Client="NO" Scp="SKL_BUFF" Time="0" UseSleep="NO">
-					<Str Str="Fanaticism_Buff" />
-					<Num FuncTxt="return obj.Level;" Num="0" UseFunc="1" />
-					<Num Num="0" />
+				<Scp Scp="SKL_BUFF" Client="NO" UseSleep="NO" Time="0">
+					<Str Str="Fanaticism_Buff"/>
+					<Num Num="0" UseFunc="1" FuncTxt="return obj.Level;"/>
+					<Num Num="0"/>
 					<Num Num="1800000"/>
-					<Num Num="1" />
-					<Num Num="100" />
-					<Num Num="0" />
+					<Num Num="1"/>
+					<Num Num="100"/>
+					<Num Num="0"/>
 				</Scp>
-				<Scp Client="YES" Scp="C_COLORBLEND_ACTOR" Time="0" UseSleep="NO">
-					<Num Num="1" />
-					<Num Num="1" />
-					<Num Num="0.40000001" />
-					<Num Num="0.30000001" />
-					<Num Num="0.30000001" />
-					<Num Num="0.5" />
-					<Num Num="1" />
+				<Scp Scp="C_SOUND" Client="YES" UseSleep="NO" Time="0">
+					<Str Str="skl_eff_zealot_fanaticism_shot"/>
 				</Scp>
-				<Scp Client="YES" Scp="C_SOUND" Time="0" UseSleep="NO">
-					<Str Str="skl_eff_zealot_fanaticism_shot" />
+				<Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="80">
+					<Str_Arg Str="F_explosion107_dust_panaticism" Arg="3"/>
+					<Str Str="None"/>
+					<Num Num="0"/>
 				</Scp>
-				<Scp Client="YES" Scp="C_VOICE_SOUND" Time="100" UseSleep="NO">
-					<Str Str="voice_cleric_m_Fanaticism_cast" />
-					<Str Str="voice_cleric_Fanaticism_cast" />
+				<Scp Scp="C_VOICE_SOUND" Client="YES" UseSleep="NO" Time="100">
+					<Str Str="voice_cleric_m_Fanaticism_cast"/>
+					<Str Str="voice_cleric_Fanaticism_cast"/>
 				</Scp>
-				<Scp Client="YES" Scp="C_COLORBLEND_ACTOR" Time="100" UseSleep="NO">
-					<Num Num="1" />
-					<Num Num="1" />
-					<Num Num="0.40000001" />
-					<Num Num="0.2" />
-					<Num Num="0.2" />
-					<Num Num="0.5" />
-					<Num Num="1" />
-				</Scp>
-				<Scp Client="YES" Scp="C_COLORBLEND_ACTOR" Time="200" UseSleep="NO">
-					<Num Num="1" />
-					<Num Num="1" />
-					<Num Num="1" />
-					<Num Num="0.2" />
-					<Num Num="0.30000001" />
-					<Num Num="1" />
-					<Num Num="1" />
-				</Scp>
-				<Scp Client="YES" Scp="C_SHOCKWAVE" Time="200" UseSleep="NO">
-					<Num Num="5" />
-					<Num Num="1" />
-					<Num Num="45" />
-					<Num Num="999" />
-				</Scp>
-				<Scp Client="YES" Scp="C_EFFECT" Time="200" UseSleep="NO">
-					<Str_Arg Arg="3" Str="F_explosion107_dust_panaticism" />
-					<Str Str="None" />
-					<Num Num="0" />
-				</Scp>
-				<Scp Client="YES" Scp="C_COLORBLEND_ACTOR" Time="550" UseSleep="NO">
-					<Num Num="1" />
-					<Num Num="0" />
-					<Num Num="0.2" />
-					<Num Num="0.1" />
-					<Num Num="0.1" />
-					<Num Num="1" />
-					<Num Num="1" />
+				<Scp Scp="C_SHOCKWAVE" Client="YES" UseSleep="NO" Time="200">
+					<Num Num="5"/>
+					<Num Num="1"/>
+					<Num Num="45"/>
+					<Num Num="999"/>
 				</Scp>
 			</EtcList>
 		</MainSkl>

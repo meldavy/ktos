@@ -317,7 +317,7 @@ function INDUNENTER_MAKE_SKILL_ALERT(frame, indunCls)
     local mapName = TryGetProp(indunCls, "MapName");
     local dungeonType = TryGetProp(indunCls, "DungeonType");
     local isLegendRaid = 0;
-    if dungeonType == "Raid" or dungeonType == "GTower" then
+    if dungeonType == "Raid" or dungeonType == "GTower" or string.find(dungeonType, "MythicDungeon") == 1 then
         isLegendRaid = 1;
     end
 

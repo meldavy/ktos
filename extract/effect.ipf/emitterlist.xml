@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by IMCGames Co., Ltd (IMCGames Co., Ltd) -->
+<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by imc (imc) -->
 <EmitterList>
+	<battle name="E_archer_arrowdancing_arrowdummy" filename="E_archer_arrowdancing_arrowdummy" loop="false" nodecount="6" xml="E_archer_arrowdancing_arrowdummy.xml" paused="NO" is2D="FALSE" softParticleFactor="0" useReverse="0" preScale="1" useAttach="TRUE" preScaleXYZ="1.0/1.0/1.0" attachNodeName="None"/>
+	<battle name="E_cleric_rada_ground_red" filename="E_cleric_rada_ground" loop="false" nodecount="10" xml="E_cleric_rada_ground_red.xml" paused="NO" is2D="FALSE" softParticleFactor="20" useReverse="0" preScale="1" useAttach="FALSE" preScaleXYZ="1.0/1.0/1.0" attachNodeName="None"/>
 	<battle name="E_archer_ArrowDancing_arrow" filename="E_archer_ArrowDancing_arrow" loop="true" nodecount="6" xml="E_archer_ArrowDancing_arrow.xml" paused="NO" is2D="FALSE" softParticleFactor="0" useReverse="0" preScale="1" useAttach="TRUE" preScaleXYZ="1.0/1.0/1.0" attachNodeName="None"/>
 	<battle name="E_cleric_tanoti001" filename="E_cleric_tanoti001" loop="false" nodecount="6" xml="E_cleric_tanoti001.xml" paused="NO" is2D="FALSE" softParticleFactor="0" useReverse="0" preScale="1" useAttach="TRUE" preScaleXYZ="1.0/1.0/1.0" attachNodeName="None"/>
 	<battle name="E_archer_PyeonJeon_arrow" filename="E_archer_PyeonJeon_arrow" loop="true" nodecount="6" xml="E_archer_PyeonJeon_arrow.xml" paused="NO" is2D="FALSE" softParticleFactor="0" useReverse="0" preScale="1" useAttach="TRUE" preScaleXYZ="1.0/1.0/1.0" attachNodeName="None"/>

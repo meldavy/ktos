@@ -486,9 +486,6 @@ return time"/>
                     <Str Str="None"/>
                     <Num Num="0"/>
                 </Scp>
-                <Scp Scp="SKL_RUN_SCRIPT" Client="NO" UseSleep="NO" Time="800">
-                    <Str Str="SCR_MIKO_Hamaya"/>
-                </Scp>
                 <Scp Scp="SKL_RUN_SCRIPT" Client="NO" UseSleep="NO" Time="850">
                     <Str Str="SCR_EXOSICT_ENTITY"/>
                 </Scp>
@@ -542,9 +539,6 @@ return time"/>
                             <Str_Arg Str="F_entity_art_ground_circle" Arg="3.3"/>
                             <Str Str="None"/>
                             <Num Num="0"/>
-                        </Scp>
-                        <Scp Scp="SKL_RUN_SCRIPT" Client="NO" UseSleep="NO" Time="800">
-                            <Str Str="SCR_MIKO_Hamaya"/>
                         </Scp>
                         <Scp Scp="MONSKL_C_STOP_ANIM" Client="YES" UseSleep="NO" Time="850"/>
                     </EtcList>
