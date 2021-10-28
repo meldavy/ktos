@@ -32,6 +32,10 @@ function BARRACK_THEMA_UPDATE(frame)
 	local bg_1 = frame:GetChild("nxp_bg_1");
 	local mynxp_1 = bg_1:GetChild("mynxp_1");
 	mynxp_1:SetTextByKey("value", accountObj.Medal);
+
+	local tpText = ScpArgMsg("TPText{Premium}and{Event}","Premium", tostring(accountObj.PremiumMedal),"Event",tostring(accountObj.GiftMedal))
+	bg:SetTextTooltip(tpText)
+
 	local curID = account.SelectedBarrack;
 	local bg_mid = frame:GetChild("bg_mid");
 	local advBox = GET_CHILD(bg_mid, "AdvBox", "ui::CAdvListBox");
@@ -50,8 +54,6 @@ function BARRACK_THEMA_UPDATE(frame)
 		skinName:SetTextByKey("value", cls.Name);
 
 		local charCntBox = ctrlSet:GetChild("charCnt");
-		local charCnt = charCntBox:GetChild("count");
-		charCnt:SetTextByKey("value", cls.BaseSlot);
 		local cashCnt = charCntBox:GetChild("cashCnt");
 		cashCnt:SetTextByKey("value", cls.MaxCashPC);
 
@@ -76,13 +78,13 @@ function BARRACK_THEMA_UPDATE(frame)
 	
 		local preViewBtn = ctrlSet:GetChild("preViewBtn");
 		local previewScp = string.format("BARRACKTHEMA_PREVIEW(\'%s\')", cls.ClassName);
-		preViewBtn:SetEventScript(ui.LBUTTONUP, previewScp);
+		preViewBtn:SetEventScript(ui.LBUTTONUP, previewScp, true);
 
 		local have = barrack.HaveThame(mapCls.ClassID, cls.Price);
 
 		if true == have then -- 현재 테마를 가지고 있을 때
 			local appliedScp = string.format("BARRACKTHEMA_APPLIED(\'%s\')", cls.ClassName);
-			changeBtn:SetEventScript(ui.LBUTTONUP, appliedScp);
+			changeBtn:SetEventScript(ui.LBUTTONUP, appliedScp, true);
 			changeBtn:ShowWindow(1);
 			buyBtn:ShowWindow(0);
 
@@ -95,7 +97,7 @@ function BARRACK_THEMA_UPDATE(frame)
 			end
 		else
 			local buyScp = string.format("BARRACK_BUY(\'%s\')", cls.ClassName);
-			buyBtn:SetEventScript(ui.LBUTTONUP, buyScp);
+			buyBtn:SetEventScript(ui.LBUTTONUP, buyScp, true);
 		end
 
 
@@ -145,12 +147,7 @@ end
 function BARRACK_BUY(buyMap)
 	local cls = GetClass("BarrackMap", buyMap);
 
-	local msgBoxStr = ClMsg("ReallyBuy?") .. "{nl}" .. cls.Price .. " " .. ScpArgMsg("iCoin");
-	if config.GetServiceNation() == "KOR" then
-		msgBoxStr = ClMsg("ReallyBuy?") .. "{nl}" .. cls.Price .. " " .. ScpArgMsg("NXP");
-	elseif config.GetServiceNation() == "JP" then
-		msgBoxStr = ClMsg("ReallyBuy?") .. "{nl}" .. cls.Price .. " " .. ScpArgMsg("JNxp");
-	end
+	local msgBoxStr = ClMsg("ReallyBuy?") .. "{nl}" .. cls.Price .. " " .. ScpArgMsg("NXP");
 
 	local yesScp = string.format("EXEC_BUY_BARRACK(\"%s\")", buyMap);
 	if GET_CASH_TOTAL_POINT_C() < cls.Price then
