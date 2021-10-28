@@ -523,7 +523,7 @@
 		<image name="TUTO_ITEM_APPRAISE_05" file="helpimg\TUTO_ITEM_APPRAISE_05.jpg" imgrect="0 0 380 335"/>
 		<image name="TUTO_ITEM_APPRAISE_06" file="helpimg\TUTO_ITEM_APPRAISE_06.jpg" imgrect="0 0 380 787"/>
 		<image name="TUTO_ITEM_APPRAISE_07" file="helpimg\TUTO_ITEM_APPRAISE_07.jpg" imgrect="0 0 380 787"/>
-		<image name="TUTO_ITEM_APPRAISE_08" file="helpimg\TUTO_ITEM_APPRAISE_08.jpg" imgrect="0 0 380 1014"/>
+		<image name="TUTO_ITEM_APPRAISE_08" file="helpimg\TUTO_ITEM_APPRAISE_08.jpg" imgrect="0 0 380 1000"/>
 		<image name="TUTO_ESCAPE_ORB_03" file="helpimg\TUTO_ESCAPE_ORB_03.jpg" imgrect="0 0 380 505"/>
 		<image name="TUTO_RANK_RESET_POINT_SYSTEM_07" file="helpimg\TUTO_RANK_RESET_POINT_SYSTEM_07.jpg" imgrect="0 0 380 209"/>
 		<image name="TUTO_SEAL_REINFORCE_04" file="\helpimg\TUTO_SEAL_REINFORCE_04.jpg" imgrect="0 0 380 816"/>

@@ -927,14 +927,15 @@
 		<Class ClassID="4373" ClassName="IfLimitOver_misc_pvp_mine2_MAX" Data="주간 용병단 증표 획득량이 최대치에 도달하여 사용할 수 없습니다."/>
 		<Class ClassID="4374" ClassName="IfLimitOver_misc_pvp_mine2_OVERUSE" Data="입력한 수량이{nl}주간 용병단 증표 최대 획득량을 초과하여{nl}용병단 증표 쿠폰이 {#ff0000}{COUNT}{/}{/}개만 소비됩니다.{/}{/}{nl}{@st66d_y}{s20}{nl} {nl}정말 사용하시겠습니까?"/>
 		<Class ClassID="4376" ClassName="HairAccCubeOpen{COUNT}" Data="정말 개봉하시겠습니까?{nl} {nl}{@st66d_y}{s20}현재 개봉 횟수{nl}{COUNT}{/}{/}{nl} {nl}30회 개봉마다 추가 보상을 획득하실 수 있습니다."/>
-		<Class ClassID="4382" ClassName="tooltip_reward_ratio_open_list" Data="사용 시 아래 아이템 중 한 종류를 표기된 확률에 따라 획득합니다.{nl}"/>
+		<Class ClassID="4382" ClassName="tooltip_reward_ratio_open_list" Data="사용 시 각 확률에 따라 아이템을 획득합니다."/>
 		<Class ClassID="4383" ClassName="GET_CONTENTS_TOTAL_POINT{count}" Data="+{count} 콘텐츠 통합 포인트"/>
-		<Class ClassID="4384" ClassName="tooltip_reward_ratio_open_list_spendcount" Data="사용 시 {COUNT}개를 소비하고 아래 아이템 중 한 종류를 표기된 균등 확률에 따라 획득합니다.{nl}"/>
+		<Class ClassID="4384" ClassName="tooltip_reward_ratio_open_list_spendcount" Data="사용 시 {COUNT}개를 소비하고 각 균등 확률에 따라 아이템을 획득합니다.{nl}"/>
 		<Class ClassID="4385" ClassName="Enough_Relic_Gem_DiscountStone" Data="여신의 축복석 요구 수량이 0 입니다.{nl}더 이상 할인 쿠폰을 투입하여도 여신의 축복석 할인은 적용되지 않습니다."/>
 		<Class ClassID="4386" ClassName="HairAccCubeBonus{COUNT}" Data="여신의 큐브 {COUNT}회차 추가보상이 지급되었습니다."/>
 		<Class ClassID="4387" ClassName="tooltip_reward_ratio_open_list2" Data="{nl}{@st45ty}{s14}항목에 대한 확률은 공식 홈페이지 [확률형 아이템] 페이지에서 확인하실 수 있습니다.{/}{/}"/>
-		<Class ClassID="4388" ClassName="tooltip_reward_ratio_open_list3" Data="사용 시 아래 아이템 중 한 종류를 표기된 균등 확률에 따라 획득합니다.{nl}"/>
+		<Class ClassID="4388" ClassName="tooltip_reward_ratio_open_list3" Data="사용 시 각 균등 확률에 따라 아이템을 획득합니다."/>
 		<Class ClassID="4389" ClassName="multiple_trade_select_item" Data="선택 아이템 교환 수량 입력 ({Auto_1} ~ {Auto_2})"/>
+		<Class ClassID="4391" ClassName="tooltip_reward_ratio_open_list_sklgem" Data="사용 시 1/{COUNT}의 균등 확률에 따라 스킬 젬을 획득합니다."/>
 	</Category>
 	<Category Name="ItemTooltip">
 		<Class ClassID="5001" ClassName="CoolDown : {Sec} Sec" Data="재사용 대기시간 : {Sec}초"/>
@@ -14634,7 +14635,7 @@
 		<Class ClassID="301017" ClassName="Change FamilyName" Data="팀명 변경"/>
 		<Class ClassID="301018" ClassName="Change GuildName" Data="길드명 변경"/>
 		<Class ClassID="301019" ClassName="ExistCannotEquipItem" Data="착용할 수 없는 아이템이 있습니다."/>
-		<Class ClassID="301020" ClassName="ContainWarningItem" Data="확률 정보는 공식 홈페이지 하단의{nl}[확률형 아이템 목록]에서 확인이 가능합니다."/>
+		<Class ClassID="301020" ClassName="ContainWarningItem" Data="레티샤의 시크릿 큐브는 {nl}확률성 아이템으로서 구매 시 각 확률에 따라 [확률형 아이템 목록]에 안내된 구성 아이템 중 1종을 획득할 수 있습니다.{nl} {nl}확률 정보는 공식 홈페이지 하단의{nl}[확률형 아이템 목록]에서 확인이 가능합니다."/>
 		<Class ClassID="301021" ClassName="BuyList" Data="비확률형 아이템"/>
 		<Class ClassID="301022" ClassName="ProbabilityItem" Data="확률형 아이템"/>
 		<Class ClassID="301023" ClassName="TotalTPConsumeOK" Data="{img icon_item_tpBox_30 30 30} {TOTAL} 소모됩니다."/>
