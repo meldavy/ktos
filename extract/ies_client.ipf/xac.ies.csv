@@ -22358,7 +22358,7 @@ ClassID,ClassName,Mesh,Path,ArmbandInfo,UseAlpha,IsJiggleBoneHair
 724107,cleric_m_hanbokyellow,char_hi\pc\Cleric_m\cleric_m_hanbok02.xac,char_texture\pc\body\warrior_m_hanbok02\yellow\,S;Dummy_LU_armband,NO,
 724108,Mage_m_hanbokyellow,char_hi\pc\mage_m\Mage_m_hanbok02.xac,char_texture\pc\body\warrior_m_hanbok02\yellow\,S;Dummy_LU_armband,NO,
 724109,warrior_m_hanbokyellow,char_hi\pc\warrior_m\warrior_m_hanbok02.xac,char_texture\pc\body\warrior_m_hanbok02\yellow\,S;Dummy_LU_armband,NO,
-724110,Scout_fm_hanbokyellow,char_hi\pc\warrior_m\warrior_m_hanbok02.xac,char_texture\pc\body\warrior_m_hanbok02\yellow\,S;Dummy_LU_armband,NO,
+724110,Scout_m_hanbokyellow,char_hi\pc\warrior_m\warrior_m_hanbok02.xac,char_texture\pc\body\warrior_m_hanbok02\yellow\,S;Dummy_LU_armband,NO,
 724151,warrior_m_Yellow_watermelon,char_hi\pc\warrior_m\warrior_m_watermelon.xac,char_texture\pc\body\warrior_m_watermelon\yellow\,S;Dummy_LU_armband,NO,
 724152,Mage_m_Yellow_watermelon,char_hi\pc\Mage_m\Mage_m_watermelon.xac,char_texture\pc\body\warrior_m_watermelon\yellow\,S;Dummy_LU_armband,NO,
 724153,archer_m_Yellow_watermelon,char_hi\pc\archer_m\archer_m_watermelon.xac,char_texture\pc\body\warrior_m_watermelon\yellow\,S;Dummy_LU_armband,NO,
