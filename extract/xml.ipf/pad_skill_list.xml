@@ -7755,6 +7755,12 @@ return value;"/>
                 <Num Num="0"/>
                 <Str Str="None"/>
             </ToolScp>
+            <ToolScp Scp="PAD_ALLOW_AROUND_FLYMON_ATTACK" Client="NO" UseSleep="NO">
+                <Pos Angle="0" Dist="0"/>
+                <Num Num="85"/>
+                <Str Str="ALL"/>
+                <Num Num="1"/>
+            </ToolScp>
         </updateEvent>
     </PadSkill>
 	<PadSkill Name="Daoshi_PhantomEradication" CheckerType="1" Range="70" InnerRange="50" AllowOverlap="1" EnableSearch="0" IsMagicType="0" IsMineType="0">
