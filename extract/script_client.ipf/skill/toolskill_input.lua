@@ -457,7 +457,13 @@ function SKL_PARTY_TARGET_BY_KEY(actor, obj, dik, showHPGauge)
 	if showHPGauge == nil then
 		showHPGauge = 0;
 	end
-	geSkillControl.SelectTargetFromPartyList(actor, obj.type, showHPGauge);
+	
+	local ancientList, ancientCnt = GetAncientHandleList()
+	if obj.type == 40001 and IS_ANCIENT_HEAL_ENABLE() == 'YES' and ancientCnt > 0 then
+		geSkillControl.SelectTargetAncient(actor, obj.type, showHPGauge)
+	else
+		geSkillControl.SelectTargetFromPartyList(actor, obj.type, showHPGauge);
+    end
 	return 1, 0;
 end
 

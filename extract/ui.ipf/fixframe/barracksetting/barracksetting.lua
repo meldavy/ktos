@@ -39,12 +39,8 @@ end
 
 function BARRACK_SETTING_SAVE_CHECK(frame, msg, argStr, result)
 	if result ~= 0 then
-		if result == -1 or result == -12 or result == -14 or result == -15 or result == -21 then
-			ui.SysMsg(ClMsg("TheTeamNameAlreadyExist"));
-		elseif result == -11 or result == -13 then
-			ui.SysMsg(ClMsg("ThisWorldExistFamilyName"));
-		elseif result == -2 then
-			ui.SysMsg(ClMsg("HadFobbidenWord"));
+		if result == -1 or result == -12 or result == -14 or result == -15 or result == -21 or result == -11 or result == -13 or result == -2 then
+			ui.SysMsg(ClMsg("AlreadyorImpossibleName"));
 		else
 			ui.SysMsg(ClMsg("TeamNameChangeFailed"));
 		end
@@ -124,14 +120,8 @@ function ON_BARRACK_NAME_CHANGE_RESULT(frame, addon, str, result)
 	p_error = -1 ;
 	]]--
 
-	if result == -1 or result == -12 or result == -14 or result == -15 or result == -21 or result == -31 then
-			ui.SysMsg(ClMsg("TheTeamNameAlreadyExist"));
-	elseif result == -11 or result == -13 then
-		ui.SysMsg(ClMsg("ThisWorldExistFamilyName"));
-	elseif result == -15 then
-		ui.SysMsg(ClMsg("KorAnotherWorldExistFamilyName"));
-	elseif result == -2 then
-	  	ui.SysMsg(ClMsg("HadFobbidenWord"));
+	if result == -1 or result == -12 or result == -14 or result == -15 or result == -21 or result == -31 or result == -11 or result == -13 or result == -2 then
+	  	ui.SysMsg(ClMsg("AlreadyorImpossibleName"));
 	elseif result == -50 then
 		if GetServerNation() == "GLOBAL" then
 			ui.SysMsg(ClMsg("CantCreateTeamCuzExisting"));

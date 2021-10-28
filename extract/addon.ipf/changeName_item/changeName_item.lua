@@ -12,6 +12,19 @@ function OPEN_CHECK_USER_MIND_BEFOR_YES_BY_ITEM(inputframe, changedName, itemIES
 	if itemType == "PcName" then
 		charName = GETMYPCNAME(); 
 		title = ClMsg("Change Name")
+
+		local cid = session.GetMySession():GetCID();
+		local accountInfo = session.barrack.GetMyAccount();
+		local cnt = accountInfo:GetPCCount();
+		for i = 0 , cnt - 1 do
+			local pcInfo = accountInfo:GetPCByIndex(i);
+			local pcApc = pcInfo:GetApc();
+			local pcCid = pcInfo:GetCID();
+			if pcCid ~= cid and pcApc:GetName() == changedName then
+				ui.SysMsg(ClMsg("AlreadyorImpossibleName"));
+				return;
+			end
+		end
 	elseif itemType == "TeamName" then
 		charName = GETMYFAMILYNAME();
 		title = ClMsg("Change FamilyName")

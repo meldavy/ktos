@@ -28,7 +28,7 @@ ClassID,ConditionArg4,ClassName,UseType,ValueType,PropertyType,ConditionScp,Cond
 27,0,card_moa,BeforeAttack,StarCount,,SCR_CARDCHECK_MONRACE,Velnias,100,,SCR_CARDEFFECT_ADD_DAMAGE_RATE_BM,,,1,악마형 몬스터에게 주는 대미지{@st66d_y}{s16}[%d]{/}{/}%% 증가,1
 28,0,card_Moyabruka,BeforeAttack,StarCount,,SCR_CARDCHECK_MONRACE,Leather,100,,SCR_CARDEFFECT_ADD_DAMAGE_RATE_BM,,,0.5,가죽 갑옷 대상에게 주는 대미지{@st66d_y}{s16}[%d]{/}{/}%% 증가,0.5
 29,0,card_Moldyhorn,BeforeAttack,StarCount,,,,,,SCR_CARDEFFECT_DAMAGE_RATE_BY_BUFF,Solid,Keyword,1,석화 상태 이상에 걸린 대상에게 주는 대미지{@st66d_y}{s16}[%d]{/}{/}%% 증가,1
-30,0,card_molich,Always,StarCount,,,,,,SCR_CARDEFFECT_STATUS_PLUS,BLK_BM,BLK,2,블럭 +{@st66d_y}{s16}[%d]{/}{/},2
+30,0,card_molich,Always,StarCount,,,,,,SCR_CARDEFFECT_STATUS_PLUS,BLK_BM,BLK,2,블록 +{@st66d_y}{s16}[%d]{/}{/},2
 31,0,card_Minotaurs,Always,StarCount,,,,,,SCR_CARDEFFECT_STATUS_DUAL_PLUS,DEX_ITEM_BM/MNA_ITEM_BM,,0.5/0.5,"민첩 스텟 +{@st66d_y}{s16}[%d]{/}{/}, 정신 스탯 +{@st66d_y}{s16}[%d]{/}{/} ",0.5/0.5
 32,0,card_mirtis,BeforeAttack,StarCount,,SCR_CARDCHECK_MONSIZE,S,100,,SCR_CARDEFFECT_ADD_DAMAGE_RATE_BM,,,0.5,소형 몬스터에게 주는 대미지{@st66d_y}{s16}[%d]{/}{/}%% 증가,0.5
 33,0,card_bebraspion,Always,StarCount,,SCR_CARDCHECK_ATTACKTYPE_EQUIP,DH,100,,SCR_CARDEFFECT_ATK_SPEED,,,1,양손 무기 착용 시 공격 속도 +{@st66d_y}{s16}[%d]{/}{/},1
@@ -66,7 +66,7 @@ ClassID,ConditionArg4,ClassName,UseType,ValueType,PropertyType,ConditionScp,Cond
 65,0,card_onion_the_great,BeforeAttack,StarCount,,SCR_CARDCHECK_MONSIZE,L,100,,SCR_CARDEFFECT_ADD_DAMAGE_RATE_BM,,,0.5,대형 몬스터에게 주는 대미지{@st66d_y}{s16}[%d]{/}{/}%% 증가,0.5
 66,0,card_Colimencia,Always,StarCount,,,,,,SCR_CARDEFFECT_STATUS_PLUS,ResPoison_BM,ResPoison,10,독 속성 저항력 +{@st66d_y}{s16}[%d]{/}{/},10
 67,0,card_Clymen,BeforeAttack,StarCount,,SCR_CARDCHECK_MONATTRIBUTE,Poison,100,,SCR_CARDEFFECT_ADD_DAMAGE_RATE_BM,,,1,독 속성 몬스터에게 주는 대미지{@st66d_y}{s16}[%d]{/}{/}%% 증가,1
-68,0,card_Kimeleech,Always,StarCount,,,,100,,SCR_CARDEFFECT_STATUS_PLUS,BLK_BREAK_BM,BLK_BREAK,1.5,블럭 관통 +{@st66d_y}{s16}[%d]{/}{/},1.5
+68,0,card_Kimeleech,Always,StarCount,,,,100,,SCR_CARDEFFECT_STATUS_PLUS,BLK_BREAK_BM,BLK_BREAK,1.5,블록 관통 +{@st66d_y}{s16}[%d]{/}{/},1.5
 69,0,card_tutu,Always,StarCount,,,,100,,SCR_CARDEFFECT_STATUS_RATE,MaxWeight_RATE_BM,MaxWeight,1,휴대 가능무게 +{@st66d_y}{s16}[%d]{/}{/}%%,1
 70,0,card_TombLord,BeforeAttack,StarCount,,SCR_CARDCHECK_MONRANK,Boss,100,,SCR_CARDEFFECT_ADD_DAMAGE_RATE_BM,,,0.5,보스 몬스터에게 주는 대미지{@st66d_y}{s16}[%d]{/}{/}%% 증가,0.5
 71,0,card_poata,Always,StarCount,,,,100,,SCR_CARDEFFECT_STATUS_PLUS,RHP_BM,,30,HP 회복력 +{@st66d_y}{s16}[%d]{/}{/},30
@@ -184,5 +184,8 @@ ClassID,ConditionArg4,ClassName,UseType,ValueType,PropertyType,ConditionScp,Cond
 183,0,Master_card_Vilius,Always,StarCount,,,,100,,SCR_CARDEFFECT_STATUS_PLUS,HR_BM,HR,10,명중 +{@st66d_y}{s16}[%d]{/}{/},10
 184,0,Master_card_JenaHavindar,Always,StarCount,,,,,,SCR_CARDEFFECT_STATUS_ALL_PLUS,Add_Damage_Atk_BM,Add_Damage_Atk,40,추가 대미지 + {@st66d_y}{s16}[%d]{/}{/},40
 185,0,Legendcard_Glacier,Always,StarCount,,,,100,,SCR_CARDEFFECT_STATUS_PLUS,Paramune_Atk_BM,Paramune_Atk_BM,750,변이형 대상 공격력+{@st66d_y}{s16}[%d]{/}{/},750
-186,0,Master_card_ReamToiler,Always,StarCount,,,,,,SCR_CARDEFFECT_STATUS_PLUS,BLK_BM,BLK,10,블럭 +{@st66d_y}{s16}[%d]{/}{/},10
-187,0,Master_card_NoirParesseus,Always,StarCount,,,,100,,SCR_CARDEFFECT_STATUS_PLUS,BLK_BREAK_BM,BLK_BREAK,10,블럭 관통 +{@st66d_y}{s16}[%d]{/}{/},10
+186,0,Master_card_ReamToiler,Always,StarCount,,,,,,SCR_CARDEFFECT_STATUS_PLUS,BLK_BM,BLK,10,블록 +{@st66d_y}{s16}[%d]{/}{/},10
+187,0,Master_card_NoirParesseus,Always,StarCount,,,,100,,SCR_CARDEFFECT_STATUS_PLUS,BLK_BREAK_BM,BLK_BREAK,10,블록 관통 +{@st66d_y}{s16}[%d]{/}{/},10
+188,0,Legendcard_TelHarcha,Always,StarCount,,,,100,,SCR_CARDEFFECT_STATUS_PLUS,Forester_Atk_BM,Forester_Atk_BM,750,식물형 대상 공격력+{@st66d_y}{s16}[%d]{/}{/},750
+189,0,Master_card_Mei,Always,StarCount,,,,100,,SCR_CARDEFFECT_STATUS_PLUS,CRTHR_BM,CRTHR,10,치명타 발생 +{@st66d_y}{s16}[%d]{/}{/},10
+190,0,Master_card_ShellyPennington,Always,StarCount,,,,100,,SCR_CARDEFFECT_STATUS_PLUS,CRTDR_BM,CRTDR,10,치명타 저항 +{@st66d_y}{s16}[%d]{/}{/},10

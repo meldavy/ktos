@@ -53,7 +53,7 @@ function LEGENDDECOMPOSE_EXECUTE(parent, ctrl)
 	local matCls = GetClass('Item', rewardCls.MaterialClassName);
 	local yesScp = string.format('_LEGENDDECOMPOSE_EXECUTE("%s")', targetGuid);
 	if TryGetProp(targetObj, 'UseLv', 1) >= 440 then
-	    local legendRecipeCls = GetClass('legendrecipe', targetObj.ClassName)
+	    local legendRecipeCls = GetClassByStrProp('legendrecipe', 'TargetItem', targetObj.ClassName)
 	    local matCls440 = GetClass('Item', legendRecipeCls.DecomposeItem)
 	    if matCls440 == nil then
 	        ui.SysMsg(ClMsg('decomposeCant'));

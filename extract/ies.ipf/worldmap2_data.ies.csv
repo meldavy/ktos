@@ -1,9 +1,9 @@
 ClassID,Coordinate_X,Coordinate_Y,Ordinal,ClassName,Name,CityName,Type,ImageName,SubmapImageName,SubmapIconName
-1,-810,-50,1,city_klapeda,Episode1,클라페다,city,worldmap2_btn_epi_01,worldmap2_submap_01,worldmap2_icon_Sepi_01
+1,-810,-90,1,city_klapeda,Episode1,클라페다,city,worldmap2_btn_epi_01,worldmap2_submap_01,worldmap2_icon_Sepi_01
 2,-70,30,5,city_fedimian,Episode5,페디미안,city,worldmap2_btn_epi_05,worldmap2_submap_05,worldmap2_icon_Sepi_05
 3,-350,300,19,city_orsha,Episode Orsha,오르샤,city,worldmap2_btn_epi_13,worldmap2_submap_13,worldmap2_icon_Sepi_13
-101,-630,50,2,EP2,Episode2,,episode,worldmap2_btn_epi_02,worldmap2_submap_02,worldmap2_icon_Sepi_02
-102,-465,0,3,EP3,Episode3,,episode,worldmap2_btn_epi_03,worldmap2_submap_03,worldmap2_icon_Sepi_03
+101,-630,10,2,EP2,Episode2,,episode,worldmap2_btn_epi_02,worldmap2_submap_02,worldmap2_icon_Sepi_02
+102,-465,-30,3,EP3,Episode3,,episode,worldmap2_btn_epi_03,worldmap2_submap_03,worldmap2_icon_Sepi_03
 103,-280,10,4,EP4,Episode4,,episode,worldmap2_btn_epi_04,worldmap2_submap_04,worldmap2_icon_Sepi_04
 104,145,260,6,EP6,Episode6,,episode,worldmap2_btn_epi_06,worldmap2_submap_06,worldmap2_icon_Sepi_06
 105,-562,-260,7,EP7_1,Episode7-1,,episode,worldmap2_btn_epi_07_1,worldmap2_submap_07_1,worldmap2_icon_Sepi_07_1
@@ -11,7 +11,7 @@ ClassID,Coordinate_X,Coordinate_Y,Ordinal,ClassName,Name,CityName,Type,ImageName
 107,125,5,9,EP7_3,Episode7-3,,episode,worldmap2_btn_epi_07_3,worldmap2_submap_07_3,worldmap2_icon_Sepi_07_3
 108,-40,290,10,EP8_1,Episode8-1,,episode,worldmap2_btn_epi_08_1,worldmap2_submap_08_1,worldmap2_icon_Sepi_08_1
 109,205,-180,11,EP8_2,Episode8-2,,episode,worldmap2_btn_epi_08_2,worldmap2_submap_08_2,worldmap2_icon_Sepi_08_2
-110,-650,250,12,EP9_1,Episode9-1,,episode,worldmap2_btn_epi_09_1,worldmap2_submap_09_1,worldmap2_icon_Sepi_09_1
+110,-570,220,12,EP9_1,Episode9-1,,episode,worldmap2_btn_epi_09_1,worldmap2_submap_09_1,worldmap2_icon_Sepi_09_1
 111,560,-270,13,EP9_2,Episode9-2,,episode,worldmap2_btn_epi_09_2,worldmap2_submap_09_2,worldmap2_icon_Sepi_09_2
 112,330,20,14,EP10,Episode10,,episode,worldmap2_btn_epi_10,worldmap2_submap_10,worldmap2_icon_Sepi_10
 113,330,200,15,EP11_1,Episode11 수역,,episode,worldmap2_btn_epi_11_1,worldmap2_submap_11_1,worldmap2_icon_Sepi_11_1

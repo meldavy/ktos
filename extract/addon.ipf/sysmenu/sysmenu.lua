@@ -16,7 +16,7 @@ function SYSMENU_ON_INIT(addon, frame)
 	addon:RegisterMsg("UPDATE_READ_COLLECTION_COUNT", "SYSMENU_ON_MSG");
 	addon:RegisterMsg("PREMIUM_NEXON_PC", "SYSMENU_ON_MSG");
 	addon:RegisterMsg("ENABLE_PCBANG_SHOP", "SYSMENU_ON_MSG");
-	addon:RegisterMsg("NEW_USER_REQUEST_GUILD_JOIN", "SYSMENU_ON_MSG");    
+	addon:RegisterMsg("NEW_USER_REQUEST_GUILD_JOIN", "SYSMENU_ON_MSG");
 	frame:EnableHideProcess(1);
 end
 
@@ -39,6 +39,7 @@ end
 function SYSMENU_ON_MSG(frame, msg, argStr, argNum)
 	if msg == "GAME_START" then
 		SYSMENU_CHECK_HIDE_VAR_ICONS(frame);
+		ReserveScript("SYSMENU_GUILD_PROMOTE_NOTICE_CHECK()", 2);
 	end
 
 	if msg == "PREMIUM_NEXON_PC" or msg == "ENABLE_PCBANG_SHOP" then
@@ -713,4 +714,47 @@ function TOGGLE_ARK_RELOCATION(frame)
 	else
 		TOGGLE_ARK_RELOCATION_UI(1);
 	end
+end
+
+function SYSMENU_GUILD_PROMOTE_NOTICE_CHECK()
+	local frame = ui.GetFrame("sysmenu");
+	if frame == nil then
+		return;
+	end
+
+	if session.party.GetPartyInfo(PARTY_GUILD) ~= nil then
+		return;
+	end
+	
+	local aObj = GetMyAccountObj();
+	local cnt = TryGetProp(aObj, "GUILD_PROMOTE_NOTICE_COUNT");
+	local maxCnt = GET_GUILD_PROMOTE_NOTICE_MAX_COUNT();
+
+	if cnt < maxCnt then
+		SYSMENU_GUILD_PROMOTE_NOTICE(frame);
+        control.CustomCommand("REQ_GUILD_PROMOTE_NOTICE_COUNT", 0);
+	end
+end
+
+function SYSMENU_GUILD_PROMOTE_NOTICE(frame)
+	local frame = ui.GetFrame("sysmenu");
+
+	local parentCtrl = GET_CHILD_RECURSIVELY(frame, "guildRank");
+	if parentCtrl == nil then
+		return;
+	end
+
+	local noticeBallon = MAKE_BALLOON_FRAME(ScpArgMsg("GuildPromoteNotice"), 0, 0, nil, "GuildPromoteNoticeBallon");
+
+	local margin = parentCtrl:GetMargin();
+	local x = margin.right;
+	local y = margin.bottom;
+
+	x = x + (parentCtrl:GetWidth() / 2);
+	y = y + parentCtrl:GetHeight() - 5;
+
+	noticeBallon:SetGravity(ui.RIGHT, ui.BOTTOM);
+	noticeBallon:SetMargin(0, 0, x, y);
+	noticeBallon:SetLayerLevel(106);
+	noticeBallon:ShowWindow(1);
 end

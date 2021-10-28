@@ -333,6 +333,7 @@ function GET_ATK_PROP_LIST()
     list[#list+1] = "LootingChance";
     list[#list+1] = "Magic_Earth_Atk";
     list[#list+1] = "Magic_Ice_Atk";
+    list[#list+1] = "Magic_Soul_Atk";
 	return list;
 
 end

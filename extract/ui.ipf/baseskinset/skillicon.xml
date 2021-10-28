@@ -2172,7 +2172,7 @@
 		<image name="ability_archer_Falconer8" file="\icon\icon_ability_archer04.tga" imgrect="896 128 128 128" CMM_Caption="음속타: 강화"/>
 		<image name="ability_archer_Schwarzereiter15" file="\icon\icon_ability_archer04.tga" imgrect="0 256 128 128" CMM_Caption="와일드샷: 강화"/>
 		<image name="ability_archer_Musketeer7" file="\icon\icon_ability_archer04.tga" imgrect="128 256 128 128" CMM_Caption="바요넷 쓰러스트: 강화"/>
-		<image name="ability_archer_Cannoneer1" file="\icon\icon_ability_archer04.tga" imgrect="256 256 128 128" CMM_Caption="캐논마스터리관동:블럭"/>
+		<image name="ability_archer_Cannoneer1" file="\icon\icon_ability_archer04.tga" imgrect="256 256 128 128" CMM_Caption="캐논마스터리관동:블록"/>
 		<image name="ability_archer_Ranger31" file="\icon\icon_ability_archer04.tga" imgrect="384 256 128 128" CMM_Caption="하이앵커링: 크리티컬 찬스"/>
 		<image name="ability_archer_QuarrelShooter23" file="\icon\icon_ability_archer04.tga" imgrect="512 256 128 128" CMM_Caption="래피드파이어: 크리티컬 찬스"/>
 		<image name="ability_archer_Hunter9" file="\icon\icon_ability_archer04.tga" imgrect="640 256 128 128" CMM_Caption="코싱: 강화"/>

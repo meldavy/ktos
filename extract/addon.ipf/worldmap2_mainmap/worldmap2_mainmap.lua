@@ -3,11 +3,13 @@
 function WORLDMAP2_MAINMAP_ON_INIT(addon, frame)
     addon:RegisterMsg('UPDATE_OTHER_GUILD_EMBLEM', 'ON_UPDATE_OTHER_GUILD_EMBLEM_WORLDMAP2_MAINMAP')
     addon:RegisterMsg('UPDATE_FIELDBOSS_INFO', 'ON_UPDATE_MAINMAP_FIELDBOSS_INFO')
+    addon:RegisterMsg('TOGGLE_FAVORITE_MAP', 'WORLDMAP2_MAINMAP_BOOKMARK')
 end
 
 -- OPEN/ClOSE
 function OPEN_WORLDMAP2_MAINMAP(frame)
     WORLDMAP2_MAINMAP_DRAW(frame)
+    WORLDMAP2_MAINMAP_DRAW_BASE(frame)
     WORLDMAP2_MAINMAP_DRAW_COLONY(frame)
     WORLDMAP2_MAINMAP_INIT(frame)
 end
@@ -28,19 +30,64 @@ function WORLDMAP2_MAINMAP_INIT(frame)
     -- 필드보스
     WORLDMAP2_MAINMAP_FIELDBOSS(frame)
 
+    -- 즐겨찾기
+    WORLDMAP2_MAINMAP_BOOKMARK(frame)
+
     -- 필드보스 정보 요청
     world.ReqExistFieldBossInfo()
 
     -- 컨트롤 제한
     control.EnableControl(0, 1)
+
+    -- 단축키 제한
+    for i = 1, 8 do
+        keyboard.EnableHotKeyByID("F"..i, false)
+    end
+
+    frame:RunUpdateScript("WORLDMAP2_MAINMAP_UPDATE", 0, 0, 0, 1)
 end
 
 function WORLDMAP2_MAINMAP_EXIT(frame)
+    -- 이펙트
     WORLDMAP2_MAINMAP_EFFECT_OFF()
+
+    -- 컨트롤 제한 해제
     control.EnableControl(1)
+
+    -- 단축키 제한 해제
+    for i = 1, 8 do
+        keyboard.EnableHotKeyByID("F"..i, true)
+    end
+end
+
+-- UPDATE
+function WORLDMAP2_MAINMAP_UPDATE(frame)
+    if ui.GetFrame('worldmap2_submap'):IsVisible() == 1 then
+        return 1
+    end
+
+    for i = 1, 8 do
+        if keyboard.IsKeyDown("F"..i) == 1 then
+            WORLDMAP2_MAINMAP_BOOKMARK_CLICK(frame, AUTO_CAST(frame:GetChild("bookmark_btn_"..i)), argStr, argNum)
+            return 1
+        end
+    end
+
+	return 1
 end
 
 -- DRAW/CLEANUP
+function WORLDMAP2_MAINMAP_DRAW_BASE(frame)
+    local mainmapTip = AUTO_CAST(frame:GetChild("mainmap_tip"))
+
+    -- 토큰이동 안내문 표기 옵션
+    if session.loginInfo.IsPremiumState(ITEM_TOKEN) and GET_WARP_MAP_TYPE() == "None" then
+        mainmapTip:ShowWindow(1)
+    else
+        mainmapTip:ShowWindow(0)
+    end
+end
+
 function WORLDMAP2_MAINMAP_DRAW(frame)
 	local list, cnt = GetClassList("worldmap2_data")
 	for i = 0, cnt-1 do
@@ -113,16 +160,8 @@ function WORLDMAP2_MAINMAP_DRAW_CITY(frame, mapData)
 	cityBtn:SetUserValue("EPISODE", episode)
 
     -- 에피소드 버튼
-    local episodeText = "{@st100white_16}"..mapData.Name
-    local lobbyEpisode =  GET_MY_LAST_WARP_EPISODE()
-
-    -- 마지막 워프 위치 표기
-    if lobbyEpisode ~= nil and lobbyEpisode == episode then
-        episodeText = episodeText..'{img worldmap2_scroll_icon 18 22}'
-    end
-
 	cityEpisodeText:SetMargin(20, 27 + imageSize.y/2, 0, 0)
-    cityEpisodeText:SetText(episodeText)
+    cityEpisodeText:SetText("{@st100white_16}"..mapData.Name)
     cityEpisodeText:AdjustFontSizeByWidth(100)
     cityEpisodeText:EnableHitTest(0);
 
@@ -137,6 +176,17 @@ function WORLDMAP2_MAINMAP_DRAW_CITY(frame, mapData)
         myPosImg:ShowWindow(1)
 	else
 		myPosImg:ShowWindow(0)
+    end
+
+    -- 마지막 워프 위치 표기
+    local lobbyImg = AUTO_CAST(cityset:GetChild("last_warp_pos"))
+    local lobbyEpisode = GET_MY_LAST_WARP_EPISODE()
+
+    if lobbyEpisode ~= nil and lobbyEpisode == episode then
+        lobbyImg:SetMargin(30 -imageSize.x/2, 30 -imageSize.y/2, 0, 0)
+        lobbyImg:ShowWindow(1)
+	else
+		lobbyImg:ShowWindow(0)
     end
 
     -- 필드보스 표기
@@ -160,25 +210,25 @@ function WORLDMAP2_MAINMAP_DRAW_EPISODE(frame, mapData)
 	local episodeBtn = AUTO_CAST(episodeSet:GetChild("episode_btn"))
 
 	-- 사이즈 조정
-	episodeSet:Resize(imageSize.x + 60, imageSize.y + 60)
-
+	if config.GetServiceNation() == 'KOR' then
+		episodeSet:Resize(imageSize.x + 60, imageSize.y + 60)
+	else
+		episodeSet:Resize(imageSize.x + 100, imageSize.y + 100)
+	end
 	-- 이미지
     episodeImg:SetImage(imageName)
     episodeImg:SetUserValue("EPISODE", episode)
 
     -- 버튼
-    local episodeText = "{@st100white_16}"..mapData.Name
-    local lobbyEpisode =  GET_MY_LAST_WARP_EPISODE()
-
-    -- 마지막 워프 위치 표기
-    if lobbyEpisode ~= nil and lobbyEpisode == episode then
-        episodeText = episodeText..'{img worldmap2_scroll_icon 18 22}'
-    end
-
 	episodeBtn:SetMargin(0, 2 + imageSize.y/2, 0, 0)
-	episodeBtn:SetText(episodeText)
+	episodeBtn:SetText("{@st100white_16}"..mapData.Name)
 	episodeBtn:SetTextOffset(0, 4)
+	
+	if config.GetServiceNation() == 'KOR' then
     episodeBtn:AdjustFontSizeByWidth(100)
+	else
+		episodeBtn:AdjustFontSizeByWidth(200)
+	end
     episodeBtn:SetUserValue("EPISODE", episode)
 
 	-- 내 위치 표기
@@ -187,11 +237,21 @@ function WORLDMAP2_MAINMAP_DRAW_EPISODE(frame, mapData)
 
     if myEpisode == episode then
         frame:SetUserValue("MY_POS", episode)
-
         myPosImg:SetMargin(-2, -4 -imageSize.y/2, 0, 0)
         myPosImg:ShowWindow(1)
 	else
 		myPosImg:ShowWindow(0)
+    end
+
+    -- 마지막 워프 위치 표기
+    local lobbyImg = AUTO_CAST(episodeSet:GetChild("last_warp_pos"))
+    local lobbyEpisode = GET_MY_LAST_WARP_EPISODE()
+
+    if lobbyEpisode ~= nil and lobbyEpisode == episode then
+        lobbyImg:SetMargin(20 -imageSize.x/2, 30 -imageSize.y/2, 0, 0)
+        lobbyImg:ShowWindow(1)
+    else
+        lobbyImg:ShowWindow(0)
     end
 
     -- 필드보스 표기
@@ -211,17 +271,9 @@ function WORLDMAP2_MAINMAP_DRAW_SUB_EPISODE(frame, mapData)
 	local subEpisodeBtn = AUTO_CAST(subEpisodeSet:GetChild("sub_episode_btn"))
 
     -- 버튼
-    local episodeText = "{@st100lblue_16}"..mapData.Name
-    local lobbyEpisode =  GET_MY_LAST_WARP_EPISODE()
-
-    -- 마지막 워프 위치 표기
-    if lobbyEpisode ~= nil and lobbyEpisode == episode then
-        episodeText = episodeText..'{img worldmap2_scroll_icon 18 22}'
-    end
-
-	subEpisodeBtn:SetText(episodeText)
+	subEpisodeBtn:SetText("{@st100lblue_16}"..mapData.Name)
 	subEpisodeBtn:SetTextOffset(0, -11)
-    subEpisodeBtn:AdjustFontSizeByWidth(100)
+    subEpisodeBtn:AdjustFontSizeByWidth(120)
     subEpisodeBtn:SetUserValue("EPISODE", episode)
 
 	-- 내 위치 표기
@@ -235,6 +287,17 @@ function WORLDMAP2_MAINMAP_DRAW_SUB_EPISODE(frame, mapData)
         myPosImg:ShowWindow(1)
 	else
 		myPosImg:ShowWindow(0)
+    end
+
+    -- 마지막 워프 위치 표기
+    local lobbyImg = AUTO_CAST(subEpisodeSet:GetChild("last_warp_pos"))
+    local lobbyEpisode = GET_MY_LAST_WARP_EPISODE()
+
+    if lobbyEpisode ~= nil and lobbyEpisode == episode then
+        lobbyImg:SetMargin(-55, -30, 0, 0)
+        lobbyImg:ShowWindow(1)
+    else
+        lobbyImg:ShowWindow(0)
     end
 
     -- 필드보스 표기
@@ -434,6 +497,63 @@ function WORLDMAP2_MAINMAP_FIELDBOSS(frame)
     end
 end
 
+-- BOOKMARK
+function WORLDMAP2_MAINMAP_BOOKMARK(frame)
+    local aObj = GetMyAccountObj()
+
+    for i = 1, 8 do
+        local mapName = TryGetProp(aObj, "FavoriteMap_"..i)
+        local mapData = GetClass("Map", mapName)
+
+        local btn = AUTO_CAST(frame:GetChild("bookmark_btn_"..i))
+
+        if mapData ~= nil then
+            btn:SetText('{@st106_br}{s16}'..mapData.Name)
+            btn:SetUserValue("MAPNAME", mapName)
+        else
+            btn:SetText('{@st106_lbr}{s16}'..ScpArgMsg("NoFavoriteMap"))
+            btn:SetUserValue("MAPNAME", "None")
+        end
+    end
+end
+
+function WORLDMAP2_MAINMAP_BOOKMARK_CLICK(frame, ctrl, argStr, argNum)
+    local mapName = ctrl:GetUserValue("MAPNAME")
+    local episode = GET_EPISODE_BY_MAPNAME(mapName)
+
+    if mapName == "None" then
+        return
+    end
+
+    if GET_WARP_MAP_TYPE() == "None" then
+        if keyboard.IsKeyPressed("LSHIFT") == 1 then
+            WORLDMAP2_TOKEN_WARP(mapName)
+        else
+            WORLDMAP2_OPEN_SUBMAP_FROM_MAINMAP_BY_EPISODE(episode)
+            WORLDMAP2_OPEN_MINIMAP_FROM_SUBMAP_BY_MAPNAME(mapName)
+        end
+    else
+        REQUEST_WARP_TO_AREA(mapName)
+    end
+end
+
+-- LOBBY
+function WORLDMAP2_MAINMAP_LOBBYMAP_CLICK(frame, ctrl, argStr, argNum)
+    local mapName = GET_MY_LAST_WARP_POSITION()
+    local episode = GET_EPISODE_BY_MAPNAME(mapName)
+
+    if mapName == nil then
+        return
+    end
+
+    if GET_WARP_MAP_TYPE() == "None" then
+        WORLDMAP2_OPEN_SUBMAP_FROM_MAINMAP_BY_EPISODE(episode)
+        WORLDMAP2_OPEN_MINIMAP_FROM_SUBMAP_BY_MAPNAME(mapName)
+    else
+        REQUEST_WARP_TO_AREA(mapName)
+    end
+end
+
 -- SCRIPT LIST
 
 -- 길드 이미지 업데이트 함수
@@ -474,7 +594,7 @@ end
 function WORLDMAP2_MAINMAP_MOVE_MYPOS(frame, ctrl)
     local myMapName, myEpisode = GET_MY_POSITION()
     
-    WORLDMAP2_SUBMAP_OPEN_FROM_MAINMAP_BY_EPISODE(myEpisode)
+    WORLDMAP2_OPEN_SUBMAP_FROM_MAINMAP_BY_EPISODE(myEpisode)
 end
 
 -- 콜로니 UI 접근 함수 (콜로니 위치)

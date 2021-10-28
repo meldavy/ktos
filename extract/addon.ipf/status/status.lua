@@ -165,6 +165,14 @@ function TOKEN_ON_MSG(frame, msg, argStr, argNum)
     local value = GET_CHILD_RECURSIVELY(ctrlSet, "value");
     value:ShowWindow(0);
 
+    local ctrlSet = tokenList:CreateControlSet("tokenDetail", "CTRLSET_" .. 12, ui.CENTER_HORZ, ui.TOP, 0, 0, 0, 0);
+    local prop = ctrlSet:GetChild("prop");
+    local imag = string.format("{img worldmaptoken_image %d %d}", 55, 45)
+    prop:SetTextByKey("value", imag .. ClMsg("CanUseWorldMapToken"));
+    local value = GET_CHILD_RECURSIVELY(ctrlSet, "value");
+    value:ShowWindow(0);
+
+    
 --    local ctrlSet = tokenList:CreateControlSet("tokenDetail", "CTRLSET_" .. 12, ui.CENTER_HORZ, ui.TOP, 0, 0, 0, 0);
 --    local prop = ctrlSet:GetChild("prop");
 --    local imag = string.format("{img 1plus_image %d %d}", 55, 45)
@@ -2455,12 +2463,8 @@ end
 
 function ENABLE_CHANGE_TEAM_NAME_BY_ITME(frame, msg, argStr, result)
     if result ~= 0 then
-        if result == -1 or result == -12 or result == -14 or result == -15 or result == -21 then
-			ui.SysMsg(ClMsg("TheTeamNameAlreadyExist"));
-	    elseif result == -11 or result == -13 then
-		    ui.SysMsg(ClMsg("ThisWorldExistFamilyName"));
-	    elseif result == -2 then
-	  	    ui.SysMsg(ClMsg("HadFobbidenWord"));
+        if result == -1 or result == -12 or result == -14 or result == -15 or result == -21 or result == -11 or result == -13 or result == -2 then
+			ui.SysMsg(ClMsg("AlreadyorImpossibleName"));
 	    else
 			ui.SysMsg(ClMsg("TeamNameChangeFailed"));
 		end

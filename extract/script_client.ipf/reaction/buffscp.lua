@@ -1018,16 +1018,7 @@ end
 
 function ShadowPool_Buff_CLIENT_ENTER(actor, obj, buff)
     --movie.ShowModel(actor:GetHandleVal(), 0);
-    
-    local value = actor:GetEffect():SetColorBlend("ShadowPool", 0, 0, 0, 0, true, 0, false, 0);
-    local pc = GetMyPCObject()
-    local abil = session.GetAbilityByName('Shadowmancer16');
-    if abil ~= nil then
-        local abilObj = GetIES(abil:GetObject());
-        if abilObj.ActiveState == 1 then
-            value = actor:GetEffect():SetColorBlend("ShadowPool", 0, 0, 0, 255, true, 0, false, 0);
-        end
-    end
+    actor:GetEffect():SetColorBlend("ShadowPool", 0, 0, 0, 0, true, 0, false, 0);
 end
 
 function ShadowPool_Buff_CLIENT_LEAVE(actor, obj, buff)
@@ -1314,6 +1305,9 @@ function ScpChangeSwordmanStanceAnimationSet(actor, obj, buff)
         end
     elseif buffEpeeGarde ~= nil then
         actor:GetAnimation():SetSTDAnim("SKL_EPEEGARDE_ASTD");
+        actor:GetAnimation():ResetRUNAnim();
+        actor:GetAnimation():ResetWLKAnim();
+        actor:GetAnimation():ResetTURNAnim();
     elseif buffHelmet ~= nil then
         actor:GetAnimation():SetChangeJumpAnim(true);
         actor:GetAnimation():SetTURNAnim("SKL_MURMILLO_ATURN");
@@ -1517,4 +1511,11 @@ function ITEM_EP12TWINSHARK_EFFECT_PRE_LEAVE(actor, obj, buff)
     actor:SetEquipItemFlagProp("EFFECTCOSTUME", 0);
 end
 
-    
+function StereaTrofhClientScp_ENTER(actor, obj, buff)
+    local actorPos = actor:GetPos();
+    effect.AddActorEffect(actor, "F_cleric_StereaTrofh_buff", 2.5, actorPos.x, actorPos.y + 55, actorPos.z, -1)
+end
+
+function StereaTrofhClientScp_LEAVE(actor, obj, buff)
+    effect.DetachActorEffect(actor, "F_cleric_StereaTrofh_buff", 0.0);
+end

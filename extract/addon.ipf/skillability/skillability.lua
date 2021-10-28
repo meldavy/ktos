@@ -50,6 +50,7 @@ end
 
 function SKILLABILITY_COMMON_LEGENDITEMSKILL_UPDATE(frame, msg, skillID, argNum)
     if frame == nil then return; end
+    if skillID == nil or skillID == "" or skillID == "None" then return end
     local skillability_job = GET_CHILD_RECURSIVELY(frame, "skillability_job_Common");
     if skillability_job == nil then return end
     local skilltree_gb = GET_CHILD_RECURSIVELY(skillability_job, "skilltree_gb");

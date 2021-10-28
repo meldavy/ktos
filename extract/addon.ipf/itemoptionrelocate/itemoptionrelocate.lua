@@ -343,35 +343,49 @@ function ITEMOPTIONRELOCATE_REG_DEST_ITEM(frame, itemID)
 	local medal_gb = GET_CHILD_RECURSIVELY(frame, "medal_gb");
 	medal_gb:ShowWindow(1);
 
-	-- 이전 옵션
 	local gBox = GET_CHILD_RECURSIVELY(frame, "bodyGbox1_0");
 	gBox:RemoveAllChild();
+	
+	local gBox2 = GET_CHILD_RECURSIVELY(frame, "bodyGbox2_0");
+	gBox2:RemoveAllChild();
 	
 	-- 이전 비용
 	local src_LV = TryGetProp(src_Obj, "UseLv", 9999);
 	local dest_LV = TryGetProp(dest_Obj, "UseLv", 9999);
-	local decomposecost = GET_CHILD_RECURSIVELY(medal_gb, "decomposecost");
+	local relocatecost = GET_CHILD_RECURSIVELY(medal_gb, "relocatecost");
 	local cost = 999999999;
 
 	if relocateType == 'AWAKE' then
 		local opName = string.format("[%s] %s", ClMsg("AwakenOption"), ScpArgMsg(src_Obj.HiddenProp));
 		local strInfo = ABILITY_DESC_PLUS(opName, src_Obj.HiddenPropValue);
-
-		local ctrlSet = gBox:CreateOrGetControl('richtext', 'OPTION_TEXT_2', 3, 0, 400, 30);
+		local ctrlSet = gBox:CreateOrGetControl('richtext', 'OPTION_TEXT', 3, 0, 400, 30);
 		ctrlSet:SetText(strInfo);
 		ctrlSet:SetFontName('brown_16');
+		
+		if dest_Obj.IsAwaken == 1 then
+			local opName2 = string.format("[%s] %s", ClMsg("AwakenOption"), ScpArgMsg(dest_Obj.HiddenProp));
+			local strInfo2 = ABILITY_DESC_PLUS(opName2, dest_Obj.HiddenPropValue);
+			local ctrlSet2 = gBox2:CreateOrGetControl('richtext', 'OPTION_TEXT', 3, 0, 400, 30);
+			ctrlSet2:SetText(strInfo2);
+			ctrlSet2:SetFontName('brown_16');	
+		end
 
 		cost = GET_ITEM_AWAKE_OPTION_RELOCATE_COST(src_LV);
 	elseif relocateType == 'ENCHANT' then
-		local strInfo = GET_RANDOM_OPTION_RARE_CLIENT_TEXT(src_Obj)
-		
-		local ctrlSet = gBox:CreateOrGetControl('richtext', 'OPTION_TEXT_1', 3, 0, 400, 30);
+		local strInfo = GET_RANDOM_OPTION_RARE_CLIENT_TEXT(src_Obj)		
+		local ctrlSet = gBox:CreateOrGetControl('richtext', 'OPTION_TEXT', 3, 0, 400, 30);
 		ctrlSet:SetText(strInfo);
-
+		
+		local strInfo2 = GET_RANDOM_OPTION_RARE_CLIENT_TEXT(dest_Obj)		
+		if strInfo2 ~= nil then
+			local ctrlSet2 = gBox2:CreateOrGetControl('richtext', 'OPTION_TEXT', 3, 0, 400, 30);
+			ctrlSet2:SetText(strInfo2);
+		end
+		
 		cost = GET_ITEM_ENCHANT_OPTION_RELOCATE_COST(dest_LV, src_LV);
 	end
 
-	decomposecost:SetText(cost);
+	relocatecost:SetText(cost);
 	
 	-- 예상 잔액
 	local silverAmountStr = tonumber(GET_TOTAL_MONEY_STR());
@@ -382,6 +396,9 @@ end
 function ITEMOPTIONRELOCATE_CLEAR_OPTION(frame)
 	local gBox = GET_CHILD_RECURSIVELY(frame, "bodyGbox1_0");
 	gBox:RemoveAllChild();
+
+	local gBox2 = GET_CHILD_RECURSIVELY(frame, "bodyGbox2_0");
+	gBox2:RemoveAllChild();
 end
 
 -- 옵션 이전 버튼 클릭

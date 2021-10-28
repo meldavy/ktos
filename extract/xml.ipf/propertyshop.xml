@@ -91,6 +91,16 @@
 		<Item Script="None" Name="PVP_EP12_BRC05_HIGH_005" Count="2" Price="1" DailyBuyLimit="1"/>
 		<Item Script="None" Name="PVP_EP12_BRC05_HIGH_006" Count="2" Price="1" DailyBuyLimit="1"/>
 		<Item Script="None" Name="PVP_EP12_BRC05_HIGH_007" Count="2" Price="1" DailyBuyLimit="1"/>
+		<Item Script="None" Name="PVP_BOW04_126_1" Count="1" Price="1" DailyBuyLimit="1"/>
+		<Item Script="None" Name="PVP_TSW04_126_2" Count="1" Price="1" DailyBuyLimit="1"/>
+		<Item Script="None" Name="PVP_TSP04_128_2" Count="1" Price="1" DailyBuyLimit="1"/>
+		<Item Script="None" Name="PVP_RAP04_124_1" Count="1" Price="1" DailyBuyLimit="1"/>
+		<Item Script="None" Name="PVP_PST04_122_2" Count="1" Price="1" DailyBuyLimit="1"/>
+		<Item Script="None" Name="PVP_CAN04_118_1" Count="1" Price="1" DailyBuyLimit="1"/>
+		<Item Script="None" Name="PVP_TSF04_129_3" Count="1" Price="1" DailyBuyLimit="1"/>
+		<Item Script="None" Name="PVP_TMAC04_118_3" Count="1" Price="1" DailyBuyLimit="1"/>
+		<Item Script="None" Name="PVP_STF04_127_3" Count="1" Price="1" DailyBuyLimit="1"/>
+		<Item Script="None" Name="PVP_SHD04_122_1" Count="1" Price="1" DailyBuyLimit="1"/>
 	</Shop>
 	<Shop Name="GUILD_CONTRIBUTION_SHOP" PointScript="GET_GUILD_CONTRIBUTION_POINT">
 		<Item Script="None" Name="BRC99_114_guildshop_7d" Count="1" Price="1000" DailyBuyLimit="0"/>

@@ -4,6 +4,7 @@ function PARTY_RECOMMEND_ON_INIT(addon, frame)
     addon:RegisterMsg('OPEN_SELECT_TARGET', 'OPEN_SELECT_TARGET_FROM_PARTY');
     addon:RegisterMsg('OPEN_SELECT_TARGET_SUMMON', 'OPEN_SELECT_TARGET_FROM_SUMMON');
     addon:RegisterMsg('OPEN_SELECT_BUFF', 'OPEN_SELECT_BUFF_FROM_LIST');
+    addon:RegisterMsg('OPEN_SELECT_ANCIENT', 'OPEN_SELECT_ANCIENT_FROM_LIST');
 end
 
 function PARTY_RECOMMEND_DEFAULT_SETTING(frame, skillID)
@@ -316,4 +317,70 @@ function OPEN_SELECT_BUFF_FROM_LIST(frame, msg, argStr)
     PARTY_RECOMMEND_CANCEL_SETTING(frame);
 
     frame:ShowWindow(1);
+end
+
+------ set target from ancient ------
+function OPEN_SELECT_ANCIENT_FROM_LIST(frame, msg, argStr, showHPGauge)
+    -- skill
+    local skillID = geSkillControl.GetSelectAncientTargetSkillID()
+    PARTY_RECOMMEND_DEFAULT_SETTING(frame, skillID)
+    
+    local emphasizePic = nil
+    local emphasizeValue = nil
+    local index = 1
+
+    local ancientList, ancientCnt = GetAncientHandleList()
+    for i = 1, ancientCnt do
+        local ancientHandle = ancientList[i]
+        local ancientInfo = session.ancient.GetMonsterByHandle(ancientHandle)
+        if ancientInfo ~= nil then
+            local ancientMon = GetClassByType('Monster', ancientInfo.classID)
+            local ancientCard = session.ancient.GetAncientCardBySlot(ancientInfo.slot)
+            if ancientMon ~= nil and ancientCard ~= nil then
+                local memberSet = GET_CHILD_RECURSIVELY(frame, 'memberSet_'..index)
+
+                if memberSet ~= nil then
+                    memberSet:ShowWindow(1)
+                end
+
+                local iconPic = GET_CHILD(memberSet, 'jobEmblemPic')
+                if iconPic ~= nil then
+                    iconPic:SetImage(ancientMon.Icon)
+                end
+                
+                local lvText = GET_CHILD(memberSet, 'lvText')
+                if lvText ~= nil then
+                    local exp = ancientCard:GetStrExp()
+                    local xpInfo = gePetXP.GetXPInfo(gePetXP.EXP_ANCIENT, tonumber(exp))
+                    local level = xpInfo.level
+                    lvText:SetTextByKey('lv', level)
+                end 
+                
+                local nameText = GET_CHILD(memberSet, 'nameText')
+                if nameText ~= nil then
+                    nameText:SetTextByKey('name', dic.getTranslatedStr(ancientMon.Name))
+                end
+                
+                local hpGauge = GET_CHILD(memberSet, 'hpGauge')
+                if hpGauge ~= nil then
+                    local stat = info.GetStat(ancientHandle)
+                    if stat == nil then
+                        hpGauge:ShowWindow(0)
+                    else
+                        hpGauge:SetPoint(stat.HP, stat.maxHP)
+                        hpGauge:ShowWindow(showHPGauge)
+                    end
+                end
+
+                geSkillControl.SetAncientTargetHandle(index, ancientHandle, argStr)
+                
+                index = index + 1
+            end
+        end
+    end
+
+    PARTY_RECOMMEND_CANCEL_SETTING(frame)
+
+    frame:ShowWindow(1)
+    geSkillControl.CheckDistanceAncientTarget()
 end

@@ -21,7 +21,7 @@
 				<layout name="promoteLayout" orientation="horizontal">
 					<layoutsection name="stub0" size="20"/>
 					<layoutsection name="tabSection">
-						<tab name="itembox" itemspc="0" skin="tab2" margin="0 15 0 0" vertical="false" targetcontrol="tabArea">
+						<tab name="itembox" itemspc="0" skin="tab2" margin="0 15 0 0" vertical="false" targetcontrol="tabArea" LBtnDownScp="GUILDINFO_DETAIL_TAB_CLICK">
 							<!-- targetcontrol="" -->
 							<tabitem name="info" caption=" {@st66}정보" width="100" skinspace="0"/>
 							<tabitem name="page" caption=" {@st66}홍보 페이지" skinspace="0" width="100"/>
@@ -251,5 +251,7 @@
 			</layoutsection>
 		</layout>
 		<button name="closeBtn" rect="0 0 60 60" margin="0 35 35 0" hittest="true" layout_gravity="right top" image="testclose_button" LBtnUpScp="ui.CloseFrame(&apos;guildinfo_detail&apos;)"/>
+		<groupbox name="joinballoongb" rect="0 0 308 40" margin="0 90 100 0" layout_gravity="right top" skin="textballoon"/>
+		<richtext name="joinText" rect="0 0 280 25" margin="0 98 110 0" layout_gravity="right top" caption="{#001100}{s18}가입을 신청할 수 있습니다." textalign="center center" resizebytext="false"/>
 	</controls>
 </uiframe>

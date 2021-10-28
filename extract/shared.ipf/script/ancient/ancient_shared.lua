@@ -1,5 +1,10 @@
 ﻿--사용가능 설정--
 function IS_ANCIENT_ENABLE_MAP(self)
+    if IsServerSection() ~= 1 then
+        self = GetMyPCObject()
+    end
+
+    local zoneName = 'None'
     if IsServerSection() == 1 then
         zoneName = GetZoneName(self);
     else
@@ -12,21 +17,28 @@ function IS_ANCIENT_ENABLE_MAP(self)
             return "YES";
         end
     end
-
+    
+    local clsIndun = nil
+    if IsServerSection() == 1 then
     local cmd = GetMGameCmd(self);
     if cmd ~= nil then
         local mGameName = cmd:GetMGameName();
-        local clsIndun = GET_MGAME_CLASS_BY_MGAMENAME(mGameName);
-        if clsIndun ~= nil then
-            local mGameName = cmd:GetMGameName();
-            local clsIndun = GET_MGAME_CLASS_BY_MGAMENAME(mGameName);
-            if clsIndun ~= nil and (TryGetProp(clsIndun, "SubType", "None") == "Casual" or TryGetProp(clsIndun, "DungeonType", "None") == "WeeklyRaid") then
-                return "YES";
+            clsIndun = GET_MGAME_CLASS_BY_MGAMENAME(mGameName);
+        end
+    else
+        if IsRaidField() == 1 or IsRaidMap() == 1 then
+            local mGameName = session.mgame.GetCurrentMGameName()
+            if mGameName ~= nil and mGameName ~= 'None' then
+                clsIndun = GetClassByStrProp("Indun", "MGame", mGameName)
+            end
             end
         end
+    if clsIndun ~= nil and (TryGetProp(clsIndun, "SubType", "None") == "Casual" or TryGetProp(clsIndun, "DungeonType", "None") == "WeeklyRaid" or TryGetProp(clsIndun, "DungeonType", "None") == "FreeDungeon") then
+        return "YES";
     end
 
     -- 챌린지 모드 캐주얼 모드
+    if IsServerSection() == 1 then
     local isChallengeModePlaying = IsChallengeModePlaying(self);
 	if isChallengeModePlaying == 1 then
 		local partyObj = GetPartyObj(self);
@@ -37,6 +49,58 @@ function IS_ANCIENT_ENABLE_MAP(self)
 			end
 		end
 	end
+    else
+        local selectedLevel = GetExProp(self, 'ChallengeMode_SelectedLevel')
+        if selectedLevel == 2 then
+            return 'YES'
+        end
+    end
+    
+    return "NO"
+end
+
+function IS_ANCIENT_HEAL_ENABLE(self)
+    if self == nil then
+        self = GetMyPCObject()
+    end
+
+    -- 텔 하르샤 4단계 이하
+    local mGameName = 'None'
+    if IsServerSection() == 1 then
+        local cmd = GetMGameCmd(self)
+        if cmd ~= nil then
+            mGameName = cmd:GetMGameName()
+        end
+    else
+        if IsRaidField() == 1 or IsRaidMap() == 1 then
+            mGameName = session.mgame.GetCurrentMGameName()
+        end
+    end
+    if mGameName == 'IRREDIAN1131_SRAID_C' then
+        local dungeon_level = GetExProp(self, 'sraidC_Total_Level_boss')
+        if dungeon_level > 0 and dungeon_level <= 4 then
+            return "YES"
+        end
+    end
+
+    -- 챌린지 1인 모드
+    if IsServerSection() == 1 then
+        local isChallengeModePlaying = IsChallengeModePlaying(self);
+        if isChallengeModePlaying == 1 then
+            local partyObj = GetPartyObj(self)
+            if partyObj ~= nil then
+                local selectedLevel = GetExProp(partyObj, "ChallengeMode_SelectedLevel")
+                if selectedLevel == 2 then
+                    return "YES"
+                end
+            end
+        end
+    else
+        local selectedLevel = GetExProp(self, 'ChallengeMode_SelectedLevel')
+        if selectedLevel == 2 then
+            return 'YES'
+        end
+    end
     
     return "NO"
 end

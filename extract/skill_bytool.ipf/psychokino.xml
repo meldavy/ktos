@@ -1,5 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
-<ToolSkill><Skill Name="Psychokino_HeavyGravity">
+<ToolSkill>
+<Skill Name="Psychokino_HeavyGravity">
 		<KeyInput>
 			<ToolScp Client="YES" Scp="SKL_KEY_GROUND_EVENT" UseSleep="NO">
 				<Num Num="3" />
@@ -154,6 +155,7 @@ return value"/>
 				<Num Num="1" />
 				<Num Num="100" />
 			</ToolScp>
+			<ToolScp Client="NO" Scp="SCR_ITEM_GravityPole_VIBORA_RUN" UseSleep="NO"/>
 		</KeyInputStart>
 		<KeyInputEnd>
 			<ToolScp Client="NO" Scp="SKL_CANCEL_CANCEL" UseSleep="NO" />
@@ -161,6 +163,12 @@ return value"/>
 				<Str Str="Wizard_SklCasting_Avoid" />
 			</ToolScp>
 			<ToolScp Client="YES" Scp="MONSKL_C_CLEAR_RESERVE_ANIM" UseSleep="NO" />
+			<ToolScp Client="NO" Scp="SKL_BUFF_REMOVE" UseSleep="NO">
+				<Str Str="ITEM_BUFF_VIBORA_STAFF_PSYCHOKINO"/>
+			</ToolScp>
+			<ToolScp Client="NO" Scp="SKL_RUN_SCRIPT" UseSleep="NO">
+				<Str Str="SCR_ITEM_GravityPole_VIBORA_FINISH"/>
+			</ToolScp>
 		</KeyInputEnd>
 		<KeyCancelScp>
 			<ToolScp Client="YES" Scp="C_EFFECT_DETACH" UseSleep="NO">
@@ -579,6 +587,13 @@ return value"/>
 					<Num Num="0" />
 				</ToolScp>
 			</ResultList>
+		</MainSkl>
+	</Skill>
+	<Skill Name="Psychokino_ViboraGravity_Finish">
+		<MainSkl ScrLock="None" JumpFlee="NO" MSPDToUsePos="0">
+			<HitList>
+				<Frame Type="SQUARE" Time="99999" HitCount="1" TermMin="0" TermMax="0" PosType="0" Dist="0" RandDist="0" RandomPerHit="0" Angle="0" Width="0" Length="0" AniTime="0" RotAngle="0" ForceATK="0" ScriptIndex="0" ScriptName="" SkillType="0"/>
+			</HitList>
 		</MainSkl>
 	</Skill>
 	</ToolSkill>

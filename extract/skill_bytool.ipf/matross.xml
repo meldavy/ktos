@@ -100,6 +100,9 @@
 					<Num Num="100"/>
 					<Num Num="0"/>
 				</Scp>
+				<Scp Scp="SKL_RUN_SCRIPT" Client="NO" UseSleep="NO" Time="0">
+					<Str Str="SCR_ITEM_MATROSS_VIBORA_EXPLOSION"/>
+				</Scp>
 			</EtcList>
 			<ResultList>
 				<ToolScp Scp="S_R_EXPLODE_TAKEDAMAGEADDBLOW_MATROSS" Client="NO" UseSleep="NO">
@@ -343,14 +346,14 @@
 			</ResultList>
 		</MainSkl>
 		<ByCondSkills>
-            <SubSkl>
-                <Cond>
-                    <ToolScp Client="NO" Scp="SKL_SELECT_ABIL" UseSleep="NO">
-                        <Str Str="Matross19"/>
-                    </ToolScp>
-                </Cond>
-                <Skill JumpFlee="NO" MSPDToUsePos="0" ScrLock="None">
-                    <HitList>
+			<SubSkl>
+				<Cond>
+					<ToolScp Client="NO" Scp="SKL_SELECT_ABIL" UseSleep="NO">
+						<Str Str="Matross19"/>
+					</ToolScp>
+				</Cond>
+				<Skill JumpFlee="NO" MSPDToUsePos="0" ScrLock="None">
+					<HitList>
 						<Frame Type="FAN" Time="9799" HitCount="1" TermMin="0" TermMax="0" PosType="0" Dist="0" RandDist="0" RandomPerHit="0" Angle="0" AniTime="9999" RotAngle="0" ForceATK="0"/>
 					</HitList>
 					<EtcList>
@@ -383,8 +386,8 @@
 							<Str Str="Matross_CanisterShot_Abil"/>
 						</Scp>
 					</EtcList>
-                </Skill>
-            </SubSkl>
-        </ByCondSkills>		
+				</Skill>
+			</SubSkl>
+		</ByCondSkills>
 	</Skill>
 </ToolSkill>

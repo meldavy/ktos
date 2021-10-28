@@ -607,3 +607,17 @@ function ON_TOGGLE_FAVORITE_MAP(frame, msg, argStr, argNum)
         minimapBookMark:SetTextTooltip(ScpArgMsg("AddBookMark"))
     end
 end
+
+-- 미니맵 변경
+function WORLDMAP2_MINIMAP_CHANGE(mapName)
+    local frame = ui.GetFrame('worldmap2_minimap')
+
+	-- 동일 서브맵일 경우 리턴
+	if WORLDMAP2_MINIMAP_MAPNAME() == mapName then
+		return
+    end
+    
+    CLOSE_WORLDMAP2_MINIMAP(frame)
+	WORLDMAP2_MINIMAP_SET_MAPNAME(mapName)
+    OPEN_WORLDMAP2_MINIMAP(frame)
+end

@@ -245,7 +245,7 @@ function UPDATE_MONB_HP(frame, handle)
     end
 
     -- 보스는 보스HP UI에서 따로 보여줌. 이거땜시 빨간hp, name 깜빡거림
-    local targetInfo = info.GetTargetInfo(handle);
+	local targetInfo = info.GetTargetInfo(handle);
     if targetInfo ~= nil and targetInfo.isBoss == true and targetInfo.isSummoned ~= 1 then
         frame:ShowWindow(0);
         return;
@@ -267,7 +267,7 @@ function UPDATE_MONB_HP(frame, handle)
             end
         end
     elseif hpGauge:GetMaxPoint() == 0 then
-        hpGauge:SetPoint(stat.HP, stat.maxHP);
+		hpGauge:SetPoint(stat.HP, stat.maxHP);
     end
 
     if targetInfo.isSummoned == 1 then

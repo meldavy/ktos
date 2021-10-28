@@ -50,3 +50,4 @@ ClassID,Count,Price,ClassName,ItemClassName,Group,GachaType,RewardGroup,PreCheck
 163,11,999,Gacha_HairAcc_4year_TWN,Gacha_HairAcc_4year_TWN,CUBE,hair,Gacha_HairAcc_4year_TWN,,Gacha_HairAcc_4year_TWN,1,CUBE,NO,,
 164,1,10,Gacha_TP2_Season_001,Gacha_TP2_Season_001,NPC,rbox,Gacha_TP2_Season_001,SCR_PRECHECK_LETICIA_CONSUME,SCR_PRECHECK_LETICIA_CONSUME,1,TP,NO,,
 165,11,100,Gacha_TP2_Season_010,Gacha_TP2_Season_010,NPC,rbox,Gacha_TP2_Season_001,SCR_PRECHECK_LETICIA_CONSUME,SCR_PRECHECK_LETICIA_CONSUME,1,TP,NO,,
+166,11,999,Gacha_HairAcc_Animal_TWN,Gacha_HairAcc_Animal_TWN,CUBE,hair,Gacha_HairAcc_Animal_TWN,,Gacha_HairAcc_Animal_TWN,1,CUBE,NO,,

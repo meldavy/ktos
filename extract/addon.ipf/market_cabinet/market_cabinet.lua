@@ -4,6 +4,12 @@ function MARKET_CABINET_ON_INIT(addon, frame)
 end
 
 function MARKET_CABINET_OPEN(frame)
+    local sharedcls = GetClass("SharedConst", "MAX_CABINET_ITEM_COUNT");
+    if sharedcls ~= nil then
+        local ctrl = GET_CHILD_RECURSIVELY(frame, "MaxCabinetItemCountMsg");
+        ctrl:SetTextByKey("vaule", sharedcls.Value);
+    end
+    
 	market.ReqCabinetList();
 end
 

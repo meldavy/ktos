@@ -1,6 +1,6 @@
 -- ancient_tooltip.lua --
 function UPDATE_ANCIENT_CARD_TOOLTIP(frame,guid)
-    local card = session.pet.GetAncientCardByGuid(guid);
+    local card = session.ancient.GetAncientCardByGuid(guid);
     if card == nil then
         return;
     end
@@ -134,7 +134,7 @@ function UPDATE_ANCIENT_CARD_PASSIVE_TOOLTIP(frame, handle, numarg1, numarg2)
     monster_passive_gbox:SetMargin(0,height,0,0)
     --help
     local monster_passive_help = GET_CHILD(monster_passive_gbox,'monster_passive_help')
-    monster_passive_help:SetText(ClMsg("AncientMonsterBuffHelp"))
+	monster_passive_help:SetText(ClMsg("AncientMonsterBuffHelp"))
     local monster_passive_height = monster_passive_help:GetHeight() + 40
     --text invalidate
     local monster_passive = GET_CHILD(monster_passive_gbox,"monster_passive")
@@ -142,18 +142,18 @@ function UPDATE_ANCIENT_CARD_PASSIVE_TOOLTIP(frame, handle, numarg1, numarg2)
     --passive
     local monster_passive_list_gbox = GET_CHILD(monster_passive_gbox,'monster_passive_list_gbox')
     monster_passive_list_gbox:RemoveAllChild()
-    local card = session.pet.GetAncientCardBySlot(0)
+    local card = session.ancient.GetAncientCardBySlot(0)
     if card ~= nil then
         local ctrlHeight = 0
         local infoCls = GetClass("Ancient_Info",card:GetClassName())
         local monNameCtrl = monster_passive_list_gbox:CreateControl("richtext","monstername",100,30,ui.LEFT,ui.TOP,5,0,0,0);
         monNameCtrl:SetText(yellow_font..infoCls.Name..' '..ClMsg("AncientMonsterBuff"))
-        monNameCtrl:SetFontName("yellow_16_ol")
+		monNameCtrl:SetFontName("yellow_16_ol")
         ctrlHeight = ctrlHeight + monNameCtrl:GetHeight() + 3
 
         local caption, parsed = TRY_PARSE_ANCIENT_PROPERTY(infoCls, infoCls.Tooltop, card);
         local passiveCtrl = monster_passive_list_gbox:CreateControl("richtext","monster",100,30,ui.LEFT,ui.TOP,5,ctrlHeight,0,0);
-        passiveCtrl:SetText(green_font..caption)
+		passiveCtrl:SetText(green_font..caption)
         ctrlHeight = ctrlHeight + passiveCtrl:GetHeight() + 3
 
         monster_passive_list_gbox:Resize(40,monster_passive_height,width,ctrlHeight)
@@ -194,16 +194,35 @@ function UPDATE_ANCIENT_CARD_PASSIVE_TOOLTIP(frame, handle, numarg1, numarg2)
         local passiveCtrl = combo_passive_list_gbox:CreateControl("richtext","combo_"..i,100,31,ui.LEFT,ui.TOP,5,comboBoxHeight,0,0);
         passiveCtrl:SetText(green_font..caption)
         comboBoxHeight = comboBoxHeight + passiveCtrl:GetHeight() + 3
-    end
+	end
     combo_passive_list_gbox:Resize(40,combo_passive_height,width,comboBoxHeight)
 
     combo_passive_gbox:Resize(width,comboBoxHeight+combo_passive_height)
     combo_passive_list_gbox:Resize(width,comboBoxHeight)
 
     height = height + comboBoxHeight + combo_passive_height + 15
+	width = SET_MAX_WIDTH_RECURSIVELY(frame)
     frame:Resize(width, height)
     bg:Resize(width, height)
 end
+
+function SET_MAX_WIDTH_RECURSIVELY(frame)
+	local width = 0
+	local cnt = frame:GetChildCount()
+	for i = 0,cnt-1 do
+		local child = frame:GetChildByIndex(i)
+		local name = child:GetClassName();
+		if name == 'groupbox' then
+			local tmp = SET_MAX_WIDTH_RECURSIVELY(child)
+			width = math.max(tmp,width)
+			child:Resize(width,child:GetHeight())
+		elseif name == 'richtext' then
+			width = math.max(width, child:GetWidth() + child:GetX())
+		end
+	end
+	return width
+end
+
 
 function TRY_PARSE_ANCIENT_PROPERTY(obj, caption, extraArg)
     caption = TranslateDicID(caption)

@@ -403,30 +403,30 @@ return obj.Level;"/>
         </ByCondSkills>
     </Skill>
     <Skill Name="Inquisitor_MalleusMaleficarum">
-        <MainSkl JumpFlee="NO" MSPDToUsePos="0" ScrLock="None">
+        <MainSkl ScrLock="None" JumpFlee="NO" MSPDToUsePos="0">
             <HitList>
-                <Frame Angle="0" AniTime="600" Dist="0" ForceATK="1" HitCount="1" Length="180" PosType="0" RandDist="0" RandomPerHit="0" RandomSort="1" RotAngle="0" SklAngle="1.0471981" TermMax="0" TermMin="0" Time="400" Type="SQUARE" Width="80"/>
-                <Frame Angle="0" AniTime="600" Dist="0" ForceATK="1" HitCount="1" Length="180" PosType="0" RandDist="0" RandomPerHit="0" RandomSort="1" RotAngle="0" SklAngle="1.0471981" TermMax="0" TermMin="0" Time="400" Type="SQUARE" Width="80"/>
-                <Frame Angle="0" AniTime="600" Dist="0" ForceATK="1" HitCount="1" Length="180" PosType="0" RandDist="0" RandomPerHit="0" RandomSort="1" RotAngle="0" SklAngle="1.0471981" TermMax="0" TermMin="0" Time="400" Type="SQUARE" Width="80"/>
-                <Frame Angle="0" AniTime="600" Dist="0" ForceATK="1" HitCount="1" Length="180" PosType="0" RandDist="0" RandomPerHit="0" RandomSort="1" RotAngle="0" SklAngle="1.0471981" TermMax="0" TermMin="0" Time="400" Type="SQUARE" Width="80"/>
-                <Frame Angle="0" AniTime="600" Dist="0" ForceATK="1" HitCount="1" Length="180" PosType="0" RandDist="0" RandomPerHit="0" RandomSort="1" RotAngle="0" SklAngle="1.0471981" TermMax="0" TermMin="0" Time="400" Type="SQUARE" Width="80"/>
-                <Frame Angle="0" AniTime="600" Dist="0" ForceATK="1" HitCount="1" Length="180" PosType="0" RandDist="0" RandomPerHit="0" RandomSort="1" RotAngle="0" SklAngle="1.0471981" TermMax="0" TermMin="0" Time="400" Type="SQUARE" Width="80"/>
-                <Frame Angle="0" AniTime="600" Dist="0" ForceATK="1" HitCount="1" Length="180" PosType="0" RandDist="0" RandomPerHit="0" RandomSort="1" RotAngle="0" SklAngle="1.0471981" TermMax="0" TermMin="0" Time="400" Type="SQUARE" Width="80"/>
+                <Frame Type="SQUARE" Time="400" HitCount="1" TermMin="0" TermMax="0" PosType="0" Dist="0" RandDist="0" RandomPerHit="0" Angle="0" Width="80" Length="180" SklAngle="1.0471981" AniTime="600" RotAngle="0" ForceATK="1" RandomSort="1" ScriptIndex="0" ScriptName="" SkillType="0"/>
+                <Frame Type="SQUARE" Time="400" HitCount="1" TermMin="0" TermMax="0" PosType="0" Dist="0" RandDist="0" RandomPerHit="0" Angle="0" Width="80" Length="180" SklAngle="1.0471981" AniTime="600" RotAngle="0" ForceATK="1" RandomSort="1" ScriptIndex="0" ScriptName="" SkillType="0"/>
+                <Frame Type="SQUARE" Time="400" HitCount="1" TermMin="0" TermMax="0" PosType="0" Dist="0" RandDist="0" RandomPerHit="0" Angle="0" Width="80" Length="180" SklAngle="1.0471981" AniTime="600" RotAngle="0" ForceATK="1" RandomSort="1" ScriptIndex="0" ScriptName="" SkillType="0"/>
+                <Frame Type="SQUARE" Time="400" HitCount="1" TermMin="0" TermMax="0" PosType="0" Dist="0" RandDist="0" RandomPerHit="0" Angle="0" Width="80" Length="180" SklAngle="1.0471981" AniTime="600" RotAngle="0" ForceATK="1" RandomSort="1" ScriptIndex="0" ScriptName="" SkillType="0"/>
+                <Frame Type="SQUARE" Time="400" HitCount="1" TermMin="0" TermMax="0" PosType="0" Dist="0" RandDist="0" RandomPerHit="0" Angle="0" Width="80" Length="180" SklAngle="1.0471981" AniTime="600" RotAngle="0" ForceATK="1" RandomSort="1" ScriptIndex="0" ScriptName="" SkillType="0"/>
+                <Frame Type="SQUARE" Time="400" HitCount="1" TermMin="0" TermMax="0" PosType="0" Dist="0" RandDist="0" RandomPerHit="0" Angle="0" Width="80" Length="180" SklAngle="1.0471981" AniTime="600" RotAngle="0" ForceATK="1" RandomSort="1" ScriptIndex="0" ScriptName="" SkillType="0"/>
+                <Frame Type="SQUARE" Time="400" HitCount="1" TermMin="0" TermMax="0" PosType="0" Dist="0" RandDist="0" RandomPerHit="0" Angle="0" Width="80" Length="180" SklAngle="1.0471981" AniTime="600" RotAngle="0" ForceATK="1" RandomSort="1" ScriptIndex="0" ScriptName="" SkillType="0"/>
             </HitList>
             <EtcList>
-                <Scp Client="YES" Scp="C_VOICE_SOUND" Time="0" UseSleep="NO">
+                <Scp Scp="C_VOICE_SOUND" Client="YES" UseSleep="NO" Time="0">
                     <Str Str="voice_cleric_m_malleusmaleficarum_shot"/>
                     <Str Str="voice_cleric_f_malleusmaleficarum_shot"/>
                 </Scp>
-                <Scp Client="YES_Time" Scp="C_FORCE_EFT" Time="750" UseSleep="NO">
-                    <Str_Arg Arg="0.5" Str="I_cleric_Inquisitor_MalleusMaleficarum01#Dummy_effect_magicmissile"/>
+                <Scp Scp="C_FORCE_EFT" Client="YES_Time" UseSleep="NO" Time="750">
+                    <Str_Arg Str="I_cleric_Inquisitor_MalleusMaleficarum01#Dummy_effect_magicmissile" Arg="0.5"/>
                     <Str Str="arrow_cast"/>
-                    <Str_Arg Arg="1" Str="I_explosion004_yellow_mage01_3"/>
+                    <Str_Arg Str="I_explosion004_yellow_mage01_3" Arg="1"/>
                     <Str Str="arrow_blow"/>
                     <Str Str="SLOW"/>
                     <Num Num="150"/>
                     <Num Num="0"/>
-                    <Num FuncTxt="return IMCRandom(-400, 400);" Num="-100" UseFunc="1"/>
+                    <Num Num="-100" UseFunc="1" FuncTxt="return IMCRandom(-400, 400);"/>
                     <Angle_Abs Angle="-0.52359879"/>
                     <Num Num="0"/>
                     <Num Num="5"/>
@@ -434,15 +434,15 @@ return obj.Level;"/>
                     <Num Num="2"/>
                     <Num Num="0"/>
                 </Scp>
-                <Scp Client="YES_Time" Scp="C_FORCE_EFT" Time="780" UseSleep="NO">
-                    <Str_Arg Arg="0.5" Str="I_cleric_Inquisitor_MalleusMaleficarum02#Dummy_effect_magicmissile"/>
+                <Scp Scp="C_FORCE_EFT" Client="YES_Time" UseSleep="NO" Time="780">
+                    <Str_Arg Str="I_cleric_Inquisitor_MalleusMaleficarum02#Dummy_effect_magicmissile" Arg="0.5"/>
                     <Str Str="arrow_cast"/>
-                    <Str_Arg Arg="1" Str="I_explosion004_yellow_mage01_3"/>
+                    <Str_Arg Str="I_explosion004_yellow_mage01_3" Arg="1"/>
                     <Str Str="arrow_blow"/>
                     <Str Str="SLOW"/>
                     <Num Num="150"/>
                     <Num Num="0"/>
-                    <Num FuncTxt="return IMCRandom(-400, 400);" Num="600" UseFunc="1"/>
+                    <Num Num="600" UseFunc="1" FuncTxt="return IMCRandom(-400, 400);"/>
                     <Angle_Abs Angle="-0.34906584"/>
                     <Num Num="1"/>
                     <Num Num="5"/>
@@ -450,15 +450,15 @@ return obj.Level;"/>
                     <Num Num="2"/>
                     <Num Num="0"/>
                 </Scp>
-                <Scp Client="YES_Time" Scp="C_FORCE_EFT" Time="810" UseSleep="NO">
-                    <Str_Arg Arg="0.5" Str="I_cleric_Inquisitor_MalleusMaleficarum03#Dummy_effect_magicmissile"/>
+                <Scp Scp="C_FORCE_EFT" Client="YES_Time" UseSleep="NO" Time="810">
+                    <Str_Arg Str="I_cleric_Inquisitor_MalleusMaleficarum03#Dummy_effect_magicmissile" Arg="0.5"/>
                     <Str Str="arrow_cast"/>
-                    <Str_Arg Arg="1" Str="I_explosion004_yellow_mage01_3"/>
+                    <Str_Arg Str="I_explosion004_yellow_mage01_3" Arg="1"/>
                     <Str Str="arrow_blow"/>
                     <Str Str="SLOW"/>
                     <Num Num="150"/>
                     <Num Num="0"/>
-                    <Num FuncTxt="return IMCRandom(-400, 400);" Num="600" UseFunc="1"/>
+                    <Num Num="600" UseFunc="1" FuncTxt="return IMCRandom(-400, 400);"/>
                     <Angle_Abs Angle="-0.17453292"/>
                     <Num Num="2"/>
                     <Num Num="5"/>
@@ -466,15 +466,15 @@ return obj.Level;"/>
                     <Num Num="2"/>
                     <Num Num="0"/>
                 </Scp>
-                <Scp Client="YES_Time" Scp="C_FORCE_EFT" Time="840" UseSleep="NO">
-                    <Str_Arg Arg="0.5" Str="I_cleric_Inquisitor_MalleusMaleficarum04#Dummy_effect_magicmissile"/>
+                <Scp Scp="C_FORCE_EFT" Client="YES_Time" UseSleep="NO" Time="840">
+                    <Str_Arg Str="I_cleric_Inquisitor_MalleusMaleficarum04#Dummy_effect_magicmissile" Arg="0.5"/>
                     <Str Str="arrow_cast"/>
-                    <Str_Arg Arg="1" Str="I_explosion004_yellow_mage01_3"/>
+                    <Str_Arg Str="I_explosion004_yellow_mage01_3" Arg="1"/>
                     <Str Str="arrow_blow"/>
                     <Str Str="SLOW"/>
                     <Num Num="150"/>
                     <Num Num="0"/>
-                    <Num FuncTxt="return IMCRandom(-400, 400);" Num="600" UseFunc="1"/>
+                    <Num Num="600" UseFunc="1" FuncTxt="return IMCRandom(-400, 400);"/>
                     <Angle_Abs Angle="0"/>
                     <Num Num="3"/>
                     <Num Num="5"/>
@@ -482,15 +482,15 @@ return obj.Level;"/>
                     <Num Num="2"/>
                     <Num Num="0"/>
                 </Scp>
-                <Scp Client="YES_Time" Scp="C_FORCE_EFT" Time="870" UseSleep="NO">
-                    <Str_Arg Arg="0.5" Str="I_cleric_Inquisitor_MalleusMaleficarum05#Dummy_effect_magicmissile"/>
+                <Scp Scp="C_FORCE_EFT" Client="YES_Time" UseSleep="NO" Time="870">
+                    <Str_Arg Str="I_cleric_Inquisitor_MalleusMaleficarum05#Dummy_effect_magicmissile" Arg="0.5"/>
                     <Str Str="arrow_cast"/>
-                    <Str_Arg Arg="1" Str="I_explosion004_yellow_mage01_3"/>
+                    <Str_Arg Str="I_explosion004_yellow_mage01_3" Arg="1"/>
                     <Str Str="arrow_blow"/>
                     <Str Str="SLOW"/>
                     <Num Num="150"/>
                     <Num Num="0"/>
-                    <Num FuncTxt="return IMCRandom(-400, 400);" Num="600" UseFunc="1"/>
+                    <Num Num="600" UseFunc="1" FuncTxt="return IMCRandom(-400, 400);"/>
                     <Angle_Abs Angle="0.17453292"/>
                     <Num Num="4"/>
                     <Num Num="5"/>
@@ -498,15 +498,15 @@ return obj.Level;"/>
                     <Num Num="2"/>
                     <Num Num="1"/>
                 </Scp>
-                <Scp Client="YES_Time" Scp="C_FORCE_EFT" Time="900" UseSleep="NO">
-                    <Str_Arg Arg="0.5" Str="I_cleric_Inquisitor_MalleusMaleficarum03#Dummy_effect_magicmissile"/>
+                <Scp Scp="C_FORCE_EFT" Client="YES_Time" UseSleep="NO" Time="900">
+                    <Str_Arg Str="I_cleric_Inquisitor_MalleusMaleficarum03#Dummy_effect_magicmissile" Arg="0.5"/>
                     <Str Str="arrow_cast"/>
-                    <Str_Arg Arg="1" Str="I_explosion004_yellow_mage01_3"/>
+                    <Str_Arg Str="I_explosion004_yellow_mage01_3" Arg="1"/>
                     <Str Str="arrow_blow"/>
                     <Str Str="SLOW"/>
                     <Num Num="150"/>
                     <Num Num="0"/>
-                    <Num FuncTxt="return IMCRandom(-400, 400);" Num="600" UseFunc="1"/>
+                    <Num Num="600" UseFunc="1" FuncTxt="return IMCRandom(-400, 400);"/>
                     <Angle_Abs Angle="0.34906584"/>
                     <Num Num="5"/>
                     <Num Num="5"/>
@@ -514,15 +514,15 @@ return obj.Level;"/>
                     <Num Num="2"/>
                     <Num Num="1"/>
                 </Scp>
-                <Scp Client="YES_Time" Scp="C_FORCE_EFT" Time="930" UseSleep="NO">
-                    <Str_Arg Arg="0.5" Str="I_cleric_Inquisitor_MalleusMaleficarum01#Dummy_effect_magicmissile"/>
+                <Scp Scp="C_FORCE_EFT" Client="YES_Time" UseSleep="NO" Time="930">
+                    <Str_Arg Str="I_cleric_Inquisitor_MalleusMaleficarum01#Dummy_effect_magicmissile" Arg="0.5"/>
                     <Str Str="arrow_cast"/>
-                    <Str_Arg Arg="1" Str="I_explosion004_yellow_mage01_3"/>
+                    <Str_Arg Str="I_explosion004_yellow_mage01_3" Arg="1"/>
                     <Str Str="arrow_blow"/>
                     <Str Str="SLOW"/>
                     <Num Num="150"/>
                     <Num Num="0"/>
-                    <Num FuncTxt="return IMCRandom(-400, 400);" Num="600" UseFunc="1"/>
+                    <Num Num="600" UseFunc="1" FuncTxt="return IMCRandom(-400, 400);"/>
                     <Angle_Abs Angle="0.52359879"/>
                     <Num Num="6"/>
                     <Num Num="5"/>
@@ -532,23 +532,20 @@ return obj.Level;"/>
                 </Scp>
             </EtcList>
             <ResultList>
-                <ToolScp Client="NO" Scp="S_R_COND_UNAPPLIED_RANK" UseSleep="NO">
-                    <Str Str="Boss"/>
-                </ToolScp>
-                <ToolScp Client="NO" Scp="S_R_TGTBUFF" UseSleep="NO">
+                <ToolScp Scp="S_R_TGTBUFF" Client="NO" UseSleep="NO">
                     <Str Str="MalleusMaleficarum_Debuff"/>
-                    <Num FuncTxt="return skill.Level;" Num="1" UseFunc="1"/>
+                    <Num Num="1" UseFunc="1" FuncTxt="return skill.Level;"/>
                     <Num Num="0"/>
                     <Num Num="10000"/>
                     <Num Num="1"/>
                     <Num Num="100"/>
                     <Num Num="-1"/>
                 </ToolScp>
-                <ToolScp Client="NO" Scp="S_R_TGT_REMOVE_BUFF" UseSleep="NO">
-                    <Str FuncTxt="local func_name = 'get_remove_buff_tooltip_' .. TryGetProp(skill, 'ClassName', 'None')
+                <ToolScp Scp="S_R_TGT_REMOVE_BUFF" Client="NO" UseSleep="NO">
+                    <Str Str="0" UseFunc="1" FuncTxt="local func_name = 'get_remove_buff_tooltip_' .. TryGetProp(skill, 'ClassName', 'None')
                local func = _G[func_name]
                if func == nil then return end
-               return func(skill.Level)" Str="0" UseFunc="1"/>
+               return func(skill.Level)"/>
                 </ToolScp>
             </ResultList>
         </MainSkl>

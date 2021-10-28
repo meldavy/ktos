@@ -378,3 +378,55 @@ end
 
     return true, class_name, level
  end
+function IS_DECOMPOSABLE_ARK(item)
+    if TryGetProp(item, 'ClassType', 'None') ~= 'Ark' then
+        return false, 'decomposeCant'
+	end
+
+	local decomposeAble = TryGetProp(item, 'DecomposeAble')
+    if decomposeAble == nil or decomposeAble == "NO" then
+        return false, 'decomposeCant'
+	end
+	
+	local target_lv = TryGetProp(item, 'ArkLevel', 1)
+	local target_exp = TryGetProp(item, 'ArkExp', 0)
+	if target_lv > 1 or target_exp > 0 then
+		return false, 'DecomposeArkCant'
+	end
+
+	return true, 'None'
+end
+
+function GET_LEGEND_MISC_DECOMPOSE_COST()
+    local item_name = 'HiddenAbility_Piece'
+    local item_count = 10
+
+    return item_name, item_count
+end
+
+function IS_DECOMPOSABLE_LEGEND_MISC(item)
+    if item ~= nil then
+        local stringArg = TryGetProp(item, 'StringArg', 'None')
+        if stringArg == 'LegendMiscChange' then
+            return true
+        end
+    end
+
+    return false
+end
+
+function GET_ACC_EP12_DECOMPOSE_COST()
+    local value = 10000000
+    return value
+end
+
+function IS_DECOMPOSABLE_ACC_EP12(item)
+    if item ~= nil then
+        local stringArg = TryGetProp(item, 'StringArg', 'None')
+        if stringArg == 'Acc_EP12' then
+            return true
+        end
+    end
+
+    return false
+end

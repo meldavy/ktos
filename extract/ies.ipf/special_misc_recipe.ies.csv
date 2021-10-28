@@ -5,3 +5,5 @@ ClassID,SilverCost,MaterialItemSlotCnt,MaterialItemCnt_1,MaterialItemCnt_2,Mater
 4,10000000,5,22,30,70,100,1,SpecialMiscRecipe_4,misc_mothstone,바이올렛틴 크리스탈,gacha_big_02,Legend_Misc_Mothacc_hard,misc_0530,Premium_item_transcendence_Stone,misc_ore23_stone,Legend_Misc_Rift01
 5,10000000,5,22,30,70,100,1,SpecialMiscRecipe_5,misc_mothstone,바이올렛틴 크리스탈,gacha_big_02,Legend_Misc_Mothacc_hard,misc_0530,Premium_item_transcendence_Stone,misc_ore23_stone,Legend_Misc_Week01
 6,10000000,4,20,20,10,1,0,SpecialMiscRecipe_6,misc_archenium,아케늄,gacha_big_02,HiddenAbility_Piece,Premium_item_transcendence_Stone,misc_ore15,Piece_LegendMisc,
+7,5000000,5,11,15,35,50,5,SpecialMiscRecipe_7,misc_low_mothstone,바이올렛틴 크리스탈 파편,gacha_big_02,Legend_Misc_Mothacc_hard,misc_0530,Premium_item_transcendence_Stone,misc_ore23_stone,Piece_LegendMisc
+8,25000000,5,25,10,11,30,10,SpecialMiscRecipe_8,misc_luferium,루페리움,gacha_big_02,misc_darkiron,Premium_item_transcendence_Stone,Legend_Misc_Mothacc_hard,misc_ore23_stone,misc_0530

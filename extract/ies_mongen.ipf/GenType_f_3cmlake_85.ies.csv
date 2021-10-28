@@ -24,7 +24,7 @@ ClassID,GenType,Lv,Range,GenRange,RespawnTime,MaxPop,Minimap,Hide,UseAIOufOfPC,A
 26,26,1,40,1,60000,1,2,0,0,0,0,0,Warp_arrow,란코 26수역,,,,MON_DUMMY,,,,F_3CMLAKE_85_TO_F_3CMLAKE_26_1,,NO,YES,NO,Neutral,,,,
 27,27,1,40,1,60000,1,2,0,0,0,0,0,Warp_arrow,바린웰 86수역,,,,MON_DUMMY,,,,F_3CMLAKE_85_TO_F_3CMLAKE_86,,NO,YES,NO,Neutral,,,,
 28,28,1,40,1,60000,1,0,0,0,0,0,0,HiddenTrigger6,UnvisibleName,,,,,,,F_3CMLAKE_86_MQ_08_CHECK1,,,NO,YES,NO,Neutral,,,,
-29,29,1,40,1,15000,1,0,0,0,1,0,1,Hiddennpc_move,UnvisibleName,,,,,,,,F_3CMLAKE_86_MQ_08_CHECK2,,NO,YES,NO,Neutral,,,,
+29,29,1,40,1,5000,1,0,0,0,1,0,1,Hiddennpc_move,UnvisibleName,,,,,,,,F_3CMLAKE_86_MQ_08_CHECK2,,NO,YES,NO,Neutral,,,,
 30,30,1,40,1,60000,1,0,0,0,0,0,0,noshadow_npc,UnvisibleName,,,,,,,,F_3CMLAKE_85_MQ_07_AFTER_EFFECT,,NO,YES,NO,Neutral,AttachEffect/F_ground163_blue_loop/7/MID,,,
 31,31,0,40,50,0,18,0,0,0,1,0,0,Lotuscat,,,,,,,,,,,NO,YES,NO,Monster,SmartGen,,,
 33,33,0,50,9999,0,30,0,0,0,0,0,0,pate,,,,,,,,,,,NO,YES,NO,Monster,,,,

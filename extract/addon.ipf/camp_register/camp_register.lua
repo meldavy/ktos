@@ -35,14 +35,20 @@ function CAMP_REG_INIT(frame, skillName, sklLevel)
 	local campTime = CAMP_TIME(skillName, sklLevel);
 	time_text:SetTextByKey("value", GET_TIME_TXT(campTime));
 
-	local buffTime = CAMP_BUFF_TIME(skillName, sklLevel);
-	local effectTxt = ClMsg("BuffMaintainTime") .. " + " ..buffTime .. "%";
-	local effect_text = GET_CHILD(gbox, "effect_text");		
-	effect_text:SetTextByKey("value", effectTxt);
+	--local buffTime = CAMP_BUFF_TIME(sklLevel);
+	--local effectTxt = ClMsg("BuffMaintainTime") .. " + " ..buffTime .. "%";
+	--local effect_text = GET_CHILD(gbox, "effect_text");
+	--effect_text:SetTextByKey("value", effectTxt);
 
 	local silver, itemList = CAMP_NEED_PRICE(skillName, sklLevel);
 	local silver_text = GET_CHILD(gbox, "silver_text");
-	silver_text:SetTextByKey("value", GET_MONEY_IMG(20) .. " " .. silver);
+	local item = session.GetInvItemByType(900011);
+	if item ~= nil then
+	    local total_silver = item.count;
+	    silver_text:SetTextByKey("value", GET_MONEY_IMG(20) .. " " .. silver .. " / " .. total_silver);
+	else
+	    silver_text:SetTextByKey("value", GET_MONEY_IMG(20) .. " " .. silver);
+	end
 
 	local gbox_material = GET_CHILD(gbox, "gbox_material");
 	gbox_material:RemoveAllChild();
@@ -57,20 +63,30 @@ function CAMP_REG_INIT(frame, skillName, sklLevel)
 		local itemname = GET_CHILD(ctrlSet, "itemname");
 		itemname:SetTextByKey("value", itemCls.Name);
 		local count = GET_CHILD(ctrlSet, "count");
-		count:SetTextByKey("value", itemCount .. " " .. ClMsg("CountOfThings"));
+		local item = session.GetInvItemByType(645570);
+		if item ~= nil then
+		    local totalItemCount = item.count;
+		    count:SetTextByKey("value", itemCount .. " " .. ClMsg("CountOfThings") .. " / " .. totalItemCount .. " " .. ClMsg("CountOfThings"));
+		else
+	         count:SetTextByKey("value", itemCount .. " " .. ClMsg("CountOfThings"));
+	    end
 	end
 	
 	GBOX_AUTO_ALIGN(gbox_material, 15, 3, 10, true, false);
 end
 
 function CAMP_REGISTER_EXEC(parent, ctrl)
+    if session.colonywar.GetIsColonyWarMap() == true then
+        ui.SysMsg(ClMsg('ThisLocalUseNot'));
+        return 0;
+    end
 
 	local frame = parent:GetTopParentFrame();
 	local skillName = frame:GetUserValue("SKILL_NAME");
 	local sklLevel = frame:GetUserIValue("SKILL_LEVEL");
 	local pc = GetMyPCObject();
 	local silver, itemList = CAMP_NEED_PRICE(skillName, sklLevel);
-	if GET_TOTAL_MONEY() < silver then
+	if IsGreaterThanForBigNumber(silver, GET_TOTAL_MONEY_STR()) == 1 then
 		ui.SysMsg(ClMsg('NotEnoughMoney'));
 		return;
 	end
@@ -89,16 +105,31 @@ function CAMP_REGISTER_EXEC(parent, ctrl)
 			return;
 		end
 	end
-
-	local mapCls = GetClass("Map", session.GetMapName());
-	if nil == mapCls then
-		return;
-	end
-
-	if 'Field' ~= mapCls.MapType then
+	
+	local zoneName = session.GetMapName();
+	local mapCls = GetClass("Map", zoneName);
+	local mapType = TryGetProp(mapCls, "MapType", "None");
+	if mapType ~= "Field" and mapType ~= "Dungeon" then
 		ui.SysMsg(ClMsg('DontBuildCampThisAria'));
 		return;
 	end
+	
+	if SCR_ZONE_KEYWORD_CHECK(zoneName, "NoWarp") == "YES" then
+		ui.SysMsg(ClMsg('DontBuildCampThisAria'));
+		return;
+	end
+
+	local x, y, z = GetPos(pc);
+	if 0 == IsFarFromNPC(pc, x, y, z, 70) then
+		ui.SysMsg(ClMsg("TooNearFromNPC"));	
+		return 0;
+	end
+
+	if 1 == CheckDynamicOBB(pc, x, y, z, 15) then
+		ui.SysMsg(ClMsg("AbnormalTerrain"));	
+		return 0;
+	end
+	
 	local strScp = "_CAMP_REGISTER_EXEC()";
 	ui.MsgBox(ScpArgMsg("REALLY_DO"), strScp, "None");
 end
@@ -128,5 +159,5 @@ end
 function ASK_DESTORY_OLD_CAMP(sklName)
 
 	local scp = string.format("_CAMP_REGISTER_EXEC(1, \"%s\")", sklName);
-	ui.MsgBox(ScpArgMsg("OnlyOneCampBuildable"), scp, "None");
+	ui.MsgBox(ScpArgMsg("OnlyOneCampBuildable")..'{nl}'..ClMsg('BuildAfterDestroyPrevObject'), scp, "None");
 end

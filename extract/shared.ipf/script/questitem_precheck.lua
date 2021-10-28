@@ -4271,7 +4271,7 @@ function SCR_PRE_UNDER68_MQ3_ITEM01(self, argObj, argstring, arg1, arg2)
             local i
             if fndCnt > 0 then
                 for i = 1, fndCnt do
-                    if fndList[i].ClassName == 'Deadbornscab_red' then
+                    if fndList[i].ClassName == 'Deadbornscab_red' or fndList[i].ClassName == 'Infroholder_green' or fndList[i].ClassName == 'Deadbornscab_mage_red' then
                         return 1
                     end
                 end
@@ -5453,23 +5453,35 @@ function SCR_PRE_ITEM_Escape(self, argObj, BuffName, arg1, arg2)
         SendAddOnMsg(self, "NOTICE_Dm_!", ScpArgMsg("CanNotUseWarpDuringFeeding"), 2)
         return
     end
+
     if IsJoinColonyWarMap(self) == 1 then
         return 0;
     end
+
+    if IsAutoMatchingState(self) == 1 then
+        SendAddOnMsg(self, "NOTICE_Dm_!", ScpArgMsg("EscapeDisabledDuringMatching"), 5)
+        return 0;
+    end
+
+    if IsPVPAutoMatchingState(self) == 1 then
+        SendAddOnMsg(self, "NOTICE_Dm_!", ScpArgMsg("EscapeDisabledDuringPVPMatching"), 5)
+        return 0;
+    end
     
-    if GetLayer(self) ~= 0 or IsUsingSkill(self) == 1 then
+    if GetLayer(self) ~= 0 or IsUsingSkill(self) == 1 or GetOpenedAutoSellerType(self) ~= -1 then
         SendAddOnMsg(self, "NOTICE_Dm_!", ScpArgMsg("EscapeDisabled"), 5)
         return 0;
     else
         local cls = GetClassList('Map');
         local zone = GetZoneName(self);
         local obj = GetClassByNameFromList(cls, zone);
+
         if zone == "c_barber_dress" then
             SendSysMsg(self, "ThisLocalUseNot");
             return 0;
         end
         
-        if zone == "shadow_raid_main" or zone == "uniq_castle_raid" then
+        if zone == "shadow_raid_main" or zone == "uniq_castle_raid" or zone == "snow_raid_glacier" then
             SendSysMsg(self, "ThisLocalUseNot");
             return 0;
         end
@@ -5484,8 +5496,14 @@ function SCR_PRE_ITEM_Escape(self, argObj, BuffName, arg1, arg2)
             return 0
         end
         
+        if IsRaidField(self) == 1 then
+            SendAddOnMsg(self, "NOTICE_Dm_!", ScpArgMsg("EscapeDisabled"), 5);
+            return 0
+        end
+        
         local keyword = TryGetProp(obj, "Keyword", "None")
         local keywordList = StringSplit(keyword, ";");
+        
         if table.find(keywordList, "WeeklyBossMap") > 0 then
             SendAddOnMsg(self, "NOTICE_Dm_!", ScpArgMsg("CannotUseThieInThisMap"), 3);
             return 0;
@@ -8384,7 +8402,7 @@ function SCR_PRE_STARTOWER_91_MQ_70_ITEM(self, argObj, argstring, arg1, arg2)
             if GetZoneName(self) == "d_startower_91" then
                 if GetLayer(self) == 0 then
                     local x, y, z = GetPos(self)
-                    if SCR_POINT_DISTANCE(x,z,-1534,1060) <= 300 then
+                    if SCR_POINT_DISTANCE(x,z,-1534,1060) <= 350 then
                         local objectList, objectCount = SelectObject(self, 300, "ALL")
                         if objectCount ~= nil then
                             for i = 1, objectCount do

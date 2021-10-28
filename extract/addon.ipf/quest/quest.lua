@@ -2138,7 +2138,7 @@ function SCR_VIEW_QUEST_LOCATION(ctrlSet, ctrl, strArg, numArg)
 
     ui.OpenFrame("worldmap2_mainmap")
     
-    WORLDMAP2_SUBMAP_OPEN_FROM_MAINMAP_BY_EPISODE(episode)
+    WORLDMAP2_OPEN_SUBMAP_FROM_MAINMAP_BY_EPISODE(episode)
     WORLDMAP2_SUBMAP_ZONE_CHECK(mapName)
 end
 

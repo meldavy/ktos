@@ -291,7 +291,7 @@ function WORLDMAP2_SUBMAP_DRAW_BASE(frame)
     end
 
     -- 토큰이동 안내문 표기 옵션
-    if session.loginInfo.IsPremiumState(ITEM_TOKEN) then
+    if session.loginInfo.IsPremiumState(ITEM_TOKEN) and GET_WARP_MAP_TYPE() == "None" then
         submapTip:ShowWindow(1)
     else
         submapTip:ShowWindow(0)
@@ -556,25 +556,21 @@ function WORLDMAP2_SUBMAP_ZONE_CHECK(mapName)
 
     if nowCheckSet ~= nil then
         nowCheckSet:GetChild("zone_btn"):StopUIEffect("ZONE_CHECK", true, 0)
-	end
+    end
 
 	-- 동일 맵일 경우 리턴
-	if nowCheckMap == mapName then
+    if nowCheckMap == mapName then
 		frame:SetUserConfig("ZONE_CHECK", "None")
 		return
-	end
+    end
+    
+    frame:SetUserConfig("ZONE_CHECK", mapName)
 
     -- 체크 부여
-    local checkSet = frame:GetChild(mapName)
-    local checkImage = checkSet:GetChild("zone_btn")
-    local checkImageMargin = checkImage:GetMargin()
-    
-	checkImage:SetMargin(checkImageMargin.left, checkImageMargin.top, checkImageMargin.right, checkImageMargin.bottom)
-    checkImage:PlayUIEffect("UI_worldmap_pos_02_loop", 12, "ZONE_CHECK")
-
-    imcSound.PlaySoundEvent("inven_equip")
-
-	frame:SetUserConfig("ZONE_CHECK", mapName)
+    if ui.GetFrame("worldmap2_minimap"):IsVisible() == 0 then
+        WORLDMAP2_SUBMAP_EFFECT_ON_ZONE_CHECK(frame)
+        imcSound.PlaySoundEvent("inven_equip")
+    end
 end
 
 -- 워프맵 옵션 갱신

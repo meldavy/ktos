@@ -3942,6 +3942,12 @@
 			<picture name="icon_pic" rect="0 0 80 80" margin="0 0 0 0" layout_gravity="center center" stretch="true" draw="true" hittestbox="false" resizebyparent="false" scrollbar="false" skin="bg2"/>
 		</controls>
 	</controlset>
+	<controlset name="induninfo_class_selector_job_btn" toggle="false" hittest="true" width="95" height="120">
+		<controls>
+			<picture name="icon_pic" rect="0 0 80 80" margin="0 0 0 0" layout_gravity="center center" stretch="true" draw="true" scrollbar="false" skin="bg2"/>
+			<button name="select_btn" rect="0 0 80 80" margin="0 0 0 0" layout_gravity="center center" scrollbar="false" skin="" LBtnUpScp="INDUNINFO_CLASS_SELECT"/>
+		</controls>
+	</controlset>
 	<!--맵탐사-->
 	<controlset name="adventure_book_map_region" toggle="false" hittest="true" hittestset="true" width="525" height="40" skin="" draw="false">
 		<userconfig ARROW_OPEN="{img adventure_arrow1 17 15}" ARROW_CLOSE="{img adventure_arrow2 17 15}"/>
@@ -5161,7 +5167,7 @@
 	<controlset name="content_status_board_battle_attribute" toggle="false" hittest="true" hittestset="false" width="470" height="130" skin="">
 		<controls>
 			<groupbox name="attr_bg_1" rect="0 0 170 28" margin="0 0 0 0" layout_gravity="left top" stretch="true" skin="blackbox_op_50"/>
-			<richtext name="attr_name_text_1" rect="0 0 200 20" margin="15 5 0 0" layout_gravity="left top" resizebytext="false" textalign="left center" format="{@st43}{s14}{ol}{ds}%s" param1="value" param1_def="계열 등수" fontname="white_14_ol"/>
+			<richtext name="attr_name_text_1" rect="0 0 200 20" margin="15 5 0 0" layout_gravity="left top" resizebytext="false" textalign="left center" format="{@st43}{s14}{ol}{ds}%s" param1="value" param1_def="클래스 순위" fontname="white_14_ol"/>
 			<richtext name="attr_value_text_1" rect="0 0 200 20" margin="0 5 5 0" layout_gravity="right top" resizebytext="false" textalign="right center" format="{@st43}{s14}{ol}{ds}%s위 (상위 %s%)" param1="rank" param1_def="0" param2="rank_p" param2_def="0"/>
 			<groupbox name="attr_bg_2" rect="0 0 170 28" margin="0 33 0 0" layout_gravity="left top" stretch="true" skin="blackbox_op_50"/>
 			<richtext name="attr_name_text_2" rect="0 0 200 20" margin="15 38 0 0" layout_gravity="left top" resizebytext="false" textalign="left center" format="{@st43}{s14}{ol}{ds}%s" param1="value" param1_def="도전 1회 최고 점수" fontname="white_14_ol"/>
@@ -5400,6 +5406,7 @@
 		<controls>
 			<button name="city_img" rect="0 0 250 250" margin="0 0 0 0" layout_gravity="center center" image="worldmap2_btn_epi_01" LBtnDownScp="OPEN_WORLDMAP2_SUBMAP_FROM_MAINMAP" oversound="button_cursor_over_2" clicksound="button_click_4" MouseOnAnim="btn_mouseover_4" MouseOffAnim="btn_mouseoff_4"/>
 			<button name="city_btn" rect="0 0 218 135" margin="0 0 0 0" layout_gravity="center center" image="worldmap2_Mbar_town" LBtnDownScp="OPEN_WORLDMAP2_SUBMAP_FROM_MAINMAP" oversound="button_cursor_over_2" clicksound="button_click_4"/>
+			<button name="last_warp_pos" rect="0 0 60 60" margin="0 0 0 0" layout_gravity="center center" image="worldmap2_bookmark_btn" LBtnDownScp="WORLDMAP2_MAINMAP_LOBBYMAP_CLICK" oversound="button_cursor_over_2" clicksound="button_click_4"/>
 			<richtext name="city_episode_text" rect="0 0 218 135" margin="0 0 0 0" layout_gravity="center center"/>
 			<picture name="pc_pos" rect="0 0 38 38" margin="0 0 0 0" layout_gravity="center center" image="worldmap2_map_pc" imagealign="center center" stretch="false" hittest="true" LBtnUpScp="WORLDMAP2_MAINMAP_MOVE_MYPOS" texttooltip="내 캐릭터의 위치를 불러옵니다." oversound="button_cursor_over_2" clicksound="button_click_4"/>
 		</controls>
@@ -5408,12 +5415,14 @@
 		<controls>
 			<button name="episode_img" rect="0 0 200 200" margin="0 0 0 0" layout_gravity="center center" image="worldmap2_btn_epi_02" LBtnDownScp="OPEN_WORLDMAP2_SUBMAP_FROM_MAINMAP" oversound="button_cursor_over_2" clicksound="button_click_4" MouseOnAnim="btn_mouseover_4" MouseOffAnim="btn_mouseoff_4"/>
 			<button name="episode_btn" rect="0 0 172 54" margin="0 0 0 0" layout_gravity="center center" image="worldmap2_Mbar_ep" LBtnDownScp="OPEN_WORLDMAP2_SUBMAP_FROM_MAINMAP" oversound="button_cursor_over_2" clicksound="button_click_4"/>
+			<button name="last_warp_pos" rect="0 0 60 60" margin="0 0 0 0" layout_gravity="center center" image="worldmap2_bookmark_btn" LBtnDownScp="WORLDMAP2_MAINMAP_LOBBYMAP_CLICK" oversound="button_cursor_over_2" clicksound="button_click_4"/>
 			<picture name="pc_pos" rect="0 0 38 38" margin="0 0 0 0" layout_gravity="center center" image="worldmap2_map_pc" imagealign="center center" stretch="false" hittest="true" LBtnUpScp="WORLDMAP2_MAINMAP_MOVE_MYPOS" texttooltip="내 캐릭터의 위치를 불러옵니다." oversound="button_cursor_over_2" clicksound="button_click_4"/>
 		</controls>
 	</controlset>
 	<controlset name="sub_episode_set" hittest="true" width="158" height="132">
 		<controls>
 			<button name="sub_episode_btn" rect="0 0 158 112" margin="0 0 0 0" layout_gravity="center center" skin="worldmap2_Mbar_subq" LBtnDownScp="OPEN_WORLDMAP2_SUBMAP_FROM_MAINMAP" oversound="button_cursor_over_2" clicksound="button_click_4"/>
+			<button name="last_warp_pos" rect="0 0 60 60" margin="0 0 0 0" layout_gravity="center center" image="worldmap2_bookmark_btn" LBtnDownScp="WORLDMAP2_MAINMAP_LOBBYMAP_CLICK" oversound="button_cursor_over_2" clicksound="button_click_4"/>
 			<picture name="pc_pos" rect="0 0 38 38" margin="0 0 0 0" layout_gravity="center center" image="worldmap2_map_pc" imagealign="center center" stretch="false" hittest="true" LBtnUpScp="WORLDMAP2_MAINMAP_MOVE_MYPOS" texttooltip="내 캐릭터의 위치를 불러옵니다." oversound="button_cursor_over_2" clicksound="button_click_4"/>
 		</controls>
 	</controlset>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by imc (imc) -->
+<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by imc (imc) -->
 <!-- edited with XMLSpy v2008 sp1 http://www.altova.com by MintPC Mi -->
 <skinset name="Base">
 	<imagelist category="item_tooltip_icon">
@@ -3263,6 +3263,22 @@
 		<image name="icon_item_ep12summer_crossbow" file="\icon\weapon\icon_item_ep12summer_crossbow.png" imgrect="0 0 256 256"/>
 		<image name="icon_item_ep12summer_cannon" file="\icon\weapon\icon_item_ep12summer_cannon.png" imgrect="0 0 256 256"/>
 		<image name="icon_item_ep12summer_bow" file="\icon\weapon\icon_item_ep12summer_bow.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep12honoredrose_dagger" file="\icon\weapon\icon_item_ep12honoredrose_dagger.png" imgrect="0 0 256 256" CMM_Caption="2020 9월 여큡 아너드 로즈 무기"/>
+		<image name="icon_item_ep12honoredrose_crossbow" file="\icon\weapon\icon_item_ep12honoredrose_crossbow.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep12honoredrose_canno" file="\icon\weapon\icon_item_ep12honoredrose_canno.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep12honoredrose_bow" file="\icon\weapon\icon_item_ep12honoredrose_bow.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep12honoredrose_rapier" file="\icon\weapon\icon_item_ep12honoredrose_rapier.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep12honoredrose_pistol" file="\icon\weapon\icon_item_ep12honoredrose_pistol.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep12honoredrose_musket" file="\icon\weapon\icon_item_ep12honoredrose_musket.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep12honoredrose_mace" file="\icon\weapon\icon_item_ep12honoredrose_mace.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep12honoredrose_staff" file="\icon\weapon\icon_item_ep12honoredrose_staff.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep12honoredrose_spear" file="\icon\weapon\icon_item_ep12honoredrose_spear.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep12honoredrose_shield" file="\icon\weapon\icon_item_ep12honoredrose_shield.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep12honoredrose_rod" file="\icon\weapon\icon_item_ep12honoredrose_rod.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep12honoredrose_thsword" file="\icon\weapon\icon_item_ep12honoredrose_thsword.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep12honoredrose_thmace" file="\icon\weapon\icon_item_ep12honoredrose_thmace.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep12honoredrose_sword" file="\icon\weapon\icon_item_ep12honoredrose_sword.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep12honoredrose_thspear" file="\icon\weapon\icon_item_ep12honoredrose_thspear.png" imgrect="0 0 256 256"/>
 	</imagelist>
 	<imagelist category="acc_item">
 		<image name="item_necklace_01" file="\icon\acc\item_necklace_1.png" imgrect="0 0 256 256" CMM_Caption="목걸이"/>
@@ -3495,6 +3511,32 @@
 		<image name="icon_item_necklace_2020ArborDay" file="\icon\acc\icon_item_necklace_2020ArborDay.png" imgrect="0 0 256 256" CMM_Caption="2020 식목일 목걸이"/>
 		<image name="icon_item_trinket_glacier" file="\icon\acc\icon_item_trinket_glacier.png" imgrect="0 0 256 256" CMM_Caption="글레이시어 트링킷"/>
 		<image name="icon_item_armband_guild04_blue" file="\icon\acc\icon_item_armband_guild04_blue.png" imgrect="0 0 256 256" CMM_Caption="길드 사랑 암밴드_블루"/>
+		<image name="icon_item_bracelet_queens_04" file="\icon\acc\icon_item_bracelet_queens_04.png" imgrect="0 0 256 256" CMM_Caption="루시페리 악세 "/>
+		<image name="icon_item_necklace_queens_04" file="\icon\acc\icon_item_necklace_queens_04.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_bracelet_queens_05" file="\icon\acc\icon_item_bracelet_queens_05.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_necklace_queens_05" file="\icon\acc\icon_item_necklace_queens_05.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_bracelet_queens_06" file="\icon\acc\icon_item_bracelet_queens_06.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_necklace_queens_06" file="\icon\acc\icon_item_necklace_queens_06.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_necklace_Telharsha_02" file="\icon\acc\icon_item_necklace_Telharsha_02.png" imgrect="0 0 256 256" CMM_Caption="스카디스 글라브"/>
+		<image name="icon_item_necklace_Telharsha_04" file="\icon\acc\icon_item_necklace_Telharsha_04.png" imgrect="0 0 256 256" CMM_Caption="스카디스 에일러"/>
+		<image name="icon_item_bracelet_Telharsha_01" file="\icon\acc\icon_item_bracelet_Telharsha_01.png" imgrect="0 0 256 256" CMM_Caption="스카르디 악세 "/>
+		<image name="icon_item_necklace_Telharsha_01" file="\icon\acc\icon_item_necklace_Telharsha_01.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_bracelet_Telharsha_03" file="\icon\acc\icon_item_bracelet_Telharsha_03.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_necklace_Telharsha_03" file="\icon\acc\icon_item_necklace_Telharsha_03.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_bracelet_Telharsha_07" file="\icon\acc\icon_item_bracelet_Telharsha_07.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_necklace_Telharsha_07" file="\icon\acc\icon_item_necklace_Telharsha_07.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_bracelet_Telharsha_02" file="\icon\acc\icon_item_bracelet_Telharsha_02.png" imgrect="0 0 256 256" CMM_Caption="스카디스 나머지"/>
+		<image name="icon_item_bracelet_Telharsha_04" file="\icon\acc\icon_item_bracelet_Telharsha_04.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_bracelet_Telharsha_05" file="\icon\acc\icon_item_bracelet_Telharsha_05.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_necklace_Telharsha_05" file="\icon\acc\icon_item_necklace_Telharsha_05.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_bracelet_queens_01" file="\icon\acc\icon_item_bracelet_queens_01.png" imgrect="0 0 256 256" CMM_Caption="루시페리"/>
+		<image name="icon_item_necklace_queens_01" file="\icon\acc\icon_item_necklace_queens_01.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_bracelet_queens_02" file="\icon\acc\icon_item_bracelet_queens_02.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_necklace_queens_02" file="\icon\acc\icon_item_necklace_queens_02.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_bracelet_queens_03" file="\icon\acc\icon_item_bracelet_queens_03.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_necklace_queens_03" file="\icon\acc\icon_item_necklace_queens_03.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_bracelet_queens_07" file="\icon\acc\icon_item_bracelet_queens_07.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_necklace_queens_07" file="\icon\acc\icon_item_necklace_queens_07.png" imgrect="0 0 256 256"/>
 	</imagelist>
 	<imagelist category="hair_accesory">
 		<image name="hairacc_1_egg" file="\icon\hairacc\hairacc_1_egg.png" imgrect="0 0 256 256"/>
@@ -3948,6 +3990,13 @@
 		<image name="icon_item_accessory_ep12summer06" file="\icon\hairacc\icon_item_accessory_ep12summer06.png" imgrect="0 0 256 256"/>
 		<image name="icon_item_accessory_ep12summer07" file="\icon\hairacc\icon_item_accessory_ep12summer07.png" imgrect="0 0 256 256"/>
 		<image name="icon_item_accessory_ep12summer08" file="\icon\hairacc\icon_item_accessory_ep12summer08.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_accessory_ep12honoredrose01" file="\icon\hairacc\icon_item_accessory_ep12honoredrose01.png" imgrect="0 0 256 256" CMM_Caption="2020 9월 여큡 아너드 로즈 헤어 악세"/>
+		<image name="icon_item_accessory_ep12honoredrose02" file="\icon\hairacc\icon_item_accessory_ep12honoredrose02.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_accessory_ep12honoredrose03" file="\icon\hairacc\icon_item_accessory_ep12honoredrose03.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_accessory_ep12honoredrose04" file="\icon\hairacc\icon_item_accessory_ep12honoredrose04.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_accessory_ep12honoredrose05" file="\icon\hairacc\icon_item_accessory_ep12honoredrose05.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_accessory_ep12honoredrose06" file="\icon\hairacc\icon_item_accessory_ep12honoredrose06.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_accessory_ep12honoredrose07" file="\icon\hairacc\icon_item_accessory_ep12honoredrose07.png" imgrect="0 0 256 256"/>
 	</imagelist>
 	<imagelist category="collection_item">
 		<image name="icon_collitem_collection" file="\icon\colletion\icon_item_collection.tga" imgrect="0 0 673 419" CMM_Caption="월계수"/>
@@ -6020,7 +6069,10 @@
 		<image name="icon_item_expertmode_enter_recipe" file="\icon\item\icon_item_expertmode_enter_recipe.png" imgrect="0 0 256 256" CMM_Caption="분열 특이점 입장권 제작서"/>
 		<image name="icon_item_Master_Vote_BOX" file="\icon\item\icon_item_Master_Vote_BOX.png" imgrect="0 0 128 128" CMM_Caption="[당신의 마스터] 투표 보상"/>
 		<image name="icon_item_Event_costume_2008" file="\icon\item\icon_item_Event_costume_2008.png" imgrect="0 0 128 128" CMM_Caption="[당신의 마스터] 수박 코스튬 상자"/>
+		<image name="icon_item_TelHarsha_neck" file="\icon\item\icon_item_TelHarsha_neck.png" imgrect="0 0 128 128" CMM_Caption="헬하르샤 목걸이"/>
+		<image name="icon_item_low_moth_stone" file="\icon\item\icon_item_low_moth_stone.png" imgrect="0 0 128 128" CMM_Caption="바이올렛틴 크리스탈_하위버전"/>
 		<image name="icon_item_goddess_box" file="\icon\item\icon_item_goddess_box.png" imgrect="0 0 256 256" CMM_Caption="여신의 가호 상자"/>
+		<image name="icon_item_misc_luferium" file="\icon\item\icon_item_misc_luferium.png" imgrect="0 0 256 256" CMM_Caption="루페리움"/>
 	</imagelist>
 	<imagelist category="housing">
 		<image name="icon_item_h_bigplant_set_01_green" file="\icon\housing\icon_item_h_bigplant_set_01_green.png" imgrect="0 0 256 256" CMM_Caption="[길드 하우징] 화단_01(초록색)"/>
@@ -7633,6 +7685,24 @@
 		<image name="icon_item_What_Package_ALL" file="\icon\payment\icon_item_What_Package_ALL.png" imgrect="0 0 256 256" CMM_Caption="올인원 패키지"/>
 		<image name="icon_item_2020_ArborDay_Package_Growth02" file="\icon\payment\icon_item_2020_ArborDay_Package_Growth02.png" imgrect="0 0 256 256" CMM_Caption="근본 성장패키지_02"/>
 		<image name="icon_item_2020_ArborDay_Package_BattleC" file="\icon\payment\icon_item_2020_ArborDay_Package_BattleC.png" imgrect="0 0 256 256" CMM_Caption="근본 전투패키지_C"/>
+		<image name="icon_item_ep12honoredrose01_m" file="\icon\payment\icon_item_ep12honoredrose01_m.png" imgrect="0 0 256 256" CMM_Caption="2020 8월 여큡 아너드 로즈 코스튬"/>
+		<image name="icon_item_ep12honoredrose01_2_m" file="\icon\payment\icon_item_ep12honoredrose01_2_m.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep12honoredrose01_f" file="\icon\payment\icon_item_ep12honoredrose01_f.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep12honoredrose01_2_f" file="\icon\payment\icon_item_ep12honoredrose01_2_f.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep12honoredrose02_m" file="\icon\payment\icon_item_ep12honoredrose02_m.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep12honoredrose02_2_m" file="\icon\payment\icon_item_ep12honoredrose02_2_m.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep12honoredrose02_f" file="\icon\payment\icon_item_ep12honoredrose02_f.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep12honoredrose02_2_f" file="\icon\payment\icon_item_ep12honoredrose02_2_f.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep12honoredrose03_m" file="\icon\payment\icon_item_ep12honoredrose03_m.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep12honoredrose03_f" file="\icon\payment\icon_item_ep12honoredrose03_f.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep12honoredrose03_2_m" file="\icon\payment\icon_item_ep12honoredrose03_2_m.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep12honoredrose03_2_f" file="\icon\payment\icon_item_ep12honoredrose03_2_f.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_wing_ep12honoredrose_01" file="\icon\payment\icon_item_wing_ep12honoredrose_01.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_wing_ep12honoredrose_02" file="\icon\payment\icon_item_wing_ep12honoredrose_02.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_allbox_ep12honoredrose" file="\icon\payment\icon_item_allbox_ep12honoredrose.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_selectbox_ep12honoredrose01" file="\icon\payment\icon_item_selectbox_ep12honoredrose01.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_selectbox_ep12honoredrose02" file="\icon\payment\icon_item_selectbox_ep12honoredrose02.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_selectbox_ep12honoredrose03" file="\icon\payment\icon_item_selectbox_ep12honoredrose03.png" imgrect="0 0 256 256"/>
 	</imagelist>
 	<imagelist category="seal">
 		<image name="icon_seal_yellow_cc_A1" file="\icon\seal\seal_yellow_cc_A1.tga" imgrect="0 0 80 80"/>

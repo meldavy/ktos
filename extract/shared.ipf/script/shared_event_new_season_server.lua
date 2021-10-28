@@ -1,4 +1,4 @@
--- 2008 여름 시즌서버
+-- 20.08 여름 시즌서버
 function IS_SEASON_SERVER(pc)
     local groupid = GetServerGroupID();
     

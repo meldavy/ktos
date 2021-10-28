@@ -60,7 +60,16 @@ function EARTHTOWERSHOP_BUY_ITEM(frame, msg, itemName, itemCount)
 --                sCount = sCount - 2
 --            end
 --        end
-		local cntText = ScpArgMsg("Excnaged_AccountCount_Remind","COUNT",string.format("%d", sCount))
+		local cntText
+		if recipecls.ShopType == "PVPMine" then
+			if recipecls.ResetInterval == 'Week' then
+				cntText = ScpArgMsg("Excnaged_AccountCount_Remind_Week","COUNT",string.format("%d", sCount))
+			else
+				cntText = ScpArgMsg("Excnaged_AccountCount_Remind_Day","COUNT",string.format("%d", sCount))
+			end
+		else
+			cntText = ScpArgMsg("Excnaged_AccountCount_Remind","COUNT",string.format("%d", sCount))
+		end
         local tradeBtn = GET_CHILD(ctrlset, "tradeBtn");
         if sCount <= 0 then
             cntText = ScpArgMsg("Excnaged_No_Enough");
@@ -687,8 +696,17 @@ function EXCHANGE_CREATE_TREE_PAGE(tree, slotHeight, groupName, classType, cls, 
     
     if recipecls.AccountNeedProperty ~= 'None' then
         local aObj = GetMyAccountObj()
-        local sCount = TryGetProp(aObj, recipecls.AccountNeedProperty); 
-        local cntText = ScpArgMsg("Excnaged_AccountCount_Remind","COUNT",string.format("%d", sCount))
+		local sCount = TryGetProp(aObj, recipecls.AccountNeedProperty); 
+		local cntText
+		if recipecls.ShopType == "PVPMine" then
+			if recipecls.ResetInterval == 'Week' then
+				cntText = ScpArgMsg("Excnaged_AccountCount_Remind_Week","COUNT",string.format("%d", sCount))
+			else
+				cntText = ScpArgMsg("Excnaged_AccountCount_Remind_Day","COUNT",string.format("%d", sCount))
+			end
+		else
+			cntText = ScpArgMsg("Excnaged_AccountCount_Remind","COUNT",string.format("%d", sCount))
+		end
         local tradeBtn = GET_CHILD(ctrlset, "tradeBtn");
         if sCount <= 0 then
             cntText = ScpArgMsg("Excnaged_No_Enough");

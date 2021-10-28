@@ -455,7 +455,7 @@
                         <Str Str="TOTAL_POINT"/>
                         <Str Str="bar"/>
                         <Str Str="머즈루스 도전 과제 포인트"/>
-                        <Num Num="5"/>
+						<Num Num="9"/>
                         <Num Num="1"/>
                     </ToolScp>
                 </StartScpList>
@@ -548,7 +548,7 @@
                                 <MGameObj List="Boss/1"/>
                                 <Num Num="0"/>
                             </ToolScp>
-                            <ToolScp Scp="MGAME_EVT_COND_PCHP" Client="NO" UseSleep="NO">
+				<ToolScp Scp="MGAME_EVT_COND_PCHP_ISREAL" Client="NO" UseSleep="NO">
                                 <Num Num="31"/>
                                 <Str Str="OVER"/>
                                 <Num Num="1"/>
@@ -594,7 +594,7 @@
                             <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK" Client="NO" UseSleep="NO">
                                 <Num Num="1"/>
                             </ToolScp>
-                            <ToolScp Scp="MGAME_EVT_COND_PCHP" Client="NO" UseSleep="NO">
+				<ToolScp Scp="MGAME_EVT_COND_PCHP_ISREAL" Client="NO" UseSleep="NO">
                                 <Num Num="30"/>
                                 <Str Str="UNDER"/>
                                 <Num Num="1"/>

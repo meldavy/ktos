@@ -106,16 +106,8 @@ function CURSOR_CHECK_REINF(slot)
 	end
 
 	local obj = GetIES(item:GetObject());
-	if moruObj.ClassName == "Moru_Premium" 
-	or moruObj.ClassName == "Moru_Gold" 
-	or moruObj.ClassName == "Moru_Gold_14d" 
-	or moruObj.ClassName == "Moru_Gold_14d_Team" 
-	or moruObj.ClassName == "Moru_Gold_TA" 
-	or moruObj.ClassName == "Moru_Gold_TA_NR" 
-	or moruObj.ClassName == "Moru_Gold_Team_Trade" 
-	or moruObj.ClassName == "Moru_Gold_EVENT_1710_NEWCHARACTER"
-	or moruObj.ClassName == "Moru_Gold_14d_Team_event1909"
-	or IS_MORU_NOT_DESTROY_TARGET_UNIQUE_ITEM(moruObj) == true then
+	local not_destory, moru_type = IS_MORU_NOT_DESTROY_TARGET_ITEM(moruObj)
+	if not_destory == true then
 		if 1 == REINFORCE_ABLE_131014(obj) 
 			and obj.PR == 0 then
 			return 1;
@@ -173,17 +165,8 @@ function MORU_LBTN_CLICK(frame, invItem)
 	if moruObj == nil then
 		return
 	end
-
-	if moruObj.ClassName == "Moru_Premium" 
-	or moruObj.ClassName == "Moru_Gold" 
-	or moruObj.ClassName == "Moru_Gold_14d" 
-	or moruObj.ClassName == "Moru_Gold_14d_Team" 
-	or moruObj.ClassName == "Moru_Gold_TA" 
-	or moruObj.ClassName == "Moru_Gold_TA_NR" 
-	or moruObj.ClassName == "Moru_Gold_Team_Trade" 
-	or moruObj.ClassName == "Moru_Gold_EVENT_1710_NEWCHARACTER"
-	or moruObj.ClassName == "Moru_Gold_14d_Team_event1909"
-	or IS_MORU_NOT_DESTROY_TARGET_UNIQUE_ITEM(moruObj) == true then
+	local not_destory, moru_type = IS_MORU_NOT_DESTROY_TARGET_ITEM(moruObj)
+	if not_destory == true then
 		if obj.PR > 0 then
 			ui.SysMsg(ClMsg("ItemIsNotReinforcable"));
 		    return;
@@ -237,16 +220,8 @@ function _CHECK_MORU_TARGET_ITEM(slot)
 
 	local obj = GetIES(item:GetObject());
 	local CanReinforceItem = 0;
-	if moruObj.ClassName == "Moru_Premium" 
-	or moruObj.ClassName == "Moru_Gold" 
-	or moruObj.ClassName == "Moru_Gold_14d" 
-	or moruObj.ClassName == "Moru_Gold_14d_Team" 
-	or moruObj.ClassName == "Moru_Gold_TA" 
-	or moruObj.ClassName == "Moru_Gold_TA_NR" 
-	or moruObj.ClassName == "Moru_Gold_Team_Trade" 
-	or moruObj.ClassName == "Moru_Gold_EVENT_1710_NEWCHARACTER"
-	or moruObj.ClassName == "Moru_Gold_14d_Team_event1909"
-	or IS_MORU_NOT_DESTROY_TARGET_UNIQUE_ITEM(moruObj) == true then
+	local not_destory, moru_type = IS_MORU_NOT_DESTROY_TARGET_ITEM(moruObj)
+	if not_destory == true then
 	
 		if REINFORCE_ABLE_131014(obj) == 1 and obj.PR == 0 then
 			CanReinforceItem = 1;

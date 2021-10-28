@@ -198,7 +198,7 @@ function OPEN_WORLDMAP2_SUBMAP_FROM_MAINMAP(frame, ctrl, argStr, argNum)
 	ui.OpenFrame("worldmap2_submap")
 end
 
-function WORLDMAP2_SUBMAP_OPEN_FROM_MAINMAP_BY_EPISODE(episode)
+function WORLDMAP2_OPEN_SUBMAP_FROM_MAINMAP_BY_EPISODE(episode)
 	WORLDMAP2_SUBMAP_SET_EPISODE(episode)
 	ui.OpenFrame("worldmap2_submap")
 end
@@ -219,6 +219,20 @@ function WORLDMAP2_OPEN_MINIMAP_FROM_SUBMAP_BY_MAPNAME(mapName)
         ui.OpenFrame("worldmap2_minimap")
     else
         WARP_TO_AREA(mapName)
+    end
+end
+
+-- (월드맵) -> 미니맵
+function WORLDMAP2_MINIMAP_OPEN_BY_MAPNAME(episode, mapName)
+    if ui.GetFrame('worldmap2_submap'):IsVisible() == 0 then
+        WORLDMAP2_OPEN_SUBMAP_FROM_MAINMAP_BY_EPISODE(episode)
+    else
+        WORLDMAP2_SUBMAP_CHANGE(episode)
+    end
+    if ui.GetFrame("worldmap2_minimap"):IsVisible() == 0 then
+        WORLDMAP2_OPEN_MINIMAP_FROM_SUBMAP_BY_MAPNAME(mapName)
+    else
+        WORLDMAP2_MINIMAP_CHANGE(mapName)
     end
 end
 
@@ -361,6 +375,7 @@ end
 
 function WORLDMAP2_TOKEN_WARP_REQUEST(mapName)
     RequestTokenWarp(mapName)
+    WORLDMAP2_CLOSE()
 end
 
 -- 즐겨찾기 목록
@@ -368,7 +383,7 @@ function GET_FAVORITE_MAP_LIST()
     local aObj = GetMyAccountObj()
     local list = {}
 
-    for i = 1, 5 do
+    for i = 1, 8 do
         local mapName = TryGetProp(aObj, "FavoriteMap_"..i)
         if mapName ~= "None" then
             list[#list+1] = mapName

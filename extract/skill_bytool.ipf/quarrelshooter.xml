@@ -2848,4 +2848,83 @@
             </ResultList>
         </MainSkl>
     </Skill>
+	<Skill Name="QuarrelShooter_ViboraShoot">
+		<KeyInput>
+			<ToolScp Scp="SKL_KEY_DYNAMIC_CASTING" Client="YES" UseSleep="NO">
+				<Num Num="0"/>
+				<Num Num="0"/>
+				<Num Num="1"/>
+				<Num Num="0"/>
+				<Num Num="0"/>
+				<Num Num="0"/>
+				<Num Num="0"/>
+				<Num Num="0"/>
+				<Num Num="0"/>
+				<Num Num="0"/>
+				<Num Num="1"/>
+				<Num Num="1"/>
+				<Str_Arg Str="None" Arg="0"/>
+				<Str Str="None"/>
+				<Num Num="0"/>
+				<Num Num="0"/>
+				<Num Num="5"/>
+				<Num Num="1"/>
+				<Num Num="45"/>
+				<Num Num="0"/>
+				<Num Num="1"/>
+				<Num Num="0"/>
+				<Str Str=""/>
+				<Str Str=""/>
+			</ToolScp>
+		</KeyInput>
+		<KeyInputStart>
+			<ToolScp Scp="MONSKL_C_CASTING_ANIM" Client="YES" UseSleep="NO">
+				<Str Str="SKL_VENDETTA_CAST"/>
+				<Str Str="ARUN"/>
+				<Num Num="2"/>
+				<Num Num="1"/>
+				<Str Str="None"/>
+				<Str Str="ASTD"/>
+			</ToolScp>
+			<ToolScp Scp="MONSKL_C_RESERVE_ANIM" Client="YES" UseSleep="NO">
+				<Str Str="SKL_VENDETTA_LOOP"/>
+				<Num Num="1"/>
+				<Num Num="1"/>
+			</ToolScp>
+		</KeyInputStart>
+		<KeyInputEnd>
+			<ToolScp Scp="MONSKL_C_CLEAR_RESERVE_ANIM" Client="YES" UseSleep="NO"/>
+			<ToolScp Scp="MONSKL_C_RESET_CASTING_ANIM" Client="YES" UseSleep="NO"/>
+		</KeyInputEnd>
+		<MainSkl ScrLock="None" JumpFlee="NO" MSPDToUsePos="0">
+			<MoveList>
+				<Frame Time="200" Dist="30" Angle="3.1157691" Accel="1" Height="0" MoveType="0" Gravity="600" JumpPower="300"/>
+			</MoveList>
+			<EtcList>
+				<Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="0">
+					<Str_Arg Str="F_explosion015" Arg="1"/>
+					<Str Str="Dummy_L_HAND"/>
+					<Num Num="0"/>
+				</Scp>
+				<Scp Scp="MONSKL_C_PLAY_ANIM" Client="YES" UseSleep="NO" Time="0">
+					<Str Str="SKL_VENDETTA_SHOT"/>
+					<Num Num="1.8"/>
+					<Num Num="1"/>
+				</Scp>
+				<Scp Scp="C_VOICE_SOUND" Client="YES" UseSleep="NO" Time="0">
+					<Str Str="voice_war_atk_medium"/>
+					<Str Str="voice_atk_medium_war_f"/>
+				</Scp>
+				<Scp Scp="C_SHOCKWAVE" Client="YES" UseSleep="NO" Time="0">
+					<Num Num="5"/>
+					<Num Num="1"/>
+					<Num Num="45"/>
+					<Num Num="999"/>
+				</Scp>
+				<Scp Scp="SKL_RUN_SCRIPT" Client="NO" UseSleep="NO" Time="0">
+					<Str Str="SCR_SKILL_QS_VIBORA_START"/>
+				</Scp>
+			</EtcList>
+		</MainSkl>
+	</Skill>
 </ToolSkill>

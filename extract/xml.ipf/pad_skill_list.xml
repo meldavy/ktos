@@ -18938,7 +18938,310 @@ return padTime
 			</ToolScp>
 		</updateEvent>
 	</PadSkill>
-	<PadSkill Name="Templer_AdvancedOrders" CheckerType="0" Range="150" UpdateTerm="100" AutoPos="1" ApplyFlyMon="1" IgnoreDistanceInterval="1" EnableSearch="0" IsMineType="0">
+    <PadSkill Name="TelHarsha_Baseball_Pad" CheckerType="0" Dist="393.23532" Angle="-2.9922078" Range="30" UpdateTerm="1000" AllowOverlap="1" EnableSearch="0">
+        <createEvent>
+            <ToolScp Scp="PAD_CRE_MON" Client="NO" UseSleep="NO">
+                <Str Str="TelHarsha_Baseball"/>
+                <Pos Angle="0" Dist="1.4012985e-45"/>
+                <Angle Angle="0"/>
+                <Num Num="0"/>
+                <Num Num="0"/>
+                <MonProp/>
+                <Str_Arg Str="None" Arg="1"/>
+                <Num Num="0"/>
+                <Str Str="None"/>
+                <Str Str="None"/>
+                <Num Num="1"/>
+            </ToolScp>
+            <ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
+				<Num Num="37000"/>
+                <Num Num="1"/>
+            </ToolScp>
+        </createEvent>
+        <destroyEvent>
+            <ToolScp Scp="C_PAD_EFFECT_POS" Client="YES" UseSleep="NO">
+                <Str_Arg Str="F_spread_out029_red" Arg="2"/>
+                <Pos Angle="0" Dist="3.7018382e-40"/>
+                <Num Num="0"/>
+                <Str_Arg Str="None" Arg="1"/>
+                <Num Num="1"/>
+            </ToolScp>
+            <ToolScp Scp="PAD_SELECT_MONKILL" Client="NO" UseSleep="NO">
+                <Str Str="ALL"/>
+                <Str Str="TelHarsha_Baseball"/>
+                <Num Num="100"/>
+            </ToolScp>
+        </destroyEvent>
+        <updateEvent>
+            <ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
+				<Num Num="-1000"/>
+                <Num Num="1"/>
+            </ToolScp>
+            <ToolScp Scp="C_PAD_EFFECT_POS" Client="YES" UseSleep="NO">
+                <Str_Arg Str="F_wizard_UmbilicalCord_shot_lineup" Arg="2"/>
+                <Pos Angle="0" Dist="3.7267533e-40"/>
+                <Num Num="0"/>
+                <Str_Arg Str="None" Arg="1"/>
+                <Num Num="1"/>
+            </ToolScp>
+        </updateEvent>
+    </PadSkill>
+    <PadSkill Name="TelHarsha_Candle" CheckerType="0" PadHeight="1" Dist="155.74883" Angle="1.5950881" Range="20" AutoPos="1" ApplyFlyMon="1" SpinRate="0.5" AllowOverlap="1" EnableSearch="0">
+        <createEvent>
+            <ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
+                <Num Num="60000"/>
+                <Num Num="1"/>
+            </ToolScp>
+            <ToolScp Scp="C_PAD_EFFECT_POS" Client="YES" UseSleep="NO">
+                <Str_Arg Str="F_fire050_ball" Arg="3"/>
+                <Pos Angle="0" Dist="1.8911644e-40"/>
+                <Num Num="0"/>
+                <Str_Arg Str="None" Arg="1"/>
+                <Num Num="1"/>
+            </ToolScp>
+            <ToolScp Scp="PAD_USEABLE_PC_ASSISTER" Client="NO" UseSleep="NO"/>
+        </createEvent>
+        <enterEvent>
+            <ToolScp Scp="PAD_FUNC_DIRECT" Client="NO" UseSleep="NO">
+                <Str Str="TELHARSHA_LIGHT_BUFF_BY_SKILL2"/>
+            </ToolScp>
+            <ToolScp Scp="PAD_FUNC_DIRECT" Client="NO" UseSleep="NO">
+                <Str Str="PATTERN_CANDLE"/>
+            </ToolScp>
+            <ToolScp Scp="PAD_TGT_DAMAGE" Client="NO" UseSleep="NO">
+                <Str Str="ENEMY"/>
+                <Num Num="1"/>
+                <Num Num="0"/>
+                <Num Num="0"/>
+            </ToolScp>
+        </enterEvent>
+        <updateEvent>
+            <ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
+                <Num Num="-1000"/>
+                <Num Num="1"/>
+            </ToolScp>
+        </updateEvent>
+    </PadSkill>
+    <PadSkill Name="TelHarsha_Cardinal_Pad" CheckerType="0" Range="50" AllowOverlap="1" EnableSearch="0">
+        <createEvent>
+            <ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
+                <Num Num="10000"/>
+                <Num Num="1"/>
+            </ToolScp>
+            <ToolScp Scp="C_PAD_EFFECT_POS" Client="YES" UseSleep="NO">
+                <Str_Arg Str="F_water006_loop" Arg="5"/>
+                <Pos Angle="0" Dist="2.7884158e-40"/>
+                <Num Num="0"/>
+                <Str_Arg Str="None" Arg="1"/>
+                <Num Num="1"/>
+            </ToolScp>
+            <ToolScp Scp="PAD_USEABLE_FUNCNAME" Client="NO" UseSleep="NO">
+                <Str Str="SCR_CARDINAL_PAD_ENTER_CHECK"/>
+            </ToolScp>
+        </createEvent>
+        <enterEvent>
+            <ToolScp Scp="PAD_TGT_ADD_LIFE" Client="NO" UseSleep="NO">
+                <Num Num="-10000"/>
+                <Num Num="-1"/>
+            </ToolScp>
+            <ToolScp Scp="PAD_TGT_SCRIPT" Client="NO" UseSleep="NO">
+                <Str Str="SCR_CARDINAL_POINTS_PAD_ENTER"/>
+            </ToolScp>
+            <ToolScp Scp="C_PAD_TGT_EFT" Client="YES" UseSleep="NO">
+                <Pos Angle="0" Dist="-16352.493"/>
+                <Str_Arg Str="F_burstup043_water_blue" Arg="0.60000002"/>
+                <Num Num="0"/>
+                <Num Num="0"/>
+            </ToolScp>
+        </enterEvent>
+        <updateEvent>
+            <ToolScp Scp="PAD_MOVE_NEAR_ENEMY" Client="NO" UseSleep="NO">
+                <Str Str="ENEMY"/>
+                <Num Num="1000"/>
+                <Num Num="10"/>
+                <Num Num="0"/>
+                <Num Num="0"/>
+                <Num Num="1"/>
+            </ToolScp>
+        </updateEvent>
+    </PadSkill>
+    <PadSkill Name="TelHarsha_Charge_pad" CheckerType="0" Dist="117.32368" Angle="2.8884768" Range="140" UpdateTerm="1000" AllowOverlap="1" EnableSearch="0">
+        <createEvent>
+            <ToolScp Scp="C_PAD_EFFECT_POS" Client="YES" UseSleep="NO">
+                <Str_Arg Str="F_wizard_FlameGround_loop2" Arg="3"/>
+                <Pos Angle="0" Dist="0"/>
+                <Num Num="0"/>
+                <Str_Arg Str="None" Arg="1"/>
+                <Num Num="1"/>
+            </ToolScp>
+            <ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
+                <Num Num="55000"/>
+                <Num Num="1"/>
+            </ToolScp>
+        </createEvent>
+        <updateEvent>
+            <ToolScp Scp="PAD_FUNC_UPDATE_DIRECT" Client="NO" UseSleep="NO">
+                <Str Str="TELHARSHA_CHARGE_PAD_UPDATE"/>
+            </ToolScp>
+            <ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
+                <Num Num="-1000"/>
+                <Num Num="1"/>
+            </ToolScp>
+        </updateEvent>
+    </PadSkill>
+    <PadSkill Name="TelHarsha_DeleteMon_Pad" CheckerType="0" PadHeight="1" Dist="71.943565" Angle="-0.96041346" Range="40" UpdateTerm="200" AllowOverlap="1" EnableSearch="0">
+        <createEvent>
+            <ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
+                <Num Num="10000"/>
+                <Num Num="1"/>
+            </ToolScp>
+            <ToolScp Scp="C_PAD_EFFECT_POS" Client="YES" UseSleep="NO">
+                <Str_Arg Str="F_circle007_red_loop" Arg="5"/>
+                <Pos Angle="0" Dist="6.4877597e-40"/>
+                <Num Num="0"/>
+                <Str_Arg Str="None" Arg="1"/>
+                <Num Num="1"/>
+            </ToolScp>
+            <ToolScp Scp="PAD_USEABLE_FUNCNAME" Client="NO" UseSleep="NO">
+                <Str Str="ENTER_AMISSDOG_CHACK"/>
+            </ToolScp>
+        </createEvent>
+        <destroyEvent>
+            <ToolScp Scp="PAD_SELECT_MONKILL" Client="NO" UseSleep="NO">
+                <Str Str="ALL"/>
+                <Str Str="TelHarsha_AmissDog"/>
+                <Num Num="100"/>
+            </ToolScp>
+            <ToolScp Scp="PAD_FUNC_UPDATE_RUNSCRIPT" Client="NO" UseSleep="NO">
+                <Str Str="TELHARSHA_DELETEMON_PAD_DISTROY"/>
+            </ToolScp>
+        </destroyEvent>
+        <enterEvent>
+            <ToolScp Scp="PAD_TGT_ADD_LIFE" Client="NO" UseSleep="NO">
+                <Num Num="-10000"/>
+                <Num Num="1"/>
+            </ToolScp>
+        </enterEvent>
+    </PadSkill>
+    <PadSkill Name="TelHarsha_End_buff_Pad" CheckerType="0" Range="50" UpdateTerm="1000" AutoPos="1" AutoDir="1" ApplyFlyMon="1" AllowOverlap="1" IgnoreDistanceInterval="1" EnableSearch="0">
+        <createEvent>
+            <ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
+                <Num Num="10000"/>
+                <Num Num="1"/>
+            </ToolScp>
+            <ToolScp Scp="C_PAD_EFFECT_POS" Client="YES" UseSleep="NO">
+                <Str_Arg Str="F_levitation052_fire" Arg="5"/>
+                <Pos Angle="0" Dist="0"/>
+                <Num Num="0"/>
+                <Str_Arg Str="None" Arg="1"/>
+                <Num Num="1"/>
+            </ToolScp>
+        </createEvent>
+        <updateEvent>
+            <ToolScp Scp="PAD_FUNC_UPDATE_DIRECT" Client="NO" UseSleep="NO">
+                <Str Str="SCR_END_BUFF_PAD_SIZEUP"/>
+            </ToolScp>
+        </updateEvent>
+    </PadSkill>
+    <PadSkill Name="TelHarsha_Fallow" CheckerType="0" PadHeight="1" Dist="60.522812" Angle="2.6308672" Range="60" UpdateTerm="1000" AutoPos="1" ApplyFlyMon="1" AllowOverlap="1" IgnoreDistanceInterval="1" EnableSearch="0">
+        <createEvent>
+            <ToolScp Scp="C_PAD_EFFECT_POS" Client="YES" UseSleep="NO">
+                <Str_Arg Str="F_buff_ground_fire_debuff_loop1" Arg="1"/>
+                <Pos Angle="0" Dist="3.7219328e-40"/>
+                <Num Num="0"/>
+                <Str_Arg Str="None" Arg="1"/>
+                <Num Num="1"/>
+            </ToolScp>
+            <ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
+                <Num Num="10000"/>
+                <Num Num="1"/>
+            </ToolScp>
+            <ToolScp Scp="PAD_USEABLE_PC_ASSISTER" Client="NO" UseSleep="NO"/>
+        </createEvent>
+        <updateEvent>
+            <ToolScp Scp="PAD_DAMAGE_ENEMY" Client="NO" UseSleep="NO">
+                <Num Num="1"/>
+                <Num Num="0"/>
+                <Num Num="-1"/>
+                <Str_Arg Str="None" Arg="1"/>
+                <Num Num="0"/>
+                <Num Num="0"/>
+                <Str Str="None"/>
+            </ToolScp>
+            <ToolScp Scp="PAD_BUFF_ENEMY" Client="NO" UseSleep="NO">
+                <Str Str="ENEMY"/>
+                <Num Num="0"/>
+                <Num Num="0"/>
+                <Str Str="Slow_Debuff"/>
+                <Num Num="1"/>
+                <Num Num="0"/>
+                <Num Num="5000"/>
+                <Num Num="1"/>
+                <Num Num="100"/>
+            </ToolScp>
+            <ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
+                <Num Num="0"/>
+                <Num Num="1"/>
+            </ToolScp>
+        </updateEvent>
+    </PadSkill>
+    <PadSkill Name="TelHarsha_Wormwhole" CheckerType="0" Dist="151.10028" Angle="1.1531124" Range="40" AllowOverlap="1">
+        <createEvent>
+            <ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
+                <Num Num="20000"/>
+                <Num Num="1"/>
+            </ToolScp>
+            <ToolScp Scp="C_PAD_EFFECT_POS" Client="YES" UseSleep="NO">
+                <Str_Arg Str="F_circle034_loop" Arg="2.8"/>
+                <Pos Angle="0" Dist="0"/>
+                <Num Num="0"/>
+                <Str_Arg Str="None" Arg="1"/>
+                <Num Num="1"/>
+            </ToolScp>
+            <ToolScp Scp="PAD_USEABLE_PC" Client="NO" UseSleep="NO"/>
+        </createEvent>
+        <enterEvent>
+            <ToolScp Scp="PAD_FUNC_DIRECT" Client="NO" UseSleep="NO">
+                <Str Str="WORMWHOLE_ENTER_TELEPORT"/>
+            </ToolScp>
+            <ToolScp Scp="PAD_TGT_ADD_LIFE" Client="NO" UseSleep="NO">
+                <Num Num="-20000"/>
+                <Num Num="1"/>
+            </ToolScp>
+        </enterEvent>
+    </PadSkill>
+	<PadSkill Name="TelHarsha_pattern_pad" CheckerType="0" Dist="132.4183" Angle="-2.047246" Range="30" UpdateTerm="1000" ApplyFlyMon="1" AllowOverlap="1" EnableSearch="0">
+        <createEvent>
+            <ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
+                <Num Num="40000"/>
+                <Num Num="1"/>
+            </ToolScp>
+            <ToolScp Scp="C_PAD_EFFECT_POS" Client="YES" UseSleep="NO">
+                <Str_Arg Str="F_fire052" Arg="3.5"/>
+                <Pos Angle="0" Dist="-6.3487837e-36"/>
+                <Num Num="0"/>
+                <Str_Arg Str="None" Arg="1"/>
+                <Num Num="1"/>
+            </ToolScp>
+            <ToolScp Scp="PAD_USEABLE_PC_ASSISTER" Client="NO" UseSleep="NO"/>
+        </createEvent>
+        <updateEvent>
+            <ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
+                <Num Num="-500"/>
+                <Num Num="1"/>
+            </ToolScp>
+            <ToolScp Scp="PAD_DAMAGE_ENEMY" Client="NO" UseSleep="NO">
+                <Num Num="1.0"/>
+                <Num Num="0"/>
+                <Num Num="0"/>
+                <Str_Arg Str="None" Arg="1"/>
+                <Num Num="0"/>
+                <Num Num="0"/>
+                <Str Str="None"/>
+            </ToolScp>
+        </updateEvent>
+    </PadSkill>
+    <PadSkill Name="Templer_AdvancedOrders" CheckerType="0" Range="150" UpdateTerm="100" AutoPos="1" ApplyFlyMon="1" IgnoreDistanceInterval="1" EnableSearch="0" IsMineType="0">
 		<createEvent>
 			<ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
 				<Num Num="10000"/>

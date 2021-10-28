@@ -991,11 +991,18 @@ function SET_SLOT_ICOR_CATEGORY(slot, item_obj)
 		end		
 		if item_name ~= 'None' then		
 			local cls = GetClass('Item', item_name)			
-			local msg = font..ClMsg(cls.ClassType)
+			local msg = font
+			
 			if is_fix == true then
-				msg = font .. ClMsg('FixOptionItem').. '{nl}' .. ClMsg(cls.ClassType)
-
+				msg = msg .. ClMsg('FixOptionItem').. '{nl}'
 			end
+
+			if config.GetServiceNation() == "KOR" then
+				msg = msg .. ClMsg(cls.ClassType)
+			else
+				msg = msg .. ClMsg(cls.ClassType .. '_Icor')
+			end
+			
 			slot:SetText(msg, 'quickiconfont', ui.CENTER_VERT, ui.CENTER_HORZ, -2, 1);
 		end
 	end	

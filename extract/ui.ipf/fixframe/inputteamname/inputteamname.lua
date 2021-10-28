@@ -18,12 +18,8 @@ end
 
 function INPUT_TEAMNAME_EXEC_RESULT(frame, msg, argStr, result)
 	if result ~= 0 then		
-        if result == -1 or result == -12 or result == -14 or result == -15 or result == -21 then
-			ui.SysMsg(ClMsg("TheTeamNameAlreadyExist"));
-	    elseif result == -11 or result == -13 then
-		    ui.SysMsg(ClMsg("ThisWorldExistFamilyName"));
-	    elseif result == -2 then
-			ui.SysMsg(ClMsg("HadFobbidenWord"));
+        if result == -1 or result == -12 or result == -14 or result == -15 or result == -21 or result == -11 or result == -13 or result == -2 then
+			ui.SysMsg(ClMsg("AlreadyorImpossibleName"));
 		elseif result == -99 then
 			-- 아무 메세지도 출력 안함
 	    else

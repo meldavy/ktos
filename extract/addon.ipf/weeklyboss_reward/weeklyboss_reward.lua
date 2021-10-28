@@ -139,7 +139,7 @@ function WEEKLYBOSSREWARD_RANK_REWARD_UPDATE(frame, retlist)
     local rewardgb = GET_CHILD_RECURSIVELY(frame, "rewardgb", "ui::CGroupBox");
     rewardgb:RemoveAllChild();
     local week_num = tonumber(frame:GetUserValue("WEEK_NUM"))
-    local myrank = session.weeklyboss.GetMyRankInfo(week_num);
+    local myrank = session.weeklyboss.GetMyBaseJobRankInfo(week_num);
     local y = 0;
     local cnt = #retlist -- 랭킹 cnt
     for i = 1, cnt do

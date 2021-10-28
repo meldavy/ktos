@@ -119,6 +119,10 @@ function WARP_TO_AREA(mapName)
         end
     end
 
+    if subMapData == nil then
+        return
+    end
+
     if subMapData.DungeonName == "None" then
         REQUEST_WARP_TO_AREA(mapName)
     else
@@ -193,6 +197,7 @@ function REQUEST_WARP_TO_AREA(targetZoneName)
     end
 
     if GET_ZONE_GODDESS_STATUE_TYPE(mapCls) ~= 2 then
+        ui.SysMsg(ScpArgMsg("NoGoddessStatue"))
         return
     end
 

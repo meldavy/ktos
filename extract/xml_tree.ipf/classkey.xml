@@ -454,6 +454,7 @@
         <Key Name="ExpireDateTime" Value="105461"/>
         <Key Name="ALLSTAT" Value="105471"/>
         <Key Name="ICOR_TRY_COUNT" Value="105560"/>
+        <Key Name="Magic_Soul_Atk" Value="106482"/>
     </KeyIDSpc>
     <KeyIDSpc Name="Party">
         <Key Name="P_PARTY_Q_040" Value="53"/>
@@ -3476,6 +3477,14 @@
         <Key Name="FirstQuestClear_None_72264" Value="105889"/>
         <Key Name="EVENT_2005_APPRAISER_SHOP21" Value="106466"/>
         <Key Name="EVENT_2005_APPRAISER_SHOP22" Value="106465"/>
+        <Key Name="FavoriteMap_6" Value="106470"/>
+        <Key Name="FavoriteMap_7" Value="106468"/>
+        <Key Name="FavoriteMap_8" Value="106467"/>
+        <Key Name="GUILD_PROMOTE_NOTICE_COUNT" Value="106472"/>
+        <Key Name="HadVisited_4981" Value="106469"/>
+        <Key Name="InDunCountType_150" Value="106473"/>
+        <Key Name="IndunWeeklyEnteredCount_150" Value="106471"/>
+        <Key Name="FirstQuestClear_Episode_10_72179" Value="106483"/>
     </KeyIDSpc>
     <KeyIDSpc Name="PCEtc">
         <Key Name="Kill_boss_Clymen_Q2" Value="7788"/>
@@ -11834,6 +11843,13 @@
         <Key Name="Kill_Legend_Hard_Solo_RytaSwort" Value="105641"/>
         <Key Name="Kill_Unique_boss_Glacier_Solo" Value="105642"/>
         <Key Name="Kill_Unique_boss_Pbeta_Solo" Value="105640"/>
+        <Key Name="HadVisited_4981" Value="106481"/>
+        <Key Name="InDunCountType_150" Value="106480"/>
+        <Key Name="IndunWeeklyEnteredCount_150" Value="106479"/>
+        <Key Name="Kill_TelHarsha_AmissDog" Value="106475"/>
+        <Key Name="Kill_TelHarsha_Baseball" Value="106478"/>
+        <Key Name="Kill_TelHarsha_pattern_monster" Value="106476"/>
+        <Key Name="Kill_boss_Irredians_TelHarsha" Value="106477"/>
     </KeyIDSpc>
     <KeyIDSpc Name="GuildMember">
         <Key Name="Name" Value="9011"/>
@@ -20356,6 +20372,7 @@
         <Key Name="MG_Last_LEGEND_RAID_GLACIER_NORMAL" Value="105435"/>
         <Key Name="MG_Last_LEGEND_RAID_MORINGPONIA_HARD_SOLO" Value="105647"/>
         <Key Name="MG_Last_UNIQUE_RAID_GLACIER_SOLO" Value="105646"/>
+        <Key Name="MG_Last_IRREDIAN1131_SRAID_C" Value="106474"/>
     </KeyIDSpc>
     <KeyIDSpc Name="Monster">
         <Key Name="MaxHate" Value="6671"/>

@@ -294,7 +294,7 @@ function PUB_CREATECHAR_NAME_CHECK()
 		local pcInfo = accountInfo:GetPCByIndex(i);
 		local pcApc = pcInfo:GetApc();
 		if pcApc:GetName() == text then
-			ui.SysMsg(ClMsg("NameAlreadyExist"));
+			ui.SysMsg(ClMsg("AlreadyorImpossibleName"));
 			return;
 		end
 	end

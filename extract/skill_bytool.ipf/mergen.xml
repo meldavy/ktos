@@ -616,7 +616,7 @@
                     <Str Str="voice_atk_long_cast_f"/>
                 </Scp>
                 <Scp Scp="C_FORCE_EFT" Client="YES_Time" UseSleep="NO" Time="50">
-                    <Str_Arg Str="I_archer_FocusFire_arrow_trail#Dummy_Force" Arg="7"/>
+                    <Str_Arg Str="I_archer_FocusFire_arrow_trail2#Dummy_Force" Arg="7"/>
                     <Str Str="arrow_cast"/>
                     <Str_Arg Str="None" Arg="1"/>
                     <Str Str="arrow_blow"/>
@@ -632,7 +632,7 @@
                     <Num Num="0"/>
                 </Scp>
                 <Scp Scp="C_FORCE_EFT" Client="YES_Time" UseSleep="NO" Time="100">
-                    <Str_Arg Str="I_archer_FocusFire_arrow_trail#Dummy_Force" Arg="7"/>
+                    <Str_Arg Str="I_archer_FocusFire_arrow_trail2#Dummy_Force" Arg="7"/>
                     <Str Str="arrow_cast"/>
                     <Str_Arg Str="None" Arg="1"/>
                     <Str Str="arrow_blow"/>
@@ -648,7 +648,7 @@
                     <Num Num="0"/>
                 </Scp>
                 <Scp Scp="C_FORCE_EFT" Client="YES_Time" UseSleep="NO" Time="150">
-                    <Str_Arg Str="I_archer_FocusFire_arrow_trail#Dummy_Force" Arg="7"/>
+                    <Str_Arg Str="I_archer_FocusFire_arrow_trail2#Dummy_Force" Arg="7"/>
                     <Str Str="arrow_cast"/>
                     <Str_Arg Str="None" Arg="1"/>
                     <Str Str="arrow_blow"/>
@@ -664,7 +664,7 @@
                     <Num Num="0"/>
                 </Scp>
                 <Scp Scp="C_FORCE_EFT" Client="YES_Time" UseSleep="NO" Time="200">
-                    <Str_Arg Str="I_archer_FocusFire_arrow_trail#Dummy_Force" Arg="7"/>
+                    <Str_Arg Str="I_archer_FocusFire_arrow_trail2#Dummy_Force" Arg="7"/>
                     <Str Str="arrow_cast"/>
                     <Str_Arg Str="None" Arg="1"/>
                     <Str Str="arrow_blow"/>
@@ -680,7 +680,7 @@
                     <Num Num="0"/>
                 </Scp>
                 <Scp Scp="C_FORCE_EFT" Client="YES_Time" UseSleep="NO" Time="250">
-                    <Str_Arg Str="I_archer_FocusFire_arrow_trail#Dummy_Force" Arg="7"/>
+                    <Str_Arg Str="I_archer_FocusFire_arrow_trail2#Dummy_Force" Arg="7"/>
                     <Str Str="arrow_cast"/>
                     <Str_Arg Str="None" Arg="1"/>
                     <Str Str="arrow_blow"/>
@@ -720,7 +720,7 @@
                             <Str Str="voice_atk_long_cast_f"/>
                         </Scp>
                         <Scp Scp="C_FORCE_EFT" Client="YES_Time" UseSleep="NO" Time="0">
-                            <Str_Arg Str="I_archer_FocusFire_arrow_trail#Dummy_Force" Arg="7"/>
+                            <Str_Arg Str="I_archer_FocusFire_arrow_trail2#Dummy_Force" Arg="7"/>
                             <Str Str="arrow_cast"/>
                             <Str_Arg Str="None" Arg="1"/>
                             <Str Str="arrow_blow"/>
@@ -736,7 +736,7 @@
                             <Num Num="0"/>
                         </Scp>
                         <Scp Scp="C_FORCE_EFT" Client="YES_Time" UseSleep="NO" Time="33">
-                            <Str_Arg Str="I_archer_FocusFire_arrow_trail#Dummy_Force" Arg="7"/>
+                            <Str_Arg Str="I_archer_FocusFire_arrow_trail2#Dummy_Force" Arg="7"/>
                             <Str Str="arrow_cast"/>
                             <Str_Arg Str="None" Arg="1"/>
                             <Str Str="arrow_blow"/>
@@ -752,7 +752,7 @@
                             <Num Num="0"/>
                         </Scp>
                         <Scp Scp="C_FORCE_EFT" Client="YES_Time" UseSleep="NO" Time="66">
-                            <Str_Arg Str="I_archer_FocusFire_arrow_trail#Dummy_Force" Arg="7"/>
+                            <Str_Arg Str="I_archer_FocusFire_arrow_trail2#Dummy_Force" Arg="7"/>
                             <Str Str="arrow_cast"/>
                             <Str_Arg Str="None" Arg="1"/>
                             <Str Str="arrow_blow"/>
@@ -768,7 +768,7 @@
                             <Num Num="0"/>
                         </Scp>
                         <Scp Scp="C_FORCE_EFT" Client="YES_Time" UseSleep="NO" Time="99">
-                            <Str_Arg Str="I_archer_FocusFire_arrow_trail#Dummy_Force" Arg="7"/>
+                            <Str_Arg Str="I_archer_FocusFire_arrow_trail2#Dummy_Force" Arg="7"/>
                             <Str Str="arrow_cast"/>
                             <Str_Arg Str="None" Arg="1"/>
                             <Str Str="arrow_blow"/>
@@ -784,7 +784,7 @@
                             <Num Num="0"/>
                         </Scp>
                         <Scp Scp="C_FORCE_EFT" Client="YES_Time" UseSleep="NO" Time="132">
-                            <Str_Arg Str="I_archer_FocusFire_arrow_trail#Dummy_Force" Arg="7"/>
+                            <Str_Arg Str="I_archer_FocusFire_arrow_trail2#Dummy_Force" Arg="7"/>
                             <Str Str="arrow_cast"/>
                             <Str_Arg Str="None" Arg="1"/>
                             <Str Str="arrow_blow"/>
@@ -800,7 +800,7 @@
                             <Num Num="0"/>
                         </Scp>
                         <Scp Scp="C_FORCE_EFT" Client="YES_Time" UseSleep="NO" Time="165">
-                            <Str_Arg Str="I_archer_FocusFire_arrow_trail#Dummy_Force" Arg="7"/>
+                            <Str_Arg Str="I_archer_FocusFire_arrow_trail2#Dummy_Force" Arg="7"/>
                             <Str Str="arrow_cast"/>
                             <Str_Arg Str="None" Arg="1"/>
                             <Str Str="arrow_blow"/>
@@ -816,7 +816,7 @@
                             <Num Num="0"/>
                         </Scp>
                         <Scp Scp="C_FORCE_EFT" Client="YES_Time" UseSleep="NO" Time="200">
-                            <Str_Arg Str="I_archer_FocusFire_arrow_trail#Dummy_Force" Arg="7"/>
+                            <Str_Arg Str="I_archer_FocusFire_arrow_trail2#Dummy_Force" Arg="7"/>
                             <Str Str="arrow_cast"/>
                             <Str_Arg Str="None" Arg="1"/>
                             <Str Str="arrow_blow"/>

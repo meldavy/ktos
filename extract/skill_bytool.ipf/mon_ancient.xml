@@ -9228,17 +9228,6 @@ return value"/>
                 <Scp Scp="C_SOUND" Client="YES" UseSleep="NO" Time="0">
                     <Str Str="m_manticen_skl_2"/>
                 </Scp>
-                <Scp Scp="SKL_SET_TARGET_CIRCLE" Client="NO" UseSleep="NO" Time="0">
-                    <Pos Angle="0" Dist="8.6350736e-36"/>
-                    <Num Num="100"/>
-                    <Num Num="1"/>
-                    <Num Num="1"/>
-                    <Num Num="0"/>
-                    <Num Num="1"/>
-                    <Num Num="1"/>
-                    <Num Num="0"/>
-                    <Num Num="1"/>
-                </Scp>
                 <Scp Scp="MSL_PAD_THROW" Client="NO" UseSleep="YES" Time="2100">
                     <Str_Arg Str="I_force039_orange#Bip001 Ponytail2" Arg="1"/>
                     <Str_Arg Str="I_explosion009_orange" Arg="1"/>
@@ -9365,15 +9354,8 @@ return value"/>
                     <Angle Angle="0"/>
                     <Str Str="Ancient_Blud_Mon_PoisonPilla_orange"/>
                 </Scp>
-                <Scp Scp="SKL_TGT_BUFF" Client="NO" UseSleep="NO" Time="2200">
-                    <Str Str="Ancient_Blud_Buff"/>
-                    <Num Num="15"/>
-                    <Num Num="0"/>
-                    <Num Num="15000"/>
-                    <Num Num="1"/>
-                    <Num Num="100"/>
-                    <Num Num="0"/>
-                    <Num Num="1"/>
+                <Scp Scp="SKL_RUN_SCRIPT" Client="NO" UseSleep="NO" Time="2300">
+                    <Str Str="SCR_Ancient_Blud_Target_Buff"/>
                 </Scp>
             </EtcList>
         </MainSkl>

@@ -105,14 +105,15 @@ function GET_COMMON_PROP_LIST()
         'ADD_BOSS_ATK',
         'Magic_Ice_Atk',
         'Magic_Earth_Atk',
-        'ALLSTAT',
+        'Magic_Soul_Atk',
+        'ALLSTAT'
     };
 end
 
 function INIT_WEAPON_PROP(item, class)
     local commonPropList = GET_COMMON_PROP_LIST();
     for i = 1, #commonPropList do
-        local propName = commonPropList[i];        
+        local propName = commonPropList[i];     
         item[propName] = class[propName];
     end
     OVERRIDE_INHERITANCE_PROPERTY(item);
@@ -200,7 +201,11 @@ function GET_REINFORCE_ADD_VALUE_ATK(item, ignoreReinf, reinfBonusValue, basicTo
     if classType == 'Trinket' then
         value = value * 0.5
     end
-
+    
+    if classType == 'Neck' or classType == 'Ring' then
+        value = value * 0.25
+    end
+    
     value = value + buffValue
           
     value = SyncFloor(value);
@@ -694,10 +699,6 @@ function SCR_REFRESH_ACC(item, enchantUpdate, ignoreReinfAndTranscend, reinfBonu
         reinfBonusValue = 0;
     end
     
-    local class = GetClassByType('Item', item.ClassID);
-    INIT_ARMOR_PROP(item, class);
-    item.Level = GET_ITEM_LEVEL(item);
-    
     local lv = TryGetProp(item , "UseLv");
     if lv == nil then
         return 0;
@@ -726,9 +727,6 @@ function SCR_REFRESH_ACC(item, enchantUpdate, ignoreReinfAndTranscend, reinfBonu
         lv = pcBangItemLevel;
     end
     
-    local PropName = {"ADD_FIRE"}; -- 아그니 네클리스만 유일하게 속성 공격력을 갖고 있습니다. 추후, 악세사리 메인 옵션 추가할 때 여기 추가할것 --
-    local changeProp = {};
-    
     local buffarg = 0;
     
     local grade = TryGetProp(item,"ItemGrade");
@@ -743,61 +741,47 @@ function SCR_REFRESH_ACC(item, enchantUpdate, ignoreReinfAndTranscend, reinfBonu
         buffarg = GetExProp(item, "Rewards_BuffValue");
     end
     
-    local equipMaterial = TryGetProp(item, "Material");
-    if equipMaterial == nil then
-        return 0;
-    end
+    local class = GetClassByType('Item', item.ClassID);
+    INIT_WEAPON_PROP(item, class);
+    item.Level = GET_ITEM_LEVEL(item);
     
-    local classType = TryGetProp(item,"ClassType");
-    if classType == nil then
-        return 0;
-    end
-    
-    local gradeRatio = SCR_GET_ITEM_GRADE_RATIO(grade, "BasicRatio");    
+    local star = item.ItemStar;
     local basicTooltipPropList = StringSplit(item.BasicTooltipProp, ';');
-    
     for i = 1, #basicTooltipPropList do
         local basicProp = basicTooltipPropList[i];
+
+        local upgradeRatio = 1 + GET_UPGRADE_ADD_ATK_RATIO(item, ignoreReinfAndTranscend) / 100;
+        local zero = 0;
+        local buffarg = 0;
         
-        if basicProp == 'DEF' or basicProp == 'MDEF' then
+        if enchantUpdate == 1 then
+            buffarg = GetExProp(item, "Rewards_BuffValue");
+        end
+        
+        if basicProp == 'ATK' then
+            item.MAXATK, item.MINATK = GET_BASIC_ATK(item);
             
-            local itemGradeClass = GetClassList('item_grade')
-            local ACCClassTypeRatio = GetClassByNameFromList(itemGradeClass,'ACCClassTypeRatio')
-            
-            if ACCClassTypeRatio == nil or ACCClassTypeRatio == 0 then
-                return;
+            local reinforceAddValueAtk = GET_REINFORCE_ADD_VALUE_ATK(item, ignoreReinfAndTranscend, reinfBonusValue, basicProp);            
+
+            item.MAXATK = SyncFloor((item.MAXATK * upgradeRatio)  + buffarg + reinforceAddValueAtk);
+            item.MINATK = SyncFloor((item.MINATK * upgradeRatio)  + buffarg + reinforceAddValueAtk);
+
+            if zero ~= item.MAXATK_AC then
+                item.MAXATK = SyncFloor(item.MAXATK + item.MAXATK_AC);
             end
             
-            local accRatio = ACCClassTypeRatio[classType]
-            local basicDef = ((2 + lv * 0.3) * accRatio) * gradeRatio;
-            
-            local ChangeBasicProp = TryGetProp(item, "ChangeBasicPropValue", 0)
-            if ChangeBasicProp > 0 then
-                basicDef = ChangeBasicProp
+            if zero ~= item.MINATK_AC then
+                item.MINATK = SyncFloor(item.MINATK + item.MINATK_AC);
             end
+        elseif basicProp == 'MATK' then
+            item.MATK = GET_BASIC_MATK(item);
             
-            local upgradeRatio = 1;
-            upgradeRatio = upgradeRatio + GET_UPGRADE_ADD_DEF_RATIO(item, ignoreReinfAndTranscend) / 100;
-            basicDef = basicDef * upgradeRatio + GET_REINFORCE_ADD_VALUE(basicProp, item, ignoreReinfAndTranscend, reinfBonusValue) + buffarg
+            local reinfAddValueAtk = GET_REINFORCE_ADD_VALUE_ATK(item, ignoreReinfAndTranscend, reinfBonusValue, basicProp);
+            item.MATK = SyncFloor((item.MATK * upgradeRatio)  + buffarg + reinfAddValueAtk);
             
-            if basicDef < 1 then
-                basicDef = 1;
+            if zero ~= item.MAXATK_AC then
+                item.MATK = item.MATK + item.MAXATK_AC;
             end
-            
-            item[basicProp] = SyncFloor(basicDef)
-            
-        elseif basicProp == 'ADD_FIRE' then
-            changeProp["ADD_FIRE"] = math.floor(lv * gradeRatio + GET_REINFORCE_ADD_VALUE(basicProp, item, ignoreReinfAndTranscend));
-            changeProp["ADD_FIRE"] = SyncFloor(changeProp["ADD_FIRE"]);
-            
-            for i = 1, #PropName do
-                if changeProp[PropName[i]] ~= nil then
-                    if changeProp[PropName[i]] ~= 0 then
-                        item[PropName[i]] = SyncFloor(changeProp[PropName[i]]);
-                    end
-                end
-            end
-            
         end
     end
     

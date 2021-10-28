@@ -34,9 +34,9 @@ function ANCIENT_CARD_OPEN()
 end
 
 function ANCIENT_CARD_LIST_CLOSE(frame)
-	local cnt = session.pet.GetAncientCardCount()
+	local cnt = session.ancient.GetAncientCardCount()
 	for i = 1,cnt do
-		local card = session.pet.GetAncientCardByIndex(i-1)
+		local card = session.ancient.GetAncientCardByIndex(i-1)
 		card.isNew = false
 	end
 	_ANCIENT_CARD_LOCK_MODE(0)
@@ -109,11 +109,11 @@ function INIT_ANCIENT_CARD_INFO_TAB(frame)
 	end
 	ancient_card_list_Gbox:RemoveAllChild()
 	ancient_card_list_Gbox:SetEventScript(ui.DROP,"ANCIENT_CARD_SWAP_ON_DROP")
-	local cnt = session.pet.GetAncientCardCount()
+	local cnt = session.ancient.GetAncientCardCount()
 
 	local height = 0
 	for i = 0,cnt-1 do
-		local card = session.pet.GetAncientCardByIndex(i)
+		local card = session.ancient.GetAncientCardByIndex(i)
 		if card.slot > 3 then
 			local ctrlSet = INIT_ANCIENT_CARD_LIST(frame,card)
 			ctrlSet:SetEventScript(ui.DROP,"ANCIENT_CARD_SWAP_ON_DROP")
@@ -163,7 +163,7 @@ function INIT_ANCIENT_CARD_SLOTS(frame,type)
 				gold_border:SetImage('monster_card_g_frame_02')
 				ctrlSet:SetTextTooltip(ClMsg("AncientSlot1Tooltip"))
 			end
-            local card = session.pet.GetAncientCardBySlot(index)
+			local card = session.ancient.GetAncientCardBySlot(index)
 			if card ~= nil then
 				SET_ANCIENT_CARD_SLOT(ctrlSet,card,isLockMode)
 			end
@@ -443,14 +443,14 @@ function ON_ANCIENT_CARD_COMBINE_RBUTTONDOWN(parent, FromctrlSet, argStr, argNum
 end
 
 function ANCIENT_CARD_COMBINE_CHECK(frame, guid)
-	local fromCard = session.pet.GetAncientCardByGuid(guid)
+	local fromCard = session.ancient.GetAncientCardByGuid(guid)
 	local slotBox = GET_CHILD_RECURSIVELY(frame,"ancient_card_slot_Gbox")
 	local cnt = slotBox:GetChildCount()
 	for i = 0,cnt-1 do
 		local toCtrlSet = slotBox:GetChildByIndex(i)
 		local toGuid = toCtrlSet:GetUserValue("ANCIENT_GUID")
 		if toGuid ~= nil and toGuid ~= "None" then   
-			local toCard = session.pet.GetAncientCardByGuid(toGuid)
+			local toCard = session.ancient.GetAncientCardByGuid(toGuid)
 			if toCard.rarity ~= fromCard.rarity then
 				return false;
 			else
@@ -462,7 +462,7 @@ function ANCIENT_CARD_COMBINE_CHECK(frame, guid)
 end
 
 function ANCIENT_CARD_EVOLVE_CHECK(frame,guid)
-	local fromCard = session.pet.GetAncientCardByGuid(guid)
+	local fromCard = session.ancient.GetAncientCardByGuid(guid)
 	local slotBox = GET_CHILD_RECURSIVELY(frame,"ancient_card_slot_Gbox")
 	local cnt = slotBox:GetChildCount()
 	if fromCard.starrank >= 3 then
@@ -473,7 +473,7 @@ function ANCIENT_CARD_EVOLVE_CHECK(frame,guid)
 		local toCtrlSet = slotBox:GetChildByIndex(i)
 		local toGuid = toCtrlSet:GetUserValue("ANCIENT_GUID")
 		if toGuid ~= nil and toGuid ~= "None" then   
-			local toCard = session.pet.GetAncientCardByGuid(toGuid)
+			local toCard = session.ancient.GetAncientCardByGuid(toGuid)
 			if toCard:GetClassName() ~= fromCard:GetClassName() then
 				addon.BroadMsg("NOTICE_Dm_scroll", ClMsg("AncientNotSameMonster"), 3);
 				return false;
@@ -489,7 +489,7 @@ function ANCIENT_CARD_EVOLVE_CHECK(frame,guid)
 end
 
 function SET_ANCIENT_CARD_COMBINE(frame, FromGuid, argStr, argNum)
-	local card = session.pet.GetAncientCardByGuid(FromGuid)
+	local card = session.ancient.GetAncientCardByGuid(FromGuid)
 	if card.isLock == true then
 		addon.BroadMsg("NOTICE_Dm_scroll", ClMsg("AncientCardLock"), 3);
 		return
@@ -588,7 +588,7 @@ function ANCIENT_CARD_COMBINE(parent, control, argStr, argNum)
 	ReqCombineAncientCard(guids[1],guids[2],guids[3])
 	control:SetEnable(0)
 
-	local card = session.pet.GetAncientCardByGuid(guids[3])
+	local card = session.ancient.GetAncientCardByGuid(guids[3])
 	frame:SetUserValue("RARITY",card.rarity)
 end
 
@@ -622,7 +622,7 @@ function ANCIENT_CARD_SWAP_ON_DROP(parent,toCtrlSet, argStr, argNum)
 	if guid == "None" or guid == nil or tonumber == nil then
 		return;
 	end
-	local card = session.pet.GetAncientCardByGuid(guid)
+	local card = session.ancient.GetAncientCardByGuid(guid)
 	if card.slot >= 4 and toIndex ~= nil and toIndex >= 4 then
 		return
 	end
@@ -632,10 +632,10 @@ end
 
 function ANCIENT_CARD_GET_EMPTY_SLOT(offset)
 	local slot = offset
-	local card = session.pet.GetAncientCardBySlot(slot)
+	local card = session.ancient.GetAncientCardBySlot(slot)
 	while card ~= nil do
 		slot = slot + 1
-		card = session.pet.GetAncientCardBySlot(slot)
+		card = session.ancient.GetAncientCardBySlot(slot)
 	end
 	return slot;
 end
@@ -648,7 +648,7 @@ function ANCIENT_CARD_SWAP_RBTNDOWN(parent,ctrlSet,argStr,argNum)
 	elseif argNum == -2 then
 		local isEnable = false;
 		for i = 0,3 do
-			local toCard = session.pet.GetAncientCardBySlot(i)
+			local toCard = session.ancient.GetAncientCardBySlot(i)
 			if toCard == nil then
 				isEnable = true
 				slot = i
@@ -686,7 +686,7 @@ function REQUEST_SWAP_ANCIENT_CARD(frame,guid,slot)
 	if slot == nil or slot == 'None' then
 		slot = ANCIENT_CARD_GET_EMPTY_SLOT(4)
 	end
-	local toCard = session.pet.GetAncientCardBySlot(slot)
+	local toCard = session.ancient.GetAncientCardBySlot(slot)
 	if toCard ~= nil then
 		if toCard:GetGuid() == guid then
 			return
@@ -694,14 +694,14 @@ function REQUEST_SWAP_ANCIENT_CARD(frame,guid,slot)
 	end
 
 	local aObj = GetMyAccountObj()
-	local fromCard = session.pet.GetAncientCardByGuid(guid)
+	local fromCard = session.ancient.GetAncientCardByGuid(guid)
 	if fromCard.slot > 3 and slot > 3 then
 		return
 	end
 	local totalCost = 0
 	for i = 0,3 do
 		if i ~= slot and i ~= fromCard.slot then
-			local card = session.pet.GetAncientCardBySlot(i)
+			local card = session.ancient.GetAncientCardBySlot(i)
 			if card ~= nil then
 				totalCost = totalCost + card:GetCost()
 			end
@@ -726,19 +726,19 @@ function SORT_ANCIENT_CARD()
 		return
 	end
 
-	scpScp = string.format("REQ_ANCIENT_CARD_SORT(%d)", session.pet.SORT_BY_RARITY);
+	scpScp = string.format("REQ_ANCIENT_CARD_SORT(%d)", session.ancient.SORT_BY_RARITY);
 	ui.AddContextMenuItem(context, ScpArgMsg("SortByGrade"), scpScp);	
-	scpScp = string.format("REQ_ANCIENT_CARD_SORT(%d)", session.pet.SORT_BY_NAME);
+	scpScp = string.format("REQ_ANCIENT_CARD_SORT(%d)", session.ancient.SORT_BY_NAME);
 	ui.AddContextMenuItem(context, ScpArgMsg("SortByName"), scpScp);	
-	scpScp = string.format("REQ_ANCIENT_CARD_SORT(%d)", session.pet.SORT_BY_STARRANK);
+	scpScp = string.format("REQ_ANCIENT_CARD_SORT(%d)", session.ancient.SORT_BY_STARRANK);
 	ui.AddContextMenuItem(context, ScpArgMsg("SortByStarrank"), scpScp);	
-	scpScp = string.format("REQ_ANCIENT_CARD_SORT(%d)", session.pet.SORT_BY_LEVEL);
+	scpScp = string.format("REQ_ANCIENT_CARD_SORT(%d)", session.ancient.SORT_BY_LEVEL);
 	ui.AddContextMenuItem(context, ScpArgMsg("SortByLevel"), scpScp);	
 	ui.OpenContextMenu(context);
 end
 
 function REQ_ANCIENT_CARD_SORT(sortType)
-	session.pet.SortAncientCard(sortType)
+	session.ancient.SortAncientCard(sortType)
 end
 
 function ANCIENT_CARD_UPDATE(frame,card)
@@ -769,7 +769,7 @@ function ANCIENT_CARD_COMBINE_COMPLETE(frame,guid)
 	local resultBox = GET_CHILD_RECURSIVELY(frame,'COMBINE_3')
 	
 	local rarity = tonumber(frame:GetUserValue("RARITY"))
-	local card = session.pet.GetAncientCardByGuid(guid)
+	local card = session.ancient.GetAncientCardByGuid(guid)
 	if rarity ~= nil and rarity ~= 0 and card.rarity > rarity then
 		resultBox:PlayUIEffect(frame:GetUserConfig("COMBINE_EFFECT_SPECIAL"), tonumber(frame:GetUserConfig("COMBINE_EFFECT_SCALE")),"COMBINE")
 	else
@@ -792,7 +792,7 @@ function ANCIENT_CARD_COMBINE_END(guid,index)
 		return;
 	end
 	local ctrlSet = GET_CHILD_RECURSIVELY(frame,"COMBINE_3")
-	local card = session.pet.GetAncientCardByGuid(guid)
+	local card = session.ancient.GetAncientCardByGuid(guid)
 	SET_ANCIENT_CARD_SLOT(ctrlSet,card)
 	ctrlSet:Invalidate()
 end
@@ -813,9 +813,9 @@ function ANCIENT_CARD_COMBINE_LIST_LOAD(frame)
 		end
 	end
 
-	local count = session.pet.GetAncientCardCount()
+	local count = session.ancient.GetAncientCardCount()
 	for i = 0,count-1 do
-		local card = session.pet.GetAncientCardByIndex(i)
+		local card = session.ancient.GetAncientCardByIndex(i)
 		local isSelected = false;
 		for i = 1,#guidList do
 			if guidList[i] == card:GetGuid() then
@@ -831,10 +831,10 @@ function ANCIENT_CARD_COMBINE_LIST_LOAD(frame)
 end
 --애드온 메세지
 function ON_ANCIENT_CARD_ADD(frame,msg, guid)
-	local card = session.pet.GetAncientCardByGuid(guid)
+	local card = session.ancient.GetAncientCardByGuid(guid)
 	INIT_ANCIENT_CARD_LIST(frame,card)
 	local ancient_card_num = frame:GetChild('ancient_card_num')
-	ancient_card_num:SetTextByKey("count",session.pet.GetAncientCardCount())
+	ancient_card_num:SetTextByKey("count",session.ancient.GetAncientCardCount())
 end
 
 function ON_ANCIENT_CARD_RELOAD(frame)
@@ -843,13 +843,13 @@ end
 
 function ON_ANCIENT_CARD_UPDATE(frame,msg, guid,slot)
 	if msg == "ANCIENT_CARD_UPDATE_EXP" then
-		local card = session.pet.GetAncientCardByGuid(guid)
+		local card = session.ancient.GetAncientCardByGuid(guid)
 		ANCIENT_CARD_UPDATE(frame,card)
 	elseif msg == "ANCIENT_CARD_COMBINE" or msg == "ANCIENT_CARD_EVOLVE" then
 		ANCIENT_CARD_COMBINE_COMPLETE(frame,guid)
 	end
 	local ancient_card_num = frame:GetChild('ancient_card_num')
-	ancient_card_num:SetTextByKey("count",session.pet.GetAncientCardCount())
+	ancient_card_num:SetTextByKey("count",session.ancient.GetAncientCardCount())
 end
 --판매
 function ON_ANCIENT_CARD_SELL(guid)
@@ -858,7 +858,7 @@ function ON_ANCIENT_CARD_SELL(guid)
 		addon.BroadMsg("NOTICE_Dm_!", ClMsg("ImpossibleInCurrentMap"), 3);
 		return
 	end
-	local card = session.pet.GetAncientCardByGuid(guid)
+	local card = session.ancient.GetAncientCardByGuid(guid)
 	if card.isLock == true then
 		addon.BroadMsg("NOTICE_Dm_!", ClMsg("AncientCardLock"), 3);
 		return
@@ -868,7 +868,7 @@ end
 
 function SCR_ANCIENT_CARD_SELL(parent,ctrl)
 	local guid = parent:GetUserValue("ANCIENT_GUID")
-	local card = session.pet.GetAncientCardByGuid(guid)
+	local card = session.ancient.GetAncientCardByGuid(guid)
 	
 	local monClassName = card:GetClassName()
 	local infoCls = GetClass("Ancient_Info",monClassName)
@@ -893,7 +893,7 @@ function ANCEINT_PASSIVE_LIST_SET(frame)
 	local gBox = GET_CHILD_RECURSIVELY(frame,'ancient_card_comb_slots')
 	gBox:RemoveAllChild()
 	--고유 패시브
-	local mainCard = session.pet.GetAncientCardBySlot(0)
+	local mainCard = session.ancient.GetAncientCardBySlot(0)
 	if mainCard ~= nil then
 		local infoCls = GetClass("Ancient_Info",mainCard:GetClassName())
 		if infoCls ~= nil then
@@ -928,7 +928,7 @@ function ANCIENT_SET_COST(frame)
 	ancient_card_cost:SetTextByKey("max",aObj.ANCIENT_MAX_COST)
 	local cost = 0
 	for i = 0,3 do
-		local card = session.pet.GetAncientCardBySlot(i)
+		local card = session.ancient.GetAncientCardBySlot(i)
 		if card ~= nil then
 			local ancientCls = GetClass("Ancient_Info",card:GetClassName())
 			cost = cost + card:GetCost()
@@ -949,7 +949,7 @@ function GET_ANCIENT_COMBO_LIST(cardList)
 				slotList = StringSplit(slotList,'/')
 				local cardList = {}
 				for j = 1,#slotList do
-					table.insert(cardList,session.pet.GetAncientCardBySlot(slotList[j]))
+					table.insert(cardList,session.ancient.GetAncientCardBySlot(slotList[j]))
 				end
 				table.insert(comboList,{comboCls,cardList})
 			end
@@ -999,9 +999,9 @@ function _ANCIENT_CARD_LOCK_MODE(isLockMode)
 		ui.SetEscapeScp("");
 	end
 	do
-		local cnt = session.pet.GetAncientCardCount()
+		local cnt = session.ancient.GetAncientCardCount()
 		for i = 1,cnt do
-			local card = session.pet.GetAncientCardByIndex(i-1)
+			local card = session.ancient.GetAncientCardByIndex(i-1)
 			local ctrlSet = GET_CHILD_RECURSIVELY(frame,"SET_"..card.slot)
 			if ctrlSet ~= nil then
 				SET_CTRL_LOCK_MODE(ctrlSet, isLockMode == 1)
@@ -1034,7 +1034,7 @@ function REQ_ANCIENT_CARD_LOCK(parent,ctrl,argNum,argStr)
 end
 
 function ON_ANCIENT_CARD_LOCK(frame,msg,guid)
-	local card = session.pet.GetAncientCardByGuid(guid)
+	local card = session.ancient.GetAncientCardByGuid(guid)
 	local ctrlSet = GET_CHILD_RECURSIVELY(frame,"SET_"..card.slot)
 	local slot = GET_CHILD_RECURSIVELY(ctrlSet,"ancient_card_slot")
 	local remove = GET_CHILD_RECURSIVELY(ctrlSet,"sell_btn")

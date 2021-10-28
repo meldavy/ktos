@@ -29,13 +29,9 @@ function WORLDMAP2_SEARCH(frame)
         return
     end
 
-    if frame:GetName() == "worldmap2_mainmap" then
-        WORLDMAP2_SUBMAP_OPEN_FROM_MAINMAP_BY_EPISODE(targetEpisode)
-    else
-        WORLDMAP2_SUBMAP_CHANGE(targetEpisode)
-    end
-
+    WORLDMAP2_MINIMAP_OPEN_BY_MAPNAME(targetEpisode, targetMap)
     WORLDMAP2_SUBMAP_ZONE_CHECK(targetMap)
+    
     searchEdit:ReleaseFocus()
 end
 
@@ -60,10 +56,6 @@ function WORLDMAP2_SEARCH_UPDATE(frame)
             mapList[#mapList+1] = {}
             mapList[#mapList][1] = mapData.Name
             mapList[#mapList][2] = mapData.ClassName
-
-            if cls.DungeonName ~= "None" then
-                mapList[#mapList][2] = cls.DungeonName
-            end
         end
     end
 
@@ -94,11 +86,6 @@ end
 function WORLDMAP2_SEARCH_GO_TARGET_MAP(index, mapName)
     local episode = GET_EPISODE_BY_MAPNAME(mapName)
 
-    if ui.GetFrame('worldmap2_submap'):IsVisible() == 0 then
-        WORLDMAP2_SUBMAP_OPEN_FROM_MAINMAP_BY_EPISODE(episode)
-    else
-        WORLDMAP2_SUBMAP_CHANGE(episode)
-    end
-
+    WORLDMAP2_MINIMAP_OPEN_BY_MAPNAME(episode, mapName)
     WORLDMAP2_SUBMAP_ZONE_CHECK(mapName)
 end

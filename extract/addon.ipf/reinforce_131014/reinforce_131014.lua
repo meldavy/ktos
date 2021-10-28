@@ -144,7 +144,8 @@ function REINFORCE_131014_MSGBOX(frame)
 	local curReinforce = fromItemObj.Reinforce_2;
 	local curPR = fromItemObj.PR;
 	local moruObj = GetIES(fromMoru:GetObject());
-	local isDanger = (curPR == 0 and IS_MORU_NOT_DESTROY_TARGET_ITEM(moruObj) == false and IS_MORU_NOT_DESTROY_TARGET_UNIQUE_ITEM(moruObj) == false)
+	local not_destory, moru_type = IS_MORU_NOT_DESTROY_TARGET_ITEM(moruObj)
+	local isDanger = (curPR == 0 and not_destory == false)
 	local pc = GetMyPCObject();
 	local price = GET_REINFORCE_PRICE(fromItemObj, moruObj, pc)	
 	local retPrice, retCouponList = SCR_REINFORCE_COUPON_PRECHECK(pc, price)	

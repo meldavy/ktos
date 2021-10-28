@@ -625,4 +625,12 @@
 		<!--quest_main_text-->
 		<font name="normal" size="16" space="0" color="f46200" bold="yes" italic="no" dropshadow="no" outline="yes" underline="no" centerline="no"/>
 	</style>
+	<style name="st106_br">
+		<!--quest_main_text-->
+		<font name="normal" size="16" space="0" color="0a0704" bold="no" italic="no" dropshadow="no" outline="no" underline="no" centerline="no"/>
+	</style>
+	<style name="st106_lbr">
+		<!--quest_main_text-->
+		<font name="normal" size="16" space="0" color="2b1f14" bold="no" italic="no" dropshadow="no" outline="no" underline="no" centerline="no"/>
+	</style>
 </StyleSheet>

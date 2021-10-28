@@ -1158,3 +1158,13 @@ ClassID,Group,ItemName
 30043,ID_Underground_waterway,misc_0530
 30044,ID_Underground_waterway,Gacha_Legend_ID_Underground_waterway_piece
 30045,ID_Underground_waterway,R_TRK04_110
+30101,TelHarsha_Solo_Dummy,misc_Telharsha_neck
+30102,TelHarsha_Solo_Dummy,misc_0530
+30103,TelHarsha_Solo_Dummy,misc_ore15
+30104,TelHarsha_Solo_Dummy,Legendcard_TelHarcha
+30105,TelHarsha_Solo_Dummy,Seal_Boruta_Sword
+30106,TelHarsha_Solo_Dummy,Seal_Boruta_Wizard
+30107,TelHarsha_Solo_Dummy,Seal_Boruta_Cleric
+30108,TelHarsha_Solo_Dummy,Seal_Boruta_Archer
+30109,TelHarsha_Solo_Dummy,Seal_Boruta_Scout
+30110,TelHarsha_Solo_Dummy,Piece_LegendMisc

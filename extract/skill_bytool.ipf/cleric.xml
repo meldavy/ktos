@@ -686,7 +686,10 @@
 				<Scp Scp="SKL_CONSUME_SP" Client="NO" UseSleep="NO" Time="100" >
 					<Num Num="0" UseFunc="1" FuncTxt="local baseSP = TryGetProp(obj, &quot;SpendSP&quot;, 0) local addValue = 0 if IsBuffApplied(self, 'Heal_Overload_Buff') == 'YES' then addValue = baseSP local over = GetBuffOver(self, &quot;Heal_Overload_Buff&quot;) addValue = math.floor(addValue * over * 0.5) end local mnaValue = TryGetProp(self, &quot;MNA&quot;, 0) * 0.2 if mnaValue > baseSP / 2 then mnaValue = baseSP / 2 end mnaValue = math.floor(mnaValue) addValue = addValue - math.floor(mnaValue) return addValue;"/>
 				</Scp>
-				<Scp Scp="SKL_TGT_BUFF" Client="NO" UseSleep="NO" Time="200" >
+				<Scp Scp="SKL_RUN_SCRIPT" Client="NO" UseSleep="NO" Time="200">
+                    <Str Str="SCR_ADD_ANCIENT_HEAL_EFFECT"/>
+                </Scp>
+                <Scp Scp="SKL_TGT_BUFF" Client="NO" UseSleep="NO" Time="200" >
 					<Str Str="Heal_Buff" />
 					<Num Num="1" />
 					<Num Num="0" />
@@ -694,7 +697,7 @@
 					<Num Num="1" />
 					<Num Num="100" />
 					<Num Num="0" />
-					<Num Num="1" />
+                    <Num Num="0"/>
 				</Scp>
 				<Scp Scp="SKL_BUFF" Client="NO" UseSleep="NO" Time="200" >
 					<Str Str="Heal_Overload_Buff" />
@@ -728,9 +731,9 @@ return value"/>
                         <Str Str="Cleric31"/>
                     </ToolScp>
                 </Cond>
-                <Skill JumpFlee="NO" MSPDToUsePos="0" ScrLock="None">
+                <Skill JumpFlee="NO" MSPDToUsePos="0"ScrLock="None">
                     <HitList>
-                        <Frame Type="FAN" Time="0" HitCount="1" TermMin="0" TermMax="0" PosType="0" Dist="0" RandDist="0" RandomPerHit="0" Angle="0" SklAngle="0.17453299" AniTime="300" RotAngle="0" ForceATK="0"/>
+                        <Frame Type="FAN" Time="0" HitCount="1" TermMin="0" TermMax="0" PosType="0" Dist="0" RandDist="0" RandomPerHit="0" Angle="0" SklAngle="0.17453299" AniTime="300" RotAngle="0" ForceATK="0" />
                     </HitList>
                     <EtcList>
                         <Scp Scp="MONSKL_C_PLAY_ANIM" Client="YES" UseSleep="NO" Time="0">
@@ -746,7 +749,7 @@ return value"/>
                         <Scp Scp="SKL_CONSUME_SP" Client="NO" UseSleep="NO" Time="100">
                             <Num Num="0" UseFunc="1" FuncTxt="local baseSP = TryGetProp(obj, &quot;SpendSP&quot;, 0) local addValue = 0 if IsBuffApplied(self, 'Heal_Overload_Buff') == 'YES' then addValue = baseSP local over = GetBuffOver(self, &quot;Heal_Overload_Buff&quot;) addValue = math.floor(addValue * over * 0.5) end local mnaValue = TryGetProp(self, &quot;MNA&quot;, 0) * 0.2 if mnaValue > baseSP / 2 then mnaValue = baseSP / 2 end mnaValue = math.floor(mnaValue) addValue = addValue - math.floor(mnaValue) return addValue;"/>
                         </Scp>
-                        <Scp Client="NO" Scp="SKL_RUN_SCRIPT" Time="200" UseSleep="NO">
+                        <Scp Client="NO" Scp="SKL_RUN_SCRIPT" Time="200" UseSleep="NO" >
                             <Str Str="SCR_HEAL_CLERIC31"/>
                         </Scp>
                         <Scp Scp="SKL_BUFF" Client="NO" UseSleep="NO" Time="200">
@@ -772,6 +775,9 @@ return value"/>
                         <Scp Scp="C_SOUND" Client="YES" UseSleep="NO" Time="200">
                             <Str Str="skl_cleric_heal_shot"/>
                         </Scp>
+                        <Scp Scp="SKL_RUN_SCRIPT" Client="NO" UseSleep="NO" Time="200">
+                            <Str Str="SCR_ADD_ANCIENT_HEAL_EFFECT"/>
+                        </Scp>
                     </EtcList>
                 </Skill>
             </SubSkl>
@@ -781,9 +787,9 @@ return value"/>
                         <Str Str="Cleric30"/>
                     </ToolScp>
                 </Cond>
-                <Skill JumpFlee="NO" MSPDToUsePos="0" ScrLock="None">
+                <Skill JumpFlee="NO" MSPDToUsePos="0"ScrLock="None">
                     <HitList>
-                        <Frame Type="FAN" Time="0" HitCount="1" TermMin="0" TermMax="0" PosType="0" Dist="0" RandDist="0" RandomPerHit="0" Angle="0" SklAngle="0.17453299" AniTime="300" RotAngle="0" ForceATK="0"/>
+                        <Frame Type="FAN" Time="0" HitCount="1" TermMin="0" TermMax="0" PosType="0" Dist="0" RandDist="0" RandomPerHit="0" Angle="0" SklAngle="0.17453299" AniTime="300" RotAngle="0" ForceATK="0" />
                     </HitList>
                     <EtcList>
                         <Scp Scp="MONSKL_C_PLAY_ANIM" Client="YES" UseSleep="NO" Time="0">
@@ -830,6 +836,9 @@ return value"/>
                         </Scp>
                         <Scp Scp="C_SOUND" Client="YES" UseSleep="NO" Time="200">
                             <Str Str="skl_cleric_heal_shot"/>
+                        </Scp>
+                        <Scp Scp="SKL_RUN_SCRIPT" Client="NO" UseSleep="NO" Time="200">
+                            <Str Str="SCR_ADD_ANCIENT_HEAL_EFFECT"/>
                         </Scp>
                     </EtcList>
                 </Skill>

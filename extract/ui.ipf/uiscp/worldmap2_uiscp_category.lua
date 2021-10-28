@@ -86,7 +86,7 @@ end
 
 function WORLDMAP2_CATEGORY1_SELECT(frame)
     local style = "      "
-    local maxLine = 8
+    local maxLine = 9
 
     local category1 = AUTO_CAST(frame:GetChild("category_1"))
     local category2 = AUTO_CAST(frame:GetChild("category_2"))
@@ -160,13 +160,16 @@ function WORLDMAP2_CATEGORY1_SELECT(frame)
         local episode = GET_EPISODE_BY_MAPNAME(mapName)
 
         if mapName ~= nil and episode ~= nil then
-            if ui.GetFrame('worldmap2_submap'):IsVisible() == 1 then
-                WORLDMAP2_SUBMAP_CHANGE(episode)
-            else
-                WORLDMAP2_SUBMAP_OPEN_FROM_MAINMAP_BY_EPISODE(episode)
-            end
 
-            WORLDMAP2_SUBMAP_ZONE_CHECK(mapName)
+            -- 워프맵인 경우: 즉시 이동
+            if GET_WARP_MAP_TYPE() ~= "None" then
+                REQUEST_WARP_TO_AREA(mapName)
+
+            -- 워프맵이 아닌 경우: 맵 변경 후 체크
+            else
+                WORLDMAP2_MINIMAP_OPEN_BY_MAPNAME(episode, mapName)
+                WORLDMAP2_SUBMAP_ZONE_CHECK(mapName)
+            end
         end
 
     -- 길드 타워
@@ -175,12 +178,7 @@ function WORLDMAP2_CATEGORY1_SELECT(frame)
         local episode = GET_EPISODE_BY_MAPNAME(mapName)
 
         if mapName ~= nil and episode ~= nil then
-            if ui.GetFrame('worldmap2_submap'):IsVisible() == 1 then
-                WORLDMAP2_SUBMAP_CHANGE(episode)
-            else
-                WORLDMAP2_SUBMAP_OPEN_FROM_MAINMAP_BY_EPISODE(episode)
-            end
-
+            WORLDMAP2_MINIMAP_OPEN_BY_MAPNAME(episode, mapName)
             WORLDMAP2_SUBMAP_ZONE_CHECK(mapName)
         else
             ui.SysMsg(ScpArgMsg("NoGuildTowerToShow"))
@@ -190,7 +188,7 @@ end
 
 function WORLDMAP2_CATEGORY2_SELECT(frame)
     local style = "      "
-    local maxLine = 8
+    local maxLine = 9
 
     local category1 = AUTO_CAST(frame:GetChild("category_1"))
     local category2 = AUTO_CAST(frame:GetChild("category_2"))
@@ -215,7 +213,7 @@ function WORLDMAP2_CATEGORY2_SELECT(frame)
 
         -- 메인맵인 경우: 해당 서브맵으로 이동
         if frame:GetName() == "worldmap2_mainmap" then
-            WORLDMAP2_SUBMAP_OPEN_FROM_MAINMAP_BY_EPISODE(episode)
+            WORLDMAP2_OPEN_SUBMAP_FROM_MAINMAP_BY_EPISODE(episode)
 
         -- 서브맵인 경우
         else
@@ -250,14 +248,7 @@ function WORLDMAP2_CATEGORY2_SELECT(frame)
         local mapName = layer2
         local episode = GET_EPISODE_BY_MAPNAME(mapName)
 
-        if frame:GetName() == "worldmap2_mainmap" then
-            WORLDMAP2_SUBMAP_OPEN_FROM_MAINMAP_BY_EPISODE(episode)
-        else
-            if WORLDMAP2_SUBMAP_EPISODE() ~= episode then
-                WORLDMAP2_SUBMAP_CHANGE(episode)
-            end
-        end
-
+        WORLDMAP2_MINIMAP_OPEN_BY_MAPNAME(episode, mapName)
         WORLDMAP2_SUBMAP_ZONE_CHECK(mapName)
 
     -- 즐겨찾기
@@ -265,15 +256,15 @@ function WORLDMAP2_CATEGORY2_SELECT(frame)
         local mapName = layer2
         local episode = GET_EPISODE_BY_MAPNAME(mapName)
 
-        if frame:GetName() == "worldmap2_mainmap" then
-            WORLDMAP2_SUBMAP_OPEN_FROM_MAINMAP_BY_EPISODE(episode)
-        else
-            if WORLDMAP2_SUBMAP_EPISODE() ~= episode then
-                WORLDMAP2_SUBMAP_CHANGE(episode)
-            end
-        end
+        -- 워프맵인 경우: 즉시 이동
+        if GET_WARP_MAP_TYPE() ~= "None" then
+            REQUEST_WARP_TO_AREA(mapName)
 
-        WORLDMAP2_SUBMAP_ZONE_CHECK(mapName)
+        -- 워프맵이 아닌 경우: 맵 변경 후 체크
+        else
+            WORLDMAP2_MINIMAP_OPEN_BY_MAPNAME(episode, mapName)
+            WORLDMAP2_SUBMAP_ZONE_CHECK(mapName)
+        end
     end
 end
 
@@ -294,12 +285,7 @@ function WORLDMAP2_CATEGORY3_SELECT(frame)
         local episode = layer2
         local mapName = layer3
 
-        if ui.GetFrame("worldmap2_minimap"):IsVisible() == 1 then
-            if WORLDMAP2_MINIMAP_MAPNAME() ~= mapName then
-                ui.CloseFrame("worldmap2_minimap")
-            end
-        end
-
-        WORLDMAP2_OPEN_MINIMAP_FROM_SUBMAP_BY_MAPNAME(mapName)
+        WORLDMAP2_MINIMAP_OPEN_BY_MAPNAME(episode, mapName)
+        WORLDMAP2_SUBMAP_ZONE_CHECK(mapName)
     end
 end

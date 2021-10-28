@@ -133,6 +133,8 @@ function GET_INTRO_IMAGE(code, ret_json)
     end 
     tabCtrl:SetTabVisible(1, true);
     tabCtrl:SelectTab(1);
+    GUILDINFO_DETAIL_TAB_CLICK();
+
     local introPath = filefind.GetBinPath("GuildIntroImage"):c_str()
     introPath = introPath .. "\\" .. ret_json .. ".png"
     promoPic:SetFileName(introPath)
@@ -149,6 +151,7 @@ function GUILDINFO_DETAIL_OPEN(addon, frame)
   
     local tabCtrl = GET_CHILD_RECURSIVELY(detail, "itembox")
     tabCtrl:SelectTab(0);
+    GUILDINFO_DETAIL_TAB_CLICK();
 
     local intro = GET_CHILD_RECURSIVELY(detail, "intro");
     intro:ShowWindow(1)
@@ -160,8 +163,6 @@ function GUILDINFO_DETAIL_OPEN(addon, frame)
     else
         btn:SetEnable(0)
     end
-   
-    
 end
 
 function OPEN_REQUEST_GUILDJOIN()
@@ -243,7 +244,6 @@ function SHOW_GUILD_MEMBER_WITH_ACCEPT_AUTH(parent, control)
     end
 end
 
-
 function ON_ONLINE_GUILDMEMBER_GET(code, ret_json)
     if code ~= 200 then
         SHOW_GUILD_HTTP_ERROR(code, ret_json, "ON_ONLINE_GUILDMEMBER_GET")
@@ -291,7 +291,6 @@ function ON_ONLINE_GUILDMEMBER_GET(code, ret_json)
 end
 
 end
-
 
 function SET_ENABLE_GUILDINFO_DETAIL_ROW(row, index, enable)
     --local labelText =
@@ -369,4 +368,22 @@ function SCR_OTHER_GUILD_AGIT_INFO(frame, msg, argStr, argNum)
 
 	local btn_preview_housing = GET_CHILD_RECURSIVELY(frame, "btn_preview_housing");
 	btn_preview_housing:SetEnable(1);
+end
+
+function GUILDINFO_DETAIL_TAB_CLICK()
+    local frame = ui.GetFrame("guildinfo_detail");
+    local tabCtrl = GET_CHILD_RECURSIVELY(frame, "itembox");
+    
+    local joinballoongb = GET_CHILD_RECURSIVELY(frame, "joinballoongb");
+    local joinText = GET_CHILD_RECURSIVELY(frame, "joinText");
+
+    local index = tabCtrl:GetSelectItemIndex();
+	local pcparty = session.party.GetPartyInfo(PARTY_GUILD);
+    if index == 0 and pcparty == nil then
+        joinballoongb:ShowWindow(1);
+        joinText:ShowWindow(1);
+    else
+        joinballoongb:ShowWindow(0);
+        joinText:ShowWindow(0);
+    end
 end

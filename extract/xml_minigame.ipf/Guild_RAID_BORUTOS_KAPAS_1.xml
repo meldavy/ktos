@@ -80,9 +80,6 @@
                             <ToolScp Scp="GAME_ST_EVT_EXEC_STAGE_START" Client="NO" UseSleep="NO">
                                 <Str Str="Gen_Boss"/>
                             </ToolScp>
-                            <ToolScp Scp="GAME_ST_EVT_EXEC_STAGE_START" Client="NO" UseSleep="NO">
-                                <Str Str="Control_Pattern"/>
-                            </ToolScp>
                             <ToolScp Scp="MGAME_MSG_ICON" Client="YES" UseSleep="NO">
                                 <Str Str="동굴 심부로 향하는 포탈이 생성되었습니다"/>
                                 <Str Str="BossAppear"/>
@@ -186,7 +183,7 @@
             </Stage>
             <Stage Name="Gen_Boss" AutoStart="0">
                 <ObjList>
-                    <Obj Type="Monster" MonType="59287" Pos="351.88#207.22#1319.26" angle="-79" maxStackCount="1" genTime="20000" autoGen="0" objectKey="0" autoDestroy="0" tendency="1"/>
+                    <Obj Type="Monster" MonType="59287" Pos="346.92#207.22#1308.20" angle="-79" maxStackCount="1" genTime="20000" autoGen="0" objectKey="0" autoDestroy="0" tendency="1"/>
                     <Obj Type="Monster" MonType="59490" Pos="351.84#207.22#820.93" angle="85" maxStackCount="1" genTime="20000" autoGen="0" objectKey="1" autoDestroy="0" tendency="1"/>
                     <Obj Type="Monster" MonType="154005" Pos="857.54#207.22#865.40" genCount="1" genTime="20000" objectKey="2" propList="&apos;Name&apos; &apos;TotalManagementObj&apos; "/>
                 </ObjList>
@@ -350,17 +347,37 @@
                             <ToolScp Scp="GAME_EVT_OFF" Client="NO" UseSleep="NO"/>
                         </execList>
                     </Event>
+                    <Event execCount="1" eventName="SeasonServerCheck">
+                        <condList>
+                            <ToolScp Scp="MGAME_EVT_COND_SCRIPT" Client="NO" UseSleep="NO">
+                                <Str Str="CHECK_SEASON_SERVER"/>
+                            </ToolScp>
+                        </condList>
+                        <execList>
+                            <ToolScp Scp="MGAME_EVT_SCP_TO_MON_CMD" Client="NO" UseSleep="NO">
+                                <MGameObj List="Gen_Boss/0/Gen_Boss/1"/>
+                                <Str Str="SEASON_SERVER_BORUTOS_KAPAS_STAT_TYPE_SETTING"/>
+                            </ToolScp>
+                        </execList>
+                    </Event>
+                    <Event execCount="1" eventName="lateStartStage_controlpatter">
+                        <condList>
+                            <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK" Client="NO" UseSleep="NO">
+                                <Num Num="10"/>
+                            </ToolScp>
+                        </condList>
+                        <execList>
+                            <ToolScp Scp="GAME_ST_EVT_EXEC_STAGE_START" Client="NO" UseSleep="NO">
+                                <Str Str="Control_Pattern"/>
+                            </ToolScp>
+                        </execList>
+                    </Event>
                 </StageEvents>
             </Stage>
             <Stage Name="HP_Regen" AutoStart="0">
                 <ObjList/>
             </Stage>
             <Stage Name="Control_Pattern" AutoStart="0">
-                <StartScpList>
-                    <ToolScp Scp="MGAME_MSG" Client="YES" UseSleep="NO">
-                        <Str Str="CONTROL_PPPPPPPPP"/>
-                    </ToolScp>
-                </StartScpList>
                 <ObjList/>
                 <StageEvents>
                     <Event execCount="1" eventName="95">

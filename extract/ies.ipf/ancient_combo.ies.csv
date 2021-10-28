@@ -1,6 +1,6 @@
 ClassID,MaxApplyCount,NumArg1,NumArg2,TypeNum_1,TypeNum_2,TypeNum_3,TypeNum_4,ClassName,Name,BuffName,PreScript,Script,StringArg1,TypeName_1,TypeName_2,TypeName_3,TypeName_4,Tooltop,CaptionRatio
-1,2,15,0.6378,2,0,0,0,Fire,불 속성,Ancient_Fire_Buff,SCR_ANCIENT_COMBO_ATTRIBUTE_PRECHECK,SCR_ANCIENT_COMBO_ADDBUFF,,Fire,,,,블럭 관통 {img green_up_arrow 16 16}#{CaptionRatio}#,GET_ANCIENT_COMBO_CALC_VALUE
-2,2,15,0.6378,2,0,0,0,Ice,얼음 속성,Ancient_Ice_Buff,SCR_ANCIENT_COMBO_ATTRIBUTE_PRECHECK,SCR_ANCIENT_COMBO_ADDBUFF,,Ice,,,,블럭 {img green_up_arrow 16 16}#{CaptionRatio}#,GET_ANCIENT_COMBO_CALC_VALUE
+1,2,15,0.6378,2,0,0,0,Fire,불 속성,Ancient_Fire_Buff,SCR_ANCIENT_COMBO_ATTRIBUTE_PRECHECK,SCR_ANCIENT_COMBO_ADDBUFF,,Fire,,,,블록 관통 {img green_up_arrow 16 16}#{CaptionRatio}#,GET_ANCIENT_COMBO_CALC_VALUE
+2,2,15,0.6378,2,0,0,0,Ice,얼음 속성,Ancient_Ice_Buff,SCR_ANCIENT_COMBO_ATTRIBUTE_PRECHECK,SCR_ANCIENT_COMBO_ADDBUFF,,Ice,,,,블록 {img green_up_arrow 16 16}#{CaptionRatio}#,GET_ANCIENT_COMBO_CALC_VALUE
 3,2,15,0.6378,2,0,0,0,Lightning,전기 속성,Ancient_Lightning_Buff,SCR_ANCIENT_COMBO_ATTRIBUTE_PRECHECK,SCR_ANCIENT_COMBO_ADDBUFF,,Lightning,,,,치명타 발생 {img green_up_arrow 16 16}#{CaptionRatio}#,GET_ANCIENT_COMBO_CALC_VALUE
 4,2,15,0.6378,2,0,0,0,Earth,땅 속성,Ancient_Earth_Buff,SCR_ANCIENT_COMBO_ATTRIBUTE_PRECHECK,SCR_ANCIENT_COMBO_ADDBUFF,,Earth,,,,치명타 저항 {img green_up_arrow 16 16}#{CaptionRatio}#,GET_ANCIENT_COMBO_CALC_VALUE
 5,2,1,0.0111,2,0,0,0,Poison,독 속성,Ancient_Poison_Buff,SCR_ANCIENT_COMBO_ATTRIBUTE_PRECHECK,SCR_ANCIENT_COMBO_ADDBUFF,,Poison,,,,광역 공격 비율 {img green_up_arrow 16 16}#{CaptionRatio}#,GET_ANCIENT_COMBO_CALC_VALUE

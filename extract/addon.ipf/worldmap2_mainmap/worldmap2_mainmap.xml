@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by imc (imc) -->
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by imc (imc) -->
 <uiframe name="worldmap2_mainmap" x="0" y="0" width="1920" height="1080">
 	<frame stretch="true" fullwidth="true" fullheight="true" tooltipoverlap="true" scale_align="center center" layout_gravity="center center"/>
 	<skin frameskin="fullblack_bg"/>
@@ -22,5 +22,24 @@
 		<button name="mainmap_help_btn" rect="0 0 120 50" margin="430 -511 0 0" layout_gravity="center center" texttooltip="도움말을 확인합니다." LBtnUpScp="WORLDMAP2_HELPLIST" oversound="button_cursor_over_3" clicksound="button_click_big" skin="worldmap2_btn_round" textalign="center center" textoffset="0 -2" caption="{@st101lightbrown_16}도움말"/>
 		<button name="mainmap_search_btn" rect="0 0 38 38" margin="850 -514 0 0" layout_gravity="center center" texttooltip="검색어로 지역을 검색합니다." LBtnUpScp="WORLDMAP2_SEARCH" oversound="button_cursor_over_3" clicksound="button_click_big" image="worldmap2_search_btn"/>
 		<button name="mainmap_close_btn" rect="0 0 38 38" margin="930 -514 0 0" layout_gravity="center center" texttooltip="지도를 닫습니다." LBtnUpScp="WORLDMAP2_CLOSE" oversound="button_cursor_over_3" clicksound="button_click_big" image="testclose_button"/>
+		<richtext name="bookmark_text" rect="0 0 320 38" margin="-792 164 0 0" textalign="center center" layout_gravity="center center" caption="{@st100white_16}{s20}즐겨찾기"/>
+		<button name="bookmark_btn_1" rect="0 0 198 25" margin="-798 205 0 0" layout_gravity="center center" LBtnUpScp="WORLDMAP2_MAINMAP_BOOKMARK_CLICK" oversound="button_cursor_over_3" clicksound="button_click_big" textalign="left center" textoffset="8 0" caption="{@st106_lbr}{s16}등록된 지역이 없습니다" image="worldmap2_bookmark_list"/>
+		<button name="bookmark_btn_2" rect="0 0 198 25" margin="-798 237 0 0" layout_gravity="center center" LBtnUpScp="WORLDMAP2_MAINMAP_BOOKMARK_CLICK" oversound="button_cursor_over_3" clicksound="button_click_big" textalign="left center" textoffset="8 0" caption="{@st106_lbr}{s16}등록된 지역이 없습니다" image="worldmap2_bookmark_list"/>
+		<button name="bookmark_btn_3" rect="0 0 198 25" margin="-798 269 0 0" layout_gravity="center center" LBtnUpScp="WORLDMAP2_MAINMAP_BOOKMARK_CLICK" oversound="button_cursor_over_3" clicksound="button_click_big" textalign="left center" textoffset="8 0" caption="{@st106_lbr}{s16}등록된 지역이 없습니다" image="worldmap2_bookmark_list"/>
+		<button name="bookmark_btn_4" rect="0 0 198 25" margin="-798 301 0 0" layout_gravity="center center" LBtnUpScp="WORLDMAP2_MAINMAP_BOOKMARK_CLICK" oversound="button_cursor_over_3" clicksound="button_click_big" textalign="left center" textoffset="8 0" caption="{@st106_lbr}{s16}등록된 지역이 없습니다" image="worldmap2_bookmark_list"/>
+		<button name="bookmark_btn_5" rect="0 0 198 25" margin="-798 333 0 0" layout_gravity="center center" LBtnUpScp="WORLDMAP2_MAINMAP_BOOKMARK_CLICK" oversound="button_cursor_over_3" clicksound="button_click_big" textalign="left center" textoffset="8 0" caption="{@st106_lbr}{s16}등록된 지역이 없습니다" image="worldmap2_bookmark_list"/>
+		<button name="bookmark_btn_6" rect="0 0 198 25" margin="-798 365 0 0" layout_gravity="center center" LBtnUpScp="WORLDMAP2_MAINMAP_BOOKMARK_CLICK" oversound="button_cursor_over_3" clicksound="button_click_big" textalign="left center" textoffset="8 0" caption="{@st106_lbr}{s16}등록된 지역이 없습니다" image="worldmap2_bookmark_list"/>
+		<button name="bookmark_btn_7" rect="0 0 198 25" margin="-798 397 0 0" layout_gravity="center center" LBtnUpScp="WORLDMAP2_MAINMAP_BOOKMARK_CLICK" oversound="button_cursor_over_3" clicksound="button_click_big" textalign="left center" textoffset="8 0" caption="{@st106_lbr}{s16}등록된 지역이 없습니다" image="worldmap2_bookmark_list"/>
+		<button name="bookmark_btn_8" rect="0 0 198 25" margin="-798 429 0 0" layout_gravity="center center" LBtnUpScp="WORLDMAP2_MAINMAP_BOOKMARK_CLICK" oversound="button_cursor_over_3" clicksound="button_click_big" textalign="left center" textoffset="8 0" caption="{@st106_lbr}{s16}등록된 지역이 없습니다" image="worldmap2_bookmark_list"/>
+		<picture name="bookmark_img_1" rect="0 0 26 28" margin="-698 205 0 0" layout_gravity="center center" image="F1" imagealign="center center" stretch="true" hittest="false"/>
+		<picture name="bookmark_img_2" rect="0 0 26 28" margin="-698 237 0 0" layout_gravity="center center" image="F2" imagealign="center center" stretch="true" hittest="false"/>
+		<picture name="bookmark_img_3" rect="0 0 26 28" margin="-698 269 0 0" layout_gravity="center center" image="F3" imagealign="center center" stretch="true" hittest="false"/>
+		<picture name="bookmark_img_4" rect="0 0 26 28" margin="-698 301 0 0" layout_gravity="center center" image="F4" imagealign="center center" stretch="true" hittest="false"/>
+		<picture name="bookmark_img_5" rect="0 0 26 28" margin="-698 333 0 0" layout_gravity="center center" image="F5" imagealign="center center" stretch="true" hittest="false"/>
+		<picture name="bookmark_img_6" rect="0 0 26 28" margin="-698 365 0 0" layout_gravity="center center" image="F6" imagealign="center center" stretch="true" hittest="false"/>
+		<picture name="bookmark_img_7" rect="0 0 26 28" margin="-698 397 0 0" layout_gravity="center center" image="F7" imagealign="center center" stretch="true" hittest="false"/>
+		<picture name="bookmark_img_8" rect="0 0 26 28" margin="-698 429 0 0" layout_gravity="center center" image="F8" imagealign="center center" stretch="true" hittest="false"/>
+		<groupbox name="mainmap_tip" layout_gravity="center center" rect="0 0 620 40" margin="0 515 0 0" skin="shadow_box" scrollbar="false" scale_align="center bottom"/>
+		<richtext parent="mainmap_tip" name="mainmap_tip_text" layout_gravity="center center" rect="0 0 620 40" margin="0 0 0 0" textalign="center center" caption="{@st100white_16}키보드의 쉬프트 키를 누른 상태에서 즐겨찾기를 클릭하면 토큰 이동을 이용할 수 있습니다."/>
 	</controls>
 </uiframe>

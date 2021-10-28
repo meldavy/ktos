@@ -13,3 +13,5 @@ ClassID,Arg1,Arg2,RecipeTime,SuccessRatio,LevelByFail,TargetItemCnt,SellLimitCnt
 112,5,0,8,0,0,1,0,30000,0,0,0,0,0,0,0,0,0,0,MASTERCARD_PVP_MINE_MONTH_12,PVPMine,Recipe,,Drag,Action,Drag,Drag,,,,CRAFT,Master_card_JenaHavindar,,,2020-07-09 09:00:00,2020-08-06 07:00:00,misc_pvp_mine2,,,,,
 113,5,0,8,0,0,1,0,30000,0,0,0,0,0,0,0,0,0,0,MASTERCARD_PVP_MINE_MONTH_13,PVPMine,Recipe,,Drag,Action,Drag,Drag,,,,CRAFT,Master_card_ReamToiler,,,2020-08-06 09:00:00,2020-09-03 07:00:00,misc_pvp_mine2,,,,,
 114,5,0,8,0,0,1,0,30000,0,0,0,0,0,0,0,0,0,0,MASTERCARD_PVP_MINE_MONTH_14,PVPMine,Recipe,,Drag,Action,Drag,Drag,,,,CRAFT,Master_card_NoirParesseus,,,2020-08-06 09:00:00,2020-09-03 07:00:00,misc_pvp_mine2,,,,,
+115,5,0,8,0,0,1,0,30000,0,0,0,0,0,0,0,0,0,0,MASTERCARD_PVP_MINE_MONTH_15,PVPMine,Recipe,,Drag,Action,Drag,Drag,,,,CRAFT,Master_card_Mei,,,2020-09-03 09:00:00,2020-10-08 07:00:00,misc_pvp_mine2,,,,,
+116,5,0,8,0,0,1,0,30000,0,0,0,0,0,0,0,0,0,0,MASTERCARD_PVP_MINE_MONTH_16,PVPMine,Recipe,,Drag,Action,Drag,Drag,,,,CRAFT,Master_card_ShellyPennington,,,2020-09-03 09:00:00,2020-10-08 07:00:00,misc_pvp_mine2,,,,,

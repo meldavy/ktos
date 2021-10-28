@@ -105,6 +105,7 @@
 		<tabitem name="tab3" parent="classtype_tab" caption="" width="89" layout_gravity="left top" normalimage="archer_raid_week_tap" overimage="archer_raid_week_tap_cursoron" selectimage="archer_raid_week_tap_clicked" texttooltip="아처 계열"/>
 		<tabitem name="tab4" parent="classtype_tab" caption="" width="89" layout_gravity="left top" normalimage="cleric_raid_week_tap" overimage="cleric_raid_week_tap_cursoron" selectimage="cleric_raid_week_tap_clicked" texttooltip="클레릭 계열"/>
 		<tabitem name="tab5" parent="classtype_tab" caption="" width="89" layout_gravity="left top" normalimage="scout_raid_week_tap" overimage="scout_raid_week_tap_cursoron" selectimage="scout_raid_week_tap_clicked" texttooltip="스카우트 계열"/>
+		<button name="class_selector_btn" parent="rank_gb" rect="0 0 50 50" margin="0 6 0 0" layout_gravity="left top" stretch="false" image="details_classes_rank_btn" LBtnUpScp="ui.ToggleFrame('induninfo_class_selector')"/>
 		<groupbox name="rankbox" parent="rank_gb" rect="0 0 487 434" margin="52 58 0 0" layout_gravity="left top" skin="test_frame_midle" draw="true" hittestbox="false"/>
 		<groupbox name="rankboxTitle" parent="rank_gb" rect="0 0 486 41" margin="52 58 0 0" layout_gravity="left top" skin="market_listbase" draw="true" hittestbox="false"/>
 		<richtext name="rankTitle" parent="rankboxTitle" rect="0 0 30 40" margin="30 0 0 0" layout_gravity="left center" caption="{@st66b}{s16}순위"/>

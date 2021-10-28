@@ -235,3 +235,7 @@ function GET_GUILD_NEUTRALITY_COST(guildObj)
     local guildLevel = guildObj.Level;
     return 0;
 end
+
+function GET_GUILD_PROMOTE_NOTICE_MAX_COUNT()
+	return 3;
+end

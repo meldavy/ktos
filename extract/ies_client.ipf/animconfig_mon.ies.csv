@@ -270,3 +270,4 @@ ClassID,BlendIn,BlendOut,Priority,OffsetValue,ClassName,Main,Loop,Freeze,Additiv
 292,0.3,0.3,4,0,skl3_loop,YES,YES,NO,NO,YES,NO,NO,,NO,
 293,0.3,0.3,4,0,skl7_loop,YES,YES,NO,NO,YES,NO,NO,,NO,
 294,0.3,0.3,4,0,skl9_loop,YES,YES,NO,NO,YES,NO,NO,,NO,
+295,0,0,4,0,SKL_RUSH_VIBORA,YES,YES,NO,NO,YES,NO,NO,,YES,

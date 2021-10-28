@@ -110,6 +110,9 @@
 					<Str Str="RH" />
 					<Num Num="1" />
 				</Scp>
+				<Scp Client="NO" Scp="SKL_RUN_SCRIPT" Time="0" UseSleep="NO">
+					<Str Str="SCR_RUNCASTER_VIBORA"/>
+				</Scp>
 			</EtcList>
 		</MainSkl>
 	</Skill>

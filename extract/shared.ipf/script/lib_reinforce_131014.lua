@@ -43,9 +43,10 @@ function IS_MORU_DISCOUNT_50_PERCENT(moruItem)
     return false;
 end
 
+-- 포텐션 0인 장비에만 사용가능한 모루 확인, 뒤에 타입이 추가됨
 function IS_MORU_NOT_DESTROY_TARGET_ITEM(moruItem)
     if moruItem == nil then
-        return false;
+        return false, 'None';
     end
 
     if moruItem.ClassName == "Moru_Premium" 
@@ -58,23 +59,28 @@ function IS_MORU_NOT_DESTROY_TARGET_ITEM(moruItem)
         or moruItem.ClassName == "Moru_Gold_EVENT_1710_NEWCHARACTER"
         or moruItem.ClassName == "Moru_Gold_14d_Team_event1909" 
         or moruItem.StringArg == 'gold_Moru' then
-        return true;
+        return true, 'gold';
     end
 
-    return false;
+    if moruItem.StringArg == 'unique_gold_Moru' then
+        return true, 'ruby'
+    end
+
+    return false, 'None';
 end
 
-function IS_MORU_NOT_DESTROY_TARGET_UNIQUE_ITEM(moruItem)
-    if moruItem == nil then
-        return false;
-    end
+-- IS_MORU_NOT_DESTROY_TARGET_ITEM 함수에 통합됨
+-- function IS_MORU_NOT_DESTROY_TARGET_UNIQUE_ITEM(moruItem)
+--     if moruItem == nil then
+--         return false;
+--     end
 
-    if moruItem.StringArg == 'unique_gold_Moru' or moruItem.StringArg == 'gold_Moru' then
-        return true;
-    end
+--     if moruItem.StringArg == 'unique_gold_Moru' or moruItem.StringArg == 'gold_Moru' then
+--         return true;
+--     end
 
-    return false;
-end
+--     return false;
+-- end
 
 function REINFORCE_ABLE_131014(item)    
     if item.ItemType ~= 'Equip' then
