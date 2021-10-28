@@ -316,7 +316,7 @@ function HOUSING_PROMOTE_BOARD_FEATURED_UPDATE_POST(promote_gb, filter_type, pag
 
     local thumbnail = GET_CHILD_RECURSIVELY(ctrl, "thumbnail");
     thumbnail:SetImage("housingbanner");
-    if table["thumbnail_id"] ~= nil then
+    if table["thumbnail_id"] ~= nil and table["channel_id"] ~= nil and table["page_id"] ~= nil then
         GetHousingThumbnailImage("HOUSING_PROMOTE_BOARD_POST_THUMNAIL_UPDATE", table["channel_id"], table["page_id"], table["thumbnail_id"], filter_type);
     end
 

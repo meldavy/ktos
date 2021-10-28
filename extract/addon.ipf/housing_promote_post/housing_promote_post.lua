@@ -86,7 +86,7 @@ function HOUSING_PROMOTE_POST_UPDATE(code, ret_json)
 
     local parsed = json.decode(ret_json);
 
-    if parsed["thumbnail_id"] ~= nil then
+    if parsed["thumbnail_id"] ~= nil and parsed["channel_id"] ~= nil and parsed["page_id"] ~= nil then
         GetHousingThumbnailImage("HOUSING_PROMOTE_POST_THUMNAIL_UPDATE", parsed["channel_id"], parsed["page_id"], parsed["thumbnail_id"], "None");
     end    
 
@@ -288,7 +288,7 @@ function HOUSING_PROMOTE_POST_MY_HOUSE_UPDATE(code, ret_json)
 
     local parsed = json.decode(ret_json);
     
-    if parsed["thumbnail_id"] ~=  nil then
+    if parsed["thumbnail_id"] ~= nil and parsed["channel_id"] ~= nil and parsed["page_id"] ~= nil then
         GetHousingThumbnailImage("HOUSING_PROMOTE_POST_THUMNAIL_UPDATE", parsed["channel_id"], parsed["page_id"], parsed["thumbnail_id"], "None");
     end
 
