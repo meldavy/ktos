@@ -40,7 +40,7 @@ function MAP_MON_MINIMAP(frame, msg, argStr, argNum, info)
 	monPic = frame:CreateOrGetControl('picture', ctrlName, 0, 0, SIZE, SIZE);
 	tolua.cast(monPic, "ui::CPicture");
 	if false == monPic:HaveUpdateScript("_MONPIC_AUTOUPDATE") then
-		monPic:RunUpdateScript("_MONPIC_AUTOUPDATE", 0);
+		monPic:RunUpdateScript("_MONPIC_AUTOUPDATE", 1);
 	end
 
 	monPic:SetUserValue("W", SIZE);
@@ -144,7 +144,6 @@ function ON_MON_MINIMAP_END(frame, msg, argStr, handle)
 end
 
 function _MONPIC_AUTOUPDATE(ctrl)
-
 	local handle = ctrl:GetUserIValue("HANDLE");	
 	local actor = world.GetActor(handle);
 	if actor ~= nil then

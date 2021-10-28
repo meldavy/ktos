@@ -400,7 +400,7 @@ function UPDATE_MINIMAP(frame)
 		end
 	end
 	
-	RUN_FUNC_BY_USRVALUE(npcList, "EXTERN_PIC", "YES", _MONPIC_AUTOUPDATE);
+	--RUN_FUNC_BY_USRVALUE(npcList, "EXTERN_PIC", "YES", _MONPIC_AUTOUPDATE);
 	MAKE_TOP_QUEST_ICONS(npcList);
 	frame:SetValue(1);
 	
