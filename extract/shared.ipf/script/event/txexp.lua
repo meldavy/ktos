@@ -115,7 +115,12 @@ end
 
 function GIVE_EVENTEXPUP_ITEM_TX(self, pc, item, count, giveWay)
 	local tx = TxBegin(pc);
-    TxGiveItem(tx, item, count, giveWay);    
+	if GetClass('Recipe', item) ~= nil then
+        TxAddWiki(tx, item)
+    else
+    	TxGiveItem(tx, item, count, giveWay);
+    end
+    
     SCR_EVENTEXPUP(self, pc, tx)
     
 	local ret = TxCommit(tx);

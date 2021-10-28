@@ -12,12 +12,6 @@ end
 
 function SKL_OPEN_UI_C(actor, obj, uiName, subUi)
 	if GetMyActor() == actor then
-	    -- 12.20ÍπåÏßÄ ÏãúÎ™®Îãà Ï†úÏûë Í∏∞Îä• ÏûÑÏãúÎ°ú Î∂àÍ∞ÄÎä•ÌïòÍ≤å Ï≤òÎ¶¨
-	    if uiName == "skillitemmaker" then
-	        ui.SysMsg(ClMsg('CannotUseSkill'));
-	        return ;
-	    end 
-	
 		ui.OpenFrame(uiName);
 
 		if nil ~= subUi then	
@@ -25,20 +19,6 @@ function SKL_OPEN_UI_C(actor, obj, uiName, subUi)
 		end
 	end
 
-end
-
-function C_SCR_OPEN_SAGE_PORTAL(skillType)
-    if session.colonywar.GetIsColonyWarMap() == true then
-        ui.SysMsg(ClMsg('ThisLocalUseNot'));
-        return 0;
-    end
-
-	local skil = session.GetSkill(skillType);
-	if nil == skil then
-		return 0;
-	end
-
-	ui.OpenFrame("sageportal")
 end
 
 function C_SCR_SORCERER_CARD_CHECK(skillType)
@@ -54,7 +34,7 @@ function C_SCR_SORCERER_CARD_CHECK(skillType)
 	end
 
 	local cardGUID = etc_pc.Sorcerer_bosscardGUID2;
-	-- NameÏúºÎ°ú ÎπÑÍµêÌïòÎ†§ ÌñàÏúºÎÇò, NameÏùÄ NTÍ∞Ä ÏïàÎ∂ôÏñ¥ÏûàÏùå.
+	-- Name¿∏∑Œ ∫Ò±≥«œ∑¡ «ﬂ¿∏≥™, Name¿∫ NT∞° æ»∫ŸæÓ¿÷¿Ω.
 	if cardGUID == "None" then
 		ui.SysMsg(ClMsg("NoCardAvailable"));
 		return 0;
@@ -69,16 +49,11 @@ function C_SCR_SORCERER_CARD_CHECK(skillType)
 end
 
 function SCR_ITEMDUNGEON_SKL_UI(skillType)
-    if session.colonywar.GetIsColonyWarMap() == true then
-        ui.SysMsg(ClMsg('ThisLocalUseNot'));
-        return 0;
-    end
-
 	local skill = session.GetSkill(skillType);
 	if skill == nil then
 		return 0;
 	end
-	OPEN_ITEMDUNGEON_SELLER();
+	ui.OpenFrame("itemdungeon");
 	return 0;
 end
 
@@ -93,30 +68,16 @@ function RUN_BUFF_SELLER(actor, obj)
 	end
 end
 
-function OPEN_MAGIC_SKL_UI()	
-	local frame = ui.GetFrame('skillitemmaker');
-	local richtext_1 = frame:GetChild('richtext_1');
-	richtext_1:ShowWindow(0);
-	local richtext_1_1 = frame:GetChild('richtext_1_1');
-	richtext_1_1:ShowWindow(1);
-	frame:SetUserValue('MODE', 'CraftSpellBook');
-	frame:SetUserValue('SKLNAME', 'Enchanter_CraftMagicScrolls');
-	_SKILLITEMMAKE_RESET(frame);
-	frame:ShowWindow(1)
-
-	ui.OpenFrame('skillability');
-end
-
 function EQUIP_MENDING_SKL(skillType)
 	local skill = session.GetSkill(skillType);
 	if skill == nil then
 		return 0;
 	end
-		-- Î∞©Ìñ•ÏùÄ Ï†ïÎ©¥Í≥º ÎåÄÍ∞ÅÏ†ïÎ©¥ÍπåÏßÄÎßå ÌóàÏö©. ÏÉÅÏ†êÏùÑ Îí§Î°ú Í∞úÏÑ§ Ìï† ÌïÑÏöòÏóÜÏùå.
+		-- πÊ«‚¿∫ ¡§∏È∞˙ ¥Î∞¢¡§∏È±Ó¡ˆ∏∏ «„øÎ. ªÛ¡°¿ª µ⁄∑Œ ∞≥º≥ «“ « øÊæ¯¿Ω.
 	local myActor = GetMyActor();
 	local rotateAngle = fsmactor.GetAngle(myActor);
 
-	-- Í∑ÄÏ∞ÆÏúºÎãà Í±ç Í∞ÅÎèÑÎ°ú ÎïåÎ†§ÎÑ£Ïùå
+	-- ±Õ¬˙¿∏¥œ ∞¡ ∞¢µµ∑Œ ∂ß∑¡≥÷¿Ω
 --			135
 --		180		90
 --	-135			45
@@ -137,24 +98,20 @@ function EQUIP_MENDING_SKL(skillType)
 
 	local obj = GetIES(skill:GetObject());
 	local clsName = obj.ClassName;
+
 	if "Pardoner_SpellShop" == clsName then
 		local frame = ui.GetFrame("buffseller_register");
 		BUFFSELLER_INIT(frame);
 		frame:ShowWindow(1);
 		return;
-	elseif "Oracle_SwitchGender" == clsName then
-		local frame = ui.GetFrame("switchgender");
-		SWITCHGENDER_OPEN_UI_SET(frame, clsName, true);
+	end
+
+	if "Oracle_SwitchGender" == clsName then
+		local frame = ui.GetFrame("buffseller_register");
+		BUFFSELLER_INIT(frame);
+		BUFFSELLER_SET_CUSTOM_SKILL_TYPE(frame, clsName, obj.ClassID);
 		frame:ShowWindow(1);
 		return;
-	elseif "Enchanter_EnchantArmor" == clsName then
-		local frame = ui.GetFrame("enchantarmor");
-		ENCHANTARMOR_OPEN_UI_SET(frame, obj)
-		frame:ShowWindow(1);
-		return;
-    elseif "Sage_PortalShop" == clsName then
-        PORTAL_SHOP_REGISTER_OPEN(obj);
-        return;
 	end
 
 	local frame = ui.GetFrame("itembuff");
@@ -162,23 +119,31 @@ function EQUIP_MENDING_SKL(skillType)
 		return 0;
 	end
 
-	if clsName == 'Appraiser_Apprise' then
-		local moneyInput = GET_CHILD_RECURSIVELY(frame, 'MoneyInput');
-		moneyInput:SetNumberMode(1);
-		moneyInput:SetTypingScp("APPRAISAL_PC_ON_TYPING");	
-	end
-
-    local titleName = obj.Name;
-    if clsName == 'Squire_WeaponTouchUp' or clsName == 'Squire_ArmorTouchUp' then
-        titleName = ClMsg('EqiupmentTouchUp');
-    end
-
-	ITEMBUFF_SET_SKILLTYPE(frame, obj.ClassName, obj.Level, titleName);
-	ITEMBUFF_INIT_USER_PRICE(frame, obj.ClassName);
+	ITEMBUFF_SET_SKILLTYPE(frame, obj.ClassName, obj.Level, obj.Name);
 	frame:ShowWindow(1);
-	ITEMBUFF_REFRESH_LIST(frame);	
+	ITEMBUFF_REFRESH_LIST(frame);
 	return 0;
 end
+
+function SCR_SKILL_BRIQUITE(skillType)
+	local skill = session.GetSkill(skillType);
+	if skill == nil then
+		return 0;
+	end
+
+	local obj = GetIES(skill:GetObject());
+	local frame = ui.GetFrame("briquetting");
+	if nil == frame then
+		return 0;
+	end
+
+	frame:ShowWindow(1);
+	BRIQUETTING_SET_SKILLTYPE(frame, obj.ClassName, obj.Level);
+	BRIQUETTING_UI_RESET(frame);
+	ui.OpenFrame("inventory");
+	return 0;
+end
+
 
 function CAMP_SKILL(skillType)
 	local skill = session.GetSkill(skillType);
@@ -236,21 +201,4 @@ end
 function SET_ENABLESKILLCANCEL_HITINDEX_C(actor, obj, cancelHitIndex)
 
 	actor:SetEnableSkillCancelHitIndex(cancelHitIndex);
-end
-
-function GET_LH_SOUND_SKILL(sklID)
-	local skillCls = GetClassByType('Skill', sklID);
-	if skillCls == nil then
-		return 0;
-	end
-
-	if skillCls.ClassName == 'Hackapell_Skarphuggning' then
-		return 1;
-	end
-
-	if skillCls.AttackType == 'Gun' then
-		return 1;
-	end
-
-	return 0;
 end

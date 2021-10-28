@@ -1,27 +1,24 @@
 -- weaponswap.lua
 
 function WEAPONSWAP_ON_INIT(addon, frame)
-	addon:RegisterMsg('WEAPONSWAP_ENTERED', 'WEAPONSWAP_SWAP_UPDATE_ENTERED');
+
 	addon:RegisterMsg('WEAPONSWAP', 'WEAPONSWAP_SWAP_UPDATE');
 	addon:RegisterMsg('WEAPONSWAP_FAIL', 'WEAPONSWAP_FAIL');
 	addon:RegisterMsg('WEAPONSWAP_SUCCESS', 'WEAPONSWAP_SLOT_SUCCESS');
 	addon:RegisterMsg('ABILITY_LIST_GET', 'WEAPONSWAP_SHOW_UI');
 	addon:RegisterMsg('GAME_START', 'WEAPONSWAP_SHOW_UI');
 
---	WEAPONSWAP_SLOT_UPDATE();
+	WEAPONSWAP_SLOT_UPDATE();
 end 
 
-function discover_weaponswap_state()
-    quickslot.SetWeaponSwapState(0)
-end
-
 function TH_WEAPON_CHECK(obj, bodyGbox, slotIndex)
+
 	if obj == nil then
 		return;
 	end
 	
-	-- Ïò§Î•∏Ï™ΩÏù¥Í≥†, ÏñëÏÜêÎ¨¥Í∏∞ÎùºÎ©¥
-	-- Îã§ÏùåÏπ∏ÏùÑ ÏßÄÏõåÎ≤ÑÎ¶¨Ïûê
+	-- ø¿∏•¬ ¿Ã∞Ì, æÁº’π´±‚∂Û∏È
+	-- ¥Ÿ¿Ωƒ≠¿ª ¡ˆøˆπˆ∏Æ¿⁄
 	if 0 == (slotIndex % 2) then	
 		if obj.EquipGroup ~= 'THWeapon' then
 			return;
@@ -31,14 +28,14 @@ function TH_WEAPON_CHECK(obj, bodyGbox, slotIndex)
 		etcSlot 	= tolua.cast(etcSlot, 'ui::CSlot')
 		local icon = etcSlot:GetIcon();
 		etcSlot:ClearIcon();
-		quickslot.SetSwapWeaponInfo(etcSlot:GetSlotIndex(), "");
+		session.SetWeaponQuicSlot(etcSlot:GetSlotIndex(), "");
 	else
 		if 0 == slotIndex then
 			slotIndex = slotIndex + 1;
 		else
 			slotIndex = slotIndex -1;
 		end
-		-- Í∑∏Í≤åÏïÑÎãàÎùºÎ©¥ Ï†ÑÏπ∏Ïù¥ ÏñëÏÜêÏù∏ÏßÄ ÌôïÏù∏ÌïòÍ≥†, ÏñëÏÜêÏùÑ ÏßÄÏö∞Ïûê
+		-- ±◊∞‘æ∆¥œ∂Û∏È ¿¸ƒ≠¿Ã æÁº’¿Œ¡ˆ »Æ¿Œ«œ∞Ì, æÁº’¿ª ¡ˆøÏ¿⁄
 		local etcSlot = bodyGbox:GetChild("slot"..slotIndex);
 		if nil == etcSlot then
 			return;
@@ -63,20 +60,20 @@ function TH_WEAPON_CHECK(obj, bodyGbox, slotIndex)
 		end
 
 		etcSlot:ClearIcon();
-		quickslot.SetSwapWeaponInfo(etcSlot:GetSlotIndex(), "");
+		session.SetWeaponQuicSlot(etcSlot:GetSlotIndex(), "");
 	end
 
 end
 
 function WEAPONSWAP_ITEM_DROP(parent, ctrl, argStr, argNum)
-	local frame = parent:GetTopParentFrame();
-	local liftIcon = ui.GetLiftIcon();
+	local frame				= parent:GetTopParentFrame();
+	local liftIcon 			= ui.GetLiftIcon();
 
 	if liftIcon == nil then
 		return;
 	end
 
-	local iconInfo = liftIcon:GetInfo();
+	local iconInfo			= liftIcon:GetInfo();
 	if iconInfo == nil then
 		return;
 	end
@@ -94,60 +91,59 @@ function WEAPONSWAP_ITEM_DROP(parent, ctrl, argStr, argNum)
 	end
 
 	local obj = GetIES(invItem:GetObject());
-	if	obj.DefaultEqpSlot == "RH" or  obj.DefaultEqpSlot == "LH" or obj.DefaultEqpSlot == "RH LH" then
-		-- Ïä¨Î°ØÏùÄ Ï¢åÏö∞ ÎëêÍ∞úÎØÄÎ°ú
-		local offset = 2;
-		-- ÏùºÎã® Ïä¨Î°Ø ÏúÑÏπòÍ∞Ä, ÏôºÏ™ΩÏò§Î•∏Ï™ΩÏù∏ÏßÄÎ•º ÌôïÏù∏
-		if slot:GetSlotIndex() % offset == 0 then
-			
-			if obj.DefaultEqpSlot ~= "RH" and obj.DefaultEqpSlot ~= "RH LH" then
-				return;
-			end
-		end
-
-		if slot:GetSlotIndex() % offset == 1 and obj.DefaultEqpSlot ~= "LH" then
-			local pc = GetMyPCObject();
-			if pc == nil then
-				return;
-			end
-
-			local clsType = TryGetProp(obj, "ClassType2");
-			if clsType ~= "Sword" then
-				return;
-			end
-
-			local abil = GetAbility(pc, "SubSword");
-			if abil == nil then
-				return;
-			end
-		end
-	
-		local bodyGbox = frame:GetChild("bodyGbox");
-		if nil == bodyGbox then
-			return;
-		end
-	
-		-- ÏñëÏÜêÎ¨¥Í∏∞Î•º Ï≤¥ÌÅ¨ÌïòÏûê
-		TH_WEAPON_CHECK(obj, bodyGbox, slot:GetSlotIndex());
-		quickslot.SetSwapWeaponInfo(slot:GetSlotIndex(), invItem:GetIESID());
-		SET_SLOT_ITEM_IMAGE(slot, invItem);
+	if	obj.DefaultEqpSlot ~= "RH" and obj.DefaultEqpSlot ~= "LH" then
+		return
 	end
+
+	-- ΩΩ∑‘¿∫ ¡¬øÏ µŒ∞≥π«∑Œ
+	local offset = 2;
+	-- ¿œ¥‹ ΩΩ∑‘ ¿ßƒ°∞°, øﬁ¬ ø¿∏•¬ ¿Œ¡ˆ∏¶ »Æ¿Œ
+	if slot:GetSlotIndex() % offset == 0 and
+		obj.DefaultEqpSlot ~= "RH" then
+		return;
+	end
+
+	if slot:GetSlotIndex() % offset == 1 and
+		obj.DefaultEqpSlot ~= "LH" then
+		return;
+	end
+	
+	local bodyGbox = frame:GetChild("bodyGbox");
+	if nil == bodyGbox then
+		return;
+	end
+	
+	-- æÁº’π´±‚∏¶ √º≈©«œ¿⁄
+	TH_WEAPON_CHECK(obj, bodyGbox, slot:GetSlotIndex());
+	session.SetWeaponQuicSlot(slot:GetSlotIndex(), invItem:GetIESID());
+	SET_SLOT_ITEM_IMANGE(slot, invItem);
 end
 
 function WEAPONSWAP_ITEM_POP(parent, ctrl)
 	local slot 	= tolua.cast(ctrl, 'ui::CSlot');
 	slot:ClearIcon();
-	quickslot.SetSwapWeaponInfo(slot:GetSlotIndex(), "");
+	session.SetWeaponQuicSlot(slot:GetSlotIndex(), "");
 end
 
-function WEAPONSWAP_SWAP_EQUIP()    
-	--Ï†úÏûëÏãúÏóêÎäî Î¨¥Í∏∞Ïä§Ïôë ÏïàÎêòÍ≤å ÎÅî..
+function WEAPONSWAP_SWAP_EQUIP(update)
+
+	--¡¶¿€Ω√ø°¥¬ π´±‚Ω∫ø“ æ»µ«∞‘ ≤˚..
 	if GetCraftState() == 1 then
 		ui.SysMsg(ClMsg("prosessItemCraft"));
 		return;
 	end
 	
-	quickslot.SwapWeapon();
+	-- ¥‹√‡≈∞∑Œ ¥©∏£∏È call¿∫ nil,
+	-- ≈¨∂Ûø°º≠ addø¬¿∏∑Œ ∫Œ∏£∏È frame¿Ã µÈæÓ∞®
+	-- ¡Ô, nil¿Ã æ∆¥‘
+	if nil == update then
+		-- ¡Ÿ¿Ã πŸ≤Óæ˘¥Ÿ∞Ì æÀ∏Æ¿⁄
+		session.SetWeaponSwap(1);
+	else
+		-- ªÁ¿Ã¡Ó¥¬ ∫Ø∞Ê«ÿ¡‡æﬂ«‘
+		WEAPONSWAP_SLOT_UPDATE();
+	end
+
 end
 
 function WEAPONSWAP_RBTN_DOWN(frame, object)
@@ -163,41 +159,18 @@ end
 function WEAPONSWAP_UI_UPDATE()
 	local frame = ui.GetFrame("weaponswap");
 	local bodyGbox = frame:GetChild("bodyGbox");
-	for i = 0, 3 do
+	for i=0, 3 do
 		local etcSlot = bodyGbox:GetChild("slot"..i);
 		if nil== etcSlot then
 			return;
 		end
 
-		etcSlot = tolua.cast(etcSlot, 'ui::CSlot');
-		local guid = quickslot.GetSwapWeaponGuid(i);
+		etcSlot 	= tolua.cast(etcSlot, 'ui::CSlot');
+		local guid = session.GetWeaponQuicSlot(i);
 		if nil ~= guid then 
 			local item = GET_ITEM_BY_GUID(guid, 1);
 			if nil ~= item then
-				SET_SLOT_ITEM_IMAGE(etcSlot, item);
-			else
-				etcSlot:ClearIcon();
-			end
-		else
-			etcSlot:ClearIcon();
-		end;
-	end
-end
-
-function WEAPONSWAP_SWAP_UPDATE_ENTERED(frame)    
-	local bodyGbox = frame:GetChild("bodyGbox");
-	for i = 0, 3 do
-		local etcSlot = bodyGbox:GetChild("slot"..i);
-		if nil== etcSlot then
-			return;
-		end
-
-		etcSlot = tolua.cast(etcSlot, 'ui::CSlot');
-		local guid = quickslot.GetSwapWeaponGuid(i);
-		if nil ~= guid then 
-			local item = GET_ITEM_BY_GUID(guid, 1);
-			if nil ~= item then
-				SET_SLOT_ITEM_IMAGE(etcSlot, item);
+				SET_SLOT_ITEM_IMANGE(etcSlot, item);
 			else
 				etcSlot:ClearIcon();
 			end
@@ -209,18 +182,18 @@ end
 
 function WEAPONSWAP_SWAP_UPDATE(frame)
 	local bodyGbox = frame:GetChild("bodyGbox");
-	for i = 0, 3 do
+	for i=0, 3 do
 		local etcSlot = bodyGbox:GetChild("slot"..i);
 		if nil== etcSlot then
 			return;
 		end
 
-		etcSlot = tolua.cast(etcSlot, 'ui::CSlot');
-		local guid = quickslot.GetSwapWeaponGuid(i);
+		etcSlot 	= tolua.cast(etcSlot, 'ui::CSlot');
+		local guid = session.GetWeaponQuicSlot(i);
 		if nil ~= guid then 
 			local item = GET_ITEM_BY_GUID(guid, 1);
 			if nil ~= item then
-				SET_SLOT_ITEM_IMAGE(etcSlot, item);
+				SET_SLOT_ITEM_IMANGE(etcSlot, item);
 			else
 				etcSlot:ClearIcon();
 			end
@@ -234,38 +207,18 @@ function WEAPONSWAP_SWAP_UPDATE(frame)
 end
 
 function WEAPONSWAP_FAIL()
-	local lowDur = 0;
-	for i = 0, 3 do
-		local guid = quickslot.GetSwapWeaponGuid(i);
-		if nil ~= guid then 
-			local item = GET_ITEM_BY_GUID(guid, 1);
-			if nil ~= item then
-				local itemobj = GetIES(item:GetObject());
-				if nil ~= itemobj then 
-					if itemobj.Dur <= 0 then
-						ui.MsgBox(ScpArgMsg("YouCantEquipDur0Item"));
-						lowDur = 1;
-						break;
-					end;
-				end;
-			end
-		end;
-	end;
-	
-	quickslot.SwapWeapon();
-	if 0 == lowDur then
-		ui.SysMsg(ClMsg("TryLater"));
-        discover_weaponswap_state()
-	end
+	ui.SysMsg(ClMsg("TryLater"));
+	session.SetWeaponSwap(0);
+	WEAPONSWAP_SLOT_UPDATE();
 end
 
-function WEAPONSWAP_SLOT_SUCCESS()    
+function WEAPONSWAP_SLOT_SUCCESS()
 	imcSound.PlaySoundEvent("sys_weapon_swap");
-    RemoveLuaTimerFunc('discover_weaponswap_state')
-    discover_weaponswap_state()
+	WEAPONSWAP_SLOT_UPDATE()
 end
 
 function WEAPONSWAP_SLOT_UPDATE()
+
 	local frame = ui.GetFrame("weaponswap");
 	if frame == nil then
 		return;
@@ -276,7 +229,7 @@ function WEAPONSWAP_SLOT_UPDATE()
 		return;
 	end
 	
-	-- ÌÅ¨Í∏∞Î•º Ïñ¥ÎñªÍ≤å Î∞îÍøÄÍπå?
+	-- ≈©±‚∏¶ æÓ∂ª∞‘ πŸ≤‹±Ó?
 	local slotLine = bodyGbox:GetChild("readyWeapon");
 	local smailLine = bodyGbox:GetChild("currWeapon");
 	
@@ -284,13 +237,12 @@ function WEAPONSWAP_SLOT_UPDATE()
 		return;
 	end
 	
-	slotLine = tolua.cast(slotLine, 'ui::CGroupBox');
-	smailLine = tolua.cast(smailLine, 'ui::CGroupBox');
+	slotLine 	= tolua.cast(slotLine, 'ui::CGroupBox');
+	smailLine 	= tolua.cast(smailLine, 'ui::CGroupBox');
 	
-	--ÏÑ∏ÏÖòÏóêÏÑú ÌòÑÏû¨ Îì±Î°ùÎêú Ïä¨Î°Ø ÎùºÏù∏ÏùÑ ÏïåÏïÑÏò§Í≥†,
-	local start = quickslot.GetActiveWeaponLine();
-
-	-- ÎëêÎ≤àÏß∏Ï§Ñ
+		--ººº«ø°º≠ «ˆ¿Á µÓ∑œµ» ΩΩ∑‘ ∂Û¿Œ¿ª æÀæ∆ø¿∞Ì,
+	local start = session.GetWeaponCurrentSlotLine();
+	-- µŒπ¯¬∞¡Ÿ
 	if 1 == start then
 		start = 2;
 	end
@@ -298,13 +250,13 @@ function WEAPONSWAP_SLOT_UPDATE()
 	local cposX = 0;
 	local sposX = 0;
 	
-	for i = 0, 3 do
+	for i =0, 3 do
 		local etcSlot = bodyGbox:GetChild("slot"..i);
 		if nil == etcSlot then
 			return;
 		end
 	
-		etcSlot = tolua.cast(etcSlot, 'ui::CSlot');
+		etcSlot 	= tolua.cast(etcSlot, 'ui::CSlot');
 		
 		if i == start or i == start+1 then
 			etcSlot:SetMargin( ((slotLine:GetWidth()/2) * cposX) + 15, slotLine:GetY(), 0, 0);
@@ -321,5 +273,16 @@ end
 
 
 function WEAPONSWAP_SHOW_UI(frame)
-	frame:ShowWindow(0);
+
+	local pc = GetMyPCObject();
+	if pc == nil then
+		return;
+	end
+	local abil = GetAbility(pc, "SwapWeapon");
+	
+	if abil ~= nil then
+		frame:ShowWindow(1)
+	else
+		frame:ShowWindow(0)
+	end
 end

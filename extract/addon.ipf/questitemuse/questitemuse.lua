@@ -20,7 +20,7 @@ function QUESTITEMUSE_ON_MSG(frame, msg, argStr, argNum)
 		if itemClass ~= nil and itemClass.PreCheckScp ~= 'None' and invItem ~= nil then			
 			local result = _G[itemClass.PreCheckScp](GetMyPCObject(), itemClass.StringArg, itemClass.NumberArg1, itemClass.NumberArg2);
 			if result ~= 0 then
-				local xPos = 15;
+				local xPos = QUEST_CHECK_COUNT * 80 + 15;
 				local slot = itemCtrl:CreateOrGetControl('slot', 'itemslot_', xPos, 10, 80, 80);
 				tolua.cast(slot, 'ui::CSlot');
 				local beforeIcon = slot:GetIcon();
@@ -63,8 +63,7 @@ function QUESTITEMUSE_ON_MSG(frame, msg, argStr, argNum)
 			frame:StopAlphaBlend();
 			frame:SetAlpha(100);
 		else
-		--	local width = QUEST_CHECK_COUNT * 80 + 30;
-			local width = 110;
+			local width = QUEST_CHECK_COUNT * 80 + 30;
 			frame:Resize(width, frame:GetHeight());
 		end
 	end
@@ -73,20 +72,15 @@ end
 
 function QUESTITEMUSE_EXECUTE()
 
-	local tempItemFrame = ui.GetFrame("tempitemuse")
-	--임사사용템, 퀘스트템 중 우선순위 정해야함
-	if tempItemFrame ~= nil and tempItemFrame:IsVisible() == 1 then
-		TEMPITEMUSE_EXECUTE()
-	else
-		local frame = ui.GetFrame('questitemuse');
-		if frame ~= nil and frame:IsVisible() == 1 then
-			local itemGroup = frame:GetChild('itemgroup');
-			imcSound.PlaySoundEvent("button_v_click");
-			for i=0, itemGroup:GetChildCount()-1 do
-				local childCtrl = itemGroup:GetChildByIndex(i);
-				local invItem	= session.GetInvItemByType(childCtrl:GetValue());
-				INV_ICON_USE(invItem);
-			end
+	local frame = ui.GetFrame('questitemuse');
+
+	if frame ~= nil and frame:IsVisible() == 1 then
+		local itemGroup = frame:GetChild('itemgroup');
+		imcSound.PlaySoundEvent("button_v_click");
+		for i=0, itemGroup:GetChildCount()-1 do
+			local childCtrl = itemGroup:GetChildByIndex(i);
+			local invItem	= session.GetInvItemByType(childCtrl:GetValue());
+			INV_ICON_USE(invItem);
 		end
 	end
 end
