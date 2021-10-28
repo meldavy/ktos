@@ -21,14 +21,52 @@ function INIT_MAP_PICTURE_UI(pic, mapName, hitTest)
 
 end
 
-function DISABLE_BUTTON_DOUBLECLICK(framename,buttonname)
+function DISABLE_BUTTON_DOUBLECLICK_WITH_CHILD(framename, childname, buttonname, sec)
+	if sec == nil then
+		sec = 5;
+	end
 
+	local frame = ui.GetFrame(framename)
+	local child = GET_CHILD_RECURSIVELY(frame, childname)
+	if child == nil then
+		return;
+	end
+
+	local btn = GET_CHILD_RECURSIVELY(child,buttonname)
+	if btn == nil then
+		return;
+	end
+
+	local strScp = string.format("ENABLE_BUTTON_DOUBLECLICK_WITH_CHILD(\"%s\",\"%s\", \"%s\")", framename, childname, buttonname);
+
+	ReserveScript(strScp, sec);
+	btn:SetEnable(0)
+end
+
+function ENABLE_BUTTON_DOUBLECLICK_WITH_CHILD(framename,childname,buttonname)
+	local frame = ui.GetFrame(framename)
+	local child = GET_CHILD_RECURSIVELY(frame, childname);
+	if child == nil then
+		return;
+	end
+	local btn = GET_CHILD_RECURSIVELY(child, buttonname);
+	if btn == nil then
+		return;
+	end
+	btn:SetEnable(1)
+end
+
+function DISABLE_BUTTON_DOUBLECLICK(framename,buttonname, sec)
+	local delay = 5;
+	if sec ~= nil then
+		delay = sec;
+	end
 	local frame = ui.GetFrame(framename)
 	local btn = GET_CHILD_RECURSIVELY(frame,buttonname)
 
 	local strScp = string.format("ENABLE_BUTTON_DOUBLECLICK(\"%s\", \"%s\")", framename, buttonname);
 
-	ReserveScript(strScp, 5);
+	ReserveScript(strScp, delay);
 	btn:SetEnable(0)
 end
 
@@ -179,14 +217,15 @@ function MAP_UPDATE_PARTY(frame, msg, arg, type, info)
 end
 
 function MAP_UPDATE_GUILD(frame, msg, arg, type, info)
-
-	DESTROY_CHILD_BYNAME(frame, 'GM_');
+	DESTROY_CHILD_BYNAME(frame, 'GM_');        
+    if session.world.IsIntegrateServer() == true then        
+        DESTROY_GUILD_MEMBER_ICON()        
+        return
+    end
 
 	local mapprop = session.GetCurrentMapProp();
 	local list = session.party.GetPartyMemberList(PARTY_GUILD);
 	local count = list:Count();
-	
-
 	if count == 1 then
 		return;
 	end
@@ -280,13 +319,13 @@ function GET_NPC_ICON(i, statelist, questIESlist)
 	return GET_ICON_BY_STATE_MODE(state, questies), state, questID, iconState;
 end
 
-function SET_MAP_MONGEN_NPC_INFO(picture, mapprop, WorldPos, MonProp, mapNpcState, npclist, statelist, questIESlist)
+function SET_MAP_MONGEN_NPC_INFO(picture, mapprop, WorldPos, MonProp, npclist, statelist, questIESlist)
 
 	SET_PICTURE_BUTTON(picture);
 
 	local cheat = string.format("//setpos %d %d %d", WorldPos.x, WorldPos.y, WorldPos.z);
 	local scpstr = string.format( "ui.Chat(\"%s\")", cheat);
-	picture:SetEventScript(ui.LBUTTONUP, scpstr);
+	picture:SetEventScript(ui.LBUTTONUP, scpstr, true);
 
 	local idx = GET_NPC_STATE(MonProp:GetDialog(), statelist, npclist, questIESlist);
 	local Icon, state, questclsid, iconState = GET_NPC_ICON(idx, statelist, questIESlist);
@@ -322,7 +361,7 @@ function SET_MAP_MONGEN_NPC_INFO(picture, mapprop, WorldPos, MonProp, mapNpcStat
 	local cnt = #npclist;
 	for i = 1 , cnt do
 		local name = npclist[i];
-		if  MonProp:IsHaveDialog(name) then
+		if name ~= 'None' and MonProp:IsHaveDialog(name) then
 			local questIES = questIESlist[i];
 			local result = SCR_QUEST_CHECK_C(pc, questIES.ClassName);
 			if questclsIdStr == '' then
@@ -339,17 +378,15 @@ function SET_MAP_MONGEN_NPC_INFO(picture, mapprop, WorldPos, MonProp, mapNpcStat
 	picture:ShowWindow(1);
 	picture:SetValue2(iconState);
 
-	SET_MONGEN_NPC_VISIBLE(picture, mapprop, mapNpcState, MonProp);
+	SET_MONGEN_NPC_VISIBLE(picture, mapprop, MonProp);
 
 	return idx, Icon;
 
 end
 
-function SET_MONGEN_NPC_VISIBLE(picture, mapprop, mapNpcState, MonProp)
+function SET_MONGEN_NPC_VISIBLE(picture, mapprop, MonProp)
 	if mapprop.NotUseHide == 1 then
 		picture:ShowWindow(1);
-	elseif mapNpcState == nil then
-		picture:ShowWindow(0);
 	else
 		local dlg = MonProp:GetDialog();
 		local hidnpcCls = GetClass("HideNPC", dlg);
@@ -367,8 +404,8 @@ function SET_MONGEN_NPC_VISIBLE(picture, mapprop, mapNpcState, MonProp)
 		elseif MonProp.GenType == 0 then
 			picture:ShowWindow(1);
 		else
-			local curState = mapNpcState:FindAndGet(MonProp.GenType);
-			if curState > 0 and picture:GetUserIValue("IsHide") == 0 then
+			local curState = GetNPCState(mapprop:GetClassName(), MonProp.GenType);
+			if curState ~= nil and curState > 0 and picture:GetUserIValue("IsHide") == 0 then
 				picture:ShowWindow(1);
 			else
 				picture:ShowWindow(0);
@@ -395,6 +432,7 @@ end
 
 
 function BUFF_TIME_UPDATE(handle, buff_ui)
+	local TOKEN_BUFF_ID = TryGetProp(GetClass("Buff", "Premium_Token"), "ClassID");
 
 	local updated = 0;
 	for j = 0 , buff_ui["buff_group_cnt"] do
@@ -411,7 +449,7 @@ function BUFF_TIME_UPDATE(handle, buff_ui)
     				local icon 		= slot:GetIcon();
     				local iconInfo = icon:GetInfo();
 					local buffIndex = icon:GetUserIValue("BuffIndex");
-    				local buff = info.GetBuff(handle, iconInfo.type, buffIndex);
+					local buff = info.GetBuff(handle, iconInfo.type, buffIndex);
     				if buff ~= nil then
     					SET_BUFF_TIME_TO_TEXT(text, buff.time);
     					updated = 1;
@@ -419,7 +457,11 @@ function BUFF_TIME_UPDATE(handle, buff_ui)
     					if buff.time < 5000 and buff.time ~= 0.0 then
     						if slot:IsBlinking() == 0 then
     							slot:SetBlink(600000, 1.0, "55FFFFFF", 1);
-    						end
+							end
+					elseif buff.buffID == TOKEN_BUFF_ID and GET_REMAIN_TOKEN_SEC() < 3600 then
+						if slot:IsBlinking() == 0 then
+    							slot:SetBlink(0, 1.0, "55FFFFFF", 1);
+						end
     					else
     						if slot:IsBlinking() == 1 then
     							slot:ReleaseBlink();
@@ -434,60 +476,59 @@ function BUFF_TIME_UPDATE(handle, buff_ui)
 	if updated == 1 then
 		ui.UpdateVisibleToolTips("buff");
 	end
-
-
 end
 
-
-function GET_QUEST_NPC_NAMES(mapname, npclist, statelist, questIESList, questPropList)
-
+function CHECK_QUEST_NPC_NAME(mapname, index)
 	local idx = 1;
 	local pc = GetMyPCObject();
 	local questIES = nil;
 	local cnt = GetClassCount('QuestProgressCheck')
-	for i = 0, cnt - 1 do
-		questIES = GetClassByIndex('QuestProgressCheck', i);
-		if questIES.ClassName ~= 'None' then
-    		local result = SCR_QUEST_CHECK_C(pc,questIES.ClassName);
+	local subQuestZoneList = {}
 
-    		if result ~= 'IMPOSSIBLE' then
-    		    local flag = 0
-    		    
-    		    if questIES.PossibleUI_Notify == 'UNCOND' or result ~= 'POSSIBLE' then
-    		        flag = 1
-    		    end
-    		    
-    		    if flag == 0 then
-    		        if questIES.QuestStartMode == 'NPCENTER_HIDE' 
-    		        or questIES.QuestStartMode == 'GETITEM' 
-    		        or questIES.QuestStartMode == 'USEITEM'
-    		        or questIES.PossibleUI_Notify == 'NO' then
-    				else
-    				    flag = 1
-    				end
-    		    end
-    		    
-    		    if result == "POSSIBLE" and SCR_POSSIBLE_UI_OPEN_CHECK(pc, questIES) == "HIDE" then
-    		        flag = 0
-    		    end
-    		    
-    		    if flag == 1 then
-    		        local State = CONVERT_STATE(result);
-        			local questMap = questIES[State .. 'Map'];
-					local npcname = questIES[State .. 'NPC'];
-                    
-					--if npcname ~= 'None' then
-						npclist[idx] = npcname;
-						statelist[idx] = result;
-						questIESList[idx] = questIES;
-						questPropList[idx] = geQuestTable.GetPropByIndex(i);
-						idx = idx + 1;
-					--end
-    		    end
+	questIES = GetClassByIndex('QuestProgressCheck', index);
+	if questIES.ClassName ~= 'None' then
+    	local result = SCR_QUEST_CHECK_C(pc, questIES.ClassName);
+    	if result ~= 'IMPOSSIBLE' and result ~= "None" then
+    		local flag = 0;
+
+    		if questIES.PossibleUI_Notify == 'UNCOND' or result ~= 'POSSIBLE' then
+    		    flag = 1
     		end
-		end
+
+    		if flag == 0 then
+    		    if questIES.QuestStartMode == 'NPCENTER_HIDE' 
+    		    or questIES.QuestStartMode == 'GETITEM' 
+    		    or questIES.QuestStartMode == 'USEITEM'
+    		    or questIES.PossibleUI_Notify == 'NO' then
+    			else
+    				flag = 1
+    			end
+    		end
+
+    		local result2
+    		result2, subQuestZoneList = SCR_POSSIBLE_UI_OPEN_CHECK(pc, questIES, subQuestZoneList, 'ZoneMap')
+    		if result == "POSSIBLE" and result2 == "HIDE" then
+    		    flag = 0
+    		end
+
+    		if flag == 1 then
+    		    local State = CONVERT_STATE(result);
+        		local questMap = questIES[State .. 'Map'];
+				local npcname = questIES[State .. 'NPC'];
+
+				return result, npcname, "YES";
+    		end
+    	end
 	end
 
+	return "None", "None", "NO";
+end
+
+function GET_QUEST_NPC_NAMES(mapname)
+	RequestUpdateMinimap(mapname, 0);
+	local npclist, statelist, questIESList, questPropList = GetQuestNpcNames(mapname);
+	
+	return npclist, statelist, questIESList, questPropList;
 end
 
 function GET_JOB_ICON(job)
@@ -499,5 +540,79 @@ function GET_JOB_ICON(job)
 
 	return cls.Icon;
 
+end
+
+
+function GET_MON_ILLUST(monCls)
+
+	if monCls == nil then
+		return "unknown_monster";
+	end
+
+	local name = monCls.Journal;
+	if ui.IsImageExist(name) == true then
+		return name;
+	end
+	
+	name = "mon_"..name
+	if ui.IsImageExist(name) == true then
+		return name;
+	end
+
+	name = monCls.Icon;
+	if ui.IsImageExist(name) == true then
+		return name;
+	end
+	
+	return "unknown_monster";
+end
+
+function SET_SPINE_TOOLTIP_IMAGE(picture, itemCls)
+	local isEnableSpine = config.GetXMLConfig("EnableAnimateItemIllustration");
+
+	local isSpinePicture = false;
+	if isEnableSpine == 1 then
+		local spineToolTip = TryGetProp(itemCls, "SpineTooltipImage");
+		if spineToolTip ~= nil and spineToolTip ~= "None" then
+			local spineInfo = geSpine.GetSpineInfo(spineToolTip);
+			if spineInfo ~= nil then
+				picture:SetScaleFactor(spineInfo:GetScaleFactor());
+				picture:SetOffsetX(spineInfo:GetOffsetX());
+				picture:SetOffsetY(spineInfo:GetOffsetY());
+				picture:CreateSpineActor(spineInfo:GetRoot(), spineInfo:GetAtlas(), spineInfo:GetJson(), "", spineInfo:GetAnimation());
+
+				local effectCount = spineInfo:GetEffectCount();
+				for i = 0, effectCount - 1 do
+					local effect = spineInfo:GetEffect(i);
+					if effect ~= nil then
+						local isOverlab = false;
+						if effect:GetOverlab() == "Yes" then
+							isOverlab = true;
+						end
+						picture:PlayEffectByBone(effect:GetCondition(), effect:GetAttachBoneName(), effect:GetEffectName(), effect:GetScale(), effect:GetSound(), effect:GetPlayTime(), effect:GetDuration(), effect:GetOffsetX(), effect:GetOffsetY(), effect:GetEvent(), "", isOverlab);
+					end
+				end
+
+				isSpinePicture = true;
+			end
+		end
+	end
+
+	if isSpinePicture == false then
+		picture:SetImage(TryGetProp(itemCls, "TooltipImage"));
+	end
+end
+
+function FIND_CLASSNAME_LIST_BY_PROP(idspace, propName, propVal)
+	if idspace == nil or propName == nil or propVal == nil then
+		return nil;
+	end
+    local cnt = FindClassesByProp(idspace, propName, propVal, "None", false);
+    local list = {}
+    for i = 0 , cnt - 1 do
+        local foundName = GetFindedClass(i);
+        list[#list + 1] = foundName;
+    end
+    return list;
 end
 
