@@ -1,4 +1,4 @@
-
+-- postbox.lua
 
 POSTBOX_LAST_GBOX_SCROLL_POS = 0
 POSTBOX_LAST_GBOX_SCROLL_POS_NEW = 0
@@ -6,7 +6,7 @@ POSTBOX_LAST_GBOX_SCROLL_POS_NEW = 0
 function POSTBOX_ON_INIT(addon, frame)
 
 	addon:RegisterMsg('ADD_POSTBOX_MSG', 'UPDATE_POSTBOX_LETTERS');
-	
+
 end
 
 function POSTBOX_OPEN(frame)
@@ -26,7 +26,7 @@ function POSTBOX_FIRST_OPEN(frame)
 
 	POSTBOX_LAST_GBOX_SCROLL_POS = 0
 	POSTBOX_LAST_GBOX_SCROLL_POS_NEW = 0
-
+	
 	UPDATE_POSTBOX_LETTERS(frame);
 end
 
@@ -41,7 +41,6 @@ function GET_MSG_TITLE(msgInfo)
 end
 
 function UPDATE_POSTBOX_ITEM(ctrlSet, msgInfo)
-	--¾ÆÀÌÅÛµé
 	local slotHeight = 50;
 	local itemcnt = msgInfo:GetItemVecSize();
 
@@ -50,7 +49,7 @@ function UPDATE_POSTBOX_ITEM(ctrlSet, msgInfo)
 	local labelline_2 = GET_CHILD_RECURSIVELY(ctrlSet, "labelline_2")
 	labelline_2:ShowWindow(0)
 
-	DESTROY_CHILD_BYNAME(ctrlSet, "SLOT_");
+	DESTROY_CHILD_BYNAME(ctrlSet, "SLOT_");		
 
 					
 
@@ -94,77 +93,97 @@ function UPDATE_POSTBOX_LETTERS_LIST(gbox_list, onlyNewMessage, startindex)
 
 	if startindex == 0 then
 		gbox_list:RemoveAllChild();
+		gbox_list:SetUserValue("LastDrawIndex", 0);
 	end
 
 	local x = 0;
 	local y = 0;
+	local cnt = session.postBox.GetMessageCount();
 
-	--for dbType = 0, 1 do
-		local cnt = session.postBox.GetMessageCount();
-		local drawindex = gbox_list:GetChildCount();
+	local frame = ui.GetFrame("postbox");
+	if frame ~= nil then
+		local title = frame:GetChild("title");
+		if title ~= nil then
+			title:SetTextByKey("current", tostring(cnt));
+			title:SetTextByKey("max", tostring(session.postBox.GetTotalMessageCount()));
+		end
+	end
 
-		for i = startindex , cnt - 1 do
 
-			if i >= cnt then
-				break;
+	local drawindex = gbox_list:GetChildCount()-1;
+	local lastDrawIndex = gbox_list:GetUserIValue("LastDrawIndex");
+	-- ì´ë¯¸ ê·¸ë¦°ê±°ë¼ë©´  ë¦¬í„´
+	if startindex < lastDrawIndex  then
+		return
+	end
+
+	for i = startindex , cnt - 1 do
+		if i >= cnt then
+			break;
+		end
+
+		local msgInfo = session.postBox.GetMessageByIndex(i);
+
+		if onlyNewMessage == false or msgInfo:IsNewMessage() == true then
+			
+			local beforectrl = GET_CHILD_RECURSIVELY(gbox_list,"ITEM_" ..(drawindex - 1))
+			if beforectrl == nil then
+				y = 0
+			else
+				y = beforectrl:GetHeight() + beforectrl:GetY();
 			end
 
-			local msgInfo = session.postBox.GetMessageByIndex(i);
+			local ctrlSet = gbox_list:CreateOrGetControlSet("postbox_list2", "ITEM_" ..drawindex, x, y);
+			if ctrlSet ~= nil then
+			
+				ctrlSet:SetUserValue("LETTER_ID", msgInfo:GetID());
+				ctrlSet:SetUserValue("DB_TYPE", msgInfo:GetDBType());
+				ctrlSet:ShowWindow(1);
 
-			if onlyNewMessage == false or (msgInfo:GetItemCount() > 0 and msgInfo:GetItemTakeCount() == 0 ) then
-				drawindex = drawindex + 1
+				local title = ctrlSet:GetChild("title");
+				local titleText = GET_MSG_TITLE(msgInfo);
 
-				local beforectrl = GET_CHILD_RECURSIVELY(gbox_list,"ITEM_" ..(drawindex-1))
+				if msgInfo:GetItemCount() > 0 then
 
-				if beforectrl == nil then
-					y = 0
-				else
-					y = beforectrl:GetHeight() + beforectrl:GetY();
-				end
-
-				local ctrlSet = gbox_list:CreateOrGetControlSet("postbox_list2", "ITEM_" ..drawindex, x, y);
-				if ctrlSet ~= nil then
-				
-					ctrlSet:SetUserValue("LETTER_ID", msgInfo:GetID());
-					ctrlSet:SetUserValue("DB_TYPE", msgInfo:GetDBType());
-					ctrlSet:ShowWindow(1);
-
-					local title = ctrlSet:GetChild("title");
-					local titleText = GET_MSG_TITLE(msgInfo);
-
-					if msgInfo:GetItemCount() > 0 then
-
-						if msgInfo:GetItemTakeCount() > 0 then -- ¿­¸° ¾ÆÀÌÄÜ
-							titleText = "{img M_message_open 30 30 }" .. titleText
-						else -- ´İÈù ¾ÆÀÌÄÜ
-							titleText = "{img M_message_Unopen 30 30 }" .. titleText
-						end
-
+					if msgInfo:GetItemTakeCount() > 0 then
+						titleText = "{img M_message_open 30 30 }" .. titleText
+					else
+						titleText = "{img M_message_Unopen 30 30 }" .. titleText
 					end
 
-					title:SetTextByKey("value", titleText); -- ¿©±â¿¡ ±æ¾îÁö¸é ... ³Ö¾î¶ó
-
-				
-					UPDATE_POSTBOX_ITEM(ctrlSet, msgInfo);
-					
-					local timestring = imcTime.GetStringSysTimeYYMMDDHHMM(msgInfo:GetTime())
-					local deleteTimeText = nil
-
-					if  timestring == "900-01-01 00:00" or (msgInfo:GetDBType() == POST_BOX_DB_ACCOUNT and timestring == "900-01-01 00:00") then
-						deleteTimeText = ScpArgMsg("AutoDeleteTime","Time",ScpArgMsg("InfiDeleteTime") );
-					else
-						deleteTimeText = ScpArgMsg("AutoDeleteTime","Time",imcTime.GetStringSysTimeYYMMDDHHMM(msgInfo:GetTime()) );
-					end	
-			
-					ctrlSet:SetTextTooltip("{@st41}".. GET_MSG_TITLE(msgInfo).."{/}{nl} {nl}"..msgInfo:GetMessage().."{nl} {nl} {nl}{#666666}"..deleteTimeText);
-
-					deleteTimeRText = GET_CHILD_RECURSIVELY(ctrlSet, "deleteTime")
-					deleteTimeRText:SetTextByKey("time",deleteTimeText)
-
 				end
+
+				title:SetTextByKey("value", titleText);
+
+				local pic_postNew = ctrlSet:GetChild("pic_postNew");
+				if pic_postNew ~= nil then
+					if msgInfo:IsNewMessage() == false then
+						pic_postNew:SetVisible(0);
+					end
+				end
+
+				UPDATE_POSTBOX_ITEM(ctrlSet, msgInfo);
+				
+				local timestring = imcTime.GetStringSysTimeYYMMDDHHMM(msgInfo:GetTime())
+				local deleteTimeText = nil
+
+				if  timestring == "900-01-01 00:00" or (msgInfo:GetDBType() == POST_BOX_DB_ACCOUNT and timestring == "900-01-01 00:00") then
+					deleteTimeText = ScpArgMsg("AutoDeleteTime","Time",ScpArgMsg("InfiDeleteTime") );
+				else
+					deleteTimeText = ScpArgMsg("AutoDeleteTime","Time",imcTime.GetStringSysTimeYYMMDDHHMM(msgInfo:GetTime()) );
+				end	
+		
+				ctrlSet:SetTextTooltip("{@st41}".. GET_MSG_TITLE(msgInfo).."{/}{nl} {nl}"..msgInfo:GetMessage().."{nl} {nl} {nl}{#666666}"..deleteTimeText);
+				ctrlSet:SetEventScript(ui.LBUTTONUP,"CLICK_POSTBOX_LETTER");
+
+				deleteTimeRText = GET_CHILD_RECURSIVELY(ctrlSet, "deleteTime")
+				deleteTimeRText:SetTextByKey("time",deleteTimeText)
+
 			end
+			drawindex = drawindex + 1
+			gbox_list:SetUserValue("LastDrawIndex", i);
 		end
-	--end
+	end
 	
 	gbox_list:SetEventScript(ui.SCROLL, "SCROLL_POSTBOX_GBOX");
 
@@ -205,7 +224,6 @@ function POSTBOX_SELECT_ALL_ITEM(ctrlset)
 end
 
 function POSTBOX_GET_SELECTED_ITEM(ctrlset)
-	
 	local indexlist = ""
 
 	for i = 0 , 200 do
@@ -215,19 +233,14 @@ function POSTBOX_GET_SELECTED_ITEM(ctrlset)
 		if slot ~= nil then
 			if slot:GetIcon():IsGrayStyle() == 0 then
 				if slot:IsSelected() == 1 then
-					
 					local eachindex = slot:GetUserValue("ITEM_INDEX");
-
 					if eachindex ~= "None" then
-
 						if indexlist == "" then
 							indexlist = eachindex;
 						else
 							indexlist = indexlist .. "/" .. eachindex;
-						end
-						
+						end	
 					end
-
 				end
 			end
 		else
@@ -239,8 +252,6 @@ function POSTBOX_GET_SELECTED_ITEM(ctrlset)
 		return;
 	end
 
-	
-
 	local letterid = ctrlset:GetUserValue("LETTER_ID");
 	local dbType = ctrlset:GetUserValue("DB_TYPE");
 	
@@ -248,23 +259,18 @@ function POSTBOX_GET_SELECTED_ITEM(ctrlset)
 	postboxframe:SetUserValue("LETTER_ID", letterid);
 	postboxframe:SetUserValue("DB_TYPE", dbType);
 
-	local selectFrame = OPEN_BARRACK_SELECT_PC_FRAME("EXEC_SELECT_POSTBOX_ITEM_PC", "SelectCharacterToGetItem");
+	local selectFrame = OPEN_BARRACK_SELECT_PC_FRAME("EXEC_SELECT_POSTBOX_ITEM_PC", "SelectCharacterToGetItem", true);
 	selectFrame:SetUserValue("ITEM_INDEX_LIST",indexlist)
 end
 
 function SCROLL_POSTBOX_GBOX(parent, ctrl, str, wheel)
 
-	if wheel == ctrl:GetScrollBarMaxPos() and POSTBOX_LAST_GBOX_SCROLL_POS ~= ctrl:GetScrollBarMaxPos() then
-
-	local cnt = session.postBox.GetMessageCount();
+	if wheel == ctrl:GetScrollBarMaxPos() and POSTBOX_LAST_GBOX_SCROLL_POS ~= ctrl:GetScrollBarMaxPos() then	
+		local cnt = session.postBox.GetMessageCount();
 		barrack.ReqPostBoxNextPage(cnt)
-
 		POSTBOX_LAST_GBOX_SCROLL_POS = ctrl:GetScrollBarMaxPos()
-
 	end
-	
 end
-
 
 function UPDATE_POSTBOX_LETTERS(frame, msg, argStr, argNum)
 
@@ -275,10 +281,18 @@ function UPDATE_POSTBOX_LETTERS(frame, msg, argStr, argNum)
 
 	frame:Invalidate()
 	
+	-- ìš°í¸ ì•„ì´ì½˜ ìƒíƒœ ì—…ë°ì´íŠ¸ ì˜ˆì•½.
+	RESERVE_POST_BOX_STATE_UPDATE();
+end
+
+function CLICK_POSTBOX_LETTER(frame, ctrl, argStr, argNum)
+	local letterID = ctrl:GetUserValue("LETTER_ID");
+	local dbType = ctrl:GetUserIValue("DB_TYPE");
+	EXEC_READ_POSTBOX(letterID, dbType);
 end
 
 
-function OPEN_BARRACK_SELECT_PC_FRAME(execScriptName, msgKey)
+function OPEN_BARRACK_SELECT_PC_FRAME(execScriptName, msgKey, selectMyPC)
 
 	local selectFrame = ui.GetFrame("postbox_itemget");
 	selectFrame:ShowWindow(1);
@@ -293,20 +307,32 @@ function OPEN_BARRACK_SELECT_PC_FRAME(execScriptName, msgKey)
 	local cnt = accountInfo:GetPCCount();
 	for i = 0 , cnt - 1 do
 		local pcInfo = accountInfo:GetPCByIndex(i);
-		local ctrlSet = gbox_charlist:CreateControlSet("postbox_itemget", "PIC_" .. i, ui.LEFT, ui.TOP, 0, 0, 0, 0);
-		ctrlSet:ShowWindow(1);	
+		local addControlSet = true;
+		if selectMyPC == false then
+			local mySession = session.GetMySession();
+			if pcInfo:GetCID() == mySession:GetCID() then
+				addControlSet = false;
+			end
+		end
 
-		local pcApc = pcInfo:GetApc();
-		local headIconName = ui.CaptureModelHeadImageByApperance(pcApc);		
-		local pic = GET_CHILD(ctrlSet, "pic");
-		pic:SetImage(headIconName);
-		local name = ctrlSet:GetChild("name");
-		local jobCls = GetClassByType("Job", pcApc:GetJob());
-		local nameText = string.format("%s{nl}{@st66}%s", pcApc:GetName(), jobCls.Name);
-		ctrlSet:SetUserValue("PC_NAME", pcApc:GetName());
-		name:SetTextByKey("value", nameText);
+		if addControlSet == true then
+			local ctrlSet = gbox_charlist:CreateControlSet("postbox_itemget", "PIC_" .. i, ui.LEFT, ui.TOP, 0, 0, 0, 0);
+			ctrlSet:SetOverSound('button_cursor_over_3');
+			ctrlSet:SetClickSound('button_click_big');
+			ctrlSet:ShowWindow(1);	
 
-		ctrlSet:SetEventScript(ui.LBUTTONUP, "SELECT_POSTBOX_ITEM_PC");
+			local pcApc = pcInfo:GetApc();
+			local headIconName = ui.CaptureModelHeadImageByApperance(pcApc);		
+			local pic = GET_CHILD(ctrlSet, "pic");
+			pic:SetImage(headIconName);
+			local name = ctrlSet:GetChild("name");
+			local jobCls = GetClassByType("Job", pcApc:GetJob());
+			local nameText = string.format("%s{nl}{@st66}%s", pcApc:GetName(), GET_JOB_NAME(jobCls, pcApc:GetGender()));
+			ctrlSet:SetUserValue("PC_NAME", pcApc:GetName());
+			name:SetTextByKey("value", nameText);
+
+			ctrlSet:SetEventScript(ui.LBUTTONUP, "SELECT_POSTBOX_ITEM_PC");
+		end
 	end	
 
 	GBOX_AUTO_ALIGN(gbox_charlist, 0, 1, 0, true, false);
@@ -316,10 +342,11 @@ end
 
 function SELECT_POSTBOX_ITEM_PC(parent, ctrl)
 
+	imcSound.PlaySoundEvent("sys_popup_open_1");
+
 	local frame = parent:GetTopParentFrame();
 	local pcName = ctrl:GetUserValue("PC_NAME");
 	local msgBoxString = ScpArgMsg("ReallyGiveItemTo{PC}", "PC", pcName);
-
 
 	local selectFrame = ui.GetFrame("postbox_itemget");
 	local itemType = selectFrame:GetUserIValue("ITEM_TYPE");
@@ -352,12 +379,41 @@ function EXEC_SELECT_POSTBOX_ITEM_PC(pcName)
 	if msgInfo == nil then
 		return;
 	end
+	
+	local indexList = SCR_STRING_CUT(itemIndexs, "/");
+	if indexList == nil or #indexList == 0 then
+		return;
+	end
+	
+	local noTeamTradeItem = 0;
+	for i = 1, #indexList do
+		local selectedIndex = indexList[i];
+		local itemInfo = msgInfo:GetItemByIndex(selectedIndex);
+		local itemCls = GetClassByType("Item", itemInfo.itemType);
+		
+		local teamTradeProp = TryGetProp(itemCls, 'TeamTrade');
+		local lifeTimeProp = TryGetProp(itemCls, 'LifeTime', 0);
+		if teamTradeProp ~= 'YES' or lifeTimeProp ~= 0 then
+			noTeamTradeItem = noTeamTradeItem + 1;
+		end
+	end
+	
+	if noTeamTradeItem > 0 then
+		local yesScp = string.format("EXEC_SELECT_POSTBOX_ITEM_PC_AFTER_TEAM_TRADE_CHECK(\"%s\", \"%s\", \"%s\", \"%s\")", dbType, letterID, pcInfo:GetCID(), itemIndexs);
+		ui.MsgBox(ScpArgMsg("ReallyGiveItemTo{PC}NoTeamTradeItem", "PC", pcName, "ItemCount", noTeamTradeItem), yesScp, "None");
+		return;
+	end
 
 	barrack.ReqGetPostBoxItem(dbType, letterID, pcInfo:GetCID(), itemIndexs);
+end
 
+function EXEC_SELECT_POSTBOX_ITEM_PC_AFTER_TEAM_TRADE_CHECK(dbType, letterID, pcCID, itemIndexs)
+	barrack.ReqGetPostBoxItem(dbType, letterID, pcCID, itemIndexs);
 end
 
 function POSTBOX_DELETE(parent, ctrl)
+
+	imcSound.PlaySoundEvent("sys_popup_open_1");
 
 	local id = parent:GetUserValue("LETTER_ID");
 	local dbType = parent:GetUserValue("DB_TYPE");
@@ -378,9 +434,13 @@ function POSTBOX_DELETE(parent, ctrl)
 end
 
 function EXEC_DELETE_POSTBOX(id, state, dbType)
+	imcSound.PlaySoundEvent("system_latter_delete");
 	barrack.ReqChangePostBoxState(dbType, id, state);	
 end
 
+function EXEC_READ_POSTBOX(id, dbType)
+	barrack.ReqChangePostBoxState(dbType, id, POST_BOX_STATE_READ);	
+end
 
 function POSTBOX_UPDATE_LIST(msgID, result)
 
@@ -391,13 +451,98 @@ function POSTBOX_UPDATE_LIST(msgID, result)
 		ui.SysMsg(ClMsg("ReceievedItem"));
 	end
 
+	-- ìš°í¸ ì•„ì´ì½˜ ìƒíƒœ ì—…ë°ì´íŠ¸ ì˜ˆì•½.
+	RESERVE_POST_BOX_STATE_UPDATE();
 end
 
-function POST_BOX_STATE_CHANGE(msgID) -- Â÷ÈÄ ÀÛ¼º µÉ ¿©Áö°¡ ÀÖ¾î º¸ÀÎ´Ù.
+function UPDATE_POSTBOX_LETTER(gbox_list, msgID, state)
+	if gbox_list == nil then
+		return
+	end
 
+	local isNewList = false;
+	if gbox_list:GetName() == "gbox_new" then
+		isNewList = true
+	end
+
+	local childCnt = gbox_list:GetChildCount();
+	for i = 0 , childCnt do
+
+		local ctrlSet = GET_CHILD_RECURSIVELY(gbox_list,"ITEM_"..i);
+		if ctrlSet ~= nil then
+			local letterID = ctrlSet:GetUserValue("LETTER_ID");
+			if letterID == msgID then
+				local msgInfo = session.postBox.GetMessageByID(msgID);
+				if msgInfo ~= nil then
+					local title = ctrlSet:GetChild("title");
+					local titleText = GET_MSG_TITLE(msgInfo);
+
+					if msgInfo:GetItemCount() > 0 then
+						if msgInfo:GetItemTakeCount() > 0 then
+							titleText = "{img M_message_open 30 30 }" .. titleText
+						else
+							titleText = "{img M_message_Unopen 30 30 }" .. titleText
+						end
+
+					end
+					title:SetTextByKey("value", titleText);
+
+					local pic_postNew = ctrlSet:GetChild("pic_postNew");
+					if pic_postNew ~= nil then
+						if msgInfo:IsNewMessage() == false then
+							pic_postNew:SetVisible(0);
+							pic_postNew:ShowWindow(0);
+							if isNewList == true then
+								gbox_list:RemoveChild("ITEM_"..i)
+								return;
+							end
+						else
+							pic_postNew:SetVisible(1);
+							pic_postNew:ShowWindow(1);
+						end
+					end
+
+					UPDATE_POSTBOX_ITEM(ctrlSet, msgInfo);
+					
+					local timestring = imcTime.GetStringSysTimeYYMMDDHHMM(msgInfo:GetTime())
+					local deleteTimeText = nil
+
+					if  timestring == "900-01-01 00:00" or (msgInfo:GetDBType() == POST_BOX_DB_ACCOUNT and timestring == "900-01-01 00:00") then
+						deleteTimeText = ScpArgMsg("AutoDeleteTime","Time",ScpArgMsg("InfiDeleteTime") );
+					else
+						deleteTimeText = ScpArgMsg("AutoDeleteTime","Time",imcTime.GetStringSysTimeYYMMDDHHMM(msgInfo:GetTime()) );
+					end	
+			
+					ctrlSet:SetTextTooltip("{@st41}".. GET_MSG_TITLE(msgInfo).."{/}{nl} {nl}"..msgInfo:GetMessage().."{nl} {nl} {nl}{#666666}"..deleteTimeText);
+					ctrlSet:SetEventScript(ui.LBUTTONUP,"CLICK_POSTBOX_LETTER");
+
+					deleteTimeRText = GET_CHILD_RECURSIVELY(ctrlSet, "deleteTime")
+					deleteTimeRText:SetTextByKey("time",deleteTimeText)
+				end
+				return;
+			end
+		end
+	end
 end
 
+function POST_BOX_STATE_CHANGE(msgID, state)
+	local frame = ui.GetFrame("postbox");
+	if frame == nil then
+		return;
+	end
+	local gbox_list = frame:GetChild("gbox_list");
+ 	UPDATE_POSTBOX_LETTER(gbox_list, msgID, state);
 	
-function POST_BOX_DETAIL_RESULT() -- ¿¹Àü ÇüÅÂ(°¢ ¸Ş½ÃÁö Å¬¸¯ ÈÄ Á¤º¸ ¹Ş´Â)ÀÇ ÇÔ¼ö È£È¯¿ë. ¿©±â ÀÛ¼ºÇØ¼­ ´Ù½Ã ¾²¸é µÈ´Ù.
+	-- ì•ˆì½ì€ ë©”ì„¸ì§€í•¨ì€ ì¤‘ê°„ë°ì´í„°ë¥¼ ì œê±°í•´ì•¼ í•˜ê¸°ë•Œë¬¸ì— ë‹¤ì‹œ ê·¸ë¦°ë‹¤.
+	local gbox_new = frame:GetChild("gbox_new");
+	UPDATE_POSTBOX_LETTERS_LIST(gbox_new, true,0); 	
 
+	-- ìš°í¸ ì•„ì´ì½˜ ìƒíƒœ ì—…ë°ì´íŠ¸ ì˜ˆì•½.
+	RESERVE_POST_BOX_STATE_UPDATE(); 
+end
+
+function POST_BOX_DETAIL_RESULT()
+
+	-- ìš°í¸ ì•„ì´ì½˜ ìƒíƒœ ì—…ë°ì´íŠ¸ ì˜ˆì•½.
+	RESERVE_POST_BOX_STATE_UPDATE();
 end
