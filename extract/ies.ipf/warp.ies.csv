@@ -110,8 +110,8 @@ ClassID,TargetX,TargetY,TargetZ,Latitude,Longitude,StartDir,ClassName,CMM_Name,T
 109,-1339,84,899,45,45,0,WS_KATYN13_TO_SIAUL11,포슬린키스 숲 -> 파우피스 나루,f_siauliai_11_re
 110,3456,82,-899,45,45,0,WS_KATYN13_TO_KATYN14,포슬린키스 숲 -> 사크니스 벌판,f_katyn_14
 111,-2586,239,1296,45,45,0,WS_KATYN14_TO_KATYN13,사크니스 벌판 -> 포슬린키스 숲,f_katyn_13
-112,3114,373,-1976,45,45,0,MAPLE_25_2_TO_KATYN_18,스팔빈가스 숲 -> 쿨레 고개,f_katyn_18
-113,-706,-77,-881,45,45,0,WS_KATYN18_TO_MAPLE25_2,쿨레 고개 -> 스팔빈가스 숲,f_maple_25_2
+112,3114,373,-1976,45,45,0,WS_SIAUL16_TO_KATYN18,렘파라사 연못 -> 쿨레 고개,f_katyn_18
+113,-2583,115,-1663,45,45,0,WS_KATYN18_TO_SIAUL16,쿨레 고개 -> 렘파라사 연못,f_siauliai_16
 114,-1540,649,-528,45,45,0,WS_ZACHA2F_01_TO_02,왕릉2층 -> 숨겨진 장소,d_zachariel_33
 115,-1553,723,19,45,45,0,WS_ZACHA2F_02_TO_01,숨겨진 장소 -> 왕릉 2층,d_zachariel_33
 116,1126,718,250,45,45,0,WS_ZACHA2F_03_TO_04,왕릉2층 -> 샛길,d_zachariel_33
@@ -390,8 +390,8 @@ ClassID,TargetX,TargetY,TargetZ,Latitude,Longitude,StartDir,ClassName,CMM_Name,T
 389,-2831,484,-1240,45,45,0,UNDERFORTRESS67_UNDERFORTRESS68,거주구역 ->저장구역,d_underfortress_68
 390,572,333,-759,45,45,0,TABLELAND73_TO_TABLELAND281,카듀멜 절벽 -> 메사파슬라,f_tableland_28_1
 391,-1634,448,-464,45,45,0,TABLELAND281_TO_TABLELAND73,메사파슬라 -> 카듀멜 절벽,f_tableland_73
-392,1712,655,-306,45,45,0,TABLELAND281_TO_MAPLE252,메사파슬라 -> 스팔빈가스 숲,f_maple_25_2
-393,-850,695,1698,45,45,0,MAPLE_25_2_TO_TALBELAND_28_1,스팔빈가스 숲 -> 메사파슬라,f_tableland_28_1
+392,0,0,0,45,45,0,TABLELAND281_TO_MAPLE252,메사파슬라 -> 단풍숲25_2,f_maple_25_2
+393,-850,695,1698,45,45,0,MAPLE252_TO_TABLELAND281,단풍숲25_2 -> 메사파슬라,f_tableland_28_1
 394,1660,324,1760,45,45,0,TABLELAND281_TO_TABLELAND282,메사파슬라 -> 스토가스 고원,f_tableland_28_2
 395,-2923,266,766,45,45,0,TABLELAND282_TO_TABLELAND281,스토가스 고원 -> 메사파슬라,f_tableland_28_1
 396,-12,0,-2031,45,45,0,FLASH60_TO_TABLELAND282,록소나 장터 -> 스토가스 고원,f_tableland_28_2
@@ -445,8 +445,8 @@ ClassID,TargetX,TargetY,TargetZ,Latitude,Longitude,StartDir,ClassName,CMM_Name,T
 444,686,184,2076,45,45,0,BRACKEN_63_1_BRACKEN_63_2,코루 숲 to 크니도스 숲,f_bracken_63_2
 445,-1849,302,-1370,45,45,0,BRACKEN_63_2_BRACKEN_63_1,크니도스 숲 to 코루 숲,f_bracken_63_1
 446,1577,0,19,45,45,0,BRACKEN_63_2_BRACKEN_63_3,크니도스 숲 to 다단 숲,f_bracken_63_3
-450,113,629,986,45,45,0,BRACKEN_63_2_BRACKEN_42_1,크니도스 숲 to 코노트 숲,f_bracken_42_1
-447,-2034,-32,-461,45,45,0,BRACKEN_63_3_BRACKEN_63_2,다단 숲 to 크니도스 숲,f_bracken_63_2
+450,676,184,1973,45,45,0,BRACKEN_63_2_BRACKEN_42_1,고사리 숲 63_2 to 고사리 42_1,f_bracken_42_1
+447,-2034,-37,-461,45,45,0,BRACKEN_63_3_BRACKEN_63_2,다단 숲 to 크니도스 숲,f_bracken_63_2
 448,827,2,853,45,45,0,BRACKEN_63_3_ABBAY_64_1,다단 숲 to 노바하 공회소,d_abbey_64_1
 449,4354,73,-1507,45,45,0,BRACKEN_63_3_KATYN_10,다단 숲 to 카롤리스 샘터,f_katyn_10
 451,-1351,191,408,45,45,0,KATYN_10_BRACKEN_63_3,카롤리스 샘터 -> 다단 숲,f_bracken_63_3
@@ -478,20 +478,20 @@ ClassID,TargetX,TargetY,TargetZ,Latitude,Longitude,StartDir,ClassName,CMM_Name,T
 477,181,129,-1014,45,45,0,ABBEY41_6_PILGRIM41_3,메이번 대수도원 -> 래스보이 호변,f_pilgrimroad_41_3
 478,-446,0,1372,45,45,0,PILGRIM51_ORCHARD34_1,기원의 숲 -> 알레멧 숲,f_orchard_34_1
 479,1932,143,-1920,45,45,0,ORCHARD34_1_PILGRIM51,알레멧 숲 -> 기원의 숲,f_pilgrimroad_51
-480,-1519,370,521,45,45,0,ORCHARD34_1_ORCHARD34_3,알레멧 숲 -> 바르하 숲,f_orchard_34_3
+480,0,0,0,45,45,0,ORCHARD34_1_ORCHARD34_3,알레멧 숲 -> 바르하 숲,f_orchard_34_3
 481,938,-1,280,45,45,0,ORCHARD34_3_ORCHARD34_1,바르하 숲 -> 알레멧 숲,f_orchard_34_1
-482,-339,106,-996,45,45,0,SIAULIAI_35_1_ORCHARD34_3,나하스 숲 -> 바르하 숲,f_orchard_34_3
+482,0,0,0,45,45,0,SIAULIAI_35_1_ORCHARD34_3,나하스 숲 -> 바르하 숲,f_orchard_34_3
 483,180,-69,1857,45,45,0,ORCHARD34_3_SIAULIAI_35_1,바르하 숲 -> 나하스 숲,f_siauliai_35_1
 484,21,0,1520,45,45,0,SIAULIAI_35_1_ABBEY_35_3,나하스 숲 -> 엘고스 수도원 별원,d_abbey_35_3
 485,-2,-135,-1223,45,45,0,ABBEY_35_3_SIAULIAI_35_1,엘고스 수도원 별원 -> 나하스 숲,f_siauliai_35_1
-486,-1314,10,1167,45,45,0,SIAULIAI_35_1_CORAL35_2,나하스 숲 -> 베라 연안,f_coral_35_2
+486,0,0,0,45,45,0,SIAULIAI_35_1_CORAL35_2,나하스 숲 -> 베라 연안,f_coral_35_2
 487,1449,-55,399,45,45,0,CORAL35_2_SIAULIAI_35_1,베라 연안 -> 나하스 숲,f_siauliai_35_1
-488,-586,370,1235,45,45,0,PILGRIM55_ORCHARD34_3,대성당의 참회로 -> 바르하 숲,f_orchard_34_3
-489,1685,156,-634,45,45,0,ORCHARD34_3_PILGRIM55,바르하 숲 -> 대성당의 참회로,f_pilgrimroad_55
+488,0,0,0,45,45,0,PILGRIM55_ORCHARD34_3,대성당의 참회로 -> 바르하 숲,f_orchard_34_3
+489,-193,242,-710,45,45,0,ORCHARD34_3_PILGRIM55,바르하 숲 -> 대성당의 참회로,f_pilgrimroad_55
 490,25,0,1375,45,45,0,ABBEY_35_3_ABBEY_35_4,엘고스 수도원 별원 -> 엘고스 수도원 본원,d_abbey_35_4
 491,3,-95,-1489,45,45,0,ABBEY_35_4_ABBEY_35_3,엘고스 수도원 본원 -> 엘고스 수도원 별원,d_abbey_35_3
 492,-172,144,-1615,45,45,0,ORCHARD34_3_CORAL32_1,바르하 숲 -> 크란토 연안,f_coral_32_1
-493,1134,37,-933,45,45,0,CORAL32_1_ORCHARD34_3,크란토 연안 -> 바르하 숲,f_orchard_34_3
+493,0,0,0,45,45,0,CORAL32_1_ORCHARD34_3,크란토 연안 -> 바르하 숲,f_orchard_34_3
 494,0,0,0,45,45,0,CORAL32_1_CORAL32_2,크란토 연안 -> 이기티 연안,f_coral_32_2
 495,-286,226,841,45,45,0,CORAL32_2_CORAL32_1,이기티 연안 -> 크란토 연안,f_coral_32_1
 496,1305,-8,-726,45,45,0,3CMLAKE84_TO_CASTLE651,압셈타 수원지 -> 델무어 소작촌,f_castle_65_1
@@ -518,8 +518,8 @@ ClassID,TargetX,TargetY,TargetZ,Latitude,Longitude,StartDir,ClassName,CMM_Name,T
 517,920,195,86,45,45,0,UNDERFORTRESS30_1_UNDERFORTRESS67,루클리스 전당 -> 거주구역,d_underfortress_67
 518,0,0,0,45,45,0,UNDERFORTRESS30_1_UNDERFORTRESS30_2,루클리스 전당 -> 확장구역,d_underfortress_30_2
 519,929,220,-952,45,45,0,UNDERFORTRESS30_2_UNDERFORTRESS30_1,확장구역 -> 루클리스 전당,d_underfortress_30_1
-520,1470,-6,-770,45,45,0,UNDERFORTRESS30_2_UNDERFORTRESS30_3,확장구역 -> 피난거주구,d_underfortress_30_3
-521,-1595,194,-691,45,45,0,UNDERFORTRESS30_3_UNDERFORTRESS30_2,피난거주구 -> 확장구역,d_underfortress_30_2
+520,1853,155,-824,45,45,0,UNDERFORTRESS30_2_UNDERFORTRESS30_3,확장구역 -> 피난거주구,d_underfortress_30_3
+521,0,0,0,45,45,0,UNDERFORTRESS30_3_UNDERFORTRESS30_2,피난거주구 -> 확장구역,d_underfortress_30_2
 522,4504,707,-4430,45,45,0,FLASH64_TABLELAND70,내성곽지구 -> 이브레 고원,f_tableland_70
 523,-351,843,1978,45,45,0,TABLELAND70_FLASH64,이브레 고원 -> 내성곽지구,f_flash_64
 524,1861,697,430,45,45,0,TABLELAND70_TABLELAND71,이브레 고원 -> 마당 고원,f_tableland_71
@@ -573,194 +573,3 @@ ClassID,TargetX,TargetY,TargetZ,Latitude,Longitude,StartDir,ClassName,CMM_Name,T
 572,-1677,128,1114,45,45,0,TABLELAND72_UNDERFORTRESS65,스벤티마스 유형지 -> 전초구역,d_underfortress_65
 573,490,-75,151,45,45,0,PILGRIM47_NUNNERY,필그림 들길 -> 살러스 수녀원,c_nunnery
 574,-1124,154,1360,45,45,0,NUNNERY_PILGRIM47,살러스 수녀원 -> 필그림 들길,f_pilgrimroad_47
-575,123,253,1540,45,45,0,BRACKEN42_1_TO_PILGRIM41_2,코노트 숲 -> 살비야스 숲,f_pilgrimroad_41_2
-576,-1016,516,-626,45,45,0,PILGRIM41_2_TO_BRACKEN42_1,살비야스 숲 -> 코노트 숲,f_bracken_42_1
-577,453,184,-1681,45,45,0,BRACKEN42_1_TO_BRACKEN63_2,코노트 숲 -> 크니도스 숲,f_bracken_63_2
-578,-1666,154,163,45,45,0,BRACKEN42_1_TO_BRACKEN42_2,코노트 숲 -> 카마돈 숲,f_bracken_42_2
-579,2024,784,-214,45,45,0,BRACKEN42_2_TO_BRACKEN42_1,카마돈 숲 -> 코노트 숲,f_bracken_42_1
-580,212,-29,-1104,45,45,0,BRACKEN42_1_TO_LIMESTONECAVE52_1,코노트 숲 -> 테브린 종유동 1구역,d_limestonecave_52_1
-581,-1494,321,237,45,45,0,LIMESTONECAVE52_1_BRACKEN42_1,테브린 종유동 1구역 -> 코노트 숲,f_bracken_42_1
-582,-1387,-974,-1726,45,45,0,LIMESTONECAVE_52_1_LIMESTONECAVE_52_2,테브린 종유동 1구역 -> 테브린 종유동 2구역,d_limestonecave_52_2
-583,582,-307,1942,45,45,0,LIMESTONECAVE_52_2_LIMESTONECAVE_52_1,테브린 종유동 2구역 -> 테브린 종유동 1구역,d_limestonecave_52_1
-584,-2538,-33,-939,45,45,0,LIMESTONECAVE_52_2_LIMESTONECAVE_52_3,테브린 종유동 2구역 -> 테브린 종유동 3구역,d_limestonecave_52_3
-585,1080,-516,-120,45,45,0,LIMESTONECAVE_52_3_LIMESTONECAVE_52_2,테브린 종유동 3구역 -> 테브린 종유동 2구역,d_limestonecave_52_2
-586,2095,-109,-1933,45,45,0,LIMESTONECAVE_52_3_LIMESTONECAVE_52_4,테브린 종유동 3구역 -> 테브린 종유동 4구역,d_limestonecave_52_4
-587,1371,-63,1073,45,45,0,LIMESTONECAVE_52_4_LIMESTONECAVE_52_3,테브린 종유동 4구역 -> 테브린 종유동 3구역,d_limestonecave_52_3
-588,-1484,818,-1425,45,45,0,LIMESTONECAVE_52_4_LIMESTONECAVE_52_5,테브린 종유동 4구역 -> 테브린 종유동 5구역,d_limestonecave_52_5
-589,-1462,201,780,45,45,0,LIMESTONECAVE_52_5_LIMESTONECAVE_52_4,테브린 종유동 5구역 -> 테브린 종유동 4구역,d_limestonecave_52_4
-590,-2178,459,-162,45,45,0,CASTLE_20_3_TABLELAND74,내성벽 제 8구역 -> 강철 고원,f_tableland_74
-591,1478,-120,942,45,45,0,CASTLE_20_3_MAPLE_25_1,내성벽 제 8구역 -> 네토 숲,f_maple_25_1
-592,685,218,-1477,45,45,0,CASTLE_20_3_DCAPITAL_103,내성벽 제 8구역 -> 타니엘 1세 기념구,f_dcapital_103
-593,26,171,-1165,45,45,0,CASTLE_20_3_CASTLE_20_4,내성벽 제 8구역 -> 도심성벽 제 8구역,f_castle_20_4
-594,-1573,96,50,45,45,0,CASTLE_20_3_CASTLE_20_2,내성벽 제 8구역 -> 내성벽 제 9구역,f_castle_20_2
-595,1248,140,-353,45,45,0,CASTLE_20_2_CASTLE_20_3,내성벽 제 9구역 -> 내성벽 제 8구역,f_castle_20_3
-596,-80,196,1325,45,45,0,CASTLE_20_2_CASTLE_20_1,내성벽 제 9구역 -> 외성벽 제 9구역,f_castle_20_1
-597,0,0,0,45,45,0,CASTLE_20_2_CASTLE_94,내성벽 제 9구역 -> 내성벽 제 10구역,f_castle_94
-598,-91,125,-1308,45,45,0,CASTLE_20_1_CASTLE_20_2,외성벽 제 9구역 -> 내성벽 제 9구역,f_castle_20_2
-599,0,0,0,45,45,0,CASTLE_20_1_CASTLE_93,외성벽 제 9구역 -> 외성벽 제 11구역,f_castle_93
-600,-117,-70,1796,45,45,0,CASTLE_20_1_3CMLAKE_26_1,외성벽 제 9구역 -> 란코 26수역,f_3cmlake_26_1
-601,-240,138,1176,45,45,0,CASTLE_20_4_CASTLE_20_3,도심성벽 제 8구역 -> 내성벽 제 8구역,f_castle_20_3
-602,1681,221,-540,45,45,0,CASTLE_20_4_DCAPITAL_103,도심성벽 제 8구역 -> 타니엘 1세 기념구,f_dcapital_103
-603,-1191,38,-805,45,45,0,CASTLE_20_4_DCAPITAL_20_5,도심성벽 제 8구역 -> 제로멜 공원,f_dcapital_20_5
-604,0,0,0,45,45,0,CASTLE_20_4_CASTLE_97,도심성벽 제 8구역 -> 도심성벽 제 10구역,f_castle_97
-605,-2479,-765,-246,45,45,0,REMAINS37_TO_FIRETOWER691,비석로 -> 지마 수코트,d_firetower_69_1
-606,-466,48,-1204,45,45,0,BRACKEN43_1_BRACKEN43_2,아르커스 숲 -> 파마르 숲,f_bracken_43_2
-607,317,240,1586,45,45,0,BRACKEN432_BRACKEN433,파마르 숲 -> 지부리나스 숲,f_bracken_43_3
-608,-1645,82,874,45,45,0,BRACKEN432_CORAL441,파마르 숲 -> 제테오 해안,f_coral_44_1
-609,1430,24,-484,45,45,0,BRACKEN433_BRACKEN432,지부리나스 숲 -> 파마르 숲,f_bracken_43_2
-610,383,155,1135,45,45,0,BRACKEN433_BRACKEN434,지부리나스 숲 -> 몰로게오 숲,f_bracken_43_4
-611,-2175,130,234,45,45,0,BRACKEN433_LIMESTONECAVE551,지부리나스 숲 -> 종유동굴 55_1,d_limestonecave_55_1
-612,181,318,-1292,45,45,0,BRACKEN434_BRACKEN433,몰로게오 숲 -> 지부리나스 숲,f_bracken_43_3
-613,-1274,574,-2145,45,45,0,WHITETREES23_1_TO_KATYN18,에메트 숲 -> 쿨레 고개,f_katyn_18
-614,1601,12,1313,45,45,0,WS_KATYN18_TO_WHITETREES23_1,쿨레 고개 -> 에메트 숲,f_whitetrees_23_1
-615,1444,9,267,45,45,0,WHITETREES23_1_TO_MAPLE23_2,에메트 숲 -> 피스티스 숲,f_maple_23_2
-616,-1130,159,-1436,45,45,0,WHITETREES23_1_TO_WHITETREES21_2,에메트 숲 -> 노브리어 숲,f_whitetrees_21_2
-617,1607,128,-979,45,45,0,WHITETREES23_1_TO_WHITETREES22_2,에메트 숲 -> 테켈 피난지,f_whitetrees_22_2
-618,-964,53,-1204,45,45,0,MAPLE23_2_TO_WHITETREES23_1,피스티스 숲 -> 에메트 숲,f_whitetrees_23_1
-619,-624,261,1314,45,45,0,MAPLE23_2_TO_MAPLE25_3,피스티스 숲 -> 라다르 숲,f_maple_25_3
-620,326,1,-1215,45,45,0,MAPLE23_2_TO_WHITETREES23_3,피스티스 숲 -> 실라 숲,f_whitetrees_23_3
-621,-634,261,1318,45,45,0,MAPLE23_2_TO_MAPLE24_3,피스티스 숲 -> 단풍숲 24_3,f_maple_24_3
-622,-1321,0,291,45,45,0,WHITETREES23_3_TO_MAPLE23_2,실라 숲 -> 피스티스 숲,f_maple_23_2
-623,1427,-35,-607,45,45,0,WHITETREES23_3_TO_WHITETREES56_1,실라 숲 -> 미쉐칸 숲,f_whitetrees_56_1
-624,0,0,0,45,45,0,WHITETREES23_3_TO_MAPLE24_1,실라 숲 -> 단풍숲 24_1,f_maple_24_1
-625,1253,-870,-1310,45,45,0,FIRETOWER691_1_TO_FIRETOWER691_2,지마 수코트,d_firetower_69_1
-626,-1726,-868,-346,45,45,0,FIRETOWER691_2_TO_FIRETOWER691_1,지마 수코트,d_firetower_69_1
-627,1492,-792,669,45,45,0,FIRETOWER691_3_TO_FIRETOWER691_4,지마 수코트,d_firetower_69_1
-628,-1593,-868,-191,45,45,0,FIRETOWER691_4_TO_FIRETOWER691_3,지마 수코트,d_firetower_69_1
-629,916,167,1548,45,45,0,BRACKEN432_BRACKEN431,파마르 숲 -> 아르커스 숲,f_bracken_43_1
-630,62,313,863,45,45,0,BRACKEN43_1_3CMLAKE83,아르커스 숲 -> 펠케 신전터,f_3cmlake_83
-631,1679,-870,-1189,45,45,0,FIRETOWER_69_2_FIRETOWER_69_1,마르튀스 저장실 -> 지마 수코트,d_firetower_69_1
-632,2523,324,-291,45,45,0,LSCAVE551_TO_BRACKEN433,알렘빅 동굴 -> 지부리나스,f_bracken_43_3
-633,-668,215,1244,45,45,0,DCAPITAL103_TO_CASTLE20_3,타니엘 1세 기념구 -> 내성벽 제 8구역,f_castle_20_3
-634,-1596,-192,385,45,45,0,DCAPITAL103_TO_CASTLE20_4,타니엘 1세 기념구 -> 도심성벽 제 8구역,f_castle_20_4
-635,0,0,0,45,45,0,DCAPITAL103_TO_DCAPITAL104,타니엘 1세 기념구 -> 폐도104,f_dcapital_104
-636,0,0,0,45,45,0,DCAPITAL103_TO_DCAPITAL105,타니엘 1세 기념구 -> 폐도105,f_dcapital_105
-637,-553,111,1436,45,45,0,WHITETREES561_WHITETREES233,미쉐칸 숲-> 실라 숲,f_whitetrees_23_3
-638,0,0,0,45,45,0,WHITETREES561_WHITETREES223,미쉐칸 숲-> 흰나무숲22_3,f_whitetrees_22_3
-639,-1467,170,-1041,45,45,0,WHITETREES561_ABBEY225,미쉐칸 숲-> 나르바스 사원 별관,d_abbey_22_5
-640,338,137,-767,45,45,0,TABLELAND74_CASTLE_20_3,강철 고원 -> 내성벽 제 8구역,f_castle_20_3
-641,-1602,363,-526,45,45,0,MAPLE_25_1_TO_CASTLE_20_3,네토 숲 -> 내성벽 제 8구역,f_castle_20_3
-642,1239,641,1037,45,45,0,MAPLE_25_1_TO_MAPLE_25_2,네토 숲 -> 스팔빈가스 숲,f_maple_25_2
-643,-2137,-41,751,45,45,0,MAPLE_25_2_TO_MAPLE_25_1,스팔빈가스 숲 -> 네토 숲,f_maple_25_1
-644,1645,332,641,45,45,0,MAPLE_25_2_TO_MAPLE_25_3,스팔빈가스 숲 -> 라다르 숲,f_maple_25_3
-645,-1639,-20,-400,45,45,0,MAPLE_25_3_TO_MAPLE_25_2,라다르 숲 -> 스팔빈가스 숲,f_maple_25_2
-646,1533,-134,-1325,45,45,0,MAPLE_25_3_TO_MAPLE_23_2,라다르 숲 -> 피스티스 숲,f_maple_23_2
-647,0,0,0,45,45,0,MAPLE_25_3_TO_MAPLE_24_3,라다르 숲 -> 단풍숲 24_3,f_maple_24_3
-648,1561,-22,586,45,45,0,MAPLE_25_3_TO_CATACOMB_25_4,라다르 숲 -> 티메리스 사원,id_catacomb_25_4
-649,-1841,698,551,45,45,0,CATACOMB_25_4_TO_MAPLE_25_3,티메리스 사원 -> 라다르 숲,f_maple_25_3
-650,-337,-5,1173,45,45,0,DCAPITAL_20_5_TO_CASTLE_20_4,제로멜 공원 -> 도심성벽 제 8구역,f_castle_20_4
-651,-456,172,-500,45,45,0,DCAPITAL_20_5_TO_DCAPITAL_20_6,제로멜 공원 -> 요나엘 기념구,f_dcapital_20_6
-652,1297,294,-708,45,45,0,DCAPITAL_20_6_TO_DCAPITAL_20_5,요나엘 기념구 -> 제로멜 공원,f_dcapital_20_5
-653,-2391,41,-156,45,45,0,3CMLAKE83_BRACKEN43_1,펠케 신전터 -> 아르커스 숲,f_bracken_43_1
-654,1021,79,-1203,45,45,0,WHITETREES_21_1_WHITETREES_21_2,유데이안 숲 -> 노브리어 숲,f_whitetrees_21_2
-655,0,0,0,45,45,0,WHITETREES_21_1_CASTLE_19_1,유데이안 숲 -> 도심성벽 제 3구역,d_castle_19_1
-656,414,11,1544,45,45,0,WHITETREES_21_2_WHITETREES_23_1,노브리어 숲 -> 에메트 숲,f_whitetrees_23_1
-657,-1934,0,992,45,45,0,WHITETREES_21_2_WHITETREES_21_1,노브리어 숲 -> 유데이안 숲,f_whitetrees_21_1
-658,2550,-5,-481,45,45,0,WHITETREES_21_2_WHITETREES_22_1,노브리어 숲 -> 테레쉬 숲,f_whitetrees_22_1
-659,84,90,299,45,45,0,FIRETOWER691_TO_FIRETOWER692,마르튀스 저장소,d_firetower_69_2
-660,1162,1060,-2617,45,45,0,FIRETOWER691_TO_REMAINS37,지마 수코트 -> 비석로,f_remains_37
-661,2235,167,1602,45,45,0,TO_MAPLE_25_1,네토 숲 비밀공간->네토 숲,f_maple_25_1
-662,-522,-205,1567,45,45,0,SIAULIAI_50_1_TO_PRISON_75_1,기티스의 개척지 -> 나콘 감옥,d_prison_75_1
-663,44,0,-1844,45,45,0,PRISON_75_1_TO_SIAULIAI_50_1,나콘 감옥 -> 기티스의 개척지,f_siauliai_50_1
-664,-981,372,791,45,45,0,SIAULIAI_46_4_TO_STARTOWER_76_1,다이나 양봉지 -> 나타흐 망루,d_startower_76_1
-665,1218,188,-157,45,45,0,STARTOWER_76_1_TO_SIAULIAI_46_4,나타흐 망루 -> 다이나 양봉지,f_siauliai_46_4
-666,-737,38,-971,45,45,0,FLASH_61_TO_VELNIASPRISON_77_1,루클리스 거리 -> 타테나이 수감소,d_velniasprison_77_1
-667,-620,435,1353,45,45,0,VELNIASPRISON_77_1_TO_FLASH_61,타테나이 수감소 -> 루클리스 거리,f_flash_61
-668,1254,145,265,45,45,0,TABLELAND_28_2_TO_CATHEDRAL_78_1,스토가스 고원 -> 네이포트 성당 동관,d_cathedral_78_1
-669,-276,38,-638,45,45,0,CATHEDRAL_78_1_TO_TABLELAND_28_2,네이포트 성당 동관 -> 스토가스 고원,f_tableland_28_2
-670,702,1,629,45,45,0,ORCHARD_32_4_TO_LIMESTONECAVE_73_1,세이르 숲 -> 타보르 동굴,d_limestonecave_73_1
-671,-1587,73,-828,45,45,0,LIMESTONECAVE_73_1_TO_ORCHARD_32_4,타보르 동굴 -> 세이르 숲,f_orchard_32_4
-672,158,200,-1988,45,45,0,SIAULIAI_15_RE_TO_ZACHARIEL_79_1,덧댄다리 숲 -> 샤레저 묘실,d_zachariel_79_1
-673,-449,1015,2186,45,45,0,ZACHARIEL_79_1_TO_SIAULIAI_15_RE,샤레저 묘실 -> 덧댄다리 숲,f_siauliai_15_re
-674,-45,264,-3075,45,45,0,ZACHARIEL_79_1_TO_ZACHARIEL_79_2,샤레저 묘실 -> 네탄멜레크 영묘,d_zachariel_79_2
-675,626,-60,715,45,45,0,ZACHARIEL_79_2_TO_ZACHARIEL_79_1,네탄멜레크 영묘 -> 샤레저 묘실,d_zachariel_79_1
-676,38,52,-2183,45,45,0,CATACOMB_80_1_TO_CATACOMB_80_2,랜시드 미로 -> 밸러암 주둔지,d_catacomb_80_2
-677,-34,175,-1195,45,45,0,CATACOMB_80_2_TO_CATACOMB_80_1,밸러암 주둔지 -> 랜시드 미로,d_catacomb_80_1
-678,-864,273,-2256,45,45,0,CATACOMB_80_2_TO_CATACOMB_80_3,밸러암 주둔지 -> 미크마쉬 사원,d_catacomb_80_3
-679,-417,-74,-1663,45,45,0,CATACOMB_80_3_TO_CATACOMB_80_2,미크마쉬 사원 -> 밸러암 주둔지,d_catacomb_80_2
-680,874,82,147,45,45,0,CATACOMB_80_1_TO_KATYN_45_3,랜시드 미로 -> 그리나스 구릉지,f_katyn_45_3
-681,-65,193,-2361,45,45,0,KATYN_45_3_TO_CATACOMB_80_1,그리나스 구릉지 -> 랜시드 미로,d_catacomb_80_1
-682,1421,406,1248,45,45,0,CORAL_44_1_TO_BRACKEN_43_2,제테오 해안 -> 파마르 숲,f_bracken_43_2
-683,335,91,2027,45,45,0,CORAL_44_1_TO_CORAL_44_2,제테오 해안 -> 아이테오 해안,f_coral_44_2
-684,578,85,-1295,45,45,0,CORAL_44_2_TO_CORAL_44_1,아이테오 해안 -> 제테오 해안,f_coral_44_1
-685,-1024,0,867,45,45,0,CORAL_44_2_TO_CORAL_44_3,아이테오 해안 -> 에페로타오 해안,f_coral_44_3
-686,-818,-66,-840,45,45,0,CORAL_44_3_TO_CORAL_44_2,에페로타오 해안 -> 아이테오 해안,f_coral_44_2
-687,-750,60,-255,45,45,0,WTREES212_TO_FLIBRARY481,노브리어 숲 -> 환상도서관481,d_fantasylibrary_48_1
-688,-805,125,-565,45,45,0,FLIBRARY481_TO_WTREES212,환상도서관481 -> 노브리어 숲,f_whitetrees_21_2
-689,824,-127,871,45,45,0,FLIBRARY481_TO_FLIBRARY482,환상도서관481 -> 환상도서관482,d_fantasylibrary_48_2
-690,-523,-85,-1238,45,45,0,FLIBRARY482_TO_FLIBRARY481,환상도서관482 -> 환상도서관481,d_fantasylibrary_48_1
-691,-913,271,-602,45,45,0,FLIBRARY482_TO_FLIBRARY483,환상도서관482 -> 환상도서관483,d_fantasylibrary_48_3
-692,1434,309,-84,45,45,0,FLIBRARY483_TO_FLIBRARY482,환상도서관483 -> 환상도서관482,d_fantasylibrary_48_2
-693,-1211,80,994,45,45,0,FLIBRARY483_TO_FLIBRARY484,환상도서관483 -> 환상도서관484,d_fantasylibrary_48_4
-694,-1398,163,1777,45,45,0,FLIBRARY484_TO_FLIBRARY483,환상도서관484 -> 환상도서관483,d_fantasylibrary_48_3
-695,-2031,18,-973,45,45,0,FLIBRARY484_TO_FLIBRARY485,환상도서관484 -> 환상도서관485,d_fantasylibrary_48_5
-696,168,138,396,45,45,0,FLIBRARY485_TO_FLIBRARY484,환상도서관485 -> 환상도서관484,d_fantasylibrary_48_4
-697,2237,-122,753,45,45,0,F_3CMLAKE_85_TO_F_3CMLAKE_26_1,바린웰 85수역 -> 란코 26수역,f_3cmlake_26_1
-698,-175,115,-1580,45,45,0,F_3CMLAKE_85_TO_F_3CMLAKE_86,바린웰 85수역 -> 바린웰 86수역,f_3cmlake_86
-699,-2064,159,144,45,45,0,F_3CMLAKE_86_TO_F_3CMLAKE_85,바린웰 86수역 -> 바린웰 85수역,f_3cmlake_85
-700,-340,218,-1636,45,45,0,F_3CMLAKE_86_TO_F_3CMLAKE_87,바린웰 86수역 -> 바린웰 87수역,f_3cmlake_87
-701,1683,41,887,45,45,0,F_3CMLAKE_87_TO_F_3CMLAKE_86,바린웰 87수역 -> 바린웰 86수역,f_3cmlake_86
-702,2359,212,1688,45,45,0,F_3CMLAKE_87_TO_D_STARTOWER_88,바린웰 87수역 -> 별의 탑 1층,d_startower_88
-703,-1704,72,357,45,45,0,D_LIMESTONECAVE_71_1_TO_D_LIMESTONECAVE_71_2,바우바스 동굴 -> 종유동굴 71_2,d_limestonecave_71_2
-704,1078,125,-1750,45,45,0,D_LIMESTONECAVE_71_1_TO_F_PILGRIMROAD_31_3,바우바스 동굴 -> 모치아 숲,f_pilgrimroad_31_3
-705,230,839,1988,45,45,0,D_LIMESTONECAVE_71_2_TO_D_LIMESTONECAVE_71_1,종유동굴 71_2 -> 종유동굴 71_1,d_limestonecave_71_1
-706,-879,604,-727,45,45,0,F_3CMLAKE_26_1_TO_F_CASTLE_20_1,란코 26수역  -> 외성벽 제 9구역,f_castle_20_1
-707,625,297,-1126,45,45,0,F_3CMLAKE_26_1_TO_F_3CMLAKE_85,란코 26수역  -> 바린웰 85수역,f_3cmlake_85
-708,635,-160,1817,45,45,0,F_3CMLAKE_26_1_TO_F_3CMLAKE_26_2,란코 26수역 -> 란코 22수역,f_3cmlake_26_2
-709,145,-125,-2345,45,45,0,F_3CMLAKE_26_2_TO_F_3CMLAKE_26_1,란코 22수역 -> 란코 26수역,f_3cmlake_26_1
-710,-1303,49,444,45,45,0,WHITETREES22_1_WHITETREES21_2,테레쉬 숲 -> 노브리어 숲,f_whitetrees_21_2
-711,706,331,1562,45,45,0,WHITETREES22_1_WHITETREES22_2,테레쉬 숲 -> 테켈 피난지,f_whitetrees_22_2
-712,-1768,246,928,45,45,0,WHITETREES22_2_WHITETREES22_1,테켈 피난지 -> 테레쉬 숲,f_whitetrees_22_1
-713,-111,216,1365,45,45,0,WHITETREES22_2_WHITETREES22_3,테켈 피난지 -> 이졸라챠 고원,f_whitetrees_22_3
-714,-1625,-53,-146,45,45,0,WHITETREES22_2_WHITETREES23_1,테켈 피난지 -> 에메트 숲,f_whitetrees_23_1
-715,-3,0,-1698,45,45,0,WHITETREES22_3_WHITETREES22_2,이졸라챠 고원 -> 테켈 피난지,f_whitetrees_22_2
-716,1775,-4,1304,45,45,0,WHITETREES22_3_ABBEY22_4,이졸라챠 고원 -> 나르바스 사원,d_abbey_22_4
-717,-1619,284,285,45,45,0,ABBEY22_4_WHITETREES22_3,나르바스 사원 -> 이졸라챠 고원,f_whitetrees_22_3
-718,28,0,1192,45,45,0,ABBEY22_4_ABBEY22_5,나르바스 사원 -> 나르바스 사원 별관,d_abbey_22_5
-719,-269,-34,-1218,45,45,0,ABBEY22_5_ABBEY22_4,나르바스 사원 별관 -> 나르바스 사원,d_abbey_22_4
-720,-1210,55,321,45,45,0,ABBEY22_5_WHITETREES56_1,나르바스 사원 별관 -> 미쉐칸 숲,f_whitetrees_56_1
-721,2733,333,214,45,45,0,D_STARTOWER_76_2_TO_D_STARTOWER_76_1,나자레느 탑 -> 나타흐 망루,d_startower_76_1
-730,0,0,0,45,45,0,WARP_DCAPITAL105_TO_DCAPITAL104,발티넬 기념구 -> 폐도 104,f_dcapital_104
-731,2185,-65,372,45,45,0,WARP_DCAPITAL105_TO_DCAPITAL106,발티넬 기념구 -> 글리헬 기념구,f_dcapital_106
-732,-1508,430,214,45,45,0,WARP_DCAPITAL105_TO_DCAPITAL103,발티넬 기념구 -> 타니엘 1세 기념구,f_dcapital_103
-733,388,45,-1379,45,45,0,WARP_DCAPITAL106_TO_DCAPITAL107,글리헬 기념구 -> 프리넬 기념구,f_dcapital_107
-734,-1683,105,102,45,45,0,WARP_DCAPITAL106_TO_DCAPITAL105,글리헬 기념구 -> 발티넬 기념구,f_dcapital_105
-735,0,0,0,45,45,0,WARP_DCAPITAL106_TO_DCAPITAL192,글리헬 기념구 -> 도심성벽 제 4구역,d_castle_19_2
-736,855,200,1717,45,45,0,WARP_DCAPITAL107_TO_DCAPITAL106,프리넬 기념구 -> 글리헬 기념구,f_dcapital_106
-737,0,0,0,45,45,0,WARP_DCAPITAL107_TO_DCAPITAL181,프리넬 기념구 -> 폐도 18_1,f_dcapital_18_1
-738,-2339,216,-198,45,45,0,D_STARTOWER_76_1_TO_D_STARTOWER_76_2,나타흐 망루 -> 나자레느 탑,d_startower_76_2
-739,-526,77,-547,45,45,0,CORAL_44_3_TO_ABBEY_35_4,에페로타오 해안 -> 엘고스 수도원 본원,d_abbey_35_4
-740,939,-107,-933,45,45,0,ABBEY_35_4_TO_CORAL_44_3,엘고스 수도원 본원 -> 에페로타오 해안,f_coral_44_3
-741,46,164,2274,45,45,0,D_STARTOWER_88_TO_F_3CMLAKE_87,별의 탑 1층 -> 바린웰 87수역,f_3cmlake_87
-742,1286,877,-1940,45,45,0,D_STARTOWER_88_TO_D_STARTOWER_89,별의 탑 1층 -> 별의 탑 4층,d_startower_89
-743,1814,86,-904,45,45,0,D_STARTOWER_89_TO_D_STARTOWER_90,별의 탑 4층 -> 별의 탑 12층,d_startower_90
-744,1193,411,3276,45,45,0,D_STARTOWER_89_TO_D_STARTOWER_88,별의 탑 4층 -> 별의 탑 1층,d_startower_88
-745,2479,1143,-1872,45,45,0,D_STARTOWER_90_TO_D_STARTOWER_91,별의 탑 12층 -> 별의 탑 20층,d_startower_91
-746,242,1311,-519,45,45,0,D_STARTOWER_90_TO_D_STARTOWER_89,별의 탑 12층 -> 별의 탑 4층,d_startower_89
-747,820,358,2348,45,45,0,D_STARTOWER_91_TO_D_STARTOWER_90,별의 탑 20층 -> 별의 탑 12층,d_startower_90
-748,-109,-193,307,45,45,0,D_STARTOWER_91_TO_D_STARTOWER_92,별의 탑 20층 -> 별의 탑 21층,d_startower_92
-749,-2207,1647,1625,45,45,0,D_STARTOWER_92_TO_D_STARTOWER_91,별의 탑 21층 -> 별의 탑 20층,d_startower_91
-750,-10,4,-88,45,45,0,KLAPEDA_TO_BEAUTYSHOP,클라페다 -> 뷰티샵,c_barber_dress
-751,-1061,240,616,45,45,0,BEAUTYSHOP_TO_KLAPEDA,뷰티샵 -> 클라페다,c_Klaipe
-752,-702,7,681,45,45,0,NICO811_REMAINS37_3,스타리 타운 -> 이스토라 유적지,f_remains_37_3
-753,1672,-81,-1924,45,45,0,NICO811_NICO812,스타리 타운 -> 펠라인 포스트 타운,f_nicopolis_81_2
-754,-1630,5,714,45,45,0,NICO812_NICO811,펠라인 포스트 타운 -> 스타리 타운,f_nicopolis_81_1
-755,-1061,240,616,45,45,0,NICO812_NICO813,펠라인 포스트 타운 -> 스펠토움 타운,f_nicopolis_81_3
-756,-2405,-69,-993,45,45,0,NICO813_NICO812,스펠토움 타운 -> 펠라인 포스트 타운,f_nicopolis_81_2
-757,1709,-15,-1384,45,45,0,REMAINS37_3_NICO811,이스토라 유적지 -> 스타리 타운,f_nicopolis_81_1
-758,-1854,698,915,45,45,0,PILGRIM313_TO_D_LIMESTONECAVE_71_1,모치아 숲 -> 바우바스 동굴,d_limestonecave_71_1
-2001,-1517,0,-1260,45,45,0,GuildColony_VELNIASP511_TO_FARM472,마족수감소 1구역->수로교 지역(콜로니전),GuildColony_f_farm_47_2
-2002,-1578,-62,998,45,45,0,GuildColony_FARM491_TO_FARM472,그린가의 장원->수로교 지역(콜로니전),GuildColony_f_farm_47_2
-2003,2403,221,-1256,45,45,0,GuildColony_FARM_47_3_TO_FARM_47_2,미르키티 농장->수로교 지역(콜로니전),GuildColony_f_farm_47_2
-2004,1728,-43,1026,45,45,0,GuildColony_FARM_47_1_TO_FARM_47_2,테넌츠 농장->수로교 지역(콜로니전),GuildColony_f_farm_47_2
-2010,-2034,109,-134,45,45,0,GuildColony_FARM_47_3_TO_FARM_47_4,미르키티 농장->아렐르노 남작령(콜로니전),GuildColony_f_siauliai_47_4
-2011,646,109,1508,45,45,0,GuildColony_FARM_47_1_TO_FARM_47_4,테넌츠 농장->아렐르노 남작령(콜로니전),GuildColony_f_siauliai_47_4
-2012,2449,210,-1222,45,45,0,GuildColony_SIAUL50_1_TO_FARM_47_4,기티스의 개척지->샤울레이47_4(콜로니전),GuildColony_f_siauliai_47_4
-2020,2313,347,115,45,45,0,GuildColony_PILGRIM_48_TO_PILGRIM_49,마나하스 -> 게나르 평원(콜로니전),GuildColony_f_pilgrimroad_49
-2021,-2223,317,-577,45,45,0,GuildColony_PILGRIM_47_TO_PILGRIM_49,필그림 들길 -> 게나르 평원(콜로니전),GuildColony_f_pilgrimroad_49
-2022,-98,347,1160,45,45,0,GuildColony_PILGRIM_50_TO_PILGRIM_49,제단로 -> 게나르 평원(콜로니전),GuildColony_f_pilgrimroad_49
-3001,-915,-100,420,45,45,0,RVR_BK_REST_TO_TABLE111,RvR유휴 -> 베다 고원,f_tableland_11_1
-3002,77,155,-1838,45,45,0,RVR_BK_TABLE111_TO_REST,베다 고원 -> RvR유휴,d_limestonecave_70_1_rest
-3003,-915,-100,420,45,45,0,RVR_BK_701_TO_TABLE111,보루타 -> 베다 고원,f_tableland_11_1
-3010,-597,105,-1026,45,45,0,NICO813_TO_IRREDIANS1131,스펠토움 타운 -> 이레디안의 피난처,d_irredians_113_1
-3011,-1695,15,663,45,45,0,IRREDIANS1131_TO_NICO813,이레디안의 피난처 -> 스펠토움 타운,f_nicopolis_81_3

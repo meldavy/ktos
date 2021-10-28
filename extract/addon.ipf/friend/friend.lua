@@ -2,21 +2,19 @@
 FRIEND_MINIMIZE_HEIGHT = 100;
 
 function FRIEND_ON_INIT(addon, frame)
-    -- open msg
+
+	addon:RegisterMsg("GAME_START_3SEC", "CHECK_FRIEND_NEW_INVITE");
 	addon:RegisterOpenOnlyMsg("REMOVE_FRIEND", "ON_REMOVE_FRIEND");
 	addon:RegisterOpenOnlyMsg("ADD_FRIEND", "ON_ADD_FRIEND");
 	addon:RegisterOpenOnlyMsg("GAME_START", "FRIEND_GAME_START");
 	addon:RegisterOpenOnlyMsg("UPDATE_FRIEND_LIST", "ON_UPDATE_FRIEND_LIST");
-	addon:RegisterOpenOnlyMsg("FRIEND_SESSION_CHANGE", "ON_FRIEND_SESSION_CHANGE");	
-	addon:RegisterOpenOnlyMsg("RELATED_SESSION_COUNT", "ON_UPDATE_FRIEND_LIST");	
+	addon:RegisterOpenOnlyMsg("FRIEND_SESSION_CHANGE", "ON_FRIEND_SESSION_CHANGE");
+	--addon:RegisterOpenOnlyMsg("RELATED_SESSION", "ON_RELATED_SESSION_LIST");
+	addon:RegisterOpenOnlyMsg("RELATED_SESSION_COUNT", "ON_UPDATE_FRIEND_LIST");
+	--addon:RegisterOpenOnlyMsg("RELATED_SESSION_COUNT", "ON_RELATED_SESSION_COUNT");
 	addon:RegisterOpenOnlyMsg("RELATED_HISTORY", "ON_UPDATE_FRIEND_LIST");
+
 	addon:RegisterOpenOnlyMsg("TREE_NODE_RCLICK", "ON_TREE_NODE_RCLICK");
-
-    -- common msg
-	addon:RegisterMsg("FRIEND_NAME_CHANGED", "ON_UPDATE_FRIEND_LIST");
-	addon:RegisterMsg("GAME_START_3SEC", "CHECK_FRIEND_NEW_INVITE");
-
-    FRIEND_EXPAND_UNIT = 10;
 	
 end
 
@@ -26,14 +24,13 @@ function ON_TREE_NODE_RCLICK(frame, msg, clickedGroupName, argNum)
 	local cnt = session.friends.GetFriendCount(FRIEND_LIST_COMPLETE);
 
 	for i = 0 , cnt - 1 do
-		local f = session.friends.GetFriendByIndex(FRIEND_LIST_COMPLETE, i);
-		if nil == f then
-			break;
-		end
-
+		local f = session.friends.GetFriendByIndex(FRIEND_LIST_COMPLETE, i);		
 		local groupname = f:GetGroupName()
+
 		if groupname == clickedGroupName then
+
 			local context = ui.CreateContextMenu("GROUP_EDIT_CONTEXT", "", 0, 0, 0, 0);
+
 			local groupDelScp = string.format("FRIEND_GROUP_CHANGE_NAME(\"%s\")", groupname);
 			ui.AddContextMenuItem(context, ScpArgMsg("FriendGroupChangeName"), groupDelScp);
 
@@ -44,15 +41,18 @@ function ON_TREE_NODE_RCLICK(frame, msg, clickedGroupName, argNum)
 			ui.OpenContextMenu(context);
 
 			break;
+
 		end
+
 	end
+
 end
 
 function FRIEND_GROUP_CHANGE_NAME(groupname)
 
 	local frame = ui.GetFrame('friend')
 	frame:SetUserValue("CHANGE_GROUP_NAME", groupname);
-	INPUT_STRING_BOX_CB(frame, ScpArgMsg("InputTeamNameToAddToGroup"), "EXED_FRIEND_CHANGE_GROUP_NAME", "",nil,nil,20); -- ÏµúÎåÄ Í∑∏Î£π ÏûÖÎ†• Ï†úÌïú Ïàò
+	INPUT_STRING_BOX_CB(frame, ScpArgMsg("InputTeamNameToAddToGroup"), "EXED_FRIEND_CHANGE_GROUP_NAME", "",nil,nil,20); -- √÷¥Î ±◊∑Ï ¿‘∑¬ ¡¶«— ºˆ
 end
 
 function EXED_FRIEND_CHANGE_GROUP_NAME(frame, groupname)
@@ -63,7 +63,7 @@ function EXED_FRIEND_CHANGE_GROUP_NAME(frame, groupname)
 	for i = 0 , cnt - 1 do
 		local f = session.friends.GetFriendByIndex(FRIEND_LIST_COMPLETE, i);		
 
-		if f ~= nil and oldgroupname == f:GetGroupName() then
+		if oldgroupname == f:GetGroupName() then
 			friends.RequestSetGroup(f:GetInfo():GetACCID(), groupname);
 		end
 	end
@@ -77,7 +77,7 @@ function FRIEND_GROUP_DELETE(groupname)
 	for i = 0 , cnt - 1 do
 		local f = session.friends.GetFriendByIndex(FRIEND_LIST_COMPLETE, i);		
 
-		if f ~= nil and  groupname == f:GetGroupName() then
+		if groupname == f:GetGroupName() then
 			friends.RequestSetGroup(f:GetInfo():GetACCID(), '');
 		end
 	end
@@ -85,32 +85,28 @@ function FRIEND_GROUP_DELETE(groupname)
 end
 
 function FRIEND_GAME_START(frame)
+
 	local normaltree = GET_CHILD_RECURSIVELY(frame, 'friendtree_normal','ui::CTreeControl')
 	local requesttree = GET_CHILD_RECURSIVELY(frame, 'friendtree_request','ui::CTreeControl')
 
 	normaltree:Clear();
-	normaltree:EnableDrawTreeLine(false);
-	normaltree:EnableDrawFrame(false);
-    normaltree:EnableScrollBar(0);
-	normaltree:SetFitToChild(true,100);
+	normaltree:EnableDrawTreeLine(false)
+	normaltree:EnableDrawFrame(false)
+	normaltree:SetFitToChild(true,100)
 	normaltree:SetFontName("brown_18_b");
 	normaltree:SetTabWidth(0);
 	normaltree:OpenNodeAll();
-    normaltree:SetUserValue('MAX_VISIBLE_INFO_COUNT', FRIEND_EXPAND_UNIT);
-
-    local moreFriendBtn = GET_CHILD_RECURSIVELY(frame, 'moreFriendBtn');
-    moreFriendBtn:SetEnable(1);
 
 	requesttree:Clear();
-	requesttree:EnableDrawTreeLine(false);
-	requesttree:EnableDrawFrame(false);
-    requesttree:EnableScrollBar(0);
-	requesttree:SetFitToChild(true,100);
+	requesttree:EnableDrawTreeLine(false)
+	requesttree:EnableDrawFrame(false)
+	requesttree:SetFitToChild(true,100)
 	requesttree:SetFontName("brown_18_b");
 	requesttree:SetTabWidth(0);
 	requesttree:OpenNodeAll();
-    
-    UPDATE_FRIEND_LIST_COMPLETE(frame, true);
+
+	ON_UPDATE_FRIEND_LIST(frame);
+	--ON_RELATED_SESSION_LIST(frame);
 end
 
 function UI_TOGGLE_FRIEND()
@@ -134,14 +130,10 @@ function CHECK_FRIEND_NEW_INVITE(frame)
 		helpBalloon:ShowWindow(1);
 		local sysFrame = ui.GetFrame("sysmenu");
 		local friendBtn = sysFrame:GetChild("friend");
-        local margin = friendBtn:GetMargin();
-        local x = margin.right;
-        local y = margin.bottom;        
-		x = x + (friendBtn:GetWidth() / 2);
-		y = y + friendBtn:GetHeight() + 5;
-        helpBalloon:SetGravity(ui.RIGHT, ui.BOTTOM);
-        helpBalloon:SetMargin(0, 0, x, y);
-
+		local x, y = GET_GLOBAL_XY(friendBtn);
+		x = x - (helpBalloon:GetWidth()/2);
+		y = y;
+		helpBalloon:SetOffset(x, y);
 		helpBalloon:SetDuration(5);
 	else
 		ui.CloseFrame("new_friend_msg");
@@ -153,7 +145,8 @@ function FRIEND_OPEN(frame)
 	
 end
 
-function ON_UPDATE_FRIEND_LIST(frame, msg, argStr, argNum)
+function ON_UPDATE_FRIEND_LIST(frame, msg)
+
 	UPDATE_FRIEND_LIST(frame);
 	CHECK_FRIEND_NEW_INVITE(frame);
 end
@@ -182,6 +175,7 @@ function ENABLE_SHOW_ONLY_ONLINE_FRIEND(parent, ctrl)
 end
 
 function SEARCH_FRIEND()
+
 	local frame = ui.GetFrame("friend");
 	UPDATE_FRIEND_LIST(frame)			
 end
@@ -195,9 +189,6 @@ function UPDATE_FRIEND_LIST(frame)
 
 	normaltree:Clear();
 	requesttree:Clear();
-
-    local moreFriendBtn = GET_CHILD_RECURSIVELY(frame, 'moreFriendBtn');
-    moreFriendBtn:SetEnable(1);
 	
 	local groupnamelist = {}
 	local cnt = session.friends.GetFriendCount(FRIEND_LIST_COMPLETE);
@@ -226,68 +217,20 @@ function UPDATE_FRIEND_LIST(frame)
 
 end
 
-function UPDATE_FRIEND_LIST_COMPLETE(frame, isFirst)
-    local showOnlyOnline = config.GetXMLConfig("Friend_ShowOnlyOnline");	
-	local normaltree = GET_CHILD_RECURSIVELY(frame, 'friendtree_normal','ui::CTreeControl');
-    if isFirst == true then
-	    normaltree:Clear();
-        local moreFriendBtn = GET_CHILD_RECURSIVELY(frame, 'moreFriendBtn');
-        moreFriendBtn:SetEnable(1);
-    end
-	
-	local groupnamelist = {};
-	local cnt = session.friends.GetFriendCount(FRIEND_LIST_COMPLETE);
-
-	for i = 0 , cnt - 1 do
-		local f = session.friends.GetFriendByIndex(FRIEND_LIST_COMPLETE, i);		
-		local groupname = f:GetGroupName();
-		if groupname ~= nil and groupname ~= "" and groupname ~= "None" and groupnamelist[groupname] == nil then			
-			if showOnlyOnline == 0 or (showOnlyOnline == 1 and f.mapID ~= 0) then
-				table.insert(groupnamelist,groupname);
-			end
-		end
-	end
-
-	for k, customgroupname in pairs(groupnamelist) do
-		BUILD_FRIEND_LIST(frame, FRIEND_LIST_COMPLETE, customgroupname, "custom");
-	end
-	BUILD_FRIEND_LIST(frame, FRIEND_LIST_COMPLETE, FRIEND_GET_GROUPNAME(FRIEND_LIST_COMPLETE));
-end
-
-function UPDATE_FRIEND_LIST_REQUEST(frame, isFirst)
-	local requesttree = GET_CHILD_RECURSIVELY(frame, 'friendtree_request','ui::CTreeControl')
-    if isFirst == true then
-        local topFrame = frame:GetTopParentFrame();
-        topFrame:SetUserValue('FIRST_LOAD_SUCCESS', 'YES');
-	    requesttree:Clear();
-    end
-	
-	BUILD_FRIEND_LIST(frame, FRIEND_LIST_REQUESTED, FRIEND_GET_GROUPNAME(FRIEND_LIST_REQUESTED));
-	BUILD_FRIEND_LIST(frame, FRIEND_LIST_REQUEST, FRIEND_GET_GROUPNAME(FRIEND_LIST_REQUEST));
-	BUILD_FRIEND_LIST(frame, FRIEND_LIST_REJECTED, FRIEND_GET_GROUPNAME(FRIEND_LIST_REJECTED));
-	BUILD_FRIEND_LIST(frame, FRIEND_LIST_BLOCKED, FRIEND_GET_GROUPNAME(FRIEND_LIST_BLOCKED));
-end
-
 function BUILD_FRIEND_LIST(frame, listType, groupName, iscustom)
 
 	local showOnlyOnline = config.GetXMLConfig("Friend_ShowOnlyOnline")
 
-	local treename = 'friendtree_normal';
-	local treegboxname = 'friendtree_normal_gbox';
-    local isNormalTree = true;
+	local treename = 'friendtree_normal'
+	local treegboxname = 'friendtree_normal_gbox'
 
 	if listType ~= FRIEND_LIST_COMPLETE then
 		treename = 'friendtree_request'
 		treegboxname = 'friendtree_request_gbox'
-        isNormalTree = false;
 	end
 
 	local tree = GET_CHILD_RECURSIVELY(frame, treename,'ui::CTreeControl')
 	local treegbox = GET_CHILD_RECURSIVELY(frame, treegboxname,'ui::CTreeControl')
-    local visibleInfoCnt = 100000000; -- default
-    if isNormalTree == true then
-        visibleInfoCnt = tree:GetUserIValue('MAX_VISIBLE_INFO_COUNT');
-    end
 
 	local slotWidth = ui.GetControlSetAttribute(GET_FRIEND_CTRLSET_NAME(listType), 'width');
 	local slotHeight = ui.GetControlSetAttribute(GET_FRIEND_CTRLSET_NAME(listType), 'height');
@@ -295,7 +238,7 @@ function BUILD_FRIEND_LIST(frame, listType, groupName, iscustom)
 	local friendListGroup = tree:FindByValue(groupName);
 	if tree:IsExist(friendListGroup) == 0 then
 		if iscustom == "custom" and listType == FRIEND_LIST_COMPLETE then
-			local grouptext = tree:CreateOrGetControl('richtext',groupName,0,0,200,30)
+			local grouptext = tree:CreateOrGetControl('richtext',groupName,0,0,200,30) 
 			friendListGroup = tree:Add(groupName, groupName);
 		else
 			friendListGroup = tree:Add(ScpArgMsg(groupName), groupName);
@@ -318,13 +261,14 @@ function BUILD_FRIEND_LIST(frame, listType, groupName, iscustom)
 		end
 
 		page:SetSlotSize(slotWidth, slotHeight)
-		page:SetFocusedRowHeight(-1, slotHeight); -- Ïó∞Íµ¨ ÌïÑÏöî.
+		page:SetFocusedRowHeight(-1, slotHeight); -- ø¨±∏ « ø‰.
 		page:SetFitToChild(true, 10);
 		page:SetSlotSpace(0, 0)
 		page:SetBorder(5, 0, 0, 0)
 		
 		
-		tree:Add(friendListGroup, page);
+		tree:Add(friendListGroup, page);	
+		--tree:SetNodeFont(friendListGroup,"white_18_ol")		
 	end
 
 	if listType == FRIEND_LIST_COMPLETE then
@@ -334,55 +278,56 @@ function BUILD_FRIEND_LIST(frame, listType, groupName, iscustom)
 	page:RemoveAllChild();
 	page:SetFocusedRow(-1);
 
-    local showCnt = 0;
 	local cnt = session.friends.GetFriendCount(listType);
 	for i = 0 , cnt - 1 do
-		local friendInfo = session.friends.GetFriendByIndex(listType, i);        	
-        if isNormalTree == false or showCnt < visibleInfoCnt then
-		    if (showOnlyOnline == 0) or 
-            (showOnlyOnline == 1 and friendInfo.mapID ~= 0) or
-            (showOnlyOnline == 1 and FRIEND_LIST_COMPLETE ~= listType) then
 
-			    local ismakenewset = false;
-			    if listType == FRIEND_LIST_COMPLETE then
+		local f = session.friends.GetFriendByIndex(listType, i);		
+		if showOnlyOnline == 0 or (showOnlyOnline == 1 and f.mapID ~= 0)
+		or  (showOnlyOnline == 1 and FRIEND_LIST_COMPLETE ~= listType) then
 
-				    local eachGroupName = friendInfo:GetGroupName();
-				    if iscustom == "custom" then
-					    if eachGroupName == groupName then
-						    ismakenewset = true;
-					    end
-				    else
-					    if eachGroupName == nil or eachGroupName == "" or eachGroupName == "None" then
-						    ismakenewset = true;
-					    end
-				    end
+			local ismakenewset = false;
 
-				    if ismakenewset == true then
-					    --Í≤ÄÏÉâ Í∏∞Îä•
-					    local edit = GET_CHILD_RECURSIVELY(frame, "friendSearch");
-					    local cap = edit:GetText();
-					    if string.len(cap) > 0 and ui.FindWithChosung(cap, friendInfo:GetInfo():GetFamilyName()) == false then
-						    ismakenewset = false;
-					    end 
-				    end
-			    else
-				    ismakenewset = true;
-			    end
+			if listType == FRIEND_LIST_COMPLETE then
 
-			    if ismakenewset == true then
-                    local ctrlSetName = GET_FRIEND_CTRLSET_NAME(listType);
-                    if listType == FRIEND_LIST_COMPLETE and friendInfo.mapID == 0 then
-                        ctrlSetName = ctrlSetName .. '_not_online';
-                    end
-				    local ctrlSet = page:CreateOrGetControlSet(ctrlSetName, "FR_" .. listType .. "_" .. friendInfo:GetInfo():GetACCID(), 0, 0, 0);
-				    if listType == FRIEND_LIST_COMPLETE and friendInfo.mapID > 0 then
-					    ctrlSet:Resize(ctrlSet:GetOriginalWidth(), FRIEND_MINIMIZE_HEIGHT);
-				    end                    
-				    UPDATE_FRIEND_CONTROLSET(ctrlSet, listType, friendInfo);
-                    showCnt = showCnt + 1;
-			    end
-		    end
-        end
+				local eachGroupName = f:GetGroupName()
+
+				if iscustom == "custom" then
+					if eachGroupName == groupName then
+						ismakenewset = true;
+					end
+				else
+
+					if eachGroupName == nil or eachGroupName == "" or eachGroupName == "None" then
+						ismakenewset = true;
+					end
+
+				end
+
+				if ismakenewset == true then
+					--∞Àªˆ ±‚¥…
+					local edit = GET_CHILD_RECURSIVELY(frame, "friendSearch");
+					local cap = edit:GetText();
+
+					if string.len(cap) > 0 and ui.FindWithChosung(cap, f:GetInfo():GetFamilyName() ) == false then
+						ismakenewset = false;
+					end 
+				end
+
+			else
+				ismakenewset = true;
+			end
+
+			if ismakenewset == true then
+
+				local ctrlSet = page:CreateOrGetControlSet(GET_FRIEND_CTRLSET_NAME(listType), "FR_" .. listType .. "_" .. f:GetInfo():GetACCID(), 0, 0);
+				if listType == FRIEND_LIST_COMPLETE then
+					ctrlSet:Resize(ctrlSet:GetOriginalWidth(),FRIEND_MINIMIZE_HEIGHT)
+				end
+				UPDATE_FRIEND_CONTROLSET(ctrlSet, listType, f);
+
+			end
+
+		end
 	end
 	
 	tree:OpenNodeAll();
@@ -411,7 +356,7 @@ function REJECT_FRIEND(parent, ctrl, str, num)
 	end	
 end
 
-function GET_INTERACTION_BADGE_IMAGENAME_BY_TYPE(type) -- ÎÇòÏ§ëÏóêÎäî Ïπ¥Ïö¥Ìä∏Ïóê Îî∞ÎùºÏÑú Î±ÉÏßÄ Ïù¥ÎØ∏ÏßÄÍ∞Ä Î∞îÎÄîÏßÄÎèÑ Î™®Î•∏Îã§.
+function GET_INTERACTION_BADGE_IMAGENAME_BY_TYPE(type) -- ≥™¡ﬂø°¥¬ ƒ´øÓ∆Æø° µ˚∂Ûº≠ πÓ¡ˆ ¿ÃπÃ¡ˆ∞° πŸ≤¡ˆµµ ∏∏•¥Ÿ.
 	
 	if type == PC_INTERACTION_PLAYWITH then
 		return 'friend_play'
@@ -423,7 +368,7 @@ function GET_INTERACTION_BADGE_IMAGENAME_BY_TYPE(type) -- ÎÇòÏ§ëÏóêÎäî Ïπ¥Ïö¥Ìä∏
 	
 end
 
-function GET_INTERACTION_BADGE_TOOLTIPSTR_BY_TYPE(type,count) -- ÎÇòÏ§ëÏóêÎäî Ïπ¥Ïö¥Ìä∏Ïóê Îî∞ÎùºÏÑú Î±ÉÏßÄ Ïù¥ÎØ∏ÏßÄÍ∞Ä Î∞îÎÄîÏßÄÎèÑ Î™®Î•∏Îã§.
+function GET_INTERACTION_BADGE_TOOLTIPSTR_BY_TYPE(type,count) -- ≥™¡ﬂø°¥¬ ƒ´øÓ∆Æø° µ˚∂Ûº≠ πÓ¡ˆ ¿ÃπÃ¡ˆ∞° πŸ≤¡ˆµµ ∏∏•¥Ÿ.
 	
 	if type == PC_INTERACTION_PLAYWITH then
 		return ScpArgMsg('BadgeTooltipSTR_PLAYWITH',"Count",count)
@@ -445,9 +390,40 @@ function UPDATE_FRIEND_CONTROLSET_BY_PCINFO(ctrlSet, mapID, channel, info, drawN
 	local map_name_text = ctrlSet:GetChild("map_name_text");
 	local map_name_channel_text = ctrlSet:GetChild("map_name_channel_text");
 	local level_text = GET_CHILD(ctrlSet, "level_text", "ui::CRichText");
+	local relationmarks = GET_CHILD(ctrlSet, "relationmarks", "ui::CRichText");
+	local relatedinfo = geClientInteraction.GetRelatedPCByAID(info:GetACCID());
+
+	if relatedinfo ~= nil and relationmarks ~= nil then
+		
+		local badegsypos = relationmarks:GetY() + relationmarks:GetHeight() + 10;
+		local badgeindex = 0;
+		local badgex = 10;
+		for j = 0 , PC_INTERACTION_COUNT - 1 do
+			local relatedCount = relatedinfo:GetInteractionCount(j);
 	
-	team_name_text:SetTextByKey("name", info:GetFamilyName());	
-	if mapID == 0 then
+			if relatedCount > 0 then
+				local str = GetInteractionTypeStr(j);
+				local badgeimagename = GET_INTERACTION_BADGE_IMAGENAME_BY_TYPE(j)
+				local texttooltip = GET_INTERACTION_BADGE_TOOLTIPSTR_BY_TYPE(j,relatedCount)
+
+				local badgeimage = ctrlSet:CreateOrGetControl('picture','badgepicture'..j, badgex + badgeindex * 90, badegsypos, 90, 90)
+				tolua.cast(badgeimage, "ui::CPicture");
+				badgeimage:SetImage(badgeimagename)
+				badgeimage:SetEnableStretch(1);
+				badgeimage:SetTextTooltip(texttooltip);
+
+				badgeindex = badgeindex + 1
+			end
+		end
+	end
+
+	team_name_text:SetTextByKey("name", info:GetFamilyName());
+
+	if  relationmarks ~= nil then
+		relationmarks:SetTextByKey("name", info:GetFamilyName());
+	end
+	
+	if mapID == 0 and  relationmarks ~= nil then -- Logout
 
 		team_name_text:SetColorTone("FF1f100b");		
 
@@ -455,6 +431,8 @@ function UPDATE_FRIEND_CONTROLSET_BY_PCINFO(ctrlSet, mapID, channel, info, drawN
 		
 		if map_name_text ~= nil then
 			map_name_text:SetColorTone("FF1f100b");
+			--map_name_text:SetTextByKey("name", ScpArgMsg("Logout"));
+
 			local diffsec = imcTime.GetDiffSecFromNow(info.logoutTime)
 
 			if diffsec < 0 or diffsec > 315360000 then
@@ -493,10 +471,9 @@ function UPDATE_FRIEND_CONTROLSET_BY_PCINFO(ctrlSet, mapID, channel, info, drawN
 		end
 
 		if job_text ~= nil then
-			local jobid = info:GetIconInfo().job;
-			local gender = info:GetIconInfo().gender;
+			local jobid = info:GetIconInfo().job
 			local jobCls = GetClassByType("Job", jobid);
-			job_text:SetText(GET_JOB_NAME(jobCls, gender));
+			job_text:SetText(jobCls.Name);
 			job_text:ShowWindow(1);
 		end
 
@@ -555,12 +532,14 @@ function FRIEND_PAGE_FOCUS(ctrlSet, button)
 	local row = page:GetObjectRow(ctrlSet);
 	local curFocus = page:GetFocusedRow();
 	local minimized = page:GetUserIValue("minimized");
-	local slotHeight = FRIEND_MINIMIZE_HEIGHT    
+	local slotHeight = FRIEND_MINIMIZE_HEIGHT
 
 	if ctrlSet:GetHeight() > FRIEND_MINIMIZE_HEIGHT then
+		--page:SetFocusedRowHeight(-1, slotHeight, 0.2, 0.7, 5);
 		page:SetFocusedRowHeight(-1, slotHeight);
 		page:SetUserValue("minimized", 1);
-		FREIND_PAGE_SET_DETAIL(ctrlSet, 0);
+		FRIEND_MINIMIZE_FOCUS(page);
+
 		button:SetText(ScpArgMsg('DownButtonText'))
 	else
 		
@@ -597,7 +576,7 @@ function FREIND_PAGE_SET_DETAIL(ctrlset, detailMode)
 
 	ctrlset:SetUserValue("DETAILMODE", detailMode);
 
-	if detailMode == 0 then    
+	if detailMode == 0 then
 		ctrlset:Resize(ctrlset:GetOriginalWidth(), FRIEND_MINIMIZE_HEIGHT);
 		return 0;
 	else
@@ -609,11 +588,43 @@ function FREIND_PAGE_SET_DETAIL(ctrlset, detailMode)
 end
 
 function ON_REMOVE_FRIEND(frame, msg, aid, listType)
+
 	ON_UPDATE_FRIEND_LIST(frame)
+
+	--[[
+	local groupbox = frame:GetChild("gamefriend");
+	local cnt = session.friends.GetFriendCount(listType);
+	if cnt == 0 then
+		groupbox:RemoveChild("FR_" .. listType .. "_TITLE");
+	end
+
+	groupbox:RemoveChild("FR_" .. listType .."_" .. tonumber(aid));
+	ALIGN_FRIEND_CONTROLS(groupbox);
+	CHECK_FRIEND_NEW_INVITE(frame);
+	]]
 end
 
 function ON_ADD_FRIEND(frame, msg, aid, listType)
-	ON_UPDATE_FRIEND_LIST(frame);	
+
+	ON_UPDATE_FRIEND_LIST(frame);
+	--[[
+	local cnt = session.friends.GetFriendCount(listType);
+	if cnt == 1 then
+		UPDATE_FRIEND_LIST(frame);
+		CHECK_FRIEND_NEW_INVITE(frame);
+
+		
+
+		return;
+	end
+
+	local groupbox = frame:GetChild("gamefriend");
+	local f = session.friends.GetFriendByAID(listType, aid);
+	local y = 0;
+	local ctrlSet = groupbox:CreateOrGetControlSet(GET_FRIEND_CTRLSET_NAME(listType), "FR_" .. listType .. "_" .. f:GetInfo():GetACCID(), ui.LEFT, ui.TOP, 10, y, 0, 0);
+	UPDATE_FRIEND_CONTROLSET(ctrlSet, listType, f);
+	ALIGN_FRIEND_CONTROLS(groupbox);
+	CHECK_FRIEND_NEW_INVITE(frame);]]
 end
 
 function ON_FRIEND_SESSION_CHANGE(frame, msg, aid, listType)
@@ -624,10 +635,11 @@ function ON_FRIEND_SESSION_CHANGE(frame, msg, aid, listType)
 	end
 	local showOnlyOnline = config.GetXMLConfig("Friend_ShowOnlyOnline")
 
-	if showOnlyOnline == 1 or f.mapID == 0 then
+	if showOnlyOnline == 1 and f.mapID == 0 then
 		ON_UPDATE_FRIEND_LIST(frame);
 		return;
 	end
+
 	local treename = 'friendtree_normal'
 
 	if listType ~= FRIEND_LIST_COMPLETE then
@@ -637,34 +649,10 @@ function ON_FRIEND_SESSION_CHANGE(frame, msg, aid, listType)
 	local tree = GET_CHILD_RECURSIVELY(frame, treename,'ui::CTreeControl')
 	
 	local pageCtrlName = "PAGE_" .. FRIEND_GET_GROUPNAME(listType);
-	if f:GetGroupName() ~= nil and f:GetGroupName() ~= "" then
-		pageCtrlName = "PAGE_" .. f:GetGroupName();
-	end
 	local page = tree:GetChild(pageCtrlName);
-	
-	if page == nil then
-		BUILD_FRIEND_LIST(frame, listType, f:GetGroupName(), "custom")
-		page = tree:GetChild(pageCtrlName);
-		if page == nil then
-			page = tree:GetChild("PAGE_" .. FRIEND_GET_GROUPNAME(listType));
-		end
-	end
-	local childName = "FR_" .. listType .. "_" .. f:GetInfo():GetACCID();
 
-	local ctrlSet = page:GetChild(childName);
-	if ctrlSet ~= nil then
-		page:RemoveChild(childName);
-	end
-	if f.mapID == 0 and ctrlSet:GetChild('logoutText') == nil then
-		ctrlSet = page:CreateOrGetControlSet('friend_not_online', childName, 0, 0);
-		
-	else --Ïò®ÎùºÏù∏ÏÉÅÌÉú
-		ctrlSet = page:CreateOrGetControlSet(GET_FRIEND_CTRLSET_NAME(listType), childName, 0, 0);
-		ctrlSet:Resize(ctrlSet:GetOriginalWidth(), FRIEND_MINIMIZE_HEIGHT);
-	end
-
+	local ctrlSet = page:GetChild("FR_" .. listType .. "_" .. f:GetInfo():GetACCID());
 	UPDATE_FRIEND_CONTROLSET(ctrlSet, listType, f);
-	
 end
 
 function OPEN_FRIEND_FRAME()
@@ -678,17 +666,10 @@ end
 
 function FRIEND_BLOCK(parent)
 	local frame = parent:GetTopParentFrame();
-	INPUT_STRING_BOX_CB(frame, ScpArgMsg("InputTeamNameToBlock"), "EXED_FRIEND_BLOCK", "",nil,nil,20); -- ÏµúÎåÄ Í∑∏Î£π ÏûÖÎ†• Ï†úÌïú Ïàò
+	INPUT_STRING_BOX_CB(frame, ScpArgMsg("InputTeamNameToBlock"), "EXED_FRIEND_BLOCK", "",nil,nil,20); -- √÷¥Î ±◊∑Ï ¿‘∑¬ ¡¶«— ºˆ
 end
 
 function EXED_FRIEND_REGISTER(frame, friendName)
-	if friendName ~= nil then
-		friendName = string.gsub(friendName, ' ', ''); -- Ïù¥Î¶ÑÏóê Í≥µÎ∞± ÏïàÎê®
-	end
-
-    if friendName == nil or friendName == '' then        
-        return;
-    end
 	friends.RequestRegister(friendName);
 end
 
@@ -699,7 +680,7 @@ end
 function FRIEND_SET_MEMO(aid)
 	local frame = ui.GetFrame('friend')
 	frame:SetUserValue("AID", aid);
-	INPUT_STRING_BOX_CB(frame, ScpArgMsg("InputTeamNameToAddToMemo"), "EXED_FRIEND_SET_MEMO", "",nil,nil,30); -- ÏµúÎåÄ ÏûÖÎ†• Ï†úÌïú Ïàò
+	INPUT_STRING_BOX_CB(frame, ScpArgMsg("InputTeamNameToAddToMemo"), "EXED_FRIEND_SET_MEMO", "",nil,nil,30); -- √÷¥Î ¿‘∑¬ ¡¶«— ºˆ
 end
 
 function EXED_FRIEND_SET_MEMO(frame, memo)
@@ -711,7 +692,7 @@ end
 function FRIEND_SET_GROUP(aid)
 	local frame = ui.GetFrame('friend')
 	frame:SetUserValue("AID", aid);
-	INPUT_STRING_BOX_CB(frame, ScpArgMsg("InputTeamNameToAddToGroup"), "EXED_FRIEND_SET_GROUP", "",nil,nil,20); -- ÏµúÎåÄ Í∑∏Î£π ÏûÖÎ†• Ï†úÌïú Ïàò
+	INPUT_STRING_BOX_CB(frame, ScpArgMsg("InputTeamNameToAddToGroup"), "EXED_FRIEND_SET_GROUP", "",nil,nil,20); -- √÷¥Î ±◊∑Ï ¿‘∑¬ ¡¶«— ºˆ
 end
 
 function EXED_FRIEND_SET_GROUP(frame, groupname)
@@ -721,28 +702,15 @@ function EXED_FRIEND_SET_GROUP(frame, groupname)
 end
 
 
-function UPDATE_FRIEND_CONTROLSET(ctrlSet, listType, friendInfo)
-	local info = friendInfo:GetInfo();    
+function UPDATE_FRIEND_CONTROLSET(ctrlSet, listType, f)
+	local info = f:GetInfo();
 	ctrlSet:SetUserValue("AID", info:GetACCID());
 
-    -- Ï†ëÏÜç ÏïàÌïú ÏπúÍµ¨Îäî Î≥ÑÎèÑ Ïª®Ìä∏Î°§ÏÖã Ï†ÅÏö©
-    if listType == FRIEND_LIST_COMPLETE and friendInfo.mapID == 0 then
-        local logoutText = ctrlSet:GetChild('logoutText');
-        local logoutTime = imcTime.GetDiffSecFromNow(info.logoutTime);
-                
-        logoutText:SetTextByKey('name', info:GetFamilyName());
-		logoutText:SetTextByKey('time', GET_DIFF_TIME_TXT(logoutTime));
-		ctrlSet:SetEventScript(ui.RBUTTONUP, "POPUP_FRIEND_COMPLETE_CTRLSET");
-        return;
-    end
-
-	local memo = friendInfo:GetMemo();
-	if memo == 'None' then
-		memo = ''
-	end
+	local memo = f:GetMemo();
 	local frame = ctrlSet:GetTopParentFrame();
 	
-	if listType == FRIEND_LIST_COMPLETE then	
+	if listType == FRIEND_LIST_COMPLETE then
+	
 		ctrlSet:SetEventScript(ui.RBUTTONUP, "POPUP_FRIEND_COMPLETE_CTRLSET");
 	elseif listType == FRIEND_LIST_REJECTED or listType == FRIEND_LIST_BLOCKED or listType == FRIEND_LIST_REQUEST then
 		ctrlSet:SetEventScript(ui.RBUTTONUP, "POPUP_FRIEND_DELETE_CTRLSET");
@@ -753,7 +721,7 @@ function UPDATE_FRIEND_CONTROLSET(ctrlSet, listType, friendInfo)
 		memortext:SetTextByKey('memo',memo);
 	end
 
-	UPDATE_FRIEND_CONTROLSET_BY_PCINFO(ctrlSet,  friendInfo.mapID, friendInfo.channel, info, true);
+	UPDATE_FRIEND_CONTROLSET_BY_PCINFO(ctrlSet,  f.mapID, f.channel, info, true);
 	
 end
 
@@ -821,15 +789,14 @@ function POPUP_FRIEND_COMPLETE_CTRLSET(parent, ctrlset)
 	if f.mapID ~= 0 then
 		local partyinviteScp = string.format("PARTY_INVITE(\"%s\")", info:GetFamilyName());
 		ui.AddContextMenuItem(context, ScpArgMsg("PARTY_INVITE"), partyinviteScp);
-		
-		--Î©îÎ™® Ï∂îÍ∞Ä
-		local memoScp = string.format("FRIEND_SET_MEMO(\"%s\")",aid);
-		ui.AddContextMenuItem(context, ScpArgMsg("FriendAddMemo"), memoScp);
 	end
 
 	local whisperScp = string.format("ui.WhisperTo('%s')", info:GetFamilyName());
 	ui.AddContextMenuItem(context, ScpArgMsg("WHISPER"), whisperScp);
 
+	--∏ﬁ∏ √ﬂ∞°
+	local memoScp = string.format("FRIEND_SET_MEMO(\"%s\")",aid);
+	ui.AddContextMenuItem(context, ScpArgMsg("FriendAddMemo"), memoScp);
 	
 	local groupnamelist = {}
 	local cnt = session.friends.GetFriendCount(FRIEND_LIST_COMPLETE);
@@ -845,8 +812,9 @@ function POPUP_FRIEND_COMPLETE_CTRLSET(parent, ctrlset)
 		end
 	end
 
-	local subcontext = ui.CreateContextMenu("SUB", "", 0, 0, 0, 0);
-	--Í∑∏Î£π ÏÑ§Ï†ï
+
+	local subcontext = ui.CreateContextMenu("SUB", "", 0, 0, 0, 0);	
+	--±◊∑Ï º≥¡§
 	
 	for k, customgroupname in pairs(groupnamelist) do
 		local groupScp = string.format("FRIEND_SET_GROUPNAME('%d',\"%s\")",tonumber(aid), customgroupname);
@@ -890,12 +858,12 @@ function POPUP_FRIEND_GROUP_CONTEXTMENU(aid)
 
 	for i = 0 , cnt - 1 do
 		local f = session.friends.GetFriendByIndex(FRIEND_LIST_COMPLETE, i);		
-		if nil ~= f then
-			local groupname = f:GetGroupName()
+		local groupname = f:GetGroupName()
 
-			if groupname ~= nil and groupname ~= "" and groupname ~= "None" and groupnamelist[groupname] == nil then
-				table.insert(groupnamelist,groupname)
-			end
+		if groupname ~= nil and groupname ~= "" and groupname ~= "None" and groupnamelist[groupname] == nil then
+			
+			table.insert(groupnamelist,groupname)
+			
 		end
 	end
 
@@ -906,7 +874,7 @@ function POPUP_FRIEND_GROUP_CONTEXTMENU(aid)
 
 	local context = ui.CreateContextMenu("FRIEND_SET_GROUP_CONTEXT", "", 100, 100, 100, 100);
 
-	--Í∑∏Î£π ÏÑ§Ï†ï
+	--±◊∑Ï º≥¡§
 	
 	for k, customgroupname in pairs(groupnamelist) do
 		local groupScp = string.format("FRIEND_SET_GROUPNAME('%d','%s')",tonumber(aid), customgroupname);
@@ -916,22 +884,4 @@ function POPUP_FRIEND_GROUP_CONTEXTMENU(aid)
 	ui.AddContextMenuItem(context, ScpArgMsg("Cancel"), "None");
 	ui.OpenContextMenu(context);
 
-end
-
-function FRIEND_TAB_CHANGE_REQUEST(parent, groupbox)
-    local topFrame = parent:GetTopParentFrame();
-    local isFirst = true;
-    if topFrame:GetUserValue('FIRST_LOAD_SUCCESS') == 'YES' then
-        isFirst = false;
-    end
-    UPDATE_FRIEND_LIST_REQUEST(topFrame, isFirst);
-end
-
-function FRIEND_MORE_FRIEND_CLICK(parent, ctrl)
-    local topFrame = parent:GetTopParentFrame();
-    local normalTree = GET_CHILD_RECURSIVELY(topFrame, 'friendtree_normal');
-    local currentCnt = normalTree:GetUserIValue('MAX_VISIBLE_INFO_COUNT');
-    normalTree:SetUserValue('MAX_VISIBLE_INFO_COUNT', currentCnt + FRIEND_EXPAND_UNIT);
-    UPDATE_FRIEND_LIST_COMPLETE(topFrame, false);
-    DISABLE_BUTTON_DOUBLECLICK(topFrame:GetName(), ctrl:GetName(), 2);
 end

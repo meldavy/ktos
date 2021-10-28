@@ -442,3 +442,10 @@ function ABIL_CLERIC18_PRICE(pc, abilName, abilLevel, maxLevel)
 	
 end
 
+function ABIL_ADDBUFFCOUNT_PRICE(pc, abilName, abilLevel, maxLevel)
+    local price = 10000
+    local time = 0
+
+	return price, time;
+end
+

@@ -30,11 +30,6 @@
                             </ToolScp>
                         </execList>
                     </Event>
-                    <Event execCount="1" eventName="SavePCList">
-                        <execList>
-                            <ToolScp Scp="EARTH_TOWER_SAVE_PC_LIST" Client="NO" UseSleep="NO"/>
-                        </execList>
-                    </Event>
                 </StageEvents>
             </Stage>
             <Stage Name="FAIL" AutoStart="0">
@@ -46,9 +41,6 @@
                         <Str Str="대지의 탑 임무 실패!{nl}30초 후에 퇴장합니다"/>
                         <Str Str="raid_fail"/>
                         <Num Num="30"/>
-                    </ToolScp>
-                    <ToolScp Scp="MGAME_EARTH_TOWER_LOG" Client="NO" UseSleep="NO">
-                        <Str Str="Fail"/>
                     </ToolScp>
                 </StartScpList>
                 <ObjList/>
@@ -87,9 +79,6 @@
                         <Str Str="첫 번째 목표가 시작되었습니다{nl}투르타이를 처치하세요"/>
                         <Str Str="stage_start"/>
                         <Num Num="20"/>
-                    </ToolScp>
-                    <ToolScp Scp="MGAME_EARTH_TOWER_LOG" Client="NO" UseSleep="NO">
-                        <Str Str="Start"/>
                     </ToolScp>
                 </StartScpList>
                 <ObjList>
@@ -308,10 +297,6 @@
                             </ToolScp>
                             <ToolScp Scp="GAME_ST_EVT_EXEC_STAGE_CLEAR" Client="NO" UseSleep="NO">
                                 <Str Str="CNT"/>
-                            </ToolScp>
-                            <ToolScp Scp="MGAME_RANK_RESET_POINT_SETTING" Client="NO" UseSleep="NO">
-                                <Num Num="5"/>
-                                <Str Str="LegendRaid: M_GTOWER_1_15F"/>
                             </ToolScp>
                         </execList>
                     </Event>
@@ -750,10 +735,6 @@
                             <ToolScp Scp="GAME_ST_EVT_EXEC_STAGE_START" Client="NO" UseSleep="NO">
                                 <Str Str="FAIL"/>
                             </ToolScp>
-                            <ToolScp Scp="GAME_ST_EVT_FAIL" Client="NO" UseSleep="NO">
-                                <Str Str="모든 플레이어가 전투 불능 상태가 되었습니다."/>
-                                <Str Str="확인을 누르시면 입장했던 곳으로 이동합니다."/>
-                            </ToolScp>
                             <ToolScp Scp="GAME_ST_EVT_EXEC_STAGE_CLEAR" Client="NO" UseSleep="NO">
                                 <Str Str="CNT"/>
                             </ToolScp>
@@ -824,6 +805,9 @@
                             <ToolScp Scp="GAME_ST_EVT_EXEC_STAGE_DISABLE" Client="NO" UseSleep="NO">
                                 <Str Str="CHECK"/>
                             </ToolScp>
+                            <ToolScp Scp="REWARD_EARTH_TOWER" Client="NO" UseSleep="NO">
+                                <Str Str="GT_SELECT_STAGE_15"/>
+                            </ToolScp>
                         </execList>
                     </Event>
                     <Event execCount="1" eventName="TIMEOUT">
@@ -860,9 +844,6 @@
                     <ToolScp Scp="MGAME_SET_TIMEOUT" Client="NO" UseSleep="NO">
                         <Num Num="20"/>
                     </ToolScp>
-                    <ToolScp Scp="MGAME_EARTH_TOWER_LOG" Client="NO" UseSleep="NO">
-                        <Str Str="Success"/>
-                    </ToolScp>
                 </StartScpList>
                 <ObjList>
                     <Obj Type="Monster" MonType="40001" Pos="-2444.40#268.91#4283.24" angle="91" genCount="1" genTime="20000" objectKey="0" autoDestroy="0" propList="&apos;Name&apos; &apos;대지의 탑 16층&apos; &apos;Enter&apos; &apos;G_TOWER_WARP_TO_16&apos; &apos;Range&apos; &apos;50&apos; ">
@@ -876,7 +857,7 @@
                             </StartList>
                         </SelfAI>
                     </Obj>
-                    <Obj Type="Monster" MonType="57272" Pos="-5229.09#268.91#-4146.50" angle="90" genCount="1" genTime="20000" objectKey="1" autoDestroy="0" propList="&apos;Faction&apos; &apos;Neutral&apos; &apos;Name&apos; &apos;UnvisibleName&apos; &apos;BTree&apos; &apos;None&apos; "/>
+                    <Obj Type="Monster" MonType="57272" Pos="-5229.09#268.91#-4146.50" angle="90" genCount="1" genTime="20000" objectKey="1" autoDestroy="0"/>
                 </ObjList>
                 <StageEvents>
                     <Event execCount="1" eventName="RunMgame">
@@ -901,9 +882,6 @@
                     <ToolScp Scp="MGAME_SET_TIMEOUT" Client="NO" UseSleep="NO">
                         <Num Num="60"/>
                     </ToolScp>
-                    <ToolScp Scp="MGAME_EARTH_TOWER_LOG" Client="NO" UseSleep="NO">
-                        <Str Str="End"/>
-                    </ToolScp>
                 </StartScpList>
                 <ObjList/>
                 <StageEvents>
@@ -915,13 +893,6 @@
                         </condList>
                         <execList>
                             <ToolScp Scp="MGAME_RETURN" Client="NO" UseSleep="NO"/>
-                        </execList>
-                    </Event>
-                    <Event execCount="1" eventName="Reward">
-                        <execList>
-                            <ToolScp Scp="REWARD_EARTH_TOWER" Client="NO" UseSleep="NO">
-                                <Str Str="GT_SELECT_STAGE_15"/>
-                            </ToolScp>
                         </execList>
                     </Event>
                 </StageEvents>
