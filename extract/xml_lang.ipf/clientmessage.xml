@@ -15758,6 +15758,7 @@
 		<Class ClassID="815309" ClassName="Personal_Housing_Reputation_Selct_2" Data=" 포인트 초과"/>
 		<Class ClassID="815310" ClassName="Personal_Housing_Reputation_Selct_3" Data=" 포인트"/>
 		<Class ClassID="815311" ClassName="Personal_Housing_Reputation_Selct_4" Data="각 지역의 명성도가 다음과 같이 변경되었습니다.{nl}{NUM1}{NUM1P}{nl}{NUM2}{NUM2P}{nl}{NUM3}{NUM3P}{nl}{NUM4}{NUM4P}{nl}{NUM5}{NUM5P}"/>
+		<Class ClassID="815312" ClassName="FirstActivePersonalHousing" Data="먼저 개인 하우징을 활성화해야 합니다."/>
 	</Category>
 	<Category Name="Ancient">
 		<Class ClassID="820000" ClassName="AncientMonRegItemUse" Data="{@st66d_y}{s20}{color}{monName}{/}{/}{/} 어시스터가 등록됩니다. 획득하시겠습니까?"/>
