@@ -5,10 +5,10 @@ end
 function LETICIA_CUBE_OPEN(frame)
 	local button = ui.GetFrame('minimized_leticia_button')
 	local lua_endTime = button:GetUserIValue('lua_endTime')
-	local cls = TryGetProp(GetClassByType('reward_tp', 1), "EndTime", "None")
+    local cls = TryGetProp(GetClassByType('leticia_date', 1), "EndTime", "None")    
 	local lua_endTime = date_time.get_lua_datetime_from_str(cls)
 	local lua_now = date_time.get_lua_now_datetime()
-
+    
 	if lua_now > lua_endTime then
 		return
 	end
