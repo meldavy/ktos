@@ -15621,7 +15621,7 @@
 		<Class ClassID="599051" ClassName="EVENT_2009_FULLMOON_INFO_MSG" Data="달맞이 주화 획득 현황{nl}일일 총 획득량 ({COIN}/300개){nl}일일 누적 접속 시간 ({TIME}분){nl}{#FF0000}※접속 시간으로 획득한 [이벤트] 달맞이 주화는 일일 총 획득량에 포함됩니다.{/}{nl}{#FF0000}※누적 접속 시간 1시간마다 [이벤트] 달맞이 주화 10개, 달맞이 포인트 3을 획득하실 수 있습니다.{/}"/>
 	</Category>
 	<Category Name="SilverGacha">
-		<Class ClassID="599201" ClassName="SilverGacha_AddMileage" Data="마신의 유혹 포인트가 증가하였습니다. 현재 포인트: {COUNT}"/>
+		<Class ClassID="599201" ClassName="SilverGacha_AddMileage" Data="마신의 유혹 포인트가 증가하였습니다.{nl} {nl}{@st66d_y}{s18}현재 포인트: {COUNT}"/>
 		<Class ClassID="599202" ClassName="SilverGachaShopName" Data="마신의 유혹 포인트 상점"/>
 		<Class ClassID="599203" ClassName="SilverGachaShopResult" Data="마신의 유혹 포인트 : {count1} -> {count2}"/>
 		<Class ClassID="599204" ClassName="SilverGachaNoEvent" Data="현재 진행중인 마신의 유혹 이벤트가 없습니다."/>

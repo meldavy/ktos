@@ -14,7 +14,7 @@
 		<!-- title -->
 		<groupbox name="main_frame" rect="0 0 1270 890" margin="0 58 0 0" layout_gravity="center top" skin="test_frame_low" hittest="false"/>
 		<groupbox name="title_frame" rect="0 0 1265 49" margin="0 58 0 0" layout_gravity="center top" skin="protection_frame" hittest="false"/>
-		<picture name="title_pic" rect="0 0 548 150" margin="0 0 0 0" layout_gravity="center top" image="lure_of_a_demon_title" hittest="false"/>
+		<picture name="title_pic" rect="0 0 580 160" margin="0 0 0 0" layout_gravity="center top" image="lure_of_a_demon_title" hittest="false"/>
 		<richtext name="title_text" rect="0 0 470 130" margin="0 60 0 0" layout_gravity="center top" caption="{@st43}{s22}마신의 유혹" hittest="false"/>
 		<button name="closeBtn" rect="0 0 35 35" margin="0 65 7 0" layout_gravity="right top" LBtnUpScp="ui.CloseFrame('silver_gacha')" clicksound="button_click_big" image="testclose_button" oversound="button_over" texttooltip="{@st59}창을 닫습니다{/}" MouseOffAnim="btn_mouseoff" MouseOnAnim="btn_mouseover" hittest="true"/>
 		<!-- time -->
