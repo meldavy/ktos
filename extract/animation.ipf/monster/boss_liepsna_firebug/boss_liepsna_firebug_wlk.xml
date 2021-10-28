@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ActionDesc>
+    <Sound frame="0.15" soundFile="mon_big_footstep_1"/>
+    <Sound frame="0.74" soundFile="mon_deathweaver_wlk"/>
+    <Sound frame="21.44" soundFile="mon_deathweaver_wlk"/>
+    <Sound frame="21.74" soundFile="mon_big_footstep_1"/>
+</ActionDesc>

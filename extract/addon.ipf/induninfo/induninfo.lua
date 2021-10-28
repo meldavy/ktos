@@ -187,7 +187,7 @@ function INDUNINFO_CREATE_CATEGORY(frame)
 
         btn:Resize(categoryBtnWidth, categoryCtrl:GetHeight());
         name:SetTextByKey("value", category);
-        if resetGroupID == -101 then
+        if resetGroupID == -101 or resetGroupID == 816 then
             countText:SetText(ScpArgMsg('ChallengeMode_HardMode_Count', 'Count', GET_CURRENT_ENTERANCE_COUNT(resetGroupID)))
         else
             countText:SetTextByKey('current', GET_CURRENT_ENTERANCE_COUNT(resetGroupID));
@@ -195,7 +195,11 @@ function INDUNINFO_CREATE_CATEGORY(frame)
         end
         
         local cyclePicImg = GET_CHILD_RECURSIVELY(categoryCtrl, 'cycleCtrlPic')   --주/일 표시 이미지
-        INDUNINFO_SET_CYCLE_PIC(cyclePicImg,cls,'_s')
+        if resetGroupID == 816 then -- 챌린지 모드 분열 자동매칭 관련 예외처리.
+            cyclePicImg:ShowWindow(0);
+        else
+            INDUNINFO_SET_CYCLE_PIC(cyclePicImg,cls,'_s')
+        end
 
         categoryCtrl:SetUserValue('RESET_GROUP_ID', resetGroupID);
         if firstBtn == nil then
@@ -476,15 +480,25 @@ function GET_CURRENT_ENTERANCE_COUNT(resetGroupID)
     end
     if indunCls.WeeklyEnterableCount ~= nil and indunCls.WeeklyEnterableCount ~= "None" and indunCls.WeeklyEnterableCount ~= 0 then
         if indunCls.UnitPerReset == 'PC' then
-            return(etc['IndunWeeklyEnteredCount_'..resetGroupID])   --매주 남은 횟수
+            return(etc['IndunWeeklyEnteredCount_'..resetGroupID]) --매주 남은 횟수
         else     
-            return(acc_obj['IndunWeeklyEnteredCount_'..resetGroupID])   --매주 남은 횟수
+            return(acc_obj['IndunWeeklyEnteredCount_'..resetGroupID]) --매주 남은 횟수
         end        
     else
         if indunCls.UnitPerReset == 'PC' then
-            return etc['InDunCountType_'..resetGroupID];            --매일 남은 횟수
+            return etc['InDunCountType_'..resetGroupID]; --매일 남은 횟수
         else
-            return acc_obj['InDunCountType_'..resetGroupID];            --매일 남은 횟수
+            if indunCls.DungeonType == "Challenge_Auto" then
+                if string.find(indunCls.ClassName, "Challenge_Division") == nil then
+                    -- 챌린지 자동매칭 남은 횟수
+                    return etc["ChallengeModeCompleteCount"]; 
+                else
+                    -- 챌린지 분열 자동매칭 남은 횟수
+                    return acc_obj["ChallengeMode_HardMode_EnableEntryCount"]; 
+                end
+            else
+                return acc_obj['InDunCountType_'..resetGroupID]; --매일 남은 횟수
+            end
         end
     end
 end
@@ -527,13 +541,17 @@ function GET_INDUN_MAX_ENTERANCE_COUNT(resetGroupID)
                     return indunCls.WeeklyEnterableCount;
                 end
             end
-            
             return a;
         end
         
         if indunCls.WeeklyEnterableCount ~= nil and indunCls.WeeklyEnterableCount ~= "None" and indunCls.WeeklyEnterableCount ~= 0 then
             return indunCls.WeeklyEnterableCount;  --매주 max
         else
+            if indunCls.DungeonType == "Challenge_Auto" then
+                if session.loginInfo.IsPremiumState(NEXON_PC) == true then
+                    return indunCls.PlayPerReset + 1; 
+                end
+            end
             return indunCls.PlayPerReset;          --매일 max
         end
     end
@@ -588,6 +606,8 @@ function GET_RESET_CYCLE_PIC_TYPE(cls,postFix)
 			cyclePicType = 'week';
 		elseif indunCls.DungeonType == "Solo_dungeon" then
 			cyclePicType = 'week';
+        elseif string.find(indunCls.ClassName, "Challenge_Division_Auto") ~= nil then
+            cyclePicType = "None";
         else
             cyclePicType = 'day';
         end
@@ -1050,8 +1070,8 @@ function INDUNINFO_MAKE_DETAIL_COMMON_INFO(frame,indunCls,resetGroupID)
     local posBox = GET_CHILD_RECURSIVELY(frame, 'posBox');
     DESTROY_CHILD_BYNAME(posBox, 'MAP_CTRL_');
     local mapList = StringSplit(TryGetProp(indunCls,"StartMap",""), '/');
-    -- 챌린지 분열 특이점 모드 예외처리
-    if resetGroupID == -101 then
+    -- 챌린지 분열 특이점 모드 & 분열 특이점 모드 자동매칭 예외처리
+    if resetGroupID == -101 or resetGroupID == 816 then
         local sysTime = geTime.GetServerSystemTime();
         -- 오늘 요일의 맵만 표시
         local curMapName = mapList[sysTime.wDayOfWeek + 1]
@@ -1095,7 +1115,7 @@ function INDUNINFO_SET_ENTERANCE_COUNT(frame,resetGroupID)
     --todo
     local countData = GET_CHILD_RECURSIVELY(frame, 'countData');
     local countData2 = GET_CHILD_RECURSIVELY(frame, 'countData2');
-    if resetGroupID == -101 then
+    if resetGroupID == -101 or resetGroupID == 816 then
         countData2:SetTextByKey('now', GET_CURRENT_ENTERANCE_COUNT(resetGroupID))
         countData:ShowWindow(0)
         countData2:ShowWindow(1)
@@ -1120,7 +1140,7 @@ function INDUNINFO_SET_RESTRICT_SKILL(frame,indunCls)
     if mapName ~= nil and mapName ~= "None" then
         local indunMap = GetClass("Map", mapName);
         local mapKeyword = TryGetProp(indunMap, "Keyword");
-        if string.find(mapKeyword, "IsRaidField") ~= nil then
+        if mapKeyword ~= nil and string.find(mapKeyword, "IsRaidField") ~= nil then
             restrictBox:ShowWindow(1);
             restrictBox:SetTooltipOverlap(1);
             local TOOLTIP_POSX = frame:GetUserConfig("TOOLTIP_POSX");
@@ -1193,7 +1213,7 @@ function INDUNINFO_SET_ADMISSION_ITEM(frame,indunCls)
     local nowAdmissionItemCount = GET_INDUN_ADMISSION_ITEM_COUNT(indunCls)
     if nowAdmissionItemCount <= 0 then
         countText:SetText(ScpArgMsg("IndunAdmissionItemReset"))
-        if indunCls.DungeonType == 'ChallengeMode_HardMode' then
+        if indunCls.DungeonType == 'ChallengeMode_HardMode' or string.find(indunCls.ClassName, "Challenge_Division_Auto") ~= nil then
             countData:ShowWindow(0);
             countData2:ShowWindow(1);
         else
@@ -1293,9 +1313,12 @@ function INDUNINFO_SORT_BY_LEVEL(parent, ctrl)
     end
     local MARGIN = 18
     local indunListBox = GET_CHILD_RECURSIVELY(topFrame, 'INDUN_LIST_BOX');    
+    local startY = 0;    
     local firstChild = indunListBox:GetChild('DETAIL_CTRL_'..indunListBox:GetUserValue('FIRST_INDUN_ID'));
+    if firstChild ~= nil then
     firstChild = tolua.cast(firstChild, 'ui::CControlSet');
-    local startY = firstChild:GetY();    
+        startY = firstChild:GetY();    
+    end
     for i = 1, #g_selectedIndunTable do
         local indunCls = g_selectedIndunTable[i];        
         local detailCtrl = indunListBox:GetChild('DETAIL_CTRL_'..indunCls.ClassID);        
@@ -1312,8 +1335,6 @@ function INDUNINFO_SORT_BY_LEVEL(parent, ctrl)
     end
     
     local firstSelectedID = indunListBox:GetUserIValue('FIRST_INDUN_ID');
-
-
     if resetGroupID < 0 then
         INDUNINFO_MAKE_DETAIL_INFO_BOX_OTHER(topFrame, firstSelectedID)
     else
@@ -2995,4 +3016,37 @@ function DELETE_ALL_TAB_ITEM(tab)
 	for i = 1,cnt do
 		tab:DeleteTab(0)
 	end
+end
+
+function REQ_CHALLENGE_AUTO_UI_OPEN(frame, ctrl)
+    -- 매칭 던전중이거나 pvp존이면 이용 불가
+    if session.world.IsIntegrateServer() == true or IsPVPField(pc) == 1 or IsPVPServer(pc) == 1 then
+        ui.SysMsg(ScpArgMsg('ThisLocalUseNot'))
+        return
+    end
+
+    -- 퀘스트나 챌린지 모드로 인해 레이어 변경되면 이용 불가
+    if world.GetLayer() ~= 0 then
+        ui.SysMsg(ScpArgMsg('ThisLocalUseNot'))
+        return
+    end
+
+    -- 레이드 지역에서 이용 불가
+    local zoneKeyword = TryGetProp(curMap, 'Keyword', 'None')
+    local keywordTable = StringSplit(zoneKeyword, ';')
+    if table.find(keywordTable, 'IsRaidField') > 0 or table.find(keywordTable, 'WeeklyBossMap') > 0 then
+        ui.SysMsg(ScpArgMsg('ThisLocalUseNot'))
+        return
+    end
+
+    local challengeType = 0
+    local indunClsID = tonumber(ctrl:GetUserValue('MOVE_INDUN_CLASSID'))
+    local indunCls = GetClassByType('Indun', indunClsID)
+    if TryGetProp(indunCls, 'DungeonType', 'None') ~= 'Challenge_Auto' then
+        return
+    end
+
+    ui.CloseFrame('induninfo')
+
+    ReqChallengeAutoUIOpen(indunClsID)
 end

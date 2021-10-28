@@ -34,6 +34,8 @@ ClassID,DrawRange,DrawTime,ArrowDirCnt,ClassName,DrawType,DrawColor,DrawBlinkCol
 21204,60,0.01,0,Warlock_Mastema,Circle,"0,250,0,255","0,250,0,255",,
 21201,40.75,0.01,0,Warlock_PoleofAgony,Circle,"0,250,0,255","0,250,0,255",,
 20002,37.5,0.01,0,Wizard_Lethargy,Circle,"0,250,0,255","0,250,0,255",,
+21812,85,0.01,0,Daoshi_FireCharm,Circle,"0,250,0,255","0,250,0,255",,
+21302,50,0.01,0,RuneCaster_Isa,Circle,"0,250,0,255","0,250,0,255",,
 30001,30,0.01,0,Archer_Multishot,Circle,"0,250,0,255","0,250,0,255",,
 31103,50,0.01,0,Cannoneer_SiegeBurst,Circle,"0,250,0,255","0,250,0,255",,
 31106,55,0.01,0,Cannoneer_SmokeGrenade,Circle,"0,250,0,255","0,250,0,255",,
@@ -47,6 +49,7 @@ ClassID,DrawRange,DrawTime,ArrowDirCnt,ClassName,DrawType,DrawColor,DrawBlinkCol
 30506,30,0.01,0,Wugushi_JincanGu,Circle,"0,250,0,255","0,250,0,255",,SCP_GET_RANGE_Wugushi_JincanGu
 30505,50,0.01,0,Wugushi_ThrowGuPot,Circle,"0,250,0,255","0,250,0,255",,
 30202,35,0.01,0,QuarrelShooter_ScatterCaltrop,Circle,"0,250,0,255","0,250,0,255",,
+32105,50,0.01,0,Arquebusier_Salute,Circle,"0,250,0,255","0,250,0,255",,
 41905,85,0.01,0,Crusader_Retaliation,Circle,"0,250,0,255","0,250,0,255",,
 40906,75,0.01,0,Druid_Chortasmata,Circle,"0,250,0,255","0,250,0,255",,
 40909,100,0.01,0,Druid_HengeStone,Circle,"0,250,0,255","0,250,0,255",,

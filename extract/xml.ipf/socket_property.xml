@@ -147,9 +147,9 @@
 		<Level Level="0" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="OptDesc/버티컬 슬래시 스킬 레벨 +1" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/버티컬 슬래시 스킬 레벨 +1" PropList_HandOrFoot_Penalty="None"/>
 		<Level Level="1" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="OptDesc/버티컬 슬래시 스킬 레벨 +1" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/버티컬 슬래시 스킬 레벨 +1" PropList_HandOrFoot_Penalty="None"/>
 	</Item>
-	<Item Name="Gem_Peltasta_UmboBlow">
-		<Level Level="0" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="OptDesc/엄보 블로 스킬 레벨 +1" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/엄보 블로 스킬 레벨 +1" PropList_HandOrFoot_Penalty="None"/>
-		<Level Level="1" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="OptDesc/엄보 블로 스킬 레벨 +1" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/엄보 블로 스킬 레벨 +1" PropList_HandOrFoot_Penalty="None"/>
+	<Item Name="Gem_Peltasta_Langort">
+		<Level Level="0" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="OptDesc/랑고르트 스킬 레벨 +1" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/랑고르트 스킬 레벨 +1" PropList_HandOrFoot_Penalty="None"/>
+		<Level Level="1" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="OptDesc/랑고르트 스킬 레벨 +1" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/랑고르트 스킬 레벨 +1" PropList_HandOrFoot_Penalty="None"/>
 	</Item>
 	<Item Name="Gem_Peltasta_RimBlow">
 		<Level Level="0" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="OptDesc/림 블로 스킬 레벨 +1" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/림 블로 스킬 레벨 +1" PropList_HandOrFoot_Penalty="None"/>
@@ -171,9 +171,9 @@
 		<Level Level="0" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="OptDesc/하이 가드 스킬 레벨 +1" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/하이 가드 스킬 레벨 +1" PropList_HandOrFoot_Penalty="None"/>
 		<Level Level="1" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="OptDesc/하이 가드 스킬 레벨 +1" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/하이 가드 스킬 레벨 +1" PropList_HandOrFoot_Penalty="None"/>
 	</Item>
-	<Item Name="Gem_Peltasta_ButterFly">
-		<Level Level="0" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="OptDesc/버터플라이 스킬 레벨 +1" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/버터플라이 스킬 레벨 +1" PropList_HandOrFoot_Penalty="None"/>
-		<Level Level="1" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="OptDesc/버터플라이 스킬 레벨 +1" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/버터플라이 스킬 레벨 +1" PropList_HandOrFoot_Penalty="None"/>
+	<Item Name="Gem_Murmillo_EvadeThrust">
+		<Level Level="0" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="OptDesc/이베이드 쓰러스트 스킬 레벨 +1" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/이베이드 쓰러스트 스킬 레벨 +1" PropList_HandOrFoot_Penalty="None"/>
+		<Level Level="1" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="OptDesc/이베이드 쓰러스트 스킬 레벨 +1" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/이베이드 쓰러스트 스킬 레벨 +1" PropList_HandOrFoot_Penalty="None"/>
 	</Item>
 	<Item Name="Gem_Peltasta_UmboThrust">
 		<Level Level="0" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="OptDesc/엄보 쓰러스트 스킬 레벨 +1" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/엄보 쓰러스트 스킬 레벨 +1" PropList_HandOrFoot_Penalty="None"/>
@@ -616,8 +616,8 @@
 		<Level Level="1" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="OptDesc/레인 스킬 레벨 +1" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/레인 스킬 레벨 +1" PropList_HandOrFoot_Penalty="None"/>
 	</Item>
 	<Item Name="Gem_Elementalist_FrostCloud">
-		<Level Level="0" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="OptDesc/스톰 더스트 스킬 레벨 +1" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/스톰 더스트 스킬 레벨 +1" PropList_HandOrFoot_Penalty="None"/>
-		<Level Level="1" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="OptDesc/스톰 더스트 스킬 레벨 +1" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/스톰 더스트 스킬 레벨 +1" PropList_HandOrFoot_Penalty="None"/>
+		<Level Level="0" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="OptDesc/블리자드 스톰 스킬 레벨 +1" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/블리자드 스톰 스킬 레벨 +1" PropList_HandOrFoot_Penalty="None"/>
+		<Level Level="1" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="OptDesc/블리자드 스톰 스킬 레벨 +1" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/블리자드 스톰 스킬 레벨 +1" PropList_HandOrFoot_Penalty="None"/>
 	</Item>
 	<Item Name="Gem_Archer_SwiftStep">
 		<Level Level="0" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="OptDesc/스위프트 스텝 스킬 레벨 +1" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/스위프트 스텝 스킬 레벨 +1" PropList_HandOrFoot_Penalty="None"/>
@@ -1004,8 +1004,8 @@
 		<Level Level="1" PropList_TopLeg="OptDesc/멜스티스 스킬 레벨 +1" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="None" PropList_HandOrFoot_Penalty="None"/>
 	</Item>
 	<Item Name="Gem_Bokor_Hexing">
-		<Level Level="0" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/헥싱 스킬 레벨 +1" PropList_HandOrFoot_Penalty="None"/>
-		<Level Level="1" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/헥싱 스킬 레벨 +1" PropList_HandOrFoot_Penalty="None"/>
+		<Level Level="0" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/쇠약의 저주 스킬 레벨 +1" PropList_HandOrFoot_Penalty="None"/>
+		<Level Level="1" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/쇠약의 저주 스킬 레벨 +1" PropList_HandOrFoot_Penalty="None"/>
 	</Item>
 	<Item Name="Gem_Bokor_Effigy">
 		<Level Level="0" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="OptDesc/에피지 스킬 레벨 +1" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/에피지 스킬 레벨 +1" PropList_HandOrFoot_Penalty="None"/>
@@ -1207,9 +1207,9 @@
 		<Level Level="0" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/컨빅션 스킬 레벨 +1" PropList_HandOrFoot_Penalty="None"/>
 		<Level Level="1" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/컨빅션 스킬 레벨 +1" PropList_HandOrFoot_Penalty="None"/>
 	</Item>
-	<Item Name="Gem_Peltasta_Langort">
-		<Level Level="0" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="OptDesc/랑고르트 스킬 레벨 +1" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/랑고르트 스킬 레벨 +1" PropList_HandOrFoot_Penalty="None"/>
-		<Level Level="1" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="OptDesc/랑고르트 스킬 레벨 +1" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/랑고르트 스킬 레벨 +1" PropList_HandOrFoot_Penalty="None"/>
+	<Item Name="Gem_Peltasta_UmboBlow">
+		<Level Level="0" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="OptDesc/엄보 블로 스킬 레벨 +1" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/엄보 블로 스킬 레벨 +1" PropList_HandOrFoot_Penalty="None"/>
+		<Level Level="1" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="OptDesc/엄보 블로 스킬 레벨 +1" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/엄보 블로 스킬 레벨 +1" PropList_HandOrFoot_Penalty="None"/>
 	</Item>
 	<Item Name="Gem_Corsair_PistolShot">
 		<Level Level="0" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="OptDesc/퀵 앤드 데드 스킬 레벨 +1" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/퀵 앤드 데드 스킬 레벨 +1" PropList_HandOrFoot_Penalty="None"/>
@@ -1408,8 +1408,8 @@
 		<Level Level="1" PropList_TopLeg="OptDesc/파이어 클러 스킬 레벨 + 1" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="None" PropList_HandOrFoot_Penalty="None"/>
 	</Item>
 	<Item Name="GEM_Elementalist_ElementalEssence">
-		<Level Level="0" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="OptDesc/엘리멘탈 에센스 스킬 레벨 + 1" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/엘리멘탈 에센스 스킬 레벨 + 1" PropList_HandOrFoot_Penalty="None"/>
-		<Level Level="1" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="OptDesc/엘리멘탈 에센스 스킬 레벨 + 1" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/엘리멘탈 에센스 스킬 레벨 + 1" PropList_HandOrFoot_Penalty="None"/>
+		<Level Level="0" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="OptDesc/엘리멘탈 버스트 스킬 레벨 + 1" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/엘리멘탈 버스트 스킬 레벨 + 1" PropList_HandOrFoot_Penalty="None"/>
+		<Level Level="1" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="OptDesc/엘리멘탈 버스트 스킬 레벨 + 1" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/엘리멘탈 버스트 스킬 레벨 + 1" PropList_HandOrFoot_Penalty="None"/>
 	</Item>
 	<Item Name="GEM_RuneCaster_Stan">
 		<Level Level="0" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="OptDesc/돌의 룬 스킬 레벨 + 1" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/돌의 룬 스킬 레벨 + 1" PropList_HandOrFoot_Penalty="None"/>
@@ -1543,13 +1543,13 @@
 		<Level Level="0" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/모다피닐 스킬 레벨 + 1" PropList_HandOrFoot_Penalty="None"/>
 		<Level Level="1" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/모다피닐 스킬 레벨 + 1" PropList_HandOrFoot_Penalty="None"/>
 	</Item>
-	<Item Name="GEM_Murmillo_FrenziedSlash">
-		<Level Level="0" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/프렌지드 슬래시 스킬 레벨 + 1" PropList_HandOrFoot_Penalty="None"/>
-		<Level Level="1" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/프렌지드 슬래시 스킬 레벨 + 1" PropList_HandOrFoot_Penalty="None"/>
+	<Item Name="GEM_Murmillo_FrenziedBurst">
+		<Level Level="0" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/프렌지드 버스트 스킬 레벨 + 1" PropList_HandOrFoot_Penalty="None"/>
+		<Level Level="1" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/프렌지드 버스트 스킬 레벨 + 1" PropList_HandOrFoot_Penalty="None"/>
 	</Item>
-	<Item Name="GEM_Murmillo_EvadeThrust">
-		<Level Level="0" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/이베이드 쓰러스트 스킬 레벨 + 1" PropList_HandOrFoot_Penalty="None"/>
-		<Level Level="1" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/이베이드 쓰러스트 스킬 레벨 + 1" PropList_HandOrFoot_Penalty="None"/>
+	<Item Name="GEM_Peltasta_ButterFly">
+		<Level Level="0" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/버터플라이 스킬 레벨 + 1" PropList_HandOrFoot_Penalty="None"/>
+		<Level Level="1" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/버터플라이 스킬 레벨 + 1" PropList_HandOrFoot_Penalty="None"/>
 	</Item>
 	<Item Name="GEM_Murmillo_Headbutt">
 		<Level Level="0" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/헤드버트 스킬 레벨 + 1" PropList_HandOrFoot_Penalty="None"/>
@@ -1744,12 +1744,12 @@
 		<Level Level="1" PropList_TopLeg="OptDesc/블러드 커스 스킬 레벨 + 1" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="None" PropList_HandOrFoot_Penalty="None"/>
 	</Item>
 	<Item Name="GEM_RuneCaster_Isa">
-		<Level Level="0" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/얼음의 룬 스킬 레벨 + 1" PropList_HandOrFoot_Penalty="None"/>
-		<Level Level="1" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/얼음의 룬 스킬 레벨 + 1" PropList_HandOrFoot_Penalty="None"/>
+		<Level Level="0" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/대지의 룬 스킬 레벨 + 1" PropList_HandOrFoot_Penalty="None"/>
+		<Level Level="1" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/대지의 룬 스킬 레벨 + 1" PropList_HandOrFoot_Penalty="None"/>
 	</Item>
 	<Item Name="GEM_RuneCaster_Thurisaz">
-		<Level Level="0" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/거인의 룬 스킬 레벨 + 1" PropList_HandOrFoot_Penalty="None"/>
-		<Level Level="1" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/거인의 룬 스킬 레벨 + 1" PropList_HandOrFoot_Penalty="None"/>
+		<Level Level="0" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/척력의 룬 스킬 레벨 + 1" PropList_HandOrFoot_Penalty="None"/>
+		<Level Level="1" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/척력의 룬 스킬 레벨 + 1" PropList_HandOrFoot_Penalty="None"/>
 	</Item>
 	<Item Name="GEM_RuneCaster_Tiwaz">
 		<Level Level="0" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/정의의 룬 스킬 레벨 + 1" PropList_HandOrFoot_Penalty="None"/>
@@ -1776,8 +1776,8 @@
 		<Level Level="1" PropList_TopLeg="OptDesc/섀도우 콘덴세이션 스킬 레벨 + 1" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="None" PropList_HandOrFoot_Penalty="None"/>
 	</Item>
 	<Item Name="GEM_Onmyoji_FireFoxShikigami">
-		<Level Level="0" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/불여우 식신령 스킬 레벨 + 1" PropList_HandOrFoot_Penalty="None"/>
-		<Level Level="1" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/불여우 식신령 스킬 레벨 + 1" PropList_HandOrFoot_Penalty="None"/>
+		<Level Level="0" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/염동의 식신령 스킬 레벨 + 1" PropList_HandOrFoot_Penalty="None"/>
+		<Level Level="1" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/염동의 식신령 스킬 레벨 + 1" PropList_HandOrFoot_Penalty="None"/>
 	</Item>
 	<Item Name="GEM_Onmyoji_GreenwoodShikigami">
 		<Level Level="0" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/생목의 식신령 스킬 레벨 + 1" PropList_HandOrFoot_Penalty="None"/>
@@ -1788,8 +1788,8 @@
 		<Level Level="1" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/백호령 스킬 레벨 + 1" PropList_HandOrFoot_Penalty="None"/>
 	</Item>
 	<Item Name="GEM_Onmyoji_WaterShikigami">
-		<Level Level="0" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/살수의 식신령 스킬 레벨 + 1" PropList_HandOrFoot_Penalty="None"/>
-		<Level Level="1" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/살수의 식신령 스킬 레벨 + 1" PropList_HandOrFoot_Penalty="None"/>
+		<Level Level="0" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/바람의 식신령 스킬 레벨 + 1" PropList_HandOrFoot_Penalty="None"/>
+		<Level Level="1" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/바람의 식신령 스킬 레벨 + 1" PropList_HandOrFoot_Penalty="None"/>
 	</Item>
 	<Item Name="GEM_Onmyoji_Toyou">
 		<Level Level="0" PropList_TopLeg="OptDesc/토용 스킬 레벨 + 1" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="None" PropList_HandOrFoot_Penalty="None"/>
@@ -1800,12 +1800,12 @@
 		<Level Level="1" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="OptDesc/음양조화 스킬 레벨 + 1" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="None" PropList_HandOrFoot_Penalty="None"/>
 	</Item>
 	<Item Name="GEM_Daoshi_BegoneDemon">
-		<Level Level="0" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/급급여율령 스킬 레벨 + 1" PropList_HandOrFoot_Penalty="None"/>
-		<Level Level="1" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/급급여율령 스킬 레벨 + 1" PropList_HandOrFoot_Penalty="None"/>
+		<Level Level="0" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/멸화부 스킬 레벨 + 1" PropList_HandOrFoot_Penalty="None"/>
+		<Level Level="1" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/멸화부 스킬 레벨 + 1" PropList_HandOrFoot_Penalty="None"/>
 	</Item>
 	<Item Name="GEM_Daoshi_StormCalling">
-		<Level Level="0" PropList_TopLeg="OptDesc/호풍환우부 스킬 레벨 + 1" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="None" PropList_HandOrFoot_Penalty="None"/>
-		<Level Level="1" PropList_TopLeg="OptDesc/호풍환우부 스킬 레벨 + 1" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="None" PropList_HandOrFoot_Penalty="None"/>
+		<Level Level="0" PropList_TopLeg="OptDesc/풍설부 스킬 레벨 + 1" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="None" PropList_HandOrFoot_Penalty="None"/>
+		<Level Level="1" PropList_TopLeg="OptDesc/풍설부 스킬 레벨 + 1" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="None" PropList_HandOrFoot_Penalty="None"/>
 	</Item>
 	<Item Name="GEM_Daoshi_CreepingDeath">
 		<Level Level="0" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/파사부 스킬 레벨 + 1" PropList_HandOrFoot_Penalty="None"/>

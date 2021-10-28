@@ -36,5 +36,7 @@ ClassID,Sleep,FeedCreateTimeMS,FeedDist,ClassName,ComName,Type,PCAnim,ComAnim,Fe
 36,2700,500,12,36,pet_hedgehog,Normal,FEED2,FEED,,artefact_ham_set,artefact_ham_pc.xsm,
 37,2700,500,12,37,pet_policedog,Normal,FEED2,FEED,,artefact_ham_set,artefact_ham_pc.xsm,
 38,1500,0,0,38,pet_cadet_armadillo,Normal,FEED_SIT,FEED,,artefact_ham_set,artefact_ham_std.xsm,
+39,1500,0,0,39,pet_new_penguin,Normal,FEED2,FEED,,artefact_sardina_set,artefact_sardina_pc.xsm,
 40,1500,500,12,40,pet_sparrow_Thanksgiving,Normal,FEED_SIT,FEED,,,,artefact_cereal
 41,2700,500,12,41,pet_dalmatian,Normal,FEED2,FEED,,artefact_ham_set,artefact_ham_pc.xsm,
+42,3500,0,0,42,pet_winter_rabbit,Normal,FEED3,FEED,,carrot_set,artefact_carrot_pc.xsm,

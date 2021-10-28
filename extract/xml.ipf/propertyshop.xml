@@ -13,6 +13,7 @@
 		<Item Script="None" Name="PVP_Ark_dispersion" Count="1" Price="1" DailyBuyLimit="0"/>
 		<Item Script="None" Name="PVP_Ark_punishment" Count="1" Price="1" DailyBuyLimit="0"/>
 		<Item Script="None" Name="PVP_Ark_overpower" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="PVP_Ark_healingwave" Count="1" Price="1" DailyBuyLimit="0"/>
 		<Item Script="None" Name="PVP_SWD04_126" Count="1" Price="1" DailyBuyLimit="0"/>
 		<Item Script="None" Name="PVP_TSW04_126" Count="1" Price="1" DailyBuyLimit="0"/>
 		<Item Script="None" Name="PVP_STF04_127" Count="1" Price="1" DailyBuyLimit="0"/>
@@ -86,6 +87,11 @@
 		<Item Script="None" Name="PVP_TMAC04_118_3" Count="1" Price="1" DailyBuyLimit="0"/>
 		<Item Script="None" Name="PVP_STF04_127_3" Count="1" Price="1" DailyBuyLimit="0"/>
 		<Item Script="None" Name="PVP_SHD04_122_1" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="PVP_TSF04_129_4" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="PVP_TMAC04_118_4" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="PVP_DAG04_123_5" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="PVP_MUS04_118_2" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="PVP_SWD04_126_4" Count="1" Price="1" DailyBuyLimit="0"/>
 	</Shop>
 	<Shop Name="GUILD_CONTRIBUTION_SHOP" PointScript="GET_GUILD_CONTRIBUTION_POINT">
 		<Item Script="None" Name="BRC99_114_guildshop_7d" Count="1" Price="1000" DailyBuyLimit="0"/>

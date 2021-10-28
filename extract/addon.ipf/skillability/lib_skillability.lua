@@ -30,8 +30,9 @@ function SKILLABILITY_GET_JOB_TAB_INFO_LIST()
         list[#list + 1] = UI_LIB_TAB_GET_ADD_TAB_INFO("tab_"..jobid, "gb_"..jobid, textstyle..jobName, jobcls.ClassName, false);
     end
     
-	local commonSkillCount = session.skill.GetCommonSkillCount();	
-	if commonSkillCount > 0 then		
+    local commonSkillCount = session.skill.GetCommonSkillCount();
+    local acc_cnt = GetClassCount("account_ability");
+	if commonSkillCount > 0 or acc_cnt > 0 then		
         list[#list + 1] = UI_LIB_TAB_GET_ADD_TAB_INFO("tab_"..0, "gb_"..0, textstyle..ClMsg("Common"), "Common", false);
 	end
 
@@ -39,14 +40,28 @@ function SKILLABILITY_GET_JOB_TAB_INFO_LIST()
 end
 
 function SKILLABILITY_GET_ABILITY_GROUP_NAME(jobEngName)--Ability_Peltasta
+    if jobEngName == "Common" then
+        return "account_ability"; 
+    end
+
     local abilGroupName = "Ability_"..jobEngName;
     return abilGroupName;
 end
 
 function SKILLABILITY_GET_ABILITY_NAME_LIST(jobClsName, jobEngName)
     local retList = {}
-    local jobCls = GetClass("Job", jobClsName);
-    
+    if jobClsName == "Common" then
+        local abilGroupName = SKILLABILITY_GET_ABILITY_GROUP_NAME(jobEngName);
+        local list, cnt = GetClassList(abilGroupName);    
+        for i = 0, cnt - 1 do
+            local groupClass = GetClassByIndexFromList(list, i);
+            retList[#retList+1] = groupClass.ClassName;
+        end
+
+        return retList;
+    end
+
+    local jobCls = GetClass("Job", jobClsName);    
     if jobCls.DefHaveAbil ~= "None" then
 	    local sList = StringSplit(jobCls.DefHaveAbil, "#");
         for i=1, #sList do
@@ -56,7 +71,7 @@ function SKILLABILITY_GET_ABILITY_NAME_LIST(jobClsName, jobEngName)
 
     local abilGroupName = SKILLABILITY_GET_ABILITY_GROUP_NAME(jobEngName);
     local list, cnt = GetClassList(abilGroupName);
-    
+
     for i = 0, cnt-1 do
         local groupClass = GetClassByIndexFromList(list, i);
         if groupClass ~= nil then
@@ -74,7 +89,7 @@ function SKILLABILITY_GET_ABILITY_NAME_LIST(jobClsName, jobEngName)
         end
     end
 
-     return retList;
+    return retList;
 end
 
 function GET_ABILITY_CONDITION_UNLOCK(abilIES, groupClass)
@@ -397,6 +412,10 @@ function IS_CHANGED_SKILLABILITY_SKILL(jobClsName)
 end
 
 function COMMIT_SKILLABILITY_SKILL(jobClsName)
+    if jobClsName == "Common" then
+        return false;
+    end
+
     local jobCls = GetClass("Job", jobClsName);
     local ArgStr = string.format("%d", jobCls.ClassID);
     
@@ -433,13 +452,19 @@ function SET_SKILLABILITY_LEARN_COUNT(ability_gb, abilClsName, value)
 end
 
 function CLEAR_SKILLABILITY_LEARN_COUNT_BY_JOB(ability_gb, jobClsName)
-    local jobCls = GetClass("Job", jobClsName);
-    local jobEngName = jobCls.EngName;
+    local jobEngName = GET_JOB_ENG_NAME(jobClsName);
     local list = SKILLABILITY_GET_ABILITY_NAME_LIST(jobClsName, jobEngName)--Ability_Peltasta
-
     for i=1, #list do
-        local abilClass = GetClass("Ability", list[i]);
-        SET_SKILLABILITY_LEARN_COUNT(ability_gb, abilClass.ClassName, "None")
+        local abilClsName = list[i];
+        if jobEngName ~= "Common" then
+            local abilClass = GetClass("Ability", list[i]);
+            if abilClass == nil then
+                return;
+            end
+            abilClsName = abilClass.ClassName;
+        end
+        
+        SET_SKILLABILITY_LEARN_COUNT(ability_gb, abilClsName, "None");        
     end
 end
 
@@ -447,8 +472,7 @@ function GET_CHANGED_SKILLABILITY_ABILITY(ability_gb, abilGroupName, jobClsName)
     local abilClsIDList = {}
     local abilCountList = {}
     
-    local jobCls = GetClass("Job", jobClsName);
-    local jobEngName = jobCls.EngName;
+    local jobEngName = GET_JOB_ENG_NAME(jobClsName);
     local list = SKILLABILITY_GET_ABILITY_NAME_LIST(jobClsName, jobEngName)--Ability_Peltasta
     
     for i=1, #list do
@@ -605,4 +629,29 @@ function HAS_SKILLTREEGB_IN_COMMON_TRANSSKILL_BY_SKILL_OBJ(obj)
     end
 
     return false;
+end
+
+function GET_JOB_ENG_NAME(jobClsName)
+    if jobClsName == "Common" then
+        return "Common";
+    end
+
+    local jobCls = GetClass("Job", jobClsName);
+    if jobCls == nil then
+        return "None"; 
+    end
+
+    return jobCls.EngName;
+end
+
+function GET_JOB_NAME_BY_ENGNAME(name)
+	local clslist, cnt  = GetClassList("Job");
+	
+	for i = 0 , cnt - 1 do
+        local cls = GetClassByIndexFromList(clslist, i);
+        local engName = TryGetProp(cls, "EngName", "None");
+        if engName == name then
+            return TryGetProp(cls, "Name", "None");
+        end
+    end
 end

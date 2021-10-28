@@ -722,6 +722,9 @@ return value"/>
 				<Scp Scp="C_SOUND" Client="YES" UseSleep="NO" Time="200" >
 					<Str Str="skl_cleric_heal_shot" />
 				</Scp>
+				<Scp Scp="SKL_RUN_SCRIPT" Client="NO" UseSleep="NO" Time="200">
+					<Str Str="SCR_HEAL_CLERIC31"/>
+				</Scp>
 			</EtcList>
 		</MainSkl>
         <ByCondSkills>
@@ -731,7 +734,7 @@ return value"/>
                         <Str Str="Cleric31"/>
                     </ToolScp>
                 </Cond>
-                <Skill JumpFlee="NO" MSPDToUsePos="0"ScrLock="None">
+                <Skill JumpFlee="NO" MSPDToUsePos="0" ScrLock="None">
                     <HitList>
                         <Frame Type="FAN" Time="0" HitCount="1" TermMin="0" TermMax="0" PosType="0" Dist="0" RandDist="0" RandomPerHit="0" Angle="0" SklAngle="0.17453299" AniTime="300" RotAngle="0" ForceATK="0" />
                     </HitList>
@@ -787,7 +790,7 @@ return value"/>
                         <Str Str="Cleric30"/>
                     </ToolScp>
                 </Cond>
-                <Skill JumpFlee="NO" MSPDToUsePos="0"ScrLock="None">
+                <Skill JumpFlee="NO" MSPDToUsePos="0" ScrLock="None">
                     <HitList>
                         <Frame Type="FAN" Time="0" HitCount="1" TermMin="0" TermMax="0" PosType="0" Dist="0" RandDist="0" RandomPerHit="0" Angle="0" SklAngle="0.17453299" AniTime="300" RotAngle="0" ForceATK="0" />
                     </HitList>

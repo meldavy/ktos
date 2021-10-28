@@ -656,4 +656,5 @@
   <Code Code="ERROR_LUA_CORE" Team="PROGRAM" Category="ERROR" SubCategory="" Logger="root" Enabled="YES" CallStack="NO" Desc="Lua ies object 관리 에러"/>
 	<Code Code="ERROR_DX9" Team="PROGRAM" Category="ERROR" SubCategory="" Logger="root" Enabled="YES" CallStack="NO" Desc="DX9 에러 로그"/>
 	<Code Code="FATAL_DX9" Team="PROGRAM" Category="ERROR" SubCategory="" Logger="root" Enabled="YES" CallStack="NO" Desc="DX9 페이탈 로그"/>
+	<Code Code="ERROR_CHALLENGE_AUTO_MODE" Team="PROGRAM" Category="ERROR" SubCategory="" Logger="root" Enabled="YES" CallStack="NO" Desc="챌린지모드 자동매칭 관련 에러"/>  
 </imcErrorCode>

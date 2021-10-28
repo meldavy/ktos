@@ -22,18 +22,25 @@
 		<richtext name="time" parent="time_gb" rect="0 0 290 42" margin="0 0 0 0" layout_gravity="center center" format="{@st41b}{s16}%s월 %s일 ~ %s월 %s일" param1="month1" param1_def="1" param2="day1" param2_def="1" param3="month2" param3_def="1" param4="day2" param4_def="1"/>
 		<!-- dedication -->
 		<spinepic name="spinepic" rect="0 0 661 800" margin="299 140 0 0" layout_gravity="center top" updateparent="true" animation="animation" scale="0.9" stretch="true" offsetX="0" offsetY="30"/>
-		<picture name="dedication_slot_pic" rect="0 0 120 120" margin="180 640 0 0" image="protection_prize" layout_gravity="center top" stretch="true" draw="true"/>
+		<picture name="dedication_slot_pic" rect="0 0 120 120" margin="170 560 0 0" image="protection_prize" layout_gravity="center top" stretch="true" draw="true"/>
 		<slot name="dedication_slot" parent="dedication_slot_pic" rect="0 0 71 71" margin="0 3 0 0" layout_gravity="center center" enabledrop="false" enablepop="false" enabledrag="false" draw="true"/>
-		<groupbox name="dedication_gb" rect="0 0 195 41" margin="180 770 0 0" skin="protection_lottery_notice" layout_gravity="center top" hittest="false" scroll="false"/>
+		<groupbox name="dedication_bg" rect="0 0 250 115" margin="170 700 0 0" skin="protection_lottery_notice" layout_gravity="center top" hittest="true" scroll="false"/>
+		<groupbox name="dedication_gb" parent="dedication_bg" rect="0 0 210 41" margin="0 12 0 0" layout_gravity="center top" hittest="false" scroll="false" draw="false"/>
 		<richtext name="dedication_text" parent="dedication_gb" rect="0 0 40 41" margin="15 0 0 0" layout_gravity="left center" caption="{@st41b}{s16}1회"/>
-		<picture name="dedication_pic" parent="dedication_gb" rect="0 0 21 21" margin="-30 0 0 0" layout_gravity="center center" image="silver_pic" hittest="false" stretch="true"/>
-		<richtext name="dedication_silver" parent="dedication_gb" rect="0 0 100 41" margin="0 0 15 0" layout_gravity="right center" caption="{@st41b}{s16} 돈"/>
-		<groupbox name="dedication_btn_gb" rect="0 0 300 100" margin="180 820 0 0" layout_gravity="center top" scroll="false" draw="false"/>
+		<picture name="dedication_pic" parent="dedication_gb" rect="0 0 21 21" margin="-30 -2 0 0" layout_gravity="center center" image="silver_pic" hittest="false" stretch="true"/>
+		<richtext name="dedication_silver" parent="dedication_gb" rect="0 0 100 41" margin="0 0 5 0" layout_gravity="right center" format="{@st41b}{s16} %s" param1="value" param1_def="50000"/>
+		<groupbox name="dedication_btn_gb" rect="0 0 300 100" margin="170 820 0 0" layout_gravity="center top" scroll="false" draw="false"/>
 		<button name="dedication_btn" parent="dedication_btn_gb" rect="0 0 160 60" margin="0 10 0 0" image="login_test_button" layout_gravity="center top" stretch="false" caption="{@st43}{s24}헌납" LBtnUpScp="SILVER_GACHA_CLICK" oversound="button_cursor_over_3" clicksound="button_click_big"/>
 		<button name="dedication_okbtn" parent="dedication_btn_gb" rect="0 0 160 60" margin="0 10 0 0" image="login_test_button" layout_gravity="center top" stretch="false" caption="{@st43}{s24}확인" LBtnUpScp="SILVER_GACHA_INIT" oversound="button_cursor_over_3" clicksound="button_click_big"/>
+		<groupbox name="once_gb" parent="dedication_bg" rect="0 0 210 40" margin="0 60 0 0" layout_gravity="center top" hittest="true" scroll="false" draw="false"/>
+		<richtext name="once_text" parent="once_gb" rect="0 0 40 41" margin="15 7 0 0" layout_gravity="left top" caption="{@st41b}{s16}배수"/>
+		<groupbox name="once_count_gb" parent="once_gb" rect="0 0 225 40" margin="0 0 0 0" layout_gravity="right top" draw="true" hittestbox="true" skin="None" scroll="false"/>
+		<edit name="once_count_edit" parent="once_count_gb" rect="0 0 60 32" margin="0 0 0 0" layout_gravity="right top" textalign="center center" fontname="white_18_ol" numbermode="true" skin="test_weight_skin" OffsetForDraw="0 -1" minnumber="1" maxnumber="5" typingscp="SILVER_GACHA_ONCE_COUNT_TYPING"/>
+		<button name="once_count_upBtn" parent="once_count_gb" stretch="true" rect="0 0 60 60" margin="75 1 0 0" layout_gravity="left top" image="test_up_w_btn" oversound="button_over" LBtnUpScp="SILVER_GACHA_ONCE_COUNT_UPBTN_CLICK"/>
+		<button name="once_count_downBtn" parent="once_count_gb" stretch="true" rect="0 0 60 60" margin="75 16 0 0" layout_gravity="left top" image="test_down_w_btn" oversound="button_over" LBtnUpScp="SILVER_GACHA_ONCE_COUNT_DOWNBTN_CLICK"/>
 		<!-- 연속 봉헌 -->
 		<groupbox name="auto_gb" rect="0 0 300 300" margin="450 640 0 0" layout_gravity="center top" hittest="true" scroll="false" draw="false"/>
-		<edit name="auto_edit" parent="auto_gb" rect="0 0 300 45" margin="0 70 0 0" layout_gravity="center top" fontname="white_18_ol" textalign="center center" OffsetForDraw="0 -1" numbermode="true" typingsound="chat_typing" maxnumber="99999999" LBtnDownScp="SILVER_GACHA_AUTO_EDIT_CLICK"/>
+		<edit name="auto_edit" parent="auto_gb" rect="0 0 280 45" margin="0 70 0 0" layout_gravity="center top" fontname="white_18_ol" textalign="center center" OffsetForDraw="0 -1" numbermode="true" typingsound="chat_typing" maxnumber="99999999" LBtnDownScp="SILVER_GACHA_AUTO_EDIT_CLICK"/>
 		<richtext name="auto_text" parent="auto_gb" rect="0 0 300 40" margin="0 82 0 0" layout_gravity="center top" caption="{@st41b}{s16}헌납할 횟수를 입력해 주세요" hittest="false"/>
 		<button name="auto_btn" parent="auto_gb" rect="0 0 160 60" margin="0 130 0 0" image="login_test_button" layout_gravity="center top" stretch="false" caption="{@st43}{s24}연속 헌납" oversound="button_cursor_over_3" clicksound="button_click_big" LBtnUpScp="SILVER_GACHA_AUTO_START_BTN_CLICK"/>
 		<button name="auto_okbtn" parent="auto_gb" rect="0 0 160 60" margin="0 190 0 0" image="login_test_button" layout_gravity="center top" stretch="false" caption="{@st43}{s24}중단" oversound="button_cursor_over_3" clicksound="button_click_big" LBtnUpScp="SILVER_GACHA_AUTO_STOP_BTN_CLICK"/>

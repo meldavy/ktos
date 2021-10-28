@@ -1,7 +1,16 @@
 <?xml version="1.0" standalone="yes"?>
-<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by IMCGames Co., Ltd (IMCGames Co., Ltd) -->
+<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by imc (imc) -->
 <!-- edited with XMLSpy v2006 U (http://www.altova.com) by Administrator (EMBRACE) -->
 <TextureInfo>
+	<Texture Name="card_base_last_goddess" File="card_base_last_goddess.dds" Size="256 256"/>
+	<Texture Name="card_decal_add_sheet_goddess" File="card_decal_add_sheet_goddess.dds" Size="512 512"/>
+	<Texture Name="card_decal_sheet_goddess" File="card_decal_sheet_goddess.dds" Size="512 512"/>
+	<Texture Name="goddess_carding_sheet" File="goddess_carding_sheet.dds" Size="1024 1024"/>
+	<Texture Name="card_goddess" File="card_goddess.dds" Size="256 256"/>
+	<Texture Name="circle057_2" File="circle057_2.dds" Size="512 512"/>
+	<Texture Name="circle057_1" File="circle057_1.dds" Size="512 512"/>
+	<Texture Name="circle056_2" File="circle056_2.dds" Size="512 512"/>
+	<Texture Name="circle056_1" File="circle056_1.dds" Size="512 512"/>
 	<Texture Name="dash005_1_green" File="dash005_1_green.dds" Size="128 64"/>
 	<Texture Name="pattern011_alpha3" File="pattern011_alpha3.dds" Size="256 256"/>
 	<Texture Name="pattern011_pink1" File="pattern011_pink1.dds" Size="256 256"/>

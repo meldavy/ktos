@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by imc (imc) -->
+<ActionDesc>
+    <Sound frame="0.00" soundFile="mon_golem_born"/>
+    <Particle frame="3" particleName="F_smoke129_spreadout" attachNode="Dummy_emitter" scale="1.3" useAttach="true" pause="true" targetPos="false"/>
+    <Sound frame="18.00" soundFile="mon_big_footstep_1"/>
+    <Sound frame="18.00" soundFile="skl_eff_stone_blow_m"/>
+    <Particle frame="20" particleName="F_smoke129_spreadout" attachNode="Dummy_emitter" scale="1.5" useAttach="true" pause="true" targetPos="false"/>
+    <Sound frame="25.00" soundFile="mon_big_footstep_1"/>
+    <Sound frame="25.00" soundFile="skl_eff_stone_blow_m"/>
+    <Sound frame="39.00" soundFile="skl_eff_stone_rolling_3"/>
+    <Particle frame="40" particleName="F_smoke129_spreadout" attachNode="Dummy_emitter" scale="1.5" useAttach="true" pause="true" targetPos="false"/>
+</ActionDesc>

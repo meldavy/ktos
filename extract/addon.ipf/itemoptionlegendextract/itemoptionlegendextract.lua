@@ -424,10 +424,14 @@ function OPTION_LEGEND_EXTRACT_REGISTER_MATERIAL(frame)
 
 	-- 시에라 가루
 	-- 2개의 아이템중 가장 높은 등급을 기준으로 재료 선정
+	-- 만약 두 아이템의 등급이 같다면 레벨을 기준으로 재료 선정
 	local isAbleExchange = 1;
 	local materialItemCount = 0;
 	local grade = 0;
+	local isgradeEqual = 0;
+	local itemLV = 0;
 	local itemobj;
+	local itemobjByLV;
 
 	local maxtargetitemcount = frame:GetUserConfig("MAX_TARGET_ITEM_COUNT");
 	for i = 1, maxtargetitemcount do
@@ -439,8 +443,21 @@ function OPTION_LEGEND_EXTRACT_REGISTER_MATERIAL(frame)
 		if grade < targetitemobj.ItemGrade then
 			grade = targetitemobj.ItemGrade;
 			itemobj = targetitemobj;
-
+		elseif grade == targetitemobj.ItemGrade then
+			isgradeEqual = 1
+		end
+        
+        if itemLV < targetitemobj.UseLv then
+            itemLV = targetitemobj.UseLv
+            itemobjByLV = targetitemobj
+        end
+		
+		if isgradeEqual == 0 then
 			materialItemCount = GET_OPTION_LEGEND_EXTRACT_NEED_MATERIAL_COUNT(itemobj)
+			frame:SetUserValue("MATERIAL_ITEM_COUNT", materialItemCount)
+			frame:SetUserValue("MATERIAL_ITEM_HIGH_GRAD_ITEM_GUID", targetguid)
+		else
+			materialItemCount = GET_OPTION_LEGEND_EXTRACT_NEED_MATERIAL_COUNT(itemobjByLV)
 			frame:SetUserValue("MATERIAL_ITEM_COUNT", materialItemCount)
 			frame:SetUserValue("MATERIAL_ITEM_HIGH_GRAD_ITEM_GUID", targetguid)
 		end

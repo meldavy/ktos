@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by IMCGames Co., Ltd (IMCGames Co., Ltd) -->
+<ActionDesc>
+	<Particle frame="7" attachNode="Dummy_effect_atk" particleName="I_swordtrail033_orage_reverse_360" useAttach="false" hiddenObj="false" changeEffect="None" scale="1.5" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="0" attachNode="Dummy_emitter" particleName="None" useAttach="false" hiddenObj="false" changeEffect="None" scale="1" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Sound frame="0.00" soundFile="m_bumegoblin_archer_atk_ready"/>
+	<Sound frame="8.00" soundFile="mon_voice13_cast10"/>
+	<Sound frame="10.00" soundFile="skl_eff_body_atk_7"/>
+</ActionDesc>

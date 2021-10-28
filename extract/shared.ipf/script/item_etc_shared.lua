@@ -81,12 +81,15 @@ function IS_MECHANICAL_ITEM(itemObject)
             if invitem == nil then
                 return false;
             end
+
+            if itemObject.MaxSocket > 100 then itemObject.MaxSocket = 0 end
             for i = 0, itemObject.MaxSocket - 1 do
                 if invitem:IsAvailableSocket(i) == true then
                     return true;
                 end                
             end
         else
+            if itemObject.MaxSocket > 100 then itemObject.MaxSocket = 0 end
             for i = 0, itemObject.MaxSocket - 1 do
                 local equipGemID = GetItemSocketInfo(itemObject, i);
                 if equipGemID ~= nil then
@@ -106,11 +109,11 @@ end
 local _anitiqueCache = {}; -- key: itemClassName, value: groupKey
 local function _RETURN_ANTIQUE_INFO(itemClassName, groupKey, group, exchangeItemList, giveItemList, giveItemCntList, matItemList, matItemCntList)
     if groupKey == nil then
-        _anitiqueCache[itemClassName] = 'None';
         return nil;
     end
 
-    _anitiqueCache[itemClassName] = groupKey;
+    local anitiqueCacheKey = group..'_'..itemClassName;
+    _anitiqueCache[anitiqueCacheKey] = groupKey;
     local giveList = {};
     for i = 1, #giveItemList do
         giveList[#giveList + 1] = {
@@ -136,11 +139,16 @@ local function _RETURN_ANTIQUE_INFO(itemClassName, groupKey, group, exchangeItem
     };
 end
 
-function GET_EXCHANGE_ANTIQUE_INFO(itemClassName)
-    if _anitiqueCache[itemClassName] ~= nil then
-        return _RETURN_ANTIQUE_INFO(itemClassName, GetExchangeAntiqueInfoByGroupKey(_anitiqueCache[itemClassName]));
+function GET_EXCHANGE_ANTIQUE_INFO(exchangeGroupName, itemClassName)
+    if itemClassName == nil then
+        return nil;
     end
-    return _RETURN_ANTIQUE_INFO(itemClassName, GetExchangeAntiqueInfoByItemName(itemClassName));
+
+    local anitiqueCacheKey = exchangeGroupName..'_'..itemClassName;
+    if _anitiqueCache[anitiqueCacheKey] ~= nil then
+        return _RETURN_ANTIQUE_INFO(itemClassName, GetExchangeAntiqueInfoByGroupKey(_anitiqueCache[anitiqueCacheKey]));
+    end
+    return _RETURN_ANTIQUE_INFO(itemClassName, GetExchangeAntiqueInfoByItemName(exchangeGroupName, itemClassName));
 end
 
 function IS_ENABLE_EXCHANGE_ANTIQUE(srcItem, dstItem)
@@ -158,9 +166,55 @@ function IS_ENABLE_EXCHANGE_ANTIQUE(srcItem, dstItem)
     return true;
 end
 
+-- exchangeWeaponType : Check Data
+function IS_EXCHANGE_WEAPONTYPE(exchangeGroupName, itemClassName)
+    if exchangeGroupName == nil or itemClassName == nil then
+        return false;
+    end
+
+    return IsExchangeWeaponType(exchangeGroupName, itemClassName);
+end
+
+-- exchangeWeaponType : Get Material / return materialNameList, materialCountList
+function GET_EXCHANGE_WEAPONTYPE_MATERIAL(exchangeGroupName, itemClassName)
+    if exchangeGroupName == nil or itemClassName == nil then
+        return nil, nil;
+    end
+
+    return GetExChangeMeterialList(exchangeGroupName, itemClassName);
+end
+
+-- exchangeWeaponType : exchange enable check
+function IS_ENABLE_EXCHANGE_WEAPONTYPE(scrItem, destItemID)
+    if scrItem == nil or destItemID == nil then 
+        return false; 
+    end
+
+    if scrItem.ClassID == destItemID then 
+        return false; 
+    end
+    
+    local scrItemGroup = TryGetProp(scrItem, "ExchangeGroup", "None");
+    if IsExchangeWeaponType(scrItemGroup, scrItem.ClassName) == false or IsExchangeWeaponTypeByClassID(destItemID) == false then 
+        return false; 
+    end
+    return true;
+end
+
 function IS_ICOR_ITEM(item)
 	if TryGetProp(item, 'GroupName', 'None') == 'Icor' then
 		return true;
 	end
 	return false;
+end
+
+function GET_GEM_PROTECT_NEED_COUNT(gemObj)
+    if gemObj == nil then
+        return 999999
+    end
+    
+    local lv = TryGetProp(gemObj, "NumberArg1", 0)
+    local cls = GetClassByType("item_gem_Extract_Protect", lv)
+
+    return TryGetProp(cls, 'NeedCount', 999999)
 end

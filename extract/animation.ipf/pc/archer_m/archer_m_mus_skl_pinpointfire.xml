@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by IMC (IMCGames Co., Ltd) -->
+<ActionDesc>
+	<Particle frame="12" attachNode="Dummy_effect_mus_smoke2" particleName="F_archer_musket_smoke_white2" useAttach="false" hiddenObj="false" changeEffect="None" scale="1" pause="true" use2DEffect="true" soft2DValue="20" targetPos="false"/>
+	<Particle frame="12" attachNode="Dummy_effect_mus_smoke" particleName="F_archer_musket_smoke_white2" useAttach="false" hiddenObj="false" changeEffect="None" scale="1" pause="true" use2DEffect="true" soft2DValue="50" targetPos="false"/>
+</ActionDesc>

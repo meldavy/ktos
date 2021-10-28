@@ -18,6 +18,10 @@ end
 -- OPEN / CLOSE
 function SILVER_GACHA_OPEN()
     SILVER_GACHA_SPINE()
+    
+	local frame = ui.GetFrame("silver_gacha");
+    GET_CHILD_RECURSIVELY(frame, "once_count_edit"):SetText('1');
+    SILVER_GACHA_TOTAL_ONCE_SILVER_UPDATE(1);
 end
 
 function SILVER_GACHA_CLOSE()
@@ -323,7 +327,9 @@ function SILVER_GACHA_CLICK()
     SILVER_GACHA_DEDICATION_EFFECT()
 
     -- 실행
-    silver_gacha_shop.RequestSilverGachaShopGamble(SILVER_GACHA_GET_EVENT_ID(), true)
+    local once_edit = GET_CHILD_RECURSIVELY(frame, "once_count_edit");
+    local onceCnt = tonumber(once_edit:GetText());
+    silver_gacha_shop.RequestSilverGachaShopGamble(SILVER_GACHA_GET_EVENT_ID(), true, onceCnt)
 end
 
 -- EXEC (AUTO)
@@ -395,7 +401,9 @@ function AUTO_SILVER_GACHA_DEDICATION_CLICK()
     end
 
     -- 실행
-    silver_gacha_shop.RequestSilverGachaShopGamble(SILVER_GACHA_GET_EVENT_ID(), true)
+    local once_edit = GET_CHILD_RECURSIVELY(frame, "once_count_edit");
+    local onceCnt = tonumber(once_edit:GetText());
+    silver_gacha_shop.RequestSilverGachaShopGamble(SILVER_GACHA_GET_EVENT_ID(), true, onceCnt)
 end
 
 -- SCRIPT
@@ -487,4 +495,55 @@ function SILVER_GACHA_SPINE()
 		end	
 	end
 	
+end
+
+function SILVER_GACHA_ONCE_COUNT_TYPING(parent, ctrl)
+    local edit = GET_CHILD(parent, "once_count_edit");
+    if edit:GetText() == nil or edit:GetText() == "" then
+        edit:SetText(1);
+    end
+
+    local curCnt = tonumber(edit:GetText());
+    SILVER_GACHA_TOTAL_ONCE_SILVER_UPDATE(upCnt);
+end
+
+function SILVER_GACHA_ONCE_COUNT_UPBTN_CLICK(parent, ctrl)
+    local edit = GET_CHILD(parent, "once_count_edit");
+
+    local curCnt = tonumber(edit:GetText());
+    local upCnt = curCnt + 1; 
+    if 5 < upCnt then
+        upCnt = 5;
+    end
+
+    edit:SetText(upCnt);
+    SILVER_GACHA_TOTAL_ONCE_SILVER_UPDATE(upCnt);
+end
+
+function SILVER_GACHA_ONCE_COUNT_DOWNBTN_CLICK(parent, ctrl)
+    local edit = GET_CHILD(parent, "once_count_edit");
+    
+    local curCnt = tonumber(edit:GetText());
+    local downCnt = curCnt - 1; 
+    if downCnt < 1 then
+        downCnt = 1;
+    end
+
+    edit:SetText(downCnt);
+    SILVER_GACHA_TOTAL_ONCE_SILVER_UPDATE(downCnt);
+end
+
+function SILVER_GACHA_TOTAL_ONCE_SILVER_UPDATE(count)
+    local frame = ui.GetFrame("silver_gacha");
+    local eventID = frame:GetUserConfig("EVENT_ID");
+    
+    local cost = GetSilverGachaEventCost(eventID);
+
+    local edit = GET_CHILD_RECURSIVELY(frame, "once_count_edit");
+    local onceCnt = tonumber(edit:GetText());
+
+    local total = onceCnt * cost;
+
+    local silverText = GET_CHILD_RECURSIVELY(frame, "dedication_silver");
+    silverText:SetTextByKey("value", total);
 end

@@ -2134,6 +2134,34 @@ function SCR_RACE_TYPE_RATE(self, prop)
     local raceTypeClass = GetClass("Stat_Monster_Race", raceType);
     if raceTypeClass ~= nil then
         raceTypeRate = TryGetProp(raceTypeClass, prop, raceTypeRate);
+        if TryGetProp(self, "StatType", "None") == "Weekly_Boss" then
+        local week_num = Weeklyboss_GetNowWeekNum()
+            if week_num ~= nil and week_num == 47 then
+                if prop == "MHP" then
+                    raceTypeRate = 70
+                elseif prop == "PATK" then
+                    raceTypeRate = 100
+                elseif prop == "MATK" then
+                    raceTypeRate = 130
+                elseif prop == "DEF" then
+                    raceTypeRate = 70
+                elseif prop == "MDEF" then
+                    raceTypeRate = 130
+                elseif prop == "HR" then
+                    raceTypeRate = 100
+                elseif prop == "DR" then
+                    raceTypeRate = 100
+                elseif prop == "BLK" then
+                    raceTypeRate = 100
+                elseif prop == "BLK_BREAK" then
+                    raceTypeRate = 70
+                elseif prop == "CRTHR" then
+                    raceTypeRate = 160
+                elseif prop == "CRTDR" then
+                    raceTypeRate = 70
+                end
+            end
+        end
         --방어력, 마법방어력 평균치 적용--
         if prop == "DEF" or prop == "MDEF" then
             local statType = TryGetProp(self, "StatType", "None");
@@ -2468,10 +2496,6 @@ function SCR_MON_STAT_RATE(self, prop)
         local statTypeClass = GetClass("Stat_Monster_Type", statType);
         if statTypeClass ~= nil then
             statTypeRate = TryGetProp(statTypeClass, prop, statTypeRate);
-            --QA DPS TEST MON Stat Set
-            if statType == "Weekly_Boss" and self.StrArg1 == "TEST" then
-                statTypeRate = 148
-            end
         end
     end
     

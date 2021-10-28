@@ -164,7 +164,11 @@
                     <Str Str="ParaclitusTime_Buff"/>
                     <Num FuncTxt="return obj.Level;" Num="1" UseFunc="1"/>
                     <Num Num="0"/>
-                    <Num FuncTxt="return 20000 + obj.Level * 2000;" Num="0" UseFunc="1"/>
+                    <Num FuncTxt="local value = 20000 + obj.Level * 2000
+                    if IsPVPField(self) == 1 then
+                    value = math.floor(value / 2)
+                    end
+                    return value" Num="0" UseFunc="1"/>
                     <Num Num="1"/>
                     <Num Num="100"/>
                     <Num Num="0"/>

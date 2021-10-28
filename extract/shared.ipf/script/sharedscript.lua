@@ -4,6 +4,8 @@ account_warehouse = {}
 
 unpack = unpack or table.unpack
 
+MAX_VIBORA_OPTION_COUNT = 3 
+
 random_item.is_sealed_random_item = function(itemobj)
     if IS_EQUIP(itemobj) == false then
         return false;

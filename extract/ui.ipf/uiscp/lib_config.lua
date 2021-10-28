@@ -118,3 +118,13 @@ function UPDATE_SHOW_COIN_GET_GAUGE(value)
 		ui.CloseFrame('coin_get_gauge')
 	end
 end
+
+function UPDATE_SHOW_TUTORIALNOTE(value)
+	if tonumber(value) == 1 then
+		local frame = ui.GetFrame("minimized_tutorialnote_button");
+		MINIMIZED_TUTORIALNOTE_BUTTON_INIT(frame);
+		ui.OpenFrame("minimized_tutorialnote_button");
+	else
+		ui.CloseFrame("minimized_tutorialnote_button");
+	end
+end

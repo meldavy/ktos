@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="EUC-KR"?>
+<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by IMCGames Co., Ltd (IMCGames Co., Ltd) -->
+<ActionDesc>
+    <Particle frame="0" attachNode="Bip01 Pelvis" particleName="F_doll_gabia_std_fire" useAttach="true" hiddenObj="false" changeEffect="None" scale="4" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Particle frame="0" attachNode="Dummy_emitter" particleName="None" useAttach="false" hiddenObj="false" changeEffect="None" scale="1" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Particle frame="0" attachNode="Dummy_emitter" particleName="None" useAttach="false" hiddenObj="false" changeEffect="None" scale="1" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Sound frame="0.53" soundFile="mon_voice5_l_dead_13"/>
+    <Sound frame="0.53" soundFile="mon_deathweaver_skl_3"/>
+    <Sound frame="1.58" soundFile="skl_eff_fire_cast"/>
+    <Sound frame="4.75" soundFile="skl_eff_spread_13"/>
+    <Shockwave frame="10" type="2" intensity="1" frequency="60" duration="2" range="1000"/>
+    <Particle frame="10" attachNode="Bip01 Pelvis" particleName="F_spread_in030_fire2" useAttach="false" hiddenObj="false" changeEffect="None" scale="0.3" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Particle frame="20" attachNode="Bip01 Pelvis" particleName="F_spread_in030_fire2" useAttach="false" hiddenObj="false" changeEffect="None" scale="0.35" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Particle frame="30" attachNode="Bip01 Pelvis" particleName="F_spread_in030_fire2" useAttach="false" hiddenObj="false" changeEffect="None" scale="0.5" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Particle frame="40" attachNode="Bip01 Pelvis" particleName="F_spread_in030_fire2" useAttach="false" hiddenObj="false" changeEffect="None" scale="0.6" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Sound frame="40.00" soundFile="skl_eff_firefox_dead"/>
+    <Particle frame="50" attachNode="Bip01 Pelvis" particleName="F_spread_in030_fire2" useAttach="false" hiddenObj="false" changeEffect="None" scale="0.5" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Particle frame="60" attachNode="Bip01 Pelvis" particleName="F_spread_in030_fire2" useAttach="false" hiddenObj="false" changeEffect="None" scale="0.6" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <BlendOn frame="61" R="0" G="0" B="0" A="50"/>
+    <Sound frame="65.00" soundFile="boss_skl_eff_firebreath"/>
+    <Shockwave frame="70" type="2" intensity="10" frequency="60" duration="0.5" range="1000"/>
+    <BlendOn frame="70" R="210" G="180" B="120" A="100"/>
+    <Particle frame="70" attachNode="Bip01 Pelvis" particleName="F_ground194_fire" useAttach="true" hiddenObj="false" changeEffect="None" scale="4" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Particle frame="70" attachNode="Bip01 Pelvis" particleName="F_doll_gabia_std_fire" useAttach="true" hiddenObj="false" changeEffect="None" scale="4" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Particle frame="70" attachNode="Dummy_emitter" particleName="F_spread_out055" useAttach="false" hiddenObj="false" changeEffect="None" scale="1.5" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <BlendOn frame="71" R="150" G="120" B="65" A="100"/>
+    <BlendOn frame="73" R="135" G="120" B="75" A="100"/>
+    <Particle frame="74" attachNode="Dummy_effect_skl5" particleName="I_breath001_fire" useAttach="true" hiddenObj="false" changeEffect="None" scale="3" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <BlendOn frame="75" R="120" G="100" B="65" A="100"/>
+    <BlendOn frame="78" R="100" G="80" B="50" A="100"/>
+    <BlendOn frame="80" R="80" G="60" B="30" A="100"/>
+    <BlendOn frame="83" R="50" G="30" B="10" A="100"/>
+    <BlendOff frame="85" R="0" G="0" B="0" A="0"/>
+    <Particle frame="90" attachNode="Bip01 Pelvis" particleName="F_ground194_fire" useAttach="true" hiddenObj="false" changeEffect="None" scale="3" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Particle frame="90" attachNode="Bip01 Pelvis" particleName="F_doll_gabia_std_fire" useAttach="true" hiddenObj="false" changeEffect="None" scale="3" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Particle frame="110" attachNode="Dummy_effect_skl5" particleName="I_archer_pistol_atk_smoke3_dark" useAttach="true" hiddenObj="false" changeEffect="None" scale="4" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+</ActionDesc>

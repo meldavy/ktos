@@ -8,7 +8,7 @@ local tabInfo = {
 
 local levelFilter = {
 	Min = 0,
-	Max = 450,
+	Max = PC_MAX_LEVEL,
 	Range = 30, -- PC의 +- 레벨 범위.
 }
 

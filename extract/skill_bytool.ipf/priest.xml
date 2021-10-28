@@ -6,6 +6,9 @@
 					<Str Str="voice_cleric_m_massheal_shot" />
 					<Str Str="voice_cleric_massheal_shot" />
 				</Scp>
+				<Scp Scp="SKL_RUN_SCRIPT_SLEEP" Client="NO" UseSleep="YES" Time="600">
+					<Str Str="SCR_AUTO_MATCHING_HEAL_DARK_SPHERE_MassHeal"/>
+				</Scp>
 				<Scp Client="YES" Scp="C_EFFECT_POS" Time="600" UseSleep="NO">
 					<Str_Arg Arg="2" Str="F_cleric_MassHeal_spread_out" />
 					<Pos Angle="0" Dist="0" />

@@ -77,6 +77,48 @@
                 </Scp>
             </EtcList>
         </MainSkl>
+		<ByCondSkills>
+			<SubSkl>
+				<Cond>
+					<ToolScp Scp="SKL_CHECK_EXPROP" Client="NO" UseSleep="NO">
+						<Str Str="ITEM_VIBORA_ClusterShot_LV4"/>
+						<Num Num="1"/>
+					</ToolScp>
+				</Cond>
+				<Skill ScrLock="None" JumpFlee="NO" MSPDToUsePos="0">
+					<HitList>
+						<Frame Type="CIRCLE" Time="99799" HitCount="1" TermMin="0" TermMax="0" PosType="2" Dist="0" RandDist="0" RandomPerHit="0" Angle="0" Width="40" SklAngle="0.17453292" AniTime="99999" RotAngle="0" ForceATK="0" ScriptIndex="0" ScriptName="" SkillType="0"/>
+					</HitList>
+					<EtcList>
+						<Scp Scp="C_SOUND" Client="YES" UseSleep="NO" Time="0">
+							<Str Str="skl_fgt_buff_4"/>
+						</Scp>
+						<Scp Scp="MONSKL_C_PLAY_ANIM" Client="YES" UseSleep="NO" Time="0">
+							<Str Str="skl_blockandshoot_abil_atk1"/>
+							<Num Num="4"/>
+							<Num Num="0"/>
+							<Num Num="0"/>
+						</Scp>
+						<Scp Scp="C_SOUND" Client="YES" UseSleep="NO" Time="100">
+							<Str Str="skl_eff_action_shot_1"/>
+						</Scp>
+						<Scp Scp="C_VOICE_SOUND" Client="YES" UseSleep="NO" Time="100">
+							<Str Str="voice_archer_m_blockandshoot_cast"/>
+							<Str Str="voice_archer_f_blockandshoot_cast"/>
+						</Scp>
+						<Scp Scp="MONSKL_PAD_FRONT_MSL" Client="NO" UseSleep="YES" Time="250" LoopTime="250">
+							<Pos Angle="0" Dist="0"/>
+							<Str Str="QuarrelShooter_BlockAndShoot"/>
+							<Num Num="200"/>
+							<Num Num="1"/>
+							<Num Num="400"/>
+							<Num Num="0"/>
+							<Num Num="0"/>
+						</Scp>
+					</EtcList>
+				</Skill>
+			</SubSkl>
+		</ByCondSkills>
     </Skill>
     <Skill Name="QuarrelShooter_RunningShot">
         <MainSkl JumpFlee="NO" MSPDToUsePos="0" ScrLock="None">
@@ -88,7 +130,7 @@
                     <Str Str="RunningShot_Buff"/>
                     <Num FuncTxt="return obj.Level" Num="0" UseFunc="1"/>
                     <Num Num="0"/>
-                    <Num FuncTxt="return 300000" Num="0" UseFunc="1"/>
+                    <Num FuncTxt="return 20000" Num="0" UseFunc="1"/>
                     <Num Num="1"/>
                     <Num Num="100"/>
                     <Num Num="0"/>

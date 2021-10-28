@@ -193,3 +193,5 @@ ClassID,ConditionArg4,ClassName,UseType,ValueType,PropertyType,ConditionScp,Cond
 192,0,Master_card_Feliksia,Always,StarCount,,,,,,SCR_CARDEFFECT_DAMAGE_REDUCTION_RATE_FROM_BOSS,DAMAGE_REDUCTION_RATE_FROM_BOSS,,0.4,보스에게 받는 피해 감소 +{@st66d_y}{s16}[%d]{/}{/}%%,0.4
 193,0,Master_card_MistesGoldmund,Always,StarCount,,,,,,SCR_CARDEFFECT_ADD_BUFF_STARVALUE_PC,Luminosity_Buff,,0,광휘 상태 이상에 걸린 대상에게 대미지 {@st66d_y}{s16}[%d]{/}{/}%% 증가,1
 194,0,Master_card_AleisterCrowley,BeforeAttack,StarCount,,,,,,SCR_CARDEFFECT_DAMAGE_RATE_BY_BUFF,Freeze,Keyword,1,"결빙, 한기 상태 이상에 걸린 대상에게 주는 대미지{@st66d_y}{s16}[%d]{/}{/}%% 증가",1
+195,0,Master_card_Tesla,Always,StarCount,,,,100,,SCR_CARDEFFECT_STATUS_PLUS,MSP_BM,MSP,90,최대 SP +{@st66d_y}{s16}[%d]{/}{/},90
+196,0,Master_card_KiolRuarawa,Always,StarCount,,,,100,,SCR_CARDEFFECT_STATUS_PLUS,RHP_BM,,60,HP 회복력 +{@st66d_y}{s16}[%d]{/}{/},60

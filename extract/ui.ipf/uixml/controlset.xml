@@ -196,6 +196,19 @@
 			<richtext name="type_text" format="%s 종족" param1="type" param1_def="DefVal" rect="0 0 100 24" margin="30 590 0 0" fixwidth="false" hittest="false" fontname="brown_18_b" layout_gravity="left top"/>
 		</controls>
 	</controlset>
+	<controlset name="tooltip_goddesscard_common" hittest="true" width="433" height="0" skin="goddesscard">
+		<userconfig BOTTOM_MARGIN="10" GRADE_FONT_SIZE="28"/>
+		<controls>
+			<picture name="bgPic" rect="0 0 347 474" margin="0 110 0 0" layout_gravity="center top" image="Card_Bg_Demon" stretch="true" hittest="false"/>
+			<spinepic name="itempic" rect="0 0 347 474" layout_gravity="center top" margin="0 110 0 0" updateparent="true" animation="animation" scale="1.0" stretch="true" offsetX="0" offsetY="0">
+				<uieffect effect="I_TRANSCEND_light" scale="0.5" overlab="No" sound="None" offset="0 0" playtime="3.25" duration="0" conditon="active" event="OPEN" viewportByParent="true" attachSpineBone="wing r8"/>
+			</spinepic>
+			<picture name="card_edge" layout_gravity="center top" stretch="false" rect="0 0 433 588" margin="0 0 0 0"/>
+			<richtext name="name" layout_gravity="center top" textalign="center top" fontname="white_20_ol_ds" rect="0 0 120 30" margin="0 100 0 0" fixwidth="false" hittest="false" resizebytext="true" updateparent="true"/>
+			<richtext name="grade" layout_gravity="center top" textalign="center center" fontname="black_18" rect="0 0 395 40" margin="0 135 0 0" fixwidth="true" hittest="false" resizebytext="false" updateparent="true" caption="별별벼려별"/>
+			<richtext name="type_text" format="%s 종족" param1="type" param1_def="DefVal" rect="0 0 140 24" margin="30 590 0 0" fixwidth="false" hittest="false" fontname="brown_18_b" layout_gravity="left top"/>
+		</controls>
+	</controlset>
 	<controlset name="tooltip_bosscard_desc" hittest="true" width="370" height="50">
 		<controls>
 			<labelline name="labelline" margin="0 0 0 0" rect="0 0 340 3" skin="labelline_def_2" layout_gravity="center top"/>
@@ -565,7 +578,14 @@
 		<controls>
 			<labelline name="labelline" margin="0 0 0 0" rect="0 0 390 3" skin="labelline_def_2" layout_gravity="center top"/>
 			<richtext name="pr_text" caption="포텐셜" rect="0 0 100 24" margin="20 20 0 0" fixwidth="true" hittest="false" fontname="brown_16" layout_gravity="left top"/>
-			<gauge name="pr_gauge" margin="140 10 0 0" rect="0 0 250 40" skin="gauge_itemtooltip_poten" inverse="false" point="5" layout_gravity="left top" text1="%v / %m" textoffset1="0 1" textfont1="white_14_ol" textalign1="center center"/>
+			<gauge name="pr_gauge" margin="140 0 0 0" rect="0 0 250 30" skin="gauge_itemtooltip_poten" inverse="false" point="5" layout_gravity="left top" text1="%v / %m" textoffset1="0 1" textfont1="white_14_ol" textalign1="center center"/>
+		</controls>
+	</controlset>
+	<controlset name="tooltip_refine" hittest="true" width="410" height="20">
+		<controls>
+			<labelline name="labelline" margin="0 0 0 0" rect="0 0 390 3" skin="labelline_def_2" layout_gravity="center top"/>
+			<richtext name="pr_text" caption="연성" rect="0 0 100 24" margin="17 8 0 0" fixwidth="true" hittest="false" fontname="brown_16" layout_gravity="left top"/>
+			<gauge name="pr_gauge" margin="145 8 0 0" rect="0 0 250 20" skin="gauge_vibora_upgrade" stretch="true" inverse="false" layout_gravity="left top" text1="%v / %m" textfont1="white_14_ol" textalign1="center center"/>
 		</controls>
 	</controlset>
 	<controlset name="tooltip_recipe_needitems" hittest="true" width="410" height="0">
@@ -649,6 +669,15 @@
 			<labelline name="labelline" skin="labelline_def_2" margin="10 0 0 0" rect="0 0 390 1" layout_gravity="left bottom"/>
 		</controls>
 	</controlset>
+	<controlset name="eachitem_in_exchange_weapontype" hittest="true" width="430" height="85" skin="None" hittestset="true" draw="true" stateskin="false">
+		<controls>
+			<picture name="item_icon" layout_gravity="left top" rect="0 0 65 65" margin="10 10 0 0" stretch="true"/>
+			<picture name="item_questionmark" image="question_mark" layout_gravity="left top" rect="0 0 50 60" margin="10 10 0 0" stretch="true"/>
+			<richtext name="item_name" rect="0 0 80 30" margin="90 0 0 0" layout_gravity="left center" textalign="left center" resizebytext="true" fixwidth="false" caption="다이야" fontname="white_18_ol"/>
+			<radiobutton name="radioBtn" rect="0 0 27 27" margin="0 0 30 0" layout_gravity="right center" LBtnDownScp="CLICK_EXCHANGE_WEAPONTYPE_RADIOBTN" MouseOffAnim="btn_mouseoff" MouseOnAnim="btn_mouseover" caption="" skin="radiobutton_2"/>
+			<labelline name="labelline" skin="labelline_def_2" margin="10 0 0 0" rect="0 0 390 1" layout_gravity="left bottom"/>
+		</controls>
+	</controlset>
 	<controlset name="eachitem_in_setitemtooltip" hittest="true" width="300" height="30" skin="None" hittestset="true" draw="true" stateskin="false">
 		<userconfig EQUIP_ITEM_FONT="{#050505}" UNEQUIP_ITEM_FONT="{#704010}" HEIGHT_MARGIN="24"/>
 		<controls>
@@ -715,6 +744,13 @@
 		<userconfig POS_Y="25"/>
 		<controls>
 			<richtext name="option_name" rect="0 0 530 30" margin="8 8 0 0" layout_gravity="left top" textalign="left center" resizebytext="true" fixwidth="false" format="미정" param1="미정" param2="미정" param3="미정" caption="미정" fontname="white_16_ol"/>
+		</controls>
+	</controlset>
+	<controlset name="eachoption_in_goddesscard" hittest="true" width="530" height="40" skin="None" hittestset="false" draw="true" stateskin="false">
+		<userconfig POS_Y="25"/>
+		<controls>
+			<richtext name="option_text" rect="5 0 512 30" margin="0 0 0 0" layout_gravity="left top" textalign="left center" resizebytext="true" fixwidth="true" caption="미정" fontname="white_16_ol"/>
+			<labelline name="label_line" rect="0 0 512 8" margin="0 0 0 12" layout_gravity="left bottom" fixwidth="false" format="미정" draw="true" skin="labelline_def_1"/>
 		</controls>
 	</controlset>
 	<controlset name="draw_division_arrow" hittest="true" width="430" height="30" skin="None" hittestset="true" draw="true" stateskin="false">
@@ -5166,6 +5202,22 @@
 			<picture name="comingsoon_Pic" rect="0 0 474 114" margin="0 0 0 0" layout_gravity="center center" image="coming_soon_notice" stretch="true" hittest="false"/>
 		</controls>
 	</controlset>
+	<controlset name="tutorialnote_block" hittest="true" width="496" height="260" stateskin="false">
+		<controls>
+			<groupbox name="main_bg" rect="0 0 496 260" margin="0 0 0 0" layout_gravity="center center" skin="tutorial_post_it" draw="true" hittest="false"/>
+			<groupbox name="main_gb" rect="0 0 496 260" margin="0 0 0 0" layout_gravity="center center" draw="false" hittest="true"/>
+			<picture name="main_pic" parent="main_gb" rect="0 0 430 210" margin="0 10 0 0" layout_gravity="center center" hittest="false" draw="false"/>
+			<richtext name="title" parent="main_gb" rect="0 0 300 50" margin="0 34 0 0" layout_gravity="center top" format="{@st42b}{s20}%s" param1="value" param1_def="제목" hittest="false" textalign="center top" resizebytext="false" fixwidth="true"/>
+			<richtext name="desc" parent="main_gb" rect="0 0 430 65" margin="0 85 0 0" layout_gravity="center top" format="{@st66b}{s18}%s" param1="value" param1_def="미션 내용" resizebytext="false" textalign="center top" hittest="false" fixwidth="true"/>
+			<groupbox name="reward_gb" parent="main_gb" rect="0 0 440 85" margin="0 150 32 0" layout_gravity="center top" scrollbar="false" draw="false" hittest="false"/>
+			<button name="go_btn" parent="main_gb" rect="0 0 107 42" margin="0 202 0 0" layout_gravity="center top" LBtnUpScp="ON_EVENT_STAMP_TOUR_GO_BUTTON_CLICK" skin="test_red_button" caption="{@st42b}{s16}바로가기{/}" MouseOffAnim="btn_mouseoff" MouseOnAnim="btn_mouseover" oversound="button_cursor_over_2" clicksound="button_click_stats_OK"/>
+			<groupbox name="check_bg" rect="0 0 496 254" margin="0 -3 0 0" layout_gravity="center center" skin="tutorial_post_it_activation" draw="true" hittest="false"/>
+			<groupbox name="clear_bg" rect="0 0 496 260" margin="0 0 0 0" layout_gravity="center center" skin="tutorial_post_it_deactivate" draw="true" hittest="false"/>
+			<picture name="clear_pic" rect="0 0 120 120" margin="0 0 30 15" layout_gravity="right bottom" image="very_nice_stamp" stretch="true" hittest="false"/>
+			<richtext name="condition_text" rect="0 0 430 150" margin="0 34 0 0" layout_gravity="center top" format="{@st42b}{s20}%s" param1="value" resizebytext="false" textalign="center top" hittest="false" fixwidth="true"/>
+			<button name="question" rect="0 0 44 44" margin="0 28 60 0" layout_gravity="right top" MouseOffAnim="btn_mouseoff" MouseOnAnim="btn_mouseover" hittest="true" image="testquesten_button" oversound="button_over" LBtnUpScp="ON_EVENT_STAMP_TOUR_HELP_CLICK"/>
+		</controls>
+	</controlset>
 	<!-- content_status_board -->
 	<controlset name="content_status_board_battle_attribute" toggle="false" hittest="true" hittestset="false" width="470" height="130" skin="">
 		<controls>
@@ -5528,6 +5580,7 @@
 			<button name="background_btn" rect="0 0 395 97" margin="0 0 0 0" layout_gravity="center center" skin="worldmap2_btn_square" LBtnUpScp="WORLDMAP2_COLONYMAP_SET_PREVIEW_BY_BTN" oversound="button_cursor_over_3" clicksound="button_click_big"/>
 		</controls>
 	</controlset>
+	<!--월드맵 끝-->
 	<controlset name="icoradd_multiple_set" toggle="false" hittest="true" width="657" height="222" skin="test_skin_01_btn" stateskin="false">
 		<controls>
 			<groupbox name="slotGbox" rect="0 0 318 200" margin="5 0 0 0" layout_gravity="left center" draw="false" hittestbox="false" resizebyparent="false" changecursor="false" scrollbar="false" hittest="true" skin="test_socket_topskin"/>
@@ -5684,6 +5737,27 @@
 			<slot name="slot" parent="slot_pic" rect="0 0 111 111" margin="0 8 0 0" layout_gravity="center top" enabledrop="false" enablepop="false" enabledrag="false"/>
 		</controls>
 	</controlset>
+	<!--평판-->
+	<controlset name="status_reputation_set" hittest="true" width="430" height="82" skin="test_skin_01_btn">
+		<controls>
+			<picture name="reputation_rank" image="reputation01" rect="0 0 80 62" margin="10 0 0 0" imagealign="left center" layout_gravity="left center"/>
+			<button name="reputation_npc_btn" rect="0 0 22 22" margin="0 0 20 0" layout_gravity="right center" image="quest_NPC_btn"/>
+			<button name="reputation_location_btn" rect="0 0 22 22" margin="0 0 50 0" layout_gravity="right center" image="quest_location_btn"/>
+			<richtext name="reputation_text" rect="0 0 150 32" margin="100 0 0 0" layout_gravity="left center" textalign="left center" fontname="black_16_b" format="%s (%s%)" param1="name" param1_def="렘파라사 연못" param2="value" param2_def="0"/>
+		</controls>
+	</controlset>
+	<controlset name="reputation_shop_item_list" hittest="true" width="460" height="55">
+		<controls>
+			<button name="button" layout_gravity="center center" skin="test_skin_01_btn" rect="0 0 460 55" margin="0 0 0 0"/>
+			<slot name="slot" layout_gravity="left center" skin="slot_empty" rect="0 0 42 42" margin="7 -1 0 0" hittest="true"/>
+			<richtext name="item_name" rect="0 0 400 42" margin="53 7 0 0" layout_gravity="left top" fixwidth="true" hittest="false" fontname="white_14_b_ds"/>
+			<richtext name="item_price" rect="0 0 400 42" margin="54 0 0 7" layout_gravity="left bottom" fixwidth="true" hittest="false" fontname="white_14_b_ds"/>
+			<richtext name="item_limit" rect="0 0 100 42" margin="120 0 0 0" layout_gravity="center center" fixwidth="true" hittest="false" fontname="white_14_b_ds"/>
+			<picture name="reputation_img" rect="0 0 40 31" margin="0 0 8 0" layout_gravity="right center" stretch="true" hittest="false" image="reputation01"/>
+			<picture name="reputation_lock" rect="0 0 30 38" margin="0 0 0 0" layout_gravity="center center" stretch="true" hittest="true" image="relabeling_lock"/>
+		</controls>
+	</controlset>
+	<!--평판 끝-->
 	<controlset name="select_mgame_buff_ctrl" hittest="true" width="80" height="108" draw="false">
 		<controls>
 			<picture name="background_pic" image="buffselect_empty" rect="0 0 80 80" margin="0 0 0 0" imagealign="center center" layout_gravity="center center"/>
@@ -5703,6 +5777,16 @@
 			<richtext name="coinTOS_text" rect="0 0 150 30" margin="20 0 0 0" layout_gravity="left top" textalign="left top" fontname="black_16_b" format="%s : %s개" param1="name" param2="value"/>
 			<richtext name="coin5TH_text" rect="0 0 150 30" margin="20 25 0 0" layout_gravity="left top" textalign="left top" fontname="black_16_b" format="%s : %s개" param1="name" param2="value"/>
 			<button name="update_Btn" rect="0 0 90 40" margin="0 0 50 0" layout_gravity="right center" format="{@st41}갱신" skin="test_red_button"/>
+		</controls>
+	</controlset>
+	<controlset name="item_equip_helper_ctrl" hittest="true" width="465" height="37" draw="false">
+		<userconfig FONT_GRADE_1="{@st42b}{s20}{#ffffff}" FONT_GRADE_2="{@st42b}{s20}{#0e7fe8}" FONT_GRADE_3="{@st42b}{s20}{#a124d0}" FONT_GRADE_4="{@st42b}{s20}{#d92400}" FONT_GRADE_5="{@st42b}{s20}{#ffcd00}" FONT_NOT_EQUIP="{@st42b}{s20}"/>
+		<controls>
+			<groupbox name="equip_helper_bg" rect="0 0 465 30" margin="0 0 0 0" layout_gravity="left top" skin="equipment_info_bg" hittest="true"/>
+			<groupbox name="equip_spot_bg" rect="0 0 80 30" margin="0 0 0 0" layout_gravity="left top" parent="equip_helper_bg" hittest="true" skin="equipment_info_title"/>
+			<richtext name="equip_spot" rect="0 0 80 30" margin="0 0 0 0" layout_gravity="center center" parent="equip_spot_bg" fixwidth="true" omitbywidth="true" ellipsistexttooltip="true" resizebytext="false" hittest="true" textalign="center center" format="{@st42b}{s20}{ds}%s" param1="spot" param1_def="목걸이"/>
+			<richtext name="item_name" rect="0 0 200 30" margin="82 3 0 0" layout_gravity="left top" parent="equip_helper_bg" textalign="left center" fontname="black_16_b" format="%s" param1="name" param1_def="없음"/>
+			<picture name="waring_pic" rect="0 0 30 30" margin="0 0 0 0" layout_gravity="right center" parent="equip_helper_bg" hittest="true" image="equipment_info_exclamation_mark" stretch="true"/>
 		</controls>
 	</controlset>
 </controlsetlist>

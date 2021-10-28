@@ -212,7 +212,7 @@ function ITEMBUFF_VALUE_Squire_EquipmentTouchUp(self, item, skillLevel)
     end
     
     local itemstring = TryGetProp(item, 'StringArg','None')
-    if itemstring == 'Growth_Item' then
+    if itemstring == 'Growth_Item' or itemstring == 'Growth_Item_Rare' or itemstring == 'Growth_Item_Unique' or itemstring == 'Growth_Item_Legend'then
         local grothItem = CALC_GROWTH_ITEM_LEVEL(item);
         if grothItem ~= nil then
             lv = grothItem;

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="EUC-KR"?>
+<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by IMCGames Co., Ltd (IMCGames Co., Ltd) -->
+<ActionDesc>
+    <BlendOn frame="0" R="0" G="0" B="0" A="50"/>
+    <Sound frame="0.00" soundFile="mon_voice_throneweaver_3"/>
+    <Sound frame="0.25" soundFile="mon_voice5_l_2"/>
+    <Sound frame="12.00" soundFile="skl_eff_force_whoosh_1"/>
+    <Sound frame="13.00" soundFile="skl_eff_atk_move_m_8"/>
+    <Sound frame="13.00" soundFile="skl_eff_atk_move_l_4"/>
+    <Particle frame="15" attachNode="Dummy_emitter" particleName="F_spread_out026_leaf_fire_dragoonhelmet" useAttach="false" hiddenObj="false" changeEffect="None" scale="0" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Particle frame="15" attachNode="Dummy_emitter" particleName="F_ground185_spred_out_light_orange" useAttach="false" hiddenObj="false" changeEffect="None" scale="0" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Particle frame="15" attachNode="Bip01 Pelvis" particleName="F_doll_gabia_std_fire" useAttach="false" hiddenObj="false" changeEffect="None" scale="3" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Sound frame="15.00" soundFile="skl_eff_dethrone_whoosh"/>
+    <Sound frame="15.53" soundFile="skl_eff_short_impact_whoosh_2"/>
+    <Particle frame="16" attachNode="Bip01 Pelvis" particleName="F_ground194_fire" useAttach="false" hiddenObj="false" changeEffect="None" scale="2.3" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Particle frame="16" attachNode="Dummy_emitter" particleName="F_ground071_smoke3" useAttach="false" hiddenObj="false" changeEffect="None" scale="1.5" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Shockwave frame="17" type="2" intensity="2" frequency="50" duration="0.3" range="1000"/>
+    <Particle frame="17" attachNode="Dummy_effect_atk1" particleName="I_swordtrail052_reverse" useAttach="false" hiddenObj="false" changeEffect="None" scale="3" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Particle frame="17" attachNode="Dummy_effect_atk" particleName="I_swordtrail053_Dark2_reverse" useAttach="false" hiddenObj="false" changeEffect="None" scale="3" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <BlendOn frame="18" R="150" G="140" B="100" A="100"/>
+    <BlendOn frame="19" R="130" G="120" B="80" A="100"/>
+    <BlendOn frame="20" R="100" G="90" B="50" A="100"/>
+    <BlendOn frame="21" R="80" G="70" B="40" A="100"/>
+    <BlendOn frame="22" R="50" G="40" B="20" A="100"/>
+    <BlendOff frame="23" R="0" G="0" B="0" A="0"/>
+</ActionDesc>

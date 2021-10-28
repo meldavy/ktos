@@ -42,9 +42,9 @@
             <ToolScp Client="YES" Scp="C_SOUND" UseSleep="NO">
                 <Str Str="skl_eff_firefoxshikigama_cast"/>
             </ToolScp>
-            <ToolScp Client="YES" Scp="C_VOICE_SOUND" UseSleep="NO">
-                <Str Str="voice_wiz_m_firefoxshikigami_cast"/>
-                <Str Str="voice_wiz_f_firefoxshikigami_cast"/>
+            <ToolScp Scp="C_VOICE_SOUND" Client="YES" UseSleep="NO">
+                <Str Str="voice_war_atk_long_cast"/>
+                <Str Str="voice_atk_long_cast_f"/>
             </ToolScp>
             <ToolScp Client="YES" Scp="C_SHOW_PARTS_MODEL" UseSleep="NO">
                 <Str Str="LH"/>
@@ -94,9 +94,9 @@
                 <Scp Client="YES" Scp="C_SOUND" Time="0" UseSleep="NO">
                     <Str Str="skl_eff_firefoxshikigama_shot"/>
                 </Scp>
-                <Scp Client="YES" Scp="C_VOICE_SOUND" Time="0" UseSleep="NO">
-                    <Str Str="voice_wiz_m_firefoxshikigami_shot"/>
-                    <Str Str="voice_wiz_f_firefoxshikigami_shot"/>
+                <Scp Scp="C_VOICE_SOUND" Client="YES" UseSleep="NO" Time="0">
+                    <Str Str="voice_war_atk_medium"/>
+                    <Str Str="voice_atk_medium_war_f"/>
                 </Scp>
                 <Scp Client="NO" Scp="MONSKL_CRE_MON_SCR" Time="400" UseSleep="NO">
                     <Str FuncTxt="   local mon = &quot;pcskill_FireFoxShikigami&quot;     local abil = GetAbility(self, &quot;Onmyoji3&quot;)     if abil ~= nil and TryGetProp(abil, &quot;ActiveState&quot;) == 1 then         if IMCRandom(1, 100) &lt; 50 then             mon = &quot;pcskill_Big_FireFoxShikigami&quot;         end     end     return mon" Str="" UseFunc="1"/>
@@ -112,6 +112,38 @@
                 </Scp>
                 <Scp Client="NO" Scp="SKL_SET_TGT_EXPROP_RECENT" Time="800" UseSleep="NO">
                     <Str Str="ONMYOJI_FIREFOXSHIKIGAMI"/>
+                    <Num Num="1"/>
+                </Scp>
+            </EtcList>
+        </MainSkl>
+    </Skill>
+    <Skill Name="Onmyoji_CrystalballShikigami">
+        <MainSkl ScrLock="None" JumpFlee="NO" MSPDToUsePos="0">
+            <HitList>
+                <Frame Type="FAN" Time="99799" HitCount="1" TermMin="0" TermMax="0" PosType="0" Dist="0" RandDist="0" RandomPerHit="0" Angle="0" Width="30" Length="30" SklAngle="0.17453292" AniTime="99999" RotAngle="0" ForceATK="0" ScriptIndex="0" ScriptName="" SkillType="0"/>
+            </HitList>
+            <EtcList>
+                <Scp Scp="MONSKL_C_PLAY_ANIM" Client="YES" UseSleep="NO" Time="0">
+                    <Str Str="skl_Onmyoji_Toyou_shot"/>
+                    <Num Num="1.5"/>
+                    <Num Num="1"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="C_VOICE_SOUND" Client="YES" UseSleep="NO" Time="0">
+                    <Str Str="voice_war_atk_long_shot"/>
+                    <Str Str="voice_atk_long_war_f"/>
+                </Scp>
+                <Scp Scp="C_SOUND" Client="YES" UseSleep="NO" Time="0">
+                    <Str Str="skl_eff_crystalballofshikigami"/>
+                </Scp>
+                <Scp Scp="MONSKL_PAD_FRONT_MSL" Client="NO" UseSleep="YES" Time="250">
+                    <Pos Angle="0" Dist="0" PosType="5"/>
+                    <Str Str="Onmyoji_CrystalballShikigami_Pad"/>
+                    <Num Num="150"/>
+                    <Num Num="1"/>
+                    <Num Num="200"/>
+                    <Num Num="1"/>
+                    <Num Num="0"/>
                     <Num Num="1"/>
                 </Scp>
             </EtcList>
@@ -138,7 +170,7 @@
             <ToolScp Client="YES" Scp="SKL_KEY_DYNAMIC_CASTING" UseSleep="NO">
                 <Num Num="0"/>
                 <Num Num="0"/>
-                <Num Num="4"/>
+                <Num Num="3"/>
                 <Num Num="1"/>
                 <Num Num="0"/>
                 <Num Num="0"/>
@@ -809,9 +841,9 @@ return value"/>
                 <Str Str="Bip01 Pelvis"/>
                 <Num Num="0"/>
             </ToolScp>
-            <ToolScp Client="YES" Scp="C_VOICE_SOUND" UseSleep="NO">
-                <Str Str="voice_wiz_m_watershikigami_cast"/>
-                <Str Str="voice_wiz_f_watershikigami_cast"/>
+            <ToolScp Scp="C_VOICE_SOUND" Client="YES" UseSleep="NO">
+                <Str Str="voice_war_atk_long_cast"/>
+                <Str Str="voice_atk_long_cast_f"/>
             </ToolScp>
             <ToolScp Client="YES" Scp="C_SOUND" UseSleep="NO">
                 <Str Str="skl_eff_watershikigami_cast"/>
@@ -858,9 +890,9 @@ return value"/>
                     <Num Num="0"/>
                     <Num Num="1"/>
                 </Scp>
-                <Scp Client="YES" Scp="C_VOICE_SOUND" Time="0" UseSleep="NO">
-                    <Str Str="voice_wiz_m_watershikigami_shot"/>
-                    <Str Str="voice_wiz_f_watershikigami_shot"/>
+                <Scp Scp="C_VOICE_SOUND" Client="YES" UseSleep="NO" Time="0">
+                    <Str Str="voice_war_atk_long_shot"/>
+                    <Str Str="voice_atk_long_war_f"/>
                 </Scp>
                 <Scp Client="YES" Scp="C_SOUND" Time="0" UseSleep="NO">
                     <Str Str="skl_eff_watershikigami_shot"/>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by ÀÌÁ¤¿ë (IMCGames Co., Ltd) -->
+<ActionDesc>
+    <HeadRotBip frame="0" BipName="Bip01 Head"/>
+    <Sound frame="0.00" soundFile="rap_attack"/>
+    <Sound frame="0.30" soundFile="skl_eff_sandblast_whoosh"/>
+    <Sound frame="4.54" soundFile="rap_attack"/>
+    <Sound frame="8.97" soundFile="rap_attack"/>
+    <Sound frame="12.97" soundFile="rap_attack"/>
+    <HeadRotBip frame="16" BipName="Bip01 Head"/>
+</ActionDesc>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="EUC-KR"?>
+<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by IMCGames Co., Ltd (IMCGames Co., Ltd) -->
+<ActionDesc>
+    <Particle frame="0" attachNode="Bip01 Pelvis" particleName="F_ground194_fire" useAttach="true" hiddenObj="false" changeEffect="None" scale="2.5" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Particle frame="0" attachNode="Bip01 Pelvis" particleName="F_doll_gabia_std_fire" useAttach="true" hiddenObj="false" changeEffect="None" scale="3" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Sound frame="0.46" soundFile="mon_voice5_l_2"/>
+    <Sound frame="0.46" soundFile="skl_eff_atk_move_l_20"/>
+    <Sound frame="30.00" soundFile="skl_eff_landing_m"/>
+    <Sound frame="32.00" soundFile="skl_eff_jumplanding_1"/>
+    <Particle frame="35" attachNode="Bip01 Pelvis" particleName="F_ground194_fire" useAttach="true" hiddenObj="false" changeEffect="None" scale="2.5" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Particle frame="35" attachNode="Bip01 Pelvis" particleName="F_doll_gabia_std_fire" useAttach="true" hiddenObj="false" changeEffect="None" scale="3" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Particle frame="35" attachNode="Dummy_emitter" particleName="F_smoke046" useAttach="true" hiddenObj="false" changeEffect="None" scale="2" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Sound frame="65.00" soundFile="skl_eff_atk_move_l_23"/>
+</ActionDesc>

@@ -46,7 +46,7 @@ ClassID,FactorByLevel,AddFactor,ClassName,HiddenReinforceAbil,CMM_Caption
 45,1.25,0,Fencer_Flanconnade,Fencer17,[아츠] 플랑코나드: 상급 강화
 46,1.25,0,Fencer_BalestraFente,Fencer18,[아츠] 발레스트라 팡트: 상급 강화
 47,1.25,0,Fencer_Fleche,Fencer19,[아츠] 플레쉬: 상급 강화
-48,1.25,0,Murmillo_FrenziedSlash,Murmillo22,[아츠] 프렌지드 슬래시: 상급 강화
+48,1.25,0,Murmillo_FrenziedBurst,Murmillo22,[아츠] 프렌지드 버스트: 상급 강화
 49,1.25,0,Murmillo_EvadeThrust,Murmillo23,[아츠] 이베이드 쓰러스트: 상급 강화
 50,1.25,0,Murmillo_Headbutt,Murmillo24,[아츠] 헤드버트: 상급 강화
 51,1.25,0,Murmillo_ScutumHit,Murmillo25,[아츠] 스큐텀 힛: 상급 강화
@@ -134,7 +134,7 @@ ClassID,FactorByLevel,AddFactor,ClassName,HiddenReinforceAbil,CMM_Caption
 133,1.25,0,Warlock_Mastema,Warlock24,[아츠] 마스테마: 상급 강화
 134,1.25,0,Warlock_DemonScratch,Warlock25,[아츠] 데몬 스크래치: 상급 강화
 135,1.25,0,RuneCaster_Hagalaz,RuneCaster14,[아츠] 파괴의 룬: 상급 강화
-136,1.25,0,RuneCaster_Isa,RuneCaster15,[아츠] 얼음의 룬: 상급 강화
+136,1.25,0,RuneCaster_Isa,RuneCaster15,[아츠] 대지의 룬: 상급 강화
 137,1.25,0,RuneCaster_Tiwaz,RuneCaster16,[아츠] 정의의 룬: 상급 강화
 138,1.25,0,RuneCaster_Stan,RuneCaster17,[아츠] 돌의 룬: 상급 강화
 139,1.25,0,Sage_MicroDimension,Sage23,[아츠] 마이크로 디멘션: 상급 강화
@@ -145,10 +145,10 @@ ClassID,FactorByLevel,AddFactor,ClassName,HiddenReinforceAbil,CMM_Caption
 144,1.25,0,Shadowmancer_ShadowConjuration,Shadowmancer13,[아츠] 섀도우 컨저레이션: 상급 강화
 145,1.25,0,Shadowmancer_ShadowCondensation,Shadowmancer14,[아츠] 섀도우 콘덴세이션: 상급 강화
 146,1.25,0,Shadowmancer_InfernalShadow,Shadowmancer15,[아츠] 인퍼널 섀도우: 상급 강화
-147,1.25,0,Onmyoji_FireFoxShikigami,Onmyoji22,[아츠] 불여우 식신령: 상급 강화
+147,1.25,0,Onmyoji_FireFoxShikigami,Onmyoji22,[아츠] 염동의 식신령: 상급 강화
 148,1.25,0,Onmyoji_GreenwoodShikigami,Onmyoji23,[아츠] 생목의 식신령: 상급 강화
 149,1.25,0,Onmyoji_WhiteTigerHowling,Onmyoji24,[아츠] 백호령: 상급 강화
-150,1.25,0,Onmyoji_WaterShikigami,Onmyoji25,[아츠] 살수의 식신령: 상급 강화
+150,1.25,0,Onmyoji_WaterShikigami,Onmyoji25,[아츠] 바람의 식신령: 상급 강화
 151,1.25,0,Onmyoji_Toyou,Onmyoji26,[아츠] 토용: 상급 강화
 152,1.25,0,Onmyoji_YinYangConsonance,Onmyoji27,[아츠] 음양조화: 상급 강화
 153,1.25,0,Bokor_Effigy,Bokor27,[아츠] 에피지: 상급 강화
@@ -351,3 +351,26 @@ ClassID,FactorByLevel,AddFactor,ClassName,HiddenReinforceAbil,CMM_Caption
 350,1.25,0,QuarrelShooter_BlockAndShoot,QuarrelShooter36,[아츠] 블록 앤드 샷: 상급 강화
 351,1.25,0,Fletcher_BroadHead_DOT,Fletcher28,[아츠] 브로드 헤드: 상급 강화
 352,1.25,0,Chaplain_Binatio,Chaplain22,[아츠] 비나시오: 상급 강화
+353,1.25,0,Sadhu_AstralBodySmite,Sadhu33,[아츠] 유체 강타: 상급 강화
+354,1.25,0,Arquebusier_PinpointFire,Arquebusier7,[아츠] 핀포인트 파이어: 상급 강화
+355,1.25,0,Arquebusier_LuckyStrike,Arquebusier8,[아츠] 럭키 스트라이크: 상급 강화
+356,1.25,0,Arquebusier_ArquebusBarrage,Arquebusier9,[아츠] 아퀴버스 배라지: 상급 강화
+357,1.25,0,Arquebusier_Salute,Arquebusier10,[아츠] 더스티 설룻: 상급 강화
+358,1.25,0,Arquebusier_PrecisionFire,Arquebusier11,[아츠] 프리시전 파이어: 상급 강화
+359,1.25,0,Clown_SpinningKnife,Clown6,[아츠] 스피닝 나이프: 상급 강화
+360,1.25,0,Clown_Replica,Clown7,[아츠] 레플리카: 상급 강화
+361,1.25,0,Clown_FatalRoulette,Clown8,[아츠] 페이탈 룰렛: 상급 강화
+362,1.25,0,Clown_Climax,Clown9,[아츠] 클라이맥스: 상급 강화
+363,1.25,0,Daoshi_FlameRadiation,Daoshi33,[아츠] 멸화부: 상급 강화
+364,1.25,0,Daoshi_FireCharm,Daoshi35,[아츠] 화염부: 상급 강화
+365,1.25,0,Elementalist_StoneCurse,Elementalist42,[아츠] 라이트닝 오브: 상급 강화
+366,1.25,0,Elementalist_ElementalEssence,Elementalist44,[아츠] 엘리멘탈 버스트: 상급 강화
+367,1.25,0,Bokor_Hexing,Bokor32,[아츠] 쇠약의 저주: 상급 강화
+368,1.25,0,Bokor_Samdiveve,Bokor34,[아츠] 삼디베베: 상급 강화
+369,1.25,0,RuneCaster_Ehwaz,RuneCaster21,[아츠] 인력의 룬: 상급 강화
+370,1.25,0,RuneCaster_Thurisaz,RuneCaster24,[아츠] 척력의 룬: 상급 강화
+371,1.25,0,Onmyoji_CrystalballShikigami,Onmyoji33,[아츠] 식신령의 정수: 상급 강화
+372,1.25,0,Pyromancer_EnchantFire,Pyromancer39,[아츠] 인챈트 파이어: 상급 강화
+373,1.25,0,Peltasta_Langort,Peltasta45,[아츠] 랑고르트: 상급 강화
+374,1.25,0,Peltasta_ButterFly,Murmillo31,[아츠] 버터플라이: 상급 강화
+375,1.25,0,QuarrelShooter_RunningShot,QuarrelShooter37,[아츠] 런닝 샷: 상급 강화

@@ -5850,6 +5850,35 @@
 			</ToolScp>
 		</List>
 	</AI>
+	<AI Name="EP13_F_SIAULIAI_2_MQ_07_TRACKMON" ActiveMessageMapInBattle="1">
+		<List>
+			<ToolScp Scp="S_AI_ATTACK_NEAR" Client="NO" UseSleep="NO">
+				<Num Num="500"/>
+			</ToolScp>
+		</List>
+		<DeadList>
+			<ToolScp Scp="SAI_DEAD_FUNC2_DIRECT" Client="NO" UseSleep="NO">
+				<Str Str="SCR_EP13_F_SIAULIAI_2_MQ_07_DEAD_CNT_RUN"/>
+			</ToolScp>
+		</DeadList>
+		<StartList>
+			<ToolScp Scp="S_AI_SET_TENDENCY" Client="NO" UseSleep="NO">
+				<Str Str="Attack"/>
+			</ToolScp>
+		</StartList>
+	</AI>
+	<AI Name="EP13_F_SIAULIAI_3_MQ_07_TRACKMON" ActiveMessageMapInBattle="1">
+		<List>
+			<ToolScp Scp="S_AI_ATTACK_NEAR_MAXHATECOUNT_CHECK" Client="NO" UseSleep="NO">
+				<Num Num="500"/>
+			</ToolScp>
+		</List>
+		<StartList>
+			<ToolScp Scp="S_AI_SET_TENDENCY" Client="NO" UseSleep="NO">
+				<Str Str="Attack"/>
+			</ToolScp>
+		</StartList>
+	</AI>
 	<AI Name="EVENT1912_4TH_BUFF2_RUN_MON_AI_RUN" UpdateMS="10000" ActiveMessageMapInBattle="1">
 		<List>
 			<ToolScp Scp="SAI_FUNC2_DIRECT" Client="NO" UseSleep="NO">
@@ -6508,30 +6537,30 @@
 		</StartList>
 	</AI>
 	<AI Name="EVENT_2011_5TH_FIREWORK_SUB" UpdateMS="10000" ActiveMessageMapInBattle="1">
-        <List>
-            <ToolScp Scp="SAI_FUNC2_DIRECT" Client="NO" UseSleep="NO">
-                <Str Str="EVENT_2011_5TH_FIREWORK_SUB_AI_RUN"/>
-            </ToolScp>
-        </List>
-        <StartList>
-            <ToolScp Scp="SAI_FUNC2_DIRECT" Client="NO" UseSleep="NO">
-                <Str Str="EVENT_2011_5TH_FIREWORK_SUB_AI"/>
-            </ToolScp>
-            <ToolScp Scp="S_AI_EFFECT_ATTACH" Client="NO" UseSleep="NO">
-                <Num Num="0"/>
-                <Str_Arg Str="F_sys_team_ground_red" Arg="5"/>
-                <Str Str="BOT"/>
-            </ToolScp>
-            <ToolScp Scp="EnableAIOutOfPC" Client="NO" UseSleep="NO"/>
-        </StartList>
-    </AI>
-    <AI Name="EVENT_2011_5TH_FIREWORK_NPC_AI" UpdateMS="5000" ActiveMessageMapInBattle="1">
-        <List>
-            <ToolScp Scp="SAI_FUNC2_DIRECT" Client="NO" UseSleep="NO">
-                <Str Str="EVENT_2011_5TH_FIREWORK_NPC_AI_UPDATE"/>
-            </ToolScp>
-        </List>
-    </AI>
+		<List>
+			<ToolScp Scp="SAI_FUNC2_DIRECT" Client="NO" UseSleep="NO">
+				<Str Str="EVENT_2011_5TH_FIREWORK_SUB_AI_RUN"/>
+			</ToolScp>
+		</List>
+		<StartList>
+			<ToolScp Scp="SAI_FUNC2_DIRECT" Client="NO" UseSleep="NO">
+				<Str Str="EVENT_2011_5TH_FIREWORK_SUB_AI"/>
+			</ToolScp>
+			<ToolScp Scp="S_AI_EFFECT_ATTACH" Client="NO" UseSleep="NO">
+				<Num Num="0"/>
+				<Str_Arg Str="F_sys_team_ground_red" Arg="5"/>
+				<Str Str="BOT"/>
+			</ToolScp>
+			<ToolScp Scp="EnableAIOutOfPC" Client="NO" UseSleep="NO"/>
+		</StartList>
+	</AI>
+	<AI Name="EVENT_2011_5TH_FIREWORK_NPC_AI" UpdateMS="5000" ActiveMessageMapInBattle="1">
+		<List>
+			<ToolScp Scp="SAI_FUNC2_DIRECT" Client="NO" UseSleep="NO">
+				<Str Str="EVENT_2011_5TH_FIREWORK_NPC_AI_UPDATE"/>
+			</ToolScp>
+		</List>
+	</AI>
 	<AI Name="EVENT_CURSED_COAST_POTAL" ActiveMessageMapInBattle="1">
 		<StartList>
 			<ToolScp Scp="S_AI_EFFECT_ATTACH" Client="NO" UseSleep="NO">
@@ -9649,8 +9678,7 @@
 			</ToolScp>
 		</StartList>
 	</AI>
-
-<AI Name="EVENT_2009_FULLMOON_EFFECT" UpdateMS="1000" ActiveMessageMapInBattle="1">
+	<AI Name="EVENT_2009_FULLMOON_EFFECT" UpdateMS="1000" ActiveMessageMapInBattle="1">
 		<List>
 			<ToolScp Scp="SAI_FUNC_DIRECT" Client="NO" UseSleep="NO">
 				<Str Str="SCR_EVENT_2009_FULLMOON_EFFECT_AI"/>
@@ -18108,6 +18136,13 @@ if self.HP == 0 then return 1; else return 0; end;">
 			</ToolScp>
 		</List>
 	</AI>
+	<AI Name="SCR_EP13_F_SIAULIAI_2_MQ_07_RADA" ActiveMessageMapInBattle="1">
+		<List>
+			<ToolScp Scp="SAI_FUNC_DIRECT" Client="NO" UseSleep="NO">
+				<Str Str="SCR_EP13_F_SIAULIAI_2_MQ_07_RADA_AI"/>
+			</ToolScp>
+		</List>
+	</AI>
 	<AI Name="SCR_ID_WHITETREES1_GIMMICK3_SETUP" ActiveMessageMapInBattle="1">
 		<StartList>
 			<ToolScp Scp="SAI_FUNC2_DIRECT" Client="NO" UseSleep="NO">
@@ -25329,6 +25364,13 @@ if self.HP == 0 then return 1; else return 0; end;">
 			</ToolScp>
 		</List>
 	</AI>
+	<AI Name="companion_pet_winter_rabbit" ActiveMessageMapInBattle="1">
+		<List>
+			<ToolScp Scp="SAI_FUNC2_DIRECT_SLEEP" Client="NO" UseSleep="YES">
+				<Str Str="PET_LOOP_AI"/>
+			</ToolScp>
+		</List>
+	</AI>
 	<AI Name="companion_pointing" UpdateMS="3000" ActiveMessageMapInBattle="1">
 		<List>
 			<ToolScp Scp="SAI_FUNC2_DIRECT_SLEEP" Client="NO" UseSleep="YES">
@@ -27312,5 +27354,95 @@ return GET_RATE_MHP(self, damage) * 100"/>
 				<Str Str="None"/>
 			</ToolScp>
 		</HitList>
+	</AI>
+	<AI Name="EP13_F_SIAULIAI_5_WAVE1" ActiveMessageMapInBattle="1"/>
+	<AI Name="EP13_F_SIAULIAI_5_WAVE1_AI" UpdateMS="1000" ActiveMessageMapInBattle="1">
+		<List>
+			<ToolScp Scp="SAI_FUNC2_DIRECT" Client="NO" UseSleep="NO">
+				<Str Str="EP13_F_SIAULIAI_5_WAVE1_AI_ACT_01"/>
+				<Str_Arg Str="I_light004_blue" Arg="1"/>
+				<Str Str="BOT"/>
+			</ToolScp>
+		</List>
+	</AI>
+	<AI Name="EP13_F_SIAULIAI_CHASER_FOG_AI" UpdateMS="1000" ActiveMessageMapInBattle="1">
+		<List>
+			<ToolScp Scp="SAI_FUNC2_DIRECT" Client="NO" UseSleep="NO">
+				<Str Str="EP13_F_SIAULIAI_CHASER_FOG_AI_ACT_01"/>
+			</ToolScp>
+			<ToolScp Scp="SAI_FUNC2_DIRECT" Client="NO" UseSleep="NO">
+				<Str Str="EP13_F_SIAULIAI_CHASER_FOG_AI_ACT_02"/>
+			</ToolScp>
+			<ToolScp Scp="SAI_FUNC2_DIRECT" Client="NO" UseSleep="NO">
+				<Str Str="EP13_F_SIAULIAI_CHASER_FOG_AI_ACT_03"/>
+			</ToolScp>
+			<ToolScp Scp="SAI_FUNC2_DIRECT" Client="NO" UseSleep="NO">
+				<Str Str="EP13_F_SIAULIAI_CHASER_FOG_AI_ACT_04"/>
+			</ToolScp>
+			<ToolScp Scp="S_AI_EFFECT_ATTACH" Client="NO" UseSleep="NO">
+				<Num Num="0"/>
+				<Str_Arg Str="F_smoke022" Arg="5"/>
+				<Str Str="BOT"/>
+			</ToolScp>
+		</List>
+	</AI>
+	<AI Name="EP13_F_SIAULIAI_5_ENDPOINT_AI" ActiveMessageMapInBattle="1">
+		<List>
+			<ToolScp Scp="SAI_FUNC2_DIRECT" Client="NO" UseSleep="NO">
+				<Str Str="EP13_F_SIAULIAI_5_ENDPOINT_AI_ACT_01"/>
+			</ToolScp>
+		</List>
+		<StartList>
+			<ToolScp Scp="S_AI_EFFECT_ATTACH" Client="NO" UseSleep="NO">
+				<Num Num="0"/>
+				<Str_Arg Str="I_quest_mask_success" Arg="8"/>
+				<Str Str="TOP"/>
+			</ToolScp>
+		</StartList>
+	</AI>
+	<AI Name="EP13_F_SIAULIAI_5_WAVE2" ActiveMessageMapInBattle="1"/>
+	<AI Name="EP13_F_SIAULIAI_5_WAVE2_AI" UpdateMS="1000" ActiveMessageMapInBattle="1">
+		<List>
+			<ToolScp Scp="SAI_FUNC2_DIRECT" Client="NO" UseSleep="NO">
+				<Str Str="EP13_F_SIAULIAI_5_WAVE2_AI_ACT_01"/>
+				<Str_Arg Str="I_light004_blue" Arg="1"/>
+				<Str Str="BOT"/>
+			</ToolScp>
+		</List>
+	</AI>
+	<AI Name="EP13_F_SIAULIAI_CHASER_FOG2_AI" UpdateMS="1000" ActiveMessageMapInBattle="1">
+		<List>
+			<ToolScp Scp="SAI_FUNC2_DIRECT" Client="NO" UseSleep="NO">
+				<Str Str="EP13_F_SIAULIAI_CHASER_FOG_AI_ACT_01"/>
+			</ToolScp>
+			<ToolScp Scp="SAI_FUNC2_DIRECT" Client="NO" UseSleep="NO">
+				<Str Str="EP13_F_SIAULIAI_CHASER_FOG_AI_ACT_02"/>
+			</ToolScp>
+			<ToolScp Scp="SAI_FUNC2_DIRECT" Client="NO" UseSleep="NO">
+				<Str Str="EP13_F_SIAULIAI_CHASER_FOG_AI_ACT_03"/>
+			</ToolScp>
+			<ToolScp Scp="SAI_FUNC2_DIRECT" Client="NO" UseSleep="NO">
+				<Str Str="EP13_F_SIAULIAI_CHASER_FOG2_AI_ACT_04"/>
+			</ToolScp>
+			<ToolScp Scp="S_AI_EFFECT_ATTACH" Client="NO" UseSleep="NO">
+				<Num Num="0"/>
+				<Str_Arg Str="F_smoke022" Arg="5"/>
+				<Str Str="BOT"/>
+			</ToolScp>
+		</List>
+	</AI>
+	<AI Name="EP13_F_SIAULIAI_5_ENDPOINT2_AI" ActiveMessageMapInBattle="1">
+		<List>
+			<ToolScp Scp="SAI_FUNC2_DIRECT" Client="NO" UseSleep="NO">
+				<Str Str="EP13_F_SIAULIAI_5_ENDPOINT2_AI_ACT_01"/>
+			</ToolScp>
+		</List>
+		<StartList>
+			<ToolScp Scp="S_AI_EFFECT_ATTACH" Client="NO" UseSleep="NO">
+				<Num Num="0"/>
+				<Str_Arg Str="I_quest_mask_success" Arg="8"/>
+				<Str Str="TOP"/>
+			</ToolScp>
+		</StartList>
 	</AI>
 </AIList>

@@ -339,4 +339,68 @@
 			<Prop/>
 		</Exp>
 	</EquipExp>
+	<EquipExp Group="Goddess_Card">
+		<Exp Level="1" GiveExp="0" TotalExp="20" PriceMultiple="1.0">
+			<Prop/>
+		</Exp>
+		<Exp Level="2" GiveExp="0" TotalExp="60" PriceMultiple="1.0">
+			<Prop/>
+		</Exp>
+		<Exp Level="3" GiveExp="0" TotalExp="130" PriceMultiple="1.0">
+			<Prop/>
+		</Exp>
+		<Exp Level="4" GiveExp="0" TotalExp="230" PriceMultiple="1.0">
+			<Prop/>
+		</Exp>
+		<Exp Level="5" GiveExp="0" TotalExp="370" PriceMultiple="1.0">
+			<Prop/>
+		</Exp>
+		<Exp Level="6" GiveExp="0" TotalExp="550" PriceMultiple="1.0">
+			<Prop/>
+		</Exp>
+		<Exp Level="7" GiveExp="0" TotalExp="780" PriceMultiple="1.0">
+			<Prop/>
+		</Exp>
+		<Exp Level="8" GiveExp="0" TotalExp="1060" PriceMultiple="1.0">
+			<Prop/>
+		</Exp>
+		<Exp Level="9" GiveExp="0" TotalExp="1400" PriceMultiple="1.0">
+			<Prop/>
+		</Exp>
+		<Exp Level="10" GiveExp="0" TotalExp="0" PriceMultiple="1.0">
+			<Prop/>
+		</Exp>
+	</EquipExp>
+	<EquipExp Group="Goddess_ReinForce_Card">
+		<Exp Level="1" GiveExp="0" TotalExp="10" PriceMultiple="1.0">
+			<Prop/>
+		</Exp>
+		<Exp Level="2" GiveExp="0" TotalExp="30" PriceMultiple="1.0">
+			<Prop/>
+		</Exp>
+		<Exp Level="3" GiveExp="0" TotalExp="70" PriceMultiple="1.0">
+			<Prop/>
+		</Exp>
+		<Exp Level="4" GiveExp="0" TotalExp="120" PriceMultiple="1.0">
+			<Prop/>
+		</Exp>
+		<Exp Level="5" GiveExp="0" TotalExp="190" PriceMultiple="1.0">
+			<Prop/>
+		</Exp>
+		<Exp Level="6" GiveExp="0" TotalExp="280" PriceMultiple="1.0">
+			<Prop/>
+		</Exp>
+		<Exp Level="7" GiveExp="0" TotalExp="400" PriceMultiple="1.0">
+			<Prop/>
+		</Exp>
+		<Exp Level="8" GiveExp="0" TotalExp="540" PriceMultiple="1.0">
+			<Prop/>
+		</Exp>
+		<Exp Level="9" GiveExp="0" TotalExp="710" PriceMultiple="1.0">
+			<Prop/>
+		</Exp>
+		<Exp Level="10" GiveExp="0" TotalExp="0" PriceMultiple="1.0">
+			<Prop/>
+		</Exp>
+	</EquipExp>
 </EquipExpList>

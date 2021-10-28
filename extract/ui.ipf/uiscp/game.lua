@@ -2395,7 +2395,7 @@ function USE_ITEMTARGET_ICON(frame, itemobj, argNum)
 	local stat = info.GetStat(session.GetMyHandle());
 	if stat.HP <= 0 then
 		return;
-	end
+    end
 	if itemobj.ClassName == "Drug_Socket" then
 		local invItemList = session.GetInvItemList();
 		FOR_EACH_INVENTORY(invItemList, function(invItemList, invItem)
@@ -2578,6 +2578,115 @@ end
 function RELEASE_ITEMTARGET_ICON_GEM()
 	SCR_ITEM_USE_TARGET_RELEASE();
 	INVENTORY_CLEAR_SELECT();
+end
+
+function USE_ITEMTARGET_ICON_EVENT_2011_5TH_SCROLL(itemobj, argNum)
+    if IS_TRANSCEND_SCROLL_ITEM_EVENT_2011_5TH(itemobj) == 0 then
+        return 0
+    end
+
+    local frame = ui.GetFrame("inventory")
+	local gbox = frame:GetChild('inventoryGbox')
+    local tab = gbox:GetChild("inventype_Tab")
+    
+	tolua.cast(tab, "ui::CTabControl")
+    tab:SelectTab(1)
+    
+    item.SelectTargetItem(argNum)
+
+    return 1
+end
+
+function SCR_EVENT_2011_5TH_SCROLL_SELECT(targetItemIndex, useItemIndex, frameName)
+    local targetItem = nil
+    
+	if frameName == 'inventory' then
+		targetItem = session.GetInvItem(targetItemIndex)
+	else
+		targetItem = session.GetEquipItemBySpot(targetItemIndex)
+    end
+
+    -- 대상 아이템 체크
+	if targetItem == nil then
+		return RELEASE_ITEM_TARGET()
+	end
+
+	local targetItemObj = GetIES(targetItem:GetObject())
+	if targetItemObj == nil then
+		return RELEASE_ITEM_TARGET()
+    end
+
+    local useItem = session.GetInvItem(useItemIndex)
+
+    -- 사용 아이템 체크
+    if useItem == nil then
+        return RELEASE_ITEM_TARGET()
+    end
+
+    local useItemObj = GetIES(useItem:GetObject())
+    if useItemObj == nil then
+		return RELEASE_ITEM_TARGET()
+    end
+
+    -- 스크롤 체크
+	if IS_TRANSCEND_SCROLL_ITEM_EVENT_2011_5TH_USABLE(useItemObj, targetItemObj) == 0 then
+		ui.MsgBox(ScpArgMsg("ThisItemIsNotAbleToTranscend"))
+        return RELEASE_ITEM_TARGET()
+    end
+    
+    -- 대상 아이템 이벤트 체크
+    local eventItem = TryGetProp(targetItemObj, "EventEquip", 0)
+	if eventItem == 0 then
+		ui.MsgBox(ScpArgMsg("ThisItemIsNotAbleToTranscend"))
+        return RELEASE_ITEM_TARGET()
+    end
+
+    -- 대상 아이템 레벨 체크
+    local itemLevel = TryGetProp(targetItemObj, "UseLv", 0)
+    if itemLevel ~= 440 then
+		ui.MsgBox(ScpArgMsg("ThisItemIsNotAbleToTranscend"))
+		return RELEASE_ITEM_TARGET()
+    end
+
+    -- 대상 아이템 초월 체크
+    local itemTranscend = TryGetProp(targetItemObj, "Transcend", 0)
+    if itemTranscend >= 8 then
+		ui.MsgBox(ScpArgMsg("ThisItemIsNotAbleToTranscend"))
+		return RELEASE_ITEM_TARGET()
+    end
+
+    local yesscp = string.format("REQ_USE_EVENT_2011_5TH_SCROLL(%d, %d, '%s')", useItemIndex, targetItemIndex, frameName)
+    ui.MsgBox(ScpArgMsg("EVENT_2011_5TH_USE_SCROLL{USE}{TARGET}", "USE", useItemObj.Name, "TARGET", targetItemObj.Name), yesscp, "RELEASE_ITEM_TARGET()")
+end
+
+function REQ_USE_EVENT_2011_5TH_SCROLL(useItemIndex, targetItemIndex, frameName)
+    local targetItem = nil
+
+	if frameName == 'inventory' then
+		targetItem = session.GetInvItem(targetItemIndex)
+	else
+		targetItem = session.GetEquipItemBySpot(targetItemIndex)
+    end
+
+    -- 대상 아이템 체크
+    if targetItem == nil then
+		return RELEASE_ITEM_TARGET()
+    end
+
+    local useItem = session.GetInvItem(useItemIndex)
+
+    -- 사용 아이템 체크
+    if useItem == nil then
+        return RELEASE_ITEM_TARGET()
+    end
+
+    item.UseItemToItem(useItem:GetIESID(), targetItem:GetIESID(), 0)
+    return RELEASE_ITEM_TARGET()
+end
+
+function RELEASE_ITEM_TARGET()
+	SCR_ITEM_USE_TARGET_RELEASE()
+	INVENTORY_CLEAR_SELECT()
 end
 
 function USE_ITEMTARGET_ICON_GEM(argNum)

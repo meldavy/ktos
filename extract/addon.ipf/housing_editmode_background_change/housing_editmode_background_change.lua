@@ -15,11 +15,18 @@
 		local price = TryGetProp(housingPlaceClass, "ThemaPrice", 0);
 		local isHas_name = "PersonalHousing_HasPlace_" .. tostring(mapClassID);
 		local isHas = TryGetProp(accountObject, isHas_name, "NO");
+		local isException = BoolToNumber(price <= 0)
 		if isHas == "YES" then
 			txt_is_has:SetTextByKey("value", ClMsg("IsHaved"));
 			pic_silver:ShowWindow(0);
 			txt_silver:ShowWindow(0);
 			btn_apply:SetTextByKey("value", ClMsg("GuildEmblemChange"));
+		elseif isException == 1 then
+			local text = string.format("{%s}%s","#FF0000",ClMsg("IsReputation"))
+			txt_is_has:SetTextByKey("value", text);
+			pic_silver:ShowWindow(0);
+			txt_silver:ShowWindow(0);
+			btn_apply:ShowWindow(0)
 		else
 			txt_is_has:SetTextByKey("value", "");
 			pic_silver:ShowWindow(1);

@@ -904,12 +904,12 @@
 			</Trigger>
 		</TriggerList>
 	</SpcItem>
-	<SpcItem Name="Gem_Peltasta_Langort">
+	<SpcItem Name="Gem_Peltasta_UmboBlow">
 		<TriggerList Act="UnEquip">
 			<Trigger>
 				<ExecList>
 					<ToolScp Scp="SPCI_GEM_SKILLUP" Client="NO" UseSleep="NO">
-						<Str Str="Peltasta_Langort"/>
+						<Str Str="Peltasta_UmboBlow"/>
 						<Num Num="-1"/>
 					</ToolScp>
 				</ExecList>
@@ -919,7 +919,7 @@
 			<Trigger>
 				<ExecList>
 					<ToolScp Scp="SPCI_GEM_SKILLUP" Client="NO" UseSleep="NO">
-						<Str Str="Peltasta_Langort"/>
+						<Str Str="Peltasta_UmboBlow"/>
 						<Num Num="1"/>
 					</ToolScp>
 				</ExecList>
@@ -1620,12 +1620,12 @@
 			</Trigger>
 		</TriggerList>
 	</SpcItem>
-	<SpcItem Name="Gem_Peltasta_UmboBlow">
+	<SpcItem Name="Gem_Peltasta_Langort">
 		<TriggerList Act="UnEquip">
 			<Trigger>
 				<ExecList>
 					<ToolScp Scp="SPCI_GEM_SKILLUP" Client="NO" UseSleep="NO">
-						<Str Str="Peltasta_UmboBlow"/>
+						<Str Str="Peltasta_Langort"/>
 						<Num Num="-1"/>
 					</ToolScp>
 				</ExecList>
@@ -1635,7 +1635,7 @@
 			<Trigger>
 				<ExecList>
 					<ToolScp Scp="SPCI_GEM_SKILLUP" Client="NO" UseSleep="NO">
-						<Str Str="Peltasta_UmboBlow"/>
+						<Str Str="Peltasta_Langort"/>
 						<Num Num="1"/>
 					</ToolScp>
 				</ExecList>
@@ -8462,12 +8462,12 @@
 			</Trigger>
 		</TriggerList>
 	</SpcItem>
-	<SpcItem Name="GEM_Murmillo_FrenziedSlash">
+	<SpcItem Name="GEM_Murmillo_FrenziedBurst">
 		<TriggerList Act="UnEquip">
 			<Trigger>
 				<ExecList>
 					<ToolScp Scp="SPCI_GEM_SKILLUP" Client="NO" UseSleep="NO">
-						<Str Str="Murmillo_FrenziedSlash"/>
+						<Str Str="Murmillo_FrenziedBurst"/>
 						<Num Num="-1"/>
 					</ToolScp>
 				</ExecList>
@@ -8477,19 +8477,19 @@
 			<Trigger>
 				<ExecList>
 					<ToolScp Scp="SPCI_GEM_SKILLUP" Client="NO" UseSleep="NO">
-						<Str Str="Murmillo_FrenziedSlash"/>
+						<Str Str="Murmillo_FrenziedBurst"/>
 						<Num Num="1"/>
 					</ToolScp>
 				</ExecList>
 			</Trigger>
 		</TriggerList>
 	</SpcItem>
-	<SpcItem Name="GEM_Murmillo_EvadeThrust">
+	<SpcItem Name="GEM_Peltasta_ButterFly">
 		<TriggerList Act="UnEquip">
 			<Trigger>
 				<ExecList>
 					<ToolScp Scp="SPCI_GEM_SKILLUP" Client="NO" UseSleep="NO">
-						<Str Str="Murmillo_EvadeThrust"/>
+						<Str Str="Peltasta_ButterFly"/>
 						<Num Num="-1"/>
 					</ToolScp>
 				</ExecList>
@@ -8499,7 +8499,7 @@
 			<Trigger>
 				<ExecList>
 					<ToolScp Scp="SPCI_GEM_SKILLUP" Client="NO" UseSleep="NO">
-						<Str Str="Murmillo_EvadeThrust"/>
+						<Str Str="Peltasta_ButterFly"/>
 						<Num Num="1"/>
 					</ToolScp>
 				</ExecList>

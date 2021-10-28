@@ -58,6 +58,11 @@ function IS_TRANSCEND_ABLE_ITEM(obj)
         return 0;
     end
 
+    local itemStringArg = TryGetProp(itemCls, "StringArg")
+    if itemStringArg == "Tutorial" then
+        return 0;
+    end
+
     return 1;
 end
 
@@ -402,6 +407,35 @@ function IS_TRANSCEND_SCROLL_ITEM(scrollObj)
 		return 1;
 	end
 	return 0;
+end
+
+function IS_TRANSCEND_SCROLL_ITEM_EVENT_2011_5TH(scrollObj)
+    local className = TryGetProp(scrollObj, "ClassName")
+
+    if className == "Event_Transcend_Scroll_8_440Lv_Weapon_Ev" then
+        return 1
+    elseif className == "Event_Transcend_Scroll_8_440Lv_Armor_Ev" then
+        return 1
+    end
+
+    return 0
+end
+
+function IS_TRANSCEND_SCROLL_ITEM_EVENT_2011_5TH_USABLE(scrollObj, targetObj)
+    local scrollName = TryGetProp(scrollObj, "ClassName")
+    local targetGroup = TryGetProp(targetObj, "EquipGroup")
+    
+    if scrollName == "Event_Transcend_Scroll_8_440Lv_Weapon_Ev" then
+        if targetGroup == "THWeapon" or targetGroup == "SubWeapon" or targetGroup == "Weapon" then
+            return 1
+        end
+    elseif scrollName == "Event_Transcend_Scroll_8_440Lv_Armor_Ev" then
+        if targetGroup == "SHIRT" or targetGroup == "PANTS" or targetGroup == "GLOVES" or targetGroup == "BOOTS" then
+            return 1
+        end
+    end
+
+    return 0
 end
 
 function IS_TRANSCEND_SCROLL_ABLE_ITEM(itemObj, scrollType, scrollTranscend)

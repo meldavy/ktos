@@ -9216,3 +9216,55 @@ function SCR_PRE_EP12_2_F_CASTLE_101_MQ04_1_ITEM(self, argstring, argnum1, argnu
     end
     return 0
 end
+
+--EP13_MAINSTREAM
+function SCR_PRE_EP13_F_SIAULIAI_1_MQ_05_ITEM_01(self, argstring, argnum1, argnum2)
+    if GetZoneName(self) == "ep13_f_siauliai_1" then
+        local result01 = SCR_QUEST_CHECK(self, 'EP13_F_SIAULIAI_1_MQ_05')
+        if result01 == 'PROGRESS' then
+            local fndList, fndCnt = SelectObject(self, 50, 'ALL', 1)
+            local i
+            if fndCnt > 0 then
+                for i = 1, fndCnt do
+                    if fndList[i].ClassName == 'liepsna_spreader' or 
+                    fndList[i].ClassName == 'liepsna_invader' or 
+                    fndList[i].ClassName == 'liepsna_chaser' or 
+                    fndList[i].ClassName == 'liepsna_destroyer' then
+                        
+                        return GetHandle(fndList[i])
+                    end
+                end
+            end
+        end
+    end
+    return 0
+end
+function SCR_PRE_EP13_F_SIAULIAI_2_MQ_04_ITEM_01(self, argstring, argnum1, argnum2)
+    if GetZoneName(self) == "ep13_f_siauliai_2" then
+        local result01 = SCR_QUEST_CHECK(self, 'EP13_F_SIAULIAI_2_MQ_04')
+        local result02 = SCR_QUEST_CHECK(self, 'EP13_F_SIAULIAI_2_MQ_06')
+        if result01 == 'PROGRESS' or result02 == 'PROGRESS' then
+            return 1
+        end
+    end
+    return 0
+end
+
+
+--EP13 SCROLL
+
+function SCR_PRE_EP13_F_SIAULIAI_4_MQ_02_ITEM(self, argstring, argnum1, argnum2)
+    if GetZoneName(self) == "ep13_f_siauliai_5" then
+        local result1 = SCR_QUEST_CHECK(self, "EP13_F_SIAULIAI_5_MQ_01_RE")
+        if result1 == 'PROGRESS' then
+            local list, cnt = SelectObjectByFaction(self, 150, 'Neutral')
+            local i
+            for i = 1 , cnt do
+                if list[i].ClassName == 'HiddenTrigger6' then
+                    return 1
+                end
+            end
+        end
+    end
+    return 0
+end

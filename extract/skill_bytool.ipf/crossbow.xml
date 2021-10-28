@@ -22,10 +22,7 @@
 					<Num Num="1" />
 					<Num Num="0" />
 				</Scp>
-			<Scp Scp="SKL_RUN_SCRIPT" Client="NO" UseSleep="NO" Time="220">
-                    <Str Str="SKL_PAVISE_ABIL_KNEELINGSHOT"/>
-                </Scp>
-            </EtcList>
+			</EtcList>
 		</MainSkl>
 	</Skill>
 	</ToolSkill>

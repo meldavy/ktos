@@ -17,8 +17,8 @@
 		<Class ClassID="14" ClassName="/uicallscp_test" Alias="/테스트" ConvertWhenSend="1"/>
 		<Class ClassID="15" ClassName="/cpattack" Alias="/자동공격" ConvertWhenSend="1"/>
 		<Class ClassID="16" ClassName="/comeon" Alias="/이리와" ConvertWhenSend="1"/>
-<Class ClassID="17" ClassName="/PHousePoint" Alias="/개인하우징" ConvertWhenSend="1"/>
-<Class ClassID="18" ClassName="/event1912_4th_coin" Alias="/이벤트주화" ConvertWhenSend="1"/>
+		<Class ClassID="17" ClassName="/PHousePoint" Alias="/개인하우징" ConvertWhenSend="1"/>
+		<Class ClassID="18" ClassName="/event1912_4th_coin" Alias="/이벤트주화" ConvertWhenSend="1"/>
 		<Class ClassID="25" ClassName="/uicallscp_ctrltypereset" Alias="/계열변경기간" ConvertWhenSend="1"/>
 		<Class ClassID="26" ClassName="/uicallscp_newcharactersub1" Alias="/몬스터처치" ConvertWhenSend="1"/>
 		<Class ClassID="27" ClassName="/uicallscp_newcharactersub2" Alias="/레이드클리어" ConvertWhenSend="1"/>
@@ -57,12 +57,14 @@
 		<Class ClassID="60" ClassName="/vote" Alias="/투표" ConvertWhenSend="1"/>
 		<Class ClassID="61" ClassName="/master" Alias="/마스터" ConvertWhenSend="1"/>
 		<Class ClassID="62" ClassName="/chusok" Alias="/추석" ConvertWhenSend="1"/>
-	    <Class ClassID="63" ClassName="/cat" Alias="/고양이" ConvertWhenSend="1"/>
+		<Class ClassID="63" ClassName="/cat" Alias="/고양이" ConvertWhenSend="1"/>
 		<Class ClassID="65" ClassName="/moonlight" Alias="/달빛" ConvertWhenSend="1"/>
 		<Class ClassID="67" ClassName="/fullmoon" Alias="/달맞이" ConvertWhenSend="1"/>
 		<Class ClassID="68" ClassName="/ragana" Alias="/라가나" ConvertWhenSend="1"/>
 		<Class ClassID="69" ClassName="/fihingcat" Alias="/꽁치" ConvertWhenSend="1"/>
 		<Class ClassID="70" ClassName="/5th" Alias="/5주년" ConvertWhenSend="1"/>
 		<Class ClassID="71" ClassName="/firework" Alias="/불꽃놀이" ConvertWhenSend="1"/>
+		<Class ClassID="72" ClassName="/episode" Alias="/에피소드" ConvertWhenSend="1"/>
+		<Class ClassID="76" ClassName="/reputation" Alias="/명성" ConvertWhenSend="1"/>
 	</Category>
 </idspace>

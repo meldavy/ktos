@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ActionDesc>
+    <Sound frame="6.00" soundFile="mon_voice5_l_15"/>
+    <Sound frame="6.69" soundFile="skl_eff_atk_move_l_15"/>
+    <Sound frame="7.39" soundFile="mon_big_footstep_1"/>
+    <Sound frame="10.21" soundFile="skl_eff_short_impact_whoosh_2"/>
+    <Sound frame="21.48" soundFile="mon_big_footstep_1"/>
+    <Sound frame="26.00" soundFile="boss_skl_eff_atk_move_l_2"/>
+    <Sound frame="30.00" soundFile="skl_eff_short_impact_whoosh_3"/>
+    <Sound frame="41.90" soundFile="mon_big_footstep_1"/>
+    <Sound frame="42.00" soundFile="boss_skl_eff_atk_move_l_1"/>
+    <Sound frame="45.00" soundFile="mon_voice5_l_6"/>
+    <Sound frame="53.00" soundFile="mon_big_footstep_4"/>
+    <Sound frame="53.16" soundFile="skl_eff_short_impact_whoosh_3"/>
+    <Sound frame="54.57" soundFile="boss_skl_eff_atk_move_l_19"/>
+    <Sound frame="55.00" soundFile="skl_eff_big_whoosh_2"/>
+</ActionDesc>

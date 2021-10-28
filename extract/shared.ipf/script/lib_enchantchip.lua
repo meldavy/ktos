@@ -19,7 +19,7 @@ function IS_ENCHANT_ITEM(item)
 	   item.ClassName == "STEAM_MASTER_Premium_Enchantchip" or item.ClassName == "Event_Enchantchip_1" or item.ClassName == "Event_Enchantchip_2"
 	   or item.ClassName == "Event_Enchantchip_3" or item.ClassName == "Event_Enchantchip_4" or item.ClassName == "Premium_Enchantchip14_NoStack"
 	   or item.ClassName == "Event_Enchantchip_5" or item.ClassName == "Event_Enchantchip_6" or item.ClassName == "Event_Enchantchip_7"
-	   or item.ClassName == "Event_Enchantchip_200" or item.ClassName == "Event_Enchantchip_8" then
+	   or item.ClassName == "Event_Enchantchip_200" or item.ClassName == "Event_Enchantchip_8" or item.ClassName == "Event_Enchantchip_202" then
 		return 1;
 	end
 

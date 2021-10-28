@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ActionDesc>
+    <Sound frame="4.00" soundFile="cannon_cast"/>
+    <Sound frame="7.00" soundFile="cannon_shot_2"/>
+    <Sound frame="9.00" soundFile="skl_eff_arquebusier_luckystrike_shot"/>
+    <Sound frame="20.00" soundFile="cannon_down"/>
+</ActionDesc>

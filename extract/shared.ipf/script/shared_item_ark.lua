@@ -296,9 +296,9 @@ function get_tooltip_Ark_thunderbolt_arg1()
     return 1, 'STR_INT_BM', 1, 20
 end
 
--- 두번째 옵션 낙뢰 발동은 3레벨당 x씩 확률적으로 발생한다. (정수로 해야 함), 총 16회, 15 + (2 * 16) = 47%
+-- 두번째 옵션 낙뢰 발동은 3레벨당 x씩 확률적으로 발생한다. (정수로 해야 함), 총 16회, 18 + (3 * 16) = 50%
 function get_tooltip_Ark_thunderbolt_arg2()
-    return 3, 'ARK_THUNDERBOLT_RATIO', 3, 2, 15
+    return 3, 'ARK_THUNDERBOLT_RATIO', 3, 2, 18
 end
 
 -- 세번째 옵션 낙뢰 계수는 5레벨당 x씩 오른다. 총 10회, 3500 + (10 * 700) = 10500%
@@ -394,4 +394,24 @@ function get_Ark_overpower_option_active_lv()
     return 3
 end
 
+-------------- 아크 - 치유의 물결 ----------------
+-- 첫번째 옵션 정신, 체력은 1레벨당 16씩 오른다.
+function get_tooltip_Ark_healingwave_arg1()
+    return 1, 'MNA_CON_BM', 1, 20
+end
+
+-- 두번째 옵션 치유의 물결 치유계수는 기본 400, 3레벨당 100씩 늘어남, 400 + 100 * 16 = 2000
+function get_tooltip_Ark_healingwave_arg2()
+    return 3, 'ARK_HEALINGWAVE_HEALPWR', 3, 100, 900, 'ArkHealingwaveOptionText{Option}{interval}{addvalue}', '%'
+end
+
+-- 세번째 옵션 치유의 물결의 대상수는 기본5, 5레벨당 1회씩 늘어남
+function get_tooltip_Ark_healingwave_arg3()
+    return 3, 'ARK_HEALINGWAVE_COUNT', 5, 1, 5, 'ArkHealingwaveOptionText1{Option}{interval}{addvalue}', ScpArgMsg('NumberOfThings')
+end
+
+-- 3렙 달성시에 이후 옵션도 활성화 해주기 위해 생성해야하는 함수
+function get_Ark_healingwave_option_active_lv()
+    return 3
+end
 

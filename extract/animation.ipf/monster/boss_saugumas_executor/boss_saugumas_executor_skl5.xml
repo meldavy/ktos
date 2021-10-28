@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="EUC-KR"?>
+<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by IMCGames Co., Ltd (IMCGames Co., Ltd) -->
+<ActionDesc>
+	<Sound frame="0.00" soundFile="skl_eff_atk_move_l_14"/>
+	<Sound frame="12.00" soundFile="mon_voice13_hit2"/>
+	<Sound frame="13.00" soundFile="skl_eff_metalchain"/>
+	<Sound frame="26.00" soundFile="boss_skl_eff_atk_move_l_19"/>
+	<Sound frame="37.00" soundFile="mon_big_footstep_1"/>
+	<Sound frame="40.00" soundFile="skl_eff_force_whoosh_3"/>
+	<Sound frame="40.00" soundFile="skl_eff_sturzhau_whoosh_2"/>
+	<Sound frame="40.00" soundFile="skl_eff_short_impact_whoosh_1"/>
+	<Sound frame="43.00" soundFile="spear_whoosh"/>
+	<Sound frame="44.36" soundFile="mon_big_footstep_1"/>
+	<Sound frame="46.83" soundFile="skl_eff_metal_crash_1"/>
+	<BlendOn frame="0" R="0" G="0" B="0" A="50"/>
+	<BlendOn frame="49" R="130" G="160" B="200" A="100"/>
+	<BlendOn frame="50" R="120" G="130" B="150" A="100"/>
+	<BlendOff frame="51" R="0" G="0" B="0" A="0"/>
+	<Shockwave frame="34" type="2" intensity="3" frequency="60" duration="0.8" range="1000"/>
+	<Shockwave frame="46" type="2" intensity="10" frequency="60" duration="0.3" range="1000"/>
+	<Particle frame="49" attachNode="Dummy_root" particleName="F_ground068_smoke2_grey" useAttach="false" hiddenObj="false" changeEffect="None" scale="5" pause="true" use2DEffect="false" soft2DValue="20"/>
+</ActionDesc>

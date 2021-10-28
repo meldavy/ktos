@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="EUC-KR"?>
+<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by IMCGames Co., Ltd (IMCGames Co., Ltd) -->
+<ActionDesc>
+    <BlendOn frame="0" R="0" G="0" B="0" A="50"/>
+    <Sound frame="1.69" soundFile="mon_voice13_cast10"/>
+    <Sound frame="29.86" soundFile="skl_eff_atk_move_m_6"/>
+    <Sound frame="30.00" soundFile="skl_eff_force_whoosh_3"/>
+    <BlendOn frame="35" R="120" G="130" B="150" A="100"/>
+    <Shockwave frame="35" type="2" intensity="8" frequency="60" duration="0.3" range="1000"/>
+    <Particle frame="35" attachNode="Dummy_effect_skl3_001" particleName="F_dash002" useAttach="false" hiddenObj="false" changeEffect="None" scale="4" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Particle frame="35" attachNode="Dummy_root" particleName="F_ground068_smoke2_grey" useAttach="false" hiddenObj="false" changeEffect="None" scale="4" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Particle frame="35" attachNode="Dummy_root" particleName="F_smoke141_grey_dark_spread_out" useAttach="false" hiddenObj="false" changeEffect="None" scale="2" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <BlendOn frame="36" R="0" G="0" B="0" A="50"/>
+    <Sound frame="53.52" soundFile="skl_eff_atk_move_l_4"/>
+    <Sound frame="56.90" soundFile="skl_eff_short_impact_whoosh_3"/>
+    <Sound frame="60.28" soundFile="skl_eff_short_impact_whoosh_2"/>
+    <Sound frame="61.40" soundFile="skl_eff_atk_move_m_2"/>
+    <BlendOn frame="62" R="120" G="130" B="150" A="100"/>
+    <Shockwave frame="62" type="2" intensity="7" frequency="60" duration="0.2" range="1000"/>
+    <Particle frame="62" attachNode="Dummy_effect_skl3_002" particleName="I_swordtrail033_white2_reverse" useAttach="false" hiddenObj="false" changeEffect="None" scale="4" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Particle frame="62" attachNode="Dummy_root" particleName="F_ground068_smoke2_grey" useAttach="false" hiddenObj="false" changeEffect="None" scale="4" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Particle frame="62" attachNode="Dummy_effect_emitter002" particleName="F_smoke141_grey_dark_spread_out" useAttach="false" hiddenObj="false" changeEffect="None" scale="2" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <BlendOn frame="63" R="0" G="0" B="0" A="50"/>
+    <Sound frame="79.43" soundFile="skl_eff_force_whoosh_3"/>
+    <Sound frame="81.69" soundFile="skl_eff_atk_move_m_6"/>
+    <BlendOn frame="88" R="120" G="130" B="150" A="100"/>
+    <Shockwave frame="88" type="2" intensity="7" frequency="60" duration="0.2" range="1000"/>
+    <BlendOn frame="89" R="0" G="0" B="0" A="50"/>
+    <Particle frame="90" attachNode="Dummy_effect_skl3_003" particleName="F_dash002" useAttach="false" hiddenObj="false" changeEffect="None" scale="4" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Particle frame="90" attachNode="Dummy_root" particleName="F_ground068_smoke2_grey" useAttach="false" hiddenObj="false" changeEffect="None" scale="4" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Particle frame="90" attachNode="Dummy_root" particleName="F_smoke141_grey_dark_spread_out" useAttach="false" hiddenObj="false" changeEffect="None" scale="2" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Sound frame="90.70" soundFile="skl_eff_atk_move_m_2"/>
+    <Sound frame="109.85" soundFile="skl_eff_dethrone_whoosh"/>
+    <Sound frame="110.00" soundFile="skl_eff_sturzhau_whoosh_2"/>
+    <Particle frame="110" attachNode="Dummy_root" particleName="F_spin030_1_reverse1" useAttach="false" hiddenObj="false" changeEffect="None" scale="2" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Sound frame="112.00" soundFile="skl_eff_big_whoosh_1"/>
+    <BlendOn frame="117" R="120" G="130" B="150" A="100"/>
+    <Shockwave frame="117" type="2" intensity="9" frequency="60" duration="0.2" range="1000"/>
+    <Particle frame="117" attachNode="Dummy_root" particleName="I_spin009_360" useAttach="false" hiddenObj="false" changeEffect="None" scale="2" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Particle frame="117" attachNode="Dummy_effect_skl2_smoke008" particleName="F_spin030_1_reverse1" useAttach="false" hiddenObj="false" changeEffect="None" scale="3" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Particle frame="117" attachNode="Dummy_root" particleName="F_ground068_smoke2_grey" useAttach="false" hiddenObj="false" changeEffect="None" scale="4" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Particle frame="117" attachNode="Dummy_root" particleName="F_smoke141_grey_dark_spread_out" useAttach="false" hiddenObj="false" changeEffect="None" scale="2" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <BlendOn frame="118" R="0" G="0" B="0" A="50"/>
+    <Sound frame="118.87" soundFile="skl_eff_whirlwind_smoke"/>
+    <BlendOff frame="119" R="0" G="0" B="0" A="0"/>
+    <Particle frame="119" attachNode="Dummy_effect_skl3_004" particleName="I_swordtrail033_white2_reverse" useAttach="false" hiddenObj="false" changeEffect="None" scale="4" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+</ActionDesc>

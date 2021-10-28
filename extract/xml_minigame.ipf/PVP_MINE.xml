@@ -4,10 +4,10 @@
         <StageList>
             <Stage Name="DefGroup" AutoStart="0">
                 <ObjList>
-                    <Obj Type="Monster" MonType="2000101" Pos="-870.06#0.10#-33.07" range="400" maxStackCount="20" genTime="10000" objectKey="0" propList="&apos;BornScript&apos; &apos;@PVP_MINE_RANDOM_MON&apos; &apos;Level&apos; &apos;@PVP_MINE_LEVEL_SET&apos; "/>
-                    <Obj Type="Monster" MonType="2000101" Pos="926.66#0.10#165.11" range="400" maxStackCount="20" genTime="10000" objectKey="3" propList="&apos;BornScript&apos; &apos;@PVP_MINE_RANDOM_MON&apos; &apos;Level&apos; &apos;@PVP_MINE_LEVEL_SET&apos; "/>
-                    <Obj Type="Monster" MonType="2000101" Pos="-24.09#0.10#963.41" range="400" maxStackCount="20" genTime="10000" objectKey="4" propList="&apos;BornScript&apos; &apos;@PVP_MINE_RANDOM_MON&apos; &apos;Level&apos; &apos;@PVP_MINE_LEVEL_SET&apos; "/>
-                    <Obj Type="Monster" MonType="2000101" Pos="73.44#0.10#-810.36" range="400" maxStackCount="20" genTime="10000" objectKey="7" propList="&apos;BornScript&apos; &apos;@PVP_MINE_RANDOM_MON&apos; &apos;Level&apos; &apos;@PVP_MINE_LEVEL_SET&apos; "/>
+                    <Obj Type="Monster" MonType="2000101" Pos="-870.06#0.10#-33.07" range="400" maxStackCount="20" genTime="10000" objectKey="0" propList="&apos;BornScript&apos; &apos;@PVP_MINE_RANDOM_MON&apos; &apos;Level&apos; &apos;@PVP_MINE_LEVEL_SET&apos; &apos;StatType&apos; &apos;PVP_mine_monster&apos; "/>
+                    <Obj Type="Monster" MonType="2000101" Pos="926.66#0.10#165.11" range="400" maxStackCount="20" genTime="10000" objectKey="3" propList="&apos;BornScript&apos; &apos;@PVP_MINE_RANDOM_MON&apos; &apos;Level&apos; &apos;@PVP_MINE_LEVEL_SET&apos; &apos;StatType&apos; &apos;PVP_mine_monster&apos; "/>
+                    <Obj Type="Monster" MonType="2000101" Pos="-24.09#0.10#963.41" range="400" maxStackCount="20" genTime="10000" objectKey="4" propList="&apos;BornScript&apos; &apos;@PVP_MINE_RANDOM_MON&apos; &apos;Level&apos; &apos;@PVP_MINE_LEVEL_SET&apos; &apos;StatType&apos; &apos;PVP_mine_monster&apos; "/>
+                    <Obj Type="Monster" MonType="2000101" Pos="73.44#0.10#-810.36" range="400" maxStackCount="20" genTime="10000" objectKey="7" propList="&apos;BornScript&apos; &apos;@PVP_MINE_RANDOM_MON&apos; &apos;Level&apos; &apos;@PVP_MINE_LEVEL_SET&apos; &apos;StatType&apos; &apos;PVP_mine_monster&apos; "/>
                     <Obj Type="Monster" MonType="20040" Pos="1053.94#0.10#991.36" range="1" genCount="1" maxStackCount="1" genTime="20000" objectKey="8" propList="&apos;Tactics&apos; &apos;PVP_MINE_SAFEZONE_B&apos; "/>
                     <Obj Type="Monster" MonType="20040" Pos="-893.40#0.10#-942.81" range="1" genCount="1" maxStackCount="1" genTime="20000" objectKey="11" propList="&apos;Tactics&apos; &apos;PVP_MINE_SAFEZONE_A&apos; "/>
                     <Obj Type="Monster" MonType="2000107" Pos="-851.15#0.10#777.82" range="200" genCount="1" maxStackCount="5" genTime="20000" objectKey="1" propList="&apos;Level&apos; &apos;@PVP_MINE_LEVEL_SET&apos; "/>
@@ -465,7 +465,7 @@
             </Stage>
             <Stage Name="Boss" AutoStart="0">
                 <ObjList>
-                    <Obj Type="Monster" MonType="2000105" Pos="59.30#5.00#25.95" genCount="1" genTime="20000" objectKey="0" propList="&apos;Level&apos; &apos;@PVP_MINE_BOSS_LEVEL_SET&apos; "/>
+                    <Obj Type="Monster" MonType="2000105" Pos="59.30#5.00#25.95" genCount="1" genTime="20000" objectKey="0" propList="&apos;Level&apos; &apos;@PVP_MINE_BOSS_LEVEL_SET&apos; &apos;StatType&apos; &apos;None&apos; "/>
                 </ObjList>
                 <StageEvents>
                     <Event execCount="1" eventName="StageEnd">

@@ -692,7 +692,8 @@ function GET_QUESTINFOSET_ICON_MATCH_TABLE()
 			mode_repeat = 'REPEAT',
 			mode_period = 'PERIOD',
 			mode_party = 'PARTY',
-			mode_keyquest = 'KEYQUEST'
+			mode_keyquest = 'KEYQUEST',
+			mode_reputation = 'REPUTATION'
 		}
 	end
 
@@ -716,6 +717,8 @@ function GET_QUESTINFOSET_ICON_MATCH_TABLE()
 				return s_iconMatchTable.modeTable.mode_party;
 			elseif	name == 'KEYQUEST' then
 				return s_iconMatchTable.modeTable.mode_keyquest;
+			elseif  name == 'REPUTATION' then
+				return s_iconMatchTable.modeTable.mode_reputation;
 			end
 
 			return s_iconMatchTable.modeTable.mode_main;
@@ -777,14 +780,16 @@ function GET_QUESTINFOSET_ICON_MATCH_TABLE()
 			local mode_period = topFrame:GetUserConfig('QUESTINFO_ICON_MODE_PERIOD');
 			local mode_party = topFrame:GetUserConfig('QUESTINFO_ICON_MODE_PARTY');
 			local mode_keyquest = topFrame:GetUserConfig('QUESTINFO_ICON_MODE_KEY');
+			local mode_reputation = topFrame:GetUserConfig('QUESTINFO_ICON_MODE_REPUTATION');
 
-			if mode_main ~= nil and mode_sub ~= nil and mode_repeat ~= nil and mode_period ~=nil and mode_party ~= nil and mode_keyquest ~= nil then
+			if mode_main ~= nil and mode_sub ~= nil and mode_repeat ~= nil and mode_period ~= nil and mode_party ~= nil and mode_keyquest ~= nil and mode_reputation ~= nil then
 				s_iconMatchTable.modeTable.mode_main = mode_main;
 				s_iconMatchTable.modeTable.mode_sub = mode_sub;
 				s_iconMatchTable.modeTable.mode_repeat = mode_repeat;
 				s_iconMatchTable.modeTable.mode_period = mode_period;
 				s_iconMatchTable.modeTable.mode_party = mode_party;
 				s_iconMatchTable.modeTable.mode_keyquest = mode_keyquest;
+				s_iconMatchTable.modeTable.mode_reputation = mode_reputation;
 				s_iconMatchTable.modeTable.isLoadedUserConfig = true;
 			end
 		end
@@ -808,7 +813,15 @@ function GET_QUESTINFOSET_ICON_BY_STATE_MODE(state, questIES)
         _mode = 'PARTY'
     elseif tail == '_key' then
         _mode = 'KEYQUEST'
-	end
+    end
+    
+    -- 평판 퀘스트
+    local classList = GetClassList("reputation_quest")
+    local class = GetClassByNameFromList(classList, questIES.ClassName)
+
+    if class ~= nil then
+        _mode = 'REPUTATION'
+    end
 	
 	local _state = state;
 	if state == 'PROGRESS' then

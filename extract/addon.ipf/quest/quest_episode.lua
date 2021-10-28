@@ -210,7 +210,8 @@ function DRAW_EPISODE_QUEST_CTRL(bgCtrl, titleInfo, y)
 	if episodeState == episodeStateInfo.Locked then
 		textToolTip = ScpArgMsg("EpisodeLockMsg")
 	elseif episodeState == episodeStateInfo.New then
-	    textToolTip = ScpArgMsg("NewEpisodeLockMsg")
+		local Msg = '_'..titleInfo.name
+	    textToolTip = ScpArgMsg("NewEpisodeLockMsg"..Msg)
 	elseif episodeState == episodeStateInfo.Next then
 		textToolTip = ScpArgMsg("NextEpisodeLockMsg")
 	elseif episodeState == episodeStateInfo.Clear then

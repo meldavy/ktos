@@ -1,8 +1,8 @@
 ClassID,MaxArkLv,ClassName
-1,7,Ark_str
-2,7,Ark_dex
-3,7,Ark_int
-4,7,Ark_mna
+1,10,Ark_str
+2,10,Ark_dex
+3,10,Ark_int
+4,10,Ark_mna
 5,10,Ark_wind
 6,10,Ark_thunderbolt
 7,10,Ark_storm
@@ -10,3 +10,4 @@ ClassID,MaxArkLv,ClassName
 10,10,Ark_punishment
 11,10,Ark_overpower
 12,10,Ark_dummy
+13,10,Ark_healingwave

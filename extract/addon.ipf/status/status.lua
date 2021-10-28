@@ -256,8 +256,9 @@ function STATUS_ONLOAD(frame, obj, argStr, argNum)
     end
     
     STAT_RESET(frame);
-    CHATBALLOON_INIT(frame);
     ACHIEVE_RESET(frame);
+    CHATBALLOON_INIT(frame);
+    STATUS_REPUTATION_INIT();
 
     STATUS_TAB_CHANGE(frame);
     STATUS_INFO();
@@ -1131,22 +1132,27 @@ function CHECK_EQP_LBTN(frame, slot, argStr, argNum)
     frame = frame:GetTopParentFrame()
     local targetItem = item.HaveTargetItem();
 
-    if targetItem == 1 then
-        local luminItemIndex = item.GetTargetItem();
+	if targetItem == 1 then
+		local useItemIndex = item.GetTargetItem();
+		local useItem = session.GetInvItem(useItemIndex);
+        
+		if useItem ~= nil then
+			local useItemObj = GetIES(useItem:GetObject());
+			local useItemGroup = useItemObj.GroupName
+			local useItemUseType = useItemObj.Usable
 
-        local luminItem = session.GetInvItem(luminItemIndex);
-        if luminItem ~= nil then
-            local itemobj = GetIES(luminItem:GetObject());
+			-- EVENT_2011_5TH
+			if IS_TRANSCEND_SCROLL_ITEM_EVENT_2011_5TH(useItemObj) == 1 then
+				SCR_EVENT_2011_5TH_SCROLL_SELECT(argNum, useItem, 'status');
+				return;
+			end
 
-            if itemobj.GroupName == 'Gem' then
-                if itemobj.Usable == 'ITEMTARGET' then
-
-                    SCR_GEM_ITEM_SELECT(argNum, luminItem, 'status');
-                    return;
-                end
-            end
-        end
-    end
+			if useItemGroup == 'Gem' and useItemUseType == 'ITEMTARGET' then
+				SCR_GEM_ITEM_SELECT(argNum, useItem, 'status');
+				return;
+			end
+		end
+	end
 
     tolua.cast(slot, 'ui::CSlot');
     local toicon = slot:GetIcon();
@@ -1670,6 +1676,8 @@ function STATUS_VIEW(frame, curtabIndex)
         STATUS_ACHIEVE_VIEW(frame);
     elseif curtabIndex == 2 then
         STATUS_LOGOUTPC_VIEW(frame);
+    elseif curtabIndex == 3 then
+        STATUS_REPUTATION_VIEW(frame);
     end
 end
 
@@ -1682,6 +1690,8 @@ function STATUS_INFO_VIEW(frame)
     logoutGBox:ShowWindow(0);
     local statusupGbox = frame:GetChild('statusUpGbox');
     statusupGbox:ShowWindow(1);
+    local reputationGBox = frame:GetChild('reputationGBox')
+    reputationGBox:ShowWindow(0);
 end
 
 function STATUS_ACHIEVE_VIEW(frame)
@@ -1693,6 +1703,8 @@ function STATUS_ACHIEVE_VIEW(frame)
     logoutGBox:ShowWindow(0);
     local statusupGbox = frame:GetChild('statusUpGbox');
     statusupGbox:ShowWindow(0);
+    local reputationGBox = frame:GetChild('reputationGBox')
+    reputationGBox:ShowWindow(0);
 end
 
 function STATUS_LOGOUTPC_VIEW(frame)
@@ -1704,6 +1716,21 @@ function STATUS_LOGOUTPC_VIEW(frame)
     logoutGBox:ShowWindow(1);
     local statusupGbox = frame:GetChild('statusUpGbox');
     statusupGbox:ShowWindow(0);
+    local reputationGBox = frame:GetChild('reputationGBox')
+    reputationGBox:ShowWindow(0);
+end
+
+function STATUS_REPUTATION_VIEW(frame)
+    local gboxctrl = frame:GetChild('statusGbox');
+    gboxctrl:ShowWindow(0);
+    local achievectrl = frame:GetChild('achieveGbox');
+    achievectrl:ShowWindow(0);
+    local logoutGBox = frame:GetChild("logoutGBox");
+    logoutGBox:ShowWindow(0);
+    local statusupGbox = frame:GetChild('statusUpGbox');
+    statusupGbox:ShowWindow(0);
+    local reputationGBox = frame:GetChild('reputationGBox')
+    reputationGBox:ShowWindow(1);
 end
 
 function CHANGE_MYPC_NAME(frame)

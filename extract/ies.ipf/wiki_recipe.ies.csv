@@ -1233,6 +1233,17 @@ ClassID,WikiPoint,TeachPoint,AutoGet,ClassName,TargetClassName,TargetMapName,Ill
 50177,10,5,0,R_EP12_Austeja_LEG,R_EP12_Austeja_LEG,,icon_item_pants_misc5,제작서 - 아우스테야 팬츠 - 디바인 에니그마,Recipe,{#5090ff}{ol},{/}{/}{/},WIKIPAGE_ITEM,장비를 제작할 수 있는 제작서입니다. 마우스 오른쪽 클릭으로 제작서를 모험일지에 등록할 수 있습니다.
 50178,10,5,0,R_EP12_Austeja_FOOT,R_EP12_Austeja_FOOT,,icon_item_boots_misc5,제작서 - 아우스테야 부츠 - 디바인 에니그마,Recipe,{#5090ff}{ol},{/}{/}{/},WIKIPAGE_ITEM,장비를 제작할 수 있는 제작서입니다. 마우스 오른쪽 클릭으로 제작서를 모험일지에 등록할 수 있습니다.
 50179,10,5,0,R_EP12_Austeja_HAND,R_EP12_Austeja_HAND,,icon_item_gloves_misc5,제작서 - 아우스테야 글로브 - 디바인 에니그마,Recipe,{#5090ff}{ol},{/}{/}{/},WIKIPAGE_ITEM,장비를 제작할 수 있는 제작서입니다. 마우스 오른쪽 클릭으로 제작서를 모험일지에 등록할 수 있습니다.
+50180,10,5,0,R_Ancient_boostToken_150,R_Ancient_boostToken_150,,icon_item_recipe_misc1,제작서 - 어시스터 경험의 서 +150%,Recipe,{#5090ff}{ol},{/}{/}{/},WIKIPAGE_ITEM,재료를 만들 수 있는 제작서
+50181,10,5,0,R_Ancient_boostToken_200,R_Ancient_boostToken_200,,icon_item_recipe_misc1,제작서 - 어시스터 경험의 서 +200%,Recipe,{#5090ff}{ol},{/}{/}{/},WIKIPAGE_ITEM,재료를 만들 수 있는 제작서
+50182,10,5,0,R_Potion_Demon_HIGH_DMG_UP,R_Potion_Demon_HIGH_DMG_UP,,icon_item_recipe_misc1,제작서 - 여신의 분노 포션: 악마 10개,Recipe,{#5090ff}{ol},{/}{/}{/},WIKIPAGE_ITEM,포션을 만들 수 있는 제작서입니다.
+50183,10,5,0,R_Potion_MIX_HIGH_DMG_UP,R_Potion_MIX_HIGH_DMG_UP,,icon_item_recipe_misc1,제작서 - 여신의 분노 포션: 변이 10개,Recipe,{#5090ff}{ol},{/}{/}{/},WIKIPAGE_ITEM,포션을 만들 수 있는 제작서입니다.
+50184,10,5,0,R_Potion_Bug_HIGH_DMG_UP,R_Potion_Bug_HIGH_DMG_UP,,icon_item_recipe_misc1,제작서 - 여신의 분노 포션: 곤충 10개,Recipe,{#5090ff}{ol},{/}{/}{/},WIKIPAGE_ITEM,포션을 만들 수 있는 제작서입니다.
+50185,10,5,0,R_Potion_Plant_HIGH_DMG_UP,R_Potion_Plant_HIGH_DMG_UP,,icon_item_recipe_misc1,제작서 - 여신의 분노 포션: 식물 10개,Recipe,{#5090ff}{ol},{/}{/}{/},WIKIPAGE_ITEM,포션을 만들 수 있는 제작서입니다.
+50186,10,5,0,R_Potion_Wild_HIGH_DMG_UP,R_Potion_Wild_HIGH_DMG_UP,,icon_item_recipe_misc1,제작서 - 여신의 분노 포션: 야수 10개,Recipe,{#5090ff}{ol},{/}{/}{/},WIKIPAGE_ITEM,포션을 만들 수 있는 제작서입니다.
+50187,10,5,0,R_HPUP_Redapple,R_HPUP_Redapple,,icon_item_recipe_misc1,제작서 - HP 회복의 과실 5개,Recipe,{#5090ff}{ol},{/}{/}{/},WIKIPAGE_ITEM,포션을 만들 수 있는 제작서입니다.
+50188,10,5,0,R_SPUP_Blueapple,R_SPUP_Blueapple,,icon_item_recipe_misc1,제작서 - SP 회복의 과실 5개,Recipe,{#5090ff}{ol},{/}{/}{/},WIKIPAGE_ITEM,포션을 만들 수 있는 제작서입니다.
+50189,10,5,0,R_Potion_Instance_phill,R_Potion_Instance_phill,,icon_item_recipe_misc1,제작서 - HP/SP 즉시 회복 비약,Recipe,{#5090ff}{ol},{/}{/}{/},WIKIPAGE_ITEM,포션을 만들 수 있는 제작서입니다.
+50190,10,5,0,R_Potion_duration_Elixir,R_Potion_duration_Elixir,,icon_item_recipe_misc1,제작서 - 지속 회복의 영약,Recipe,{#5090ff}{ol},{/}{/}{/},WIKIPAGE_ITEM,포션을 만들 수 있는 제작서입니다.
 100000,0,0,0,R_HIDDEN_BULLETMARKER_ITEM1,R_HIDDEN_BULLETMARKER_ITEM1,,icon_item_recipe_misc1,제작서 - 냉기탄,Recipe,{#5090ff}{ol},{/}{/}{/},WIKIPAGE_ITEM,재료를 만들 수 있는 제작서
 100001,0,0,0,R_HIDDEN_BULLETMARKER_ITEM2,R_HIDDEN_BULLETMARKER_ITEM2,,icon_item_recipe_misc1,제작서 - 화염탄,Recipe,{#5090ff}{ol},{/}{/}{/},WIKIPAGE_ITEM,재료를 만들 수 있는 제작서
 100002,0,0,0,R_HIDDEN_BULLETMARKER_ITEM3,R_HIDDEN_BULLETMARKER_ITEM3,,icon_item_recipe_misc1,제작서 - 전기탄,Recipe,{#5090ff}{ol},{/}{/}{/},WIKIPAGE_ITEM,재료를 만들 수 있는 제작서

@@ -480,7 +480,7 @@ function IS_COMPANIONSKILL_JOB(jobinfo)
 end
 
 local function IS_NEW_JOB(jobCls)
-	if jobCls.ClassName == 'Char1_22' or jobCls.ClassName == 'Char2_23' or jobCls.ClassName == 'Char3_20' or jobCls.ClassName == 'Char4_21' or jobCls.ClassName == 'Char5_15' then
+	if jobCls.ClassName == 'Char3_21' or jobCls.ClassName == 'Char5_16' then
 		return true;
 	end
 	return false;

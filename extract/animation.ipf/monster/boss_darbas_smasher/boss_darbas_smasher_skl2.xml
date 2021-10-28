@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ActionDesc>
+    <Sound frame="0.00" soundFile="mon_voice5_l_2"/>
+    <Sound frame="5.51" soundFile="skl_eff_atk_move_l_1"/>
+    <Sound frame="15.00" soundFile="skl_eff_body_atk_2"/>
+    <Sound frame="15.55" soundFile="skl_eff_atk_move_l_4"/>
+    <Sound frame="25.00" soundFile="skl_eff_atk_move_s_3"/>
+    <Sound frame="31.74" soundFile="skl_eff_atk_move_l_6"/>
+    <Sound frame="35.00" soundFile="mon_voice5_l_13"/>
+    <Sound frame="38.22" soundFile="skl_eff_atk_move_m_1"/>
+    <Sound frame="44.69" soundFile="mon_big_footstep_1"/>
+</ActionDesc>

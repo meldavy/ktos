@@ -454,6 +454,30 @@ function SCR_CRUSADER_CHECK_CHECK_BUFF_C(actor, skl, buffName)
     return 1;
 end
 
+function SCR_BOKOR_CHECK_BUFF_C(actor, skl, buffName)
+    local getBuff = actor:GetBuff():GetBuff("PowerOfDarkness_Buff")
+    if getBuff ~= nil then
+        local over = getBuff.over
+        if over >= 10 then
+            return 1;
+        end
+    end
+    
+    return 0;
+end
+
+function SCR_BOKOR_CHECK_BUFF_C_Mackangdal(actor, skl, buffName)
+    local getBuff = actor:GetBuff():GetBuff("PowerOfDarkness_Buff")
+    if getBuff ~= nil then
+        local over = getBuff.over
+        if over >= 1 then
+            return 1;
+        end
+    end
+    
+    return 0;
+end
+
 function SKL_CHECK_USE_RAMPAGE_SKILL_C(actor, skl, abilName)
     if actor:GetBuff():GetBuff("RidingCompanion") ~= nil then
         local obj = nil

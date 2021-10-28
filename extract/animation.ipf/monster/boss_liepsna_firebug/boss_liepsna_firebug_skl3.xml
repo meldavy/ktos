@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="EUC-KR"?>
+<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by IMCGames Co., Ltd (IMCGames Co., Ltd) -->
+<ActionDesc>
+    <Particle frame="0" attachNode="Dummy_emitter" particleName="F_ground194_fire" useAttach="false" hiddenObj="false" changeEffect="None" scale="3" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Sound frame="0.35" soundFile="skl_eff_born_stone_1_far"/>
+    <Sound frame="1.76" soundFile="skl_wiz_fireball_finish_full"/>
+    <Sound frame="1.76" soundFile="skl_wiz_fireball_cast_boom"/>
+    <Shockwave frame="10" type="2" intensity="3" frequency="55" duration="1.5" range="1000"/>
+    <Particle frame="10" attachNode="Dummy_emitter" particleName="F_ground194_fire" useAttach="false" hiddenObj="false" changeEffect="None" scale="3" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Particle frame="20" attachNode="Dummy_emitter" particleName="F_ground194_fire" useAttach="false" hiddenObj="false" changeEffect="None" scale="2.5" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Shockwave frame="25" type="2" intensity="8" frequency="60" duration="0.4" range="1000"/>
+    <Particle frame="29" attachNode="Dummy_emitter" particleName="F_ground194_fire" useAttach="false" hiddenObj="false" changeEffect="None" scale="2" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Particle frame="30" attachNode="Dummy_emitter" particleName="F_smoke046" useAttach="false" hiddenObj="false" changeEffect="None" scale="2" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Sound frame="42.00" soundFile="skl_eff_boom_l_1"/>
+    <Sound frame="43.00" soundFile="skl_eff_big_whoosh_2"/>
+    <Sound frame="45.00" soundFile="mon_voice_bug_10"/>
+    <Shockwave frame="46" type="2" intensity="10" frequency="60" duration="0.4" range="1000"/>
+    <Particle frame="46" attachNode="Dummy_emitter" particleName="F_spread_out026_leaf_fire_dragoonhelmet" useAttach="false" hiddenObj="false" changeEffect="None" scale="2" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Sound frame="46.83" soundFile="skl_wiz_fireball"/>
+    <Particle frame="47" attachNode="Dummy_emitter" particleName="F_wizard_prominence_shot_lineup" useAttach="false" hiddenObj="false" changeEffect="None" scale="2.5" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Particle frame="47" attachNode="Bip01 Pelvis" particleName="F_doll_gabia_std_fire" useAttach="true" hiddenObj="false" changeEffect="None" scale="3" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Particle frame="47" attachNode="Dummy_emitter" particleName="F_spread_out031_fether_fire" useAttach="false" hiddenObj="false" changeEffect="None" scale="4" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Sound frame="47.18" soundFile="skl_eff_stone_born_l_1_far"/>
+    <Particle frame="48" attachNode="Bip01 Pelvis" particleName="F_ground194_fire" useAttach="true" hiddenObj="false" changeEffect="None" scale="3" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Particle frame="50" attachNode="Dummy_emitter" particleName="F_spread_out031_fether_fire" useAttach="false" hiddenObj="false" changeEffect="None" scale="3" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Sound frame="75.00" soundFile="skl_eff_landing_m"/>
+</ActionDesc>

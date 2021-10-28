@@ -812,3 +812,15 @@ ClassID,TargetX,TargetY,TargetZ,Latitude,Longitude,StartDir,ClassName,CMM_Name,T
 3022,116,52,-523,45,45,0,WARP_D_DCAPITAL_108_TO_F_CASTLE_101,프래지아 신전 -> 애스팔비스 신역,f_castle_101
 3023,470,23,1840,45,45,0,WARP_D_DCAPITAL_108_TO_DEVINE_SANCTUARY,카르투 회랑 -> 디바인 생츄어리,d_dcapital_108
 3024,281,27,-1396,45,45,0,WARP_DEVINE_SANCTUARY_TO_D_DCAPITAL_108,"디바인 생츄어리 -> 카르투 회랑 ",d_dcapital_108
+3025,1960,25,281,45,45,0,ORSHA_TO_EP13_F_SIAULIAI_1,오르샤 -> 렘파라사 연못,ep13_f_siauliai_1
+3026,-1239,490,336,45,45,0,EP13_F_SIAULIAI_1_TO_ORSHA,렘파라사 연못 -> 오르샤,c_orsha
+3027,3285,139,-693,45,45,0,EP13_F_SIAULIAI_1_TO_EP13_F_SIAULIAI_2,렘파라사 연못 -> 덧댄 다리 숲,ep13_f_siauliai_2
+3028,-452,25,-1728,45,45,0,EP13_F_SIAULIAI_2_TO_EP13_F_SIAULIAI_1,덧댄다리 숲 -> 렘파라사 연못,ep13_f_siauliai_1
+3029,2597,171,-580,45,45,0,EP13_F_SIAULIAI_2_TO_EP13_F_SIAULIAI_3,덧댄다리 숲 -> 파우피스 나루,ep13_f_siauliai_3
+3030,876,256,1721,45,45,0,EP13_F_SIAULIAI_3_TO_EP13_F_SIAULIAI_2,파우피스 나루 -> 덧댄다리 숲,ep13_f_siauliai_2
+3031,118,146,-1028,45,45,0,EP13_F_SIAULIAI_3_TO_EP13_F_SIAULIAI_4,파우피스 나루 -> 이사우고티 숲,ep13_f_siauliai_4
+3032,-1240,84,926,45,45,0,EP13_F_SIAULIAI_4_TO_EP13_F_SIAULIAI_3,이사우고티 숲 -> 파우피스 나루,ep13_f_siauliai_3
+3033,30,15,-1025,45,45,0,EP13_F_SIAULIAI_4_TO_EP13_F_SIAULIAI_5,이사우고티 숲 -> 키르티마스 숲,ep13_f_siauliai_5
+3034,69,79,1063,45,45,0,EP13_F_SIAULIAI_5_TO_EP13_F_SIAULIAI_4,키르티마스 숲 -> 이사우고티 숲,ep13_f_siauliai_4
+3036,-462,74,1846,45,45,0,BRACKEN42_1_TO_EP13_F_SIAULIAI_1,코노트 숲 -> 렘파라사 연못,ep13_f_siauliai_1
+3037,113,629,986,45,45,0,EP13_F_SIAULIAI_1_TO_BRACKEN42_1,렘파라사 연못 -> 코노트 숲,f_bracken_42_1

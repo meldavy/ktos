@@ -273,16 +273,19 @@ function SCR_GET_StaffMastery_Bonus(ability)
 end
 
 function SCR_ABIL_STAFFMASTERY_ACTIVE(self, ability)
-	local crtHR = TryGetProp(self, "CRTHR")
-	local crthrRate = 0
-    local rItem  = GetEquipItem(self, 'RH');
-    if rItem.ClassType == "Staff" then
+    SCR_ABIL_STAFFMASTERY_CALC(self, ability)
+
+    local rItem = GetEquipItem(self, 'RH');
+    local lItem = GetEquipItem(self, 'LH');
+    if rItem.ClassType == "Staff" and lItem.ClassType == "Shield" then
 		SetCastingSpeedBuffInfo(self, "StaffMastery", 50);
     end
 end
 
 function SCR_ABIL_STAFFMASTERY_INACTIVE(self, ability)
-	RemoveCastingSpeedBuffInfo(self, "StaffMastery");
+    SCR_ABIL_STAFFMASTERY_CALC(self, ability)
+
+    RemoveCastingSpeedBuffInfo(self, "StaffMastery");
 end
 
 
@@ -693,9 +696,6 @@ function SCR_ABIL_CRYOMANCER21_INACTIVE(self, ability)
     
     self.MDEF_BM = self.MDEF_BM - addmdef; 
 end
-
-
-
 
 function SCR_GET_Penetration_Bonus(ability)
     
@@ -1667,11 +1667,7 @@ function SCR_ABIL_Cleric25_INACTIVE(self, ability)
 end
 
 function SCR_ABIL_Sadhu26_ACTIVE(self, ability)
-    local count, lowestGrade = CHECK_ARMORMATERIAL(self, "Cloth");
-
-    if count >= 4 then
-        AddBuff(self, self, "Sadhu_Cloth_Buff");
-    end
+    AddBuff(self, self, "Sadhu_Cloth_Buff");
 end
 
 function SCR_ABIL_Sadhu26_INACTIVE(self, ability)
@@ -1999,15 +1995,15 @@ function SCR_ABIL_SPEARMASTERY_Dagger_ACTIVE(self, ability)
     local lItem  = GetEquipItem(self, 'LH');
     if TryGetProp(rItem, "ClassType", "None") == "Spear" and TryGetProp(lItem, "ClassType", "None") == "Dagger" then
         local akt = (lItem.MINATK + lItem.MAXATK) / 2
-        addATK = math.floor(akt * 0.25);
+        addATK = math.floor(akt * 0.3);
     end
 
     local add_rate = 1;
-    if IsBuffApplied(self, 'SwellHands_Buff') == 'YES' then
-        local swellhands_buff = GetBuffByName(self, 'SwellHands_Buff');
-        local max_ratio = GetExProp(swellhands_buff, 'MAX_RATIO');
-		add_rate = add_rate + (max_ratio / 100);
-    end
+    -- if IsBuffApplied(self, 'SwellHands_Buff') == 'YES' then
+    --     local swellhands_buff = GetBuffByName(self, 'SwellHands_Buff');
+    --     local max_ratio = GetExProp(swellhands_buff, 'MAX_RATIO');
+	-- 	add_rate = add_rate + (max_ratio / 100);
+    -- end
 
     if IsBuffApplied(self, 'Honor_Buff') == 'YES' then
         local honor_buff = GetBuffByName(self, 'Honor_Buff');
@@ -2055,11 +2051,11 @@ function SCR_ABIL_Inquisitor28_INACTIVE(self, ability)
 end
 
 function SCR_ABIL_Daoshi27_ACTIVE(self, ability)
-
+    -- AddBuff(self, self, 'TriDisaster_Buff', 1, 0, 0, 1)
 end
 
 function SCR_ABIL_Daoshi27_INACTIVE(self, ability)
-    RemoveBuff(self, 'TriDisaster_Buff')
+    -- RemoveBuff(self, 'TriDisaster_Buff')
 end
 
 function SCR_ABIL_Terramancer18_ACTIVE(self, ability)
@@ -2925,3 +2921,101 @@ end
 function SCR_ABIL_Monk27_INACTIVE(self, ability)
     RemoveBuff(self, "Monk27_Buff")
 end
+
+function SCR_ABIL_ARQUEBUSIER12_ACTIVE(self, ability)
+    local skill = GetSkill(self, "Archer_Jump");
+    if skill ~= nil then
+        local shootTime = TryGetProp(skill, "ShootTime", 0)
+        local cancelTime = TryGetProp(skill, "CancelTime", 0)
+
+        SetExProp(ability, "ARQUEBUSIER12_shootTime", shootTime)
+        SetExProp(ability, "ARQUEBUSIER12_cancelTime", cancelTime)
+
+        skill.ShootTime = 300
+        skill.CancelTime = 300
+
+        InvalidateSkill(self, skill.ClassName);
+        SendSkillProperty(self, skill);
+    end
+end
+
+function SCR_ABIL_ARQUEBUSIER12_INACTIVE(self, ability)
+    local skill = GetSkill(self, "Archer_Jump");
+    if skill ~= nil then
+        local shootTime = GetExProp(ability, "ARQUEBUSIER12_shootTime")
+        local cancelTime = GetExProp(ability, "ARQUEBUSIER12_cancelTime")
+
+        skill.ShootTime = shootTime
+        skill.CancelTime = cancelTime
+
+        InvalidateSkill(self, skill.ClassName);
+        SendSkillProperty(self, skill);
+    end
+end
+
+function SCR_ABIL_CLOWN13_ACTIVE(self, ability)
+    AddBuff(self, self, "SpinningKnife_Clown13_Buff", 1, 0, 0, 1)
+end
+
+function SCR_ABIL_CLOWN13_INACTIVE(self, ability)
+    RemoveBuff(self, "SpinningKnife_Clown13_Buff")
+end
+
+function SCR_ABIL_Daoshi21_ACTIVE(self, ability)
+    local skl = GetSkill(self, "Daoshi_PhantomEradication")
+    if skl ~= nil then
+        SetSkillOverHeat(self, skl.ClassName, 0)
+        RequestResetOverHeat(self, "PhantomEradication_OH")
+        InvalidateSkill(self, skl.ClassName);
+        SendSkillProperty(self, skl);
+    end
+end
+
+function SCR_ABIL_Daoshi21_INACTIVE(self, ability)
+    local skl = GetSkill(self, "Daoshi_PhantomEradication")
+    if skl ~= nil then
+        SetSkillOverHeat(self, skl.ClassName, 3)
+        RequestResetOverHeat(self, "PhantomEradication_OH")
+        InvalidateSkill(self, skl.ClassName);
+        SendSkillProperty(self, skl);
+    end
+end
+
+function SCR_ABIL_Murmillo30_ACTIVE(self, ability)
+    local skill = GetSkill(self, "Murmillo_Headbutt");
+    if skill ~= nil then
+        SetSkillOverHeat(self, skill.ClassName, 0, 1);
+        RequestResetOverHeat(self, "Headbutt_OH")
+        
+        InvalidateSkill(self, skill.ClassName);
+        SendSkillProperty(self, skill);
+    end 
+end
+
+function SCR_ABIL_Murmillo30_INACTIVE(self, ability)
+    local skill = GetSkill(self, "Murmillo_Headbutt");
+    if skill ~= nil then
+        SetSkillOverHeat(self, skill.ClassName, 2, 1);
+        RequestResetOverHeat(self, "Headbutt_OH")
+    end
+end
+
+function SCR_ABIL_CHAPLAIN23_ACTIVE(self, ability)
+    local lItem  = GetEquipItem(self, 'LH');
+    local adddmgatk = 0;
+    
+    if lItem.ClassType == "Shield" then
+        adddmgatk = math.floor(lItem.DEF * 0.2)
+    end
+    
+    self.Add_Damage_Atk_BM = self.Add_Damage_Atk_BM + adddmgatk;
+    
+    SetExProp(ability, "ADD_DAMAGE_ATK", adddmgatk);
+end
+
+function SCR_ABIL_CHAPLAIN23_INACTIVE(self, ability)
+    local adddmgatk = GetExProp(ability, "ADD_DAMAGE_ATK");
+    
+    self.Add_Damage_Atk_BM = self.Add_Damage_Atk_BM - adddmgatk; 
+end
+

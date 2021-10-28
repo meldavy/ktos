@@ -100,3 +100,5 @@ ClassID,ClassName,Name,Zone,City,Group,WarpOpenQuest
 11054,WARP_F_CASTLE_99,트비르투마스 요새,f_castle_99,c_Klaipe,국왕 직할령,EP12_FINALE_05
 11055,WARP_F_CASTLE_101,애스팔비스 신역,f_castle_101,c_Klaipe,국왕 직할령,EP12_2_F_CASTLE_101_MQ_06
 11056,WARP_C_KLAIPE_CATHEDRAL_MEDIUM,라이마의 성소,c_klaipe_cathedral_medium,c_Klaipe,성역,EP12_2_D_DCAPITAL_108_MQ18
+11057,WARP_EP13_F_SIAULIAI_4,이사우고티 숲,ep13_f_siauliai_4,c_Klaipe,키렌 지방,EP13_F_SIAULIAI_4_MQ_08
+11058,WARP_EP13_F_SIAULIAI_2,덧댄다리 숲,ep13_f_siauliai_2,c_Klaipe,키렌 지방,EP13_F_SIAULIAI_2_MQ_08

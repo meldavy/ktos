@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ActionDesc>
+    <Sound frame="0.18" soundFile="mon_big_footstep_2"/>
+    <Sound frame="8.00" soundFile="skl_eff_metalchain">
+        <modelsound ½Ã°£="8"/>
+    </Sound>
+    <Sound frame="8.00" soundFile="mon_big_footstep_2"/>
+</ActionDesc>

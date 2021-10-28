@@ -61,6 +61,7 @@ ClassID,ClassName,Name,UseDaily,UseWeekly
 1046,QP12_f_dcapital_104,라이마의 구원자,NO,NO
 1047,EPISODE_ACHIEVE_P_11,EP 11 별의 탑을 넘어서,NO,NO
 1048,QP12_2_d_dcapital_108,냉철한 숙명의 심판자,NO,NO
+1049,QP13_ep13_f_siauliai_5,그림자 흔적,NO,NO
 1501,F_3CMLAKE26,란코 지역,NO,NO
 1502,D_FANTASYLIB48,환상도서관 지역,NO,NO
 2002,ItemRecipe,아이템제작,NO,NO
@@ -197,6 +198,7 @@ ClassID,ClassName,Name,UseDaily,UseWeekly
 6129,EVENT_2007_Tecance,한여름의 트캉스,NO,NO
 6135,Event_EVENT_2010_LVUP_Achieve1,축복받은 구원자,NO,NO
 6136,Event_SeasonNewWorld_Achieve1,시즌서버 이주민,NO,NO
+6137,TOS_School_Graduate,TOS스쿨 졸업생,NO,NO
 7001,PardonerAbility,기부 레벨,NO,NO
 7002,TaxAbility,세금 납부 레벨,NO,NO
 8001,FreeDungeon_under_68_1,시카리오스 기믹,NO,NO

@@ -1,5 +1,7 @@
 ClassID,StartTimeYYYYMM,StartTimeDDHHMM,NewTimeYYYYMM,NewTimeDDHHMM,EndTimeYYYYMM,EndTimeDDHHMM,DeadlineTimeYYYYMM,DeadlineTimeDDHHMM,ExchangeTimeYYYYMM,ExchangeTimeDDHHMM,ClassName,Name,ImagePath,url,UserCommand1,UserCommand2,UserCommand3,ShowType
-997330,202011,260900,202012,10000,202012,240700,202012,190000,0,0,event201126_5th,5주년 특별한 상점 이벤트,event201126_5th,http://tos.nexon.com/news/events/view.aspx?n4ArticleSN=301&n4ArticleCategorySN=1,,,,
+997310,202012,100900,202012,150000,202012,311000,202012,260000,0,0,event1210_5th_specialedition,5주년 패키지,event1210_5th_specialedition,http://tos.nexon.com/news/tosnotice/view.aspx?n4ArticleSN=2220,,,,
+997320,202012,100900,202012,150000,202101,70700,202101,20000,0,0,event1210_EP13,눈오세 업데이트,event1210_EP13,http://tos.nexon.com/events/20201210/index.aspx,,,,
+997330,202011,260900,202012,10000,202101,70700,202101,20000,0,0,event201126_5th,5주년 특별한 상점 이벤트,event201126_5th,http://tos.nexon.com/news/events/view.aspx?n4ArticleSN=301&n4ArticleCategorySN=1,,,,
 997340,202012,10000,202012,60000,202101,10000,202012,270000,0,0,event2012_DevilsTemptation,마신의 유혹 - 12월,event2012_DevilsTemptation,http://tos.nexon.com/news/events/view.aspx?n4ArticleSN=298&n4ArticleCategorySN=1,,,,
 997350,202012,10000,202012,60000,202101,10000,202012,270000,0,0,event_2012Burning,주말 앤 버닝 - 12월,event_2012Burning,http://tos.nexon.com/news/events/view.aspx?n4ArticleSN=299&n4ArticleCategorySN=1,,,,
 997360,202012,10000,202012,60000,202101,10000,202012,270000,0,0,event2012_Reward,바이보라 출석 - 12월,event2012_Reward,http://tos.nexon.com/news/events/view.aspx?n4ArticleSN=300&n4ArticleCategorySN=1,,,,

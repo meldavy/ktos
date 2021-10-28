@@ -44,8 +44,10 @@ function TOGGLE_DECOMPOSE_MANAGER_TAB(frame, index)
 		clmsg = 'CanGetMiscWhenDecomposeMiscLegend'
 	elseif index == 3 then
 		clmsg = 'CanGetMiscWhenDecomposeAccEp12'
+	elseif index == 4 then
+		clmsg = 'CanGetMiscWhenDecomposeVibora'
 	end
-
+	
 	tip_text:SetTextByKey('value', ClMsg(clmsg))
 end
 
@@ -250,6 +252,15 @@ function _CHECK_DECOMPOSABLE_ACC_EP12(itemObj)
 	return true
 end
 
+function _CHECK_DECOMPOSABLE_VIBORA(itemObj)
+	if IS_DECOMPOSABLE_VIBORA(itemObj) == false then
+		ui.SysMsg(ClMsg('decomposeCant'))
+		return false
+	end
+
+	return true
+end
+
 function _CHECK_COST_ITEM()
 	local pc = GetMyPCObject()
 	if pc == nil then
@@ -302,7 +313,7 @@ function DECOMPOSE_MANAGER_SET_TARGET(frame, itemGuid)
 	end
 	
 	local tab = GET_CHILD_RECURSIVELY(frame, 'type_Tab')
-	local index = tab:GetSelectItemIndex()
+	local index = tab:GetSelectItemIndex()	
 	local checkScp = 'None'
 	if index == 0 then
 		checkScp = '_CHECK_DECOMPOSABLE_ARK'
@@ -312,6 +323,8 @@ function DECOMPOSE_MANAGER_SET_TARGET(frame, itemGuid)
 		checkScp = '_CHECK_DECOMPOSABLE_LEGEND_MISC'
 	elseif index == 3 then
 		checkScp = '_CHECK_DECOMPOSABLE_ACC_EP12'
+	elseif index == 4 then
+		checkScp = '_CHECK_DECOMPOSABLE_VIBORA'
 	else
 		return
 	end
@@ -369,6 +382,8 @@ function DECOMPOSE_MANAGER_EXECUTE(parent, ctrl)
 		checkScp = '_CHECK_DECOMPOSABLE_LEGEND_MISC'
 	elseif index == 3 then
 		checkScp = '_CHECK_DECOMPOSABLE_ACC_EP12'
+	elseif index == 4 then
+		checkScp = '_CHECK_DECOMPOSABLE_VIBORA'
 	else
 		return
 	end
@@ -405,6 +420,8 @@ function _DECOMPOSE_MANAGER_EXECUTE(targetGuid, index)
 		exec = 'ITEM_LEGEND_MISC_DECOMPOSE'
 	elseif index == 3 then
 		exec = 'ITEM_ACC_EP12_DECOMPOSE'
+	elseif index == 4 then
+		exec = 'ITEM_VIBORA_DECOMPOSE'
 	else
 		return
 	end

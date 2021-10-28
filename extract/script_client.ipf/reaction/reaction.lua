@@ -116,6 +116,9 @@ function C_EFFECT_ABIL(actor, obj, abilName, effectName, scale, nodeName, lifeTi
 end
 
 function C_EFFECT_USE_XYZ(actor, obj, effectName, scale, nodeName, x, y, z)
+    if lifeTime == nil then
+        lifeTime = 1
+    end
 
     effect.PlayActorEffect(actor, effectName, nodeName, lifeTime, scale,x,y,z);
 

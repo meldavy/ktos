@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="EUC-KR"?>
+<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by IMCGames Co., Ltd (IMCGames Co., Ltd) -->
+<ActionDesc>
+    <BlendOn frame="0" R="0" G="0" B="0" A="50"/>
+    <Sound frame="0.32" soundFile="skl_eff_force_whoosh_2"/>
+    <Sound frame="25.00" soundFile="skl_eff_atk_move_l_2"/>
+    <Sound frame="34.54" soundFile="mon_voice13_kdown1"/>
+    <Sound frame="35.18" soundFile="skl_eff_sturzhau_whoosh_2"/>
+    <Sound frame="35.18" soundFile="skl_eff_short_impact_whoosh_3"/>
+    <Sound frame="35.81" soundFile="boss_skl_eff_atk_move_l_6"/>
+    <BlendOn frame="40" R="100" G="150" B="200" A="100"/>
+    <Shockwave frame="40" type="2" intensity="5" frequency="60" duration="0.3" range="1000"/>
+    <Particle frame="40" attachNode="Dummy_effect_skl_2" particleName="I_dash002_black_G_add" useAttach="false" hiddenObj="false" changeEffect="None" scale="6" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Particle frame="40" attachNode="Dummy_effect_skl_1" particleName="I_dash002_white_1" useAttach="false" hiddenObj="false" changeEffect="None" scale="6" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Particle frame="40" attachNode="Dummy_root" particleName="F_ground068_smoke2_grey" useAttach="false" hiddenObj="false" changeEffect="None" scale="3" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Particle frame="40" attachNode="Dummy_effect_skl1_smoke" particleName="F_ground068_smoke2_grey" useAttach="false" hiddenObj="false" changeEffect="None" scale="5" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <BlendOn frame="41" R="90" G="130" B="180" A="100"/>
+    <BlendOn frame="42" R="80" G="120" B="150" A="100"/>
+    <BlendOn frame="44" R="65" G="100" B="130" A="100"/>
+    <BlendOn frame="46" R="50" G="80" B="100" A="100"/>
+    <BlendOn frame="48" R="35" G="50" B="80" A="100"/>
+    <BlendOff frame="50" R="0" G="0" B="0" A="0"/>
+</ActionDesc>

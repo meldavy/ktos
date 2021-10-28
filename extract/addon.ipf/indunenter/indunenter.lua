@@ -308,7 +308,7 @@ function INDUNENTER_MAKE_ALERT(frame, indunCls)
     if mapName ~= nil and mapName ~= "None" then
         local indunMap = GetClass("Map", mapName);
         local mapKeyword = TryGetProp(indunMap, "Keyword");
-        if string.find(mapKeyword, "IsRaidField") ~= nil then
+        if mapKeyword ~= nil and string.find(mapKeyword, "IsRaidField") ~= nil then
             restrictBox:ShowWindow(1);
             restrictBox:SetTooltipOverlap(1);
             local TOOLTIP_POSX = frame:GetUserConfig("TOOLTIP_POSX");
@@ -1093,7 +1093,7 @@ function INDUNENTER_AUTOMATCH(frame, ctrl)
     local indunCls = GetClassByType('Indun', indunType);
     local indunMinPCRank = TryGetProp(indunCls, 'PCRank')
     local totaljobcount = session.GetPcTotalJobGrade()
-    
+
     if indunMinPCRank ~= nil then
         if indunMinPCRank > totaljobcount and indunMinPCRank ~= totaljobcount then
             ui.SysMsg(ScpArgMsg('IndunEnterNeedPCRank', 'NEED_RANK', indunMinPCRank))
@@ -1115,11 +1115,9 @@ function INDUNENTER_AUTOMATCH(frame, ctrl)
     
     local textCount = topFrame:GetUserIValue("multipleCount");
     if topFrame:GetUserValue('AUTOMATCH_MODE') == 'NO' then
-        local topFrame = frame:GetTopParentFrame();
         if INDUNENTER_CHECK_ADMISSION_ITEM(topFrame, 2) == false then
             return;
         end
-        
         ReqMoveToIndun(2, textCount);
     else
         INDUNENTER_AUTOMATCH_CANCEL();
@@ -1172,7 +1170,7 @@ function INDUNENTER_PARTYMATCH(frame, ctrl)
     if topFrame:GetUserValue('WITHMATCH_MODE') == 'NO' then
         ReqMoveToIndun(3, textCount);
         ctrl:SetTextTooltip(ClMsg("PartyMatchInfo_Go"));
-        if enableReenter == trhe then
+        if enableReenter == true then
             understaffEnterAllowBtn:ShowWindow(1);
         else
             understaffEnterAllowBtn:ShowWindow(0);
@@ -1256,7 +1254,7 @@ function INDUNENTER_AUTOMATCH_TYPE(indunType, needUnderstaffAllow)
         if indunCls ~= nil then
             local dungeonType = TryGetProp(indunCls, 'DungeonType', 'None')
             if dungeonType == 'Raid' or dungeonType == 'GTower' then
-                needUnderstaffAllow = 0
+                needUnderstaffAllow = 0;
             end
         end
 
@@ -1885,8 +1883,14 @@ function INDUNENTER_CHECK_UNDERSTAFF_MODE_WITH_PARTY(frame)
     return true;
 end
 
-function INDUNENTER_CHECK_ADMISSION_ITEM(frame, matchType)
+function INDUNENTER_CHECK_ADMISSION_ITEM(frame, matchType, indunInfoIndunType)
     local indunType = frame:GetUserIValue('INDUN_TYPE');
+    if indunType == nil or indunType == 0 then
+        if indunInfoIndunType ~= nil then
+            indunType = indunInfoIndunType;
+        end
+    end
+    
     local indunCls = GetClassByType('Indun', indunType);
     if matchType == nil then
         matchType = 1

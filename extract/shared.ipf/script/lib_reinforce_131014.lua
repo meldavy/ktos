@@ -130,7 +130,13 @@ function REINFORCE_ABLE_BY_USE_LEVEL(moru, item)
             return false
         end
     end
-
+    
+    if moru.ClassName == 'Moru_Diamond_30d_Team_Lv450' then
+        if item.UseLv > 450 then
+            return false
+        end
+    end
+    
     return true
 end
 

@@ -228,3 +228,4 @@ ClassID,DecomposeItemMaxCnt,MaterialItemSlotCnt,MaterialItemCnt_1,MaterialItemRe
 1004,0,3,1,0,0,1,0,0,1,0,0,0,0,0,LegendEquipRecipe_Ark_04,Ark_punishment,아크 - 천벌,Ark,bg_ark_craft,,아크,,Legend_Misc_Rift01,Legend_Misc_Week01,misc_thierrynium,
 1005,0,3,1,0,0,1,0,0,1,0,0,0,0,0,LegendEquipRecipe_Ark_05,Ark_dispersion,아크 - 분산,Ark,bg_ark_craft,,아크,,Legend_Misc_UpHill01,Legend_Misc_Solo01,misc_thierrynium,
 1006,0,3,1,0,0,1,0,0,1,0,0,0,0,0,LegendEquipRecipe_Ark_06,Ark_overpower,아크 - 제압,Ark,bg_ark_craft,,아크,,Legend_Misc_Solo01,Legend_Misc_Rift01,misc_thierrynium,
+1007,0,3,1,0,0,1,0,0,1,0,0,0,0,0,LegendEquipRecipe_Ark_07,Ark_healingwave,아크 - 치유의 물결,Ark,bg_ark_craft,,아크,,Legend_Misc_UpHill01,Legend_Misc_Solo01,misc_thierrynium,

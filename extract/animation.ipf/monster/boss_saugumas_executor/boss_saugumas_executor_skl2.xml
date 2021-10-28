@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="EUC-KR"?>
+<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by IMCGames Co., Ltd (IMCGames Co., Ltd) -->
+<ActionDesc>
+	<Sound frame="0.33" soundFile="mon_voice13_cast3"/>
+	<Sound frame="0.33" soundFile="skl_eff_atk_move_l_22"/>
+	<Sound frame="15.05" soundFile="skl_eff_atk_move_l_10_far"/>
+	<Sound frame="28.00" soundFile="skl_eff_scutumhit_whoosh"/>
+	<Sound frame="30.00" soundFile="skl_eff_force_whoosh_2"/>
+	<Sound frame="37.79" soundFile="boss_skl_eff_atk_move_l_15"/>
+	<BlendOn frame="0" R="0" G="0" B="0" A="50"/>
+	<BlendOn frame="40" R="100" G="150" B="200" A="100"/>
+	<BlendOn frame="41" R="90" G="130" B="180" A="100"/>
+	<BlendOn frame="42" R="80" G="120" B="150" A="100"/>
+	<BlendOn frame="44" R="65" G="100" B="130" A="100"/>
+	<BlendOn frame="46" R="50" G="80" B="100" A="100"/>
+	<BlendOn frame="48" R="35" G="50" B="80" A="100"/>
+	<BlendOff frame="50" R="0" G="0" B="0" A="0"/>
+	<Shockwave frame="40" type="2" intensity="5" frequency="60" duration="0.5" range="1000"/>
+	<Particle frame="39" attachNode="Dummy_effect_skl2" particleName="I_swordtrail031_blue3" useAttach="false" hiddenObj="false" changeEffect="None" scale="3" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="41" attachNode="Dummy_effect_skl2_smoke002" particleName="F_ground170_dark2" useAttach="false" hiddenObj="false" changeEffect="None" scale="2.3" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="42" attachNode="Dummy_effect_skl2_smoke003" particleName="F_ground170_dark2" useAttach="false" hiddenObj="false" changeEffect="None" scale="2.3" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="43" attachNode="Dummy_effect_skl2_smoke004" particleName="F_ground170_dark2" useAttach="false" hiddenObj="false" changeEffect="None" scale="2.3" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="43" attachNode="Dummy_effect_skl2_smoke008" particleName="F_ground170_dark2" useAttach="false" hiddenObj="false" changeEffect="None" scale="2.3" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="45" attachNode="Dummy_effect_skl2_smoke005" particleName="F_ground170_dark2" useAttach="false" hiddenObj="false" changeEffect="None" scale="2.3" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="41" attachNode="Dummy_effect_skl2_smoke002" particleName="F_ground077_smoke" useAttach="false" hiddenObj="false" changeEffect="None" scale="0.8" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="42" attachNode="Dummy_effect_skl2_smoke003" particleName="F_ground077_smoke" useAttach="false" hiddenObj="false" changeEffect="None" scale="0.8" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="43" attachNode="Dummy_effect_skl2_smoke004" particleName="F_ground077_smoke" useAttach="false" hiddenObj="false" changeEffect="None" scale="0.8" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="43" attachNode="Dummy_effect_skl2_smoke008" particleName="F_ground077_smoke" useAttach="false" hiddenObj="false" changeEffect="None" scale="0.8" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="45" attachNode="Dummy_effect_skl2_smoke005" particleName="F_ground077_smoke" useAttach="false" hiddenObj="false" changeEffect="None" scale="0.8" pause="true" use2DEffect="false" soft2DValue="20"/>
+</ActionDesc>

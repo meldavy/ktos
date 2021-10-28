@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ActionDesc>
+    <Sound frame="9.00" soundFile="skl_eff_arquebusier_luckystrike_shot"/>
+    <Sound frame="16.00" soundFile="skl_eff_rifle_cast_move"/>
+    <Sound frame="20.00" soundFile="skl_eff_rifle_atk_move_end"/>
+</ActionDesc>

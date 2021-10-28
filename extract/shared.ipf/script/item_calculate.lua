@@ -106,6 +106,7 @@ function GET_COMMON_PROP_LIST()
         'Magic_Ice_Atk',
         'Magic_Earth_Atk',
         'Magic_Soul_Atk',
+        'Magic_Dark_Atk',
         'ALLSTAT'
     };
 end
@@ -164,7 +165,7 @@ function GET_REINFORCE_ADD_VALUE_ATK(item, ignoreReinf, reinfBonusValue, basicTo
     end
     
     local itemstring = TryGetProp(item, 'StringArg','None')
-    if itemstring == 'Growth_Item' then
+    if itemstring == 'Growth_Item' or itemstring == 'Growth_Item_Rare' or itemstring == 'Growth_Item_Unique' or itemstring == 'Growth_Item_Legend' then
         local grothItem = CALC_GROWTH_ITEM_LEVEL(item);
         if grothItem ~= nil then
             lv = grothItem;
@@ -250,7 +251,7 @@ function GET_REINFORCE_ADD_VALUE(prop, item, ignoreReinf, reinfBonusValue)
     end
     
     local itemstring = TryGetProp(item, 'StringArg','None')
-    if itemstring == 'Growth_Item' then
+    if itemstring == 'Growth_Item' or itemstring == 'Growth_Item_Rare' or itemstring == 'Growth_Item_Unique' or itemstring == 'Growth_Item_Legend' then
         local grothItem = CALC_GROWTH_ITEM_LEVEL(item);
         if grothItem ~= nil then
             lv = grothItem;
@@ -328,8 +329,8 @@ function GET_BASIC_ATK(item)
     if itemstring == nil then
         return 0, 0;
     end
-    
-    if itemstring == 'Growth_Item' then
+
+    if itemstring == 'Growth_Item' or itemstring == 'Growth_Item_Rare' or itemstring == 'Growth_Item_Unique' or itemstring == 'Growth_Item_Legend' then
         local grothItem = CALC_GROWTH_ITEM_LEVEL(item);
         if grothItem ~= nil then
             lv = grothItem;
@@ -441,9 +442,9 @@ function GET_BASIC_MATK(item)
     end
     
     local itemstring = TryGetProp(item, 'StringArg')
-    
-    if itemstring == 'Growth_Item' then
-    local grothItem = CALC_GROWTH_ITEM_LEVEL(item);
+
+    if itemstring == 'Growth_Item' or itemstring == 'Growth_Item_Rare' or itemstring == 'Growth_Item_Unique' or itemstring == 'Growth_Item_Legend' then
+        local grothItem = CALC_GROWTH_ITEM_LEVEL(item);
         if grothItem ~= nil then
             lv = grothItem;
 
@@ -596,8 +597,8 @@ function SCR_REFRESH_ARMOR(item, enchantUpdate, ignoreReinfAndTranscend, reinfBo
     if itemstring == nil then
         return;
     end
-    
-    if itemstring == 'Growth_Item' then
+
+    if itemstring == 'Growth_Item' or itemstring == 'Growth_Item_Rare' or itemstring == 'Growth_Item_Unique' or itemstring == 'Growth_Item_Legend' then
         local grothItem = CALC_GROWTH_ITEM_LEVEL(item);
         if grothItem ~= nil then
             lv = grothItem;

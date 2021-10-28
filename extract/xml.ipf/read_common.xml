@@ -1,4 +1,4 @@
-<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by Hey (IMCGames Co., Ltd) -->
+﻿<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by Hey (IMCGames Co., Ltd) -->
 <Category>
 	<ReadXml Name="bonescale"/>
 	<ReadXml Name="skill_Simony"/>
@@ -233,7 +233,8 @@
 	<ReadXml Name="skill_buff_condition"/>
 	<ReadXml Name="tpitem_user_new"/>
 	<ReadXml Name="tpitem_return_user"/>
-	<ReadXml Name="ExchangeAntiqueList"/>
+	<ReadXml Name="exchangeWeaponTypeList"/>
+	<ReadXml Name="ExchangeAntiqueList"/>	
 	<ReadXml Name="shop_tax"/>
 	<ReadXml Name="job_ballenceReward"/>
 	<ReadXml Name="skill_restrict"/>
@@ -286,9 +287,18 @@
 	<ReadXml Name="event_ranking_data"/>
 	<ReadXml Name="point_extract_item"/>
 	<ReadXml Name="Beauty_Shop_Preview_Leticia"/>
-	<ReadXml Name="Beauty_Shop_Preview_SilverGacha"/>
+	<ReadXml Name="Beauty_Shop_Preview_SilverGacha"/>	
 	<ReadXml Name="dress_room"/>
 	<ReadXml Name="dress_room_reward"/>
 	<ReadXml Name="common_gamble_property_reward"/>		
 	<ReadXml Name="accountprop_inventory_list"/>
+  	<ReadXml Name="account_ability"/>  
+	<ReadXml Name="reputation"/>
+	<ReadXml Name="goddess_card_reinforce"/>
+	<ReadXml Name="reputation_quest"/>
+	<ReadXml Name="reputation_product"/>
+	<ReadXml Name="equipbosscard_goddess"/>
+	<ReadXml Name="reputation_point"/>
+	<ReadXml Name="item_Reputation"/>
+	<ReadXml Name="tutorialnotelist"/>
 </Category>

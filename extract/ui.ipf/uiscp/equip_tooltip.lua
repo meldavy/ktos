@@ -185,6 +185,7 @@ function ITEM_TOOLTIP_EQUIP(tooltipframe, invitem, strarg, usesubframe, isForger
 	if IS_USE_SET_TOOLTIP(invitem) ~= 1 then
 		ypos = DRAW_AVAILABLE_PROPERTY(tooltipframe, invitem, ypos, mainframename) -- 장착제한, 거래제한, 소켓, 레벨 제한 등등
 	end
+
     ypos = DRAW_EQUIP_TRADABILITY(tooltipframe, invitem, ypos, mainframename) -- 거래 제한
 
 	if IS_USE_SET_TOOLTIP(invitem) == 1 then
@@ -193,8 +194,11 @@ function ITEM_TOOLTIP_EQUIP(tooltipframe, invitem, strarg, usesubframe, isForger
 
 	ypos = DRAW_EQUIP_PR_N_DUR(tooltipframe, invitem, ypos, mainframename) -- 포텐셜 및 내구도
 	ypos = DRAW_EQUIP_ONLY_PR(tooltipframe, invitem, ypos, mainframename) -- 포텐셜 만 있는 애들은 여기서 그림 (그릴 아이템인지 검사는 내부에서)
-	local isHaveLifeTime = TryGetProp(invitem, "LifeTime");	
-	if 0 == isHaveLifeTime then
+	ypos = DRAW_EQUIP_VIBORA_REFINE(tooltipframe, invitem, ypos, mainframename)  -- 바이보라 연성(내부에서 체크)
+	ypos = DRAW_EQUIP_GODDESS_REFINE(tooltipframe, invitem, ypos, mainframename)  -- 마신 여신 연성(내부에서 체크)	
+
+	local isHaveLifeTime = TryGetProp(invitem, "LifeTime", 0);	
+	if 0 == tonumber(isHaveLifeTime) then
 		ypos = DRAW_SELL_PRICE(tooltipframe, invitem, ypos, mainframename);
 	else
 		ypos = DRAW_REMAIN_LIFE_TIME(tooltipframe, invitem, ypos, mainframename);
@@ -670,6 +674,7 @@ local function _GET_ITEM_SOCKET_ADD_VALUE(targetPropName, item)
 
     local value = 0;
     local sockets = {};
+    if item.MaxSocket > 100 then item.MaxSocket = 0 end
     for i=0, item.MaxSocket - 1 do
         sockets[#sockets + 1] = _GET_SOCKET_ADD_VALUE(item, invItem, i);
     end
@@ -851,7 +856,7 @@ function IS_NEED_TO_DRAW_TOOLTIP_PROPERTY(list, list2, invitem, basicTooltipProp
 end
 
 -- 아이템에 의한 추가 속성 정보 (광역공격 +1)
-function DRAW_EQUIP_PROPERTY(tooltipframe, invitem, yPos, mainframename, setItem, drawLableline)	
+function DRAW_EQUIP_PROPERTY(tooltipframe, invitem, yPos, mainframename, setItem, drawLableline, icor_item)
 	local gBox = GET_CHILD(tooltipframe,mainframename,'ui::CGroupBox')
 	gBox:RemoveChild('tooltip_equip_property');
 
@@ -996,8 +1001,54 @@ function DRAW_EQUIP_PROPERTY(tooltipframe, invitem, yPos, mainframename, setItem
 		end
 	end
 
-	if invitem.OptDesc ~= nil and invitem.OptDesc ~= 'None' then
+	if invitem.OptDesc ~= nil and invitem.OptDesc ~= 'None' and TryGetProp(invitem, 'StringArg', 'None') ~= 'Vibora' then
 		inner_yPos = ADD_ITEM_PROPERTY_TEXT(property_gbox, invitem.OptDesc, 0, inner_yPos);
+	end
+
+	if invitem.OptDesc ~= nil and (invitem.OptDesc == 'None' or invitem.OptDesc == '') and TryGetProp(invitem, 'StringArg', 'None') == 'Vibora' then
+		local opt_desc = invitem.OptDesc	
+		if opt_desc == 'None' then
+			opt_desc = ''
+		end
+			local idx = 1
+			for idx = 1, MAX_VIBORA_OPTION_COUNT do
+				local additional_option = TryGetProp(invitem, 'AdditionalOption_' .. tostring(idx), 'None')
+				if additional_option ~= 'None' then
+					local tooltip_str = 'tooltip_' .. additional_option					
+					local cls_message = GetClass('ClientMessage', tooltip_str)
+					if cls_message ~= nil then
+						opt_desc = opt_desc .. ClMsg(tooltip_str)
+					end
+				end
+			end
+
+		if setItem ~= nil then
+			for idx = 1, MAX_VIBORA_OPTION_COUNT do
+				local additional_option = TryGetProp(setItem, 'AdditionalOption_' .. tostring(idx), 'None')
+				if additional_option ~= 'None' then
+					local tooltip_str = 'tooltip_' .. additional_option					
+					local cls_message = GetClass('ClientMessage', tooltip_str)
+					if cls_message ~= nil then
+						opt_desc = opt_desc .. ClMsg(tooltip_str)
+					end
+				end
+			end
+		end
+
+		if icor_item ~= nil then
+			for idx = 1, MAX_VIBORA_OPTION_COUNT do
+				local additional_option = TryGetProp(icor_item, 'AdditionalOption_' .. tostring(idx), 'None')
+				if additional_option ~= 'None' then
+					local tooltip_str = 'tooltip_' .. additional_option					
+					local cls_message = GetClass('ClientMessage', tooltip_str)
+					if cls_message ~= nil then
+						opt_desc = opt_desc .. ClMsg(tooltip_str)
+					end
+				end
+			end
+		end
+
+		inner_yPos = ADD_ITEM_PROPERTY_TEXT(property_gbox, opt_desc, 0, inner_yPos);
 	end
 	
 	if setItem == nil then
@@ -1174,6 +1225,7 @@ function DRAW_EQUIP_SOCKET_COUNT(tooltipframe, invitem, yPos, addinfoframename)
         return yPos
     end
 
+    if invitem.MaxSocket > 100 then invitem.MaxSocket = 0 end
     if invitem.MaxSocket == 0 then
     	return yPos
     end
@@ -1318,6 +1370,7 @@ function DRAW_EQUIP_SOCKET(tooltipframe, itemObj, yPos, addinfoframename)
 	end	
 
 	local curCount = 0;	
+    if itemObj.MaxSocket > 100 then itemObj.MaxSocket = 0 end
 	for i = 0, itemObj.MaxSocket - 1 do
 		if invitem:IsAvailableSocket(i) == true then
 			curCount = curCount + 1
@@ -1857,8 +1910,9 @@ function DRAW_EQUIP_PR_N_DUR(tooltipframe, invitem, yPos, mainframename)
 			return yPos;
 		end
 		
-		local isHaveLifeTime = TryGetProp(invitem, "LifeTime");	
+		local isHaveLifeTime = TryGetProp(invitem, "LifeTime", 0);	
 		if isHaveLifeTime ~= nil then
+            isHaveLifeTime = tonumber(isHaveLifeTime)
 			if ((isHaveLifeTime > 0) and (invitem.MaxDur <= 0))  then
 				return yPos;
 			end;
@@ -1976,6 +2030,111 @@ function DRAW_EQUIP_ONLY_PR(tooltipframe, invitem, yPos, mainframename)
 
 	gBox:Resize(gBox:GetWidth(),gBox:GetHeight() + CSet:GetHeight())
 	return CSet:GetHeight() + CSet:GetY();
+end
+
+-- 바이보라 연성
+function DRAW_EQUIP_VIBORA_REFINE(tooltipframe, invitem, yPos, mainframename)	
+	local is_vibora = false
+	local current_vibora_lv = 2
+	
+	-- 바이보라 연성
+	if TryGetProp(invitem, 'StringArg', 'None') == 'Vibora' and (TryGetProp(invitem, 'NumberArg1', 0) >= 2 and TryGetProp(invitem, 'NumberArg1', 0) < MAX_VIBORA_LEVEL) then
+		is_vibora = true		
+		current_vibora_lv = TryGetProp(invitem, 'NumberArg1', 0)
+	end
+
+	if is_vibora == false and TryGetProp(invitem, 'GroupName', 'None') == 'Icor' then
+		local cls = GetClass('Item', TryGetProp(invitem, 'InheritanceItemName', 'None'))
+		if cls ~= nil then
+			if TryGetProp(cls, 'StringArg', 'None') == 'Vibora' and (TryGetProp(cls, 'NumberArg1', 0) >= 2 and TryGetProp(cls, 'NumberArg1', 0) < MAX_VIBORA_LEVEL) then		
+				current_vibora_lv = TryGetProp(cls, 'NumberArg1', 0)
+				is_vibora = true
+			end	
+		end
+	end
+
+	if is_vibora == false and TryGetProp(invitem, 'InheritanceItemName', 'None') ~= 'None' then
+		local cls = GetClass('Item', TryGetProp(invitem, 'InheritanceItemName', 'None'))
+		if cls ~= nil then
+			if TryGetProp(cls, 'StringArg', 'None') == 'Vibora' and (TryGetProp(cls, 'NumberArg1', 0) >= 2 and TryGetProp(cls, 'NumberArg1', 0) < MAX_VIBORA_LEVEL) then		
+				current_vibora_lv = TryGetProp(cls, 'NumberArg1', 0)
+				is_vibora = true
+			end	
+		end
+	end	
+	
+	if is_vibora == true then
+		local gBox = GET_CHILD(tooltipframe, mainframename,'ui::CGroupBox')
+		gBox:RemoveChild('tooltip_refine');
+
+		local CSet = gBox:CreateControlSet('tooltip_refine', 'tooltip_refine', 0, yPos);
+		tolua.cast(CSet, "ui::CControlSet");
+		
+		local pr_gauge = GET_CHILD(CSet,'pr_gauge','ui::CGauge')
+		pr_gauge:SetPoint(TryGetProp(invitem, 'UPGRADE_TRY_COUNT', 0), GET_UPGRADE_VIBORA_MAX_COUNT(current_vibora_lv + 1));
+
+		local BOTTOM_MARGIN = tooltipframe:GetUserConfig("BOTTOM_MARGIN"); -- 맨 아랫쪽 여백
+		CSet:Resize(CSet:GetWidth(),CSet:GetHeight() + BOTTOM_MARGIN);
+		
+		gBox:Resize(gBox:GetWidth(),gBox:GetHeight() + CSet:GetHeight())	
+		return CSet:GetHeight() + CSet:GetY();
+	else
+		return yPos
+	end
+end
+
+-- 여신 마신 연성
+function DRAW_EQUIP_GODDESS_REFINE(tooltipframe, invitem, yPos, mainframename)	
+	local is_goddess = false
+	local current_lv = 2
+	
+	-- 여신 마신 연성
+	if (TryGetProp(invitem, 'StringArg', 'None') == 'evil' or TryGetProp(invitem, 'StringArg', 'None') == 'goddess') 
+		and TryGetProp(invitem, 'NumberArg1', 0) >= 1 and TryGetProp(invitem, 'NumberArg1', 0) < MAX_GODDESS_LEVEL then
+		is_goddess = true		
+		current_lv = TryGetProp(invitem, 'NumberArg1', 0)
+	end
+
+	if is_goddess == false and TryGetProp(invitem, 'GroupName', 'None') == 'Icor' then
+		local cls = GetClass('Item', TryGetProp(invitem, 'InheritanceItemName', 'None'))
+		if cls ~= nil then
+			if (TryGetProp(cls, 'StringArg', 'None') == 'evil' or TryGetProp(cls, 'StringArg', 'None') == 'goddess') 
+			and TryGetProp(cls, 'NumberArg1', 0) >= 1 and TryGetProp(cls, 'NumberArg1', 0) < MAX_GODDESS_LEVEL then
+				current_lv = TryGetProp(cls, 'NumberArg1', 0)
+				is_goddess = true
+			end	
+		end
+	end
+
+	if is_goddess == false and TryGetProp(invitem, 'InheritanceItemName', 'None') ~= 'None' then
+		local cls = GetClass('Item', TryGetProp(invitem, 'InheritanceItemName', 'None'))
+		if cls ~= nil then
+			if (TryGetProp(cls, 'StringArg', 'None') == 'evil' or TryGetProp(cls, 'StringArg', 'None') == 'goddess') 
+			and TryGetProp(cls, 'NumberArg1', 0) >= 1 and TryGetProp(cls, 'NumberArg1', 0) < MAX_GODDESS_LEVEL then
+				current_lv = TryGetProp(cls, 'NumberArg1', 0)
+				is_goddess = true
+			end	
+		end
+	end
+
+	if is_goddess == true then
+		local gBox = GET_CHILD(tooltipframe, mainframename,'ui::CGroupBox')
+		gBox:RemoveChild('tooltip_refine');
+
+		local CSet = gBox:CreateControlSet('tooltip_refine', 'tooltip_refine', 0, yPos);
+		tolua.cast(CSet, "ui::CControlSet");
+		
+		local pr_gauge = GET_CHILD(CSet,'pr_gauge','ui::CGauge')
+		pr_gauge:SetPoint(TryGetProp(invitem, 'UPGRADE_GODDESS_TRY_COUNT', 0), GET_UPGRADE_GODDESS_MAX_COUNT(current_lv + 1));
+
+		local BOTTOM_MARGIN = tooltipframe:GetUserConfig("BOTTOM_MARGIN"); -- 맨 아랫쪽 여백
+		CSet:Resize(CSet:GetWidth(),CSet:GetHeight() + BOTTOM_MARGIN);
+		
+		gBox:Resize(gBox:GetWidth(),gBox:GetHeight() + CSet:GetHeight())	
+		return CSet:GetHeight() + CSet:GetY();
+	else
+		return yPos
+	end
 end
 
 -- 설명문 토글

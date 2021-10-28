@@ -250,7 +250,7 @@ return value" Num="15000" UseFunc="1"/>
                     <Num Num="100"/>
                     <Num Num="0"/>
                 </Scp>
-		<Scp Scp="SKL_BUFF_ABIL" Client="NO" UseSleep="NO"Time="0">
+		<Scp Scp="SKL_BUFF_ABIL" Client="NO" UseSleep="NO" Time="0">
                     <Str Str="Hackapell16"/>
                     <Str Str="HakkaPalle_Abil_Buff"/>
                     <Num Num="1"/>

@@ -132,6 +132,8 @@ function GET_MORE_EVENT_EXP(pc)
 	sumExp = sumExp + IsBuffAppliedEXP(pc, 'EVENT_2006_SALTY_ZONGZI'); -- 2006 짠쫑즈 --
 	sumExp = sumExp + IsBuffAppliedEXP(pc, 'Event_Kor_New_World_Buff'); -- 스팀 시즌 서버 혜택
 	sumExp = sumExp + IsBuffAppliedEXP(pc, 'EVENT_2008_OBON_FULLMOON_BUFF'); -- jpn 추석 이벤트 보름달 버프
+	sumExp = sumExp + IsBuffAppliedEXP(pc, 'ENTER_EVENT_2012_FRUIT_BUFF'); -- EP13 경험의 열매 이벤트 버프
+	sumExp = sumExp + IsBuffAppliedEXP(pc, 'EVENT_2012_EXP_BUFF'); -- EP13 이벤트 성장 지원 버프
 	sumExp = sumExp + IsBuffAppliedEXP(pc, 'event_RiceCake_Buff_1'); -- 가레떡 1단계 이벤트 버프
 	sumExp = sumExp + IsBuffAppliedEXP(pc, 'event_RiceCake_Buff_2'); -- 가레떡 2단계 이벤트 버프
 	sumExp = sumExp + IsBuffAppliedEXP(pc, 'event_RiceCake_Buff_3'); -- 가레떡 3단계 이벤트 버프
@@ -143,17 +145,27 @@ function GET_MORE_EVENT_EXP(pc)
 	if  TryGetProp(pc, 'Lv', 0) < PC_MAX_LEVEL then
 	    sumExp = sumExp + IsBuffAppliedEXP(pc, 'pet_sparrow_thanksgivng_buff'); --달맞이 참새 동행 버프--
 	end
+	
+	if  TryGetProp(pc, 'Lv', 0) < PC_MAX_LEVEL then
+	    sumExp = sumExp + IsBuffAppliedEXP(pc, 'pet_winter_rabbit_buff'); --하얀 눈 토끼 동행 버프--
+	end
 	return sumExp; 
 end
 
 function GET_MORE_ANCIENT_EXP(pc)
 	local sumExp = 0.0;
 	sumExp = sumExp + IsBuffAppliedEXP(pc, 'Ancient_boostToken');
+	sumExp = sumExp + IsBuffAppliedEXP(pc, 'Ancient_boostToken_150');
+	sumExp = sumExp + IsBuffAppliedEXP(pc, 'Ancient_boostToken_200');
 	
 	if IsBuffApplied(pc, "pet_sparrow_thanksgivng_buff") == "YES" then
 	    sumExp = sumExp + 1
 	end
-
+    
+    if IsBuffApplied(pc, "pet_winter_rabbit_buff") == "YES" then
+	    sumExp = sumExp + 1
+	end
+    
 	return sumExp;
 end
 

@@ -116,3 +116,5 @@ ClassID,Name,Type,Scp
 115,아발리스터 전직,치트리스트,"ui.Chat(""//run CHANGE_JOB Char3_20"")"
 116,크루세이더 전직,치트리스트,"ui.Chat(""//run CHANGE_JOB Char4_21"")"
 117,랑다 전직,치트리스트,"ui.Chat(""//run CHANGE_JOB Char5_15"")"
+118,아퀴버지어 전직,치트리스트,"ui.Chat(""//run CHANGE_JOB Char3_21"")"
+119,클로운 전직,치트리스트,"ui.Chat(""//run CHANGE_JOB Char5_16"")"

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ActionDesc>
+    <Sound frame="1.00" soundFile="m_bumegoblin_spear_kdown"/>
+    <Sound frame="2.00" soundFile="mon_voice13_hit2"/>
+    <Sound frame="6.00" soundFile="skl_eff_body_atk_16"/>
+</ActionDesc>

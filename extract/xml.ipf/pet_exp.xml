@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by imc (imc) -->
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by imc (imc) -->
 <PetXP>
 	<PetEXP>
 		<EXP Lv="1" TotalXP="2"/>
@@ -451,57 +451,57 @@
 		<EXP Lv="447" TotalXP="4939238107"/>
 		<EXP Lv="448" TotalXP="5013961031"/>
 		<EXP Lv="449" TotalXP="5090551521"/>
-		<EXP Lv="450" TotalXP="5124049216"/>
-		<EXP Lv="451" TotalXP="5159305449"/>
-		<EXP Lv="452" TotalXP="5196278442"/>
-		<EXP Lv="453" TotalXP="5235026538"/>
-		<EXP Lv="454" TotalXP="5275502913"/>
-		<EXP Lv="455" TotalXP="5317770047"/>
-		<EXP Lv="456" TotalXP="5361837663"/>
-		<EXP Lv="457" TotalXP="5407651979"/>
-		<EXP Lv="458" TotalXP="5455282374"/>
-		<EXP Lv="459" TotalXP="5504671551"/>
-		<EXP Lv="460" TotalXP="5555892928"/>
-		<EXP Lv="461" TotalXP="5608884024"/>
-		<EXP Lv="462" TotalXP="5663724063"/>
-		<EXP Lv="463" TotalXP="5720421620"/>
-		<EXP Lv="464" TotalXP="5778985896"/>
-		<EXP Lv="465" TotalXP="5839345916"/>
-		<EXP Lv="466" TotalXP="5901588774"/>
-		<EXP Lv="467" TotalXP="5965638191"/>
-		<EXP Lv="468" TotalXP="6031587311"/>
-		<EXP Lv="469" TotalXP="6099354511"/>
-		<EXP Lv="470" TotalXP="6169036769"/>
-		<EXP Lv="471" TotalXP="6240644110"/>
-		<EXP Lv="472" TotalXP="6314087951"/>
-		<EXP Lv="473" TotalXP="6389472170"/>
-		<EXP Lv="474" TotalXP="6466704389"/>
-		<EXP Lv="475" TotalXP="6545893990"/>
-		<EXP Lv="476" TotalXP="6626943110"/>
-		<EXP Lv="477" TotalXP="6709964830"/>
-		<EXP Lv="478" TotalXP="6794969312"/>
-		<EXP Lv="479" TotalXP="6881964813"/>
-		<EXP Lv="480" TotalXP="6922998774"/>
-		<EXP Lv="481" TotalXP="6965916115"/>
-		<EXP Lv="482" TotalXP="7010667704"/>
-		<EXP Lv="483" TotalXP="7057318309"/>
-		<EXP Lv="484" TotalXP="7105815205"/>
-		<EXP Lv="485" TotalXP="7156227237"/>
-		<EXP Lv="486" TotalXP="7208563605"/>
-		<EXP Lv="487" TotalXP="7262764744"/>
-		<EXP Lv="488" TotalXP="7318906339"/>
-		<EXP Lv="489" TotalXP="7376923622"/>
-		<EXP Lv="490" TotalXP="7436898125"/>
-		<EXP Lv="491" TotalXP="7498759835"/>
-		<EXP Lv="492" TotalXP="7562594222"/>
-		<EXP Lv="493" TotalXP="7628327316"/>
-		<EXP Lv="494" TotalXP="7696135398"/>
-		<EXP Lv="495" TotalXP="7765856007"/>
-		<EXP Lv="496" TotalXP="7837584596"/>
-		<EXP Lv="497" TotalXP="7911237233"/>
-		<EXP Lv="498" TotalXP="7986913186"/>
-		<EXP Lv="499" TotalXP="8064524686"/>
-		<EXP Lv="500" TotalXP="8144176466"/>
+		<EXP Lv="450" TotalXP="6253251919"/>
+		<EXP Lv="451" TotalXP="7801519479"/>
+		<EXP Lv="452" TotalXP="10662755495"/>
+		<EXP Lv="453" TotalXP="14035328680"/>
+		<EXP Lv="454" TotalXP="18049264303"/>
+		<EXP Lv="455" TotalXP="22888428350"/>
+		<EXP Lv="456" TotalXP="28811864551"/>
+		<EXP Lv="457" TotalXP="36183593740"/>
+		<EXP Lv="458" TotalXP="41376163881"/>
+		<EXP Lv="459" TotalXP="47929876476"/>
+		<EXP Lv="460" TotalXP="50000000000"/>
+		<EXP Lv="461" TotalXP="50000000000"/>
+		<EXP Lv="462" TotalXP="50000000000"/>
+		<EXP Lv="463" TotalXP="50000000000"/>
+		<EXP Lv="464" TotalXP="50000000000"/>
+		<EXP Lv="465" TotalXP="50000000000"/>
+		<EXP Lv="466" TotalXP="50000000000"/>
+		<EXP Lv="467" TotalXP="50000000000"/>
+		<EXP Lv="468" TotalXP="50000000000"/>
+		<EXP Lv="469" TotalXP="50000000000"/>
+		<EXP Lv="470" TotalXP="50000000000"/>
+		<EXP Lv="471" TotalXP="50000000000"/>
+		<EXP Lv="472" TotalXP="50000000000"/>
+		<EXP Lv="473" TotalXP="50000000000"/>
+		<EXP Lv="474" TotalXP="50000000000"/>
+		<EXP Lv="475" TotalXP="50000000000"/>
+		<EXP Lv="476" TotalXP="50000000000"/>
+		<EXP Lv="477" TotalXP="50000000000"/>
+		<EXP Lv="478" TotalXP="50000000000"/>
+		<EXP Lv="479" TotalXP="50000000000"/>
+		<EXP Lv="480" TotalXP="50000000000"/>
+		<EXP Lv="481" TotalXP="50000000000"/>
+		<EXP Lv="482" TotalXP="50000000000"/>
+		<EXP Lv="483" TotalXP="50000000000"/>
+		<EXP Lv="484" TotalXP="50000000000"/>
+		<EXP Lv="485" TotalXP="50000000000"/>
+		<EXP Lv="486" TotalXP="50000000000"/>
+		<EXP Lv="487" TotalXP="50000000000"/>
+		<EXP Lv="488" TotalXP="50000000000"/>
+		<EXP Lv="489" TotalXP="50000000000"/>
+		<EXP Lv="490" TotalXP="50000000000"/>
+		<EXP Lv="491" TotalXP="50000000000"/>
+		<EXP Lv="492" TotalXP="50000000000"/>
+		<EXP Lv="493" TotalXP="50000000000"/>
+		<EXP Lv="494" TotalXP="50000000000"/>
+		<EXP Lv="495" TotalXP="50000000000"/>
+		<EXP Lv="496" TotalXP="50000000000"/>
+		<EXP Lv="497" TotalXP="50000000000"/>
+		<EXP Lv="498" TotalXP="50000000000"/>
+		<EXP Lv="499" TotalXP="50000000000"/>
+		<EXP Lv="500" TotalXP="50000000000"/>
 	</PetEXP>
 	<FriendEXP>
 		<EXP Lv="1" TotalXP="60"/>
@@ -965,6 +965,16 @@
 		<EXP Lv="447" TotalXP="125212003722"/>
 		<EXP Lv="448" TotalXP="142216696538"/>
 		<EXP Lv="449" TotalXP="163678598372"/>
-		<EXP Lv="450" TotalXP="200000000000"/>
+		<EXP Lv="450" TotalXP="178664340542"/>
+		<EXP Lv="451" TotalXP="195037986974"/>
+		<EXP Lv="452" TotalXP="213255109901"/>
+		<EXP Lv="453" TotalXP="233922144674"/>
+		<EXP Lv="454" TotalXP="257846632898"/>
+		<EXP Lv="455" TotalXP="286105354370"/>
+		<EXP Lv="456" TotalXP="320131828346"/>
+		<EXP Lv="457" TotalXP="361835937401"/>
+		<EXP Lv="458" TotalXP="413761638809"/>
+		<EXP Lv="459" TotalXP="479298764756"/>
+		<EXP Lv="460" TotalXP="500000000000"/>
 	</AncientEXP>
 </PetXP>

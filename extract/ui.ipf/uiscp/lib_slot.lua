@@ -128,7 +128,7 @@ function SET_SLOT_INVITEM_NOT_COUNT(slot, invItem, cnt, font, hor, ver, stateX, 
 end
 
 function SET_SLOT_ITEM_INV(slot, itemCls)
-		local type = itemCls.ClassID;
+	local type = itemCls.ClassID;
 	local img = itemCls.Icon;
 	SET_SLOT_IMG(slot, img)
 	SET_ITEM_TOOLTIP_BY_TYPE(slot:GetIcon(), type);
@@ -145,7 +145,6 @@ function SET_SLOT_ITEM_INV(slot, itemCls)
 
 	slot:SetEventScript(ui.LBUTTONUP, 'SLOT_ITEMUSE_BY_TYPE');
 	slot:SetEventScriptArgNumber(ui.LBUTTONUP, itemCls.ClassID);
-
 end
 
 function SET_SLOT_ITEM_IMAGE(slot, invItem)

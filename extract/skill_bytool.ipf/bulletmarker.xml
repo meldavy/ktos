@@ -19,7 +19,23 @@
                     <Num FuncTxt="return obj.Level" Num="0" UseFunc="1"/>
                     <Num Num="0"/>
                     <Num Num="0"/>
-                    <Num FuncTxt="local buff = GetBuffByName(self, 'Overheating_Buff') local over = GetOver(buff) local value = math.floor(over/2) if over >= 40 then value = 30 end return value " Num="0" UseFunc="1"/>
+					<Num FuncTxt="local buff = GetBuffByName(self, 'Overheating_Buff')
+local over = GetOver(buff)
+local split = 2
+if GetExProp(self, 'ITEM_VIBORA_BULLETMARKER_LV4') > 0 then
+    split = 1
+end
+local value = math.floor(over/split)
+
+if over >= 40 then 
+  value = 30 
+end 
+
+if value >= 30 then 
+  value = 30 
+end 
+
+return value " Num="0" UseFunc="1"/>
                     <Num Num="100"/>
                     <Num Num="0"/>
                 </Scp>

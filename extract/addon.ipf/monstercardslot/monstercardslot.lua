@@ -2,6 +2,7 @@
 function MONSTERCARDSLOT_ON_INIT(addon, frame)
 	addon:RegisterMsg("DO_OPEN_MONSTERCARDSLOT_UI", "MONSTERCARDSLOT_FRAME_OPEN");
 	addon:RegisterMsg("MSG_PLAY_LEGENDCARD_OPEN_EFFECT", "PLAY_LEGENDCARD_OPEN_EFFECT");
+	addon:RegisterMsg("MSG_PLAY_GODDESSCARD_OPEN_EFFECT", "PLAY_GODDESSCARD_OPEN_EFFECT");
 
 	addon:RegisterMsg("CHANGE_RESOLUTION", "CARD_OPTION_OPEN");
 end
@@ -24,10 +25,15 @@ function MONSTERCARDSLOT_FRAME_OPEN()
 		local LEGlockGbox = GET_CHILD_RECURSIVELY(frame, "LEGslot_lock_box")
 		LEGlockGbox:ShowWindow(0)
 	end
+	local aObj = GetMyAccountObj()
+	if pcEtc["IS_LEGEND_CARD_OPEN"] == 1 and aObj["IS_GODDESS_CARD_OPEN"] == 1 then
+		ui.OpenFrame("goddesscardslot")
+	end
 end
 
 function MONSTERCARDSLOT_FRAME_CLOSE(frame)
-	
+	ui.CloseFrame('monstercardslot')
+	ui.CloseFrame('goddesscardslot')
 end
 
 -- 인벤토리의 카드 슬롯 생성 부분
@@ -445,6 +451,9 @@ end
 
 -- 카드 슬롯 정보창 열기
 function EQUIP_CARDSLOT_INFO_OPEN(slotIndex)
+	local other_frame = ui.GetFrame('equip_cardslot_info_goddess')
+	other_frame:ShowWindow(0)
+
 	local frame = ui.GetFrame('equip_cardslot_info');
 	
 	if frame:IsVisible() == 1 then
@@ -768,6 +777,8 @@ function _CARD_SLOT_REMOVE(slotIndex, cardGroupName)
 	
 	local cardFrame = ui.GetFrame('equip_cardslot_info');
 	cardFrame:ShowWindow(0);
+	local goddess_cardFrame = ui.GetFrame('equip_cardslot_info_goddess');
+	goddess_cardFrame:ShowWindow(0);
 
 	CARD_OPTION_CREATE(frame)
 end;

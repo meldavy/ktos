@@ -146,3 +146,5 @@ ClassID,DefNumValue,ClassName,Type,DefStrValue,ClientScp
 152,0,ShowGuildInColonyGuildBuff,Number,,
 153,0,ShowGuildInColonyEnemyBuff,Number,,
 155,1,ShowCoinGetGauge,Number,,UPDATE_SHOW_COIN_GET_GAUGE
+156,1,InvOption_Card_Goddess,Number,,
+157,1,ShowTutorialnote,Number,,UPDATE_SHOW_TUTORIALNOTE

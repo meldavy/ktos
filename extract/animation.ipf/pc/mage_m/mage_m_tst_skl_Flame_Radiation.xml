@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by IMCGames Co., Ltd (IMCGames Co., Ltd) -->
+<ActionDesc>
+	<BlendOn frame="0" R="0" G="0" B="0" A="50"/>
+	<BlendOn frame="8" R="180" G="150" B="120" A="100"/>
+	<BlendOn frame="9" R="150" G="130" B="100" A="100"/>
+	<BlendOn frame="10" R="130" G="120" B="80" A="100"/>
+	<BlendOn frame="11" R="100" G="80" B="50" A="100"/>
+	<BlendOn frame="12" R="70" G="55" B="30" A="100"/>
+	<BlendOn frame="13" R="40" G="30" B="10" A="100"/>
+	<BlendOff frame="14" R="0" G="0" B="0" A="0"/>
+	<Particle frame="7" attachNode="Dummy_emitter" particleName="E_wizard_CreepingDeath_fire" useAttach="false" hiddenObj="false" changeEffect="None" scale="3" pause="true" use2DEffect="false" soft2DValue="0" targetPos="false"/>
+	<Particle frame="1" attachNode="Dummy_emitter" particleName="F_wizard_BRIQUETTING_STEP1_fire" useAttach="false" hiddenObj="false" changeEffect="None" scale="3.5" pause="true" use2DEffect="false" soft2DValue="0" targetPos="false" sound="skl_eff_smite_cast"/>
+	<Particle frame="7.00" attachNode="Dummy_emitter" particleName="F_wizard_BRIQUETTING_STEP1_fire" useAttach="false" hiddenObj="false" changeEffect="None" scale="3" pause="true" use2DEffect="false" soft2DValue="0" targetPos="false" sound="skl_eff_smite_cast"/>
+	<Particle frame="1" attachNode="Dummy_emitter" particleName="F_spread_out031_fether_fire" useAttach="false" hiddenObj="false" changeEffect="None" scale="2" pause="true" use2DEffect="false" soft2DValue="0" targetPos="false" sound="skl_eff_smite_cast"/>
+	<Particle frame="0" attachNode="Dummy_R_HAND" particleName="F_fire044_5_yellow" useAttach="true" hiddenObj="false" changeEffect="None" scale="1.5" pause="true" use2DEffect="false" soft2DValue="0" targetPos="false" sound="skl_eff_smite_cast"/>
+	<Particle frame="1" attachNode="Dummy_R_HAND" particleName="F_burstup048_fire_3" useAttach="false" hiddenObj="false" changeEffect="None" scale="1" pause="true" use2DEffect="false" soft2DValue="0" targetPos="false" sound="skl_eff_smite_cast"/>
+	<Particle frame="6" attachNode="Bip01" particleName="F_ground194_fire1" useAttach="false" hiddenObj="false" changeEffect="None" scale="2" pause="true" use2DEffect="false" soft2DValue="0" targetPos="false" sound="skl_eff_smite_cast"/>
+</ActionDesc>

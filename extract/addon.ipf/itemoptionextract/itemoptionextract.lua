@@ -385,13 +385,12 @@ function ITEM_OPTIONEXTRACT_REG_TARGETITEM(frame, itemID)
 	material_questionmark : ShowWindow(0)
 	if item ~= nil then
 		local materialCls = GetClass("Item", GET_OPTION_EXTRACT_MATERIAL_NAME());
-		if i <= materialItemSlot and materialCls ~= 'None' then
+		if i <= materialItemSlot and materialCls ~= 'None' and 0 < materialItemCount then
 			materialClsCtrl : ShowWindow(1)
 			itemIcon = materialCls.Icon;
 			materialItemName = materialCls.Name;
 			local itemCount = GetInvItemCount(pc, materialCls.ClassName)
 			local invMaterial = session.GetInvItemByName(materialCls.ClassName)
-
 			local type = item.ClassID;
 				
 			if itemCount < materialItemCount then
@@ -499,6 +498,61 @@ function ITEM_OPTIONEXTRACT_KIT_REG_TARGETITEM(frame, itemID)
 		ui.SysMsg(ClMsg("IsNotOptionExtractKit"));
 		return
 	end
+
+	local slot = GET_CHILD_RECURSIVELY(frame, "slot");
+	local targetItem = GET_SLOT_ITEM(slot);
+	if targetItem == nil then
+		return;
+	end
+	local targetItemObj = GetIES(targetItem:GetObject());
+	
+	--------------------- TUTORIALNOTE ---------------------
+	if IS_ENABLE_TUTORIAL_TARGET_ITEM(targetItemObj) == true and IS_ENABLE_TUTORIAL_KIT_ITEM(item) == false then
+		ui.SysMsg(ClMsg("IsNotOptionExtractKit_Tutorial1"));
+        return;
+	end
+
+	if IS_ENABLE_TUTORIAL_TARGET_ITEM(targetItemObj) == false and IS_ENABLE_TUTORIAL_KIT_ITEM(item) == true then
+		ui.SysMsg(ClMsg("IsNotOptionExtractKit_Tutorial2"));
+		return;
+	end
+
+	if IS_ENABLE_TUTORIAL_TARGET_ITEM(targetItemObj) == true and IS_ENABLE_TUTORIAL_KIT_ITEM(item) == true then
+		local aObj = GetMyPCObject();
+		local prop = TryGetProp(aObj, "TUTO_MISSON_CHECK34", 0);
+		if prop == 300 then
+			return;
+		end
+
+        local sObj = session.GetSessionObjectByName("ssn_klapeda");
+		if sObj == nil then
+			return;
+		end
+		sObj = GetIES(sObj:GetIESObject());
+		
+		local curType = GET_TUTORIALNOTE_MISSION_ICOR_TARGET_ITEM_TYPE(sObj);
+		if curType == nil then 
+			return;
+		end
+		
+		local itemType = TryGetProp(targetItemObj, "ClassType", "None");
+		if curType ~= itemType then
+			ui.SysMsg(ClMsg(curType)..""..ClMsg("IsNotOptionExtractKit_Tutorial3"));
+			return;
+		end
+
+		if curType ~= "Pants" and item.ClassName == "Tuto_Extract_kit_Gold_Team" then			
+			ui.SysMsg(ClMsg("IsNotOptionExtractKit_Tutorial4"));
+			return;
+		end
+		
+		local sProp = TryGetProp(sObj, "TUTO_ICOR_MISSION_CHECK", 0);
+		if sProp == 3 and curType == "Pants" and item.ClassName ~= "Tuto_Extract_kit_Gold_Team" then
+			ui.SysMsg(ClMsg("IsNotOptionExtractKit_Tutorial5"));
+			return;
+		end
+	end
+	--------------------- TUTORIALNOTE ---------------------
 
 	if IS_100PERCENT_SUCCESS_EXTRACT_ICOR_ITEM(item) == true then		
 		local slot = GET_CHILD_RECURSIVELY(frame, "slot");

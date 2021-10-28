@@ -22,8 +22,7 @@
 		<tabitem name="Itembox3" parent="GameAndUIModeTab" caption="{@st66b}{s18}PVP{/}" width="180" layout_gravity="left top"/>
 		<groupbox name="gameBox" rect="0 0 560 700" parent="bg2" margin="20 380 0 0" layout_gravity="left top" scrollbar="false" draw="false"/>
 		<groupbox name="uiModeBox" rect="0 0 260 280" parent="bg2" margin="300 90 0 0" layout_gravity="left top" scrollbar="false" draw="false"/>
-		<groupbox name="gamePVPSetting" rect="0 0 560 730" parent="bg2" margin="40 90 0 0" layout_gravity="left top" scrollbar="false" draw="false"/>
-		
+		<groupbox name="gamePVPSetting" rect="0 0 560 730" parent="bg2" margin="20 90 0 0" layout_gravity="left top" scrollbar="false" draw="false"/>
 		<!--Game left -->
 		<labelline name="boardLineGameBox" rect="0 0 620 8" parent="gameBox" margin="-10 0 0 0" layout_gravity="left top" visible="true"/>
 		<richtext name="gamebod_title" rect="0 0 250 24" parent="gameBox" margin="10 20 0 0" layout_gravity="left top" format="{@st43}게임{/}"/>
@@ -43,7 +42,6 @@
 		<checkbox name="ShowCurrentGetExp" rect="0 0 250 30" parent="gameBox" margin="20 420 0 0" layout_gravity="left top" ConfigName="ShowCurrentGetExp" caption="{@st66b}획득한 경험치 보기{/}" clicksound="button_click_big" oversound="button_over" resizebytext="false" omitbywidth="true" ellipsistexttooltip="true"/>
 		<checkbox name="ShowSummonedMonName" rect="0 0 250 30" parent="gameBox" margin="20 450 0 0" layout_gravity="left top" ConfigName="ShowSummonedMonName" LBtnUpScp="ON_MONB_TARGET_UPDATE" caption="{@st66b}파티원 소환물 체력 보기{/}" clicksound="button_click_big" oversound="button_over" resizebytext="false" omitbywidth="true" ellipsistexttooltip="true"/>
 		<checkbox name="ShowEquipItemComparison" rect="0 0 250 30" parent="gameBox" margin="20 480 0 0" layout_gravity="left top" ConfigName="ShowEquipItemComparison" caption="{@st66b}장비 비교하기{/}" clicksound="button_click_big" oversound="button_over" resizebytext="false" omitbywidth="true" ellipsistexttooltip="true"/>
-		
 		<!--Game right -->
 		<richtext name="questinfosetTransparency_text" rect="0 0 250 24" parent="gameBox" margin="280 60 0 0" layout_gravity="left top" format="{@st66b}지령창 배경 투명도 (%s){/}" param1="opValue" resizebytext="false" omitbywidth="true" ellipsistexttooltip="true"/>
 		<slidebar name="questinfosetTransparency" rect="0 0 200 20" parent="gameBox" margin="280 80 0 0" layout_gravity="left top" SlideScp="CONFIG_QUESTINFOSET_TRANSPARENCY" clicksound="button_click_big_2" maxlevel="255" minlevel="0" oversound="button_over" skin="slidebar"/>
@@ -53,7 +51,7 @@
 		<richtext name="coolDownDecimalPointSec_text" rect="0 0 250 24" parent="gameBox" margin="280 210 0 0" layout_gravity="left top" format="{@st66b}재사용 대기시간 소수점 (%s){/}" param1="opValue" resizebytext="false" omitbywidth="true" ellipsistexttooltip="true"/>
 		<slidebar name="coolDownDecimalPointSec" rect="0 0 200 20" parent="gameBox" margin="280 230 0 0" layout_gravity="left top" SlideScp="CONFIG_COOLDOWN_DECIMAL_POINT_SEC" clicksound="button_click_big_2" maxlevel="10" minlevel="0" oversound="button_over" skin="slidebar"/>
 		<checkbox name="ShowCoinGetGauge" rect="0 0 250 30" parent="gameBox" margin="280 260 0 0" layout_gravity="left top" ConfigName="ShowCoinGetGauge" caption="{@st66b}용병단 증표 주간 획득량 표시{/}" clicksound="button_click_big" oversound="button_over" resizebytext="false" omitbywidth="true" ellipsistexttooltip="true"/>
-		
+		<checkbox name="ShowTutorialnote" rect="0 0 250 30" parent="gameBox" margin="280 290 0 0" layout_gravity="left top" ConfigName="ShowTutorialnote" caption="{@st66b}튜토리얼 UI 보기{/}" clicksound="button_click_big" oversound="button_over" resizebytext="false" omitbywidth="true" ellipsistexttooltip="true"/>
 		<!--UI Mode-->
 		<richtext name="uimode_title" rect="0 0 250 24" parent="uiModeBox" margin="10 10 0 0" layout_gravity="left top" format="{@st43}조작{/}"/>
 		<radiobutton name="controltype_0" parent="uiModeBox" rect="0 0 200 24" margin="20 50 0 0" layout_gravity="left top" ConfigName="ControlMode" LBtnDownScp="APPLY_CONTROLMODE" caption="{@st66b}자동{/}" clicksound="button_click_big" group="controlType" oversound="button_over" resizebytext="false" omitbywidth="true" ellipsistexttooltip="true"/>
@@ -87,7 +85,7 @@
 		<checkbox name="chkShowGuildInColonyGuildBuff" rect="0 0 350 30" parent="gamePVPSetting" margin="20 550 0 0" layout_gravity="left top" ConfigName="ShowGuildInColonyGuildBuff" LBtnUpScp="SHOW_COLONY_GUILD_BUFF" caption="{@st66b}길드원 캐릭터 보기{/}" clicksound="button_click_big" oversound="button_over" resizebytext="false" omitbywidth="true" ellipsistexttooltip="true"/>
 		<checkbox name="chkShowGuildInColonyEnemyBuff" rect="0 0 350 30" parent="gamePVPSetting" margin="20 580 0 0" layout_gravity="left top" ConfigName="ShowGuildInColonyEnemyBuff" LBtnUpScp="SHOW_COLONY_ENEMY_BUFF" caption="{@st66b}적대 캐릭터 보기{/}" clicksound="button_click_big" oversound="button_over" resizebytext="false" omitbywidth="true" ellipsistexttooltip="true"/>
 		<!-- Display -->
-		<groupbox name="displayBox" parent="bg2" rect="0 0 560 160" margin="10 90 0 0" layout_gravity="center top" scrollbar="false" draw="false"/>
+		<groupbox name="displayBox" parent="bg2" rect="0 0 560 160" margin="0 90 0 0" layout_gravity="center top" scrollbar="false" draw="false"/>
 		<richtext name="screen_title" rect="0 0 250 24" parent="displayBox" margin="10 10 0 0" layout_gravity="left top" format="{@st43}화면{/}"/>
 		<radiobutton name="scrtype_1" parent="displayBox" rect="0 0 200 24" margin="20 50 0 0" layout_gravity="left top" LBtnDownScp="APPLY_SCREEN" caption="{@st66b}전체 화면{/}" clicksound="button_click_big" group="screenType" oversound="button_over"/>
 		<radiobutton name="scrtype_2" parent="displayBox" rect="0 0 200 24" margin="20 80 0 0" layout_gravity="left top" LBtnDownScp="APPLY_SCREEN" caption="{@st66b}창모드{/}" clicksound="button_click_big" group="screenType" oversound="button_over"/>
@@ -95,7 +93,7 @@
 		<radiobutton name="vsync_1" parent="displayBox" rect="0 0 300 24" margin="300 50 0 0" layout_gravity="left top" LBtnDownScp="ENABEL_VSYNC" caption="{@st66b}수직 동기화 켜기{/}" clicksound="button_click_big" group="syncType" oversound="button_over"/>
 		<radiobutton name="vsync_0" parent="displayBox" rect="0 0 300 24" margin="300 80 0 0" layout_gravity="left top" LBtnDownScp="ENABEL_VSYNC" caption="{@st66b}수직 동기화 끄기{/}" clicksound="button_click_big" group="syncType" oversound="button_over"/>
 		<!-- Sound & Performance -->
-		<groupbox name="soundPerfBox" rect="0 0 560 280" parent="bg2" margin="10 250 0 0" layout_gravity="center top" scrollbar="false" draw="false"/>
+		<groupbox name="soundPerfBox" rect="0 0 560 280" parent="bg2" margin="0 250 0 0" layout_gravity="center top" scrollbar="false" draw="false"/>
 		<groupbox name="soundBox" rect="0 0 280 280" parent="bg2" margin="20 90 0 0" layout_gravity="left top" scrollbar="false" draw="false"/>
 		<labelline name="boardLineSoundPerf" rect="0 0 550 8" parent="soundPerfBox" margin="-15 0 0 0" layout_gravity="left top" visible="true"/>
 		<richtext name="sound_title" rect="0 0 250 24" parent="soundBox" margin="10 10 0 0" layout_gravity="left top" format="{@st43}사운드{/}"/>
@@ -118,7 +116,7 @@
 		<!-- Graphic -->
 		<richtext name="performance_limit_text" rect="0 0 250 24" parent="perfBox" margin="300 100 0 0" layout_gravity="left top" format="{@st66b}최대 프레임 제한(%s){/}" param1="opValue" resizebytext="false" omitbywidth="true" ellipsistexttooltip="true"/>
 		<slidebar name="performance_limit_slide" rect="0 0 200 20" parent="perfBox" margin="300 120 0 0" layout_gravity="left top" SlideScp="SET_PERFORMANCE_LIMIT" clicksound="button_click_big_2" maxlevel="500" minlevel="60" oversound="button_over" skin="slidebar"/>
-		<groupbox name="graphicBox" rect="0 0 560 450" parent="bg2" margin="10 440 0 0" layout_gravity="center top" scrollbar="false" draw="false"/>
+		<groupbox name="graphicBox" rect="0 0 560 450" parent="bg2" margin="0 440 0 0" layout_gravity="center top" scrollbar="false" draw="false"/>
 		<labelline name="boardLineGraphic" rect="0 0 550 8" parent="graphicBox" margin="-15 0 0 0" layout_gravity="left top" visible="true"/>
 		<richtext name="graphic_txt" rect="0 0 250 24" parent="graphicBox" margin="10 20 0 0" layout_gravity="left top" format="{@st43}그래픽 설정{/}"/>
 		<checkbox name="check_Bloom" rect="0 0 250 30" parent="graphicBox" margin="20 70 0 0" layout_gravity="left top" ConfigName="EnableBloom" LBtnUpScp="ENABLE_BLOOM" caption="{@st66b}블룸 적용{/}" clicksound="button_click_big" oversound="button_over" resizebytext="false" omitbywidth="true" ellipsistexttooltip="true"/>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="EUC-KR"?>
+<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by IMCGames Co., Ltd (IMCGames Co., Ltd) -->
+<ActionDesc>
+    <BlendOn frame="0" R="0" G="0" B="0" A="50"/>
+    <Shockwave frame="0" type="2" intensity="1" frequency="60" duration="3" range="1000"/>
+    <Particle frame="0" attachNode="Bip01 Pelvis" particleName="F_ground194_fire" useAttach="true" hiddenObj="false" changeEffect="None" scale="3" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Particle frame="0" attachNode="Bip01 Pelvis" particleName="F_doll_gabia_std_fire" useAttach="true" hiddenObj="false" changeEffect="None" scale="4" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Particle frame="0" attachNode="Bip01 Pelvis" particleName="F_spread_in033_dark" useAttach="false" hiddenObj="false" changeEffect="None" scale="15" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Particle frame="0" attachNode="Bip01 Pelvis" particleName="F_spread_in039_leaf" useAttach="false" hiddenObj="false" changeEffect="None" scale="4" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Particle frame="0" attachNode="Dummy_emitter" particleName="F_spread_in027_orange_dark" useAttach="false" hiddenObj="false" changeEffect="None" scale="1" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Particle frame="0" attachNode="Dummy_emitter" particleName="None" useAttach="false" hiddenObj="false" changeEffect="None" scale="1" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Particle frame="0" attachNode="Dummy_emitter" particleName="None" useAttach="false" hiddenObj="false" changeEffect="None" scale="1" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Particle frame="0" attachNode="Dummy_emitter" particleName="None" useAttach="false" hiddenObj="false" changeEffect="None" scale="1" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Sound frame="0.46" soundFile="skl_eff_debuff_4"/>
+    <Sound frame="0.46" soundFile="skl_eff_aukuras_fire"/>
+    <Sound frame="2.29" soundFile="skl_eff_ground_firepillar"/>
+    <Sound frame="2.29" soundFile="skl_eff_spread_1"/>
+    <Sound frame="5.03" soundFile="skl_eff_firefox_dead"/>
+    <Sound frame="6.87" soundFile="skl_eff_dark"/>
+    <Particle frame="15" attachNode="Bip01 Pelvis" particleName="F_ground194_fire" useAttach="true" hiddenObj="false" changeEffect="None" scale="3" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Particle frame="15" attachNode="Bip01 Pelvis" particleName="F_doll_gabia_std_fire" useAttach="true" hiddenObj="false" changeEffect="None" scale="4" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Sound frame="16.94" soundFile="skl_eff_dark"/>
+    <Sound frame="22.43" soundFile="skl_eff_firefox_dead"/>
+    <BlendOn frame="25" R="180" G="150" B="100" A="100"/>
+    <BlendOn frame="26" R="0" G="0" B="0" A="50"/>
+    <Sound frame="30.00" soundFile="skl_eff_dark"/>
+    <Particle frame="30" attachNode="Bip01 Pelvis" particleName="F_ground194_fire" useAttach="true" hiddenObj="false" changeEffect="None" scale="3" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Particle frame="30" attachNode="Bip01 Pelvis" particleName="F_doll_gabia_std_fire" useAttach="true" hiddenObj="false" changeEffect="None" scale="4" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Particle frame="35" attachNode="Bip01 Pelvis" particleName="F_spread_in030_fire2" useAttach="false" hiddenObj="false" changeEffect="None" scale="0.8" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Sound frame="37.07" soundFile="mon_voice5_l_9"/>
+    <BlendOn frame="40" R="150" G="120" B="65" A="100"/>
+    <Particle frame="40" attachNode="Dummy_emitter" particleName="F_spread_in027_orange_dark" useAttach="false" hiddenObj="false" changeEffect="None" scale="1.5" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <BlendOn frame="41" R="0" G="0" B="0" A="50"/>
+    <BlendOn frame="45" R="150" G="120" B="65" A="100"/>
+    <Particle frame="45" attachNode="Bip01 Pelvis" particleName="F_ground194_fire" useAttach="true" hiddenObj="false" changeEffect="None" scale="3" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Particle frame="45" attachNode="Bip01 Pelvis" particleName="F_doll_gabia_std_fire" useAttach="true" hiddenObj="false" changeEffect="None" scale="4" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <BlendOn frame="46" R="0" G="0" B="0" A="50"/>
+    <BlendOn frame="50" R="150" G="120" B="65" A="100"/>
+    <Particle frame="50" attachNode="Bip01 Pelvis" particleName="F_spread_in030_fire2" useAttach="false" hiddenObj="false" changeEffect="None" scale="1" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <BlendOn frame="51" R="0" G="0" B="0" A="50"/>
+    <Sound frame="51.72" soundFile="skl_eff_firepillar_loop_2"/>
+    <BlendOn frame="55" R="150" G="120" B="65" A="100"/>
+    <BlendOn frame="56" R="0" G="0" B="0" A="50"/>
+    <BlendOn frame="60" R="150" G="120" B="65" A="100"/>
+    <Particle frame="60" attachNode="Bip01 Pelvis" particleName="F_ground194_fire" useAttach="true" hiddenObj="false" changeEffect="None" scale="3" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Particle frame="60" attachNode="Bip01 Pelvis" particleName="F_doll_gabia_std_fire" useAttach="true" hiddenObj="false" changeEffect="None" scale="4" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <BlendOn frame="61" R="0" G="0" B="0" A="50"/>
+    <Particle frame="65" attachNode="Bip01 Pelvis" particleName="F_spread_in030_fire2" useAttach="false" hiddenObj="false" changeEffect="None" scale="1" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Particle frame="68" attachNode="Bip01 Pelvis" particleName="F_warrior_berserk_shot_light2" useAttach="false" hiddenObj="false" changeEffect="None" scale="3" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Sound frame="68.00" soundFile="skl_eff_daosh21_spread"/>
+    <BlendOn frame="70" R="50" G="30" B="10" A="100"/>
+    <Particle frame="70" attachNode="Dummy_effect_skl4" particleName="F_smoke182_spread_out_dark" useAttach="false" hiddenObj="false" changeEffect="None" scale="2.5" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <BlendOn frame="72" R="80" G="60" B="30" A="100"/>
+    <Particle frame="72" attachNode="Bip01 Pelvis" particleName="F_warrior_berserk_shot_light2" useAttach="false" hiddenObj="false" changeEffect="None" scale="4.5" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <BlendOn frame="73" R="100" G="80" B="50" A="100"/>
+    <BlendOn frame="74" R="120" G="100" B="65" A="100"/>
+    <Sound frame="75.00" soundFile="skl_eff_oobe_shot_explosion_far"/>
+    <BlendOn frame="76" R="135" G="120" B="75" A="100"/>
+    <Sound frame="77.35" soundFile="skl_eff_stone_born_l_1_far"/>
+    <BlendOn frame="78" R="150" G="120" B="65" A="100"/>
+    <BlendOn frame="80" R="210" G="180" B="120" A="100"/>
+    <Shockwave frame="80" type="2" intensity="10" frequency="50" duration="1" range="1000"/>
+    <Particle frame="80" attachNode="Dummy_effect_skl4" particleName="F_spread_out026_leaf_fire_dragoonhelmet" useAttach="false" hiddenObj="false" changeEffect="None" scale="3" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Particle frame="80" attachNode="Dummy_effect_skl4" particleName="F_spread_out028_dark_fire" useAttach="false" hiddenObj="false" changeEffect="None" scale="2.1" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Particle frame="80" attachNode="Dummy_effect_skl4" particleName="F_spread_out045" useAttach="false" hiddenObj="false" changeEffect="None" scale="3" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <BlendOn frame="81" R="150" G="120" B="65" A="100"/>
+    <BlendOff frame="86" R="0" G="0" B="0" A="0"/>
+</ActionDesc>

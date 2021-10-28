@@ -106,6 +106,8 @@ function CHECK_INVENTORY_OPTION_CARD(itemCls)
 		optionConfig = config.GetXMLConfig("InvOption_Card_Legend")
 	elseif cardGroup == "Card_CardAddExp" then
 		optionConfig = config.GetXMLConfig("InvOption_Card_Etc")
+	elseif cardGroup == "Card_CardGoddess" then
+		optionConfig = config.GetXMLConfig("InvOption_Card_Goddess")
 	end
 
 	return optionConfig
@@ -438,6 +440,7 @@ function INVENTORY_CLOSE()
 	ui.CloseFrame("inventory");
 	ui.CloseFrame("inventoryoption")
 	ui.CloseFrame("accountprop_inventory")
+	ui.CloseFrame("item_equip_helper")
 end
 
 function INVENTORY_FRONT_IMAGE_CLEAR(frame)
@@ -1618,20 +1621,25 @@ function CHECK_INV_LBTN(frame, object, argStr, argNum)
 	end
 
 	if targetItem == 1 then
-		local luminItemIndex = item.GetTargetItem();
+        local useItemIndex = item.GetTargetItem();
+        local useItem = session.GetInvItem(useItemIndex);
 
-		local luminItem = session.GetInvItem(luminItemIndex);
-		if luminItem ~= nil then
-			local itemobj = GetIES(luminItem:GetObject());
-			
-			if itemobj.GroupName == 'Gem' then
-				if itemobj.Usable == 'ITEMTARGET' then
-					local fromItem = session.GetInvItem(argNum);
-					SCR_GEM_ITEM_SELECT(argNum, luminItem, 'inventory');
-					return;
-				end
-			end
-		end
+        if useItem ~= nil then
+            local useItemObj = GetIES(useItem:GetObject());
+            local useItemGroup = useItemObj.GroupName
+            local useItemUseType = useItemObj.Usable
+
+            -- EVENT_2011_5TH
+            if IS_TRANSCEND_SCROLL_ITEM_EVENT_2011_5TH(useItemObj) == 1 then
+                SCR_EVENT_2011_5TH_SCROLL_SELECT(argNum, useItemIndex, 'inventory');
+                return;
+            end
+
+	        if useItemGroup == 'Gem' and useItemUseType == 'ITEMTARGET' then
+                SCR_GEM_ITEM_SELECT(argNum, useItem, 'inventory');
+                return;
+            end
+        end
 	end
 
 	local warpFrame = ui.GetFrame('cardbattle');
@@ -1861,7 +1869,12 @@ function INVENTORY_RBDC_ITEMUSE(frame, object, argStr, argNum)
     -- warp
 	if TRY_TO_USE_WARP_ITEM(invitem, itemobj) == 1 then
 		return;
-	end
+    end
+    
+    -- EVENT_2011_5TH
+    if USE_ITEMTARGET_ICON_EVENT_2011_5TH_SCROLL(itemobj, argNum) == 1 then
+        return;
+    end
 
     -- equip
 	local equip = IS_EQUIP(itemobj);
@@ -1876,7 +1889,7 @@ function INVENTORY_RBDC_ITEMUSE(frame, object, argStr, argNum)
 	else -- non-equip item use        
 		if true == RUN_CLIENT_SCP(invitem) then        
             return;
-		end
+        end
 		local groupName = itemobj.GroupName;
 		local itemType = itemobj.ItemType;
 		if itemType == 'Consume' or itemType == 'Quest' or itemType == 'Cube' or groupName == 'ExpOrb' or groupName == 'SubExpOrb' then
@@ -1903,65 +1916,65 @@ function INVENTORY_RBDC_ITEMUSE(frame, object, argStr, argNum)
 			end
 		end
 	end
-
+	
     -- card equip
 	-- 오른쪽 클릭으로 몬스터 카드를 인벤토리의 카드 장착 슬롯에 장착하게 함.
 	local moncardFrame = ui.GetFrame("monstercardslot");
+	local goddesscardFrame = ui.GetFrame("goddesscardslot");
 	local legendcardupgradeFrame = ui.GetFrame("legendcardupgrade")
 
-	if moncardFrame == nil or legendcardupgradeFrame == nil then
+	if (moncardFrame == nil and goddesscardFrame == nil) or legendcardupgradeFrame == nil then
 		return
 	end
-
-	if moncardFrame:IsVisible() == 1 and itemobj.GroupName == "Card" then
+	if itemobj.GroupName == "Card" and (goddesscardFrame:IsVisible() == 1 or moncardFrame:IsVisible() == 1) then
 		imcSound.PlaySoundEvent("icon_get_down");
 		local groupNameStr = itemobj.CardGroupName
 		if groupNameStr == "REINFORCE_CARD" then
 			ui.SysMsg(ClMsg("LegendReinforceCard_Not_Equip"));
 			return
 		end
+		if goddesscardFrame:IsVisible() == 1 and groupNameStr=="GODDESS" then
+			local goddesscardSlot = GET_CHILD_RECURSIVELY(goddesscardFrame,'cardSlot');
+			GODDESSCARD_SLOT_EQUIP(goddesscardSlot, invitem, groupNameStr)
+		elseif moncardFrame:IsVisible() == 1 then
+			local moncardGbox = GET_CHILD_RECURSIVELY(moncardFrame, groupNameStr .. 'cardGbox');
+			local card_slotset = GET_CHILD_RECURSIVELY(moncardGbox, groupNameStr .. "card_slotset");
+			if card_slotset ~= nil then
+				local slotIndex = 0;
+				if groupNameStr == 'ATK' then
+					slotIndex = 0
+				elseif groupNameStr == 'DEF' then
+					slotIndex = 3
+				elseif groupNameStr == 'UTIL' then
+					slotIndex = 6
+				elseif groupNameStr == 'STAT' then
+					slotIndex = 9
+				elseif groupNameStr == 'LEG' then
+					slotIndex = 12
+				end
 
-		local moncardGbox = GET_CHILD_RECURSIVELY(moncardFrame, groupNameStr .. 'cardGbox');
-		if itemobj.GroupName ~= "Card" then	
-			return;
-		end;
-		
-		local card_slotset = GET_CHILD_RECURSIVELY(moncardGbox, groupNameStr .. "card_slotset");
-		if card_slotset ~= nil then
-			local slotIndex = 0;
-			if groupNameStr == 'ATK' then
-				slotIndex = 0
-			elseif groupNameStr == 'DEF' then
-				slotIndex = 3
-			elseif groupNameStr == 'UTIL' then
-				slotIndex = 6
-			elseif groupNameStr == 'STAT' then
-				slotIndex = 9
-			elseif groupNameStr == 'LEG' then
-				slotIndex = 12
-			end
-
-			for i = 0, 2 do		
-				local slot = card_slotset:GetSlotByIndex(i);
-				if slot == nil then
-					if groupNameStr == 'LEG' then
-						ui.SysMsg(ClMsg("LegendCard_Only_One"));
-					end
-					return;
-				end	
-				local icon = slot:GetIcon();		
-				if icon == nil then		
-					CARD_SLOT_EQUIP(slot, invitem, groupNameStr);
-					return;
-				end;				
+				for i = 0, 2 do		
+					local slot = card_slotset:GetSlotByIndex(i);
+					if slot == nil then
+						if groupNameStr == 'LEG' then
+							ui.SysMsg(ClMsg("LegendCard_Only_One"));
+						end
+						return;
+					end	
+					local icon = slot:GetIcon();		
+					if icon == nil then		
+						CARD_SLOT_EQUIP(slot, invitem, groupNameStr);
+						return;
+					end;				
+				end;
+				
+				ui.SysMsg(ClMsg("CantEquipMonsterCard"));
 			end;
-			
-			ui.SysMsg(ClMsg("CantEquipMonsterCard"));
-		end;
+		end
 	elseif legendcardupgradeFrame : IsVisible() == 1 and (itemobj.GroupName == "Card" or itemobj.ItemType == 'Etc') then
 		imcSound.PlaySoundEvent("icon_get_down");
 		-- 4를 sharedconst 값으로 빼야함 . 최대 재료 카드 개수
-		if itemobj.CardGroupName ~= nil and itemobj.CardGroupName == 'LEG' then
+		if LEGENDCARD_REINFORCE_GET_MAIN_CARD_NAMESPACE(itemobj) ~= nil then
 			local slot = GET_CHILD_RECURSIVELY(legendcardupgradeFrame, "LEGcard_slot")
 			local icon = slot:GetIcon()
 			if icon == nil then
@@ -2019,6 +2032,10 @@ function INVENTORY_RBDC_ITEMUSE(frame, object, argStr, argNum)
 					
 				if cardLv == legendCardLv and legendCardObj.CardGroupName ~= nil and legendCardObj.CardGroupName == 'LEG' then
 					local needReinforceItem = TryGetProp(cls, 'NeedReinforceItem')
+					if TryGetProp(cls, 'NeedItem_Script') ~= 'None' and TryGetProp(cls, 'NeedItem_Script') ~= nil then
+						local scp = _G[TryGetProp(cls, 'NeedItem_Script')]
+						needReinforceItem = scp(cls,legendCardObj)
+					end
 					local needReinforceItemCount = TryGetProp(cls, 'NeedReinforceItemCount')
 					local needItemSlot = GET_CHILD_RECURSIVELY(legendcardupgradeFrame, "materialItem_slot")
 					local needItemCls = GetClass("Item", needReinforceItem)
@@ -4135,12 +4152,13 @@ end
 function SCR_CHECK_SWAPABLE_C()
 	if session.world.IsIntegrateIndunServer() == true then
 		local mGameName = session.mgame.GetCurrentMGameName()
-		if mGameName ~= nil and (mGameName == 'LEGEND_RAID_MORINGPONIA_EASY' or mGameName == 'LEGEND_RAID_GLACIER_EASY') then
-			return false
+		if mGameName ~= nil then
+			if mGameName == 'LEGEND_RAID_MORINGPONIA_EASY' or mGameName == 'LEGEND_RAID_GLACIER_EASY' or mGameName == "CHALLENGE_AUTO_1" or mGameName == "CHALLENGE_AUTO_2" or mGameName == "CHALLENGE_AUTO_3" or mGameName == "CHALLENGE_DIVISION_AUTO" then
+			return false;
+			end
 		end
 	end
-
-	return true
+	return true;
 end
 
 function INVENTORY_RBTN_LEGENDPREFIX(invItem)
@@ -4445,6 +4463,27 @@ function BEFORE_APPLIED_YESSCP_OPEN_BASIC_MSG(invItem)
 	return;
 end
 
+function BEFORE_APPLIED_YESSCP_OPEN_LVCARD(invItem)
+	if invItem == nil then
+		return;
+	end
+	
+	local invFrame = ui.GetFrame("inventory");	
+	local itemobj = GetIES(invItem:GetObject());
+	if itemobj == nil then
+		return;
+	end
+	invFrame:SetUserValue("REQ_USE_ITEM_GUID", invItem:GetIESID());
+	
+	local lv = TryGetProp(itemobj , 'NumberArg1')
+	if lv ~= 0 then
+    	local textmsg = string.format("[ %s ]{nl}%s", itemobj.Name, ScpArgMsg("EXPCARD_JUMPING_SET_LV_MSG", "LEVEL", lv));
+    	ui.MsgBox_NonNested(textmsg, itemobj.Name, 'REQUEST_SUMMON_BOSS_TX', "None");
+    end
+	return;
+end
+
+
 function REQUEST_USE_ITEM_TX()
 	local invFrame = ui.GetFrame("inventory");
 	local itemGuid = invFrame:GetUserValue("REQ_USE_ITEM_GUID");
@@ -4646,4 +4685,47 @@ function RUN_CLIENT_USE_MULTIPLE_XPCARD(count)
     session.AddItemID(multiple_xpCard_item_id, count)    
 	local resultlist = session.GetItemIDList()
     item.DialogTransaction("MULTIPLE_USE_XPCARD", resultlist)
+end
+
+
+local convert_hidden_ability_item_id = '0'
+
+function CLIENT_CONVERT_TO_HIDDEN_ABILITY(item_obj)
+	local item = GetIES(item_obj:GetObject())	
+	
+	if GetCraftState() == 1 then
+		return;
+	end
+
+	if true == BEING_TRADING_STATE() then
+		return;
+	end
+	
+	local invItem = session.GetInvItemByGuid(item_obj:GetIESID())	
+	if nil == invItem then
+		return;
+	end
+	
+	if true == invItem.isLockState then
+		ui.SysMsg(ClMsg("MaterialItemIsLock"));
+		return;
+	end
+
+	local yesscp = string.format('CHECK_CLIENT_CONVERT_TO_HIDDEN_ABILITY("%s")', invItem:GetIESID());
+	ui.MsgBox(ScpArgMsg('ConvertToNoTrade{NAME}', 'NAME', TryGetProp(item, 'Name', 'None')), yesscp, 'None');
+end
+
+function CHECK_CLIENT_CONVERT_TO_HIDDEN_ABILITY(item_id)
+	local invItem = session.GetInvItemByGuid(item_id)	
+	local titleText = ScpArgMsg("INPUT_CNT_D_D", "Auto_1", 1, "Auto_2", invItem.count);
+	INPUT_NUMBER_BOX(nil, titleText, "RUN_CLIENT_CONVERT_TO_HIDDEN_ABILITY", 1, 1, invItem.count);	
+	convert_hidden_ability_item_id = tostring(item_id)
+end
+
+function RUN_CLIENT_CONVERT_TO_HIDDEN_ABILITY(count)	
+	session.ResetItemList();
+    local pc = GetMyPCObject();
+    session.AddItemID(convert_hidden_ability_item_id, count)    
+    local resultlist = session.GetItemIDList()
+    item.DialogTransaction("MULTIPLE_CONVERT_HIDDEN_ABILITY", resultlist)
 end

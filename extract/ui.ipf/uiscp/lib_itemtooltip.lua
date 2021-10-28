@@ -302,6 +302,10 @@ function SET_CARD_EDGE_TOOLTIP(parent, invitem)
 			cardEdge : SetImage('moncard_yellow')
 		elseif cardGroupName == 'REINFORCE_CARD' then
 			cardEdge : SetImage('moncard_gray')
+		elseif cardGroupName == 'GODDESS' then
+			cardEdge : SetImage('goddess_card_frame')
+		elseif cardGroupName == 'REINFORCE_GODDESS_CARD' then
+			cardEdge : SetImage('moncard_gray')
 		else 
 			cardEdge:SetImage('moncard_red')
 		end

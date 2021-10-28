@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by IMCGames Co., Ltd (IMCGames Co., Ltd) -->
+<ActionDesc>
+    <BlendOn frame="0" R="0" G="0" B="0" A="50"/>
+    <HeadRotBip frame="0" BipName="none"/>
+    <HeadRotBip frame="0" BipName="none"/>
+    <Sound frame="0.00" soundFile="skl_eff_action_cast_1"/>
+    <Sound frame="2.00" soundFile="skl_eff_action_shot_1"/>
+    <BlendOn frame="5" R="140" G="120" B="150" A="100"/>
+    <Shockwave frame="5" type="2" intensity="1" frequency="60" duration="0.1" range="1000"/>
+    <Particle frame="5" attachNode="Bip01" particleName="F_light176_violet" useAttach="false" hiddenObj="false" changeEffect="None" scale="5" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <Sound frame="5.00" soundFile="rap_attack_special_2"/>
+    <BlendOn frame="6" R="0" G="0" B="0" A="50"/>
+    <Sound frame="10.00" soundFile="skl_eff_murmillo_jump"/>
+    <HeadRotBip frame="14" BipName="Bip01 Head"/>
+    <HeadRotBip frame="14" BipName="Bip01 Head"/>
+    <HeadRotBip frame="19" BipName="Bip01 Head"/>
+    <HeadRotBip frame="19" BipName="Bip01 Head"/>
+    <Particle frame="20" attachNode="Bip01" particleName="F_light176_violet" useAttach="false" hiddenObj="false" changeEffect="None" scale="5" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+    <HeadRotBip frame="20" BipName="none"/>
+    <HeadRotBip frame="20" BipName="none"/>
+    <Sound frame="20.00" soundFile="rap_attack_special_4"/>
+    <BlendOn frame="21" R="140" G="120" B="150" A="100"/>
+    <Shockwave frame="21" type="2" intensity="1" frequency="60" duration="0.1" range="1000"/>
+    <BlendOn frame="22" R="0" G="0" B="0" A="50"/>
+    <Sound frame="23.00" soundFile="skl_eff_action_shot_1"/>
+    <BlendOn frame="29" R="140" G="120" B="150" A="100"/>
+    <Shockwave frame="29" type="2" intensity="1" frequency="60" duration="0.1" range="1000"/>
+    <BlendOn frame="30" R="0" G="0" B="0" A="50"/>
+    <Sound frame="30.00" soundFile="skl_eff_action_shot_1"/>
+    <Sound frame="30.00" soundFile="skl_eff_krumphau_cast"/>
+    <BlendOn frame="35" R="140" G="120" B="150" A="100"/>
+    <Shockwave frame="35" type="2" intensity="1" frequency="60" duration="0.1" range="1000"/>
+    <BlendOn frame="36" R="0" G="0" B="0" A="50"/>
+    <BlendOff frame="37" R="0" G="0" B="0" A="0"/>
+</ActionDesc>

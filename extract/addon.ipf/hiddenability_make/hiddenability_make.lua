@@ -1,6 +1,6 @@
 
 function HIDDENABILITY_MAKE_ON_INIT(addon, frame)
-    addon:RegisterMsg('HIDDENABILITY_DECOMPOSE_MAKE', 'HIDDENABILITY_MAKE_SET_RESULT');
+    addon:RegisterMsg('HIDDENABILITY_DECOMPOSE_MAKE', 'HIDDENABILITY_MAKE_RESULT_UPDATE');
 end
 
 function HIDDENABILITY_MAKE_OPEN_NPC(npcClassName)
@@ -11,10 +11,14 @@ function HIDDENABILITY_MAKE_OPEN_NPC(npcClassName)
 end
 
 function HIDDENABILITY_MAKE_OPEN(frame)
-    HIDDENABILITY_MAKE_RESET_MATERIAL(frame);
-    HIDDENABILITY_MAKE_RESET_CENTER_UI(frame);
-    HIDDENABILITY_MAKE_RESET_RESULT(frame);
-    HIDDENABILITY_MAKE_DROPLIST_INIT(frame);
+    HIDDENABILITY_MAKE_USERVALUE_INIT(frame);
+
+    HIDDENABILITY_MAKE_MATERIAL_INIT(frame);
+    HIDDENABILITY_MAKE_JOB_DROPLIST_INIT(frame);
+    HIDDENABILITY_MAKE_ARTS_DROPLIST_INIT(frame);
+    HIDDENABILITY_MAKE_ARTS_RESET(frame);
+    HIDDENABILITY_MAKE_ONCE_COUNT_RESET(frame);
+    HIDDENABILITY_MAKE_RESULT_RESET(frame);
     HIDDENABILITY_CONTROL_ENABLE(frame, 1);
 
     INVENTORY_SET_CUSTOM_RBTNDOWN("HIDDENABILITY_MAKE_ITEM_RBTNDOWN");
@@ -31,32 +35,145 @@ function HIDDENABILITY_MAKE_CLOSE(frame)
     INVENTORY_SET_CUSTOM_RBTNDOWN("None");
 end
 
-function HIDDENABILITY_MAKE_ITEM_RBTNDOWN(itemobj,slot)
-    local icon = slot:GetIcon()
-	local iconInfo = icon:GetInfo();
-	local guid = iconInfo:GetIESID();
-    local invitem = GET_ITEM_BY_GUID(guid);
-    if invitem == nil then
+function HIDDENABILITY_MAKE_USERVALUE_INIT(frame)
+    frame:SetUserValue("JOB_NAME", "None");
+    frame:SetUserValue("ARTS_CLASSNAME", "None");
+    frame:SetUserValue("IS_NOVICE", 0);
+    
+    local npcClassName = frame:GetUserValue("NPC_CLASSNAME")
+    local ctrlType = "";
+    if npcClassName == "swordmaster" then
+        ctrlType = "Warrior";
+    elseif npcClassName == "wizardmaster" then
+        ctrlType = "Wizard";
+    elseif npcClassName == "npc_ARC_master" then
+        ctrlType = "Archer";
+    elseif npcClassName == "npc_healer" then
+        ctrlType = "Cleric";
+    elseif npcClassName == "npc_SCT_master" then
+        ctrlType = "Scout";
+    end
+
+    frame:SetUserValue("CTRL_TYPE", ctrlType);
+end
+
+function HIDDENABILITY_MAKE_JOB_DROPLIST_INIT(frame)
+    local main_droplist = GET_CHILD_RECURSIVELY(frame, "main_droplist");
+    main_droplist:ClearItems();
+    main_droplist:AddItem("", "");
+    main_droplist:SetSelectedScp("HIDDENABILITY_MAKE_JOB_DROPLIST_SELECT");
+end
+
+function HIDDENABILITY_MAKE_JOB_DROPLIST_UPDATE(frame)
+    frame:SetUserValue("JOB_NAME", "None");
+
+    local main_droplist = GET_CHILD_RECURSIVELY(frame, "main_droplist");
+    main_droplist:ClearItems();
+    main_droplist:AddItem("", "");
+    main_droplist:SetSelectedScp("HIDDENABILITY_MAKE_JOB_DROPLIST_SELECT");
+    
+    local arts_droplist = GET_CHILD_RECURSIVELY(frame, "arts_droplist");
+
+    local slot = GET_CHILD_RECURSIVELY(frame, "matslot_1"); 
+    local slot_item = GET_SLOT_ITEM(slot);
+    if slot_item == nil then
         return;
     end
 
-    local frame = ui.GetFrame("hiddenability_make")
+    local ctrlType = frame:GetUserValue("CTRL_TYPE");
+    local itemObj = GetIES(slot_item:GetObject());
+    if IS_HIDDENABILITY_MASTERPIECE_NOVICE(itemObj) == true then
+        frame:SetUserValue("IS_NOVICE", 1);
 
-    local argNum = -1
+        main_droplist:SetSelectedScp("HIDDENABILITY_MAKE_NOVICE_ARTS_DROPLIST_SELECT");
+        arts_droplist:EnableHitTest(0);
+        
+        local artsList = IS_HIDDENABILITY_MASTERPIECE_NOVICE_LIST(ctrlType);
+        for k, v in pairs(artsList) do
+            local itemCls = GetClass("Item", v);
+            main_droplist:AddItem(v, itemCls.Name);
+        end
+    else
+        frame:SetUserValue("IS_NOVICE", 0);
+        arts_droplist:EnableHitTest(1);
 
-    if IS_HIDDENABILITY_MATERIAL_PIECE(itemobj) == true then
-        argNum = 1
-    elseif IS_HIDDENABILITY_MATERIAL_STONE(itemobj) == true then
-        argNum = 2
+        local gender = GETMYPCGENDER();
+        local jobList = GET_JOB_CLASS_LIST(ctrlType);
+        for k, v in pairs(jobList) do 
+            local jobName = GET_JOB_NAME_BY_ENGNAME(v);
+            main_droplist:AddItem(v, jobName);
+        end
     end
 
-    if HIDDENABILITY_MAKE_MATERIAL_ENABLE(frame, argNum, invitem) == true then
-        frame:SetUserValue("MATERIAL_GUID_"..argNum, guid);
-        HIDDENABILITY_MAKE_SET_MATERIAL(frame, argNum, invitem);
+    HIDDENABILITY_MAKE_ARTS_DROPLIST_INIT(frame);    
+end
+
+-- 일반 미식별 신비한 서일 경우 직업 SLECT
+function HIDDENABILITY_MAKE_JOB_DROPLIST_SELECT(frame, ctrl)   
+    local jobName = ctrl:GetSelItemKey();
+    frame:SetUserValue("JOB_NAME", jobName);
+
+    HIDDENABILITY_MAKE_ARTS_DROPLIST_INIT(frame);
+    HIDDENABILITY_MAKE_ARTS_RESET(frame);
+end
+
+-- 에피소드 미식별 신비한 서일 경우 전집 SLECT
+function HIDDENABILITY_MAKE_NOVICE_ARTS_DROPLIST_SELECT(frame, ctrl)
+    local artsClassName = ctrl:GetSelItemKey();
+    if artsClassName == "" then
+        return;
+    end
+
+    HIDDENABILITY_MAKE_ARTS_UPDATE(frame, artsClassName);
+end
+
+-- 각 직업 별 아츠 LIST
+function HIDDENABILITY_MAKE_ARTS_DROPLIST_INIT(frame)
+    frame:SetUserValue("ARTS_CLASSNAME", "None");
+
+    local arts_droplist = GET_CHILD_RECURSIVELY(frame, "arts_droplist");
+    arts_droplist:ClearItems();
+    arts_droplist:AddItem("", "");
+
+    local slot = GET_CHILD_RECURSIVELY(frame, "matslot_1"); 
+    local slot_item = GET_SLOT_ITEM(slot);
+    if slot_item == nil then
+        return;
+    end
+    
+    local ctrlType = frame:GetUserValue("CTRL_TYPE");
+    local jobName = frame:GetUserValue("JOB_NAME");
+    if jobName == "None" or jobName == "" then
+        return;
+    end
+
+    local artsList = GET_HIDDEN_ABILITY_LIST(ctrlType, jobName);
+    for k, v in pairs(artsList) do
+        local itemCls = GetClass("Item", v);
+        arts_droplist:AddItem(v, itemCls.Name);
     end
 end
 
-function HIDDENABILITY_MAKE_ITEM_DROP(frame, ctrl, argStr, argNum)
+function HIDDENABILITY_MAKE_ARTS_DROPLIST_SELECT(frame, ctrl)
+    local artsClassName = ctrl:GetSelItemKey();
+    if artsClassName == "" then
+        return;
+    end
+
+    HIDDENABILITY_MAKE_ARTS_UPDATE(frame, artsClassName);
+end
+
+function HIDDENABILITY_MAKE_ITEM_RBTNDOWN(itemObj, slot)
+    local frame = ui.GetFrame("hiddenability_make");
+
+    local icon = slot:GetIcon()
+	local iconInfo = icon:GetInfo();
+	local guid = iconInfo:GetIESID();
+
+    HIDDENABILITY_MAKE_MASTER_PIECE_REG(frame, guid);
+end
+
+function HIDDENABILITY_MAKE_MATERIAL_DROP(frame, ctrl, argStr, argNum)
     if ui.CheckHoldedUI() == true then
 		return;
 	end
@@ -67,157 +184,170 @@ function HIDDENABILITY_MAKE_ITEM_DROP(frame, ctrl, argStr, argNum)
     
     if FromFrame:GetName() == 'inventory' then
 		local iconInfo = liftIcon:GetInfo();
-		local guid = iconInfo:GetIESID();
-        local invitem = session.GetInvItemByGuid(guid)
-        if invitem == nil then
-            return;
+        local guid = iconInfo:GetIESID();
+        if argNum == 1 then
+            HIDDENABILITY_MAKE_MASTER_PIECE_REG(frame, guid);
         end
-    
-        if HIDDENABILITY_MAKE_MATERIAL_ENABLE(frame, argNum, invitem) == false then
-            return;
-        end
-	    frame:SetUserValue("MATERIAL_GUID_"..argNum, guid);
-		HIDDENABILITY_MAKE_SET_MATERIAL(frame, argNum, invitem);
-    end
-    
+    end 
 end
 
-function HIDDENABILITY_MAKE_ITEM_POP(frame, ctrl, argStr, argNum)
+function HIDDENABILITY_MAKE_MATERIAL_POP(frame, ctrl, argStr, argNum)
     local frame = ui.GetFrame("hiddenability_make");
-    frame:SetUserValue("MATERIAL_GUID_"..argNum, "None");
 
-    local matslot = GET_CHILD_RECURSIVELY(frame, "matslot_"..argNum);
-    matslot:ClearIcon();
-
-    local matslot_count = GET_CHILD_RECURSIVELY(frame, "matslot_"..argNum.."_count");
-    matslot_count:SetTextByKey("cur", 0);
-    matslot_count:SetTextByKey("need", 0);
-    matslot_count:ShowWindow(0);    
+    HIDDENABILITY_MAKE_MATERIAL_INIT(frame);
+    HIDDENABILITY_MAKE_JOB_DROPLIST_INIT(frame);
+    HIDDENABILITY_MAKE_ARTS_DROPLIST_INIT(frame);
+    HIDDENABILITY_MAKE_ARTS_RESET(frame);
 end
 
-function HIDDENABILITY_MAKE_MATERIAL_ENABLE(frame, argNum, invitem)
-    local resultitemClassName = frame:GetUserValue("RESULT_ITEM_CLASSNAME");
-    if resultitemClassName == "None" or resultitemClassName == nil then
-        ui.SysMsg(ClMsg("Arts_Please_Select_HiddenabilityItem"));
-        return false;
-    end
+function HIDDENABILITY_MAKE_MASTER_PIECE_REG(frame, guid)
+    local invitem = session.GetInvItemByGuid(guid);
+    if invitem == nil then return; end
 
     if invitem.isLockState == true then
         ui.SysMsg(ClMsg("MaterialItemIsLock"));
         return false;
     end
+
+    local itemObj = GetIES(invitem:GetObject());
+    if IS_HIDDENABILITY_MATERIAL_MASTER_PIECE(itemObj) == false then
+        ui.SysMsg(ClMsg('NotEnoughTarget'));
+        return;
+    end
+
+    local matslot = GET_CHILD_RECURSIVELY(frame, "matslot_1"); 
+    SET_SLOT_ITEM(matslot, invitem);
+    frame:SetUserValue("MATERIAL_1_GUID", guid);
+
+    HIDDENABILITY_MAKE_JOB_DROPLIST_UPDATE(frame);
+    HIDDENABILITY_MAKE_NEED_MATERIAL_COUNT_UPDATE(frame);
+end
+
+function HIDDENABILITY_MAKE_MATERIAL_INIT(frame)
+    frame:SetUserValue("MATERIAL_GUID_1", "None");
+
+    local matslot_1 = GET_CHILD_RECURSIVELY(frame, "matslot_1");
+    matslot_1:ClearIcon();
+
+    local itemCls = GetClass("Item", "HiddenAbility_TotalCube");
+    local matslot_1_count = GET_CHILD_RECURSIVELY(frame, "matslot_1_count");
+    matslot_1_count:ShowWindow(0);
+
+    local matslot_1_text = GET_CHILD_RECURSIVELY(frame, "matslot_1_text");
+    matslot_1_text:SetTextByKey("value", itemCls.Name);
+    matslot_1_text:ShowWindow(1);
+end
+
+function HIDDENABILITY_MAKE_NEED_MATERIAL_COUNT_UPDATE(frame)
+    local edit = GET_CHILD_RECURSIVELY(frame, "once_edit");
+    if edit:GetText() == nil then return; end
+
+    local slot = GET_CHILD_RECURSIVELY(frame, "matslot_1"); 
+    local slot_item = GET_SLOT_ITEM(slot);
+    if slot_item == nil then
+        HIDDENABILITY_MAKE_MATERIAL_INIT(frame);
+        return;
+    end
+
+    local isNoevice = frame:GetUserIValue("IS_NOVICE");
+    local curCnt = 0;
+    if slot_item ~= nil then
+        local pc = GetMyPCObject();
+        curCnt = GET_TOTAL_HIDDENABILITY_MASTER_PIECE_COUNT(pc, isNoevice);
+    end
     
-    local itemobj = GetIES(invitem:GetObject());
-
-    if IS_HIDDENABILITY_MASTERPIECE_NOVICE(itemobj) == true then
-        if IS_HIDDENABILITY_MASTERPIECE_NOVICE_SELECTABLE(resultitemClassName) ~= true then
-            ui.SysMsg(ClMsg("NotEnoughTarget"));
-            return false;
-        end
+    local needCnt = HIDDENABILITY_MAKE_NEED_MASTER_PIECE_COUNT() * tonumber(edit:GetText());
+    local style = frame:GetUserConfig("ENOUPH_STYLE");
+    if curCnt < needCnt then
+        style = frame:GetUserConfig("NOT_ENOUPH_STYLE");
     end
-
-    if argNum == 1 and IS_HIDDENABILITY_MATERIAL_PIECE(itemobj) == true then
-        return true;
-    elseif argNum == 2 and IS_HIDDENABILITY_MATERIAL_STONE(itemobj) == true then
-        return true;
-    else
-        ui.SysMsg(ClMsg("NotEnoughTarget"));
-        return false;
-    end
-
-    return false;
+    
+    local matslot_1_count = GET_CHILD_RECURSIVELY(frame, "matslot_1_count");
+    matslot_1_count:SetTextByKey("style", style);
+    matslot_1_count:SetTextByKey("cur", curCnt);
+    matslot_1_count:SetTextByKey("need", needCnt);
+    matslot_1_count:ShowWindow(1);
 end
 
-function HIDDENABILITY_MAKE_SET_MATERIAL(frame, argNum, invitem)
-    local itemobj = GetIES(invitem:GetObject());
-
-    local resultitemClassName = frame:GetUserValue("RESULT_ITEM_CLASSNAME");
-    local needcnt = 0;
-
-    if IS_HIDDENABILITY_MATERIAL_PIECE(itemobj) == true then
-        if IS_HIDDENABILITY_MATERIAL_MASTERPIECE(itemobj) == true then
-            local matslot_2 = GET_CHILD_RECURSIVELY(frame, "matslot_2");
-            matslot_2:ClearIcon();
-        
-            local matslot_2_count = GET_CHILD_RECURSIVELY(frame, "matslot_2_count");
-            matslot_2_count:SetTextByKey("cur", 0);
-            matslot_2_count:SetTextByKey("need", 0);
-            matslot_2_count:ShowWindow(0);
-
-            local matslot_2_text = GET_CHILD_RECURSIVELY(frame, "matslot_2_text");
-            matslot_2_text:ShowWindow(0);
-        
-            local matslot_2_pic = GET_CHILD_RECURSIVELY(frame, "matslot_2_pic");
-            matslot_2_pic:ShowWindow(1);
-        
-            frame:SetUserValue("MATERIAL_GUID_2", "None");
-        else
-            local matslot_2_text = GET_CHILD_RECURSIVELY(frame, "matslot_2_text");
-            matslot_2_text:ShowWindow(1);
-        
-            local matslot_2_pic = GET_CHILD_RECURSIVELY(frame, "matslot_2_pic");
-            matslot_2_pic:ShowWindow(0);
-        end
-
-        local namelist = StringSplit(itemobj.Name, '] ');
-        local itemname = namelist[1];
-        if 1 < #namelist then
-            itemname = namelist[2];
-        end
-
-        local matslot_1_text = GET_CHILD_RECURSIVELY(frame, "matslot_1_text");
-        matslot_1_text:SetTextByKey("value", "");
-        matslot_1_text:SetTextByKey("value", itemname);
-
-        needcnt = HIDDENABILITY_MAKE_NEED_PIECE_COUNT(resultitemClassName, itemobj);
-    elseif IS_HIDDENABILITY_MATERIAL_STONE(itemobj) == true then
-        local mat1guid = frame:GetUserValue("MATERIAL_GUID_1");
-        if mat1guid == 'None' then
-            ui.SysMsg(ClMsg("Arts_Please_Piece"));
-            return;
-        end
-
-        local mat1invItem = GET_PC_ITEM_BY_GUID(mat1guid);        
-        local mat1obj = GetIES(mat1invItem:GetObject());
-        if IS_HIDDENABILITY_MATERIAL_MASTERPIECE(mat1obj) == true then
-            return;
-        end
-
-        needcnt = HIDDENABILITY_MAKE_NEED_STONE_COUNT(resultitemClassName);
-    end
-
-    local curcnt = GET_INV_ITEM_COUNT_BY_PROPERTY({
-        {Name = 'ClassName', Value = itemobj.ClassName}
-    }, false);
-        
-    local matslot_count = GET_CHILD_RECURSIVELY(frame, "matslot_"..argNum.."_count");
-    matslot_count:SetTextByKey("cur", curcnt);
-    matslot_count:SetTextByKey("need", needcnt);
-	if curcnt < needcnt then
-		local NOT_ENOUPH_STYLE = frame:GetUserConfig('NOT_ENOUPH_STYLE');
-		matslot_count:SetTextByKey('style', NOT_ENOUPH_STYLE);
-	else
-		local ENOUPH_STYLE = frame:GetUserConfig('ENOUPH_STYLE');
-		matslot_count:SetTextByKey('style', ENOUPH_STYLE);
-	end
-    matslot_count:ShowWindow(1);
-
-    local matslot = GET_CHILD_RECURSIVELY(frame, "matslot_"..argNum); 
-    HIDDENABILITY_MAKE_SET_SLOT(matslot, itemobj);
+function HIDDENABILITY_MAKE_ONCE_COUNT_RESET(frame)
+    local edit = GET_CHILD_RECURSIVELY(frame, "once_edit");
+    edit:SetText("0");
 end
 
-function HIDDENABILITY_MAKE_SET_SLOT(slot, itemcls)
-    local icon = slot:GetIcon();
-    if icon == nil then
-		icon = CreateIcon(slot);
+function HIDDENABILITY_MAKE_ONCE_COUNT_TYPING(parent, ctrl)
+    if ctrl:GetText() == "" then
+        return;
     end
 
-    itemicon = TryGetProp(itemcls, "Icon", "None");
+    local frame = parent:GetTopParentFrame();
+    HIDDENABILITY_MAKE_NEED_MATERIAL_COUNT_UPDATE(frame);
+end
 
-    if itemicon ~= "None" then
-        icon:SetImage(itemicon);
-        SET_ITEM_TOOLTIP_BY_TYPE(icon, itemcls.ClassID);
-    end	
+function HIDDENABILITY_MAKE_ONCE_COUNT_UP_CLICK(parent, ctrl)
+    local edit = GET_CHILD(parent, "once_edit");
+
+    local curCnt = tonumber(edit:GetText());
+    local upCnt = curCnt + 1;
+    edit:SetText(upCnt);
+
+    local frame = parent:GetTopParentFrame();
+    HIDDENABILITY_MAKE_NEED_MATERIAL_COUNT_UPDATE(frame);
+end
+
+function HIDDENABILITY_MAKE_ONCE_COUNT_DOWN_CLICK(parent, ctrl)
+    local edit = GET_CHILD(parent, "once_edit");
+
+    local curCnt = tonumber(edit:GetText());
+    local downCnt = curCnt - 1;
+    if downCnt < 1 then
+        downCnt = 1;
+    end
+
+    edit:SetText(downCnt);
+
+    local frame = parent:GetTopParentFrame();
+    HIDDENABILITY_MAKE_NEED_MATERIAL_COUNT_UPDATE(frame);
+end
+
+function HIDDENABILITY_MAKE_ARTS_RESET(frame)
+    local slot = GET_CHILD_RECURSIVELY(frame, "arts_slot");
+    slot:ClearIcon();
+
+    local arts_text = GET_CHILD_RECURSIVELY(frame, "arts_text");
+    arts_text:ShowWindow(0);
+end
+
+function HIDDENABILITY_MAKE_ARTS_UPDATE(frame, artsClassName)
+    frame:SetUserValue("ARTS_CLASSNAME", artsClassName);
+
+    local cls = GetClass("Item", artsClassName);
+    if cls == nil then
+        HIDDENABILITY_MAKE_ARTS_RESET(frame);
+        return;
+    end
+
+    local slot = GET_CHILD_RECURSIVELY(frame, "arts_slot");
+	SET_SLOT_ITEM_CLS(slot, cls);    
+
+    local arts_text = GET_CHILD_RECURSIVELY(frame, "arts_text");
+    arts_text:SetTextByKey("value", "");
+    arts_text:SetTextByKey("value", cls.Name);
+    arts_text:ShowWindow(1);
+end
+
+function HIDDENABILITY_CONTROL_ENABLE(frame, isenable)
+    local frame = ui.GetFrame("hiddenability_make")
+    local matslot_1 = GET_CHILD_RECURSIVELY(frame, "matslot_1");
+    matslot_1:EnableHitTest(isenable);
+
+    local matslot_2 = GET_CHILD_RECURSIVELY(frame, "matslot_2");
+    matslot_2:EnableHitTest(isenable);
+        
+    local main_droplist = GET_CHILD_RECURSIVELY(frame, "main_droplist");
+    main_droplist:EnableHitTest(isenable);
+
+    local arts_droplist = GET_CHILD_RECURSIVELY(frame, "arts_droplist");
+    arts_droplist:EnableHitTest(isenable);
 end
 
 -- 확인 버튼 클릭
@@ -226,121 +356,59 @@ function HIDDENABILITY_MAKE_OK_CLLICK(frame, ctrl)
         return;
     end
     
-    HIDDENABILITY_MAKE_RESET_CENTER_UI(frame);
-
-    local resultitemslot = GET_CHILD_RECURSIVELY(frame, "result_slot");
-    local resultitemClassName = frame:GetUserValue("RESULT_ITEM_CLASSNAME");
-    if resultitemClassName == "None" or resultitemClassName == nil then
-        HIDDENABILITY_MAKE_RESET_MATERIAL(frame);
-        HIDDENABILITY_MAKE_RESET_RESULT(frame);
-        HIDDENABILITY_MAKE_DROPLIST_INIT(frame);
-        return;
-    end
-
-    -- 재료 아이템 소지 수량 변경 - 신비한서 낱장
-    local pieceguid = frame:GetUserValue("MATERIAL_GUID_1");
-    local pieceitem = GET_PC_ITEM_BY_GUID(pieceguid);        
-    local pieceitemobj = GetIES(pieceitem:GetObject());
-    local pieceneedcnt = HIDDENABILITY_MAKE_NEED_PIECE_COUNT(resultitemClassName, pieceitemobj);
-    local piececurcnt = GET_INV_ITEM_COUNT_BY_PROPERTY({
-        {Name = 'ClassName', Value = pieceitemobj.ClassName}
-    }, false);
-
-    local pieceslot_count = GET_CHILD_RECURSIVELY(frame, "matslot_1_count");
-    pieceslot_count:SetTextByKey("cur", piececurcnt);
-    pieceslot_count:SetTextByKey("need", pieceneedcnt);
-	if piececurcnt < pieceneedcnt then
-		local NOT_ENOUPH_STYLE = frame:GetUserConfig('NOT_ENOUPH_STYLE');
-		pieceslot_count:SetTextByKey('style', NOT_ENOUPH_STYLE);
-	else
-		local ENOUPH_STYLE = frame:GetUserConfig('ENOUPH_STYLE');
-		pieceslot_count:SetTextByKey('style', ENOUPH_STYLE);
-	end
-    pieceslot_count:ShowWindow(1);
-
-    -- 재료 아이템 소지 수량 변경 - 여신의 축복석
-    local stoneguid = frame:GetUserValue("MATERIAL_GUID_2");
-    local stoneneedcnt = 0;
-    local stonecurcnt = 0;
-    if IS_HIDDENABILITY_MATERIAL_MASTERPIECE(pieceitemobj) == false then
-        stoneneedcnt = HIDDENABILITY_MAKE_NEED_STONE_COUNT(resultitemClassName);
-        stonecurcnt = GET_INV_ITEM_COUNT_BY_PROPERTY({
-            {Name = 'ClassName', Value ='Premium_item_transcendence_Stone'}
-        }, false);
-        local stoneslot_count = GET_CHILD_RECURSIVELY(frame, "matslot_2_count");
-        stoneslot_count:SetTextByKey("cur", stonecurcnt);
-        stoneslot_count:SetTextByKey("need", stoneneedcnt);
-	    if stonecurcnt < stoneneedcnt then
-	    	local NOT_ENOUPH_STYLE = frame:GetUserConfig('NOT_ENOUPH_STYLE');
-    		stoneslot_count:SetTextByKey('style', NOT_ENOUPH_STYLE);
-	    else
-		    local ENOUPH_STYLE = frame:GetUserConfig('ENOUPH_STYLE');
-		    stoneslot_count:SetTextByKey('style', ENOUPH_STYLE);
-	    end
-        stoneslot_count:ShowWindow(1);
-    end    
-
-    HIDDENABILITY_CONTROL_ENABLE(frame, 1);
+    HIDDENABILITY_MAKE_MATERIAL_INIT(frame);
+    HIDDENABILITY_MAKE_JOB_DROPLIST_INIT(frame);
+    HIDDENABILITY_MAKE_ARTS_DROPLIST_INIT(frame);
+    HIDDENABILITY_MAKE_RESULT_RESET(frame);
+    HIDDENABILITY_CONTROL_ENABLE(frame, 1);    
 end
 
 -- 제작 버튼 클릭
-function HIDDENABILITY_MAKE_RESULT_ITEM_CREATE(frame, ctrl)
+function HIDDENABILITY_MAKE_CREATE_CLICK(frame, ctrl)
     if ui.CheckHoldedUI() == true then
         return;
     end
 
     local frame = ui.GetFrame("hiddenability_make");
     
-    local resultitemslot = GET_CHILD_RECURSIVELY(frame, "result_slot");
-    local resultitemClassName = frame:GetUserValue("RESULT_ITEM_CLASSNAME");
-    if resultitemClassName == "None" or resultitemClassName == "" then
+    local artsClassName = frame:GetUserValue("ARTS_CLASSNAME");
+    if artsClassName == "None" or artsClassName == "" then
         ui.SysMsg(ClMsg("Arts_Please_Select_HiddenabilityItem"));
         return;
     end
 
-    local pieceguid = frame:GetUserValue("MATERIAL_GUID_1");
-    local pieceitem = GET_PC_ITEM_BY_GUID(pieceguid);        
-    local pieceitemobj = GetIES(pieceitem:GetObject());
-    local pieceneedcnt = HIDDENABILITY_MAKE_NEED_PIECE_COUNT(resultitemClassName, pieceitemobj);
-    local piececurcnt = GET_INV_ITEM_COUNT_BY_PROPERTY({
-        {Name = 'ClassName', Value = pieceitemobj.ClassName}
-    }, false);
-    if piececurcnt == 0 or pieceguid == "None" then
-        ui.SysMsg(ClMsg("Arts_Please_Register_MaterialItem"));
-        return;
-    end
-    if piececurcnt < pieceneedcnt then
+    local matslot_1 = GET_CHILD_RECURSIVELY(frame, "matslot_1");
+    local matslot_1_item = GET_SLOT_ITEM(matslot_1);
+    if matslot_1_item == nil then return; end
+	local matslot_1_itemObj = GetIES(matslot_1_item:GetObject());
+    
+    local ctrlType = frame:GetUserValue("CTRL_TYPE");
+    local jobName = frame:GetUserValue("JOB_NAME");
+    local isNoevice = frame:GetUserIValue("IS_NOVICE");
+
+    local pc = GetMyPCObject();
+    local curCnt = GET_TOTAL_HIDDENABILITY_MASTER_PIECE_COUNT(pc, isNoevice);
+    
+    local edit = GET_CHILD_RECURSIVELY(frame, "once_edit");    
+    local makeCnt = tonumber(edit:GetText());
+    local needCnt = HIDDENABILITY_MAKE_NEED_MASTER_PIECE_COUNT() * makeCnt;
+
+    if curCnt < needCnt then
         ui.SysMsg(ClMsg('NotEnoughRecipe'));
         return;
-    end  
-
-    local stoneguid = frame:GetUserValue("MATERIAL_GUID_2");
-    local stoneneedcnt = 0;
-    local stonecurcnt = 0;
-    if IS_HIDDENABILITY_MATERIAL_MASTERPIECE(pieceitemobj) == false then
-        stoneneedcnt = HIDDENABILITY_MAKE_NEED_STONE_COUNT(resultitemClassName);
-        stonecurcnt = GET_INV_ITEM_COUNT_BY_PROPERTY({
-            {Name = 'ClassName', Value ='Premium_item_transcendence_Stone'}
-        }, false);
-        if stonecurcnt == 0 or stoneguid == "None" then
-            ui.SysMsg(ClMsg("Arts_NeedOnemoreStone"));
-            return;
-        end
-        if stonecurcnt < stoneneedcnt then
-            ui.SysMsg(ClMsg('NotEnoughRecipe'));
-            return;
-        end
     end
 
-    -- 신비한 서 제작 함수 호출    
+    -- 신비한 서 제작 함수 호출
     local nameList = NewStringList();
-    nameList:Add(resultitemClassName)    
+    nameList:Add(ctrlType);
+    nameList:Add(jobName);
+    nameList:Add(artsClassName);
+    nameList:Add(makeCnt);
     session.ResetItemList();
-    session.AddItemID(pieceguid, pieceneedcnt);
-    session.AddItemID(stoneguid, stoneneedcnt);
+    session.AddItemID(matslot_1_item:GetIESID(), needCnt);
     local resultlist = session.GetItemIDList();
 
-    item.DialogTransaction('HIDDENABILITY_MAKE', resultlist, "", nameList)
+    item.DialogTransaction('HIDDENABILITY_MAKE', resultlist, "", nameList);
     
 	ui.SetHoldUI(true);
     ReserveScript("HIDDENABILITY_MAKE_BUTTON_UNFREEZE()", 1.5);
@@ -350,8 +418,18 @@ function HIDDENABILITY_MAKE_BUTTON_UNFREEZE()
    ui.SetHoldUI(false);
 end
 
--- 제작 결과 
-function HIDDENABILITY_MAKE_SET_RESULT(frame, msg)
+function HIDDENABILITY_MAKE_RESULT_RESET(frame)
+    local issuccess_gb = GET_CHILD_RECURSIVELY(frame, "issuccess_gb");
+    issuccess_gb:ShowWindow(0);
+
+    local Btn = GET_CHILD_RECURSIVELY(frame, "Btn");
+    Btn:ShowWindow(1);
+
+    local ok_Btn = GET_CHILD_RECURSIVELY(frame, "ok_Btn");
+    ok_Btn:ShowWindow(0);
+end
+
+function HIDDENABILITY_MAKE_RESULT_UPDATE(frame, msg)
     local frame = ui.GetFrame("hiddenability_make")
     imcSound.PlaySoundEvent(frame:GetUserConfig("MAKE_START_SOUND"));
     imcSound.PlaySoundEvent(frame:GetUserConfig("MAKE_RESULT_SOUND"));
@@ -367,153 +445,4 @@ function HIDDENABILITY_MAKE_SET_RESULT(frame, msg)
     issuccess_gb:ShowWindow(1);
 
     HIDDENABILITY_CONTROL_ENABLE(frame, 0);
-end
-
-function HIDDENABILITY_MAKE_DROPLIST_INIT(frame)
-    local npcClassName = frame:GetUserValue("NPC_CLASSNAME")
-
-    frame:SetUserValue("RESULT_ITEM_CLASSNAME", "None");
-    local list = GET_CHILD_RECURSIVELY(frame, "result_droplist");
-    list:ClearItems();
-    list:AddItem("", "");
-    if npcClassName == "swordmaster" then        
-        local str = "HiddenAbility_SwordmanPackage"    
-        for i = 1, 100 do
-            local jobitemcls = GetClass("Item", str..tostring(i));
-            if jobitemcls == nil then
-                break
-            end
-            list:AddItem(jobitemcls.ClassName, jobitemcls.Name);    
-        end        
-    elseif npcClassName == "wizardmaster" then
-        local str = "HiddenAbility_WizardPackage"    
-        for i = 1, 100 do
-            local jobitemcls = GetClass("Item", str..tostring(i));
-            if jobitemcls == nil then
-                break
-            end
-            list:AddItem(jobitemcls.ClassName, jobitemcls.Name);    
-        end
-    elseif npcClassName == "npc_ARC_master" then
-        local str = "HiddenAbility_ArcherPackage"    
-        for i = 1, 100 do
-            local jobitemcls = GetClass("Item", str..tostring(i));
-            if jobitemcls == nil then
-                break
-            end
-            list:AddItem(jobitemcls.ClassName, jobitemcls.Name);    
-        end
-    elseif npcClassName == "npc_healer" then
-        local str = "HiddenAbility_ClericPackage"    
-        for i = 1, 100 do
-            local jobitemcls = GetClass("Item", str..tostring(i));
-            if jobitemcls == nil then
-                break
-            end
-            list:AddItem(jobitemcls.ClassName, jobitemcls.Name);    
-        end
-    elseif npcClassName == "npc_SCT_master" then
-        local str = "HiddenAbility_ScoutPackage"    
-        for i = 1, 100 do
-            local jobitemcls = GetClass("Item", str..tostring(i));
-            if jobitemcls == nil then
-                break
-            end
-            list:AddItem(jobitemcls.ClassName, jobitemcls.Name);    
-        end
-    end
-
-    
-end
-
-function HIDDENABILITY_MAKE_DROPLIST_SELECT(frame, ctrl)
-    HIDDENABILITY_MAKE_RESET_MATERIAL(frame);
-    HIDDENABILITY_MAKE_RESET_CENTER_UI(frame);
-    
-    local resultitemClassName = ctrl:GetSelItemKey();
-    frame:SetUserValue("RESULT_ITEM_CLASSNAME", resultitemClassName);
-
-    local cls = GetClass("Item", resultitemClassName);
-    if cls == nil then
-        HIDDENABILITY_MAKE_RESET_RESULT(frame);
-        return;
-    end
-
-    local slot = GET_CHILD_RECURSIVELY(frame, "result_slot");
-    HIDDENABILITY_MAKE_SET_SLOT(slot, cls);
-
-    local result_text = GET_CHILD_RECURSIVELY(frame, "result_text");
-    result_text:SetTextByKey("value", "");
-    result_text:SetTextByKey("value", cls.Name);
-    result_text:ShowWindow(1);
-
-end
-
-function HIDDENABILITY_MAKE_RESET_MATERIAL(frame)
-    local matslot_1 = GET_CHILD_RECURSIVELY(frame, "matslot_1");
-    matslot_1:ClearIcon();
-
-    local MAT1_DEF_NAME = frame:GetUserConfig('MAT1_DEF_NAME');
-    local matslot_1_text = GET_CHILD_RECURSIVELY(frame, "matslot_1_text");
-    matslot_1_text:SetTextByKey("value", "");
-    matslot_1_text:SetTextByKey("value", MAT1_DEF_NAME);
-    
-    local matslot_1_count = GET_CHILD_RECURSIVELY(frame, "matslot_1_count");
-    matslot_1_count:SetTextByKey("cur", 0);
-    matslot_1_count:SetTextByKey("need", 0);
-    matslot_1_count:ShowWindow(0);
-    
-    frame:SetUserValue("MATERIAL_GUID_1", "None");
-
-    local matslot_2 = GET_CHILD_RECURSIVELY(frame, "matslot_2");
-    matslot_2:ClearIcon();
-
-    local matslot_2_count = GET_CHILD_RECURSIVELY(frame, "matslot_2_count");
-    matslot_2_count:SetTextByKey("cur", 0);
-    matslot_2_count:SetTextByKey("need", 0);
-    matslot_2_count:ShowWindow(0);
-
-    local matslot_2_text = GET_CHILD_RECURSIVELY(frame, "matslot_2_text");
-    matslot_2_text:ShowWindow(1);
-
-    local matslot_2_pic = GET_CHILD_RECURSIVELY(frame, "matslot_2_pic");
-    matslot_2_pic:ShowWindow(0);
-
-    frame:SetUserValue("MATERIAL_GUID_2", "None");
-end
-
-function HIDDENABILITY_MAKE_RESET_CENTER_UI(frame)
-    local issuccess_gb = GET_CHILD_RECURSIVELY(frame, "issuccess_gb");
-    issuccess_gb:ShowWindow(0);
-
-    local Btn = GET_CHILD_RECURSIVELY(frame, "Btn");
-    Btn:ShowWindow(1);
-
-    local ok_Btn = GET_CHILD_RECURSIVELY(frame, "ok_Btn");
-    ok_Btn:ShowWindow(0);
-end
-
-function HIDDENABILITY_MAKE_RESET_RESULT(frame)
-    local slot = GET_CHILD_RECURSIVELY(frame, "result_slot");
-    slot:ClearIcon();
-
-    local result_text = GET_CHILD_RECURSIVELY(frame, "result_text");
-    result_text:ShowWindow(0);
-end
-
-function HIDDENABILITY_CONTROL_ENABLE(frame, isenable)
-    local frame = ui.GetFrame("hiddenability_make")
-    local matslot_1 = GET_CHILD_RECURSIVELY(frame, "matslot_1");
-    matslot_1:EnableDrop(isenable);
-    matslot_1:EnablePop(isenable);
-	matslot_1:EnableDrag(isenable);
-
-    local matslot_2 = GET_CHILD_RECURSIVELY(frame, "matslot_2");
-    matslot_2:EnableDrop(isenable);
-    matslot_2:EnablePop(isenable);
-    matslot_2:EnableDrag(isenable);
-        
-    local result_droplist = GET_CHILD_RECURSIVELY(frame, "result_droplist");
-    result_droplist:EnableHitTest(isenable);
-
 end

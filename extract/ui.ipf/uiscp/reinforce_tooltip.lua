@@ -133,8 +133,8 @@ function REINFORCE_ITEM_TOOLTIP_EQUIP(tooltipframe, invitem, strarg, usesubframe
 	ypos = DRAW_EQUIP_PR_N_DUR(tooltipframe, invitem, ypos, mainframename) -- 포텐셜 및 내구도
 	ypos = DRAW_EQUIP_ONLY_PR(tooltipframe, invitem, ypos, mainframename) -- 포텐셜 만 있는 애들은 여기서 그림 (그릴 아이템인지 검사는 내부에서)
 	
-	local isHaveLifeTime = TryGetProp(invitem, "LifeTime");	
-	if 0 == isHaveLifeTime then
+	local isHaveLifeTime = TryGetProp(invitem, "LifeTime", 0);
+	if 0 == tonumber(isHaveLifeTime) then
 		ypos = DRAW_SELL_PRICE(tooltipframe, invitem, ypos, mainframename);
 	else
 		ypos = DRAW_REMAIN_LIFE_TIME(tooltipframe, invitem, ypos, mainframename);

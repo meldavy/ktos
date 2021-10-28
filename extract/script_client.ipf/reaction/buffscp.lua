@@ -181,8 +181,10 @@ function RunningShotClientScp_LEAVE(actor, obj, buff)
 end
 
 function SnipersSerenityClientScp_ENTER(actor, obj, buff)
-    actor:GetAnimation():SetWLKAnim("SKL_SNIPERSSERENITY_AWLK");
-    actor:GetAnimation():SetRUNAnim("SKL_SNIPERSSERENITY_AWLK");
+    if pc.IsBuffApplied(actor, "DesperateDefense_Buff") == 0 then
+        actor:GetAnimation():SetWLKAnim("SKL_SNIPERSSERENITY_AWLK");
+        actor:GetAnimation():SetRUNAnim("SKL_SNIPERSSERENITY_AWLK");
+    end
 end
 
 function SnipersSerenityClientScp_LEAVE(actor, obj, buff)
@@ -1559,4 +1561,18 @@ end
 function EP12DEMONLORD_EFFECT_PRE_LEAVE(actor, obj, buff)
     effect.DetachActorEffect(actor, "I_spread_out015_light_orange", 0.7);
     actor:SetEquipItemFlagProp("EFFECTCOSTUME", 0);
+end
+
+function DesperateDefenseClientScp_ENTER(actor, obj, buff)
+    if pc.IsBuffApplied(actor, "SnipersSerenity_Buff") == 1 then
+        actor:GetAnimation():ResetWLKAnim();
+        actor:GetAnimation():ResetRUNAnim();
+    end
+end
+
+function DesperateDefenseClientScp_LEAVE(actor, obj, buff)
+    if pc.IsBuffApplied(actor, "SnipersSerenity_Buff") == 1 then
+        actor:GetAnimation():SetWLKAnim("SKL_SNIPERSSERENITY_AWLK");
+        actor:GetAnimation():SetRUNAnim("SKL_SNIPERSSERENITY_AWLK");
+    end
 end

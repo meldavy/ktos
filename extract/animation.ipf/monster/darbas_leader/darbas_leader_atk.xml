@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by IMCGames Co., Ltd (IMCGames Co., Ltd) -->
+<ActionDesc>
+	<Particle frame="0" attachNode="Dummy_effect_wepon2" particleName="I_smoke_red5" useAttach="true" hiddenObj="false" changeEffect="None" scale="1" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="7" attachNode="Dummy_effect_wepon" particleName="I_explosion002_darkred" useAttach="false" hiddenObj="false" changeEffect="None" scale="2" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Sound frame="6.00" soundFile="mon_voice12_cast_3"/>
+	<Sound frame="6.00" soundFile="spear_whoosh"/>
+	<Sound frame="9.00" soundFile="atk_cloth_s_r2"/>
+</ActionDesc>

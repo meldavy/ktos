@@ -39,6 +39,9 @@
 					<Num Num="0"/>
 					<Num Num="1"/>
 				</Scp>
+				<Scp Client="NO" Scp="SKL_RUN_SCRIPT" Time="4000" UseSleep="NO">
+					<Str Str="SCR_USE_SKILL_SET_BATTLE_STATE_ZERO"/>
+				</Scp>
 			</EtcList>
 		</MainSkl>
 	</Skill>

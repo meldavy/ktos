@@ -1,6 +1,7 @@
 function INGAMEALERT_ON_INIT(addon, frame)
 	addon:RegisterMsg("INGAME_PRIVATE_ALERT", "INGAMEALERT_SHOW")
 	addon:RegisterMsg("INDUN_ASK_PARTY_MATCH", "ON_INDUN_ASK_PARTY_MATCH")
+	addon:RegisterMsg("INDUN_ASK_PARTY_MATCH_AUTO_CHALLENGE", "ON_INDUN_ASK_PARTY_MATCH_AUTO_CHALLENGE");
 	addon:RegisterMsg("SOLD_ITEM_NOTICE", "ON_SOLD_ITEM_NOTICE")
 	addon:RegisterMsg("RECEIVABLE_SILVER_NOTICE", "ON_RECEIVABLE_SILVER_NOTICE")
 	addon:RegisterMsg("RECEIVABLE_TAX_PAYMENT_NOTICE", "ON_RECEIVABLE_TAX_PAYMENT_NOTICE")
@@ -185,6 +186,23 @@ function ON_INDUN_ASK_PARTY_MATCH(frame, msg, argStr, argNum)
 
 	INGAMEALERT_RESIZE_ELEM(ctrlset)
 	INGAMEALERT_SET_MARGIN_BY_CHAT_FRAME(frame)	
+end
+
+function ON_INDUN_ASK_PARTY_MATCH_AUTO_CHALLENGE(frame, msg, argStr, argNum)
+	local ctrlset = INGAMEALERT_GET_ELEM_BY_TYPE(frame, "Party");
+	local arglist = StringSplit(argStr, "/");
+	if #arglist ~= 2 then
+		INGAMEALERT_REMOVE_ELEM_BY_OBJECT(ctrlset);
+		INGAMEALERT_ALIGN_ELEM(frame);
+		return;
+	end
+
+	local text = GET_CHILD(ctrlset, "text");
+	local ask_msg = ScpArgMsg("PartyMatchingAutoChallenge", "MEMBER", arglist[1], "INDUN", arglist[2]);
+	text:SetText(ask_msg);
+
+	INGAMEALERT_RESIZE_ELEM(ctrlset);
+	INGAMEALERT_SET_MARGIN_BY_CHAT_FRAME(frame);
 end
 
 function ON_SOLD_ITEM_NOTICE(frame, msg, argStr, argNum)	

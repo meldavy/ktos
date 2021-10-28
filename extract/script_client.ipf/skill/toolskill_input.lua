@@ -456,6 +456,18 @@ function SKL_PARTY_TARGET_BY_KEY(actor, obj, dik, showHPGauge)
 		end
 	end
 
+	if obj.type == 32106 then
+		local abil = session.GetAbilityByName("Arquebusier18");
+		if abil == nil then
+			return 0, 1;
+		end
+
+		local abil_obj = GetIES(abil:GetObject());
+		if abil_obj ~= nil and abil_obj.ActiveState == 0 then
+			return 0, 1;
+		end
+	end
+
 	if showHPGauge == nil then
 		showHPGauge = 0;
 	end

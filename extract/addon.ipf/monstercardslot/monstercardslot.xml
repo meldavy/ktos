@@ -3,13 +3,14 @@
 <uiframe name="monstercardslot" x="0" y="0" width="600" height="745" create="open">
 	<draw drawtitlebar="false"/>
 	<skin frameskin=" "/>
-	<frame titlepos="0 0" layout_gravity="center center" margin="0 0 0 0"/>
+	<frame titlepos="0 0" layout_gravity="center center" margin="-380 0 0 0" fasthide="true"/>
 	<input moveable="true" hittestframe="true" moveintitlebar="false"/>
 	<layer layerlevel="100"/>
 	<userconfig OPTION_BTN_TEXT_OPEN="{@st43b}{s18}적용효과{/}" OPTION_BTN_TEXT_CLOSE="{@st43b}{s18}적용효과{/}" LEGENDCARD_OPEN_EFFECT="UI_card_lock" LEGENDCARD_OPEN_EFFECT_SCALE="12" LEGENDCARD_CLOSE_IMAGE="legend_cardslot"/>
 	<opencheck scp="" numarg="1"/>
 	<option closebutton="false"/>
 	<sound opensound="window_open" closesound="window_close"/>
+	<script CloseScp="MONSTERCARDSLOT_FRAME_CLOSE"/>
 	<controls>
 		<groupbox name="bg" rect="0 0 550 380" margin="0 0 0 0" layout_gravity="center top" draw="true" hittestbox="false" resizebyparent="true" resizebyresolution="false" skin="test_frame_low"/>
 		<groupbox name="pip4" rect="0 0 550 80" margin="0 0 0 0" layout_gravity="center top" draw="true" hittestbox="false" resizebyparent="true" resizebyresolution="false" skin="test_frame_top"/>

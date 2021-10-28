@@ -87,49 +87,40 @@ function SUDDENQUEST_FILL_QUEST_INFO(frame, mapId, questType, targetMonName, kil
     local gbox_questtimer = GET_CHILD_RECURSIVELY(frame, "gbox_quest_timer");
     if gbox_questtimer ~= nil then
         local textTimer = GET_CHILD_RECURSIVELY(gbox_questtimer, "suddenquest_timer");
-        textTimer:SetUserValue("SUDDEN_QUEST_START_TIME", tostring(imcTime.GetAppTimeMS()));
         textTimer:SetUserValue("SUDDEN_QUEST_LIMIT_TIME", limitTime);
-        
-        textTimer:StopUpdateScript("CHALLENGE_MODE_TIMER");
-        textTimer:RunUpdateScript("SUDDENQUEST_TIMER");        
     end
 
     frame:Invalidate();
 end
 
-function SUDDENQUEST_TIMER(textTimer)
-    local startTime = textTimer:GetUserValue("SUDDEN_QUEST_START_TIME");
-    if startTime == nil then 
-        return 0;
-    end
-
-    local limitTime = tonumber(textTimer:GetUserValue("SUDDEN_QUEST_LIMIT_TIME"));
-    if limitTime == nil then
-        return 0;
-    end
-
-    limitTime = limitTime / 1000;
-    local nowTime = imcTime.GetAppTimeMS();
-    local diffTime = (nowTime - startTime) / 1000;
-    local remainTime = tonumber(limitTime) - diffTime;
-    if remainTime < 0 then
-        textTimer:SetTextByKey('time', "00:00");
-        SUDDENQUEST_YESSCP_EXITMSGBOX();
-        return 0;
-    end
-
-    local remainMin = math.floor(remainTime / 60);
-    local remainSec = remainTime % 60;
-    local remainTimeStr = string.format("%d:%02d", remainMin, remainSec);
-    textTimer:SetTextByKey("time", remainTimeStr);
-
+function SUDDENQUEST_TIME_UPDATE(remainTime)
     local frame = ui.GetFrame("suddenquest");
-    if frame ~= nil then
-        local timeGauge = GET_CHILD_RECURSIVELY(frame, "suddenquest_timegauge");
-        timeGauge:SetMaxPointWithTime(diffTime, limitTime, 0.1, 0.5);
-    end
+    if frame == nil then return; end
 
-    return 1;
+    local gbox_questtimer = GET_CHILD_RECURSIVELY(frame, "gbox_quest_timer");
+    if gbox_questtimer ~= nil then
+        local textTimer = GET_CHILD_RECURSIVELY(gbox_questtimer, "suddenquest_timer");
+        if textTimer ~= nil then
+            local limitTime = tonumber(textTimer:GetUserValue("SUDDEN_QUEST_LIMIT_TIME"));
+            if limitTime == nil then return; end
+
+            local curTime = (limitTime - remainTime) / 1000;
+            if curTime < 0 then
+                SUDDENQUEST_YESSCP_EXITMSGBOX();
+                return;
+            end
+
+            local min = math.floor(curTime / 60);
+            local sec = curTime % 60;
+            local timeStr = string.format("%d:%02d", min, sec);
+            textTimer:SetTextByKey("time", timeStr);
+
+            local timeGauge = GET_CHILD_RECURSIVELY(frame, "suddenquest_timegauge");
+            if timeGauge ~= nil then
+                timeGauge:SetMaxPointWithTime(remainTime / 1000, limitTime / 1000, 0.1, 0.5);
+            end
+        end
+    end
 end
 
 function SUDDENQUEST_MONCOUNT_UPDATE(killCnt)

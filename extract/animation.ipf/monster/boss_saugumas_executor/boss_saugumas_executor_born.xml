@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="EUC-KR"?>
+<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by IMCGames Co., Ltd (IMCGames Co., Ltd) -->
+<ActionDesc>
+	<Sound frame="0.00" soundFile="mon_ghost_oldman_dead"/>
+	<Sound frame="8.00" soundFile="skl_eff_landing_m"/>
+	<Sound frame="17.00" soundFile="mon_voice_rootopus_move_2"/>
+	<Sound frame="18.77" soundFile="skl_eff_landing_m"/>
+	<Sound frame="45.00" soundFile="skl_eff_atk_move_l_4"/>
+	<Sound frame="50.00" soundFile="skl_eff_atk_move_l_12"/>
+	<Sound frame="62.71" soundFile="boss_skl_eff_force_whoosh_1"/>
+	<Sound frame="63.16" soundFile="skl_eff_atk_move_m_6"/>
+	<Sound frame="65.00" soundFile="skl_eff_hammer_badak"/>
+	<Sound frame="85.00" soundFile="boss_skl_eff_atk_move_l_22"/>
+	<Particle frame="10" attachNode="Dummy_root" particleName="F_smoke064_grey" useAttach="false" hiddenObj="false" changeEffect="None" scale="1.5" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="22" attachNode="Dummy_root" particleName="F_ground068_smoke2_grey" useAttach="false" hiddenObj="false" changeEffect="None" scale="1.5" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="30" attachNode="Dummy_root" particleName="F_smoke141_grey_dark_spread_out" useAttach="false" hiddenObj="false" changeEffect="None" scale="1.5" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="46" attachNode="Dummy_root" particleName="F_ground068_smoke2_grey" useAttach="false" hiddenObj="false" changeEffect="None" scale="3" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="55" attachNode="Dummy_root" particleName="F_smoke141_grey_dark_spread_out" useAttach="false" hiddenObj="false" changeEffect="None" scale="3" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="75" attachNode="Dummy_root" particleName="F_smoke141_grey_dark_spread_out" useAttach="false" hiddenObj="false" changeEffect="None" scale="2" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="6" attachNode="Dummy_root" particleName="None" useAttach="false" hiddenObj="false" changeEffect="None" scale="3" pause="true" use2DEffect="false" soft2DValue="20"/>
+	<Particle frame="6" attachNode="Dummy_root" particleName="None" useAttach="false" hiddenObj="false" changeEffect="None" scale="3" pause="true" use2DEffect="false" soft2DValue="20"/>
+</ActionDesc>
