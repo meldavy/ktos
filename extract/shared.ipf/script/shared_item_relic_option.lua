@@ -128,34 +128,34 @@ end
 
 -- 블랙 젬 - 치유력
 function get_tooltip_HEAL_PWR_BM_GEM_LEGEND_arg1()
-    return 256, 'HEAL_PWR_BM', 1, 'ValueUp'
+    return 256, 'HEAL_PWR', 1, 'ValueUp'
 end
 function get_tooltip_HEAL_PWR_BM_GEM_GODDESS_arg1()
-    return 360, 'HEAL_PWR_BM', 1, 'ValueUp'
+    return 360, 'HEAL_PWR', 1, 'ValueUp'
 end
 
 -- 블랙 젬 - HP회복력
 function get_tooltip_RHP_GEM_LEGEND_arg1()
-    return 252, 'RHP_BM', 1, 'ValueUp'
+    return 252, 'RHP', 1, 'ValueUp'
 end
 function get_tooltip_RHP_GEM_GODDESS_arg1()
-    return 326, 'RHP_BM', 1, 'ValueUp'
+    return 326, 'RHP', 1, 'ValueUp'
 end
 
 -- 블랙 젬 - SP회복력
 function get_tooltip_RSP_GEM_LEGEND_arg1()
-    return 72, 'RSP_BM', 1, 'ValueUp'
+    return 72, 'RSP', 1, 'ValueUp'
 end
 function get_tooltip_RSP_GEM_GODDESS_arg1()
-    return 98, 'RSP_BM', 1, 'ValueUp'
+    return 98, 'RSP', 1, 'ValueUp'
 end
 
 -- 블랙 젬 - 최대 SP
 function get_tooltip_MSP_GEM_LEGEND_arg1()
-    return 252, 'MSP_BM', 1, 'ValueUp'
+    return 252, 'MSP', 1, 'ValueUp'
 end
 function get_tooltip_MSP_GEM_GODDESS_arg1()
-    return 326, 'MSP_BM', 1, 'ValueUp'
+    return 326, 'MSP', 1, 'ValueUp'
 end
 
 -- 블랙 젬 - 곤충형 대상 공격력

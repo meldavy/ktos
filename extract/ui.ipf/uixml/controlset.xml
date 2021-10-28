@@ -2162,9 +2162,16 @@
 			<richtext name="itemtext" rect="0 0 200 30" format="{@st43d}{/}" margin="0 0 0 31" layout_gravity="center bottom" textalign="center top" param1="txt" param1_def="ItemName" resizebytext="false" spacey="0" maxwidth="0" fontname="white_18_b_ds_ol" fixwidth="true" omitbywidth="true" updateparent="false" drawbackground="false" slideshow="false"/>
 		</controls>
 	</controlset>
-	<controlset name="gacha_itembox" toggle="false" hittest="true" width="200" height="200" skin="no" scroll="false">
+	<controlset name="gacha_itembox_high" toggle="false" hittest="true" width="200" height="200" skin="no" scroll="false">
 		<controls>
 			<picture name="slot" rect="0 0 170 170" margin="0 0 0 0" movepop="false" oversound="button_cursor_over_3" dropsound="icon_get_down" picksound="icon_pick_up" image="random_01" DropScp="None" texttooltip="" layout_gravity="center top" hittest="false" stretch="true"/>
+			<slot name="itemslot" rect="0 0 85 85" margin="0 40 0 0" movepop="false" oversound="button_cursor_over_3" dropsound="icon_get_down" picksound="icon_pick_up" skin="slot_empty" DropScp="None" texttooltip="" layout_gravity="center top" hittest="false"/>
+			<richtext name="itemtext" rect="0 0 200 30" format="{@st43d}{/}" margin="0 0 0 31" layout_gravity="center bottom" textalign="center top" param1="txt" param1_def="ItemName" resizebytext="false" spacey="0" maxwidth="0" fontname="white_18_b_ds_ol" fixwidth="true" omitbywidth="true" updateparent="false" drawbackground="false" slideshow="false"/>
+		</controls>
+	</controlset>
+		<controlset name="gacha_itembox_mid" toggle="false" hittest="true" width="200" height="200" skin="no" scroll="false">
+		<controls>
+			<picture name="slot" rect="0 0 170 170" margin="0 0 0 0" movepop="false" oversound="button_cursor_over_3" dropsound="icon_get_down" picksound="icon_pick_up" image="random_02" DropScp="None" texttooltip="" layout_gravity="center top" hittest="false" stretch="true"/>
 			<slot name="itemslot" rect="0 0 85 85" margin="0 40 0 0" movepop="false" oversound="button_cursor_over_3" dropsound="icon_get_down" picksound="icon_pick_up" skin="slot_empty" DropScp="None" texttooltip="" layout_gravity="center top" hittest="false"/>
 			<richtext name="itemtext" rect="0 0 200 30" format="{@st43d}{/}" margin="0 0 0 31" layout_gravity="center bottom" textalign="center top" param1="txt" param1_def="ItemName" resizebytext="false" spacey="0" maxwidth="0" fontname="white_18_b_ds_ol" fixwidth="true" omitbywidth="true" updateparent="false" drawbackground="false" slideshow="false"/>
 		</controls>

@@ -96,6 +96,7 @@
                     </Event>
                     <Event execCount="1" eventName="Reward_Cube">
                         <execList>
+                            <ToolScp Scp="MGAME_EXEC_REVIVE" Client="NO" UseSleep="NO"/>
                             <ToolScp Scp="EXEC_DUNGEON_GIVE_TAKE_SOBJ_ACHIEVE_TX" Client="NO" UseSleep="NO">
                                 <Str Str="Legend_Raid_Giltine_Auto"/>
                                 <Str Str="None"/>

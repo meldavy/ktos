@@ -23,6 +23,8 @@ function LEGEND_CRAFT_INIT(frame)
 	RESET_INVENTORY_ICON();
 
 	local craftType = frame:GetUserValue("CRAFT_TYPE");
+	LEGEND_CRAFT_DROPLIST_INIT(frame); -- 레전드 장비 제작의 droplist가 아크 제작, 특수 재료 제작에 영향 안주도록 초기화
+
 	if craftType == "LEGEND_CRAFT" then
 		LEGEND_CRAFT_INIT_RECIPE_LIST();
 		LEGEND_CRAFT_DROPLIST_INIT(frame);

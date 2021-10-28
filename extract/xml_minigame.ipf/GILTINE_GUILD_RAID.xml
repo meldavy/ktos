@@ -470,7 +470,17 @@
                             </ToolScp>
                         </execList>
                     </Event>
-                    <Event execCount="1" eventName="BossPatternStart" execWithStart="0">
+                    <Event eventName="BossPatternStart" execWithStart="0">
+                        <condList>
+                            <ToolScp Scp="GAME_ST_EVT_COND_VALUE" Client="NO" UseSleep="NO">
+                                <Str Str="is_pattern_start"/>
+                                <Str Str="=="/>
+                                <Num Num="0"/>
+                            </ToolScp>
+                            <ToolScp Scp="MGAME_EVT_COND_SCRIPT" Client="NO" UseSleep="NO">
+                                <Str Str="SCR_GUILD_GILTINE_PATTERN_START_CHECK"/>
+                            </ToolScp>
+                        </condList>
                         <execList>
                             <ToolScp Scp="GAME_ST_EVT_EXEC_STAGE_START" Client="NO" UseSleep="NO">
                                 <Str Str="DemonicsHiddenPower"/>
