@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by imc (imc) -->
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by imc (imc) -->
 <!-- edited with XMLSpy v2008 sp1 (http://www.altova.com) by MintPC (Mi) -->
 <skinset name="Base">
 	<skinlist category="frames">
@@ -8497,6 +8497,9 @@
 		<image name="cooperation_war_time_btn" file="\skin\pip_test.tga" imgrect="943 1025 89 49" CMM_Caption="협동전_시간"/>
 		<image name="cooperation_war_time_btn_cursoron" file="\skin\pip_test.tga" imgrect="1033 1025 89 49"/>
 		<image name="cooperation_war_time_btn_clicked" file="\skin\pip_test.tga" imgrect="1033 1025 89 49"/>
+		<image name="costume_collection_btn" file="\skin\pip_test2.tga" imgrect="883 387 35 35" CMM_Caption="코스튬 컬렉션 버튼"/>
+		<image name="costume_collection_btn_cursoron" file="\skin\pip_test2.tga" imgrect="919 387 35 35"/>
+		<image name="costume_collection_btn_clicked" file="\skin\pip_test2.tga" imgrect="919 387 35 35"/>
 	</imagelist>
 	<imagelist category="yiseul_button">
 		<image name="pvpmine_shop_btn" file="\skin\pip_test.tga" imgrect="2049 61 66 59" CMM_Caption="용병단 증표 ui 버튼"/>
@@ -8554,8 +8557,8 @@
 		<image name="worldmap2_btn_epi_11_1_cursoron" file="\skin\worldmap2_icon2.tga" imgrect="556 391 117 128"/>
 		<image name="worldmap2_btn_epi_11_1_clicked" file="\skin\worldmap2_icon2.tga" imgrect="556 391 117 128"/>
 		<image name="worldmap2_btn_epi_11_2" file="\skin\worldmap2_icon.tga" imgrect="674 391 144 148" CMM_Caption="메인맵 에피소드 버튼11_2"/>
-		<image name="worldmap2_btn_epi_11_2_cursoron" file="\skin\worldmap2_icon.tga" imgrect="674 391 144 148"/>
-		<image name="worldmap2_btn_epi_11_2_clicked" file="\skin\worldmap2_icon.tga" imgrect="674 391 144 148"/>
+		<image name="worldmap2_btn_epi_11_2_cursoron" file="\skin\worldmap2_icon2.tga" imgrect="674 391 144 148"/>
+		<image name="worldmap2_btn_epi_11_2_clicked" file="\skin\worldmap2_icon2.tga" imgrect="674 391 144 148"/>
 		<image name="worldmap2_btn_epi_11_3" file="\skin\worldmap2_icon.tga" imgrect="819 391 138 123" CMM_Caption="메인맵 에피소드 버튼11_3"/>
 		<image name="worldmap2_btn_epi_11_3_cursoron" file="\skin\worldmap2_icon2.tga" imgrect="819 391 138 123"/>
 		<image name="worldmap2_btn_epi_11_3_clicked" file="\skin\worldmap2_icon2.tga" imgrect="819 391 138 123"/>
@@ -9583,6 +9586,7 @@
 		<image name="medeina_emotion04" file="\icon\emoticon\medeina_emotion04.png" imgrect="0 0 128 128"/>
 		<image name="medeina_emotion05" file="\icon\emoticon\medeina_emotion05.png" imgrect="0 0 128 128"/>
 		<image name="medeina_emotion06" file="\icon\emoticon\medeina_emotion06.png" imgrect="0 0 128 128"/>
+		<image name="ShellyPennington_emotion01" file="\icon\emoticon\ShellyPennington_emotion01.png" imgrect="0 0 128 128"/>
 	</imagelist>
 	<imagelist category="itemtooltip_image">
 		<image name="circle_gem" file="\skin\tooltip_skin_3.tga" imgrect="805 228 30 30"/>
@@ -10198,6 +10202,7 @@
 		<image name="icon_gesture_homerun" file="\icon\social.tga" imgrect="163 649 80 80"/>
 		<image name="icon_gesture_nyang" file="\icon\social.tga" imgrect="244 649 80 80"/>
 		<image name="icon_gesture_gangster" file="\icon\social.tga" imgrect="325 649 80 80"/>
+		<image name="icon_gesture_wiggle" file="\icon\social.tga" imgrect="406 649 80 80"/>
 	</imagelist>
 	<imagelist>
 		<image name="chat_page_arrow_left" file="\skin\mainframe_A.tga" imgrect="766 943 40 40"/>
@@ -11291,6 +11296,9 @@
 		<image name="icon_TelHarsha_ember" file="\icon\buff_icon3.tga" imgrect="128 1920 128 128" CMM_Caption="헬하르샤_불씨보유"/>
 		<image name="icon_arch_Arrowhead" file="\icon\buff_icon3.tga" imgrect="256 1920 128 128" CMM_Caption="화살촉 연마"/>
 		<image name="icon_pet_sparrow_thanksgivng_buff" file="\icon\buff_icon3.tga" imgrect="384 1920 128 128" CMM_Caption="달맞이 참새"/>
+		<image name="icon_Weekly_HR_UP" file="\icon\buff_icon3.tga" imgrect="512 1920 128 128" CMM_Caption="명중 특화"/>
+		<image name="icon_Weekly_BLK_UP" file="\icon\buff_icon3.tga" imgrect="640 1920 128 128" CMM_Caption="블록 특화"/>
+		<image name="icon_Weekly_DR_UP" file="\icon\buff_icon3.tga" imgrect="768 1920 128 128" CMM_Caption="회피 특화"/>
 	</imagelist>
 	<imagelist category="housing_bufficon">
 		<image name="icon_Weapon_Klaida" file="\icon\icon_hosing_buff.tga" imgrect="0 0 128 128"/>
@@ -11522,6 +11530,8 @@
 		<image name="021_npc_NoirParesseus" file="\skin\npccard\021_npc_NoirParesseus.tga" imgrect="0 0 330 440"/>
 		<image name="022_npc_Mei" file="\skin\npccard\022_npc_Mei.tga" imgrect="0 0 330 440"/>
 		<image name="023_npc_ShellyPennington" file="\skin\npccard\023_npc_ShellyPennington.tga" imgrect="0 0 330 440"/>
+		<image name="024_npc_WinonaEnde" file="\skin\npccard\024_npc_WinonaEnde.tga" imgrect="0 0 330 440"/>
+		<image name="025_npc_Feliksia" file="\skin\npccard\025_npc_Feliksia.tga" imgrect="0 0 330 440"/>
 	</imagelist>
 	<imagelist category="bosscard2">
 		<image name="001_boss_poata" file="\skin\bosscard\001_boss_poata.tga" imgrect="0 0 330 440"/>

@@ -7,6 +7,7 @@
 	<input moveable="true" />
 	<layer layerlevel="80"/>
 	<option closebutton="false"/>
+	<script OpenScp="None" CloseScp="COLLECTION_MAGIC_CLOSE"/>
   <userconfig TITLE_MARGIN_Y="10" BODY_MARGIN_Y="10"/>
 	<controls>
 		<groupbox name="bg" rect="0 0 200 100" margin="0 0 0 0" layout_gravity="left top"  draw="true" hittestbox="false" resizebyparent="false" resizebyresolution="false" scrollbar="false" skin="collection_complete"/>

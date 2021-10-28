@@ -84,7 +84,7 @@ function CLIENT_MORU(invItem)
 	tab:SelectTab(1);
 
 	--SET_SLOT_APPLY_FUNC(invframe, "_CHECK_MORU_TARGET_ITEM");
-	SET_INV_LBTN_FUNC(invframe, "MORU_LBTN_CLICK");
+	SET_INV_LBTN_FUNC(invframe, "MORU_LBTN_CLICK");	
 
 	CHANGE_MOUSE_CURSOR("MORU", "MORU_UP", "CURSOR_CHECK_REINF");
 end
@@ -108,8 +108,7 @@ function CURSOR_CHECK_REINF(slot)
 	local obj = GetIES(item:GetObject());
 	local not_destory, moru_type = IS_MORU_NOT_DESTROY_TARGET_ITEM(moruObj)
 	if not_destory == true then
-		if 1 == REINFORCE_ABLE_131014(obj) 
-			and obj.PR == 0 then
+		if 1 == REINFORCE_ABLE_131014(obj, moruObj) and obj.PR == 0 then
 			return 1;
 		end
 		return 0;
@@ -124,7 +123,7 @@ function CURSOR_CHECK_REINF(slot)
 	end
 
 	local obj = GetIES(item:GetObject());
-	return REINFORCE_ABLE_131014(obj);
+	return REINFORCE_ABLE_131014(obj, moruObj);
 end
 
 function CANCEL_MORU()
@@ -144,23 +143,30 @@ function MORU_LBTN_CLICK(frame, invItem)
 		return;
 	end
 
+	local upgradeitem_2 = ui.GetFrame("reinforce_131014");
+	local fromItem, fromMoru = REINFORCE_131014_GET_ITEM(upgradeitem_2);
+	local moru_item = nil
+	if fromMoru ~= nil then
+		moru_item = GetIES(fromMoru:GetObject())
+	end
+
 	local obj = GetIES(invItem:GetObject());
-	if REINFORCE_ABLE_131014(obj) == 0 then
+	if REINFORCE_ABLE_131014(obj, moru_item) == 0 then
 		ui.SysMsg(ClMsg("ItemIsNotReinforcable"));
 		return;
 	end
 
-	CANCEL_MORU();
+	CANCEL_MORU();	
 	
-	local upgradeitem_2 = ui.GetFrame("reinforce_131014");
+	upgradeitem_2 = ui.GetFrame("reinforce_131014");	
 	local fromItemSlot = GET_CHILD(upgradeitem_2, "fromItemSlot", "ui::CSlot");
 	MORU_SET_SLOT_ITEM(fromItemSlot, invItem);
 
-	local fromItem, fromMoru = REINFORCE_131014_GET_ITEM(upgradeitem_2);
+	fromItem, fromMoru = REINFORCE_131014_GET_ITEM(upgradeitem_2);
 	if fromItem == nil or fromMoru == nil then
 		return
 	end
-
+	
 	local moruObj = GetIES(fromMoru:GetObject());
 	if moruObj == nil then
 		return
@@ -221,9 +227,8 @@ function _CHECK_MORU_TARGET_ITEM(slot)
 	local obj = GetIES(item:GetObject());
 	local CanReinforceItem = 0;
 	local not_destory, moru_type = IS_MORU_NOT_DESTROY_TARGET_ITEM(moruObj)
-	if not_destory == true then
-	
-		if REINFORCE_ABLE_131014(obj) == 1 and obj.PR == 0 then
+	if not_destory == true then	
+		if REINFORCE_ABLE_131014(obj, moruObj) == 1 and obj.PR == 0 then			
 			CanReinforceItem = 1;
 		end
 	elseif moruObj.ClassName == "Moru_Potential" or moruObj.ClassName == "Moru_Potential14d" then
@@ -232,7 +237,7 @@ function _CHECK_MORU_TARGET_ITEM(slot)
 		if nil ~= itemCls and nil ~= objPR and tonumber(itemCls.PR) - 1 >= tonumber(objPR) then
 			CanReinforceItem = 1;
 		end
-	elseif REINFORCE_ABLE_131014(obj) == 1 then
+	elseif REINFORCE_ABLE_131014(obj, moruObj) == 1 then		
 		CanReinforceItem =1;
 	end
 

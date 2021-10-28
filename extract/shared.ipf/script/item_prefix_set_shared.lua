@@ -77,37 +77,42 @@ function GET_LEGEND_PREFIX_NEED_MATERIAL_COUNT_BY_NEEDITEM(targetObj, needItemCl
 					--EVENT_SEASON_SERVER
 					if IS_SEASON_SERVER() == "YES" then
                         count = math.floor(count*0.5)
-                        
-					-- else
-					-- 	count = math.floor(count*0.7)
 					end
+                        
+					-- 440장비는 이미 셋옵이 있으면 비용 1/4
+					if TryGetProp(targetObj, 'UseLv', 1) >= 440 and TryGetProp(targetObj, 'LegendPrefix', "None") ~= "None" then
+					    count = math.floor(count*0.25)
+					end
+					
 					-- PvP 전용 아이템 재료 1
 					if TryGetProp(targetObj, 'StringArg', 'None') == 'FreePvP' then
 						count = 1
 					end
 					
-					-- 440장비는 이미 셋옵이 있으면 비용 1/4
-					if TryGetProp(targetObj, 'UseLv', 1) >= 440 and TryGetProp(targetObj, 'LegendPrefix', "None") ~= "None" then
-					    count = math.floor(count*0.25)
+					if count <= 1 then
+					    count = 1
 					end
 					
 					return count;
 				else
 					local count = cls.NeedMaterial_WeaponCnt;
+					-- PvP 전용 아이템 재료 1
 					--EVENT_SEASON_SERVER
 					if IS_SEASON_SERVER() == "YES" then
 						count = math.floor(count*0.5)
-					-- else
-					-- 	count = math.floor(count*0.7)
-					end
-					-- PvP 전용 아이템 재료 1
-					if TryGetProp(targetObj, 'StringArg', 'None') == 'FreePvP' then
-						count = 1
 					end
 					
 					-- 440장비는 이미 셋옵이 있으면 비용 1/4
 					if TryGetProp(targetObj, 'UseLv', 1) >= 440 and TryGetProp(targetObj, 'LegendPrefix', "None") ~= "None" then
 					    count = math.floor(count*0.25)
+					end
+					
+					if TryGetProp(targetObj, 'StringArg', 'None') == 'FreePvP' then
+						count = 1
+					end
+					
+					if count <= 1 then
+					    count = 1
 					end
 					
 					return count

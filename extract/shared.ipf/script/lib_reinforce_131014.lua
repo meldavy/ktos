@@ -66,6 +66,14 @@ function IS_MORU_NOT_DESTROY_TARGET_ITEM(moruItem)
         return true, 'ruby'
     end
 
+    if moruItem.StringArg == 'Legenda' then
+        return true, 'Legenda'
+    end
+
+    if moruItem.StringArg == 'Luciferi' then
+        return true, 'Luciferi'
+    end
+
     return false, 'None';
 end
 
@@ -82,11 +90,23 @@ end
 --     return false;
 -- end
 
-function REINFORCE_ABLE_131014(item)    
+function REINFORCE_ABLE_131014(item, moru_item)              
     if item.ItemType ~= 'Equip' then
         return 0;
     end
-
+    
+    if moru_item ~= nil and TryGetProp(moru_item, 'StringArg2', 'None') == 'contents_moru' then  -- 레전드 전용 모루인 경우        
+        if  TryGetProp(moru_item, 'StringArg', 'None') == "Luciferi" then
+            if TryGetProp(item, 'StringArg', 'None') ~= "Luciferi" and TryGetProp(item, 'StringArg', 'None') ~= "Acc_EP12" then
+                return 0
+            end
+        else
+            if TryGetProp(item, 'StringArg', 'None') ~= TryGetProp(moru_item, 'StringArg', 'None') then            
+                return 0
+            end
+        end
+    end
+    
     if item.Reinforce_Type ~= "Moru" or item.LifeTime > 0 then
         return 0;
     end
@@ -217,6 +237,8 @@ function GET_REINFORCE_PRICE(fromItem, moruItem, pc)
     
     if moruItem.StringArg == 'DIAMOND' and reinforcecount > 1 then
         value = value + (value_diamond * 2.1)
+    elseif TryGetProp(moruItem, 'StringArg2', 'None') == 'contents_moru' and reinforcecount > 1 then -- 콘텐츠 모루는 강화 비용 3배
+        value = value * 3
     end
 
     -- 440레벨 장비 부터는 item_IncreaseCost.xml 테이블의 영향을 받아 비용 증가
@@ -227,7 +249,7 @@ function GET_REINFORCE_PRICE(fromItem, moruItem, pc)
             IncreaseRatio = TryGetProp(Cls, "ReinforcePriceRatio", 1)
         end
     end
-    if IncreaseRatio ~= nil then
+    if IncreaseRatio ~= nil then        
         value = value * IncreaseRatio
     end
     ---------------------

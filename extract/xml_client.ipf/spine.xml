@@ -174,4 +174,9 @@
 		<Element Name="dionyscon02" root="dionyscon02" atlas="dionyscon02" json="dionyscon02" scale="1" offsetX="0" offsetY="-10" animation="animation"/>
 		<Element Name="dionyscon03" root="dionyscon03" atlas="dionyscon03" json="dionyscon03" scale="1" offsetX="-15" offsetY="-10" animation="animation"/>
 	</Spine>
+	<Spine>
+		<Element Name="bakarinecon1" root="bakarinecon1" atlas="bakarinecon1" json="bakarinecon1" scale="1" offsetX="15" offsetY="-18" animation="animation"/>
+		<Element Name="bakarinecon2" root="bakarinecon2" atlas="bakarinecon2" json="bakarinecon2" scale="1" offsetX="0" offsetY="-10" animation="animation"/>
+		<Element Name="bakarinecon3" root="bakarinecon3" atlas="bakarinecon3" json="bakarinecon3" scale="0.8" offsetX="-1" offsetY="-10" animation="animation"/>
+	</Spine>
 </List>

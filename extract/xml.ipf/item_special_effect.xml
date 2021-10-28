@@ -521,6 +521,11 @@
 		</ItemList>
 	</Effect_Item>
 	<Effect_Item>
+		<ItemList ItemClassName="ABAND_MOONPOPO">
+			<effect TargetNode="Dummy_effect" effect="F_light173_loop" scale="0.1" offset="0;0" ReinforceValue="0" UseAttach="YES" PlayType="All" IsKeeping="YES" BlendMode="NO" OnLifeTime="NO" LifeTimeValue="0.0" GiveAttackFromEffect="None" UseTrailEffectChange="true" GiveAttackFromEffectScale="1" GiveAttackSelfEffect="None" GiveAttackSelfEffectScale="5" GiveAttackFromSound="None" GiveAttackSelfSound="None" TakeAttackEffect="None" TakeAttackEffectScale="1" TakeAttackSound="None" GiveAttackFromEffectOffSet="0;0" GiveAttackSelfEffectOffSet="0;0" TakeAttackEffectOffSet="0;0" SoundVolume="1"/>
+		</ItemList>
+	</Effect_Item>
+	<Effect_Item>
 		<ItemList ItemClassName="EP12_Artefact_094">
 			<effect TargetNode="Dummy_amulet02" effect="F_light123_red_loop" scale="0.1" offset="0;0" ReinforceValue="0" UseAttach="YES" PlayType="All" IsKeeping="YES" BlendMode="NO" OnLifeTime="NO" LifeTimeValue="0.0" GiveAttackFromEffect="None" UseTrailEffectChange="true" GiveAttackFromEffectScale="1" GiveAttackSelfEffect="None" GiveAttackSelfEffectScale="5" GiveAttackFromSound="None" GiveAttackSelfSound="None" TakeAttackEffect="None" TakeAttackEffectScale="1" TakeAttackSound="None" GiveAttackFromEffectOffSet="0;0" GiveAttackSelfEffectOffSet="0;0" TakeAttackEffectOffSet="0;0" SoundVolume="1"/>
 		</ItemList>

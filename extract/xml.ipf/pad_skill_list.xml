@@ -323,18 +323,27 @@
 				<Num Num="10"/>
 			</ToolScp>
 			<ToolScp Scp="C_PAD_EFFECT_POS" Client="YES" UseSleep="NO">
-				<Str_Arg Str="F_archer_blindside_arts" Arg="0.85"/>
+				<Str_Arg Str="F_archer_blindside_arts" Arg="0.85000002"/>
 				<Pos Angle="0" Dist="0"/>
 				<Num Num="0"/>
 				<Str_Arg Str="None" Arg="1"/>
 				<Num Num="0"/>
 			</ToolScp>
 		</createEvent>
-		<destroyEvent>
-			<ToolScp Scp="PAD_FUNC_UPDATE_RUNSCRIPT" Client="NO" UseSleep="NO">
-				<Str Str="SCR_APPRAISER_BLINDSIDE_DEBUFF"/>
+		<enterEvent>
+			<ToolScp Scp="PAD_TGT_BUFF" Client="NO" UseSleep="NO">
+				<Str Str="ENEMY"/>
+				<Num Num="0"/>
+				<Num Num="0"/>
+				<Str Str="Blindside_Debuff"/>
+				<Num Num="1"/>
+				<Num Num="0"/>
+				<Num Num="0" UseFunc="1" FuncTxt="return 10000 + obj.Level * 2000"/>
+				<Num Num="1"/>
+				<Num Num="100"/>
+				<Num Num="0"/>
 			</ToolScp>
-		</destroyEvent>
+		</enterEvent>
 		<updateEvent>
 			<ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
 				<Num Num="-500"/>
@@ -7585,6 +7594,11 @@ return value;"/>
 				<Str Str="Disnai_Svirti_PAD_LEAVE"/>
 			</ToolScp>
 		</leaveEvent>
+		<updateEvent>
+			<ToolScp Scp="PAD_FUNC_UPDATE_DIRECT" Client="NO" UseSleep="NO">
+				<Str Str="Disnai_Svirti_PAD_UPDATE"/>
+			</ToolScp>
+		</updateEvent>
 	</PadSkill>
 	<PadSkill Name="Dragoon_Gae_Bulg_atkabil" CheckerType="1" Range="45" InnerRange="45">
 		<createEvent>
@@ -11007,7 +11021,19 @@ return value"/>
 				<Num Num="5001"/>
 				<Num Num="10" UseFunc="1" FuncTxt="return 9999"/>
 			</ToolScp>
+			<ToolScp Scp="PAD_SET_BUFF_EXPROP" Client="NO" UseSleep="NO">
+				<Str Str="ITEM_MOTH_STAFF"/>
+				<Str Str="MothFire_By_Moth_Staff"/>
+				<Num Num="1"/>
+			</ToolScp>
 		</createEvent>
+		<destroyEvent>
+			<ToolScp Scp="PAD_SET_BUFF_EXPROP" Client="NO" UseSleep="NO">
+				<Str Str="ITEM_MOTH_STAFF"/>
+				<Str Str="MothFire_By_Moth_Staff"/>
+				<Num Num="-1"/>
+			</ToolScp>
+		</destroyEvent>
 		<leaveEvent>
 			<ToolScp Scp="PAD_DEACTIVATE" Client="NO" UseSleep="NO">
 				<Str Str="ALL"/>
@@ -16108,42 +16134,6 @@ return value"/>
 			<ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
 				<Num Num="-500"/>
 				<Num Num="0"/>
-			</ToolScp>
-		</updateEvent>
-	</PadSkill>
-	<PadSkill Name="Item_Moringponia_Staff" CheckerType="1" deadProcess="1" Range="15" InnerRange="15" ApplyFlyMon="1">
-		<createEvent>
-			<ToolScp Scp="C_PAD_EFFECT_POS" Client="YES" UseSleep="NO">
-				<Str_Arg Str="I_wizard_firewall2" Arg="0.6"/>
-				<Pos Angle="0" Dist="0"/>
-				<Num Num="0"/>
-				<Str_Arg Str="None" Arg="1"/>
-			</ToolScp>
-			<ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
-				<Num Num="5001"/>
-				<Num Num="10" UseFunc="1" FuncTxt="return 9999"/>
-			</ToolScp>
-		</createEvent>
-		<enterEvent>
-        </enterEvent>
-		<leaveEvent>
-			<ToolScp Scp="PAD_DEACTIVATE" Client="NO" UseSleep="NO">
-				<Str Str="ALL"/>
-			</ToolScp>
-		</leaveEvent>
-		<updateEvent>
-			<ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
-				<Num Num="-500"/>
-				<Num Num="0"/>
-			</ToolScp>
-			<ToolScp Scp="PAD_DAMAGE_ENEMY" Client="NO" UseSleep="NO">
-				<Num Num="1"/>
-				<Num Num="0"/>
-				<Num Num="0"/>
-				<Str_Arg Str="None" Arg="1"/>
-				<Num Num="0"/>
-				<Num Num="0"/>
-				<Str Str="None"/>
 			</ToolScp>
 		</updateEvent>
 	</PadSkill>
@@ -21906,6 +21896,18 @@ end"/>
 			<ToolScp Scp="PAD_FUNC_UPDATE_DIRECT" Client="NO" UseSleep="NO">
 				<Str Str="SCR_WEEKLY_PADPATERN_TAKE_DAMAGE"/>
 			</ToolScp>
+			<ToolScp Scp="PAD_BUFF_CHECK_BUFF_ENEMY" Client="NO" UseSleep="NO">
+				<Str Str="ENEMY"/>
+				<Num Num="0"/>
+				<Num Num="0"/>
+				<Str Str="Weekly_PadPattern_01_Debuff"/>
+				<Str Str="Weekly_PadPattern_01_Debuff"/>
+				<Num Num="1"/>
+				<Num Num="0"/>
+				<Num Num="0"/>
+				<Num Num="1"/>
+				<Num Num="100"/>
+			</ToolScp>
 		</updateEvent>
 	</PadSkill>
 	<PadSkill Name="Weekly_PadPattern_02" CheckerType="0" Dist="130.91171" Angle="-2.4990294" Range="55" UpdateTerm="1000" AllowOverlap="1" EnableSearch="0" IsMagicType="0" IsMineType="0">
@@ -22756,7 +22758,7 @@ return 1'/>
 				<Str Str="ReflectShield_Buff"/>
 				<Num Num="1" UseFunc="1" FuncTxt="return obj.Level"/>
 				<Num Num="0"/>
-				<Num Num="300000"/>
+				<Num Num="1800000"/>
 				<Num Num="1"/>
 				<Num Num="100"/>
 				<Num Num="0"/>
@@ -27389,6 +27391,18 @@ end"/>
 			</ToolScp>
 			<ToolScp Scp="PAD_FUNC_UPDATE_DIRECT" Client="NO" UseSleep="NO">
 				<Str Str="SCR_FIELD_PADPATERN_TAKE_DAMAGE"/>
+			</ToolScp>
+			<ToolScp Scp="PAD_BUFF_CHECK_BUFF_ENEMY" Client="NO" UseSleep="NO">
+				<Str Str="ENEMY"/>
+				<Num Num="0"/>
+				<Num Num="0"/>
+				<Str Str="Field_PadPattern_01_Debuff"/>
+				<Str Str="Field_PadPattern_01_Debuff"/>
+				<Num Num="1"/>
+				<Num Num="0"/>
+				<Num Num="0"/>
+				<Num Num="1"/>
+				<Num Num="100"/>
 			</ToolScp>
 		</updateEvent>
 	</PadSkill>

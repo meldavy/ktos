@@ -51,22 +51,26 @@ function ON_SILVER_GACHA_INFO_CHANGE()
     local eventID = SILVER_GACHA_GET_EVENT_ID()
 
     -- 아이템
-    local itemList = SILVER_GACHA_SORTED_ITEM_LIST(eventID)
+    for rank = 1, 3 do
+        local gb = frame:GetChild("protection_gb")
+        local itemList = SILVER_GACHA_GET_ITEM_LIST_BY_RANK(eventID, rank)
 
-    for i = 1, #itemList do
-        local itemID = itemList[i]
-        local itemData = GetClassByType("Item", itemID)
-        local nowCount, originalCount = GetSilverGachaItemCount(eventID, itemID)
+        for i = 1, #itemList do
+            local itemID = itemList[i]
+            local itemData = GetClassByType("Item", itemID)
+            local nowCount, originalCount = GetSilverGachaItemCount(eventID, itemID)
 
-        local slot = GET_CHILD_RECURSIVELY(frame, 'slot_'..(i-1))
-        local text = GET_CHILD_RECURSIVELY(frame, 'slot_'..(i-1).."_text")
+            local ctrl = AUTO_CAST(gb:GetChild('ITEMLIST_'..rank..'_'..i))
+            local slot = AUTO_CAST(ctrl:GetChild('slot'))
+            local text = AUTO_CAST(ctrl:GetChild('slot_text'))
 
-        if text ~= nil then
-            text:SetTextByKey("now", nowCount)
-            text:SetTextByKey("original", originalCount)
+            if rank ~= 3 then
+                text:SetTextByKey("now", nowCount)
+                text:SetTextByKey("original", originalCount)
 
-            if nowCount == 0 then
-                slot:GetIcon():SetColorTone('FF444444')
+                if nowCount == 0 then
+                    slot:GetIcon():SetColorTone('FF444444')
+                end
             end
         end
     end
@@ -110,32 +114,54 @@ function SILVER_GACHA_SET_UI()
     dedicate:SetText("{@st41b}{s16}"..GetSilverGachaEventCost(eventID))
     
     -- 아이템
-    local itemList = SILVER_GACHA_SORTED_ITEM_LIST(eventID)
+    for rank = 1, 3 do
+        local gb = frame:GetChild("protection_gb")
+        local itemList = SILVER_GACHA_GET_ITEM_LIST_BY_RANK(eventID, rank)
 
-    for i = 1, #itemList do
-        local itemID = itemList[i]
-        local itemData = GetClassByType("Item", itemID)
-        local nowCount, originalCount = GetSilverGachaItemCount(eventID, itemID)
+        for i = 1, #itemList do
+            local itemID = itemList[i]
+            local itemData = GetClassByType("Item", itemID)
+            local nowCount, originalCount = GetSilverGachaItemCount(eventID, itemID)
 
-        -- 아이템 슬롯
-        local slot = GET_CHILD_RECURSIVELY(frame, 'slot_'..(i-1))
+            local ctrl = gb:CreateOrGetControlSet('silver_gacha_slot', 'ITEMLIST_'..rank..'_'..i, 0, 0);
 
-        SET_SLOT_IMG(slot, itemData.Icon)
-        SET_ITEM_TOOLTIP_BY_TYPE(slot:GetIcon(), itemData.ClassID)
+            -- 테두리 세팅
+            local pic = AUTO_CAST(ctrl:GetChild('slot_pic'))
 
-        slot:GetIcon():SetTooltipOverlap(1)
-        slot:SetUserValue("ITEM_ID", itemID)
+            local imageName = frame:GetUserConfig("SLOT_IMAGE_RANK"..rank)
+            local imageSize = ui.GetSkinImageSize(imageName)
 
-        -- 텍스트
-        local text = GET_CHILD_RECURSIVELY(frame, 'slot_'..(i-1).."_text")
+            pic:SetImage(imageName)
+            pic:Resize(imageSize.x, imageSize.y)
 
-        if text ~= nil then
-            text:SetTextByKey("now", nowCount)
-            text:SetTextByKey("original", originalCount)
+            -- 아이템 슬롯
+            local slot = AUTO_CAST(ctrl:GetChild('slot'))
 
-            if nowCount == 0 then
-                slot:GetIcon():SetColorTone('FF444444')
+            SET_SLOT_IMG(slot, itemData.Icon)
+            SET_ITEM_TOOLTIP_BY_TYPE(slot:GetIcon(), itemData.ClassID)
+
+            slot:GetIcon():SetTooltipOverlap(1)
+            slot:SetUserValue("ITEM_ID", itemID)
+
+            -- 텍스트
+            local text = AUTO_CAST(ctrl:GetChild('slot_text'))
+
+            if rank == 3 then
+                text:SetText("{@st100white_16}{s26}"..ScpArgMsg("SilverGachaMaxVal"))
+            else
+                text:SetTextByKey("now", nowCount)
+                text:SetTextByKey("original", originalCount)
+
+                if nowCount == 0 then
+                    slot:GetIcon():SetColorTone('FF444444')
+                end
             end
+
+            -- 위치 조정
+            local offset_x = (gb:GetWidth() + 100) / (#itemList + 1)
+            local offset_y = 220
+
+            ctrl:SetMargin(i * offset_x - ctrl:GetWidth() / 2 - 50, (rank-1) * offset_y + 80, 0, 0)
         end
     end
 end
@@ -229,7 +255,7 @@ function _SILVER_GACHA_RESULT_EFFECT()
 	local dedication_slot = GET_CHILD_RECURSIVELY(frame, 'dedication_slot')
     local itemID = dedication_slot:GetUserValue("ITEM_ID")
     
-	local slot = GODPROTECTION_GET_SLOT(itemID)
+	local slot = SILVER_GACHA_GET_SLOT(itemID)
 	if slot == nil then
 		return
 	end
@@ -395,15 +421,20 @@ end
 
 -- 당첨된 아이템의 슬롯 가져오기
 function SILVER_GACHA_GET_SLOT(itemID)
-	local frame = ui.GetFrame("silver_gacha")
+    local frame = ui.GetFrame("silver_gacha")
+    local eventID = SILVER_GACHA_GET_EVENT_ID()
 	
-	for i = 0, 5 do
-		local slot = GET_CHILD_RECURSIVELY(frame, 'slot_'..i)
-        local slotItemID = slot:GetUserValue("ITEM_ID")
-        
-		if tonumber(itemID) == tonumber(slotItemID) then
-			return slot
-		end
+    for rank = 1, 3 do
+        local itemList = SILVER_GACHA_GET_ITEM_LIST_BY_RANK(eventID, rank)
+
+        for i = 1, #itemList do
+            local slot = GET_CHILD_RECURSIVELY(frame, 'ITEMLIST_'..rank..'_'..i)
+            local slotItemID = slot:GetUserValue("ITEM_ID")
+            
+            if tonumber(itemID) == tonumber(slotItemID) then
+                return slot
+            end
+        end
 	end
 
 	return nil
@@ -430,16 +461,15 @@ function SILVER_GACHA_AUTO_EDIT_CLICK(parent, ctrl)
     auto_text:ShowWindow(0)
 end
 
--- 랭크순으로 정렬된 아이템 리스트
-function SILVER_GACHA_SORTED_ITEM_LIST(eventID)
+-- 랭크에 따른 아이템 리스트
+function SILVER_GACHA_GET_ITEM_LIST_BY_RANK(eventID, rank)
     local list = GetSilverGachaItemList(eventID)
 
-    table.sort(list, function(a, b)
-        local rankA = GetSilverGachaItemRank(eventID, a)
-        local rankB = GetSilverGachaItemRank(eventID, b)
-
-        return rankA < rankB
-    end)
+    for i = #list, 1, -1 do
+        if GetSilverGachaItemRank(eventID, list[i]) ~= rank then
+            table.remove(list, i)
+        end
+    end
 
 	return list
 end

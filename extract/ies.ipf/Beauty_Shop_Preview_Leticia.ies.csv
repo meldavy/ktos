@@ -1,9 +1,9 @@
 ClassID,Price,PriceRatio,StampCount,ClassName,Category,Gender,ItemClassName,EquipType,JobOnly,SellStartTime,SellEndTime,PackageList,IsPremium,TAG,ItemAddDate,BuyMessage
-11,-1,0,0,EP12_costume_Com_054,,M,EP12_costume_Com_054,costume,,2020-10-01 00:00:00,2020-10-08 17:59:59,,NO,,,NotBuy_Thema
-12,-1,0,0,EP12_costume_Com_058,,M,EP12_costume_Com_058,costume,,2020-10-01 00:00:00,2020-10-08 17:59:59,,NO,,,NotBuy_Thema
-21,-1,0,0,EP12_costume_Com_055,,F,EP12_costume_Com_055,costume,,2020-10-01 00:00:00,2020-10-08 17:59:59,,NO,,,NotBuy_Thema
-22,-1,0,0,EP12_costume_Com_059,,F,EP12_costume_Com_059,costume,,2020-10-01 00:00:00,2020-10-08 17:59:59,,NO,,,NotBuy_Thema
-31,-1,0,0,EP12_Artefact_094,,,EP12_Artefact_094,weapon,,2020-10-01 00:00:00,2020-10-08 17:59:59,,NO,,,NotBuy_Thema
-32,-1,0,0,EP12_Artefact_095,,,EP12_Artefact_095,weapon,,2020-10-01 00:00:00,2020-10-08 17:59:59,,NO,,,NotBuy_Thema
-33,-1,0,0,EP12_Artefact_096,,,EP12_Artefact_096,weapon,,2020-10-01 00:00:00,2020-10-08 17:59:59,,NO,,,NotBuy_Thema
-71,-1,0,0,EP12_Hat_047,,,EP12_Hat_047,hair_costume,,2020-10-01 00:00:00,2020-10-08 17:59:59,,NO,,,NotBuy_Thema
+11,-1,0,0,EP12_costume_Com_054,,M,EP12_costume_Com_054,costume,,2020-10-01 00:00:00,2020-10-15 17:59:59,,NO,,,NotBuy_Thema
+12,-1,0,0,EP12_costume_Com_058,,M,EP12_costume_Com_058,costume,,2020-10-01 00:00:00,2020-10-15 17:59:59,,NO,,,NotBuy_Thema
+21,-1,0,0,EP12_costume_Com_055,,F,EP12_costume_Com_055,costume,,2020-10-01 00:00:00,2020-10-15 17:59:59,,NO,,,NotBuy_Thema
+22,-1,0,0,EP12_costume_Com_059,,F,EP12_costume_Com_059,costume,,2020-10-01 00:00:00,2020-10-15 17:59:59,,NO,,,NotBuy_Thema
+31,-1,0,0,EP12_Artefact_094,,,EP12_Artefact_094,weapon,,2020-10-01 00:00:00,2020-10-15 17:59:59,,NO,,,NotBuy_Thema
+32,-1,0,0,EP12_Artefact_095,,,EP12_Artefact_095,weapon,,2020-10-01 00:00:00,2020-10-15 17:59:59,,NO,,,NotBuy_Thema
+33,-1,0,0,EP12_Artefact_096,,,EP12_Artefact_096,weapon,,2020-10-01 00:00:00,2020-10-15 17:59:59,,NO,,,NotBuy_Thema
+71,-1,0,0,EP12_Hat_047,,,EP12_Hat_047,hair_costume,,2020-10-01 00:00:00,2020-10-15 17:59:59,,NO,,,NotBuy_Thema

@@ -258,6 +258,12 @@ function UPDATE_EVENTBANNER_UI(frame)
 			--endTime 이 있어야 exchange 부르고, endtime 있는데 exchange없으면 endtime 만 지나도 안보이게하고
 			local remainStartTime = CHECK_EVENTBANNER_REMAIN_TIME(banner.StartTimeYYYYMM, banner.StartTimeDDHHMM)
 			
+			--남은 날짜 삭제 기능
+			if banner.UserCommand1 == "time_del" then
+				time_limited_bg:SetVisible(0);
+				time_limited_text:SetVisible(0);
+			end
+			
 			if remainStartTime ~= nil and remainStartTime < 0 then
 				local remainNewTime = CHECK_EVENTBANNER_REMAIN_TIME(banner.NewTimeYYYYMM, banner.NewTimeDDHHMM)
 				local remainDeadlineTime = CHECK_EVENTBANNER_REMAIN_TIME(banner.DeadlineTimeYYYYMM, banner.DeadlineTimeDDHHMM)

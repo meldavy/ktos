@@ -48,24 +48,16 @@ function LEGEND_CRAFT_TYPE_INIT(craftType)
 
 	local groupDroplist = GET_CHILD(frame, "groupDroplist");
 	local itemGroupNameDroplist = GET_CHILD(frame, "itemGroupNameDroplist");
-	local showonlyhavemat = GET_CHILD(frame, "showonlyhavemat");
-	local showOnlyEnableEquipCheck = GET_CHILD(frame, "showOnlyEnableEquipCheck");
 
 	if craftType == "LEGEND_CRAFT" then
 		groupDroplist:ShowWindow(1);
 		itemGroupNameDroplist:ShowWindow(1);
-		showonlyhavemat:ShowWindow(1);
-		showOnlyEnableEquipCheck:ShowWindow(1);
 	elseif craftType == "ARK_CRAFT" then
 		groupDroplist:ShowWindow(0);
 		itemGroupNameDroplist:ShowWindow(0);
-		showonlyhavemat:ShowWindow(0);
-		showOnlyEnableEquipCheck:ShowWindow(0);		
 	elseif craftType == "SPECIAL_MISC_CRAFT" then			
 		groupDroplist:ShowWindow(0);
 		itemGroupNameDroplist:ShowWindow(0);
-		showonlyhavemat:ShowWindow(0);
-		showOnlyEnableEquipCheck:ShowWindow(0);
 	end
 
 	local ctrl = GET_CHILD(frame, "title");
@@ -186,12 +178,21 @@ function LEGEND_CRAFT_MAKE_LIST(frame)
 		for i = 1, #list do
 			local cls = GetClass('legendrecipe', list[i]);			
 			LEGEND_CRAFT_MAKE_CTRLSET(recipeBox, cls, checkGroup, checkMaterial, checkGroupName, checkEquipable, checkHaveMaterial);
-		end		
+		end
 	else -- 옵션이 전부 모두 보기인 경우
-		local clslist, cnt = GetClassList('legendrecipe');
-		for i = 0, cnt - 1 do
-			local cls = GetClassByIndexFromList(clslist, i);
-			LEGEND_CRAFT_MAKE_CTRLSET(recipeBox, cls, checkGroup, checkMaterial, checkGroupName, checkEquipable, checkHaveMaterial)
+		local craftType = frame:GetUserValue("CRAFT_TYPE");
+		if craftType == "SPECIAL_MISC_CRAFT" then
+			local clslist, cnt = GetClassList('SpecialMiscRecipe');
+			for i = 0, cnt - 1 do
+				local cls = GetClassByIndexFromList(clslist, i);
+				SPECIAL_MISC_MAKE_CTRLSET(recipeBox, cls, checkGroup, checkMaterial, checkGroupName, checkEquipable, checkHaveMaterial);
+			end
+		else
+			local clslist, cnt = GetClassList('legendrecipe');
+			for i = 0, cnt - 1 do
+				local cls = GetClassByIndexFromList(clslist, i);
+				LEGEND_CRAFT_MAKE_CTRLSET(recipeBox, cls, checkGroup, checkMaterial, checkGroupName, checkEquipable, checkHaveMaterial);
+			end
 		end
 	end
 	GBOX_AUTO_ALIGN(recipeBox, 0, 0, 0, true, false, true);
@@ -454,11 +455,12 @@ function SPECIAL_MISC_CRAFT_MAKE_LIST(frame)
 	local recipeBox = GET_CHILD_RECURSIVELY(frame, 'recipeBox');
 	recipeBox:RemoveAllChild();
 
+	local checkGroup, checkMaterial, checkGroupName, checkEquipable, checkHaveMaterial = GET_LEGEND_CRAFT_SHOW_OPTION(frame);
 	local clslist, cnt = GetClassList("SpecialMiscRecipe");
 	for i = 0, cnt - 1 do
 		local cls = GetClassByIndexFromList(clslist, i);
 		if cls ~= nil then
-			SPECIAL_MISC_MAKE_CTRLSET(recipeBox, cls)
+			SPECIAL_MISC_MAKE_CTRLSET(recipeBox, cls, checkGroup, checkMaterial, checkGroupName, checkEquipable, checkHaveMaterial);
 		end
 	end
 
@@ -466,8 +468,11 @@ function SPECIAL_MISC_CRAFT_MAKE_LIST(frame)
     recipeBox:SetScrollPos(0);
 end
 
-function SPECIAL_MISC_MAKE_CTRLSET(recipeBox, recipeCls)
+function SPECIAL_MISC_MAKE_CTRLSET(recipeBox, recipeCls, checkGroup, checkMaterial, checkGroupName, checkEquipable, checkHaveMaterial)
 	local frame = recipeBox:GetTopParentFrame();
+	if IS_NEED_TO_SHOW_LEGEND_RECIPE(frame, recipeCls, checkGroup, checkMaterial, checkGroupName, checkEquipable, checkHaveMaterial) == false then
+		return;
+	end
 
 	local targetItem = GetClass('Item', recipeCls.TargetItem);
 	local ctrlset = recipeBox:CreateOrGetControlSet('craft_recipe', 'RECIPE_'..recipeCls.ClassID, 0, 0);

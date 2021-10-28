@@ -66,7 +66,7 @@
                 </Scp>
                 <Scp Client="NO" Scp="SKL_BUFF" Time="0" UseSleep="NO">
                     <Str Str="SpiralArrow_Debuff"/>
-                    <Num FuncTxt="return obj.Level;" Num="0" UseFunc="1" />
+                    <Num FuncTxt="return 3;" Num="0" UseFunc="1" />
                     <Num Num="0"/>
                     <Num Num="30000"/>
                     <Num Num="1"/>
@@ -145,7 +145,7 @@
                         </Scp>
                         <Scp Client="NO" Scp="SKL_BUFF" Time="0" UseSleep="NO">
                             <Str Str="SpiralArrow_Debuff"/>
-                            <Num FuncTxt="return obj.Level;" Num="0" UseFunc="1" />
+                            <Num FuncTxt="return 3;" Num="0" UseFunc="1" />
                             <Num Num="0"/>
                             <Num Num="30000"/>
                             <Num Num="1"/>
@@ -203,7 +203,7 @@
                         </Scp>
                         <Scp Client="NO" Scp="SKL_BUFF" Time="0" UseSleep="NO">
                             <Str Str="SpiralArrow_Debuff"/>
-                            <Num FuncTxt="return obj.Level;" Num="0" UseFunc="1" />
+                            <Num FuncTxt="return 3;" Num="0" UseFunc="1" />
                             <Num Num="0"/>
                             <Num Num="30000"/>
                             <Num Num="1"/>

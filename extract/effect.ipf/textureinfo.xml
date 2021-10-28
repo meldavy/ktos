@@ -411,6 +411,7 @@
 	<Texture Name="dash006" File="dash006.dds" Size="128 128"/>
 	<Texture Name="circle031_violet" File="circle031_violet.dds" Size="64 64"/>
 	<Texture Name="circle028" File="circle028.dds" Size="128 128"/>
+	<Texture Name="digit_damage_blue" File="digitfont01_blue.tga" Size="1200 128"/>
 	<Texture Name="digit_damage" File="digitfont01.tga" Size="1200 128"/>
 	<Texture Name="sprit005_1" File="sprit005_1.dds" Size="256 256"/>
 	<Texture Name="sprit005" File="sprit005.dds" Size="256 256"/>

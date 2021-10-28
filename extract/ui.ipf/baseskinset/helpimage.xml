@@ -569,6 +569,7 @@
 		<image name="TUTO_UPHILL_DEFENSE_07" file="helpimg\TUTO_UPHILL_DEFENSE_07.jpg" imgrect="0 0 380 187"/>
 		<image name="TUTO_UPHILL_DEFENSE_08" file="helpimg\TUTO_UPHILL_DEFENSE_08.jpg" imgrect="0 0 380 262"/>
 		<image name="TUTO_UPHILL_DEFENSE_09" file="helpimg\TUTO_UPHILL_DEFENSE_09.jpg" imgrect="0 0 380 714"/>
+		<image name="TUTO_UPHILL_DEFENSE_10" file="helpimg\TUTO_UPHILL_DEFENSE_10.jpg" imgrect="0 0 380 183"/>
 		<image name="TUTO_PERSONAL_MARKET1_01" file="helpimg\TUTO_PERSONAL_MARKET1_01.jpg" imgrect="0 0 380 209"/>
 		<image name="TUTO_PERSONAL_MARKET1_02" file="helpimg\TUTO_PERSONAL_MARKET1_02.jpg" imgrect="0 0 380 149"/>
 		<image name="TUTO_PERSONAL_MARKET1_03" file="helpimg\TUTO_PERSONAL_MARKET1_03.jpg" imgrect="0 0 380 290"/>

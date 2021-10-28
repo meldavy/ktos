@@ -1,4 +1,6 @@
 ClassID,StartTimeYYYYMM,StartTimeDDHHMM,NewTimeYYYYMM,NewTimeDDHHMM,EndTimeYYYYMM,EndTimeDDHHMM,DeadlineTimeYYYYMM,DeadlineTimeDDHHMM,ExchangeTimeYYYYMM,ExchangeTimeDDHHMM,ClassName,Name,ImagePath,url,UserCommand1,UserCommand2,UserCommand3,ShowType
+997470,202010,80900,202010,130000,202103,40700,202102,260000,0,0,event1008_Collection,컬렉션 이벤트,event1008_Collection,http://tos.nexon.com/news/events/view.aspx?n4ArticleSN=287&n4ArticleCategorySN=1,,,,
+997480,202010,80900,202010,130000,202101,10000,202012,260000,0,0,event1008_DevilsTemptation,마신의 유혹,event1008_DevilsTemptation,http://tos.nexon.com/news/events/view.aspx?n4ArticleSN=286&n4ArticleCategorySN=1,,,,
 997490,202009,240900,202009,290000,202010,80700,202010,30000,0,0,event2010Specialedition,달맞이 특판,event2010Specialedition,http://tos.nexon.com/news/tosnotice/view.aspx?n4ArticleSN=2127,,,,
 997500,202009,240900,202009,290000,202010,80700,202010,30000,0,0,2010_TpPlus,TP 더드림,2010_TpPlus,http://tos.nexon.com/news/tosnotice/view.aspx?n4ArticleSN=2128,,,,
 997510,202009,240900,202009,290000,202010,50000,202009,300000,0,0,event_ChusokReward,한가위 출석 체크,event_ChusokReward,http://tos.nexon.com/news/events/view.aspx?n4ArticleSN=283&n4ArticleCategorySN=1,,,,

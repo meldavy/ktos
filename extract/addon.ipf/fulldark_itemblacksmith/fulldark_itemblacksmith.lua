@@ -15,8 +15,7 @@ function PLAY_BLACKSMITH_SUCCESS_EFFECT(targetItemClassName, craftType, classID)
 	if craftType == "SPECIAL_MISC_CRAFT" then
 		obj = GetClassByType("SpecialMiscRecipe", classID);
 	else
-		clsList = GetClassList("legendrecipe");
-		obj = GetClassByNameFromList(clsList, targetItemClassName);
+		obj = GetClassByType("legendrecipe", classID);
 	end
 	
 	local bgname = TryGetProp(obj, "RecipeBgImg");

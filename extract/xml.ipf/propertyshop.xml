@@ -5,102 +5,87 @@
 		<Item Script="None" Name="misc_pvp_mine2" Count="14" Price="1" DailyBuyLimit="0"/>
 		<Item Script="None" Name="misc_pvp_mine2" Count="1400" Price="100" DailyBuyLimit="0"/>
 	</Shop>
-	<Shop Name="MINEShop" PointScript="GET_PVP_MINE_POINT">
-		<Item Script="None" Name="Point_Stone_100" Count="1" Price="200" DailyBuyLimit="0"/>
-		<Item Script="None" Name="Premium_item_transcendence_Stone" Count="1" Price="2000" DailyBuyLimit="1"/>
-		<Item Script="None" Name="Drug_Event_Looting_Potion" Count="1" Price="100" DailyBuyLimit="0"/>
-		<Item Script="None" Name="Potion_Demon_Low_DMG_UP_Mine" Count="1" Price="550" DailyBuyLimit="0"/>
-		<Item Script="None" Name="Potion_MIX_Low_DMG_UP_Mine" Count="1" Price="550" DailyBuyLimit="0"/>
-		<Item Script="None" Name="Potion_Bug_Low_DMG_UP_Mine" Count="1" Price="550" DailyBuyLimit="0"/>
-		<Item Script="None" Name="Potion_Plant_Low_DMG_UP_Mine" Count="1" Price="550" DailyBuyLimit="0"/>
-		<Item Script="None" Name="Potion_Wild_Low_DMG_UP_Mine" Count="1" Price="550" DailyBuyLimit="0"/>
-		<Item Script="None" Name="Potion_Demon_Low_DMG_DOWN_Mine" Count="1" Price="300" DailyBuyLimit="0"/>
-		<Item Script="None" Name="Potion_MIX_Low_DMG_DOWN_Mine" Count="1" Price="300" DailyBuyLimit="0"/>
-		<Item Script="None" Name="Potion_Bug_Low_DMG_DOWN_Mine" Count="1" Price="300" DailyBuyLimit="0"/>
-		<Item Script="None" Name="Potion_Plant_Low_DMG_DOWN_Mine" Count="1" Price="300" DailyBuyLimit="0"/>
-		<Item Script="None" Name="Potion_Wild_Low_DMG_DOWN_Mine" Count="1" Price="300" DailyBuyLimit="0"/>
-	</Shop>
 	<Shop Name="PvpMineBattleShop" PointScript="GET_PVP_BATTLE_POINT">
-		<Item Script="None" Name="PVP_Seal_Boruta_Common" Count="1" Price="1" DailyBuyLimit="1"/>
-		<Item Script="None" Name="PVP_Ark_wind" Count="1" Price="1" DailyBuyLimit="1"/>
-		<Item Script="None" Name="PVP_Ark_thunderbolt" Count="1" Price="1" DailyBuyLimit="1"/>
-		<Item Script="None" Name="PVP_Ark_storm" Count="1" Price="1" DailyBuyLimit="1"/>
-		<Item Script="None" Name="PVP_Ark_dispersion" Count="1" Price="1" DailyBuyLimit="1"/>
-		<Item Script="None" Name="PVP_Ark_punishment" Count="1" Price="1" DailyBuyLimit="1"/>
-		<Item Script="None" Name="PVP_Ark_overpower" Count="1" Price="1" DailyBuyLimit="1"/>
-		<Item Script="None" Name="PVP_SWD04_126" Count="1" Price="1" DailyBuyLimit="1"/>
-		<Item Script="None" Name="PVP_TSW04_126" Count="1" Price="1" DailyBuyLimit="1"/>
-		<Item Script="None" Name="PVP_STF04_127" Count="1" Price="1" DailyBuyLimit="1"/>
-		<Item Script="None" Name="PVP_TBW04_126" Count="1" Price="1" DailyBuyLimit="1"/>
-		<Item Script="None" Name="PVP_BOW04_126" Count="1" Price="1" DailyBuyLimit="1"/>
-		<Item Script="None" Name="PVP_MAC04_129" Count="1" Price="1" DailyBuyLimit="1"/>
-		<Item Script="None" Name="PVP_TMAC04_118" Count="1" Price="1" DailyBuyLimit="1"/>
-		<Item Script="None" Name="PVP_SHD04_122" Count="1" Price="1" DailyBuyLimit="1"/>
-		<Item Script="None" Name="PVP_SPR04_127" Count="1" Price="1" DailyBuyLimit="1"/>
-		<Item Script="None" Name="PVP_TSP04_128" Count="1" Price="1" DailyBuyLimit="1"/>
-		<Item Script="None" Name="PVP_DAG04_123" Count="1" Price="1" DailyBuyLimit="1"/>
-		<Item Script="None" Name="PVP_TSF04_129" Count="1" Price="1" DailyBuyLimit="1"/>
-		<Item Script="None" Name="PVP_PST04_122" Count="1" Price="1" DailyBuyLimit="1"/>
-		<Item Script="None" Name="PVP_RAP04_124" Count="1" Price="1" DailyBuyLimit="1"/>
-		<Item Script="None" Name="PVP_CAN04_118" Count="1" Price="1" DailyBuyLimit="1"/>
-		<Item Script="None" Name="PVP_MUS04_118" Count="1" Price="1" DailyBuyLimit="1"/>
-		<Item Script="None" Name="PVP_TRK04_111" Count="1" Price="1" DailyBuyLimit="1"/>
-		<Item Script="None" Name="PVP_SWD04_126_1" Count="1" Price="1" DailyBuyLimit="1"/>
-		<Item Script="None" Name="PVP_TSP04_128_1" Count="1" Price="1" DailyBuyLimit="1"/>
-		<Item Script="None" Name="PVP_TSF04_129_1" Count="1" Price="1" DailyBuyLimit="1"/>
-		<Item Script="None" Name="PVP_DAG04_123_1" Count="1" Price="1" DailyBuyLimit="1"/>
-		<Item Script="None" Name="PVP_TSF04_129_2" Count="1" Price="1" DailyBuyLimit="1"/>
-		<Item Script="None" Name="PVP_STF04_127_1" Count="1" Price="1" DailyBuyLimit="1"/>
-		<Item Script="None" Name="PVP_MAC04_129_1" Count="1" Price="1" DailyBuyLimit="1"/>
-		<Item Script="None" Name="PVP_TMAC04_118_1" Count="1" Price="1" DailyBuyLimit="1"/>
-		<Item Script="None" Name="PVP_PST04_122_1" Count="1" Price="1" DailyBuyLimit="1"/>
-		<Item Script="None" Name="PVP_DAG04_123_2" Count="1" Price="1" DailyBuyLimit="1"/>
-		<Item Script="None" Name="PVP_DAG04_123_3" Count="1" Price="1" DailyBuyLimit="1"/>
-		<Item Script="None" Name="PVP_TBW04_126_1" Count="1" Price="1" DailyBuyLimit="1"/>
-		<Item Script="None" Name="PVP_SWD04_126_2" Count="1" Price="1" DailyBuyLimit="1"/>
-		<Item Script="None" Name="PVP_STF04_127_2" Count="1" Price="1" DailyBuyLimit="1"/>
-		<Item Script="None" Name="PVP_TSW04_126_1" Count="1" Price="1" DailyBuyLimit="1"/>
-		<Item Script="None" Name="PVP_SPR04_127_1" Count="1" Price="1" DailyBuyLimit="1"/>
-		<Item Script="None" Name="PVP_MUS04_118_1" Count="1" Price="1" DailyBuyLimit="1"/>
-		<Item Script="None" Name="PVP_TMAC04_118_2" Count="1" Price="1" DailyBuyLimit="1"/>
-		<Item Script="None" Name="PVP_SWD04_126_3" Count="1" Price="1" DailyBuyLimit="1"/>
-		<Item Script="None" Name="PVP_DAG04_123_4" Count="1" Price="1" DailyBuyLimit="1"/>
-		<Item Script="None" Name="PVP_HAND05_107" Count="1" Price="1" DailyBuyLimit="1"/>
-		<Item Script="None" Name="PVP_FOOT05_107" Count="1" Price="1" DailyBuyLimit="1"/>
-		<Item Script="None" Name="PVP_LEG05_107" Count="1" Price="1" DailyBuyLimit="1"/>
-		<Item Script="None" Name="PVP_TOP05_107" Count="1" Price="1" DailyBuyLimit="1"/>
-		<Item Script="None" Name="PVP_HAND05_108" Count="1" Price="1" DailyBuyLimit="1"/>
-		<Item Script="None" Name="PVP_FOOT05_108" Count="1" Price="1" DailyBuyLimit="1"/>
-		<Item Script="None" Name="PVP_LEG05_108" Count="1" Price="1" DailyBuyLimit="1"/>
-		<Item Script="None" Name="PVP_TOP05_108" Count="1" Price="1" DailyBuyLimit="1"/>
-		<Item Script="None" Name="PVP_HAND05_109" Count="1" Price="1" DailyBuyLimit="1"/>
-		<Item Script="None" Name="PVP_FOOT05_109" Count="1" Price="1" DailyBuyLimit="1"/>
-		<Item Script="None" Name="PVP_LEG05_109" Count="1" Price="1" DailyBuyLimit="1"/>
-		<Item Script="None" Name="PVP_TOP05_109" Count="1" Price="1" DailyBuyLimit="1"/>
-		<Item Script="None" Name="PVP_EP12_NECK05_HIGH_001" Count="1" Price="1" DailyBuyLimit="1"/>
-		<Item Script="None" Name="PVP_EP12_NECK05_HIGH_002" Count="1" Price="1" DailyBuyLimit="1"/>
-		<Item Script="None" Name="PVP_EP12_NECK05_HIGH_003" Count="1" Price="1" DailyBuyLimit="1"/>
-		<Item Script="None" Name="PVP_EP12_NECK05_HIGH_004" Count="1" Price="1" DailyBuyLimit="1"/>
-		<Item Script="None" Name="PVP_EP12_NECK05_HIGH_005" Count="1" Price="1" DailyBuyLimit="1"/>
-		<Item Script="None" Name="PVP_EP12_NECK05_HIGH_006" Count="1" Price="1" DailyBuyLimit="1"/>
-		<Item Script="None" Name="PVP_EP12_NECK05_HIGH_007" Count="1" Price="1" DailyBuyLimit="1"/>
-		<Item Script="None" Name="PVP_EP12_BRC05_HIGH_001" Count="2" Price="1" DailyBuyLimit="1"/>
-		<Item Script="None" Name="PVP_EP12_BRC05_HIGH_002" Count="2" Price="1" DailyBuyLimit="1"/>
-		<Item Script="None" Name="PVP_EP12_BRC05_HIGH_003" Count="2" Price="1" DailyBuyLimit="1"/>
-		<Item Script="None" Name="PVP_EP12_BRC05_HIGH_004" Count="2" Price="1" DailyBuyLimit="1"/>
-		<Item Script="None" Name="PVP_EP12_BRC05_HIGH_005" Count="2" Price="1" DailyBuyLimit="1"/>
-		<Item Script="None" Name="PVP_EP12_BRC05_HIGH_006" Count="2" Price="1" DailyBuyLimit="1"/>
-		<Item Script="None" Name="PVP_EP12_BRC05_HIGH_007" Count="2" Price="1" DailyBuyLimit="1"/>
-		<Item Script="None" Name="PVP_BOW04_126_1" Count="1" Price="1" DailyBuyLimit="1"/>
-		<Item Script="None" Name="PVP_TSW04_126_2" Count="1" Price="1" DailyBuyLimit="1"/>
-		<Item Script="None" Name="PVP_TSP04_128_2" Count="1" Price="1" DailyBuyLimit="1"/>
-		<Item Script="None" Name="PVP_RAP04_124_1" Count="1" Price="1" DailyBuyLimit="1"/>
-		<Item Script="None" Name="PVP_PST04_122_2" Count="1" Price="1" DailyBuyLimit="1"/>
-		<Item Script="None" Name="PVP_CAN04_118_1" Count="1" Price="1" DailyBuyLimit="1"/>
-		<Item Script="None" Name="PVP_TSF04_129_3" Count="1" Price="1" DailyBuyLimit="1"/>
-		<Item Script="None" Name="PVP_TMAC04_118_3" Count="1" Price="1" DailyBuyLimit="1"/>
-		<Item Script="None" Name="PVP_STF04_127_3" Count="1" Price="1" DailyBuyLimit="1"/>
-		<Item Script="None" Name="PVP_SHD04_122_1" Count="1" Price="1" DailyBuyLimit="1"/>
+		<Item Script="None" Name="PVP_Seal_Boruta_Common" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="PVP_Ark_wind" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="PVP_Ark_thunderbolt" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="PVP_Ark_storm" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="PVP_Ark_dispersion" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="PVP_Ark_punishment" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="PVP_Ark_overpower" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="PVP_SWD04_126" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="PVP_TSW04_126" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="PVP_STF04_127" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="PVP_TBW04_126" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="PVP_BOW04_126" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="PVP_MAC04_129" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="PVP_TMAC04_118" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="PVP_SHD04_122" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="PVP_SPR04_127" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="PVP_TSP04_128" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="PVP_DAG04_123" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="PVP_TSF04_129" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="PVP_PST04_122" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="PVP_RAP04_124" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="PVP_CAN04_118" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="PVP_MUS04_118" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="PVP_TRK04_111" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="PVP_SWD04_126_1" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="PVP_TSP04_128_1" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="PVP_TSF04_129_1" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="PVP_DAG04_123_1" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="PVP_TSF04_129_2" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="PVP_STF04_127_1" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="PVP_MAC04_129_1" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="PVP_TMAC04_118_1" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="PVP_PST04_122_1" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="PVP_DAG04_123_2" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="PVP_DAG04_123_3" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="PVP_TBW04_126_1" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="PVP_SWD04_126_2" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="PVP_STF04_127_2" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="PVP_TSW04_126_1" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="PVP_SPR04_127_1" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="PVP_MUS04_118_1" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="PVP_TMAC04_118_2" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="PVP_SWD04_126_3" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="PVP_DAG04_123_4" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="PVP_HAND05_107" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="PVP_FOOT05_107" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="PVP_LEG05_107" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="PVP_TOP05_107" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="PVP_HAND05_108" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="PVP_FOOT05_108" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="PVP_LEG05_108" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="PVP_TOP05_108" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="PVP_HAND05_109" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="PVP_FOOT05_109" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="PVP_LEG05_109" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="PVP_TOP05_109" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="PVP_EP12_NECK05_HIGH_001" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="PVP_EP12_NECK05_HIGH_002" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="PVP_EP12_NECK05_HIGH_003" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="PVP_EP12_NECK05_HIGH_004" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="PVP_EP12_NECK05_HIGH_005" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="PVP_EP12_NECK05_HIGH_006" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="PVP_EP12_NECK05_HIGH_007" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="PVP_EP12_BRC05_HIGH_001" Count="2" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="PVP_EP12_BRC05_HIGH_002" Count="2" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="PVP_EP12_BRC05_HIGH_003" Count="2" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="PVP_EP12_BRC05_HIGH_004" Count="2" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="PVP_EP12_BRC05_HIGH_005" Count="2" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="PVP_EP12_BRC05_HIGH_006" Count="2" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="PVP_EP12_BRC05_HIGH_007" Count="2" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="PVP_BOW04_126_1" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="PVP_TSW04_126_2" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="PVP_TSP04_128_2" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="PVP_RAP04_124_1" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="PVP_PST04_122_2" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="PVP_CAN04_118_1" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="PVP_TSF04_129_3" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="PVP_TMAC04_118_3" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="PVP_STF04_127_3" Count="1" Price="1" DailyBuyLimit="0"/>
+		<Item Script="None" Name="PVP_SHD04_122_1" Count="1" Price="1" DailyBuyLimit="0"/>
 	</Shop>
 	<Shop Name="GUILD_CONTRIBUTION_SHOP" PointScript="GET_GUILD_CONTRIBUTION_POINT">
 		<Item Script="None" Name="BRC99_114_guildshop_7d" Count="1" Price="1000" DailyBuyLimit="0"/>
@@ -112,15 +97,35 @@
 		<Item Script="None" Name="Guild_RESET_GUILD_ABILITY" Count="1" Price="2000" DailyBuyLimit="0"/>
 	</Shop>
 	<Shop Name="CONTENTS_TOTAL_SHOP" PointScript="GET_CONTENTS_TOTAL_POINT">
-		<Item Script="None" Name="balloon_skin_icecream_01_90d" Count="1" Price="1200" DailyBuyLimit="0" AccountNeedProperty="ContentsTotalShop_2006_1"/>
-		<Item Script="None" Name="balloon_skin_icecream_02_90d" Count="1" Price="1200" DailyBuyLimit="0" AccountNeedProperty="ContentsTotalShop_2006_2"/>
-		<Item Script="None" Name="Gesture_PULLUP" Count="1" Price="3000" DailyBuyLimit="0" AccountNeedProperty="ContentsTotalShop_2006_5"/>
-		<Item Script="None" Name="Gesture_SQUAT" Count="1" Price="3000" DailyBuyLimit="0" AccountNeedProperty="ContentsTotalShop_2006_4"/>
-		<Item Script="None" Name="Gesture_SPOTLIGHT" Count="1" Price="3000" DailyBuyLimit="0" AccountNeedProperty="ContentsTotalShop_2006_11"/>
-		<Item Script="None" Name="Nyang_Piano_Box_Do_Black" Count="1" Price="3000" DailyBuyLimit="0" AccountNeedProperty="ContentsTotalShop_2006_6"/>
-		<Item Script="None" Name="Nyang_Piano_Box_Do_White" Count="1" Price="6000" DailyBuyLimit="0" AccountNeedProperty="ContentsTotalShop_2006_7"/>
-		<Item Script="None" Name="motion_dionyscon01" Count="1" Price="700" DailyBuyLimit="0" AccountNeedProperty="ContentsTotalShop_2006_8"/>
-		<Item Script="None" Name="motion_dionyscon02" Count="1" Price="700" DailyBuyLimit="0" AccountNeedProperty="ContentsTotalShop_2006_9"/>
-		<Item Script="None" Name="motion_dionyscon03" Count="1" Price="700" DailyBuyLimit="0" AccountNeedProperty="ContentsTotalShop_2006_10"/>
+		<Item Script="None" Name="LENS01_017" Count="1" Price="2500" DailyBuyLimit="0" AccountNeedProperty="ContentsTotalShop_2009_1"/>
+		<Item Script="None" Name="LENS01_018" Count="1" Price="2500" DailyBuyLimit="0" AccountNeedProperty="ContentsTotalShop_2009_2"/>
+		<Item Script="None" Name="ABAND_MOONPOPO" Count="1" Price="3000" DailyBuyLimit="0" AccountNeedProperty="ContentsTotalShop_2009_3"/>
+		<Item Script="None" Name="Gesture_WIGGLE" Count="1" Price="3000" DailyBuyLimit="0" AccountNeedProperty="ContentsTotalShop_2009_4"/>
+		<Item Script="None" Name="Gesture_Dabdance" Count="1" Price="3000" DailyBuyLimit="0" AccountNeedProperty="ContentsTotalShop_2009_5"/>
+		<Item Script="None" Name="motion_bakarinecon1" Count="1" Price="700" DailyBuyLimit="0" AccountNeedProperty="ContentsTotalShop_2009_6"/>
+		<Item Script="None" Name="motion_bakarinecon2" Count="1" Price="700" DailyBuyLimit="0" AccountNeedProperty="ContentsTotalShop_2009_7"/>
+		<Item Script="None" Name="motion_bakarinecon3" Count="1" Price="700" DailyBuyLimit="0" AccountNeedProperty="ContentsTotalShop_2009_8"/>
+		<Item Script="None" Name="DRESS_ROOM_COLLECT_1" Count="1" Price="3000" DailyBuyLimit="0" AccountNeedProperty="ContentsTotalShop_2009_9"/>
+		<Item Script="None" Name="DRESS_ROOM_COLLECT_2" Count="1" Price="3000" DailyBuyLimit="0" AccountNeedProperty="ContentsTotalShop_2009_10"/>
+		<Item Script="None" Name="give_ticket_ep12honoredrose01_1_m" Count="1" Price="10000" DailyBuyLimit="0" AccountNeedProperty="ContentsTotalShop_2009_11"/>
+		<Item Script="None" Name="give_ticket_ep12honoredrose01_1_f" Count="1" Price="10000" DailyBuyLimit="0" AccountNeedProperty="ContentsTotalShop_2009_12"/>
+		<Item Script="None" Name="give_ticket_ep12honoredrose02_1_m" Count="1" Price="10000" DailyBuyLimit="0" AccountNeedProperty="ContentsTotalShop_2009_13"/>
+		<Item Script="None" Name="give_ticket_ep12honoredrose02_1_f" Count="1" Price="10000" DailyBuyLimit="0" AccountNeedProperty="ContentsTotalShop_2009_14"/>
+		<Item Script="None" Name="give_ticket_ep12honoredrose03_1_m" Count="1" Price="10000" DailyBuyLimit="0" AccountNeedProperty="ContentsTotalShop_2009_15"/>
+		<Item Script="None" Name="give_ticket_ep12honoredrose03_1_f" Count="1" Price="10000" DailyBuyLimit="0" AccountNeedProperty="ContentsTotalShop_2009_16"/>
+		<Item Script="None" Name="give_ticket_ep12musical03_m" Count="1" Price="10000" DailyBuyLimit="0" AccountNeedProperty="ContentsTotalShop_2009_17"/>
+		<Item Script="None" Name="give_ticket_ep12musical03_f" Count="1" Price="10000" DailyBuyLimit="0" AccountNeedProperty="ContentsTotalShop_2009_18"/>
+		<Item Script="None" Name="give_ticket_ep12musical02_2_m" Count="1" Price="10000" DailyBuyLimit="0" AccountNeedProperty="ContentsTotalShop_2009_19"/>
+		<Item Script="None" Name="give_ticket_ep12musical02_2_f" Count="1" Price="10000" DailyBuyLimit="0" AccountNeedProperty="ContentsTotalShop_2009_20"/>
+		<Item Script="None" Name="give_ticket_ep12musical03_2_m" Count="1" Price="10000" DailyBuyLimit="0" AccountNeedProperty="ContentsTotalShop_2009_21"/>
+		<Item Script="None" Name="give_ticket_ep12musical03_2_f" Count="1" Price="10000" DailyBuyLimit="0" AccountNeedProperty="ContentsTotalShop_2009_22"/>
+	</Shop>
+	<Shop Name="SEASONOFF_CONTENTS_TOTAL_SHOP" PointScript="GET_CONTENTS_TOTAL_POINT">
+		<Item Script="None" Name="EP12_costume_Com_038" Count="1" Price="12000" DailyBuyLimit="0"/>
+		<Item Script="None" Name="EP12_costume_Com_041" Count="1" Price="12000" DailyBuyLimit="0"/>
+		<Item Script="None" Name="EP12_costume_Com_044" Count="1" Price="12000" DailyBuyLimit="0"/>
+		<Item Script="None" Name="EP12_costume_Com_047" Count="1" Price="12000" DailyBuyLimit="0"/>
+		<Item Script="None" Name="EP12_costume_Com_050" Count="1" Price="12000" DailyBuyLimit="0"/>
+		<Item Script="None" Name="EP12_costume_Com_053" Count="1" Price="12000" DailyBuyLimit="0"/>
 	</Shop>
 </PropertyShop>

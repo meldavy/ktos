@@ -5,6 +5,7 @@ function PROPERTYSHOP_ON_INIT(addon, frame)
 	addon:RegisterMsg("PVP_PC_INFO", "ON_PVP_POINT_UPDATE");
 	addon:RegisterMsg("SHOP_POINT_UPDATE", "ON_PVP_POINT_UPDATE");
 	addon:RegisterMsg("UPDATE_GUILD_MILEAGE", "CALLBACK_MILEAGE_UPDATE_PROPERTY_SHOP");
+	addon:RegisterMsg("ITEM_POINT_EXTRACTOR_EXECUTE", "ON_UPDATE_PROPERTY_SHOP_POINT");
 end
 
 function PROPERTY_SHOP_DO_OPEN(frame, msg, shopName, argNum)
@@ -37,6 +38,7 @@ end
 function PROPERTYSHOP_CLOSE(frame)
 	UNREGISTERR_LASTUIOPEN_POS(frame);
 	ui.CloseFrame('inventory');
+	ui.CloseFrame('item_point_extractor');
 end
 
 function TOGGLE_PROPERTY_SHOP(shopName, isVisibleCheck)
@@ -80,8 +82,12 @@ function OPEN_PROPERTY_SHOP(shopName)
 	local t_remainprice = GET_CHILD_RECURSIVELY(bg, "t_remainprice");
 	local tab = GET_CHILD_RECURSIVELY(frame, "itembox");
 	local question = GET_CHILD_RECURSIVELY(frame, "question");
+	local tiptext = GET_CHILD(frame, "tiptext");
+	local pointbuyBtn = GET_CHILD(frame, "pointbuyBtn");
 	question:ShowWindow(0);
-	
+	tiptext:ShowWindow(0);
+	pointbuyBtn:ShowWindow(0);
+
 	local title = frame:GetChild("title");
 	
 	if shopName == "GUILD_CONTRIBUTION_SHOP" then
@@ -110,24 +116,23 @@ function OPEN_PROPERTY_SHOP(shopName)
 		tab:ChangeCaption(1, "{@st66b}" .. "            " .. ClMsg("Mileage_Name") .. "            ");
 	
 		title:SetTextByKey("value", ClMsg("GUILD_CONTRIBUTION_SHOP"));
-	elseif shopName == "CONTENTS_TOTAL_SHOP" then
+	elseif shopName == "CONTENTS_TOTAL_SHOP" or shopName == "SEASONOFF_CONTENTS_TOTAL_SHOP" then
 		t_mymoney:SetTextByKey("text", ScpArgMsg("TotalHavePoint"));
 		t_totalprice:SetTextByKey("text", ScpArgMsg("TotalBuyPoint"));
-
 		t_remainprice:ShowWindow(0);
 		tab:ShowWindow(0);
-		
+		title:SetTextByKey("value", ClMsg(shopName));
+
 		question:SetTextTooltip(ClMsg("CONTENTS_TOTAL_SHOP_Tooltip"));
 		question:ShowWindow(1);
-
-		title:SetTextByKey("value", ClMsg("CONTENTS_TOTAL_SHOP"));
+		tiptext:SetTextByKey("value", ClMsg("ContentsTotalShopDateText"));
+		tiptext:ShowWindow(1);
+		pointbuyBtn:ShowWindow(1);
 	else
 		t_mymoney:SetTextByKey("text", ScpArgMsg("TotalHavePoint"));
 		t_totalprice:SetTextByKey("text", ScpArgMsg("TotalBuyPoint"));
-
 		t_remainprice:ShowWindow(0);
 		tab:ShowWindow(0);
-
 		title:SetTextByKey("value", ClMsg(shopName));
 	end
 
@@ -330,6 +335,8 @@ function OPEN_PVP_PROPERTY_SHOP(shopName)
 			local numUpDown = INSERT_NUMUPDOWN_DETAIL_LIST(itemlist, idx, 2, itemBoxFont .. "0");
 			if itemInfo.dailyBuyLimit > 0 then
 				numUpDown:SetMaxValue(itemInfo.dailyBuyLimit);
+			else  
+				numUpDown:SetMaxValue(itemCls.MaxStack);
 			end
 
 			numUpDown:SetNumChangeScp("PROPERTYSHOP_CHANGE_COUNT");
@@ -503,4 +510,13 @@ function SCP_PROPERTY_SHOP_TAB2(frame, gbox)
 	
 	frame:SetUserValue("SHOPNAME", "GUILD_MILEAGE_SHOP");
 	control.CustomCommand("REQ_GUILD_MILEAGE_AMOUNT", 0);
+end
+
+function CONTENTS_TOTAL_POINT_BUY_OPEN(parent,ctrl,argStr,argNum)
+	REQ_ITEM_POINT_EXTRACTOR_OPEN("CONTENTS_TOTAL_POINT")
+end
+
+function ON_UPDATE_PROPERTY_SHOP_POINT(frame,msg,argStr,argNum)
+	local t_mymoney = GET_CHILD_RECURSIVELY(frame, "t_mymoney");
+	t_mymoney:SetTextByKey("value", GET_COMMAED_STRING(GET_PROPERTY_SHOP_MY_POINT(frame)));
 end

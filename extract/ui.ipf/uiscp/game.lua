@@ -1479,6 +1479,11 @@ function SCR_SKILLSCROLL(invItem)
 		ui.SysMsg(ClMsg("NotAvailableInThisContents"))
 		return
 	end
+
+	if IsJoinColonyWarMap() == 1 then
+		ui.SysMsg(ClMsg("NotAvailableInThisContents"))
+		return
+	end
 	
 	local sklType = obj.SkillType;
 	local skillAdded = spcitem.CreateScrollSkill(sklType, invItem:GetIESID(), obj.SkillLevel, true);

@@ -85,6 +85,7 @@
 		<Class ClassID="327" ClassName="DPSMsg{DPS}{Damage}{Time}" Data="{ol}{#00ff00}DPS:{DPS} {#ff0000}TotalDamage:{Damage} {#ffff00}Sec:{Time}"/>
 		<Class ClassID="328" ClassName="IndunMultipleItemError" Data="비정상적인 배수 토큰을 소유중입니다. 공지사항 ★ 2/28(목) 정기점검 후 발생한 문제 ★ 을 확인 부탁드립니다."/>
 		<Class ClassID="329" ClassName="NotValidMsg" Data="올바르지 않은 메시지입니다."/>
+    <Class ClassID="330" ClassName="SavingUserInfo" Data="캐릭터 정보를 저장중입니다."/>
 	</Category>
 	<Category Name="Skill">
 		<Class ClassID="500" ClassName="CannotGetSkill{NAME}" Data="[{NAME}] 스킬을 습득할 수 없습니다."/>
@@ -803,7 +804,10 @@
 		<Class ClassID="4302" ClassName="Cannon_Icor" Data="아이커_CAN"/>
 		<Class ClassID="4303" ClassName="Musket_Icor" Data="아이커_MSK"/>
 		<Class ClassID="4304" ClassName="Trinket_Icor" Data="아이커_ACC"/>
+		<Class ClassID="4305" ClassName="honored_rose_thema" Data="아너드 로즈 테마"/>
+		<Class ClassID="4306" ClassName="curtain_call_thema" Data="커튼 콜 테마"/>
 		<Class ClassID="4307" ClassName="GetPointByConsumingItem" Data="아이템을 소모하여 {@st66d_y}{COUNT}{/}포인트를 획득하시겠습니까?"/>
+		<Class ClassID="4308" ClassName="GetByPoint{Point}" Data="+{Point}점 획득"/>
 	</Category>
 	<Category Name="ItemTooltip">
 		<Class ClassID="5001" ClassName="CoolDown : {Sec} Sec" Data="재사용 대기시간 : {Sec}초"/>
@@ -871,6 +875,8 @@
 		<Class ClassID="5063" ClassName="slotcount{All}{Max}" Data="슬롯 : {All}/{Max}"/>
 		<Class ClassID="5064" ClassName="slotcount{Rate}" Data="슬롯 ({Rate}%)"/>
 		<Class ClassID="5065" ClassName="ArkOverpowerOptionText{Option}{interval}{addvalue}" Data="{@st41b}{s16}{#ffc500}{interval}{/} 레벨당 {#ffc500}{Option} {addvalue}{/} 증가"/>
+		<Class ClassID="5066" ClassName="AlreadySetTheDifficultyLevel" Data="이미 난이도를 설정하였습니다."/>
+		<Class ClassID="5067" ClassName="NotAPartyLeader" Data="파티장이 아닙니다."/>
 	</Category>
 	<Category Name="PeriodicTitle">
 		<Class ClassID="6001" ClassName="TournamentChampion" Data="토너먼트 챔피언"/>
@@ -1844,11 +1850,13 @@
 		<Class ClassID="21403" ClassName="AccumulatedDamage" Data="누적 대미지"/>
 		<Class ClassID="21404" ClassName="ClearTime" Data="클리어 시간"/>
 		<Class ClassID="21405" ClassName="Ranking_2" Data="등수"/>
+		<Class ClassID="21406" ClassName="ContentsTotalShopDateText" Data="2020년 10월 8일 ~ 2020년 12월 17일"/>
 		<Class ClassID="21407" ClassName="After_Start" Data="후 입장 가능합니다."/>
 		<Class ClassID="21408" ClassName="NotAddmittableDay" Data="입장 가능한 날짜가 아닙니다."/>
 		<Class ClassID="21409" ClassName="Already_Exit" Data="종료되었습니다."/>
 		<Class ClassID="21410" ClassName="ChatType_9" Data="길드 강조"/>
 		<Class ClassID="21411" ClassName="ChatType_9_ToolTip" Data="/gn 할말"/>
+		<Class ClassID="21412" ClassName="PleaseSelect" Data="선택해주세요"/>
 	</Category>
 	<Category Name="ChatText">
 		<Class ClassID="22001" ClassName="Guard" Data="방어"/>
@@ -10403,6 +10411,7 @@
 		<Class ClassID="111292" ClassName="Ark_overpower_desc{base1}{base2}" Data="3레벨 달성시 방패를 착용한 캐릭터를 대상으로 블록 관통에 성공할 때마다 대상에게 연체이자 비율만큼 [연체이자] 디버프 부여{nl}[연체이자] 디버프 지속시간 20초{nl}3레벨 달성시 명중/블록 관통 +{base1}{nl}3레벨 달성시 연체이자 비율 +{base2}%{nl}[연체이자] 디버프가 걸린 대상은 적에게 가하는 대미지의 50%가 연체이자만큼 감소하며, 감소한 양만큼 연체이자가 차감.{nl}연체이자는 20초가 지나거나 맵을 이동하면 사라지지만, 사라지기 이전에 연체이자가 쌓이게 되면 이전 누적분의 지속시간이 갱신됨"/>
 		<Class ClassID="111293" ClassName="MaxWeight_BM" Data="휴대 가능무게"/>
 		<Class ClassID="111294" ClassName="ALLSTAT" Data="모든 스탯"/>
+		<Class ClassID="111295" ClassName="ALLSTAT_BM" Data="모든 스탯"/>
 	</Category>
 	<Category Name="Quest">
 		<Class ClassID="112001" ClassName="VeryEasy" Data="매우 쉬움"/>
@@ -10551,6 +10560,7 @@
 		<Class ClassID="119016" ClassName="COLLECT_FAIL_MSG1" Data="콜로니전 지역에서는 사용하실 수 없습니다"/>
 		<Class ClassID="119017" ClassName="COLLECT_FAIL_MSG2" Data="슬리비나스 레어에서는 사용하실 수 없습니다"/>
 		<Class ClassID="119018" ClassName="COLLECT_FAIL_MSG3" Data="인스턴스 지역에서는 사용하실 수 없습니다"/>
+		<Class ClassID="119019" ClassName="COLLECT_NOT_EXIST" Data="컬렉션을 먼저 등록해주세요."/>
 	</Category>
 	<Category Name="Wiki">
 		<Class ClassID="120001" ClassName="From{Auto_1}_Get_{Auto_2}_Count" Data="{Auto_1}로부터 {Auto_2}개 획득"/>
@@ -14006,6 +14016,7 @@
 		<Class ClassID="300198" ClassName="Premium_JobArtsResetLng" Data="해당 직업의 전체 아츠를 초기화 시킵니다."/>
 		<Class ClassID="300199" ClassName="CanUseIcorMultiple" Data="아이커 일괄 장착/해제 가능"/>
 		<Class ClassID="300200" ClassName="CanUseWorldMapToken" Data="여신상 비용 면제 및 월드맵 토큰 이동 가능"/>
+		<Class ClassID="300201" ClassName="Event_Master_Card" Data="마스터 카드 선택"/>
 	</Category>
 	<Category Name="TPHistory">
 		<Class ClassID="301001" ClassName="RemainLogoutPC" Data="로그아웃 PC 만들기"/>
@@ -15429,12 +15440,17 @@
 		<Class ClassID="560027" ClassName="medeina_emotion04" Data="{nl} {nl}사용한 캐릭터가 채팅 이모티콘을 흭득합니다.{nl} {nl}{#FF0000}사용 후 복구가 불가능합니다.{nl} {nl}{@st66d_y}이모티콘을 습득하시겠습니까?"/>
 		<Class ClassID="560028" ClassName="medeina_emotion05" Data="{nl} {nl}사용한 캐릭터가 채팅 이모티콘을 흭득합니다.{nl} {nl}{#FF0000}사용 후 복구가 불가능합니다.{nl} {nl}{@st66d_y}이모티콘을 습득하시겠습니까?"/>
 		<Class ClassID="560029" ClassName="medeina_emotion06" Data="{nl} {nl}사용한 캐릭터가 채팅 이모티콘을 흭득합니다.{nl} {nl}{#FF0000}사용 후 복구가 불가능합니다.{nl} {nl}{@st66d_y}이모티콘을 습득하시겠습니까?"/>
-	</Category>
+		<Class ClassID="560030" ClassName="motion_bakarine_emotion60" Data="{nl} {nl}사용한 캐릭터가 채팅 이모티콘을 흭득합니다.{nl} {nl}{#FF0000}사용 후 복구가 불가능합니다.{nl} {nl}{@st66d_y}이모티콘을 습득하시겠습니까?"/>
+		<Class ClassID="560031" ClassName="motion_bakarine_emotion59" Data="{nl} {nl}사용한 캐릭터가 채팅 이모티콘을 흭득합니다.{nl} {nl}{#FF0000}사용 후 복구가 불가능합니다.{nl} {nl}{@st66d_y}이모티콘을 습득하시겠습니까?"/>
+		<Class ClassID="560032" ClassName="motion_bakarine_emotion61" Data="{nl} {nl}사용한 캐릭터가 채팅 이모티콘을 흭득합니다.{nl} {nl}{#FF0000}사용 후 복구가 불가능합니다.{nl} {nl}{@st66d_y}이모티콘을 습득하시겠습니까?"/>
+		<Class ClassID="560033" ClassName="ShellyPennington_emotion01" Data="{nl} {nl}사용한 캐릭터가 채팅 이모티콘을 흭득합니다.{nl} {nl}{#FF0000}사용 후 복구가 불가능합니다.{nl} {nl}{@st66d_y}이모티콘을 습득하시겠습니까?"/>
+</Category>
 	<Category Name="Gesture">
 		<Class ClassID="570000" ClassName="Already_Gesture" Data="이미 보유한 제스처입니다."/>
 		<Class ClassID="570001" ClassName="Gesture_WAVE" Data="{nl} {nl}모든 캐릭터가 제스처를 흭득합니다.{nl} {nl}{@st66d_y}제스처를 습득하시겠습니까?"/>
 		<Class ClassID="570002" ClassName="Gesture_CHEERUP" Data="{nl} {nl}모든 캐릭터가 제스처를 흭득합니다.{nl} {nl}{@st66d_y}제스처를 습득하시겠습니까?"/>
 		<Class ClassID="570003" ClassName="Gesture_UNBELIEVABLE" Data="{nl} {nl}모든 캐릭터가 제스처를 흭득합니다.{nl} {nl}{@st66d_y}제스처를 습득하시겠습니까?"/>
+		<Class ClassID="570004" ClassName="Gesture_DABDANCE" Data="{nl} {nl}모든 캐릭터가 제스처를 흭득합니다.{nl} {nl}{@st66d_y}제스처를 습득하시겠습니까?"/>
 		<Class ClassID="570005" ClassName="Gesture_FLEX" Data="{nl} {nl}모든 캐릭터가 제스쳐를 흭득합니다.{nl} {nl}{@st66d_y}제스쳐를 습득하시겠습니까?"/>
 		<Class ClassID="570006" ClassName="Gesture_HOMERUN" Data="{nl} {nl}모든 캐릭터가 제스쳐를 흭득합니다.{nl} {nl}{@st66d_y}제스쳐를 습득하시겠습니까?"/>
 		<Class ClassID="570007" ClassName="Gesture_NYANG" Data="{nl} {nl}모든 캐릭터가 제스쳐를 흭득합니다.{nl} {nl}{@st66d_y}제스쳐를 습득하시겠습니까?"/>
@@ -15443,6 +15459,7 @@
 		<Class ClassID="570010" ClassName="Gesture_SQUAT" Data="{nl} {nl}모든 캐릭터가 제스처를 흭득합니다.{nl} {nl}{@st66d_y}제스처를 습득하시겠습니까?"/>
 		<Class ClassID="570011" ClassName="Gesture_SPOTLIGHT" Data="{nl} {nl}모든 캐릭터가 제스처를 흭득합니다.{nl} {nl}{@st66d_y}제스처를 습득하시겠습니까?"/>
 		<Class ClassID="570012" ClassName="Gesture_BASEBALL" Data="{nl} {nl}모든 캐릭터가 제스처를 흭득합니다.{nl} {nl}{@st66d_y}제스처를 습득하시겠습니까?"/>
+		<Class ClassID="570013" ClassName="Gesture_WIGGLE" Data="{nl} {nl}모든 캐릭터가 제스처를 흭득합니다.{nl} {nl}{@st66d_y}제스처를 습득하시겠습니까?"/>
 	</Category>
 	<Category Name="ChatBalloon">
 		<Class ClassID="580000" ClassName="ChatBalloon_YESSCP_message1" Data="{nl} {nl}모든 캐릭터가 말풍선 스킨을 획득하며, 캐릭터 설정에서 말풍선 스킨을 변경할 수 있습니다.{nl}"/>
@@ -15455,10 +15472,11 @@
 		<Class ClassID="590000" ClassName="Weekly_Total_Point_Get_Fail_Msg" Data="이번주 통합 포인트를 더이상 획득할 수 없습니다."/>
 		<Class ClassID="590001" ClassName="Weekly_Total_Point_Get_Success_Msg{Point}{NowPoint}{MaxPoint}{TotalPoint}" Data="{#33FF33}{Point}의 통합 포인트를 획득했습니다.{nl}(주간 획득 가능한 통합 포인트 : {NowPoint}/{MaxPoint}){nl}(현재 누적된 통합 포인트 : {TotalPoint}){/}"/>
 		<Class ClassID="590002" ClassName="CONTENTS_TOTAL_SHOP" Data="콘텐츠 통합 상점"/>
-		<Class ClassID="590003" ClassName="CONTENTS_TOTAL_SHOP_Tooltip" Data="다양한 콘텐츠를 클리어해 통합 포인트를 획득할 수 있습니다.{nl}- 레벨 던전 : 10{nl}- 유니크 레이드 : 20{nl}- 유니크 레이드(1인) : 20{nl}- 레전드 레이드 : 85{nl} *벨코퍼의 둥지, 대지의 탑 콘텐츠 : 250{nl}- 레전드 레이드(1인) : 30{nl}- 업힐 디펜스 미션(보통 10단계 이상) : 5{nl}- 업힐 디펜스 미션(어려움 5단계 이상) : 20{nl}- 업힐 디펜스 미션(매우 어려움 5단계 이상) : 50{nl}- 챌린지 모드(5단계 이상) : 5{nl}- 챌린지 모드(6단계 이상) : 20{nl}- 챌린지 모드(7단계 이상) : 30{nl}* 통합 포인트는 주간 최대 2000 포인트까지 팀 단위로 누적됩니다.{nl}* 주간 누적량은 매주 월요일 오전 6시에 초기화됩니다.{nl}* 누적된 통합 포인트는 3개월 단위로 초기화됩니다."/>
+		<Class ClassID="590003" ClassName="CONTENTS_TOTAL_SHOP_Tooltip" Data="다양한 콘텐츠를 클리어해 통합 포인트를 획득할 수 있습니다.{nl}- 레벨 던전 : 10{nl}- 유니크 레이드 : 20{nl}- 유니크 레이드(1인) : 20{nl}- 레전드 레이드 : 85{nl} *벨코퍼의 둥지, 대지의 탑 콘텐츠 : 250{nl}- 레전드 레이드(1인) : 30{nl}- 업힐 디펜스 미션(보통 10단계 이상) : 5{nl}- 업힐 디펜스 미션(어려움 5단계 이상) : 20{nl}- 업힐 디펜스 미션(매우 어려움 5단계 이상) : 50{nl}- 챌린지 모드(5단계 이상) : 5{nl}- 챌린지 모드(6단계 이상) : 20{nl}- 챌린지 모드(7단계 이상) : 30{nl}- 챌린지 모드 : 분열 특이점 : 20{nl}- 자원 쟁탈전 : 200{nl}- 팀 배틀리그 : 100{nl}* 통합 포인트는 주간 최대 5000 포인트까지 팀 단위로 누적됩니다.{nl}* 주간 누적량은 매주 월요일 오전 6시에 초기화됩니다.{nl}* 누적된 통합 포인트는 3개월 단위로 초기화됩니다."/>
 		<Class ClassID="590004" ClassName="Weekly_Total_Point_Get_Success_Msg_command" Data="{#33FF33}현재 누적된 통합 포인트 : {TotalPoint}{nl}(주간 획득 가능한 통합 포인트 : {NowPoint}/{MaxPoint}){/}"/>
 		<Class ClassID="590005" ClassName="CONTENTS_TOTAL_POINT_extract" Data="통합 포인트 교환"/>
 		<Class ClassID="590006" ClassName="SEASONOFF_CONTENTS_TOTAL_SHOP" Data="시즌오프 콘텐츠 통합 상점"/>
+		<Class ClassID="590007" ClassName="CONTENTS_TOTAL_POINT_extract_tooltip" Data="아이템을 교환하여 콘텐츠 통합 포인트를 획득할 수 있습니다{nl} - 마정석 1개 = 200포인트{nl} - 신비한 서 낱장 1개 = 200포인트{nl} - 프락토늄 1개 = 200포인트{nl} - 축복받은 조각 1개 = 20포인트"/>
 	</Category>
 	<Category Name="RiftDungeon">
 		<Class ClassID="591000" ClassName="Rift_Dungeon_Select_Level" Data="{Level} 단계 차원 붕괴 입장"/>
@@ -15628,5 +15646,6 @@
 		<Class ClassID="599205" ClassName="SilverGachaToAll" Data="축하합니다! {TEAMNAME} 님이 마신의 유혹 이벤트에서 {ITEMNAME}을 획득하셨습니다."/>
 		<Class ClassID="599206" ClassName="Mileage_SilverGacha_extract" Data="마신의 유혹 포인트 변환"/>
 		<Class ClassID="599207" ClassName="Mileage_SilverGacha_extract_tooltip" Data="마신의 유혹에서 획득하신 아이템을 마신의 유혹 포인트로 변환하실 수 있습니다."/>
+		<Class ClassID="599208" ClassName="SilverGachaMaxVal" Data="∞"/>
 	</Category>
 </idspace>

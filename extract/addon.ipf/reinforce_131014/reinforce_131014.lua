@@ -122,8 +122,11 @@ function REINFORCE_131014_UPDATE_MORU_COUNT(frame)
     	    else
     	        msgBoxText = msgBoxText..'{nl}'..ScpArgMsg('EVENT_REINFORCE_COUPON_MSG3','ITEM',GetClassString('Item',retCouponList[i][1],'Name'),'COUNT',retCouponList[i][3])
     	    end
-    	end
-        ui.MsgBox_NonNested(msgBoxText,0x00000000)
+        end
+        
+        if REINFORCE_131014_SKIP_COUPON_INFO() == false then
+            ui.MsgBox_NonNested(msgBoxText,0x00000000)
+        end
     end
 
 end
@@ -145,10 +148,11 @@ function REINFORCE_131014_MSGBOX(frame)
 	local curPR = fromItemObj.PR;
 	local moruObj = GetIES(fromMoru:GetObject());
 	local not_destory, moru_type = IS_MORU_NOT_DESTROY_TARGET_ITEM(moruObj)
-	local isDanger = (curPR == 0 and not_destory == false)
+    local isDanger = (curPR == 0 and not_destory == false)
+    local skipWarning = REINFORCE_131014_SKIP_OVER5_INFO()
 	local pc = GetMyPCObject();
 	local price = GET_REINFORCE_PRICE(fromItemObj, moruObj, pc)	
-	local retPrice, retCouponList = SCR_REINFORCE_COUPON_PRECHECK(pc, price)	
+    local retPrice, retCouponList = SCR_REINFORCE_COUPON_PRECHECK(pc, price)
 	if IsGreaterThanForBigNumber(retPrice, GET_TOTAL_MONEY_STR()) == 1 then
 		ui.AddText("SystemMsgFrame", ScpArgMsg('NotEnoughMoney'));
 		return;
@@ -156,19 +160,28 @@ function REINFORCE_131014_MSGBOX(frame)
 	
 	local classType = TryGetProp(fromItemObj,"ClassType");
     DISABLE_BUTTON_DOUBLECLICK("reinforce_131014","exec", 1)
-    
-	if curReinforce >= 5 then
-		local yesScp = 'REINFORCE_131014_EXEC'
-		if isDanger == true then
-			yesScp = 'REINFORCE_131014_WARNING'
-		end
 
-		ui.MsgBox(ScpArgMsg("ProcessReinforceBy{Name}Moru", "Name", moruObj.Name), yesScp, "None");
-		
-		return;
-	end
-	
-	REINFORCE_131014_EXEC();
+    if curReinforce >= 5 then
+
+        -- 5강 이상 강화 안내문을 스킵할 경우
+        if skipWarning == true then
+            if isDanger == true then
+                REINFORCE_131014_WARNING()
+            else
+                REINFORCE_131014_EXEC()
+            end
+
+        -- 5강 이상 강화 안내문을 스킵하지 않을 경우
+        else
+            if isDanger == true then
+                ui.MsgBox(ScpArgMsg("ProcessReinforceBy{Name}Moru", "Name", moruObj.Name), 'REINFORCE_131014_WARNING', "None");
+            else
+                ui.MsgBox(ScpArgMsg("ProcessReinforceBy{Name}Moru", "Name", moruObj.Name), 'REINFORCE_131014_EXEC', "None");
+            end
+        end
+    else
+        REINFORCE_131014_EXEC()
+    end
 end
 
 function REINFORCE_131014_EXEC(checkReuildFlag)
@@ -214,4 +227,18 @@ function REINFORCE_131014_WARNING()
 	if fromItem ~= nil and fromMoru ~= nil then
 		WARNINGMSGBOX_EX_REINFORCE_OPEN(frame)
 	end
+end
+
+function REINFORCE_131014_SKIP_OVER5_INFO()
+    local frame = ui.GetFrame("reinforce_131014")
+    local checkbox = AUTO_CAST(frame:GetChild("skipOver5"))
+
+    return checkbox:IsChecked() == 1
+end
+
+function REINFORCE_131014_SKIP_COUPON_INFO()
+    local frame = ui.GetFrame("reinforce_131014")
+    local checkbox = AUTO_CAST(frame:GetChild("skipCouponInfo"))
+
+    return checkbox:IsChecked() == 1
 end

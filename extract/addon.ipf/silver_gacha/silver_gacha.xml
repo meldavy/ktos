@@ -9,7 +9,7 @@
 	<sound opensound="skill_window_open" closesound="skill_window_close"/>
 	<layer layerlevel="92"/>
 	<script OpenScp="SILVER_GACHA_OPEN" CloseScp="SILVER_GACHA_CLOSE"/>
-	<userconfig RESULT_EFFECT="I_screen_bosscard_frame06" RESULT_EFFECT_SCALE="5" RESULT_EFFECT_DURATION="0.5" DEDICATION_BUTTON_EFFECT="UI_screen_CircleButton" DEDICATION_BUTTON_EFFECT_SCALE="7" DEDICATION_BUTTON_EFFECT_DURATION="2" POINT_RESULT_EFFECT_SCALE="4"/>
+	<userconfig RESULT_EFFECT="I_screen_bosscard_frame06" RESULT_EFFECT_SCALE="5" RESULT_EFFECT_DURATION="0.5" DEDICATION_BUTTON_EFFECT="UI_screen_CircleButton" DEDICATION_BUTTON_EFFECT_SCALE="7" DEDICATION_BUTTON_EFFECT_DURATION="2" POINT_RESULT_EFFECT_SCALE="4" SLOT_IMAGE_RANK1="protection_legend" SLOT_IMAGE_RANK2="protection_unique" SLOT_IMAGE_RANK3="protection_magic"/>
 	<controls>
 		<!-- title -->
 		<groupbox name="main_frame" rect="0 0 1270 890" margin="0 58 0 0" layout_gravity="center top" skin="test_frame_low" hittest="false"/>
@@ -40,23 +40,5 @@
 		<!-- protection_in -->
 		<groupbox name="protection_gb" rect="0 0 575 730" margin="-320 195 0 0" layout_gravity="center top" skin="protection_in_background" scroll="false"/>
 		<picture name="protection_gb_pic" parent="protection_gb" rect="0 0 572 720" margin="0 5 0 0" layout_gravity="center center" image="protection_pattern" hittest="false"/>
-		<!-- legend -->
-		<picture name="slot_0_pic" parent="protection_gb" rect="0 0 190 146" margin="0 80 0 0" image="protection_legend" layout_gravity="center top"/>
-		<slot name="slot_0" parent="slot_0_pic" rect="0 0 111 111" margin="0 8 0 0" layout_gravity="center top" enabledrop="false" enablepop="false" enabledrag="false"/>
-		<richtext name="slot_0_text" parent="protection_gb" rect="0 0 300 40" margin="0 175 0 0" layout_gravity="center top" format="{@st100white_16}{s18}%s / %s" param1="now" param1_def="1" param2="original" param2_def="1" hittest="false"/>
-		<!-- unique -->
-		<picture name="slot_1_pic" parent="protection_gb" rect="0 0 130 146" margin="-140 300 0 0" image="protection_unique" layout_gravity="center top"/>
-		<picture name="slot_2_pic" parent="protection_gb" rect="0 0 130 146" margin="140 300 0 0" image="protection_unique" layout_gravity="center top"/>
-		<slot name="slot_1" parent="slot_1_pic" rect="0 0 111 111" margin="0 8 0 0" layout_gravity="center top" enabledrop="false" enablepop="false" enabledrag="false"/>
-		<slot name="slot_2" parent="slot_2_pic" rect="0 0 111 111" margin="0 8 0 0" layout_gravity="center top" enabledrop="false" enablepop="false" enabledrag="false"/>
-		<richtext name="slot_1_text" parent="protection_gb" rect="0 0 300 40" margin="-140 395 0 0" layout_gravity="center top" format="{@st100white_16}{s18}%s / %s" param1="now" param1_def="1" param2="original" param2_def="1" hittest="false"/>
-		<richtext name="slot_2_text" parent="protection_gb" rect="0 0 300 40" margin="140 395 0 0" layout_gravity="center top" format="{@st100white_16}{s18}%s / %s" param1="now" param1_def="1" param2="original" param2_def="1" hittest="false"/>
-		<!-- magic -->
-		<picture name="slot_3_pic" parent="protection_gb" rect="0 0 130 142" margin="-140 550 0 0" image="protection_magic" layout_gravity="center top"/>
-		<picture name="slot_4_pic" parent="protection_gb" rect="0 0 130 142" margin="140 550 0 0" image="protection_magic" layout_gravity="center top"/>
-		<slot name="slot_3" parent="slot_3_pic" rect="0 0 111 111" margin="0 8 0 0" layout_gravity="center top" enabledrop="false" enablepop="false" enabledrag="false"/>
-		<slot name="slot_4" parent="slot_4_pic" rect="0 0 111 111" margin="0 8 0 0" layout_gravity="center top" enabledrop="false" enablepop="false" enabledrag="false"/>
-		<richtext name="slot_3_text_alt" parent="protection_gb" rect="0 0 300 40" margin="-140 640 0 0" layout_gravity="center top" caption="{@st100white_16}{s26}∞"/>
-		<richtext name="slot_4_text_alt" parent="protection_gb" rect="0 0 300 40" margin="140 640 0 0" layout_gravity="center top" caption="{@st100white_16}{s26}∞"/>
 	</controls>
 </uiframe>

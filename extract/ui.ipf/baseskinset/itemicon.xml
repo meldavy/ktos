@@ -3534,6 +3534,7 @@
 		<image name="icon_item_trinket_glacier" file="\icon\acc\icon_item_trinket_glacier.png" imgrect="0 0 256 256" CMM_Caption="글레이시어 트링킷"/>
 		<image name="icon_item_armband_guild04_blue" file="\icon\acc\icon_item_armband_guild04_blue.png" imgrect="0 0 256 256" CMM_Caption="길드 사랑 암밴드_블루"/>
 		<image name="item_icon_armband_twndeer" file="\icon\acc\item_icon_armband_twndeer.png" imgrect="0 0 256 256" CMM_Caption="대만 4주년_꽃사슴 암밴드"/>
+		<image name="icon_item_armband_moonpopo" file="\icon\acc\icon_item_armband_moonpopo.png" imgrect="0 0 256 256" CMM_Caption="달빛 포포리온 암밴드"/>
 		<image name="icon_item_bracelet_queens_04" file="\icon\acc\icon_item_bracelet_queens_04.png" imgrect="0 0 256 256" CMM_Caption="루시페리 악세 "/>
 		<image name="icon_item_necklace_queens_04" file="\icon\acc\icon_item_necklace_queens_04.png" imgrect="0 0 256 256"/>
 		<image name="icon_item_bracelet_queens_05" file="\icon\acc\icon_item_bracelet_queens_05.png" imgrect="0 0 256 256"/>
@@ -6108,6 +6109,8 @@
 		<image name="icon_item_Chursok_Gift_Box5" file="\icon\item\icon_item_Chursok_Gift_Box5.png" imgrect="0 0 256 256"/>
 		<image name="icon_item_Chursok_Police_Box" file="\icon\item\icon_item_Chursok_Police_Box.png" imgrect="0 0 256 256"/>
 		<image name="icon_item_Moon_Coin" file="\icon\item\icon_item_Moon_Coin.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_anvil_moth" file="\icon\item\icon_item_anvil_moth.png" imgrect="0 0 256 256" CMM_Caption="모링포니아 모루"/>
+		<image name="icon_item_anvil_glacier" file="\icon\item\icon_item_anvil_glacier.png" imgrect="0 0 256 256" CMM_Caption="글레이시어 모루"/>
 		<image name="icon_item_matsuri_ticket" file="\icon\item\icon_item_matsuri_ticket.png" imgrect="0 0 128 128" CMM_Caption="[나츠마츠리]마츠리 티켓"/>
 		<image name="icon_item_takoyaki" file="\icon\item\icon_item_takoyaki.png" imgrect="0 0 128 128" CMM_Caption="[나츠마츠리]타코야키"/>
 		<image name="icon_item_ringoame" file="\icon\item\icon_item_ringoame.png" imgrect="0 0 128 128" CMM_Caption="[나츠마츠리]링고아메"/>
@@ -6120,6 +6123,12 @@
 		<image name="icon_item_SoloRaidEnter" file="\icon\item\icon_item_SoloRaidEnter.png" imgrect="0 0 256 256" CMM_Caption="1인 레이드 1회 입장권"/>
 		<image name="icon_item_silver_gacha_ticket" file="\icon\item\icon_item_silver_gacha_ticket.png" imgrect="0 0 256 256" CMM_Caption="실버 가챠 코스튬 티켓"/>
 		<image name="icon_item_demon_point" file="\icon\item\icon_item_demon_point.png" imgrect="0 0 128 128" CMM_Caption="마신의 유혹 포인트"/>
+		<image name="icon_item_Event_Roulette_Moringponia_box" file="\icon\item\icon_item_Event_Roulette_Moringponia_box.png" imgrect="0 0 128 128" CMM_Caption="룰렛 모링포니아 액세서리 상자"/>
+		<image name="icon_item_Event_Roulette_Master" file="\icon\item\icon_item_Event_Roulette_Master.png" imgrect="0 0 128 128" CMM_Caption="룰렛 마스터 카드 카드첩"/>
+		<image name="icon_item_event_Roulette_weaponbox1" file="\icon\item\icon_item_event_Roulette_weaponbox1.png" imgrect="0 0 128 128" CMM_Caption="룰렛 장비 상자"/>
+		<image name="icon_item_Roulette_costumebox" file="\icon\item\icon_item_Roulette_costumebox.png" imgrect="0 0 256 256" CMM_Caption="룰렛 코스튬 상자"/>
+		<image name="icon_item_Roulette_effectcostumebox" file="\icon\item\icon_item_Roulette_effectcostumebox.png" imgrect="0 0 256 256" CMM_Caption="룰렛 이펙트 코스튬 상자"/>
+		<image name="icon_item_viborabox_2" file="\icon\item\icon_item_viborabox_2.png" imgrect="0 0 256 256" CMM_Caption="바이보라 랜덤 상자"/>
 	</imagelist>
 	<imagelist category="housing">
 		<image name="icon_item_h_bigplant_set_01_green" file="\icon\housing\icon_item_h_bigplant_set_01_green.png" imgrect="0 0 256 256" CMM_Caption="[길드 하우징] 화단_01(초록색)"/>
@@ -7750,6 +7759,8 @@
 		<image name="icon_item_selectbox_ep12honoredrose01" file="\icon\payment\icon_item_selectbox_ep12honoredrose01.png" imgrect="0 0 256 256"/>
 		<image name="icon_item_selectbox_ep12honoredrose02" file="\icon\payment\icon_item_selectbox_ep12honoredrose02.png" imgrect="0 0 256 256"/>
 		<image name="icon_item_selectbox_ep12honoredrose03" file="\icon\payment\icon_item_selectbox_ep12honoredrose03.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_lens_cateye_blue" file="\icon\payment\icon_item_lens_cateye_blue.png" imgrect="0 0 256 256" CMM_Caption="캣 아이 블루 렌즈"/>
+		<image name="icon_item_lens_cateye_brown" file="\icon\payment\icon_item_lens_cateye_brown.png" imgrect="0 0 256 256" CMM_Caption="캣 아이 브라운 렌즈"/>
 		<image name="icon_item_Chursok_Hambok_Box" file="\icon\payment\icon_item_Chursok_Hambok_Box.png" imgrect="0 0 256 256" CMM_Caption="2020추석 한복 상자"/>
 		<image name="icon_item_hanbok02_yellow_m" file="\icon\payment\icon_item_hanbok02_yellow_m.png" imgrect="0 0 256 256" CMM_Caption="2020추석 한복"/>
 		<image name="icon_item_hanbok02_yellow_f" file="\icon\payment\icon_item_hanbok02_yellow_f.png" imgrect="0 0 256 256"/>
@@ -7781,6 +7792,8 @@
 		<image name="icon_item_20_ChuSeok_Package_B" file="\icon\payment\icon_item_20_ChuSeok_Package_B.png" imgrect="0 0 256 256"/>
 		<image name="icon_item_20_ChuSeok_Package_ALL" file="\icon\payment\icon_item_20_ChuSeok_Package_ALL.png" imgrect="0 0 256 256"/>
 		<image name="icon_item_thanksgiving_sparrow" file="\icon\payment\icon_item_thanksgiving_sparrow.png" imgrect="0 0 256 256" CMM_Caption="달맞이 참새 알"/>
+		<image name="icon_item_m_costume_ticket" file="\icon\payment\icon_item_m_costume_ticket.png" imgrect="0 0 256 256" CMM_Caption="코스튬 등록권_남"/>
+		<image name="icon_item_f_costume_ticket" file="\icon\payment\icon_item_f_costume_ticket.png" imgrect="0 0 256 256" CMM_Caption="코스튬 등록권_여"/>
 	</imagelist>
 	<imagelist category="seal">
 		<image name="icon_seal_yellow_cc_A1" file="\icon\seal\seal_yellow_cc_A1.tga" imgrect="0 0 80 80"/>

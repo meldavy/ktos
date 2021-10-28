@@ -1,5 +1,6 @@
 function COMMONGAMBLE_ON_INIT(addon, frame)
-    addon:RegisterMsg("COMMON_GAMBLE_ITEM_GET", "ON_COMMON_GAMBLE_ITEM_GET");
+	addon:RegisterMsg("COMMON_GAMBLE_ITEM_GET", "ON_COMMON_GAMBLE_ITEM_GET");
+	addon:RegisterMsg("COMMON_GAMBLE_ITEM_GET_PROPERTY", "COMMON_GAMBLE_ITEM_GET_PROPERTY");
 end
 
 -- UI 오픈
@@ -62,7 +63,30 @@ function COMMON_GAMBLE_INIT(frame, gamble_type)
 			
 			local icon = itemslot:GetIcon();
 			icon:SetDisableSlotSize(true);
-			icon:SetReducedvalue(10, 10);
+			icon:SetReducedvalue(10, 10);			
+		else
+			itemCls = GetClass('common_gamble_property_reward', itemClassName)
+			if itemCls ~= nil then
+				local itemCnt = itemStrlist[2];
+
+				local icon_1 = CreateIcon(itemslot);
+				icon_1:EnableHitTest(0);
+
+				local iconImageName = TryGetProp(itemCls, 'Icon', 'None');				
+				local style = '{s20}{ol}{b}{ds}'
+				
+				icon_1:Set(iconImageName, "item", itemCls.ClassID, itemCnt);				
+				itemslot:SetText(style..itemCnt, 'count', ui.RIGHT, ui.BOTTOM, -11, -10);				
+				icon_1:SetTooltipType('texthelp');
+				icon_1:SetTooltipArg(TryGetProp(itemCls, 'Name', 'None'));
+
+				itemslot:SetUserValue("ITEM_CLASSID", itemCls.ClassID);
+				itemslot:SetUserValue("ITEM_COUNT", itemCnt);
+				
+				local icon = itemslot:GetIcon();
+				icon:SetDisableSlotSize(true);
+				icon:SetReducedvalue(10, 10);
+			end
 		end
 	end
 
@@ -244,6 +268,44 @@ function ON_COMMON_GAMBLE_ITEM_GET(frame, msg, itemid, itemCount)
     end
 end
 
+-- 뽑은 슬롯 이펙트
+function COMMON_GAMBLE_ITEM_GET_PROPERTY(frame, msg, class_name, itemCount)
+	frame = ui.GetFrame("commongamble");
+
+	local itemCls = GetClass("common_gamble_property_reward", class_name);	
+	if itemCls ~= nil then		
+		local slot = COMMON_GAMBLE_ITEM_SLOT_GET(TryGetProp(itemCls, 'ClassID', 0), itemCount);      -- 뽑을 수 있는 아이템 slot		
+		local resultslot = GET_CHILD_RECURSIVELY(frame, "resultslot");    -- 뽑은 아이템 slot 
+        if slot == nil then return; end
+        if resultslot == nil then return; end
+
+        resultslot:SetUserValue("ITEM_CLASSID", itemid);
+        resultslot:SetUserValue("ITEM_COUNT", itemCount);
+
+		local icon = CreateIcon(resultslot);
+		icon:EnableHitTest(0);
+
+		local iconImageName = TryGetProp(itemCls, 'Icon', 'None');
+		local style = '{s20}{ol}{b}{ds}'
+		
+		icon:Set(iconImageName, "item", itemCls.ClassID, itemCount);				
+		resultslot:SetText(style..itemCount, 'count', ui.RIGHT, ui.BOTTOM, -7, -6);				
+		icon:SetTooltipType('texthelp');
+		icon:SetTooltipArg(TryGetProp(itemCls, 'Name', 'None'));
+        
+	    local RESULT_EFFECT_NAME = frame:GetUserConfig('RESULT_EFFECT');
+        local RESULT_EFFECT_SCALE_S = tonumber(frame:GetUserConfig('RESULT_EFFECT_SCALE_S'));
+        local RESULT_EFFECT_SCALE_M = tonumber(frame:GetUserConfig('RESULT_EFFECT_SCALE_M'));
+        local RESULT_EFFECT_DURATION = tonumber(frame:GetUserConfig('RESULT_EFFECT_DURATION'));
+        
+        slot:PlayUIEffect(RESULT_EFFECT_NAME, RESULT_EFFECT_SCALE_S, 'RESULT_EFFECT');
+        resultslot:PlayUIEffect(RESULT_EFFECT_NAME, RESULT_EFFECT_SCALE_S, 'RESULT_EFFECT');
+		ReserveScript("_RESULT_EFFECT()", RESULT_EFFECT_DURATION);
+		
+		COMMON_GAMBLE_AUTO_COUNT_UPDATE(frame);
+    end
+end
+
 function _RESULT_EFFECT()
 	local frame = ui.GetFrame("commongamble");
 	if frame:IsVisible() == 0 then
@@ -272,8 +334,8 @@ function COMMON_GAMBLE_ITEM_SLOT_GET(itemid, itemCount)
 	for i = 0, slot_gb_childCnt - 2 do
 		local itemslot = GET_CHILD(slot_gb, "slot"..i);
 		local slotitemid = itemslot:GetUserValue("ITEM_CLASSID");
-		local slotitemCount = itemslot:GetUserIValue("ITEM_COUNT");
-		if tonumber(itemid) == tonumber(slotitemid) and itemCount == slotitemCount then
+		local slotitemCount = itemslot:GetUserIValue("ITEM_COUNT");		
+		if tonumber(itemid) == tonumber(slotitemid) and itemCount == slotitemCount then			
 			return itemslot;
 		end		
 	end

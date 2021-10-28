@@ -101,7 +101,7 @@ function OPEN_SELECT_TARGET_FROM_PARTY(frame, msg, argStr, showHPGauge)
         local index = 1;
         for i = 0, count - 1 do
             local partyMemberInfo = partyList:Element(i);
-            if partyMemberInfo:GetAID() == session.loginInfo.GetAID() then
+            if partyMemberInfo ~= nil and (partyMemberInfo:GetAID() == session.loginInfo.GetAID() or partyMemberInfo:GetName() == 'None') then
             -- 자기 자신일때에는 표시하지 않는다.
             else
                 local memberSet = GET_CHILD_RECURSIVELY(frame, 'memberSet_'..index);
@@ -119,7 +119,7 @@ function OPEN_SELECT_TARGET_FROM_PARTY(frame, msg, argStr, showHPGauge)
 
                 local nameText = GET_CHILD(memberSet, 'nameText');
                 if nameText ~= nil then
-                    nameText:SetTextByKey('name', partyMemberInfo:GetName());
+                    nameText:SetTextByKey('name', partyMemberInfo:GetName());                    
                 end 
 
                 local stat = partyMemberInfo:GetInst();

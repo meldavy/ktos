@@ -260,30 +260,6 @@
         </ByCondSkills>
     </Skill>
 	<Skill Name="Shadowmancer_ShadowFatter">
-		<KeyInput>
-			<ToolScp Client="YES" Scp="SKL_KEY_GROUND_EVENT" UseSleep="NO">
-				<Num Num="3" />
-				<Num Num="0" />
-				<Num Num="0" />
-				<Num Num="1" />
-                <Num Num="140" />
-				<Num Num="0.1" />
-				<Num Num="0" />
-				<Num Num="0" />
-				<Num Num="0" />
-				<Str_Arg Arg="1" Str="None" />
-				<Str Str="None" />
-				<Num Num="0" />
-				<Num Num="0" />
-				<Num Num="5" />
-				<Num Num="1" />
-				<Num Num="45" />
-				<Num Num="0" />
-				<Num Num="0" />
-				<Num Num="0" />
-				<Num Num="0" />
-			</ToolScp>
-		</KeyInput>
 		<MainSkl JumpFlee="NO" MSPDToUsePos="0" ScrLock="None">
 			<HitList>
 				<Frame Angle="0" AniTime="999999" Dist="0" ForceATK="0" HitCount="1" Length="30" PosType="0" RandDist="0" RandomPerHit="0" RotAngle="0" SklAngle="0.17453292" TermMax="0" TermMin="0" Time="999799" Type="FAN" Width="30" />

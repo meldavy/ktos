@@ -200,8 +200,8 @@ function COLLECTION_CLOSE(frame)
 
 	local inventory = ui.GetFrame("inventory")
 	inventory:ShowWindow(0)
-	
-	COLLECTION_MAGIC_CLOSE();
+
+	ui.CloseFrame('collection_magic')
 
 	UNREGISTERR_LASTUIOPEN_POS(frame)
 end

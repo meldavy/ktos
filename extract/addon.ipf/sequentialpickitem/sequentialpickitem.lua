@@ -9,7 +9,7 @@ function SEQUENTIALPICKITEM_ON_INIT(addon, frame)
 	addon:RegisterMsg('INV_ITEM_ADD', 'SEQUENTIAL_PICKITEMON_MSG');
 	addon:RegisterMsg('GUILDWAREHOUSE_ITEM_IN', 'SEQUENTIAL_PICKITEMON_MSG');
 	addon:RegisterMsg('SEAL_LV_UP_POPUP', 'SEAL_LV_UP_POPUP');
-		
+	addon:RegisterMsg('GET_PROPERTY_POINT', 'GET_PROPERTY_POINT')
 end
 
 function SEAL_LV_UP_POPUP(frame, msg, argStr, argNum)		
@@ -18,6 +18,10 @@ function SEAL_LV_UP_POPUP(frame, msg, argStr, argNum)
 	local obj = GetIES(invitem:GetObject())
 	local count = argNum
 	ADD_SEQUENTIAL_PICKITEM_ForSealLvUp(frame, msg, item_guid, count, obj)
+end
+
+function GET_PROPERTY_POINT(frame, msg, argStr, argNum)
+	ADD_SEQUENTIAL_PICKITEM_ForProperty(frame, msg, argStr, argNum)
 end
 
 function SEQUENTIAL_PICKITEMON_MSG(frame, msg, arg1, type, class)
@@ -233,6 +237,67 @@ function ADD_SEQUENTIAL_PICKITEM_ForSealLvUp(frame, msg, itemGuid, itemCount, cl
 	icon:Set(iconName, 'PICKITEM', itemCount, 0);
 
 	local printName	 = '{@st41}' ..GET_FULL_NAME(nameObj);	
+	PickItemCountCtrl:SetTextByKey('ItemName', printName);
+
+	-- 아이템이름 너무길때 짤려서 resize 일단 셋팅.
+	local itemName = GET_CHILD(PickItemCountCtrl,'ItemName');
+	-- 리사이즈 하려는 사이즈가 원래 프레임 사이즈보다 작으면 리사이즈 하지 않음.
+	local newWidth =itemName:GetX()+itemName:GetTextWidth()+ 20;
+	if newWidth > frame:GetOriginalWidth() then
+		frame:Resize(newWidth,  frame:GetOriginalHeight());
+		PickItemGropBox:Resize(newWidth, PickItemGropBox:GetOriginalHeight());
+		PickItemCountCtrl:Resize(newWidth, PickItemCountCtrl:GetOriginalHeight());		
+	end
+
+	local AddWiki = GET_CHILD(PickItemCountCtrl,'AddWiki')
+	AddWiki:ShowWindow(0)
+	PickItemGropBox:UpdateData();
+	PickItemGropBox:Invalidate();
+
+	--내용 끝
+
+	frame:ShowWindow(1);
+	frame:SetDuration(duration);
+	frame:Invalidate();
+end
+
+function ADD_SEQUENTIAL_PICKITEM_ForProperty(frame, msg, property_name, itemCount)
+	local cls = GetClass('common_gamble_property_reward', property_name)
+	if cls == nil then
+		return
+	end
+
+	SEQUENTIALPICKITEM_openCount = SEQUENTIALPICKITEM_openCount + 1;
+	local frameName = "SEQUENTIAL_PICKITEM_"..tostring(SEQUENTIALPICKITEM_openCount);
+
+	ui.DestroyFrame(frameName);
+
+	local frame = ui.CreateNewFrame("sequentialpickitem", frameName);
+	if frame == nil then
+		return nil;
+	end
+		
+	local duration = 1
+	local PickItemGropBox	= GET_CHILD(frame,'pickitem')
+
+	-- ControlSet 이름 설정
+	local img = TryGetProp(cls, 'Icon', 'None')
+	
+	if img == 'None' then
+		return
+	end
+
+	local PickItemCountObj		= PickItemGropBox:CreateControlSet('pickitemset_Type', 'pickitemset', 0, 0);
+	local PickItemCountCtrl		= tolua.cast(PickItemCountObj, "ui::CControlSet");
+
+	local ConSetBySlot 	= PickItemCountCtrl:GetChild('slot');
+	local slot			= tolua.cast(ConSetBySlot, "ui::CSlot");
+	local icon = CreateIcon(slot);
+
+	-- 아이템 이름과 획득량 출력		
+	icon:Set(img, 'PICKITEM', itemCount, 0);
+
+	local printName	 = '{@st41}' .. TryGetProp(cls, 'Name', 'None') .. '{nl}' .. ScpArgMsg("GetByPoint{Point}", "Point", itemCount);
 	PickItemCountCtrl:SetTextByKey('ItemName', printName);
 
 	-- 아이템이름 너무길때 짤려서 resize 일단 셋팅.

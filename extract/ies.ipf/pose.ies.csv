@@ -50,3 +50,4 @@ ClassID,DefaultLearn,NextPoseCount,PoseLevel,RewardCheckCount,ClassName,Name,Fil
 50,0,0,0,1,BASEBALL,야구,pc_pose_lean01,icon_gesture_baseball,Reward,,true,,,,,,CONTENTS_TOTAL_SHOP_POSE_10
 51,0,0,0,1,SQUAT,스쿼트,pc_pose_lean01,icon_gesture_squat,Reward,,true,,,,,,CONTENTS_TOTAL_SHOP_POSE_11
 52,0,0,0,1,SPOTLIGHT,갱스터,pc_pose_lean01,icon_gesture_gangster,Reward,,true,,,,,,CONTENTS_TOTAL_SHOP_POSE_12
+53,0,0,0,1,WIGGLE,씰룩씰룩,pc_pose_lean01,icon_gesture_wiggle,Reward,,true,,,,,,CONTENTS_TOTAL_SHOP_POSE_13

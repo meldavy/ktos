@@ -142,7 +142,7 @@ function FISHING_ITEM_BAG_AUTO_RESIZING(slotset, slotIndex)
     local slotsetStartYPos = slotset:GetY();
     local slotsetCol = slotset:GetCol();
     local slotsetSpcY = slotset:GetSpcY();            
-    local slotRow = math.floor(slotIndex / slotsetCol) + 1;
+    local slotRow = math.max(1, math.floor(slotIndex / slotsetCol) + 1);
     local maxSlotBottomPos = slotsetStartYPos + slotset:GetSlotHeight() * slotRow + slotsetSpcY * (slotRow - 1);
 
     local topFrame = slotset:GetTopParentFrame();   

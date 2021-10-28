@@ -668,7 +668,7 @@
                     <Event eventName="STAY_IN_POSITION">
                         <condList>
                             <ToolScp Scp="GAME_ST_EVT_COND_TIMECHECK_START" Client="NO" UseSleep="NO">
-                                <Num Num="5"/>
+                                <Num Num="1"/>
                             </ToolScp>
                         </condList>
                         <execList>

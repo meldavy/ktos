@@ -1407,7 +1407,6 @@ function SCR_ABIL_Appraiser7_ACTIVE(self, ability)
         local attribute = TryGetProp(skill, "Attribute");
         skill.Attribute = "Fire";
         SetExProp_Str(self, "Appraiser7_Attribute", attribute);
-        SetSkillOverHeat(self, skill.ClassName, 0, 1);
 
         skill.CastingCategory = "channeling"
 
@@ -1421,7 +1420,6 @@ function SCR_ABIL_Appraiser7_INACTIVE(self, ability)
     if skill ~= nil then
         local attribute = GetExProp_Str(self, "Appraiser7_Attribute");
         skill.Attribute = attribute;
-        SetSkillOverHeat(self, skill.ClassName, 3, 1);
 
         skill.CastingCategory = "instant"
 

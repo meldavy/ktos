@@ -5640,4 +5640,30 @@
 			<richtext name="itemPrice" margin="0 0 0 0" layout_gravity="left center" textalign="left center" rect="55 0 400 55" stretch="true"/>
 		</controls>
 	</controlset>
+	<controlset name="dress_room_deck" hittest="true" width="510" height="80" skin="test_skin_01_btn" hittestset="true" draw="true" stateskin="false">
+		<controls>
+			<groupbox name="gb_complete" layout_gravity="left top" rect="0 0 510 80" margin="0 0 0 0" draw="true" resizebyparent="false" scrollbar="false" skin="base_btn_clicked"/>
+			<richtext name="collec_name" layout_gravity="left top" rect="0 0 460 20" margin="35 10 0 0" textalign="left center" resizebytext="true" fixwidth="true" fontname="black_18" format="%s%s" param1="font" param1_def="{@st66e}{s18}" param2="name" param2_def="Collection_Name"/>
+			<richtext name="collec_count" layout_gravity="right top" rect="0 0 260 20" margin="0 10 10 0" textalign="right center" resizebytext="true" fixwidth="true" fontname="black_16_b" format="(%s/%s)" param1="curcount" param1_def="1" param2="maxcount" param2_def="9"/>
+			<groupbox name="gb_magic" layout_gravity="left top" rect="0 0 510 50" margin="0 40 0 0" draw="false" resizebyparent="false" scrollbar="false"/>
+			<picture name="iconMagic" parent="gb_magic" layout_gravity="left top" rect="0 0 80 20" margin="50 0 0 0" stretch="true" image="collection_magic"/>
+			<richtext name="richMagic" parent="iconMagic" layout_gravity="left top" rect="0 0 80 20" margin="0 0 0 0" textalign="center center" fixwidth="true" hittest="false" resizebytext="true" updateparent="true" fontname="white_16_b" format="%s" param1="value" param1_def="magic"/>
+			<richtext name="magicList" parent="gb_magic" layout_gravity="left top" rect="0 0 380 20" margin="135 0 0 0" textalign="left top" fixwidth="true" hittest="false" resizebytext="true" updateparent="true" format="%s%s" param1="font" param1_def="" param2="value" param2_def="magiclist"/>
+			<groupbox name="gb_items" layout_gravity="left bottom" rect="0 0 500 60" margin="5 0 0 10" draw="true" resizebyparent="false" scrollbar="false" skin="ability_deck"/>
+			<groupbox name="gb_collection" layout_gravity="left top" rect="0 0 510 80" margin="0 0 0 0" draw="false" resizebyparent="false" hittest="true" hittestbox="true" LBtnDownScp="OPEN_DRESS_ROOM_DECK_DETAIL"/>
+		</controls>
+	</controlset>
+	<controlset name="dress_rool_slot" hittest="true" hittestset="false" draw="false" width="55" height="55" skin="">
+		<controls>
+			<groupbox name="bg_slot" margin="0 0 0 0" rect="0 0 55 55" hittestbox="false" LBtnDownScp="" changecursor="true" skin="" layout_gravity="left top" scrollbar="false"/>
+			<slot name="slot" margin="0 0 0 0" layout_gravity="left top" rect="0 0 55 55" stretch="true" skin="slot_empty" oversound="button_over" enabledrag="false" enableselect="false" enablepop="false" RBtnUpScp="ON_CLICK_DRESS_ROOM_MAKE_ITEM"/>
+		</controls>
+	</controlset>
+	<controlset name="silver_gacha_slot" hittest="true" width="190" height="146">
+		<controls>
+			<picture name="slot_pic" rect="0 0 190 146" margin="0 0 0 0" layout_gravity="center top" image="protection_legend"/>
+			<slot name="slot" rect="0 0 111 111" margin="0 8 0 0" layout_gravity="center top" enabledrop="false" enabledrag="false" enablepop="false"/>
+			<richtext name="slot_text" rect="0 0 300 40" margin="0 95 0 0" layout_gravity="center top" format="{@st100white_16}{s18}%s / %s" param1="now" param1_def="1" param2="original" param2_def="1" hittest="false"/>
+		</controls>
+	</controlset>
 </controlsetlist>
