@@ -76,7 +76,8 @@ function GET_LEGEND_PREFIX_NEED_MATERIAL_COUNT_BY_NEEDITEM(targetObj, needItemCl
 					local count = cls.NeedMaterial_ArmorCnt
 					--EVENT_SEASON_SERVER
 					if IS_SEASON_SERVER() == "YES" then
-						count = math.floor(count*0.5)
+                        count = math.floor(count*0.7)
+                        
 					else
 						count = math.floor(count*0.7)
 					end

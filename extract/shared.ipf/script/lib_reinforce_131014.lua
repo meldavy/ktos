@@ -219,12 +219,9 @@ function GET_REINFORCE_PRICE(fromItem, moruItem, pc)
     end
     -- pvp템의 강화 비용 1/10로
     if TryGetProp(fromItem, 'StringArg', 'None') == 'FreePvP' then
-        value = value * 0.1
-        if value < 1 then
-            value = 1
-        end
+        value = value * 0.1        
     end
-    
+
     return SyncFloor(value);
 
 end

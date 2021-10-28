@@ -5418,7 +5418,7 @@
 	</controlset>
 	<controlset name="submap_zone_left_set" hittest="true" width="300" height="100">
 		<controls>
-			<button name="zone_btn" rect="0 0 60 60" margin="0 0 0 0" layout_gravity="right center" image="worldmap2_map_zone_btn" LBtnDownScp="WORLDMAP2_SUBMAP_ZONE_BTN_CLICK"/>
+			<button name="zone_btn" rect="0 0 60 60" margin="0 0 0 0" layout_gravity="right center" image="worldmap2_map_zone_btn" LBtnUpScp="WORLDMAP2_SUBMAP_ZONE_BTN_CLICK"/>
 			<picture name="zone_pc_pos" rect="0 0 38 38" margin="0 -30 -3 0" layout_gravity="right center" image="worldmap2_map_pc" imagealign="center center"/>
 			<richtext name="zone_text_fieldboss" rect="0 0 240 50" margin="22 -30 0 0" layout_gravity="left center" textalign="right center" resizebytext="false" visible="false"/>
 			<richtext name="zone_text_top" rect="0 0 240 50" margin="22 -10 0 0" layout_gravity="left center" textalign="right center" resizebytext="false"/>
@@ -5427,7 +5427,7 @@
 	</controlset>
 	<controlset name="submap_zone_right_set" hittest="true" width="300" height="100">
 		<controls>
-			<button name="zone_btn" rect="0 0 60 60" margin="0 0 0 0" layout_gravity="left center" image="worldmap2_map_zone_btn" LBtnDownScp="WORLDMAP2_SUBMAP_ZONE_BTN_CLICK"/>
+			<button name="zone_btn" rect="0 0 60 60" margin="0 0 0 0" layout_gravity="left center" image="worldmap2_map_zone_btn" LBtnUpScp="WORLDMAP2_SUBMAP_ZONE_BTN_CLICK"/>
 			<picture name="zone_pc_pos" rect="0 0 38 38" margin="-3 -30 0 0" layout_gravity="left center" image="worldmap2_map_pc" imagealign="center center"/>
 			<richtext name="zone_text_fieldboss" rect="0 0 240 50" margin="0 -30 22 0" layout_gravity="right center" textalign="left center" resizebytext="false" visible="false"/>
 			<richtext name="zone_text_top" rect="0 0 240 50" margin="0 -10 22 0" layout_gravity="right center" textalign="left center" resizebytext="false"/>
@@ -5436,7 +5436,7 @@
 	</controlset>
 	<controlset name="submap_city_left_set" hittest="true" width="300" height="120">
 		<controls>
-			<button name="zone_btn" rect="0 0 60 60" margin="0 0 0 0" layout_gravity="right center" image="worldmap2_map_zone_btn" LBtnDownScp="WORLDMAP2_SUBMAP_ZONE_BTN_CLICK"/>
+			<button name="zone_btn" rect="0 0 60 60" margin="0 0 0 0" layout_gravity="right center" image="worldmap2_map_zone_btn" LBtnUpScp="WORLDMAP2_SUBMAP_ZONE_BTN_CLICK"/>
 			<picture name="zone_pc_pos" rect="0 0 38 38" margin="0 -40 14 0" layout_gravity="right center" image="worldmap2_map_pc" imagealign="center center"/>
 			<richtext name="zone_text_fieldboss" rect="0 0 240 50" margin="0 -30 0 0" layout_gravity="left center" textalign="right center" resizebytext="false" visible="false"/>
 			<richtext name="zone_text_top" rect="0 0 240 50" margin="0 -10 0 0" layout_gravity="left center" textalign="right center" resizebytext="false"/>
@@ -5445,7 +5445,7 @@
 	</controlset>
 	<controlset name="submap_city_right_set" hittest="true" width="300" height="120">
 		<controls>
-			<button name="zone_btn" rect="0 0 60 60" margin="0 0 0 0" layout_gravity="left center" image="worldmap2_map_zone_btn" LBtnDownScp="WORLDMAP2_SUBMAP_ZONE_BTN_CLICK"/>
+			<button name="zone_btn" rect="0 0 60 60" margin="0 0 0 0" layout_gravity="left center" image="worldmap2_map_zone_btn" LBtnUpScp="WORLDMAP2_SUBMAP_ZONE_BTN_CLICK"/>
 			<picture name="zone_pc_pos" rect="0 0 38 38" margin="6 -40 0 0" layout_gravity="left center" image="worldmap2_map_pc" imagealign="center center"/>
 			<richtext name="zone_text_fieldboss" rect="0 0 240 50" margin="0 -30 0 0" layout_gravity="left center" textalign="right center" resizebytext="false" visible="false"/>
 			<richtext name="zone_text_top" rect="0 0 240 50" margin="0 -10 0 0" layout_gravity="right center" textalign="left center" resizebytext="false"/>
@@ -5454,7 +5454,7 @@
 	</controlset>
 	<controlset name="submap_gray_left_set" hittest="true" width="300" height="120">
 		<controls>
-			<button name="zone_btn" rect="0 0 60 60" margin="0 0 0 0" layout_gravity="right center" image="worldmap2_map_zone_btn" LBtnDownScp="WORLDMAP2_SUBMAP_ZONE_BTN_CLICK"/>
+			<button name="zone_btn" rect="0 0 60 60" margin="0 0 0 0" layout_gravity="right center" image="worldmap2_map_zone_btn" LBtnUpScp="WORLDMAP2_SUBMAP_ZONE_BTN_CLICK"/>
 			<picture name="zone_pc_pos" rect="0 0 38 38" margin="0 -30 2 0" layout_gravity="right center" image="worldmap2_map_pc" imagealign="center center"/>
 			<richtext name="zone_text_top" rect="0 0 240 50" margin="19 -10 0 0" layout_gravity="left center" textalign="right center" resizebytext="false"/>
 			<richtext name="zone_text_bottom" rect="0 0 240 50" margin="19 10 0 0" layout_gravity="left center" textalign="right center" resizebytext="false"/>
@@ -5462,7 +5462,7 @@
 	</controlset>
 	<controlset name="submap_gray_right_set" hittest="true" width="300" height="120">
 		<controls>
-			<button name="zone_btn" rect="0 0 60 60" margin="0 0 0 0" layout_gravity="left center" image="worldmap2_map_zone_btn" LBtnDownScp="WORLDMAP2_SUBMAP_ZONE_BTN_CLICK"/>
+			<button name="zone_btn" rect="0 0 60 60" margin="0 0 0 0" layout_gravity="left center" image="worldmap2_map_zone_btn" LBtnUpScp="WORLDMAP2_SUBMAP_ZONE_BTN_CLICK"/>
 			<picture name="zone_pc_pos" rect="0 0 38 38" margin="0 -30 0 0" layout_gravity="left center" image="worldmap2_map_pc" imagealign="center center"/>
 			<richtext name="zone_text_top" rect="0 0 240 50" margin="0 -10 19 0" layout_gravity="right center" textalign="left center" resizebytext="false"/>
 			<richtext name="zone_text_bottom" rect="0 0 240 50" margin="0 10 19 0" layout_gravity="right center" textalign="left center" resizebytext="false"/>
