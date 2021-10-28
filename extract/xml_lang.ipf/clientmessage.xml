@@ -15091,6 +15091,10 @@
 		<Class ClassID="302486" ClassName="2105_CAMPING_CAMPFIRE_MSG5" Data="모든 참여자가 보상을 획득하여 캠프파이어가 종료됩니다."/>
 		<Class ClassID="302487" ClassName="EVENT_2105_CAMPING_CHECK_MESSAGE{COIN1}{COIN2}{COIN3}{FIRE}{BAG}{AXQ}{AXG}" Data="{#0066FF}[TOS 봄 캠핑 이벤트 현황]{/}{nl}[이벤트] 잔가지 일일 획득 {#0066FF}({COIN1}/100){/}{nl}[이벤트] 모닥불 일일 획득 {#0066FF}({COIN2}/3){/}{nl}캠프파이어 일일 참여 {#0066FF}({FIRE}/5){/}{nl}[이벤트] 여행자의 수첩(3일) 일일 획득 {#0066FF}({COIN3}/1){/}{nl}[이벤트] 여행자의 짐꾸러미 일일 개봉 횟수 {#0066FF}({BAG}/4){/}{nl}나무꾼의 부탁 일일 참여 {#0066FF}({AXQ}/1){/}{nl}나무꾼의 내기 제안 {#0066FF}({AXG}/5){/}{nl}{#FF3333}※ 일일 획득량 및 참여 제한은 매일 오전 06시 초기화 됩니다.{/}{nl}'[이벤트] 모닥불'은 60분 접속 시 마다 1개 획득 가능합니다."/>
 		<Class ClassID="302488" ClassName="2105_CAMPING_AX_MSG_3" Data="'나무꾼의 부탁'을 완료 후 진행할 수 있습니다."/>
+		<Class ClassID="302503" ClassName="Event_Camping_Npc_Msg1" Data="{#003399}캠프파이어 참여 횟수 초기화 하기{/}"/>
+		<Class ClassID="302504" ClassName="Event_Camping_Npc_Msg2" Data="캠프파이어 참여 횟수 초기화 합니다.{nl}캠프파이어 일일 참여횟수를 모두 사용한 경우 이벤트 기간중 팀당 1회 초기화 가능합니다."/>
+		<Class ClassID="302505" ClassName="Event_Camping_Npc_Msg3" Data="캠프파이어 일일 참여 횟수가 남아있습니다.{nl}일일 참여 횟수를 모두 소진한 뒤 초기화를 진행해주세요."/>
+		<Class ClassID="302506" ClassName="Event_Camping_Npc_Msg4" Data="캠프파이어 일일 참여 횟수가 초기화되었습니다!"/>
 	</Category>
 	<Category Name="Account">
 		<Class ClassID="303001" ClassName="MaxAccountWarehouseCount" Data="팀 창고"/>
