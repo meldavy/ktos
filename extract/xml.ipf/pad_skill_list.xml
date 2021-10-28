@@ -646,15 +646,13 @@ return value"/>
             <ToolScp Scp="PAD_ACTIVATE" Client="NO" UseSleep="NO">
                 <Str Str="ENEMY"/>
             </ToolScp>
-            <ToolScp Scp="PAD_TGT_BUFF" Client="NO" UseSleep="NO">
+            <ToolScp Scp="PAD_TGT_BUFF_AFTER_CHECK_BUFF" Client="NO" UseSleep="NO">
                 <Str Str="ENEMY"/>
                 <Num Num="0"/>
                 <Num Num="0"/>
                 <Str Str="JincanGu_Debuff"/>
                 <Str Str="JincanGu_Debuff"/>
-                <Num Num="1" UseFunc="1" FuncTxt="
-
-return obj.Leve"/>
+                <Num Num="1" UseFunc="1" FuncTxt="return obj.Level;"/>
                 <Num Num="0"/>
                 <Num Num="0" UseFunc="1" FuncTxt="local value = 60000
 
@@ -680,14 +678,6 @@ return value"/>
 <Num Num="0"/>
             </ToolScp>
         </enterEvent>
-        <leaveEvent>
-            <ToolScp Scp="PAD_TGT_BUFF_REMOVE" Client="NO" UseSleep="NO">
-                <Str Str="ENEMY"/>
-                <Num Num="0"/>
-                <Num Num="0"/>
-                <Str Str="Archer_VerminPot_Debuff"/>
-            </ToolScp>
-        </leaveEvent>
         <updateEvent>
             <ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
                 <Num Num="-500"/>
@@ -756,9 +746,7 @@ return value"/>
                 <Num Num="0"/>
                 <Str Str="JincanGu_Abil_Debuff"/>
                 <Str Str="JincanGu_Abil_Debuff"/>
-                <Num Num="1" UseFunc="1" FuncTxt="
-
-return obj.Level"/>
+		<Num Num="1" UseFunc="1" FuncTxt="return obj.Level;"/>
                 <Num Num="0"/>
                 <Num Num="0" UseFunc="1" FuncTxt="local value = 60000
 
@@ -879,9 +867,7 @@ return value"/>
                 <Num Num="0"/>
                 <Str Str="Archer_VerminPot_Debuff"/>
                 <Str Str="Archer_VerminPot_Debuff"/>
-                <Num Num="1" UseFunc="1" FuncTxt="
-
-return obj.Level"/>
+		<Num Num="1" UseFunc="1" FuncTxt="return obj.Level;"/>
                 <Num Num="0"/>
                 <Num Num="0" UseFunc="1" FuncTxt="local value = 15000
 
@@ -3219,7 +3205,7 @@ return obj.Level;"/>
     <PadSkill Name="Cleric_Barrier_PC" CheckerType="0" Range="1.2" UpdateTerm="200" ApplyFlyMon="1">
         <createEvent>
             <ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
-                <Num Num="50000"UseFunc="1" FuncTxt="local value = obj.Level * 4000
+                <Num Num="50000" UseFunc="1" FuncTxt="local value = obj.Level * 4000
 if IsPVPServer(self) == 1 or IsPVPField(self) == 1 then
     value = value / 2
 end
