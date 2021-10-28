@@ -20,7 +20,7 @@ function DELETE_WARNING_BOX_ON_INIT(second, petGuid)
 	local monCls = GetClassByType("Monster", petInfo:GetPetType());	
 	local nameStr = string.format("%s (%s)", petInfo:GetName(), monCls.Name);
 	frame:SetUserValue("PET_GUID_DEL", petGuid);
-	frame:SetUserValue("CHAR_CID_DEL", brkSystem:GetCIDStr());		
+	frame:SetUserValue("CHAR_CID_DEL", brkSystem:GetCID());		
 	text1 = frame:GetChild("richtext_1");
 	text2 = frame:GetChild("richtext_3");
 	btnYes = frame:GetChild("button_yes");		
@@ -39,7 +39,6 @@ end
 function CANCEL_DELETE_WARNING_BOX()		
 	ui.SetEscapeScp("");	
 	local frame = ui.GetFrame("deleteWarningBox");	
-	CHAR_N_PET_LIST_LOCKMANGED(1);
 	DELETE_WARNING_BOX_RESET(frame);
 end
 
