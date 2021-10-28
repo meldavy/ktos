@@ -748,6 +748,14 @@ function PinkBlink_LEAVE(actor, obj, buff)
     actor:GetEffect():SetColorBlink(0,0,0,0,1,0,0,1, 0 , 1);
 end
 
+--하늘색
+function CyanBlink_ENTER(actor, obj, buff)
+    actor:GetEffect():SetColorBlink(0,0,0,0, 0,0.3,0.5,0, 1.5, 1);
+end
+    
+function CyanBlink_LEAVE(actor, obj, buff)
+    actor:GetEffect():SetColorBlink(0,0,0,0, 0,0,0,1, 0, 1);
+end
 
 -- 포인팅 디버프 블링크
 function Pointing_ENTER(actor, obj, buff)

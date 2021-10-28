@@ -1425,6 +1425,10 @@
 		<Class ClassID="10562" ClassName="KOR_MaxSilverLimitOverDaily" Data="넥슨 ID 보안서비스에 가입하지 않아, 더 이상 사냥을 통해 실버를 획득할 수 없습니다. 넥슨 ID 보안 서비스에 가입하여 주세요.{nl} {nl}보안서비스 가입 후 재접속하여 주세요."/>
 		<Class ClassID="10563" ClassName="GLOBAL_MaxSilverLimitOverDaily" Data="Your account is currently under the daily limit of acquiring silver in the field. If you wish to lift the daily limit, register your account in Steam Guard."/>
 		<Class ClassID="10564" ClassName="GLOBAL_JP_MaxSilverLimitOverDaily" Data="当アカウントは現在フィールドで獲得可能なシルバーの一日獲得数が制限されております。解除したい場合はアカウントをSTEAMガードに登録してください。"/>
+		<Class ClassID="10565" ClassName="AbilityPointExtractorTooltipText_1" Data="{@st59s}100,000실버를 소비하여 특성 포인트 1000당{nl}특성 포인트 스크롤 1개로 추출합니다."/>
+		<Class ClassID="10566" ClassName="AbilityPointExtractorTooltipText_2{VALUE}{MIN}" Data="{@st59s}추출할 특성 포인트의 {VALUE}%를 소비하여 {nl}포인트 1000당 특성 포인트 스크롤 1개로 추출합니다.{nl}최소 {MIN}개 부터 교환 가능합니다."/>
+		<Class ClassID="10567" ClassName="AskExtractAbilityPoint2{AllConsumePoint}{Scroll}{ConsumePoint}" Data="{AllConsumePoint} 특성 포인트를 소비하여 특성 포인트 스크롤 {Scroll}개를 추출합니다.{nl}{ConsumePoint} 특성 포인트를 추출하시겠습니까?"/>
+		<Class ClassID="10568" ClassName="AbilityPointExtractorMinCount{VALUE}" Data="최소 교환 개수 : {VALUE}개"/>
 		<Class ClassID="10569" ClassName="WeeklyMaxPvpMineCountOver" Data="주간 최대 획득량에 도달하여 더 이상 용병단 주화를 획득하실 수 없습니다."/>
 		<Class ClassID="10570" ClassName="GuildPromoteNotice" Data="가입할 수 있는 길드가 있습니다."/>
 		<Class ClassID="10571" ClassName="AlreadyorImpossibleName" Data="이미 사용 중이거나, 사용할 수 없는 이름입니다."/>
@@ -1834,6 +1838,12 @@
 		<Class ClassID="21398" ClassName="OpenCountBonus{COUNT}" Data="{@st66d_y}{s20}{COUNT}{/}{/}{@st45tw}{s20}회차 보너스"/>
 		<Class ClassID="21400" ClassName="MaterialOfBoostToken1" Data="[x4 경험의 서] 제작 재료입니다."/>
 		<Class ClassID="21401" ClassName="MaterialOfBoostToken2" Data="[x8 경험의 서] 제작 재료입니다."/>
+		<Class ClassID="21403" ClassName="AccumulatedDamage" Data="누적 대미지"/>
+		<Class ClassID="21404" ClassName="ClearTime" Data="클리어 시간"/>
+		<Class ClassID="21405" ClassName="Ranking_2" Data="등수"/>
+		<Class ClassID="21407" ClassName="After_Start" Data="후 입장 가능합니다."/>
+		<Class ClassID="21408" ClassName="NotAddmittableDay" Data="입장 가능한 날짜가 아닙니다."/>
+		<Class ClassID="21409" ClassName="Already_Exit" Data="종료되었습니다."/>
 	</Category>
 	<Category Name="ChatText">
 		<Class ClassID="22001" ClassName="Guard" Data="방어"/>
@@ -5454,8 +5464,8 @@
 		<Class ClassID="28255" ClassName="EVENT_1811_KUPOLE_MSG1" Data="교환 상점을 사용한다"/>
 		<Class ClassID="28260" ClassName="IMCTEST_1811_NPC_MSG1" Data="보루타 레이드 지역으로 이동"/>
 		<Class ClassID="28261" ClassName="IMCTEST_1811_NPC_MSG2" Data="콜로니전 지역으로 이동"/>
-		<Class ClassID="28262" ClassName="msg_soloraid_useItemReset_Success" Data="프리 던전 보스 이용 횟수 초기화권을 사용했습니다"/>
-		<Class ClassID="28263" ClassName="msg_soloraid_useItemReset_notyeyt" Data="프리 던전 보스 이용 횟수가 1회 이상일때 사용 가능합니다"/>
+		<Class ClassID="28262" ClassName="msg_soloraid_useItemReset_Success" Data="1인 레이드 추가 입장권을 사용 했습니다"/>
+		<Class ClassID="28263" ClassName="msg_soloraid_useItemReset_notyeyt" Data="1인 레이드 이용 횟수가 1회 이상일 때 사용 가능합니다"/>
 		<Class ClassID="28265" ClassName="EVENT_1811_ABILITY_EXTRACTOR_MSG1" Data="[최초 1회 {COUNT}%할인]"/>
 		<Class ClassID="28270" ClassName="EVENT_1811_TESTSERVER_UNIQUE" Data="'별의 탑 폐쇄 구역'을 완료 하셨습니다!{nl}총 완료 횟수 : {COUNT}"/>
 		<Class ClassID="28271" ClassName="EVENT_1811_TESTSERVER_LEGEND" Data="'벨코퍼의 둥지'를 완료 하셨습니다!{nl}총 완료 횟수 : {COUNT}"/>
@@ -9325,6 +9335,11 @@
 		<Class ClassID="91083" ClassName="GetBonusReward" Data="회차보상 받기"/>
 		<Class ClassID="92007" ClassName="MORINGPONIA_SOLO_RAID_MSG1" Data="정화석이 파괴되었습니다! 주기적으로 [독 내성] 버프 중첩이 차감됩니다."/>
 		<Class ClassID="92008" ClassName="MORINGPONIA_SIMULTANEITY_MSG" Data="탄타이저가 모링포니아에게 [보호막] 버프를 부여하였습니다.{nl}해당 상태에서 모링포니아의 피격 대미지가 감소합니다."/>
+		<Class ClassID="92032" ClassName="FIELDRAID_OVERCHARGE_MSG1" Data="동쪽 지역이 활성화되어 충전을 시작합니다."/>
+		<Class ClassID="92033" ClassName="FIELDRAID_OVERCHARGE_MSG2" Data="남쪽 지역이 활성화되어 충전을 시작합니다."/>
+		<Class ClassID="92034" ClassName="FIELDRAID_OVERCHARGE_MSG3" Data="서쪽 지역이 활성화되어 충전을 시작합니다."/>
+		<Class ClassID="92035" ClassName="FIELDRAID_OVERCHARGE_MSG4" Data="북쪽 지역이 활성화되어 충전을 시작합니다."/>
+		<Class ClassID="92036" ClassName="FIELDRAID_OVERCHARGE_MSG5" Data="{ol}{img icon_Weekly_Warning 40 40}{/}활성화 지역이 과충전 되었습니다.{nl}용량이 초과하여 보스 몬스터로부터 에너지를 방출됩니다."/>
 	</Category>
 	<Category Name="BattleText">
 		<Class ClassID="100001" ClassName="ADD_DAMAGE_{Auto_1}!" Data="추가 대미지 {Auto_1}!"/>
@@ -9815,8 +9830,8 @@
 		<Class ClassID="102425" ClassName="FIELDBOSS_WORLD_EVENT_WIN_MSG{PC}{ITEM}" Data="축하드립니다!{nl}{PC} 님이 여신의 가호를 받아 {ITEM} 를 획득하셨습니다!"/>
 		<Class ClassID="102426" ClassName="NOTICE_START_FIELDBOSS_WORLD_EVENT" Data="여신의 가호 이벤트가 시작되었습니다!{nl}마을에서 참여 가능합니다.{nl}레전드 아이템 소진 시 조기 종료될 수 있습니다"/>
 		<Class ClassID="102427" ClassName="NOTICE_END_FIELDBOSS_WORLD_EVENT" Data="여신의 가호 이벤트가 종료되었습니다!"/>
-		<Class ClassID="102428" ClassName="NOTICE_START_FAIL_FIELDBOSS_WORLD_EVENT" Data="문제가 발생하여 여신의 가호 이벤트 시작에 실패했습니다. 죄송합니다."/>
-		<Class ClassID="102429" ClassName="NOTICE_READY_FIELDBOSS_WORLD_EVENT{TIME}" Data="월드 보스가 구원자들에 의해 쓰러졌습니다. {TIME}초 후 여신의 가호 이벤트가 시작됩니다.{nl}참여를 원하시는 구원자분들은 마을로 이동해 주시기 바랍니다."/>
+		<Class ClassID="102428" ClassName="NOTICE_START_FAIL_FIELDBOSS_WORLD_EVENT{code}" Data="문제가 발생하여 여신의 가호 이벤트 시작에 실패했습니다. ErrorCode : {code}"/>
+		<Class ClassID="102429" ClassName="NOTICE_READY_FIELDBOSS_WORLD_EVENT{TIME}" Data="보스 협동전이 종료되었습니다. {TIME}초 후 여신의 가호 이벤트가 시작됩니다.{nl}참여를 원하시는 구원자분들은 마을로 이동해 주시기 바랍니다."/>
 		<Class ClassID="102430" ClassName="ReallyBanGuildMember" Data="[{NAME}] 길드원을 추방하시겠습니까?"/>
 		<Class ClassID="102431" ClassName="WaitingCreateGuildEventRoom" Data="길드 미션룸을 생성하는 중입니다."/>
 		<Class ClassID="102432" ClassName="CantCancelGuildEvent" Data="해당 길드 이벤트는 시작한 이후 취소할 수 없습니다."/>
@@ -9847,6 +9862,9 @@
 		<Class ClassID="102459" ClassName="EventGuildQuestRewardPCCheck" Data="{#003399}[길드 이벤트]{/} 개인 보상 받기"/>
 		<Class ClassID="102460" ClassName="EventSeasonGuildQuestRewardCheck" Data="{#003399}[시즌서버]{/} 길드 이벤트 보상 수령하기"/>
 		<Class ClassID="102461" ClassName="EventSeasonGuildQuestCheckMsg{WEEKCOUNT}{TOTALCOUNT}" Data="길드 퀘스트 누적 클리어 횟수{nl}주간 클리어 횟수({WEEKCOUNT}/3){nl}누적 클리어 횟수({TOTALCOUNT}/12){nl}{#FF0000}※주간 클리어 횟수는 매주 월요일 06시에 초기화 됩니다.{/}"/>
+		<Class ClassID="102462" ClassName="NOTICE_FIELDBOSS_RANK" Data="보스 협동전 랭킹을 발표합니다."/>
+		<Class ClassID="102463" ClassName="NOTICE_FIELDBOSS_RANK{rank}{name}" Data="{rank}위 - {name}"/>
+		<Class ClassID="102464" ClassName="NOTICE_FIELDBOSS_RANK_END" Data="이상 보스 협동전 랭킹 발표를 종료합니다."/>
 	</Category>
 	<Category Name="EqupClasses">
 		<Class ClassID="103001" ClassName="THSword" Data="양손검"/>
@@ -14145,12 +14163,30 @@
 		<Class ClassID="302153" ClassName="EVENT_2007_LUCKY_TICKET_SEL_MSG1" Data="{#003399}[모아라 행운의 티켓]{/} 이벤트 안내"/>
 		<Class ClassID="302154" ClassName="EVENT_2007_LUCKY_TICKET_SEL_MSG2" Data="{#003399}[모아라 행운의 티켓]{/} 이벤트 상점"/>
 		<Class ClassID="302155" ClassName="luckyShop2007" Data="모아라 행운의 티켓 이벤트 상점"/>
+		<Class ClassID="302156" ClassName="EVENT_2007_MATSURI_SEL_MSG1" Data="{#003399}[나츠마츠리]{/} 이벤트 안내"/>
+		<Class ClassID="302157" ClassName="EVENT_2007_MATSURI_SEL_MSG2" Data="{#003399}[나츠마츠리]{/} 축제 상점"/>
+		<Class ClassID="302158" ClassName="EVENT_2007_MATSURI_SEL_MSG3" Data="{#003399}[나츠마츠리]{/} 야시장"/>
+		<Class ClassID="302159" ClassName="EVENT_2007_MATSURI_TICKET_CHECK_MESSAGE{COIN}" Data="[이벤트]마츠리 티켓{nl}일일 획득량 {#3366FF}({COIN}/100){/}{nl}{#FF0000} ※일일 최대 획득량은 오전 6시 초기화 됩니다.{/}"/>
+		<Class ClassID="302160" ClassName="MatsuriShop2007" Data="[나츠마츠리]축제 상점"/>
+		<Class ClassID="302161" ClassName="MatsuriFoodShop2007" Data="[나츠마츠리]야시장"/>
 		<Class ClassID="302164" ClassName="EVENT_SEASON_SERVER_REWARD_PROGRESS" Data="440레벨 달성 보상 ({State1}){nl}450레벨 달성 보상 ({State2}){nl}이벤트 기간: 8월 6일 ~ 10월 22일 점검 전"/>
 		<Class ClassID="302165" ClassName="EVENT_SEASON_SERVER_REWARD_DONE" Data="이미 만랩 달성 보상을 획득하였습니다."/>
+		<Class ClassID="302166" ClassName="EVENT_2008_OBON_SEL_MSG1" Data="{#003399}[오본]{/} 이벤트 안내"/>
+		<Class ClassID="302167" ClassName="EVENT_2008_OBON_SEL_MSG2" Data="{#003399}[오본]{/} 라핀디온 드루이드의 수수께끼 떡 교환"/>
+		<Class ClassID="302168" ClassName="EVENT_2008_OBON_SEL_MSG3" Data="{#003399}[오본]{/} 보름달의 기운"/>
+		<Class ClassID="302169" ClassName="EVENT_2008_OBON_SEL_MSG4" Data="교환 가능 개수 1~{MAX}"/>
+		<Class ClassID="302170" ClassName="EVENT_2008_OBON_FULLMOON_MSG1" Data="보름달의 기운이 느껴집니다."/>
+		<Class ClassID="302171" ClassName="EVENT_2008_OBON_FULLMOON_MSG2" Data="보름달의 기운이 가득합니다."/>
+		<Class ClassID="302172" ClassName="EVENT_2008_OBON_RICE_CHECK_MESSAGE{COIN}{TRADE}" Data="[오본] 찹쌀{nl}일일 획득량 {#3366FF}({COIN}/500){/}{nl}이벤트 기간 중 [오본] 찹쌀 교환 횟수 {#3366FF}({TRADE}/280){/}{nl}{#FF0000} ※일일 최대 획득량은 오전 6시 초기화 됩니다.{/}"/>
 		<Class ClassID="302173" ClassName="EVENT_2007_GUILD_MSG1" Data="조건을 충족하지 못하였습니다."/>
 		<Class ClassID="302174" ClassName="EVENT_2007_GUILD_MSG2" Data="버프를 활성화 했습니다. (24시간){nl}6시간 후 다시 버프를 활성화할 수 있습니다."/>
 		<Class ClassID="302175" ClassName="EVENT_2007_GUILD_MSG3" Data="이미 버프 효과를 받고있습니다."/>
 		<Class ClassID="302176" ClassName="EVENT_2007_GUILD_DLG1" Data="촉망받는 길드 버프를 활성화를 위해서는 다음과 같은 조건이 만족되어야 합니다.{nl}1. 길드 마스터의 레벨이 440LV 이상{nl}2. 길드원이 길드 마스터 포함 10명 이상{np}길드 버프 활성화는 모든 길드원이 가능합니다.{nl}버프 활성화는 24시간 동안 유지되며, 6시간의 쿨타임이 있습니다.{nl} 버프는 맵 이동 시에 적용됩니다."/>
+		<Class ClassID="302177" ClassName="EVENT_2008_OBON_SEL_MSG5" Data="오늘 교환 가능한 횟수를 모두 사용하셨습니다."/>
+		<Class ClassID="302178" ClassName="EVENT_2008_OBON_SEL_MSG6" Data="필요한 아이템이 없어 교환하실 수 없습니다."/>
+		<Class ClassID="302179" ClassName="EVENT_2008_OBON_SEL_MSG7" Data="이벤트 기간에 교환 가능한 떡을 모두 교환하셨습니다."/>
+		<Class ClassID="302180" ClassName="EVENT_2008_OBON_SEL_MSG8" Data="오늘 남은 교환 횟수는 {MAX}회 입니다."/>
+		<Class ClassID="302181" ClassName="EVENT_2008_OBON_SEL_MSG9" Data="교환에 성공하셨습니다."/>
 		<Class ClassID="302182" ClassName="Recieved" Data="수령"/>
 		<Class ClassID="302183" ClassName="NotRecieved" Data="미수령"/>
 		<Class ClassID="302184" ClassName="EVENT_2007_GUILD_MSG4" Data="버프가 활성화 되었습니다. 맵 이동 혹은 재 접속 시 버프가 적용됩니다."/>
@@ -14163,6 +14199,11 @@
 		<Class ClassID="302191" ClassName="EVENT_YOUR_MASTER_Shop2008" Data="당신의 마스터 이벤트 상점"/>
 		<Class ClassID="302192" ClassName="Event_STM_APPRAISER_SEL" Data="산드라의 반짝이는 보석"/>
 		<Class ClassID="302199" ClassName="Event_STM_YOUR_MASTER_SEL" Data="당신의 마스터"/>
+		<Class ClassID="302193" ClassName="EVENT_2010_CHUSOK_MSG1" Data="풍성한 한가위 접속 보상을 획득하였습니다."/>
+		<Class ClassID="302194" ClassName="EVENT_2010_CHUSOK_MSG2{TIME}" Data="[이벤트]풍성한 한가위{nl}3시간 접속 시 보상 획득{#3366FF}({TIME}/180분){/}{nl}{#FF0000} ※보상 획득 기간{nl} 9월30일 오전 06시 ~ 10월 05일 오전 05시 59분 까지 총 4회{/}"/>
+		<Class ClassID="302195" ClassName="EVENT_2009_FISHING_SEL_MSG1" Data="{#0033FF}[고양이의 보은]{/} 이벤트 안내"/>
+		<Class ClassID="302196" ClassName="EVENT_2009_FISHING_SEL_MSG2" Data="{#0033FF}[고양이의 보은]{/}[이벤트] 문어발 미끼 수령하기"/>
+		<Class ClassID="302197" ClassName="EVENT_2009_FISHING_CHECK_MESSAGE1{BAIT}{TRADE}" Data="[이벤트] 고양이의 보은{nl}[이벤트] 문어발 미끼 일일 수령 횟수 {#3366FF}({BAIT}/1회){/}{nl}이벤트 기간 중 [이벤트] 시원한 수박 교환 횟수 {#3366FF}({TRADE}/150회){/}{nl}{#FF0000}※일일 수령 횟수는 매일 오전 6시 초기화 됩니다.{nl}※이벤트 기간 중 [이벤트] 시원한 수박의 최대 교환 교환 횟수는 150개 이며,{nl}이후 교환 시 버프만 획득 가능합니다.{/}"/>
 	</Category>
 	<Category Name="Account">
 		<Class ClassID="303001" ClassName="MaxAccountWarehouseCount" Data="팀 창고"/>
@@ -14368,6 +14409,8 @@
 	</Category>
 	<Category Name="FieldBossMessage">
 		<Class ClassID="510500" ClassName="FieldBoss{Name}WillAppear" Data="잠시 후 필드 보스가 등장합니다 : {Name}"/>
+		<Class ClassID="510501" ClassName="FieldBossWillAppearAfter10Min" Data="10분 후 보스 협동전이 시작됩니다."/>
+		<Class ClassID="510502" ClassName="FieldBossCanEnter" Data="잠시 후 보스 협동전이 시작됩니다."/>
 	</Category>
 	<Category Name="FishRubbing">
 		<Class ClassID="510600" ClassName="FishRubbingMSG1" Data="그는 좋은 물고기였습니다."/>
@@ -15382,10 +15425,14 @@
 		<Class ClassID="570001" ClassName="Gesture_WAVE" Data="{nl} {nl}모든 캐릭터가 제스처를 흭득합니다.{nl} {nl}{@st66d_y}제스처를 습득하시겠습니까?"/>
 		<Class ClassID="570002" ClassName="Gesture_CHEERUP" Data="{nl} {nl}모든 캐릭터가 제스처를 흭득합니다.{nl} {nl}{@st66d_y}제스처를 습득하시겠습니까?"/>
 		<Class ClassID="570003" ClassName="Gesture_UNBELIEVABLE" Data="{nl} {nl}모든 캐릭터가 제스처를 흭득합니다.{nl} {nl}{@st66d_y}제스처를 습득하시겠습니까?"/>
+		<Class ClassID="570005" ClassName="Gesture_FLEX" Data="{nl} {nl}모든 캐릭터가 제스쳐를 흭득합니다.{nl} {nl}{@st66d_y}제스쳐를 습득하시겠습니까?"/>
+		<Class ClassID="570006" ClassName="Gesture_HOMERUN" Data="{nl} {nl}모든 캐릭터가 제스쳐를 흭득합니다.{nl} {nl}{@st66d_y}제스쳐를 습득하시겠습니까?"/>
+		<Class ClassID="570007" ClassName="Gesture_NYANG" Data="{nl} {nl}모든 캐릭터가 제스쳐를 흭득합니다.{nl} {nl}{@st66d_y}제스쳐를 습득하시겠습니까?"/>
+		<Class ClassID="570008" ClassName="Gesture_WIPE" Data="{nl} {nl}모든 캐릭터가 제스쳐를 흭득합니다.{nl} {nl}{@st66d_y}제스쳐를 습득하시겠습니까?"/>
 		<Class ClassID="570009" ClassName="Gesture_PULLUP" Data="{nl} {nl}모든 캐릭터가 제스처를 흭득합니다.{nl} {nl}{@st66d_y}제스처를 습득하시겠습니까?"/>
 		<Class ClassID="570010" ClassName="Gesture_SQUAT" Data="{nl} {nl}모든 캐릭터가 제스처를 흭득합니다.{nl} {nl}{@st66d_y}제스처를 습득하시겠습니까?"/>
 		<Class ClassID="570011" ClassName="Gesture_SPOTLIGHT" Data="{nl} {nl}모든 캐릭터가 제스처를 흭득합니다.{nl} {nl}{@st66d_y}제스처를 습득하시겠습니까?"/>
-		<Class ClassID="570005" ClassName="Gesture_FLEX" Data="{nl} {nl}모든 캐릭터가 제스쳐를 흭득합니다.{nl} {nl}{@st66d_y}제스쳐를 습득하시겠습니까?"/>
+		<Class ClassID="570012" ClassName="Gesture_BASEBALL" Data="{nl} {nl}모든 캐릭터가 제스처를 흭득합니다.{nl} {nl}{@st66d_y}제스처를 습득하시겠습니까?"/>
 	</Category>
 	<Category Name="ChatBalloon">
 		<Class ClassID="580000" ClassName="ChatBalloon_YESSCP_message1" Data="{nl} {nl}모든 캐릭터가 말풍선 스킨을 획득하며, 캐릭터 설정에서 말풍선 스킨을 변경할 수 있습니다.{nl}"/>
@@ -15505,5 +15552,59 @@
 		<Class ClassID="596020" ClassName="NotEnoughVoteMaterial" Data="투표권이 없습니다."/>
 		<Class ClassID="596021" ClassName="ImpossibleVoteObj" Data="투표가능한 대상이 아닙니다."/>
 		<Class ClassID="596022" ClassName="OnlyInputNumberText" Data="숫자만 입력해주세요"/>
+	</Category>
+	<Category Name="EVENT_2009_FULLMOON">
+		<Class ClassID="599000" ClassName="EventState" Data="이벤트 현황"/>
+		<Class ClassID="599001" ClassName="LevelReward" Data="단계 보상"/>
+		<Class ClassID="599002" ClassName="BuffDesc" Data="버프 효과"/>
+		<Class ClassID="599003" ClassName="EVENT_2009_FULLMOON_TITLE" Data="달맞이 대작전"/>
+		<Class ClassID="599004" ClassName="EVENT_2009_FULLMOON_NPC_SEL_MSG1" Data="{#003399}[달맞이 대작전]{/} 이벤트 설명"/>
+		<Class ClassID="599005" ClassName="EVENT_2009_FULLMOON_NPC_SEL_MSG2" Data="{#003399}[달맞이 대작전]{/} 달맞이 주화 상점"/>
+		<Class ClassID="599006" ClassName="EVENT_2009_FULLMOON_GIVE_RICECAKE_MSG1" Data="선물할 송편의 개수를 입력해주세요(1~{MAX})"/>
+		<Class ClassID="599007" ClassName="EVENT_2009_FULLMOON_SEL_MSG1" Data="{#003399}[달맞이 대작전]{/} 소원 빌기"/>
+		<Class ClassID="599008" ClassName="EVENT_2009_FULLMOON_SEL_MSG2" Data="{#003399}[달맞이 대작전]{/} 선물 받기"/>
+		<Class ClassID="599009" ClassName="EVENT_2009_FULLMOON_SEL_MSG3" Data="{#003399}[달맞이 대작전]{/} 버프 받기"/>
+		<Class ClassID="599010" ClassName="EVENT_2009_FULLMOON_SEL_MSG4" Data="{#003399}[달맞이 대작전]{/} 송편 주기"/>
+		<Class ClassID="599011" ClassName="EVENT_2009_FULLMOON_MAKE_WISH_MSG1" Data="소원을 비는 중..."/>
+		<Class ClassID="599012" ClassName="EVENT_2009_FULLMOON_MAKE_WISH_MSG2" Data="다음 소원까지 {TIME}분 남았습니다."/>
+		<Class ClassID="599013" ClassName="EVENT_2009_FULLMOON_MAKE_WISH_MSG3" Data="오늘의 소원을 모두 빌었습니다. 오전 06시에 초기화됩니다."/>
+		<Class ClassID="599014" ClassName="EVENT_2009_FULLMOON_TAKE_REWARD_MSG1" Data="오늘의 선물을 이미 받았습니다. 오전 06시에 초기화됩니다."/>
+		<Class ClassID="599015" ClassName="EVENT_2009_FULLMOON_TAKE_BUFF_MSG1" Data="오늘의 버프를 이미 받았습니다. 오전 06시에 초기화됩니다."/>
+		<Class ClassID="599016" ClassName="EVENT_2009_FULLMOON_TIP_TEXT_1" Data="달맞이 대작전 선물 수령, 소원 빌기, 달맞이 주화 획득, 송편 교환 일일 초기화 시간은 매일 오전 06시입니다."/>
+		<Class ClassID="599017" ClassName="EVENT_2009_FULLMOON_TIP_TEXT_2" Data="마우스를 올리면 세부 보상을 확인하실 수 있습니다."/>
+		<Class ClassID="599018" ClassName="EVENT_2009_FULLMOON_TIP_TEXT_3" Data="PVP 지역, 주간 보스 레이드에서는 적용되지 않습니다."/>
+		<Class ClassID="599019" ClassName="EVENT_2009_FULLMOON_CHECK_STATE_1" Data="달맞이 대작전 단계"/>
+		<Class ClassID="599020" ClassName="EVENT_2009_FULLMOON_CHECK_STATE_2" Data="총 누적 달맞이 포인트"/>
+		<Class ClassID="599021" ClassName="EVENT_2009_FULLMOON_CHECK_STATE_3" Data="일일 달맞이 대작전 선물 수령"/>
+		<Class ClassID="599022" ClassName="EVENT_2009_FULLMOON_CHECK_STATE_4" Data="달님에게 소원을 일일 참여 수"/>
+		<Class ClassID="599023" ClassName="EVENT_2009_FULLMOON_CHECK_STATE_5" Data="일일 이벤트 주화 획득"/>
+		<Class ClassID="599024" ClassName="EVENT_2009_FULLMOON_ALREADY_GET_GIFT" Data="오늘 획득 가능한 선물을 모두 수령하셨습니다.{nl}다음날 오전 06시에 초기화 됩니다."/>
+		<Class ClassID="599025" ClassName="EVENT_2009_FULLMOON_ALREADY_MAKE_WISH" Data="오늘 참여 가능한 소원 횟수를 모두 소모하셨습니다.{nl}다음날 오전 06시에 초기화 됩니다."/>
+		<Class ClassID="599026" ClassName="EVENT_2009_FULLMOON_BUFF_DESCRIPTION_1" Data="루팅찬스 +100{nl}최대  HP + 1,000/최대  SP + 300"/>
+		<Class ClassID="599027" ClassName="EVENT_2009_FULLMOON_BUFF_DESCRIPTION_2" Data="루팅 찬스 +200{nl}최대  HP + 2,000/최대  SP + 500{nl}10초마다 HP,SP 150 회복"/>
+		<Class ClassID="599028" ClassName="EVENT_2009_FULLMOON_BUFF_DESCRIPTION_3" Data="루팅 찬스 + 400{nl}최대 HP 3,000/최대 SP + 800{nl}10초마다 HP,SP 200 회복/이동 속도 + 3"/>
+		<Class ClassID="599029" ClassName="EVENT_2009_FULLMOON_BUFF_DESCRIPTION_4" Data="루팅 찬스 + 800{nl}최대 HP 7,000/최대 SP + 1,500{nl}이동 속도 + 3/물리,마법 공격력 + 500"/>
+		<Class ClassID="599030" ClassName="EVENT_2009_FULLMOON_BUFF_DESCRIPTION_5" Data="루팅 찬스 + 1,000{nl}최대 HP 10,000/최대 SP + 2,000{nl}이동 속도 + 3/물리,마법 공격력 + 800"/>
+		<Class ClassID="599031" ClassName="SpecialReward" Data="특별 보상"/>
+		<Class ClassID="599032" ClassName="EVENT_2009_FULLMOON_REWARD_DESCRIPTION_1" Data="[달맞이] 특성 포인트 500 1개{nl}[달맞이] 장인의돋보기 3개{nl}[달맞이] 인스턴스 던전 입장 횟수 초기화권 1개{nl}[달맞이] 인스턴스 던전 배수 토큰 2개{nl}[이벤트] 달맞이 한복 코스튬 상자(14일) - 팀당 1회"/>
+		<Class ClassID="599033" ClassName="EVENT_2009_FULLMOON_REWARD_DESCRIPTION_2" Data="[달맞이] 특성 포인트 1,000 1개{nl}[달맞이] 산드라의 미세 감정 돋보기 1개{nl}[달맞이] 인스턴스 던전 입장 횟수 초기화권 2개{nl}[달맞이] 인스턴스 던전 배수 토큰 4개{nl}[이벤트] 순경 코스튬 상자(14일) - 팀당 1회"/>
+		<Class ClassID="599034" ClassName="EVENT_2009_FULLMOON_REWARD_DESCRIPTION_3" Data="[달맞이] 특성 포인트 1,000 3개{nl}[달맞이] 황금 모루 3개{nl}[달맞이] 인스턴스 던전 입장 횟수 초기화권 3개{nl}[달맞이] 인스턴스 던전 배수 토큰 6개"/>
+		<Class ClassID="599035" ClassName="EVENT_2009_FULLMOON_REWARD_DESCRIPTION_4" Data="[달맞이] 특성 포인트 1,000 5개{nl}[달맞이] 마법 부여 스크롤 5개{nl}[달맞이] 이벤트 엘릭서 상자 1개"/>
+		<Class ClassID="599036" ClassName="EVENT_2009_FULLMOON_REWARD_DESCRIPTION_5" Data="[달맞이] 특성 포인트 10,000 1개{nl}용병단 증표 2,000개{nl}[달맞이] 챌린지 모드 1회 입장권 1개{nl}[달맞이] 챌린지 포탈 생성 스크롤 1개"/>
+		<Class ClassID="599037" ClassName="EVENT_2009_FULLMOON_REWARD_DESCRIPTION_6" Data="총 누적 포인트 10,000P 를 달성하시면 특별 보상을 획득할 수 있습니다.{nl}순경 코스튬(남), 순경 코스튬 (여)중{nl}1개를 선택하여 획득할 수 있습니다.(팀당 1회, [추석 이벤트] 보름달 NPC를 통해 수령)"/>
+		<Class ClassID="599038" ClassName="EVENT_2009_FULLMOON_TAKE_REWARD_MSG" Data="{LEVEL}단계 보상을 획득합니다.{nl}현재 누적 달맞이 포인트: {POINT}{nl}{#FF0000}자세한 보상 리스트는 '/달빛'을 통해 확인하실 수 있습니다."/>
+		<Class ClassID="599039" ClassName="EVENT_2009_FULLMOON_TAKE_BUFF_MSG" Data="{LEVEL}단계 버프를 획득합니다.{nl}현재 누적 달맞이 포인트: {POINT}{nl}{#FF0000}자세한 보상 리스트는 '/달빛'을 통해 확인하실 수 있습니다."/>
+		<Class ClassID="599040" ClassName="fullmoonShop2009" Data="달맞이 주화 상점"/>
+		<Class ClassID="599041" ClassName="EVENT_2009_FULLMOON_GIVE_RICECAKE_LIMIT1" Data="현재 송편을 보유하고 있지 않습니다."/>
+		<Class ClassID="599042" ClassName="EVENT_2009_FULLMOON_GIVE_RICECAKE_LIMIT2" Data="오늘 교환 할 수 있는 횟수를 전부 소모하였습니다.{nl}오전 06시에 초기화됩니다."/>
+		<Class ClassID="599043" ClassName="EVENT_2009_FULLMOON_CHECK_TOOLTIP_2" Data="1단계 : 0P ~ 999P{nl}2단계 : 1,000P ~ 1999P{nl}3단계 : 2,000P ~ 3,999P{nl}4단계 : 4,000P ~ 5,999P{nl}5단계 : 6,000P ~"/>
+		<Class ClassID="599044" ClassName="EVENT_2009_FULLMOON_SEL_SPECIAL_REWARD" Data="{#003399}[이벤트] 순경 코스튬 선택 상자 (무기한){/} 받기"/>
+		<Class ClassID="599045" ClassName="EVENT_2009_FULLMOON_SEL_SPECIAL_REWARD_MSG1" Data="달맞이 포인트 10,000점을 달성하면 '[이벤트] 순경 코스튬 선택상자(무기한)' 을 획득할 수 있습니다.{nl}현재 누적 달맞이 포인트: {POINT}"/>
+		<Class ClassID="599046" ClassName="EVENT_2009_FULLMOON_SEL_SPECIAL_REWARD_MSG2" Data="달맞이 포인트 10,000점을 달성하지 못했습니다."/>
+		<Class ClassID="599047" ClassName="EVENT_2009_FULLMOON_SEL_SPECIAL_REWARD_MSG3" Data="이미 '[이벤트] 순경 코스튬 선택상자(무기한)'를 받았습니다."/>
+		<Class ClassID="599048" ClassName="EVENT_2009_FULLMOON_GIVE_RICECAKE_DONE" Data="{COUNT1}개의 송편을 사용해 {COUNT2} 포인트를 획득하였습니다."/>
+		<Class ClassID="599049" ClassName="EVENT_2009_FULLMOON_GIVE_RICECAKE_LIMIT3" Data="교환 가능한 개수를 초과하여 입력하실 수 없습니다."/>
+		<Class ClassID="599050" ClassName="EVENT_2009_FULLMOON_GIVE_RICECAKE_LIMIT4" Data="보유한 송편의 개수를 초과하여 입력하실 수 없습니다."/>
+		<Class ClassID="599051" ClassName="EVENT_2009_FULLMOON_INFO_MSG" Data="달맞이 주화 획득 현황{nl}일일 총 획득량 ({COIN}/300개){nl}일일 누적 접속 시간 ({TIME}분){nl}{#FF0000}※접속 시간으로 획득한 [이벤트] 달맞이 주화는 일일 총 획득량에 포함됩니다.{/}{nl}{#FF0000}※누적 접속 시간 1시간마다 [이벤트] 달맞이 주화 10개, 달맞이 포인트 3을 획득하실 수 있습니다.{/}"/>
 	</Category>
 </idspace>

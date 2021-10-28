@@ -43,6 +43,10 @@ ClassID,DefaultLearn,NextPoseCount,PoseLevel,RewardCheckCount,ClassName,Name,Fil
 43,0,0,0,1,UNBELIEVABLE,상상도 못한 포즈,pc_pose_lean01,icon_gesture_unbelievable,Reward,,true,,,,,,CONTENTS_TOTAL_SHOP_POSE_3
 44,0,0,0,1,DABDANCE,댑 댄스,pc_pose_lean01,icon_gesture_dabdance,Reward,,true,,,,,,CONTENTS_TOTAL_SHOP_POSE_4
 45,0,0,0,1,FLEX,실버자랑,pc_pose_lean01,icon_gesture_flex,Reward,,true,,,,,,CONTENTS_TOTAL_SHOP_POSE_5
+46,0,0,0,1,HOMERUN,홈런,pc_pose_lean01,icon_gesture_homerun,Reward,,true,,,,,,CONTENTS_TOTAL_SHOP_POSE_6
+47,0,0,0,1,NYANG,냥,pc_pose_lean01,icon_gesture_nyang,Reward,,true,,,,,,CONTENTS_TOTAL_SHOP_POSE_7
+48,0,0,0,1,WIPE,흔들흔들,pc_pose_lean01,icon_gesture_wipe,Reward,,true,,,,,,CONTENTS_TOTAL_SHOP_POSE_8
 49,0,0,0,1,PULLUP,턱걸이,pc_pose_lean01,icon_gesture_fullup,Reward,,true,,,,,,CONTENTS_TOTAL_SHOP_POSE_9
+50,0,0,0,1,BASEBALL,야구,pc_pose_lean01,icon_gesture_baseball,Reward,,true,,,,,,CONTENTS_TOTAL_SHOP_POSE_10
 51,0,0,0,1,SQUAT,스쿼트,pc_pose_lean01,icon_gesture_squat,Reward,,true,,,,,,CONTENTS_TOTAL_SHOP_POSE_11
 52,0,0,0,1,SPOTLIGHT,갱스터,pc_pose_lean01,icon_gesture_gangster,Reward,,true,,,,,,CONTENTS_TOTAL_SHOP_POSE_12

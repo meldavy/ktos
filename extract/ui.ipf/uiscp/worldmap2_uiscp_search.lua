@@ -16,9 +16,9 @@ function WORLDMAP2_SEARCH(frame)
     for i = 0, cnt-1 do
         local cls = GetClassByIndexFromList(clsList, i)
         local mapData = GetClass('Map', cls.MapName)
-        local mapName = string.gsub(mapData.Name, " ", "")
+        local mapName = string.gsub(dictionary.ReplaceDicIDInCompStr(mapData.Name), " ", "")
 
-        if string.find(mapName, searchText) ~= nil then
+        if string.find(string.lower(mapName), string.lower(searchText)) ~= nil then
             targetMap = mapData.ClassName
             targetEpisode = GET_EPISODE_BY_MAPNAME(targetMap)
             break
@@ -50,9 +50,9 @@ function WORLDMAP2_SEARCH_UPDATE(frame)
     for i = 0, cnt-1 do
         local cls = GetClassByIndexFromList(clsList, i)
         local mapData = GetClass('Map', cls.MapName)
-        local mapName = string.gsub(mapData.Name, " ", "")
+        local mapName = string.gsub(dictionary.ReplaceDicIDInCompStr(mapData.Name), " ", "")
 
-        if string.find(mapName, searchText) ~= nil and cls.IsInEpisode == "YES" then
+        if string.find(string.lower(mapName), string.lower(searchText)) ~= nil and cls.IsInEpisode == "YES" then
             mapList[#mapList+1] = {}
             mapList[#mapList][1] = mapData.Name
             mapList[#mapList][2] = mapData.ClassName

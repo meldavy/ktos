@@ -1475,14 +1475,13 @@ end
 function SCR_Get_BLKABLE(self)
     local equipLH = GetEquipItem(self, 'LH');
     local isShield = TryGetProp(equipLH, 'ClassType');
+    local abilFencer22 = GetAbility(self, "Fencer22")
+    if abilFencer22 ~= nil and TryGetProp(abilFencer22, "ActiveState", 0) == 1 and TryGetProp(equipLH, "ClassType", "None") == "Dagger" then
+        return 1;
+    end
+
     if isShield == 'Shield' then
-        local Fencer11_abil = GetAbility(self, "Fencer11")
-        if Fencer11_abil ~= nil and Fencer11_abil.ActiveState == 1 then
-            return 0;
-        else
-            return 1;
-        end
-        
+        return 1;
     end
     
 --    local buffList = { "CrossGuard_Buff", "NonInvasiveArea_Buff", "EnchantEarth_Buff", "Retiarii_DaggerGuard" };
@@ -2849,6 +2848,15 @@ function SCR_Get_Sta_Run(self)
     value = value + (value * addRateConsumptionSTA);
     
     -- 이런 버프 늘어나면 구조화 필요
+    
+    if IsBuffApplied(self, 'Corsair_Roar_Buff') == 'YES' then
+        local buff = GetBuffByName(self, "Corsair_Roar_Buff")
+        local buffOver = 1 - GetOver(buff) * 0.1
+        if buffOver <= 0.5 then
+            buffOver = 0.5
+        end
+        value = value * buffOver
+    end
     if IsBuffApplied(self, 'Sprint_Buff') == 'YES' then
         value = 0;
     elseif IsBuffApplied(self, 'Stamina_Max_buff') == 'YES' then

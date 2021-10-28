@@ -27,6 +27,6 @@
 	<BlendOn frame="24" R="0" G="0" B="0" A="50"/>
 	<BlendOff frame="25" R="0" G="0" B="0" A="0"/>
 	<Shockwave frame="20" type="2" intensity="3" frequency="70" duration="0.1" range="1000"/>
-	<Particle frame="0" attachNode="Dummy_emitter" particleName="E_warrior_HexenDropper_swrodtrail" useAttach="false" hiddenObj="false" changeEffect="None" scale="1" pause="true" use2DEffect="true"/>
+	<Particle frame="0" attachNode="Dummy_emitter" particleName="None" useAttach="false" hiddenObj="false" changeEffect="None" scale="1" pause="true" use2DEffect="true"/>
 	<Particle frame="15" attachNode="Dummy_emitter" particleName="F_ground071_smoke" useAttach="false" hiddenObj="false" changeEffect="None" scale="0.6" pause="true" use2DEffect="false"/>
 </ActionDesc>

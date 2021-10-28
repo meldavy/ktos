@@ -189,6 +189,8 @@ function SKL_KEY_DYNAMIC_CASTING_HAVE_ABIL(actor, obj, dik, movable, rangeCharge
 			end
 		end
 	end
+
+	return 0, 1
 end
 
 function SKL_KEY_SELECT_CELL(actor, obj, dik, cellCount, cellSize, chargeTime, autoShot, cellEft, cellEftScale, selCellEft, selCellEftScale, selectionEft, selectionEftScale, backSelect, drawSelectablePos, hitCancel)

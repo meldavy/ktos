@@ -3,6 +3,7 @@
 --           2 : 시즌 서버 여신의 룰렛
 --           3 : 메데이나 flex box
 --           4 : 당신의 마스터
+--           5 : 달맞이 대작전
 
 function GET_EVENT_PROGRESS_CHECK_TITLE(type)
     local table = 
@@ -11,6 +12,7 @@ function GET_EVENT_PROGRESS_CHECK_TITLE(type)
         [2] = "GODDESS_ROULETTE",
         [3] = "EVENT_2007_FLEX_BOX_DESC",
         [4] = "EVENT_YOUR_MASTER_TITLE",
+        [5] = "EVENT_2009_FULLMOON_TITLE",
     }
 
     return table[type];
@@ -23,6 +25,7 @@ function GET_EVENT_PROGRESS_CHECK_DESC(type)
         [2] = {"Acquire_State", "STAMP_TOUR", "Auto_KeonTenCheu"},
         [3] = {"Acquire_State", "TOS_VACANCE", "Auto_KeonTenCheu"},
         [4] = {"EVENT_YOUR_MASTER_DESC", "prev_ranking", "AccVoteReward"},
+        [5] = {"EventState", "LevelReward", "BuffDesc"},
     }
 
     return table[type];
@@ -35,6 +38,7 @@ function GET_EVENT_PROGRESS_CHECK_TITLE_SKIN(type)
         [2] = "test_h_redribbon_skin",
         [3] = "test_h_redribbon_skin",
         [4] = "your_master_title",
+        [5] = "test_h_redribbon_skin",
     }
 
     return table[type];
@@ -47,6 +51,7 @@ function GET_EVENT_PROGRESS_CHECK_TITLE_DECO(type)
         [2] = "",
         [3] = "",
         [4] = "your_master_title_deco",
+        [5] = "",
     }
 
     return table[type];
@@ -81,6 +86,7 @@ function GET_EVENT_PROGRESS_CHECK_TAB_TITLE(type)
         [2] = {"Acquire_State", "STAMP_TOUR", "Auto_KeonTenCheu"},
         [3] = {"Acquire_State", "TOS_VACANCE", "Auto_KeonTenCheu"},
         [4] = {"now_ranking", "prev_ranking", "AccVoteReward"},
+        [5] = {"EventState", "LevelReward", "BuffDesc"},
     }
 
     return table[type];
@@ -92,6 +98,7 @@ function GET_EVENT_PROGRESS_CHECK_CUR_VALUE(type, accObj)
         [1] = {TryGetProp(accObj, "GODDESS_ROULETTE_COIN_ACQUIRE_COUNT", 0), TryGetProp(accObj, "GODDESS_ROULETTE_DAILY_PLAY_TIME_MINUTE", 0), GET_EVENT_PROGRESS_STAMP_TOUR_CLEAR_COUNT(), TryGetProp(accObj, "GODDESS_ROULETTE_DAILY_CONTENTS_ACQUIRE_COUNT", 0), TryGetProp(accObj, "GODDESS_ROULETTE_USE_ROULETTE_COUNT", 0)},
         [2] = {TryGetProp(accObj, "GODDESS_ROULETTE_COIN_ACQUIRE_COUNT", 0), TryGetProp(accObj, "GODDESS_ROULETTE_DAILY_PLAY_TIME_MINUTE", 0), GET_EVENT_PROGRESS_STAMP_TOUR_CLEAR_COUNT(), TryGetProp(accObj, "GODDESS_ROULETTE_DAILY_CONTENTS_ACQUIRE_COUNT", 0), TryGetProp(accObj, "GODDESS_ROULETTE_USE_ROULETTE_COUNT", 0)},
         [3] = {TryGetProp(accObj, "EVENT_FLEX_BOX_ACQUIRE_CONSUME_COUNT", 0), TryGetProp(accObj, "EVENT_FLEX_BOX_DAILY_PLAY_CONSUME_COUNT", 0), GET_EVENT_PROGRESS_STAMP_TOUR_CLEAR_COUNT(), TryGetProp(accObj, "EVENT_FLEX_BOX_DAILY_CONTENTS_CONSUME_COUNT", 0), TryGetProp(accObj, "EVENT_FLEX_BOX_OPEN_COUNT", 0)},
+        [5] = {GET_EVENT_2009_FULLMOON_LEVEL(), GET_EVENT_2009_FULLMOON_POINT(), TryGetProp(accObj, "EVENT_2009_FULLMOON_REWARD_COUNT", 0), TryGetProp(accObj, "EVENT_2009_FULLMOON_WISH_COUNT", 0), TryGetProp(accObj, "EVENT_2009_FULLMOON_COIN_COUNT", 0)},
     }
 
     return table[type];
@@ -104,6 +111,7 @@ function GET_EVENT_PROGRESS_CHECK_TIP_TEXT(type)
         [2] = {"EVENT_NEW_SEASON_SERVER_stamp_tour_tip_text", "EVENT_NEW_SEASON_SERVER_stamp_tour_tip_text", "None"},
         [3] = {"EVENT_2007_FLEX_BOX_CHECK_TIP_TEXT_1", "EVENT_2007_FLEX_BOX_CHECK_TIP_TEXT_1", "None"},
         [4] = {"EVENT_YOUR_MASTER_TOOLTIP_WEEK_", "EVENT_YOUR_MASTER_TOOLTIP_WEEK_", "None"},
+        [5] = {"EVENT_2009_FULLMOON_TIP_TEXT_1", "EVENT_2009_FULLMOON_TIP_TEXT_2", "EVENT_2009_FULLMOON_TIP_TEXT_3"}
     }
 
     return table[type];
@@ -114,8 +122,9 @@ function GET_EVENT_PROGRESS_CHECK_EVENT_STATE(type)
     local table = 
     {
         [1] = {"cur", "cur", "cur", "pre", "pre"},
-        [2] = {"cur", "cur", "cur", "cur", "cur"},
+        [2] = {"cur", "cur", "cur", "cur", "pre"},
         [3] = {"cur", "cur", "end", "cur", "cur"},
+        [5] = {"cur", "cur", "cur", "cur", "cur"},
     }
 
     return table[type];
@@ -128,6 +137,7 @@ function GET_EVENT_PROGRESS_CHECK_ACQUIRE_STATE_ICON(type)
         [1] = {"stamp_coin_mark", "stamp_watch_mark", "stamp_stamp_mark", "stamp_flag_mark", "stamp_roulette_mark"},
         [2] = {"stamp_coin_mark", "stamp_watch_mark", "stamp_stamp_mark", "stamp_flag_mark", "stamp_roulette_mark"},
         [3] = {"stamp_coin_mark", "stamp_watch_mark", "stamp_stamp_mark", "stamp_flag_mark", "stamp_flex_box_mark"},
+        [5] = {"stamp_flag_mark", "stamp_coin_mark", "stamp_stamp_mark", "stamp_watch_mark", "stamp_coin_mark"},
     }
 
     return table[type];
@@ -139,6 +149,7 @@ function GET_EVENT_PROGRESS_CHECK_ACQUIRE_STATE_TEXT(type)
         [1] = {ClMsg("EVENT_NEW_SEASON_SERVER_COIN_CHECK_STATE_1"), ClMsg("EVENT_NEW_SEASON_SERVER_COIN_CHECK_STATE_2"), ClMsg("EVENT_NEW_SEASON_SERVER_COIN_CHECK_STATE_3"), ClMsg("DailyContentMissionAcquireCount"), ClMsg("EVENT_NEW_SEASON_SERVER_COIN_CHECK_STATE_5")},
         [2] = {ClMsg("EVENT_NEW_SEASON_SERVER_COIN_CHECK_STATE_1"), ClMsg("EVENT_NEW_SEASON_SERVER_COIN_CHECK_STATE_2"), ClMsg("EVENT_NEW_SEASON_SERVER_COIN_CHECK_STATE_3"), ClMsg("EVENT_NEW_SEASON_SERVER_COIN_CHECK_STATE_4"), ClMsg("EVENT_NEW_SEASON_SERVER_COIN_CHECK_STATE_5")},
         [3] = {ClMsg("EVENT_2007_FLEX_BOX_CHECK_STATE_1"), ClMsg("EVENT_2007_FLEX_BOX_CHECK_STATE_2"), ClMsg("EVENT_2007_FLEX_BOX_CHECK_STATE_3"), ClMsg("EVENT_2007_FLEX_BOX_CHECK_STATE_4"), ClMsg("EVENT_2007_FLEX_BOX_CHECK_STATE_5")},
+        [5] = {ClMsg("EVENT_2009_FULLMOON_CHECK_STATE_1"), ClMsg("EVENT_2009_FULLMOON_CHECK_STATE_2"), ClMsg("EVENT_2009_FULLMOON_CHECK_STATE_3"), ClMsg("EVENT_2009_FULLMOON_CHECK_STATE_4"), ClMsg("EVENT_2009_FULLMOON_CHECK_STATE_5")},
     }
 
     return table[type];
@@ -150,6 +161,7 @@ function GET_EVENT_PROGRESS_CHECK_ACQUIRE_STATE_TOOLTIP(type)
         [1] = {ClMsg("GoddessRouletteTexttooltip_1"), ClMsg("GoddessRouletteTexttooltip_2"), ClMsg("GoddessRouletteTexttooltip_3"), ClMsg("GoddessRouletteTexttooltip_4"), ClMsg("GoddessRouletteTexttooltip_5")},
         [2] = {ClMsg("GoddessRouletteTexttooltip_1"), ClMsg("GoddessRouletteTexttooltip_2"), ClMsg("GoddessRouletteTexttooltip_3"), ClMsg("GoddessRouletteTexttooltip_4"), ClMsg("GoddessRouletteTexttooltip_5")},        
         [3] = {ClMsg("EVENT_2007_FLEX_BOX_CHECK_TOOLTIP_1"), ClMsg("EVENT_2007_FLEX_BOX_CHECK_TOOLTIP_2"), ClMsg("EVENT_2007_FLEX_BOX_CHECK_TOOLTIP_3"), ClMsg("EVENT_2007_FLEX_BOX_CHECK_TOOLTIP_4"), ClMsg("EVENT_2007_FLEX_BOX_CHECK_TOOLTIP_5")},
+        [5] = {ClMsg("EVENT_2009_FULLMOON_CHECK_STATE_1"), ClMsg("EVENT_2009_FULLMOON_CHECK_TOOLTIP_2"), ClMsg("EVENT_2009_FULLMOON_CHECK_STATE_3"), ClMsg("EVENT_2009_FULLMOON_CHECK_STATE_4"), ClMsg("EVENT_2009_FULLMOON_CHECK_STATE_5")},
     }
 
     return table[type];
@@ -162,6 +174,7 @@ function GET_EVENT_PROGRESS_CHECK_ACQUIRE_STATE_MAX_VALUE(type)
         [1] = {1000, 10, 33, 10, 100},
         [2] = {GODDESS_ROULETTE_COIN_MAX_COUNT, GODDESS_ROULETTE_DAILY_PLAY_TIME_VALUE, GODDESS_ROULETTE_STAMP_TOUR_MAX_COUNT, GODDESS_ROULETTE_DAILY_CONTENTS_MAX_COIN_COUNT, GODDESS_ROULETTE_MAX_COUNT},
         [3] = {0, GET_EVENT_FLEX_BOX_DAILY_PLAY_TIME_MAX_CONSUME_COUNT(), 24, GET_EVENT_FLEX_BOX_DAILY_CONTENTS_MAX_CONSUME_COUNT(), GET_EVENT_FLEX_BOX_MAX_OPEN_COUNT()},
+        [5] = {0, 0, 1, 3, 300}
     }
 
     return table[type];
@@ -174,6 +187,7 @@ function GET_EVENT_PROGRESS_CHECK_ACQUIRE_STATE_NPC(type)
         [1] = {"None", "None", "Klapeda/c_Klaipe/-292/291;c_orsha/c_orsha/-985/415;", "None", "None"},
         [2] = {"None", "None", "Klapeda/c_Klaipe/-292/291;c_orsha/c_orsha/-985/415;", "None", "Klapeda/c_Klaipe/-664/576;c_fedimian/c_fedimian/-284/-346;c_orsha/c_orsha/184/246;"},
         [3] = {"None", "None", "Klapeda/c_Klaipe/-679/581;c_fedimian/c_fedimian/-532/-180;c_orsha/c_orsha/184/246;", "None", "Klapeda/c_Klaipe/-679/581;c_fedimian/c_fedimian/-532/-180;c_orsha/c_orsha/184/246;"},
+        [5] = {"None", "None", "None", "None", "None"},
     }
 
     return table[type];
@@ -185,6 +199,7 @@ function GET_EVENT_PROGRESS_CHECK_ACQUIRE_STATE_CLEAR_TEXT(type)
         [1] = {"None", "GoddessRouletteDailyPlayTimeClearText", "None", "GoddessRouletteDailyPlayTimeClearText", "Goddess_Roulette_Max_Rullet_count"},
         [2] = {"None", "GoddessRouletteDailyPlayTimeClearText", "None", "GoddessRouletteDailyPlayTimeClearText", "Goddess_Roulette_Max_Rullet_count"},
         [3] = {"None", "GoddessRouletteDailyPlayTimeClearText", "None", "GoddessRouletteDailyPlayTimeClearText", "Event_Flex_box_Open_Max_Count"},
+        [5] = {"None", "None", "EVENT_2009_FULLMOON_ALREADY_GET_GIFT", "EVENT_2009_FULLMOON_ALREADY_MAKE_WISH", "GoddessRouletteDailyPlayTimeClearText"},
     }
 
     return table[type];
@@ -197,6 +212,7 @@ function GET_EVENT_PROGRESS_DAILY_PLAY_TIME_TYPE(type)
         [1] = "min",
         [2] = "min",
         [3] = "count",
+        [5] = "count",
     }
 
     return table[type];

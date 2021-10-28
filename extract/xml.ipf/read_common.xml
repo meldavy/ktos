@@ -279,6 +279,7 @@
 	<ReadXml Name="worldmap2_data"/>
 	<ReadXml Name="worldmap2_submap_data"/>
 	<ReadXml Name="item_IncreaseCost"/>		
+  <ReadXml Name="fieldboss_worldevent_schedulel"/>
 	<ReadXml Name="pvp_indun"/>
 	<ReadXml Name="pvp_mine_rule"/>
 	<ReadXml Name="event_ranking_data"/>

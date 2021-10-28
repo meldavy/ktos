@@ -66,3 +66,5 @@ ClassID,GenType,Lv,Range,GenRange,RespawnTime,MaxPop,Minimap,Hide,UseAIOufOfPC,A
 5214,5214,1,1,1,1,1,0,0,0,0,0,0,HiddenTrigger,[이벤트] 여신의 룰렛,,,,,,EVENT_GODDESS_ROULETTE_NPC_AI,EVENT_GODDESS_ROULETTE_NPC,,,NO,YES,NO,Neutral,,,,
 5218,5218,1,1,1,60000,1,0,0,0,0,0,0,HiddenTrigger,[이벤트] 큐폴,,,,,,EVENT_FLEX_BOX_NPC_AI,EVENT_FLEX_BOX_NPC,,,NO,YES,NO,Neutral,,,,
 5223,5223,1,20,1,1,1,2,0,0,0,0,0,Board3_Event,이벤트 게시판,,,,MON_DUMMY,,,EVENT_YOUR_MASTER_NPC,,,No,YES,NO,Neutral,,,,
+5224,5224,1,40,1,1,1,2,0,0,1,0,0,npc_moon,[추석 이벤트]{nl}보름달,,,,,,EVENT_2009_FULLMOON_EFFECT,EVENT_2009_FULLMOON,,,NO,YES,NO,Neutral,,,,
+5225,5225,1,40,1,1,1,2,0,0,1,0,0,event_fullmoon_lapindion,[추석 이벤트]{nl}보름달 토끼,,,,,,,EVENT_2009_FULLMOON_NPC,,,NO,YES,NO,Neutral,,,,

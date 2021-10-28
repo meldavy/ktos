@@ -150,7 +150,7 @@ function WARP_TO_DUNGEON_AREA(dungeonName)
         return
     end
 
-    ui.MakeDropListFrame(zoneSet, GET_SCENE_OFFSET_WIDTH() + 25, GET_SCENE_OFFSET_HEIGHT() - 40, 230, 600, dungeonCount, ui.LEFT, "WARP_TO_DUNGEON_AREA_SELECT", nil, nil)
+    ui.MakeDropListFrame(zoneSet, GET_SCENE_OFFSET_WIDTH() + 25, GET_SCENE_OFFSET_HEIGHT() - 40, 300, 600, dungeonCount, ui.LEFT, "WARP_TO_DUNGEON_AREA_SELECT", nil, nil)
     
     WORLDMAP2_DROPLIST_SET_BY_UI_MANAGER(200)
 

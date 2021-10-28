@@ -388,14 +388,9 @@
                             <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
                                 <MGameObj List="Gen_Boss/0/Gen_Boss/1"/>
                                 <Num Num="95"/>
-                                <Str Str="UNDER"/>
+                                <Str Str="EQ"/>
                                 <Num Num="1"/>
                                 <Str Str="EQ"/>
-                            </ToolScp>
-                            <ToolScp Scp="GAME_ST_EVT_COND_VALUE" Client="NO" UseSleep="NO">
-                                <Str Str="SET_USED_DAY_DATA"/>
-                                <Str Str="OVER"/>
-                                <Num Num="95"/>
                             </ToolScp>
                         </condList>
                         <execList>
@@ -413,14 +408,9 @@
                             <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
                                 <MGameObj List="Gen_Boss/0/Gen_Boss/1"/>
                                 <Num Num="90"/>
-                                <Str Str="UNDER"/>
+                                <Str Str="EQ"/>
                                 <Num Num="1"/>
                                 <Str Str="EQ"/>
-                            </ToolScp>
-                            <ToolScp Scp="GAME_ST_EVT_COND_VALUE" Client="NO" UseSleep="NO">
-                                <Str Str="SET_USED_DAY_DATA"/>
-                                <Str Str="OVER"/>
-                                <Num Num="90"/>
                             </ToolScp>
                         </condList>
                         <execList>
@@ -442,14 +432,9 @@
                             <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
                                 <MGameObj List="Gen_Boss/0/Gen_Boss/1"/>
                                 <Num Num="85"/>
-                                <Str Str="UNDER"/>
+                                <Str Str="EQ"/>
                                 <Num Num="1"/>
                                 <Str Str="EQ"/>
-                            </ToolScp>
-                            <ToolScp Scp="GAME_ST_EVT_COND_VALUE" Client="NO" UseSleep="NO">
-                                <Str Str="SET_USED_DAY_DATA"/>
-                                <Str Str="OVER"/>
-                                <Num Num="85"/>
                             </ToolScp>
                         </condList>
                         <execList>
@@ -467,14 +452,9 @@
                             <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
                                 <MGameObj List="Gen_Boss/0/Gen_Boss/1"/>
                                 <Num Num="80"/>
-                                <Str Str="UNDER"/>
+                                <Str Str="EQ"/>
                                 <Num Num="1"/>
                                 <Str Str="EQ"/>
-                            </ToolScp>
-                            <ToolScp Scp="GAME_ST_EVT_COND_VALUE" Client="NO" UseSleep="NO">
-                                <Str Str="SET_USED_DAY_DATA"/>
-                                <Str Str="OVER"/>
-                                <Num Num="80"/>
                             </ToolScp>
                         </condList>
                         <execList>
@@ -496,14 +476,9 @@
                             <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
                                 <MGameObj List="Gen_Boss/0/Gen_Boss/1"/>
                                 <Num Num="75"/>
-                                <Str Str="UNDER"/>
+                                <Str Str="EQ"/>
                                 <Num Num="1"/>
                                 <Str Str="EQ"/>
-                            </ToolScp>
-                            <ToolScp Scp="GAME_ST_EVT_COND_VALUE" Client="NO" UseSleep="NO">
-                                <Str Str="SET_USED_DAY_DATA"/>
-                                <Str Str="OVER"/>
-                                <Num Num="75"/>
                             </ToolScp>
                         </condList>
                         <execList>
@@ -518,15 +493,10 @@
                             <ToolScp Scp="MGAME_EVT_COND_PCCNT_OVER" Client="NO" UseSleep="NO">
                                 <Num Num="1"/>
                             </ToolScp>
-                            <ToolScp Scp="GAME_ST_EVT_COND_VALUE" Client="NO" UseSleep="NO">
-                                <Str Str="SET_USED_DAY_DATA"/>
-                                <Str Str="OVER"/>
-                                <Num Num="70"/>
-                            </ToolScp>
                             <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
                                 <MGameObj List="Gen_Boss/0/Gen_Boss/1"/>
                                 <Num Num="70"/>
-                                <Str Str="UNDER"/>
+                                <Str Str="EQ"/>
                                 <Num Num="1"/>
                                 <Str Str="EQ"/>
                             </ToolScp>
@@ -547,15 +517,10 @@
                             <ToolScp Scp="MGAME_EVT_COND_PCCNT_OVER" Client="NO" UseSleep="NO">
                                 <Num Num="1"/>
                             </ToolScp>
-                            <ToolScp Scp="GAME_ST_EVT_COND_VALUE" Client="NO" UseSleep="NO">
-                                <Str Str="SET_USED_DAY_DATA"/>
-                                <Str Str="OVER"/>
-                                <Num Num="65"/>
-                            </ToolScp>
                             <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
                                 <MGameObj List="Gen_Boss/0/Gen_Boss/1"/>
                                 <Num Num="65"/>
-                                <Str Str="UNDER"/>
+                                <Str Str="EQ"/>
                                 <Num Num="1"/>
                                 <Str Str="EQ"/>
                             </ToolScp>
@@ -572,15 +537,10 @@
                             <ToolScp Scp="MGAME_EVT_COND_PCCNT_OVER" Client="NO" UseSleep="NO">
                                 <Num Num="1"/>
                             </ToolScp>
-                            <ToolScp Scp="GAME_ST_EVT_COND_VALUE" Client="NO" UseSleep="NO">
-                                <Str Str="SET_USED_DAY_DATA"/>
-                                <Str Str="OVER"/>
-                                <Num Num="60"/>
-                            </ToolScp>
                             <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
                                 <MGameObj List="Gen_Boss/0/Gen_Boss/1"/>
                                 <Num Num="60"/>
-                                <Str Str="UNDER"/>
+                                <Str Str="EQ"/>
                                 <Num Num="1"/>
                                 <Str Str="EQ"/>
                             </ToolScp>
@@ -601,15 +561,10 @@
                             <ToolScp Scp="MGAME_EVT_COND_PCCNT_OVER" Client="NO" UseSleep="NO">
                                 <Num Num="1"/>
                             </ToolScp>
-                            <ToolScp Scp="GAME_ST_EVT_COND_VALUE" Client="NO" UseSleep="NO">
-                                <Str Str="SET_USED_DAY_DATA"/>
-                                <Str Str="OVER"/>
-                                <Num Num="55"/>
-                            </ToolScp>
                             <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
                                 <MGameObj List="Gen_Boss/0/Gen_Boss/1"/>
                                 <Num Num="55"/>
-                                <Str Str="UNDER"/>
+                                <Str Str="EQ"/>
                                 <Num Num="1"/>
                                 <Str Str="EQ"/>
                             </ToolScp>
@@ -626,15 +581,10 @@
                             <ToolScp Scp="MGAME_EVT_COND_PCCNT_OVER" Client="NO" UseSleep="NO">
                                 <Num Num="1"/>
                             </ToolScp>
-                            <ToolScp Scp="GAME_ST_EVT_COND_VALUE" Client="NO" UseSleep="NO">
-                                <Str Str="SET_USED_DAY_DATA"/>
-                                <Str Str="OVER"/>
-                                <Num Num="50"/>
-                            </ToolScp>
                             <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
                                 <MGameObj List="Gen_Boss/0/Gen_Boss/1"/>
                                 <Num Num="50"/>
-                                <Str Str="UNDER"/>
+                                <Str Str="EQ"/>
                                 <Num Num="1"/>
                                 <Str Str="EQ"/>
                             </ToolScp>
@@ -655,15 +605,10 @@
                             <ToolScp Scp="MGAME_EVT_COND_PCCNT_OVER" Client="NO" UseSleep="NO">
                                 <Num Num="1"/>
                             </ToolScp>
-                            <ToolScp Scp="GAME_ST_EVT_COND_VALUE" Client="NO" UseSleep="NO">
-                                <Str Str="SET_USED_DAY_DATA"/>
-                                <Str Str="OVER"/>
-                                <Num Num="45"/>
-                            </ToolScp>
                             <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
                                 <MGameObj List="Gen_Boss/0/Gen_Boss/1"/>
                                 <Num Num="45"/>
-                                <Str Str="UNDER"/>
+                                <Str Str="EQ"/>
                                 <Num Num="1"/>
                                 <Str Str="EQ"/>
                             </ToolScp>
@@ -680,15 +625,10 @@
                             <ToolScp Scp="MGAME_EVT_COND_PCCNT_OVER" Client="NO" UseSleep="NO">
                                 <Num Num="1"/>
                             </ToolScp>
-                            <ToolScp Scp="GAME_ST_EVT_COND_VALUE" Client="NO" UseSleep="NO">
-                                <Str Str="SET_USED_DAY_DATA"/>
-                                <Str Str="OVER"/>
-                                <Num Num="40"/>
-                            </ToolScp>
                             <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
                                 <MGameObj List="Gen_Boss/0/Gen_Boss/1"/>
                                 <Num Num="40"/>
-                                <Str Str="UNDER"/>
+                                <Str Str="EQ"/>
                                 <Num Num="1"/>
                                 <Str Str="EQ"/>
                             </ToolScp>
@@ -709,15 +649,10 @@
                             <ToolScp Scp="MGAME_EVT_COND_PCCNT_OVER" Client="NO" UseSleep="NO">
                                 <Num Num="1"/>
                             </ToolScp>
-                            <ToolScp Scp="GAME_ST_EVT_COND_VALUE" Client="NO" UseSleep="NO">
-                                <Str Str="SET_USED_DAY_DATA"/>
-                                <Str Str="OVER"/>
-                                <Num Num="35"/>
-                            </ToolScp>
                             <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
                                 <MGameObj List="Gen_Boss/0/Gen_Boss/1"/>
                                 <Num Num="35"/>
-                                <Str Str="UNDER"/>
+                                <Str Str="EQ"/>
                                 <Num Num="1"/>
                                 <Str Str="EQ"/>
                             </ToolScp>
@@ -734,15 +669,10 @@
                             <ToolScp Scp="MGAME_EVT_COND_PCCNT_OVER" Client="NO" UseSleep="NO">
                                 <Num Num="1"/>
                             </ToolScp>
-                            <ToolScp Scp="GAME_ST_EVT_COND_VALUE" Client="NO" UseSleep="NO">
-                                <Str Str="SET_USED_DAY_DATA"/>
-                                <Str Str="OVER"/>
-                                <Num Num="30"/>
-                            </ToolScp>
                             <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
                                 <MGameObj List="Gen_Boss/0/Gen_Boss/1"/>
                                 <Num Num="30"/>
-                                <Str Str="UNDER"/>
+                                <Str Str="EQ"/>
                                 <Num Num="1"/>
                                 <Str Str="EQ"/>
                             </ToolScp>
@@ -763,15 +693,10 @@
                             <ToolScp Scp="MGAME_EVT_COND_PCCNT_OVER" Client="NO" UseSleep="NO">
                                 <Num Num="1"/>
                             </ToolScp>
-                            <ToolScp Scp="GAME_ST_EVT_COND_VALUE" Client="NO" UseSleep="NO">
-                                <Str Str="SET_USED_DAY_DATA"/>
-                                <Str Str="OVER"/>
-                                <Num Num="25"/>
-                            </ToolScp>
                             <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
                                 <MGameObj List="Gen_Boss/0/Gen_Boss/1"/>
                                 <Num Num="25"/>
-                                <Str Str="UNDER"/>
+                                <Str Str="EQ"/>
                                 <Num Num="1"/>
                                 <Str Str="EQ"/>
                             </ToolScp>
@@ -788,15 +713,10 @@
                             <ToolScp Scp="MGAME_EVT_COND_PCCNT_OVER" Client="NO" UseSleep="NO">
                                 <Num Num="1"/>
                             </ToolScp>
-                            <ToolScp Scp="GAME_ST_EVT_COND_VALUE" Client="NO" UseSleep="NO">
-                                <Str Str="SET_USED_DAY_DATA"/>
-                                <Str Str="OVER"/>
-                                <Num Num="20"/>
-                            </ToolScp>
                             <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
                                 <MGameObj List="Gen_Boss/0/Gen_Boss/1"/>
                                 <Num Num="20"/>
-                                <Str Str="UNDER"/>
+                                <Str Str="EQ"/>
                                 <Num Num="1"/>
                                 <Str Str="EQ"/>
                             </ToolScp>
@@ -817,15 +737,10 @@
                             <ToolScp Scp="MGAME_EVT_COND_PCCNT_OVER" Client="NO" UseSleep="NO">
                                 <Num Num="1"/>
                             </ToolScp>
-                            <ToolScp Scp="GAME_ST_EVT_COND_VALUE" Client="NO" UseSleep="NO">
-                                <Str Str="SET_USED_DAY_DATA"/>
-                                <Str Str="OVER"/>
-                                <Num Num="15"/>
-                            </ToolScp>
                             <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
                                 <MGameObj List="Gen_Boss/0/Gen_Boss/1"/>
                                 <Num Num="15"/>
-                                <Str Str="UNDER"/>
+                                <Str Str="EQ"/>
                                 <Num Num="1"/>
                                 <Str Str="EQ"/>
                             </ToolScp>
@@ -842,15 +757,10 @@
                             <ToolScp Scp="MGAME_EVT_COND_PCCNT_OVER" Client="NO" UseSleep="NO">
                                 <Num Num="1"/>
                             </ToolScp>
-                            <ToolScp Scp="GAME_ST_EVT_COND_VALUE" Client="NO" UseSleep="NO">
-                                <Str Str="SET_USED_DAY_DATA"/>
-                                <Str Str="OVER"/>
-                                <Num Num="10"/>
-                            </ToolScp>
                             <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
                                 <MGameObj List="Gen_Boss/0/Gen_Boss/1"/>
                                 <Num Num="10"/>
-                                <Str Str="UNDER"/>
+                                <Str Str="EQ"/>
                                 <Num Num="1"/>
                                 <Str Str="EQ"/>
                             </ToolScp>
@@ -871,15 +781,10 @@
                             <ToolScp Scp="MGAME_EVT_COND_PCCNT_OVER" Client="NO" UseSleep="NO">
                                 <Num Num="1"/>
                             </ToolScp>
-                            <ToolScp Scp="GAME_ST_EVT_COND_VALUE" Client="NO" UseSleep="NO">
-                                <Str Str="SET_USED_DAY_DATA"/>
-                                <Str Str="OVER"/>
-                                <Num Num="5"/>
-                            </ToolScp>
                             <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
                                 <MGameObj List="Gen_Boss/0/Gen_Boss/1"/>
                                 <Num Num="5"/>
-                                <Str Str="UNDER"/>
+                                <Str Str="EQ"/>
                                 <Num Num="1"/>
                                 <Str Str="EQ"/>
                             </ToolScp>

@@ -1387,3 +1387,4 @@ ClassID,OverHeatResetTime,ClassName,IsOverHeat,ReducePlayOnly,ForceReset
 4158,15000,ClusterShot,NO,FALSE,YES
 4159,0,Ancient_Use_Skill,NO,FALSE,YES
 4160,0,RiftmodePortal,NO,FALSE,YES
+4161,0,event_ricecake,NO,FALSE,YES

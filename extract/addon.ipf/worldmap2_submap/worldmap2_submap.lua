@@ -221,6 +221,7 @@ function WORLDMAP2_SUBMAP_DRAW_BASE(frame)
     local submapSbarSubQText = AUTO_CAST(frame:GetChild("submap_sbar_subq_text"))
     local submapShowOption = AUTO_CAST(frame:GetChild("submap_show_option_gb"))
     local submapTip = AUTO_CAST(frame:GetChild("submap_tip"))
+    local submapTipText = AUTO_CAST(submapTip:GetChild("submap_tip_text"))
 
 	submapPic:SetImage(mapData.SubmapImageName)
 
@@ -296,6 +297,8 @@ function WORLDMAP2_SUBMAP_DRAW_BASE(frame)
     else
         submapTip:ShowWindow(0)
     end
+
+    submapTip:Resize(submapTipText:GetWidth() + 20, submapTip:GetHeight())
 end
 
 function WORLDMAP2_SUBMAP_DRAW(frame)
@@ -565,6 +568,14 @@ function WORLDMAP2_SUBMAP_ZONE_CHECK(mapName)
     end
     
     frame:SetUserConfig("ZONE_CHECK", mapName)
+
+    -- 순서 조정
+    do
+        local checkSet = frame:GetChild(mapName)
+        local checkImage = checkSet:GetChild("zone_btn")
+        
+        checkImage:SetMargin(checkImage:GetMargin().left, checkImage:GetMargin().top, checkImage:GetMargin().right, checkImage:GetMargin().bottom)
+    end
 
     -- 체크 부여
     if ui.GetFrame("worldmap2_minimap"):IsVisible() == 0 then

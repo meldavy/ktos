@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by imc (imc) -->
+<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by imc (imc) -->
 <!-- edited with XMLSpy v2008 sp1 (http://www.altova.com) by MintPC (Mi) -->
 <skinset name="Base">
 	<imagelist category="wizard_skillicon">
@@ -1450,7 +1450,7 @@
 		<image name="ability_Warrior_Hoplite39" file="\icon\icon_ability_warrior09.tga" imgrect="512 384 128 128" CMM_Caption="창 숙련: 마법진 파괴"/>
 		<image name="ability_Warrior_Murmillo29" file="\icon\icon_ability_warrior09.tga" imgrect="640 384 128 128" CMM_Caption="스프린트: 밀리"/>
 		<image name="ability_Warrior_Peltasta43" file="\icon\icon_ability_warrior09.tga" imgrect="768 384 128 128" CMM_Caption="하이 가드: 철벽 방어"/>
-		<image name="ability_Warrior_NakMuay12" file="\icon\icon_ability_warrior09.tga" imgrect="768 384 128 128" CMM_Caption="무아이타이: 무아이보란"/>
+		<image name="ability_Warrior_NakMuay12" file="\icon\icon_ability_warrior09.tga" imgrect="896 384 128 128" CMM_Caption="무아이타이: 무아이보란"/>
 		<image name="ability_Warrior_Doppelsoeldner35" file="\icon\icon_ability_warrior09.tga" imgrect="0 512 128 128" CMM_Caption="사이클론: 용오름"/>
 		<image name="ability_Warrior_Dragoon28" file="\icon\icon_ability_warrior09.tga" imgrect="128 512 128 128" CMM_Caption="드래곤 투스: 긴 송곳니"/>
 		<image name="ability_Warrior_Lancer28" file="\icon\icon_ability_warrior09.tga" imgrect="256 512 128 128" CMM_Caption="자우스트: 진영 파괴"/>
@@ -1469,6 +1469,9 @@
 		<image name="ability_Warrior_Hackapell23" file="\icon\icon_ability_warrior09.tga" imgrect="896 640 128 128" CMM_Caption="하카펠: 엘리트기병"/>
 		<image name="ability_Warrior_Hoplite40" file="\icon\icon_ability_warrior09.tga" imgrect="0 768 128 128" CMM_Caption="양손찌르기: 중형"/>
 		<image name="ability_Warrior_Highlander44" file="\icon\icon_ability_warrior09.tga" imgrect="128 768 128 128" CMM_Caption="크로스가드: 오버 드라이브"/>
+		<image name="ability_Warrior_Fencer21" file="\icon\icon_ability_warrior09.tga" imgrect="256 768 128 128" CMM_Caption="펜서: 대거"/>
+		<image name="ability_Warrior_Fencer22" file="\icon\icon_ability_warrior09.tga" imgrect="384 768 128 128" CMM_Caption="[아츠] 펜서: 패링대거"/>
+		<image name="ability_Warrior_Fencer23" file="\icon\icon_ability_warrior09.tga" imgrect="512 768 128 128" CMM_Caption="[아츠] 에스뀌브 뚜슈: 완전회피"/>
 	</imagelist>
 	<imagelist category="abilityicon_wizard">
 		<image name="ability_Wizard_Wizard1" file="\icon\icon_ability_wizard01.tga" imgrect="0 0 128 128" CMM_Caption="슬리프-단잠"/>
@@ -2483,6 +2486,7 @@
 		<image name="ability_archer_QuarrelShooter36" file="\icon\icon_ability_archer09.tga" imgrect="256 0 128 128" CMM_Caption="블록 앤드 샷: 상급강화"/>
 		<image name="ability_archer_Fletcher35" file="\icon\icon_ability_archer09.tga" imgrect="384 0 128 128" CMM_Caption="플레쳐: 화살촉 연마"/>
 		<image name="ability_archer_Mergen25" file="\icon\icon_ability_archer09.tga" imgrect="512 0 128 128" CMM_Caption="메르겐: 상처 파열"/>
+		<image name="ability_archer_Rogue27" file="\icon\icon_ability_archer09.tga" imgrect="640 0 128 128" CMM_Caption="최루: 탈출"/>
 	</imagelist>
 	<imagelist category="abilityicon_cleric">
 		<image name="ability_cleric_Cleric1" file="\icon\icon_ability_cleric01.tga" imgrect="0 0 128 128" CMM_Caption="큐어-도트시간감소"/>
@@ -3154,6 +3158,8 @@
 		<image name="ability_scout_Arditi19" file="\icon\icon_ability_scout03.tga" imgrect="768 640 128 128" CMM_Caption="탈리오: 집념"/>
 		<image name="ability_scout_Arditi20" file="\icon\icon_ability_scout03.tga" imgrect="896 640 128 128" CMM_Caption="그라나다: 겨냥"/>
 		<image name="ability_scout_Arditi21" file="\icon\icon_ability_scout03.tga" imgrect="0 768 128 128" CMM_Caption="트레 그라나다: 겨냥"/>
+		<image name="ability_scout_Corsair31" file="\icon\icon_ability_scout03.tga" imgrect="128 768 128 128" CMM_Caption="브루탈리티: 강화"/>
+		<image name="ability_scout_Corsair32" file="\icon\icon_ability_scout03.tga" imgrect="256 768 128 128" CMM_Caption="브루탈리티: 기민함"/>
 	</imagelist>
 	<imagelist category="abilityicon">
 		<image name="icon_abil_1_1" file="\icon\ability_icon.tga" imgrect="0 0 64 64" CMM_Caption="절단"/>

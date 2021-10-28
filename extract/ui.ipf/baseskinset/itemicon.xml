@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by imc (imc) -->
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by imc (imc) -->
 <!-- edited with XMLSpy v2008 sp1 http://www.altova.com by MintPC Mi -->
 <skinset name="Base">
 	<imagelist category="item_tooltip_icon">
@@ -670,6 +670,9 @@
 		<image name="item_icon_helmet_bramble" file="\icon\equip\item_icon_helmet_bramble.png" imgrect="0 0 256 256" CMM_Caption="브람블 헬멧"/>
 		<image name="icon_item_bramble_m" file="\icon\equip\icon_item_bramble.png" imgrect="0 0 256 256" CMM_Caption="브람블 코스튬_남"/>
 		<image name="icon_item_bramble_f" file="\icon\equip\icon_item_bramble.png" imgrect="0 0 256 256" CMM_Caption="브람블 코스튬_여"/>
+		<image name="item_icon_costume_twndeer_m" file="\icon\equip\item_icon_costume_twndeer.png" imgrect="0 0 256 256" CMM_Caption="대만 4주년_꽃사슴 옷"/>
+		<image name="item_icon_costume_twndeer_f" file="\icon\equip\item_icon_costume_twndeer.png" imgrect="0 0 256 256" CMM_Caption="대만 4주년_꽃사슴 옷"/>
+		<image name="item_icon_wing_twndeer" file="\icon\equip\item_icon_wing_twndeer.png" imgrect="0 0 256 256" CMM_Caption="대만 4주년_꽃사슴 풍선"/>
 		<image name="icon_item_goddess_armor01" file="\icon\equip\icon_item_goddess_armor01.png" imgrect="0 0 256 256" CMM_Caption="여신의 방어구01"/>
 		<image name="icon_item_goddess_boots01" file="\icon\equip\icon_item_goddess_boots01.png" imgrect="0 0 256 256"/>
 		<image name="icon_item_goddess_glove01" file="\icon\equip\icon_item_goddess_glove01.png" imgrect="0 0 256 256"/>
@@ -774,6 +777,16 @@
 		<image name="icon_item_Glacier_plate_pants_A" file="\icon\equip\icon_item_Glacier_plate_pants_A.png" imgrect="0 0 256 256"/>
 		<image name="icon_item_Glacier_plate_pants_B" file="\icon\equip\icon_item_Glacier_plate_pants_B.png" imgrect="0 0 256 256"/>
 		<image name="icon_item_Glacier_plate_pants_C" file="\icon\equip\icon_item_Glacier_plate_pants_C.png" imgrect="0 0 256 256"/>
+		<image name="item_icon_EVENT_Police_f" file="\icon\equip\item_icon_EVENT_Police_f.png" imgrect="0 0 256 256" CMM_Caption="2020 추석 순경 코스튬"/>
+		<image name="item_icon_EVENT_Police_m" file="\icon\equip\item_icon_EVENT_Police_m.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep12honoredrose01_1_f" file="\icon\equip\icon_item_ep12honoredrose01_1_f.png" imgrect="0 0 256 256" CMM_Caption="2020_9월 할로윈"/>
+		<image name="icon_item_ep12honoredrose01_1_m" file="\icon\equip\icon_item_ep12honoredrose01_1_m.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep12honoredrose02_1_f" file="\icon\equip\icon_item_ep12honoredrose02_1_f.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep12honoredrose02_1_m" file="\icon\equip\icon_item_ep12honoredrose02_1_m.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep12honoredrose03_1_f" file="\icon\equip\icon_item_ep12honoredrose03_1_f.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep12honoredrose03_1_m" file="\icon\equip\icon_item_ep12honoredrose03_1_m.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_EVENT_Yellow_Watermelon_f" file="\icon\equip\icon_item_EVENT_Yellow_Watermelon_f.png" imgrect="0 0 256 256" CMM_Caption="노란색 수박 코스튬"/>
+		<image name="icon_item_EVENT_Yellow_Watermelon_m" file="\icon\equip\icon_item_EVENT_Yellow_Watermelon_m.png" imgrect="0 0 256 256"/>
 	</imagelist>
 	<imagelist category="256_costume_icons">
 		<image name="icon_item_Alchemist_f" file="\icon\equip\Alchemist_f_icon.png" imgrect="0 0 256 256" CMM_Caption="알케미스트"/>
@@ -3511,6 +3524,7 @@
 		<image name="icon_item_necklace_2020ArborDay" file="\icon\acc\icon_item_necklace_2020ArborDay.png" imgrect="0 0 256 256" CMM_Caption="2020 식목일 목걸이"/>
 		<image name="icon_item_trinket_glacier" file="\icon\acc\icon_item_trinket_glacier.png" imgrect="0 0 256 256" CMM_Caption="글레이시어 트링킷"/>
 		<image name="icon_item_armband_guild04_blue" file="\icon\acc\icon_item_armband_guild04_blue.png" imgrect="0 0 256 256" CMM_Caption="길드 사랑 암밴드_블루"/>
+		<image name="item_icon_armband_twndeer" file="\icon\acc\item_icon_armband_twndeer.png" imgrect="0 0 256 256" CMM_Caption="대만 4주년_꽃사슴 암밴드"/>
 		<image name="icon_item_bracelet_queens_04" file="\icon\acc\icon_item_bracelet_queens_04.png" imgrect="0 0 256 256" CMM_Caption="루시페리 악세 "/>
 		<image name="icon_item_necklace_queens_04" file="\icon\acc\icon_item_necklace_queens_04.png" imgrect="0 0 256 256"/>
 		<image name="icon_item_bracelet_queens_05" file="\icon\acc\icon_item_bracelet_queens_05.png" imgrect="0 0 256 256"/>
@@ -3977,6 +3991,9 @@
 		<image name="icon_item_accessory_catagnan08" file="\icon\hairacc\icon_item_accessory_catagnan08.png" imgrect="0 0 256 256"/>
 		<image name="icon_item_accessory_catagnan09" file="\icon\hairacc\icon_item_accessory_catagnan09.png" imgrect="0 0 256 256"/>
 		<image name="icon_item_accessory_catagnan10" file="\icon\hairacc\icon_item_accessory_catagnan10.png" imgrect="0 0 256 256"/>
+		<image name="item_icon_accessary_bluemagpie" file="\icon\hairacc\item_icon_accessary_bluemagpie.png" imgrect="0 0 256 256" CMM_Caption="대만4주년_꽃사슴 헤어악세사리"/>
+		<image name="item_icon_accessary_twndeer_hairband" file="\icon\hairacc\item_icon_accessary_twndeer_hairband.png" imgrect="0 0 256 256"/>
+		<image name="item_icon_helmet_twndeer" file="\icon\hairacc\item_icon_helmet_twndeer.png" imgrect="0 0 256 256"/>
 		<image name="icon_item_accessory_ep12tactical01" file="\icon\hairacc\icon_item_accessory_ep12tactical01.png" imgrect="0 0 256 256" CMM_Caption="2020 7월 여큡 유니폼 헤어 악세"/>
 		<image name="icon_item_accessory_ep12tactical02" file="\icon\hairacc\icon_item_accessory_ep12tactical02.png" imgrect="0 0 256 256"/>
 		<image name="icon_item_accessory_ep12tactical03" file="\icon\hairacc\icon_item_accessory_ep12tactical03.png" imgrect="0 0 256 256"/>
@@ -6073,6 +6090,23 @@
 		<image name="icon_item_low_moth_stone" file="\icon\item\icon_item_low_moth_stone.png" imgrect="0 0 128 128" CMM_Caption="바이올렛틴 크리스탈_하위버전"/>
 		<image name="icon_item_goddess_box" file="\icon\item\icon_item_goddess_box.png" imgrect="0 0 256 256" CMM_Caption="여신의 가호 상자"/>
 		<image name="icon_item_misc_luferium" file="\icon\item\icon_item_misc_luferium.png" imgrect="0 0 256 256" CMM_Caption="루페리움"/>
+		<image name="icon_item_Chursok_Random_BOX" file="\icon\item\icon_item_Chursok_Random_BOX.png" imgrect="0 0 256 256" CMM_Caption="2009 추석 달맞이 대작전 "/>
+		<image name="icon_item_Chursok_Gift_Box1" file="\icon\item\icon_item_Chursok_Gift_Box1.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_Chursok_Gift_Box2" file="\icon\item\icon_item_Chursok_Gift_Box2.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_Chursok_Gift_Box3" file="\icon\item\icon_item_Chursok_Gift_Box3.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_Chursok_Gift_Box4" file="\icon\item\icon_item_Chursok_Gift_Box4.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_Chursok_Gift_Box5" file="\icon\item\icon_item_Chursok_Gift_Box5.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_Chursok_Police_Box" file="\icon\item\icon_item_Chursok_Police_Box.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_Moon_Coin" file="\icon\item\icon_item_Moon_Coin.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_matsuri_ticket" file="\icon\item\icon_item_matsuri_ticket.png" imgrect="0 0 128 128" CMM_Caption="[나츠마츠리]마츠리 티켓"/>
+		<image name="icon_item_takoyaki" file="\icon\item\icon_item_takoyaki.png" imgrect="0 0 128 128" CMM_Caption="[나츠마츠리]타코야키"/>
+		<image name="icon_item_ringoame" file="\icon\item\icon_item_ringoame.png" imgrect="0 0 128 128" CMM_Caption="[나츠마츠리]링고아메"/>
+		<image name="icon_item_kakigori" file="\icon\item\icon_item_kakigori.png" imgrect="0 0 128 128" CMM_Caption="[나츠마츠리]카키고오리"/>
+		<image name="icon_item_okonomiyaki" file="\icon\item\icon_item_okonomiyaki.png" imgrect="0 0 128 128" CMM_Caption="[나츠마츠리]오코노미야키"/>
+		<image name="icon_item_rice" file="\icon\item\icon_item_rice.png" imgrect="0 0 128 128" CMM_Caption="[오본] 찹쌀"/>
+		<image name="icon_item_omukae" file="\icon\item\icon_item_omukae.png" imgrect="0 0 128 128" CMM_Caption="[오본] 오무카에 당고"/>
+		<image name="icon_item_ohagi" file="\icon\item\icon_item_ohagi.png" imgrect="0 0 128 128" CMM_Caption="[오본] 오하기"/>
+		<image name="icon_item_okuri" file="\icon\item\icon_item_okuri.png" imgrect="0 0 128 128" CMM_Caption="[오본] 오쿠리 당고"/>
 	</imagelist>
 	<imagelist category="housing">
 		<image name="icon_item_h_bigplant_set_01_green" file="\icon\housing\icon_item_h_bigplant_set_01_green.png" imgrect="0 0 256 256" CMM_Caption="[길드 하우징] 화단_01(초록색)"/>
@@ -7703,6 +7737,9 @@
 		<image name="icon_item_selectbox_ep12honoredrose01" file="\icon\payment\icon_item_selectbox_ep12honoredrose01.png" imgrect="0 0 256 256"/>
 		<image name="icon_item_selectbox_ep12honoredrose02" file="\icon\payment\icon_item_selectbox_ep12honoredrose02.png" imgrect="0 0 256 256"/>
 		<image name="icon_item_selectbox_ep12honoredrose03" file="\icon\payment\icon_item_selectbox_ep12honoredrose03.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_Chursok_Hambok_Box" file="\icon\payment\icon_item_Chursok_Hambok_Box.png" imgrect="0 0 256 256" CMM_Caption="2020추석 한복 상자"/>
+		<image name="icon_item_hanbok02_yellow_m" file="\icon\payment\icon_item_hanbok02_yellow_m.png" imgrect="0 0 256 256" CMM_Caption="2020추석 한복"/>
+		<image name="icon_item_hanbok02_yellow_f" file="\icon\payment\icon_item_hanbok02_yellow_f.png" imgrect="0 0 256 256"/>
 	</imagelist>
 	<imagelist category="seal">
 		<image name="icon_seal_yellow_cc_A1" file="\icon\seal\seal_yellow_cc_A1.tga" imgrect="0 0 80 80"/>

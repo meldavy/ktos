@@ -152,8 +152,15 @@
                 <Frame Type="FAN" Time="999799" HitCount="1" TermMin="0" TermMax="0" PosType="0" Dist="0" RandDist="0" RandomPerHit="0" Angle="0" Width="30" Length="30" SklAngle="0.17453292" AniTime="999999" RotAngle="0" ForceATK="0" ScriptIndex="0" ScriptName="" SkillType="0"/>
             </HitList>
             <EtcList>
+				<Scp Client="NO" Scp="SKL_CONSUME_SP" Time="0" UseSleep="NO">
+					<Num FuncTxt="local value = 0
+                    if IsBuffApplied(self, 'SnipersSerenity_Buff') == 'YES' then
+                    value = TryGetProp(obj, 'SpendSP', 0)
+                    end
+                    return -value" Num="0" UseFunc="1"/>
+				</Scp>            
                 <Scp Scp="SKL_BUFF" Client="NO" UseSleep="NO" Time="0">
-                    <Str Str="" UseFunc="1" FuncTxt="local self = GetSkillOwner(obj); if IsBuffApplied(self, 'SnipersSerenity_Buff') == 'YES' then RemoveBuff(self, 'SnipersSerenity_Buff'); return &quot;None&quot;; end if IsJumping(self) == 1 then return &quot;None&quot;; else return &quot;SnipersSerenity_Buff&quot;; end"/>
+                    <Str Str="" UseFunc="1" FuncTxt="local self = GetSkillOwner(obj); if IsBuffApplied(self, 'SnipersSerenity_Buff') == 'YES' then RemoveBuff(self, 'SnipersSerenity_Buff');  return &quot;None&quot;; end if IsJumping(self) == 1 then return &quot;None&quot;; else return &quot;SnipersSerenity_Buff&quot;; end"/>
                     <Num Num="0" UseFunc="1" FuncTxt="return obj.Level;"/>
                     <Num Num="0"/>
                     <Num Num="30000"/>

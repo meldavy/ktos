@@ -15,7 +15,7 @@ function SCR_Get_SkillFactor_Weekly(skill)
     local skillKeyword = TryGetProp(skill, "Keyword", "None");
     skillKeyword = StringSplit(skillKeyword, ";");
     if table.find(skillKeyword,"NormalSkill") > 0 and buffCheck == true then
-        value = value * 3
+        value = value + 150
     end
     
     return math.floor(value);

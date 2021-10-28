@@ -100,9 +100,6 @@
 					<Num Num="100"/>
 					<Num Num="0"/>
 				</Scp>
-				<Scp Scp="SKL_RUN_SCRIPT" Client="NO" UseSleep="NO" Time="0">
-					<Str Str="SCR_ITEM_MATROSS_VIBORA_EXPLOSION"/>
-				</Scp>
 			</EtcList>
 			<ResultList>
 				<ToolScp Scp="S_R_EXPLODE_TAKEDAMAGEADDBLOW_MATROSS" Client="NO" UseSleep="NO">
@@ -111,6 +108,9 @@
 					<Num Num="1"/>
 					<Num Num="0.1"/>
 					<Num Num="5" UseFunc="1" FuncTxt="local value = math.floor(3 + skill.Level * 0.375) if IsBuffApplied(self, &quot;Bazooka_Buff&quot;) == &quot;YES&quot; then value = value * 2 end return value;"/>
+				</ToolScp>
+				<ToolScp Scp="S_R_COND_SCRIPT" Client="NO" UseSleep="NO">
+					<Str Str="SCR_ITEM_MATROSS_VIBORA_EXPLOSION"/>
 				</ToolScp>
 			</ResultList>
 		</MainSkl>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by IMC (IMCGames Co., Ltd) -->
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by imc (imc) -->
 <packeteffects>
 	<Category ID="163">
 		<Effect Name="F_archer_bodkinpoint_hit_explosion#Dummy001"/>
@@ -42,11 +42,22 @@
 		<Effect Name="I_arrow015_mash"/>
 		<Effect Name="F_archer_CannonShot_explosion2"/>
 		<Effect Name="F_bg_candle001_orange1"/>
-		<Effect Name="F_bg_fire005"/>	
+		<Effect Name="F_bg_fire005"/>
 		<Effect Name="I_dash002_light_violet"/>
 		<Effect Name="I_spear001_mash_loop01"/>
 		<Effect Name="I_spear001_mash_loop02"/>
 		<Effect Name="I_spear001_mash_loop03"/>
+		<Effect Name="I_warrior_dash021_twirl"/>
+		<Effect Name="F_warrior_Cleave_swordtrail1"/>
+		<Effect Name="F_warrior_Cleave_swordtrail2"/>
+		<Effect Name="E_warrior_hook"/>
+		<Effect Name="E_warrior_TridentFinish"/>
+		<Effect Name="F_wizard_obe_shot_smoke"/>
+		<Effect Name="I_cylinder005"/>
+		<Effect Name="F_smoke173"/>
+		<Effect Name="F_stone007"/>
+		<Effect Name="F_wizard_BRIQUETTING_STEP1_smoke"/>
+		<Effect Name="F_warrior_moulinet_shot_smoke"/>
 	</Category>
 	<Category ID="132">
 		<Effect Name="I_arrow005_mash2_red#Dummy_back_arrow04"/>
@@ -142,6 +153,7 @@
 		<Effect Name="F_boss_Moringponia_Buff_Pad"/>
 		<Effect Name="F_boss_Moringponia_Debuff_Pad"/>
 		<Effect Name="boss_misrus_circlewave"/>
+        <Effect Name="SnowRolling_Buff"/>
 	</Category>
 	<Category ID="187">
 		<Effect Name="F_bg_boil002"/>
@@ -391,6 +403,8 @@
 		<Effect Name="Field_Summon_Silence"/>
 		<Effect Name="Field_Zaura_pad"/>
 		<Effect Name="Field_boss_Mirtis_line"/>
+		<Effect Name="Field_Evil_Pillar_2"/>
+		<Effect Name="Field_Evil_Pillar"/>
 	</Category>
 	<Category ID="146">
 		<Effect Name="beginner"/>
@@ -634,9 +648,9 @@
 		<Effect Name="F_levitation039_red_event"/>
 		<Effect Name="F_levitation039_yellow"/>
 		<Effect Name="boom_fuse"/>
-		<Effect Name="F_levitation039_yellow_event"/>
-		<Effect Name="F_levitation039_green_event"/>
-		<Effect Name="F_levitation039_red_event_1"/>
+        <Effect Name="F_levitation039_yellow_event"/>
+        <Effect Name="F_levitation039_green_event"/>
+        <Effect Name="F_levitation039_red_event_1"/>
 	</Category>
 	<Category ID="144">
 		<Effect Name="F_pc_CardBook_ground_dark"/>
@@ -3683,6 +3697,12 @@
 		<Effect Name="Annihilation_Assassin23_Pad"/>
 		<Effect Name="HangmansKnot_Pad_Linker21"/>
 		<Effect Name="Arditi_TreGranata_DamagePad"/>
+		<Effect Name="EP12_2_ENDING_MINI_01"/>
+		<Effect Name="LEGEND_RAID_GILTINE"/>
+		<Effect Name="GILTINE_GUILD_RAID"/>
+		<Effect Name="E_warrior_rush_ride_spin"/>
+		<Effect Name="I_scout_instantaneous_dash_trail"/>
+		<Effect Name="F_scout_behead001"/>
 	</Category>
 	<Category ID="60">
 		<Effect Name="SETPOS"/>

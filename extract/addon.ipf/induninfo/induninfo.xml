@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by imc (imc) -->
+<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by asdasd (IMCGames Co., Ltd) -->
 <uiframe name="induninfo" x="0" y="0" width="1095" height="610" create="open">
 	<frame fasthide="true" layout_gravity="center center" margin="0 -75 0 0"/>
 	<input moveable="true" hittestframe="true" moveintitlebar="false"/>
@@ -77,13 +77,14 @@
 		<radiobutton name="lvAscendRadio" parent="bottomBox" rect="0 0 200 30" margin="70 0 0 0" layout_gravity="left center" group="sortOption" LBtnDownScp="INDUNINFO_SORT_BY_LEVEL" caption="{@st66b}레벨 오름차순{/}" clicksound="button_click_big" oversound="button_over"/>
 		<radiobutton name="lvDescendRadio" parent="bottomBox" rect="0 0 200 30" margin="250 0 0 0" layout_gravity="left center" group="sortOption" LBtnDownScp="INDUNINFO_SORT_BY_LEVEL" caption="{@st66b}레벨 내림차순{/}" clicksound="button_click_big" oversound="button_over"/>
 		<button name="showCharIndunState" parent="bottomBox" rect="0 0 5 5" margin="20 0 0 3" layout_gravity="left center" image="indun_count_btn" clicksound="button_click_big" oversound="button_over" LBtnUpScp="UI_TOGGLE_INDUNINFO_CHAR_UI" isEnabled="0"/>
-		<tab name="tab" rect="0 0 1000 40" margin="10 60 0 0" layout_gravity="left top" LBtnDownScp="INDUNINFO_TAB_CHANGE" MouseOffAnim="btn_mouseoff" MouseOnAnim="btn_mouseover" clicksound="inven_arrange" fixwidth="true" itemspc="0" oversound="button_cursor_over_2" skin="tab2"/>
+		<tab name="tab" rect="0 0 1050 40" margin="10 60 0 0" layout_gravity="left top" LBtnDownScp="INDUNINFO_TAB_CHANGE" MouseOffAnim="btn_mouseoff" MouseOnAnim="btn_mouseover" clicksound="inven_arrange" fixwidth="true" itemspc="0" oversound="button_cursor_over_2" skin="tab2"/>
 		<tabitem name="Itembox1" parent="tab" caption="{@st66b}던전{/}" width="150" layout_gravity="left top"/>
 		<tabitem name="Itembox2" parent="tab" caption="{@st66b}레이드{/}" width="150" layout_gravity="left top"/>
 		<tabitem name="Itembox3" parent="tab" caption="{@st66b}주간 보스 레이드" width="150" layout_gravity="left top"/>
 		<tabitem name="Itembox4" parent="tab" caption="{@st66b}콘텐츠 랭킹" width="150" layout_gravity="left top"/>
 		<tabitem name="Itembox5" parent="tab" caption="{@st66b}봉쇄전" width="150" layout_gravity="left top"/>
 		<tabitem name="ItemboxN" parent="tab" caption="{@st66b}PVP" width="150" layout_gravity="left top"/>
+		<tabitem name="Itembox7" parent="tab" caption="{@st66b}보스 협동전" width="150" layout_gravity="left top"/>
 		<!-- Time for pvp tab -->
 		<groupbox name="timeBox" parent="pvpbox" rect="0 0 412 60" margin="0 44 0 0" layout_gravity="right top" draw="false" hittestbox="false"/>
 		<picture name="timePic" parent="timeBox" rect="0 0 27 27" margin="0 0 0 0" layout_gravity="left center" image="indun_entrance"/>
@@ -127,7 +128,7 @@
 		<controlset name="monster_attr4" parent="info_gb" rect="0 0 350 23" margin="0 119 15 0" type="adventure_book_monster_attribute" layout_gravity="right top" hittestbox="false" scrollbar="false"/>
 		<controlset name="monster_attr5" parent="info_gb" rect="0 0 350 23" margin="0 143 15 0" type="adventure_book_monster_attribute" layout_gravity="right top" hittestbox="false" scrollbar="false"/>
 		<controlset name="monster_attr6" parent="info_gb" rect="0 0 350 23" margin="0 167 15 0" type="adventure_book_monster_attribute" layout_gravity="right top" hittestbox="false" scrollbar="false"/>
-		<button name="monster_attr_map" parent="info_gb" rect="0 0 31 31" margin="25 150 0 0" layout_gravity="left top" image="indun_map_info_btn" LBtnUpScp="WEEKLY_BOSS_PATTERN_UI_OPEN" stretch="false" texttooltip="주간 패턴 정보를 표시합니다."/>
+		<button name="monster_attr_map" parent="info_gb" rect="0 0 31 31" margin="25 150 0 0" layout_gravity="left top" image="indun_map_info_btn" LBtnUpScp="BOSS_PATTERN_UI_OPEN" stretch="false" texttooltip="주간 패턴 정보를 표시합니다."/>
 		<picture name="battle_info" parent="info_gb" rect="0 0 469 41" margin="0 197 0 0" layout_gravity="center top" draw="true" image="adventure_info_title" stretch="true"/>
 		<richtext name="battle_info_text" parent="battle_info" rect="0 0 120 40" margin="0 0 0 0" layout_gravity="center center" caption="전투 정보" fontname="white_20_ol_ds"/>
 		<controlset name="battle_info_attr" parent="info_gb" rect="0 0 350 130" margin="0 242 0 0" type="content_status_board_battle_attribute" layout_gravity="center top" hittestbox="false" scrollbar="false"/>
@@ -179,5 +180,13 @@
 		<richtext name="guild_info_time_text" parent="boruta_info_gb" rect="0 0 200 40" margin="0 393 10 0" layout_gravity="right top" format="{@st47}{s14}%s{/}" param1="value" param1_def="0"/>
 		<button name="boruta_move_btn" parent="boruta_info_gb" rect="0 0 163 48" margin="69 0 0 10" layout_gravity="left bottom" format="{s16}{ol}{#FFFFFF}이동" LBtnUpScp="BORUTA_ZONE_MOVE_CLICK" MouseOffAnim="btn_mouseoff" MouseOnAnim="btn_mouseover" skin="test_red_button" oversound="button_over" texttooltip="입장 위치로 이동합니다."/>
 		<button name="boruta_reward_btn" parent="boruta_info_gb" rect="0 0 163 48" margin="0 0 69 10" layout_gravity="right bottom" format="{s16}{ol}{#FFFFFF}보상 수령" LBtnUpScp="BORUTA_RANKING_REWARD_CLICK" MouseOffAnim="btn_mouseoff" MouseOnAnim="btn_mouseover" skin="test_red_button" oversound="button_over" texttooltip="길드 마스터만 이용 가능합니다.{nl}수령한 보상은 길드 보관함으로 지급됩니다."/>
+		<!-- field boss ranking -->
+		<groupbox name="field_boss_box" rect="0 0 1070 500" margin="0 100 0 0" layout_gravity="center top" draw="false"/>
+		<controlset name="field_boss_ranking_control" parent="field_boss_box" rect="0 0 552 500" margin="0 0 0 0" type="season_raid_ranking_info" layout_gravity="left top"/>
+		<controlset name="field_boss_boss_control" parent="field_boss_box" rect="0 0 500 200" margin="0 0 30 0" type="season_raid_boss_info" layout_gravity="right top"/>
+		<controlset name="field_boss_my_rank_control" parent="field_boss_box" rect="0 0 500 310" margin="0 100 30 0" type="season_raid_my_info" layout_gravity="right top"/>
+		<groupbox name="field_boss_util_box" rect="0 0 500 100" margin="0 390 0 0" parent="field_boss_box" layout_gravity="right top" draw="false"/>
+		<!-- <button name="field_boss_total_damage_reward" parent="field_boss_util_box" rect="0 0 141 38" margin="0 0 80 60" layout_gravity="center bottom" format="{@st66b}{s16}누적 대미지 보상" LBtnUpScp="WEEKLY_BOSS_TOTAL_DAMAGE_REWARD_CLICK" MouseOffAnim="btn_mouseoff" MouseOnAnim="btn_mouseover" skin="test_pvp_btn" oversound="button_over"/> -->
+		<button name="field_boss_joinenter" parent="field_boss_util_box" rect="0 0 163 48" margin="0 0 69 0" layout_gravity="center bottom" format="{s16}{ol}{#FFFFFF}입장하기" LBtnUpScp="FIELD_BOSS_JOIN_ENTER_CLICK" MouseOffAnim="btn_mouseoff" MouseOnAnim="btn_mouseover" skin="test_red_button" oversound="button_over"/>
 	</controls>
 </uiframe>

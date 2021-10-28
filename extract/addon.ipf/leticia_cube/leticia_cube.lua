@@ -132,7 +132,7 @@ function LETICIA_CUBE_OPEN_BUTTON(frame, ctrl, argStr, argNum, _gachaClassName, 
 				msg = ScpArgMsg('tpshop_first_buy_msg')
 				yesScp = string.format('NEWBIE_CHECK_LETICIA_CUBE_OPEN("%s","%s")',cubeName,clMsg)
 			else
-				msg = ScpArgMsg('LeticiaGacha{CONSUME}', 'CONSUME', clMsg)
+				msg = ScpArgMsg('LeticiaGacha{CONSUME}', 'CONSUME', clMsg, 'COUNT', Cnt)
 			end
 		end
 		ui.MsgBox(msg, yesScp, 'LETICIA_CUBE_CLOSE_ALL()');
@@ -142,7 +142,10 @@ function LETICIA_CUBE_OPEN_BUTTON(frame, ctrl, argStr, argNum, _gachaClassName, 
 end
 
 function NEWBIE_CHECK_LETICIA_CUBE_OPEN(cubeName,clMsg)
-	local msg = ScpArgMsg('LeticiaGacha{CONSUME}', 'CONSUME', clMsg)
+	local pc = GetMyPCObject()
+    local aobj = GetMyAccountObj(pc)
+    local Cnt = TryGetProp(aobj, "LETICIA_CUBE_OPEN_COUNT", 0)
+	local msg = ScpArgMsg('LeticiaGacha{CONSUME}', 'CONSUME', clMsg, 'COUNT', Cnt)
 	local yesScp = string.format('REQ_LETICIA_CUBE_OPEN("%s")',cubeName)
 	ui.MsgBox(msg, yesScp, 'LETICIA_CUBE_CLOSE_ALL()');
 end

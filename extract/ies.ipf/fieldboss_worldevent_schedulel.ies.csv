@@ -1,0 +1,4 @@
+ClassID,StartHour_1,StartHour_2,EnteranceDurationSecond,BattleDurationSecond,ClassName
+1,12,22,300,500,KOR
+2,12,22,300,500,GLOBAL
+3,12,22,300,500,GLOBAL_JP

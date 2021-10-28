@@ -3231,3 +3231,21 @@ end
 function CLMSG_DIALOG_CONVERT(npc,msg)
 	return string.format("%s*@*%s",npc.Name,msg)
 end
+
+function GET_ABILITY_POINT_EXTRACTOR_FEE(type)
+    if type == 2 then
+        -- 특성 포인트 추출 수수료 퍼센트
+        return 20;
+    end
+
+    return 999999999;
+end
+
+function GET_ABILITY_POINT_EXTRACTOR_MIN_VALUE(type)
+    if type == 2 then
+        -- 특성 포인트 추출 스크롤 교환 최소 개 수 
+        return 10;
+    end
+
+    return 0;    
+end

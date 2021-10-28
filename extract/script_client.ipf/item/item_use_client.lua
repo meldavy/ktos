@@ -104,20 +104,10 @@ function ABILITY_POINT_RESET_ARTS_C(invItem)
 	local token_middle = GET_CHILD(frame, "token_middle", "ui::CPicture");
 	token_middle:SetImage("ArtsReset_skin");
 
-	local endTxt2 = frame:GetChild("endTime2");
-	endTxt2:SetTextByKey("value", ClMsg("AllArtsAbility"));
-    endTxt2:SetTextByKey("msg", "");
-
-    local prop = ctrlSet:GetChild("prop");
-    prop:SetTextByKey("value", ClMsg("Premium_JobArtsResetLng")); 
-    local value = GET_CHILD_RECURSIVELY(ctrlSet, "value");
-    value:ShowWindow(0);
-
+	
 	frame:SetUserValue("itemIES", invItem:GetIESID());
 	frame:SetUserValue("ClassName", itemObj.ClassName);
-
-	GBOX_AUTO_ALIGN(gBox, 0, 3, 0, true, true);
-	SKILLSTAT_RESIZE(frame, frame:GetUserConfig("HEIGHT_ABILRESET"))
+	
 	
 	local jobName = "Char"..TryGetProp(itemObj, 'NumberArg1', 0).."_"..TryGetProp(itemObj, 'NumberArg2', 0);
 	local getAbilPoint = GetTotalAbilityPointByJob(GetMyPCObject(), jobName, 1);
@@ -125,7 +115,7 @@ function ABILITY_POINT_RESET_ARTS_C(invItem)
 		getAbilPoint = 0;
 	end
 	local curAbilPoint = session.ability.GetAbilityPoint();
-
+	
 	local detail = GET_CHILD_RECURSIVELY(frame, "detail");
 	local font = frame:GetUserConfig("FONT_STATCOUNT");
 	
@@ -138,6 +128,17 @@ function ABILITY_POINT_RESET_ARTS_C(invItem)
 	local abilMarginTop = frame:GetUserConfig("DETAIL_ARTS_TOP");
 	detail:SetMargin(curMargin.left, abilMarginTop, curMargin.right, curMargin.bottom);
 	detail:ShowWindow(1);
+
+	local endTxt2 = frame:GetChild("endTime2");
+	endTxt2:SetTextByKey("value", ClMsg("AllArtsAbility"));
+	endTxt2:SetTextByKey("msg", "");
+	local prop = ctrlSet:GetChild("prop");
+	prop:SetTextByKey("value", ClMsg("Premium_JobArtsResetLng")); 
+	local value = GET_CHILD_RECURSIVELY(ctrlSet, "value");
+	value:ShowWindow(0);
+	
+	GBOX_AUTO_ALIGN(gBox, 0, 3, 0, true, true);
+	SKILLSTAT_RESIZE(frame, frame:GetUserConfig("HIEGHT_ARTSRESET") + detail:GetHeight() + endTxt2:GetHeight())
 end
 
 function _ABILITY_POINT_RESET_ARTS_C(frame, itemGuid)

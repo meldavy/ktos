@@ -51,8 +51,14 @@
 		<Class ClassID="49" ClassName="/bamboo" Alias="/죽엽" ConvertWhenSend="1"/>
 		<Class ClassID="55" ClassName="/ticket" Alias="/티켓" ConvertWhenSend="1"/>
 		<Class ClassID="56" ClassName="/tokenwarp" Alias="/토큰이동" ConvertWhenSend="1"/>
+		<Class ClassID="57" ClassName="/matsuri" Alias="/마츠리" ConvertWhenSend="1"/>
 		<Class ClassID="58" ClassName="/maxLevel" Alias="/만렙" ConvertWhenSend="1"/>
+		<Class ClassID="59" ClassName="/rice" Alias="/찹쌀" ConvertWhenSend="1"/>
 		<Class ClassID="60" ClassName="/vote" Alias="/투표" ConvertWhenSend="1"/>
 		<Class ClassID="61" ClassName="/master" Alias="/마스터" ConvertWhenSend="1"/>
+		<Class ClassID="62" ClassName="/chusok" Alias="/추석" ConvertWhenSend="1"/>
+	<Class ClassID="63" ClassName="/cat" Alias="/고양이" ConvertWhenSend="1"/>
+		<Class ClassID="65" ClassName="/moonlight" Alias="/달빛" ConvertWhenSend="1"/>
+		<Class ClassID="67" ClassName="/fullmoon" Alias="/달맞이" ConvertWhenSend="1"/>
 	</Category>
 </idspace>

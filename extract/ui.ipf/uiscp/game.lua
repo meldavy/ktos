@@ -1474,6 +1474,11 @@ function SCR_SKILLSCROLL(invItem)
 			end
 		end
 	end
+
+	if IsFieldBossMap() == 1 then
+		ui.SysMsg(ClMsg("NotAvailableInThisContents"))
+		return
+	end
 	
 	local sklType = obj.SkillType;
 	local skillAdded = spcitem.CreateScrollSkill(sklType, invItem:GetIESID(), obj.SkillLevel, true);

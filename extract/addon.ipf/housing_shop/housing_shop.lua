@@ -979,14 +979,14 @@ function SCP_HOUSING_SHOP_TAB_LANDSCAPE(frame, gbox)
 		tab:SetTabVisible(0, true);
 		tab:SetTabVisible(1, false);
 		tab:SetTabVisible(2, false);
-		tab:ChangeCaption(0, ClMsg("Personal_Housing_Tab_General"), false);
+		tab:ChangeCaptionOnly(0, ClMsg("Personal_Housing_Tab_General"), false);
 		
 		HOUSING_SHOP_INIT_TAB(frame, "gbox_sell_list_landscape_itemlist", {["PHousing_Furniture"] = 1, ["PHousing_Carpet"] = 1, ["PHousing_Wall"] = 1});
 	else
 		tab:SetTabVisible(0, true);
 		tab:SetTabVisible(1, true);
 		tab:SetTabVisible(2, true);
-		tab:ChangeCaption(0, ClMsg("Guild_Housing_Tab_Landscape"), false);
+		tab:ChangeCaptionOnly(0, ClMsg("Guild_Housing_Tab_Landscape"), false);
 		
 		HOUSING_SHOP_INIT_TAB(frame, "gbox_sell_list_landscape_itemlist", {["Housing_Furniture"] = 1});
 	end

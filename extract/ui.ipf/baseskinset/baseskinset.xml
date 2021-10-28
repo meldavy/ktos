@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by imc (imc) -->
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by imc (imc) -->
 <!-- edited with XMLSpy v2008 sp1 (http://www.altova.com) by MintPC (Mi) -->
 <skinset name="Base">
 	<skinlist category="frames">
@@ -7956,6 +7956,7 @@
 		<image name="toketmon_evolution_star" file="\skin\tocket_monsters.tga" imgrect="881 80 130 129" CMM_Caption="트켓몬 진화 마크"/>
 		<image name="monster_card_g_frame_02" file="\skin\tocket_monsters.tga" imgrect="971 506 161 221" CMM_Caption="트켓몬 프레임_02"/>
 		<image name="gold_02arrow_below" file="\skin\pip_test.tga" imgrect="606 1025 65 58" CMM_Caption="2개 골드 화살표_아래"/>
+		<image name="cooperation_war_kill" file="\skin\pip_test.tga" imgrect="1123 1025 227 50" CMM_Caption="협동전_kill"/>
 	</imagelist>
 	<imagelist category="yiseul_image">
 		<image name="AbillityReset_skin" file="\skin\paid_skin_title.tga" imgrect="0 330 316 165" CMM_Caption="특성 초기화"/>
@@ -8486,6 +8487,12 @@
 		<image name="your_master_activity_btn" file="\skin\stamp_tour.tga" imgrect="727 1199 72 72" CMM_Caption="당신의 마스터 ui 활성화 버튼"/>
 		<image name="your_master_activity_btn_cursoron" file="\skin\stamp_tour.tga" imgrect="800 1199 72 72"/>
 		<image name="your_master_activity_btn_clicked" file="\skin\stamp_tour.tga" imgrect="873 1199 72 72"/>
+		<image name="cooperation_war_date_btn" file="\skin\pip_test.tga" imgrect="819 1025 61 60" CMM_Caption="협동전_날짜"/>
+		<image name="cooperation_war_date_btn_cursoron" file="\skin\pip_test.tga" imgrect="881 1025 61 60"/>
+		<image name="cooperation_war_date_btn_clicked" file="\skin\pip_test.tga" imgrect="881 1025 61 60"/>
+		<image name="cooperation_war_time_btn" file="\skin\pip_test.tga" imgrect="943 1025 89 49" CMM_Caption="협동전_시간"/>
+		<image name="cooperation_war_time_btn_cursoron" file="\skin\pip_test.tga" imgrect="1033 1025 89 49"/>
+		<image name="cooperation_war_time_btn_clicked" file="\skin\pip_test.tga" imgrect="1033 1025 89 49"/>
 	</imagelist>
 	<imagelist category="yiseul_button">
 		<image name="pvpmine_shop_btn" file="\skin\pip_test.tga" imgrect="2049 61 66 59" CMM_Caption="용병단 증표 ui 버튼"/>
@@ -8560,6 +8567,9 @@
 		<image name="worldmap2_bookmark_btn" file="\skin\worldmap2_bookmark.tga" imgrect="271 52 60 60" CMM_Caption="즐겨찾기 주문서 버튼"/>
 		<image name="worldmap2_bookmark_btn_cursoron" file="\skin\worldmap2_bookmark.tga" imgrect="332 52 60 60"/>
 		<image name="worldmap2_bookmark_btn_clicked" file="\skin\worldmap2_bookmark.tga" imgrect="332 52 60 60"/>
+		<image name="2009Chursok_btn" file="\skin\pip_test.tga" imgrect="1351 1025 72 72" CMM_Caption="2009 추석 버튼"/>
+		<image name="2009Chursok_btn_cursoron" file="\skin\pip_test.tga" imgrect="1424 1025 72 72"/>
+		<image name="2009Chursok_btn_clicked" file="\skin\pip_test.tga" imgrect="1497 1025 72 72"/>
 	</imagelist>
 	<imagelist category="worldmap_image">
 		<image name="worldmap2_mainmap" file="\skin\worldmap\worldmap2_mainmap.jpg" imgrect="0 0 1920 1080" CMM_Caption="월드맵배경"/>
@@ -10177,6 +10187,8 @@
 		<image name="icon_gesture_squat" file="\icon\social.tga" imgrect="163 568 80 80"/>
 		<image name="icon_gesture_fullup" file="\icon\social.tga" imgrect="244 568 80 80"/>
 		<image name="icon_gesture_dabdance" file="\icon\social.tga" imgrect="325 568 80 80"/>
+		<image name="icon_gesture_wipe" file="\icon\social.tga" imgrect="406 568 80 80"/>
+		<image name="icon_gesture_baseball" file="\icon\social.tga" imgrect="1 649 80 80"/>
 		<image name="icon_gesture_flex" file="\icon\social.tga" imgrect="82 649 80 80"/>
 		<image name="icon_gesture_homerun" file="\icon\social.tga" imgrect="163 649 80 80"/>
 		<image name="icon_gesture_nyang" file="\icon\social.tga" imgrect="244 649 80 80"/>
@@ -11247,6 +11259,11 @@
 		<image name="icon_WITCH_MADNESS" file="\icon\buff_icon3.tga" imgrect="0 1536 128 128" CMM_Caption="마녀의 광기"/>
 		<image name="icon_TelHarsha_furious" file="\icon\buff_icon3.tga" imgrect="128 1536 128 128" CMM_Caption="텔하르샤 광폭화"/>
 		<image name="icon_pet_policedog_buff" file="\icon\buff_icon3.tga" imgrect="256 1536 128 128" CMM_Caption="셰퍼드 버프"/>
+		<image name="icon_firework_buff" file="\icon\buff_icon3.tga" imgrect="384 1536 128 128" CMM_Caption="[나츠마츠리]불꽃축제 버프"/>
+		<image name="icon_takoyaki_buff" file="\icon\buff_icon3.tga" imgrect="512 1536 128 128" CMM_Caption="[나츠마츠리]타코야키"/>
+		<image name="icon_ringoame_buff" file="\icon\buff_icon3.tga" imgrect="640 1536 128 128" CMM_Caption="[나츠마츠리]링고아메"/>
+		<image name="icon_kakigori_buff" file="\icon\buff_icon3.tga" imgrect="768 1536 128 128" CMM_Caption="[나츠마츠리]카키고오리"/>
+		<image name="icon_okonomiyaki_buff" file="\icon\buff_icon3.tga" imgrect="896 1536 128 128" CMM_Caption="[나츠마츠리]오코노미야키"/>
 		<image name="icon_sweet_zongzi_buff" file="\icon\buff_icon3.tga" imgrect="512 1408 128 128" CMM_Caption="2020_단쫑즈"/>
 		<image name="icon_salty_zongzi_buff" file="\icon\buff_icon3.tga" imgrect="640 1408 128 128" CMM_Caption="2020_짠종즈"/>
 		<image name="icon_wizar_GenbuArmor_Abil" file="\icon\buff_icon3.tga" imgrect="0 1664 128 128" CMM_Caption="현무갑: 빙의"/>
@@ -11257,6 +11274,7 @@
 		<image name="icon_arch_Lucky" file="\icon\buff_icon3.tga" imgrect="640 1664 128 128" CMM_Caption="럭키 버프"/>
 		<image name="icon_arch_Coursingabil" file="\icon\buff_icon3.tga" imgrect="768 1664 128 128" CMM_Caption="피의 얼룩 디버프"/>
 		<image name="icon_pet_cadet_armadillo_buff" file="\icon\buff_icon3.tga" imgrect="896 1664 128 128" CMM_Caption="사관생도 아르마딜로"/>
+		<image name="icon_fullmoon_buff" file="\icon\buff_icon3.tga" imgrect="0 1792 128 128" CMM_Caption="[오본] 보름달의 축복"/>
 		<image name="icon_Provoke_fury" file="\icon\buff_icon3.tga" imgrect="128 1792 128 128" CMM_Caption="프로보크-격노"/>
 		<image name="icon_TelHarsha_spider_Atk" file="\icon\buff_icon3.tga" imgrect="256 1792 128 128" CMM_Caption="양초거미_공격력"/>
 		<image name="icon_TelHarsha_spider_Def" file="\icon\buff_icon3.tga" imgrect="384 1792 128 128" CMM_Caption="양초거미_방어력"/>

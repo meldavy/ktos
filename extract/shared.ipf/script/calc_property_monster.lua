@@ -1551,6 +1551,29 @@ function SCR_GET_MONSKL_COOL(skill)
     return value;
 end
 
+function SCR_GET_FIELD_BOSS_PATTERN_COOL(skill)
+    local mon = GetSkillOwner(skill)
+    local value = TryGetProp(skill, "BasicCoolDown", 0);
+    
+    local arg2 = tonumber(GetExProp_Str(mon,"WEEKLY_BOSS_ARG2"))
+    if arg2 ~= nil and IsBuffApplied(mon, "Field_Phase_Buff") == "YES" then
+        local over = GetBuffOver(mon, "Field_Phase_Buff")
+        if over >= 2 then
+            value = value - ((over-1)*arg2)
+        end
+    end
+    
+    if GetExProp_Str(mon, "PATTERN_TYPE") == "Type1" then
+        local coolRand = IMCRandom(-5,5);
+        value = value + (coolRand*1000);
+    end
+    
+    if value < 0 then
+        value = 0;
+    end
+    return value;
+end
+
 function SCR_GET_MONSKL_SKIACLIPSE_METEOR_COOL(skill)
     local value = TryGetProp(skill, "BasicCoolDown", 0);
     

@@ -15,7 +15,8 @@ function IS_ITEM_AWAKENING_STONE(obj)
 		return true;
 	elseif obj.ClassName == "Premium_awakeningStone" or obj.ClassName == "Premium_awakeningStone14" or obj.ClassName == "Premium_awakeningStone_TA" or
 		   obj.ClassName == "Premium_awakeningStone14_Team" or obj.ClassName == "Event_awakeningStone_1" or obj.ClassName == "Event_awakeningStone_2"
-		   or obj.ClassName == "Event_awakeningStone_3" or obj.ClassName == "Event_awakeningStone_4" or obj.ClassName == "Event_awakeningStone_5" then
+		   or obj.ClassName == "Event_awakeningStone_3" or obj.ClassName == "Event_awakeningStone_4" or obj.ClassName == "Event_awakeningStone_5"
+		   or obj.ClassName == "Event_awakeningStone_6" then
 		return true;
 	end
 

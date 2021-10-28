@@ -455,6 +455,7 @@
         <Key Name="ALLSTAT" Value="105471"/>
         <Key Name="ICOR_TRY_COUNT" Value="105560"/>
         <Key Name="Magic_Soul_Atk" Value="106482"/>
+        <Key Name="StringArg2" Value="106494"/>
     </KeyIDSpc>
     <KeyIDSpc Name="Party">
         <Key Name="P_PARTY_Q_040" Value="53"/>
@@ -3485,6 +3486,48 @@
         <Key Name="InDunCountType_150" Value="106473"/>
         <Key Name="IndunWeeklyEnteredCount_150" Value="106471"/>
         <Key Name="FirstQuestClear_Episode_10_72179" Value="106483"/>
+        <Key Name="EVENT_2009_FISHING_BAIT_RECEIVED" Value="106484"/>
+        <Key Name="EVENT_2009_FISHING_TRADE_COUNT" Value="106485"/>
+        <Key Name="EVENT_2009_FULLMOON1" Value="106539"/>
+        <Key Name="EVENT_2009_FULLMOON10" Value="106522"/>
+        <Key Name="EVENT_2009_FULLMOON11" Value="106537"/>
+        <Key Name="EVENT_2009_FULLMOON12" Value="106516"/>
+        <Key Name="EVENT_2009_FULLMOON13" Value="106524"/>
+        <Key Name="EVENT_2009_FULLMOON14" Value="106543"/>
+        <Key Name="EVENT_2009_FULLMOON15" Value="106545"/>
+        <Key Name="EVENT_2009_FULLMOON16" Value="106513"/>
+        <Key Name="EVENT_2009_FULLMOON17" Value="106523"/>
+        <Key Name="EVENT_2009_FULLMOON18" Value="106528"/>
+        <Key Name="EVENT_2009_FULLMOON19" Value="106530"/>
+        <Key Name="EVENT_2009_FULLMOON2" Value="106538"/>
+        <Key Name="EVENT_2009_FULLMOON20" Value="106514"/>
+        <Key Name="EVENT_2009_FULLMOON3" Value="106546"/>
+        <Key Name="EVENT_2009_FULLMOON4" Value="106541"/>
+        <Key Name="EVENT_2009_FULLMOON5" Value="106544"/>
+        <Key Name="EVENT_2009_FULLMOON6" Value="106519"/>
+        <Key Name="EVENT_2009_FULLMOON7" Value="106527"/>
+        <Key Name="EVENT_2009_FULLMOON8" Value="106549"/>
+        <Key Name="EVENT_2009_FULLMOON9" Value="106517"/>
+        <Key Name="EVENT_2009_FULLMOON_COIN_COUNT" Value="106542"/>
+        <Key Name="EVENT_2009_FULLMOON_COIN_TOTAL_COUNT" Value="106547"/>
+        <Key Name="EVENT_2009_FULLMOON_PLAY_TIME" Value="106518"/>
+        <Key Name="EVENT_2009_FULLMOON_POINT" Value="106532"/>
+        <Key Name="EVENT_2009_FULLMOON_REWARD_COUNT" Value="106520"/>
+        <Key Name="EVENT_2009_FULLMOON_RICECAKE_LIMIT" Value="106540"/>
+        <Key Name="EVENT_2009_FULLMOON_SPECIAL_REWARD_COUNT_1" Value="106525"/>
+        <Key Name="EVENT_2009_FULLMOON_SPECIAL_REWARD_COUNT_2" Value="106512"/>
+        <Key Name="EVENT_2009_FULLMOON_SPECIAL_REWARD_COUNT_3" Value="106548"/>
+        <Key Name="EVENT_2009_FULLMOON_WISH_COUNT" Value="106515"/>
+        <Key Name="EVENT_2009_FULLMOON_WISH_TIME" Value="106529"/>
+        <Key Name="EVENT_2009_GILTINE_ATTACK_REWARD_COUNT" Value="106486"/>
+        <Key Name="EVENT_2009_GILTINE_ATTACK_REWARD_TOTAL_COUNT" Value="106487"/>
+        <Key Name="EVENT_2010_CHUSOK_DIALOG_REWARD" Value="106535"/>
+        <Key Name="EVENT_2010_CHUSOK_PLAY_TIME" Value="106521"/>
+        <Key Name="HadVisited_11215" Value="106526"/>
+        <Key Name="HadVisited_11216" Value="106531"/>
+        <Key Name="HadVisited_11217" Value="106533"/>
+        <Key Name="HadVisited_11218" Value="106534"/>
+        <Key Name="HadVisited_11219" Value="106536"/>
     </KeyIDSpc>
     <KeyIDSpc Name="PCEtc">
         <Key Name="Kill_boss_Clymen_Q2" Value="7788"/>
@@ -11850,6 +11893,23 @@
         <Key Name="Kill_TelHarsha_Baseball" Value="106478"/>
         <Key Name="Kill_TelHarsha_pattern_monster" Value="106476"/>
         <Key Name="Kill_boss_Irredians_TelHarsha" Value="106477"/>
+        <Key Name="HadVisited_11215" Value="106507"/>
+        <Key Name="HadVisited_11216" Value="106508"/>
+        <Key Name="HadVisited_11217" Value="106509"/>
+        <Key Name="HadVisited_11218" Value="106510"/>
+        <Key Name="HadVisited_11219" Value="106511"/>
+        <Key Name="Kill_Field_CreateSphere" Value="106502"/>
+        <Key Name="Kill_Field_Denoptic" Value="106499"/>
+        <Key Name="Kill_Field_boss_Blud" Value="106497"/>
+        <Key Name="Kill_Field_boss_Hauberk" Value="106501"/>
+        <Key Name="Kill_Field_boss_Helgasercle" Value="106500"/>
+        <Key Name="Kill_Field_boss_Lecifer" Value="106505"/>
+        <Key Name="Kill_Field_boss_Mirtis" Value="106495"/>
+        <Key Name="Kill_Field_boss_Nuaelle" Value="106504"/>
+        <Key Name="Kill_Field_boss_Zawra" Value="106498"/>
+        <Key Name="Kill_Field_pattern_monster" Value="106496"/>
+        <Key Name="Kill_field_Hidden_monster" Value="106506"/>
+        <Key Name="Kill_field_brest_monster" Value="106503"/>
     </KeyIDSpc>
     <KeyIDSpc Name="GuildMember">
         <Key Name="Name" Value="9011"/>
@@ -20373,6 +20433,12 @@
         <Key Name="MG_Last_LEGEND_RAID_MORINGPONIA_HARD_SOLO" Value="105647"/>
         <Key Name="MG_Last_UNIQUE_RAID_GLACIER_SOLO" Value="105646"/>
         <Key Name="MG_Last_IRREDIAN1131_SRAID_C" Value="106474"/>
+        <Key Name="EVENT_2009_FULLMOON_BUFF_COUNT" Value="106488"/>
+        <Key Name="MG_Last_FIELD_BOSS_RAID_EARTH" Value="106489"/>
+        <Key Name="MG_Last_FIELD_BOSS_RAID_FIRE" Value="106491"/>
+        <Key Name="MG_Last_FIELD_BOSS_RAID_HOLY" Value="106493"/>
+        <Key Name="MG_Last_FIELD_BOSS_RAID_ICE" Value="106492"/>
+        <Key Name="MG_Last_FIELD_BOSS_RAID_POISON" Value="106490"/>
     </KeyIDSpc>
     <KeyIDSpc Name="Monster">
         <Key Name="MaxHate" Value="6671"/>

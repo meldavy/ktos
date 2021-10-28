@@ -100,10 +100,10 @@
 			<richtext name="pm_name" format="%s" param1="pm_fname" param1_def="DefVal" layout_gravity="left top" rect="0 0 120 25" margin="30 0 0 0" fixwidth="false" resizebytext="true" updateparent="true" fontname="yellow_16_ol" hittest="false"/>
 		</controls>
 	</controlset>
-	<controlset name="map_customicon" width="120" height="50" hittestset="true" skin="">
+	<controlset name="map_customicon" width="140" height="50" hittestset="true" skin="">
 		<controls>
 			<picture name="icon" image="minimap_0" layout_gravity="center top" stretch="true" rect="0 0 30 30" hittest="false" margin="0 0 0 0"/>
-			<richtext name="name" format="{@st42_yellow}%s" param1="value" param1_def="DefVal" layout_gravity="center bottom" rect="0 0 120 20" margin="0 0 0 0" fixwidth="false" resizebytext="true" updateparent="true" fontname="yellow_14_ol" hittest="false"/>
+			<richtext name="name" format="{@st42_yellow}%s" param1="value" param1_def="DefVal" layout_gravity="center bottom" rect="0 0 140 20" margin="0 0 0 0" fixwidth="false" resizebytext="true" updateparent="true" fontname="yellow_14_ol" hittest="false"/>
 		</controls>
 	</controlset>
 	<controlset name="tooltip_etc_common" hittest="true" width="410" height="125" skin="">
@@ -5198,7 +5198,7 @@
 	<controlset name="content_status_board_reward_list_attribute" toggle="false" hittest="true" hittestset="false" width="290" height="50" skin="">
 		<controls>
 			<picture name="attr_pic" rect="0 0 50 50" margin="0 0 0 0" layout_gravity="left center" MouseOnAnim="btn_mouseover" MouseOffAnim="btn_mouseoff" stretch="true" skin="test_skin_01_btn" oversound="button_over" LBtnUpScp="" hittest="true"/>
-			<richtext name="attr_name_text" rect="0 0 180 20" margin="60 1 0 0" layout_gravity="left center" resizebytext="false" format="%s" param1="value" param1_def="아이템 이름" fontname="black_16_b" textalign="left center"/>
+			<richtext name="attr_name_text" rect="0 0 180 20" margin="60 1 0 0" layout_gravity="left center" resizebytext="true" format="%s" param1="value" param1_def="아이템 이름" fontname="black_16_b" textalign="left center" fixwidth="true" updateparent="true"/>
 			<richtext name="attr_count_text" rect="0 0 100 40" margin="0 1 0 10" layout_gravity="right center" format="%s개" param1="value" param1_def="0" fontname="black_16_b" textalign="right center"/>
 		</controls>
 	</controlset>
@@ -5291,9 +5291,9 @@
 			<picture name="grade" rect="0 0 92 44" margin="25 0 0 0" layout_gravity="left center" imagealign="center center"/>
 			<picture name="icon" rect="0 0 60 60" margin="140 0 0 0" layout_gravity="left center" image="icon_item_Event_Roulette_Coin" stretch="true" imagealign="center center"/>
 			<richtext name="name" rect="0 0 270 40" margin="220 0 0 0" layout_gravity="left center" fontname="black_18_b" format="%s" param1="name" fixwidth="true" hittest="false" textalign="center center"/>
-			<richtext name="listtext" rect="0 0 320 40" margin="130 0 0 0" layout_gravity="left center" fontname="black_18_b" format="%s" param1="value" fixwidth="true" hittest="false" textalign="left center"/>
+			<richtext name="listtext" rect="0 0 380 40" margin="120 0 0 0" layout_gravity="left center" fontname="black_18_b" format="%s" param1="value" fixwidth="true" hittest="false" textalign="left center"/>
 			<richtext name="count" rect="0 0 60 40" margin="0 0 20 0" layout_gravity="right center" fontname="black_18_b" format="%s개" param1="count" fixwidth="true" hittest="false" textalign="right center"/>
-			<richtext name="text" rect="0 0 100 40" margin="25 0 0 0" layout_gravity="left center" format="{@st66b}{s20}%s" param1="value" fixwidth="true" hittest="false" textalign="center center" draw="false"/>
+		<richtext name="text" rect="0 0 100 40" margin="20 0 0 0" layout_gravity="left center" format="{@st66b}{s20}%s" param1="value" fixwidth="true" hittest="false" textalign="center center" draw="false"/>
 		</controls>
 	</controlset>
 	<controlset name="craft_recipe" hittest="true" width="525" height="250" skin="earth_T_shop_skin" hittestset="true" draw="true" stateskin="false">
@@ -5430,64 +5430,66 @@
 		<controls>
 			<button name="zone_btn" rect="0 0 60 60" margin="0 0 0 0" layout_gravity="right center" image="worldmap2_map_zone_btn" LBtnUpScp="WORLDMAP2_SUBMAP_ZONE_BTN_CLICK"/>
 			<picture name="zone_pc_pos" rect="0 0 38 38" margin="0 -30 -3 0" layout_gravity="right center" image="worldmap2_map_pc" imagealign="center center"/>
-			<richtext name="zone_text_fieldboss" rect="0 0 240 50" margin="22 -30 0 0" layout_gravity="left center" textalign="right center" resizebytext="false" visible="false"/>
-			<richtext name="zone_text_top" rect="0 0 240 50" margin="22 -10 0 0" layout_gravity="left center" textalign="right center" resizebytext="false"/>
-			<richtext name="zone_text_bottom" rect="0 0 240 50" margin="22 10 0 0" layout_gravity="left center" textalign="right center" resizebytext="false"/>
+			<richtext name="zone_text_fieldboss" rect="0 0 240 50" margin="22 -30 0 0" layout_gravity="left center" textalign="right center" resizebytext="false" omitbywidth="true" ellipsistexttooltip="true" visible="false"/>
+			<richtext name="zone_text_bottom" rect="0 0 240 50" margin="22 10 0 0" layout_gravity="left center" textalign="right center" resizebytext="false" omitbywidth="true" ellipsistexttooltip="true"/>
+			<richtext name="zone_text_top" rect="0 0 240 50" margin="22 -10 0 0" layout_gravity="left center" textalign="right center" resizebytext="false" omitbywidth="true" ellipsistexttooltip="true"/>
 		</controls>
 	</controlset>
 	<controlset name="submap_zone_right_set" hittest="true" width="300" height="100">
 		<controls>
 			<button name="zone_btn" rect="0 0 60 60" margin="0 0 0 0" layout_gravity="left center" image="worldmap2_map_zone_btn" LBtnUpScp="WORLDMAP2_SUBMAP_ZONE_BTN_CLICK"/>
 			<picture name="zone_pc_pos" rect="0 0 38 38" margin="-3 -30 0 0" layout_gravity="left center" image="worldmap2_map_pc" imagealign="center center"/>
-			<richtext name="zone_text_fieldboss" rect="0 0 240 50" margin="0 -30 22 0" layout_gravity="right center" textalign="left center" resizebytext="false" visible="false"/>
-			<richtext name="zone_text_top" rect="0 0 240 50" margin="0 -10 22 0" layout_gravity="right center" textalign="left center" resizebytext="false"/>
-			<richtext name="zone_text_bottom" rect="0 0 240 50" margin="0 10 22 0" layout_gravity="right center" textalign="left center" resizebytext="false"/>
+			<richtext name="zone_text_fieldboss" rect="0 0 240 50" margin="0 -30 22 0" layout_gravity="right center" textalign="left center" resizebytext="false" omitbywidth="true" ellipsistexttooltip="true" visible="false"/>
+			<richtext name="zone_text_bottom" rect="0 0 240 50" margin="0 10 22 0" layout_gravity="right center" textalign="left center" resizebytext="false" omitbywidth="true" ellipsistexttooltip="true"/>
+			<richtext name="zone_text_top" rect="0 0 240 50" margin="0 -10 22 0" layout_gravity="right center" textalign="left center" resizebytext="false" omitbywidth="true" ellipsistexttooltip="true"/>
 		</controls>
 	</controlset>
 	<controlset name="submap_city_left_set" hittest="true" width="300" height="120">
 		<controls>
 			<button name="zone_btn" rect="0 0 60 60" margin="0 0 0 0" layout_gravity="right center" image="worldmap2_map_zone_btn" LBtnUpScp="WORLDMAP2_SUBMAP_ZONE_BTN_CLICK"/>
 			<picture name="zone_pc_pos" rect="0 0 38 38" margin="0 -40 14 0" layout_gravity="right center" image="worldmap2_map_pc" imagealign="center center"/>
-			<richtext name="zone_text_fieldboss" rect="0 0 240 50" margin="0 -30 0 0" layout_gravity="left center" textalign="right center" resizebytext="false" visible="false"/>
-			<richtext name="zone_text_top" rect="0 0 240 50" margin="0 -10 0 0" layout_gravity="left center" textalign="right center" resizebytext="false"/>
-			<richtext name="zone_text_bottom" rect="0 0 240 50" margin="0 10 0 0" layout_gravity="left center" textalign="right center" resizebytext="false"/>
+			<richtext name="zone_text_fieldboss" rect="0 0 240 50" margin="0 -30 0 0" layout_gravity="left center" textalign="right center" resizebytext="false" omitbywidth="true" ellipsistexttooltip="true" visible="false"/>
+			<richtext name="zone_text_bottom" rect="0 0 240 50" margin="0 10 0 0" layout_gravity="left center" textalign="right center" resizebytext="false" omitbywidth="true" ellipsistexttooltip="true"/>
+			<richtext name="zone_text_top" rect="0 0 240 50" margin="0 -10 0 0" layout_gravity="left center" textalign="right center" resizebytext="false" omitbywidth="true" ellipsistexttooltip="true"/>
 		</controls>
 	</controlset>
 	<controlset name="submap_city_right_set" hittest="true" width="300" height="120">
 		<controls>
 			<button name="zone_btn" rect="0 0 60 60" margin="0 0 0 0" layout_gravity="left center" image="worldmap2_map_zone_btn" LBtnUpScp="WORLDMAP2_SUBMAP_ZONE_BTN_CLICK"/>
 			<picture name="zone_pc_pos" rect="0 0 38 38" margin="6 -40 0 0" layout_gravity="left center" image="worldmap2_map_pc" imagealign="center center"/>
-			<richtext name="zone_text_fieldboss" rect="0 0 240 50" margin="0 -30 0 0" layout_gravity="left center" textalign="right center" resizebytext="false" visible="false"/>
-			<richtext name="zone_text_top" rect="0 0 240 50" margin="0 -10 0 0" layout_gravity="right center" textalign="left center" resizebytext="false"/>
-			<richtext name="zone_text_bottom" rect="0 0 240 50" margin="0 10 0 0" layout_gravity="right center" textalign="left center" resizebytext="false"/>
+			<richtext name="zone_text_fieldboss" rect="0 0 240 50" margin="0 -30 0 0" layout_gravity="left center" textalign="right center" resizebytext="false" omitbywidth="true" ellipsistexttooltip="true" visible="false"/>
+			<richtext name="zone_text_bottom" rect="0 0 240 50" margin="0 10 0 0" layout_gravity="right center" textalign="left center" resizebytext="false" omitbywidth="true" ellipsistexttooltip="true"/>
+			<richtext name="zone_text_top" rect="0 0 240 50" margin="0 -10 0 0" layout_gravity="right center" textalign="left center" resizebytext="false" omitbywidth="true" ellipsistexttooltip="true"/>
 		</controls>
 	</controlset>
 	<controlset name="submap_gray_left_set" hittest="true" width="300" height="120">
 		<controls>
 			<button name="zone_btn" rect="0 0 60 60" margin="0 0 0 0" layout_gravity="right center" image="worldmap2_map_zone_btn" LBtnUpScp="WORLDMAP2_SUBMAP_ZONE_BTN_CLICK"/>
 			<picture name="zone_pc_pos" rect="0 0 38 38" margin="0 -30 2 0" layout_gravity="right center" image="worldmap2_map_pc" imagealign="center center"/>
-			<richtext name="zone_text_top" rect="0 0 240 50" margin="19 -10 0 0" layout_gravity="left center" textalign="right center" resizebytext="false"/>
-			<richtext name="zone_text_bottom" rect="0 0 240 50" margin="19 10 0 0" layout_gravity="left center" textalign="right center" resizebytext="false"/>
+			<richtext name="zone_text_bottom" rect="0 0 240 50" margin="19 10 0 0" layout_gravity="left center" textalign="right center" resizebytext="false" omitbywidth="true" ellipsistexttooltip="true"/>
+			<richtext name="zone_text_top" rect="0 0 240 50" margin="19 -10 0 0" layout_gravity="left center" textalign="right center" resizebytext="false" omitbywidth="true" ellipsistexttooltip="true"/>
 		</controls>
 	</controlset>
 	<controlset name="submap_gray_right_set" hittest="true" width="300" height="120">
 		<controls>
 			<button name="zone_btn" rect="0 0 60 60" margin="0 0 0 0" layout_gravity="left center" image="worldmap2_map_zone_btn" LBtnUpScp="WORLDMAP2_SUBMAP_ZONE_BTN_CLICK"/>
 			<picture name="zone_pc_pos" rect="0 0 38 38" margin="0 -30 0 0" layout_gravity="left center" image="worldmap2_map_pc" imagealign="center center"/>
-			<richtext name="zone_text_top" rect="0 0 240 50" margin="0 -10 19 0" layout_gravity="right center" textalign="left center" resizebytext="false"/>
-			<richtext name="zone_text_bottom" rect="0 0 240 50" margin="0 10 19 0" layout_gravity="right center" textalign="left center" resizebytext="false"/>
+			<richtext name="zone_text_bottom" rect="0 0 240 50" margin="0 10 19 0" layout_gravity="right center" textalign="left center" resizebytext="false" omitbywidth="true" ellipsistexttooltip="true"/>
+			<richtext name="zone_text_top" rect="0 0 240 50" margin="0 -10 19 0" layout_gravity="right center" textalign="left center" resizebytext="false" omitbywidth="true" ellipsistexttooltip="true"/>
 		</controls>
 	</controlset>
-	<controlset name="minimap_info_quest_set" hittest="true" width="480" height="38" skin="worldmap2_frame_04">
+	<controlset name="minimap_info_quest_set" hittest="true" width="480" height="58" skin="worldmap2_frame_04">
 		<controls>
-			<button name="quest_box" rect="0 0 480 38" margin="0 0 0 0" layout_gravity="center top" textalign="left center" textoffset="5 0" skin="worldmap2_btn_square2"/>
+			<button name="quest_box" rect="0 0 480 58" margin="0 0 0 0" layout_gravity="center top" textalign="left center" textoffset="40 0" skin="worldmap2_btn_square2"/>
+			<picture name="quest_icon" rect="0 0 28 28" margin="5 0 0 0" layout_gravity="left center" imagealign="center center" stretch="true" hittest="false"/>
 			<checkbox name="spot_img" rect="0 0 28 28" margin="190 0 0 0" layout_gravity="center center" skin="worldmap2_spot" LBtnDownScp="WORLDMAP2_MINIMAP_QUEST_LOCATION" oversound="button_over" clicksound="button_click"/>
 			<checkbox name="check_img" rect="0 0 28 28" margin="220 0 0 0" layout_gravity="center center" skin="worldmap2_checkbox" oversound="button_over" clicksound="button_click"/>
 		</controls>
 	</controlset>
-	<controlset name="minimap_info_npc_set" hittest="true" width="480" height="38" skin="worldmap2_frame_04">
+	<controlset name="minimap_info_npc_set" hittest="true" width="480" height="58" skin="worldmap2_frame_04">
 		<controls>
-			<button name="npc_box" rect="0 0 480 38" margin="0 0 0 0" layout_gravity="center top" textalign="left center" textoffset="5 0" skin="worldmap2_btn_square2"/>
+			<button name="npc_box" rect="0 0 480 58" margin="0 0 0 0" layout_gravity="center top" textalign="left center" textoffset="40 0" skin="worldmap2_btn_square2"/>
+			<picture name="npc_icon" rect="0 0 28 28" margin="5 0 0 0" layout_gravity="left center" imagealign="center center" stretch="true" hittest="false"/>
 			<checkbox name="spot_img" rect="0 0 28 28" margin="220 0 0 0" layout_gravity="center center" skin="worldmap2_spot" LBtnDownScp="WORLDMAP2_MINIMAP_NPC_LOCATION" oversound="button_over" clicksound="button_click"/>
 		</controls>
 	</controlset>
@@ -5517,7 +5519,7 @@
 		<controls>
 			<richtext name="title_text" rect="0 0 150 32" margin="-110 -10 0 0" layout_gravity="center center" textalign="left center" resizebytext="false"/>
 			<richtext name="guild_text" rect="0 0 150 32" margin="-102 12 0 0" layout_gravity="center center" textalign="left center" resizebytext="false" caption="{@st104gold_14}점령길드"/>
-			<richtext name="guild_info_text" rect="0 0 150 32" margin="-45 12 0 0" layout_gravity="center center" textalign="left center" resizebytext="false"/>
+			<richtext name="guild_info_text" rect="0 0 150 32" margin="20 12 0 0" layout_gravity="center center" textalign="left center" resizebytext="false"/>
 			<picture name="spot_img" rect="0 0 100 100" margin="135 0 0 0" layout_gravity="center center" image="colonymap_unoccupation" imagealign="center center"/>
 			<button name="background_btn" rect="0 0 395 97" margin="0 0 0 0" layout_gravity="center center" skin="worldmap2_btn_square" LBtnUpScp="WORLDMAP2_COLONYMAP_SET_PREVIEW_BY_BTN" oversound="button_cursor_over_3" clicksound="button_click_big"/>
 		</controls>
@@ -5579,8 +5581,56 @@
 			<richtext name="percent" rect="0 0 500 100" margin="120 -8 0 0" layout_gravity="center center" format="{@st66b}{s14}%s%s" param1="value" param2="percent" param2_def="%"/>
 			<picture name="rankingimg" rect="0 0 39 39" margin="4 4 0 0" layout_gravity="left top" stretch="true" draw="false"/>
 			<button name="btn" rect="0 0 72 72" margin="0 0 14 0" layout_gravity="right center" image="your_master_vote_btn" oversound="button_cursor_over_3" clicksound="button_click_big"/>
-			<richtext name="btn_text" rect="0 0 500 100" margin="0 25 18 0" layout_gravity="right center" format="%s" fontname="white_16_b_ol" param1="value" param1_def="투표하기"/>
+			<richtext name="btn_text" rect="0 0 100 20" margin="5 25 0 0" layout_gravity="right center" format="%s" fontname="white_16_b_ol" param1="value" param1_def="투표하기" textalign="center center" resizebytext="false"/>
 			<picture name="blackbg" rect="0 0 488 87" margin="0 0 0 0" layout_gravity="center center" stretch="true" draw="false" image="fullblack"/>
+		</controls>
+	</controlset>
+	<controlset name="season_raid_ranking_info" hittest="true" width="530" height="500" hittestset="false" draw="false">
+		<controls>
+			<groupbox name="rank_gb" rect="0 0 530 500" margin="0 0 0 0" layout_gravity="left top" skin="" draw="false" hittestbox="false" scrollbar="false"/>
+			<groupbox name="rankbox" parent="rank_gb" rect="0 0 470 435" margin="62 58 0 0" layout_gravity="left top" skin="test_frame_midle" draw="true" hittestbox="false"/>
+			<groupbox name="rankboxTitle" parent="rank_gb" rect="0 0 467 40" margin="62 58 0 0" layout_gravity="left top" skin="market_listbase" draw="true" hittestbox="false"/>
+			<richtext name="rankTitle" parent="rankboxTitle" rect="0 0 30 40" margin="30 0 0 0" layout_gravity="left center" caption="{@st66b}{s16}순위"/>
+			<richtext name="rankDamage" parent="rankboxTitle" rect="0 0 30 40" margin="170 0 0 0" layout_gravity="left center" caption="{@st66b}{s16}누적 대미지"/>
+			<richtext name="rankTime" parent="rankboxTitle" rect="0 0 30 40" margin="0 0 30 0" layout_gravity="right center" caption="{@st66b}{s16}클리어 시간"/>
+			<groupbox name="rankListBox" parent="rankbox" rect="0 0 487 393" margin="0 36 0 0" layout_gravity="left top" draw="false" hittest="true"/>
+			<tab name="season_tab" parent="rank_gb" rect="0 0 61 420" margin="0 58 0 0" itemspc="18" layout_gravity="left top" selectionfont="white_16_ol" vertical="true" LBtnDownScp="FIELD_BOSS_DATA_REQUEST_DAY" MouseOffAnim="btn_mouseoff" MouseOnAnim="btn_mouseover" clicksound="button_click_7" fixwidth="true" oversound="button_cursor_over_2" skin="tab2"/>
+			<tab name="sub_tab" parent="rank_gb" rect="0 0 470 50" margin="62 6 0 0" layout_gravity="left top" selectionfont="white_18_ol" LBtnDownScp="FIELD_BOSS_DATA_REQUEST_HOUR" MouseOffAnim="btn_mouseoff" MouseOnAnim="btn_mouseover" clicksound="button_click_3" fixwidth="true" itemspc="2" oversound="button_cursor_over_2" skin="tab2"/>
+		</controls>
+	</controlset>
+	<controlset name="season_raid_boss_info" hittest="true" width="500" height="200" hittestset="false" draw="false">
+		<controls>
+			<groupbox name="info_gb" rect="0 0 500 490" margin="0 1 0 0" layout_gravity="right top" skin="" draw="false" hittestbox="false" scrollbar="false"/>
+			<picture name="monster_info" parent="info_gb" rect="0 0 469 41" margin="0 0 0 0" layout_gravity="center top" draw="true" image="adventure_info_title" stretch="true"/>
+			<richtext name="monster_info_text" parent="monster_info" rect="0 0 120 40" margin="0 0 0 0" layout_gravity="center center" caption="몬스터 정보" fontname="white_20_ol_ds"/>
+			<picture name="monster_icon_pic" parent="info_gb" rect="0 0 94 94" margin="25 50 0 0" layout_gravity="left top" draw="false" stretch="true" image="adventure_slotbg"/>
+			<controlset name="monster_attr1" parent="info_gb" rect="0 0 350 23" margin="0 47 15 0" type="adventure_book_monster_attribute" layout_gravity="right top" hittestbox="false" scrollbar="false"/>
+			<controlset name="monster_attr2" parent="info_gb" rect="0 0 350 23" margin="0 71 15 0" type="adventure_book_monster_attribute" layout_gravity="right top" hittestbox="false" scrollbar="false"/>
+			<controlset name="monster_attr3" parent="info_gb" rect="0 0 350 23" margin="0 95 15 0" type="adventure_book_monster_attribute" layout_gravity="right top" hittestbox="false" scrollbar="false"/>
+			<controlset name="monster_attr4" parent="info_gb" rect="0 0 350 23" margin="0 119 15 0" type="adventure_book_monster_attribute" layout_gravity="right top" hittestbox="false" scrollbar="false"/>
+			<controlset name="monster_attr5" parent="info_gb" rect="0 0 350 23" margin="0 143 15 0" type="adventure_book_monster_attribute" layout_gravity="right top" hittestbox="false" scrollbar="false"/>
+			<controlset name="monster_attr6" parent="info_gb" rect="0 0 350 23" margin="0 167 15 0" type="adventure_book_monster_attribute" layout_gravity="right top" hittestbox="false" scrollbar="false"/>
+			<button name="monster_attr_map" parent="info_gb" rect="0 0 31 31" margin="25 150 0 0" layout_gravity="left top" image="indun_map_info_btn" LBtnUpScp="BOSS_PATTERN_UI_OPEN" stretch="false" texttooltip="주간 패턴 정보를 표시합니다."/>
+		</controls>
+	</controlset>
+	<controlset name="season_raid_my_info" hittest="true" width="500" height="310" hittestset="false" draw="false">
+		<controls>
+			<groupbox name="info_gb" rect="0 0 500 390" margin="0 1 0 0" layout_gravity="right top" skin="" draw="false" hittestbox="false" scrollbar="false"/>
+			<picture name="battle_info" parent="info_gb" rect="0 0 469 41" margin="0 97 0 0" layout_gravity="center top" draw="true" image="adventure_info_title" stretch="true"/>
+			<richtext name="battle_info_text" parent="battle_info" rect="0 0 120 40" margin="0 0 0 0" layout_gravity="center center" caption="전투 정보" fontname="white_20_ol_ds"/>
+			<controlset name="battle_info_attr" parent="info_gb" rect="0 0 350 130" margin="0 142 0 0" type="content_status_board_battle_attribute" layout_gravity="center top" hittestbox="false" scrollbar="false"/>
+			<gauge name="gauge" parent="info_gb" rect="0 0 470 21" margin="0 248 0 0" layout_gravity="center top" skin="test_gauge_barrack_defence" inverse="false"/>
+			<richtext name="battle_info_time_text" parent="info_gb" rect="0 0 200 40" margin="0 270 10 0" layout_gravity="right top" format="{@st47}{s14}%s{/}" param1="value" param1_def="0"/>
+		</controls>
+	</controlset>
+	<controlset name="content_status_board_rank_attribute_type2" toggle="false" hittest="false" hittestset="false" width="486" height="79" skin="">
+		<controls>
+			<groupbox name="attr_bg" rect="0 0 486 79" margin="0 0 0 0" layout_gravity="left center" stretch="true" skin="base_btn"/>
+			<picture name="attr_rank_pic" rect="0 0 75 62" margin="10 0 0 0" layout_gravity="left center" stretch="true" image="raid_week_rank_01" hittest="false"/>
+			<picture name="attr_kill_pic" rect="0 0 227 50" margin="120 0 0 0" layout_gravity="left center" stretch="true" image="cooperation_war_kill" hittest="false"/>
+			<richtext name="attr_rank_text" rect="0 0 75 62" margin="12 1 0 0" layout_gravity="left center" resizebytext="false" textalign="center center" format="{@st43}{s18}{ol}{ds}%s위" param1="value" param1_def="0" fontname="white_14_ol"/>
+			<richtext name="attr_damage_text" rect="0 0 200 20" margin="120 0 0 0" layout_gravity="left center" resizebytext="false" textalign="center center" format="{s18}%s" param1="value" param1_def="이름" fontname="black_16_b"/>
+			<richtext name="attr_time_text" rect="0 0 100 20" margin="0 0 20 0" layout_gravity="right center" resizebytext="false" textalign="center center" format="{s18}%s" param1="value" param1_def="값" fontname="black_16_b"/>
 		</controls>
 	</controlset>
 </controlsetlist>

@@ -177,65 +177,65 @@
     </Skill>
     <Skill Name="Appraiser_Blindside">
         <KeyInput>
-			<ToolScp Scp="SKL_KEY_DYNAMIC_CASTING" Client="YES" UseSleep="NO">
-				<Num Num="0"/>
-				<Num Num="0"/>
-				<Num Num="1.5" UseFunc="1" FuncTxt="local value = 0
+            <ToolScp Scp="SKL_KEY_DYNAMIC_CASTING" Client="YES" UseSleep="NO">
+                <Num Num="0"/>
+                <Num Num="0"/>
+                <Num Num="1.5" UseFunc="1" FuncTxt="local value = 0
 local self = GetMyPCObject()
 local abil = GetAbility(self, 'Appraiser7')
 if abil ~= nil and TryGetProp(abil, 'ActiveState', 0) == 1 then
     value = 2
 end
 return value"/>
-				<Num Num="1"/>
-				<Num Num="0"/>
-				<Num Num="0"/>
-				<Num Num="1"/>
-				<Num Num="0"/>
-				<Num Num="0"/>
-				<Num Num="0"/>
-				<Num Num="1"/>
-				<Num Num="0"/>
-				<Str_Arg Str="None" Arg="1"/>
-				<Str Str="None"/>
-				<Num Num="0"/>
-				<Num Num="0"/>
-				<Num Num="0"/>
-				<Num Num="0"/>
-				<Num Num="0"/>
-				<Num Num="0"/>
-				<Num Num="0"/>
-				<Num Num="0"/>
-			</ToolScp>
-		</KeyInput>
-		<KeyInputEnd>
-			<ToolScp Client="NO" Scp="SKL_CANCEL_CANCEL" UseSleep="NO"/>
-			<ToolScp Scp="MONSKL_C_STOP_ANIM" Client="YES" UseSleep="NO"/>
-		</KeyInputEnd>
-		<KeyCancelScp>
-			<ToolScp Client="NO" Scp="SKL_CANCEL_CANCEL" UseSleep="NO"/>
-			<ToolScp Scp="MONSKL_C_STOP_ANIM" Client="YES" UseSleep="NO"/>
-		</KeyCancelScp>
-        <MainSkl JumpFlee="NO" MSPDToUsePos="0" ScrLock="None">
+                <Num Num="1"/>
+                <Num Num="0"/>
+                <Num Num="0"/>
+                <Num Num="1"/>
+                <Num Num="0"/>
+                <Num Num="0"/>
+                <Num Num="0"/>
+                <Num Num="1"/>
+                <Num Num="0"/>
+                <Str_Arg Str="None" Arg="1"/>
+                <Str Str="None"/>
+                <Num Num="0"/>
+                <Num Num="0"/>
+                <Num Num="0"/>
+                <Num Num="0"/>
+                <Num Num="0"/>
+                <Num Num="0"/>
+                <Num Num="0"/>
+                <Num Num="0"/>
+            </ToolScp>
+        </KeyInput>
+        <KeyInputEnd>
+            <ToolScp Scp="SKL_CANCEL_CANCEL" Client="NO" UseSleep="NO"/>
+            <ToolScp Scp="MONSKL_C_STOP_ANIM" Client="YES" UseSleep="NO"/>
+        </KeyInputEnd>
+        <KeyCancelScp>
+            <ToolScp Scp="SKL_CANCEL_CANCEL" Client="NO" UseSleep="NO"/>
+            <ToolScp Scp="MONSKL_C_STOP_ANIM" Client="YES" UseSleep="NO"/>
+        </KeyCancelScp>
+        <MainSkl ScrLock="None" JumpFlee="NO" MSPDToUsePos="0">
             <HitList>
-                <Frame Angle="0" AniTime="200" Dist="0" ForceATK="1" HitCount="1" PosType="0" RandDist="0" RandomPerHit="0" RotAngle="0" SklAngle="0.17453292" TermMax="0" TermMin="0" Time="0" Type="FAN"/>
+                <Frame Type="FAN" Time="0" HitCount="1" TermMin="0" TermMax="0" PosType="0" Dist="0" RandDist="0" RandomPerHit="0" Angle="0" SklAngle="0.17453292" AniTime="200" RotAngle="0" ForceATK="1" ScriptIndex="0" ScriptName="" SkillType="0"/>
             </HitList>
             <EtcList>
-                <Scp Client="NO" Scp="SKL_END_AT_TIME" Time="0" UseSleep="NO">
+                <Scp Scp="SKL_END_AT_TIME" Client="NO" UseSleep="NO" Time="0">
                     <Num Num="500"/>
                 </Scp>
-                <Scp Client="YES" Scp="C_VOICE_SOUND" Time="120" UseSleep="NO">
+                <Scp Scp="C_VOICE_SOUND" Client="YES" UseSleep="NO" Time="120">
                     <Str Str="voice_archer_atk"/>
                     <Str Str="voice_archer_f_atk"/>
                 </Scp>
                 <Scp Scp="SKL_SET_TARGET_CLIENT_TARGETTING" Client="NO" UseSleep="NO" Time="250">
-					<Num Num="1"/>
-					<Num Num="130"/>
-				</Scp>
+                    <Num Num="1"/>
+                    <Num Num="130"/>
+                </Scp>
                 <Scp Scp="SKL_TGT_DMG" Client="NO" UseSleep="NO" Time="250">
                     <Num Num="1"/>
                 </Scp>
-                <Scp Client="NO" Scp="SKL_SET_TARGET_CIRCLE" Time="250" UseSleep="NO">
+                <Scp Scp="SKL_SET_TARGET_CIRCLE" Client="NO" UseSleep="NO" Time="250">
                     <Pos Angle="0" Dist="0" PosType="1"/>
                     <Num Num="80"/>
                     <Num Num="10"/>
@@ -244,54 +244,58 @@ return value"/>
                     <Num Num="0"/>
                     <Num Num="0"/>
                 </Scp>
-                <Scp Client="NO" Scp="SKL_TGT_BUFF" Time="260" UseSleep="NO">
+                <Scp Scp="SKL_TGT_BUFF" Client="NO" UseSleep="NO" Time="260">
                     <Str Str="Blindside_Debuff"/>
-                    <Num FuncTxt="return obj.Level" Num="2" UseFunc="1"/>
+                    <Num Num="2" UseFunc="1" FuncTxt="return obj.Level"/>
                     <Num Num="0"/>
-                    <Num FuncTxt="return 10000 + obj.Level * 2000" Num="0" UseFunc="1"/>
+                    <Num Num="0" UseFunc="1" FuncTxt="return 10000 + obj.Level * 2000"/>
                     <Num Num="1"/>
                     <Num Num="100"/>
                     <Num Num="0"/>
                 </Scp>
             </EtcList>
             <ResultList>
-                <ToolScp Client="NO" Scp="S_R_TGT_Decrease_heal_debuff" UseSleep="NO">
-                    <Str FuncTxt="local func_name = 'get_decrease_heal_debuff_tooltip_' .. TryGetProp(skill, 'ClassName', 'None')
+                <ToolScp Scp="S_R_TGT_Decrease_heal_debuff" Client="NO" UseSleep="NO">
+                    <Str Str="0" UseFunc="1" FuncTxt="local func_name = 'get_decrease_heal_debuff_tooltip_' .. TryGetProp(skill, 'ClassName', 'None')
                local func = _G[func_name]
                if func == nil then return end
-               return func(skill.Level)" Str="0" UseFunc="1"/>
+               return func(skill.Level)"/>
                 </ToolScp>
             </ResultList>
         </MainSkl>
         <ByCondSkills>
             <SubSkl>
                 <Cond>
-                    <ToolScp Client="NO" Scp="SKL_SELECT_ACTIVE_ABIL" UseSleep="NO">
+                    <ToolScp Scp="SKL_SELECT_ACTIVE_ABIL" Client="NO" UseSleep="NO">
                         <Str Str="Appraiser7"/>
                     </ToolScp>
                 </Cond>
-                <Skill JumpFlee="NO" MSPDToUsePos="0" ScrLock="None">
+                <Skill ScrLock="None" JumpFlee="NO" MSPDToUsePos="0">
                     <HitList>
-                        <Frame Angle="0" AniTime="9999" Dist="0" ForceATK="0" HitCount="1" PosType="0" RandDist="0" RandomPerHit="0" RotAngle="0" TermMax="0" TermMin="0" Time="9799" Type="FAN"/>
+                        <Frame Type="FAN" Time="9799" HitCount="1" TermMin="0" TermMax="0" PosType="0" Dist="0" RandDist="0" RandomPerHit="0" Angle="0" AniTime="9999" RotAngle="0" ForceATK="0" ScriptIndex="0" ScriptName="" SkillType="0"/>
                     </HitList>
                     <EtcList>
-                        <Scp Client="NO" Scp="MONSKL_CRE_PAD" Time="0" UseSleep="NO">
+                        <Scp Scp="SKL_END_AT_TIME" Client="NO" UseSleep="NO" Time="0">
+                            <Num Num="2000"/>
+                        </Scp>
+                        <Scp Scp="C_SKL_LOCK_MOVE" Client="YES" UseSleep="NO" Time="0">
+                            <Num Num="1"/>
+                        </Scp>
+                        <Scp Scp="SKL_LIMITATION" Client="NO" UseSleep="NO" Time="0"/>
+                        <Scp Scp="SKL_SET_TARGET_CLIENT_TARGETTING" Client="NO" UseSleep="NO" Time="0">
+                            <Num Num="1"/>
+                            <Num Num="130"/>
+                        </Scp>
+                        <Scp Scp="MONSKL_CRE_PAD" Client="NO" UseSleep="NO" Time="0">
                             <Pos Angle="0" Dist="0" PosType="1"/>
                             <Angle Angle="0"/>
                             <Str Str="Appraiser_Blindside_HiddenAbil"/>
                         </Scp>
-                        <Scp Client="NO" Scp="SKL_END_AT_TIME" Time="0" UseSleep="NO">
-                            <Num Num="2000"/>
-                        </Scp>
-                        <Scp Client="YES" Scp="C_SKL_LOCK_MOVE" Time="0" UseSleep="NO">
-                            <Num Num="1"/>
-                        </Scp>
-                        <Scp Client="NO" Scp="SKL_LIMITATION" Time="0" UseSleep="NO"/>
-                        <Scp Client="YES" Scp="C_VOICE_SOUND" Time="120" UseSleep="NO">
+                        <Scp Scp="C_VOICE_SOUND" Client="YES" UseSleep="NO" Time="120">
                             <Str Str="voice_archer_atk"/>
                             <Str Str="voice_archer_f_atk"/>
                         </Scp>
-                        <Scp Client="NO" Scp="SKL_SET_TARGET_CIRCLE" Time="250" UseSleep="NO">
+                        <Scp Scp="SKL_SET_TARGET_CIRCLE" Client="NO" UseSleep="NO" Time="250">
                             <Pos Angle="0" Dist="0" PosType="1"/>
                             <Num Num="80"/>
                             <Num Num="10"/>
@@ -300,13 +304,13 @@ return value"/>
                             <Num Num="0"/>
                             <Num Num="0"/>
                         </Scp>
-                        <Scp Client="NO" Scp="SKL_CHECK_LOOPING_COUNT_INIT" Time="250" UseSleep="NO">
+                        <Scp Scp="SKL_CHECK_LOOPING_COUNT_INIT" Client="NO" UseSleep="NO" Time="250">
                             <Num Num="4"/>
                         </Scp>
-                        <Scp Client="NO" LoopTime="500" Scp="SKL_TGT_DMG" Time="500" UseSleep="NO">
+                        <Scp Scp="SKL_TGT_DMG" Client="NO" UseSleep="NO" Time="500" LoopTime="500">
                             <Num Num="1"/>
                         </Scp>
-                        <Scp Client="NO" LoopTime="500" Scp="SKL_CHECK_LOOPING_COUNT" Time="750" UseSleep="NO"/>
+                        <Scp Scp="SKL_CHECK_LOOPING_COUNT" Client="NO" UseSleep="NO" Time="750" LoopTime="500"/>
                     </EtcList>
                 </Skill>
             </SubSkl>

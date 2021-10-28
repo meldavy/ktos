@@ -2,6 +2,8 @@
 function INDUNINFO_ON_INIT(addon, frame)
     addon:RegisterMsg('CHAT_INDUN_UI_OPEN', 'INDUNINFO_CHAT_OPEN');    
     addon:RegisterMsg('WEEKLY_BOSS_UI_UPDATE', 'WEEKLY_BOSS_UI_UPDATE');
+    addon:RegisterMsg('FIELD_BOSS_MONSTER_UPDATE', 'ON_FIELD_BOSS_MONSTER_UPDATE');
+    addon:RegisterMsg('FIELD_BOSS_RANKING_UPDATE', 'ON_FIELD_BOSS_RANKING_UPDATE');
     addon:RegisterMsg('BORUTA_RANKING_UI_UPDATE', 'BORUTA_RANKING_UI_UPDATE');
 	addon:RegisterMsg("PVP_STATE_CHANGE", "INDUNINFO_TEAM_BATTLE_STATE_CHANGE");
 
@@ -54,7 +56,7 @@ function INDUNINFO_UI_OPEN(frame, index)
         weekly_boss.RequestWeeklyBossNowWeekNum();                  -- 현재 week_num 요청
     elseif imcTime.IsLaterThan(now_time,weekly_boss_endtime) ~= 0 then
         weekly_boss.RequestWeeklyBossNowWeekNum();                  -- 현재 week_num 요청
-    end
+	end
 
     local boruta_endtime = session.boruta_ranking.GetBorutaEndTime();
     if session.boruta_ranking.GetNowWeekNum() == 0 then
@@ -127,6 +129,12 @@ function TOGGLE_INDUNINFO(frame,type)
 		categoryBox:ShowWindow(isShow)
 		local contentBox = GET_CHILD_RECURSIVELY(frame, 'contentBox')
 		contentBox:ShowWindow(isShow)
+	end
+	--field boss
+	do
+		local isShow = BoolToNumber(6 == type)
+		local field_boss_box = GET_CHILD_RECURSIVELY(frame, 'field_boss_box')
+		field_boss_box:ShowWindow(isShow)
 	end
 end
 
@@ -603,7 +611,9 @@ function INDUNINFO_IS_EVENT_CATEGORY(indunCls)
     if indunCls.DungeonType == 'UniqueRaid' then
         local pc = GetMyPCObject()
         if IsBuffApplied(pc, "Event_Unique_Raid_Bonus") == "YES" then
-            return true
+			return true
+		elseif IsBuffApplied(pc, "Event_Kor_New_World_Buff") == "YES" then
+			return true
         elseif IsBuffApplied(pc, "Event_Unique_Raid_Bonus_Limit") == "YES" then
             local accountObject = GetMyAccountObj(pc)
             if TryGetProp(accountObject ,"EVENT_UNIQUE_RAID_BONUS_LIMIT") > 0 then
@@ -1238,7 +1248,9 @@ function GET_INDUN_ADMISSION_ITEM_COUNT(indunCls)
     local nowAdmissionItemCount = admissionItemCount + addCount
     if indunCls.DungeonType == 'UniqueRaid' then
         if IsBuffApplied(pc, "Event_Unique_Raid_Bonus") == "YES" then
-            nowAdmissionItemCount  = admissionItemCount
+			nowAdmissionItemCount  = admissionItemCount
+		elseif IsBuffApplied(pc, "Event_Kor_New_World_Buff") == "YES" then
+			nowAdmissionItemCount  = 1
         elseif IsBuffApplied(pc, "Event_Unique_Raid_Bonus_Limit") == "YES" and TryGetProp(accountObject,"EVENT_UNIQUE_RAID_BONUS_LIMIT") > 0 then
             nowAdmissionItemCount  = admissionItemCount
         end
@@ -1383,7 +1395,9 @@ function INDUNINFO_TAB_CHANGE(parent, ctrl)
 	elseif index == 4 then
         BORUTA_RANKING_UI_OPEN(frame);
     elseif index == 5 then
-        PVP_INDUNINFO_UI_OPEN(frame);
+		PVP_INDUNINFO_UI_OPEN(frame);
+	elseif index == 6 then
+		FIELD_BOSS_UI_OPEN(frame);
 	end
 	TOGGLE_INDUNINFO(frame,index)
 end
@@ -1740,7 +1754,7 @@ end
 function HOLD_RANKUI_UNFREEZE()
     local frame = ui.GetFrame("induninfo");    
     local rank_gb = GET_CHILD_RECURSIVELY(frame, "rank_gb");
-    rank_gb:EnableHitTest(1);
+	rank_gb:EnableHitTest(1);
 end
 
 -- 갱신된 정보에 맞게 UI 수정 
@@ -1976,6 +1990,10 @@ function WEEKLY_BOSS_RANK_JOBID_NUMBER()
 end
 
 function WEEKLY_BOSS_PATTERN_UI_OPEN()
+    -- ui.ToggleFrame("weeklyboss_patterninfo");
+end
+
+function BOSS_PATTERN_UI_OPEN()
     ui.ToggleFrame("weeklyboss_patterninfo");
 end
 
@@ -1994,7 +2012,7 @@ end
 -- 입장하기 버튼 클릭
 function WEEKLY_BOSS_JOIN_ENTER_CLICK(parent,ctrl)
     ui.MsgBox(ClMsg('EnterRightNow'), 'WEEKLY_BOSS_JOIN_ENTER_CLICK_MSG(0)', 'None');
-end     
+end
 
 -- 연습모드 버튼 클릭
 function WEEKLY_BOSS_JOIN_PRACTICE_ENTER_CLICK(parent,ctrl)
@@ -2654,3 +2672,300 @@ function _BORUTA_ZONE_MOVE_CLICK(indunClsID)
     control.CustomCommand('MOVE_TO_ENTER_NPC', indunClsID, 1, 0);
 end
 --------------------------------- 봉쇄전 랭킹 ---------------------------------
+
+--------------------------------- 필드 보스 ---------------------------------
+function FIELD_BOSS_UI_OPEN(frame)
+	FIELD_BOSS_TIME_TAB_SETTING(frame)
+	FIELD_BOSS_MY_RANK_TEXT_SETTING(frame)
+	FIELD_BOSS_ENTER_TIMER_SETTING(frame)
+	local ctrlSet = GET_CHILD_RECURSIVELY(frame,"field_boss_my_rank_control")
+	ctrlSet:RunUpdateScript("FIELD_BOSS_ENTER_TIMER_SETTING",1)
+	FIELD_BOSS_DATA_REQUEST_DAY();
+end
+
+function FIELD_BOSS_MY_RANK_TEXT_SETTING(frame)
+	local ctrlSet = GET_CHILD_RECURSIVELY(frame,"field_boss_my_rank_control")
+	local battle_info_attr = GET_CHILD_RECURSIVELY(ctrlSet,"battle_info_attr")
+	local attr_name_text_1 = GET_CHILD_RECURSIVELY(battle_info_attr,"attr_name_text_1")
+	attr_name_text_1:SetTextByKey("value",ClMsg("Ranking_2"))
+	local attr_name_text_2 = GET_CHILD_RECURSIVELY(battle_info_attr,"attr_name_text_2")
+	attr_name_text_2:SetTextByKey("value",ClMsg("ClearTime"))
+	local attr_name_text_3 = GET_CHILD_RECURSIVELY(battle_info_attr,"attr_name_text_3")
+	attr_name_text_3:SetTextByKey("value",ClMsg("AccumulatedDamage"))
+end
+
+function FIELD_BOSS_TIME_TAB_SETTING(frame)
+	local ctrlSet = GET_CHILD_RECURSIVELY(frame,"field_boss_ranking_control")
+	local now_time = geTime.GetServerSystemTime()
+	local wDayOfWeek = now_time.wDayOfWeek
+	if wDayOfWeek == 0 then
+		wDayOfWeek = 7
+	end
+	local first_time = imcTime.AddSec(now_time,-1*3600*24*(wDayOfWeek-1))
+	local season_tab = GET_CHILD_RECURSIVELY(ctrlSet,"season_tab")
+	local season_tab_idx = 0
+	DELETE_ALL_TAB_ITEM(season_tab)
+	for i = 1,7 do
+		local time = imcTime.AddSec(first_time,3600*24*(i-1))
+		local date_str = string.format("%02d/%02d",time.wMonth,time.wDay)
+		season_tab:AddItem(date_str, true, "", "cooperation_war_date_btn", "cooperation_war_date_btn_cursoron", "cooperation_war_date_btn_clicked","", false)
+		if time.wDay == now_time.wDay then
+			season_tab_idx = i-1
+		end
+	end
+	season_tab:SelectTab(season_tab_idx)
+
+	local sub_tab = GET_CHILD_RECURSIVELY(ctrlSet,"sub_tab")
+	DELETE_ALL_TAB_ITEM(sub_tab)
+	local cls = GetClass("fieldboss_worldevent_schedulel",config.GetServiceNation())
+	local hour_tab_idx = 0
+	for i = 1,10 do
+		local hour = TryGetProp(cls,"StartHour_"..i) 
+		if hour == nil then
+			break
+		end
+		local hour_str = string.format("%02d:00",hour)
+		sub_tab:AddItem(hour_str, true, "", "cooperation_war_time_btn", "cooperation_war_time_btn_cursoron", "cooperation_war_time_btn_clicked","", false)
+		if hour > now_time.wHour then
+			hour_tab_idx = i
+		end
+	end
+	hour_tab_idx = math.min(hour_tab_idx,sub_tab:GetItemCount()-1)
+	sub_tab:SelectTab(hour_tab_idx)
+end
+
+function ON_FIELD_BOSS_MONSTER_UPDATE(frame,msg,argStr,argNum)
+	local ctrlSet = GET_CHILD_RECURSIVELY(frame,"field_boss_boss_control")
+    -- 몬스터 정보
+	local fieldbossPattern = session.fieldboss.GetPatternInfo();
+    local monClsName = fieldbossPattern.MonsterClassName
+	local monCls = GetClass("Monster",monClsName)
+	if monCls ~= nil then
+        local monster_icon_pic = GET_CHILD_RECURSIVELY(ctrlSet, 'monster_icon_pic');
+        monster_icon_pic:SetImage(monCls.Icon);
+        
+        local monster_attr1 = GET_CHILD_RECURSIVELY(ctrlSet, "monster_attr1", "ui::CControlSet");
+        local monster_attr2 = GET_CHILD_RECURSIVELY(ctrlSet, "monster_attr2", "ui::CControlSet");
+        local monster_attr3 = GET_CHILD_RECURSIVELY(ctrlSet, "monster_attr3", "ui::CControlSet");
+        local monster_attr4 = GET_CHILD_RECURSIVELY(ctrlSet, "monster_attr4", "ui::CControlSet");
+        local monster_attr5 = GET_CHILD_RECURSIVELY(ctrlSet, "monster_attr5", "ui::CControlSet");
+        local monster_attr6 = GET_CHILD_RECURSIVELY(ctrlSet, "monster_attr6", "ui::CControlSet");
+        
+        SET_TEXT(monster_attr1, "attr_name_text", "value", ScpArgMsg('Name'));
+        SET_TEXT(monster_attr2, "attr_name_text", "value", ScpArgMsg('RaceType'));
+        SET_TEXT(monster_attr3, "attr_name_text", "value", ScpArgMsg('Attribute'));
+        SET_TEXT(monster_attr4, "attr_name_text", "value", ScpArgMsg('MonInfo_ArmorMaterial'));
+        SET_TEXT(monster_attr5, "attr_name_text", "value", ScpArgMsg('Level'));
+        SET_TEXT(monster_attr6, "attr_name_text", "value", ScpArgMsg('Area'));
+
+        SET_TEXT(monster_attr1, "attr_value_text", "value", monCls.Name);
+        SET_TEXT(monster_attr2, "attr_value_text", "value", ScpArgMsg(fieldbossPattern.RaceType));
+        SET_TEXT(monster_attr3, "attr_value_text", "value", ScpArgMsg("MonInfo_Attribute_"..fieldbossPattern.Attribute));
+        SET_TEXT(monster_attr4, "attr_value_text", "value", ScpArgMsg(fieldbossPattern.ArmorMaterial));
+        SET_TEXT(monster_attr5, "attr_value_text", "value", monCls.Level);
+        local attr5_value_text = GET_CHILD_RECURSIVELY(monster_attr6,"attr_value_text")
+        local mapCls = GetClassByType("Map",fieldbossPattern.mapClassID)
+        if mapCls ~= nil then
+            SET_TEXT(monster_attr6, "attr_value_text", "value", mapCls.Name);
+		end
+	end
+end
+
+function ON_FIELD_BOSS_RANKING_UPDATE(frame,msg,argStr,argNum)
+	local time = GET_FIELD_BOSS_DATE()
+	local myscore = session.fieldboss.GetMyScore(time)
+	local myrank = session.fieldboss.GetMyRank(time)
+	local myDamage = "0";
+	local myKillTime = 0;
+	local argList = StringSplit(myscore,'/')
+	if argList[1] == 'time' then
+		local killTimeArg = argList[2]
+		local ms = killTimeArg%1000
+		killTimeArg = math.floor(killTimeArg/1000)
+		local sec = killTimeArg%60
+		local min = math.floor(killTimeArg/60)
+		myKillTime = string.format("%02d:%02d.%03d",min,sec,ms)
+	elseif argList[1] == 'damage' then
+		myDamage = argList[2]
+	end
+	local totalcnt = session.fieldboss.GetTotalRankCount(time);    -- 계열별 전체 도전 유저
+	local myrank_p = (myrank/totalcnt) * 100;
+    myrank_p = string.format("%.2f",myrank_p)
+    if totalcnt <= 0 then
+        myrank_p = 0;
+	end
+	local ctrlSet = GET_CHILD_RECURSIVELY(frame,"field_boss_my_rank_control")
+	local battle_info_attr = GET_CHILD_RECURSIVELY(ctrlSet, "battle_info_attr", "ui::CControlSet");
+    SET_TEXT(battle_info_attr, "attr_value_text_1", "rank", myrank);
+    SET_TEXT(battle_info_attr, "attr_value_text_1", "rank_p", myrank_p);
+    SET_TEXT(battle_info_attr, "attr_value_text_2", "value", STR_KILO_CHANGE(myKillTime));
+	SET_TEXT(battle_info_attr, "attr_value_text_3", "value", STR_KILO_CHANGE(myDamage));
+	
+	FIELD_BOSS_RANKING_LIST_UPDATE(frame)
+end
+
+function FIELD_BOSS_RANKING_LIST_UPDATE(frame)
+	local time = GET_FIELD_BOSS_DATE()
+	local ctrlSet = GET_CHILD_RECURSIVELY(frame,"field_boss_ranking_control")
+	local rankbox = GET_CHILD_RECURSIVELY(ctrlSet,"rankbox")
+	local Width = rankbox:GetWidth()
+	local totalcnt = session.fieldboss.GetTotalRankCount(time);    -- 계열별 전체 도전 유저
+    if totalcnt >= 6 then
+        Width = Width - 20
+	end
+	local rankListBox = GET_CHILD_RECURSIVELY(ctrlSet, "rankListBox", "ui::CGroupBox");
+	rankListBox:RemoveAllChild()
+	for i = 1,totalcnt do
+		local ctrlSet = rankListBox:CreateControlSet("content_status_board_rank_attribute_type2", "CTRLSET_" .. i,  ui.LEFT, ui.TOP, 0, (i - 1) * 73, 0, 0);
+		ctrlSet:Resize(Width, ctrlSet:GetHeight());
+		local attr_bg = GET_CHILD(ctrlSet, "attr_bg");
+		attr_bg:Resize(Width, attr_bg:GetHeight());
+
+		local rankpic = GET_CHILD(ctrlSet, "attr_rank_pic");
+		local attr_rank_text = GET_CHILD(ctrlSet, "attr_rank_text");
+
+		if i <= 3 then
+			rankpic:SetImage('raid_week_rank_0'..i)
+			rankpic:ShowWindow(1);
+			attr_rank_text:ShowWindow(0);
+		else
+			rankpic:ShowWindow(0);
+			attr_rank_text:SetTextByKey("value", i);
+			attr_rank_text:ShowWindow(1);
+		end
+
+		local score = session.fieldboss.GetRankInfoScore(time,i);
+		if score == "None" then
+			break
+		end
+		local scoreArgList = StringSplit(score,'/')
+
+		local attr_damage_text = GET_CHILD(ctrlSet, "attr_damage_text", "ui::CRichText");
+		local attr_time_text = GET_CHILD(ctrlSet, "attr_time_text", "ui::CRichText");
+		local attr_kill_pic = GET_CHILD(ctrlSet, "attr_kill_pic");
+		local killTime = '-';
+		local damage = "Kill";
+		if scoreArgList[1] == 'time' then
+			local killTimeArg = scoreArgList[2]
+			local ms = killTimeArg%1000
+			killTimeArg = math.floor(killTimeArg/1000)
+			local sec = killTimeArg%60
+			local min = math.floor(killTimeArg/60)
+			killTime = string.format("%02d:%02d.%03d",min,sec,ms)
+			attr_damage_text:SetVisible(0)
+		elseif scoreArgList[1] == 'damage' then
+			damage = scoreArgList[2]
+			attr_kill_pic:SetVisible(0)
+		end
+		attr_damage_text:SetTextByKey("value", STR_KILO_CHANGE(damage));
+		attr_time_text:SetTextByKey("value", killTime);
+	end
+end
+
+function FIELD_BOSS_DATA_REQUEST_DAY()
+    local frame = ui.GetFrame("induninfo")
+    local ctrlSet = GET_CHILD_RECURSIVELY(frame, "field_boss_ranking_control");
+    local rank_gb = GET_CHILD_RECURSIVELY(ctrlSet, "rank_gb");
+    rank_gb:EnableHitTest(0);
+    ReserveScript("HOLD_FIELDBOSS_RANKUI_UNFREEZE()", 1);
+
+	local field_date =  GET_FIELD_BOSS_DATE();
+	field_boss.RequestFieldBossPatternInfo(field_date);
+	field_boss.RequestFieldBossRankingInfo(field_date);
+end
+
+function FIELD_BOSS_DATA_REQUEST_HOUR()
+	local frame = ui.GetFrame("induninfo")
+	local ctrlSet = GET_CHILD_RECURSIVELY(frame,"field_boss_ranking_control")
+    local rank_gb = GET_CHILD_RECURSIVELY(ctrlSet, "rank_gb");
+    rank_gb:EnableHitTest(0);
+    ReserveScript("HOLD_FIELDBOSS_RANKUI_UNFREEZE()", 1);
+
+	local field_date =  GET_FIELD_BOSS_DATE();
+	field_boss.RequestFieldBossRankingInfo(field_date);
+end
+
+function FIELD_BOSS_ENTER_TIMER_SETTING(ctrlSet)
+	local gauge = GET_CHILD_RECURSIVELY(ctrlSet,"gauge")
+	local battle_info_time_text = GET_CHILD_RECURSIVELY(ctrlSet,"battle_info_time_text")
+	local now_time = geTime.GetServerSystemTime()
+	local enter_time = GET_FIELD_BOSS_DATE()
+	local diff = imcTime.GetDifSec(now_time,enter_time)
+	local textstr;
+	local btn = GET_CHILD_RECURSIVELY(ctrlSet:GetTopParentFrame(),"field_boss_joinenter")
+	btn:SetEnable(0)
+	if now_time.wDay ~= enter_time.wDay then
+		gauge:SetPoint(0,100)
+		gauge:SetSkinName("test_gauge_barrack_defence")
+		textstr = ClMsg("NotAddmittableDay");
+	elseif diff < 0 then
+		gauge:SetPoint(enter_time.wHour*3600+diff,enter_time.wHour*3600)
+		gauge:SetSkinName("gauge_barrack_defence")
+		textstr = GET_TIME_TXT(-diff) .." ".. ClMsg("After_Start");
+	elseif diff > 0 then
+		local cls = GetClass("fieldboss_worldevent_schedulel",config.GetServiceNation())
+		local dur = TryGetProp(cls,"EnteranceDurationSecond",1)
+		gauge:SetPoint(diff,dur)
+		gauge:SetSkinName("test_gauge_barrack_defence")
+		if diff < dur then
+			textstr = GET_TIME_TXT(dur-diff) .." ".. ClMsg("After_Exit");
+			btn:SetEnable(1)
+		else
+			textstr = ClMsg("Already_Exit");
+		end
+	end
+	battle_info_time_text:SetTextByKey("value", textstr);
+	return 1
+end
+
+function GET_FIELD_BOSS_DATE()
+	local now_time = geTime.GetServerSystemTime()
+	local frame = ui.GetFrame('induninfo');
+	local ctrlSet = GET_CHILD_RECURSIVELY(frame,"field_boss_ranking_control")
+    local tabcontrol = GET_CHILD_RECURSIVELY(ctrlSet, "season_tab", "ui::CTabControl");
+	if tabcontrol == nil then
+		return now_time;
+    end
+	local tabidx = tabcontrol:GetSelectItemIndex();
+	local wDayOfWeek = now_time.wDayOfWeek
+	if wDayOfWeek == 0 then
+		wDayOfWeek = 7
+	end
+	now_time = imcTime.AddSec(now_time, 86400 * (tabidx-wDayOfWeek+1));
+
+	local hour_tabcontrol = GET_CHILD_RECURSIVELY(ctrlSet,"sub_tab")
+	if hour_tabcontrol == nil then
+		return now_time;
+	end
+	local hour_tabidx = hour_tabcontrol:GetSelectItemIndex();
+	local cls = GetClass("fieldboss_worldevent_schedulel",config.GetServiceNation())
+	local hour = TryGetProp(cls,"StartHour_"..(hour_tabidx+1)) 
+	now_time.wHour = hour
+	now_time.wMinute = 0
+	now_time.wSecond = 0
+	now_time.wMilliseconds = 0
+	return now_time
+end
+
+-- 입장하기 버튼 클릭
+function FIELD_BOSS_JOIN_ENTER_CLICK(parent,ctrl)
+    ui.MsgBox(ClMsg('EnterRightNow'), 'FIELD_BOSS_JOIN_ENTER_CLICK_MSG()', 'None');
+end
+
+function FIELD_BOSS_JOIN_ENTER_CLICK_MSG()
+	ReqEnterFieldBossIndun()
+end
+
+function HOLD_FIELDBOSS_RANKUI_UNFREEZE()
+	local frame = ui.GetFrame("induninfo");   
+	local ctrlSet = GET_CHILD_RECURSIVELY(frame, "field_boss_ranking_control");
+	local rank_gb = GET_CHILD_RECURSIVELY(ctrlSet, "rank_gb");
+    rank_gb:EnableHitTest(1);
+end
+--------------------------------- 필드 보스 ---------------------------------
+function DELETE_ALL_TAB_ITEM(tab)
+	local cnt = tab:GetItemCount()
+	for i = 1,cnt do
+		tab:DeleteTab(0)
+	end
+end

@@ -19,8 +19,6 @@
                     <Str Str="PC_Summon"/>
                     <Num Num="0"/>
                     <Num Num="30" UseFunc="1" FuncTxt="local time = 10 + obj.Level * 1
-                    local abilRate = SCR_REINFORCEABILITY_FOR_BUFFSKILL(self, obj);
-                    time = time * abilRate
                     return math.floor(time)"/>
                     <Str Str="None"/>
                     <MonProp/>
@@ -108,12 +106,12 @@ return 10000 + addTime * 1000"/>
                         <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="100">
                             <Str_Arg Str="I_scout_luka_dagger" UseFunc="1" FuncTxt="
                             local value = 'I_scout_luka_dagger'
-                            local scale = 1.5
+                            local scale = 3
                             local leftHand = session.GetEquipItemBySpot(item.GetEquipSpotNum('LH'));
                             local equipItemObj = GetIES(leftHand:GetObject());
                             if equipItemObj.ClassType == 'Pistol' then
                                 value = 'I_scout_luka_gun'
-                                scale = 2.5
+                                scale = 10
                             end
                             return value, scale;
 
@@ -245,6 +243,16 @@ return 10000 + addTime * 1000"/>
     if value >= 100 then
         value = 100
     end
+    return value"/>
+                    <Num Num="-1"/>
+                </ToolScp>
+                <ToolScp Scp="S_R_TGTBUFF" Client="NO" UseSleep="NO">
+                    <Str Str="Kutukan_damage_Debuff"/>
+                    <Num Num="1" UseFunc="1" FuncTxt="return skill.Level"/>
+                    <Num Num="0"/>
+                    <Num Num="4000"/>
+                    <Num Num="1"/>
+                    <Num Num="100" UseFunc="1" FuncTxt="    local value = 100
     return value"/>
                     <Num Num="-1"/>
                 </ToolScp>

@@ -221,7 +221,7 @@ function WORLDMAP2_MINIMAP_INFO_SETTING(frame)
 
 	-- 스크롤바 상시표기용 더미
 	minimapInfoBox:RemoveAllChild()
-	minimapInfoBox:CreateOrGetControlSet("minimap_info_quest_set", "dummy", minimapInfoBox:GetWidth(), minimapInfoBox:GetHeight()-37)
+	minimapInfoBox:CreateOrGetControlSet("minimap_info_quest_set", "dummy", minimapInfoBox:GetWidth(), minimapInfoBox:GetHeight()-57)
 
 	-- 스크롤바 세팅
 	minimapInfoBox:SetScrollBarOffset(2, 1)
@@ -322,25 +322,29 @@ end
 
 function WORLDMAP2_MINIMAP_QUEST_INFO_ADD(frame, questIES, count, state)
 	local minimapInfoBox = AUTO_CAST(frame:GetChild("minimap_info_bg"))
-	local minimapQuestSet = minimapInfoBox:CreateOrGetControlSet("minimap_info_quest_set", questIES.ClassName, 0, 41*count)
+	local minimapQuestSet = minimapInfoBox:CreateOrGetControlSet("minimap_info_quest_set", questIES.ClassName, 0, 61*count)
 
 	local spotImg = AUTO_CAST(minimapQuestSet:GetChild("spot_img"))
 	local checkImg = AUTO_CAST(minimapQuestSet:GetChild("check_img"))
     local questBox = AUTO_CAST(minimapQuestSet:GetChild("quest_box"))
+    local questIcon = AUTO_CAST(minimapQuestSet:GetChild("quest_icon"))
     local imageName = GET_QUESTINFOSET_ICON_BY_STATE_MODE(state, questIES)
 
     -- 퀘스트 표기
 	if questIES.QuestMode == 'MAIN' then
-		questBox:SetText(' {img '..imageName..' 28 28} {@st70_m_16}'..questIES.Name)
+		questBox:SetText('{@st70_m_16}'..questIES.Name)
 	elseif questIES.QuestMode == 'SUB' then
-		questBox:SetText(' {img '..imageName..' 28 28} {@st70_s_16}'..questIES.Name)
+		questBox:SetText('{@st70_s_16}'..questIES.Name)
 	elseif questIES.QuestMode == 'REPEAT' then
-		questBox:SetText(' {img '..imageName..' 28 28} {@st70_d_16}'..questIES.Name)
+		questBox:SetText('{@st70_d_16}'..questIES.Name)
 
 	-- 나머지는 서브퀘스트 취급
 	else
-		questBox:SetText(' {img '..imageName..' 28 28} {@st70_s_16}'..questIES.Name)
-	end
+		questBox:SetText('{@st70_s_16}'..questIES.Name)
+    end
+
+    questBox:SetTextOffset(40, 0)
+    questIcon:SetImage(imageName)
     
     -- 위치보기 세팅
     spotImg:SetUserValue("QUEST_NAME", questIES.ClassName)
@@ -412,19 +416,23 @@ end
 
 function WORLDMAP2_MINIMAP_NPC_INFO_ADD(frame, monProp, count)
 	local minimapInfoBox = AUTO_CAST(frame:GetChild("minimap_info_bg"))
-    local minimapNPCSet = minimapInfoBox:CreateOrGetControlSet("minimap_info_npc_set", monProp:GetClassName()..count, 0, 41*count)
+    local minimapNPCSet = minimapInfoBox:CreateOrGetControlSet("minimap_info_npc_set", monProp:GetClassName()..count, 0, 61*count)
 
     local npcBox = AUTO_CAST(minimapNPCSet:GetChild("npc_box"))
+    local npcIcon = AUTO_CAST(minimapNPCSet:GetChild("npc_icon"))
     local spotImg = AUTO_CAST(minimapNPCSet:GetChild("spot_img"))
     
-    local npcName = string.gsub(monProp:GetName(), "{nl}", " ")
+    local npcName = monProp:GetName()
     local iconName = monProp:GetMinimapIcon()
 
     if iconName == nil or iconName == 'None' then
         iconName = 'minimap_0'
     end
 
-    npcBox:SetText(' {img '..iconName..' 26 26} {@st100lg_16}'..npcName)
+    npcBox:SetText('{@st100lg_16}'..npcName)
+    npcBox:SetTextOffset(40, 0)
+
+    npcIcon:SetImage(iconName)
 
     spotImg:SetUserValue("NPC_NAME", GET_GENNPC_NAME(frame, monProp))
     spotImg:SetUserValue("CHECKBOX_NAME", monProp:GetClassName()..count)

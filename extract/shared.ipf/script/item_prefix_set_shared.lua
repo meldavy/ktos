@@ -85,6 +85,12 @@ function GET_LEGEND_PREFIX_NEED_MATERIAL_COUNT_BY_NEEDITEM(targetObj, needItemCl
 					if TryGetProp(targetObj, 'StringArg', 'None') == 'FreePvP' then
 						count = 1
 					end
+					
+					-- 440장비는 이미 셋옵이 있으면 비용 1/4
+					if TryGetProp(targetObj, 'UseLv', 1) >= 440 and TryGetProp(targetObj, 'LegendPrefix', "None") ~= "None" then
+					    count = math.floor(count*0.25)
+					end
+					
 					return count;
 				else
 					local count = cls.NeedMaterial_WeaponCnt;
@@ -98,6 +104,12 @@ function GET_LEGEND_PREFIX_NEED_MATERIAL_COUNT_BY_NEEDITEM(targetObj, needItemCl
 					if TryGetProp(targetObj, 'StringArg', 'None') == 'FreePvP' then
 						count = 1
 					end
+					
+					-- 440장비는 이미 셋옵이 있으면 비용 1/4
+					if TryGetProp(targetObj, 'UseLv', 1) >= 440 and TryGetProp(targetObj, 'LegendPrefix', "None") ~= "None" then
+					    count = math.floor(count*0.25)
+					end
+					
 					return count
 				end
 

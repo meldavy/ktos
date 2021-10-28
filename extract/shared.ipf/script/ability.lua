@@ -678,26 +678,20 @@ end
 function SCR_ABIL_CRYOMANCER21_ACTIVE(self, ability)
     local lItem  = GetEquipItem(self, 'LH');
     local addmdef = 0;
-    local addresice = 0;
     
     if lItem.ClassType == "Shield" then
-        addmdef = math.floor(lItem.DEF * ability.Level * 0.05)
-        addresice = math.floor(lItem.DEF * ability.Level * 0.25)
+        addmdef = math.floor(lItem.MDEF * ability.Level * 0.05)
     end
     
-    self.MDEF_BM = self.MDEF_BM + addmdef; 
-    self.ResIce_BM = self.ResIce_BM + addresice;
+    self.MDEF_BM = self.MDEF_BM + addmdef;
     
     SetExProp(ability, "ADD_MDEF", addmdef);
-    SetExProp(ability, "ADD_RESICE", addresice);
 end
 
 function SCR_ABIL_CRYOMANCER21_INACTIVE(self, ability)
     local addmdef = GetExProp(ability, "ADD_MDEF", addmdef);
-    local addresice = GetExProp(ability, "ADD_RESICE", addresice);
     
     self.MDEF_BM = self.MDEF_BM - addmdef; 
-    self.ResIce_BM = self.ResIce_BM - addresice;
 end
 
 
@@ -2722,15 +2716,15 @@ function SCR_ABIL_Outlaw26_INACTIVE(self, ability)
     end
 end 
 function SCR_ABIL_Fencer20_ACTIVE(self, ability) 
-    if IsBuffApplied(self, 'EpeeGarde_Buff') == 'YES' then
-        SCR_ABIL_Fencer20_CALC(self, ability)
-    end
+    SCR_ABIL_Fencer20_CALC(self, ability)
+    AddBuff(self, self, "Fencer21_Buff", 1, 0, 0, 1)
 end
 
 function SCR_ABIL_Fencer20_INACTIVE(self, ability)
     local addATK = GetExProp(ability, "Fencer20_ADD_ATK");
     self.PATK_MAIN_BM = self.PATK_MAIN_BM - addATK;
     DelExProp(ability,"Fencer20_ADD_ATK")
+    RemoveBuff(self, "Fencer21_Buff")
 end
  
 function SCR_ABIL_Paladin43_ACTIVE(self, ability)
@@ -2890,6 +2884,39 @@ function SCR_ABIL_Templar11_INACTIVE(self, ability)
 
         skill.ShootTime = shootTime
         skill.CancelTime = cancelTime
+
+        InvalidateSkill(self, skill.ClassName);
+        SendSkillProperty(self, skill);
+    end
+end
+
+function SCR_ABIL_Fencer22_ACTIVE(self, ability)
+    AddBuff(self, self, "ParryingDagger_Pre_Buff", 1, 0, 0, 1)
+end
+
+function SCR_ABIL_Fencer22_INACTIVE(self, ability)
+    RemoveBuff(self, "ParryingDagger_Pre_Buff")
+    RemoveBuff(self, "ParryingDagger_Buff")
+end
+
+function SCR_ABIL_CRYOMANCER24_ACTIVE(self, ability)
+    local skill = GetSkill(self, "Cryomancer_IceBlast");
+    if skill ~= nil then
+        skill.CastingCategory = "cast"
+
+        SetSkillOverHeat(self, skill.ClassName, 0, 1)
+
+        InvalidateSkill(self, skill.ClassName);
+        SendSkillProperty(self, skill);
+    end
+end
+
+function SCR_ABIL_CRYOMANCER24_INACTIVE(self, ability)
+    local skill = GetSkill(self, "Cryomancer_IceBlast");
+    if skill ~= nil then
+        skill.CastingCategory = "instant"
+
+        SetSkillOverHeat(self, skill.ClassName, 2, 1)
 
         InvalidateSkill(self, skill.ClassName);
         SendSkillProperty(self, skill);

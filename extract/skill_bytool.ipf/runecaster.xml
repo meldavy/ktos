@@ -3,7 +3,7 @@
     <Skill Name="RuneCaster_Stan">
 		<KeyInput>
 			<ToolScp Client="YES" Scp="SKL_KEY_GROUND_EVENT" UseSleep="NO">
-				<Num FuncTxt=" local value = 2  local pc = GetMyPCObject()  if IsBuffApplied(pc, &quot;Runcaster_Casting_Buff&quot;) == &quot;YES&quot; then   local castingBuffOver = GetBuffOver(pc, 'Runcaster_Casting_Buff')      value = 1   if castingBuffOver == 2 then    value = 0.5   end  end    return value" Num="0" UseFunc="1" />
+				<Num FuncTxt=" local value = 2  local pc = GetMyPCObject()  if IsBuffApplied(pc, &quot;Runcaster_Casting_Buff&quot;) == &quot;YES&quot; then   local castingBuffOver = GetBuffOver(pc, 'Runcaster_Casting_Buff')      value = 1   if castingBuffOver >= 2 then    value = 0.5   end  end    return value" Num="0" UseFunc="1"/>
 				<Num Num="0" />
 				<Num Num="0" />
 				<Num Num="1" />
@@ -122,7 +122,7 @@
 		</EndScripts>
 		<KeyInput>
 			<ToolScp Client="YES" Scp="SKL_KEY_GROUND_EVENT" UseSleep="NO">
-				<Num FuncTxt=" local value = 2  local pc = GetMyPCObject()  if IsBuffApplied(pc, &quot;Runcaster_Casting_Buff&quot;) == &quot;YES&quot; then   local castingBuffOver = GetBuffOver(pc, 'Runcaster_Casting_Buff')      value = 1   if castingBuffOver == 2 then    value = 0.5   end  end    return value" Num="0" UseFunc="1" />
+				<Num FuncTxt=" local value = 2  local pc = GetMyPCObject()  if IsBuffApplied(pc, &quot;Runcaster_Casting_Buff&quot;) == &quot;YES&quot; then   local castingBuffOver = GetBuffOver(pc, 'Runcaster_Casting_Buff')      value = 1   if castingBuffOver >= 2 then    value = 0.5   end  end    return value" Num="0" UseFunc="1"/>
 				<Num Num="0" />
 				<Num Num="0" />
 				<Num Num="0" />
@@ -264,7 +264,7 @@
             <ToolScp Scp="SKL_KEY_DYNAMIC_CASTING" Client="YES" UseSleep="NO">
                 <Num Num="1"/>
                 <Num Num="0"/>
-                <Num Num="0" UseFunc="1" FuncTxt=" local value = 2  local pc = GetMyPCObject()  if IsBuffApplied(pc, &quot;Runcaster_Casting_Buff&quot;) == &quot;YES&quot; then   local castingBuffOver = GetBuffOver(pc, 'Runcaster_Casting_Buff')      value = 1   if castingBuffOver == 2 then    value = 0.5   end  end    return value"/>
+				<Num Num="0" UseFunc="1" FuncTxt=" local value = 2  local pc = GetMyPCObject()  if IsBuffApplied(pc, &quot;Runcaster_Casting_Buff&quot;) == &quot;YES&quot; then   local castingBuffOver = GetBuffOver(pc, 'Runcaster_Casting_Buff')      value = 1   if castingBuffOver >= 2 then    value = 0.5   end  end    return value"/>
 				<Num Num="0" />
 				<Num Num="1" />
 				<Num Num="0" />
@@ -360,7 +360,7 @@
 			<ToolScp Client="YES" Scp="SKL_KEY_DYNAMIC_CASTING" UseSleep="NO">
 				<Num Num="0" />
 				<Num Num="0" />
-				<Num FuncTxt=" local value = 2  local pc = GetMyPCObject()  if IsBuffApplied(pc, &quot;Runcaster_Casting_Buff&quot;) == &quot;YES&quot; then   local castingBuffOver = GetBuffOver(pc, 'Runcaster_Casting_Buff')      value = 1   if castingBuffOver == 2 then    value = 0.5   end  end    return value" Num="0" UseFunc="1" />
+				<Num FuncTxt=" local value = 2  local pc = GetMyPCObject()  if IsBuffApplied(pc, &quot;Runcaster_Casting_Buff&quot;) == &quot;YES&quot; then   local castingBuffOver = GetBuffOver(pc, 'Runcaster_Casting_Buff')      value = 1   if castingBuffOver >= 2 then    value = 0.5   end  end    return value" Num="0" UseFunc="1"/>
 				<Num Num="0" />
 				<Num Num="1" />
 				<Num Num="0" />
@@ -586,7 +586,7 @@ local pc = GetMyPCObject()
 if IsBuffApplied(pc, 'Runcaster_Casting_Buff') == 'YES' then  
             local castingBuffOver = GetBuffOver(pc, 'Runcaster_Casting_Buff')
             value = 1
-            if castingBuffOver == 2 then
+            if castingBuffOver >= 2 then
                 value = 0.5
             end
         end                  

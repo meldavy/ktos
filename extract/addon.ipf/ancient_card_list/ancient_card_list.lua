@@ -670,14 +670,10 @@ function REQUEST_SWAP_ANCIENT_CARD(frame,guid,slot)
 	local zoneName = session.GetMapName();
 	local zoneKeyword = GetClass("Map", zoneName).Keyword;
 	keywordTable = StringSplit(zoneKeyword, ";");
-	if table.find(keywordTable,"IsRaidField") > 0 or table.find(keywordTable,"WeeklyBossMap") > 0 then
+	
+	if IS_ANCIENT_ENABLE_MAP() == "YES" then
 		addon.BroadMsg("NOTICE_Dm_!", ClMsg("ImpossibleInCurrentMap"), 3);
 		return
-	end
-	
-	if zoneName == 'd_solo_dungeon_2' then
-		addon.BroadMsg("NOTICE_Dm_!", ClMsg("ImpossibleInCurrentMap"), 3);
-		return;
 	end
 	
 	if guid == "None" or guid == nil then
@@ -973,7 +969,7 @@ function ON_ANCIENT_CARD_LOCK_MODE()
 	AUTO_CAST(tab)
 	local index = tab:GetSelectItemIndex();
 	if index ~= ANCIENT_INFO_TAB then
-		addon.BroadMsg("NOTICE_Dm_scroll", "AncientCardOnlyInfoTab", 3);
+		addon.BroadMsg("NOTICE_Dm_scroll", ClMsg("AncientCardOnlyInfoTab"), 3);
 		return
 	end
 	local isLockMode = frame:GetUserValue("LOCK_MODE") ~= "YES"
