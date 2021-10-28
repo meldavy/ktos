@@ -2,8 +2,6 @@
 <!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by mayo (IMCGames Co., Ltd) -->
 <ActionDesc>
     <BlendOn frame="0" R="0" G="0" B="0" A="50"/>
-    <Sound frame="0.00" soundFile="skl_eff_atk_move_s_3"/>
-    <Sound frame="3.00" soundFile="skl_eff_landing_s"/>
     <Shockwave frame="6" type="2" intensity="1" frequency="70" duration="0.3" range="1000"/>
     <Sound frame="10.00" soundFile="skl_eff_ninja_landing"/>
     <Particle frame="11" attachNode="Dummy_emitter" particleName="I_smoke035" useAttach="true" hiddenObj="false" changeEffect="None" scale="0.6" pause="true" use2DEffect="true" soft2DValue="150" targetPos="false" sound="skl_eff_special_shot_5"/>
