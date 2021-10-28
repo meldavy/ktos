@@ -80,6 +80,11 @@ function GET_LEGEND_PREFIX_NEED_MATERIAL_COUNT_BY_NEEDITEM(targetObj, needItemCl
 					    count = math.floor(count*0.25)
 					end
 					
+					-- 세트 옵션 없고 Ev_SetOption 값이 1인 방어구 장비 비용 40% 할인 
+					if TryGetProp(targetObj, 'Ev_SetOption', 0) == 1 and TryGetProp(targetObj, 'LegendPrefix', "None") == "None" then
+					    count = math.floor(count*0.6)
+					end
+
 					-- PvP 전용 아이템 재료 1
 					if TryGetProp(targetObj, 'StringArg', 'None') == 'FreePvP' then
 						count = 1
@@ -96,7 +101,13 @@ function GET_LEGEND_PREFIX_NEED_MATERIAL_COUNT_BY_NEEDITEM(targetObj, needItemCl
 					
 					-- 440장비는 이미 셋옵이 있으면 비용 1/4
 					if TryGetProp(targetObj, 'UseLv', 1) >= 440 and TryGetProp(targetObj, 'LegendPrefix', "None") ~= "None" then
+
 					    count = math.floor(count*0.25)
+					end
+
+					-- 세트 옵션 없고 Ev_SetOption 값이 1인 무기 장비 비용 40% 할인 
+					if TryGetProp(targetObj, 'Ev_SetOption', 0) == 1 and TryGetProp(targetObj, 'LegendPrefix', "None") == "None" then
+					    count = math.floor(count*0.6)
 					end
 					
 					if TryGetProp(targetObj, 'StringArg', 'None') == 'FreePvP' then

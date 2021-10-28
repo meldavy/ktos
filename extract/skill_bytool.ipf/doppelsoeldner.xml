@@ -24,7 +24,7 @@
 				<Frame Accel="10" Angle="0" Dist="15" Gravity="600" Height="0" JumpPower="300" MoveType="0" Time="300"/>
 			</MoveList>
 			<HitList>
-				<Frame Angle="0" AniTime="320" Dist="0" ForceATK="0" HitCount="1" Length="90" PosType="0" RandDist="0" RandomPerHit="0" RotAngle="0" SklAngle="0.87266469" TermMax="0" TermMin="0" Time="120" Type="FAN" Width="90"/>
+				<Frame Angle="0" AniTime="420" Dist="0" ForceATK="0" HitCount="1" Length="90" PosType="0" RandDist="0" RandomPerHit="0" RotAngle="0" SklAngle="0.87266469" TermMax="0" TermMin="0" Time="220" Type="FAN" Width="90"/>
 			</HitList>
 			<EtcList>
 				<Scp Client="NO" Scp="SKL_BUFF_ABIL" Time="0" UseSleep="NO">

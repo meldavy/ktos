@@ -4,6 +4,7 @@
 --           3 : 메데이나 flex box
 --           4 : 당신의 마스터
 --           5 : 달맞이 대작전
+--           6 : 5주년 이벤트
 
 function GET_EVENT_PROGRESS_CHECK_TITLE(type)
     local table = 
@@ -13,6 +14,7 @@ function GET_EVENT_PROGRESS_CHECK_TITLE(type)
         [3] = "EVENT_2007_FLEX_BOX_DESC",
         [4] = "EVENT_YOUR_MASTER_TITLE",
         [5] = "EVENT_2009_FULLMOON_TITLE",
+        [6] = "EVENT_2011_5TH_TITLE",
     }
 
     return table[type];
@@ -26,6 +28,7 @@ function GET_EVENT_PROGRESS_CHECK_DESC(type)
         [3] = {"Acquire_State", "TOS_VACANCE", "Auto_KeonTenCheu"},
         [4] = {"EVENT_YOUR_MASTER_DESC", "prev_ranking", "AccVoteReward"},
         [5] = {"EventState", "LevelReward", "BuffDesc"},
+        [6] = {"EventState", "EVENT_2011_5TH_MSG_1", "EVENT_2011_5TH_MSG_2"},
     }
 
     return table[type];
@@ -39,6 +42,7 @@ function GET_EVENT_PROGRESS_CHECK_TITLE_SKIN(type)
         [3] = "test_h_redribbon_skin",
         [4] = "your_master_title",
         [5] = "test_h_redribbon_skin",
+        [6] = "test_h_redribbon_skin",
     }
 
     return table[type];
@@ -52,6 +56,7 @@ function GET_EVENT_PROGRESS_CHECK_TITLE_DECO(type)
         [3] = "",
         [4] = "your_master_title_deco",
         [5] = "",
+        [6] = "",
     }
 
     return table[type];
@@ -87,18 +92,7 @@ function GET_EVENT_PROGRESS_CHECK_TAB_TITLE(type)
         [3] = {"Acquire_State", "TOS_VACANCE", "Auto_KeonTenCheu"},
         [4] = {"now_ranking", "prev_ranking", "AccVoteReward"},
         [5] = {"EventState", "LevelReward", "BuffDesc"},
-    }
-
-    return table[type];
-end
-
-function GET_EVENT_PROGRESS_CHECK_CUR_VALUE(type, accObj)
-    local table = 
-    {
-        [1] = {TryGetProp(accObj, "GODDESS_ROULETTE_COIN_ACQUIRE_COUNT", 0), TryGetProp(accObj, "GODDESS_ROULETTE_DAILY_PLAY_TIME_MINUTE", 0), GET_EVENT_PROGRESS_STAMP_TOUR_CLEAR_COUNT(), TryGetProp(accObj, "GODDESS_ROULETTE_DAILY_CONTENTS_ACQUIRE_COUNT", 0), TryGetProp(accObj, "GODDESS_ROULETTE_USE_ROULETTE_COUNT", 0)},
-        [2] = {TryGetProp(accObj, "GODDESS_ROULETTE_COIN_ACQUIRE_COUNT", 0), TryGetProp(accObj, "GODDESS_ROULETTE_DAILY_PLAY_TIME_MINUTE", 0), GET_EVENT_PROGRESS_STAMP_TOUR_CLEAR_COUNT(), TryGetProp(accObj, "GODDESS_ROULETTE_DAILY_CONTENTS_ACQUIRE_COUNT", 0), TryGetProp(accObj, "GODDESS_ROULETTE_USE_ROULETTE_COUNT", 0)},
-        [3] = {TryGetProp(accObj, "EVENT_FLEX_BOX_ACQUIRE_CONSUME_COUNT", 0), TryGetProp(accObj, "EVENT_FLEX_BOX_DAILY_PLAY_CONSUME_COUNT", 0), GET_EVENT_PROGRESS_STAMP_TOUR_CLEAR_COUNT(), TryGetProp(accObj, "EVENT_FLEX_BOX_DAILY_CONTENTS_CONSUME_COUNT", 0), TryGetProp(accObj, "EVENT_FLEX_BOX_OPEN_COUNT", 0)},
-        [5] = {GET_EVENT_2009_FULLMOON_LEVEL(), GET_EVENT_2009_FULLMOON_POINT(), TryGetProp(accObj, "EVENT_2009_FULLMOON_REWARD_COUNT", 0), TryGetProp(accObj, "EVENT_2009_FULLMOON_WISH_COUNT", 0), TryGetProp(accObj, "EVENT_2009_FULLMOON_COIN_COUNT", 0)},
+        [6] = {"EventState", "EVENT_2011_5TH_MSG_1", "EVENT_2011_5TH_MSG_2"},
     }
 
     return table[type];
@@ -111,7 +105,8 @@ function GET_EVENT_PROGRESS_CHECK_TIP_TEXT(type)
         [2] = {"EVENT_NEW_SEASON_SERVER_stamp_tour_tip_text", "EVENT_NEW_SEASON_SERVER_stamp_tour_tip_text", "None"},
         [3] = {"EVENT_2007_FLEX_BOX_CHECK_TIP_TEXT_1", "EVENT_2007_FLEX_BOX_CHECK_TIP_TEXT_1", "None"},
         [4] = {"EVENT_YOUR_MASTER_TOOLTIP_WEEK_", "EVENT_YOUR_MASTER_TOOLTIP_WEEK_", "None"},
-        [5] = {"EVENT_2009_FULLMOON_TIP_TEXT_1", "EVENT_2009_FULLMOON_TIP_TEXT_2", "EVENT_2009_FULLMOON_TIP_TEXT_3"}
+        [5] = {"EVENT_2009_FULLMOON_TIP_TEXT_1", "EVENT_2009_FULLMOON_TIP_TEXT_2", "EVENT_2009_FULLMOON_TIP_TEXT_3"},
+        [6] = {"EVENT_2011_5TH_MSG_3", "None", "None"},
     }
 
     return table[type];
@@ -125,12 +120,26 @@ function GET_EVENT_PROGRESS_CHECK_EVENT_STATE(type)
         [2] = {"cur", "cur", "cur", "cur", "end"},
         [3] = {"cur", "cur", "end", "cur", "cur"},
         [5] = {"cur", "cur", "cur", "cur", "cur"},
+        [6] = {"cur", "cur", "cur", "cur", "cur"},
     }
 
     return table[type];
 end
 
 ------------------- 획득 현황 -------------------
+function GET_EVENT_PROGRESS_CHECK_LIST_COUNT(type)
+    local table = 
+    {
+        [1] = 5,
+        [2] = 5,
+        [3] = 5,
+        [5] = 5,
+        [6] = 6,
+    }
+
+    return table[type];
+end
+
 function GET_EVENT_PROGRESS_CHECK_ACQUIRE_STATE_ICON(type)
     local table = 
     {
@@ -138,6 +147,7 @@ function GET_EVENT_PROGRESS_CHECK_ACQUIRE_STATE_ICON(type)
         [2] = {"stamp_coin_mark", "stamp_watch_mark", "stamp_stamp_mark", "stamp_flag_mark", "stamp_roulette_mark"},
         [3] = {"stamp_coin_mark", "stamp_watch_mark", "stamp_stamp_mark", "stamp_flag_mark", "stamp_flex_box_mark"},
         [5] = {"stamp_flag_mark", "stamp_coin_mark", "stamp_stamp_mark", "stamp_watch_mark", "stamp_coin_mark"},
+        [6] = {"stamp_flag_mark", "stamp_flag_mark", "stamp_coin_mark", "stamp_coin_mark", "stamp_coin_mark", "stamp_watch_mark"},
     }
 
     return table[type];
@@ -150,6 +160,7 @@ function GET_EVENT_PROGRESS_CHECK_ACQUIRE_STATE_TEXT(type)
         [2] = {ClMsg("EVENT_NEW_SEASON_SERVER_COIN_CHECK_STATE_1"), ClMsg("EVENT_NEW_SEASON_SERVER_COIN_CHECK_STATE_2"), ClMsg("EVENT_NEW_SEASON_SERVER_COIN_CHECK_STATE_3"), ClMsg("EVENT_NEW_SEASON_SERVER_COIN_CHECK_STATE_4"), ClMsg("EVENT_NEW_SEASON_SERVER_COIN_CHECK_STATE_5")},
         [3] = {ClMsg("EVENT_2007_FLEX_BOX_CHECK_STATE_1"), ClMsg("EVENT_2007_FLEX_BOX_CHECK_STATE_2"), ClMsg("EVENT_2007_FLEX_BOX_CHECK_STATE_3"), ClMsg("EVENT_2007_FLEX_BOX_CHECK_STATE_4"), ClMsg("EVENT_2007_FLEX_BOX_CHECK_STATE_5")},
         [5] = {ClMsg("EVENT_2009_FULLMOON_CHECK_STATE_1"), ClMsg("EVENT_2009_FULLMOON_CHECK_STATE_2"), ClMsg("EVENT_2009_FULLMOON_CHECK_STATE_3"), ClMsg("EVENT_2009_FULLMOON_CHECK_STATE_4"), ClMsg("EVENT_2009_FULLMOON_CHECK_STATE_5")},
+        [6] = {ClMsg("EventPoint").."/"..ClMsg("EventLevel"), ClMsg("EVENT_2011_5TH_MSG_4"), ClMsg("EVENT_2011_5TH_MSG_5"), ClMsg("EVENT_2011_5TH_MSG_6"),  ClMsg("EVENT_2011_5TH_MSG_14"), ClMsg("EventDailyPlayTime")},
     }
 
     return table[type];
@@ -162,19 +173,34 @@ function GET_EVENT_PROGRESS_CHECK_ACQUIRE_STATE_TOOLTIP(type)
         [2] = {ClMsg("GoddessRouletteTexttooltip_1"), ClMsg("GoddessRouletteTexttooltip_2"), ClMsg("GoddessRouletteTexttooltip_3"), ClMsg("GoddessRouletteTexttooltip_4"), ClMsg("GoddessRouletteTexttooltip_5")},        
         [3] = {ClMsg("EVENT_2007_FLEX_BOX_CHECK_TOOLTIP_1"), ClMsg("EVENT_2007_FLEX_BOX_CHECK_TOOLTIP_2"), ClMsg("EVENT_2007_FLEX_BOX_CHECK_TOOLTIP_3"), ClMsg("EVENT_2007_FLEX_BOX_CHECK_TOOLTIP_4"), ClMsg("EVENT_2007_FLEX_BOX_CHECK_TOOLTIP_5")},
         [5] = {ClMsg("EVENT_2009_FULLMOON_CHECK_STATE_1"), ClMsg("EVENT_2009_FULLMOON_CHECK_TOOLTIP_2"), ClMsg("EVENT_2009_FULLMOON_CHECK_STATE_3"), ClMsg("EVENT_2009_FULLMOON_CHECK_STATE_4"), ClMsg("EVENT_2009_FULLMOON_CHECK_STATE_5")},
+        [6] = {ClMsg("EventLevelGradeSection").." {nl}"..ClMsg("EVENT_2011_5TH_MSG_16"), "None", "None", ClMsg("EVENT_2011_5TH_MSG_12"), ClMsg("EVENT_2011_5TH_MSG_15"), ClMsg("EVENT_2011_5TH_MSG_13")},
+    }
+
+    return table[type];
+end
+
+function GET_EVENT_PROGRESS_CHECK_CUR_VALUE(type, accObj)
+    local table = 
+    {
+        [1] = {TryGetProp(accObj, "GODDESS_ROULETTE_COIN_ACQUIRE_COUNT", 0), TryGetProp(accObj, "GODDESS_ROULETTE_DAILY_PLAY_TIME_MINUTE", 0), GET_EVENT_PROGRESS_STAMP_TOUR_CLEAR_COUNT(), TryGetProp(accObj, "GODDESS_ROULETTE_DAILY_CONTENTS_ACQUIRE_COUNT", 0), TryGetProp(accObj, "GODDESS_ROULETTE_USE_ROULETTE_COUNT", 0)},
+        [2] = {TryGetProp(accObj, "GODDESS_ROULETTE_COIN_ACQUIRE_COUNT", 0), TryGetProp(accObj, "GODDESS_ROULETTE_DAILY_PLAY_TIME_MINUTE", 0), GET_EVENT_PROGRESS_STAMP_TOUR_CLEAR_COUNT(), TryGetProp(accObj, "GODDESS_ROULETTE_DAILY_CONTENTS_ACQUIRE_COUNT", 0), TryGetProp(accObj, "GODDESS_ROULETTE_USE_ROULETTE_COUNT", 0)},
+        [3] = {TryGetProp(accObj, "EVENT_FLEX_BOX_ACQUIRE_CONSUME_COUNT", 0), TryGetProp(accObj, "EVENT_FLEX_BOX_DAILY_PLAY_CONSUME_COUNT", 0), GET_EVENT_PROGRESS_STAMP_TOUR_CLEAR_COUNT(), TryGetProp(accObj, "EVENT_FLEX_BOX_DAILY_CONTENTS_CONSUME_COUNT", 0), TryGetProp(accObj, "EVENT_FLEX_BOX_OPEN_COUNT", 0)},
+        [5] = {GET_EVENT_2009_FULLMOON_LEVEL(), GET_EVENT_2009_FULLMOON_POINT(), TryGetProp(accObj, "EVENT_2009_FULLMOON_REWARD_COUNT", 0), TryGetProp(accObj, "EVENT_2009_FULLMOON_WISH_COUNT", 0), TryGetProp(accObj, "EVENT_2009_FULLMOON_COIN_COUNT", 0)},
+        [6] = {TryGetProp(accObj, "EVENT_2011_5TH_POINT_COUNT", 0) .. "/" .. GET_EVENT_2011_5TH_EVENT_LEVEL(TryGetProp(accObj, "EVENT_2011_5TH_POINT_COUNT", 0)), TryGetProp(accObj, "EVENT_2011_5TH_DAILY_TOS_COIN_COUNT", 0), TryGetProp(accObj, "EVENT_2011_5TH_COIN_TOTAL_COUNT", 0), TryGetProp(accObj, "EVENT_2011_5TH_DAILY_COIN_COUNT", 0), TryGetProp(accObj, "EVENT_2011_5TH_COIN_RAID_COUNT", 0), TryGetProp(accObj, "EVENT_2011_5TH_DAILY_PLAY_TIME", 0)},
     }
 
     return table[type];
 end
 
 -- maxvalue가 0이면 제한 없다는 뜻
-function GET_EVENT_PROGRESS_CHECK_ACQUIRE_STATE_MAX_VALUE(type)
+function GET_EVENT_PROGRESS_CHECK_ACQUIRE_STATE_MAX_VALUE(type, accObj)
     local table = 
     {
         [1] = {1000, 10, 33, 10, 100},
         [2] = {GODDESS_ROULETTE_COIN_MAX_COUNT, GODDESS_ROULETTE_DAILY_PLAY_TIME_VALUE, GODDESS_ROULETTE_STAMP_TOUR_MAX_COUNT, GODDESS_ROULETTE_DAILY_CONTENTS_MAX_COIN_COUNT, GODDESS_ROULETTE_MAX_COUNT},
         [3] = {0, GET_EVENT_FLEX_BOX_DAILY_PLAY_TIME_MAX_CONSUME_COUNT(), 24, GET_EVENT_FLEX_BOX_DAILY_CONTENTS_MAX_CONSUME_COUNT(), GET_EVENT_FLEX_BOX_MAX_OPEN_COUNT()},
-        [5] = {0, 0, 1, 3, 300}
+        [5] = {0, 0, 1, 3, 300},
+        [6] = {0, GET_EVENT_2011_5TH_TOS_COIN_MAX_COUNT(), 0, GET_EVENT_2011_5TH_COIN_FIELD_MAX_COUNT(), GET_EVENT_2011_5TH_COIN_RAID_MAX_COUNT(), 0}
     }
 
     return table[type];
@@ -188,6 +214,7 @@ function GET_EVENT_PROGRESS_CHECK_ACQUIRE_STATE_NPC(type)
         [2] = {"None", "None", "Klapeda/c_Klaipe/-292/291;c_orsha/c_orsha/-985/415;", "None", "Klapeda/c_Klaipe/-664/576;c_fedimian/c_fedimian/-284/-346;c_orsha/c_orsha/184/246;"},
         [3] = {"None", "None", "Klapeda/c_Klaipe/-679/581;c_fedimian/c_fedimian/-532/-180;c_orsha/c_orsha/184/246;", "None", "Klapeda/c_Klaipe/-679/581;c_fedimian/c_fedimian/-532/-180;c_orsha/c_orsha/184/246;"},
         [5] = {"None", "None", "None", "None", "None"},
+        [6] = {"None", "None", "None", "None", "None"},
     }
 
     return table[type];
@@ -200,6 +227,20 @@ function GET_EVENT_PROGRESS_CHECK_ACQUIRE_STATE_CLEAR_TEXT(type)
         [2] = {"None", "GoddessRouletteDailyPlayTimeClearText", "None", "GoddessRouletteDailyPlayTimeClearText", "Goddess_Roulette_Max_Rullet_count"},
         [3] = {"None", "GoddessRouletteDailyPlayTimeClearText", "None", "GoddessRouletteDailyPlayTimeClearText", "Event_Flex_box_Open_Max_Count"},
         [5] = {"None", "None", "EVENT_2009_FULLMOON_ALREADY_GET_GIFT", "EVENT_2009_FULLMOON_ALREADY_MAKE_WISH", "GoddessRouletteDailyPlayTimeClearText"},
+        [6] = {"None", "GoddessRouletteDailyPlayTimeClearText", "None", "GoddessRouletteDailyPlayTimeClearText", "None"},
+    }
+
+    return table[type];
+end
+function GET_EVENT_PROGRESS_DAILY_PLAY_TIME_INDEX(type)
+    -- min = 접속 시간 분 표시, count = 일일 획득 주화 표시 
+    local table = 
+    {
+        [1] = 2,
+        [2] = 2,
+        [3] = 2,
+        [5] = 2,
+        [6] = 6,
     }
 
     return table[type];
@@ -213,6 +254,7 @@ function GET_EVENT_PROGRESS_DAILY_PLAY_TIME_TYPE(type)
         [2] = "min",
         [3] = "count",
         [5] = "count",
+        [6] = "min",
     }
 
     return table[type];

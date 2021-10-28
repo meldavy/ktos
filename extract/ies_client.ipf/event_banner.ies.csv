@@ -1,4 +1,8 @@
 ClassID,StartTimeYYYYMM,StartTimeDDHHMM,NewTimeYYYYMM,NewTimeDDHHMM,EndTimeYYYYMM,EndTimeDDHHMM,DeadlineTimeYYYYMM,DeadlineTimeDDHHMM,ExchangeTimeYYYYMM,ExchangeTimeDDHHMM,ClassName,Name,ImagePath,url,UserCommand1,UserCommand2,UserCommand3,ShowType
+997330,202011,260900,202012,10000,202012,240700,202012,190000,0,0,event201126_5th,5주년 특별한 상점 이벤트,event201126_5th,http://tos.nexon.com/news/events/view.aspx?n4ArticleSN=301&n4ArticleCategorySN=1,,,,
+997340,202012,10000,202012,60000,202101,10000,202012,270000,0,0,event2012_DevilsTemptation,마신의 유혹 - 12월,event2012_DevilsTemptation,http://tos.nexon.com/news/events/view.aspx?n4ArticleSN=298&n4ArticleCategorySN=1,,,,
+997350,202012,10000,202012,60000,202101,10000,202012,270000,0,0,event_2012Burning,주말 앤 버닝 - 12월,event_2012Burning,http://tos.nexon.com/news/events/view.aspx?n4ArticleSN=299&n4ArticleCategorySN=1,,,,
+997360,202012,10000,202012,60000,202101,10000,202012,270000,0,0,event2012_Reward,바이보라 출석 - 12월,event2012_Reward,http://tos.nexon.com/news/events/view.aspx?n4ArticleSN=300&n4ArticleCategorySN=1,,,,
 997370,202011,120900,202011,170000,202012,100700,202012,50000,0,0,event2011goddesscube_regather,11월 복각 큐브,event2011goddesscube_regather,http://tos.nexon.com/news/events/view.aspx?n4ArticleSN=296&n4ArticleCategorySN=1,,,,
 997380,202011,120900,202011,170000,202012,100700,202012,50000,0,0,event2011fishing,겨울 꽁치 낚시 이벤트,event2011fishing,http://tos.nexon.com/news/tosnotice/view.aspx?n4ArticleSN=2182,,,,
 997390,202011,10000,202011,60000,202012,10000,202011,260000,0,0,event2011_DevilsTemptation,마신의 유혹,event2011_DevilsTemptation,http://tos.nexon.com/news/events/view.aspx?n4ArticleSN=295&n4ArticleCategorySN=1,,,,

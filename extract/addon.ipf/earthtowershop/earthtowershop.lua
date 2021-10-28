@@ -16,6 +16,142 @@ local g_account_prop_shop_table =
     },
 }
 
+--------------------------------------------------------------------------------------------------------------------------
+shop_data = {}
+local function _CLEAR_INFO(groupName, cls)
+    shop_data = nil;
+end
+
+local function _ADD_INFO(groupName, cls)
+    if shop_data == nil then
+        shop_data = {}
+    end
+
+    if shop_data[groupName] == nil then
+        shop_data[groupName] =
+        {
+            classList = {}
+        }
+    end
+
+    local index = #shop_data[groupName].classList;
+    shop_data[groupName].classList[index +1] = cls;
+end
+
+local function _GET_INFO(groupName)
+
+    if shop_data == nil then
+        return nil;
+    end
+
+    if shop_data[groupName] == nil then
+        return nil;
+    end
+
+    return shop_data[groupName].classList;
+end
+
+local function _INSERT_ITEM_INFO(cls, shopType)
+    local item = GetClass('Item', cls.TargetItem);
+    if item == nil then
+        return;
+    end
+
+    local groupName = item.GroupName;
+    
+    if shopType == 'PVPMine' then
+        local item_category = TryGetProp(cls, 'ItemCategory', 'None')
+        if item_category ~= 'None' then
+            groupName = item_category;
+        end
+    end
+
+    local classType = nil;
+    if GetPropType(item, "ClassType") ~= nil then
+        classType = item.ClassType;
+        if classType == 'None' then
+            classType = nil
+        end
+    end
+
+    EXCHANGE_MAKE_TAB_BTN(groupName) 
+    _ADD_INFO(groupName, cls) 
+end
+
+local function _ADD_TAB_BTN_CTRL(bgCtrl, categoryName)
+
+    if bgCtrl == nil then
+		return;
+    end    
+    
+    local ySpaceUnit = 1;
+    local xSpaceUnit = 1;
+    local xMargin = 30;
+    local const_height = 44;
+    local const_width = 120;
+    
+    
+    local y = 0;
+    local x = 0;
+    local baseWidth = bgCtrl:GetWidth();
+    local curLine =0;
+
+    local findChild = bgCtrl:GetChild( "BTN_" .. categoryName );
+    if findChild == nil then -- 검색해서 같은게 없으면 추가.
+        local cnt = bgCtrl:GetChildCount();
+        if cnt ~= 0 then
+            local lastChild = bgCtrl:GetChildByIndex( cnt -1 );  -- 마지막 
+            if lastChild ~= nil then -- 이게 없으면 안됨.
+                tolua.cast(lastChild, "ui::CButton");
+                local lastChildLine = lastChild:GetUserIValue('LINE');
+
+                 -- 마지막 컨트롤 옆에 추가하는경우 baseWidth 를 넘어가는지 확인.
+                 local lastWidth = lastChild:GetWidth();
+                 local lastX = lastChild:GetX();
+                 local lastHeight = lastChild:GetHeight();
+                 local lastY = lastChild:GetY();
+
+                curLine = lastChildLine;
+                local checkX = lastX + lastWidth + xSpaceUnit;
+                if checkX + const_width >= baseWidth then
+                    -- 이경우 curLine을 증가 시키고 y값을 증가시킨다.
+                    curLine = curLine +1;
+                    y = lastY + lastHeight + ySpaceUnit;
+                    x = xMargin;
+                    
+                    local compareHeight = ((curLine + 1) * const_height) + (curLine * ySpaceUnit ) + ySpaceUnit;
+                    if bgCtrl:GetHeight() ~= compareHeight then
+                        bgCtrl:Resize(bgCtrl:GetWidth(), compareHeight)
+                    end
+
+                else
+                    x = lastX +lastWidth + xSpaceUnit;
+                    y = lastY;
+                end
+            end
+        else -- 맨처음 한번 온다.
+            x = xMargin;
+        end
+
+        local mainCategory = ScpArgMsg(categoryName);
+        local btn = bgCtrl:CreateOrGetControl('button', "BTN_" .. categoryName, x, y, const_width, const_height );
+        tolua.cast(btn, "ui::CButton");
+        btn:SetGravity(ui.LEFT, ui.TOP);
+        btn:SetTextFixWidth(1);
+        btn:EnableTextOmitByWidth(true);
+        btn:SetSkinName("test_pvp_btn");
+        btn:SetText(string.format("{@st66b}{s20}%s{/}", mainCategory));
+        btn:SetTextTooltip(mainCategory);
+        btn:SetUserValue("LINE", curLine);
+        btn:SetUserValue("CATEGORY_NAME", categoryName);
+        btn:SetEventScript(ui.LBUTTONUP, "CLICK_EXCHANGE_SHOP_CATEGORY");
+        btn:SetEventScriptArgString(ui.LBUTTONUP, categoryName);
+        
+    end
+end
+
+--------------------------------------------------------------------------------------------------------------------------
+
 function EARTHTOWERSHOP_ON_INIT(addon, frame)
     addon:RegisterMsg('EARTHTOWERSHOP_BUY_ITEM', 'EARTHTOWERSHOP_BUY_ITEM');
     addon:RegisterMsg('EARTHTOWERSHOP_BUY_ITEM_RESULT', 'EARTHTOWERSHOP_BUY_ITEM_RESULT');
@@ -116,6 +252,19 @@ function EARTHTOWERSHOP_BUY_ITEM(frame, msg, itemName, itemCount)
         exchangeCountText:SetTextByKey("value", cntText);
     end
 
+    local shopType = frame:GetUserValue("SHOP_TYPE");
+    if shopType == "EVENT_2011_5TH_Normal_Shop" or 
+        string.find(shopType, "EVENT_2011_5TH_Special_Shop") ~= nil then
+        local ctrlSet = GET_CHILD_RECURSIVELY(frame, "EVENT_CONTROL_SET");
+    
+        local coinTOS_text = GET_CHILD(ctrlSet, "coinTOS_text", "ui::CRichText");
+        local coinTOS_count = GET_INV_ITEM_COUNT_BY_PROPERTY({{Name = "ClassName", Value = "Event_2011_TOS_Coin"}}, false);
+        coinTOS_text:SetTextByKey("value", coinTOS_count);
+
+        local coin5TH_text = GET_CHILD(ctrlSet, "coin5TH_text", "ui::CRichText");
+        local coin5TH_count = GET_INV_ITEM_COUNT_BY_PROPERTY({{Name = "ClassName", Value = "Event_2011_5th_Coin"}}, false);
+        coin5TH_text:SetTextByKey("value", coin5TH_count);
+    end
 end
 function REQ_EARTH_TOWER_SHOP_OPEN()
 
@@ -271,6 +420,8 @@ function REQ_EVENT_2002_FISHING_SHOP_OPEN()
 end
 
 function REQ_EVENT_SHOP_OPEN_COMMON(shopType)
+    ui.CloseFrame('earthtowershop');
+
     local frame = ui.GetFrame("earthtowershop");
     frame:SetUserValue("SHOP_TYPE", shopType);
     ui.OpenFrame('earthtowershop');
@@ -322,14 +473,22 @@ end
 
 function EARTH_TOWER_INIT(frame, shopType)
 
+    EXCHANGE_INIT_TAB_INFO();
+
     INVENTORY_SET_CUSTOM_RBTNDOWN("None");
     RESET_INVENTORY_ICON();
-
+   
     local propertyRemain = GET_CHILD_RECURSIVELY(frame,"propertyRemain")
     local pointbuyBtn = GET_CHILD_RECURSIVELY(frame,"pointbuyBtn")
+    local event_gb = GET_CHILD_RECURSIVELY(frame, "event_gb")
 
     propertyRemain:ShowWindow(0)
     pointbuyBtn:ShowWindow(0)
+
+    if shopType ~= "EVENT_2011_5TH_Normal_Shop" and string.find(shopType, "EVENT_2011_5TH_Special_Shop") == nil then
+        event_gb:RemoveAllChild();
+        event_gb:ShowWindow(0);
+    end
 
     local title = GET_CHILD(frame, 'title', 'ui::CRichText')
     local close = GET_CHILD(frame, 'close');
@@ -406,41 +565,68 @@ function EARTH_TOWER_INIT(frame, shopType)
         close:SetTextTooltip(ScpArgMsg('CloseUI{NAME}', 'NAME', ScpArgMsg("SilverGachaShopName")));
         EARTH_TOWER_SET_PROPERTY_COUNT(propertyRemain, 'misc_silver_gacha_mileage', "Mileage_SilverGacha")
         pointbuyBtn:ShowWindow(1)
+    elseif shopType == "EVENT_2011_5TH_Normal_Shop" then
+        title:SetText('{@st43}'..ScpArgMsg(shopType));
+        close:SetTextTooltip(ScpArgMsg('CloseUI{NAME}', 'NAME', ScpArgMsg("EventShop")));
+
+        local ctrlSet = event_gb:CreateOrGetControlSet("event_5th_special_shop_controlset", "EVENT_CONTROL_SET", 0, 0);        
+
+        local coinTOS = GetClass("Item", "Event_2011_TOS_Coin");
+        local coinTOS_text = GET_CHILD(ctrlSet, "coinTOS_text", "ui::CRichText");
+        local coinTOS_count = GET_INV_ITEM_COUNT_BY_PROPERTY({{Name = "ClassName", Value = "Event_2011_TOS_Coin"}}, false);
+        coinTOS_text:SetTextByKey("name", coinTOS.Name);
+        coinTOS_text:SetTextByKey("value", coinTOS_count);
+
+        local coin5TH = GetClass("Item", "Event_2011_5th_Coin");
+        local coin5TH_text = GET_CHILD(ctrlSet, "coin5TH_text", "ui::CRichText");
+        local coin5TH_count = GET_INV_ITEM_COUNT_BY_PROPERTY({{Name = "ClassName", Value = "Event_2011_5th_Coin"}}, false);
+        coin5TH_text:SetTextByKey("name", coin5TH.Name);
+        coin5TH_text:SetTextByKey("value", coin5TH_count);
+
+        local btn = GET_CHILD(ctrlSet, "update_Btn");
+        btn:ShowWindow(0);
+
+        event_gb:ShowWindow(1);
+    elseif string.find(shopType, "EVENT_2011_5TH_Special_Shop") ~= nil then
+        local common, shopStr = string.match(shopType,'(EVENT_2011_5TH_Special_Shop_)(.+)');
+        local shopStrlist = StringSplit(shopStr, "_");
+        local grade = shopStrlist[1];
+
+        title:SetText('{@st43}'..ScpArgMsg("EVENT_2011_5TH_Special_Shop_name{GRADE}", "GRADE", grade));
+        close:SetTextTooltip(ScpArgMsg('CloseUI{NAME}', 'NAME', ScpArgMsg("EventShop")));
+
+        local ctrlSet = event_gb:CreateOrGetControlSet("event_5th_special_shop_controlset", "EVENT_CONTROL_SET", 0, 0);
+        
+        local coinTOS = GetClass("Item", "Event_2011_TOS_Coin");
+        local coinTOS_text = GET_CHILD(ctrlSet, "coinTOS_text", "ui::CRichText");
+        local coinTOS_count = GET_INV_ITEM_COUNT_BY_PROPERTY({{Name = "ClassName", Value = "Event_2011_TOS_Coin"}}, false);
+        coinTOS_text:SetTextByKey("name", coinTOS.Name);
+        coinTOS_text:SetTextByKey("value", coinTOS_count);
+
+        local coin5TH = GetClass("Item", "Event_2011_5th_Coin");
+        local coin5TH_text = GET_CHILD(ctrlSet, "coin5TH_text", "ui::CRichText");
+        local coin5TH_count = GET_INV_ITEM_COUNT_BY_PROPERTY({{Name = "ClassName", Value = "Event_2011_5th_Coin"}}, false);
+        coin5TH_text:SetTextByKey("name", coin5TH.Name);
+        coin5TH_text:SetTextByKey("value", coin5TH_count);
+
+        local btn = GET_CHILD(ctrlSet, "update_Btn");
+        btn:SetEventScript(ui.LBUTTONUP, "EVENT_2011_5TH_SPECIAL_SHOP_UPDATE_BTN_CLICK");
+        btn:SetTextTooltip(ClMsg("EVENT_2011_5TH_Special_Shop_Update_Tooltip"));
+        btn:ShowWindow(1);
+        
+        event_gb:ShowWindow(1);
+        REQ_EARTH_TOWER_SHOP_SUB_COMMON(shopType)
     else
         title:SetText('{@st43}'..ScpArgMsg(shopType));
         close:SetTextTooltip(ScpArgMsg('CloseUI{NAME}', 'NAME', ScpArgMsg("EventShop")));
     end
-
-
-    local group = GET_CHILD(frame, 'Recipe', 'ui::CGroupBox')
-
-    local slotHeight = ui.GetControlSetAttribute('earthTowerRecipe', 'height') + 5;
-
-    local tree_box = GET_CHILD(group, 'recipetree_Box','ui::CGroupBox')
-    local tree = GET_CHILD(tree_box, 'recipetree','ui::CTreeControl')
-
-    if nil == tree then
-        return;
-    end
-    tree:Clear();
-    tree:EnableDrawTreeLine(false)
-    tree:EnableDrawFrame(false)
-    tree:SetFitToChild(true,200)
-    tree:SetFontName("brown_18_b");
-    tree:SetTabWidth(5);
-
-
-
-    local clslist = GetClassList("ItemTradeShop");
-    if clslist == nil then return end
-
-    local i = 0;
-    local cls = GetClassByIndexFromList(clslist, i);
-
-    local showonlyhavemat = GET_CHILD(frame, "showonlyhavemat", "ui::CCheckBox");   
+    
+    local showonlyhavemat = GET_CHILD_RECURSIVELY(frame, 'showonlyhavemat');
+    AUTO_CAST(showonlyhavemat)
     local checkHaveMaterial = showonlyhavemat:IsChecked();
 
-    local showExchangeEnable = GET_CHILD(frame, "showExchangeEnable", "ui::CCheckBox");
+    local showExchangeEnable = GET_CHILD_RECURSIVELY(frame, "showExchangeEnable");
+    AUTO_CAST(showExchangeEnable)
     local checkExchangeEnable = showExchangeEnable:IsChecked();
 
     if string.find(shopType, "EarthTower") ~= nil or shopType == "DailyRewardShop" then
@@ -448,8 +634,12 @@ function EARTH_TOWER_INIT(frame, shopType)
         checkExchangeEnable = 0;
     end
     
-    while cls ~= nil do
+    local clslist = GetClassList("ItemTradeShop");
+    if clslist == nil then return end
 
+    local i = 0;
+    local cls = GetClassByIndexFromList(clslist, i);
+    while cls ~= nil do
         if cls.ShopType == shopType then
             if EARTH_TOWER_IS_ITEM_SELL_TIME(cls) == true then
                 local isExchangeEnable = true;
@@ -461,12 +651,12 @@ function EARTH_TOWER_INIT(frame, shopType)
                 if checkHaveMaterial == 1 then
                     if haveM == 1 then
                         if isExchangeEnable == true then
-                            INSERT_ITEM(cls, tree, slotHeight, haveM, shopType);
+                            _INSERT_ITEM_INFO(cls, shopType)
                         end
                     end
                 else
                     if isExchangeEnable == true then
-                        INSERT_ITEM(cls, tree, slotHeight, haveM, shopType);
+                        _INSERT_ITEM_INFO(cls, shopType);
                     end
                 end
             end
@@ -476,7 +666,8 @@ function EARTH_TOWER_INIT(frame, shopType)
         cls = GetClassByIndexFromList(clslist, i);
     end
 
-    tree:OpenNodeAll();
+    EXCHANGE_AUTO_DRAW(shopType)
+
 end
 
 function EARTH_TOWER_SET_PROPERTY_COUNT(ctrl, itemName, propName)
@@ -527,15 +718,15 @@ function INSERT_ITEM(cls, tree, slotHeight, haveMaterial, shopType)
     end
 
     local groupName = item.GroupName;
-    local classType = nil;
-    if GetPropType(item, "ClassType") ~= nil then
-        classType = item.ClassType;
-        if classType == 'None' then
-            classType = nil
+
+    if shopType == 'PVPMine' then
+        local item_category = TryGetProp(cls, 'ItemCategory', 'None')
+        if item_category ~= 'None' then
+            groupName = item_category
         end
     end
     
-    EXCHANGE_CREATE_TREE_PAGE(tree, slotHeight, groupName, classType, cls, shopType);
+    EXCHANGE_CREATE_TREE_PAGE(tree, slotHeight, groupName, nil, cls, shopType);
 end
 
 
@@ -555,7 +746,6 @@ function EXCHANGE_CREATE_TREE_PAGE(tree, slotHeight, groupName, classType, cls, 
             hClassType = tree:Add(hGroup, ScpArgMsg(classType), classType);
             tree:SetNodeFont(hClassType,"brown_18_b");
         end
-
         hParent = hClassType;
     end
     
@@ -564,16 +754,6 @@ function EXCHANGE_CREATE_TREE_PAGE(tree, slotHeight, groupName, classType, cls, 
         pageCtrlName = pageCtrlName .. "_" .. classType;
     end
 
-    --DESTROY_CHILD_BY_USERVALUE(tree, "EARTH_TOWER_CTRL", "YES");
-
-    --local page = tree:GetChild(pageCtrlName);
-    --if page == nil then
-    --page = tree:CreateOrGetControl('page', pageCtrlName, 0, 1000, tree:GetWidth()-35, 470);
-    --CreateOrGetControl('groupbox', "upbox", 0, 0, detailView:GetWidth(), 0);
-    --local groupbox = tree:CreateOrGetControlSet('groupbox_sub', tree:GetName(), 0, 0)
-    --local groupbox = CreateOrGetControl('groupbox', 'questreward', 10, 10, frame:GetWidth()-70, frame:GetHeight());
-    --print(tree:GetName())
-    
     local page = tree:GetChild(pageCtrlName);
     if page == nil then
         page = tree:CreateOrGetControl('page', pageCtrlName, 0, 1000, tree:GetWidth()-35, 470);
@@ -592,13 +772,34 @@ function EXCHANGE_CREATE_TREE_PAGE(tree, slotHeight, groupName, classType, cls, 
 
     local ctrlset = page:CreateOrGetControlSet('earthTowerRecipe', cls.ClassName, 10, 10);
     local groupbox = ctrlset:CreateOrGetControl('groupbox', pageCtrlName, 0, 0, 530, 200);
-    
     groupbox:SetSkinName("None")
     groupbox:EnableHitTest(0);
     groupbox:ShowWindow(1);
     tree:Add(hParent, groupbox);    
     tree:SetNodeFont(hParent,"brown_18_b")
 
+    local height = EXCHANGE_CREATE_TREE_NODE_CTRL(ctrlset,  cls, shopType)
+    ctrlset:Resize(ctrlset:GetWidth(), height);
+    GBOX_AUTO_ALIGN(groupbox, 0, 0, 10, true, false);
+    groupbox:SetUserValue("HEIGHT_SIZE", groupbox:GetUserIValue("HEIGHT_SIZE") + ctrlset:GetHeight())
+    groupbox:Resize(groupbox:GetWidth(), groupbox:GetUserIValue("HEIGHT_SIZE"));
+    
+    local maxSlotHeight = page:GetUserIValue("MAX_SLOT_HEIGHT");
+    if maxSlotHeight == nil then
+        maxSlotHeight = ctrlset:GetHeight()
+    end
+
+    if maxSlotHeight < ctrlset:GetHeight() then
+        maxSlotHeight = ctrlset:GetHeight()
+    end
+
+    page:SetSlotSize(ctrlset:GetWidth(), maxSlotHeight);
+    page:SetUserValue("MAX_SLOT_HEIGHT", maxSlotHeight);
+
+end
+
+function EXCHANGE_CREATE_TREE_NODE_CTRL(ctrlset, cls, shopType) 
+   
     local x = 180;
     local startY = 80;
     local y = startY; 
@@ -623,6 +824,7 @@ function EXCHANGE_CREATE_TREE_PAGE(tree, slotHeight, groupName, classType, cls, 
     end
     
     itemName:SetTextByKey("value", targetItem.Name .. " [" .. recipecls.TargetItemCnt .. ScpArgMsg("Piece") .. "]");
+    
     if targetItem.StringArg == "EnchantJewell" and cls.TargetItemAppendProperty ~= 'None' then
         local number_arg1 = TryGetProp(targetItem, 'NumberArg1', 0)
         if number_arg1 ~= 0 then
@@ -655,6 +857,7 @@ function EXCHANGE_CREATE_TREE_PAGE(tree, slotHeight, groupName, classType, cls, 
                     end
                     
                     itemSet:SetUserValue("MATERIAL_IS_SELECTED", 'nonselected');
+
                     local slot = GET_CHILD(itemSet, "slot", "ui::CSlot");
                     local needcountTxt = GET_CHILD(itemSet, "needcount", "ui::CSlot");
                     needcountTxt:SetTextByKey("count", recipeItemCnt)
@@ -686,6 +889,7 @@ function EXCHANGE_CREATE_TREE_PAGE(tree, slotHeight, groupName, classType, cls, 
                 end
                  
                 itemSet:SetUserValue("MATERIAL_IS_SELECTED", 'nonselected');
+
                 local slot = GET_CHILD(itemSet, "slot", "ui::CSlot");
                 local needcountTxt = GET_CHILD(itemSet, "needcount", "ui::CSlot");
                 needcountTxt:SetTextByKey("count", recipeItemCnt);
@@ -787,13 +991,179 @@ function EXCHANGE_CREATE_TREE_PAGE(tree, slotHeight, groupName, classType, cls, 
         exchangeCountText:SetVisible(0);
     end;
 
-    ctrlset:Resize(ctrlset:GetWidth(), height);
-    GBOX_AUTO_ALIGN(groupbox, 0, 0, 10, true, false);
 
-    groupbox:SetUserValue("HEIGHT_SIZE", groupbox:GetUserIValue("HEIGHT_SIZE") + ctrlset:GetHeight())
-    groupbox:Resize(groupbox:GetWidth(), groupbox:GetUserIValue("HEIGHT_SIZE"));
-    page:SetSlotSize(ctrlset:GetWidth(), ctrlset:GetHeight() + 40)
+    local tradeBtn = GET_CHILD(ctrlset, "tradeBtn");
+    local textTooltip = TryGetProp(recipecls, "TradeBtnTextTooltip", "None");
+    if tradeBtn:IsVisible() == 1 and textTooltip ~= "None" then
+        tradeBtn:SetTextTooltip(ClMsg(textTooltip))
+    end
+    return height;
 end
+
+function EXCHANGE_INIT_TAB_INFO()
+    local frame = ui.GetFrame('earthtowershop');
+    local bg_category = GET_CHILD_RECURSIVELY(frame, 'bg_category');
+    bg_category:RemoveAllChild();
+    bg_category:Resize(bg_category:GetOriginalWidth(), bg_category:GetOriginalHeight());
+    _CLEAR_INFO();
+end
+
+function EXCHANGE_MAKE_TAB_BTN(groupName)
+    local frame = ui.GetFrame('earthtowershop');
+    local bg_category = GET_CHILD_RECURSIVELY(frame, 'bg_category');
+    _ADD_TAB_BTN_CTRL(bg_category, groupName)
+end
+
+function EXCHANGE_AUTO_DRAW(shopType)
+
+    local frame = ui.GetFrame('earthtowershop');
+    if frame == nil then
+        return;
+    end
+
+    local lastDrawShopType = frame:GetUserValue("LAST_DRAW_SHOP_TYPE");    
+    if lastDrawShopType == nil or shopType ~= lastDrawShopType then
+        -- 저장이 안됬거나, 타입이 틀리면 첫번째꺼 선택해서 다시 그리기.
+        local categoryName = GET_EXCHANGE_FIRST_CATEGORY_NAME(frame);
+        DRAW_EXCHANGE_SHOP_IETMS(categoryName);
+        return;
+    end
+
+    -- shopType이 같으면 마지막 그려진 정보를 가져와서 다시 그려주기.
+    local lastDrawCategoryName = frame:GetUserValue("LAST_DRAW_CATEGORY_NAME");    
+    if lastDrawCategoryName == nil then
+        local categoryName = GET_EXCHANGE_FIRST_CATEGORY_NAME(frame);
+        DRAW_EXCHANGE_SHOP_IETMS(categoryName)
+        return;
+    end
+
+    -- 마지막 저장된 카테고리 버튼이 사라졌으면 첫번째꺼 선택해서 다시그리기
+    if EXIST_EXCHANGE_CATEGORY_NAME(frame, lastDrawCategoryName) == false then
+        local categoryName = GET_EXCHANGE_FIRST_CATEGORY_NAME(frame);
+        DRAW_EXCHANGE_SHOP_IETMS(categoryName);
+        return;
+    end
+    
+    DRAW_EXCHANGE_SHOP_IETMS(lastDrawCategoryName)
+end
+
+function EXIST_EXCHANGE_CATEGORY_NAME(frame, name)
+    if frame == nil then
+        frame = ui.GetFrame('earthtowershop');
+        if frame == nil then
+            return false;
+        end
+    end
+
+    local bg_category = GET_CHILD_RECURSIVELY(frame, 'bg_category');
+    local childCnt = bg_category:GetChildCount();
+    for i = 1, childCnt do
+        local btnChild = bg_category:GetChildByIndex(i); 
+        if btnChild ~= nil then
+            local categoryName = btnChild:GetUserValue("CATEGORY_NAME");
+            if categoryName == name then
+                return true;
+            end    
+        end
+    end
+
+    return false;
+end
+
+function GET_EXCHANGE_FIRST_CATEGORY_NAME(frame)
+    if frame == nil then
+        frame = ui.GetFrame('earthtowershop');
+        if frame == nil then
+            return nil;
+        end
+end
+
+    local bg_category = GET_CHILD_RECURSIVELY(frame, 'bg_category');
+    local childCnt = bg_category:GetChildCount();
+    if childCnt > 0 then
+        local btnChild = bg_category:GetChildByIndex(0); 
+        if btnChild == nil then
+            return nil;
+        end
+        --tolua.cast(btnChild, "ui::CButton");
+        local categoryName = btnChild:GetUserValue("CATEGORY_NAME");
+        if categoryName ~= nil then
+            return categoryName;
+        end
+    end
+
+    return nil;
+end
+
+function CLICK_EXCHANGE_SHOP_CATEGORY(ctrlSet, ctrl, strArg, numArg)
+    DRAW_EXCHANGE_SHOP_IETMS(strArg)
+end
+
+function DRAW_EXCHANGE_SHOP_IETMS(categoryName)
+    if categoryName == nil then
+        return;
+    end
+
+    local frame = ui.GetFrame('earthtowershop');
+    if frame == nil then
+        return;
+    end
+
+
+    -- 한번 그려지면 frame에 마지막 그려진 상점 타입과 카테고리 이름을 저장한다.
+    local shopType = frame:GetUserValue("SHOP_TYPE");
+    frame:SetUserValue("LAST_DRAW_SHOP_TYPE", shopType);
+    frame:SetUserValue("LAST_DRAW_CATEGORY_NAME", categoryName);
+
+    -- bg_category 밑으로 정렬해야 하므로 가져옴.
+    local bg_category = GET_CHILD(frame, 'bg_category','ui::CGroupBox');
+    local group = GET_CHILD(frame, 'Recipe', 'ui::CGroupBox');
+    local bg_bottom = GET_CHILD(frame, 'bg_bottom','ui::CGroupBox');
+    if bg_category == nil or group == nil or bg_bottom == nil then
+        return;
+    end
+
+    -- 아이템 표시 위치 정렬.
+    local newY = bg_category:GetY() + bg_category:GetHeight() + 5;
+    group:SetOffset(group:GetX(), newY);
+    local bottomY = bg_bottom:GetY();
+    local newHeight = bottomY - newY;
+    if newHeight ~= group:GetHeight() then
+        local recipetree_Box =  GET_CHILD(group, 'recipetree_Box', 'ui::CGroupBox');
+        group:Resize(group:GetWidth(), newHeight);
+        recipetree_Box:Resize(recipetree_Box:GetWidth(), newHeight - 20);
+    end
+   
+    -- 트리 초기화
+    local tree_box = GET_CHILD(group, 'recipetree_Box','ui::CGroupBox')
+    local tree = GET_CHILD(tree_box, 'recipetree','ui::CTreeControl')
+    if nil == tree then
+        return;
+    end
+
+    tree:Clear();
+    tree:EnableDrawTreeLine(false)
+    tree:EnableDrawFrame(false)
+    tree:SetFitToChild(true,200)
+    tree:SetFontName("brown_18_b");
+    tree:SetTabWidth(5);
+
+    local classList = _GET_INFO(categoryName);    
+    local shopType = frame:GetUserValue("SHOP_TYPE");
+    local slotHeight = ui.GetControlSetAttribute('earthTowerRecipe', 'height') + 5;
+    for index , cls in pairs(classList) do
+        if cls.ShopType == shopType then
+            if EARTH_TOWER_IS_ITEM_SELL_TIME(cls) == true then
+                local haveM = CRAFT_HAVE_MATERIAL(cls);
+                INSERT_ITEM(cls, tree, slotHeight, haveM, shopType);
+            end
+        end    
+    end
+
+    tree:OpenNodeAll();
+
+end
+
 
 function EARTH_TOWER_SHOP_EXEC(parent, ctrl)    
     local frame = parent:GetTopParentFrame();
@@ -890,7 +1260,6 @@ function EARTH_TOWER_SHOP_TRADE_ENTER()
 	local someflag = 0
 	for i = 0, resultlist:Count() - 1 do
 		local tempitem = resultlist:PtrAt(i);
-
 		if IS_VALUEABLE_ITEM(tempitem.ItemID) == 1 then
 			someflag = 1
 		end
@@ -927,6 +1296,7 @@ function EARTH_TOWER_SHOP_TRADE_ENTER()
                     ui.SysMsg(ClMsg("MaterialItemIsLock"));
                     return;
                 end
+                
                 session.AddItemID(invItem:GetIESID(), recipeItemCnt);
             end
         end
@@ -1302,4 +1672,41 @@ function EARTHTOWERSHOP_POINT_BUY_OPEN()
         REQ_ITEM_POINT_EXTRACTOR_OPEN("Mileage_SilverGacha")
         ui.GetFrame('item_point_extractor'):SetMargin(575, 5, 0, 0)
     end
+end
+
+---------------------- EVENT_2011_5TH
+function EVENT_2011_5TH_SPECIAL_SHOP_UPDATE_BTN_CLICK(parent, ctrl, argStr, argNum)
+	if ui.CheckHoldedUI() == true then
+		return;
+    end
+    
+    local coinTOS_count = GET_INV_ITEM_COUNT_BY_PROPERTY({{Name = "ClassName", Value = "Event_2011_TOS_Coin"}}, false);
+    if coinTOS_count < GET_EVENT_2011_5TH_SPECIAL_SHOP_UPDATE_NEED_COIN_COUNT() then
+        ui.SysMsg(ClMsg("NotEnoughRecipe"));
+        return;
+    end
+
+    ui.SetHoldUI(true);
+    ReserveScript("RELEASE_2011_5TH_SPECIAL_SHOP_UPDATE_HOLD()", 2);
+    ctrl:SetEnable(0);
+
+    control.CustomCommand("REQ_EVENT_2011_5TH_SPECIAL_SHOP_UPDATE", 0);
+end
+
+function RELEASE_2011_5TH_SPECIAL_SHOP_UPDATE_HOLD()
+    local frame = ui.GetFrame("earthtowershop");
+    local shopType = frame:GetUserValue("SHOP_TYPE");
+    if string.find(shopType, "EVENT_2011_5TH_Special_Shop") == nil then
+        return;
+    end
+
+    local ctrlSet = GET_CHILD_RECURSIVELY(frame, "EVENT_CONTROL_SET");
+    if ctrlSet ~= nil then
+        local ctrl = GET_CHILD(ctrlSet, "EVENT_CONTROL_SET");
+    end
+
+    local btn = GET_CHILD(ctrlSet, "update_Btn");
+    btn:SetEnable(1);
+
+    ui.SetHoldUI(false);
 end

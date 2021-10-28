@@ -1,6 +1,6 @@
 ClassID,GenType,Lv,Range,GenRange,RespawnTime,MaxPop,Minimap,Hide,UseAIOufOfPC,AnchorCount,UP_ReturnRange,P_MaxDialog,ClassType,Name,UniqueName,QuestName,Tag,Tactics,BTree,SimpleAI,Dialog,Enter,Leave,Save,OnlyPCCheck,SmartGen,Faction,ArgStr1,ArgStr2,ArgStr3,Tendency
 3,3,1,30,1,1,1,2,0,0,0,0,0,npc_SQR_master,[스콰이어 마스터]{nl}유스티나 르귄,,,,MON_DUMMY,,,JOB_SQUIRE3_1_NPC,,,NO,YES,NO,Neutral,,,,
-10,10,1,100,-1,60000,1,2,0,0,0,0,0,statue_vakarine,여신 바카리네의 상,,,,STOUP_CAMP,,,WARP_C_FEDIMIAN,STOUP_CAMP,STOUP_CAMP,NO,YES,NO,Neutral,,,,
+10,10,1,100,-1,60000,1,2,0,0,0,0,0,statue_vakarine,여신 바카리네의 상,,,,STOUP_CAMP,,EVENT_2011_5TH_FIREWORK_NPC_AI,WARP_C_FEDIMIAN,STOUP_CAMP,STOUP_CAMP,NO,YES,NO,Neutral,,,,
 11,11,1,30,1,60000,1,2,0,0,0,0,0,Warp_arrow,페디미안 외곽,,,,MON_DUMMY,,,,FEDMIAN_TO_REMAINS40,,NO,YES,NO,Neutral,,,,
 12,12,1,100,1,1,1,0,0,0,0,0,0,HiddenTrigger2,,,,,MON_DUMMY,,,,JOB_FEDIMIAN_TRIGGER,,NO,YES,NO,Neutral,,,,
 100,100,1,30,1,1,1,1,0,0,0,0,0,npc_grita,그리타,,,,MON_DUMMY,,,FEDIMIAN_GRITA,,,NO,YES,NO,Neutral,,,,
@@ -58,9 +58,9 @@ ClassID,GenType,Lv,Range,GenRange,RespawnTime,MaxPop,Minimap,Hide,UseAIOufOfPC,A
 5215,5215,1,1,1,60000,1,0,0,0,0,0,0,HiddenTrigger,[이벤트] 큐폴,,,,,,EVENT_FLEX_BOX_NPC_AI,EVENT_FLEX_BOX_NPC,,,NO,YES,NO,Neutral,,,,
 5216,5216,1,40,1,1,1,2,0,0,0,0,0,npc_fedimian_merchant_5,[테리아베리스의 수제자]{nl}나우요베스,,,,,,,FEDIMIAN_NAUJOVES,,,NO,YES,NO,Neutral,,,,
 5221,5221,1,40,-1,60000,1,2,0,0,0,0,0,Board3_Event,이벤트 게시판,,,,MON_DUMMY,,,EVENT_YOUR_MASTER_NPC,,,NO,YES,NO,Neutral,,,,
-5230,5230,1,40,1,60000,1,2,0,0,0,0,0,npc_sailor_f,[할로윈 이벤트]{nl}케도란 특별 상인,,,,,,,EVENT_2010_HALLOWEEN,,,NO,YES,NO,Neutral,,,,
 5231,5231,1,40,1,1,1,2,0,0,1,0,0,npc_Ragana_shop,[마신의 유혹]{nl}마신 라가나의 환영,,,,,,SHOP_NPC_RAGANA_CITY_AI,SHOP_NPC_RAGANA_CITY_1,,,NO,YES,NO,Neutral,,,,
 5232,5232,1,150,-1,1,1,0,0,0,0,0,0,FishingPlace,,,,,,,,,,,NO,YES,NO,Neutral,,,,
 5233,5233,1,40,-1,1,1,0,0,0,0,0,0,fishing_sign,,,,,,,,KLAPEDA_FISHING_BOARD,,,NO,YES,NO,Neutral,,,,
 5234,5234,1,1,-1,1,1,2,0,0,0,0,0,Event_FishingBox,[낚시 상점]{nl}요하의 살림통,,,,,,,EVENT_2011_FISHING_NPC,,,NO,YES,NO,Neutral,,,,
 5235,5235,1,40,1,60000,1,2,0,0,0,0,0,event_2001_cat,[낚시 이벤트]{nl}낚시터 고양이,,,,,,,EVENT_2011_CAT,,,NO,YES,NO,Neutral,,,,
+5237,5237,1,40,1,1,1,2,0,0,0,0,0,npc_huevill_female_1_Ev,[5주년] 특별한 케도라 상인,,,,,,,EVENT_2011_5TH_NPC,,,NO,YES,NO,Neutral,,,,

@@ -94,6 +94,16 @@ function MINIMAP_ON_INIT(addon, frame)
 	frame:SetEventScript(ui.MOUSEWHEEL, "MINIMAP_MOUSEWHEEL");
 end
 
+function RELOAD_MINIMAP(frame, mapName)
+	local pictureui  =	GET_CHILD(frame, 'map', 'ui::CPicture');
+	INIT_MAP_PICTURE_UI(pictureui , mapName, 0);
+	pictureui:SetImage(mapName .. "_fog");
+
+	local map_bg = GET_CHILD(frame, "map_bg", "ui::CPicture");
+	map_bg:SetImage(mapName);
+	map_bg:FillColor("AA000000");
+end
+
 function MINIMAP_FIRST_OPEN(frame)
 	if mini_pos == nil then
 		mini_pos = GET_CHILD_RECURSIVELY(frame, "my");

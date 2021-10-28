@@ -500,6 +500,9 @@
 		<Class ClassID="3060" ClassName="CanGetMiscWhenDecomposeMiscLegend" Data="아키스톤 분해 시 아키스톤 파편 10개를 획득합니다"/>
 		<Class ClassID="3061" ClassName="CanGetMiscWhenDecomposeAccEp12" Data="카랄리엔 액세서리 분해 시 재료로 사용된 바이올렛틴 크리스탈을 획득합니다."/>
 		<Class ClassID="3062" ClassName="SpecialDecompose" Data="특수 아이템 분해"/>
+		<Class ClassID="3069" ClassName="NotEnoughCompositionNeedItem" Data="합성에 필요한 아이템이 부족합니다."/>
+		<Class ClassID="3070" ClassName="CannotCompositionItem" Data="합성에 필요한 아이템이 아닙니다."/>
+		<Class ClassID="3071" ClassName="CannotCompositionUpgradeItem" Data="연성된 바이보라 장비는 합성이 불가능 합니다."/>
 		<Class ClassID="3074" ClassName="OnlyUseHavingZeroCount" Data="챌린지 모드 : 분열 특이점 입장 가능 횟수가 0 인 경우에만 사용 가능합니다."/>
 	</Category>
 	<Category Name="ItemPuzzle">
@@ -812,6 +815,8 @@
 		<Class ClassID="4306" ClassName="curtain_call_thema" Data="커튼 콜 테마"/>
 		<Class ClassID="4307" ClassName="GetPointByConsumingItem" Data="아이템을 소모하여 {@st66d_y}{COUNT}{/}포인트를 획득하시겠습니까?"/>
 		<Class ClassID="4308" ClassName="GetByPoint{Point}" Data="+{Point}점 획득"/>
+		<Class ClassID="4314" ClassName="Entrance_Ticket" Data="입장권"/>
+		<Class ClassID="4315" ClassName="Appearance_Item" Data="외형"/>
 		</Category>
 	<Category Name="ItemTooltip">
 		<Class ClassID="5001" ClassName="CoolDown : {Sec} Sec" Data="재사용 대기시간 : {Sec}초"/>
@@ -1864,6 +1869,7 @@
 		<Class ClassID="21412" ClassName="PleaseSelect" Data="선택해주세요"/>
 		<Class ClassID="21413" ClassName="SoloBuffSelect" Data="개인 버프"/>
 		<Class ClassID="21414" ClassName="PartyBuffSelect" Data="파티 버프"/>
+		<Class ClassID="21415" ClassName="NeedItem" Data="필요 아이템"/>
 		<Class ClassID="21416" ClassName="CoconeLoginError" Data="게임을 재시작 해주시기 바랍니다. ({ErrorMsg})"/>
 		</Category>
 	<Category Name="ChatText">
@@ -9294,7 +9300,7 @@
 		<Class ClassID="90257" ClassName="WhiteDayShop2003" Data="화이트데이 이벤트 상점"/>
 		<Class ClassID="90258" ClassName="Unique_Boss_Glacier_TYPE1" Data="하얀 마녀의 숲 : 유니크 진입(1인)"/>
 		<Class ClassID="90259" ClassName="Unique_Boss_Glacier_TYPE2" Data="하얀 마녀의 숲 : 유니크 진입(5인)"/>
-		<Class ClassID="90270" ClassName="430lvupCard_MSG" Data="{nl} {nl}사용 시 1레벨에서 430레벨 도달까지 필요한 만큼의 경험치를 얻습니다.{nl} {nl}{@st66d_y}경험치 카드를 사용하시겠습니까?"/>
+		<Class ClassID="90270" ClassName="430lvupCard_MSG" Data="{nl} {nl}사용 시 1레벨에서 431레벨 도달까지 필요한 만큼의 경험치를 얻습니다.{nl} {nl}{@st66d_y}경험치 카드를 사용하시겠습니까?"/>
 		<Class ClassID="90260" ClassName="2004_UPHILL_SEL_MSG1" Data="이벤트 설명"/>
 		<Class ClassID="90261" ClassName="2004_UPHILL_SEL_MSG2" Data="이벤트 던전 입장"/>
 		<Class ClassID="90262" ClassName="2004_UPHILL_TREE_SEL_MSG1" Data="충격 버프를 받는다."/>
@@ -14408,6 +14414,35 @@
 		<Class ClassID="302215" ClassName="FishingShop2011" Data="[낚시 이벤트] 미꾸라지 상점"/>
 		<Class ClassID="302216" ClassName="EVENT_2011_FISHING_CAT_MSG2" Data="소지하고 있는 {#0033FF}[이벤트] 꽁치{/}가 없습니다."/>
 		<Class ClassID="302217" ClassName="EVENT_2011_FISHING_CHECK_MESSAGE1{BAIT}{TRADE}" Data="[이벤트] 꽁치 낚시{nl}[이벤트] 미꾸라지 일일 수령 횟수 {#3366FF}({BAIT}/1회){/}{nl}이벤트 기간 중 [낚시 이벤트] 정체불명 떡밥통 교환 횟수{#3366FF}({TRADE}/200회){/}{nl}{#FF0000}※일일 수령 횟수는 매일 오전 6시 초기화 됩니다.{nl}※이벤트 기간 중 [낚시 이벤트] 정체불명 떡밥통의 최대 교환 횟수는 200회 입니다.(이후 교환 시 버프만 획득 가능합니다.){/}"/>
+		<Class ClassID="302218" ClassName="EVENT_2011_5TH_COLOR_TITLE" Data="{#003399}[5주년]{/}"/>
+		<Class ClassID="302219" ClassName="EVENT_2011_5TH_Offline_Acquire{POINT}" Data="오프라인 상태에서 이벤트 포인트가 {POINT}만큼 누적되었습니다."/>
+		<Class ClassID="302220" ClassName="EVENT_2011_5TH_EVENT_NOTICE" Data="이벤트 안내"/>
+		<Class ClassID="302221" ClassName="EVENT_2011_5TH_Normal_Shop" Data="일반 상점"/>
+		<Class ClassID="302222" ClassName="EVENT_2011_5TH_Special_Shop" Data="특별한 비밀 상점"/>
+		<Class ClassID="302223" ClassName="EVENT_2011_5TH_Special_Shop_name{GRADE}" Data="{GRADE}등급 비밀상점"/>
+		<Class ClassID="302224" ClassName="EVENT_2011_5TH_Special_Shop_Update_Tooltip" Data="[이벤트] TOS 주화 100개를 사용해 갱신합니다."/>
+		<Class ClassID="302225" ClassName="EVENT_2011_5TH_Special_Shop_Update_Type_empty" Data="갱신 가능한 상점이 없습니다."/>
+		<Class ClassID="302226" ClassName="EVENT_2011_5TH_Special_Shop_Item_MSG_1" Data="5주년 기념 주화 2000개 소비 후 구매 가능합니다."/>
+		<Class ClassID="302227" ClassName="EVENT_2011_5TH_Special_Shop_Item_MSG_2" Data="[이벤트] 바이보라 유니크 무기 계열 선택 상자 Lv.1 아이템 구입 후 구매 가능합니다."/>		
+		<Class ClassID="302228" ClassName="EVENT_2011_5TH_Special_Vibora_Shop" Data="특별한 바이보라 합성점"/>
+		<Class ClassID="302229" ClassName="EVENT_2011_5TH_Special_Vibora_Shop_title" Data="[5주년] 바이보라 합성"/>
+		<Class ClassID="302230" ClassName="EVENT_2011_5TH_Special_Vibora_Shop_tip" Data="보유한 LV1 바이보라 무기를 이벤트 주화와 합성하여 무작위 바이보라 무기를 획득합니다.(확률에 따라 합성 재료로 사용한 LV1 바이보라 무기와 동일한 무기를 획득할 수 있습니다.)"/>
+		<Class ClassID="302231" ClassName="EVENT_2011_5TH_Special_Vibora_Shop_Max_Count_Over" Data="이용 가능한 합성 횟수를 모두 이용하셨습니다."/>
+		<Class ClassID="302232" ClassName="EVENT_2011_5TH_Special_Shop_Item_MSG_3" Data="현재 소비한 5주년 기념 주화 : {CNT}개"/>
+		<Class ClassID="302233" ClassName="EVENT_2011_5TH_FIREWORK_BUFF_CHECK_MESSAGE1{FIREWORK}" Data="[이벤트] 5주년 불꽃놀이{nl}TOS 5주년의 불꽃 버프 수령 횟수 {#3366FF}({FIREWORK}/3회){/}{nl}{#FF0000}※일일 버프 수령 횟수는 매일 오전 6시 초기화 됩니다.{/}"/>
+		<Class ClassID="302253" ClassName="EVENT_2011_5TH_Special_Shop_Sub_title" Data="비밀상점 등급 확률"/>
+		<Class ClassID="302254" ClassName="NextLevelNeedPoint" Data="다음 레벨 업 까지 필요한 포인트"/>
+		<Class ClassID="302255" ClassName="EventLevelGradeSection" Data="이벤트 레벨 등급 구간"/>
+		<Class ClassID="302256" ClassName="ShopGradeRatio" Data="상점 등급 확률"/>
+		<Class ClassID="302257" ClassName="EVENT_2011_5TH_Special_Shop_Grade_text_1" Data="C등급 : 100%"/>
+		<Class ClassID="302258" ClassName="EVENT_2011_5TH_Special_Shop_Grade_text_2" Data="C등급 : 47% {nl}B등급 : 40% {nl}A등급 : 10%{nl}S등급 : 3%"/>
+		<Class ClassID="302259" ClassName="EVENT_2011_5TH_Special_Shop_Grade_text_3" Data="C등급 : 25% {nl}B등급 : 50% {nl}A등급 : 20%{nl}S등급 : 5%"/>
+		<Class ClassID="302260" ClassName="EVENT_2011_5TH_Special_Shop_Grade_text_4" Data="C등급 : 5% {nl}B등급 : 30% {nl}A등급 : 50%{nl}S등급 : 15%"/>
+		<Class ClassID="302261" ClassName="EVENT_2011_5TH_Special_Shop_Grade_text_5" Data="B등급 : 5% {nl}A등급 : 35%{nl}S등급 : 60%"/>
+		<Class ClassID="302271" ClassName="EVENT_2011_5TH_Special_Shop_Item_MSG_4{CNT}" Data="[이벤트] 5주년 기념 주화 소비 : {CNT}"/>
+		<Class ClassID="302272" ClassName="EVENT_2011_5TH_Special_Shop_Item_MSG_5" Data="[이벤트] 5주년 바이보라 유니크 무기 계열 선택 상자는 5주년 특별 상점에서 5주년 기념주화 2000개를 소비해야 구매할 수 있습니다.{nl}[이벤트] 5주년 바이보라 유니크 무기 계열 선택 상자 구매 후{nl}[이벤트] 5주년 바이보라 유니크 무기 랜덤 상자를 구매할 수 있습니다.{nl}"/>
+		<Class ClassID="302273" ClassName="EVENT_2011_5TH_Use_5th_Coin_tip_MSG_1" Data="주화 교환은 '[이벤트] 5주년 바이보라 유니크 무기 계열 선택 상자'를 구매하기 위한{nl} 소비 조건에 해당되지 않습니다."/>
+		<Class ClassID="302274" ClassName="EVENT_2011_5TH_Use_5th_Coin_tip_MSG_2" Data="바이보라 합성에 사용되는 주화는 '[이벤트] 5주년 바이보라 유니크 무기 계열 선택 상자'를 구매하기 위한{nl} 소비 조건에 해당되지 않습니다."/>
 	</Category>
 	<Category Name="Account">
 		<Class ClassID="303001" ClassName="MaxAccountWarehouseCount" Data="팀 창고"/>
@@ -15643,6 +15678,7 @@
 		<Class ClassID="560037" ClassName="malsuns_emotion86" Data="{nl} {nl}사용한 캐릭터가 채팅 이모티콘을 흭득합니다.{nl} {nl}{#FF0000}사용 후 복구가 불가능합니다.{nl} {nl}{@st66d_y}이모티콘을 습득하시겠습니까?"/>
 		<Class ClassID="560038" ClassName="malsuns_emotion87" Data="{nl} {nl}사용한 캐릭터가 채팅 이모티콘을 흭득합니다.{nl} {nl}{#FF0000}사용 후 복구가 불가능합니다.{nl} {nl}{@st66d_y}이모티콘을 습득하시겠습니까?"/>
 		<Class ClassID="560039" ClassName="Hitomico_emoticon_01" Data="{nl} {nl}사용한 캐릭터가 채팅 이모티콘을 흭득합니다.{nl} {nl}{#FF0000}사용 후 복구가 불가능합니다.{nl} {nl}{@st66d_y}이모티콘을 습득하시겠습니까?"/>
+		<Class ClassID="560043" ClassName="Zanas_emotion01" Data="{nl} {nl}사용한 캐릭터가 채팅 이모티콘을 흭득합니다.{nl} {nl}{#FF0000}사용 후 복구가 불가능합니다.{nl} {nl}{@st66d_y}이모티콘을 습득하시겠습니까?"/>
 	</Category>
 	<Category Name="Gesture">
 		<Class ClassID="570000" ClassName="Already_Gesture" Data="이미 보유한 제스처입니다."/>
@@ -15675,7 +15711,7 @@
 		<Class ClassID="590004" ClassName="Weekly_Total_Point_Get_Success_Msg_command" Data="{#33FF33}현재 누적된 통합 포인트 : {TotalPoint}{nl}(주간 획득 가능한 통합 포인트 : {NowPoint}/{MaxPoint}){/}"/>
 		<Class ClassID="590005" ClassName="CONTENTS_TOTAL_POINT_extract" Data="통합 포인트 교환"/>
 		<Class ClassID="590006" ClassName="SEASONOFF_CONTENTS_TOTAL_SHOP" Data="시즌오프 콘텐츠 통합 상점"/>
-		<Class ClassID="590007" ClassName="CONTENTS_TOTAL_POINT_extract_tooltip" Data="아이템을 교환하여 콘텐츠 통합 포인트를 획득할 수 있습니다{nl} - 그을린 텔하르샤의 의장품 1개 = 300포인트{nl} - 글레이시어 심장 1개 = 300포인트{nl} - 모스 탈크 파우더 1개 = 300포인트 - 브리키나이트 1개 = 300포인트{nl} - 마정석 1개 = 200포인트{nl} - 신비한 서 낱장 1개 = 200포인트{nl} - 프락토늄 1개 = 200포인트{nl} - 축복받은 조각 1개 = 20포인트 {nl} - 여신의 축복석 1개 = 200포인트"/>
+		<Class ClassID="590007" ClassName="CONTENTS_TOTAL_POINT_extract_tooltip" Data="아이템을 교환하여 콘텐츠 통합 포인트를 획득할 수 있습니다{nl} - 그을린 텔하르샤의 의장품 1개 = 300포인트{nl} - 정제된 글레이시어 심장 1개 = 300포인트{nl} - 정제된 모스 탈크 파우더 1개 = 300포인트{nl} - 브리키나이트 1개 = 300포인트{nl} - 마정석 1개 = 200포인트{nl} - 신비한 서 낱장 1개 = 200포인트{nl} - 프락토늄 1개 = 200포인트{nl} - 축복받은 조각 1개 = 20포인트 {nl} - 여신의 축복석 1개 = 200포인트"/>
 	</Category>
 	<Category Name="RiftDungeon">
 		<Class ClassID="591000" ClassName="Rift_Dungeon_Select_Level" Data="{Level} 단계 차원 붕괴 입장"/>
@@ -15782,6 +15818,26 @@
 		<Class ClassID="596021" ClassName="ImpossibleVoteObj" Data="투표가능한 대상이 아닙니다."/>
 		<Class ClassID="596022" ClassName="OnlyInputNumberText" Data="숫자만 입력해주세요"/>
 		<Class ClassID="596023" ClassName="AlreadyMaxEventCoinMsg" Data="더이상 [이벤트] 여신의 룰렛 코인을 획득하실 수 없습니다. 보상을 획득 하시겠습니까?"/>
+		<Class ClassID="596024" ClassName="EVENT_2011_5TH_TITLE" Data="5주년 이벤트"/>
+		<Class ClassID="596025" ClassName="EVENT_2011_5TH_MSG_1" Data="TOS 주화 획득처"/>
+		<Class ClassID="596026" ClassName="EVENT_2011_5TH_MSG_2" Data="5주년 기념 주화 획득처"/>
+		<Class ClassID="596027" ClassName="EventPoint" Data="이벤트 포인트"/>
+		<Class ClassID="596028" ClassName="EventLevel" Data="이벤트 레벨"/>
+		<Class ClassID="596029" ClassName="EVENT_2011_5TH_MSG_3" Data="[이벤트] TOS 주화, [이벤트] 5주년 기념 주화 일일 획득 제한은 매일 오전 06시 초기화 됩니다."/>
+		<Class ClassID="596030" ClassName="EVENT_2011_5TH_MSG_4" Data="일일 [이벤트] TOS 주화"/>
+		<Class ClassID="596031" ClassName="EVENT_2011_5TH_MSG_5" Data="이벤트 기간중 총 획득한 5주년 기념 주화 개수"/>
+		<Class ClassID="596032" ClassName="EVENT_2011_5TH_MSG_6" Data="[이벤트] 5주년 기념 주화 일일 필드 사냥 제한"/>
+		<Class ClassID="596033" ClassName="EventDailyPlayTime" Data="이벤트 일일 누적 접속 시간"/>		
+		<Class ClassID="596034" ClassName="EVENT_2011_5TH_MSG_7" Data="일반 필드 몬스터 사냥 시 낮은 확률로 3개의 주화를 획득할 수 있습니다.{nl}(챌린지 모드, 차원 붕괴, 레이드 몬스터 제외)"/>
+		<Class ClassID="596035" ClassName="EVENT_2011_5TH_MSG_8" Data="엘리트 필드 몬스터 사냥 시 높은 확률로 5개의 주화를 획득할 수 있습니다.{nl}(챌린지 모드, 차원 붕괴, 레이드 몬스터 제외)"/>
+		<Class ClassID="596036" ClassName="EVENT_2011_5TH_MSG_9" Data="1시간 접속 시 마다"/>
+		<Class ClassID="596037" ClassName="EVENT_2011_5TH_MSG_10" Data="[이벤트] TOS 주화 100개 획득 시 마다"/>
+		<Class ClassID="596038" ClassName="EVENT_2011_5TH_MSG_11" Data="[이벤트] TOS 주화 100:1 교환"/>
+		<Class ClassID="596039" ClassName="EVENT_2011_5TH_MSG_12" Data="필드 몬스터 주화 획득 제한 일일 최대 100개(오전 06시 초기화){nl}캐릭터와 몬스터의 레벨이 30레벨이상 차이날 경우 주화를 획득할 수 없습니다."/>
+		<Class ClassID="596040" ClassName="EVENT_2011_5TH_MSG_13" Data="접속 시간 5주년 기념 주화 획득 제한 일일 10회"/>
+		<Class ClassID="596041" ClassName="EVENT_2011_5TH_MSG_14" Data="[이벤트] 5주년 기념 주화 레전드, 1인 레이드 획득 제한"/>
+		<Class ClassID="596042" ClassName="EVENT_2011_5TH_MSG_15" Data="이벤트 기간 중 획득 가능한 [이벤트] 5주년 기념 주화 개수는 레전드, 1인 레이드를 합하여 1400개 입니다."/>
+		<Class ClassID="596043" ClassName="EVENT_2011_5TH_MSG_16" Data="1레벨 : 0 ~ 499 포인트{nl}2레벨 : 500 ~ 999 포인트{nl}3레벨 : 1000 ~ 1499 포인트{nl}4레벨 : 1500 ~ 1999 포인트{nl}5레벨 : 2000 포인트"/>
 	</Category>
 	<Category Name="EVENT_2009_FULLMOON">
 		<Class ClassID="599000" ClassName="EventState" Data="이벤트 현황"/>

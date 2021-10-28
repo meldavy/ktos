@@ -7310,14 +7310,17 @@
             </HitList>
             <EtcList>
                 <Anim Time="0" Anim="skl1" Speed="0.69999999"/>
-                <Scp Scp="SKL_SET_TARGET_CIRCLE" Client="NO" UseSleep="NO" Time="0">
+                <Scp Scp="SKL_SET_TARGET_CIRCLE_DISTANCE" Client="NO" UseSleep="NO" Time="0">
                     <Pos Angle="0" Dist="0"/>
-                    <Num Num="300"/>
-                    <Num Num="5"/>
+                    <Num Num="500"/>
+                    <Num Num="1"/>
                     <Num Num="2"/>
+                    <Num Num="0"/>
+                    <Str_Arg Str="None" Arg="1"/>
                     <Num Num="0"/>
                     <Num Num="1"/>
                     <Num Num="0"/>
+                    <Num Num="1"/>
                 </Scp>
                 <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="1000">
                     <Str_Arg Str="F_explosion123_5" Arg="7.5"/>
@@ -7326,7 +7329,7 @@
                 </Scp>
                 <Anim Time="2600" Anim="skl1" Speed="1" StartTime="1.9"/>
                 <Scp Scp="SKL_SETPOS" Client="NO" UseSleep="NO" Time="2600">
-                    <Pos Angle="0" Dist="0" Rand="280" PosType="10"/>
+                    <Pos Angle="0" Dist="0" Rand="280" PosType="8"/>
                     <Str_Arg Str="F_sys_target_boss1" Arg="1"/>
                     <Num Num="0"/>
                 </Scp>

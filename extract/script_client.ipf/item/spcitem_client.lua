@@ -59,6 +59,16 @@ end
 function ANCIENT_SCROLL_EMPTY_USE(iesID)
 end
 
+-- doll_lucy
+function SCR_BARRACK_CREATE_FAIRY_DOLL_LUCY(handle)
+	SCR_CREATE_FAIRY(handle, "doll_lucy");
+end
+
+-- doll_tiny
+function SCR_BARRACK_CREATE_FAIRY_DOLL_TINY(handle)
+	SCR_CREATE_FAIRY(handle, "doll_tiny");
+end
+
 -- doll_gabia
 function SCR_BARRACK_CREATE_FAIRY_DOLL_GABIA(handle)
 	SCR_CREATE_FAIRY(handle, "doll_gabia");
@@ -68,6 +78,10 @@ function SCR_BARRACK_CREATE_FAIRY_DOLL_HAUBERK(handle)
 	SCR_CREATE_FAIRY(handle, "doll_hauberk");
 end
 
+function SCR_BARRACK_CREATE_FAIRY_DOLL_VAKARINE(handle)
+	SCR_CREATE_FAIRY(handle, "doll_vakarine");
+end
+
 -- wing item effect offset
 function SCR_USE_COMPANION_OFFSET(handle)
 	local obj = world.GetActor(handle);
@@ -75,6 +89,8 @@ function SCR_USE_COMPANION_OFFSET(handle)
 		obj:GetAnimEvent():SetUseCompanionOffSet(true);
     end
 end
+
+
 
 function ANCIENT_CARD_CHECK_REGISTER(invItem)
 	local itemobj = GetIES(invItem:GetObject());

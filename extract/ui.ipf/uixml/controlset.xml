@@ -5262,7 +5262,7 @@
 	<controlset name="icon_with_current_state" hittest="true" width="518" height="99" hittestset="false" draw="true" skin="test_skill_skin3">
 		<controls>
 			<groupbox name="gb" rect="0 0 500 80" margin="0 0 0 0" layout_gravity="center center" scrollbar="false" draw="false"/>
-			<picture name="iconpic" rect="0 0 97 74" margin="20 1 0 0" layout_gravity="left center" hittest="false"/>
+			<picture name="iconpic" rect="0 0 97 74" margin="15 1 0 0" layout_gravity="left center" hittest="false"/>
 			<richtext name="text" rect="0 0 375 100" margin="0 -20 20 0" layout_gravity="right center" fontname="black_18_b" format="%s" param1="value" param1_def="내용" fixwidth="false" autofontsizebywidth="375"/>
 			<labelline name="labelline" rect="0 0 212 2" margin="0 0 10 0" layout_gravity="right center" skin="labelline_def_2"/>
 			<richtext name="state" rect="0 0 500 100" margin="0 20 20 0" layout_gravity="right center" format="{@st42b}{ds}{s18}({#fff200}%s{/}%s)" param1="cur" param1_def="0" param2="max" param2_def="0"/>
@@ -5282,9 +5282,10 @@
 			<picture name="checkline" rect="0 0 430 22" margin="50 0 0 0" layout_gravity="left center" image="red_check_line" hittest="false"/>
 		</controls>
 	</controlset>
-	<controlset name="simple_to_do_list" hittest="true" width="501" height="64" draw="true" hittestset="false" skin="test_skill_skin3">
+	<controlset name="simple_to_do_list" hittest="true" width="501" height="64" draw="true" hittestset="true">
 		<controls>
-			<richtext name="rewardtext" rect="0 0 300 50" margin="20 0 0 0" layout_gravity="left center" hittest="true" fontname="black_16_b" format="%s" param1="value" fixwidth="true"/>
+			<groupbox name="gb" rect="0 0 501 64" margin="0 0 0 0" layout_gravity="center center" skin="test_skill_skin3" scrollbar="false"/>
+			<richtext name="rewardtext" rect="0 0 300 50" margin="20 0 0 0" layout_gravity="left center" hittest="false" fontname="black_16_b" format="%s" param1="value" fixwidth="true"/>
 			<picture name="rewardicon" rect="0 0 39 39" margin="0 -1 65 0" layout_gravity="right center" image="icon_item_Event_Roulette_Coin" stretch="true"/>
 			<richtext name="rewardcnt" rect="0 0 50 40" margin="0 0 5 0" layout_gravity="right center" format="{@st42b}{ds}{s16}x %s" param1="value" fixwidth="true" hittest="false"/>
 		</controls>
@@ -5695,6 +5696,13 @@
 			<picture name="buff_member_icon_3" rect="0 0 15 12" margin="20 0 0 0" parent="buff_member_gb" image="None" layout_gravity="left top" hittest="false"/>
 			<picture name="buff_member_icon_4" rect="0 0 15 12" margin="30 0 0 0" parent="buff_member_gb" image="None" layout_gravity="left top" hittest="false"/>
 			<picture name="buff_member_icon_5" rect="0 0 15 12" margin="40 0 0 0" parent="buff_member_gb" image="None" layout_gravity="left top" hittest="false"/>
+		</controls>
+	</controlset>
+		<controlset name="event_5th_special_shop_controlset" hittest="true" width="560" height="50" draw="false">
+		<controls>
+			<richtext name="coinTOS_text" rect="0 0 150 30" margin="20 0 0 0" layout_gravity="left top" textalign="left top" fontname="black_16_b" format="%s : %s개" param1="name" param2="value"/>
+			<richtext name="coin5TH_text" rect="0 0 150 30" margin="20 25 0 0" layout_gravity="left top" textalign="left top" fontname="black_16_b" format="%s : %s개" param1="name" param2="value"/>
+			<button name="update_Btn" rect="0 0 90 40" margin="0 0 50 0" layout_gravity="right center" format="{@st41}갱신" skin="test_red_button"/>
 		</controls>
 	</controlset>
 </controlsetlist>

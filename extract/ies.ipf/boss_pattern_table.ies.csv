@@ -1,6 +1,6 @@
 ClassID,EndTime,arg2,ClassName,Name,SkillClassName,Type,StartTime,ConditionScript,arg1,Icon,ToolTip
 1,900000,0,Weekly_Ice_Wall,아이스 월,Mon_weekly_pattern_Skill_1,Map,13000,,0,Weekly_IceWall,주기적으로 아이스 월을 생성합니다.{nl}아이스 월은 주변의 적을 얼어붙게 합니다.
-2,900000,0,Weekly_Boom,폭탄,Mon_weekly_pattern_Skill_2,,13000/60000,,0,Weekly_Boom,랜덤한 위치에 폭탄 n개을 생성합니다. 생성된 폭탄은 3초 이후에 터지면서 주변 적에게 대미지와 넉다운을 줍니다.
+2,900000,0,Weekly_Flower_Scent,꽃향기,Mon_weekly_pattern_Skill_2,Map,3000,,,the_scent_of_a_flower,"랜덤한 위치에 꽃이 생성됩니다.{nl}해당 꽃 근처에 있으면 꽃향기 버프를 획득할 수 있습니다.{nl}꽃향기 버프는 중첩당 대미지 30%를 증가시켜줍니다.{nl}꽃향기 버프가 3 중첩이라면 10초 동안 모든 패턴이 동작하지 않으며, 보스 몬스터가 스턴상태가 됩니다."
 3,900000,0,Weekly_Poison,독약병,Mon_weekly_pattern_Skill_3,,13000/60000,,0,Weekly_Poison,랜덤 위치에 독약병 10개를 설치합니다.{nl} 독약병을 밟으면 폭발하여 대미지를 주고 이동속도를 감소시킵니다.
 4,900000,0,Weekly_Ballista,발리스타,Mon_weekly_pattern_Skill_4,,13000/60000,,0,Weekly_Ballista,발리스타가 주기적으로 생성됩니다. 발리스타에게 피격되면 출혈상태가 됩니다.
 5,900000,0,Weekly_FireWall,불 장벽,Mon_weekly_pattern_Skill_5,Map,18000,,0,Weekly_FireWall,직선으로 이동하는 불 장벽이 생성됩니다. 해당 장벽에 접근 시 넉백되며 지속 피해를 입습니다.
@@ -46,7 +46,7 @@ ClassID,EndTime,arg2,ClassName,Name,SkillClassName,Type,StartTime,ConditionScrip
 45,900000,0,Weekly_DR_UP,회피 특화,Mon_weekly_pattern_Skill_45,,3000,Weekly_Passive,Weekly_DR_UP_Buff,Weekly_DR_UP,보스 몬스터의 회피가 2000 증가합니다.
 46,900000,0,Weekly_CRT_UP,치명타 특화,Mon_weekly_pattern_Skill_46,Passive,3000,Weekly_Passive,Weekly_CRT_UP_Buff,Weekly_CRT_UP,보스 몬스터의 치명타 발생과 치명타 대미지가 50%증가합니다..
 47,900000,0,Weekly_NormalSkill_Reinforce,일반 공격 특화,Mon_weekly_pattern_Skill_47,Passive,3000,Weekly_Passive,Weekly_NormalSkill_Reinforce_Buff,Weekly_SPDRATE_UP,이번 시즌 보스 몬스터의 일반 공격 스킬이 강화됩니다.
-48,900000,0,Weekly_DecreaseHeal,치유량 감소,Mon_weekly_pattern_Skill_48,,3000/60000,Weekly_Passive,0,Weekly_DecreaseHeal,회전하는 비전 구체를 소환합니다. 회전하는 방향을 따라 이동하는 것이 좋을 것 같습니다.
+48,900000,0,Weekly_DEF_UP,방어력 특화,Mon_weekly_pattern_Skill_48,Passive,3000,Weekly_Passive,Weekly_DEF_UP_Buff,Blocked,이번 시즌 보스 몬스터의 방어력과 마법 방어력이 150%증가합니다.
 49,900000,0,Weekly_BLK,블록 특화,Mon_weekly_pattern_Skill_49,Passive,3000,Weekly_Passive,Weekly_BLK_UP_Buff,Weekly_BLK_UP,보스 몬스터가 블록이 가능해집니다.
 50,900000,0,Weekly_HR_UP,명중 특화,Mon_weekly_pattern_Skill_50,,3000,Weekly_Passive,Weekly_HR_UP,Weekly_HR_UP,보스 몬스터의 명중이 3000 증가합니다.
 101,900000,0,FieldRift_Ice_Wall,아이스 월,Mon_FieldRift_pattern_Skill_1,Map,3000,,0,Weekly_IceWall,주기적으로 아이스 월을 생성합니다.{nl}아이스 월은 주변의 적을 얼어붙게 합니다.

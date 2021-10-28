@@ -273,7 +273,7 @@
                     <Str Str="voice_cleric_m_stoneskin_shot"/>
                     <Str Str="voice_cleric_stoneskin_shot"/>
                 </Scp>
-                <Scp Scp="SKL_BUFF" Client="NO" UseSleep="NO" Time="790">
+                <Scp Scp="SKL_BUFF" Client="NO" UseSleep="NO" Time="300">
                     <Str Str="StoneSkin_Buff"/>
                     <Num Num="1" UseFunc="1" FuncTxt="return obj.Level;"/>
                     <Num Num="0"/>
@@ -392,35 +392,35 @@
     </Skill>
     <Skill Name="Paladin_Barrier">
         <KeyInputStart>
-            <ToolScp Client="YES" Scp="MONSKL_C_PLAY_ANIM" UseSleep="NO">
+            <ToolScp Scp="MONSKL_C_PLAY_ANIM" Client="YES" UseSleep="NO">
                 <Str Str="SKL_WARDIZATION_LOOP"/>
                 <Num Num="1"/>
                 <Num Num="1"/>
             </ToolScp>
         </KeyInputStart>
-        <MainSkl JumpFlee="NO" MSPDToUsePos="0" ScrLock="None">
+        <MainSkl ScrLock="None" JumpFlee="NO" MSPDToUsePos="0">
             <HitList>
-                <Frame Angle="0" AniTime="100199" Dist="0" ForceATK="0" HitCount="1" PosType="0" RandDist="0" RandomPerHit="0" RotAngle="0" SklAngle="0.17453292" TermMax="0" TermMin="0" Time="99999" Type="FAN"/>
+                <Frame Type="FAN" Time="99999" HitCount="1" TermMin="0" TermMax="0" PosType="0" Dist="0" RandDist="0" RandomPerHit="0" Angle="0" SklAngle="0.17453292" AniTime="100199" RotAngle="0" ForceATK="0" ScriptIndex="0" ScriptName="" SkillType="0"/>
             </HitList>
             <EtcList>
-                <Scp Client="YES" Scp="C_VOICE_SOUND" Time="0" UseSleep="NO">
+                <Scp Scp="C_VOICE_SOUND" Client="YES" UseSleep="NO" Time="0">
                     <Str Str="voice_cleric_m_barrier_shot"/>
                     <Str Str="voice_cleric_barrier_shot"/>
-                </Scp>
-                <Scp Client="NO" Scp="MONSKL_CRE_PAD" Time="500" UseSleep="NO">
-                    <Pos Angle="0" Dist="0"/>
-                    <Angle Angle="0"/>
-                    <Str Str="Cleric_Barrier_PC"/>
                 </Scp>
                 <Scp Scp="SKL_BUFF_ABIL" Client="NO" UseSleep="NO" Time="500">
                     <Str Str="Paladin20"/>
                     <Str Str="Skill_Durability_Buff"/>
                     <Num Num="99"/>
                     <Num Num="0"/>
-                    <Num FuncTxt="return obj.Level * 4000" UseFunc="1" Num="4000"/>
+                    <Num Num="4000" UseFunc="1" FuncTxt="return obj.Level * 4000"/>
                     <Num Num="1"/>
                     <Num Num="100"/>
                     <Num Num="0"/>
+                </Scp>
+                <Scp Scp="MONSKL_CRE_PAD" Client="NO" UseSleep="NO" Time="700">
+                    <Pos Angle="0" Dist="0"/>
+                    <Angle Angle="0"/>
+                    <Str Str="Cleric_Barrier_PC"/>
                 </Scp>
             </EtcList>
         </MainSkl>
@@ -442,7 +442,7 @@
                return func(obj.Level)"/>
                 </Scp>
                 <Scp Scp="C_EFFECT_POS" Client="YES" UseSleep="NO" Time="300">
-                    <Str_Arg Str="F_cleric_ResistElements_ground" Arg="1"/>
+                    <Str_Arg Str="F_cleric_ResistElements_ground" Arg="0.5"/>
                     <Pos Angle="0" Dist="0"/>
                     <Num Num="0"/>
                     <Str Str="None"/>

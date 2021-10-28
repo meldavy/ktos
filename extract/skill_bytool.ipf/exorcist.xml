@@ -79,8 +79,8 @@
                 </Scp>
                 <Scp Scp="C_SHOCKWAVE" Client="YES" UseSleep="NO" Time="400">
                     <Num Num="5"/>
-                    <Num Num="0.5"/>
-                    <Num Num="45"/>
+                    <Num Num="1.3"/>
+                    <Num Num="70"/>
                     <Num Num="999"/>
                 </Scp>
                 <Scp Scp="C_EFFECT_POS" Client="YES" UseSleep="NO" Time="500">

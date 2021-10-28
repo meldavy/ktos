@@ -331,6 +331,10 @@
                 <Str Str="Barbarian41"/>
                 <Num Num="1"/>
             </ToolScp>
+            <ToolScp Scp="C_SKL_LOCK_ROTATE_ABIL" Client="YES" UseSleep="NO">
+                <Str Str="Barbarian41"/>
+                <Num Num="1"/>
+            </ToolScp>
         </KeyInputStart>
         <KeyInputEnd>
             <ToolScp Scp="SKL_BUFF_REMOVE" Client="NO" UseSleep="NO">
@@ -347,6 +351,9 @@
                 <Str Str="voice_war_atk_long_cast"/>
             </ToolScp>
             <ToolScp Scp="C_SKL_LOCK_MOVE" Client="YES" UseSleep="NO">
+                <Num Num="0"/>
+            </ToolScp>
+            <ToolScp Scp="C_SKL_LOCK_ROTATE" Client="YES" UseSleep="NO">
                 <Num Num="0"/>
             </ToolScp>
         </KeyInputEnd>

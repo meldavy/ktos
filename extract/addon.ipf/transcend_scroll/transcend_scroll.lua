@@ -72,6 +72,12 @@ function TRANSCEND_SCROLL_SET_TARGET_ITEM(invframe, invItem)
 			ui.SysMsg(ClMsg("TranscendScrollSetDisabledItem"));
 		elseif scrollType == "transcend_Set_440_Accessory" then
 			ui.SysMsg(ClMsg("TranscendScrollSetDisabledItem"));
+		elseif scrollType == "transcend_Set_440_Weapon_Old" then
+			ui.SysMsg(ClMsg("TranscendScrollSetDisabledItem"));
+		elseif scrollType == "transcend_Set_440_Armor_Old" then
+			ui.SysMsg(ClMsg("TranscendScrollSetDisabledItem"));
+		elseif scrollType == "transcend_Set_440_Accessory_Old" then
+			ui.SysMsg(ClMsg("TranscendScrollSetDisabledItem"));
 		end
 		return;
 	end
@@ -168,6 +174,12 @@ function TRANSCEND_SCROLL_EXEC_ASK_AGAIN(frame, btn)
 		elseif scrollType == "transcend_Set_440_Armor" then
 			ui.SysMsg(ClMsg("TranscendScrollSetDisabledItem"));
 		elseif scrollType == "transcend_Set_440_Accessory" then
+			ui.SysMsg(ClMsg("TranscendScrollSetDisabledItem"));
+		elseif scrollType == "transcend_Set_440_Weapon_Old" then
+			ui.SysMsg(ClMsg("TranscendScrollSetDisabledItem"));
+		elseif scrollType == "transcend_Set_440_Armor_Old" then
+			ui.SysMsg(ClMsg("TranscendScrollSetDisabledItem"));
+		elseif scrollType == "transcend_Set_440_Accessory_Old" then
 			ui.SysMsg(ClMsg("TranscendScrollSetDisabledItem"));
                 end
 		return;

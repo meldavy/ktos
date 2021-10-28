@@ -102,6 +102,7 @@ function ITEMCRAFT_CLOSE(frame)
 	RESET_INVENTORY_ICON();
 	ui.CloseFrame('inventory');
     ui.CloseFrame('itemcraft');
+    ui.CloseFrame('earthtowershop_sub');
 end
 
 function CRAFT_OPEN(frame)

@@ -239,13 +239,13 @@
                     <Str Str="HakkaPalle_Buff"/>
                     <Num FuncTxt="return obj.Level;" Num="0" UseFunc="1"/>
                     <Num Num="0"/>
-					<Num FuncTxt='local value = 15000
+                    <Num FuncTxt="local value = 15000
 
-if GetExProp(self, "ITEM_VIBORA_SWORD_Hackapell") > 0 then
-    value = value + GetExProp(self, "ITEM_VIBORA_SWORD_Hackapell")
+if GetExProp(self, &quot;ITEM_VIBORA_SWORD_Hackapell&quot;) > 0 then
+    value = value + GetExProp(self, &quot;ITEM_VIBORA_SWORD_Hackapell&quot;)
 end
 
-return value' Num="15000" UseFunc="1"/>
+return value" Num="15000" UseFunc="1"/>
                     <Num Num="1"/>
                     <Num Num="100"/>
                     <Num Num="0"/>
@@ -400,6 +400,25 @@ return value' Num="15000" UseFunc="1"/>
                 <Scp Scp="C_SOUND" Client="YES" UseSleep="NO" Time="0">
                     <Str Str="skl_fgt_ultimatedash_shot"/>
                 </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="0">
+                    <Str_Arg Str="I_dash022_1" Arg="1.5"/>
+                    <Str Str="Dummy_emitter_pet2"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="50">
+                    <Str_Arg Str="I_warrior_dash_run_line2" Arg="1.5"/>
+                    <Str Str="Dummy_emitter_pet2"/>
+                    <Num Num="0"/>
+                </Scp>
+                <Scp Scp="C_COLORBLEND_ACTOR" Client="YES" UseSleep="NO" Time="50">
+                    <Num Num="1"/>
+                    <Num Num="1"/>
+                    <Num Num="0.2"/>
+                    <Num Num="0.2"/>
+                    <Num Num="0.5"/>
+                    <Num Num="0"/>
+                    <Num Num="1"/>
+                </Scp>
                 <Scp Scp="C_SHOCKWAVE" Client="YES" UseSleep="NO" Time="140">
                     <Num Num="5"/>
                     <Num Num="0.5"/>
@@ -430,6 +449,15 @@ return value' Num="15000" UseFunc="1"/>
                     <Num Num="1"/>
                     <Num Num="100"/>
                     <Num Num="0"/>
+                </Scp>
+                <Scp Scp="C_COLORBLEND_ACTOR" Client="YES" UseSleep="NO" Time="140">
+                    <Num Num="1"/>
+                    <Num Num="0"/>
+                    <Num Num="0"/>
+                    <Num Num="0"/>
+                    <Num Num="0"/>
+                    <Num Num="0"/>
+                    <Num Num="1"/>
                 </Scp>
             </EtcList>
             <ResultList>

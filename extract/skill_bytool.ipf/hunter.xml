@@ -6,7 +6,7 @@
 			</HitList>
 			<EtcList>
                 <Scp Client="NO" Scp="COMPANION_REMOVE_SKILL_BUFF" Time="0" UseSleep="NO">
-                    <Num Num="0" />
+                    <Num Num="0"/>
                 </Scp>
 				<Scp Client="NO" Scp="SKL_SET_TGT_COMPANION" Time="0" UseSleep="NO">
 					<Num Num="0" />
@@ -37,8 +37,8 @@
 				<Frame Angle="0" AniTime="10199" Dist="0" ForceATK="0" HitCount="1" PosType="0" RandDist="0" RandomPerHit="0" RotAngle="0" TermMax="0" TermMin="0" Time="9999" Type="FAN" />
 			</HitList>
 			<EtcList>
-                <Scp Client="NO" Scp="COMPANION_REMOVE_SKILL_BUFF" Time="0" UseSleep="NO">
-                    <Num Num="0" />
+                <Scp Scp="COMPANION_REMOVE_SKILL_BUFF" Client="NO" UseSleep="NO" Time="0">
+                    <Num Num="0"/>
                 </Scp>
 				<Scp Client="NO" Scp="SKL_SET_TGT_COMPANION" Time="0" UseSleep="NO">
 					<Num Num="0" />
@@ -55,12 +55,12 @@
 					<Num Num="1" />
 					<Num Num="100" />
 				</Scp>
-                <Scp Client="NO" Scp="SKL_TGT_REMOVE_DEBUFF" Time="500" UseSleep="NO">
-                <Str FuncTxt="local func_name = 'get_remove_debuff_tooltip_' .. TryGetProp(obj, 'ClassName', 'None')
+                <Scp Scp="SKL_TGT_REMOVE_DEBUFF" Client="NO" UseSleep="NO" Time="500">
+                    <Str Str="0" UseFunc="1" FuncTxt="local func_name = 'get_remove_debuff_tooltip_' .. TryGetProp(obj, 'ClassName', 'None')
                local func = _G[func_name]
                if func == nil then return end
-               return func(obj.Level)" Str="0" UseFunc="1"/>
-               </Scp>
+               return func(obj.Level)"/>
+                </Scp>
 			</EtcList>
 		</MainSkl>
 	</Skill>
@@ -106,7 +106,7 @@
 			</HitList>
 			<EtcList>
                 <Scp Client="NO" Scp="COMPANION_REMOVE_SKILL_BUFF" Time="0" UseSleep="NO">
-                    <Num Num="0" />
+                    <Num Num="0"/>
                 </Scp>
                 <Scp Client="NO" Scp="SKL_RECOVER_COOLDOWN_SP" Time="0" TimeSync="0" UseSleep="NO"/>
 				<Scp Client="NO" Scp="SKL_SET_TARGET_CIRCLE" Time="0" UseSleep="NO">
@@ -147,7 +147,7 @@
 			</HitList>
 			<EtcList>
                 <Scp Client="NO" Scp="COMPANION_REMOVE_SKILL_BUFF" Time="0" UseSleep="NO">
-                    <Num Num="0" />
+                    <Num Num="0"/>
                 </Scp>
 				<Scp Client="NO" Scp="SKL_SET_TARGET_CLIENT_TARGETTING" Time="0" UseSleep="NO" />
 				<Scp Client="NO" Scp="SKL_EXCEPT_TARGET_BY_SCRIPT" Time="400" UseSleep="NO">
@@ -175,7 +175,7 @@
 			</HitList>
 			<EtcList>
                 <Scp Client="NO" Scp="COMPANION_REMOVE_SKILL_BUFF" Time="0" UseSleep="NO">
-                    <Num Num="0" />
+                    <Num Num="0"/>
                 </Scp>
 				<Scp Client="NO" Scp="SKL_SET_TGT_COMPANION" Time="0" UseSleep="NO">
 					<Num Num="0" />
@@ -211,7 +211,7 @@
 			</HitList>
 			<EtcList>
                 <Scp Client="NO" Scp="COMPANION_REMOVE_SKILL_BUFF" Time="0" UseSleep="NO">
-                    <Num Num="0" />
+                    <Num Num="0"/>
                 </Scp>
 				<Scp Client="NO" Scp="SKL_SET_TGT_COMPANION" Time="0" UseSleep="NO">
 					<Num Num="0" />
@@ -245,7 +245,7 @@
 			</HitList>
 			<EtcList>
                 <Scp Client="NO" Scp="COMPANION_REMOVE_SKILL_BUFF" Time="0" UseSleep="NO">
-                    <Num Num="0" />
+                    <Num Num="0"/>
                 </Scp>
 				<Scp Client="NO" Scp="SKL_SET_TARGET_CLIENT_TARGETTING" Time="0" UseSleep="NO" />
 				<Scp Client="NO" Scp="SKL_RECOVER_COOLDOWN_SP" Time="0" TimeSync="0" UseSleep="NO"/>
@@ -268,14 +268,14 @@
 					<Str Str="voice_archer_retrieve_shot" />
 				</Scp>
 			</EtcList>
-          <ResultList>
-            <ToolScp Client="NO" Scp="S_R_TGT_Decrease_heal_debuff" UseSleep="NO">
-              <Str FuncTxt="local func_name = 'get_decrease_heal_debuff_tooltip_' .. TryGetProp(skill, 'ClassName', 'None')
+            <ResultList>
+                <ToolScp Client="NO" Scp="S_R_TGT_Decrease_heal_debuff" UseSleep="NO">
+                    <Str FuncTxt="local func_name = 'get_decrease_heal_debuff_tooltip_' .. TryGetProp(skill, 'ClassName', 'None')
                local func = _G[func_name]
                if func == nil then return end
                return func(skill.Level)" Str="0" UseFunc="1"/>
-            </ToolScp>
-          </ResultList>
+                </ToolScp>
+            </ResultList>
 		</MainSkl>
 	</Skill>
 	<Skill Name="Hunter_Pointing">
@@ -290,7 +290,7 @@
 			</HitList>
 			<EtcList>
                 <Scp Client="NO" Scp="COMPANION_REMOVE_SKILL_BUFF" Time="0" UseSleep="NO">
-                    <Num Num="0" />
+                    <Num Num="0"/>
                 </Scp>
 				<Scp Client="NO" Scp="SKL_SET_TGT_COMPANION" Time="0" UseSleep="NO">
 					<Num Num="0" />
@@ -322,7 +322,7 @@
 			</HitList>
 			<EtcList>
                 <Scp Client="NO" Scp="COMPANION_REMOVE_SKILL_BUFF" Time="0" UseSleep="NO">
-                    <Num Num="0" />
+                    <Num Num="0"/>
                 </Scp>
 				<Scp Client="NO" Scp="SKL_SET_TARGET_CLIENT_TARGETTING" Time="0" UseSleep="NO" />
 				<Scp Client="NO" Scp="SKL_RECOVER_COOLDOWN_SP" Time="0" TimeSync="0" UseSleep="NO"/>
@@ -345,20 +345,20 @@
 					<Str Str="voice_archer_coursing_shot" />
 				</Scp>
 			</EtcList>
-          <ResultList>
-            <ToolScp Client="NO" Scp="S_R_TGT_Decrease_heal_debuff" UseSleep="NO">
-              <Str FuncTxt="local func_name = 'get_decrease_heal_debuff_tooltip_' .. TryGetProp(skill, 'ClassName', 'None')
+            <ResultList>
+                <ToolScp Client="NO" Scp="S_R_TGT_Decrease_heal_debuff" UseSleep="NO">
+                    <Str FuncTxt="local func_name = 'get_decrease_heal_debuff_tooltip_' .. TryGetProp(skill, 'ClassName', 'None')
                local func = _G[func_name]
                if func == nil then return end
                return func(skill.Level)" Str="0" UseFunc="1"/>
-            </ToolScp>
-            <ToolScp Client="NO" Scp="S_R_TGT_REMOVE_BUFF" UseSleep="NO">
-                <Str FuncTxt="local func_name = 'get_remove_buff_tooltip_' .. TryGetProp(skill, 'ClassName', 'None')
+                </ToolScp>
+                <ToolScp Client="NO" Scp="S_R_TGT_REMOVE_BUFF" UseSleep="NO">
+                    <Str FuncTxt="local func_name = 'get_remove_buff_tooltip_' .. TryGetProp(skill, 'ClassName', 'None')
                local func = _G[func_name]
                if func == nil then return end
                return func(skill.Level)" Str="0" UseFunc="1"/>
-              </ToolScp>
-          </ResultList>
+                </ToolScp>
+            </ResultList>
 		</MainSkl>
 	</Skill>
 	</ToolSkill>

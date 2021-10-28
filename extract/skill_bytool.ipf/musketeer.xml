@@ -305,11 +305,6 @@
         </MainSkl>
     </Skill>
     <Skill Name="Musketeer_PenetrationShot">
-        <EndScripts>
-            <ToolScp Client="YES" Scp="C_SKL_LOCK_MOVE" UseSleep="NO">
-                <Num Num="0"/>
-            </ToolScp>
-        </EndScripts>
         <MainSkl JumpFlee="NO" MSPDToUsePos="0" ScrLock="None">
             <HitList>
                 <Frame Angle="0" AniTime="9999" Dist="0" ForceATK="0" HitCount="1" PosType="0" RandDist="0" RandomPerHit="0" RotAngle="0" SklAngle="0.17453292" TermMax="0" TermMin="0" Time="9799" Type="SQUARE"/>

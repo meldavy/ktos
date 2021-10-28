@@ -671,11 +671,7 @@ end
 function ENABEL_VSYNC(frame)
 	local syncRadioBtn = GET_CHILD_RECURSIVELY(frame, "vsync_0" , "ui::CRadioButton");        
 	local syncType = GET_RADIOBTN_NUMBER(syncRadioBtn);
-	local scrRadioBtn = GET_CHILD_RECURSIVELY(frame, "scrtype_1" , "ui::CRadioButton");
-	local resCtrl = GET_CHILD_RECURSIVELY(frame, "resolutionList", "ui::CDropList");        
-	local scrType = GET_RADIOBTN_NUMBER(scrRadioBtn);
-	local resIndex = resCtrl:GetSelItemIndex();
-	option.SetDisplayMode(scrType, resIndex, syncType);
+	option.EnableVSync(syncType);
 end
 
 function ENABLE_OTHER_FLUTING(parent, ctrl)

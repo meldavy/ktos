@@ -31,7 +31,7 @@
 		<groupbox name="tab2_listgb1" tabname="tab2_item1" rect="0 0 520 510" margin="0 305 0 0" layout_gravity="center top" draw="false" scrollbar="true" hittestbox="true"/>
 		<groupbox name="tab2_listgb2" tabname="tab2_item2" rect="0 0 520 510" margin="0 305 0 0" layout_gravity="center top" draw="false" scrollbar="true" hittestbox="true"/>
 		<groupbox name="tab2_listgb3" tabname="tab2_item3" rect="0 0 520 510" margin="0 305 0 0" layout_gravity="center top" draw="false" scrollbar="true" hittestbox="true"/>
-		<richtext name="overtext" rect="0 0 490 300" margin="0 160 0 0" layout_gravity="center center" hittest="false" fixwidth="true" textalign="center top" caption="{@st42b}{s24}일일 획득량을 모두 획득하셨습니다.{nl}다음날 오전 06시에 초기화 됩니다."/>
+		<richtext name="overtext" rect="0 0 490 300" margin="0 110 0 0" layout_gravity="center center" hittest="false" fixwidth="true" textalign="center top" caption="{@st42b}{s24}일일 획득량을 모두 획득하셨습니다.{nl}다음날 오전 06시에 초기화 됩니다."/>
 		<button name="notebtn" parent="namegb" rect="0 0 100 36" margin="0 0 5 0" layout_gravity="right center" skin="test_white_h_btn" format="{@st66b}{s16}%s" param1="value" param1_def="트캉스 이벤트" oversound="button_over"/>
 		<picture name="comming_soon_pic" rect="0 0 474 114" margin="0 40 0 0" layout_gravity="center center" image="coming_soon_notice" stretch="true"/>
 	</controls>

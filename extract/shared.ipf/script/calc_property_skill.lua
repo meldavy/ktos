@@ -14485,3 +14485,8 @@ function SCR_Get_SkillFactor_Binatio(skill)
     return math.floor(value)
 
 end
+
+function SCR_GET_DoublePunch_Ratio3(skill)
+    local value = 35 + skill.Level * 1;
+    return value;
+end

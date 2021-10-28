@@ -2054,6 +2054,15 @@
 				</Job>
 			</Motion>
 		</Class>
+		<Class Costume="wing_newRaima">
+			<Motion Name="SKL_WING_NEWRAIMA">
+				<Job Name="All" LoopTime="0">
+					<Event>
+						<Particle frame="5" attachNode="None" particleName="F_light175_red" useAttach="false" hiddenObj="false" scale="0.5" pause="false" use2DEffect="false" soft2DValue="20"/>
+					</Event>
+				</Job>
+			</Motion>
+		</Class>
 	</Gender>
 	<Gender Name="Female">
 		<Class Costume="weddingdress01">
@@ -4397,6 +4406,15 @@
 				<Job Name="All" LoopTime="0">
 					<Event>
 						<Particle frame="0" attachNode="Dummy_arrowstart2" particleName="F_spread_out056_leaf2_1" useAttach="false" hiddenObj="false" scale="1" pause="false" use2DEffect="false" soft2DValue="20"/>
+					</Event>
+				</Job>
+			</Motion>
+		</Class>
+		<Class Costume="wing_newRaima">
+			<Motion Name="SKL_WING_NEWRAIMA">
+				<Job Name="All" LoopTime="0">
+					<Event>
+						<Particle frame="5" attachNode="None" particleName="F_light175_red" useAttach="false" hiddenObj="false" scale="0.5" pause="false" use2DEffect="false" soft2DValue="20"/>
 					</Event>
 				</Job>
 			</Motion>

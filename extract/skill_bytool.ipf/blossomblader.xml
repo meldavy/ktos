@@ -626,10 +626,10 @@ return buff"/>
             <ToolScp Scp="SKL_KEY_DYNAMIC_CASTING" Client="YES" UseSleep="NO">
                 <Num Num="0"/>
                 <Num Num="0"/>
-                <Num FuncTxt="local value = 2
+                <Num Num="1" UseFunc="1" FuncTxt="local value = 2
                 local self = GetMyPCObject()
                 local rHand = GetEquipItem(self, 'RH');
-                if rHand ~= nil and TryGetProp(rHand, 'ClassType') == 'Sword' then value = 1 end return value" Num="1" UseFunc="1"/>
+                if rHand ~= nil and TryGetProp(rHand, 'ClassType') == 'Sword' then value = 1 end return value"/>
                 <Num Num="1"/>
                 <Num Num="1"/>
                 <Num Num="0"/>
@@ -670,7 +670,7 @@ return buff"/>
                 <Num Num="0"/>
             </ToolScp>
             <ToolScp Scp="C_EFFECT" Client="YES" UseSleep="NO">
-                <Str_Arg Str="F_warrior_startup001" Arg="6"/>
+                <Str_Arg Str="F_warrior_startup001" Arg="3"/>
                 <Str Str="Dummy_emitter"/>
                 <Num Num="0"/>
             </ToolScp>
@@ -693,7 +693,7 @@ return buff"/>
         <KeyInputEnd>
             <ToolScp Scp="MONSKL_C_CLEAR_RESERVE_ANIM" Client="YES" UseSleep="NO"/>
             <ToolScp Scp="C_EFFECT_DETACH" Client="YES" UseSleep="NO">
-                <Str_Arg Str="F_warrior_startup001" Arg="1"/>
+                <Str_Arg Str="F_warrior_startup001" Arg="0.5"/>
                 <Num Num="0.5"/>
             </ToolScp>
             <ToolScp Scp="SKL_BUFF_REMOVE" Client="NO" UseSleep="NO">
@@ -706,7 +706,7 @@ return buff"/>
         </KeyInputEnd>
         <MainSkl ScrLock="None" JumpFlee="NO" MSPDToUsePos="0">
             <HitList>
-                <Frame Type="FAN" Time="9999" HitCount="1" TermMin="0" TermMax="0" PosType="0" Dist="0" RandDist="0" RandomPerHit="0" Angle="0" AniTime="10999" RotAngle="0" ForceATK="0"/>
+                <Frame Type="FAN" Time="9999" HitCount="1" TermMin="0" TermMax="0" PosType="0" Dist="0" RandDist="0" RandomPerHit="0" Angle="0" AniTime="10999" RotAngle="0" ForceATK="0" ScriptIndex="0" ScriptName="" SkillType="0"/>
             </HitList>
             <EtcList>
                 <Scp Scp="C_VOICE_SOUND" Client="YES" UseSleep="NO" Time="0">

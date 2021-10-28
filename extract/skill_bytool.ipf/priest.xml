@@ -247,11 +247,6 @@
 		</MainSkl>
 	</Skill>
 	<Skill Name="Priest_Sacrament">
-		<EndScripts>
-			<ToolScp Client="YES" Scp="C_SKL_LOCK_MOVE" UseSleep="NO">
-				<Num Num="0" />
-			</ToolScp>
-		</EndScripts>
 		<MainSkl JumpFlee="NO" MSPDToUsePos="0" ScrLock="None">
 			<HitList>
 				<Frame Angle="0" AniTime="200" Dist="0" ForceATK="0" HitCount="1" PosType="0" RandDist="0" RandomPerHit="0" RotAngle="0" SklAngle="0.17453299" TermMax="0" TermMin="0" Time="0" Type="FAN" />
@@ -273,11 +268,6 @@
 		</MainSkl>
 	</Skill>
 	<Skill Name="Priest_Blessing">
-		<EndScripts>
-			<ToolScp Client="YES" Scp="C_SKL_LOCK_MOVE" UseSleep="NO">
-				<Num Num="0" />
-			</ToolScp>
-		</EndScripts>
 		<MainSkl JumpFlee="NO" MSPDToUsePos="0" ScrLock="None">
 			<HitList>
 				<Frame Angle="0" AniTime="10199" Dist="0" ForceATK="0" HitCount="1" PosType="0" RandDist="0" RandomPerHit="0" RotAngle="0" TermMax="0" TermMin="0" Time="9999" Type="FAN" />
@@ -322,11 +312,6 @@
 		</MainSkl>
 	</Skill>
 	<Skill Name="Priest_Aspersion">
-		<EndScripts>
-			<ToolScp Client="YES" Scp="C_SKL_LOCK_MOVE" UseSleep="NO">
-				<Num Num="0" />
-			</ToolScp>
-		</EndScripts>
 		<MainSkl JumpFlee="NO" MSPDToUsePos="0" ScrLock="None">
 			<HitList>
 				<Frame Angle="0" AniTime="99999" Dist="0" ForceATK="0" HitCount="1" Length="30" PosType="0" RandDist="0" RandomPerHit="0" RotAngle="0" SklAngle="0.17453292" TermMax="0" TermMin="0" Time="99799" Type="FAN" Width="30" />

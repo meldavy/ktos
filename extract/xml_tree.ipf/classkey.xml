@@ -457,6 +457,8 @@
         <Key Name="Magic_Soul_Atk" Value="106482"/>
         <Key Name="StringArg2" Value="106494"/>
         <Key Name="SkillName" Value="106801"/>
+        <Key Name="Ev_SetOption" Value="106859"/>
+        <Key Name="EventEquip" Value="106858"/>
     </KeyIDSpc>
     <KeyIDSpc Name="Party">
         <Key Name="P_PARTY_Q_040" Value="53"/>
@@ -3680,6 +3682,81 @@
         <Key Name="InDunCountType_811" Value="106849"/>
         <Key Name="IndunWeeklyEnteredCount_810" Value="106848"/>
         <Key Name="IndunWeeklyEnteredCount_811" Value="106850"/>
+        <Key Name="EVENT_2011_Harvest_seed_COUNT" Value="106855"/>
+        <Key Name="HadVisited_11214" Value="106857"/>
+        <Key Name="EVENT_2011_5TH_COIN_TOTAL_COUNT" Value="106873"/>
+        <Key Name="EVENT_2011_5TH_DAILY_COIN_COUNT" Value="106871"/>
+        <Key Name="EVENT_2011_5TH_DAILY_PLAY_TIME" Value="106906"/>
+        <Key Name="EVENT_2011_5TH_DAILY_TOS_COIN_COUNT" Value="106898"/>
+        <Key Name="EVENT_2011_5TH_FIREWORK_BUFF_COUNT" Value="106886"/>
+        <Key Name="EVENT_2011_5TH_FIREWORK_BUFF_END_TIME" Value="106926"/>
+        <Key Name="EVENT_2011_5TH_NORMAL_SHOP_1" Value="106894"/>
+        <Key Name="EVENT_2011_5TH_NORMAL_SHOP_10" Value="106925"/>
+        <Key Name="EVENT_2011_5TH_NORMAL_SHOP_11" Value="106895"/>
+        <Key Name="EVENT_2011_5TH_NORMAL_SHOP_12" Value="106870"/>
+        <Key Name="EVENT_2011_5TH_NORMAL_SHOP_13" Value="106917"/>
+        <Key Name="EVENT_2011_5TH_NORMAL_SHOP_14" Value="106920"/>
+        <Key Name="EVENT_2011_5TH_NORMAL_SHOP_15" Value="106929"/>
+        <Key Name="EVENT_2011_5TH_NORMAL_SHOP_2" Value="106907"/>
+        <Key Name="EVENT_2011_5TH_NORMAL_SHOP_3" Value="106905"/>
+        <Key Name="EVENT_2011_5TH_NORMAL_SHOP_4" Value="106910"/>
+        <Key Name="EVENT_2011_5TH_NORMAL_SHOP_5" Value="106901"/>
+        <Key Name="EVENT_2011_5TH_NORMAL_SHOP_6" Value="106887"/>
+        <Key Name="EVENT_2011_5TH_NORMAL_SHOP_7" Value="106908"/>
+        <Key Name="EVENT_2011_5TH_NORMAL_SHOP_8" Value="106909"/>
+        <Key Name="EVENT_2011_5TH_NORMAL_SHOP_9" Value="106911"/>
+        <Key Name="EVENT_2011_5TH_POINT_COUNT" Value="106904"/>
+        <Key Name="EVENT_2011_5TH_SPECIAL_SHOP" Value="106883"/>
+        <Key Name="EVENT_2011_5TH_SPECIAL_SHOP_A_1_1" Value="106912"/>
+        <Key Name="EVENT_2011_5TH_SPECIAL_SHOP_A_1_2" Value="106933"/>
+        <Key Name="EVENT_2011_5TH_SPECIAL_SHOP_A_1_3" Value="106918"/>
+        <Key Name="EVENT_2011_5TH_SPECIAL_SHOP_A_1_4" Value="106932"/>
+        <Key Name="EVENT_2011_5TH_SPECIAL_SHOP_A_2_1" Value="106931"/>
+        <Key Name="EVENT_2011_5TH_SPECIAL_SHOP_A_2_2" Value="106924"/>
+        <Key Name="EVENT_2011_5TH_SPECIAL_SHOP_A_2_3" Value="106919"/>
+        <Key Name="EVENT_2011_5TH_SPECIAL_SHOP_A_2_4" Value="106885"/>
+        <Key Name="EVENT_2011_5TH_SPECIAL_SHOP_A_3_1" Value="106914"/>
+        <Key Name="EVENT_2011_5TH_SPECIAL_SHOP_A_3_2" Value="106880"/>
+        <Key Name="EVENT_2011_5TH_SPECIAL_SHOP_A_3_3" Value="106884"/>
+        <Key Name="EVENT_2011_5TH_SPECIAL_SHOP_A_3_4" Value="106899"/>
+        <Key Name="EVENT_2011_5TH_SPECIAL_SHOP_B_1_1" Value="106902"/>
+        <Key Name="EVENT_2011_5TH_SPECIAL_SHOP_B_1_2" Value="106913"/>
+        <Key Name="EVENT_2011_5TH_SPECIAL_SHOP_B_1_3" Value="106900"/>
+        <Key Name="EVENT_2011_5TH_SPECIAL_SHOP_B_1_4" Value="106915"/>
+        <Key Name="EVENT_2011_5TH_SPECIAL_SHOP_B_2_1" Value="106888"/>
+        <Key Name="EVENT_2011_5TH_SPECIAL_SHOP_B_2_2" Value="106876"/>
+        <Key Name="EVENT_2011_5TH_SPECIAL_SHOP_B_2_3" Value="106877"/>
+        <Key Name="EVENT_2011_5TH_SPECIAL_SHOP_B_2_4" Value="106927"/>
+        <Key Name="EVENT_2011_5TH_SPECIAL_SHOP_B_3_1" Value="106881"/>
+        <Key Name="EVENT_2011_5TH_SPECIAL_SHOP_B_3_2" Value="106934"/>
+        <Key Name="EVENT_2011_5TH_SPECIAL_SHOP_B_3_3" Value="106892"/>
+        <Key Name="EVENT_2011_5TH_SPECIAL_SHOP_B_3_4" Value="106940"/>
+        <Key Name="EVENT_2011_5TH_SPECIAL_SHOP_C_1_1" Value="106889"/>
+        <Key Name="EVENT_2011_5TH_SPECIAL_SHOP_C_1_2" Value="106896"/>
+        <Key Name="EVENT_2011_5TH_SPECIAL_SHOP_C_1_3" Value="106893"/>
+        <Key Name="EVENT_2011_5TH_SPECIAL_SHOP_C_1_4" Value="106903"/>
+        <Key Name="EVENT_2011_5TH_SPECIAL_SHOP_C_2_1" Value="106897"/>
+        <Key Name="EVENT_2011_5TH_SPECIAL_SHOP_C_2_2" Value="106937"/>
+        <Key Name="EVENT_2011_5TH_SPECIAL_SHOP_C_2_3" Value="106874"/>
+        <Key Name="EVENT_2011_5TH_SPECIAL_SHOP_C_2_4" Value="106935"/>
+        <Key Name="EVENT_2011_5TH_SPECIAL_SHOP_C_3_1" Value="106875"/>
+        <Key Name="EVENT_2011_5TH_SPECIAL_SHOP_C_3_2" Value="106878"/>
+        <Key Name="EVENT_2011_5TH_SPECIAL_SHOP_C_3_3" Value="106936"/>
+        <Key Name="EVENT_2011_5TH_SPECIAL_SHOP_C_3_4" Value="106872"/>
+        <Key Name="EVENT_2011_5TH_SPECIAL_SHOP_S_1_1" Value="106938"/>
+        <Key Name="EVENT_2011_5TH_SPECIAL_SHOP_S_1_2" Value="106921"/>
+        <Key Name="EVENT_2011_5TH_SPECIAL_SHOP_S_1_3" Value="106930"/>
+        <Key Name="EVENT_2011_5TH_SPECIAL_SHOP_S_1_4" Value="106928"/>
+        <Key Name="EVENT_2011_5TH_SPECIAL_SHOP_S_1_5" Value="106882"/>
+        <Key Name="EVENT_2011_5TH_SPECIAL_SHOP_S_2_1" Value="106923"/>
+        <Key Name="EVENT_2011_5TH_SPECIAL_SHOP_S_2_2" Value="106879"/>
+        <Key Name="EVENT_2011_5TH_SPECIAL_SHOP_S_2_3" Value="106916"/>
+        <Key Name="EVENT_2011_5TH_SPECIAL_SHOP_S_2_4" Value="106939"/>
+        <Key Name="EVENT_2011_5TH_SPECIAL_SHOP_S_2_5" Value="106922"/>
+        <Key Name="EVENT_2011_5TH_SPECIAL_VIBORA_SHOP_USE_COUNT" Value="106890"/>
+        <Key Name="EVENT_2011_5TH_TOS_COIN_TOTAL_COUNT" Value="106891"/>
+        <Key Name="EVENT_2011_5TH_COIN_USE_COUNT" Value="106941"/>
+        <Key Name="EVENT_2011_5TH_COIN_RAID_COUNT" Value="106942"/>
     </KeyIDSpc>
     <KeyIDSpc Name="PCEtc">
         <Key Name="Kill_boss_Clymen_Q2" Value="7788"/>
@@ -12161,6 +12238,17 @@
         <Key Name="InDunCountType_811" Value="106853"/>
         <Key Name="IndunWeeklyEnteredCount_810" Value="106852"/>
         <Key Name="IndunWeeklyEnteredCount_811" Value="106854"/>
+        <Key Name="HadVisited_11214" Value="106867"/>
+        <Key Name="Kill_weekly_Nepenthes" Value="106866"/>
+        <Key Name="Kill_weekly_boss_Naktis" Value="106869"/>
+        <Key Name="Kill_weekly_boss_Tiny" Value="106861"/>
+        <Key Name="Kill_weekly_boss_Tiny_ThreeBrothers" Value="106865"/>
+        <Key Name="Kill_weekly_boss_Tiny_bow" Value="106860"/>
+        <Key Name="Kill_weekly_boss_Tiny_mage" Value="106864"/>
+        <Key Name="Kill_weekly_boss_lucy" Value="106862"/>
+        <Key Name="Kill_weekly_boss_solcomm" Value="106863"/>
+        <Key Name="Kill_weekly_solcomm_summon" Value="106868"/>
+        <Key Name="HaveEmoticon_120" Value="106943"/>
     </KeyIDSpc>
     <KeyIDSpc Name="GuildMember">
         <Key Name="Name" Value="9011"/>
@@ -20744,6 +20832,7 @@
         <Key Name="WARP_C_KLAIPE_CATHEDRAL_MEDIUM" Value="106665"/>
         <Key Name="WARP_F_CASTLE_101" Value="106633"/>
         <Key Name="Event_2010_LVUP_ABILITY_2" Value="106825"/>
+        <Key Name="MG_Last_WEEKLY_BOSS_RAID_GELE" Value="106856"/>
     </KeyIDSpc>
     <KeyIDSpc Name="Monster">
         <Key Name="MaxHate" Value="6671"/>

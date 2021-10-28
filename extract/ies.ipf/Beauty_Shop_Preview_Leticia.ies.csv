@@ -1,12 +1,9 @@
 ClassID,Price,PriceRatio,StampCount,ClassName,Category,Gender,ItemClassName,EquipType,JobOnly,SellStartTime,SellEndTime,PackageList,IsPremium,TAG,ItemAddDate,BuyMessage
-1,-1,0,0,EP12_helmet_m_ep12demonlord,,M,EP12_helmet_m_ep12demonlord,wig,,2020-11-01 00:00:00,2020-11-15 17:59:59,,NO,,,NotBuy_Thema
-2,-1,0,0,EP12_helmet_f_ep12demonlord,,F,EP12_helmet_f_ep12demonlord,wig,,2020-11-01 00:00:00,2020-11-15 17:59:59,,NO,,,NotBuy_Thema
-11,-1,0,0,EP12_costume_Com_078,,M,EP12_costume_Com_078,costume,,2020-11-01 00:00:00,2020-11-15 17:59:59,,NO,,,NotBuy_Thema
-12,-1,0,0,EP12_costume_Com_080,,M,EP12_costume_Com_080,costume,,2020-11-01 00:00:00,2020-11-15 17:59:59,,NO,,,NotBuy_Thema
-21,-1,0,0,EP12_costume_Com_079,,F,EP12_costume_Com_079,costume,,2020-11-01 00:00:00,2020-11-15 17:59:59,,NO,,,NotBuy_Thema
-22,-1,0,0,EP12_costume_Com_081,,F,EP12_costume_Com_081,costume,,2020-11-01 00:00:00,2020-11-15 17:59:59,,NO,,,NotBuy_Thema
-31,-1,0,0,EP12_Artefact_097,,,EP12_Artefact_097,weapon,,2020-11-01 00:00:00,2020-11-15 17:59:59,,NO,,,NotBuy_Thema
-32,-1,0,0,EP12_Artefact_098,,,EP12_Artefact_098,weapon,,2020-11-01 00:00:00,2020-11-15 17:59:59,,NO,,,NotBuy_Thema
-33,-1,0,0,EP12_Artefact_099,,,EP12_Artefact_099,weapon,,2020-11-01 00:00:00,2020-11-15 17:59:59,,NO,,,NotBuy_Thema
-71,-1,0,0,EP12_Hat_048,,,EP12_Hat_048,hair_costume,,2020-11-01 00:00:00,2020-11-15 17:59:59,,NO,,,NotBuy_Thema
-72,-1,0,0,EP12_Hat_049,,,EP12_Hat_049,hair_costume,,2020-11-01 00:00:00,2020-11-15 17:59:59,,NO,,,NotBuy_Thema
+11,-1,0,0,EP12_costume_Com_096,,M,EP12_costume_Com_096,costume,,2020-12-01 00:00:00,2020-12-15 17:59:59,,NO,,,NotBuy_Thema
+12,-1,0,0,EP12_costume_Com_098,,M,EP12_costume_Com_098,costume,,2020-12-01 00:00:00,2020-12-15 17:59:59,,NO,,,NotBuy_Thema
+21,-1,0,0,EP12_costume_Com_097,,F,EP12_costume_Com_097,costume,,2020-12-01 00:00:00,2020-12-15 17:59:59,,NO,,,NotBuy_Thema
+22,-1,0,0,EP12_costume_Com_099,,F,EP12_costume_Com_099,costume,,2020-12-01 00:00:00,2020-12-15 17:59:59,,NO,,,NotBuy_Thema
+31,-1,0,0,EP12_Artefact_100,,,EP12_Artefact_100,weapon,,2020-12-01 00:00:00,2020-12-15 17:59:59,,NO,,,NotBuy_Thema
+32,-1,0,0,EP12_Artefact_101,,,EP12_Artefact_101,weapon,,2020-12-01 00:00:00,2020-12-15 17:59:59,,NO,,,NotBuy_Thema
+33,-1,0,0,EP12_Artefact_102,,,EP12_Artefact_102,weapon,,2020-12-01 00:00:00,2020-12-15 17:59:59,,NO,,,NotBuy_Thema
+71,-1,0,0,EP12_Hat_050,,,EP12_Hat_050,hair_costume,,2020-12-01 00:00:00,2020-12-15 17:59:59,,NO,,,NotBuy_Thema

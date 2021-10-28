@@ -82,6 +82,7 @@ end
 function DO_QUIT_GAME()
 	quickslot.RequestSave();
 	SaveFavoritesBgmList();
+	ui.SaveCatchMovePosFrame();
 	for i = 0, AUTO_SELL_COUNT-1 do
 	-- 뭐하나라도 true면 
 		if session.autoSeller.GetMyAutoSellerShopState(i) == true then
@@ -95,6 +96,7 @@ end
 function GAME_TO_LOGIN()
 	quickslot.RequestSave();
 	SaveFavoritesBgmList();
+	ui.SaveCatchMovePosFrame();
 	for i = 0, AUTO_SELL_COUNT-1 do
 	-- 뭐하나라도 true면
 		if session.autoSeller.GetMyAutoSellerShopState(i) == true then
@@ -108,6 +110,7 @@ end
 function GAME_TO_BARRACK()
 	quickslot.RequestSave();
 	SaveFavoritesBgmList();
+	ui.SaveCatchMovePosFrame();
 	for i = 0, AUTO_SELL_COUNT-1 do
     -- 뭐하나라도 true면
 		if session.autoSeller.GetMyAutoSellerShopState(i) == true then
@@ -120,4 +123,5 @@ end
 
 function GAME_MOVE_CHANNEL(channel)
 	app.ChangeChannel(channel);
+	ui.SaveCatchMovePosFrame();
 end

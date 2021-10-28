@@ -288,7 +288,7 @@
 	</Skill>
 	<Skill Name="Common_BubbleStick">
 		<EndScripts>
-			<ToolScp Client="YES" Scp="C_SKL_LOCK_MOVE" UseSleep="NO">
+			<ToolScp Client="YES" Scp="C_SKL_LOCK_ROTATE" UseSleep="NO">
 				<Num Num="0" />
 			</ToolScp>
 		</EndScripts>
@@ -327,10 +327,10 @@
 					<Str Str="BubbleStick_skill" />
 					<MonProp />
 				</Scp>
-				<Scp Client="YES" Scp="C_SKL_LOCK_MOVE" Time="0" UseSleep="NO">
+				<Scp Client="YES" Scp="C_SKL_LOCK_ROTATE" Time="0" UseSleep="NO">
 					<Num Num="1" />
 				</Scp>
-				<Scp Client="YES" Scp="C_SKL_LOCK_MOVE" Time="5000" UseSleep="NO">
+				<Scp Client="YES" Scp="C_SKL_LOCK_ROTATE" Time="5000" UseSleep="NO">
 					<Num Num="0" />
 				</Scp>
 			</EtcList>

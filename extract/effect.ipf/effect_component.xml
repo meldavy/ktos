@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by IMCGames Co., Ltd (IMCGames Co., Ltd) -->
+<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by ÀÌÁ¤¿ë (IMCGames Co., Ltd) -->
 <ComponentList>
+	<Particle name="dash005_1_green" texture="dash005_1_green" width="1.00" height="1.00" pivot_x="0.00" pivot_y="0.50" texel_x="0" texel_y="0" texel_width="128" texel_height="64"/>
 	<Particle name="pattern011_alpha3" texture="pattern011_alpha3" width="5.00" height="5.00" pivot_x="0.50" pivot_y="0.50" texel_x="0" texel_y="0" texel_width="256" texel_height="256"/>
 	<Particle name="pattern011_pink1" texture="pattern011_pink1" width="5.00" height="5.00" pivot_x="0.50" pivot_y="0.50" texel_x="0" texel_y="0" texel_width="256" texel_height="256"/>
 	<Particle name="pattern011_pink" texture="pattern011_pink" width="5.00" height="5.00" pivot_x="0.50" pivot_y="0.50" texel_x="0" texel_y="0" texel_width="256" texel_height="256"/>
@@ -696,6 +697,9 @@
 	<Trail name="dash001_pink" texture="dash001_pink" height="5.00" texel_x="0" texel_y="0" texel_width="32" texel_height="16"/>
 	<Trail name="dash001" texture="dash001" height="5.00" texel_x="0" texel_y="0" texel_width="32" texel_height="16"/>
 	<Trail name="smoke002" texture="smoke002" height="10.00" texel_x="512" texel_y="512" texel_width="64" texel_height="64"/>
+	<Model name="arquebusier_walls_loop" model="arquebusier_walls_loop.xac" motion="arquebusier_walls_loop_ani.xsm" texturepath="effect\high\modeltexture\" overlap="false" AlphaType="BLEND"/>
+	<Model name="musketbullet001" model="musketbullet001.xac" motion="None" texturepath="effect\high\modeltexture\" overlap="false" AlphaType="BLEND"/>
+	<Model name="arquebusier_walls" model="arquebusier_walls.xac" motion="arquebusier_walls_ani.xsm" texturepath="effect\high\modeltexture\" overlap="false" AlphaType="BLEND"/>
 	<Model name="avataras_skl7_1" model="avataras_skl7_1.xac" motion="None" texturepath="effect\high\modeltexture\" overlap="false" AlphaType="BLEND"/>
 	<Model name="effect_ep12musical" model="effect_ep12musical.xac" motion="None" texturepath="effect\high\modeltexture\" overlap="false" AlphaType="BLEND"/>
 	<Model name="anvil_moth" model="anvil_fail.xac" motion="anvil_fail_ani.xsm" texturepath="effect\high\modeltexture\anvil_moth\" overlap="false" AlphaType="BLEND"/>
@@ -1711,6 +1715,8 @@
 	<Model name="effect_twinshark" model="effect_twinshark.xac" motion="effect_twinshark_ani.xsm" texturepath="effect\high\modeltexture\" overlap="false" AlphaType="TEST"/>
 	<Model name="I_boss_medusa_dead" model="boss_medusa_dead.xac" motion="boss_medusa_dead_ani.xsm" texturepath="effect\high\modeltexture\" overlap="false" AlphaType="TEST"/>
 	<Model name="p_h_barrack_icecrystal_01_dead" model="p_h_barrack_icecrystal_01_dead.xac" motion="p_h_barrack_icecrystal_01_dead_ani.xsm" texturepath="char_texture\housing_p\p_h_barrack_icecrystal_01\" overlap="false" AlphaType="TEST"/>
+	<Model name="honoredrose_thsword" model="effect_honoredrose_thsword.xac" motion="None" texturepath="item_texture\" overlap="false" AlphaType="TEST"/>
+	<Model name="i_boss_saugumas_executor_dead" model="boss_saugumas_executor_dead.xac" motion="boss_saugumas_executor_dead_ani.xsm" texturepath="char_texture\monster\boss_saugumas_executor\" overlap="false" AlphaType="TEST"/>
 	<Text name="Text_damage_self" caption="" fontfilename="ORIGINAL" fontsize="24" bold="0" italic="0" outline="0" dropshadow="0" mindistance="100.00" maxdistance="300.00"/>
 	<Text name="Text_damage_decision" caption="" fontfilename="ORIGINAL" fontsize="20" bold="1" italic="0" outline="1" dropshadow="0" mindistance="50.00" maxdistance="150.00"/>
 	<Text name="Text_destination" caption="" fontfilename="ORIGINAL" fontsize="28" bold="0" italic="0" outline="0" dropshadow="0" mindistance="100.00" maxdistance="300.00"/>

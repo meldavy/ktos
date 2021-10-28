@@ -1534,6 +1534,17 @@ function SCR_Get_MON_SDR(self)
         value = 5;
     end
     
+    local statType = TryGetProp(self, "StatType", "None");
+    local addStat = 0;
+    if statType ~= nil and statType ~= 'None' then
+        local statTypeClass = GetClass("Stat_Monster_Type", statType);
+        if statTypeClass ~= nil then
+            addStat = TryGetProp(statTypeClass, "SDR_BM", 0);
+        end
+    end
+    
+    value = value + addStat;
+    
     local byBuff = TryGetProp(self, 'SDR_BM', 0);
     
     value = value + byBuff;
@@ -1541,7 +1552,7 @@ function SCR_Get_MON_SDR(self)
     if value < 1 then
         value = 1;
     end
-    
+
     return math.floor(value);
 end
 
@@ -2457,9 +2468,9 @@ function SCR_MON_STAT_RATE(self, prop)
         local statTypeClass = GetClass("Stat_Monster_Type", statType);
         if statTypeClass ~= nil then
             statTypeRate = TryGetProp(statTypeClass, prop, statTypeRate);
-            --주간 보스 레이드 25주차 임시 처리--
-            if (prop == "DEF" or prop == "MDEF") and statType == "Weekly_Boss" and GetExProp(self, "Weekly_Num") <= 25 then
-                statTypeRate = 148;
+            --QA DPS TEST MON Stat Set
+            if statType == "Weekly_Boss" and self.StrArg1 == "TEST" then
+                statTypeRate = 148
             end
         end
     end

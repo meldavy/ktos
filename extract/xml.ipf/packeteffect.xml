@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by imc (imc) -->
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by imc (imc) -->
 <packeteffects>
 	<Category ID="163">
 		<Effect Name="F_archer_bodkinpoint_hit_explosion#Dummy001"/>
@@ -471,6 +471,15 @@
 		<Effect Name="Field_boss_Mirtis_line"/>
 		<Effect Name="Field_Evil_Pillar_2"/>
 		<Effect Name="Field_Evil_Pillar"/>
+		<Effect Name="WEEKLY_BOSS_RAID_GELE"/>
+		<Effect Name="Weekly_Nepenthes"/>
+		<Effect Name="weekly_boss_Tiny_Fire_Pad"/>
+		<Effect Name="I_force018_trail_psychokinesis3_4#Dummy_bufficon"/>
+		<Effect Name="I_wizard_hellbreath_fireforce_abil#Dummy_bufficon"/>
+		<Effect Name="F_flash_art_rize_line_shot"/>
+		<Effect Name="weekly_boss_tiny_pad"/>
+		<Effect Name="Weekly_Tiny_FireWall"/>
+		<Effect Name="Weekly_Flower_Pad"/>
 	</Category>
 	<Category ID="146">
 		<Effect Name="beginner"/>
@@ -23679,5 +23688,10 @@
 		<Effect Name="I_force018_trail_earth_long_stone3#Bip001 R Finger1Nub"/>
 		<Effect Name="I_force018_trail_earth_long_stone3#Dummy_Damage"/>
 		<Effect Name="F_archer_ParthianShaft_cast_spread_in"/>
+		<Effect Name="I_force071_violet2"/>
+		<Effect Name="I_wizard_Enchantment_leaf"/>
+		<Effect Name="I_archer_canon_force2#Dummy_effect_wepon"/>
+		<Effect Name="I_force071_violet"/>
+		<Effect Name="weekly_boss_Naktis_ShotPad"/>
 	</Category>
 </packeteffects>

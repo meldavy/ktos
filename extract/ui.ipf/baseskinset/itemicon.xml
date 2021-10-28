@@ -1137,6 +1137,10 @@
 		<image name="item_icon_EVENT_Arbor_Day_Fundamental_T_f" file="\icon\equip\item_icon_EVENT_Arbor_Day_Fundamental_T_f.png" imgrect="0 0 256 256"/>
 		<image name="item_icon_EVENT_Summer_Watermelon_m" file="\icon\equip\item_icon_EVENT_Summer_Watermelon_m.png" imgrect="0 0 256 256" CMM_Caption="2020 여름 수박"/>
 		<image name="item_icon_EVENT_Summer_Watermelon_f" file="\icon\equip\item_icon_EVENT_Summer_Watermelon_f.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_naktis_f" file="\icon\equip\icon_item_naktis_f.png" imgrect="0 0 256 256" CMM_Caption="나크티스 코스튬"/>
+		<image name="icon_item_naktis_m" file="\icon\equip\icon_item_naktis_m.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_solcomm_f" file="\icon\equip\icon_item_solcomm_f.png" imgrect="0 0 256 256" CMM_Caption="솔콤 코스튬"/>
+		<image name="icon_item_solcomm_m" file="\icon\equip\icon_item_solcomm_m.png" imgrect="0 0 256 256"/>
 	</imagelist>
 	<imagelist category="256_weapone_icons">
 		<image name="icon_item_artefact_210011" file="\icon\weapon\icon_item_artefact_210011.png" imgrect="0 0 256 256" CMM_Caption="요령"/>
@@ -3310,6 +3314,9 @@
 		<image name="icon_item_ep12demonlord_cannon" file="\icon\weapon\icon_item_ep12demonlord_cannon.png" imgrect="0 0 256 256" CMM_Caption="11월_마신의 유혹"/>
 		<image name="icon_item_ep12demonlord_shield" file="\icon\weapon\icon_item_ep12demonlord_shield.png" imgrect="0 0 256 256"/>
 		<image name="icon_item_ep12demonlord_staff" file="\icon\weapon\icon_item_ep12demonlord_staff.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13vakarine_crossbow" file="\icon\weapon\icon_item_ep13vakarine_crossbow.png" imgrect="0 0 256 256" CMM_Caption="2020_12월 테마"/>
+		<image name="icon_item_ep13vakarine_thsword" file="\icon\weapon\icon_item_ep13vakarine_thsword.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13vakarine_thmace" file="\icon\weapon\icon_item_ep13vakarine_thmace.png" imgrect="0 0 256 256"/>
 	</imagelist>
 	<imagelist category="acc_item">
 		<image name="item_necklace_01" file="\icon\acc\item_necklace_1.png" imgrect="0 0 256 256" CMM_Caption="목걸이"/>
@@ -4038,6 +4045,8 @@
 		<image name="icon_item_accessory_ep12demonlord02" file="\icon\hairacc\icon_item_accessory_ep12demonlord02.png" imgrect="0 0 256 256"/>
 		<image name="icon_item_helmet_f_ep12demonlord" file="\icon\hairacc\icon_item_helmet_f_ep12demonlord.png" imgrect="0 0 256 256"/>
 		<image name="icon_item_helmet_m_ep12demonlord" file="\icon\hairacc\icon_item_helmet_m_ep12demonlord.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_solcomm_helmet" file="\icon\hairacc\icon_item_solcomm_helmet.png" imgrect="0 0 256 256" CMM_Caption="솔콤 헬멧"/>
+		<image name="icon_item_accessory_ep13vakarine" file="\icon\hairacc\icon_item_accessory_ep13vakarine.png" imgrect="0 0 256 256" CMM_Caption="2020_12월 테마"/>
 	</imagelist>
 	<imagelist category="collection_item">
 		<image name="icon_collitem_collection" file="\icon\colletion\icon_item_collection.tga" imgrect="0 0 673 419" CMM_Caption="월계수"/>
@@ -6160,6 +6169,8 @@
 		<image name="icon_item_special_box_02" file="\icon\item\icon_item_special_box_02.png" imgrect="0 0 128 128"/>
 		<image name="icon_item_special_box_03" file="\icon\item\icon_item_special_box_03.png" imgrect="0 0 128 128"/>
 		<image name="icon_item_special_box_all" file="\icon\item\icon_item_special_box_all.png" imgrect="0 0 128 128"/>
+		<image name="icon_item_Silver_TOS_Event" file="\icon\item\icon_item_Silver_TOS_Event.png" imgrect="0 0 256 256" CMM_Caption="5주년 이벤트 은화"/>
+		<image name="icon_item_Gold_5th_Event" file="\icon\item\icon_item_Gold_5th_Event.png" imgrect="0 0 256 256" CMM_Caption="5주년 이벤트 금화"/>
 	</imagelist>
 	<imagelist category="housing">
 		<image name="icon_item_h_bigplant_set_01_green" file="\icon\housing\icon_item_h_bigplant_set_01_green.png" imgrect="0 0 256 256" CMM_Caption="[길드 하우징] 화단_01(초록색)"/>
@@ -7871,9 +7882,34 @@
 		<image name="icon_item_selectbox_ep12demonlord03_1" file="\icon\payment\icon_item_selectbox_ep12demonlord03_1.png" imgrect="0 0 256 256"/>
 		<image name="icon_item_wing_ep12demonlord" file="\icon\payment\icon_item_wing_ep12demonlord.png" imgrect="0 0 256 256"/>
 		<image name="icon_item_dalmatian" file="\icon\payment\icon_item_dalmatian.png" imgrect="0 0 256 256" CMM_Caption="달마시안 알"/>
+		<image name="icon_item_wing_tiny" file="\icon\payment\icon_item_wing_tiny.png" imgrect="0 0 256 256" CMM_Caption="티니 풍선"/>
+		<image name="item_icon_Doll_lucy" file="\icon\payment\item_icon_Doll_lucy.png" imgrect="0 0 256 256" CMM_Caption="루시 인형"/>
 		<image name="20halloween_tangle_up_hair_test" file="\icon\payment\20halloween_tangle_up_hair_test.png" imgrect="0 0 256 256" CMM_Caption="신규헤어 스펙트럼 2종"/>
 		<image name="20halloween_seaweed_hair_test" file="\icon\payment\20halloween_seaweed_hair_test.png" imgrect="0 0 256 256"/>
 		<image name="icon_item_allbox_ep12demonlord" file="\icon\payment\icon_item_allbox_ep12demonlord.png" imgrect="0 0 256 256" CMM_Caption="11월 테마 올패키지"/>
+		<image name="icon_item_box_doll_vakarine" file="\icon\payment\icon_item_box_doll_vakarine.png" imgrect="0 0 256 256" CMM_Caption="2020_12월 테마"/>
+		<image name="icon_item_box_wing_goddessLaIma" file="\icon\payment\icon_item_box_wing_goddessLaIma.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_doll_vakarine" file="\icon\payment\icon_item_doll_vakarine.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13vakarine01_1_f" file="\icon\payment\icon_item_ep13vakarine01_1_f.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13vakarine01_1_m" file="\icon\payment\icon_item_ep13vakarine01_1_m.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13vakarine01_2_f" file="\icon\payment\icon_item_ep13vakarine01_2_f.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13vakarine01_2_m" file="\icon\payment\icon_item_ep13vakarine01_2_m.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13vakarine01_f" file="\icon\payment\icon_item_ep13vakarine01_f.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13vakarine01_m" file="\icon\payment\icon_item_ep13vakarine01_m.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13vakarine02_1_f" file="\icon\payment\icon_item_ep13vakarine02_1_f.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13vakarine02_1_m" file="\icon\payment\icon_item_ep13vakarine02_1_m.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13vakarine02_f" file="\icon\payment\icon_item_ep13vakarine02_f.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13vakarine02_m" file="\icon\payment\icon_item_ep13vakarine02_m.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13vakarine03_1_f" file="\icon\payment\icon_item_ep13vakarine03_1_f.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep13vakarine03_1_m" file="\icon\payment\icon_item_ep13vakarine03_1_m.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_selectbox_ep13vakarine01" file="\icon\payment\icon_item_selectbox_ep13vakarine01.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_selectbox_ep13vakarine01_1" file="\icon\payment\icon_item_selectbox_ep13vakarine01_1.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_selectbox_ep13vakarine01_2" file="\icon\payment\icon_item_selectbox_ep13vakarine01_2.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_selectbox_ep13vakarine02" file="\icon\payment\icon_item_selectbox_ep13vakarine02.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_selectbox_ep13vakarine02_1" file="\icon\payment\icon_item_selectbox_ep13vakarine02_1.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_selectbox_ep13vakarine03_1" file="\icon\payment\icon_item_selectbox_ep13vakarine03_1.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_wing_goddessLaIma" file="\icon\payment\icon_item_wing_goddessLaIma.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_winter_rabbit" file="\icon\payment\icon_item_winter_rabbit.png" imgrect="0 0 256 256" CMM_Caption="겨울 토끼 알"/>
 	</imagelist>
 	<imagelist category="seal">
 		<image name="icon_seal_yellow_cc_A1" file="\icon\seal\seal_yellow_cc_A1.tga" imgrect="0 0 80 80"/>

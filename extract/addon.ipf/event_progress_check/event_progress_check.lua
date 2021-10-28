@@ -10,6 +10,7 @@ function EVENT_PROGRESS_CHECK_OPEN_COMMAND(frame, msg, argStr, type)
 end
 
 local your_master_type = 4;
+local event_5th_type = 6;
 function EVENT_PROGRESS_CHECK_OPEN(type)
 	local frame = ui.GetFrame("event_progress_check");
 
@@ -85,7 +86,7 @@ function EVENT_PROGRESS_CHECK_TAB_CLICK(parent, ctrl, argStr, type)
 
 	if index == 0 then
 		EVENT_PROGRESS_CHECK_ACQUIRE_STATE_OPEN(frame, type);
-    elseif index == 1 then
+	elseif index == 1 then
         EVENT_PROGRESS_CHECK_STAMP_TOUR_STATE_OPEN(frame, type);
     elseif index == 2 then
         EVENT_PROGRESS_CHECK_CONTENTS_STATE_OPEN(parent:GetTopParentFrame(), type);
@@ -132,13 +133,18 @@ function EVENT_PROGRESS_CHECK_ACQUIRE_STATE_OPEN(frame, type)
 	local iconlist = GET_EVENT_PROGRESS_CHECK_ACQUIRE_STATE_ICON(type);    
 	local textlist = GET_EVENT_PROGRESS_CHECK_ACQUIRE_STATE_TEXT(type);
 	local tooltiplist = GET_EVENT_PROGRESS_CHECK_ACQUIRE_STATE_TOOLTIP(type);
-	local maxlist = GET_EVENT_PROGRESS_CHECK_ACQUIRE_STATE_MAX_VALUE(type);
+	local maxlist = GET_EVENT_PROGRESS_CHECK_ACQUIRE_STATE_MAX_VALUE(type, accObj);
 	local npclist = GET_EVENT_PROGRESS_CHECK_ACQUIRE_STATE_NPC(type);
     local clearlist = GET_EVENT_PROGRESS_CHECK_ACQUIRE_STATE_CLEAR_TEXT(type);
 
 	local y = 0;
-    for i = 1, 5 do
-		local ctrlSet = listgb:CreateControlSet('icon_with_current_state', "CTRLSET_" .. i,  ui.CENTER_HORZ, ui.TOP, 0, y, 0, 0);
+	local listCnt = GET_EVENT_PROGRESS_CHECK_LIST_COUNT(type);
+    for i = 1, listCnt do
+		local ctrlSet = listgb:CreateControlSet('icon_with_current_state', "CTRLSET_" .. i,  ui.LEFT, ui.TOP, 0, y, 0, 0);
+		if 5 < listCnt then
+			ctrlSet:Resize(500, 99);
+		end
+
 		local iconpic = GET_CHILD(ctrlSet, "iconpic");
 		iconpic:SetImage(iconlist[i]);
 
@@ -161,16 +167,27 @@ function EVENT_PROGRESS_CHECK_ACQUIRE_STATE_OPEN(frame, type)
 		text:SetTextByKey('value', textlist[i]);
 
 		local gb = GET_CHILD(ctrlSet, "gb");
-		gb:SetTextTooltip(tooltiplist[i]);
+		if tooltiplist[i] ~= "None" then
+			gb:SetTextTooltip(tooltiplist[i]);
+		end
 
 		local comming_soon_pic = GET_CHILD(ctrlSet, "comming_soon_pic");
 		comming_soon_pic:ShowWindow(0);
-
 		local state = GET_CHILD(ctrlSet, "state");
-		local curvalue = curlist[i];
-        local maxvalue = maxlist[i];
+		
+		local curvalue = 0;
+		local maxvalue = 0;
+		
+		local curStrlist = StringSplit(curlist[i], "/");
+		if 1 < #curStrlist then
+			curvalue = curStrlist[1];
+			maxvalue = curStrlist[2];
+		else
+			curvalue = curlist[i];
+			maxvalue = maxlist[i];
+		end
 
-		if maxvalue <= curvalue and maxvalue ~= 0 then
+		if #curStrlist == 1 and maxvalue <= curvalue and maxvalue ~= 0 then
 			blackbg:ShowWindow(1);
 			blackbg:SetAlpha(90);
 
@@ -190,11 +207,20 @@ function EVENT_PROGRESS_CHECK_ACQUIRE_STATE_OPEN(frame, type)
 
 			clear_text:SetTextByKey("value", ClMsg("EndEventMessage"));
 		end
-
-		if i == 2 then
+		
+		if maxvalue ~= 0 and GET_EVENT_PROGRESS_DAILY_PLAY_TIME_INDEX(type) == i then
 			local timetype = GET_EVENT_PROGRESS_DAILY_PLAY_TIME_TYPE(type);
 			if timetype == "min" then
-				maxvalue = ScpArgMsg("{Min}", "Min", maxvalue);
+				maxvalue = ScpArgMsg("{Min}", "Min", maxvalue);	
+			end
+		end
+
+		if type == event_5th_type then
+			if i == 1 then
+				curvalue = curvalue .." ".. ClMsg("POINT");
+				maxvalue = maxvalue .." ".. ClMsg("Level");
+			elseif i == 6 then
+				curvalue = ScpArgMsg("{Min}", "Min", curvalue);
 			end
 		end
 		
@@ -233,24 +259,39 @@ function EVENT_PROGRESS_CHECK_DAILY_PLAY_TIME_UPDATE(frame, msg, time)
 		return;
 	end
 
+	local type = frame:GetUserIValue("TYPE");
+	local ctrlIndex = GET_EVENT_PROGRESS_DAILY_PLAY_TIME_INDEX(type);
 	local listgb = GET_CHILD(frame, "listgb");
-	local ctrlSet = GET_CHILD_RECURSIVELY(frame, "CTRLSET_2");
+	local ctrlSet = GET_CHILD_RECURSIVELY(listgb, "CTRLSET_"..ctrlIndex);
 	if ctrlSet == nil then
 		return;
-    end
-    
+	end
+	
+	local countType = GET_EVENT_PROGRESS_DAILY_PLAY_TIME_TYPE(type);
+	local state = GET_CHILD(ctrlSet, "state");
+	if countType == "min" then
+		state:SetTextByKey("cur",ScpArgMsg("{Min}", "Min", time));
+	else
+		state:SetTextByKey("cur", time);
+	end
+	
     -- -- EVENT_2009_FULLMOON
     -- if frame:GetUserValue("TYPE") == 5 then
     --     return;
-    -- end
-	
-	local state = GET_CHILD(ctrlSet, "state");
-	state:SetTextByKey("cur", time);
+	-- end
 
-	if 60 <= tonumber(time) then
-		local blackbg = GET_CHILD(ctrlSet, "blackbg");
+	local accObj = GetMyAccountObj();
+    local clearlist = GET_EVENT_PROGRESS_CHECK_ACQUIRE_STATE_CLEAR_TEXT(type);
+	local maxlist = GET_EVENT_PROGRESS_CHECK_ACQUIRE_STATE_MAX_VALUE(type, accObj);
+	local maxvalue = tonumber(maxlist[ctrlIndex]);
+
+	if maxvalue ~= 0 and maxvalue <= time then
 		blackbg:ShowWindow(1);
 		blackbg:SetAlpha(90);
+
+		if clearlist[ctrlIndex] ~= "None" then
+			clear_text:SetTextByKey("value", ClMsg(clearlist[ctrlIndex]));
+		end
 	end
 end
 
@@ -267,19 +308,34 @@ function EVENT_PROGRESS_CHECK_STAMP_TOUR_STATE_OPEN(frame, type)
 		tiptext:ShowWindow(1);
 	end
 	
+	local listgb = GET_CHILD(frame, "listgb");
+	if type == event_5th_type then
+		local accObj = GetMyAccountObj();
+		local maxlist = GET_EVENT_PROGRESS_CHECK_ACQUIRE_STATE_MAX_VALUE(type, accObj);
+		local curlist = GET_EVENT_PROGRESS_CHECK_CUR_VALUE(type, accObj);
+	
+		if maxlist[2] <= curlist[2] then
+			local overtext = GET_CHILD(frame, "overtext");
+			overtext:ShowWindow(1);
+			return;
+		end
+	
+		CREATE_EVENT_PROGRESS_CHECK_CONTENTS_LIST_DAILY(type, listgb, "Event_2011_TOS_Coin");
+		EVENT_2011_5TH_COIN_TOS_LIST(frame);
+		return;
+	end
+
 	local eventstatelist = GET_EVENT_PROGRESS_CHECK_EVENT_STATE(type);
 	if eventstatelist[3] == "pre" then
 		local comming_soon_pic = GET_CHILD_RECURSIVELY(frame, "comming_soon_pic");
 		comming_soon_pic:ShowWindow(1);
 	elseif eventstatelist[3] == "end" then
-		local listgb = GET_CHILD(frame, "listgb");
 		local ctrl = listgb:CreateControl("richtext", "tos_vacance_tip_text", 500, 100, ui.CENTER_HORZ, ui.CENTER_VERT, 0, 0, 0, 0);
 		ctrl:SetTextFixWidth(1);
 		ctrl:SetTextAlign("center", "top");
 		ctrl:SetFontName("black_24");
 		ctrl:SetText(ClMsg("EndEventMessage"));	
 	else
-		local listgb = GET_CHILD(frame, "listgb");
 		local accObj = GetMyAccountObj();
 		local stampTourCheck = TryGetProp(accObj, "REGULAR_EVENT_STAMP_TOUR");
 		if stampTourCheck == 1 then
@@ -396,6 +452,13 @@ function EVENT_PROGRESS_CHECK_CONTENTS_STATE_OPEN(frame, type)
 		tiptext:ShowWindow(1);
 	end
 	
+	local listgb = GET_CHILD(frame, "listgb");
+	if type == event_5th_type then	
+		CREATE_EVENT_PROGRESS_CHECK_CONTENTS_LIST_DAILY(type, listgb, "Event_2011_5th_Coin");
+		EVENT_2011_5TH_COIN_LIST(frame);
+		return;
+	end
+
 	local eventstatelist = GET_EVENT_PROGRESS_CHECK_EVENT_STATE(type);
 	if eventstatelist[4] == "pre" then
 		local comming_soon_pic = GET_CHILD_RECURSIVELY(frame, "comming_soon_pic");
@@ -410,7 +473,7 @@ function EVENT_PROGRESS_CHECK_CONTENTS_STATE_OPEN(frame, type)
 	else
 		local listgb = GET_CHILD(frame, "listgb");
 		local accObj = GetMyAccountObj();
-		local maxlist = GET_EVENT_PROGRESS_CHECK_ACQUIRE_STATE_MAX_VALUE(type);
+		local maxlist = GET_EVENT_PROGRESS_CHECK_ACQUIRE_STATE_MAX_VALUE(type, accObj);
 		local curlist = GET_EVENT_PROGRESS_CHECK_CUR_VALUE(type, accObj);
 		local contentslist = GET_EVENT_PROGRESS_CONTENTS_MAX_CONSUME_COUNT(type);
 		if contentslist == "daily" then
@@ -427,11 +490,15 @@ function EVENT_PROGRESS_CHECK_CONTENTS_STATE_OPEN(frame, type)
 	end
 end
 
-function CREATE_EVENT_PROGRESS_CHECK_CONTENTS_LIST_DAILY(type, listgb)
+function CREATE_EVENT_PROGRESS_CHECK_CONTENTS_LIST_DAILY(type, listgb, coinName)
 	local accObj = GetMyAccountObj();
 	if accObj == nil then return; end
 
-	local rewardCls = GetClass("Item", GET_EVENT_PROGRESS_CHECK_ITEM(type));
+	if coinName == nil then
+		coinName = GET_EVENT_PROGRESS_CHECK_ITEM(type);
+	end
+
+	local rewardCls = GetClass("Item", coinName);
 	local y = 0;
 	local clsList, clscnt  = GetClassList("event_coin");
 	for i = 0, clscnt - 1 do
@@ -440,7 +507,7 @@ function CREATE_EVENT_PROGRESS_CHECK_CONTENTS_LIST_DAILY(type, listgb)
 		if ret == true and count ~= 0 then
 			local desc = TryGetProp(missionCls, "Desc", "None");
 			if desc ~= "None" then
-				local ctrlSet = listgb:CreateControlSet("simple_to_do_list", "CTRLSET_" ..i,  ui.CENTER_HORZ, ui.TOP, -10, y, 0, 0);
+				local ctrlSet = listgb:CreateControlSet("simple_to_do_list", "CTRLSET_" ..missionCls.ClassName,  ui.CENTER_HORZ, ui.TOP, -10, y, 0, 0);
 				local rewardicon = GET_CHILD(ctrlSet, "rewardicon");
 				rewardicon:SetImage(rewardCls.Icon);
 			
@@ -450,7 +517,7 @@ function CREATE_EVENT_PROGRESS_CHECK_CONTENTS_LIST_DAILY(type, listgb)
 				local rewardcnt = GET_CHILD(ctrlSet, "rewardcnt");
 				rewardcnt:SetTextByKey('value', count);
 	
-				y = y + ctrlSet:GetHeight();				
+				y = y + ctrlSet:GetHeight();
 			end			
 		end
 	end
@@ -990,4 +1057,90 @@ function GET_RANKING_SORT_TYPE(tabindex, state)
 	end
 
 	return "des";
+end
+
+
+
+------------------------- EVENT_2011_5TH -------------------------
+function EVENT_2011_5TH_COIN_TOS_LIST(frame)
+	local rewardCls = GetClass("Item", "Event_2011_TOS_Coin");
+	if rewardCls == nil then
+		return;
+	end
+
+	local listgb = GET_CHILD(frame, "listgb");
+
+	-- 1시간 접속 
+	local ctrlSet1 = listgb:CreateControlSet("simple_to_do_list", "CTRLSET_DAILY_PLAY_TIEM",  ui.CENTER_HORZ, ui.TOP, -10, 0, 0, 0);
+	local rewardicon1 = GET_CHILD(ctrlSet1, "rewardicon");
+	rewardicon1:SetImage(rewardCls.Icon);
+			
+	local rewardtext1 = GET_CHILD(ctrlSet1, "rewardtext");
+	rewardtext1:SetTextByKey('value', ClMsg("EVENT_2011_5TH_MSG_9"));
+
+	local rewardcnt1 = GET_CHILD(ctrlSet1, "rewardcnt");
+	rewardcnt1:SetTextByKey('value', 10);
+	
+	GBOX_AUTO_ALIGN(listgb, 0, 0, 0, true, false);
+end
+
+function EVENT_2011_5TH_COIN_LIST(frame)	
+	local rewardCls = GetClass("Item", "Event_2011_5th_Coin");
+	if rewardCls == nil then
+		return;
+	end
+
+	local listgb = GET_CHILD(frame, "listgb");
+	listgb:EnableHitTest(1);
+
+	-- 일반 필드 몬스터 툴팁
+	local ctrlset1 = GET_CHILD_RECURSIVELY(listgb, "CTRLSET_monKill_Field_Normal");
+	local ctrl1 = GET_CHILD_RECURSIVELY(ctrlset1, "gb");
+	ctrl1:EnableHitTest(1);
+	ctrl1:SetTextTooltip(ClMsg("EVENT_2011_5TH_MSG_12").."{nl}"..ClMsg("EVENT_2011_5TH_MSG_7"));
+
+	-- 엘리트 필드 몬스터 툴팁
+	local ctrlset2 = GET_CHILD_RECURSIVELY(listgb, "CTRLSET_monKill_Field_Elite");
+	local ctrl2 = GET_CHILD_RECURSIVELY(ctrlset2, "gb");
+	ctrl2:EnableHitTest(1);
+	ctrl2:SetTextTooltip(ClMsg("EVENT_2011_5TH_MSG_12").."{nl}"..ClMsg("EVENT_2011_5TH_MSG_8"));
+
+	-- 1시간 접속 
+	local ctrlSet3 = listgb:CreateControlSet("simple_to_do_list", "CTRLSET_DAILY_PLAY_TIEM",  ui.CENTER_HORZ, ui.TOP, -10, 0, 0, 0);
+	local rewardicon3 = GET_CHILD(ctrlSet3, "rewardicon");
+	rewardicon3:SetImage(rewardCls.Icon);
+			
+	local rewardtext3 = GET_CHILD(ctrlSet3, "rewardtext");
+	rewardtext3:SetTextByKey('value', ClMsg("EVENT_2011_5TH_MSG_9"));
+		
+	local rewardcnt3 = GET_CHILD(ctrlSet3, "rewardcnt");
+	rewardcnt3:SetTextByKey('value', 10);
+
+	local ctrl3 = GET_CHILD_RECURSIVELY(ctrlSet3, "gb");
+	ctrl3:EnableHitTest(1);
+	ctrl3:SetTextTooltip(ClMsg("EVENT_2011_5TH_MSG_13"));
+
+	-- TOS 주화 100개 획득
+	local ctrlSet4 = listgb:CreateControlSet("simple_to_do_list", "CTRLSET_COIN_TOS_BONUS",  ui.CENTER_HORZ, ui.TOP, -10, 0, 0, 0);
+	local rewardicon4 = GET_CHILD(ctrlSet4, "rewardicon");
+	rewardicon4:SetImage(rewardCls.Icon);
+			
+	local rewardtext4 = GET_CHILD(ctrlSet4, "rewardtext");
+	rewardtext4:SetTextByKey('value', ClMsg("EVENT_2011_5TH_MSG_10"));
+		
+	local rewardcnt4 = GET_CHILD(ctrlSet4, "rewardcnt");
+	rewardcnt4:SetTextByKey('value', 10);
+
+	-- TOS 주화 교환
+	local ctrlSet5 = listgb:CreateControlSet("simple_to_do_list", "CTRLSET_COIN_TOS_EXCHANGE",  ui.CENTER_HORZ, ui.TOP, -10, 0, 0, 0);
+	local rewardicon5 = GET_CHILD(ctrlSet5, "rewardicon");
+	rewardicon5:SetImage(rewardCls.Icon);
+			
+	local rewardtext5 = GET_CHILD(ctrlSet5, "rewardtext");
+	rewardtext5:SetTextByKey('value', ClMsg("EVENT_2011_5TH_MSG_11"));
+		
+	local rewardcnt5 = GET_CHILD(ctrlSet5, "rewardcnt");
+	rewardcnt5:SetTextByKey('value', 1);
+
+	GBOX_AUTO_ALIGN(listgb, 0, 0, 0, true, false);
 end

@@ -48,6 +48,7 @@
 	<ReadXml Name="skill"/>
 	<ReadXml Name="skill_mon"/>
 	<ReadXml Name="skill_cp"/>
+	<ReadXml Name="skill_common"/>
 	<ReadXml Name="stance"/>
 	<ReadXml Name="stancecondition"/>
 	<ReadXml Name="warp"/>

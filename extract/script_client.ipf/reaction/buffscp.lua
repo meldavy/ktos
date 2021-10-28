@@ -1381,6 +1381,18 @@ function DOLL_TINY_BUFF_LEAVE(actor, obj, buff)
 	SCR_REMOVE_FAIRY(actor:GetHandleVal(), "doll_tiny");
 end
 
+-- doll_lucy
+function DOLL_LUCY_BUFF_ENTER(actor, obj, buff)
+end
+
+function DOLL_LUCY_BUFF_UPDATE(actor, obj, buff)
+	SCR_CREATE_FAIRY(actor:GetHandleVal(), "doll_lucy");
+end
+
+function DOLL_LUCY_BUFF_LEAVE(actor, obj, buff)
+	SCR_REMOVE_FAIRY(actor:GetHandleVal(), "doll_lucy");
+end
+
 -- 2019Halloween_effect / moon effect
 function HalloweenMoon_effect_ENTER(actor, obj, buff)
     actor:GetBuff():SetUse2DEffect(false);
@@ -1411,6 +1423,17 @@ end
 
 function DOLL_HAUBERK_BUFF_LEAVE(actor, obj, buff)
 	SCR_REMOVE_FAIRY(actor:GetHandleVal(), "doll_hauberk");
+end
+
+function DOLL_VAKARINE_BUFF_ENTER(actor, obj, buff)
+end
+
+function DOLL_VAKARINE_BUFF_UPDATE(actor, obj, buff)
+	SCR_CREATE_FAIRY(actor:GetHandleVal(), "doll_vakarine");
+end
+
+function DOLL_VAKARINE_BUFF_LEAVE(actor, obj, buff)
+	SCR_REMOVE_FAIRY(actor:GetHandleVal(), "doll_vakarine");
 end
 
 function XMAS_EFFECT_2019_ENTER(actor, obj, buff)

@@ -2,13 +2,33 @@
 function COMPOSITION_VIBORA_ON_INIT(addon, frame)
 	addon:RegisterMsg("OPEN_DLG_COMPOSITION_VIBORA", "ON_OPEN_DLG_COMPOSITION_VIBORA");
 	addon:RegisterMsg("COMPOSITION_VIBORA_SUCCESS", "COMPOSITION_VIBORA_SUCCESS");
+	addon:RegisterMsg("EVENT_2011_5TH_VIBORA_COMPOSITE_SUCCESS", "COMPOSITION_VIBORA_SUCCESS");
 end
 
-function ON_OPEN_DLG_COMPOSITION_VIBORA()
-	ui.OpenFrame("composition_vibora");
+-- TYPE = 1 : 일반, 2 : 5주년 이벤트
+function ON_OPEN_DLG_COMPOSITION_VIBORA(type)
+	if type == nil then
+		type = 1;
+	end
+
+	local frame = ui.GetFrame("composition_vibora");
+	frame:SetUserValue("TYPE", type);
+	frame:ShowWindow(1);
 end
 
 function COMPOSITION_VIBORA_OPEN(frame)
+	local type = frame:GetUserIValue("TYPE");
+	local title = GET_CHILD(frame, "title");
+	title:SetTextByKey("value", frame:GetUserConfig("TITLE_COMMON"));
+
+	local do_composition = GET_CHILD(frame, "do_composition");
+	do_composition:SetTextTooltip("");
+
+	if type == 2 then -- EVENT_2011_5TH
+		title:SetTextByKey("value", ClMsg("EVENT_2011_5TH_Special_Vibora_Shop_title"));		
+		do_composition:SetTextTooltip(ClMsg("EVENT_2011_5TH_Use_5th_Coin_tip_MSG_2"));
+	end
+
     COMPOSITION_VIBORA_UI_RESET();
 	
 	INVENTORY_SET_CUSTOM_RBTNDOWN("COMPOSITION_VIBORA_INV_RBTNDOWN");
@@ -32,6 +52,7 @@ function COMPOSITION_VIBORA_SLOT_RESET(slot, slotIndex)
 
 	slot:SetUserValue("CLASS_NAME", "None");
 	slot:SetUserValue("GUID", "None");
+	slot:SetText("", "count", ui.RIGHT, ui.BOTTOM, -5, -5);
 	slot:ClearIcon();
 	
 	local slot_img = GET_CHILD(slot, 'slot_img_'..slotIndex);
@@ -49,6 +70,44 @@ function COMPOSITION_VIBORA_UI_RESET()
 
 	local resetBtn = GET_CHILD(frame, "resetBtn");
 	resetBtn:ShowWindow(0);
+	
+	local tip_text = GET_CHILD(frame, "tip_text");
+	tip_text:ShowWindow(1);
+
+	local event_gb = GET_CHILD(frame, "event_gb");
+	event_gb:ShowWindow(0);
+
+	local event_tip_text = GET_CHILD(frame, "event_tip_text");
+	event_tip_text:ShowWindow(0);	
+
+	local count_text = GET_CHILD(frame, "count_text");
+	count_text:ShowWindow(0);
+
+	local type = frame:GetUserIValue("TYPE");
+	if type == 2 then -- EVENT_2011_5TH
+		event_gb:RemoveAllChild();
+		local msg1 = event_gb:CreateOrGetControl('richtext', "msg1", 0, 0, 400, 20);
+		msg1:SetGravity(ui.CENTER_HORZ, ui.TOP);
+		msg1:SetText("{@st43}{s22}"..ClMsg("NeedItem"));
+
+		local msg2 = event_gb:CreateOrGetControl('richtext', "msg2", 0, 0, 400, 20);
+		msg2:SetGravity(ui.CENTER_HORZ, ui.TOP);
+		msg2:SetMargin(0, 45, 0, 0)
+		msg2:SetText("");
+		msg2:SetText("{@st66b}{s20}".."바이보라 무기 1개 {nl}[이벤트] TOS 주화 1000개{nl}[이벤트] 5주년 기념 주화 50개");
+		msg2:SetTextAlign("center", "center");
+		event_tip_text:SetTextByKey("value", ClMsg("EVENT_2011_5TH_Special_Vibora_Shop_tip"));
+
+		local aObj = GetMyAccountObj();
+		local cnt = TryGetProp(aObj, "EVENT_2011_5TH_SPECIAL_VIBORA_SHOP_USE_COUNT", 9999999);
+		count_text:SetTextByKey("cur", cnt);
+		count_text:SetTextByKey("max", GET_EVENT_2011_5TH_VIBORA_COMPOSITE_MAX_COUNT());
+
+		event_gb:ShowWindow(1);
+		event_tip_text:ShowWindow(1);
+		tip_text:ShowWindow(0);
+		count_text:ShowWindow(1);
+	end
 
     local need_count = GET_COMPOSITION_VIROBA_SOURCE_COUNT();
 	for i = 1, need_count do 
@@ -94,7 +153,7 @@ function COMPOSITION_VIBORA_ITEM_REG(guid, ctrl, slotIndex)
     if ret == false or ret_classname == 'None' then
         return;
 	end
-	
+		
 	if COMPOSITION_VIBORA_SAME_ITEM_CHECK(guid) == false then
 		return;
 	end
@@ -117,17 +176,24 @@ function COMPOSITION_VIBORA_INV_RBTNDOWN(itemObj, slot)
 		return;
 	end
 
+	local type = frame:GetUserIValue("TYPE");
 	local icon = slot:GetIcon();
-    local need_count = GET_COMPOSITION_VIROBA_SOURCE_COUNT()
+	local iconInfo = icon:GetInfo();
+	
+	if type == 2 then -- EVENT_2011_5TH
+		EVENT_2011_5TH_SPECIAL_VIBORA_ITEM_REG(iconInfo:GetIESID());
+		return;
+	end
+
+	local need_count = GET_COMPOSITION_VIROBA_SOURCE_COUNT()
 	for i = 1, need_count do 
 		local ctrl = GET_CHILD(frame, "slot_"..i);
 		if ctrl:GetIcon() == nil then
-			local iconInfo = icon:GetInfo();
+			local ctrl = GET_CHILD(frame, "slot_"..i);
 			COMPOSITION_VIBORA_ITEM_REG(iconInfo:GetIESID(), ctrl, i);
 			return;
 		end
 	end
-
 end
 
 function COMPOSITION_VIBORA_ITEM_DROP(parent, ctrl, argStr, slotIndex)
@@ -135,6 +201,14 @@ function COMPOSITION_VIBORA_ITEM_DROP(parent, ctrl, argStr, slotIndex)
 	local FromFrame = liftIcon:GetTopParentFrame();
 	if FromFrame:GetName() == 'inventory' then
 		local iconInfo = liftIcon:GetInfo();
+
+		local frame = ctrl:GetTopParentFrame();
+		local type = frame:GetUserIValue("TYPE");
+		if type == 2 then -- EVENT_2011_5TH
+			EVENT_2011_5TH_SPECIAL_VIBORA_ITEM_REG(iconInfo:GetIESID());
+			return;
+		end
+
 		COMPOSITION_VIBORA_ITEM_REG(iconInfo:GetIESID(), ctrl, slotIndex);
 	end
 end
@@ -153,6 +227,11 @@ function COMPOSITION_VIBORA_BTN_CLICK(parent, ctrl)
 	end
 
 	local frame = parent:GetTopParentFrame();
+	local type = frame:GetUserIValue("TYPE");
+	if type == 2 then -- EVENT_2011_5TH
+		EVENT_2011_5TH_SPECIAL_VIBORA_BTN_CLLICK();
+		return;
+	end
 
 	session.ResetItemList();
     local need_count = GET_COMPOSITION_VIROBA_SOURCE_COUNT();
@@ -220,4 +299,160 @@ function IS_CHECK_COMPOSITION_VIBORA_RESULT()
 	end
 
 	return false;
+end
+
+----------------------------- EVENT_2011_5TH
+function EVENT_2011_5TH_SPECIAL_VIBORA_ITEM_REG(guid)
+	local frame = ui.GetFrame("composition_vibora");
+	local invItem = session.GetInvItemByGuid(guid);
+	if invItem == nil then return; end	
+	local itemObj = GetIES(invItem:GetObject());
+	if itemObj.ClassName == "Event_2011_TOS_Coin" then
+		slotIndex = 2;
+	elseif itemObj.ClassName == "Event_2011_5th_Coin" then
+		slotIndex = 3;
+	else 
+		slotIndex = 1;
+	end
+
+	local invItem = session.GetInvItemByGuid(guid);
+	if invItem == nil then
+		return;
+    end
+    
+	if invItem.isLockState == true then
+		ui.SysMsg(ClMsg("MaterialItemIsLock"));
+		return;
+	end
+
+	local itemObj = GetIES(invItem:GetObject());
+	local ctrl = GET_CHILD(frame, "slot_"..slotIndex);
+
+	if slotIndex == 1 then
+		local ret, ret_classname = IS_COMPOSABLE_VIRORA(itemObj);
+		local test = TryGetProp(itemObj, 'InheritanceItemName', 'None')
+		if ret == false or ret_classname == 'None' then
+			local group_name = TryGetProp(itemObj, 'GroupName', 'None');
+			if group_name == 'Icor' then
+				local class_name = TryGetProp(itemObj, 'InheritanceItemName', 'None')
+				local cls = GetClass('Item', class_name)
+				if cls ~= nil then
+					if TryGetProp(cls, 'StringArg', 'None') == 'Vibora' and 1 < TryGetProp(cls, 'NumberArg1', 0) then
+						ui.SysMsg(ClMsg("CannotCompositionUpgradeItem"));
+					return;
+					end
+				end
+			else
+				if TryGetProp(itemObj, 'StringArg', 'None') == 'Vibora' and 1 < TryGetProp(itemObj, 'NumberArg1', 0) then
+					ui.SysMsg(ClMsg("CannotCompositionUpgradeItem"));
+					return;
+				end
+			end
+
+			ui.SysMsg(ClMsg("CannotCompositionItem"));
+			return;
+		end
+
+		SET_SLOT_ITEM(ctrl, invItem);
+		ctrl:SetUserValue("CLASS_NAME", ret_classname);
+		ctrl:SetUserValue("GUID", guid);
+
+		local slot_img = GET_CHILD(ctrl, 'slot_img_'..slotIndex);
+		slot_img:ShowWindow(0);
+	elseif slotIndex == 2 then
+		if itemObj.ClassName ~= "Event_2011_TOS_Coin" then
+			ui.SysMsg(ClMsg("CannotCompositionItem"));
+			return;
+		end
+
+		local curCnt = GET_INV_ITEM_COUNT_BY_PROPERTY({{Name = "ClassName", Value = "Event_2011_TOS_Coin"}}, false);
+		local needCnt = GET_EVENT_2011_5TH_SPECIAL_VIBORA_NEED_COIN_TOS_COUNT();
+		if curCnt < needCnt then
+			ui.SysMsg(ClMsg("NotEnoughCompositionNeedItem"));
+			return;
+		end
+
+		SET_SLOT_ITEM(ctrl, invItem);
+		ctrl:SetUserValue("CLASS_NAME", ret_classname);
+		ctrl:SetUserValue("GUID", guid);
+		ctrl:SetText("{s18}{ol}{b}"..GET_EVENT_2011_5TH_SPECIAL_VIBORA_NEED_COIN_TOS_COUNT(), "count", ui.RIGHT, ui.BOTTOM, -5, -5);
+
+		local slot_img = GET_CHILD(ctrl, 'slot_img_'..slotIndex);
+		slot_img:ShowWindow(0);
+	elseif slotIndex == 3 then
+		if itemObj.ClassName ~= "Event_2011_5th_Coin" then
+			ui.SysMsg(ClMsg("CannotCompositionItem"));
+			return;
+		end
+
+		local curCnt = GET_INV_ITEM_COUNT_BY_PROPERTY({{Name = "ClassName", Value = "Event_2011_5th_Coin"}}, false);
+		local needCnt = GET_EVENT_2011_5TH_SPECIAL_VIBORA_NEED_COIN_COUNT();
+		if curCnt < needCnt then
+			ui.SysMsg(ClMsg("NotEnoughCompositionNeedItem"));
+			return;
+		end
+
+		SET_SLOT_ITEM(ctrl, invItem);
+		ctrl:SetUserValue("CLASS_NAME", ret_classname);
+		ctrl:SetUserValue("GUID", guid);
+		ctrl:SetText("{s18}{ol}{b}"..needCnt, "count", ui.RIGHT, ui.BOTTOM, -5, -5);
+
+		local slot_img = GET_CHILD(ctrl, 'slot_img_'..slotIndex);
+		slot_img:ShowWindow(0);
+	end
+end
+
+function EVENT_2011_5TH_SPECIAL_VIBORA_BTN_CLLICK()
+	if ui.CheckHoldedUI() == true then
+		return;
+	end
+
+	local aObj = GetMyAccountObj();
+	local cnt = TryGetProp(aObj, "EVENT_2011_5TH_SPECIAL_VIBORA_SHOP_USE_COUNT", 9999999);
+	if GET_EVENT_2011_5TH_VIBORA_COMPOSITE_MAX_COUNT() <= cnt then
+		ui.SysMsg(ClMsg("EVENT_2011_5TH_Special_Vibora_Shop_Max_Count_Over"));
+		return;
+	end
+
+	local frame = ui.GetFrame("composition_vibora");
+	session.ResetItemList();
+	for i = 1, 1 do 
+		local slot = GET_CHILD(frame, "slot_"..i);
+		if slot:GetIcon() == nil then
+			return;
+		end
+
+		local invItem = GET_SLOT_ITEM(slot);
+		local itemObj = GetIES(invItem:GetObject());
+		if i == 1 then
+			local ret, ret_classname = IS_COMPOSABLE_VIRORA(itemObj);
+			if ret == false or ret_classname == 'None' then
+				return;
+			end
+
+			local guid = slot:GetUserValue("GUID");
+			session.AddItemID(guid, 1);
+		elseif i == 2 then
+			if itemObj.ClassName ~= "Event_Roulette_Coin_2" then
+				return;
+			end
+		elseif i == 3 then
+			if itemObj.ClassName ~= "Event_Roulette_Coin_2" then
+				return;
+			end
+		end
+	end
+	
+	local COMPOSITON_SLOT_EFFECT = frame:GetUserConfig("COMPOSITON_SLOT_EFFECT");
+	local need_count = GET_COMPOSITION_VIROBA_SOURCE_COUNT();
+	for i = 1, need_count do 
+		local slot = GET_CHILD(frame, "slot_"..i);
+		slot:PlayUIEffect(COMPOSITON_SLOT_EFFECT, 4.2, "COMPOSITON_SLOT_EFFECT", true);
+	end
+
+	ui.SetHoldUI(true);
+	ReserveScript("COMPOSITION_VIBORA_UNFREEZE()", 3);
+	
+	local resultlist = session.GetItemIDList();
+	item.DialogTransaction("EVENT_2011_5TH_VIBORA_COMPOSITE", resultlist);
 end

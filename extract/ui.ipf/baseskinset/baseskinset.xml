@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by imc (imc) -->
+<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by imc (imc) -->
 <!-- edited with XMLSpy v2008 sp1 (http://www.altova.com) by MintPC (Mi) -->
 <skinset name="Base">
 	<skinlist category="frames">
@@ -8648,6 +8648,9 @@
 		<image name="buffselect_btn" file="\skin\wedge_dungeon.tga" imgrect="0 202 80 80" CMM_Caption="버프선택 버튼"/>
 		<image name="buffselect_btn_cursoron" file="\skin\wedge_dungeon.tga" imgrect="81 202 80 80"/>
 		<image name="buffselect_btn_clicked" file="\skin\wedge_dungeon.tga" imgrect="162 202 80 80"/>
+		<image name="5thevent_btn" file="\skin\pip_test.tga" imgrect="1573 1025 72 72" CMM_Caption="5주년 이벤트 버튼"/>
+		<image name="5thevent_btn_cursoron" file="\skin\pip_test.tga" imgrect="1646 1025 72 72"/>
+		<image name="5thevent_btn_clicked" file="\skin\pip_test.tga" imgrect="1719 1025 72 72"/>
 	</imagelist>
 	<imagelist category="worldmap_image">
 		<image name="worldmap2_mainmap" file="\skin\worldmap\worldmap2_mainmap.jpg" imgrect="0 0 1920 1080" CMM_Caption="월드맵배경"/>
@@ -9021,6 +9024,7 @@
 		<image name="companion_sparrow_thanksgiving" file="\icon\companion_Velhider.tga" imgrect="400 320 80 80"/>
 		<image name="companion_new_penguin" file="\icon\companion_Velhider.tga" imgrect="480 320 80 80"/>
 		<image name="companion_dalmatian" file="\icon\companion_Velhider.tga" imgrect="0 400 80 80"/>
+		<image name="companion_pet_winter_rabbit" file="\icon\companion_Velhider.tga" imgrect="80 400 80 80"/>
 		<image name="bg_w" file="\skin\button.tga" imgrect="252 974 50 50"/>
 		<image name="barrack_signboard" file="\skin\barrack.tga" imgrect="356 0 257 192"/>
 		<image name="barrack_attack_icon" file="\skin\barrack.tga" imgrect="59 720 55 61"/>
@@ -9661,6 +9665,7 @@
 		<image name="medeina_emotion06" file="\icon\emoticon\medeina_emotion06.png" imgrect="0 0 128 128"/>
 		<image name="ShellyPennington_emotion01" file="\icon\emoticon\ShellyPennington_emotion01.png" imgrect="0 0 128 128"/>
 		<image name="Hitomico_emoticon_01" file="\icon\emoticon\Hitomico_emoticon_01.png" imgrect="0 0 128 128"/>
+		<image name="Zanas_emotion01" file="\icon\emoticon\Zanas_emotion01.png" imgrect="0 0 128 128"/>
 	</imagelist>
 	<imagelist category="itemtooltip_image">
 		<image name="circle_gem" file="\skin\tooltip_skin_3.tga" imgrect="805 228 30 30"/>
@@ -11408,6 +11413,7 @@
 		<image name="icon_AUTO_MATCHING_DAMAGE_BUFF" file="\icon\buff_icon4.tga" imgrect="640 640 128 128" CMM_Caption="스킬 대미지 증가"/>
 		<image name="icon_AUTO_MATCHING_DAMAGE2_BUFF" file="\icon\buff_icon4.tga" imgrect="768 640 128 128" CMM_Caption="타겟 대상 피격 대미지 증가"/>
 		<image name="icon_AUTO_MATCHING_PARTY_HEAL2_BUFF" file="\icon\buff_icon4.tga" imgrect="896 640 128 128" CMM_Caption="자동매칭 파티 버프 - 치유+면역"/>
+		<image name="icon_pet_winter_rabbit" file="\icon\buff_icon4.tga" imgrect="0 768 128 128" CMM_Caption="겨울 토끼"/>
 	</imagelist>
 	<imagelist category="housing_bufficon">
 		<image name="icon_Weapon_Klaida" file="\icon\icon_hosing_buff.tga" imgrect="0 0 128 128"/>
@@ -11968,6 +11974,10 @@
 		<image name="plate_achieve_weeklyrank_12" file="\skin\user_title_skin.tga" imgrect="645 141 214 34" CMM_Caption="주간보스_워퓰리스"/>
 		<image name="plate_achieve_Glacier_first_kill" file="\skin\user_title_skin.tga" imgrect="645 176 214 34" CMM_Caption="글레이시어_퍼스트"/>
 		<image name="plate_achieve_Glacier_clear" file="\skin\user_title_skin.tga" imgrect="645 211 214 34" CMM_Caption="글레이시어_클리어"/>
+		<image name="plate_achieve_weeklyrank_13" file="\skin\user_title_skin.tga" imgrect="430 246 214 36" CMM_Caption="주간보스_나크티스"/>
+		<image name="plate_achieve_weeklyrank_14" file="\skin\user_title_skin.tga" imgrect="645 246 214 36" CMM_Caption="주간보스_티니삼형제"/>
+		<image name="plate_achieve_weeklyrank_15" file="\skin\user_title_skin.tga" imgrect="0 290 214 36" CMM_Caption="주간보스_솔콤"/>
+		<image name="plate_achieve_weeklyrank_16" file="\skin\user_title_skin.tga" imgrect="0 327 214 36" CMM_Caption="주간보스_루시"/>
 	</imagelist>
 	<imagelist category="skin_hair">
 		<image name="icon_skintone_01_m01" file="\skin\skinhair\icon_skintone_01_m01.png" imgrect="0 0 80 80" CMM_Caption="남성 01"/>

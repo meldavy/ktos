@@ -301,12 +301,12 @@ function MARKET_SUB_CATEOGRY_CLICK(parent, subCategoryCtrlset, reqList)
 	local prevSelectedSubCategory = frame:GetUserValue('SELECTED_SUB_CATEGORY');
 	local prevSelectedSubCateCtrlset = GET_CHILD_RECURSIVELY(frame, 'SUB_CATE_'..prevSelectedSubCategory);
 	if prevSelectedSubCateCtrlset ~= nil then
-		prevSelectedSubCateCtrlset:FillColorRect(false, nil);
+		prevSelectedSubCateCtrlset:FillColor(false, nil);
 	end
 
 	local parentCategory = subCategoryCtrlset:GetUserValue('PARENT_CATEGORY');
-	local category = subCategoryCtrlset:GetUserValue('CATEGORY');	
-	subCategoryCtrlset:FillColorRect(true, 'FFDEDE00');
+	local category = subCategoryCtrlset:GetUserValue('CATEGORY');
+	subCategoryCtrlset:FillColor(true, 'FFDEDE00');
 	frame:SetUserValue('SELECTED_SUB_CATEGORY', category);
 
 	if reqList ~= false then

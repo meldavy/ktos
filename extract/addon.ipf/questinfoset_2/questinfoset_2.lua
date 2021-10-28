@@ -1402,10 +1402,6 @@ function QUESTION_QUEST_WARP(frame, ctrl, argStr, questID)
     end
 
 	local cheat = string.format("/retquest %d", questID);
-	local mapName , x, y, z = GET_QUEST_RET_POS(pc, questIES)
-	if mapName ~= nil and 0 == isMoveMap then
-		gePreload.PreloadArea(x, y, z);
-	end
 
 	movie.QuestWarp(session.GetMyHandle(), cheat, isMoveMap);
 	packet.ClientDirect("QuestWarp");

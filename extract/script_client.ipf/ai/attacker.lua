@@ -1,16 +1,6 @@
-function SCR_ATTACKER_TS_NONE(selfAi)
-
-	sleep(100);
-
-	while true do
-		sleep(100);
-	 end
- end
-
 AUTO_MOVE_CNT = 5;
 
 function SCR_ATTACKER_TS_CHASE(selfAi)
-
 
 	local destAction = selfAi:GetDestAction();
 	if 'ATTACK' == destAction then
@@ -262,6 +252,11 @@ end
 
 function ENTER_INTE_WARP(actor, argString, warpUpdateType, isMoveMap)
 	local fsmActor = GetMyActor();
+	
+	if fsmActor == nil then
+		return
+	end
+
 	if fsmActor:IsDead() == 1 then
 		return;
 	end

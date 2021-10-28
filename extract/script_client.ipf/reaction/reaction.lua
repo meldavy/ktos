@@ -62,6 +62,22 @@ function C_SKL_LOCK_ROTATE(actor, obj, isOn)
     end
 end
 
+function C_SKL_LOCK_ROTATE_ABIL(actor, obj, abilName, isOn)
+	if abilName ~= nil and type(abilName) == 'string' and abilName ~= 'None' then
+	local abil = session.GetAbilityByName(abilName);
+        if abil ~= nil then
+                local abilObj = GetIES(abil:GetObject());
+                if abilObj.ActiveState == 1 then
+                local key = "SKL_" .. obj.type;
+                actor:LockRotateByKey(key, isOn);
+                if isOn == 1 then
+                    actor:AddSkillLockRotate(key);
+                end
+            end
+        end
+    end
+end
+
 function C_EFFECT(actor, obj, effectName, scale, nodeName, lifeTime)
     
     if lifeTime == nil then

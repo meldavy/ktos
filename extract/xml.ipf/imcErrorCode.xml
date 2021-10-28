@@ -4,6 +4,7 @@
   <Code Code="FATAL_ASSERT" Team="PROGRAM" Category="LOGIC" SubCategory="" Logger="root" Enabled="YES" CallStack="NO" Desc="지정된 조건문은 항상 참이어야 합니다."/>
 	<Code Code="FATAL_ASSERT_EX" Team="PROGRAM" Category="LOGIC" SubCategory="" Logger="root" Enabled="YES" CallStack="NO" Desc="지정된 조건문은 항상 참이어야 합니다. 다음 정보를 참조하세요."/>
 	<Code Code="FATAL_ASSERT_CRASH" Team="PROGRAM" Category="LOGIC" SubCategory="" Logger="root" Enabled="YES" CallStack="NO" Desc="지정된 조건문은 항상 참이어야 합니다. 프로그램을 종료시킵니다."/>
+	<Code Code="FATAL_CRASH_EX" Team="PROGRAM" Category="LOGIC" SubCategory="" Logger="root" Enabled="YES" CallStack="NO" Desc="실행되어서는 안되는 코드가 실행되었습니다. 프로그램을 종료시킵니다. 다음 정보를 참조하세요."/>
 	<Code Code="FATAL_INIT_TABLE" Team="tos_team" Category="LOGIC" SubCategory="" Logger="root" Enabled="YES" CallStack="NO" Desc="테이블 초기화에 실패하였습니다.  다음 정보 및 파일 로드 실패 등 이전 로그를 참조하세요."/>
 	<Code Code="FATAL_SERVER_INIT" Team="tos_team" Category="LOGIC" SubCategory="" Logger="root" Enabled="YES" CallStack="NO" Desc="서버 초기화에 실패하였습니다. 프로그램을 종료합니다."/>
 	<Code Code="ERROR_AUTH_CHECK_FAIL" Team="PROGRAM" Category="LOGIC" SubCategory="" Logger="root" Enabled="YES" CallStack="NO" Desc="넥슨 AuthCheck에 실패하였습니다. 해당 오류코드와 authCheck.h의 오류코드표를 확인하세요."/>
@@ -645,8 +646,14 @@
 	<Code Code="WARNING_MEMORY_CHAT" Team="tos_team" Category="INFO" SubCategory="" Logger="root" Enabled="YES" CallStack="NO" Desc="메모리 디버그 정보"/>
 <Code Code="WARNING_MEMORY_ZONE" Team="tos_team" Category="INFO" SubCategory="" Logger="root" Enabled="YES" CallStack="NO" Desc="메모리 디버그 정보"/>
   <Code Code="WARNING_MEMORY_CONTENTS" Team="tos_team" Category="INFO" SubCategory="" Logger="root" Enabled="YES" CallStack="NO" Desc="메모리 디버그 정보"/>  
+	<Code Code="ERROR_GRAPHICS" Team="PROGRAM" Category="ERROR" SubCategory="" Logger="root" Enabled="YES" CallStack="NO" Desc="Graphics 에러 로그"/>
+	<Code Code="ERROR_DX11" Team="PROGRAM" Category="ERROR" SubCategory="" Logger="root" Enabled="YES" CallStack="NO" Desc="DX11 에러 로그"/>
+	<Code Code="FATAL_DX11" Team="PROGRAM" Category="ERROR" SubCategory="" Logger="root" Enabled="YES" CallStack="NO" Desc="DX11 페이탈 로그"/>
 <Code Code="ERROR_NEXON_CASHOUT" Team="tos_team" Category="SYSTEM" SubCategory="" Logger="root" Enabled="YES" CallStack="NO" Desc="CPQ 관련 로그"/>
 <Code Code="ERROR_SILVER_GACHA" Team="PROGRAM" Category="ERROR" SubCategory="" Logger="root" Enabled="YES" CallStack="NO" Desc="Silver Gacha 에러 로그"/>
 <Code Code="ERROR_MONGO_QUEUE_COUNT" Team="PROGRAM" Category="ERROR" SubCategory="" Logger="root" Enabled="YES" CallStack="NO" Desc="몽고드라이버 입력량이 많음(1000이상)"/>  
 	<Code Code="FATAL_DUPLICATE_MAP" Team="tos_team" Category="DB" SubCategory="" Logger="root" Enabled="YES" CallStack="NO" Desc="존에 같은 이름과 채널의 존 인스턴스가 존재합니다."/>
+  <Code Code="ERROR_LUA_CORE" Team="PROGRAM" Category="ERROR" SubCategory="" Logger="root" Enabled="YES" CallStack="NO" Desc="Lua ies object 관리 에러"/>
+	<Code Code="ERROR_DX9" Team="PROGRAM" Category="ERROR" SubCategory="" Logger="root" Enabled="YES" CallStack="NO" Desc="DX9 에러 로그"/>
+	<Code Code="FATAL_DX9" Team="PROGRAM" Category="ERROR" SubCategory="" Logger="root" Enabled="YES" CallStack="NO" Desc="DX9 페이탈 로그"/>
 </imcErrorCode>

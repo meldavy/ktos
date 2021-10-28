@@ -16,7 +16,7 @@ end
 
 function WEEKLYBOSS_DPS_INIT(frame,strArg,appTime)
     local stringList = StringSplit(strArg,'/');
-    local handle = tonumber(stringList[1])
+    local handle = stringList[1]
     local is_practice = stringList[2]
 
     local stageGiveUp = GET_CHILD_RECURSIVELY(frame,'stageGiveUp')
@@ -90,12 +90,21 @@ function WEEKLY_BOSS_UPDATE_DPS(frame,totalTime,elapsedTime)
     local gaugeCnt = damageRankGaugeBox:GetChildCount()
     local maxGaugeCount = 5
 
-    local handle = tonumber(frame:GetUserValue("WEEKLY_BOSS_HANDLE"))
+    local handleStr = frame:GetUserValue("WEEKLY_BOSS_HANDLE")
+    local handleList = StringSplit(handleStr,';')
+
     for i = idx, cnt - 1 do
         local info = session.dps.Get_alldpsInfoByIndex(i)
-        if info:GetHandle() == handle then
+        local handleExist = false
+        for i=1,#handleList do
+            if tonumber(handleList[i]) == info:GetHandle() then
+                handleExist = true
+                break;
+            end
+        end
+        if handleExist == true then
             local damage = info:GetStrDamage();
-            if damage ~= '0' then
+			if damage ~= '0' then
                 local sklID = info:GetSkillID();
                 local sklCls = GetClassByType("Skill",sklID)
                 local keyword = TryGetProp(sklCls,"Keyword","None")

@@ -113,6 +113,7 @@ ClassID,IconSpineScale,IconSpineDurationTime,ClassName,CheckServer,IconTokken,Ic
 112,0,0,raima_emotion112,YES,라이마기도,Normal,
 113,0,0,ShellyPennington_emotion01,YES,쉘리하트,Normal,
 114,0,0,Hitomico_emoticon_01,YES,히토미코하트,Normal,
+120,0,0,Zanas_emotion01,YES,축하,Normal,
 5001,0.17,5,motion_medeina_emotion01,YES,메데이나당황모션,Motion,medeinacon01
 5002,0.2,5,motion_medeina_emotion02,YES,메데이나기쁨모션,Motion,medeinacon02
 5003,0.18,5,motion_kupole_emotion01,YES,큐폴데헷모션,Motion,kupolecon01
