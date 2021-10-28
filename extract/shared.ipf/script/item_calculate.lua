@@ -202,7 +202,7 @@ function GET_REINFORCE_ADD_VALUE_ATK(item, ignoreReinf, reinfBonusValue, basicTo
     reinforceValue = reinforceValue + reinfBonusValue
     
     value = math.floor((reinforceValue + (lv * (reinforceValue * (0.08 + (math.floor((math.min(21,reinforceValue)-1)/5) * 0.015 ))))));
-    value = value * (reinforceRatio / 100) * gradeRatio
+    value = value * (reinforceRatio / 100) * gradeRatio;
 
     local classType = TryGetProp(item,"ClassType")
     if classType == 'Trinket' then
@@ -213,10 +213,6 @@ function GET_REINFORCE_ADD_VALUE_ATK(item, ignoreReinf, reinfBonusValue, basicTo
         value = value * 0.25
     end
     
-    value = value + buffValue
-          
-    value = SyncFloor(value);
-
     if grade == 6 then
         value = SCR_GET_GODDESS_REINFORCE(item)
         if classType == 'Trinket' then
@@ -224,6 +220,10 @@ function GET_REINFORCE_ADD_VALUE_ATK(item, ignoreReinf, reinfBonusValue, basicTo
         end
     end
 
+    value = value + buffValue
+          
+    value = SyncFloor(value);
+    
     return math.floor(value);
 end
 
@@ -346,11 +346,13 @@ function GET_REINFORCE_ADD_VALUE(prop, item, ignoreReinf, reinfBonusValue)
      --ACC is reinforce /#16818 --
         value = math.floor((reinforceValue + (lv * (reinforceValue * (0.08 + (math.floor((math.min(21,reinforceValue)-1)/5) * 0.015 )))) / typeRatio)) * gradeRatio;
     end
-    value = value * (item.ReinforceRatio / 100) + buffValue;
+    value = value * (item.ReinforceRatio / 100);
 
     if grade == 6 then
         value = SCR_GET_GODDESS_REINFORCE(item)
     end
+
+    value = value + buffValue;
 
     return SyncFloor(value);
 end
