@@ -573,7 +573,7 @@
                     <Obj Type="Monster" MonType="59300" Pos="-2318.66#292.69#-251.43" genCount="1" genTime="20000" autoGen="0" objectKey="4"/>
                     <Obj Type="Monster" MonType="20026" Pos="-1749.98#291.79#-299.71" genCount="1" genTime="20000" objectKey="5" propList="&apos;Range&apos; &apos;50&apos; &apos;Enter&apos; &apos;MORINGPONIA_STAGE_03_START&apos; &apos;Name&apos; &apos;UnvisibleName&apos; "/>
                     <Obj Type="Monster" MonType="147448" Pos="-2546.19#292.69#-171.45" angle="-80" genCount="1" genTime="20000" autoGen="0" objectKey="6" propList="&apos;Dialog&apos; &apos;CHRONO_MASTER&apos; "/>
-                    <Obj Type="Monster" MonType="59344" Pos="-2310.64#292.69#-274.92" genCount="1" genTime="20000" autoGen="0" objectKey="1" propList="&apos;StatType&apos; &apos;LegendRaid_Boss_EP11_2&apos; "/>
+                    <Obj Type="Monster" MonType="59344" Pos="-2310.64#292.69#-274.92" genCount="1" genTime="20000" autoGen="0" objectKey="1" propList="&apos;StatType&apos; &apos;LegendRaidBoss_EP11_2_Auto&apos; "/>
                     <Obj Type="Monster" MonType="20026" Pos="-2622.39#292.69#-103.88" genCount="1" genTime="20000" objectKey="2"/>
                     <Obj Type="Monster" MonType="160009" Pos="-2208.88#292.69#-367.80" genCount="1" genTime="20000" autoGen="0" objectKey="7"/>
                     <Obj Type="Monster" MonType="160009" Pos="-2391.51#292.69#-144.42" genCount="1" genTime="20000" autoGen="0" objectKey="7"/>

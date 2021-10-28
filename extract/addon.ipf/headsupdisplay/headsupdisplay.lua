@@ -426,7 +426,10 @@ function UPDATE_SOULCRYSTAL_COUNT(frame, curCount, maxCount)
 	if frame ~= nil then
 		local soulCrystalCount = GET_CHILD_RECURSIVELY(frame, "soulCrystalCount")
 		local limitFlag = frame:GetUserIValue("limitFlag");
-		if limitFlag == 1 then
+		if limitFlag == 1 or maxCount > 0 then
+			if limitFlag ~= 1 then
+				frame:SetUserValue("limitFlag", 1)
+			end
 			local casting_text = tolua.cast(soulCrystalCount, "ui::CRichText");
 			casting_text:SetFormat(" {@st43b}{s16}{#ff2c2c}%s{@st43b}{s16}/%s");
 			casting_text:UpdateFormat();

@@ -402,6 +402,7 @@
 		<Class ClassID="2339" ClassName="ReinforceBroke{BEFORE}{ITEM}" Data="[{BEFORE}{ITEM}] 강화에 실패하여 장비가 파괴되었습니다."/>
 		<Class ClassID="2340" ClassName="MustAddIcorToSlot" Data="장착할 아이커를 등록해야 합니다."/>
 		<Class ClassID="2341" ClassName="ExceedItemGetLimit" Data="획득 가능한 아이템 최대 수량을 초과 하였습니다."/>
+		<Class ClassID="2342" ClassName="ConvertToNoTrade{NAME}" Data="재료용 거래불가 아이템으로 변환하시겠습니까? {@st66d_y}[주의] '{NAME}' 변환시에 다시 원상복구할 수 없습니다.{/}"/>
 		<Class ClassID="2352" ClassName="GlobalCool{num}" Data="무적에 관련된 특성이나 기능은 {num}초 뒤 ON/OFF가 가능 합니다."/>
 		<Class ClassID="2356" ClassName="ExceedWeeklyMaxMiscPvPMine{count}{count1}" Data="용병단 증표 지급 중 주간 최대 획득 개수[{count}]를 초과하여 {count1}개가 소멸되었습니다."/>
 		<Class ClassID="2357" ClassName="ExceedWeeklyMaxMiscPvPMine{count}{count1}{count2}" Data="용병단 증표 {count}개 지급 중 주간 획득 개수를 초과하여 {count1}개가 제외된 {count2}개가 지급되었습니다."/>
@@ -417,6 +418,7 @@
 		<Class ClassID="2505" ClassName="DoYouWantRankReset" Data="랭크 초기화 아이템을 사용하시겠습니까?"/>
 		<Class ClassID="2506" ClassName="DoYouWantCtrlTypeReset" Data="계열 변경을 하시겠습니까?"/>
 		<Class ClassID="2507" ClassName="ArcherCannotDashInBattleState" Data="아처 클래스는 전투 중에 대시를 할 수 없습니다."/>
+		<Class ClassID="2508" ClassName="WarningPartyMemberLongDistance" Data="[경고!] 파티원과의 거리가 200 이상입니다. 파티원과 가까이 모이세요."/>
 	</Category>
 	<Category Name="CannotGetSkillMessage">
 		<Class ClassID="2600" ClassName="CannotGetSkillMessage_Doppelsoeldner_Zucken" Data="[스킬] 존하우 1레벨 이상 필요"/>

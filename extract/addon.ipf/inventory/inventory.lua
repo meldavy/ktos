@@ -3029,6 +3029,53 @@ function INVENTORY_DELETE(itemIESID, itemType)
 	--end
 end
 
+local convert_item_id = '0'
+
+function CLIENT_CONVERT_TO_NOTRADE(item_obj)
+	local item = GetIES(item_obj:GetObject())	
+	
+	if GetCraftState() == 1 then
+		return;
+	end
+
+	if true == BEING_TRADING_STATE() then
+		return;
+	end
+
+	local cls = GetClass('Item', TryGetProp(item, 'ClassName', 'None') .. '_NoTrade')
+	if cls == nil then
+		return
+	end
+	
+	local invItem = session.GetInvItemByGuid(item_obj:GetIESID())	
+	if nil == invItem then
+		return;
+	end
+	
+	if true == invItem.isLockState then
+		ui.SysMsg(ClMsg("MaterialItemIsLock"));
+		return;
+	end
+
+	local yesscp = string.format('CHECK_CLIENT_CONVERT_TO_NOTRADE("%s")', invItem:GetIESID());
+	ui.MsgBox(ScpArgMsg('ConvertToNoTrade{NAME}', 'NAME', TryGetProp(item, 'Name', 'None')), yesscp, 'None');
+end
+
+function CHECK_CLIENT_CONVERT_TO_NOTRADE(item_id)
+	local invItem = session.GetInvItemByGuid(item_id)	
+	local titleText = ScpArgMsg("INPUT_CNT_D_D", "Auto_1", 1, "Auto_2", invItem.count);
+	INPUT_NUMBER_BOX(nil, titleText, "RUN_CLIENT_CONVERT_TO_NOTRADE", 1, 1, invItem.count);	
+	convert_item_id = tostring(item_id)
+end
+
+function RUN_CLIENT_CONVERT_TO_NOTRADE(count)	
+	session.ResetItemList();
+    local pc = GetMyPCObject();
+    session.AddItemID(convert_item_id, count)    
+    local resultlist = session.GetItemIDList()
+    item.DialogTransaction("COVERT_TO_NOTRADE", resultlist)
+end
+
 function CHECK_EXEC_DELETE_ITEMDROP(count, className)    
 	s_dropDeleteItemCount = tonumber(count);
 	local yesScp = string.format("EXEC_DELETE_ITEMDROP");
