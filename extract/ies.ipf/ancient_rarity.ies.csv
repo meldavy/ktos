@@ -1,0 +1,5 @@
+ClassID,Rarity,Cost,Probability,AtkRate,DefRate,HPRate,ClassName
+1,1,1,70,1,1,1,Normal
+2,2,2,25,1.15,1.15,1.15,Magic
+3,3,3,4,1.3,1.3,1.3,Unique
+4,4,4,1,1.45,1.45,1.45,Legend
