@@ -1321,13 +1321,6 @@ function _QUESTION_QUEST_WARP(parentName, ctrlName, questID)
 end
 
 function QUESTION_QUEST_WARP(frame, ctrl, argStr, questID)
---    local pc = GetMyPCObject()
---    local ZoneClassName = GetZoneName(pc) -- event V I V I D CICY --
---	if ZoneClassName == 'VIVID_c_Klaipe' or ZoneClassName == 'VIVID_c_orsha' or ZoneClassName == 'VIVID_c_fedimian' then
---        ui.SysMsg(ClMsg('ThisLocalUseNot'));
---        return 0;
---    end -- event V I V I D CICY --
-    
     if session.colonywar.GetIsColonyWarMap() == true then
         ui.SysMsg(ClMsg('ThisLocalUseNot'));
         return 0;
@@ -1344,16 +1337,18 @@ function QUESTION_QUEST_WARP(frame, ctrl, argStr, questID)
 
 	local cls = GetClassList('Map');
     local mapClassName = session.GetMapName();
-
 	local obj = GetClassByNameFromList(cls, mapClassName);
-
 	if obj.Type == "MISSION" then
 		ui.SysMsg(ScpArgMsg("WarpQuestDisabled"));
         return;
 	end
 
-	local questIES = GetClassByType("QuestProgressCheck", questID);
+	if obj.Keyword == "WeeklyBossMap" then
+		ui.SysMsg(ScpArgMsg("WarpQuestDisabled"));
+		return;
+	end
 	
+	local questIES = GetClassByType("QuestProgressCheck", questID);
 	local targetMapName = GET_QUEST_LOCATION(questIES)
 	local targetMapCls = GetClassByNameFromList(cls, targetMapName);
 	local questLevel = TryGetProp(targetMapCls, "QuestLevel");

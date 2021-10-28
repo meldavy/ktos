@@ -464,9 +464,9 @@ function get_remove_buff_tooltip_Monk_1InchPunch(level)
     return str
 end
 
--- 몽크 - 양광수
-function get_remove_buff_tooltip_Monk_EnergyBlast(level)
-    local percent = 3.3 * tonumber(level)    
+-- 몽크 - 탄지신통
+function get_remove_buff_tooltip_Monk_God_Finger_Flicking(level)
+    local percent = 2.5 * tonumber(level)    
     if percent > 100 then
         percent = 100
     end

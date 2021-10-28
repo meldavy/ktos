@@ -3307,6 +3307,9 @@
 		<image name="icon_item_ep12musical_spear" file="\icon\weapon\icon_item_ep12musical_spear.png" imgrect="0 0 256 256" CMM_Caption="2020_10월 여신의 큐브"/>
 		<image name="icon_item_ep12musical_rapier" file="\icon\weapon\icon_item_ep12musical_rapier.png" imgrect="0 0 256 256"/>
 		<image name="icon_item_ep12musical_shield" file="\icon\weapon\icon_item_ep12musical_shield.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep12demonlord_cannon" file="\icon\weapon\icon_item_ep12demonlord_cannon.png" imgrect="0 0 256 256" CMM_Caption="11월_마신의 유혹"/>
+		<image name="icon_item_ep12demonlord_shield" file="\icon\weapon\icon_item_ep12demonlord_shield.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep12demonlord_staff" file="\icon\weapon\icon_item_ep12demonlord_staff.png" imgrect="0 0 256 256"/>
 	</imagelist>
 	<imagelist category="acc_item">
 		<image name="item_necklace_01" file="\icon\acc\item_necklace_1.png" imgrect="0 0 256 256" CMM_Caption="목걸이"/>
@@ -4031,6 +4034,10 @@
 		<image name="icon_item_accessory_ep12honoredrose06" file="\icon\hairacc\icon_item_accessory_ep12honoredrose06.png" imgrect="0 0 256 256"/>
 		<image name="icon_item_accessory_ep12honoredrose07" file="\icon\hairacc\icon_item_accessory_ep12honoredrose07.png" imgrect="0 0 256 256"/>
 		<image name="icon_item_accessory_ep12musical01" file="\icon\hairacc\icon_item_accessory_ep12musical01.png" imgrect="0 0 256 256" CMM_Caption="2020_10월 여신의 큐브"/>
+		<image name="icon_item_accessory_ep12demonlord01" file="\icon\hairacc\icon_item_accessory_ep12demonlord01.png" imgrect="0 0 256 256" CMM_Caption="2020_11월 마신의 유혹"/>
+		<image name="icon_item_accessory_ep12demonlord02" file="\icon\hairacc\icon_item_accessory_ep12demonlord02.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_helmet_f_ep12demonlord" file="\icon\hairacc\icon_item_helmet_f_ep12demonlord.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_helmet_m_ep12demonlord" file="\icon\hairacc\icon_item_helmet_m_ep12demonlord.png" imgrect="0 0 256 256"/>
 	</imagelist>
 	<imagelist category="collection_item">
 		<image name="icon_collitem_collection" file="\icon\colletion\icon_item_collection.tga" imgrect="0 0 673 419" CMM_Caption="월계수"/>
@@ -7671,6 +7678,7 @@
 		<image name="item_icon_selectbox_ep12wedding02" file="\icon\payment\item_icon_selectbox_ep12wedding02.png" imgrect="0 0 256 256"/>
 		<image name="item_icon_selectbox_ep12wedding03" file="\icon\payment\item_icon_selectbox_ep12wedding03.png" imgrect="0 0 256 256"/>
 		<image name="item_icon_allbox_ep12wedding" file="\icon\payment\item_icon_allbox_ep12wedding.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_egg_penguin_old" file="\icon\payment\icon_item_egg_penguin_old.png" imgrect="0 0 256 256" CMM_Caption="아델리 펭귄_알"/>
 		<image name="icon_item_effect_warpulis" file="\icon\payment\icon_item_effect_warpulis.png" imgrect="0 0 256 256" CMM_Caption="워퓰리스 이펙트"/>
 		<image name="icon_item_seal_leticia" file="\icon\payment\icon_item_seal_leticia.png" imgrect="0 0 256 256" CMM_Caption="보루타 인장 강화용 인장"/>
 		<image name="hair_mintpink_test" file="\icon\payment\hair_mintpink_test.png" imgrect="0 0 256 256" CMM_Caption="디자인컷_투톤댄디컷"/>
@@ -7814,6 +7822,47 @@
 		<image name="icon_item_allbox_ep12musical" file="\icon\payment\icon_item_allbox_ep12musical.png" imgrect="0 0 256 256" CMM_Caption="커튼콜 ALL패키지"/>
 		<image name="icon_item_actone_ep12musical" file="\icon\payment\icon_item_actone_ep12musical.png" imgrect="0 0 256 256" CMM_Caption="커튼콜 Act One 패키지"/>
 		<image name="icon_item_acttwo_ep12musical" file="\icon\payment\icon_item_acttwo_ep12musical.png" imgrect="0 0 256 256" CMM_Caption="커튼콜 Act Two 패키지"/>
+		<image name="20halloween_tangle_up_hair" file="\icon\payment\20halloween_tangle_up_hair.png" imgrect="0 0 256 256" CMM_Caption="여자 산발 머리"/>
+		<image name="20halloween_seaweed_hair" file="\icon\payment\20halloween_seaweed_hair.png" imgrect="0 0 256 256" CMM_Caption="남자 미역 머리"/>
+		<image name="Dye_seeweed_black" file="\icon\payment\Dye_seeweed_black.png" imgrect="0 0 128 128" CMM_Caption="미역머리 염색약 3종"/>
+		<image name="Dye_seeweed_brown" file="\icon\payment\Dye_seeweed_brown.png" imgrect="0 0 128 128"/>
+		<image name="Dye_seeweed_indigo" file="\icon\payment\Dye_seeweed_indigo.png" imgrect="0 0 128 128"/>
+		<image name="Dye_tangleup_ashgrey" file="\icon\payment\Dye_tangleup_ashgrey.png" imgrect="0 0 128 128" CMM_Caption="산발머리 염색약 5종"/>
+		<image name="Dye_tangleup_blackandwhite" file="\icon\payment\Dye_tangleup_blackandwhite.png" imgrect="0 0 128 128"/>
+		<image name="Dye_tangleup_orange" file="\icon\payment\Dye_tangleup_orange.png" imgrect="0 0 128 128"/>
+		<image name="Dye_tangleup_pink" file="\icon\payment\Dye_tangleup_pink.png" imgrect="0 0 128 128"/>
+		<image name="Dye_tangleup_violet" file="\icon\payment\Dye_tangleup_violet.png" imgrect="0 0 128 128"/>
+		<image name="icon_item_box_effect_ep12demonlord" file="\icon\payment\icon_item_box_effect_ep12demonlord.png" imgrect="0 0 256 256" CMM_Caption="2020_11월 마신의 유혹"/>
+		<image name="icon_item_box_wing_ep12demonlord" file="\icon\payment\icon_item_box_wing_ep12demonlord.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_effect_ep12demonlord" file="\icon\payment\icon_item_effect_ep12demonlord.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep12demonlord01_1_f" file="\icon\payment\icon_item_ep12demonlord01_1_f.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep12demonlord01_1_m" file="\icon\payment\icon_item_ep12demonlord01_1_m.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep12demonlord01_2_f" file="\icon\payment\icon_item_ep12demonlord01_2_f.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep12demonlord01_2_m" file="\icon\payment\icon_item_ep12demonlord01_2_m.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep12demonlord01_f" file="\icon\payment\icon_item_ep12demonlord01_f.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep12demonlord01_m" file="\icon\payment\icon_item_ep12demonlord01_m.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep12demonlord02_1_f" file="\icon\payment\icon_item_ep12demonlord02_1_f.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep12demonlord02_1_m" file="\icon\payment\icon_item_ep12demonlord02_1_m.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep12demonlord02_2_f" file="\icon\payment\icon_item_ep12demonlord02_2_f.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep12demonlord02_2_m" file="\icon\payment\icon_item_ep12demonlord02_2_m.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep12demonlord02_f" file="\icon\payment\icon_item_ep12demonlord02_f.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep12demonlord02_m" file="\icon\payment\icon_item_ep12demonlord02_m.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep12demonlord03_1_f" file="\icon\payment\icon_item_ep12demonlord03_1_f.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep12demonlord03_1_m" file="\icon\payment\icon_item_ep12demonlord03_1_m.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep12demonlord03_2_f" file="\icon\payment\icon_item_ep12demonlord03_2_f.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep12demonlord03_2_m" file="\icon\payment\icon_item_ep12demonlord03_2_m.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep12demonlord03_f" file="\icon\payment\icon_item_ep12demonlord03_f.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_ep12demonlord03_m" file="\icon\payment\icon_item_ep12demonlord03_m.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_selectbox_ep12demonlord01" file="\icon\payment\icon_item_selectbox_ep12demonlord01.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_selectbox_ep12demonlord01_1" file="\icon\payment\icon_item_selectbox_ep12demonlord01_1.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_selectbox_ep12demonlord01_2" file="\icon\payment\icon_item_selectbox_ep12demonlord01_2.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_selectbox_ep12demonlord01_f" file="\icon\payment\icon_item_selectbox_ep12demonlord01_f.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_selectbox_ep12demonlord01_m" file="\icon\payment\icon_item_selectbox_ep12demonlord01_m.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_selectbox_ep12demonlord02" file="\icon\payment\icon_item_selectbox_ep12demonlord02.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_selectbox_ep12demonlord02_1" file="\icon\payment\icon_item_selectbox_ep12demonlord02_1.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_selectbox_ep12demonlord03_1" file="\icon\payment\icon_item_selectbox_ep12demonlord03_1.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_wing_ep12demonlord" file="\icon\payment\icon_item_wing_ep12demonlord.png" imgrect="0 0 256 256"/>
+		<image name="icon_item_dalmatian" file="\icon\payment\icon_item_dalmatian.png" imgrect="0 0 256 256" CMM_Caption="달마시안 알"/>
 	</imagelist>
 	<imagelist category="seal">
 		<image name="icon_seal_yellow_cc_A1" file="\icon\seal\seal_yellow_cc_A1.tga" imgrect="0 0 80 80"/>

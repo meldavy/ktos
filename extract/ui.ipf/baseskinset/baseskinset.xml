@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by imc (imc) -->
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by imc (imc) -->
 <!-- edited with XMLSpy v2008 sp1 (http://www.altova.com) by MintPC (Mi) -->
 <skinset name="Base">
 	<skinlist category="frames">
@@ -6987,6 +6987,12 @@
 		<image name="test_companion_31" file="\icon\companion.tga" imgrect="202 738 100 122" CMM_Caption="달맞이 참새_탭버튼"/>
 		<image name="test_companion_31_cursoron" file="\icon\companion.tga" imgrect="303 738 100 122"/>
 		<image name="test_companion_31_clicked" file="\icon\companion.tga" imgrect="303 738 100 122"/>
+		<image name="test_companion_32" file="\icon\companion.tga" imgrect="404 738 100 122" CMM_Caption="황제 펭귄_탭버튼"/>
+		<image name="test_companion_32_cursoron" file="\icon\companion.tga" imgrect="505 738 100 122"/>
+		<image name="test_companion_32_clicked" file="\icon\companion.tga" imgrect="505 738 100 122"/>
+		<image name="test_companion_33" file="\icon\companion.tga" imgrect="606 738 100 122" CMM_Caption="달마시안_탭버튼"/>
+		<image name="test_companion_33_cursoron" file="\icon\companion.tga" imgrect="707 738 100 122"/>
+		<image name="test_companion_33_clicked" file="\icon\companion.tga" imgrect="707 738 100 122"/>
 		<image name="test_com_ability" file="\skin\pip_test.tga" imgrect="1832 851 54 35" CMM_Caption="컴패니언_특성플러스"/>
 		<image name="test_com_ability_cursoron" file="\skin\pip_test.tga" imgrect="1832 887 54 35"/>
 		<image name="test_com_ability_clicked" file="\skin\pip_test.tga" imgrect="1832 923 54 35"/>
@@ -8952,6 +8958,8 @@
 		<image name="companion_policedog" file="\icon\companion_Velhider.tga" imgrect="240 320 80 80"/>
 		<image name="companion_pet_cadet_armadillo" file="\icon\companion_Velhider.tga" imgrect="320 320 80 80"/>
 		<image name="companion_sparrow_thanksgiving" file="\icon\companion_Velhider.tga" imgrect="400 320 80 80"/>
+		<image name="companion_new_penguin" file="\icon\companion_Velhider.tga" imgrect="480 320 80 80"/>
+		<image name="companion_dalmatian" file="\icon\companion_Velhider.tga" imgrect="0 400 80 80"/>
 		<image name="bg_w" file="\skin\button.tga" imgrect="252 974 50 50"/>
 		<image name="barrack_signboard" file="\skin\barrack.tga" imgrect="356 0 257 192"/>
 		<image name="barrack_attack_icon" file="\skin\barrack.tga" imgrect="59 720 55 61"/>
@@ -11306,6 +11314,7 @@
 		<image name="icon_Weekly_HR_UP" file="\icon\buff_icon3.tga" imgrect="512 1920 128 128" CMM_Caption="명중 특화"/>
 		<image name="icon_Weekly_BLK_UP" file="\icon\buff_icon3.tga" imgrect="640 1920 128 128" CMM_Caption="블록 특화"/>
 		<image name="icon_Weekly_DR_UP" file="\icon\buff_icon3.tga" imgrect="768 1920 128 128" CMM_Caption="회피 특화"/>
+		<image name="icon_pet_dalmatian_buff" file="\icon\buff_icon4.tga" imgrect="128 256 128 128" CMM_Caption="달마시안 버프"/>
 	</imagelist>
 	<imagelist category="housing_bufficon">
 		<image name="icon_Weapon_Klaida" file="\icon\icon_hosing_buff.tga" imgrect="0 0 128 128"/>
@@ -11539,6 +11548,7 @@
 		<image name="023_npc_ShellyPennington" file="\skin\npccard\023_npc_ShellyPennington.tga" imgrect="0 0 330 440"/>
 		<image name="024_npc_WinonaEnde" file="\skin\npccard\024_npc_WinonaEnde.tga" imgrect="0 0 330 440"/>
 		<image name="025_npc_Feliksia" file="\skin\npccard\025_npc_Feliksia.tga" imgrect="0 0 330 440"/>
+		<image name="028_npc_Leticia" file="\skin\npccard\028_npc_Leticia.tga" imgrect="0 0 330 440"/>
 	</imagelist>
 	<imagelist category="bosscard2">
 		<image name="001_boss_poata" file="\skin\bosscard\001_boss_poata.tga" imgrect="0 0 330 440"/>

@@ -1701,7 +1701,19 @@ function TRY_TO_USE_WARP_ITEM(invitem, itemobj)
         if session.colonywar.GetIsColonyWarMap() == true then
             ui.SysMsg(ClMsg('ThisLocalUseNot'));
             return 0;
-        end
+		end
+		
+		local mapClassName = session.GetMapName();
+		if mapClassName ~= nil then 
+			local clsList = GetClassList("Map");
+			if clsList ~= nil then
+				local cls = GetClassByNameFromList(clsList, mapClassName);
+				if cls ~= nil and cls.Keyword == "WeeklyBossMap" then
+					ui.SysMsg(ClMsg('ThisLocalUseNot'));
+					return 0;
+				end
+			end
+		end
 		
 		if true == invitem.isLockState then
 			ui.SysMsg(ClMsg("MaterialItemIsLock"));

@@ -229,6 +229,12 @@ end;
 	
 function LEGENDCARD_SET_SLOT(slot, invItem)
 	local obj = GetIES(invItem:GetObject());
+
+	if TryGetProp(obj, "ClassName", "None") == 'Legendcard_Leticia' then
+	    ui.SysMsg(ClMsg("ThisGemCantReinforce"))
+	    return
+	end
+
 	local frame = ui.GetFrame("legendcardupgrade")
 	if frame == nil then
 		return

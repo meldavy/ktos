@@ -1,4 +1,4 @@
-﻿--- calc_property_skill.lua
+--- calc_property_skill.lua
 
 -- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function HAS_DRAGON_POWER(pc)
@@ -5779,7 +5779,7 @@ function SCR_GET_Bunshin_no_jutsu_BuffTime(skill)
 end
 
 function SCR_GET_Aspergillum_Time(skill)
-    local value = skill.Level * 60
+    local value = 30
     
     return value
 end
@@ -5803,7 +5803,7 @@ function SCR_GET_Judgment_Bufftime(skill)
 end
 
 function SCR_GET_LastRites_Time(skill)
-    local value = 150 + skill.Level * 30
+    local value = 30
     return value
 end
 
@@ -5835,7 +5835,7 @@ function SCR_GET_BuildCappella_Ratio(skill)
 end
 
 function SCR_GET_BuildCappella_Ratio2(skill)
-    local value = skill.Level * 10
+    local value = skill.Level * 5
     value = value * SCR_REINFORCEABILITY_TOOLTIP(skill)
     return value
 end
@@ -5847,8 +5847,20 @@ function SCR_GET_Binatio_Ratio(skill)
 end
 
 function SCR_GET_Binatio_Ratio2(skill)
-    local value = skill.Level * 800;
+    local value = 462 + ((skill.Level - 1) * 51);
     value = value * SCR_REINFORCEABILITY_TOOLTIP(skill)
+    
+    local pc = GetSkillOwner(skill)
+    if GetExProp(pc, "ITEM_VIBORA_MACE_BINATIO") > 0 then
+        local AddDMG = TryGetProp(pc, "Add_Damage_Atk", 0)
+        local Rate = AddDMG / 50000
+        if Rate >= 1 then
+            Rate = 1
+        end
+
+        value = value + value * Rate
+    end
+
     return math.floor(value)
 end
 
@@ -5858,7 +5870,7 @@ function SCR_GET_Binatio_Time(skill)
 end
 
 function SCR_GET_ParaclitusTime_Time(skill)
-    local value = 10 + skill.Level * 2
+    local value = 20 + skill.Level * 2
     return value
 end
 
@@ -8149,12 +8161,12 @@ function SCR_Get_IronSkin_Time(skill)
 end
 
 function SCR_Get_IronSkin_Ratio(skill)
-    local value = skill.Level * 1
+    local value = skill.Level * 3
     return value
 end
 
 function SCR_Get_Golden_Bell_Shield_Ratio(skill)
-    local value = 5 * skill.Level + 25;
+    local value = 50 + 5 * (skill.Level-1);
     return value
 end
 
@@ -14460,4 +14472,16 @@ function SCR_Get_SkillFactor_Luciferi_Piktis(skill)
     end
     
     return value
+end
+
+function SCR_Get_SkillFactor_Binatio(skill)
+    local pc = GetSkillOwner(skill);
+    local BinatioSkill = GetSkill(pc, "Chaplain_Binatio")
+    local value = 0
+    if BinatioSkill ~= nil then
+        value = BinatioSkill.SklFactor + BinatioSkill.SklFactorByLevel * (BinatioSkill.Level - 1)
+    end
+    
+    return math.floor(value)
+
 end

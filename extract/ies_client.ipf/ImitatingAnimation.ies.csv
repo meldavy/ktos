@@ -76,7 +76,7 @@ ClassID,Delay,ClassName,ObjectAnim,IsLoop
 75,0,guilty_wave_ride,wave,YES
 76,0,guilty_thanks2_ride,thanks2,NO
 77,0.3,guilty_staffattack_ride,atk2,YES
-78,0,guilty_knockdown_bounce,knockdown_bounce,NO
+78,0.3,guilty_pnsatk_ride,atk,YES
 79,0,guilty_knockdown_ride,knockdown,NO
 80,0,guilty_knockdown_bounce_ride,knockdown_bounce,NO
 81,0.3,guilty_skl_assistattack_dagger,atk,YES
@@ -351,3 +351,4 @@ ClassID,Delay,ClassName,ObjectAnim,IsLoop
 351,0,doll_hauberk_shopopen,shop,YES
 352,0,doll_hauberk_unbelievable,unbelievable,NO
 353,0,doll_hauberk_unbelievable_ride,unbelievable,NO
+466,0,guilty_knockdown_bounce,knockdown_bounce,NO

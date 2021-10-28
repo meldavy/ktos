@@ -4669,12 +4669,15 @@
 			<picture name="infoPic" rect="0 0 45 45" margin="40 0 0 70" layout_gravity="center bottom" image="NOTICE_Dm_!" texttooltip="특정 클래스의 선행 직업인 경우 변경할 수 없습니다." stretch="true"/>
 		</controls>
 	</controlset>
-	<controlset name="select_target_party_member" hittest="true" width="120" height="125" hittestset="true" draw="false">
+	<controlset name="select_target_party_member" hittest="true" width="160" height="125" hittestset="true" draw="false">
 		<controls>
 			<picture name="jobEmblemPic" rect="0 0 80 80" margin="0 0 0 0" layout_gravity="center top" image="c_cleric_pardoner" stretch="true"/>
 			<richtext name="lvText" rect="0 0 100 30" margin="0 70 0 0" layout_gravity="center top" format="Lv.%s" param1="lv" param1_def="0" fontname="white_16_b_ol"/>
 			<richtext name="nameText" rect="0 0 120 30" margin="0 0 0 15" layout_gravity="center bottom" format="{#00FF00}{ol}%s" param1="name" param1_def="파티원이름이에요"/>
 			<gauge name="hpGauge" rect="0 0 80 22" margin="0 0 0 0" layout_gravity="center bottom" skin="pcinfo_gauge_hp2"/>
+			<groupbox name="buffBg" rect="0 0 36 52" margin="0 0 0 0" layout_gravity="right bottom" draw="false" skin=""/>
+			<slot name="buffSlot" parent="buffBg" rect="0 0 36 36" margin="0 0 0 0" layout_gravity="center top"/>
+			<richtext name="buffTime" parent="buffBg" rect="0 0 36 16" margin="0 0 0 0" layout_gravity="left bottom" format="%s" param1="time" param1_def="{#FFFF00}{ol}{s12}0초"/>
 		</controls>
 	</controlset>
 	<!--skillability-->

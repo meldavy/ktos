@@ -2477,19 +2477,12 @@ return Time;"/>
 				<Num Num="0"/>
 				<Num Num="0"/>
 			</ToolScp>
-			<ToolScp Scp="PAD_CRE_MON" Client="NO" UseSleep="NO">
+			<ToolScp Scp="C_PAD_MONSTER" Client="YES" UseSleep="NO">
 				<Str Str="pcskill_cappella2"/>
-				<Pos Angle="0" Dist="0"/>
-				<Angle Angle="0"/>
 				<Num Num="1"/>
+				<Str Str="born"/>
+				<Str Str="None"/>
 				<Num Num="0"/>
-				<MonProp/>
-				<Str_Arg Str="None" Arg="4.5"/>
-				<Num Num="1"/>
-				<Str Str="None"/>
-				<Str Str="None"/>
-				<Num Num="1"/>
-				<Str Str="SET_CASTER_CAPPELLA"/>
 			</ToolScp>
 		</createEvent>
 		<destroyEvent>
@@ -2592,7 +2585,7 @@ return obj.Level"/>
 	<PadSkill Name="Chaplain_MagnusExorcismus_Abil" CheckerType="0" Range="40" UpdateTerm="200" ApplyFlyMon="1" AllowOverlap="1">
 		<createEvent>
 			<ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
-				<Num Num="7000" UseFunc="1" FuncTxt="return 10000"/>
+				<Num Num="15000" />
 				<Num Num="89990" UseFunc="1" FuncTxt="return 16"/>
 			</ToolScp>
 			<ToolScp Scp="C_PAD_EFFECT_POS" Client="YES" UseSleep="NO">
@@ -8964,7 +8957,16 @@ return time;"/>
 				<Num Num="0"/>
 				<Num Num="0"/>
 				<Str Str="Aiming_Buff"/>
-				<Num Num="1" UseFunc="1" FuncTxt="local owner = GetOwner(self); local skl = GetSkill(owner, &apos;Falconer_Aiming&apos;);	 return skl.Level;"/>
+                <Num Num="1" UseFunc="1" FuncTxt="
+                local level = 0
+                local owner = GetOwner(self)
+                if owner ~= nil then
+                    local skl = GetSkill(owner, &apos;Falconer_Aiming&apos;)
+                    if skl ~= nil then
+                        level = skl.Level
+                    end
+                end
+                return level"/>
 				<Num Num="0"/>
 				<Num Num="1500"/>
 				<Num Num="1"/>

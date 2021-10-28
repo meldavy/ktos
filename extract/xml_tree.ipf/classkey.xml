@@ -3659,6 +3659,7 @@
         <Key Name="EVENT_2010_GUILD_NEW_SEASON_ITEM_GET" Value="106824"/>
         <Key Name="GUILD_QUEST_REWARD" Value="106822"/>
         <Key Name="LastServerGuildOutDay" Value="106826"/>
+        <Key Name="EVENT_2011_SILVER_GACHA" Value="106829"/>
     </KeyIDSpc>
     <KeyIDSpc Name="PCEtc">
         <Key Name="Kill_boss_Clymen_Q2" Value="7788"/>

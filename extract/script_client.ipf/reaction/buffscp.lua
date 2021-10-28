@@ -108,18 +108,36 @@ function PouncingClientScp_ENTER(actor, obj, buff)
     if abil ~= nil then
         local abilObj = GetIES(abil:GetObject());
         if abilObj.ActiveState == 1 then
-            return;
+            actor:GetAnimation():SetRUNAnim("SKL_POUNCING_STAND_ABIL");
+            actor:GetAnimation():SetWLKAnim("SKL_POUNCING_STAND_ABIL");
+            actor:GetAnimation():SetTURNAnim("None");
+
+            if actor:GetVehicleActor() ~= nil then
+                actor:GetAnimation():SetSTDAnim("SKL_POUNCING_ABIL_RIDE");
+            else
+                actor:GetAnimation():SetSTDAnim("SKL_POUNCING_STAND_ABIL");
+            end
+        else
+            actor:GetAnimation():SetRUNAnim("SKL_POUNCING");
+            actor:GetAnimation():SetWLKAnim("SKL_POUNCING");
+            actor:GetAnimation():SetTURNAnim("None");
+        
+            if actor:GetVehicleActor() ~= nil then
+                actor:GetAnimation():SetSTDAnim("SKL_POUNCING_RIDE");
+            else
+                actor:GetAnimation():SetSTDAnim("SKL_POUNCING_STAND");
+            end
         end
-    end
-
-    actor:GetAnimation():SetRUNAnim("SKL_POUNCING");
-    actor:GetAnimation():SetWLKAnim("SKL_POUNCING");
-    actor:GetAnimation():SetTURNAnim("None");
-
-    if actor:GetVehicleActor() ~= nil then
-        actor:GetAnimation():SetSTDAnim("SKL_POUNCING_RIDE");
     else
-        actor:GetAnimation():SetSTDAnim("SKL_POUNCING_STAND");
+        actor:GetAnimation():SetRUNAnim("SKL_POUNCING");
+        actor:GetAnimation():SetWLKAnim("SKL_POUNCING");
+        actor:GetAnimation():SetTURNAnim("None");
+    
+        if actor:GetVehicleActor() ~= nil then
+            actor:GetAnimation():SetSTDAnim("SKL_POUNCING_RIDE");
+        else
+            actor:GetAnimation():SetSTDAnim("SKL_POUNCING_STAND");
+        end
     end
 
     actor:SetAlwaysBattleState(true);
@@ -1526,4 +1544,13 @@ end
 
 function StereaTrofhClientScp_LEAVE(actor, obj, buff)
     effect.DetachActorEffect(actor, "F_cleric_StereaTrofh_buff", 0.0);
+end
+
+function EP12DEMONLORD_EFFECT_PRE_ENTER(actor, obj, buff)
+    actor:SetEquipItemFlagProp("EFFECTCOSTUME", 1);
+end
+
+function EP12DEMONLORD_EFFECT_PRE_LEAVE(actor, obj, buff)
+    effect.DetachActorEffect(actor, "I_spread_out015_light_orange", 0.7);
+    actor:SetEquipItemFlagProp("EFFECTCOSTUME", 0);
 end

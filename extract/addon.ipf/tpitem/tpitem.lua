@@ -240,6 +240,10 @@ function TPITEM_OPEN(frame)
     if (config.GetServiceNation() ~= "KOR") then
         TPSHOP_GLOBAL_UI_SETTING(frame)
 	end
+
+	if (config.GetServiceNation() == "GLOBAL") or (config.GetServiceNation() == "GLOBAL_JP") then
+		session.shop.OpenShopLog("tpshop_open");
+	end
 end
 
 function TPSHOP_GLOBAL_UI_SETTING(frame)
@@ -328,6 +332,10 @@ function TPSHOP_TAB_VIEW(frame, curtabIndex)
 		previewgbox:SetVisible(1);
 		previewStaticTitle:SetVisible(1);
 		basketBuyBtn:SetEnable(1);
+
+		if (config.GetServiceNation() == "GLOBAL") or (config.GetServiceNation() == "GLOBAL_JP") then
+			session.shop.OpenShopLog("tpshop_premium");
+		end
 	elseif curtabIndex == TPSHOP_GET_INDEX_BY_TAB_NAME("Itembox5") then -- 계열 코스튬 교환 샵
 		costume_exchange_basketgbox:SetVisible(1);
 		previewStaticTitle:SetVisible(1);	
@@ -349,6 +357,10 @@ function TPSHOP_TAB_VIEW(frame, curtabIndex)
 		newbie_basketgbox:SetVisible(1);
 		newbie_toitemBtn:SetEnable(1);
 		NEWBIE_SHOW_TO_ITEM()
+
+		if (config.GetServiceNation() == "GLOBAL") or (config.GetServiceNation() == "GLOBAL_JP") then
+			session.shop.OpenShopLog("tpshop_newuser");
+		end
 	elseif curtabIndex == TPSHOP_GET_INDEX_BY_TAB_NAME("Itembox7") then -- 복귀 유저 상점
 		banner:SetVisible(0); -- 기존 배너 비활성화 후 이벤트 상점 배너 활성화.
 		eventUserBanner:SetVisible(1);
@@ -358,6 +370,10 @@ function TPSHOP_TAB_VIEW(frame, curtabIndex)
 		returnuser_basketgbox:SetVisible(1);
 		returnuser_toitemBtn:SetEnable(1);
 		RETURNUSER_SHOW_TO_ITEM()
+
+		if (config.GetServiceNation() == "GLOBAL") or (config.GetServiceNation() == "GLOBAL_JP") then
+			session.shop.OpenShopLog("tpshop_returnuser");
+		end
 	end
 
 	-- 이벤트 유저면 배너를 이벤트 유저 전용 배너로 변경
@@ -1010,7 +1026,13 @@ function TPITEM_TREE_CLICK(parent, ctrl, str, num)
 
 	-- 버튼분류 및 그리기
 	RESET_SORTLIST_INPUT();
-	TPITEM_SELECT_TREENODE(tnode);	
+	TPITEM_SELECT_TREENODE(tnode);
+	
+	if (config.GetServiceNation() == "GLOBAL") or (config.GetServiceNation() == "GLOBAL_JP") then
+		if tnode:GetValue() == "TP_Premium#TP_FirstBuy" then
+			session.shop.OpenShopLog("tpshop_NBU");
+		end
+	end
 end
 
 function RESET_SORTLIST_INPUT()

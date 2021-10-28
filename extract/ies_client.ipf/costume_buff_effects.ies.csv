@@ -2,6 +2,7 @@ ClassID,ClassName,Name,ShowEffect,EffectName
 4188,SNOW_FLOWER_EFFECT,하얀 눈꽃 발자국,NO,
 4201,GOOD_STAMP_EFFECT,참 잘했어요,NO,
 4216,SPECIAL_MARIN_EFFECT,바다의 가호,NO,
+4618,ITEM_EFFECT_EP12Musical,가면 쓴 악령의 시선,NO,E_pc_effectitem_ep12musical
 4220,RABBIT_STAMP_EFFECT,달 토끼,NO,
 4233,HORSE_STAMP_EFFECT,마패,NO,
 4234,CHERRY_BLOSSOM_EFFECT,흩날리는 벚꽃,NO,
@@ -12,12 +13,12 @@ ClassID,ClassName,Name,ShowEffect,EffectName
 4276,EFFECT_FLUTTING_ROSE,흩날리는 장밋잎,NO,
 4361,2019Halloween_effect,할로윈 이펙트,NO,
 4378,GABIA_FIRE_EFFECT,가비야의 불 이펙트,NO,
-4403,2019XMAS_EFFECT,미드나이트 스타라이트,NO,
-4407,WEEKLY_MIRTIS_EFFECT,미르티스 이펙트,NO,
-4428,HiphopEffect_pre,힙합 이펙트 프리체크,NO,
-4450,ITEM_EFFECT_LITTLEPRINCE,어린왕자 이펙트,NO,
+4403,2019XMAS_EFFECT,미드나이트 스타라이트,NO,E_effectitem_whitebird
+4407,WEEKLY_MIRTIS_EFFECT,미르티스 이펙트,NO,E_effectitem_mirtis
+4428,HiphopEffect_pre,힙합 이펙트 프리체크,NO,E_pc_effectitem_hiphop
+4450,ITEM_EFFECT_LITTLEPRINCE,어린왕자 이펙트,NO,E_effectitem_littleprince
 4467,ITEM_EFFECT_EP12WEDDING,ep12 웨딩 이펙트,NO,
-4490,WEEKLY_WARPULIS_EFFECT,워퓰리스 이펙트,NO,
+4490,WEEKLY_WARPULIS_EFFECT,워퓰리스 이펙트,NO,E_effect_item_warpulis
 70010,PUMPKIN_STAMP_EFFECT,무서운 잭오랜턴,NO,
 70011,GHOST_EFFECT,으스스한 유령 파티,NO,
 70013,THORN_EFFECT,길티네의 가시,NO,
@@ -29,6 +30,7 @@ ClassID,ClassName,Name,ShowEffect,EffectName
 70027,20MAGICAL02_JUMP,마법소녀 점프 이펙트 클로버,NO,
 70032,CATAGNAN_EFFECT,냥타냥 이펙트,NO,
 70035,EP12TACTICAL_EFFECT01,긴급출동 사이렌,NO,
-70036,EP12TACTICAL_EFFECT02_PRE,폴리스 라인,NO,
+70036,EP12TACTICAL_EFFECT02_PRE,폴리스 라인,NO,I_policeline001_mesh
 70037,ITEM_EP12TWINSHARK_EFFECT_PRE,주변을 맴도는 상어,NO,E_effect_twinshark
 70038,ITEM_EP12FLYINGSEAGULL_EFFECT_PRE,끼룩끼룩 갈매기,NO,I_pc_effectitem_flyingseagull
+70042,EP12DEMONLORD_EFFECT_PRE,반짝이는 발걸음 이펙트,NO,I_spread_out015_light_orange

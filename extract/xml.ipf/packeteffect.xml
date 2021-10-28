@@ -2960,6 +2960,7 @@
 		<Effect Name="Apkrova_Pad"/>
 		<Effect Name="F_cleric_StereaTrofh_buff##2.5"/>
 		<Effect Name="F_cleric_StereaTrofh_buff#Dummy_emitter"/>
+		<Effect Name="F_cleric_demolition_explosion##1.5"/>
 	</Category>
 	<Category ID="84">
 		<Effect Name="M_PAST_FLIBRARY_1"/>

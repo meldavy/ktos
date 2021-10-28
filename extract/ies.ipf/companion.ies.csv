@@ -40,3 +40,4 @@ ClassID,RideMSPD,MaxVehicle,OffsetY,RidingOffsetY,AddSpeed,JobID,LifeMin,ClassNa
 39,4,1,0,5,50,0,0,pet_policedog,,0,NO,YES,NO,NO,,YES,YES,pet_policedog_buff
 40,4,1,0,5.1,50,0,0,pet_cadet_armadillo,,0,NO,YES,NO,NO,,YES,YES,pet_cadet_armadillo_buff
 42,4,1,0,0,50,0,0,pet_sparrow_Thanksgiving,,12,NO,YES,NO,NO,,YES,YES,pet_sparrow_thanksgivng_buff
+43,4,1,0,5,50,0,0,pet_dalmatian,,0,NO,YES,NO,NO,,YES,YES,pet_dalmatian_buff

@@ -11314,20 +11314,6 @@ return value"/>
                 <Scp Scp="C_SOUND" Client="YES" UseSleep="NO" Time="0">
                     <Str Str="mon_voice_boruta_skl1_cast"/>
                 </Scp>
-                <Scp Scp="C_EFFECT_ATTACH" Client="YES" UseSleep="NO" Time="0">
-                    <Str_Arg Str="F_sys_target_boss" Arg="1"/>
-                    <Num Num="7"/>
-                    <Pos Angle="0" Dist="30" PosType="5"/>
-                    <Num Num="0"/>
-                    <Num Num="0"/>
-                </Scp>
-                <Scp Scp="C_EFFECT_ATTACH" Client="YES" UseSleep="NO" Time="200">
-                    <Str_Arg Str="I_skillrange_box4_1" Arg="1"/>
-                    <Num Num="2"/>
-                    <Pos Angle="0" Dist="0"/>
-                    <Num Num="0"/>
-                    <Num Num="0"/>
-                </Scp>
                 <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="200">
                     <Str_Arg Str="I_smoke013_dark_violet2" Arg="4"/>
                     <Str Str="Bip001 R Finger21"/>

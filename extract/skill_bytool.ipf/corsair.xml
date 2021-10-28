@@ -341,6 +341,15 @@
                     <Str Str="voice_war_atk_medium"/>
                     <Str Str="voice_atk_medium_war_f"/>
                 </Scp>
+                <Scp Client="NO" Scp="SKL_BUFF" Time="200" UseSleep="NO">
+                    <Str Str="SubWeaponCancel_Buff"/>
+                    <Num FuncTxt=" return obj.Level" Num="1" UseFunc="1"/>
+                    <Num Num="0"/>
+                    <Num Num="300000"/>
+                    <Num Num="1"/>
+                    <Num Num="100"/>
+                    <Num Num="0"/>
+                </Scp>
             </EtcList>
         </MainSkl>
     </Skill>

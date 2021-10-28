@@ -2969,6 +2969,7 @@
 		<image name="ability_cleric_Paladin43" file="\icon\icon_ability_cleric08.tga" imgrect="640 384 128 128" CMM_Caption="컨빅션: 레디언스"/>
 		<image name="ability_cleric_Priest33" file="\icon\icon_ability_cleric08.tga" imgrect="768 384 128 128" CMM_Caption="매스 힐: 실드"/>
 		<image name="ability_cleric_PlagueDoctor24" file="\icon\icon_ability_cleric08.tga" imgrect="896 384 128 128" CMM_Caption="새 부리 가면: 백색 가면"/>
+		<image name="ability_cleric_chaplain22" file="\icon\icon_ability_cleric08.tga" imgrect="0 512 128 128" CMM_Caption="[아츠]비나시오:상급강화"/>
 	</imagelist>
 	<imagelist category="abilityicon_common">
 		<image name="ability_common_DaggerMastery" file="\icon\icon_ability_common.tga" imgrect="0 0 128 128" CMM_Caption="단검 마스터리"/>

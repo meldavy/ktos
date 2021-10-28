@@ -225,13 +225,13 @@
                     <Num Num="0"/>
                     <Str Str="None"/>
                 </Scp>
-                <Scp Scp="C_SHOCKWAVE" Client="YES" UseSleep="NO" Time="1400">
+                <Scp Scp="C_SHOCKWAVE" Client="YES" UseSleep="NO" Time="1300">
                     <Num Num="10"/>
                     <Num Num="1"/>
                     <Num Num="45"/>
                     <Num Num="999"/>
                 </Scp>
-                <Scp Scp="C_EFFECT_POS" Client="YES" UseSleep="NO" Time="1500">
+                <Scp Scp="C_EFFECT_POS" Client="YES" UseSleep="NO" Time="1300">
                     <Str_Arg Str="F_cleric_demolition_explosion" Arg="1.5"/>
                     <Pos Angle="0" Dist="40"/>
                     <Num Num="0"/>

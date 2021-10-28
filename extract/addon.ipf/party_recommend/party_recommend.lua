@@ -7,6 +7,49 @@ function PARTY_RECOMMEND_ON_INIT(addon, frame)
     addon:RegisterMsg('OPEN_SELECT_ANCIENT', 'OPEN_SELECT_ANCIENT_FROM_LIST');
 end
 
+function PARTY_RECOMMEND_CLOSE(frame)
+    local timer = GET_CHILD(frame, "addontimer", "ui::CAddOnTimer")
+	timer:Stop()
+end
+
+function PARTY_RECOMMEND_BUFF_UPDATE(frame, timer, argStr, argNum, passedTime)
+    local ancientList, ancientCnt = GetAncientHandleList()
+    if ancientList == nil or ancientCnt <= 0 then
+        return
+    end
+
+    for i = 1, ancientCnt do
+        local memberSet = GET_CHILD_RECURSIVELY(frame, 'memberSet_'..i)
+        local ancientHandle = ancientList[i]
+        local buffBg = GET_CHILD(memberSet, 'buffBg')
+        if buffBg ~= nil then
+            local slot = GET_CHILD(buffBg, 'buffSlot')
+            local time = GET_CHILD(buffBg, 'buffTime')
+            if slot ~= nil and slot:IsVisible() == 1 and time ~= nil then
+                local icon = slot:GetIcon()
+                local buffName = 'Ancient_Heal_Effect_Buff'
+                local targetBuff = info.GetBuffByName(ancientHandle, buffName)
+                local buffCls = GetClass('Buff', buffName)
+                if buffCls ~= nil and targetBuff ~= nil then
+                    SET_BUFF_TIME_TO_TEXT(time, targetBuff.time)
+                    if targetBuff.time < 5000 and targetBuff.time ~= 0.0 then
+                        if slot:IsBlinking() == 0 then
+                            slot:SetBlink(600000, 1.0, "55FFFFFF", 1)
+                        end
+                    else
+                        if slot:IsBlinking() == 1 then
+                            slot:ReleaseBlink()
+                        end
+                    end
+                else
+                    slot:ClearIcon()
+                    time:SetText('')
+                end
+            end
+        end
+    end
+end
+
 function PARTY_RECOMMEND_DEFAULT_SETTING(frame, skillID)
     -- selected index initialize
     frame:SetUserValue('prev_selected', 0);
@@ -136,6 +179,11 @@ function OPEN_SELECT_TARGET_FROM_PARTY(frame, msg, argStr, showHPGauge)
                     end
                 end
 
+                local buffBg = GET_CHILD(memberSet, 'buffBg')
+                if buffBg ~= nil then
+                    buffBg:ShowWindow(0)
+                end
+
                 if memberSet ~= nil then
                     memberSet:ShowWindow(1);
                 end
@@ -253,6 +301,11 @@ function OPEN_SELECT_TARGET_FROM_SUMMON(frame, msg, argStr)
             if hpGauge ~= nil then
                 hpGauge:ShowWindow(0);
             end
+
+            local buffBg = GET_CHILD(memberSet, 'buffBg')
+            if buffBg ~= nil then
+                buffBg:ShowWindow(0)
+            end
             
             if memberSet ~= nil then
                 memberSet:ShowWindow(1);
@@ -308,6 +361,11 @@ function OPEN_SELECT_BUFF_FROM_LIST(frame, msg, argStr)
                 hpGauge:ShowWindow(0);
             end
 
+            local buffBg = GET_CHILD(memberSet, 'buffBg')
+            if buffBg ~= nil then
+                buffBg:ShowWindow(0)
+            end
+
             if memberSet ~= nil then
                 memberSet:ShowWindow(1);
             end
@@ -321,6 +379,12 @@ end
 
 ------ set target from ancient ------
 function OPEN_SELECT_ANCIENT_FROM_LIST(frame, msg, argStr, showHPGauge)
+    if frame ~= nil then
+        local timer = GET_CHILD_RECURSIVELY(frame, "addontimer")
+        tolua.cast(timer, "ui::CAddOnTimer")
+        timer:SetUpdateScript("PARTY_RECOMMEND_BUFF_UPDATE")
+        timer:Start(0.45)
+    end
     -- skill
     local skillID = geSkillControl.GetSelectAncientTargetSkillID()
     PARTY_RECOMMEND_DEFAULT_SETTING(frame, skillID)
@@ -369,6 +433,25 @@ function OPEN_SELECT_ANCIENT_FROM_LIST(frame, msg, argStr, showHPGauge)
                     else
                         hpGauge:SetPoint(stat.HP, stat.maxHP)
                         hpGauge:ShowWindow(showHPGauge)
+                    end
+                end
+
+                local buffBg = GET_CHILD(memberSet, 'buffBg')
+                if buffBg ~= nil then
+                    buffBg:ShowWindow(1)
+
+                    local buffSlot = GET_CHILD(buffBg, 'buffSlot')
+                    local buffTime = GET_CHILD(buffBg, 'buffTime')
+                    if buffSlot ~= nil and buffTime ~= nil then
+                        buffSlot:ShowWindow(1)
+                        CreateIcon(buffSlot)
+                        buffTime:ShowWindow(1)
+                        local buffName = 'Ancient_Heal_Effect_Buff'
+                        local buffCls = GetClass('Buff', buffName)
+                        local targetBuff = info.GetBuffByName(ancientHandle, buffName)
+                        if buffCls ~= nil and targetBuff ~= nil then
+                            SET_BUFF_SLOT(buffSlot, buffTime, buffCls, TryGetProp(buffCls, 'ClassID', 0), ancientHandle, nil, 0, false)
+                        end
                     end
                 end
 

@@ -1626,6 +1626,8 @@ function SCR_ABIL_STATCHANGE_Chaplain_ACTIVE(self, ability)
     Invalidate(self, "INT");
     Invalidate(self, "DEX");
     Invalidate(self, "MNA");
+
+    AddBuff(self, self, "Chaplain_ClassTypeChange_Buff", 1, 0, 0, 1)
 end
 
 function SCR_ABIL_STATCHANGE_Chaplain_INACTIVE(self, ability)
@@ -1636,6 +1638,8 @@ function SCR_ABIL_STATCHANGE_Chaplain_INACTIVE(self, ability)
     Invalidate(self, "INT");
     Invalidate(self, "DEX");
     Invalidate(self, "MNA");
+
+    RemoveBuff(self, "Chaplain_ClassTypeChange_Buff")
 end
 
 function SCR_ABIL_Templar8_ACTIVE(self, ability)
@@ -2026,19 +2030,14 @@ end
 function SCR_ABIL_Chaplain20_ACTIVE(self, ability)
     local skill = GetSkill(self, "Chaplain_BuildCappella");
     if skill ~= nil then
-        local shoottime = TryGetProp(skill, "ShootTime");
-        skill.ShootTime = 500
         InvalidateSkill(self, skill.ClassName);
         SendSkillProperty(self, skill);
-        SetExProp(ability, "Chaplain20_shoottime", shoottime);
     end
 end
 
 function SCR_ABIL_Chaplain20_INACTIVE(self, ability)
 	local skill = GetSkill(self, "Chaplain_BuildCappella");
     if skill ~= nil then
-        local shoottime = GetExProp(ability, "Chaplain20_shoottime");
-        skill.ShootTime = shoottime;
         InvalidateSkill(self, skill.ClassName);
         SendSkillProperty(self, skill);
     end
@@ -2917,4 +2916,12 @@ function SCR_ABIL_CRYOMANCER24_INACTIVE(self, ability)
         InvalidateSkill(self, skill.ClassName);
         SendSkillProperty(self, skill);
     end
+end
+
+function SCR_ABIL_Monk27_ACTIVE(self, ability)
+    AddBuff(self, self, "Monk27_Buff", 1, 0, 0, 1)
+end
+
+function SCR_ABIL_Monk27_INACTIVE(self, ability)
+    RemoveBuff(self, "Monk27_Buff")
 end
