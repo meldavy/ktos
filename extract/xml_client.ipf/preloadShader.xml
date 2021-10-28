@@ -1,3 +1,28 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by My (IMCGames Co., Ltd) -->
-<PreloadShaders/>
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by pechia (IMCGames Co., Ltd) -->
+<PreloadShaders>
+    <Preload Mask="1027"/>
+    <Preload Mask="1"/>
+    <Preload Mask="3"/>
+    <Preload Mask="2433"/>
+    <Preload Mask="2305"/>
+    <Preload Mask="6401"/>
+    <Preload Mask="3457"/>
+    <Preload Mask="3329"/>
+    <Preload Mask="2945"/>
+    <Preload Mask="2817"/>
+    <Preload Mask="6913"/>
+    <Preload Mask="1025"/>
+    <Preload Mask="257"/>
+    <Preload Mask="4353"/>
+    <Preload Mask="385"/>
+    <Preload Mask="897"/>
+    <Preload Mask="4865"/>
+    <Preload Mask="769"/>
+    <Preload Mask="0"/>
+    <Preload Mask="1026"/>
+    <Preload Mask="1409"/>
+    <Preload Mask="11"/>
+    <Preload Mask="19"/>
+    <Preload Mask="1281"/>
+</PreloadShaders>

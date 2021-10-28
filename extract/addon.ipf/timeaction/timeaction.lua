@@ -12,10 +12,12 @@ function ON_TIME_ACTION(frame, msg, msgType, isFail, info)
 	end
 	
 	info = tolua.cast(info, "TIME_ACTION_INFO");
-	START_TIME_ACTION(frame, info.msg, info.time, info.cancelMsg);
+	START_TIME_ACTION(frame, info.msg, info.time)
+
+			
 end
 
-function START_TIME_ACTION(frame, msg, second, cancelMsg)
+function START_TIME_ACTION(frame, msg, second)
 	local uiList = {};
 	uiList[#uiList + 1] = "reinforce_renew";
 	uiList[#uiList + 1] = "manufac_renew";
@@ -39,19 +41,9 @@ function START_TIME_ACTION(frame, msg, second, cancelMsg)
 		timer:EnableHideUpdate(0);
 	end
 
-	local rankresetFrame = ui.GetFrame("rankreset");
-	if 1 == rankresetFrame:IsVisible() then
-		RANKRESET_PC_TIMEACTION_STATE(rankresetFrame)
-	end
-
 	local fontName = frame:GetUserConfig("TitleFont");
 	local title = GET_CHILD_RECURSIVELY(frame,'title')
 	title:SetText(fontName .. msg .. "{/}");
-
-	if cancelMsg ~= "None" then
-		local cancel = GET_CHILD_RECURSIVELY(frame, "cancel");
-		cancel:SetTextByKey("value", cancelMsg);
-	end
 	
 	local timegauge = GET_CHILD_RECURSIVELY(frame, "timegauge", "ui::CGauge");
 	timegauge:SetPoint(0, second);
@@ -66,19 +58,7 @@ function START_TIME_ACTION(frame, msg, second, cancelMsg)
 	
 end
 
-function CANCEL_TIME_ACTION_BY_SCRIPT(frame)
-    if frame == nil then
-        frame = ui.GetFrame('timeaction')
-    end
-	packet.StopTimeAction();
-	END_TIME_ACTION(frame, 1)
-		
-end
-
 function CANCEL_TIME_ACTION(frame)
-    if frame == nil then
-        frame = ui.GetFrame('timeaction')
-    end
 	packet.StopTimeAction();
 	END_TIME_ACTION(frame, 1)
 		
@@ -90,12 +70,6 @@ function END_TIME_ACTION(frame, isFail)
 	timer:Stop();
 	timer:EnableHideUpdate(0);
 	frame:EnableHideProcess(0);
-
-	
-	local rankresetFrame = ui.GetFrame("rankreset");
-	if 1 == rankresetFrame:IsVisible() then
-		RANKRESET_PC_TIMEACTION_STATE(rankresetFrame)
-	end
 		
 end
 
