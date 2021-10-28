@@ -6309,7 +6309,7 @@
 		<image name="icon_item_Yak_Key2" file="\icon\item\icon_item_Yak_Key2.png" imgrect="0 0 128 128" CMM_Caption="야크맘보 황금열쇠"/>
 		<image name="icon_IndunReset_Mythic" file="\icon\item\icon_IndunReset_Mythic.png" imgrect="0 0 256 256" CMM_Caption="자동매칭 추가 입장권"/>
 		<image name="icon_IndunEnter_Mythic_Rank" file="\icon\item\icon_IndunEnter_Mythic_Rank.png" imgrect="0 0 256 256" CMM_Caption="도전 모드 입장권"/>
-		<image name="icon_IndunEnter_Mythic_Hard" file="\icon\item\icon_IndunEnter_Mythic_Hard.png " imgrect="0 0 256 256" CMM_Caption="자동매칭 하드 모드 입장권"/>
+		<image name="icon_IndunEnter_Mythic_Hard" file="\icon\item\icon_IndunEnter_Mythic_Hard.png" imgrect="0 0 256 256" CMM_Caption="자동매칭 하드 모드 입장권"/>
 		<image name="icon_item_misc_Guilty_LegCard" file="\icon\item\icon_item_misc_Guilty_LegCard.png" imgrect="0 0 256 256" CMM_Caption="혼돈의 편린"/>
 		<image name="icon_item_goddess_relic_gem_all_random_box" file="\icon\item\icon_item_goddess_relic_gem_all_random_box.png" imgrect="0 0 256 256" CMM_Caption="레전드 블랙 젬 상자"/>
 		<image name="icon_item_goddess_relic_gem_black" file="\icon\item\icon_item_goddess_relic_gem_black.png" imgrect="0 0 256 256" CMM_Caption="가디스 블랙 젬 상자"/>
