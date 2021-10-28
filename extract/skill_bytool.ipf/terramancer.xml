@@ -241,6 +241,15 @@ return value"/>
                 <Num Num="100"/>
                 <Num Num="0"/>
             </ToolScp>
+            <ToolScp Scp="SKL_BUFF" Client="NO" UseSleep="NO">
+                <Str Str="IS_Channeling_Buff"/>
+                <Num Num="1"/>
+                <Num Num="0"/>
+                <Num Num="3000"/>
+                <Num Num="1"/>
+                <Num Num="100"/>
+                <Num Num="0"/>
+            </ToolScp>
             <ToolScp Scp="MONSKL_C_CASTING_ANIM" Client="YES" UseSleep="NO">
                 <Str Str="SKL_ROLLINGSTONE_CAST"/>
                 <Str Str="SKL_ROLLINGSTONE_LOOP"/>
@@ -283,6 +292,9 @@ return value"/>
             </ToolScp>
             <ToolScp Scp="SKL_BUFF_REMOVE" Client="NO" UseSleep="NO">
                 <Str Str="Rollingston_Debuff"/>
+            </ToolScp>
+            <ToolScp Scp="SKL_BUFF_REMOVE" Client="NO" UseSleep="NO">
+                <Str Str="IS_Channeling_Buff"/>
             </ToolScp>
             <ToolScp Scp="SKL_CANCEL_CANCEL" Client="NO" UseSleep="NO"/>
             <ToolScp Scp="MONSKL_C_RESET_CASTING_ANIM" Client="YES" UseSleep="NO"/>

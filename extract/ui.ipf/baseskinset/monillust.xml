@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by imc (imc) -->
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by imc (imc) -->
 <!-- edited with XMLSpy v2008 sp1 (http://www.altova.com) by MintPC (Mi) -->
 <skinset name="Base">
 	<imagelist category="Monster_icon_boss_02">
@@ -172,6 +172,8 @@
 		<image name="boss_BowerKeeper" file="\icon\monster\boss\boss_BowerKeeper.png" imgrect="0 0 80 80"/>
 		<image name="boss_RaganosisCommander" file="\icon\monster\boss\boss_RaganosisCommander.png" imgrect="0 0 80 80"/>
 		<image name="Legend_Boss_Giltine_Q1" file="\icon\monster\boss\Legend_Boss_Giltine_Q1.png" imgrect="0 0 80 80"/>
+		<image name="boss_Giltine" file="\icon\monster\boss\boss_Giltine.png" imgrect="0 0 80 80"/>
+		<image name="boss_Avataras" file="\icon\monster\boss\boss_Avataras.png" imgrect="0 0 80 80"/>
 		<image name="boss_Tinies" file="\icon\monster\boss\boss_Tinies.png" imgrect="0 0 80 80"/>
 		<image name="boss_darbas_smasher" file="\icon\monster\boss\boss_darbas_smasher.png" imgrect="0 0 80 80"/>
 		<image name="boss_liepsna_firebug" file="\icon\monster\boss\boss_liepsna_firebug.png" imgrect="0 0 80 80"/>

@@ -51,7 +51,7 @@ function CHECK_INVENTORY_OPTION_EQUIP(itemCls)
 		optionConfig = config.GetXMLConfig("InvOption_Equip_Rare")
 	elseif itemGrade == 4 then
 		optionConfig = config.GetXMLConfig("InvOption_Equip_Unique")
-	elseif itemGrade == 5 then
+	elseif itemGrade >= 5 then
 		optionConfig = config.GetXMLConfig("InvOption_Equip_Legend")
 	end
 
@@ -440,6 +440,7 @@ function INVENTORY_CLOSE()
 	ui.CloseFrame("inventory");
 	ui.CloseFrame("inventoryoption")
 	ui.CloseFrame("accountprop_inventory")
+	ui.CloseFrame("relicmanager")
 	ui.CloseFrame("item_equip_helper")
 end
 
@@ -1727,6 +1728,11 @@ function TRY_TO_USE_WARP_ITEM(invitem, itemobj)
 			ui.SysMsg(ClMsg('ThisLocalUseNot'));
 			return 0;
 		end
+
+		if session.IsGiltineRaidMap() == true then
+			ui.SysMsg(ClMsg('ThisLocalUseNot'));
+			return 0;
+		end
 		
 		if true == invitem.isLockState then
 			ui.SysMsg(ClMsg("MaterialItemIsLock"));
@@ -2856,6 +2862,8 @@ function SET_EQUIP_SLOT_ITEMGRADE_BG(frame, slot, obj)
 			slotSkinName = topParent:GetUserConfig("EQUIPSLOT_PIC_UNIQUE")
 		elseif itemgrade == 5 then
 			slotSkinName = topParent:GetUserConfig("EQUIPSLOT_PIC_LEGEND")
+		elseif itemgrade == 6 then
+			slotSkinName = topParent:GetUserConfig("EQUIPSLOT_PIC_GODDESS")
 		end
 		slot_bg:ShowWindow(1)
 		slot:SetSkinName(slotSkinName)
@@ -4158,7 +4166,10 @@ function SCR_CHECK_SWAPABLE_C()
 	if session.world.IsIntegrateIndunServer() == true then
 		local mGameName = session.mgame.GetCurrentMGameName()
 		if mGameName ~= nil then
-			if mGameName == 'LEGEND_RAID_MORINGPONIA_EASY' or mGameName == 'LEGEND_RAID_GLACIER_EASY' or mGameName == "CHALLENGE_AUTO_1" or mGameName == "CHALLENGE_AUTO_2" or mGameName == "CHALLENGE_AUTO_3" or mGameName == "CHALLENGE_DIVISION_AUTO" then
+			local indunCls = GetClassByStrProp("Indun","MGame",mGameName)
+			local dungeonType = TryGetProp(indunCls,"DungeonType","None")
+			if mGameName == 'LEGEND_RAID_MORINGPONIA_EASY' or mGameName == 'LEGEND_RAID_GLACIER_EASY' or mGameName == "CHALLENGE_AUTO_1" or mGameName == "CHALLENGE_AUTO_2" or mGameName == "CHALLENGE_AUTO_3" or mGameName == "CHALLENGE_DIVISION_AUTO" or mGameName == "LEGEND_RAID_GILTINE_AUTO" or 
+				dungeonType == 'MythicDungeon_Auto' or dungeonType == 'MythicDungeon_Auto_Hard' then
 			return false;
 			end
 		end
@@ -4690,6 +4701,22 @@ function RUN_CLIENT_USE_MULTIPLE_XPCARD(count)
     session.AddItemID(multiple_xpCard_item_id, count)    
 	local resultlist = session.GetItemIDList()
     item.DialogTransaction("MULTIPLE_USE_XPCARD", resultlist)
+end
+
+function DO_RELICMANAGER_BUTTON(frame)    
+	local relic = session.GetEquipItemBySpot(item.GetEquipSpotNum('RELIC'))
+	local relic_item = GetIES(relic:GetObject())
+	if IS_NO_EQUIPITEM(relic_item) == 1 then
+		ui.SysMsg(ClMsg('NO_EQUIP_RELIC'))
+		return
+	end
+    
+	local relicmanager = ui.GetFrame('relicmanager')
+	if relicmanager:IsVisible() ~= 1 then
+		ui.OpenFrame('relicmanager')
+	else
+		ui.CloseFrame('relicmanager')
+	end
 end
 
 

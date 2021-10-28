@@ -633,6 +633,7 @@
 	<Code Code="INFO_TRACE_CHATSERVER" Team="tos_team" Category="INFO" SubCategory="" Logger="root" Enabled="YES" CallStack="NO" Desc="개발용 정보"/>
 <Code Code="ERROR_RAID_RANKING_ADD_FAIL" Team="tos_team" Category="ERROR" SubCategory="" Logger="root" Enabled="YES" CallStack="NO" Desc="개발용 정보"/>  
   <Code Code="ERROR_TX_LEAK" Team="tos_team" Category="ERROR" SubCategory="" Logger="root" Enabled="YES" CallStack="NO" Desc="TX 릭입니다. tx는 반드시 TxBegin 과 TxCommit 또는 TxRollBack 이 한쌍을 이뤄야합니다."/>
+	<Code Code="FATAL_UNHANDLED_EXCEPTION" Team="tos_team" Category="FATAL" SubCategory="" Logger="root" Enabled="YES" CallStack="YES" Desc="UnhandledException callstack 저장용 입니다."/>
 	<Code Code="ERROR_MISMATCH_TYPE_UI_MESSAGE_VALUE" Team="PROGRAM" Category="ERROR" SubCategory="" Logger="root" Enabled="YES" CallStack="YES" Desc="잘 못 된 타입으로 가져오려 했습니다."/>
 	<Code Code="ERROR_TOO_MUCH_CREATE_TEXT_PACK" Team="PROGRAM" Category="ERROR" SubCategory="" Logger="root" Enabled="YES" CallStack="YES" Desc="텍스트 팩이 너무 많이 생성되었습니다."/>
 	<Code Code="WARNING_TOO_BIG_SIZE_RENDER_TARGET" Team="PROGRAM" Category="ERROR" SubCategory="" Logger="root" Enabled="YES" CallStack="YES" Desc="렌더 타깃의 크기가 너무 큽니다."/>
@@ -657,4 +658,5 @@
 	<Code Code="ERROR_DX9" Team="PROGRAM" Category="ERROR" SubCategory="" Logger="root" Enabled="YES" CallStack="NO" Desc="DX9 에러 로그"/>
 	<Code Code="FATAL_DX9" Team="PROGRAM" Category="ERROR" SubCategory="" Logger="root" Enabled="YES" CallStack="NO" Desc="DX9 페이탈 로그"/>
 	<Code Code="ERROR_CHALLENGE_AUTO_MODE" Team="PROGRAM" Category="ERROR" SubCategory="" Logger="root" Enabled="YES" CallStack="NO" Desc="챌린지모드 자동매칭 관련 에러"/>  
+  	<Code Code="ERROR_GILTINE" Team="tos_team" Category="SYSTEM" SubCategory="" Logger="root" Enabled="YES" CallStack="NO" Desc="길티네 랭킹 관련 에러"/>
 </imcErrorCode>

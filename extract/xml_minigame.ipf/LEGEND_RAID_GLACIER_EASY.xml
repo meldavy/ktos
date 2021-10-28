@@ -1291,6 +1291,7 @@
                                 <Str Str="AUTO_MATCHING_PARTY_HEAL_BUFF"/>
                                 <Str Str="AUTO_MATCHING_PARTY_HEAL2_BUFF"/>
                                 <Str Str="None"/>
+                                <Str Num="0"/>
                             </ToolScp>
                         </execList>
                     </Event>
@@ -1305,6 +1306,7 @@
                 <Str Str="AUTO_MATCHING_HEALER_BUFF"/>
                 <Str Str="AUTO_MATCHING_DAMAGE_BUFF"/>
                 <Str Str="AUTO_MATCHING_DAMAGE2_BUFF"/>
+                <Str Num="0"/>
             </ToolScp>
         </EnterList>
         <WorldInitList>

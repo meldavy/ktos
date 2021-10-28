@@ -212,6 +212,11 @@ function MARKET_SELL_UPDATE_REG_SLOT_ITEM(frame, invItem, slot)
 
 	local obj = GetIES(invItem:GetObject());
 
+    if TryGetProp(obj, 'TeamBelonging', 0) ~= 0 then
+        ui.AlarmMsg("ItemIsNotTradable");
+		return false;
+    end
+
 	local itemProp = geItemTable.GetProp(obj.ClassID);
 	local pr = TryGetProp(obj, "PR");
 

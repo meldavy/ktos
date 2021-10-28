@@ -36,14 +36,24 @@ function STATUS_REPUTATION_LIST_INIT()
             local point = TryGetProp(aObj, cls.ClassName, 0)
 
             local rank = GET_REPUTATION_RANK(point)
-            local percent = math.floor((point / GET_REPUTATION_MAX()) * 100)
+
+            -- 다음 평판까지 남은 퍼센트 표기
+            local percent = 0
+            local inteval_x = GET_REPUTATION_REQUIRE_POINT(rank)
+            local inteval_y = GET_REPUTATION_REQUIRE_POINT(rank+1)
+
+            if point ~= GET_REPUTATION_MAX() then
+                percent = (point - inteval_x) / (inteval_y - inteval_x)
+            else
+                percent = 1
+            end
 
             local rankImage = AUTO_CAST(set:GetChild("reputation_rank"))
             rankImage:SetImage("reputation0"..(rank+1))
 
             local text = AUTO_CAST(set:GetChild("reputation_text"))
             text:SetTextByKey('name', cls.Name)
-            text:SetTextByKey('value', percent)
+            text:SetTextByKey('value', math.floor(percent * 100))
 
             local npc_btn = AUTO_CAST(set:GetChild("reputation_npc_btn"))
             npc_btn:SetEventScript(ui.LBUTTONUP, "STATUS_REPUTATION_SHOW_NPC")

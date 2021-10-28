@@ -4,10 +4,10 @@ function MONSTERSKILLUSE_ON_INIT(addon, frame)
 	
 end
 
-function MON_PC_SKILL_BALLOON(title, handle, castTimeMS, isBoss, changeColor)
+function MON_PC_SKILL_BALLOON(title, handle, castTimeMS, showCastingBar, changeColor)
 	local frame = nil;
 	local offsetY;
-	if isBoss == 0 then
+	if showCastingBar == 0 then
 		frame = ui.CreateNewFrame("monsterskilluse_normalmon", "MON_PCSKILL_" .. handle);
 		if changeColor == 1 then
 			offsetY= -50;			
@@ -50,6 +50,13 @@ function MON_PC_SKILL_BALLOON(title, handle, castTimeMS, isBoss, changeColor)
 	frame:SetDuration(castTimeSec);	
 	FRAME_AUTO_POS_TO_OBJ(frame, handle, -frame:GetWidth() / 2, offsetY, 3, 1);
 
+end
+
+function MON_PC_SKILL_BALLOON_CANCEL(handle)
+	frame = ui.GetFrame("MON_PCSKILL_" .. handle);
+	if frame ~= nil then
+		frame:ShowWindow(0)
+	end
 end
 
 function MONSTER_SAY_BALLOON(handle, msg, isBoss, showTime)

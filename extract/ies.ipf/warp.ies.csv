@@ -822,5 +822,6 @@ ClassID,TargetX,TargetY,TargetZ,Latitude,Longitude,StartDir,ClassName,CMM_Name,T
 3032,-1240,84,926,45,45,0,EP13_F_SIAULIAI_4_TO_EP13_F_SIAULIAI_3,이사우고티 숲 -> 파우피스 나루,ep13_f_siauliai_3
 3033,30,15,-1025,45,45,0,EP13_F_SIAULIAI_4_TO_EP13_F_SIAULIAI_5,이사우고티 숲 -> 키르티마스 숲,ep13_f_siauliai_5
 3034,69,79,1063,45,45,0,EP13_F_SIAULIAI_5_TO_EP13_F_SIAULIAI_4,키르티마스 숲 -> 이사우고티 숲,ep13_f_siauliai_4
+3035,133,0,-4,45,45,0,C_KLAIPE_CATHEDRAL_MEDIUM_IN_TO_C_KLAIPE_CATHEDRAL_MEDIUM,라이마의 성소 내부 -> 라이마의 성소,c_klaipe_cathedral_medium
 3036,-462,74,1846,45,45,0,BRACKEN42_1_TO_EP13_F_SIAULIAI_1,코노트 숲 -> 렘파라사 연못,ep13_f_siauliai_1
 3037,113,629,986,45,45,0,EP13_F_SIAULIAI_1_TO_BRACKEN42_1,렘파라사 연못 -> 코노트 숲,f_bracken_42_1

@@ -575,12 +575,21 @@
                 <Num Num="0"/>
                 <Num Num="0"/>
             </ToolScp>
+            <ToolScp Scp="SKL_PLAY_SOUND" Client="NO" UseSleep="NO">
+                <Str Str="voice_wiz_icebolt_cast"/>
+                <Num Num="0"/>
+                <Str Str="voice_wiz_m_icebolt_cast"/>
+            </ToolScp>
         </KeyInputStart>
         <KeyInputEnd>
             <ToolScp Scp="MONSKL_C_CLEAR_RESERVE_ANIM" Client="YES" UseSleep="NO"/>
             <ToolScp Scp="C_EFFECT_DETACH" Client="YES" UseSleep="NO">
                 <Str_Arg Str="F_levitation053_ice_loop" Arg="1"/>
                 <Num Num="0.5"/>
+            </ToolScp>
+            <ToolScp Scp="SKL_STOP_SOUND" Client="NO" UseSleep="NO">
+                <Str Str="voice_wiz_icebolt_cast"/>
+                <Str Str="voice_wiz_m_icebolt_cast"/>
             </ToolScp>
         </KeyInputEnd>
         <KeyCancelScp>
@@ -591,7 +600,7 @@
                 <Scp Scp="C_FORCE_EFT" Client="YES_Time" UseSleep="NO" Time="0">
                     <Str_Arg Str="I_force110_ice#Dummy_Force" Arg="0.5"/>
                     <Str Str="None"/>
-                    <Str_Arg Str="F_explosion136_ice" Arg="0.8"/>
+                    <Str_Arg Str="F_explosion136_ice" Arg="0.80000001"/>
                     <Str Str="None"/>
                     <Str Str="SLOW"/>
                     <Num Num="250"/>

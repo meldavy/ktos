@@ -289,7 +289,15 @@ function RESTART_ON_MSG(frame, msg, argStr, argNum)
 		end
 
 		-- 레이드 부활
-		if IsRaidField() == 1 or IsRaidMap() == 1 then
+		local map = GetClass('Map', session.GetMapName());
+		local keyword = TryGetProp(map, 'Keyword', 'None');
+		local keyword_table = StringSplit(keyword, ';');
+		if table.find(keyword_table, 'MythicMap') > 0 then
+			local restart10btn = GET_CHILD(frame, "restart10btn", "ui::CButton");
+			if restart10btn ~= nil then
+				restart10btn:ShowWindow(0);
+			end
+		elseif IsRaidField() == 1 or IsRaidMap() == 1 then
 			if argNum == 6 then
 				local restart1btn = GET_CHILD(frame, "restart1btn", "ui::CButton");
 				if restart1btn ~= nil then

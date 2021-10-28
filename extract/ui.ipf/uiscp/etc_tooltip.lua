@@ -122,7 +122,11 @@ function DRAW_ETC_COMMON_TOOLTIP(tooltipframe, invitem, mainframename, from)
 	
 	-- 아이템 종류 세팅
 	local type_richtext = GET_CHILD(CSet, "type_text", "ui::CRichText");
-	type_richtext:SetTextByKey('type',ScpArgMsg(invitem.GroupName));
+	local type_txt = invitem.GroupName
+	if type_txt == 'Gem_Relic' then
+		type_txt = invitem.GemType
+	end
+	type_richtext:SetTextByKey('type',ScpArgMsg(type_txt));
 	
 	--무게
 	local weightRichtext = GET_CHILD(CSet, "weight_text", "ui::CRichText");

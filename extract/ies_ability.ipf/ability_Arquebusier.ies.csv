@@ -1,5 +1,6 @@
 ClassID,UnlockArgNum,MaxLevel,Price1,Time1,Price2,Time2,Price3,Time3,Price4,Time4,Price5,Time5,Price6,Time6,Price7,Time7,Price8,Time8,Price9,Time9,Price10,Time10,ClassName,UnlockScr,UnlockArgStr,UnlockDesc,ScrCalcPrice
 1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Arquebusier12,UNLOCK_BASE_LEVEL,,캐릭터 1레벨 이상,ABIL_COMMON_PRICE_1LV
+2,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Arquebusier19,UNLOCK_BASE_LEVEL,,캐릭터 1레벨 이상,ABIL_COMMON_PRICE_1LV
 101,1,100,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Arquebusier1,UNLOCK_ABIL_SKILL,Arquebusier_Prediction,프리딕션 1레벨 이상,ABIL_REINFORCE_PRICE
 102,1,100,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Arquebusier2,UNLOCK_ABIL_SKILL,Arquebusier_PinpointFire,핀포인트 파이어 1레벨 이상,ABIL_REINFORCE_PRICE
 103,1,100,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Arquebusier3,UNLOCK_ABIL_SKILL,Arquebusier_LuckyStrike,럭키 스트라이크 1레벨 이상,ABIL_REINFORCE_PRICE

@@ -182,4 +182,9 @@
 	<Spine>
 		<Element Name="lagana" root="lagana" atlas="lagana" json="lagana" scale="0.6" offsetX="0" offsetY="0" animation="animation"/>
 	</Spine>
+	<Spine>
+		<Element Name="medeinacon1" root="medeinacon1" atlas="medeinacon1" json="medeinacon1" scale="1" offsetX="-4" offsetY="-8" animation="animation"/>
+		<Element Name="medeinacon2" root="medeinacon2" atlas="medeinacon2" json="medeinacon2" scale="0.7" offsetX="-10" offsetY="-5" animation="animation"/>
+		<Element Name="medeinacon3" root="medeinacon3" atlas="medeinacon3" json="medeinacon3" scale="0.5" offsetX="-3" offsetY="-10" animation="animation"/>
+	</Spine>
 </List>

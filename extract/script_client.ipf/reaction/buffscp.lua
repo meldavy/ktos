@@ -105,22 +105,40 @@ end
 
 function PouncingClientScp_ENTER(actor, obj, buff)
     local abil = session.GetAbilityByName("Barbarian41");
-
     if abil ~= nil then
         local abilObj = GetIES(abil:GetObject());
         if abilObj.ActiveState == 1 then
-            return;
+            actor:GetAnimation():SetRUNAnim("SKL_POUNCING_STAND_ABIL");
+            actor:GetAnimation():SetWLKAnim("SKL_POUNCING_STAND_ABIL");
+            actor:GetAnimation():SetTURNAnim("None");
+            actor:GetAnimation():SetSTDAnim("SKL_POUNCING_STAND_ABIL");
+
+            if actor:GetVehicleActor() ~= nil then
+                actor:GetAnimation():SetSTDAnim("SKL_POUNCING_ABIL_RIdE");
+            else
+                actor:GetAnimation():SetSTDAnim("SKL_POUNCING_STAND_ABIL");
+            end
+        else
+            actor:GetAnimation():SetRUNAnim("SKL_POUNCING");
+            actor:GetAnimation():SetWLKAnim("SKL_POUNCING");
+            actor:GetAnimation():SetTURNAnim("None");
+        
+            if actor:GetVehicleActor() ~= nil then
+                actor:GetAnimation():SetSTDAnim("SKL_POUNCING_RIDE");
+            else
+                actor:GetAnimation():SetSTDAnim("SKL_POUNCING_STAND");
+            end
         end
-    end
-
-    actor:GetAnimation():SetRUNAnim("SKL_POUNCING");
-    actor:GetAnimation():SetWLKAnim("SKL_POUNCING");
-    actor:GetAnimation():SetTURNAnim("None");
-
-    if actor:GetVehicleActor() ~= nil then
-        actor:GetAnimation():SetSTDAnim("SKL_POUNCING_RIDE");
     else
-        actor:GetAnimation():SetSTDAnim("SKL_POUNCING_STAND");
+        actor:GetAnimation():SetRUNAnim("SKL_POUNCING");
+        actor:GetAnimation():SetWLKAnim("SKL_POUNCING");
+        actor:GetAnimation():SetTURNAnim("None");
+    
+        if actor:GetVehicleActor() ~= nil then
+            actor:GetAnimation():SetSTDAnim("SKL_POUNCING_RIDE");
+        else
+            actor:GetAnimation():SetSTDAnim("SKL_POUNCING_STAND");
+        end        
     end
 
     actor:SetAlwaysBattleState(true);
@@ -656,8 +674,58 @@ function EliteMonster_ENTER(actor, obj, buff)
 end
 
 function EliteMonster_LEAVE(actor, obj, buff)
+    
 end
 
+function Mythic_Boosting_Morale_ENTER(actor, obj, buff)
+    actor:SetAuraInfo("Mythic_Boosting_Morale");
+    actor:GetTitle():UpdateCaption();
+end
+
+function Mythic_Boosting_Morale_LEAVE(actor, obj, buff)
+    actor:SetAuraInfo("");
+    actor:GetTitle():UpdateCaption();
+end
+
+function Mythic_Chain_Lightning_ENTER(actor, obj, buff)
+    actor:SetAuraInfo("Mythic_Chain_Lightning");
+    actor:GetTitle():UpdateCaption();
+end
+
+function Mythic_Chain_Lightning_LEAVE(actor, obj, buff)
+    actor:SetAuraInfo("");
+    actor:GetTitle():UpdateCaption();
+end
+
+function Mythic_Puddle_ENTER(actor, obj, buff)
+    actor:SetAuraInfo("Mythic_Puddle");
+    actor:GetTitle():UpdateCaption();
+end
+
+function Mythic_Puddle_LEAVE(actor, obj, buff)
+    actor:SetAuraInfo("");
+    actor:GetTitle():UpdateCaption();
+end
+
+function Mythic_Bomb_ENTER(actor, obj, buff)
+    actor:SetAuraInfo("Mythic_Bomb");
+    actor:GetTitle():UpdateCaption();
+end
+
+function Mythic_Bomb_LEAVE(actor, obj, buff)
+    actor:SetAuraInfo("");
+    actor:GetTitle():UpdateCaption();
+end
+
+function Mythic_InfectiousDisease_ENTER(actor, obj, buff)
+    actor:SetAuraInfo("Mythic_InfectiousDisease");
+    actor:GetTitle():UpdateCaption();
+end
+
+function Mythic_InfectiousDisease_LEAVE(actor, obj, buff)
+    actor:SetAuraInfo("");
+    actor:GetTitle():UpdateCaption();
+end
 --반짝이 버프: 대박 버프처럼 반짝거리기만 하는 용도
 function TwinkleBuff_Client_ENTER(actor, obj, buff)
     if buff.arg2 == 1 then
@@ -686,7 +754,7 @@ function DivineStigma_LEAVE(actor, obj, buff)
 end
 --흰색
 function WhiteBlink_ENTER(actor, obj, buff)
-  imcSound.PlaySoundEvent("monster_state_1")
+    imcSound.PlaySoundEvent("monster_state_1")
     actor:GetEffect():SetColorBlink(0.1,0.1,0.1,0.1,0.3,0.3,0.3,0.3, 1.5, 1);
 end
 

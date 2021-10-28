@@ -69,7 +69,7 @@ function SHOW_PC_COMPARE(cid)
 	local otherpcinfo = session.otherPC.GetByStrCID(cid);
 	local frame = ui.GetFrame("compare");
 	frame:ShowWindow(1);
-
+	
 	local charName = otherpcinfo:GetAppearance():GetName()
 	local teamName = otherpcinfo:GetAppearance():GetFamilyName()
 	local gender = otherpcinfo:GetAppearance():GetGender()
@@ -108,6 +108,18 @@ function SHOW_PC_COMPARE(cid)
 	local jobName = GET_JOB_NAME(nowjobcls, gender);
 	local level = obj.Lv
 	
+	-- 대표직업 표기
+	local icon_info = otherpcinfo:GetIconInfo()	
+	if icon_info ~= nil and icon_info.repre_job > 0 then
+		local cls = GetClassByType('Job', icon_info.repre_job)
+		if cls ~= nil then
+			local job_name = TryGetProp(cls, 'Name', 'None')
+			if job_name ~= 'None' then
+				jobName = job_name
+			end
+		end
+	end
+
 	jobInfoRTxt:SetTextByKey("rank", jobRank);
 	jobInfoRTxt:SetTextByKey("job", jobName);
 	jobInfoRTxt:SetTextByKey("lv", level);

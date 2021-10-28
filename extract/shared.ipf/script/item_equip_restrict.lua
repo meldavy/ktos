@@ -1,4 +1,4 @@
--- item_equip_restrict.lua (콘텐츠 입장 제한 확인 로직)
+﻿-- item_equip_restrict.lua (콘텐츠 입장 제한 확인 로직)
 
 function is_scout_class(pc)
 	if IsServerSection() ~= 1 then
@@ -211,8 +211,8 @@ function CHECK_CHALLENGE_AUTOMATCHING_FOR_EP12(pc)
 			item_rh = GetEquipItem(pc, 'LH')			
 		end
 		-- 장비400레벨, 레전드등급, 고정아이커체크, 고정아이커, 5초월		
-		local ret = CHECK_WEAPON_ITEM(pc, item_rh, 400, 5, true, 0, {{"ALL", 380}}, 8, 10, false)
-		local ret_2 = CHECK_WEAPON_ITEM(pc, item_rh, 440, 5, true, 0, {{"ALL", 380}}, 5, 10, false)		
+		local ret = CHECK_WEAPON_ITEM(pc, item_rh, 400, 5, true, 0, {{"ALL", 380}}, 8, 10, nil, false)
+		local ret_2 = CHECK_WEAPON_ITEM(pc, item_rh, 440, 5, true, 0, {{"ALL", 380}}, 5, 10, nil, false)		
 		if ret == false and ret_2 == false then
 			SendSysMsg(pc, 'RequireWeaponItemLowGrade')
 			return false
@@ -226,8 +226,8 @@ function CHECK_CHALLENGE_AUTOMATCHING_FOR_EP12(pc)
 			item_lh = GetEquipItem(pc, 'RH')
 		end
 		-- 장비400레벨, 레전드등급, 고정아이커체크, 고정아이커, 5초월
-		ret = CHECK_WEAPON_ITEM(pc, item_lh, 400, 5, true, 0, {{"ALL", 380}, {'PC_Equip', 0}}, 8, 10, false)	
-		ret_2 = CHECK_WEAPON_ITEM(pc, item_lh, 440, 5, true, 0, {{"ALL", 380}, {'PC_Equip', 0}}, 5, 10, false)
+		ret = CHECK_WEAPON_ITEM(pc, item_lh, 400, 5, true, 0, {{"ALL", 380}, {'PC_Equip', 0}}, 8, 10, nil, false)	
+		ret_2 = CHECK_WEAPON_ITEM(pc, item_lh, 440, 5, true, 0, {{"ALL", 380}, {'PC_Equip', 0}}, 5, 10, nil, false)
 		
 		if ret == false and ret_2 == false then
 			SendSysMsg(pc, 'RequireWeaponItemLowGrade')
@@ -238,8 +238,8 @@ function CHECK_CHALLENGE_AUTOMATCHING_FOR_EP12(pc)
 		for k, v in pairs(check_equip_list_1) do
 			local item = GetEquipItem(pc, v)
 			-- 440레벨, 레전드, 고정아이커체크, 고정아이커
-			ret = CHECK_ARMOR_ITEM(pc, item, 400, 5, true, 0, {{'ALL',380}, {'PC_Equip', 0}}, 8, 10, false)
-			ret_2 = CHECK_ARMOR_ITEM(pc, item, 400, 5, true, 0, {{'ALL',380}, {'PC_Equip', 0}}, 5, 8, false)
+			ret = CHECK_ARMOR_ITEM(pc, item, 400, 5, true, 0, {{'ALL',380}, {'PC_Equip', 0}}, 8, 10, nil, false)
+			ret_2 = CHECK_ARMOR_ITEM(pc, item, 400, 5, true, 0, {{'ALL',380}, {'PC_Equip', 0}}, 5, 8, nil, false)
 			if ret == false and ret_2 == false then
 				SendSysMsg(pc, 'RequireArmorItemLowGrade')
 				return false
@@ -315,7 +315,7 @@ function CHECK_EXTREME_GRADE_FOR_RELIC_DUNGEON(pc)
 	if IsServerSection() == 1 then
 		local item_rh = GetEquipItem(pc, 'RH')
 		-- 장비440레벨, 레전드등급, 고정아이커체크, 1레벨 바이보라등급, 10초월, 11강
-		local ret = CHECK_WEAPON_ITEM(pc, item_rh, 440, 5, true, 430, {{"Vibora", 1}}, 10, 11)
+		local ret = CHECK_WEAPON_ITEM(pc, item_rh, 440, 5, true, 430, {{"Vibora", 4}}, 10, 11)
 		if ret == false then
 			return false
 		end
@@ -377,6 +377,18 @@ function CHECK_EXTREME_GRADE_FOR_RELIC_DUNGEON(pc)
 		-- 세트 옵션 체크
 		ret = CHECK_SET_OPTION(pc)
 		if ret == false then
+			return false
+		end
+		--성물 체크--
+		local item_relic = GetEquipItem(pc, 'RELIC')
+		if item_relic == nil then
+			SendSysMsg(pc, 'RequireRelicEquip')
+			return false
+		end
+
+		ret = CHECK_RELIC_ITEM(pc, item_relic, 458)
+		if ret == false then
+			SendSysMsg(pc, "RequireRelicEquip");
 			return false
 		end
 	else
@@ -468,168 +480,15 @@ function CHECK_EXTREME_GRADE_FOR_RELIC_DUNGEON(pc)
 		if ret == false then
 			return false
 		end
-	end
-	return true
-end
-
-function CHECK_HARD_GRADE_FOR_RELIC_DUNGEON(pc)	
-	local check_equip_list_1 = {'SHIRT', 'GLOVES', 'BOOTS', 'PANTS'}
-	local check_equip_list_2 = {'RING1', 'RING2', 'NECK'}
-	if IsServerSection() == 1 then
-		local item_rh = GetEquipItem(pc, 'RH')
-		-- 장비440레벨, 레전드등급, 고정아이커체크, 1레벨 바이보라등급, 5초월, 10강
-		local ret = CHECK_WEAPON_ITEM(pc, item_rh, 440, 5, true, 430, {{"Vibora",1}}, 5, 10)
-		if ret == false then
+		--성물 체크--
+		local item_relic = session.GetEquipItemBySpot(item.GetEquipSpotNum('RELIC'))
+		if item_relic == nil or item_relic:GetObject() == nil then
+			ui.SysMsg(ScpArgMsg('RequireRelicEquip'))			
 			return false
 		end
-
-		local item_lh = GetEquipItem(pc, 'LH')
-		if TryGetProp(item_rh, 'EquipGroup', 'None') == 'THWeapon' then
-			item_lh = GetEquipItem(pc, 'TRINKET')
-		end
-		-- 장비440레벨, 레전드등급, 고정아이커체크, 1레벨 바이보라등급, 5초월, 10강
-		local ret = CHECK_WEAPON_ITEM(pc, item_rh, 440, 5, true, 430, {{"Vibora",1}}, 5, 10)
-		if ret == false then
-			return false
-		end		
-		
-		-- 방어구 체크
-		for k, v in pairs(check_equip_list_1) do
-			local item = GetEquipItem(pc, v)
-			-- 440레벨, 레전드, 고정아이커체크, 430레벨 이상 아이커, 5초월, 8강
-			ret = CHECK_ARMOR_ITEM(pc, item, 440, 5, true, 430, {{'ALL', 430}}, 5, 8)
-			if ret == false then
-				return false
-			end
-		end
-
-		-- 악세서리 체크
-		for k, v in pairs(check_equip_list_2) do
-			local item = GetEquipItem(pc, v)
-			if item == nil then
-				SendSysMsg(pc, 'RequireAccEquip')
-				return false
-			end
-			-- 350레벨, 레전드, 
-			ret = CHECK_ACC_ITEM(pc, item, 350, 5, {{"ALL", 350}}, 0, 0)
-			if ret == false then
-				return false
-			end
-		end
-		
-		local item_seal = GetEquipItem(pc, 'SEAL') 
-		if item_seal == nil then
-			SendSysMsg(pc, 'RequireSealEquip')
-			return false
-		end
-		-- 레전드, 보루타 인장 1레벨
-		ret = CHECK_SEAL_ITEM(pc, item_seal, 0, 5, {{'Boruta', 1}})
-		if ret == false then
-			return false
-		end
-
-		local item_ark = GetEquipItem(pc, 'ARK')
-		if item_ark == nil then
-			SendSysMsg(pc, 'RequireArkEquip')
-			return false
-		end
-		-- 퀘스트 아크 5레벨 또는 제작아크 5레벨
-		ret = CHECK_ARK_ITEM(pc, item_ark, 5, {{'Quest_Ark', 5}, {'Made_Ark', 5}})
-		if ret == false then
-			return false
-		end
-
-		-- 세트 옵션 체크
-		ret = CHECK_SET_OPTION(pc)
-		if ret == false then
-			return false
-		end
-	else
-		local item_rh = session.GetEquipItemBySpot(item.GetEquipSpotNum('RH'))
-		if item_rh == nil or item_rh:GetObject() == nil then
-			return false
-		end
-		item_rh = GetIES(item_rh:GetObject())
-		-- 장비440레벨, 레전드등급, 고정아이커체크, 1레벨 바이보라등급, 5초월, 10강
-		local ret = CHECK_WEAPON_ITEM(pc, item_rh, 440, 5, true, 430, {{"Vibora",1}}, 5, 10)
-		if ret == false then
-			return false
-		end
-
-		local item_lh = session.GetEquipItemBySpot(item.GetEquipSpotNum('LH'))
-		if item_lh == nil or item_lh:GetObject() == nil then
-			return false
-		end
-		item_lh = GetIES(item_lh:GetObject())
-		if TryGetProp(item_rh, 'EquipGroup', 'None') == 'THWeapon' then
-			item_lh = session.GetEquipItemBySpot(item.GetEquipSpotNum('TRINKET'))
-			if item_lh == nil or item_lh:GetObject() == nil then
-				return
-			end
-			item_lh = GetIES(item_lh:GetObject())
-		end
-		-- 장비440레벨, 레전드등급, 고정아이커체크, 1레벨 바이보라등급, 5초월, 10강
-		local ret = CHECK_WEAPON_ITEM(pc, item_lh, 440, 5, true, 430, {{"Vibora",1}}, 5, 10)
-		if ret == false then
-			return false
-		end
-
-		-- 방어구 체크
-		for k, v in pairs(check_equip_list_1) do
-			local item = session.GetEquipItemBySpot(item.GetEquipSpotNum(v));
-			if item == nil or item:GetObject() == nil then
-				return
-			end
-			item = GetIES(item:GetObject())
-			-- 440레벨, 레전드, 고정아이커체크, 430레벨 이상 아이커, 5초월, 8강
-			ret = CHECK_ARMOR_ITEM(pc, item, 440, 5, true, 430, {{'ALL', 430}}, 5, 8)
-			if ret == false then
-				return false
-			end
-		end
-
-		-- 악세서리 체크
-		for k, v in pairs(check_equip_list_2) do
-			local item = session.GetEquipItemBySpot(item.GetEquipSpotNum(v));
-			if item == nil or item:GetObject() == nil then
-				return
-			end
-			item = GetIES(item:GetObject())
-			-- 350레벨, 레전드, 
-			ret = CHECK_ACC_ITEM(pc, item, 350, 5, {{'ALL', 350}}, 0, 0)
-			if ret == false then
-				return false
-			end
-		end
-		
-		-- 인장 체크
-		local item_seal = session.GetEquipItemBySpot(item.GetEquipSpotNum('SEAL'))
-		if item_seal == nil or item_seal:GetObject() then
-			ui.SysMsg(ScpArgMsg('RequireSealEquip'))
-			return false
-		end
-		item_seal = GetIES(item_seal:GetObject())
-		-- 레전드, 보루타 인장 1레벨
-		ret = CHECK_SEAL_ITEM(pc, item_seal, 0, 5, {{'Boruta', 1}})
-		if ret == false then
-			return false
-		end
-
-		-- 아크 체크
-		local item_ark = session.GetEquipItemBySpot(item.GetEquipSpotNum('ARK'))
-		if item_ark == nil or item_ark:GetObject() == nil then
-			ui.SysMsg(ScpArgMsg('RequireArkEquip'))			
-			return false
-		end		
-		item_ark = GetIES(item_ark:GetObject())
-		-- 퀘스트 아크 5레벨 또는 제작아크 5레벨
-		ret = CHECK_ARK_ITEM(pc, item_ark, 5, {{'Quest_Ark', 5}, {'Made_Ark', 5}})
-		if ret == false then
-			return false
-		end
-
-		-- 세트 옵션 체크
-		ret = CHECK_SET_OPTION(pc)
+		item_relic = GetIES(item_relic:GetObject())
+		--임시처리--
+		ret = CHECK_RELIC_ITEM(pc, item_relic, 458)
 		if ret == false then
 			return false
 		end
@@ -637,14 +496,19 @@ function CHECK_HARD_GRADE_FOR_RELIC_DUNGEON(pc)
 	return true
 end
 
-function CHECK_EASY_GRADE_FOR_RELIC_DUNGEON(pc)	
+function CHECK_HARD_GRADE_FOR_RELIC_DUNGEON(pc)
 	local check_equip_list_1 = {'SHIRT', 'GLOVES', 'BOOTS', 'PANTS'}
 	local check_equip_list_2 = {'RING1', 'RING2', 'NECK'}
+	local is_scout = is_scout_class(pc)
 	if IsServerSection() == 1 then
 		local item_rh = GetEquipItem(pc, 'RH')
-		-- 장비440레벨, 레전드등급, 고정아이커체크, 고정아이커, 5초월
-		local ret = CHECK_WEAPON_ITEM(pc, item_rh, 440, 5, true, 0, {{"ALL", 1}}, 5, 0)
+		if is_scout == true then
+			item_rh = GetEquipItem(pc, 'LH')
+		end
+		-- 장비440레벨, 고정아이커체크, 1레벨 바이보라, 8초월
+		local ret = CHECK_WEAPON_ITEM(pc, item_rh, 440, 5, true, 430, {{"Vibora", 1}}, 10, 11)
 		if ret == false then
+			SendSysMsg(pc, 'RequireWeaponItemLowGrade');
 			return false
 		end
 
@@ -652,18 +516,23 @@ function CHECK_EASY_GRADE_FOR_RELIC_DUNGEON(pc)
 		if TryGetProp(item_rh, 'EquipGroup', 'None') == 'THWeapon' then
 			item_lh = GetEquipItem(pc, 'TRINKET')			
 		end
-		-- 장비440레벨, 레전드등급, 고정아이커체크, 고정아이커, 5초월
-		local ret = CHECK_WEAPON_ITEM(pc, item_lh, 440, 5, true, 0, {{"ALL", 1}}, 5, 0)	
+		if is_scout == true then
+			item_lh = GetEquipItem(pc, 'RH')
+		end
+		-- 장비440레벨, 고정아이커체크, 380레벨 고정아이커, 8초월
+		local ret = CHECK_WEAPON_ITEM(pc, item_lh, 440, 5, true, 380, {{"ALL", 380}}, 10, 11)	
 		if ret == false then
+			SendSysMsg(pc, 'RequireWeaponItemLowGrade');
 			return false
 		end		
 		
 		-- 방어구 체크
 		for k, v in pairs(check_equip_list_1) do
 			local item = GetEquipItem(pc, v)
-			-- 440레벨, 레전드, 고정아이커체크, 고정아이커
-			ret = CHECK_ARMOR_ITEM(pc, item, 440, 5, true, 0, {{'ALL',1}}, 0, 0)
+			-- 440레벨, 레겐다, 고정아이커체크, 430레벨 고정아이커
+			ret = CHECK_ARMOR_ITEM(pc, item, 440, 5, true, 0, {{'evil',1},{'goddess',1}}, 10, 11, {"GlacierLegenda"})
 			if ret == false then
+				SendSysMsg(pc, 'RequireArmorItemLowGrade');
 				return false
 			end
 		end
@@ -671,9 +540,10 @@ function CHECK_EASY_GRADE_FOR_RELIC_DUNGEON(pc)
 		-- 악세서리 체크
 		for k, v in pairs(check_equip_list_2) do
 			local item = GetEquipItem(pc, v)
-			-- 300레벨, 유니크
-			ret = CHECK_ACC_ITEM(pc, item, 300, 4, {{'ALL', 300}}, 0, 0)
+			-- 430레벨, 레전드
+			ret = CHECK_ACC_ITEM(pc, item, 430, 5, {{'ALL', 430}}, 0, 0)
 			if ret == false then
+				SendSysMsg(pc, "RequireAccessoriesItemLowGrade");
 				return false
 			end
 		end
@@ -684,9 +554,10 @@ function CHECK_EASY_GRADE_FOR_RELIC_DUNGEON(pc)
 			SendSysMsg(pc, 'RequireSealEquip')
 			return false
 		end
-		-- 모든 인장 허용
-		ret = CHECK_SEAL_ITEM(pc, item_seal, 0, 1, { {'ALL', 1}})
+		-- 레전드, 보루타 인장 1레벨
+		ret = CHECK_SEAL_ITEM(pc, item_seal, 0, 5, {{'Boruta', 3}})
 		if ret == false then
+			SendSysMsg(pc, "RequireSealItemLowGrade");
 			return false
 		end
 
@@ -696,9 +567,133 @@ function CHECK_EASY_GRADE_FOR_RELIC_DUNGEON(pc)
 			SendSysMsg(pc, 'RequireArkEquip')
 			return false
 		end
-		-- 모든 아크 허용
-		ret = CHECK_ARK_ITEM(pc, item_ark, 1, {{'ALL', 1}})
+		-- 퀘스트 아크 6레벨, 제작아크 6레벨
+		ret = CHECK_ARK_ITEM(pc, item_ark, 5, {{'Made_Ark', 6}})
 		if ret == false then
+			SendSysMsg(pc, "RequireArkItemLowGrade");
+			return false
+		end
+
+		-- 세트 옵션 체크
+		ret = CHECK_SET_OPTION(pc)
+		if ret == false then
+			SendSysMsg(pc, "RequireSetOptionItemLowGrade");
+			return false
+		end
+		--성물 체크--
+		local item_relic = GetEquipItem(pc, 'RELIC')
+		if item_relic == nil then
+			SendSysMsg(pc, 'RequireRelicEquip')
+			return false
+		end
+
+		ret = CHECK_RELIC_ITEM(pc, item_relic, 458)
+		if ret == false then
+			SendSysMsg(pc, "RequireRelicEquip");
+			return false
+		end
+		--상급 특성 20레벨 3개 이상--
+		ret = CHECK_HIDDEN_ABILITY(pc, 3, 20)
+		if ret == false then
+			return false
+		end
+	end
+	return true
+end
+
+function CHECK_EASY_GRADE_FOR_RELIC_DUNGEON(pc)
+	local check_equip_list_1 = {'SHIRT', 'GLOVES', 'BOOTS', 'PANTS'}
+	local check_equip_list_2 = {'RING1', 'RING2', 'NECK'}
+	local is_scout = is_scout_class(pc)
+	if IsServerSection() == 1 then
+		local item_rh = GetEquipItem(pc, 'RH')
+		if is_scout == true then
+			item_rh = GetEquipItem(pc, 'LH')
+		end
+		-- 장비440레벨, 레전드등급, 고정아이커체크, 1레벨 바이보라, 8초월
+		local ret = CHECK_WEAPON_ITEM(pc, item_rh, 440, 5, true, 430, {{"Vibora", 1}}, 8, 10)
+		if ret == false then
+			SendSysMsg(pc, 'RequireWeaponItemLowGrade');
+			return false
+		end
+
+		local item_lh = GetEquipItem(pc, 'LH')
+		if TryGetProp(item_rh, 'EquipGroup', 'None') == 'THWeapon' then
+			item_lh = GetEquipItem(pc, 'TRINKET')			
+		end
+		if is_scout == true then
+			item_lh = GetEquipItem(pc, 'RH')
+		end
+		-- 장비440레벨, 레전드등급, 고정아이커 380레벨, 8초월
+		local ret = CHECK_WEAPON_ITEM(pc, item_lh, 440, 5, true, 380, {{"ALL", 380}}, 8, 10)	
+		if ret == false then
+			SendSysMsg(pc, 'RequireWeaponItemLowGrade');
+			return false
+		end		
+		
+		-- 방어구 체크
+		for k, v in pairs(check_equip_list_1) do
+			local item = GetEquipItem(pc, v)
+			-- 440레벨, 레전드, 고정아이커체크, 430레벨 고정아이커
+			ret = CHECK_ARMOR_ITEM(pc, item, 440, 5, true, 0, {{'ALL',430}}, 8, 10)
+			if ret == false then
+				SendSysMsg(pc, 'RequireArmorItemLowGrade');
+				return false
+			end
+		end
+
+		-- 악세서리 체크
+		for k, v in pairs(check_equip_list_2) do
+			local item = GetEquipItem(pc, v)
+			-- 350레벨, 레전드
+			ret = CHECK_ACC_ITEM(pc, item, 350, 5, {{'ALL', 350}}, 0, 0)
+			if ret == false then
+				SendSysMsg(pc, "RequireAccessoriesItemLowGrade");
+				return false
+			end
+		end
+
+		-- 인장 체크
+		local item_seal = GetEquipItem(pc, 'SEAL') 
+		if item_seal == nil then
+			SendSysMsg(pc, 'RequireSealEquip')
+			return false
+		end
+		-- 보루타 인장 1레벨
+		ret = CHECK_SEAL_ITEM(pc, item_seal, 0, 1, { {'Boruta', 1}})
+		if ret == false then
+			SendSysMsg(pc, "RequireSealItemLowGrade");
+			return false
+		end
+
+		-- 아크 체크 (StringArg2 를 확인)
+		local item_ark = GetEquipItem(pc, 'ARK')
+		if item_ark == nil then
+			SendSysMsg(pc, 'RequireArkEquip')
+			return false
+		end
+		-- 퀘스트 아크 5레벨, 제작아크 5레벨
+		ret = CHECK_ARK_ITEM(pc, item_ark, 1, {{'Quest_Ark', 5}, {'Made_Ark', 5}})
+		if ret == false then
+			SendSysMsg(pc, "RequireArkItemLowGrade");
+			return false
+		end
+		-- 세트 옵션 체크
+		ret = CHECK_SET_OPTION(pc)
+		if ret == false then
+			SendSysMsg(pc, "RequireSetOptionItemLowGrade");
+			return false
+		end
+		--성물 체크--
+		local item_relic = GetEquipItem(pc, 'RELIC')
+		if item_relic == nil then
+			SendSysMsg(pc, 'RequireRelicEquip')
+			return false
+		end
+
+		ret = CHECK_RELIC_ITEM(pc, item_relic, 458)
+		if ret == false then
+			SendSysMsg(pc, "RequireRelicEquip");
 			return false
 		end
 	else
@@ -707,8 +702,8 @@ function CHECK_EASY_GRADE_FOR_RELIC_DUNGEON(pc)
 			return false
 		end
 		item_rh = GetIES(item_rh:GetObject())
-		-- 장비440레벨, 레전드등급, 고정아이커체크, 고정아이커, 5초월		
-		local ret = CHECK_WEAPON_ITEM(pc, item_rh, 440, 5, true, 0, {{"ALL", 1}}, 5, 0)		
+		-- 장비440레벨, 레전드등급, 고정아이커체크, 1레벨 바이보라, 8초월
+		local ret = CHECK_WEAPON_ITEM(pc, item_rh, 440, 5, true, 430, {{"Vibora", 1}}, 8, 10)	
 		if ret == false then
 			return false
 		end
@@ -724,13 +719,12 @@ function CHECK_EASY_GRADE_FOR_RELIC_DUNGEON(pc)
 				return
 			end
 			item_lh = GetIES(item_lh:GetObject())
-		end		
-		-- 장비440레벨, 레전드등급, 고정아이커체크, 고정아이커, 5초월, 11강
-		local ret = CHECK_WEAPON_ITEM(pc, item_lh, 440, 5, true, 0, {{"ALL", 1}}, 5, 0)	
+		end
+		-- 장비440레벨, 레전드등급, 고정아이커체크, 1레벨 바이보라, 8초월
+		local ret = CHECK_WEAPON_ITEM(pc, item_lh, 440, 5, true, 380, {{"ALL", 380}}, 8, 10)	
 		if ret == false then
 			return false
 		end
-
 		-- 방어구 체크
 		for k, v in pairs(check_equip_list_1) do
 			local item = session.GetEquipItemBySpot(item.GetEquipSpotNum(v));
@@ -738,8 +732,8 @@ function CHECK_EASY_GRADE_FOR_RELIC_DUNGEON(pc)
 				return
 			end
 			item = GetIES(item:GetObject())
-			-- 440레벨, 레전드, 고정아이커체크, 고정아이커
-			ret = CHECK_ARMOR_ITEM(pc, item, 440, 5, true, 0, {{'ALL',1}}, 0, 0)
+			-- 440레벨, 레전드, 고정아이커체크, 430레벨 고정아이커
+			ret = CHECK_ARMOR_ITEM(pc, item, 440, 5, true, 0, {{'ALL',430}}, 8, 10)
 			if ret == false then
 				return false
 			end
@@ -752,8 +746,8 @@ function CHECK_EASY_GRADE_FOR_RELIC_DUNGEON(pc)
 				return
 			end
 			item = GetIES(item:GetObject())
-			-- 300레벨, 유니크
-			ret = CHECK_ACC_ITEM(pc, item, 300, 4, {{'ALL', 300}}, 0, 0)
+			-- 350레벨, 레전드
+			ret = CHECK_ACC_ITEM(pc, item, 350, 5, {{'ALL', 350}}, 0, 0)
 			if ret == false then
 				return false
 			end
@@ -766,8 +760,8 @@ function CHECK_EASY_GRADE_FOR_RELIC_DUNGEON(pc)
 			return false
 		end
 		item_seal = GetIES(item_seal:GetObject())
-		-- 모든 인장 허용
-		ret = CHECK_SEAL_ITEM(pc, item_seal, 0, 1, { {'ALL', 1}})
+		-- 보루타 인장 1레벨
+		ret = CHECK_SEAL_ITEM(pc, item_seal, 0, 1, { {'Boruta', 1}})
 		if ret == false then
 			return false
 		end
@@ -779,8 +773,25 @@ function CHECK_EASY_GRADE_FOR_RELIC_DUNGEON(pc)
 			return false
 		end		
 		item_ark = GetIES(item_ark:GetObject())
-		-- 모든 아크 허용
-		ret = CHECK_ARK_ITEM(pc, item_ark, 1, {{'ALL', 1}})
+		-- 퀘스트 아크 5레벨, 제작아크 5레벨
+		ret = CHECK_ARK_ITEM(pc, item_ark, 1, {{'Quest_Ark', 5}, {'Made_Ark', 5}})
+		if ret == false then
+			return false
+		end
+		-- 세트 옵션 체크
+		ret = CHECK_SET_OPTION(pc)
+		if ret == false then
+			ui.SysMsg(ScpArgMsg('RequireSetOptionItemLowGrade'))	
+			return false
+		end
+		--성물 체크--
+		local item_relic = session.GetEquipItemBySpot(item.GetEquipSpotNum('RELIC'))
+		if item_relic == nil or item_relic:GetObject() == nil then
+			ui.SysMsg(ScpArgMsg('RequireRelicEquip'))			
+			return false
+		end
+		item_relic = GetIES(item_relic:GetObject())
+		ret = CHECK_RELIC_ITEM(pc, item_relic, 458)
 		if ret == false then
 			return false
 		end
@@ -788,7 +799,7 @@ function CHECK_EASY_GRADE_FOR_RELIC_DUNGEON(pc)
 	return true
 end
 
-function CHECK_WEAPON_ITEM(pc, item, item_level, item_grade, check_inheritance, inheritance_lv, check_string_arg_list, transcend_count, reinforce_count, active_msg)
+function CHECK_WEAPON_ITEM(pc, item, item_level, item_grade, check_inheritance, inheritance_lv, check_string_arg_list, transcend_count, reinforce_count, dungeonEnterType, active_msg)
 	if active_msg == nil then
 		active_msg = true
 	end
@@ -894,10 +905,26 @@ function CHECK_WEAPON_ITEM(pc, item, item_level, item_grade, check_inheritance, 
 		end
 		return false, ScpArgMsg("RequireWeaponReinforce{count}over", "count", reinforce_count)
 	end
+	
+	if dungeonEnterType ~= nil then
+		local enterTypeCheck = false
+		for j = 1, #dungeonEnterType do
+			if TryGetProp(item, "DungeonEnterType") == dungeonEnterType[j] then
+				enterTypeCheck = true
+				break;
+			end
+		end
+		if enterTypeCheck == false then
+			if active_msg == true then			
+				SendSysMsg(pc, "RequireWeaponlegenda")		
+			end
+			return false, ScpArgMsg("RequireWeaponlegenda")
+		end
+	end
 	return true
 end
 
-function CHECK_ARMOR_ITEM(pc, item, item_level, item_grade, check_inheritance, inheritance_lv, check_string_arg_list, transcend_count, reinforce_count, active_msg)
+function CHECK_ARMOR_ITEM(pc, item, item_level, item_grade, check_inheritance, inheritance_lv, check_string_arg_list, transcend_count, reinforce_count, dungeonEnterType, active_msg)
 	if active_msg == nil then active_msg = true end
 	if item == nil then
 		if active_msg == true then
@@ -1001,6 +1028,22 @@ function CHECK_ARMOR_ITEM(pc, item, item_level, item_grade, check_inheritance, i
 			SendSysMsg(pc, 'RequireArmorReinforce{count}over', 0, 'count', reinforce_count)		
 		end
 		return false, ScpArgMsg("RequireArmorReinforce{count}over", "count", reinforce_count)
+	end
+
+	if dungeonEnterType ~= nil then
+		local enterTypeCheck = false
+		for j = 1, #dungeonEnterType do
+			if TryGetProp(item, "DungeonEnterType") == dungeonEnterType[j] then
+				enterTypeCheck = true
+				break;
+			end
+		end
+		if enterTypeCheck == false then
+			if active_msg == true then			
+				SendSysMsg(pc, "RequireWeaponlegenda")		
+			end
+			return false, ScpArgMsg("RequireWeaponlegenda")
+		end
 	end
 	return true
 end
@@ -1172,7 +1215,7 @@ function CHECK_ARK_ITEM(pc, item, item_grade, check_string_arg_list)
 			msg = ScpArgMsg("Rare")
 		end
 
-		if IsServerSection() == 1 then			
+		if IsServerSection() == 1 then	
 			SendSysMsg(pc, 'RequireArkItemGrade{grade}', 0, 'grade', msg)
 		else
 			ui.SysMsg(ScpArgMsg("RequireArkItemGrade{grade}", "grade", msg))		
@@ -1332,5 +1375,50 @@ function CHECK_SET_OPTION(pc)
 	else
 		ui.SysMsg(ScpArgMsg('RequireLegendSetOption'))	
 	end
+	return false
+end
+
+function CHECK_RELIC_ITEM(pc, item, uselv)
+	if item == nil then
+		if IsServerSection() == 1 then
+			SendSysMsg(pc, 'RequireRelicEquip')
+		else
+			ui.SysMsg(ScpArgMsg('RequireRelicEquip'))	
+		end
+		return false
+	end
+		
+	if TryGetProp(item, 'UseLv', 0) < uselv then
+		if IsServerSection() == 1 then			
+			SendSysMsg(pc, "RequireRelicEquip")
+		else
+			ui.SysMsg(ScpArgMsg("RequireRelicEquip"))		
+		end
+		return false
+	end
+	return true
+end
+
+-- goal_lv보다 높은 상급 특성이 abil_count 만큼 있어야 한다.
+function CHECK_HIDDEN_ABILITY(pc, abil_count, goal_lv)	
+	abil_count = tonumber(abil_count)
+	goal_lv = tonumber(goal_lv)
+	local abil_list = GetAbilityNames(pc)
+	local match_count = 0
+	for k, name in pairs(abil_list) do
+		local is = IS_HIGH_HIDDENABILITY('HiddenAbility_' .. name)
+		if is == true then
+			local abil = GetAbility(pc, name)
+			local level = TryGetProp(abil, 'Level', 0)			
+			if level >= goal_lv then
+				match_count = match_count + 1
+				if match_count >= abil_count then	
+					return true
+				end
+			end
+		end
+	end
+	
+	SendSysMsg(pc, 'MustHaveHiddenAbility{goal_lv}{count}{current}', 0, 'goal_lv', goal_lv, 'count', abil_count, 'current', match_count)
 	return false
 end

@@ -11,7 +11,7 @@
 		<picture name="gb_pic" rect="0 0 481 262" margin="0 0 0 0" layout_gravity="center top" image="buffselect_frame_s" draw="true" strech="false" hittest="false"/>
 		<groupbox name="buff_list" rect="0 0 420 110" margin="0 55 0 0" layout_gravity="center top" draw="false"/>
 		<richtext name="title" rect="0 0 400 30" margin="0 10 0 0" layout_gravity="center top" format="{@sti1c}{s20}%s" hittest="false" param1="title" param1_def="개인 버프"/>
-		<gauge name="time_gauge" rect="0 0 414 12" margin="0 0 0 95" layout_gravity="center bottom" skin="buffselect_guage" hittest="false"/>
+		<gauge name="time_gauge" rect="0 0 414 10" margin="0 0 0 95" layout_gravity="center bottom" skin="gauge_green" hittest="false" />
 		<button name="select" rect="0 0 146 70" margin="0 0 0 15" layout_gravity="center bottom" skin="test_gray_button" caption="{@sti1c}{s18}선택완료" LBtnUpScp="ON_SELECT_MGAME_BUFF_SOLO_SELECT_BTN"/>
 	</controls>
 </uiframe>

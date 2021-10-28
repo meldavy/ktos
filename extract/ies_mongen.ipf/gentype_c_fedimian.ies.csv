@@ -30,7 +30,6 @@ ClassID,GenType,Lv,Range,GenRange,RespawnTime,MaxPop,Minimap,Hide,UseAIOufOfPC,A
 130,130,1,40,1,1,1,2,0,0,0,0,0,npc_fedimian_merchant_3,[악세서리 상인]{nl}요아나,,,,,,,FED_ACCESSORY,,,NO,YES,NO,Neutral,,,,
 131,131,1,0,-1,1,1,0,0,0,0,0,0,boxes_01,UnvisibleName,,,,,,,,,,NO,YES,NO,Neutral,,,,
 132,132,1,40,-1,14400000,1,0,0,1,0,0,1,noshadow_npc,UnvisibleName,,,,,,SHINOBI_POTTER_AI,SHINOBI_POTTER,,,NO,YES,NO,Neutral,,,,
-133,133,1,40,-1,60000,1,2,0,0,0,0,0,Warp_arrow,세이르 숲,,,,MON_DUMMY,,,,FEDIMIAN_TO_ORCHARD_32_4,,NO,YES,NO,Neutral,,,,
 134,134,1,60,1,60000,1,2,0,0,0,0,0,npc_letizia,[TP상인]{nl}레티샤,,,,,,,TP_NPC,,,NO,YES,NO,Neutral,,,,
 136,136,1,40,-1,60000,1,0,0,0,0,0,0,Silvertransporter_m_Quest,페디미안 경비병,,,,,,,FEDIMIAN_NPC_TEMPLE04,,,NO,YES,NO,Nertral,,,,
 137,137,1,40,-1,60000,20,0,0,0,0,0,0,HiddenWall_10_200_200,,,,,,,,,,,NO,YES,NO,Neutral,,,,
@@ -63,3 +62,4 @@ ClassID,GenType,Lv,Range,GenRange,RespawnTime,MaxPop,Minimap,Hide,UseAIOufOfPC,A
 5233,5233,1,40,-1,1,1,0,0,0,0,0,0,fishing_sign,,,,,,,,KLAPEDA_FISHING_BOARD,,,NO,YES,NO,Neutral,,,,
 5234,5234,1,1,-1,1,1,2,0,0,0,0,0,Event_FishingBox,[낚시 상점]{nl}요하의 살림통,,,,,,,FISHING_SUB_NPC,,,NO,YES,NO,Neutral,,,,
 5237,5237,1,40,1,1,1,2,0,0,0,0,0,npc_huevill_female_1_Ev,[5주년] 특별한 케도라 상인,,,,,,,EVENT_2011_5TH_NPC,,,NO,YES,NO,Neutral,,,,
+5239,5239,1,40,1,1,1,2,0,0,0,0,0,Ev_Npc_barrack_snowman,[겨울축제] 야크맘보 눈사람,,,,,,EVENT_2012_YAK_EFFECT,EVENT_2012_YAK_NPC,,,NO,YES,NO,Neutral,,,,

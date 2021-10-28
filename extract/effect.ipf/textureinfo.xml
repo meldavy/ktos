@@ -21,7 +21,6 @@
 	<Texture Name="leaf007" File="leaf007.dds" Size="256 256"/>
 	<Texture Name="status_icon_badword" File="status_icon_badword.tga" Size="100 100"/>
 	<Texture Name="line006" File="line006.dds" Size="128 128"/>
-	<Texture Name="line006" File="line006.dds" Size="128 128"/>
 	<Texture Name="circle055" File="circle055.dds" Size="256 256"/>
 	<Texture Name="circle054_1" File="circle054_1.dds" Size="256 256"/>
 	<Texture Name="circle054" File="circle054.dds" Size="256 256"/>

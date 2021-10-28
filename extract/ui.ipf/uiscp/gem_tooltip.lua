@@ -262,5 +262,303 @@ function GETGEMTOOLTIP(obj, propNameList)
 	end
 end
 
+-- 성물 젬 툴팁
+local function _GET_RELIC_GEM_LEVEL_FOR_TOOLTIP(item_obj)
+	local lv = 0
+	local item_info, where = GET_INV_ITEM_BY_ITEM_OBJ(item_obj)
+	if where == 'inventory' and tonumber(item_info:GetIESID()) == 0 then
+		-- 이 부분은 성물 UI의 소켓 관리 탭에만 해당하므로 장착한 성물에서 직접 젬 레벨을 가져옴
+		local relic_item = session.GetEquipItemBySpot(item.GetEquipSpotNum('RELIC'))
+		if relic_item ~= nil then
+			local gem_type = relic_gem_type[TryGetProp(item_obj, 'GemType', 'None')]
+			lv = relic_item:GetEquipGemLv(gem_type)
+		end
+	else
+		lv = TryGetProp(item_obj, 'GemLevel', 1)
+	end
 
+	return lv
+end
 
+function GET_RELIC_GEM_NAME_WITH_FONT(item, font_size)
+	if item == nil then
+		return 'None'
+	end
+
+	if font_size == nil then
+		font_size = 16
+	end
+
+	local gem_type_str = TryGetProp(item, 'GemType', 'None')
+	local gem_type = relic_gem_type[gem_type_str]
+	local font = '{@sti1c}'
+	if gem_type == 0 then
+		font = '{@st204_purple}'
+	elseif gem_type == 1 then
+		font = '{@st204_purple}'
+	elseif gem_type == 2 then
+		font = '{@st204_purple}'
+	end
+
+	font = font .. '{s'.. font_size .. '}%s{/}{/}'
+	
+	local name = dic.getTranslatedStr(TryGetProp(item, 'Name', 'None'))
+	local name_str = string.format(font, name)
+
+	return name_str
+end
+
+function _RELIC_GEM_OPTION_BY_LV(gBox, ypos, gem_type, step, class_name, curlv)
+	local margin = 5
+
+	local gem_class = GetClass('Item', class_name)
+	if gem_class == nil then
+		return ypos
+	end
+
+	local option_text_format = 'RelicOptionLongText%s'
+	local parent = gBox:GetParent()
+	if parent:GetName() ~= 'etc' then
+		option_text_format = 'RelicOptionShortText%s'
+	end
+
+	local option_name = TryGetProp(gem_class, 'RelicGemOption', 'None')
+
+	local func_str = string.format('get_tooltip_%s_arg%d', option_name, step)
+	local tooltip_func = _G[func_str]
+	if tooltip_func ~= nil then
+		local value, name, interval, type = tooltip_func()
+		local total = value * math.floor(curlv / interval)
+		local msg = string.format(option_text_format, type)
+		local strInfo = ScpArgMsg(msg, 'name', ClMsg(name), 'total', total, 'interval', interval, 'value', value)
+
+		local infoText = gBox:CreateControl('richtext', 'infoText' .. gem_type .. '_' .. step, 15, ypos, gBox:GetWidth(), 30)
+		infoText:SetTextFixWidth(1)
+		infoText:SetText(strInfo)
+		infoText:SetFontName('brown_16')
+		ypos = ypos + infoText:GetHeight() + margin
+	end
+
+	return ypos
+end
+
+function _RELIC_GEM_SPEND_RP_OPTION(gBox, ypos, gem_class_id)
+	local margin = 5
+
+	local gem_class = GetClassByType('Item', gem_class_id)
+	if gem_class ~= nil then
+		local infoText = gBox:CreateControl('richtext', 'spend_rp' .. gem_class_id, 15, ypos, gBox:GetWidth(), 30)
+		local spend_rp = TryGetProp(gem_class, 'Spend_RP', 0)
+		local msgstr = 'SpendRPWhenRelicReleaseStart'
+		if relic_gem_type[TryGetProp(gem_class, 'GemType', 'None')] == 1 then
+			msgstr = 'SpendRPWhenRelicReleasePerSec'
+		end
+
+		local strInfo = ScpArgMsg(msgstr, 'value', spend_rp)
+
+		infoText:SetTextFixWidth(1)
+		infoText:SetText(strInfo)
+		infoText:SetFontName('brown_16')
+		ypos = ypos + infoText:GetHeight() + margin
+	end
+
+	return ypos
+end
+
+function _RELIC_GEM_RELEASE_OPTION(gBox, ypos, gem_class_id)
+	local margin = 5
+
+	local gem_class = GetClassByType('Item', gem_class_id)
+	if gem_class ~= nil then
+		local infoNameText = gBox:CreateControl('richtext', 'relic_release1', 15, ypos, gBox:GetWidth(), 30)
+		local nameStr = ClMsg('OptionWhenRelicReleaseStart')
+
+		infoNameText:SetTextFixWidth(1)
+		infoNameText:SetText(nameStr)
+		infoNameText:SetFontName('brown_16')
+		ypos = ypos + infoNameText:GetHeight() + margin
+
+		local infoText = gBox:CreateControl('richtext', 'relic_release2', 15, ypos, gBox:GetWidth(), 30)
+		local option_name = TryGetProp(gem_class, 'RelicGemOption', 'None')
+		local msgstr = string.format('RelicGem_%s_DescText', option_name)
+		local strInfo = ClMsg(msgstr)
+		
+		infoText:SetTextFixWidth(1)
+		infoText:SetText(strInfo)
+		infoText:SetFontName('brown_16')
+		ypos = ypos + infoText:GetHeight() + margin
+	end
+
+	return ypos
+end
+
+function ITEM_TOOLTIP_GEM_RELIC(tooltipframe, invitem, argStr)
+	if invitem.GroupName ~= 'Gem_Relic' then
+		return
+	end
+
+	tolua.cast(tooltipframe, 'ui::CTooltipFrame')
+
+	local mainframename = 'etc'
+
+	local ypos = DRAW_RELIC_GEM_COMMON_TOOLTIP(tooltipframe, invitem, mainframename, argStr) -- 공통적으로 그리는 툴팁들
+	ypos = DRAW_RELIC_GEM_LV(tooltipframe, invitem, ypos, mainframename) -- 레벨
+	ypos = DRAW_RELIC_GEM_OPTION(tooltipframe, invitem, ypos, mainframename) -- 옵션
+	ypos = DRAW_ETC_DESC_TOOLTIP(tooltipframe, invitem, ypos, mainframename) -- 아이템 설명
+	ypos = DRAW_EQUIP_TRADABILITY(tooltipframe, invitem, ypos, mainframename) -- 거래 속성
+	
+	local gBox = GET_CHILD(tooltipframe, mainframename, 'ui::CGroupBox')
+    gBox:Resize(gBox:GetWidth(), ypos)
+end
+
+function DRAW_RELIC_GEM_COMMON_TOOLTIP(tooltipframe, invitem, mainframename, isForgery)
+	local gBox = GET_CHILD(tooltipframe, mainframename, 'ui::CGroupBox')
+	gBox:RemoveAllChild()
+	
+    if invitem.ItemGrade == 0 then
+        local SkinName  = GET_ITEM_TOOLTIP_SKIN(invitem)
+    	gBox:SetSkinName('premium_skin')
+    else
+        local SkinName  = GET_ITEM_TOOLTIP_SKIN(invitem)
+    	gBox:SetSkinName('test_Item_tooltip_equip2')
+    end
+
+	local relicGemCommonCSet = gBox:CreateControlSet('tooltip_relic_gem', 'equip_common_cset', 0, 0)
+	tolua.cast(relicGemCommonCSet, 'ui::CControlSet')
+
+	local legendTitle = GET_CHILD_RECURSIVELY(relicGemCommonCSet, 'legendTitle')
+	legendTitle:ShowWindow(0)
+
+	local itemClass = GetClassByType('Item', invitem.ClassID)
+	local gradeText = relicGemCommonCSet:GetUserConfig('GRADE_TEXT_FONT')
+	if itemClass.ItemGrade == 1 then
+		gradeText = gradeText .. relicGemCommonCSet:GetUserConfig('NORMAL_GRADE_TEXT')
+	elseif itemClass.ItemGrade == 2 then
+		gradeText = gradeText .. relicGemCommonCSet:GetUserConfig('MAGIC_GRADE_TEXT')
+	elseif itemClass.ItemGrade == 3 then
+		gradeText = gradeText .. relicGemCommonCSet:GetUserConfig('RARE_GRADE_TEXT')
+	elseif itemClass.ItemGrade == 4 then
+		gradeText = gradeText .. relicGemCommonCSet:GetUserConfig('UNIQUE_GRADE_TEXT')
+	elseif itemClass.ItemGrade == 5 then
+		gradeText = gradeText .. relicGemCommonCSet:GetUserConfig('LEGEND_GRADE_TEXT')
+	elseif itemClass.ItemGrade == 6 then
+		gradeText = gradeText .. relicGemCommonCSet:GetUserConfig('GODDESS_GRADE_TEXT')
+	end
+
+	local gradeName = GET_CHILD_RECURSIVELY(relicGemCommonCSet, 'gradeName')
+	gradeName:SetText(gradeText)
+
+	-- 아이템 배경 이미지 : grade기준
+	local item_bg = GET_CHILD(relicGemCommonCSet, 'item_bg', 'ui::CPicture')
+	local gradeBGName = GET_ITEM_BG_PICTURE_BY_GRADE(invitem.ItemGrade)
+	item_bg:SetImage(gradeBGName)
+
+	-- 아이템 이미지
+	local itemPicture = GET_CHILD(relicGemCommonCSet, 'itempic', 'ui::CPicture')
+	if invitem.TooltipImage ~= nil and invitem.TooltipImage ~= 'None' then
+		imageName = GET_EQUIP_ITEM_IMAGE_NAME(invitem, 'TooltipImage')
+		itemPicture:SetImage(imageName)
+		itemPicture:ShowWindow(1)
+	else
+		itemPicture:ShowWindow(0)
+	end
+	
+	-- 아이템 이름 세팅
+	local fullname = GET_RELIC_GEM_NAME_WITH_FONT(invitem, 18)
+	local nameChild = GET_CHILD(relicGemCommonCSet, 'name', 'ui::CRichText')
+	nameChild:SetText(fullname)
+	nameChild:AdjustFontSizeByWidth(nameChild:GetWidth()) -- 폰트 사이즈를 조정
+	nameChild:SetTextAlign('center', 'center') -- 중앙 정렬
+	
+	gBox:Resize(gBox:GetWidth(), gBox:GetHeight() + relicGemCommonCSet:GetHeight())
+
+	local retxpos = relicGemCommonCSet:GetWidth()
+	local retypos = relicGemCommonCSet:GetHeight()
+
+	local picxpos = GET_CHILD_RECURSIVELY(relicGemCommonCSet, 'itempic'):GetWidth()
+	local typexpos = GET_CHILD_RECURSIVELY(relicGemCommonCSet, 'bg_type'):GetWidth()
+
+	local value_type = GET_CHILD_RECURSIVELY(relicGemCommonCSet, 'value_type', 'ui::CRichText')
+	value_type:SetTextByKey('type', ScpArgMsg(invitem.GemType))
+	value_type:AdjustFontSizeByWidth(retxpos - picxpos - typexpos - 20)
+
+	local value_weight = GET_CHILD_RECURSIVELY(relicGemCommonCSet, 'value_weight')
+	value_weight:SetTextByKey('weight', invitem.Weight .. ' ')
+
+	return retypos
+end
+
+function DRAW_RELIC_GEM_LV(tooltipframe, invitem, ypos, mainframename)
+	local margin = 5
+
+	local class_name = TryGetProp(invitem, 'ClassName', 'None')	
+	if class_name == 'None' then return end
+
+	class_name = replace(class_name, 'PVP_', '')
+
+	local gBox = GET_CHILD(tooltipframe, mainframename)
+	if gBox == nil then return end
+
+	local CSet = gBox:CreateOrGetControlSet('tooltip_relic_gem_lv', 'tooltip_relic_gem_lv', 0, ypos)
+
+	-- 레벨 설정
+	local _ypos = 74 -- offset
+	local curlv = _GET_RELIC_GEM_LEVEL_FOR_TOOLTIP(invitem)
+	local lvtext = GET_CHILD(CSet, 'lv', 'ui::CRichText')
+	lvtext:SetTextByKey('value', curlv)
+
+	local enablelv = curlv * 2
+	if curlv == 1 then
+		enablelv = 1		
+	end
+	local enable_lv_text = GET_CHILD(CSet, 'enable_lv', 'ui::CRichText')
+	enable_lv_text:SetTextByKey('value', enablelv)
+
+	local team_belong = TryGetProp(invitem, 'TeamBelonging', 1)
+	if team_belong ~= 0 then
+		local belong_text = CSet:CreateControl('richtext', 'belong_text', 10, _ypos, CSet:GetWidth(), 30)
+		belong_text:SetTextFixWidth(1)
+		belong_text:SetText(ClMsg('TeamBelongingItem'))
+		_ypos = _ypos + belong_text:GetHeight() + margin
+	end
+	
+	CSet:Resize(CSet:GetWidth(), _ypos + margin)
+	ypos = ypos + CSet:GetHeight() + margin
+
+	return ypos
+end
+
+function DRAW_RELIC_GEM_OPTION(tooltipframe, invitem, ypos, mainframename)
+	local class_name = TryGetProp(invitem, 'ClassName', 'None')	
+	if class_name == 'None' then return end
+
+	class_name = replace(class_name, 'PVP_', '')
+
+	local gBox = GET_CHILD(tooltipframe, mainframename)
+	if gBox == nil then return end
+
+	local CSet = gBox:CreateOrGetControlSet('item_tooltip_ark', 'tooltip_relic_gem_option', 0, ypos)
+	
+	local _ypos = 5 -- offset
+	
+	-- 성물해방
+	local gem_id = TryGetProp(invitem, 'ClassID', 0)
+	local gem_type = relic_gem_type[TryGetProp(invitem, 'GemType', 'None')]
+	if gem_type == 0 then
+		_ypos = _RELIC_GEM_SPEND_RP_OPTION(CSet, _ypos, gem_id)
+		_ypos = _RELIC_GEM_RELEASE_OPTION(CSet, _ypos, gem_id)
+	elseif gem_type == 1 then
+		_ypos = _RELIC_GEM_SPEND_RP_OPTION(CSet, _ypos, gem_id)
+	end
+
+	-- 레벨에 의한 옵션
+	local curlv = _GET_RELIC_GEM_LEVEL_FOR_TOOLTIP(invitem)
+	for i = 1, max_relic_option_count do
+		_ypos = _RELIC_GEM_OPTION_BY_LV(CSet, _ypos, 0, i, class_name, curlv)
+	end
+	
+	CSet:Resize(CSet:GetWidth(), _ypos)
+	ypos = ypos + CSet:GetHeight() + 5
+
+	return ypos
+end

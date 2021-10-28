@@ -7,7 +7,7 @@ function INDUNINFO_ON_INIT(addon, frame)
     addon:RegisterMsg('BORUTA_RANKING_UI_UPDATE', 'BORUTA_RANKING_UI_UPDATE');
 	addon:RegisterMsg("PVP_STATE_CHANGE", "INDUNINFO_TEAM_BATTLE_STATE_CHANGE");
 
-    g_selectedIndunTable = {};
+	g_selectedIndunTable = {};
 end
 
 local NOT_SELECTED_BOX_SKIN = "chat_window_2";
@@ -64,7 +64,7 @@ function INDUNINFO_UI_OPEN(frame, index)
     elseif imcTime.IsLaterThan(now_time, boruta_endtime) ~= 0 then
         boruta.RequestBorutaNowWeekNum();
     end
-    
+		
     INDUNINFO_RESET_USERVALUE(frame);
 	INDUNINFO_CREATE_CATEGORY(frame);
     local tab = GET_CHILD_RECURSIVELY(frame, "tab");
@@ -213,7 +213,13 @@ function INDUNINFO_CREATE_CATEGORY(frame)
         if indunCls ~= nil and indunCls.Category ~= 'None' and enableCreate(indunCls.DungeonType) == true then
             local resetGroupID = indunCls.PlayPerResetType;
             if indunCls.DungeonType == 'MissionIndun' then
-                INDUNINFO_ADD_COUNT(missionIndunSet,resetGroupID)
+				INDUNINFO_ADD_COUNT(missionIndunSet,resetGroupID)
+			elseif string.find(indunCls.DungeonType,"MythicDungeon") == 1 then
+				local pattern_info = mythic_dungeon.GetPattern(mythic_dungeon.GetCurrentSeason())
+				local mapCls = GetClassByType("Map",pattern_info.mapID)
+				if TryGetProp(mapCls,"ClassName") == indunCls.MapName then
+					INDUNINFO_ADD_COUNT(resetGroupTable,resetGroupID)
+				end
             else
                 INDUNINFO_ADD_COUNT(resetGroupTable,resetGroupID)
             end
@@ -425,7 +431,13 @@ function INDUNINFO_CATEGORY_LBTN_CLICK(categoryCtrl, ctrl)
                     if missionIndunCnt == sysTime.wDayOfWeek then
                         add_flag = true;
                     end
-                    missionIndunCnt = missionIndunCnt + 1;
+					missionIndunCnt = missionIndunCnt + 1;
+				elseif string.find(indunCls.DungeonType,"MythicDungeon") == 1 then
+					local pattern_info = mythic_dungeon.GetPattern(mythic_dungeon.GetCurrentSeason())
+					local mapCls = GetClassByType("Map",pattern_info.mapID)
+					if TryGetProp(mapCls,"ClassName") == indunCls.MapName then
+						add_flag = true;
+					end
                 else
                     add_flag = true;
                 end
@@ -611,7 +623,7 @@ function GET_RESET_CYCLE_PIC_TYPE(cls,postFix)
             local sysTime = geTime.GetServerSystemTime();
             local dayOfWeekStr = string.lower(GET_DAYOFWEEK_STR(sysTime.wDayOfWeek));
             cyclePicType = dayOfWeekStr
-        elseif dungeonType == "UniqueRaid" then
+        elseif dungeonType == "UniqueRaid" or string.find(dungeonType,"MythicDungeon")==1 then
             cyclePicType = 'None'
         end
     elseif idSpace == 'PVPIndun' then
@@ -839,6 +851,58 @@ function INDUNINFO_DROPBOX_ITEM_LIST(parent, control)
     -- 여기까지
 end
 
+function INDUNINFO_MAKE_PATTERN_BOX(frame,indunCls)
+	local patternBox = GET_CHILD_RECURSIVELY(frame, 'patternBox');
+	local gbox = GET_CHILD_RECURSIVELY(patternBox,"patternSlotSet")
+	
+	patternBox:ShowWindow(1)
+	
+	local pattern_list = GET_INDUN_PATTERN_ID_LIST(indunCls)
+	if #pattern_list == 0 then
+		patternBox:ShowWindow(0)
+		return
+	end
+	gbox:ClearIconAll();
+	for i = 1,#pattern_list do
+		local patternID = pattern_list[i]
+		local pattern = GetClassByType("boss_pattern",patternID)
+		INDUNINFO_PATTERN_BOX_ADD_ICON(gbox,pattern,i)
+	end
+	gbox:SetUserValue('CURRENT_SLOT', 1);
+	gbox:SetUserValue('MAX_SLOT', #pattern_list);
+	local margin = gbox:GetOriginalMargin();
+    gbox:SetMargin(margin.left, margin.top, margin.right, margin.bottom);
+	local patternRightBtn = GET_CHILD(patternBox,"patternRightBtn")
+	local patternLeftBtn = GET_CHILD(patternBox,"patternLeftBtn")
+	patternRightBtn:SetEnable(BoolToNumber(#pattern_list>5))
+	patternLeftBtn:SetEnable(0)
+end
+
+function GET_INDUN_PATTERN_ID_LIST(indunCls)
+	local ret = {}
+	local dungeonType = TryGetProp(indunCls,"DungeonType")
+	if string.find(dungeonType,"MythicDungeon") == 1 then
+		local pattern_info = mythic_dungeon.GetPattern(mythic_dungeon.GetCurrentSeason())
+		local cnt = pattern_info:GetPatternSize()
+		if dungeonType == 'MythicDungeon_Auto' then
+			cnt = math.min(3,cnt)
+		end
+		for i = 0,cnt-1 do
+			local patternID = pattern_info:GetPattern(i)
+			table.insert(ret,patternID)
+		end
+	end
+	return ret
+end
+
+function INDUNINFO_PATTERN_BOX_ADD_ICON(gbox,pattern,index)
+	local x = 68*(index-1)
+	local slot = gbox:GetSlotByIndex(index-1)
+	local icon = CreateIcon(slot)
+	icon:SetImage("icon_"..pattern.Icon)
+	icon:SetTextTooltip(pattern.ToolTip)
+end
+
 function INDUNINFO_MAKE_DROPBOX(parent, control)
     local frame = ui.GetFrame('induninfo');
     local rewardBox = GET_CHILD_RECURSIVELY(frame, 'rewardBox');
@@ -983,8 +1047,8 @@ function INDUNINFO_MAKE_DETAIL_INFO_BOX(frame, indunClassID)
 
     INDUNINFO_MAKE_DETAIL_COMMON_INFO(frame,indunCls,resetGroupID)
 
-    INDUNINFO_SET_ENTERANCE_COUNT(frame,resetGroupID)
-    INDUNINFO_SET_RESTRICT_SKILL(frame,indunCls)
+	INDUNINFO_SET_ENTERANCE_COUNT(frame,resetGroupID)
+	INDUNINFO_SET_RESTRICT(frame,indunCls)
     INDUNINFO_SET_ADMISSION_ITEM(frame,indunCls)
     INDUNENTER_MAKE_MONLIST(frame, indunCls);
 end
@@ -999,7 +1063,7 @@ function INDUNINFO_MAKE_DETAIL_INFO_BOX_OTHER(frame, indunClassID)
     INDUNINFO_MAKE_DETAIL_COMMON_INFO(frame,contentsCls,resetGroupID)
     
     INDUNINFO_SET_ENTERANCE_COUNT(frame,resetGroupID)
-    INDUNINFO_SET_RESTRICT_SKILL(frame,contentsCls)
+	INDUNINFO_SET_RESTRICT(frame,contentsCls)
     INDUNINFO_SET_ADMISSION_ITEM(frame,contentsCls)
     INDUNENTER_MAKE_MONLIST(frame, contentsCls);
 end
@@ -1065,6 +1129,7 @@ function INDUNINFO_MAKE_DETAIL_COMMON_INFO(frame,indunCls,resetGroupID)
     local posBox = GET_CHILD_RECURSIVELY(frame, 'posBox');
     DESTROY_CHILD_BYNAME(posBox, 'MAP_CTRL_');
     local mapList = StringSplit(TryGetProp(indunCls,"StartMap",""), '/');
+
     -- 챌린지 분열 특이점 모드 & 분열 특이점 모드 자동매칭 예외처리
     if resetGroupID == -101 or resetGroupID == 816 then
         local sysTime = geTime.GetServerSystemTime();
@@ -1072,6 +1137,7 @@ function INDUNINFO_MAKE_DETAIL_COMMON_INFO(frame,indunCls,resetGroupID)
         local curMapName = mapList[sysTime.wDayOfWeek + 1]
         mapList = { curMapName }
     end
+
     for i = 1, #mapList do
         local mapCls = GetClass('Map', mapList[i]);        
         if mapCls ~= nil then
@@ -1085,6 +1151,7 @@ function INDUNINFO_MAKE_DETAIL_COMMON_INFO(frame,indunCls,resetGroupID)
         end
     end
     INDUNINFO_SET_BUTTONS(frame,indunCls)
+    INDUNINFO_MAKE_PATTERN_BOX(frame,indunCls)
 end
 
 function INDUNINFO_SET_ENTERANCE_TIME(frame,indunCls)
@@ -1123,10 +1190,17 @@ function INDUNINFO_SET_ENTERANCE_COUNT(frame,resetGroupID)
     INDUNENTER_MAKE_MONLIST(frame, indunCls);
 end
 
+function INDUNINFO_SET_RESTRICT(frame,indunCls)
+	INDUNINFO_SET_RESTRICT_SKILL(frame,indunCls)
+	INDUNINFO_SET_RESTRICT_ITEM(frame,indunCls)
+	local restrictBox = GET_CHILD_RECURSIVELY(frame, 'restrictBox');
+    GBOX_AUTO_ALIGN(restrictBox, 2, 2, 0, true, true,true);
+end
+
 function INDUNINFO_SET_RESTRICT_SKILL(frame,indunCls)
     -- skill restriction
-    local restrictBox = GET_CHILD_RECURSIVELY(frame, 'restrictBox');
-    restrictBox:ShowWindow(0);
+	local restrictSkillBox = GET_CHILD_RECURSIVELY(frame, 'restrictSkillBox');
+    restrictSkillBox:ShowWindow(0);
 
     local mapName = TryGetProp(indunCls, "MapName");
     local dungeonType = TryGetProp(indunCls, "DungeonType");
@@ -1136,36 +1210,100 @@ function INDUNINFO_SET_RESTRICT_SKILL(frame,indunCls)
         local indunMap = GetClass("Map", mapName);
         local mapKeyword = TryGetProp(indunMap, "Keyword");
         if mapKeyword ~= nil and string.find(mapKeyword, "IsRaidField") ~= nil then
-            restrictBox:ShowWindow(1);
-            restrictBox:SetTooltipOverlap(1);
+            restrictSkillBox:ShowWindow(1);
+            restrictSkillBox:SetTooltipOverlap(1);
             local TOOLTIP_POSX = frame:GetUserConfig("TOOLTIP_POSX");
             local TOOLTIP_POSY = frame:GetUserConfig("TOOLTIP_POSY");
-            restrictBox:SetPosTooltip(TOOLTIP_POSX, TOOLTIP_POSY);
-            restrictBox:SetTooltipType("skillRestrictList");
-            restrictBox:SetTooltipArg("IsRaidField", isLegendRaid);
+            restrictSkillBox:SetPosTooltip(TOOLTIP_POSX, TOOLTIP_POSY);
+            restrictSkillBox:SetTooltipType("skillRestrictList");
+            restrictSkillBox:SetTooltipArg("IsRaidField", isLegendRaid);
         end
     end
 end
 
-function INDUNINFO_SET_BUTTONS(frame,indunCls)
+function INDUNINFO_SET_RESTRICT_ITEM(frame,indunCls)
+    local restrictItemBox = GET_CHILD_RECURSIVELY(frame, 'restrictItemBox');
+    restrictItemBox:ShowWindow(0);
+
+	local cls = GetClassByStrProp("ItemRestrict","Category",indunCls.ClassName)
+    if cls ~= nil then
+		restrictItemBox:ShowWindow(1);
+		restrictItemBox:SetTooltipOverlap(1);
+		local TOOLTIP_POSX = frame:GetUserConfig("TOOLTIP_POSX");
+		local TOOLTIP_POSY = frame:GetUserConfig("TOOLTIP_POSY");
+		restrictItemBox:SetPosTooltip(TOOLTIP_POSX, TOOLTIP_POSY);
+		restrictItemBox:SetTooltipType("itemRestrictList");
+		restrictItemBox:SetTooltipArg(indunCls.ClassName);
+    end
+end
+
+function INDUNINFO_SET_BUTTONS_FIND_CLASS(indunCls)
+    local btnInfoCls = nil;
+    if indunCls ~= nil then
+        local dungeonType = TryGetProp(indunCls, "DungeonType", "None");
+        local subType = TryGetProp(indunCls, "SubType", "None");
+        if dungeonType == nil or subType == nil then 
+            return nil; 
+        end
+
+        local list, cnt = GetClassList("IndunInfoButton");
+        if list ~= nil then
+            for i = 0, cnt - 1 do
+                local cls = GetClassByIndexFromList(list, i);
+                if cls ~= nil then
+                    local class_name = cls.ClassName;
+                    if subType == "MoveEnterNPC" and class_name == "Raid_MoveEnterNPC" then
+                        class_name = "Raid";
+                    end
+
+                    if class_name ~= nil and class_name ~= "None" and class_name == dungeonType then
+                        local sub_type = TryGetProp(cls, "SubType", "None");
+                        if sub_type ~= nil and sub_type ~= "None" and sub_type == subType then
+                            btnInfoCls = cls;
+                            break;
+                        end
+                    end
+                end
+            end
+        end
+    end 
+    return btnInfoCls;
+end
+
+function INDUNINFO_SET_BUTTONS(frame, indunCls)
     local buttonBox = GET_CHILD_RECURSIVELY(frame, 'buttonBox');
-    local btnInfoCls = GetClass("IndunInfoButton",indunCls.DungeonType)
+    local btnInfoCls = GetClass("IndunInfoButton", indunCls.DungeonType);
     if btnInfoCls == nil then
         local redButton = GET_CHILD_RECURSIVELY(buttonBox,'RedButton')
         redButton:ShowWindow(0)
-        for i = 1,3 do
+        for i = 1, 3 do
             local button = GET_CHILD_RECURSIVELY(buttonBox,'Button'..i)
             button:ShowWindow(0)
         end
         INDUNINFO_RESIZE_BY_BUTTONS(frame,0)
         return;
     end
+    
+    if indunCls.DungeonType == "Raid" then
+        if indunCls.SubType ~= "Auto" and indunCls.SubType ~= "MoveEnterNPC" then 
+            local redButton = GET_CHILD_RECURSIVELY(buttonBox,'RedButton')
+            redButton:ShowWindow(0)
+            for i = 1, 3 do
+                local button = GET_CHILD_RECURSIVELY(buttonBox,'Button'..i)
+                button:ShowWindow(0)
+            end
+            INDUNINFO_RESIZE_BY_BUTTONS(frame,0)
+            return;
+        end
+        btnInfoCls = INDUNINFO_SET_BUTTONS_FIND_CLASS(indunCls);
+    end
+
     local type = 0
     local redButtonScp = TryGetProp(btnInfoCls,"RedButtonScp")
     local redButton = GET_CHILD_RECURSIVELY(buttonBox,'RedButton')
     if redButtonScp ~= 'None' then
         redButton:SetEventScript(ui.LBUTTONUP,redButtonScp)
-        redButton:SetTextByKey("btnText",btnInfoCls.RedButtonText)
+        redButton:SetTextByKey("btnText", btnInfoCls.RedButtonText)
 		redButton:SetUserValue('MOVE_INDUN_CLASSID', indunCls.ClassID);
 		redButton:ShowWindow(1)
 		redButton:SetEnable(1)
@@ -1286,7 +1424,9 @@ function INDUNINFO_RESIZE_BY_BUTTONS(frame,type)
     local reward_margin = rewardBox:GetOriginalMargin();
     rewardBox:SetMargin(reward_margin.left, reward_margin.top - resizeHeight, reward_margin.right, reward_margin.bottom);
 
-    rewardBox:ShowWindow(BoolToNumber(type ~= 2))
+	local patternBox = GET_CHILD_RECURSIVELY(frame, 'patternBox');
+    local reward_margin = patternBox:GetOriginalMargin();
+	patternBox:SetMargin(reward_margin.left, reward_margin.top - resizeHeight, reward_margin.right, reward_margin.bottom);
 end
 ---------------end draw indun tab detail ui---------------------
 
@@ -2027,7 +2167,14 @@ end
 
 -- 입장하기 버튼 클릭
 function WEEKLY_BOSS_JOIN_ENTER_CLICK(parent,ctrl)
-    ui.MsgBox(ClMsg('EnterRightNow'), 'WEEKLY_BOSS_JOIN_ENTER_CLICK_MSG(0)', 'None');
+    local pc = GetMyPCObject()
+    
+    local str = SCR_REPUTAION_WEEKQUEST_POSSIBLECHECK(pc, 'P_W_EP13_12', 1)
+    local str2 = ClMsg('EnterRightNow')
+    if str ~= nil then
+        str2 = str..str2
+    end
+    ui.MsgBox(str2, 'WEEKLY_BOSS_JOIN_ENTER_CLICK_MSG(0)', 'None');
 end
 
 -- 연습모드 버튼 클릭
@@ -2351,48 +2498,7 @@ end
 
 --------------------------------- 봉쇄전 랭킹 ---------------------------------
 function BORUTA_RANKING_UI_OPEN(frame)
-    BORUTA_RANKING_DATA_REQUEST();
-
-    local move_btn = GET_CHILD_RECURSIVELY(frame, 'boruta_move_btn')
-    if move_btn ~= nil then
-        local indunCls = GetClass('GuildEvent', 'GM_BorutosKapas_1')
-        if indunCls ~= nil then
-            move_btn:SetUserValue('MOVE_INDUN_CLASSID', TryGetProp(indunCls, 'ClassID', 0))
-        end
-    end
-
-    -- 보스 정보
-    local monClsName = 'Guild_boss_Boruta'
-    local monCls = GetClass("Monster", monClsName)
-    if monCls ~= nil then
-        local boss_icon_pic = GET_CHILD_RECURSIVELY(frame, 'boss_icon_pic')
-        boss_icon_pic:SetImage(monCls.Icon)
-        
-        local boss_attr1 = GET_CHILD_RECURSIVELY(frame, "boss_attr1", "ui::CControlSet")
-        local boss_attr2 = GET_CHILD_RECURSIVELY(frame, "boss_attr2", "ui::CControlSet")
-        local boss_attr3 = GET_CHILD_RECURSIVELY(frame, "boss_attr3", "ui::CControlSet")
-        local boss_attr4 = GET_CHILD_RECURSIVELY(frame, "boss_attr4", "ui::CControlSet")
-        local boss_attr5 = GET_CHILD_RECURSIVELY(frame, "boss_attr5", "ui::CControlSet")
-        local boss_attr6 = GET_CHILD_RECURSIVELY(frame, "boss_attr6", "ui::CControlSet")
-        
-        SET_TEXT(boss_attr1, "attr_name_text", "value", ScpArgMsg('Name'))
-        SET_TEXT(boss_attr2, "attr_name_text", "value", ScpArgMsg('RaceType'))
-        SET_TEXT(boss_attr3, "attr_name_text", "value", ScpArgMsg('Attribute'))
-        SET_TEXT(boss_attr4, "attr_name_text", "value", ScpArgMsg('MonInfo_ArmorMaterial'))
-        SET_TEXT(boss_attr5, "attr_name_text", "value", ScpArgMsg('Level'))
-        SET_TEXT(boss_attr6, "attr_name_text", "value", ScpArgMsg('Area'))
-
-        SET_TEXT(boss_attr1, "attr_value_text", "value", monCls.Name)
-        SET_TEXT(boss_attr2, "attr_value_text", "value", ScpArgMsg(monCls.RaceType))
-        SET_TEXT(boss_attr3, "attr_value_text", "value", ScpArgMsg("MonInfo_Attribute_"..monCls.Attribute))
-        SET_TEXT(boss_attr4, "attr_value_text", "value", ScpArgMsg(monCls.ArmorMaterial))
-        SET_TEXT(boss_attr5, "attr_value_text", "value", monCls.Level)
-        local attr5_value_text = GET_CHILD_RECURSIVELY(boss_attr6,"attr_value_text")
-        local mapCls = GetClass("Map", "d_limestonecave_70_1_guild")
-        if mapCls ~= nil then
-            SET_TEXT(boss_attr6, "attr_value_text", "value", mapCls.Name)
-        end
-    end
+    BORUTA_RANKING_DATA_REQUEST()
 end
 
 function BORUTA_RANKING_SEASON_SELECT(frame,ctrl)
@@ -2409,15 +2515,17 @@ function BORUTA_RANKING_DATA_REQUEST()
     if week_num < 1 then
         return
     end
+
+    local event_type = BORUTA_RANKING_EVENT_TYPE()
     
     -- 시간 정보
     boruta.RequestBorutaStartTime(week_num) -- 시작 시간 정보 요청
     boruta.RequestBorutaEndTime(week_num) -- 종료 시간 정보 요청
 
-    boruta.RequestBorutaRankList(week_num) -- 랭킹 정보 요청
+    boruta.RequestBorutaRankList(week_num, event_type) -- 랭킹 정보 요청
     boruta.RequestBorutaAcceptedRewardInfo(week_num) -- 랭킹 보상 수령 여부 요청
     
-    local rankingBox = GET_CHILD_RECURSIVELY(frame, "ranking", "ui::CGroupBox")
+    local rankingBox = GET_CHILD_RECURSIVELY(frame, "ranking_list_box", "ui::CGroupBox")
     rankingBox:RemoveAllChild()
 end
 
@@ -2503,10 +2611,58 @@ function BORUTA_RANKING_UI_UPDATE()
         reward_btn:SetEnable(0)
     end
 
-    --시즌 갱신
+    -- 보스 데이터 갱신
+    BORUTA_RANKING_BOSS_UPDATE()
+    -- 시즌 갱신
     BORUTA_RANKING_SEASON_UPDATE()
     -- 랭킹 LIST 갱신
     BORUTA_RANKING_UPDATE()
+end
+
+function BORUTA_RANKING_BOSS_UPDATE()
+    local frame = ui.GetFrame("induninfo")
+    local event_type, monClsName = BORUTA_RANKING_EVENT_TYPE()
+    
+    local move_btn = GET_CHILD_RECURSIVELY(frame, 'boruta_move_btn')
+    if move_btn ~= nil then
+        move_btn:SetUserValue('MOVE_INDUN_CLASSID', event_type)
+    end
+
+    -- 보스 정보
+    local monCls = GetClass("Monster", monClsName)
+    if monCls ~= nil then
+        local boss_icon_pic = GET_CHILD_RECURSIVELY(frame, 'boss_icon_pic')
+        boss_icon_pic:SetImage(monCls.Icon)
+        
+        local boss_attr1 = GET_CHILD_RECURSIVELY(frame, "boss_attr1", "ui::CControlSet")
+        local boss_attr2 = GET_CHILD_RECURSIVELY(frame, "boss_attr2", "ui::CControlSet")
+        local boss_attr3 = GET_CHILD_RECURSIVELY(frame, "boss_attr3", "ui::CControlSet")
+        local boss_attr4 = GET_CHILD_RECURSIVELY(frame, "boss_attr4", "ui::CControlSet")
+        local boss_attr5 = GET_CHILD_RECURSIVELY(frame, "boss_attr5", "ui::CControlSet")
+        local boss_attr6 = GET_CHILD_RECURSIVELY(frame, "boss_attr6", "ui::CControlSet")
+        
+        SET_TEXT(boss_attr1, "attr_name_text", "value", ScpArgMsg('Name'))
+        SET_TEXT(boss_attr2, "attr_name_text", "value", ScpArgMsg('RaceType'))
+        SET_TEXT(boss_attr3, "attr_name_text", "value", ScpArgMsg('Attribute'))
+        SET_TEXT(boss_attr4, "attr_name_text", "value", ScpArgMsg('MonInfo_ArmorMaterial'))
+        SET_TEXT(boss_attr5, "attr_name_text", "value", ScpArgMsg('Level'))
+        SET_TEXT(boss_attr6, "attr_name_text", "value", ScpArgMsg('Area'))
+
+        SET_TEXT(boss_attr1, "attr_value_text", "value", monCls.Name)
+        SET_TEXT(boss_attr2, "attr_value_text", "value", ScpArgMsg(monCls.RaceType))
+        SET_TEXT(boss_attr3, "attr_value_text", "value", ScpArgMsg("MonInfo_Attribute_"..monCls.Attribute))
+        SET_TEXT(boss_attr4, "attr_value_text", "value", ScpArgMsg(monCls.ArmorMaterial))
+        SET_TEXT(boss_attr5, "attr_value_text", "value", monCls.Level)
+        local attr5_value_text = GET_CHILD_RECURSIVELY(boss_attr6,"attr_value_text")
+        local mapClsName = "d_limestonecave_70_1_guild"
+        if event_type == 501 then
+            mapClsName = "raid_giltine_AutoGuild"
+        end
+        local mapCls = GetClass("Map", mapClsName)
+        if mapCls ~= nil then
+            SET_TEXT(boss_attr6, "attr_value_text", "value", mapCls.Name)
+        end
+    end
 end
 
 function BORUTA_RANKING_SEASON_UPDATE()
@@ -2544,18 +2700,21 @@ end
 -- rank list 
 function BORUTA_RANKING_UPDATE()
     local frame = ui.GetFrame("induninfo")
-    local rankingBox = GET_CHILD_RECURSIVELY(frame, "ranking", "ui::CGroupBox")
-    rankingBox:RemoveAllChild()
+    local ranking_list_box = GET_CHILD_RECURSIVELY(frame, "ranking_list_box", "ui::CGroupBox")
+    ranking_list_box:RemoveAllChild()
 
     local cnt = session.boruta_ranking.GetRankInfoListSize()
     if cnt == 0 then
         return
     end
 
-    local Width = frame:GetUserConfig("SCROLL_BAR_FALSE_WIDTH")
+    local Width = frame:GetUserConfig("SCROLL_BAR_TRUE_WIDTH");
+    if cnt < 6 then
+        Width = frame:GetUserConfig("SCROLL_BAR_FALSE_WIDTH");
+    end
     
     for i = 1, cnt do
-        local ctrlSet = rankingBox:CreateControlSet("boruta_ranking_attribute", "CTRLSET_" .. i, ui.LEFT, ui.TOP, 0, (i - 1) * 73 + 36, 0, 0)
+        local ctrlSet = ranking_list_box:CreateControlSet("boruta_ranking_attribute", "CTRLSET_" .. i, ui.LEFT, ui.TOP, 0, (i - 1) * 73, 0, 0)
         ctrlSet:Resize(Width, ctrlSet:GetHeight())
         local attr_bg = GET_CHILD(ctrlSet, "attr_bg")
         attr_bg:Resize(Width, attr_bg:GetHeight())
@@ -2642,15 +2801,29 @@ function BORUTA_RANKING_WEEKNUM_NUMBER()
 	return session.boruta_ranking.GetNowWeekNum() - tabidx
 end
 
+-- 봉쇄전 종류
+function BORUTA_RANKING_EVENT_TYPE()
+    local frame = ui.GetFrame('induninfo')
+    local classtype_tab = GET_CHILD_RECURSIVELY(frame, "eventtype_tab", "ui::CTabControl")
+    local index = classtype_tab:GetSelectItemIndex()
+    eventID = '50'..index;
+    local monClsName = 'Guild_boss_Boruta'
+    if index == 1 then
+        monClsName = 'Legend_Boss_Giltine_Guild'
+    end
+    return tonumber(eventID), monClsName;
+end
+
 -- 보상 버튼 클릭
 function BORUTA_RANKING_REWARD_CLICK()
     local week_num = BORUTA_RANKING_WEEKNUM_NUMBER()
-    boruta.RequestBorutaReward(week_num)
+    local event_type = BORUTA_RANKING_EVENT_TYPE()
+    boruta.RequestBorutaReward(week_num, event_type)
 end
 
 -- 이동하기 버튼 클릭
 function BORUTA_ZONE_MOVE_CLICK(parent, ctrl)
-    local indunClsID = ctrl:GetUserValue('MOVE_INDUN_CLASSID')
+    local indunClsID = ctrl:GetUserValue('MOVE_INDUN_CLASSID');
     ui.MsgBox(ClMsg('Auto_JiyeogeuLo{nl}_iDongHaSiKessSeupNiKka?'), '_BORUTA_ZONE_MOVE_CLICK('.. indunClsID ..')', 'None')
 end
 
@@ -2684,7 +2857,7 @@ function _BORUTA_ZONE_MOVE_CLICK(indunClsID)
         ui.SysMsg(ScpArgMsg('ThisLocalUseNot'))
         return
     end
-    
+
     control.CustomCommand('MOVE_TO_ENTER_NPC', indunClsID, 1, 0);
 end
 --------------------------------- 봉쇄전 랭킹 ---------------------------------
@@ -2992,7 +3165,14 @@ end
 
 -- 입장하기 버튼 클릭
 function FIELD_BOSS_JOIN_ENTER_CLICK(parent,ctrl)
-    ui.MsgBox(ClMsg('EnterRightNow'), 'FIELD_BOSS_JOIN_ENTER_CLICK_MSG()', 'None');
+    local pc = GetMyPCObject()
+
+    local str = SCR_REPUTAION_WEEKQUEST_POSSIBLECHECK(pc, 'P_W_EP13_13', 1)
+    local str2 = ClMsg('EnterRightNow')
+    if str ~= nil then
+        str2 = str..str2
+    end
+    ui.MsgBox(str2, 'FIELD_BOSS_JOIN_ENTER_CLICK_MSG()', 'None');
 end
 
 function FIELD_BOSS_JOIN_ENTER_CLICK_MSG()
@@ -3027,6 +3207,7 @@ function REQ_CHALLENGE_AUTO_UI_OPEN(frame, ctrl)
     end
 
     -- 레이드 지역에서 이용 불가
+    local curMap = GetClass('Map', session.GetMapName());
     local zoneKeyword = TryGetProp(curMap, 'Keyword', 'None')
     local keywordTable = StringSplit(zoneKeyword, ';')
     if table.find(keywordTable, 'IsRaidField') > 0 or table.find(keywordTable, 'WeeklyBossMap') > 0 then
@@ -3044,4 +3225,37 @@ function REQ_CHALLENGE_AUTO_UI_OPEN(frame, ctrl)
     ui.CloseFrame('induninfo')
 
     ReqChallengeAutoUIOpen(indunClsID)
+end
+
+function REQ_RAID_AUTO_UI_OPEN(frame, ctrl)
+    -- 매칭 던전중이거나 pvp존이면 이용 불가
+    if session.world.IsIntegrateServer() == true or IsPVPField(pc) == 1 or IsPVPServer(pc) == 1 then
+        ui.SysMsg(ScpArgMsg('ThisLocalUseNot'));
+        return;
+    end
+
+    -- 퀘스트나 챌린지 모드로 인해 레이어 변경되면 이용 불가
+    if world.GetLayer() ~= 0 then
+        ui.SysMsg(ScpArgMsg('ThisLocalUseNot'));
+        return;
+    end
+    
+    -- 레이드 지역에서 이용 불가
+    local map = GetClass('Map', session.GetMapName());
+    local keyword = TryGetProp(map, 'Keyword', 'None');
+    local keyword_table = StringSplit(keyword, ';');
+    if table.find(keyword_table, 'IsRaidField') > 0 or table.find(keyword_table, 'WeeklyBossMap') > 0 then
+        ui.SysMsg(ScpArgMsg('ThisLocalUseNot'));
+        return;
+    end
+
+    local indun_classid = tonumber(ctrl:GetUserValue("MOVE_INDUN_CLASSID"));
+	local indun_cls = GetClassByType("Indun", indun_classid);
+	local dungeon_type = TryGetProp(indun_cls, "DungeonType", "None")
+    if dungeon_type ~= "Raid" and string.find(dungeon_type,"MythicDungeon") ~= 1 then
+        return;
+    end
+
+    ui.CloseFrame("induninfo");
+    ReqRaidAutoUIOpen(indun_classid);
 end

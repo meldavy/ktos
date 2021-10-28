@@ -1366,6 +1366,11 @@ function QUESTION_QUEST_WARP(frame, ctrl, argStr, questID)
 		return;
 	end
 
+	if session.IsGiltineRaidMap() == true then
+		ui.SysMsg(ClMsg('WarpQuestDisabled'));
+		return 0;
+	end
+
 	local questIES = GetClassByType("QuestProgressCheck", questID);
 	local targetMapName = GET_QUEST_LOCATION(questIES)
 	local targetMapCls = GetClassByNameFromList(cls, targetMapName);

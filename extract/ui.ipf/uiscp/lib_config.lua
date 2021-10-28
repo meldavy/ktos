@@ -128,3 +128,11 @@ function UPDATE_SHOW_TUTORIALNOTE(value)
 		ui.CloseFrame("minimized_tutorialnote_button");
 	end
 end
+
+function GET_PVP_MINE_COIN_MSG_STATE(pc, msg_type)
+	if config.GetXMLStrConfig('ShowCoinGetGauge') == "0" then				
+		return 1
+	else		
+		return 0
+	end
+end

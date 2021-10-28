@@ -113,10 +113,13 @@ ClassID,IconSpineScale,IconSpineDurationTime,ClassName,CheckServer,IconTokken,Ic
 112,0,0,raima_emotion112,YES,라이마기도,Normal,
 113,0,0,ShellyPennington_emotion01,YES,쉘리하트,Normal,
 114,0,0,Hitomico_emoticon_01,YES,히토미코하트,Normal,
-120,0,0,Zanas_emotion01,YES,축하,Normal,
+115,0,0,Mulia_emotion115,YES,아자,Normal,
+116,0,0,Mulia_emotion116,YES,흠,Normal,
 117,0,0,ragana_emotion05,YES,히익,Normal,
 118,0,0,blackman_emotion01,YES,아하,Normal,
 119,0,0,baiga_emotion01,YES,건배,Normal,
+120,0,0,Zanas_emotion01,YES,축하,Normal,
+121,0,0,SorshaHutton_emotion01,YES,전투준비,Normal,
 5001,0.17,5,motion_medeina_emotion01,YES,메데이나당황모션,Motion,medeinacon01
 5002,0.2,5,motion_medeina_emotion02,YES,메데이나기쁨모션,Motion,medeinacon02
 5003,0.18,5,motion_kupole_emotion01,YES,큐폴데헷모션,Motion,kupolecon01
@@ -128,3 +131,6 @@ ClassID,IconSpineScale,IconSpineDurationTime,ClassName,CheckServer,IconTokken,Ic
 5009,0.17,5,motion_bakarine_emotion60,YES,바카리네헐모션,Motion,bakarinecon1
 5010,0.18,5,motion_bakarine_emotion59,YES,바카리네음흉모션,Motion,bakarinecon2
 5011,0.17,5,motion_bakarine_emotion61,YES,바카리네힘내모션,Motion,bakarinecon3
+5012,0.16,5,motion_medeina_emotion05,YES,메데이나멋짐모션,Motion,medeinacon1
+5013,0.17,5,motion_medeina_emotion04,YES,메데이나돈자랑모션,Motion,medeinacon2
+5014,0.16,5,motion_medeina_emotion06,YES,메데이나울먹모션,Motion,medeinacon3

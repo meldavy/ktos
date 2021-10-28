@@ -1354,7 +1354,7 @@ function SKILLABILITY_DEPLOY_JOB_SKILL(skilltree_gb, jobClsName, unlockLvHash, S
     --total loop count == skill count in job
     for lv, lvList in pairs(unlockLvHash) do 
         local levelRow = CALC_LIST_LINE_BREAK(lvList, SKILL_COL_COUNT, SKILL_LINE_BREAK_COUNT);
-        for i=1, #levelRow do 
+        for i=1, #levelRow do
             local levelCol = levelRow[i];
             y = rowCount * (SKILL_LV_HEIGHT) + SKILL_LV_MARGIN + (SKILL_LV_DIST)*(i-1);
             for j = 1, #levelCol do

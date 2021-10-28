@@ -1015,7 +1015,13 @@ function GET_ITEM_BG_PICTURE_BY_GRADE(rank, needAppraisal, needRandomOption)
 	elseif rank == 4 then
 		pic = "five_item_bg" .. flag;
 	elseif rank == 5 then
-	    pic = "six_item_bg" .. flag;
+		pic = "six_item_bg" .. flag;
+	elseif rank == 6 then
+		if flag == 3 then
+			pic = "six_item_bg5"
+		elseif flag == 4 then
+			pic = "six_item_bg_undefined"
+		end
 	elseif rank == 0 then
 		return "premium_item_bg";
 	end

@@ -72,5 +72,7 @@ ClassID,GenType,Lv,Range,GenRange,RespawnTime,MaxPop,Minimap,Hide,UseAIOufOfPC,A
 5238,5238,1,40,-1,1,1,2,0,0,0,0,0,Event_FishingBox,[낚시 상점]{nl}요하의 살림통,,,,,,,FISHING_SUB_ORSHA_NPC,,,NO,YES,NO,Neutral,,,,
 5241,5241,1,40,1,1,1,2,0,0,0,0,0,npc_huevill_female_1_Ev,[5주년] 특별한 케도라 상인,,,,,,,EVENT_2011_5TH_NPC,,,NO,YES,NO,Neutral,,,,
 5243,5243,1,40,1,1,1,2,0,0,0,0,0,orsha_m_11_1,[왕국 재건단]{nl}오르샤 담당인,,,,,,,EP13_WEEK_REPUTATION_01,,,NO,YES,NO,Neutral,,,,
+5244,5244,1,40,1,1,1,2,0,0,0,0,0,Ev_Npc_barrack_snowman,[겨울축제] 야크맘보 눈사람,,,,,,EVENT_2012_YAK_EFFECT,EVENT_2012_YAK_NPC,,,NO,YES,NO,Neutral,,,,
 5246,5246,1,40,1,60000,1,2,0,0,0,0,0,npc_CLO_master,[클로운 마스터]{nl}요릭 쇼,,,,,,,CLO_MASTER,,,NO,YES,NO,Neutral,,,,
 5247,5247,1,40,1,60000,1,2,0,0,0,0,0,npc_ARQ_master,[아퀴버지어 마스터]{nl}루드밀라,,,,,,,ARQ_MASTER,,,NO,YES,NO,Neutral,,,,
+5249,5249,1,1,1,60000,1,2,0,0,0,0,0,npc_SAG_master,[세이지 마스터]{nl}루파스 케헬,,,,,,,SAGE_MASTER,,,NO,YES,NO,Neutral,,,,

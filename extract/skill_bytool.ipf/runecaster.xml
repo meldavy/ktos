@@ -226,14 +226,6 @@ if IsBuffApplied(pc, 'Runcaster_Casting_Buff') == 'YES' then
                 value = 0.5
             end
         end                  
-local abil = session.GetAbilityByName('RuneCaster18');
-if abil ~= nil then
-    local abilObj = GetIES(abil:GetObject());
-    if abilObj.ActiveState == 1 then
-        value = 2
-    end
-end
-
 return value"/>
 				<Num Num="1"/>
 				<Num Num="0"/>
@@ -694,16 +686,6 @@ return value"/>
 							<Num Num="100"/>
 							<Num Num="0"/>
 						</Scp>
-						<Scp Scp="SKL_BUFF_ABIL" Client="NO" UseSleep="NO" Time="0">
-							<Str Str="RuneCaster1"/>
-							<Str Str="Runcaster_Casting_Buff"/>
-							<Num Num="1"/>
-							<Num Num="0"/>
-							<Num FuncTxt=" local value = 5000  local abil = GetAbility(self, &quot;RuneCaster1&quot;)  if abil ~= nil then   value = value + abil.Level * 250    end    return value" Num="0" UseFunc="1"/>
-							<Num Num="1"/>
-							<Num Num="100"/>
-							<Num Num="0"/>
-						</Scp>
 						<Scp Scp="C_VOICE_SOUND" Client="YES" UseSleep="NO" Time="100">
 							<Str Str="voice_wiz_m_algiz_shot"/>
 							<Str Str="voice_wiz_f_algiz_shot"/>
@@ -727,16 +709,6 @@ return value"/>
 						<Frame Type="SQUARE" Time="9799" HitCount="1" TermMin="0" TermMax="0" PosType="3" Dist="0" RandDist="0" RandomPerHit="0" Angle="0" AniTime="9999" RotAngle="0" ForceATK="0" ScriptIndex="0" ScriptName="" SkillType="0"/>
 					</HitList>
 					<EtcList>
-						<Scp Scp="SKL_BUFF_ABIL" Client="NO" UseSleep="NO" Time="0">
-							<Str Str="RuneCaster1"/>
-							<Str Str="Runcaster_Casting_Buff"/>
-							<Num Num="1"/>
-							<Num Num="0"/>
-							<Num FuncTxt=" local value = 5000  local abil = GetAbility(self, &quot;RuneCaster1&quot;)  if abil ~= nil then   value = value + abil.Level * 250    end    return value" Num="0" UseFunc="1"/>
-							<Num Num="1"/>
-							<Num Num="100"/>
-							<Num Num="0"/>
-						</Scp>
 						<Scp Scp="SKL_SET_TARGET_CLIENT_TARGETTING" Client="NO" UseSleep="NO" Time="0">
 							<Num Num="1"/>
 							<Num Num="0"/>
@@ -826,16 +798,6 @@ return  obj.Level;"/>
 				<Frame Type="FAN" Time="9799" HitCount="1" TermMin="0" TermMax="0" PosType="0" Dist="0" RandDist="0" RandomPerHit="0" Angle="0" Width="30" Length="30" SklAngle="0.17453292" AniTime="9999" RotAngle="0" ForceATK="0" ScriptIndex="0" ScriptName="" SkillType="0"/>
 			</HitList>
 			<EtcList>
-				<Scp Scp="SKL_BUFF_ABIL" Client="NO" UseSleep="NO" Time="0">
-					<Str Str="RuneCaster1"/>
-					<Str Str="Runcaster_Casting_Buff"/>
-					<Num Num="1"/>
-					<Num Num="0"/>
-					<Num Num="0" UseFunc="1" FuncTxt=" local value = 5000  local abil = GetAbility(self, &quot;RuneCaster1&quot;)  if abil ~= nil then   value = value + abil.Level * 250    end    return value"/>
-					<Num Num="1"/>
-					<Num Num="100"/>
-					<Num Num="0"/>
-				</Scp>
 				<Scp Scp="SKL_RUN_SCRIPT" Client="NO" UseSleep="NO" Time="300" LoopTime="200">
 					<Str Str="SCR_SKL_RUNECASTER_EIHWAZ"/>
 				</Scp>
@@ -1040,16 +1002,6 @@ return value"/>
                 </Cond>
                 <Skill ScrLock="None" JumpFlee="NO" MSPDToUsePos="0">
                     <EtcList>
-                        <Scp Scp="SKL_BUFF_ABIL" Client="NO" UseSleep="NO" Time="0">
-                            <Str Str="RuneCaster1"/>
-                            <Str Str="Runcaster_Casting_Buff"/>
-                            <Num Num="1"/>
-                            <Num Num="0"/>
-                            <Num FuncTxt=" local value = 5000  local abil = GetAbility(self, &quot;RuneCaster1&quot;)  if abil ~= nil then   value = value + abil.Level * 250    end    return value" Num="0" UseFunc="1"/>
-                            <Num Num="1"/>
-                            <Num Num="100"/>
-                            <Num Num="0"/>
-                        </Scp>
                         <Scp Scp="SKL_SET_TARGET_SQUARE_SR" Client="NO" UseSleep="NO" Time="0" LoopTime="240">
                             <Pos Angle="0" Dist="0"/>
                             <Num Num="0"/>

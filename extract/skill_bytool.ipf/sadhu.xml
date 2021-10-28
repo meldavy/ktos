@@ -565,6 +565,9 @@ end
             <ToolScp Scp="SKL_CHECK_BY_SCRIPT" Client="NO" UseSleep="NO">
                 <Str Str="CHECK_SOUL_BUFF_PRAKRITI"/>
             </ToolScp>
+            <ToolScp Scp="SKL_CHECK_BY_SCRIPT_C" Client="YES" UseSleep="NO">
+                <Str Str="SCR_PRAKRITI_CHECK_BUFF_C"/>
+            </ToolScp>
         </EnableScripts>
         <MainSkl ScrLock="None" JumpFlee="NO" MSPDToUsePos="0">
             <HitList>

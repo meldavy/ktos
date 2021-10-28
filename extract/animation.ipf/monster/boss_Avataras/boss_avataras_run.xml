@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ActionDesc>
+    <Sound frame="0.28" soundFile="m_big_footstep_ghost1"/>
+    <Sound frame="6.48" soundFile="atk_cloth_m_r1"/>
+    <Sound frame="18.00" soundFile="atk_cloth_m_l1"/>
+</ActionDesc>

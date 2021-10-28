@@ -34,6 +34,7 @@
 	<ReadXml Name="monster_pet"/>
 	<ReadXml Name="monster_mgame"/>
 	<ReadXml Name="monster_const"/>
+	<ReadXml Name="monster_pcsummon"/>
 	<ReadXml Name="Infinite_Map_Monster"/>
 	<ReadXml Name="pc"/>
 	<ReadXml Name="pc_battle"/>
@@ -255,6 +256,8 @@
 	<ReadXml Name="Chat_Balloon"/>
 	<ReadXml Name="Episode_Quest"/>
 	<ReadXml Name="Episode_Reward"/>
+	<ReadXml Name="Relic_Quest"/>
+	<ReadXml Name="Relic_Reward"/>
 	<ReadXml Name="contents_info"/>
 	<ReadXml Name="item_ark_option"/>	
 	<ReadXml Name="playlist_playtime"/>
@@ -292,13 +295,17 @@
 	<ReadXml Name="dress_room_reward"/>
 	<ReadXml Name="common_gamble_property_reward"/>		
 	<ReadXml Name="accountprop_inventory_list"/>
-  	<ReadXml Name="account_ability"/>  
+  	<ReadXml Name="account_ability"/> 
+	<ReadXml Name="item_gem_relic"/>
 	<ReadXml Name="reputation"/>
 	<ReadXml Name="goddess_card_reinforce"/>
 	<ReadXml Name="reputation_quest"/>
 	<ReadXml Name="reputation_product"/>
 	<ReadXml Name="equipbosscard_goddess"/>
 	<ReadXml Name="reputation_point"/>
+	<ReadXml Name="item_relic_option"/>
 	<ReadXml Name="item_Reputation"/>
 	<ReadXml Name="tutorialnotelist"/>
+	<ReadXml Name="relic_exp"/>
+	<ReadXml Name="relic_gem_info"/>
 </Category>

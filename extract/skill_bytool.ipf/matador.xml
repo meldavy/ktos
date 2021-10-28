@@ -359,6 +359,15 @@ return BuffTime;"/>
                 <Num Num="100"/>
                 <Num Num="0"/>
             </ToolScp>
+            <ToolScp Scp="SKL_BUFF" Client="NO" UseSleep="NO">
+                <Str Str="IS_Channeling_Buff"/>
+                <Num Num="1"/>
+                <Num Num="0"/>
+                <Num Num="2000"/>
+                <Num Num="1"/>
+                <Num Num="100"/>
+                <Num Num="0"/>
+            </ToolScp>
             <ToolScp Scp="SKL_DYNAMICCAST_COUNTERATTACK" Client="NO" UseSleep="NO">
                 <Str Str="" UseFunc="1" FuncTxt="    local skill = &quot;Muleta_Attack&quot;
     local faena = GetSkill(self, &quot;Matador_Faena&quot;)
@@ -393,6 +402,9 @@ return BuffTime;"/>
                 <Num Num="1"/>
                 <Num Num="0"/>
                 <Num Num="1"/>
+            </ToolScp>
+            <ToolScp Scp="SKL_BUFF_REMOVE" Client="NO" UseSleep="NO">
+                <Str Str="IS_Channeling_Buff"/>
             </ToolScp>
         </KeyInputEnd>
         <MainSkl ScrLock="None" JumpFlee="NO" MSPDToUsePos="0">

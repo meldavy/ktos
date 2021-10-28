@@ -1,4 +1,5 @@
 ClassID,StartTimeYYYYMM,StartTimeDDHHMM,NewTimeYYYYMM,NewTimeDDHHMM,EndTimeYYYYMM,EndTimeDDHHMM,DeadlineTimeYYYYMM,DeadlineTimeDDHHMM,ExchangeTimeYYYYMM,ExchangeTimeDDHHMM,ClassName,Name,ImagePath,url,UserCommand1,UserCommand2,UserCommand3,ShowType
+997300,202012,240900,202012,290000,202101,71000,202101,20000,0,0,event201224_YAK,야크맘보 이벤트,event201224_YAK,http://tos.nexon.com/news/events/view.aspx?n4ArticleSN=302&n4ArticleCategorySN=1,,,,
 997310,202012,100900,202012,150000,202012,311000,202012,260000,0,0,event1210_5th_specialedition,5주년 패키지,event1210_5th_specialedition,http://tos.nexon.com/news/tosnotice/view.aspx?n4ArticleSN=2220,,,,
 997320,202012,100900,202012,150000,202101,70700,202101,20000,0,0,event1210_EP13,눈오세 업데이트,event1210_EP13,http://tos.nexon.com/events/20201210/index.aspx,,,,
 997330,202011,260900,202012,10000,202101,70700,202101,20000,0,0,event201126_5th,5주년 특별한 상점 이벤트,event201126_5th,http://tos.nexon.com/news/events/view.aspx?n4ArticleSN=301&n4ArticleCategorySN=1,,,,

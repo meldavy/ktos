@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="EUC-KR"?>
+<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by IMCGames Co., Ltd (IMCGames Co., Ltd) -->
+<ActionDesc>
+	<Particle frame="0" attachNode="Bone_leg02" particleName="F_smoke198_red_violet1" useAttach="false" hiddenObj="false" changeEffect="None" scale="3" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+	<Particle frame="0" attachNode="Dummy_emitter" particleName="F_smoke198_red_violet" useAttach="false" hiddenObj="false" changeEffect="None" scale="3" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+	<Particle frame="0" attachNode="Dummy_cristal" particleName="F_smoke198_red_violet2" useAttach="false" hiddenObj="false" changeEffect="None" scale="3" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+	<Particle frame="0" attachNode="Dummy_cristal" particleName="F_smoke198_red_violet2" useAttach="false" hiddenObj="false" changeEffect="None" scale="1.5" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+	<Sound frame="0.68" soundFile="skl_eff_summon_smoke"/>
+	<Sound frame="24.00" soundFile="skl_eff_spread_4"/>
+	<Sound frame="52.00" soundFile="skl_eff_poison_2"/>
+	<Sound frame="52.73" soundFile="skl_eff_meteostrikes_boom_2"/>
+	<Sound frame="53.41" soundFile="skl_eff_link_line_boom"/>
+	<Particle frame="60" attachNode="Dummy_effect_skl6_breath" particleName="F_spread_out055_3_breath3_violet" useAttach="false" hiddenObj="false" changeEffect="None" scale="12" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+</ActionDesc>

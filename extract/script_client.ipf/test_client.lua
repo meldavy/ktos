@@ -211,3 +211,30 @@ function TEST_SOUND_EFFECT_FADE_OUT()
     actor:GetEffect():SetSoundFadeOut(soundName);
 end
 
+function TEST_RELIC_GEM_INFO_C(type)
+    local item = session.GetInvItemByType(type)
+    if item ~= nil then
+        for i = 0, 3 do
+            local class_id = item:GetEquipGemID(i)
+            if class_id ~= 0 then
+                local gemclass = GetClassByType("Item", class_id)
+                if gemclass ~= nil then
+                    print(gemclass.ClassName)
+                end
+            else
+                print(0)
+            end
+        end
+    end
+end
+
+function TEST_RELIC_RP_GET_C()
+    local relic_item = session.GetEquipItemBySpot(item.GetEquipSpotNum('RELIC'))
+	local relic_obj = GetIES(relic_item:GetObject())
+	if IS_NO_EQUIPITEM(relic_obj) == 1 then
+		return
+    end
+
+    local acc = GetMyAccountObj()
+    print(TryGetProp(acc, 'RP', 0))
+end

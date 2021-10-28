@@ -342,6 +342,13 @@
 			<richtext name="title" parent="titleBox" rect="0 0 340 30" margin="5 5 0 0" fixwidth="false" fixheight="false" updateparent="true" caption="{@st43}{s16}특정 종류의 스킬 사용을 일정 부분 제한합니다.{/}" resizebytext="true"/>
 		</controls>
 	</tooltip>
+	<tooltip name="itemRestrictList" x="0" y="0" width="480" height="100" fixwidth="true" fixheight="false" moveable="false" frameskin="downbox" UpdateScp="UPDATE_ITEM_RESTRICT_INFO_TOOLTIP">
+		<userconfig INNER_X="5" INNER_Y="5" ICON_SIZE="23"/>
+		<controls>
+			<groupbox name="titleBox" rect="0 0 440 30" margin="5 5 0 0" fixwidth="true" fixheight="false" draw="false" updateparent="true" scrollbar="false"/>
+			<richtext name="title" parent="titleBox" rect="0 0 440 30" margin="5 5 0 0" fixwidth="false" fixheight="false" updateparent="true" caption="{@st43}{s16}특정 등급 이상의 아이템과 조건을 만족해야 입장이 가능합니다.{/}" resizebytext="true"/>
+		</controls>
+	</tooltip>
 	<tooltip name="ancient_card" x="0" y="0" frameskin="None" marginy="10" fixwidth="true" width="280" height="650" moveable="false" blendtime="" UpdateScp="UPDATE_ANCIENT_CARD_TOOLTIP">
 		<userconfig NORMAL_GRADE_TEXT="{@st42b}{s14}{#ffffff}노말" MAGIC_GRADE_TEXT="{@st42b}{s14}{#0e7fe8}매직" UNIQUE_GRADE_TEXT="{@st42b}{s14}{#d92400}유니크" LEGEND_GRADE_TEXT="{@st42b}{s14}{#ffa800}레전드"/>
 		<controls>

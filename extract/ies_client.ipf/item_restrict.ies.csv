@@ -1,0 +1,142 @@
+ClassID,ClassName,Category,Icon,Spot_Name,Desc
+1,1,Mythic_startower_Auto,,주무기,"레전드 Lv.440, 고정 아이커 바이보라 Lv1, 10 강화, 8 초월"
+2,2,Mythic_startower_Auto,,보조무기,"레전드 Lv.440, 고정 아이커 Lv.380, 10 강화, 8 초월"
+3,3,Mythic_startower_Auto,,방어구,"레전드 Lv.400, 고정 아이커 Lv.430, 10 강화, 8 초월"
+4,4,Mythic_startower_Auto,,액세서리,레전드 Lv.350(근본 액세서리로 대체 불가)
+5,5,Mythic_startower_Auto,,인장,보루타 인장 Lv.1
+6,6,Mythic_startower_Auto,,아크,퀘스트/제작 아크 Lv.5
+7,7,Mythic_startower_Auto,,성물,성물 보유
+8,8,Mythic_startower_Auto,,세트 아이템,세트 아이템 보유
+101,101,Mythic_startower_Auto_Hard,,주무기,"레전드 Lv.440, 고정 아이커 바이보라 Lv1, 11 강화, 10 초월"
+102,102,Mythic_startower_Auto_Hard,,보조무기,"레전드 Lv.440, 고정 아이커 Lv.380, 11 강화, 10 초월"
+103,103,Mythic_startower_Auto_Hard,,방어구,"레겐다 Lv.440, 여신/마신급 고정 아이커, 11 강화, 10 초월"
+104,104,Mythic_startower_Auto_Hard,,액세서리,레전드 Lv.430
+105,105,Mythic_startower_Auto_Hard,,인장,보루타 인장 Lv.3
+106,106,Mythic_startower_Auto_Hard,,아크,제작 아크 Lv.6
+107,107,Mythic_startower_Auto_Hard,,성물,성물 보유
+108,108,Mythic_startower_Auto_Hard,,세트 아이템,세트 아이템 보유
+109,109,Mythic_startower_Auto_Hard,,상급 특성,Lv. 20 3개 이상
+201,201,Mythic_startower,,주무기,"레겐다 Lv.440, 고정 아이커 바이보라 Lv1, 10 강화, 8 초월"
+202,202,Mythic_startower,,보조무기,"레겐다 Lv.440, 고정 아이커 Lv.380, 10 강화, 8 초월"
+203,203,Mythic_startower,,방어구,"레겐다 Lv.440, 고정 아이커 Lv.430, 10 강화, 8 초월"
+204,204,Mythic_startower,,액세서리,레전드 Lv.430
+205,205,Mythic_startower,,인장,보루타 인장 Lv.3
+206,206,Mythic_startower,,아크,퀘스트/제작 아크 Lv.6
+207,207,Mythic_startower,,성물,성물 보유
+208,208,Mythic_startower,,세트 아이템,세트 아이템 보유
+301,301,Mythic_FireTower_Auto,,주무기,"레전드 Lv.440, 고정 아이커 바이보라 Lv1, 10 강화, 8 초월"
+302,302,Mythic_FireTower_Auto,,보조무기,"레전드 Lv.440, 고정 아이커 Lv.380, 10 강화, 8 초월"
+303,303,Mythic_FireTower_Auto,,방어구,"레전드 Lv.400, 고정 아이커 Lv.430, 10 강화, 8 초월"
+304,304,Mythic_FireTower_Auto,,액세서리,레전드 Lv.350(근본 액세서리로 대체 불가)
+305,305,Mythic_FireTower_Auto,,인장,보루타 인장 Lv.1
+306,306,Mythic_FireTower_Auto,,아크,퀘스트/제작 아크 Lv.5
+307,307,Mythic_FireTower_Auto,,성물,성물 보유
+308,308,Mythic_FireTower_Auto,,세트 아이템,세트 아이템 보유
+401,401,Mythic_FireTower_Auto_Hard,,주무기,"레전드 Lv.440, 고정 아이커 바이보라 Lv1, 11 강화, 10 초월"
+402,402,Mythic_FireTower_Auto_Hard,,보조무기,"레전드 Lv.440, 고정 아이커 Lv.380, 11 강화, 10 초월"
+403,403,Mythic_FireTower_Auto_Hard,,방어구,"레겐다 Lv.440, 여신/마신급 고정 아이커, 11 강화, 10 초월"
+404,404,Mythic_FireTower_Auto_Hard,,액세서리,레전드 Lv.430
+405,405,Mythic_FireTower_Auto_Hard,,인장,보루타 인장 Lv.3
+406,406,Mythic_FireTower_Auto_Hard,,아크,제작 아크 Lv.6
+407,407,Mythic_FireTower_Auto_Hard,,성물,성물 보유
+408,408,Mythic_FireTower_Auto_Hard,,세트 아이템,세트 아이템 보유
+409,409,Mythic_FireTower_Auto_Hard,,상급 특성,Lv. 20 3개 이상
+501,501,Mythic_FireTower,,주무기,"레겐다 Lv.440, 고정 아이커 바이보라 Lv1, 10 강화, 8 초월"
+502,502,Mythic_FireTower,,보조무기,"레겐다 Lv.440, 고정 아이커 Lv.380, 10 강화, 8 초월"
+503,503,Mythic_FireTower,,방어구,"레겐다 Lv.440, 고정 아이커 Lv.430, 10 강화, 8 초월"
+504,504,Mythic_FireTower,,액세서리,레전드 Lv.430
+505,505,Mythic_FireTower,,인장,보루타 인장 Lv.3
+506,506,Mythic_FireTower,,아크,퀘스트/제작 아크 Lv.6
+507,507,Mythic_FireTower,,성물,성물 보유
+508,508,Mythic_FireTower,,세트 아이템,세트 아이템 보유
+601,601,Mythic_thorn2_Auto,,주무기,"레전드 Lv.440, 고정 아이커 바이보라 Lv1, 10 강화, 8 초월"
+602,602,Mythic_thorn2_Auto,,보조무기,"레전드 Lv.440, 고정 아이커 Lv.380, 10 강화, 8 초월"
+603,603,Mythic_thorn2_Auto,,방어구,"레전드 Lv.400, 고정 아이커 Lv.430, 10 강화, 8 초월"
+604,604,Mythic_thorn2_Auto,,액세서리,레전드 Lv.350(근본 액세서리로 대체 불가)
+605,605,Mythic_thorn2_Auto,,인장,보루타 인장 Lv.1
+606,606,Mythic_thorn2_Auto,,아크,퀘스트/제작 아크 Lv.5
+607,607,Mythic_thorn2_Auto,,성물,성물 보유
+608,608,Mythic_thorn2_Auto,,세트 아이템,세트 아이템 보유
+701,701,Mythic_thorn2_Auto_Hard,,주무기,"레전드 Lv.440, 고정 아이커 바이보라 Lv1, 11 강화, 10 초월"
+702,702,Mythic_thorn2_Auto_Hard,,보조무기,"레전드 Lv.440, 고정 아이커 Lv.380, 11 강화, 10 초월"
+703,703,Mythic_thorn2_Auto_Hard,,방어구,"레겐다 Lv.440, 여신/마신급 고정 아이커, 11 강화, 10 초월"
+704,704,Mythic_thorn2_Auto_Hard,,액세서리,레전드 Lv.430
+705,705,Mythic_thorn2_Auto_Hard,,인장,보루타 인장 Lv.3
+706,706,Mythic_thorn2_Auto_Hard,,아크,제작 아크 Lv.6
+707,707,Mythic_thorn2_Auto_Hard,,성물,성물 보유
+708,708,Mythic_thorn2_Auto_Hard,,세트 아이템,세트 아이템 보유
+709,709,Mythic_thorn2_Auto_Hard,,상급 특성,Lv. 20 3개 이상
+801,801,Mythic_thorn2,,주무기,"레겐다 Lv.440, 고정 아이커 바이보라 Lv1, 10 강화, 8 초월"
+802,802,Mythic_thorn2,,보조무기,"레겐다 Lv.440, 고정 아이커 Lv.380, 10 강화, 8 초월"
+803,803,Mythic_thorn2,,방어구,"레겐다 Lv.440, 고정 아이커 Lv.430, 10 강화, 8 초월"
+804,804,Mythic_thorn2,,액세서리,레전드 Lv.430
+805,805,Mythic_thorn2,,인장,보루타 인장 Lv.3
+806,806,Mythic_thorn2,,아크,퀘스트/제작 아크 Lv.6
+807,807,Mythic_thorn2,,성물,성물 보유
+808,808,Mythic_thorn2,,세트 아이템,세트 아이템 보유
+901,901,Mythic_castle_Auto,,주무기,"레전드 Lv.440, 고정 아이커 바이보라 Lv1, 10 강화, 8 초월"
+902,902,Mythic_castle_Auto,,보조무기,"레전드 Lv.440, 고정 아이커 Lv.380, 10 강화, 8 초월"
+903,903,Mythic_castle_Auto,,방어구,"레전드 Lv.400, 고정 아이커 Lv.430, 10 강화, 8 초월"
+904,904,Mythic_castle_Auto,,액세서리,레전드 Lv.350(근본 액세서리로 대체 불가)
+905,905,Mythic_castle_Auto,,인장,보루타 인장 Lv.1
+906,906,Mythic_castle_Auto,,아크,퀘스트/제작 아크 Lv.5
+907,907,Mythic_castle_Auto,,성물,성물 보유
+908,908,Mythic_castle_Auto,,세트 아이템,세트 아이템 보유
+1001,1001,Mythic_castle_Auto_Hard,,주무기,"레전드 Lv.440, 고정 아이커 바이보라 Lv1, 11 강화, 10 초월"
+1002,1002,Mythic_castle_Auto_Hard,,보조무기,"레전드 Lv.440, 고정 아이커 Lv.380, 11 강화, 10 초월"
+1003,1003,Mythic_castle_Auto_Hard,,방어구,"레겐다 Lv.440, 여신/마신급 고정 아이커, 11 강화, 10 초월"
+1004,1004,Mythic_castle_Auto_Hard,,액세서리,레전드 Lv.430
+1005,1005,Mythic_castle_Auto_Hard,,인장,보루타 인장 Lv.3
+1006,1006,Mythic_castle_Auto_Hard,,아크,제작 아크 Lv.6
+1007,1007,Mythic_castle_Auto_Hard,,성물,성물 보유
+1008,1008,Mythic_castle_Auto_Hard,,세트 아이템,세트 아이템 보유
+1009,1009,Mythic_castle_Auto_Hard,,상급 특성,Lv. 20 3개 이상
+1101,1101,Mythic_castle,,주무기,"레겐다 Lv.440, 고정 아이커 바이보라 Lv1, 10 강화, 8 초월"
+1102,1102,Mythic_castle,,보조무기,"레겐다 Lv.440, 고정 아이커 Lv.380, 10 강화, 8 초월"
+1103,1103,Mythic_castle,,방어구,"레겐다 Lv.440, 고정 아이커 Lv.430, 10 강화, 8 초월"
+1104,1104,Mythic_castle,,액세서리,레전드 Lv.430
+1105,1105,Mythic_castle,,인장,보루타 인장 Lv.3
+1106,1106,Mythic_castle,,아크,퀘스트/제작 아크 Lv.6
+1107,1107,Mythic_castle,,성물,성물 보유
+1108,1108,Mythic_castle,,세트 아이템,세트 아이템 보유
+1201,1201,Challenge_Auto_1,,주무기,"유니크 Lv.350, 8 초월"
+1202,1202,Challenge_Auto_1,,방어구,"유니크 Lv.350, 8 초월"
+1301,1301,Challenge_Auto_2,,주무기,"레전드 Lv.400, 고정 아이커 Lv.380, 10 강화, 8 초월"
+1302,1302,Challenge_Auto_2,,보조무기,"레전드 Lv.400, 고정 아이커 Lv.380, 10 강화, 8 초월"
+1303,1303,Challenge_Auto_2,,방어구,"레전드 Lv.400, 고정 아이커 Lv.380, 10 강화, 8 초월(PC방 방어구로 대체 가능)"
+1304,1304,Challenge_Auto_2,,액세서리,유니크  Lv.300(근본 액세서리로 대체 가능)
+1305,1305,Challenge_Auto_2,,인장,카제인장
+1401,1401,Challenge_Auto_3,,주무기,"레전드 Lv.440, 고정 아이커 Lv.380, 강화 8, 초월 5"
+1402,1402,Challenge_Auto_3,,보조무기,"레전드 Lv.440, 고정 아이커 Lv.380, 강화 8, 초월 5"
+1403,1403,Challenge_Auto_3,,방어구,"레전드 Lv.400, 고정 아이커 Lv.380, 강화 8, 초월 5"
+1404,1404,Challenge_Auto_3,,액세서리,유니크 Lv.300(근본 액세서리로 대체 가능)
+1405,1405,Challenge_Auto_3,,인장,카제인장
+1406,1406,Challenge_Auto_3,,아크,퀘스트/제작 아크 Lv.3
+1501,1501,Challenge_Division_Auto_1,,주무기,"레전드 Lv.440, 고정 아이커 바이보라 Lv1, 10 강화, 8 초월"
+1502,1502,Challenge_Division_Auto_1,,보조무기,"레전드 Lv.440, 고정 아이커 Lv.380, 10 강화, 8 초월"
+1503,1503,Challenge_Division_Auto_1,,방어구,"레전드 Lv.400, 고정 아이커 Lv.400, 10 강화, 8 초월"
+1504,1504,Challenge_Division_Auto_1,,액세서리,레전드 Lv.350(근본 액세서리로 대체 불가)
+1505,1505,Challenge_Division_Auto_1,,인장,보루타 인장 Lv.1
+1506,1506,Challenge_Division_Auto_1,,아크,퀘스트/제작 아크 Lv.5
+1601,1601,Legend_Raid_boss_Moringponia_Easy,,주무기,"레전드 Lv.400, 고정 아이커"
+1602,1602,Legend_Raid_boss_Moringponia_Easy,,보조무기,"레전드 Lv.400, 고정 아이커"
+1603,1603,Legend_Raid_boss_Moringponia_Easy,,방어구,"레전드 Lv.400, 고정 아이커"
+1701,1701,Legend_Raid_Glacier_Easy,,주무기,"레전드 Lv.400, 고정 아이커"
+1702,1702,Legend_Raid_Glacier_Easy,,보조무기,"레전드 Lv.400, 고정 아이커"
+1703,1703,Legend_Raid_Glacier_Easy,,방어구,"레전드 Lv.400, 고정 아이커"
+1801,1801,Legend_Raid_Giltine,,주무기,"레전드 Lv.440, 고정 아이커 바이보라 Lv1, 10 강화, 8 초월"
+1802,1802,Legend_Raid_Giltine,,보조무기,"레전드 Lv.440, 고정 아이커 Lv.380, 10 강화, 8 초월"
+1803,1803,Legend_Raid_Giltine,,방어구,"레전드 Lv.440, 고정 아이커 Lv.400, 10 강화, 8 초월"
+1804,1804,Legend_Raid_Giltine,,액세서리,레전드 Lv.350(근본 액세서리로 대체 불가)
+1805,1805,Legend_Raid_Giltine,,인장,보루타 인장 Lv.1
+1806,1806,Legend_Raid_Giltine,,아크,퀘스트/제작 아크 Lv.5
+1807,1807,Legend_Raid_Giltine,,성물,성물 보유
+1808,1808,Legend_Raid_Giltine,,세트 아이템,세트 아이템 보유
+1901,1901,Legend_Raid_Giltine_Auto,,주무기,"레전드 Lv.440, 고정 아이커 바이보라 Lv1, 10 강화, 8 초월"
+1902,1902,Legend_Raid_Giltine_Auto,,보조무기,"레전드 Lv.440, 고정 아이커 Lv.380, 10 강화, 8 초월"
+1903,1903,Legend_Raid_Giltine_Auto,,방어구,"레전드 Lv.440, 고정 아이커 Lv.400, 10 강화, 8 초월"
+1904,1904,Legend_Raid_Giltine_Auto,,액세서리,레전드 Lv.350(근본 액세서리로 대체 불가)
+1905,1905,Legend_Raid_Giltine_Auto,,인장,보루타 인장 Lv.1
+1906,1906,Legend_Raid_Giltine_Auto,,아크,퀘스트/제작 아크 Lv.5
+1907,1907,Legend_Raid_Giltine_Auto,,성물,성물 보유
+1908,1908,Legend_Raid_Giltine_Auto,,세트 아이템,세트 아이템 보유

@@ -598,8 +598,10 @@ function CREATE_SCROLL_CHAR_LIST(frame, actor)
 	local detail = GET_CHILD(charCtrl,'detailBox','ui::CGroupBox');
 	local mapNameCtrl = GET_CHILD(detail,'mapName','ui::CRichText');	
 	local mapCls = GetClassByType("Map", apc.mapID);
-	local mapName = mapCls.Name;
-	mapNameCtrl:SetText("{@st66b}".. mapName);
+	if mapCls ~= nil then
+		local mapName = mapCls.Name;
+		mapNameCtrl:SetText("{@st66b}".. mapName);
+	end
 		
 	local spotCount = item.GetEquipSpotCount() - 1;
 	for i = 0 , spotCount do

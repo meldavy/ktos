@@ -1121,6 +1121,7 @@ function DRAW_EXCHANGE_SHOP_IETMS(categoryName)
         return;
     end
 
+    session.ResetItemList();
 
     -- 한번 그려지면 frame에 마지막 그려진 상점 타입과 카테고리 이름을 저장한다.
     local shopType = frame:GetUserValue("SHOP_TYPE");

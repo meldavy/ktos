@@ -1,4 +1,4 @@
-﻿-- monstercardslot.lua
+-- monstercardslot.lua
 function MONSTERCARDSLOT_ON_INIT(addon, frame)
 	addon:RegisterMsg("DO_OPEN_MONSTERCARDSLOT_UI", "MONSTERCARDSLOT_FRAME_OPEN");
 	addon:RegisterMsg("MSG_PLAY_LEGENDCARD_OPEN_EFFECT", "PLAY_LEGENDCARD_OPEN_EFFECT");

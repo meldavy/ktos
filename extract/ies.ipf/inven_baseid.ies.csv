@@ -144,3 +144,7 @@ ClassID,BaseID,ClassName,TreeGroup,TreeGroupCaption,TreeSSetTitle,InvenTabName,M
 143,715001,Ancient_Card,Ancient,어시스터,카드,Consume,NO
 144,720001,Ancient_CardBook,Ancient,어시스터,카드첩,Etc,NO
 145,725001,Ancient_Etc,Ancient,어시스터,기타,Etc,NO
+146,730001,Relic,EquipGroup,장비,성물,Equip,NO
+147,735001,Gem_Relic_Cyan,Gem,젬,시안 젬,Gem,NO
+148,740001,Gem_Relic_Magenta,Gem,젬,마젠타 젬,Gem,NO
+149,745001,Gem_Relic_Black,Gem,젬,블랙 젬,Gem,NO

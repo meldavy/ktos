@@ -34,8 +34,11 @@
 		<groupbox name="bottomBox" parent="bigmode" rect="0 0 708 145" margin="12 0 0 60" layout_gravity="left bottom" hittestbox="false" skin="indun_bottom_skin"/>
 		<groupbox name="noPicBox" parent="mainBox" rect="0 0 420 550" margin="0 45 3 0" layout_gravity="right top" draw="false"/>
 		<picture name="indunPic" parent="bigmode" rect="0 0 295 450" margin="10 45 0 0" layout_gravity="left top" image="027_boss_Gaigalas" stretch="true" hittestbox="false"/>
-		<groupbox name="restrictBox" rect="0 0 196 40" parent="bigmode" margin="10 45 0 0" layout_gravity="left top" draw="false" image="text_bg_black"/>
-		<richtext name="restrictText" rect="0 0 200 30" parent="restrictBox" margin="5 0 0 0" layout_gravity="left center" caption="{img NOTICE_Dm_! 30 30}{@st43}{s16}스킬 제한{/}" hittest="false"/>
+		<groupbox name="restrictBox" rect="0 0 196 80" parent="bigmode" margin="10 45 0 0" layout_gravity="left top" draw="false" image="text_bg_black"/>
+		<groupbox name="restrictSkillBox" rect="0 0 196 40" parent="restrictBox" margin="0 0 0 0" layout_gravity="left top" draw="false" image="text_bg_black"/>
+		<richtext name="restrictSkillText" rect="0 0 200 30" parent="restrictSkillBox" margin="5 0 0 0" layout_gravity="left center" caption="{img NOTICE_Dm_! 30 30}{@st43}{s16}스킬 제한{/}" hittest="false"/>
+		<groupbox name="restrictItemBox" rect="0 0 196 40" parent="restrictBox" margin="0 0 0 0" layout_gravity="left top" draw="false" image="text_bg_black"/>
+		<richtext name="restrictItemText" rect="0 0 200 30" parent="restrictItemBox" margin="5 0 0 0" layout_gravity="left center" caption="{img NOTICE_Dm_! 30 30}{@st43}{s16}입장 제한{/}" hittest="false"/>
 		<groupbox name="countBox" parent="noPicBox" rect="0 0 390 30" margin="5 10 0 0" layout_gravity="left top" draw="false" hittestbox="false"/>
 		<picture name="countPic" parent="countBox" rect="0 0 27 27" margin="0 0 0 0" layout_gravity="left top" image="indun_entrance"/>
 		<picture name="cycleCtrlPic" parent="countBox" rect="0 0 52 20" margin="0 0 80 0" layout_gravity="right center" image="indun_icon_event_l_eng"/>
@@ -69,6 +72,14 @@
 		<picture name="materialBtn" parent="rewardBox" rect="0 0 68 68" margin="307 35 0 0" layout_gravity="left top" image="indun_material" oversound="button_over" stretch="true" LBtnUpScp="INDUNENTER_MAKE_DROPBOX"/>
 		<richtext name="autoMatchText" parent="autoMatchBtn" rect="0 0 250 80" margin="0 0 0 0" layout_gravity="center center" textalign="center center" format="자동매칭%s" param1="image" fontname="white_18_ol" hittest="false"/>
 		<richtext name="autoMatchTime" parent="autoMatchBtn" rect="0 0 250 80" margin="0 0 0 0" layout_gravity="center center" textalign="center center" caption="00:00" fontname="white_18_b" hittest="false" draw="false"/>
+		<!-- Pattern List Box -->
+		<groupbox name="patternBox" parent="noPicBox" rect="0 0 412 110" margin="0 210 0 0" layout_gravity="left top" draw="false" hittestbox="false"/>
+		<picture name="patternPic" parent="patternBox" rect="0 0 27 27" margin="5 0 0 0" layout_gravity="left top" image="indun_pattern"/>
+		<richtext name="patternText" parent="patternBox" rect="0 0 190 30" margin="35 0 0 0" layout_gravity="left top" caption="패턴 정보" fontname="brown_18_b"/>
+		<button name="patternRightBtn" parent="patternBox" rect="0 0 40 50" margin="0 35 0 0" layout_gravity="right top" image="button_right_select2" LBtnUpScp="INDUNENTER_PATTERN_CLICK_RIGHT"/>
+		<button name="patternLeftBtn" parent="patternBox" rect="0 0 40 50" margin="0 35 0 0" layout_gravity="left top" image="button_left_select2" LBtnUpScp="INDUNENTER_PATTERN_CLICK_LEFT"/>
+		<groupbox name="patternIconBoxWrapper" parent="patternBox" rect="0 0 340 85" margin="35 25 0 0" layout_gravity="left top" draw="false"/>
+		<slotset name="patternSlotSet" parent="patternIconBoxWrapper" rect="0 0 340 85" margin="5 0 0 0" layout_gravity="left top" row="1" col="10" size="65 65" skin="invenslot2" spc="2 2" enabledrop="false" enablepop="false"/>
 		<!-- Bottom Box -->
 		<button name="withBtn" parent="bottomBox" rect="0 0 250 70" margin="0 15 65 0" layout_gravity="right top" skin="test_gray_button" oversound="button_over" LBtnUpScp="INDUNENTER_PARTYMATCH" texttooltip="파티원의 참여를 기다립니다.{nl}레벨대가 맞는 파티원에게는 메세지가 전송됩니다."/>
 		<richtext name="withText" parent="withBtn" rect="0 0 250 65" margin="0 0 0 0" layout_gravity="center center" textalign="center center" caption="파티원과 자동매칭" fontname="white_18_ol" hittest="false"/>

@@ -20,3 +20,11 @@ ClassID,Point,ClassName,ItemClassName,PointName
 110,576,SilverGachaPointExtract_10,selectbox_ep13vakarine01_2,Mileage_SilverGacha
 111,96,SilverGachaPointExtract_11,selectbox_ep13vakarine02_1,Mileage_SilverGacha
 112,96,SilverGachaPointExtract_12,selectbox_ep13vakarine03_1,Mileage_SilverGacha
+10001,50,RelicExpExtract_1,HiddenAbility_Piece,Relic_EXP
+10002,50,RelicExpExtract_2,misc_ore15,Relic_EXP
+10003,50,RelicExpExtract_3,misc_0530,Relic_EXP
+10004,5,RelicExpExtract_4,misc_BlessedStone,Relic_EXP
+10005,50,RelicExpExtract_5,Premium_item_transcendence_Stone,Relic_EXP
+10006,100,RelicExpExtract_6,misc_Telharsha_neck,Relic_EXP
+10007,100,RelicExpExtract_7,misc_glacier_NoTrade,Relic_EXP
+10008,100,RelicExpExtract_8,Legend_Misc_Mothacc_hard_NoTrade,Relic_EXP

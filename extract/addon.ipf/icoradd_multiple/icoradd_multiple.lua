@@ -409,6 +409,26 @@ function ICORADD_CTRL_REG_ADD_ITEM(ctrlSet, itemID)
 		inner_yPos = ADD_ITEM_PROPERTY_TEXT_NARROW(property_gbox, targetItem.OptDesc, 0, inner_yPos)
 	end
 
+	if targetItem.OptDesc ~= nil and (targetItem.OptDesc == 'None' or targetItem.OptDesc == '') and TryGetProp(targetItem, 'StringArg', 'None') == 'Vibora' then
+		local opt_desc = targetItem.OptDesc
+		if opt_desc == 'None' then
+			opt_desc = ''
+		end
+		
+		for idx = 1, MAX_VIBORA_OPTION_COUNT do			
+			local additional_option = TryGetProp(targetItem, 'AdditionalOption_' .. tostring(idx), 'None')			
+			if additional_option ~= 'None' then
+				local tooltip_str = 'tooltip_' .. additional_option					
+				local cls_message = GetClass('ClientMessage', tooltip_str)
+				if cls_message ~= nil then
+					opt_desc = opt_desc .. ClMsg(tooltip_str)
+				end
+			end
+		end
+
+		inner_yPos = ADD_ITEM_PROPERTY_TEXT_NARROW(property_gbox, opt_desc, 0, inner_yPos);
+	end
+
 	if targetItem.IsAwaken == 1 then
 		local opName = string.format("[%s] %s", ClMsg("AwakenOption"), ScpArgMsg(targetItem.HiddenProp))
 		local strInfo = ABILITY_DESC_PLUS(opName, targetItem.HiddenPropValue)

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ActionDesc>
+    <Sound frame="0.00" soundFile="skl_eff_holeofdarkness_ground_loop"/>
+    <Sound frame="0.00" soundFile="mon_voice_giltine_avataras_dead"/>
+    <Sound frame="0.26" soundFile="skl_eff_acid_blood_hit"/>
+    <Sound frame="0.26" soundFile="skl_eff_spread_2"/>
+    <Sound frame="0.77" soundFile="skl_eff_atk_move_l_1"/>
+    <Sound frame="35.00" soundFile="skl_eff_atk_move_l_11"/>
+</ActionDesc>

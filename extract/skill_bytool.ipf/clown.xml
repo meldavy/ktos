@@ -304,7 +304,16 @@
                 <Str Str="Skill_SuperArmor_Buff"/>
                 <Num Num="1"/>
                 <Num Num="0"/>
-                <Num Num="2000"/>
+                <Num Num="5000"/>
+                <Num Num="1"/>
+                <Num Num="100"/>
+                <Num Num="0"/>
+            </ToolScp>
+            <ToolScp Scp="SKL_BUFF" Client="NO" UseSleep="NO">
+                <Str Str="IS_Channeling_Buff"/>
+                <Num Num="1"/>
+                <Num Num="0"/>
+                <Num Num="5000"/>
                 <Num Num="1"/>
                 <Num Num="100"/>
                 <Num Num="0"/>
@@ -322,6 +331,9 @@
             </ToolScp>
             <ToolScp Scp="SKL_BUFF_REMOVE" Client="NO" UseSleep="NO">
                 <Str Str="Skill_SuperArmor_Buff"/>
+            </ToolScp>
+            <ToolScp Scp="SKL_BUFF_REMOVE" Client="NO" UseSleep="NO">
+                <Str Str="IS_Channeling_Buff"/>
             </ToolScp>
         </KeyInputEnd>
         <MainSkl ScrLock="None" JumpFlee="NO" MSPDToUsePos="0">
@@ -341,26 +353,36 @@
         </MainSkl>
     </Skill>
     <Skill Name="Clown_Climax">
+        <EndScripts>
+            <ToolScp Scp="SKL_SET_IMMUNE_STATE_REMOVE" Client="NO" UseSleep="YES">
+                <Str Str="Skill_SuperArmor_Buff"/>
+                <Num Num="500"/>
+            </ToolScp>
+        </EndScripts>
         <MainSkl ScrLock="None" JumpFlee="NO" MSPDToUsePos="0">
             <HitList>
-                <Frame Type="SQUARE" Time="54" HitCount="1" TermMin="0" TermMax="0" PosType="0" Dist="0" RandDist="0" RandomPerHit="0" Angle="0" Width="15" Length="120" SklAngle="0.17453292" AniTime="254" RotAngle="0" ForceATK="1" ScriptIndex="0" ScriptName="" SkillType="0"/>
+                <Frame Type="SQUARE" Time="28" HitCount="1" TermMin="0" TermMax="0" PosType="0" Dist="0" RandDist="0" RandomPerHit="0" Angle="0" Width="15" Length="120" SklAngle="0.17453292" AniTime="228" RotAngle="0" ForceATK="1" ScriptIndex="0" ScriptName="" SkillType="0"/>
+                <Frame Type="SQUARE" Time="379" HitCount="1" TermMin="0" TermMax="0" PosType="0" Dist="0" RandDist="0" RandomPerHit="0" Angle="0" Width="15" Length="120" SklAngle="0.17453292" AniTime="579" RotAngle="0" ForceATK="1" ScriptIndex="0" ScriptName="" SkillType="0"/>
                 <Frame Type="SQUARE" Time="444" HitCount="1" TermMin="0" TermMax="0" PosType="0" Dist="0" RandDist="0" RandomPerHit="0" Angle="0" Width="15" Length="120" SklAngle="0.17453292" AniTime="644" RotAngle="0" ForceATK="1" ScriptIndex="0" ScriptName="" SkillType="0"/>
-                <Frame Type="SQUARE" Time="516" HitCount="1" TermMin="0" TermMax="0" PosType="0" Dist="0" RandDist="0" RandomPerHit="0" Angle="0" Width="15" Length="120" SklAngle="0.17453292" AniTime="716" RotAngle="0" ForceATK="1" ScriptIndex="0" ScriptName="" SkillType="0"/>
-                <Frame Type="SQUARE" Time="871" HitCount="1" TermMin="0" TermMax="0" PosType="0" Dist="0" RandDist="0" RandomPerHit="0" Angle="0" Width="15" Length="120" SklAngle="0.17453292" AniTime="1071" RotAngle="0" ForceATK="1" ScriptIndex="0" ScriptName="" SkillType="0"/>
-                <Frame Type="SQUARE" Time="944" HitCount="1" TermMin="0" TermMax="0" PosType="0" Dist="0" RandDist="0" RandomPerHit="0" Angle="0" Width="15" Length="120" SklAngle="0.17453292" AniTime="1144" RotAngle="0" ForceATK="1" ScriptIndex="0" ScriptName="" SkillType="0"/>
+                <Frame Type="SQUARE" Time="698" HitCount="1" TermMin="0" TermMax="0" PosType="0" Dist="0" RandDist="0" RandomPerHit="0" Angle="0" Width="15" Length="120" SklAngle="0.17453292" AniTime="898" RotAngle="0" ForceATK="1" ScriptIndex="0" ScriptName="" SkillType="0"/>
+                <Frame Type="SQUARE" Time="763" HitCount="1" TermMin="0" TermMax="0" PosType="0" Dist="0" RandDist="0" RandomPerHit="0" Angle="0" Width="15" Length="120" SklAngle="0.17453292" AniTime="963" RotAngle="0" ForceATK="1" ScriptIndex="0" ScriptName="" SkillType="0"/>
             </HitList>
             <EtcList>
+                <Scp Scp="SKL_SET_IMMUNE_STATE" Client="NO" UseSleep="NO" Time="0">
+                    <Str Str="Skill_SuperArmor_Buff"/>
+                    <Num Num="100"/>
+                </Scp>
                 <Scp Scp="MONSKL_C_PLAY_ANIM" Client="YES" UseSleep="NO" Time="0">
                     <Str Str="SKL_Climax"/>
-                    <Num Num="1.8"/>
+                    <Num Num="2"/>
                     <Num Num="1"/>
-                    <Num Num="1"/>
+                    <Num Num="0"/>
                 </Scp>
                 <Scp Scp="C_VOICE_SOUND" Client="YES" UseSleep="NO" Time="0">
                     <Str Str="voice_war_atk_long_shot"/>
                     <Str Str="voice_atk_long_war_f"/>
                 </Scp>
-                <Scp Scp="C_FORCE_EFT" Client="YES_Time" UseSleep="NO" Time="254">
+                <Scp Scp="C_FORCE_EFT" Client="YES_Time" UseSleep="NO" Time="228">
                     <Str_Arg Str="I_knife002_rotate#Dummy_Force" Arg="0.30000001"/>
                     <Str Str="arrow_cast"/>
                     <Str_Arg Str="None" Arg="1"/>
@@ -376,7 +398,7 @@
                     <Num Num="2"/>
                     <Num Num="0"/>
                 </Scp>
-                <Scp Scp="C_FORCE_EFT" Client="YES_Time" UseSleep="NO" Time="644">
+                <Scp Scp="C_FORCE_EFT" Client="YES_Time" UseSleep="NO" Time="579">
                     <Str_Arg Str="I_knife002_rotate#Dummy_Force" Arg="0.30000001"/>
                     <Str Str="arrow_cast"/>
                     <Str_Arg Str="None" Arg="1"/>
@@ -392,7 +414,7 @@
                     <Num Num="2"/>
                     <Num Num="0"/>
                 </Scp>
-                <Scp Scp="C_FORCE_EFT" Client="YES_Time" UseSleep="NO" Time="716">
+                <Scp Scp="C_FORCE_EFT" Client="YES_Time" UseSleep="NO" Time="644">
                     <Str_Arg Str="I_knife002_rotate#Dummy_Force" Arg="0.30000001"/>
                     <Str Str="arrow_cast"/>
                     <Str_Arg Str="None" Arg="1"/>
@@ -408,7 +430,11 @@
                     <Num Num="2"/>
                     <Num Num="0"/>
                 </Scp>
-                <Scp Scp="C_FORCE_EFT" Client="YES_Time" UseSleep="NO" Time="1071">
+                <Scp Scp="C_VOICE_SOUND" Client="YES" UseSleep="NO" Time="850">
+                    <Str Str="voice_war_atk_medium"/>
+                    <Str Str="voice_atk_medium_war_f"/>
+                </Scp>
+                <Scp Scp="C_FORCE_EFT" Client="YES_Time" UseSleep="NO" Time="898">
                     <Str_Arg Str="I_knife002_rotate#Dummy_Force" Arg="0.30000001"/>
                     <Str Str="arrow_cast"/>
                     <Str_Arg Str="None" Arg="1"/>
@@ -424,11 +450,7 @@
                     <Num Num="2"/>
                     <Num Num="0"/>
                 </Scp>
-                <Scp Scp="C_VOICE_SOUND" Client="YES" UseSleep="NO" Time="1100">
-                    <Str Str="voice_war_atk_medium"/>
-                    <Str Str="voice_atk_medium_war_f"/>
-                </Scp>
-                <Scp Scp="C_FORCE_EFT" Client="YES_Time" UseSleep="NO" Time="1144">
+                <Scp Scp="C_FORCE_EFT" Client="YES_Time" UseSleep="NO" Time="963">
                     <Str_Arg Str="I_knife002_rotate#Dummy_Force" Arg="0.30000001"/>
                     <Str Str="arrow_cast"/>
                     <Str_Arg Str="None" Arg="1"/>
@@ -442,9 +464,9 @@
                     <Num Num="1"/>
                     <Num Num="0"/>
                     <Num Num="2"/>
-                    <Num Num="0"/>
+                    <Num Num="1"/>
                 </Scp>
-                <Scp Scp="SKL_RUN_SCRIPT" Client="NO" UseSleep="NO" Time="1150">
+                <Scp Scp="SKL_RUN_SCRIPT" Client="NO" UseSleep="NO" Time="1000">
                     <Str Str="SKL_VIBORA_CLOWN_KnifeSpread"/>
                 </Scp>
             </EtcList>
@@ -463,32 +485,23 @@
         </EndScripts>
         <MainSkl ScrLock="None" JumpFlee="NO" MSPDToUsePos="0">
             <EtcList>
-                <Scp Scp="MSL_PAD_THROW" Client="NO" UseSleep="YES" Time="0">
-                    <Str_Arg Str="I_knife002_rotate#Dummy_Force" Arg="0.30000001"/>
-                    <Str_Arg Str="None" Arg="0.30000001"/>
-                    <Str_Arg Str="None" Arg="1"/>
-                    <Pos Angle="0" Dist="0" Rand="45" PosType="1"/>
-                    <Num Num="0"/>
-                    <Num Num="0.5"/>
-                    <Num Num="0"/>
-                    <Num Num="450"/>
+                <Scp Scp="MONSKL_C_PLAY_ANIM" Client="YES" UseSleep="NO" Time="0">
+                    <Str Str="SKL_TRICKORTREAT"/>
+                    <Num Num="2"/>
                     <Num Num="1"/>
-                    <Num Num="0"/>
-                    <Num Num="0"/>
-                    <Str_Arg Str="None" Arg="1"/>
-                    <Num Num="500"/>
-                    <Num Num="0"/>
-                    <Angle Angle="0"/>
-                    <Str Str="Clown_Knife"/>
+                    <Num Num="1"/>
+                </Scp>
+                <Scp Scp="SKL_RUN_SCRIPT" Client="NO" UseSleep="NO" Time="200">
+                    <Str Str="SCR_CREATE_TRICKORTREAT_KNIFE"/>
                 </Scp>
                 <Scp Scp="C_VOICE_SOUND" Client="YES" UseSleep="NO" Time="200">
                     <Str Str="voice_war_atk_medium"/>
                     <Str Str="voice_atk_medium_war_f"/>
                 </Scp>
-                <Scp Scp="C_SOUND" Client="YES" UseSleep="NO" Time="500">
+                <Scp Scp="C_SOUND" Client="YES" UseSleep="NO" Time="250">
                     <Str Str="skl_eff_treeofsephiroth_buff"/>
                 </Scp>
-                <Scp Scp="SKL_RUN_SCRIPT" Client="NO" UseSleep="NO" Time="700">
+                <Scp Scp="SKL_RUN_SCRIPT" Client="NO" UseSleep="NO" Time="250">
                     <Str Str="SKL_TRICK_OR_TREAT"/>
                 </Scp>
             </EtcList>
@@ -553,6 +566,15 @@
                 <Num Num="0"/>
                 <Str Str="skl_eff_clown_clownwalk"/>
             </ToolScp>
+            <ToolScp Scp="SKL_BUFF" Client="NO" UseSleep="NO">
+                <Str Str="IS_Channeling_Buff"/>
+                <Num Num="1"/>
+                <Num Num="0"/>
+                <Num Num="3000"/>
+                <Num Num="1"/>
+                <Num Num="100"/>
+                <Num Num="0"/>
+            </ToolScp>
         </KeyInputStart>
         <KeyInputEnd>
             <ToolScp Scp="MONSKL_REMOVE_PAD" Client="NO" UseSleep="NO">
@@ -568,6 +590,9 @@
             <ToolScp Scp="SKL_STOP_SOUND" Client="NO" UseSleep="NO">
                 <Str Str="voice_archer_f_shinngburst_cast"/>
                 <Str Str="voice_archer_m_shinngburst_cast"/>
+            </ToolScp>
+            <ToolScp Scp="SKL_BUFF_REMOVE" Client="NO" UseSleep="NO">
+                <Str Str="IS_Channeling_Buff"/>
             </ToolScp>
         </KeyInputEnd>
         <MainSkl ScrLock="None" JumpFlee="NO" MSPDToUsePos="0">

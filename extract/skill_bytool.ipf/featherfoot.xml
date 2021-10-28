@@ -98,7 +98,17 @@
                     <Str Str="voice_archer_f_atk"/>
                 </Scp>
                 <Scp Client="NO" Scp="SKL_BUFF" Time="400" UseSleep="NO">
-                    <Str Str="Levitation_Buff"/>
+                    <Str Str="Levitation_Buff" UseFunc="1" FuncTxt="local abilLevel = GET_ABIL_LEVEL(self, 'Featherfoot33');
+
+if abilLevel ~= 0 then 
+
+return 'Levitation_Buff';
+
+else 
+
+return 'Levitation_NoDashRun_Buff'; 
+
+end"/>
                     <Num Num="1"/>
                     <Num Num="0"/>
                     <Num Num="60000" UseFunc="1" FuncTxt="local abilLevel = GET_ABIL_LEVEL(self, 'Featherfoot33');
@@ -471,6 +481,15 @@ end"/>
                 <Num Num="100"/>
                 <Num Num="0"/>
             </ToolScp>
+            <ToolScp Client="NO" Scp="SKL_BUFF" UseSleep="NO">
+                <Str Str="IS_Channeling_Buff"/>
+                <Num Num="1"/>
+                <Num Num="0"/>
+                <Num Num="5000"/>
+                <Num Num="1"/>
+                <Num Num="100"/>
+                <Num Num="0"/>
+            </ToolScp>
             <ToolScp Client="NO" Scp="SKL_PLAY_SOUND" UseSleep="NO">
                 <Str Str="voice_wiz_kurdaitcha_cast"/>
                 <Num Num="0"/>
@@ -490,6 +509,9 @@ end"/>
             </ToolScp>
             <ToolScp Client="NO" Scp="SKL_BUFF_REMOVE" UseSleep="NO">
                 <Str Str="Kurdaitcha_Debuff"/>
+            </ToolScp>
+            <ToolScp Client="NO" Scp="SKL_BUFF_REMOVE" UseSleep="NO">
+                <Str Str="IS_Channeling_Buff"/>
             </ToolScp>
         </KeyInputEnd>
         <MainSkl JumpFlee="NO" MSPDToUsePos="0" ScrLock="None">

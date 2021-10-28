@@ -5,5 +5,4 @@
     <Sound frame="37.00" soundFile="skl_eff_force_whoosh_2"/>
     <Sound frame="39.66" soundFile="skl_eff_short_impact_whoosh_3"/>
     <Sound frame="39.96" soundFile="skl_eff_thsword_whoosh"/>
-    <Sound frame="41.00" soundFile="mon_voice_giltine_shot_1"/>
 </ActionDesc>

@@ -382,8 +382,10 @@ function DRAW_EQUIP_COMMON_TOOLTIP_SMALL_IMG(tooltipframe, invitem, mainframenam
 		gradeText = gradeText .. equipCommonCSet:GetUserConfig("RARE_GRADE_TEXT")
 	elseif itemClass.ItemGrade == 4 then
 		gradeText = gradeText .. equipCommonCSet:GetUserConfig("UNIQUE_GRADE_TEXT")
-	else
+	elseif itemClass.ItemGrade == 5 then
 		gradeText = gradeText .. equipCommonCSet:GetUserConfig("LEGEND_GRADE_TEXT")
+	elseif itemClass.ItemGrade == 6 then
+		gradeText = gradeText .. equipCommonCSet:GetUserConfig("GODDESS_GRADE_TEXT")
 	end
 
 	local transcend = TryGetProp(invitem, "Transcend");
@@ -2385,3 +2387,320 @@ function DRAW_ARK_EXP(tooltipframe, invitem, ypos, mainframename)
 	return ypos;
 end
 ----------------- 아크 아이템 tooltip -----------------
+
+-- 성물 tooltip --
+local function _CREATE_RELIC_LV_OPTION(gBox, ypos, step, class_name, curlv)
+	local margin = 5
+
+	class_name = replace(class_name, 'PVP_', '')
+
+	local func_str = string.format('get_tooltip_%s_arg%d', class_name, step)
+	local tooltip_func = _G[func_str]
+	if tooltip_func ~= nil then
+		local value, name, interval, type = tooltip_func()
+		local total = value * math.floor(curlv / interval)
+		local msg = string.format('RelicOptionLongText%s', type)
+		local strInfo = ScpArgMsg(msg, 'name', ClMsg(name), 'total', total, 'interval', interval, 'value', value)
+
+		local infoText = gBox:CreateControl('richtext', 'infoText'..step, 15, ypos, gBox:GetWidth(), 30)
+		infoText:SetTextFixWidth(1)
+		infoText:SetText(strInfo)
+		infoText:SetFontName('brown_16')
+		ypos = ypos + infoText:GetHeight() + margin
+		
+		local item = GetClass('Item', class_name)
+		local value2 = math.max(1, math.floor(curlv/2))
+		local msg2 = string.format('RelicOptionEnableEquipGemLevel', type)
+		local strInfo2 = ScpArgMsg(msg2, 'value', value2)
+		
+		local infoText2 = gBox:CreateControl('richtext', 'infoText2'..step, 15, ypos, gBox:GetWidth(), 40)
+		infoText2:SetTextFixWidth(1)
+		infoText2:SetText(strInfo2)
+		infoText2:SetFontName('brown_16')
+		ypos = ypos + infoText2:GetHeight() + margin
+	end
+
+	return ypos
+end
+
+function ITEM_TOOLTIP_RELIC(tooltipframe, invitem, strarg, usesubframe)
+	if invitem.ClassType ~= 'Relic' then return end
+
+	tolua.cast(tooltipframe, 'ui::CTooltipFrame')
+	local mainframename = 'equip_main'
+	local ypos = 0
+
+	ypos = DRAW_EQUIP_COMMON_TOOLTIP_SMALL_IMG(tooltipframe, invitem, mainframename) -- 장비라면 공통적으로 그리는 툴팁들
+
+	ypos = DRAW_RELIC_LV_OPTION(tooltipframe, invitem, ypos, mainframename) -- 레벨, 옵션
+	ypos = DRAW_RELIC_EXP(tooltipframe, invitem, ypos, mainframename) -- 경험치
+	ypos = DRAW_RELIC_SOCKET(tooltipframe, invitem, ypos, mainframename)
+	ypos = DRAW_EQUIP_RELIC_DESC(tooltipframe, invitem, ypos, mainframename) -- 각종 설명문
+
+	ypos = DRAW_EQUIP_TRADABILITY(tooltipframe, invitem, ypos, mainframename) -- 거래 제한
+	ypos = DRAW_CANNOT_REINFORCE(tooltipframe, invitem, ypos, mainframename) -- 초월 및 강화불가
+
+	local isHaveLifeTime = TryGetProp(invitem, 'LifeTime', 0) -- 기간제
+	if 0 == tonumber(isHaveLifeTime) then
+		ypos = DRAW_SELL_PRICE(tooltipframe, invitem, ypos, mainframename)
+	else
+		ypos = DRAW_REMAIN_LIFE_TIME(tooltipframe, invitem, ypos, mainframename)
+	end
+	
+	ypos = ypos + 3
+    ypos = DRAW_TOGGLE_EQUIP_DESC(tooltipframe, invitem, ypos, mainframename) -- 설명문 토글 여부
+
+    local gBox = GET_CHILD(tooltipframe, mainframename,'ui::CGroupBox')
+    gBox:Resize(gBox:GetWidth(), ypos)
+end
+
+function DRAW_RELIC_LV_OPTION(tooltipframe, invitem, ypos, mainframename)
+	local margin = 5
+
+	local class_name = TryGetProp(invitem, 'ClassName', 'None')	
+	if class_name == 'None' then return end
+
+	local item = GET_INV_ITEM_BY_ITEM_OBJ(invitem)
+	if item == nil then return end
+
+	class_name = replace(class_name, 'PVP_', '')
+
+	local gBox = GET_CHILD(tooltipframe, mainframename)
+	if gBox == nil then return end
+
+	local CSet = gBox:CreateOrGetControlSet('tooltip_ark_lv', 'tooltip_relic_lv', 0, ypos)
+
+	-- 레벨 설정
+	local curlv = TryGetProp(invitem, 'Relic_LV', 1)
+	local lvtext = GET_CHILD(CSet, 'lv', 'ui::CRichText')
+	lvtext:SetTextByKey('value', curlv)
+
+	-- 레벨에 따른 옵션 증가 text
+	local _ypos = 43 -- offset
+	for i = 1, max_relic_option_count do -- shared
+		_ypos = _CREATE_RELIC_LV_OPTION(CSet, _ypos, i, class_name, curlv)
+	end
+	
+	CSet:Resize(CSet:GetWidth(), _ypos + margin)
+	ypos = ypos + CSet:GetHeight() + margin
+
+	return ypos
+end
+
+function DRAW_RELIC_EXP(tooltipframe, invitem, ypos, mainframename)
+	local gBox = GET_CHILD(tooltipframe, mainframename)
+	if gBox == nil then return end
+	
+	local margin = 5
+	local CSet = gBox:CreateOrGetControlSet('tooltip_relic_exp', 'tooltip_relic_exp', 0, ypos)
+
+	local cur_lv = shared_item_relic.get_current_lv(invitem)
+	local cur_exp = shared_item_relic.get_current_exp(invitem)
+	local cur_lv_exp = shared_item_relic.get_current_lv_exp(invitem)
+	local next_exp = shared_item_relic.get_current_lv_exp_interval(invitem)
+	local cur_exp = cur_exp - cur_lv_exp
+	if shared_item_relic.is_max_lv(invitem) == 'YES' then -- 경험치 full
+		cur_exp = next_exp
+	end
+	
+	local gauge = GET_CHILD(CSet, 'gauge', 'ui::CGauge')
+	gauge:SetPoint(cur_exp, next_exp)
+
+	CSet:Resize(CSet:GetWidth(),CSet:GetHeight())
+	ypos = ypos + CSet:GetHeight() + margin
+
+	return ypos
+end
+
+function DRAW_RELIC_SOCKET(tooltipframe, itemObj, yPos, addinfoframename)
+	local value = IS_TOGGLE_EQUIP_ITEM_TOOLTIP_DESC()
+    if value == 1 then
+        return yPos
+	end
+
+	local gBox = GET_CHILD(tooltipframe, addinfoframename, 'ui::CGroupBox')
+	gBox:RemoveChild('tooltip_relic_socket')
+	
+	local tooltip_equip_socket_CSet = gBox:CreateOrGetControlSet('tooltip_equip_property', 'tooltip_relic_socket', 0, yPos)
+	
+	local invitem = GET_INV_ITEM_BY_ITEM_OBJ(itemObj)
+	if invitem == nil then
+		return yPos
+	end
+
+	local gBox = GET_CHILD(tooltipframe, addinfoframename, 'ui::CGroupBox')
+	local tooltip_equip_socket_CSet = GET_CHILD_RECURSIVELY(gBox, 'tooltip_relic_socket')
+	local socket_gbox = GET_CHILD(tooltip_equip_socket_CSet, 'property_gbox', 'ui::CGroupBox')
+
+	tolua.cast(tooltip_equip_socket_CSet, 'ui::CControlSet')
+	local inner_yPos = 0
+
+	local function _GET_EMPTY_SOCKET_IMAGE(type)
+		local image = 'freegemslot_image'
+		if type == 0 then
+			image = 'socket_cyan'
+		elseif type == 1 then
+			image = 'socket_magenta'
+		elseif type == 2 then
+			image = 'socket_black'
+		end
+	
+		return image
+	end
+
+	local function _ADD_ITEM_SOCKET_PROP(GroupCtrl, invitem, socket, gemID, gemLv, yPos)
+		if GroupCtrl == nil then
+			return 0
+		end
+
+		local cnt = GroupCtrl:GetChildCount()
+
+		local ControlSetObj = GroupCtrl:CreateControlSet('tooltip_item_prop_socket', 'ITEM_PROP_' .. cnt , 0, yPos)
+		local ControlSetCtrl = tolua.cast(ControlSetObj, 'ui::CControlSet')
+	
+		local socket_image = GET_CHILD(ControlSetCtrl, 'socket_image', 'ui::CPicture')
+		local socket_property_text = GET_CHILD(ControlSetCtrl, 'socket_property', 'ui::CRichText')
+		local gradetext = GET_CHILD_RECURSIVELY(ControlSetCtrl, 'grade', 'ui::CRichText')
+	
+		local NEGATIVE_COLOR = ControlSetObj:GetUserConfig('NEGATIVE_COLOR')
+		local POSITIVE_COLOR = ControlSetObj:GetUserConfig('POSITIVE_COLOR')
+		if gemID == 0 then
+			local socket_image_name = _GET_EMPTY_SOCKET_IMAGE(socket)
+			socket_image:SetImage(socket_image_name)
+
+			local socket_type_str = 'Gem_Relic_Cyan'
+			for _name, _type in pairs(relic_gem_type) do
+				if _type == socket then
+					socket_type_str = _name
+					break
+				end
+			end
+			local empty_socket_name	= ScpArgMsg('EMPTY_RELIC_GEM_SOCKET', 'NAME', ClMsg(socket_type_str))
+			socket_property_text:SetText(empty_socket_name)
+				
+			gradetext:ShowWindow(0)
+		else
+			local gemclass = GetClassByType('Item', gemID)
+			local socket_image_name = gemclass.Icon
+			socket_image:SetImage(socket_image_name)		
+			
+			gradetext:SetText('Lv ' .. gemLv)
+			gradetext:ShowWindow(1)
+			
+			local desc = GET_RELIC_GEM_NAME_WITH_FONT(gemclass)
+			socket_property_text:SetText(desc)
+			socket_property_text:ShowWindow(1)
+			ControlSetCtrl:Resize(ControlSetCtrl:GetWidth(), math.max(ControlSetCtrl:GetHeight(), socket_property_text:GetHeight()))
+		end
+	
+		GroupCtrl:ShowWindow(1)
+		GroupCtrl:Resize(GroupCtrl:GetWidth(), GroupCtrl:GetHeight() + ControlSetObj:GetHeight() + 7)
+		return ControlSetCtrl:GetHeight() + ControlSetCtrl:GetY() + 5
+	end	
+
+	local curCount = 0
+	local BOTTOM_MARGIN = 10
+	for i = 0, max_relic_gem_socket_count - 1 do
+		local gem_class_id = invitem:GetEquipGemID(i)
+		local gem_lv = invitem:GetEquipGemLv(i)
+		inner_yPos = _ADD_ITEM_SOCKET_PROP(socket_gbox, itemObj, i, gem_class_id, gem_lv, inner_yPos)
+
+		if gem_class_id ~= 0 then
+			local gem_class = GetClassByType('Item', gem_class_id)
+			local gem_type = relic_gem_type[TryGetProp(gem_class, 'GemType', 'None')]
+			if gem_type == 0 then
+				inner_yPos = _RELIC_GEM_SPEND_RP_OPTION(socket_gbox, inner_yPos, gem_class_id)
+				inner_yPos = _RELIC_GEM_RELEASE_OPTION(socket_gbox, inner_yPos, gem_class_id)
+			elseif gem_type == 1 then
+				inner_yPos = _RELIC_GEM_SPEND_RP_OPTION(socket_gbox, inner_yPos, gem_class_id)
+			end
+			
+			for i = 1, max_relic_option_count do
+				inner_yPos = _RELIC_GEM_OPTION_BY_LV(socket_gbox, inner_yPos, gem_type, i, gem_class.ClassName, gem_lv)
+			end
+		end
+		
+		inner_yPos = inner_yPos + BOTTOM_MARGIN
+		curCount = curCount + 1
+	end
+	
+	socket_gbox:Resize(socket_gbox:GetWidth(), inner_yPos)
+	tooltip_equip_socket_CSet:Resize(tooltip_equip_socket_CSet:GetWidth(), socket_gbox:GetHeight() + socket_gbox:GetY() + BOTTOM_MARGIN)
+
+	gBox:Resize(gBox:GetWidth(), gBox:GetHeight() + tooltip_equip_socket_CSet:GetHeight())
+	return tooltip_equip_socket_CSet:GetHeight() + tooltip_equip_socket_CSet:GetY()
+end
+
+function DRAW_EQUIP_RELIC_DESC(tooltipframe, invitem, yPos, mainframename)
+	local class_name = TryGetProp(invitem, 'ClassName', 'None')
+	local tooltip_type = 1
+
+	local desc = ''
+	
+	class_name = replace(class_name, 'PVP_', '')
+	
+	local func_str = string.format('get_tooltip_%s_arg%d', class_name, 2)
+	local tooltip_func = _G[func_str]  -- get_tooltip_Ark_str_arg1 시리즈
+	if tooltip_func ~= nil then
+		local tooltiptype, option, level, value, base_value = tooltip_func()
+		tooltip_type = tooltiptype
+	end	
+	
+	if tooltip_type == 3 then
+		local msg = class_name .. '_desc{base1}{base2}'
+		local base1 = ''
+		local base2 = ''
+		local func_str = string.format('get_tooltip_%s_arg%d', class_name, 2)
+		local tooltip_func = _G[func_str]  -- get_tooltip_Ark_str_arg1 시리즈
+		if tooltip_func ~= nil then
+			local tooltiptype, option, level, value, base_value = tooltip_func()
+			base1 = base_value
+		end
+		local func_str = string.format('get_tooltip_%s_arg%d', class_name, 3)
+		local tooltip_func = _G[func_str]  -- get_tooltip_Ark_str_arg1 시리즈
+		if tooltip_func ~= nil then
+			local tooltiptype, option, level, value, base_value = tooltip_func()
+			base2 = base_value
+		end
+		desc = ScpArgMsg(msg, 'base1', base1, 'base2', base2)
+	else
+		local func_str = string.format('get_tooltip_%s_arg%d', class_name, 3)
+		local tooltip_func = _G[func_str]  -- get_tooltip_Ark_str_arg3 시리즈
+		if tooltip_func ~= nil then
+			local tooltiptype, option, level, value, base_value, msg = tooltip_func()
+			if tooltiptype == 4 then -- 3레벨 효과에 base가 1개인 경우
+				local base1 = base_value
+				desc = ScpArgMsg(msg, 'base1', base1)
+			else
+				desc = GET_ITEM_TOOLTIP_DESC(invitem)
+			end
+		else
+			desc = GET_ITEM_TOOLTIP_DESC(invitem)
+		end
+	end
+
+	local gBox = GET_CHILD(tooltipframe, mainframename,'ui::CGroupBox')
+	gBox:RemoveChild('tooltip_equip_desc')
+
+	if desc == '' then -- 일단 그릴 설명이 있는지 검사. 없으면 컨트롤 셋 자체를 안만듬
+		return yPos
+	end
+
+    local value = IS_TOGGLE_EQUIP_ITEM_TOOLTIP_DESC()
+    if value == 1 then
+        return yPos
+    end
+	
+	local tooltip_equip_property_CSet = gBox:CreateOrGetControlSet('tooltip_equip_desc', 'tooltip_equip_desc', 0, yPos)
+	local property_gbox = GET_CHILD(tooltip_equip_property_CSet,'property_gbox','ui::CGroupBox')
+		
+	local inner_yPos = 0
+	inner_yPos = ADD_ITEM_PROPERTY_TEXT(property_gbox, desc, 0, inner_yPos)
+
+	local BOTTOM_MARGIN = tooltipframe:GetUserConfig('BOTTOM_MARGIN'); -- 맨 아랫쪽 여백
+	tooltip_equip_property_CSet:Resize(tooltip_equip_property_CSet:GetWidth(),tooltip_equip_property_CSet:GetHeight() + property_gbox:GetHeight() + property_gbox:GetY() + BOTTOM_MARGIN)
+
+	gBox:Resize(gBox:GetWidth(),gBox:GetHeight() + tooltip_equip_property_CSet:GetHeight())
+	
+	return tooltip_equip_property_CSet:GetHeight() + tooltip_equip_property_CSet:GetY()
+end

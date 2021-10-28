@@ -3952,15 +3952,15 @@ return buffName"/>
             </HitList>
             <EtcList>
                 <Anim Time="0" Anim="event1" Speed="1"/>
+                <Scp Scp="SKL_RUN_SCRIPT_SLEEP" Client="NO" UseSleep="YES" Time="0">
+                    <Str Str="SCR_SOLCOMM_SKL_7"/>
+                </Scp>
                 <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="1300">
                     <Str_Arg Str="F_hit009_rize_green#Bip001 R Finger1" Arg="6"/>
                     <Str Str="Bip001 R Finger1"/>
                     <Num Num="0"/>
                 </Scp>
                 <Anim Time="2000" Anim="skl5" Speed="1" StartTime="1.5"/>
-                <Scp Scp="SKL_RUN_SCRIPT_SLEEP" Client="NO" UseSleep="YES" Time="2500">
-                    <Str Str="SCR_SOLCOMM_SKL_7"/>
-                </Scp>
                 <Scp Scp="C_EFFECT" Client="YES" UseSleep="NO" Time="3100">
                     <Str_Arg Str="F_hit009_rize_green#Bip001 R Finger1" Arg="4"/>
                     <Str Str="Bip001 R Finger1"/>

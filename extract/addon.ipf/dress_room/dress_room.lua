@@ -5,7 +5,7 @@ function DRESS_ROOM_ON_INIT(addon, frame)
 end
 
 local DRESS_ROOM_CTRL_Y_OFFSET = -5
-local DRESS_ROOM_CTRL_EXPEND_HEIGHT = 140
+local DRESS_ROOM_CTRL_EXPEND_HEIGHT = 60
 
 function DRESS_ROOM_UI_OPEN(frame)
 	DRESS_ROOM_INIT(frame)
@@ -58,16 +58,12 @@ function DRESS_ROOM_INIT_DECK(frame,ctrlSet,cls,itemTable,aObj)
 	-- 효과 버튼 텍스트 입력
 	local richMagic = GET_CHILD_RECURSIVELY(ctrlSet,"richMagic")
 	richMagic:SetTextByKey("value", ClMsg("CollectionMagicText"));
-	local reward = StringSplit(TryGetProp(cls,"PropList"),';')
-	local rewardStr = {}
-	for i = 1,#reward do
-		local prop = StringSplit(reward[i],'/')
-		local propStr = string.format("%s+%d",ClMsg(prop[1]),prop[2])
-		table.insert(rewardStr,propStr)
-	end
-	rewardStr = table.concat(rewardStr,", ")
+
+	local rewardStr = DRESS_ROOM_GET_REWARD_TEXT(cls)
 	local magicList = GET_CHILD_RECURSIVELY(ctrlSet,"magicList")
 	magicList:SetTextByKey("value", rewardStr)
+
+	RESIZE_DRESS_ROOM_CTRLSET(ctrlSet)
 
 	local gb_complete = GET_CHILD(ctrlSet,"gb_complete")
 	local font,desc_font;
@@ -97,6 +93,17 @@ function DRESS_ROOM_INIT_DECK(frame,ctrlSet,cls,itemTable,aObj)
 	--디테일 페이지 제거
 	local gb_items = GET_CHILD_RECURSIVELY(ctrlSet,"gb_items")
 	gb_items:SetVisible(0)
+end
+
+function DRESS_ROOM_GET_REWARD_TEXT(cls)
+	local reward = StringSplit(TryGetProp(cls,"PropList"),';')
+	local rewardStr = {}
+	for i = 1,#reward do
+		local prop = StringSplit(reward[i],'/')
+		local propStr = string.format("%s+%d",ClMsg(prop[1]),prop[2])
+		table.insert(rewardStr,propStr)
+	end
+	return table.concat(rewardStr,"{nl}")
 end
 
 -- 완성 여부 확인 확인
@@ -137,17 +144,15 @@ function OPEN_DRESS_ROOM_DECK_DETAIL(parent,ctrl,argStr,argNum)
 	local thema = ctrlSet:GetUserValue("THEMA")
 	local is_open = 1-ctrlSet:GetUserIValue("DETAIL_OPEN")
 	local gb_items = GET_CHILD_RECURSIVELY(ctrlSet,"gb_items")
+	local magicList = GET_CHILD_RECURSIVELY(ctrlSet,"magicList")
 	local gb_complete = GET_CHILD(ctrlSet,"gb_complete")
 	gb_items:SetVisible(is_open)
+
 	if is_open == 1 then
 		DRESS_ROOM_SET_COSTUME_SLOT(gb_items,itemTable[thema])
-		ctrlSet:Resize(ctrlSet:GetWidth(),DRESS_ROOM_CTRL_EXPEND_HEIGHT)
-		gb_complete:Resize(gb_complete:GetWidth(),DRESS_ROOM_CTRL_EXPEND_HEIGHT)
-	else
-		ctrlSet:Resize(ctrlSet:GetWidth(),ctrlSet:GetOriginalHeight())
-		gb_complete:Resize(gb_complete:GetWidth(),gb_complete:GetOriginalHeight())
 	end
 	ctrlSet:SetUserValue("DETAIL_OPEN", is_open)
+	RESIZE_DRESS_ROOM_CTRLSET(ctrlSet)
 	GBOX_AUTO_ALIGN(ctrlSet:GetParent(), 0, DRESS_ROOM_CTRL_Y_OFFSET, 0, true, true);
 end
 
@@ -250,4 +255,20 @@ function VIEW_DRESS_ROOM_ALL_STATUS(parent, ctrl)
 	end
 	SET_COLLECTION_MAIGC_LIST(frame, completeList, complete_cnt,'dress_room_magic')
 	COLLECTION_MAGIC_OPEN(frame,'dress_room_magic');
+end
+
+function RESIZE_DRESS_ROOM_CTRLSET(ctrlSet)
+	local magicList = GET_CHILD_RECURSIVELY(ctrlSet,"magicList")
+	local height_diff = magicList:GetHeight() - magicList:GetOriginalHeight()
+
+	local gb_complete = GET_CHILD(ctrlSet,"gb_complete")
+	local gb_magic = GET_CHILD(ctrlSet,"gb_magic")
+	
+	local is_open = ctrlSet:GetUserIValue("DETAIL_OPEN")
+	if is_open == 1 then
+		height_diff = height_diff + DRESS_ROOM_CTRL_EXPEND_HEIGHT
+	end
+	ctrlSet:Resize(ctrlSet:GetWidth(), ctrlSet:GetOriginalHeight() + height_diff)
+	gb_complete:Resize(gb_complete:GetWidth(), gb_complete:GetOriginalHeight() + height_diff)
+	gb_magic:Resize(gb_magic:GetWidth(), gb_magic:GetOriginalHeight() + height_diff)
 end

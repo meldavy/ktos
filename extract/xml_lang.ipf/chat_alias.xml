@@ -66,5 +66,7 @@
 		<Class ClassID="71" ClassName="/firework" Alias="/불꽃놀이" ConvertWhenSend="1"/>
 		<Class ClassID="72" ClassName="/episode" Alias="/에피소드" ConvertWhenSend="1"/>
 		<Class ClassID="76" ClassName="/reputation" Alias="/명성" ConvertWhenSend="1"/>
+		<Class ClassID="74" ClassName="/giltine" Alias="/길티네" ConvertWhenSend="1"/>
+		<Class ClassID="75" ClassName="/YAK" Alias="/야크맘보" ConvertWhenSend="1"/>
 	</Category>
 </idspace>

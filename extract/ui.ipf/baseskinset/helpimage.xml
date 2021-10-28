@@ -650,5 +650,35 @@
 		<image name="TUTO_INCHANT_02" file="\helpimg\TUTO_INCHANT_02.jpg" imgrect="0 0 380 302"/>
 		<image name="TUTO_INCHANT_03" file="\helpimg\TUTO_INCHANT_03.jpg" imgrect="0 0 380 262"/>
 		<image name="TUTO_INCHANT_04" file="\helpimg\TUTO_INCHANT_04.jpg" imgrect="0 0 380 90"/>
+		<image name="TUTO_REPUTATION_01" file="\helpimg\TUTO_REPUTATION_01.jpg" imgrect="0 0 380 69"/>
+		<image name="TUTO_REPUTATION_02" file="\helpimg\TUTO_REPUTATION_02.jpg" imgrect="0 0 380 157"/>
+		<image name="TUTO_REPUTATION_03" file="\helpimg\TUTO_REPUTATION_03.jpg" imgrect="0 0 380 360"/>
+		<image name="TUTO_REPUTATION_04" file="\helpimg\TUTO_REPUTATION_04.jpg" imgrect="0 0 380 281"/>
+		<image name="TUTO_REPUTATION_05" file="\helpimg\TUTO_REPUTATION_05.jpg" imgrect="0 0 380 113"/>
+		<image name="TUTO_REPUTATION_06" file="\helpimg\TUTO_REPUTATION_06.jpg" imgrect="0 0 380 741"/>
+		<image name="TUTO_REPUTATION_07" file="\helpimg\TUTO_REPUTATION_07.jpg" imgrect="0 0 380 254"/>
+		<image name="TUTO_REPUTATION_08" file="\helpimg\TUTO_REPUTATION_08.jpg" imgrect="0 0 380 241"/>
+		<image name="TUTO_REPUTATION_09" file="\helpimg\TUTO_REPUTATION_09.jpg" imgrect="0 0 380 184"/>
+		<image name="TUTO_REPUTATION_10" file="\helpimg\TUTO_REPUTATION_10.jpg" imgrect="0 0 380 334"/>
+		<image name="TUTO_REPUTATION_11" file="\helpimg\TUTO_REPUTATION_11.jpg" imgrect="0 0 380 303"/>
+		<image name="TUTO_GODDESS_01" file="\helpimg\TUTO_GODDESS_01.jpg" imgrect="0 0 380 513"/>
+		<image name="TUTO_RELIC_01" file="\helpimg\TUTO_RELIC_01.jpg" imgrect="0 0 380 366"/>
+		<image name="TUTO_RELIC_02" file="\helpimg\TUTO_RELIC_02.jpg" imgrect="0 0 380 492"/>
+		<image name="TUTO_RELIC_03" file="\helpimg\TUTO_RELIC_03.jpg" imgrect="0 0 380 272"/>
+		<image name="TUTO_RELIC_04" file="\helpimg\TUTO_RELIC_04.jpg" imgrect="0 0 380 144"/>
+		<image name="TUTO_RELIC_05" file="\helpimg\TUTO_RELIC_05.jpg" imgrect="0 0 380 85"/>
+		<image name="TUTO_RELIC_06" file="\helpimg\TUTO_RELIC_06.jpg" imgrect="0 0 380 281"/>
+		<image name="TUTO_RELIC_07" file="\helpimg\TUTO_RELIC_07.jpg" imgrect="0 0 380 582"/>
+		<image name="TUTO_RELIC_08" file="\helpimg\TUTO_RELIC_08.jpg" imgrect="0 0 380 1184"/>
+		<image name="TUTO_RELIC_09" file="\helpimg\TUTO_RELIC_09.jpg" imgrect="0 0 380 592"/>
+		<image name="TUTO_RELIC_10" file="\helpimg\TUTO_RELIC_10.jpg" imgrect="0 0 380 583"/>
+		<image name="TUTO_RELIC_11" file="\helpimg\TUTO_RELIC_11.jpg" imgrect="0 0 380 677"/>
+		<image name="TUTO_RELIC_12" file="\helpimg\TUTO_RELIC_12.jpg" imgrect="0 0 380 375"/>
+		<image name="TUTO_RELIC_13" file="\helpimg\TUTO_RELIC_13.jpg" imgrect="0 0 380 454"/>
+		<image name="TUTO_RELIC_14" file="\helpimg\TUTO_RELIC_14.jpg" imgrect="0 0 380 502"/>
+		<image name="TUTO_RELIC_15" file="\helpimg\TUTO_RELIC_15.jpg" imgrect="0 0 380 442"/>
+		<image name="TUTO_RELIC_16" file="\helpimg\TUTO_RELIC_16.jpg" imgrect="0 0 380 265"/>
+		<image name="TUTO_RELIC_17" file="\helpimg\TUTO_RELIC_17.jpg" imgrect="0 0 380 279"/>
+		<image name="TUTO_RELIC_18" file="\helpimg\TUTO_RELIC_18.jpg" imgrect="0 0 380 278"/>
 	</imagelist>
 </skinset>

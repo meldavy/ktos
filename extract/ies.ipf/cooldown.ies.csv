@@ -1409,6 +1409,7 @@ ClassID,OverHeatResetTime,ClassName,IsOverHeat,ReducePlayOnly,ForceReset
 4163,20000,FlameRadiation_OH,YES,FALSE,NO
 4164,20000,FireCharm,NO,FALSE,NO
 4165,20000,FireCharm_OH,YES,FALSE,NO
+4166,0,ReleaseRelic,NO,FALSE,NO
 4167,5000,AstralBodySmite,NO,FALSE,NO
 4168,5000,Ehwaz,NO,FALSE,NO
 4169,5000,Berkana,NO,FALSE,NO

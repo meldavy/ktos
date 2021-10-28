@@ -307,6 +307,26 @@ function ICORRELEASE_CTRL_REG_TARGETITEM(ctrlSet, itemID)
 		inner_yPos = ADD_ITEM_PROPERTY_TEXT_NARROW(property_gbox, inheritItemCls.OptDesc, 0, inner_yPos)
 	end
 
+	if inheritItemCls.OptDesc ~= nil and (inheritItemCls.OptDesc == 'None' or inheritItemCls.OptDesc == '') and TryGetProp(inheritItemCls, 'StringArg', 'None') == 'Vibora' then
+		local opt_desc = inheritItemCls.OptDesc
+		if opt_desc == 'None' then
+			opt_desc = ''
+		end
+		
+		for idx = 1, MAX_VIBORA_OPTION_COUNT do			
+			local additional_option = TryGetProp(inheritItemCls, 'AdditionalOption_' .. tostring(idx), 'None')			
+			if additional_option ~= 'None' then
+				local tooltip_str = 'tooltip_' .. additional_option					
+				local cls_message = GetClass('ClientMessage', tooltip_str)
+				if cls_message ~= nil then
+					opt_desc = opt_desc .. ClMsg(tooltip_str)
+				end
+			end
+		end
+		
+		inner_yPos = ADD_ITEM_PROPERTY_TEXT_NARROW(property_gbox, opt_desc, 0, inner_yPos);
+	end
+
 	if invItemObj.ReinforceRatio > 100 then
 		local opName = ClMsg("ReinforceOption")
 		local strInfo = ABILITY_DESC_PLUS(opName, math.floor(10 * invItemObj.ReinforceRatio/100))

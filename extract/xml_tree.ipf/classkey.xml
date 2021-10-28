@@ -468,6 +468,10 @@
         <Key Name="Magic_Dark_Atk" Value="107258"/>
         <Key Name="UPGRADE_TRY_COUNT" Value="107260"/>
         <Key Name="EnableItem" Value="107605"/>
+        <Key Name="DungeonEnterType" Value="107721"/>
+        <Key Name="TeamBelonging" Value="107796"/>
+        <Key Name="Relic_EXP" Value="107797"/>
+        <Key Name="Relic_LV" Value="107798"/>
     </KeyIDSpc>
     <KeyIDSpc Name="Party">
         <Key Name="P_PARTY_Q_040" Value="53"/>
@@ -4076,7 +4080,145 @@
         <Key Name="TUTO_GUIDE_CHECK7" Value="107589"/>
         <Key Name="TUTO_GUIDE_CHECK8" Value="107603"/>
         <Key Name="TUTO_GUIDE_CHECK9" Value="107591"/>
+        <Key Name="ContentsTotalShop_2012_1" Value="107656"/>
+        <Key Name="ContentsTotalShop_2012_10" Value="107666"/>
+        <Key Name="ContentsTotalShop_2012_11" Value="107681"/>
+        <Key Name="ContentsTotalShop_2012_12" Value="107679"/>
+        <Key Name="ContentsTotalShop_2012_13" Value="107659"/>
+        <Key Name="ContentsTotalShop_2012_2" Value="107662"/>
+        <Key Name="ContentsTotalShop_2012_3" Value="107669"/>
+        <Key Name="ContentsTotalShop_2012_4" Value="107680"/>
+        <Key Name="ContentsTotalShop_2012_5" Value="107658"/>
+        <Key Name="ContentsTotalShop_2012_6" Value="107675"/>
+        <Key Name="ContentsTotalShop_2012_7" Value="107670"/>
+        <Key Name="ContentsTotalShop_2012_8" Value="107668"/>
+        <Key Name="ContentsTotalShop_2012_9" Value="107660"/>
+        <Key Name="EVENT_2012_NEW_YEAR_PLAY_TIME" Value="107612"/>
+        <Key Name="EVENT_2012_NEW_YEAR_REWARD_COUNT" Value="107607"/>
+        <Key Name="EVENT_2012_X_MAS_BOX_1_TIME_REWARD_COUNT" Value="107615"/>
+        <Key Name="EVENT_2012_YAK_ABILITY_EXTRACT_FREE_COUPON" Value="107614"/>
+        <Key Name="EVENT_2012_YAK_BOX_1_COIN_COUNT" Value="107613"/>
+        <Key Name="EVENT_2012_YAK_GOLD_BOX_1_COIN_COUNT" Value="107611"/>
+        <Key Name="EVENT_2012_YAK_GOLD_BOX_TIME_REWARD_COUNT" Value="107610"/>
+        <Key Name="EVENT_2012_YAK_KEY2_COUNT" Value="107606"/>
+        <Key Name="EVENT_2012_YAK_KEY2_TOTAL_COUNT" Value="107608"/>
+        <Key Name="EVENT_2012_YAK_KEY_COIN_COUNT" Value="107616"/>
+        <Key Name="EVENT_2012_YAK_SHOP_1" Value="107609"/>
+        <Key Name="HadVisited_11220" Value="107684"/>
+        <Key Name="HadVisited_11221" Value="107685"/>
+        <Key Name="HadVisited_11222" Value="107702"/>
+        <Key Name="HadVisited_11223" Value="107686"/>
+        <Key Name="InDunCountType_807" Value="107697"/>
+        <Key Name="InDunCountType_812" Value="107657"/>
+        <Key Name="InDunCountType_813" Value="107665"/>
+        <Key Name="InDunCountType_814" Value="107691"/>
+        <Key Name="InDunCountType_817" Value="107690"/>
+        <Key Name="IndunWeeklyEnteredCount_0" Value="107687"/>
+        <Key Name="IndunWeeklyEnteredCount_10002" Value="107698"/>
+        <Key Name="IndunWeeklyEnteredCount_1300" Value="107672"/>
+        <Key Name="IndunWeeklyEnteredCount_1301" Value="107682"/>
+        <Key Name="IndunWeeklyEnteredCount_1302" Value="107667"/>
+        <Key Name="IndunWeeklyEnteredCount_2" Value="107703"/>
+        <Key Name="IndunWeeklyEnteredCount_700" Value="107694"/>
+        <Key Name="IndunWeeklyEnteredCount_8000" Value="107674"/>
+        <Key Name="IndunWeeklyEnteredCount_8001" Value="107688"/>
+        <Key Name="IndunWeeklyEnteredCount_8002" Value="107696"/>
+        <Key Name="IndunWeeklyEnteredCount_8003" Value="107671"/>
+        <Key Name="IndunWeeklyEnteredCount_807" Value="107693"/>
+        <Key Name="IndunWeeklyEnteredCount_812" Value="107689"/>
+        <Key Name="IndunWeeklyEnteredCount_813" Value="107661"/>
+        <Key Name="IndunWeeklyEnteredCount_814" Value="107692"/>
+        <Key Name="IndunWeeklyEnteredCount_817" Value="107695"/>
+        <Key Name="TUTO_GUIDE_CHECK17" Value="107673"/>
+        <Key Name="TUTO_GUIDE_CHECK18" Value="107664"/>
+        <Key Name="TUTO_GUIDE_CHECK19" Value="107676"/>
+        <Key Name="dress_vakarine_1" Value="107683"/>
+        <Key Name="dress_vakarine_2" Value="107699"/>
+        <Key Name="dress_vakarine_3" Value="107663"/>
+        <Key Name="dress_vakarine_4" Value="107677"/>
+        <Key Name="dress_vakarine_5" Value="107678"/>
+        <Key Name="dress_vakarine_6" Value="107700"/>
+        <Key Name="vakarine_thema" Value="107701"/>
         <Key Name="IsEnableClientTracing" Value="107723"/>
+        <Key Name="EVENT_2012_YAK_SHOP_2" Value="107724"/>
+        <Key Name="RQ_Category_1" Value="107787"/>
+        <Key Name="RQ_Category_1_1" Value="107789"/>
+        <Key Name="RQ_Category_1_10" Value="107768"/>
+        <Key Name="RQ_Category_1_10_CLEAR" Value="107767"/>
+        <Key Name="RQ_Category_1_1_CLEAR" Value="107728"/>
+        <Key Name="RQ_Category_1_2" Value="107743"/>
+        <Key Name="RQ_Category_1_2_CLEAR" Value="107765"/>
+        <Key Name="RQ_Category_1_3" Value="107745"/>
+        <Key Name="RQ_Category_1_3_CLEAR" Value="107791"/>
+        <Key Name="RQ_Category_1_4" Value="107749"/>
+        <Key Name="RQ_Category_1_4_CLEAR" Value="107737"/>
+        <Key Name="RQ_Category_1_5" Value="107751"/>
+        <Key Name="RQ_Category_1_5_CLEAR" Value="107748"/>
+        <Key Name="RQ_Category_1_6" Value="107755"/>
+        <Key Name="RQ_Category_1_6_CLEAR" Value="107741"/>
+        <Key Name="RQ_Category_1_7" Value="107778"/>
+        <Key Name="RQ_Category_1_7_CLEAR" Value="107734"/>
+        <Key Name="RQ_Category_1_8" Value="107736"/>
+        <Key Name="RQ_Category_1_8_CLEAR" Value="107784"/>
+        <Key Name="RQ_Category_1_9" Value="107731"/>
+        <Key Name="RQ_Category_1_9_CLEAR" Value="107774"/>
+        <Key Name="RQ_Category_1_CLEAR" Value="107753"/>
+        <Key Name="RQ_Category_2" Value="107739"/>
+        <Key Name="RQ_Category_2_1" Value="107746"/>
+        <Key Name="RQ_Category_2_10" Value="107776"/>
+        <Key Name="RQ_Category_2_10_CLEAR" Value="107740"/>
+        <Key Name="RQ_Category_2_1_CLEAR" Value="107742"/>
+        <Key Name="RQ_Category_2_2" Value="107725"/>
+        <Key Name="RQ_Category_2_2_CLEAR" Value="107747"/>
+        <Key Name="RQ_Category_2_3" Value="107773"/>
+        <Key Name="RQ_Category_2_3_CLEAR" Value="107761"/>
+        <Key Name="RQ_Category_2_4" Value="107738"/>
+        <Key Name="RQ_Category_2_4_CLEAR" Value="107782"/>
+        <Key Name="RQ_Category_2_5" Value="107763"/>
+        <Key Name="RQ_Category_2_5_CLEAR" Value="107758"/>
+        <Key Name="RQ_Category_2_6" Value="107730"/>
+        <Key Name="RQ_Category_2_6_CLEAR" Value="107788"/>
+        <Key Name="RQ_Category_2_7" Value="107733"/>
+        <Key Name="RQ_Category_2_7_CLEAR" Value="107775"/>
+        <Key Name="RQ_Category_2_8" Value="107772"/>
+        <Key Name="RQ_Category_2_8_CLEAR" Value="107744"/>
+        <Key Name="RQ_Category_2_9" Value="107785"/>
+        <Key Name="RQ_Category_2_9_CLEAR" Value="107735"/>
+        <Key Name="RQ_Category_2_CLEAR" Value="107777"/>
+        <Key Name="RQ_Category_3" Value="107729"/>
+        <Key Name="RQ_Category_3_1" Value="107757"/>
+        <Key Name="RQ_Category_3_10" Value="107771"/>
+        <Key Name="RQ_Category_3_10_CLEAR" Value="107779"/>
+        <Key Name="RQ_Category_3_1_CLEAR" Value="107783"/>
+        <Key Name="RQ_Category_3_2" Value="107752"/>
+        <Key Name="RQ_Category_3_2_CLEAR" Value="107759"/>
+        <Key Name="RQ_Category_3_3" Value="107780"/>
+        <Key Name="RQ_Category_3_3_CLEAR" Value="107786"/>
+        <Key Name="RQ_Category_3_4" Value="107727"/>
+        <Key Name="RQ_Category_3_4_CLEAR" Value="107760"/>
+        <Key Name="RQ_Category_3_5" Value="107769"/>
+        <Key Name="RQ_Category_3_5_CLEAR" Value="107750"/>
+        <Key Name="RQ_Category_3_6" Value="107732"/>
+        <Key Name="RQ_Category_3_6_CLEAR" Value="107766"/>
+        <Key Name="RQ_Category_3_7" Value="107781"/>
+        <Key Name="RQ_Category_3_7_CLEAR" Value="107770"/>
+        <Key Name="RQ_Category_3_8" Value="107764"/>
+        <Key Name="RQ_Category_3_8_CLEAR" Value="107762"/>
+        <Key Name="RQ_Category_3_9" Value="107754"/>
+        <Key Name="RQ_Category_3_9_CLEAR" Value="107726"/>
+        <Key Name="RQ_Category_3_CLEAR" Value="107756"/>
+        <Key Name="RQ_UnLock_1" Value="107790"/>
+        <Key Name="EVENT_2012_GILTINE_ITEM_COUNT" Value="107794"/>
+        <Key Name="EVENT_2012_GILTINE_WEEKEND_REWARD_CHECK" Value="107795"/>
+        <Key Name="EVENT_2012_GILTINE_WEEKEND_REWARD_COUNT" Value="107793"/>
+        <Key Name="RP" Value="107792"/>
+        <Key Name="EVENT_2012_NEW_YEAR_REWARD_20210101" Value="107803"/>
+        <Key Name="EVENT_2012_NEW_YEAR_REWARD_20210102" Value="107800"/>
+        <Key Name="EVENT_2012_NEW_YEAR_REWARD_20210103" Value="107802"/>
+        <Key Name="LEGEND_RAID_GILTINE" Value="107801"/>
+        <Key Name="BORUTA_BLOCKADE_MODE_ENTERED" Value="107805"/>
+        <Key Name="GILTINE_BLOCKADE_MODE_ENTERED" Value="107806"/>
+        <Key Name="HadVisited_11230" Value="107807"/>
     </KeyIDSpc>
     <KeyIDSpc Name="PCEtc">
         <Key Name="Kill_boss_Clymen_Q2" Value="7788"/>
@@ -12662,6 +12804,45 @@
         <Key Name="Reward_ep13_f_siauliai_3" Value="107587"/>
         <Key Name="Reward_ep13_f_siauliai_4" Value="107583"/>
         <Key Name="Reward_ep13_f_siauliai_5" Value="107588"/>
+        <Key Name="HadVisited_11220" Value="107645"/>
+        <Key Name="HadVisited_11221" Value="107647"/>
+        <Key Name="HadVisited_11222" Value="107649"/>
+        <Key Name="HadVisited_11223" Value="107624"/>
+        <Key Name="HaveEmoticon_115" Value="107640"/>
+        <Key Name="HaveEmoticon_116" Value="107643"/>
+        <Key Name="HaveEmoticon_121" Value="107617"/>
+        <Key Name="Hide_3211" Value="107641"/>
+        <Key Name="Hide_3212" Value="107642"/>
+        <Key Name="InDunCountType_807" Value="107650"/>
+        <Key Name="InDunCountType_812" Value="107644"/>
+        <Key Name="InDunCountType_813" Value="107653"/>
+        <Key Name="InDunCountType_814" Value="107652"/>
+        <Key Name="InDunCountType_817" Value="107655"/>
+        <Key Name="IndunWeeklyEnteredCount_807" Value="107654"/>
+        <Key Name="IndunWeeklyEnteredCount_812" Value="107651"/>
+        <Key Name="IndunWeeklyEnteredCount_814" Value="107646"/>
+        <Key Name="Kill_Giltine_Glackuman_minimal" Value="107630"/>
+        <Key Name="Kill_Giltine_boss_Naktis_minimal" Value="107631"/>
+        <Key Name="Kill_Legend_Boss_Avataras" Value="107648"/>
+        <Key Name="Kill_Legend_Boss_Avataras_Auto" Value="107628"/>
+        <Key Name="Kill_Legend_Boss_Avataras_Event" Value="107637"/>
+        <Key Name="Kill_Legend_Boss_Avataras_GMission" Value="107634"/>
+        <Key Name="Kill_Legend_Boss_Avataras_Guild" Value="107633"/>
+        <Key Name="Kill_Legend_Boss_Avataras_Shadow" Value="107635"/>
+        <Key Name="Kill_Legend_Boss_Avataras_Shadow_Auto" Value="107639"/>
+        <Key Name="Kill_Legend_Boss_Giltine" Value="107629"/>
+        <Key Name="Kill_Legend_Boss_Giltine_Auto" Value="107625"/>
+        <Key Name="Kill_Legend_Boss_Giltine_Event" Value="107636"/>
+        <Key Name="Kill_Legend_Boss_Giltine_GMission" Value="107626"/>
+        <Key Name="Kill_Legend_Boss_Giltine_Guild" Value="107632"/>
+        <Key Name="Kill_Legend_Boss_Giltine_Shadow" Value="107627"/>
+        <Key Name="Kill_Legend_Boss_Giltine_Shadow_Auto" Value="107638"/>
+        <Key Name="GIVEHOLYTHING_Q_1_TRACK" Value="107720"/>
+        <Key Name="HaveEmoticon_5012" Value="107719"/>
+        <Key Name="HaveEmoticon_5013" Value="107717"/>
+        <Key Name="HaveEmoticon_5014" Value="107718"/>
+        <Key Name="IndunWeeklyEnteredCount_817" Value="107799"/>
+        <Key Name="HadVisited_11230" Value="107804"/>
     </KeyIDSpc>
     <KeyIDSpc Name="GuildMember">
         <Key Name="Name" Value="9011"/>
@@ -13755,6 +13936,12 @@
         <Key Name="OLD_GUILD_QUEST_NEXT_RESET_DATE" Value="106813"/>
         <Key Name="OLD_GUILD_QUEST_TOTAL_SUCCESS_COUNT" Value="106805"/>
         <Key Name="OLD_GUILD_QUEST_WEEK_SUCCESS_COUNT" Value="106803"/>
+        <Key Name="GLITINE_REWARD_CUBE_1" Value="107619"/>
+        <Key Name="GLITINE_REWARD_SEAL_1" Value="107618"/>
+        <Key Name="GLITINE_SIGN_BUFF" Value="107621"/>
+        <Key Name="GuildEvent_Giltine_Count" Value="107623"/>
+        <Key Name="GuildEvent_Giltine_Reset" Value="107620"/>
+        <Key Name="GuildEvent_Giltine_Reset_Hour" Value="107622"/>
     </KeyIDSpc>
     <KeyIDSpc Name="ZoneObject">
         <Key Name="JaqBoxLock" Value="122"/>
@@ -21397,6 +21584,20 @@
         <Key Name="MG_Last_CHALLENGE_AUTO_2" Value="107286"/>
         <Key Name="MG_Last_CHALLENGE_AUTO_3" Value="107285"/>
         <Key Name="MG_Last_CHALLENGE_DIVISION_AUTO" Value="107386"/>
+        <Key Name="EVENT_2012_GILTINE_BUFF_COUNT" Value="107716"/>
+        <Key Name="MG_Last_GILTINE_GUILD_RAID" Value="107715"/>
+        <Key Name="MG_Last_LEGEND_RAID_GILTINE" Value="107714"/>
+        <Key Name="MG_Last_LEGEND_RAID_GILTINE_AUTO" Value="107711"/>
+        <Key Name="MG_Last_MYTHIC_CASTLE_MINI" Value="107712"/>
+        <Key Name="MG_Last_MYTHIC_CASTLE_MINI_AUTO" Value="107713"/>
+        <Key Name="MG_Last_MYTHIC_CASTLE_MINI_AUTO_HARD" Value="107709"/>
+        <Key Name="MG_Last_MYTHIC_FIRETOWER_MINI" Value="107708"/>
+        <Key Name="MG_Last_MYTHIC_FIRETOWER_MINI_AUTO" Value="107705"/>
+        <Key Name="MG_Last_MYTHIC_FIRETOWER_MINI_AUTO_HARD" Value="107707"/>
+        <Key Name="MG_Last_MYTHIC_STARTOWER_MINI" Value="107710"/>
+        <Key Name="MG_Last_MYTHIC_STARTOWER_MINI_AUTO" Value="107706"/>
+        <Key Name="MG_Last_MYTHIC_STARTOWER_MINI_AUTO_HARD" Value="107704"/>
+        <Key Name="GIVEHOLYTHING_Q_1" Value="107722"/>
     </KeyIDSpc>
     <KeyIDSpc Name="Monster">
         <Key Name="MaxHate" Value="6671"/>

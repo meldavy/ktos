@@ -1200,7 +1200,7 @@ function SCR_Get_SkillFactor_Reinforce_Ability(skill)
         end
         
         value = value * (1 + ((abilLevel * 0.005) + masterAddValue))
-        
+
         local hidden_abil_cls = GetClass("HiddenAbility_Reinforce", skill.ClassName);
         if abilLevel >= 65 and hidden_abil_cls ~= nil then
         	local hidden_abil_name = TryGetProp(hidden_abil_cls, "HiddenReinforceAbil");
@@ -5631,18 +5631,6 @@ function SCR_GET_MissileHole_Ratio(skill)
 end
 
 -- done , 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
-function SCR_GET_Heal_Ratio3(skill)
-
-    local pc = GetSkillOwner(skill);
-    local abil = GetAbility(pc, "Cleric12") 
-    local value = 0
-    if abil ~= nil then 
-        return SCR_ABIL_ADD_SKILLFACTOR_TOOLTIP(abil);
-    end
-
-end
-
--- done , 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_GET_Heal_Time(skill)
 
     local pc = GetSkillOwner(skill);
@@ -9971,7 +9959,7 @@ function SCR_GET_Heal_Bufftime(skill)
 end
 
 -- done , 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
-function SCR_GET_Heal_Ratio(skill)
+function SCR_GET_Heal_Ratio(skill)        
     local pc = GetSkillOwner(skill);
     local pcINT = TryGetProp(pc, "INT");
     if pcINT == nil then
@@ -9989,9 +9977,15 @@ function SCR_GET_Heal_Ratio(skill)
 end
 
 -- done , 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
-function SCR_GET_Heal_Ratio2(skill)
-    return SCR_GET_Heal_Ratio2_Common(skill)
+function SCR_GET_Heal_Ratio2(skill)        
+    return SCR_GET_Heal_Ratio2_Common(skill)    
 end
+
+-- done , 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
+function SCR_GET_Heal_Ratio3(skill)    
+    return SCR_GET_Heal_Ratio3_Common(skill)
+end
+
 -- done , 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_GET_Heal_Ratio2_Common(skill)
 	local pc = GetSkillOwner(skill)
@@ -10025,6 +10019,42 @@ function SCR_GET_Heal_Ratio2_Common(skill)
     if jobHistory ~= nil and string.find(jobHistory, "Char4_15") ~= nil then
         value = value * 1.1
     end
+    
+    return math.floor(value);
+end
+
+-- done , 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
+function SCR_GET_Heal_Ratio3_Common(skill)    
+    local pc = GetSkillOwner(skill)
+    local value = 150 + (skill.Level - 1) * 103
+    
+    local addAbilRate = 1;
+    local reinforceAbilName = "Cleric33"
+    local reinforceAbil = GetAbility(pc, reinforceAbilName)    
+    if reinforceAbil ~= nil then
+        local abilLevel = TryGetProp(reinforceAbil, "Level")        
+        local masterAddValue = 0
+        if abilLevel == 100 then
+            masterAddValue = 0.1
+        end
+        addAbilRate = 1 + (reinforceAbil.Level * 0.005 + masterAddValue);
+        
+        local hidden_abil_cls = GetClass("HiddenAbility_Reinforce", "Cleric_Heal_Cleric34");
+        if abilLevel >= 65 and hidden_abil_cls ~= nil then
+            local hidden_abil_name = "Cleric34"
+            local hidden_abil = GetAbility(pc, hidden_abil_name);
+            if hidden_abil ~= nil then
+                local abil_level = TryGetProp(hidden_abil, "Level");
+                local add_factor = TryGetProp(hidden_abil_cls, "FactorByLevel", 0) * 0.01;
+                local add_value = 0;
+                if abil_level == 10 then
+                    add_value = TryGetProp(hidden_abil_cls, "AddFactor", 0) * 0.01
+                end
+                addAbilRate = addAbilRate * (1 + (abil_level * add_factor) + add_value);
+            end
+        end        
+    end
+    value = value * addAbilRate    
     
     return math.floor(value);
 end
@@ -10913,7 +10943,8 @@ end
 
 -- done , 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_Get_RunningShot_Bufftime(skill)
-    return 20
+    local value = 30
+    return value
 end
 
 -- done , 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
@@ -15662,13 +15693,14 @@ function SCR_GET_FrenziedBurst_Ratio(skill)
     return value
 end
 -- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
-function SCR_Get_SkillFactor_Heal(skill)
+function SCR_Get_SkillFactor_Heal(skill)        
     local pc = GetSkillOwner(skill)
     local value = 0;
-    if pc ~= nil and IsBuffApplied(pc, "AUTO_MATCHING_DARK_SPHERE_BUFF") == "YES" then
+    if pc ~= nil and IsBuffApplied(pc, "Cleric32_DARK_SPHERE_BUFF") == "YES" then
+        value = SCR_GET_Heal_Ratio3_Common(skill)
+    elseif pc ~= nil and IsBuffApplied(pc, "AUTO_MATCHING_DARK_SPHERE_BUFF") == "YES" then
         local add_buff_factor = 10;
         value = SCR_GET_Heal_Ratio2_Common(skill) * add_buff_factor
-        return value
     end
 
     return value

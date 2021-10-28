@@ -200,7 +200,14 @@ function ABILITY_POINT_EXTRACTOR_GET_CONSUME_MONEY(frame)
     if invItem ~= nil then
         consumeMoney = 0
         eventDiscount = 1
-	end
+    end
+    
+    -- EVENT_2012_YAK_ABILITY_EXTRACT_FREE_COUPON
+    local invItem = session.GetInvItemByName("Event_free_ap_return2")
+    if invItem ~= nil then
+        consumeMoney = 0
+        eventDiscount = 1
+    end
 	
     return consumeMoney, eventDiscount;
 end

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by IMCGames Co., Ltd (IMCGames Co., Ltd) -->
+<ActionDesc>
+	<Particle frame="0" attachNode="None" particleName="F_ground134_red_noloop2" useAttach="false" hiddenObj="false" changeEffect="None" scale="2" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+	<Particle frame="0" attachNode="None" particleName="F_ground043_lineup" useAttach="false" hiddenObj="false" changeEffect="None" scale="1" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+	<Particle frame="0" attachNode="Dummy_cristal" particleName="F_smoke198_red_violet2" useAttach="false" hiddenObj="false" changeEffect="None" scale="3" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+	<Particle frame="0" attachNode="Dummy_cristal" particleName="F_smoke198_red_violet2" useAttach="false" hiddenObj="false" changeEffect="None" scale="1.5" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+	<Sound frame="0.00" soundFile="skl_eff_poison_5"/>
+	<Sound frame="15.00" soundFile="skl_eff_spread_4"/>
+	<Sound frame="20.00" soundFile="skl_eff_holeofdarkness_ground_end"/>
+	<Sound frame="25.00" soundFile="skl_eff_dark_hit"/>
+	<Sound frame="25.00" soundFile="skl_eff_smokegrenade_fog"/>
+	<Particle frame="30" attachNode="None" particleName="F_smoke143_dark_red" useAttach="false" hiddenObj="false" changeEffect="None" scale="3" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+	<Particle frame="30" attachNode="None" particleName="F_levitation032_red" useAttach="false" hiddenObj="false" changeEffect="None" scale="2" pause="true" use2DEffect="false" soft2DValue="20" targetPos="false"/>
+	<Sound frame="44.30" soundFile="skl_eff_darktheurge_loop"/>
+	<Sound frame="56.00" soundFile="skl_eff_atk_move_l_12"/>
+	<Sound frame="64.07" soundFile="m_schlesien_darkmage_born"/>
+	<Sound frame="64.07" soundFile="skl_eff_poison_3"/>
+</ActionDesc>

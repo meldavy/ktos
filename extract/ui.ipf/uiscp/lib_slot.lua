@@ -367,6 +367,8 @@ function SET_SLOT_BG_BY_ITEMGRADE(slot, itemgrade)
 		skinName = "invenslot_unique"
 	elseif itemgrade == 5 then
 		skinName = "invenslot_legend"
+	elseif itemgrade == 6 then
+		skinName = "invenslot_pic_goddess"
 	end
 
 	slot:SetSkinName(skinName)
@@ -511,6 +513,12 @@ function SET_SLOT_ITEM_TEXT_USE_INVCOUNT(slot, invItem, obj, count, font)
 		else
 			slot:SetText('{s17}{ol}{#FFFFFF}{b}LV. '..lv, 'count', ui.LEFT, ui.TOP, 3, 2);
 		end
+	end
+
+	local groupName = TryGetProp(obj, 'GroupName', 'None')
+	if groupName == 'Gem_Relic' then
+		local gem_lv = TryGetProp(obj, 'GemLevel', 1)
+		slot:SetText('{s17}{ol}{#FFFFFF}{b}LV. '..gem_lv, 'count', ui.LEFT, ui.TOP, 3, 2)
 	end
 end
 

@@ -29,7 +29,6 @@ function MAP_ON_INIT(addon, frame)
 	addon:RegisterOpenOnlyMsg('GUILD_INFO_UPDATE', 'MAP_UPDATE_GUILD');
     addon:RegisterMsg('DESTROY_GUILD_MEMBER_ICON', 'DESTROY_GUILD_MEMBER_ICON')
 
-	addon:RegisterMsg('MON_MINIMAP_START', 'MAP_MON_MINIMAP_START');
 	addon:RegisterMsg('MON_MINIMAP', 'MAP_MON_MINIMAP');
 	addon:RegisterMsg('MON_MINIMAP_END', 'ON_MON_MINIMAP_END');
 			

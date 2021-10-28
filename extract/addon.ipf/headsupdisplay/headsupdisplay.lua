@@ -1,3 +1,5 @@
+HEADSUPDISPLAY_OPTION ={}
+
 function HEADSUPDISPLAY_ON_INIT(addon, frame)
 
 	addon:RegisterOpenOnlyMsg('STANCE_CHANGE', 'HEADSUPDISPLAY_ON_MSG');
@@ -28,6 +30,8 @@ function HEADSUPDISPLAY_ON_INIT(addon, frame)
 	addon:RegisterMsg("SHOW_SOUL_CRISTAL", "HEADSUPDISPLAY_SHOW_SOUL_CRISTAL");
 	addon:RegisterMsg("UPDATE_SOUL_CRISTAL", "HEADSUPDISPLAY_UPDATE_SOUL_CRISTAL");
 	addon:RegisterMsg("UPDATE_REPRESENTATION_CLASS_ICON", "UPDATE_REPRESENTATION_CLASS_ICON");
+	addon:RegisterMsg("UPDATE_RELIC_EQUIP", "HEADSUPDISPLAY_UPDATE_RELIC_EQUIP");
+	addon:RegisterMsg("RP_UPDATE", "HEADSUPDISPLAY_UPDATE_RP_GAUGE")
 
 	local leaderMark = GET_CHILD(frame, "Isleader", "ui::CPicture");
 	leaderMark:SetImage('None_Mark');
@@ -41,9 +45,12 @@ function UPDATE_REPRESENTATION_CLASS_ICON(frame, msg, argStr, argNum)
 end
 
 function CANT_RUN_ALARM(frame, msg, argStr, argNum)
+	local gauge_name = 'sta1'
+	if HEADSUPDISPLAY_OPTION.relic_equip == 1 then
+		gauge_name = 'sta1_relic'
+	end
 
-	local sta = frame:GetChild('sta1');
-	local staGauge = tolua.cast(sta, "ui::CGauge");
+	local staGauge = GET_CHILD_RECURSIVELY(frame, gauge_name, 'ui::CGauge')
 	staGauge:SetGrayStyle(0);
 	ui.AlarmMsg("NotEnoughStamina");
 	imcSound.PlaySoundEvent('stamina_alarm');
@@ -121,8 +128,26 @@ function CONTEXT_MY_INFO(frame, ctrl)
 end
 
 function HEADSUPDISPLAY_ON_MSG(frame, msg, argStr, argNum)    
-	local hpGauge = GET_CHILD(frame, "hp", "ui::CGauge");
-	local spGauge = GET_CHILD(frame, "sp", "ui::CGauge");
+	if msg == 'GAME_START' then
+		local equip = 1
+		local relic_item = session.GetEquipItemBySpot(item.GetEquipSpotNum('RELIC'))
+		local relic_obj = GetIES(relic_item:GetObject())
+		if IS_NO_EQUIPITEM(relic_obj) == 1 then
+			equip = 0
+		end
+		HEADSUPDISPLAY_OPTION['relic_equip'] = equip
+
+		HEADSUPDISPLAY_UPDATE_RP_VISIBLE(frame, equip)
+	end
+
+	local hp_name = 'hp'
+	local sp_name = 'sp'
+	if HEADSUPDISPLAY_OPTION.relic_equip == 1 then
+		hp_name = 'hp_relic'
+		sp_name = 'sp_relic'
+	end
+	local hpGauge = GET_CHILD_RECURSIVELY(frame, hp_name, 'ui::CGauge')
+	local spGauge = GET_CHILD_RECURSIVELY(frame, sp_name, 'ui::CGauge')
 	if msg == 'STANCE_CHANGE' or msg == 'NAME_UPDATE' or msg == 'LEVEL_UPDATE' or msg == 'GAME_START' or msg == 'CHANGE_COUNTRY' or msg == 'MYPC_CHANGE_SHAPE' then        
 		local levelRichText = GET_CHILD(frame, "level_text", "ui::CRichText");
 		local level = GETMYPCLEVEL();
@@ -152,7 +177,7 @@ function HEADSUPDISPLAY_ON_MSG(frame, msg, argStr, argNum)
  		
 	end
 
-	if msg == 'LEVEL_UPDATE'  or  msg == 'STAT_UPDATE'  or  msg == 'TAKE_DAMAGE'  or  msg == 'TAKE_HEAL' or msg == 'GAME_START' or msg == 'CHANGE_COUNTRY' then
+	if msg == 'LEVEL_UPDATE' or msg == 'STAT_UPDATE' or msg == 'TAKE_DAMAGE' or msg == 'TAKE_HEAL' or msg == 'GAME_START' or msg == 'CHANGE_COUNTRY' then
 		local stat = info.GetStat(session.GetMyHandle());
 		local beforeVal = hpGauge:GetCurPoint();
 		if beforeVal > 0 and stat.HP < beforeVal then
@@ -195,7 +220,12 @@ end
 function STAMINA_UPDATE(frame, msg, argStr, argNum)
 	session.UpdateMaxStamina();
 
-	local stGauge 	= GET_CHILD(frame, "sta1", "ui::CGauge");
+	local sta_name = 'sta1'
+	if HEADSUPDISPLAY_OPTION.relic_equip == 1 then
+		sta_name = 'sta1_relic'
+	end
+
+	local stGauge = GET_CHILD_RECURSIVELY(frame, sta_name, 'ui::CGauge')
 	stGauge:ShowWindow(1)
 	
 	local stat 		= info.GetStat(session.GetMyHandle());
@@ -218,16 +248,24 @@ end
 
 function CAUTION_DAMAGE_INFO(damage)
 	local frame = ui.GetFrame('charbaseinfo');
-	local hpGauge = frame:GetChild('hp');
-	tolua.cast(hpGauge, 'ui::CGauge');
+	local hp_name = 'hp'
+	if HEADSUPDISPLAY_OPTION.relic_equip == 1 then
+		hp_name = 'hp_relic'
+	end
+
+	local hpGauge = GET_CHILD_RECURSIVELY(frame, hp_name, 'ui::CGauge')
 
 	hpGauge:SetCautionBlink(damage, 1.0, 0xffffffff);
 end
 
 function CAUTION_DAMAGE_INFO_RELEASE()
 	local frame = ui.GetFrame('charbaseinfo');
-	local hpGauge = frame:GetChild('hp');
-	tolua.cast(hpGauge, 'ui::CGauge');
+	local hp_name = 'hp'
+	if HEADSUPDISPLAY_OPTION.relic_equip == 1 then
+		hp_name = 'hp_relic'
+	end
+
+	local hpGauge = GET_CHILD_RECURSIVELY(frame, hp_name, 'ui::CGauge')
 
 	hpGauge:ReleaseCautionBlink();
 end
@@ -453,5 +491,73 @@ function UPDATE_SOULCRYSTAL_COUNT(frame, curCount, maxCount)
 		end
 		soulCrystalCount:Invalidate();
 		SHOW_SOULCRYSTAL_COUNT(frame, 1, limitFlag);
+	end
+end
+
+function HEADSUPDISPLAY_UPDATE_RP_VISIBLE(frame, type)
+	HEADSUPDISPLAY_OPTION['relic_equip'] = type
+	local bg_default = GET_CHILD_RECURSIVELY(frame, 'gaugebg_default')
+	local bg_relic = GET_CHILD_RECURSIVELY(frame, 'gaugebg_relic')
+	local myclasspic1 = GET_CHILD_RECURSIVELY(frame, 'myclasspic1')
+	local myhpspright = GET_CHILD_RECURSIVELY(frame, 'myhpspright')
+	if type == 1 then
+		bg_default:ShowWindow(0)
+		bg_relic:ShowWindow(1)
+		local left_image = frame:GetUserConfig('LEFT_IMAGE_RELIC')
+		myclasspic1:SetImage(left_image)
+		local right_image = frame:GetUserConfig('RIGHT_IMAGE_RELIC')
+		myhpspright:SetImage(right_image)
+
+		local right_height = frame:GetUserConfig('RIGHT_HEIGHT_RP')
+		local right_margin = myhpspright:GetMargin()
+		local margin_top = frame:GetUserConfig('RIGHT_MARGIN_TOP_RP')
+
+		myhpspright:Resize(myhpspright:GetWidth(), right_height)
+		myhpspright:SetMargin(right_margin.left, margin_top, right_margin.right, right_margin.bottom)
+
+		HEADSUPDISPLAY_UPDATE_RP_GAUGE(frame)
+	else
+		bg_relic:ShowWindow(0)
+		bg_default:ShowWindow(1)
+		local left_image = frame:GetUserConfig('LEFT_IMAGE_DEFAULT')
+		myclasspic1:SetImage(left_image)
+		local right_image = frame:GetUserConfig('RIGHT_IMAGE_DEFAULT')
+		myhpspright:SetImage(right_image)
+
+		local right_height = frame:GetUserConfig('RIGHT_HEIGHT_DEF')
+		local right_margin = myhpspright:GetMargin()
+		local margin_top = frame:GetUserConfig('RIGHT_MARGIN_TOP_DEF')
+
+		myhpspright:Resize(myhpspright:GetWidth(), right_height)
+		myhpspright:SetMargin(right_margin.left, margin_top, right_margin.right, right_margin.bottom)
+
+		STAMINA_UPDATE(frame)
+	end
+end
+
+function HEADSUPDISPLAY_UPDATE_RELIC_EQUIP(frame, msg, argStr, argNum)
+	HEADSUPDISPLAY_UPDATE_RP_VISIBLE(frame, argNum)
+end
+
+function HEADSUPDISPLAY_UPDATE_RP_GAUGE(frame)
+	if HEADSUPDISPLAY_OPTION.relic_equip == 0 then
+		return
+	end
+
+	local rpGauge = GET_CHILD_RECURSIVELY(frame, 'rp', 'ui::CGauge')
+	rpGauge:ShowWindow(1)
+	
+	rpGauge:StopTimeProcess()
+
+	local pc = GetMyPCObject()
+	local cur_rp, max_rp = shared_item_relic.get_rp(pc)
+
+	rpGauge:SetPoint(cur_rp, max_rp)
+
+	local rpRatio = cur_rp / max_rp
+	if rpRatio <= 0.3 and rpRatio > 0 then
+		rpGauge:SetBlink(0.0, 1.0, 0xffffffff)
+	else
+		rpGauge:ReleaseBlink()
 	end
 end

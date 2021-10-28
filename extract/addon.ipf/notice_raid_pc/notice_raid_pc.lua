@@ -1,197 +1,191 @@
+-- notice_raid_pc
 function NOTICE_RAID_PC_ON_INIT(addon, frame)
     addon:RegisterMsg("NOTICE_GLACIER_COLD_BALST", "ON_NOTICE_RAID_TO_UI");
     addon:RegisterMsg("NOTICE_GLACIER_ENCHANTMENT", "ON_NOTICE_RAID_TO_UI");
     addon:RegisterMsg("NOTICE_GLACIER_ENCHANTMENT_LEGEND", "ON_NOTICE_RAID_TO_UI");
-    NOTICE_RAID_PC_SET_VISIBLE(frame, 0);
+    addon:RegisterMsg("NOTICE_GILTINE_DEMONICS_LANCE", "ON_NOTICE_RAID_TO_UI");
+    addon:RegisterMsg("NOTICE_GILTINE_DEMONICS_PRANK", "ON_NOTICE_RAID_TO_UI");
+    addon:RegisterMsg("NOTICE_GILTINE_FIND_COLOR_RED", "ON_NOTICE_RAID_TO_UI");
+    addon:RegisterMsg("NOTICE_GILTINE_FIND_COLOR_YELLOW", "ON_NOTICE_RAID_TO_UI");
+    addon:RegisterMsg("NOTICE_GILTINE_DEMONICS_LANCE_REMOVE", "ON_NOTICE_RAID_TO_UI");
+    addon:RegisterMsg("NOTICE_GILTINE_DEMONICS_PRANK_REMOVE", "ON_NOTICE_RAID_TO_UI");
+    addon:RegisterMsg("NOTICE_GILTINE_FIND_COLOR_RED_REMOVE", "ON_NOTICE_RAID_TO_UI");
+    addon:RegisterMsg("NOTICE_GILTINE_FIND_COLOR_YELLOW_REMOVE", "ON_NOTICE_RAID_TO_UI");
 end
 
 function ON_NOTICE_RAID_TO_UI(frame, msg, argStr, argNum)
     if msg == "NOTICE_GLACIER_COLD_BALST" then
+        local handle = tonumber(argNum);
+        if handle ~= 0 then 
+            frame:SetUserValue("SUFFIX", handle); 
+        end
+        local uiName = "notice_raid_pc"..frame:GetUserValue("SUFFIX");
         local iconName = argStr;
+        NOTICE_RAID_PC_UI_CREATE(uiName, msg, iconName, handle, 0, false, true);
+    elseif msg == "NOTICE_GLACIER_ENCHANTMENT_LEGEND" or msg == "NOTICE_GLACIER_ENCHANTMENT_LEGEND" then
+        local handle = tonumber(argStr);
+        local curTime = tonumber(argNum);
+        if handle ~= 0 then 
+            frame:SetUserValue("SUFFIX", handle); 
+        end
+        local uiName = "notice_raid_pc"..frame:GetUserValue("SUFFIX");
+        NOTICE_RAID_PC_UI_CREATE(uiName, msg, "None", handle, curTime, true, false);
+    elseif msg == "NOTICE_GILTINE_FIND_COLOR_RED" or msg == "NOTICE_GILTINE_FIND_COLOR_YELLOW" or msg == "NOTICE_GILTINE_DEMONICS_LANCE" or msg == "NOTICE_GILTINE_DEMONICS_PRANK" then
         local handle = tonumber(argNum);
         if handle ~= 0 then
             frame:SetUserValue("SUFFIX", handle);
         end
         local uiName = "notice_raid_pc"..frame:GetUserValue("SUFFIX");
-        NOTICE_RAID_GLACIER_COLD_BLAST_TARGET(uiName, msg, iconName, handle);
-    elseif msg == "NOTICE_GLACIER_ENCHANTMENT" then
-        local curTime = tonumber(argNum);
-        local handle = tonumber(argStr);
-        if handle ~= 0 then
-            frame:SetUserValue("SUFFIX", handle);
+        local iconName = argStr;
+        NOTICE_RAID_PC_UI_CREATE(uiName, msg, iconName, handle, 0, false, true);
+    elseif msg == "NOTICE_GILTINE_DEMONICS_LANCE_REMOVE" or msg == "NOTICE_GILTINE_DEMONICS_PRANK_REMOVE" or msg == "NOTICE_GILTINE_FIND_COLOR_RED_REMOVE" or msg == "NOTICE_GILTINE_FIND_COLOR_YELLOW_REMOVE" then
+        local handle = tonumber(argNum);
+        local frame = ui.GetFrame("notice_raid_pc"..handle);
+        if frame ~= nil then
+            local gbox = GET_CHILD_RECURSIVELY(frame, "gbox");
+            if gbox ~= nil then
+                local ctrlName = "None";
+                if msg == "NOTICE_GILTINE_DEMONICS_LANCE_REMOVE" then 
+                    ctrlName = "NOTICE_GILTINE_DEMONICS_LANCE"; 
+                elseif msg == "NOTICE_GILTINE_DEMONICS_PRANK_REMOVE" then
+                    ctrlName = "NOTICE_GILTINE_DEMONICS_PRANK";                    
+                elseif msg == "NOTICE_GILTINE_FIND_COLOR_RED_REMOVE" then
+                    ctrlName = "NOTICE_GILTINE_FIND_COLOR_RED"; 
+                elseif msg == "NOTICE_GILTINE_FIND_COLOR_YELLOW_REMOVE" then
+                    ctrlName = "NOTICE_GILTINE_FIND_COLOR_YELLOW"; 
+                end
+                local ctrl = GET_CHILD_RECURSIVELY(gbox, ctrlName);
+                if ctrl ~= nil then
+                    ctrl:SetVisible(0);
+                    ctrl:ShowWindow(0);
+                    ctrl:Resize(0, 0);
+                    gbox:RemoveChild(ctrl:GetName());
+                end
+            end
         end
-        local uiName = "notice_raid_pc"..frame:GetUserValue("SUFFIX");
-        NOTICE_RAID_GLACIER_ENCHANTMENT_TARGET(uiName, msg, handle, curTime);
-    elseif msg == "NOTICE_GLACIER_ENCHANTMENT_LEGEND" then
-        local curTime = tonumber(argNum);
-        local handle = tonumber(argStr);
-        if handle ~= 0 then
-            frame:SetUserValue("SUFFIX", handle);
-        end
-        local uiName = "notice_raid_pc"..frame:GetUserValue("SUFFIX");
-        NOTICE_RAID_GLACIER_ENCHANTMENT_TARGET_LEGEND(uiName, msg, handle, curTime);
     end
 end
 
-function NOTICE_RAID_GLACIER_COLD_BLAST_TARGET(uiName, msg, iconName, handle)
+function NOTICE_RAID_PC_UI_REMOVE(frame, msg, iconName)
+    if frame == nil or iconName == nil then return; end
+    local uiName = "notice_raid_pc"..frame:GetUserValue("SUFFIX");
+    local findFrame = ui.GetFrame(uiName);
+    local gbox = GET_CHILD_RECURSIVELY(findFrame, "gbox");
+    if gbox == nil then return; end
+    local picture = GET_CHILD_RECURSIVELY(gbox, msg);
+    if picture ~= nil then
+        picture:SetVisible(0);
+        picture:ShowWindow(0);
+        picture:Resize(0, 0);
+        gbox:RemoveChild(picture:GetName());
+    end
+end
+
+function NOTICE_RAID_PC_UI_CREATE(uiName, msg, iconName, handle, curTime, isGaugeIcon, isNormalIcon)
     local frame = ui.GetFrame(uiName);
-    if frame == nil then 
+    if frame == nil then
         frame = ui.CreateNewFrame("notice_raid_pc", tostring(uiName));
     end
 
-    local picture = GET_CHILD_RECURSIVELY(frame, "icon");
-    if picture ~= nil then
-        if handle == 0 then
-            picture:Resize(0, 0);
-            frame:SetUserValue(msg, 0);
-            local name = frame:GetUserValue("COLD_BALST_UI_NAME");
-            ui.CloseFrame(name);        
-        else
-            local width = tonumber(frame:GetUserConfig("COLD_BLAST_ICON_WIDTH"));
-            local height = tonumber(frame:GetUserConfig("COLD_BLAST_ICON_HEIGHT"));
-            picture:Resize(width, height);
-            frame:SetUserValue(msg, 1);
-            frame:SetUserValue("HANDLE", handle);
-            frame:SetUserValue("COLD_BALST_UI_NAME", uiName);
-            frame:RunUpdateScript("UPDATE_NOTICE_RAID_ICON_POS");
-        end
+    local gbox = GET_CHILD_RECURSIVELY(frame, "gbox");
+    if gbox == nil then return; end
 
+    frame:SetUserValue("NOTICE_RAID_UI_NAME", uiName);
+
+    if isNormalIcon == true then
+        local width = 0;
+        local height = 0;
+        if msg == "NOTICE_GLACIER_COLD_BALST" then
+            width = 55;
+            height = 100;
+        elseif msg == "NOTICE_GILTINE_FIND_COLOR_RED" or msg == "NOTICE_GILTINE_FIND_COLOR_YELLOW" then
+            width = 42;
+            height = 44;
+        elseif msg == "NOTICE_GILTINE_DEMONICS_LANCE" or msg == "NOTICE_GILTINE_DEMONICS_PRANK" then
+            width = 60;
+            height = 66;
+        end
+        NOTICE_RAID_PC_NORMAL_ICON_CREATE(frame, gbox, msg, iconName, handle, width, height);
+    end
+
+    if isGaugeIcon == true then
+        local width = 0;
+        local height = 0;
+        local skinName = "None";
+        local isVertical = false;
+        if msg == "NOTICE_GLACIER_ENCHANTMENT_LEGEND" or msg == "NOTICE_GLACIER_ENCHANTMENT_LEGEND" then
+            width = 55;
+            height = 55;
+            skinName = "gauge_Glacier_fascination";
+            isVertical = true;
+        end
+        NOTICE_RAID_PC_GAUGE_ICON_CREATE(frame, gbox, msg, handle, skinName, curTime, isVertical, width, height)
+    end
+
+    local defaultWidth = tonumber(frame:GetUserConfig("DEFAULT_WIDTH"));
+    NOTICE_RAID_PC_CTRL_GBOX_AUTO_ALIGN(gbox, 0, 0, defaultWidth, true, 0, false);
+    NOTICE_RAID_PC_GBOX_CHILD_CHECK(frame, gbox);
+end
+
+function NOTICE_RAID_PC_NORMAL_ICON_CREATE(frame, gbox, msg, iconName, handle, imageWidth, imageHeight)
+    local picture = GET_CHILD_RECURSIVELY(frame, msg);
+    if picture == nil then
+        picture = gbox:CreateControl("picture", msg, imageWidth, imageHeight, ui.LEFT, ui.BOTTOM, 0, 0, 0, 0);
+    end
+
+    if handle == 0 then
+        picture:SetVisible(0);
+        picture:ShowWindow(0);
+        picture:Resize(0, 0);
+        gbox:RemoveChild(picture:GetName());
+    else
+        picture = tolua.cast(picture, "ui::CPicture");
         picture:SetImage(iconName);
         picture:SetVisible(1);
-    end
-
-    local gbox = GET_CHILD_RECURSIVELY(frame, "gbox");
-    if gbox ~= nil then
-        local startx = 0;
-        local enchantmentMsgValue = frame:GetUserIValue("NOTICE_GLACIER_ENCHANTMENT");
-        if enchantmentMsgValue == 1 then
-            local coupleStartX = tonumber(frame:GetUserConfig("COUPLE_ICON_START_X"));
-            startx = coupleStartX;
-        else
-            local gauge = GET_CHILD_RECURSIVELY(frame, "icon_gauge");
-            if gauge ~= nil then
-                gauge:SetVisible(0);
-            end
-
-            local singleStartX = tonumber(frame:GetUserConfig("SINGLE_ICON_START_X"));
-            startx = singleStartX;
-        end
-        BUFF_SEPARATEDLIST_CTRLSET_GBOX_AUTO_ALIGN(gbox, startx, 0, 0, 200, true, 0, false);
-        gbox:Invalidate();
+        picture:SetEnableStretch(1);
+        picture:Resize(imageWidth, imageHeight);
+        picture:Invalidate();
+        frame:SetUserValue("HANDLE", handle);
+        frame:RunUpdateScript("UPDATE_NOTICE_RAID_ICON_POS");
     end
 end
 
-function NOTICE_RAID_GLACIER_ENCHANTMENT_TARGET(uiName, msg, handle, curTime)
-    local frame = ui.GetFrame(uiName);
-    if frame == nil then 
-        frame = ui.CreateNewFrame("notice_raid_pc", tostring(uiName));
+function NOTICE_RAID_PC_GAUGE_ICON_CREATE(frame, gbox, msg, handle, skinName, curTime, isVertical, imageWidth, imageHeight)
+    local gauge = GET_CHILD_RECURSIVELY(frame, msg);
+    if gauge == nil then
+        gauge = gbox:CreateControl("gauge", msg, imageWidth, imageHeight, ui.LEFT, ui.BOTTOM, 0, 0, 0, 0);
     end
-    
-    local gauge = GET_CHILD_RECURSIVELY(frame, "icon_gauge");
-    if gauge ~= nil then
-        handle = tonumber(handle);
-        if handle == 0 then
-            gauge:Resize(0, 0);
-            frame:SetUserValue(msg, 0);
-            local name = frame:GetUserValue("ENCHANTMENT_UI_NAME");
-            ui.CloseFrame(name); 
-        else
-            local width = tonumber(frame:GetUserConfig("ENCHANTMENT_ICON_WIDTH"));
-            local height = tonumber(frame:GetUserConfig("ENCHANTMENT_ICON_HEIGHT"));
-            gauge:Resize(width, height);
-            frame:SetUserValue(msg, 1);
-            frame:SetUserValue("HANDLE", handle);
-            frame:SetUserValue("ENCHANTMENT_UI_NAME", uiName);
-            frame:RunUpdateScript("UPDATE_NOTICE_RAID_ICON_POS");
-        end
 
+    local gauageMode = 0;
+    if isVertical == true then
+        gauageMode = 1;
+    end
+
+    if handle == 0 then
+        gauge:SetVisible(0);
+        gauge:ShowWindow(0);
+        gauge:Resize(0, 0);
+        gbox:RemoveChild(gauge:GetName());
+    else
         gauge = tolua.cast(gauge, "ui::CGauge");
+        gauge:SetModeByExport(gauageMode);
+        gauge:SetSkinName(skinName);
+        gauge:SetVisible(1);
+        gauge:Resize(imageWidth, imageHeight);
         gauge:SetMaxPointWithTime(curTime, 5, 1);
-        gauge:SetVisible(1);
-    end
-
-    local gbox = GET_CHILD_RECURSIVELY(frame, "gbox");
-    if gbox ~= nil then
-        local startx = 0;
-        local coldBlastMsgValue = frame:GetUserIValue("NOTICE_GLACIER_COLD_BALST");
-        if coldBlastMsgValue == 1 then
-            local coupleStartX = tonumber(frame:GetUserConfig("COUPLE_ICON_START_X"));
-            startx = coupleStartX;
-        else
-            local picture = GET_CHILD_RECURSIVELY(frame, "icon");
-            if picture ~= nil then
-                picture:SetVisible(0);
-            end
-
-            local singleStartX = tonumber(frame:GetUserConfig("SINGLE_ICON_START_X"));
-            startx = singleStartX - 55;        
-        end
-        BUFF_SEPARATEDLIST_CTRLSET_GBOX_AUTO_ALIGN(gbox, startx, 0, 0, 200, true, 0, false);
-        gbox:Invalidate();
+        gauge:Invalidate();
+        frame:SetUserValue("HANDLE", handle);
+        frame:RunUpdateScript("UPDATE_NOTICE_RAID_ICON_POS");
     end
 end
 
-function NOTICE_RAID_GLACIER_ENCHANTMENT_TARGET_LEGEND(uiName, msg, handle, curTime)
-    local frame = ui.GetFrame(uiName);
-    if frame == nil then 
-        frame = ui.CreateNewFrame("notice_raid_pc", tostring(uiName));
-    end
-    
-    local gauge = GET_CHILD_RECURSIVELY(frame, "icon_gauge");
-    if gauge ~= nil then
-        handle = tonumber(handle);
-        if handle == 0 then
-            gauge:Resize(0, 0);
-            frame:SetUserValue(msg, 0);
-            local name = frame:GetUserValue("ENCHANTMENT_UI_NAME");
-            ui.CloseFrame(name); 
-        else
-            local width = tonumber(frame:GetUserConfig("ENCHANTMENT_ICON_WIDTH"));
-            local height = tonumber(frame:GetUserConfig("ENCHANTMENT_ICON_HEIGHT"));
-            gauge:Resize(width, height);
-            frame:SetUserValue(msg, 1);
-            frame:SetUserValue("HANDLE", handle);
-            frame:SetUserValue("ENCHANTMENT_UI_NAME", uiName);
-            frame:RunUpdateScript("UPDATE_NOTICE_RAID_ICON_POS");
-        end
-
-        gauge = tolua.cast(gauge, "ui::CGauge");
-        gauge:SetMaxPointWithTime(curTime, 3, 1);
-        gauge:SetVisible(1);
-    end
-
-    local gbox = GET_CHILD_RECURSIVELY(frame, "gbox");
+function NOTICE_RAID_PC_GBOX_CHILD_CHECK(frame, gbox)
     if gbox ~= nil then
-        local startx = 0;
-        local coldBlastMsgValue = frame:GetUserIValue("NOTICE_GLACIER_COLD_BALST");
-        if coldBlastMsgValue == 1 then
-            local coupleStartX = tonumber(frame:GetUserConfig("COUPLE_ICON_START_X"));
-            startx = coupleStartX;
-        else
-            local picture = GET_CHILD_RECURSIVELY(frame, "icon");
-            if picture ~= nil then
-                picture:SetVisible(0);
-            end
-
-            local singleStartX = tonumber(frame:GetUserConfig("SINGLE_ICON_START_X"));
-            startx = singleStartX - 55;        
+        local count = gbox:GetChildCount();
+        if count <= 0 then
+            local closeUiName = frame:GetUserValue("NOTICE_RAID_UI_NAME");
+            ui.CloseFrame(closeUiName);
         end
-        BUFF_SEPARATEDLIST_CTRLSET_GBOX_AUTO_ALIGN(gbox, startx, 0, 0, 200, true, 0, false);
-        gbox:Invalidate();
-    end
-end
-
---------------------------------------------------------------------------------
-function NOTICE_RAID_PC_SET_VISIBLE(frame, visible)
-    if frame == nil then return; end
-    local picture = GET_CHILD_RECURSIVELY(frame, "icon");
-    if picture ~= nil then
-        picture:SetVisible(visible);
-    end
-
-    local gauge = GET_CHILD_RECURSIVELY(frame, "icon_gauge");
-    if gauge ~= nil then
-        gauge:SetVisible(visible);
     end
 end
 

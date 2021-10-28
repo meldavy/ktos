@@ -168,3 +168,25 @@ function IS_REPUTATION_MAP(pc, group)
         return false
     end
 end
+
+
+function SCR_REPUTAION_WEEKQUEST_POSSIBLECHECK(self, QuestName, SysMsg)
+
+    local Possible_check = SCR_QUEST_CHECK(self, QuestName)
+
+    if Possible_check == "POSSIBLE" then
+        local questIES = GetClass('QuestProgressCheck', QuestName)
+        local QUESTNAME = TryGetProp(questIES, 'Name')
+        
+        local zoneFind = TryGetProp(questIES, 'StartMap')
+        local MapIES = GetClass('Map', zoneFind)
+        local ZONENAME = TryGetProp(MapIES, 'Name')
+        
+        if SysMsg == 1 then
+            return ScpArgMsg('REPUTATION_POSSIBLEQUEST{QUESTNAME}{ZONE}', 'QUESTNAME', "{nl}"..QUESTNAME, 'ZONE', "{nl}"..ZONENAME).."{nl} {nl}"
+        else
+            return ShowOkDlg(self, 'REPUTATION_POSSIBLEQUEST\\'..ScpArgMsg('REPUTATION_POSSIBLEQUEST{QUESTNAME}{ZONE}', 'QUESTNAME', QUESTNAME, 'ZONE', ZONENAME), 1)
+        end
+    end
+
+end

@@ -228,7 +228,7 @@
                 <Num Num="45"/>
                 <Num Num="0"/>
                 <Num Num="0"/>
-                <Num Num="0"/>
+                <Num Num="1"/>
                 <Num Num="0"/>
             </ToolScp>
         </KeyInput>
@@ -500,7 +500,7 @@
                 </ToolScp>
                 <ToolScp Client="NO" Scp="S_R_TGTBUFF" UseSleep="NO">
                     <Str Str="MicroDimension_Debuff"/>
-                    <Num Num="1"/>
+                    <Num Num="99"/>
                     <Num Num="0"/>
                     <Num Num="1500"/>
                     <Num Num="1"/>

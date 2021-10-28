@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SpcItemList>
-	<SpcItem Name="EP12_EVIL_TOP">		
+	<SpcItem Name="EP12_EVIL_TOP">
 		<TriggerList Act="Equip">
 			<Trigger>
 				<ExecList>
@@ -18,7 +18,7 @@
 			</Trigger>
 		</TriggerList>
 	</SpcItem>
-	<SpcItem Name="EP12_EVIL_LEG">		
+	<SpcItem Name="EP12_EVIL_LEG">
 		<TriggerList Act="Equip">
 			<Trigger>
 				<ExecList>
@@ -36,7 +36,7 @@
 			</Trigger>
 		</TriggerList>
 	</SpcItem>
-	<SpcItem Name="EP12_EVIL_FOOT">		
+	<SpcItem Name="EP12_EVIL_FOOT">
 		<TriggerList Act="Equip">
 			<Trigger>
 				<ExecList>
@@ -54,7 +54,7 @@
 			</Trigger>
 		</TriggerList>
 	</SpcItem>
-	<SpcItem Name="EP12_EVIL_HAND">		
+	<SpcItem Name="EP12_EVIL_HAND">
 		<TriggerList Act="Equip">
 			<Trigger>
 				<ExecList>
@@ -503,7 +503,7 @@
 				</ExecList>
 			</Trigger>
 		</TriggerList>
-	</SpcItem>	
+	</SpcItem>
 	<SpcItem Name="EP12_RAID_CLOTH_TOP">
 		<TriggerList Act="Equip">
 			<Trigger>
@@ -521,7 +521,7 @@
 				</ExecList>
 			</Trigger>
 		</TriggerList>
-	</SpcItem>	
+	</SpcItem>
 	<SpcItem Name="EP12_RAID_CLOTH_LEG">
 		<TriggerList Act="Equip">
 			<Trigger>
@@ -539,7 +539,7 @@
 				</ExecList>
 			</Trigger>
 		</TriggerList>
-	</SpcItem>	
+	</SpcItem>
 	<SpcItem Name="EP12_RAID_CLOTH_FOOT">
 		<TriggerList Act="Equip">
 			<Trigger>
@@ -557,7 +557,7 @@
 				</ExecList>
 			</Trigger>
 		</TriggerList>
-	</SpcItem>	
+	</SpcItem>
 	<SpcItem Name="EP12_RAID_CLOTH_HAND">
 		<TriggerList Act="Equip">
 			<Trigger>
@@ -575,7 +575,7 @@
 				</ExecList>
 			</Trigger>
 		</TriggerList>
-	</SpcItem>	
+	</SpcItem>
 	<SpcItem Name="EP12_RAID_PLATE_TOP">
 		<TriggerList Act="Equip">
 			<Trigger>
@@ -593,7 +593,7 @@
 				</ExecList>
 			</Trigger>
 		</TriggerList>
-	</SpcItem>	
+	</SpcItem>
 	<SpcItem Name="EP12_RAID_PLATE_LEG">
 		<TriggerList Act="Equip">
 			<Trigger>
@@ -611,7 +611,7 @@
 				</ExecList>
 			</Trigger>
 		</TriggerList>
-	</SpcItem>	
+	</SpcItem>
 	<SpcItem Name="EP12_RAID_PLATE_FOOT">
 		<TriggerList Act="Equip">
 			<Trigger>
@@ -629,7 +629,7 @@
 				</ExecList>
 			</Trigger>
 		</TriggerList>
-	</SpcItem>	
+	</SpcItem>
 	<SpcItem Name="EP12_RAID_PLATE_HAND">
 		<TriggerList Act="Equip">
 			<Trigger>
@@ -647,7 +647,7 @@
 				</ExecList>
 			</Trigger>
 		</TriggerList>
-	</SpcItem>	
+	</SpcItem>
 	<SpcItem Name="EP12_RAID_LEATHER_TOP">
 		<TriggerList Act="Equip">
 			<Trigger>
@@ -809,7 +809,7 @@
 				</ExecList>
 			</Trigger>
 		</TriggerList>
-	</SpcItem>	
+	</SpcItem>
 	<SpcItem Name="EP12_Zemyna_LEG">
 		<TriggerList Act="Equip">
 			<Trigger>
@@ -827,7 +827,7 @@
 				</ExecList>
 			</Trigger>
 		</TriggerList>
-	</SpcItem>	
+	</SpcItem>
 	<SpcItem Name="EP12_Zemyna_FOOT">
 		<TriggerList Act="Equip">
 			<Trigger>
@@ -845,7 +845,7 @@
 				</ExecList>
 			</Trigger>
 		</TriggerList>
-	</SpcItem>	
+	</SpcItem>
 	<SpcItem Name="EP12_Zemyna_HAND">
 		<TriggerList Act="Equip">
 			<Trigger>
@@ -881,7 +881,7 @@
 				</ExecList>
 			</Trigger>
 		</TriggerList>
-	</SpcItem>	
+	</SpcItem>
 	<SpcItem Name="EP12_Dalia_LEG">
 		<TriggerList Act="Equip">
 			<Trigger>
@@ -899,7 +899,7 @@
 				</ExecList>
 			</Trigger>
 		</TriggerList>
-	</SpcItem>	
+	</SpcItem>
 	<SpcItem Name="EP12_Dalia_FOOT">
 		<TriggerList Act="Equip">
 			<Trigger>
@@ -917,7 +917,7 @@
 				</ExecList>
 			</Trigger>
 		</TriggerList>
-	</SpcItem>	
+	</SpcItem>
 	<SpcItem Name="EP12_Dalia_HAND">
 		<TriggerList Act="Equip">
 			<Trigger>
@@ -953,7 +953,7 @@
 				</ExecList>
 			</Trigger>
 		</TriggerList>
-	</SpcItem>	
+	</SpcItem>
 	<SpcItem Name="EP12_Austeja_LEG">
 		<TriggerList Act="Equip">
 			<Trigger>
@@ -971,7 +971,7 @@
 				</ExecList>
 			</Trigger>
 		</TriggerList>
-	</SpcItem>	
+	</SpcItem>
 	<SpcItem Name="EP12_Austeja_FOOT">
 		<TriggerList Act="Equip">
 			<Trigger>
@@ -989,7 +989,7 @@
 				</ExecList>
 			</Trigger>
 		</TriggerList>
-	</SpcItem>	
+	</SpcItem>
 	<SpcItem Name="EP12_Austeja_HAND">
 		<TriggerList Act="Equip">
 			<Trigger>
@@ -1007,7 +1007,7 @@
 				</ExecList>
 			</Trigger>
 		</TriggerList>
-	</SpcItem>	
+	</SpcItem>
 	<SpcItem Name="EP12_EVIL_SUMMONNER_TOP">
 		<TriggerList Act="Equip">
 			<Trigger>
@@ -1025,7 +1025,7 @@
 				</ExecList>
 			</Trigger>
 		</TriggerList>
-	</SpcItem>	
+	</SpcItem>
 	<SpcItem Name="EP12_EVIL_SUMMONNER_LEG">
 		<TriggerList Act="Equip">
 			<Trigger>
@@ -1043,7 +1043,7 @@
 				</ExecList>
 			</Trigger>
 		</TriggerList>
-	</SpcItem>	
+	</SpcItem>
 	<SpcItem Name="EP12_EVIL_SUMMONNER_FOOT">
 		<TriggerList Act="Equip">
 			<Trigger>
@@ -1061,7 +1061,7 @@
 				</ExecList>
 			</Trigger>
 		</TriggerList>
-	</SpcItem>	
+	</SpcItem>
 	<SpcItem Name="EP12_EVIL_SUMMONNER_HAND">
 		<TriggerList Act="Equip">
 			<Trigger>
@@ -1097,7 +1097,7 @@
 				</ExecList>
 			</Trigger>
 		</TriggerList>
-	</SpcItem>	
+	</SpcItem>
 	<SpcItem Name="EP12_Gabija_LEG">
 		<TriggerList Act="Equip">
 			<Trigger>
@@ -1115,7 +1115,7 @@
 				</ExecList>
 			</Trigger>
 		</TriggerList>
-	</SpcItem>	
+	</SpcItem>
 	<SpcItem Name="EP12_Gabija_FOOT">
 		<TriggerList Act="Equip">
 			<Trigger>
@@ -1133,7 +1133,7 @@
 				</ExecList>
 			</Trigger>
 		</TriggerList>
-	</SpcItem>	
+	</SpcItem>
 	<SpcItem Name="EP12_Gabija_HAND">
 		<TriggerList Act="Equip">
 			<Trigger>
@@ -1151,7 +1151,7 @@
 				</ExecList>
 			</Trigger>
 		</TriggerList>
-	</SpcItem>	
+	</SpcItem>
 	<SpcItem Name="EP12_WEEKLY_CLOTH_TOP">
 		<TriggerList Act="Equip">
 			<Trigger>
@@ -1169,7 +1169,7 @@
 				</ExecList>
 			</Trigger>
 		</TriggerList>
-	</SpcItem>	
+	</SpcItem>
 	<SpcItem Name="EP12_WEEKLY_LEATHER_TOP">
 		<TriggerList Act="Equip">
 			<Trigger>
@@ -1187,7 +1187,7 @@
 				</ExecList>
 			</Trigger>
 		</TriggerList>
-	</SpcItem>	
+	</SpcItem>
 	<SpcItem Name="EP12_WEEKLY_PLATE_TOP">
 		<TriggerList Act="Equip">
 			<Trigger>
@@ -1205,7 +1205,7 @@
 				</ExecList>
 			</Trigger>
 		</TriggerList>
-	</SpcItem>	
+	</SpcItem>
 	<SpcItem Name="EP12_WEEKLY_CLOTH_LEG">
 		<TriggerList Act="Equip">
 			<Trigger>
@@ -1223,7 +1223,7 @@
 				</ExecList>
 			</Trigger>
 		</TriggerList>
-	</SpcItem>	
+	</SpcItem>
 	<SpcItem Name="EP12_WEEKLY_LEATHER_LEG">
 		<TriggerList Act="Equip">
 			<Trigger>
@@ -1241,7 +1241,7 @@
 				</ExecList>
 			</Trigger>
 		</TriggerList>
-	</SpcItem>	
+	</SpcItem>
 	<SpcItem Name="EP12_WEEKLY_PLATE_LEG">
 		<TriggerList Act="Equip">
 			<Trigger>
@@ -1259,7 +1259,7 @@
 				</ExecList>
 			</Trigger>
 		</TriggerList>
-	</SpcItem>	
+	</SpcItem>
 	<SpcItem Name="EP12_WEEKLY_CLOTH_FOOT">
 		<TriggerList Act="Equip">
 			<Trigger>
@@ -1277,7 +1277,7 @@
 				</ExecList>
 			</Trigger>
 		</TriggerList>
-	</SpcItem>	
+	</SpcItem>
 	<SpcItem Name="EP12_WEEKLY_LEATHER_FOOT">
 		<TriggerList Act="Equip">
 			<Trigger>
@@ -1295,7 +1295,7 @@
 				</ExecList>
 			</Trigger>
 		</TriggerList>
-	</SpcItem>	
+	</SpcItem>
 	<SpcItem Name="EP12_WEEKLY_PLATE_FOOT">
 		<TriggerList Act="Equip">
 			<Trigger>
@@ -1313,7 +1313,7 @@
 				</ExecList>
 			</Trigger>
 		</TriggerList>
-	</SpcItem>	
+	</SpcItem>
 	<SpcItem Name="EP12_WEEKLY_CLOTH_HAND">
 		<TriggerList Act="Equip">
 			<Trigger>
@@ -1331,7 +1331,7 @@
 				</ExecList>
 			</Trigger>
 		</TriggerList>
-	</SpcItem>	
+	</SpcItem>
 	<SpcItem Name="EP12_WEEKLY_LEATHER_HAND">
 		<TriggerList Act="Equip">
 			<Trigger>
@@ -1349,7 +1349,7 @@
 				</ExecList>
 			</Trigger>
 		</TriggerList>
-	</SpcItem>	
+	</SpcItem>
 	<SpcItem Name="EP12_WEEKLY_PLATE_HAND">
 		<TriggerList Act="Equip">
 			<Trigger>
@@ -1367,8 +1367,8 @@
 				</ExecList>
 			</Trigger>
 		</TriggerList>
-	</SpcItem>	
-		<SpcItem Name="EP12_FIELD_SOLO_ROBE">
+	</SpcItem>
+	<SpcItem Name="EP12_FIELD_SOLO_ROBE">
 		<TriggerList Act="Equip">
 			<Trigger>
 				<ExecList>
@@ -2033,7 +2033,7 @@
 				</ExecList>
 			</Trigger>
 		</TriggerList>
-	</SpcItem>	
+	</SpcItem>
 	<SpcItem Name="EP12_installation_LEG">
 		<TriggerList Act="Equip">
 			<Trigger>
@@ -2051,7 +2051,7 @@
 				</ExecList>
 			</Trigger>
 		</TriggerList>
-	</SpcItem>	
+	</SpcItem>
 	<SpcItem Name="EP12_installation_FOOT">
 		<TriggerList Act="Equip">
 			<Trigger>
@@ -2069,7 +2069,7 @@
 				</ExecList>
 			</Trigger>
 		</TriggerList>
-	</SpcItem>	
+	</SpcItem>
 	<SpcItem Name="EP12_installation_HAND">
 		<TriggerList Act="Equip">
 			<Trigger>
@@ -2088,7 +2088,7 @@
 			</Trigger>
 		</TriggerList>
 	</SpcItem>
-        <SpcItem Name="PVP_CAN04_118">
+	<SpcItem Name="PVP_CAN04_118">
 		<TriggerList Act="UnEquip">
 			<Trigger>
 				<ExecList>
@@ -3428,7 +3428,7 @@
 				</ExecList>
 			</Trigger>
 		</TriggerList>
-	</SpcItem>	
+	</SpcItem>
 	<SpcItem Name="PVP_EP12_NECK05_HIGH_007">
 		<TriggerList Act="Equip">
 			<Trigger>
@@ -4396,6 +4396,222 @@
 			<Trigger>
 				<ExecList>
 					<ToolScp Scp="unequip_EP12_BRC06_HIGH_001" Client="NO" UseSleep="NO">
+          </ToolScp>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+	</SpcItem>
+	<SpcItem Name="Event2_EP12_FIELD_TOP_001">
+		<TriggerList Act="Equip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="equip_ep12_field_legend_item_cloth" Client="NO" UseSleep="NO">            
+          </ToolScp>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="UnEquip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="unequip_ep12_field_legend_item_cloth" Client="NO" UseSleep="NO">            
+          </ToolScp>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+	</SpcItem>
+	<SpcItem Name="Event2_EP12_FIELD_TOP_002">
+		<TriggerList Act="Equip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="equip_ep12_field_legend_item" Client="NO" UseSleep="NO">
+          </ToolScp>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="UnEquip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="unequip_ep12_field_legend_item" Client="NO" UseSleep="NO">
+          </ToolScp>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+	</SpcItem>
+	<SpcItem Name="Event2_EP12_FIELD_TOP_003">
+		<TriggerList Act="Equip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="equip_ep12_field_legend_item" Client="NO" UseSleep="NO">
+          </ToolScp>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="UnEquip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="unequip_ep12_field_legend_item" Client="NO" UseSleep="NO">
+          </ToolScp>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+	</SpcItem>
+	<SpcItem Name="Event2_EP12_FIELD_LEG_001">
+		<TriggerList Act="Equip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="equip_ep12_field_legend_item_cloth" Client="NO" UseSleep="NO">
+          </ToolScp>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="UnEquip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="unequip_ep12_field_legend_item_cloth" Client="NO" UseSleep="NO">
+          </ToolScp>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+	</SpcItem>
+	<SpcItem Name="Event2_EP12_FIELD_LEG_002">
+		<TriggerList Act="Equip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="equip_ep12_field_legend_item" Client="NO" UseSleep="NO">
+          </ToolScp>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="UnEquip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="unequip_ep12_field_legend_item" Client="NO" UseSleep="NO">
+          </ToolScp>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+	</SpcItem>
+	<SpcItem Name="Event2_EP12_FIELD_LEG_003">
+		<TriggerList Act="Equip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="equip_ep12_field_legend_item" Client="NO" UseSleep="NO">
+          </ToolScp>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="UnEquip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="unequip_ep12_field_legend_item" Client="NO" UseSleep="NO">
+          </ToolScp>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+	</SpcItem>
+	<SpcItem Name="Event2_EP12_FIELD_FOOT_001">
+		<TriggerList Act="Equip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="equip_ep12_field_legend_item_cloth" Client="NO" UseSleep="NO">
+          </ToolScp>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="UnEquip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="unequip_ep12_field_legend_item_cloth" Client="NO" UseSleep="NO">
+          </ToolScp>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+	</SpcItem>
+	<SpcItem Name="Event2_EP12_FIELD_FOOT_002">
+		<TriggerList Act="Equip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="equip_ep12_field_legend_item" Client="NO" UseSleep="NO">
+          </ToolScp>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="UnEquip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="unequip_ep12_field_legend_item" Client="NO" UseSleep="NO">
+          </ToolScp>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+	</SpcItem>
+	<SpcItem Name="Event2_EP12_FIELD_FOOT_003">
+		<TriggerList Act="Equip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="equip_ep12_field_legend_item" Client="NO" UseSleep="NO">
+          </ToolScp>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="UnEquip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="unequip_ep12_field_legend_item" Client="NO" UseSleep="NO">
+          </ToolScp>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+	</SpcItem>
+	<SpcItem Name="Event2_EP12_FIELD_HAND_001">
+		<TriggerList Act="Equip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="equip_ep12_field_legend_item_cloth" Client="NO" UseSleep="NO">
+          </ToolScp>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="UnEquip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="unequip_ep12_field_legend_item_cloth" Client="NO" UseSleep="NO">
+          </ToolScp>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+	</SpcItem>
+	<SpcItem Name="Event2_EP12_FIELD_HAND_002">
+		<TriggerList Act="Equip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="equip_ep12_field_legend_item" Client="NO" UseSleep="NO">
+          </ToolScp>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="UnEquip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="unequip_ep12_field_legend_item" Client="NO" UseSleep="NO">
+          </ToolScp>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+	</SpcItem>
+	<SpcItem Name="Event2_EP12_FIELD_HAND_003">
+		<TriggerList Act="Equip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="equip_ep12_field_legend_item" Client="NO" UseSleep="NO">
+          </ToolScp>
+				</ExecList>
+			</Trigger>
+		</TriggerList>
+		<TriggerList Act="UnEquip">
+			<Trigger>
+				<ExecList>
+					<ToolScp Scp="unequip_ep12_field_legend_item" Client="NO" UseSleep="NO">
           </ToolScp>
 				</ExecList>
 			</Trigger>

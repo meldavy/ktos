@@ -1,4 +1,4 @@
-function SCR_PRE_VACYS_RECORD(self, argstring, argnum1, argnum2)
+﻿function SCR_PRE_VACYS_RECORD(self, argstring, argnum1, argnum2)
     local pcX, pcY, pcZ = GetPos(self)
     if GetZoneName(self) == 'f_rokas_31' and SCR_POINT_DISTANCE(pcX,pcZ,-1229,576) <= 50 then
         return 1
@@ -5509,6 +5509,11 @@ function SCR_PRE_ITEM_Escape(self, argObj, BuffName, arg1, arg2)
             SendAddOnMsg(self, "NOTICE_Dm_!", ScpArgMsg("CannotUseThieInThisMap"), 3);
             return 0;
         end
+
+        if arg2 ~= 650012 and table.find(keywordList, "MythicMap") > 0 then
+            SendAddOnMsg(self, "NOTICE_Dm_!", ScpArgMsg("CannotUseThieInThisMap"), 3);
+            return 0;
+        end 
     end
     
     return 1;

@@ -195,3 +195,5 @@ ClassID,ConditionArg4,ClassName,UseType,ValueType,PropertyType,ConditionScp,Cond
 194,0,Master_card_AleisterCrowley,BeforeAttack,StarCount,,,,,,SCR_CARDEFFECT_DAMAGE_RATE_BY_BUFF,Freeze,Keyword,1,"결빙, 한기 상태 이상에 걸린 대상에게 주는 대미지{@st66d_y}{s16}[%d]{/}{/}%% 증가",1
 195,0,Master_card_Tesla,Always,StarCount,,,,100,,SCR_CARDEFFECT_STATUS_PLUS,MSP_BM,MSP,90,최대 SP +{@st66d_y}{s16}[%d]{/}{/},90
 196,0,Master_card_KiolRuarawa,Always,StarCount,,,,100,,SCR_CARDEFFECT_STATUS_PLUS,RHP_BM,,60,HP 회복력 +{@st66d_y}{s16}[%d]{/}{/},60
+197,0,Legendcard_Guilty,Always,StarCount,,,,,,SCR_CARDEFFECT_ADD_EXPROP_STARVALUE_PC,card_Guilty_legendcard,,0,보스 몬스터에게 주는 대미지{@st66d_y}{s16}[%d]{/}{/}%% 증가,8
+198,0,Legendcard_Avataras,Always,StarCount,,,,100,,SCR_CARDEFFECT_STATUS_PLUS,Velnias_Atk_BM,Velnias_Atk_BM,750,악마형 대상 공격력+{@st66d_y}{s16}[%d]{/}{/},750

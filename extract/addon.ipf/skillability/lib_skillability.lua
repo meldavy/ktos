@@ -556,7 +556,16 @@ function GET_SKILLABILITY_COMMON_SKILL_LIST()
     for i=0,commonSkillCount-1 do
 		local skillID = session.skill.GetCommonSkillIDByIndex(i);
         local sklCls = GetClassByType("Skill", skillID);
-        skillIDList[#skillIDList+1] = sklCls.ClassName;
+        local keyword = TryGetProp(sklCls, "Keyword", "None");
+
+        local isinsert = true;
+        if string.find(keyword, "GoddessCardSkill") ~= nil then -- 여신 카드 더미 스킬은 출력 안함
+            isinsert = false;
+        end
+
+        if isinsert == true then
+            skillIDList[#skillIDList+1] = sklCls.ClassName;
+        end
     end
     return skillLvHash;
 end

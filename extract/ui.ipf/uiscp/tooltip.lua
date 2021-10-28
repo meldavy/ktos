@@ -1,4 +1,4 @@
---- tooltip.lua -
+-- tooltip.lua --
 
 function TRY_PARSE_TOOLTIPCOND(obj, caption)
 
@@ -1384,7 +1384,7 @@ function UPDATE_RESTRICT_INFO_TOOLTIP(frame, mapKeyword, isLegendRaid)
 
     if isLegendRaid == 1 then
         for i = 1, #legend_raid_item_restrict do
-            local width, height = MAKE_ITEM_RESTRICT_INFO(frame, legend_raid_item_restrict[i], ypos + INNER_Y, ctrlsetWidth);
+            local width, height = MAKE_ITEM_SKILL_RESTRICT_INFO(frame, legend_raid_item_restrict[i], ypos + INNER_Y, ctrlsetWidth);
             xpos = math.max(xpos, width);
             ypos = height;
         end
@@ -1414,7 +1414,7 @@ function MAKE_RESTRICT_INFO(frame, skillRestrict, ypos, ctrlSetWidth)
     return textWidth, ypos + ctrlSet:GetHeight();
 end
 
-function MAKE_ITEM_RESTRICT_INFO(frame, clsName, ypos, strlSetWidth)
+function MAKE_ITEM_SKILL_RESTRICT_INFO(frame, clsName, ypos, strlSetWidth)
     local itemCls = GetClass("Item", clsName);
     local imgName = TryGetProp(itemCls, "Icon");
     local ICON_SIZE = frame:GetUserConfig("ICON_SIZE");
@@ -1428,6 +1428,54 @@ function MAKE_ITEM_RESTRICT_INFO(frame, clsName, ypos, strlSetWidth)
     text:SetTextByKey("img", img);
     text:SetTextByKey("name", name);
     text:SetTextByKey("caption", caption);
+    
+    local textWidth = text:GetTextWidth();
+    ctrlSet:Resize(textWidth, text:GetHeight());
+    return textWidth, ypos + ctrlSet:GetHeight();
+end
+
+function UPDATE_ITEM_RESTRICT_INFO_TOOLTIP(frame, category)
+	local titleBox = GET_CHILD_RECURSIVELY(frame, "titleBox");
+	local title = GET_CHILD(titleBox,"title")
+    local INNER_X = frame:GetUserConfig("INNER_X");
+    local INNER_Y = frame:GetUserConfig("INNER_Y");
+
+    local xpos = title:GetWidth() + title:GetX();
+    local ypos = titleBox:GetHeight();
+	local restrictList, cnt = GetClassList("ItemRestrict");
+	
+	frame:RemoveChildByType('controlset')
+    for i = 0, cnt - 1 do
+        local itemRestrict = GetClassByIndexFromList(restrictList, i);
+		if TryGetProp(itemRestrict, "Category") == category then
+			local width, height = MAKE_ITEM_RESTRICT_INFO(frame, itemRestrict, ypos + INNER_Y);
+            xpos = math.max(xpos, width);
+            ypos = height;
+		end
+    end
+    frame:Resize(xpos + INNER_X, ypos + INNER_Y);
+end
+
+function MAKE_ITEM_RESTRICT_INFO(frame, cls, ypos)
+	local imgName = ""
+	if TryGetProp(cls,"Icon","None") ~= "None" then
+		imgName = string.format("icon_%s",TryGetProp(cls,"Icon"));
+	end
+    local ICON_SIZE = frame:GetUserConfig("ICON_SIZE");
+	local img = ""
+	if imgName ~= "" then
+		img = string.format("{img %s %d %d}", imgName, ICON_SIZE, ICON_SIZE);
+	end
+    local name = TryGetProp(cls, "Spot_Name");
+
+    local INNER_X = frame:GetUserConfig("INNER_X");
+    local ctrlSet = frame:CreateOrGetControlSet("skill_restrict_info_list", "SKILL_RESTRICT_INFO_" .. name, INNER_X, ypos);
+    local text = GET_CHILD_RECURSIVELY(ctrlSet, "skill_info");
+    text:SetTextByKey("img", img);
+	text:SetTextByKey("name", name);
+
+	local desc = TryGetProp(cls,"Desc")
+    text:SetTextByKey("caption", desc);
     
     local textWidth = text:GetTextWidth();
     ctrlSet:Resize(textWidth, text:GetHeight());

@@ -1,18 +1,19 @@
 function DIALOGSELECT_ON_INIT(addon, frame)
-
 	DialogSelect_index = 0;
 	DialogSelect_count = 0;
 	DialogSelect_offsetY = frame:GetY();
 	DialogSelect_Type = 0;
-
 	addon:RegisterMsg('DIALOG_CHANGE_SELECT', 'DIALOGSELECT_ON_MSG');
 	addon:RegisterMsg('DIALOG_ADD_SELECT', 'DIALOGSELECT_ON_MSG');
+	addon:RegisterMsg("DIALOG_ADD_SELECT_MULTIPLE", "DIALOGSELECT_ON_MSG");
 	addon:RegisterMsg('DIALOG_NUMBER_RANGE', 'DIALOGSELECT_ON_MSG');
 	addon:RegisterMsg('DIALOG_TEXT_INPUT', 'DIALOGSELECT_ON_MSG');
 	addon:RegisterMsg('DIALOG_CLOSE', 'DIALOGSELECT_ON_MSG');
 	addon:RegisterMsg('DIALOGSELECT_UP', 'DIALOGSELECT_ON_MSG');
 	addon:RegisterMsg('DIALOGSELECT_DOWN', 'DIALOGSELECT_ON_MSG');
 	addon:RegisterMsg('DIALOGSELECT_SELECT', 'DIALOGSELECT_ON_MSG');
+	addon:RegisterMsg("DIALOGSELECT_MULTIPLE_SKIN_RESET", "DIALOGSELECT_ON_MSG");
+	addon:RegisterMsg("DIALOGSELECT_MULTIPLE_SELECT_TOGGLE", "DIALOGSELECT_ON_MSG");
 	addon:RegisterMsg('ESCAPE_PRESSED', 'DIALOGSELECT_ON_PRESS_ESCAPE');
 end
 
@@ -39,12 +40,11 @@ function DIALOGSELECT_FIX_WIDTH(frame, width)
 	frame:SetUserConfig("MAX_WIDTH", width);
 	local itemBtnCount = GET_DIALOGSELECT_ITEMBTN_COUNT(frame);
 	for i = 1, itemBtnCount do
-		local controlName = 'item' .. i .. 'Btn';
+		local controlName = 'item'..i..'Btn';
 		local ItemBtn = frame:GetChild(controlName);
 		local ItemBtnCtrl = tolua.cast(ItemBtn, 'ui::CButton');
 		ItemBtnCtrl:Resize(width, ItemBtn:GetHeight());
 	end
-
 	frame:Resize(width + 60, frame:GetHeight());
 end
 
@@ -53,7 +53,6 @@ function DIALOGSELECT_CHECK_MSGBOX(argNum)
 	local btn = GET_CHILD_RECURSIVELY(frame, 'item' .. argNum .. 'Btn')
 	local txt = btn:GetText()
 	local yesScp = 'control.DialogSelect(' .. argNum .. ')'
-
 	ui.MsgBox(ScpArgMsg('ReallySelect{NAME}Item', 'NAME', txt), yesScp, 'None')
 end
 
@@ -75,13 +74,11 @@ function DIALOGSELECT_ITEM_ADD(frame, msg, argStr, argNum)
 		argNum = argNum - 1;
 	end
 
-	local controlName = 'item' .. argNum .. 'Btn'
+	local controlName = 'item'..argNum..'Btn';
 	local ItemBtn = GET_CHILD_RECURSIVELY(frame, controlName);
 	local ItemBtnCtrl = tolua.cast(ItemBtn, 'ui::CButton');
-	local locationUI = DialogSelect_offsetY - argNum * 37 - 10;
-
 	ItemBtnCtrl:SetGravity(ui.CENTER_HORZ, ui.TOP);
-    
+
 	if questRewardBox ~= nil then
 		local width  = questRewardBox:GetWidth();
 		local height = questRewardBox:GetHeight();
@@ -90,15 +87,15 @@ function DIALOGSELECT_ITEM_ADD(frame, msg, argStr, argNum)
 		local y = tonumber(frame:GetUserValue("QUESTFRAME_HEIGHT"));	
 		local frameHeight = offset + y + 50;
 		local maxHeight = ui.GetSceneHeight();
-		
-		questRewardBox:SetGravity(ui.CENTER_HORZ, ui.TOP);		
+
+		questRewardBox:SetGravity(ui.CENTER_HORZ, ui.TOP);	
 		questRewardBox:SetOffset(0, 50);
 
 		if frame:GetUserIValue("FIRSTORDER_MAXHEIGHT") == 1 then			
 			if (y + (maxHeight - frame:GetY())) > (maxHeight) then	
 				local frameMaxHeight = maxHeight/2;
 				frameHeight = offset + frameMaxHeight + 50;
-				frame:SetUserValue("IsScroll", "YES");		
+				frame:SetUserValue("IsScroll", "YES");	
 				ItemBtnCtrl:SetOffset(0, questRewardBox:GetY() + questRewardBox:GetHeight() + 10);	
 			else				
 				frame:SetUserValue("IsScroll", "NO");
@@ -115,21 +112,22 @@ function DIALOGSELECT_ITEM_ADD(frame, msg, argStr, argNum)
 				ItemBtnCtrl:SetOffset(0, height + offsetEx);
 			end
 		end
-
 		frame:Resize(frame:GetWidth(), frameHeight + 10);
 		frame:ShowWindow(1);	
-		
 	else
 		ItemBtnCtrl:SetOffset(0, (argNum-1) * 40 + 40);
 		frame:Resize(frame:GetWidth(), (argNum + 1) * 40 + 10);
 	end
 
-	local eventScp = 'control.DialogSelect(' .. argNum .. ')'
-	if session.IsShowSelDlgMsgBox() == true then
-		eventScp = string.format('DIALOGSELECT_CHECK_MSGBOX(%d)', argNum)
+	local eventScp = 'control.DialogSelect('..argNum..')';
+	if session.IsMultipleSelect() == true then
+		eventScp = 'DIALOGSELECT_MULTIPLE_SELECT_EVENT('..argNum..')';
+	else
+		if session.IsShowSelDlgMsgBox() == true then
+			eventScp = string.format('DIALOGSELECT_CHECK_MSGBOX(%d)', argNum);
+		end
 	end
-
-    ItemBtnCtrl:SetEventScript(ui.LBUTTONUP, eventScp, true);
+	ItemBtnCtrl:SetEventScript(ui.LBUTTONUP, eventScp, true);	
 	ItemBtnCtrl:ShowWindow(1);
 	ItemBtnCtrl:SetText('{s18}{b}{#2f1803}'..argStr..'{/}{/}{/}');
 
@@ -140,11 +138,21 @@ function DIALOGSELECT_ITEM_ADD(frame, msg, argStr, argNum)
 	frame:Update();
 end
 
+function DIALOGSELECT_MULTIPLE_SELECT_EVENT(argNum)
+	local frame = ui.GetFrame("dialogselect");
+	if frame ~= nil then
+		local itemBtn = GET_CHILD_RECURSIVELY(frame, "item"..argNum.."Btn");
+		if itemBtn ~= nil then
+			itemBtn:SetSkinName("test_gray_button");
+		end
+		control.DialogSelectMultiple(argNum);
+	end
+end
+
 function DIALOGSELECT_QUEST_REWARD_ADD(frame, argStr)
 	local questCls = GetClass("QuestProgressCheck", argStr);
 	local cls = GetClass("QuestProgressCheck_Auto", argStr);
 	local pc = GetMyPCObject();
-	
 	if questCls == nil or cls == nil then
 		return 0;
 	end
@@ -157,7 +165,7 @@ function DIALOGSELECT_QUEST_REWARD_ADD(frame, argStr)
 	questRewardBox:EnableResizeByParent(0);
 	questRewardBox:ShowWindow(1);
     
-    local questName
+    local questName;
     if questCls.QuestMode == 'REPEAT' then
         local sObj = GetSessionObject(pc, 'ssn_klapeda')
 		if sObj ~= nil then
@@ -173,6 +181,7 @@ function DIALOGSELECT_QUEST_REWARD_ADD(frame, argStr)
 			questName = questCls.Name..ScpArgMsg("Auto__-_BanBog({Auto_1}/{Auto_2})","Auto_1", sObj.PARTY_Q_COUNT1 + 1, "Auto_2",CON_PARTYQUEST_DAYMAX1)
 		end
 	end
+
 	if questName == nil then
 	    questName = questCls.Name
 	end
@@ -262,7 +271,7 @@ end
 
 function DIALOGSELECT_ON_MSG(frame, msg, argStr, argNum)
 	frame:SetMargin(0, 0, 0, 300);
-	if  msg == 'DIALOG_CHANGE_SELECT' then
+	if msg == 'DIALOG_CHANGE_SELECT' then
 		local itemBtnCount = GET_DIALOGSELECT_ITEMBTN_COUNT(frame);
 		for i = 1, itemBtnCount do
 			local childName = 'item' .. i .. 'Btn'
@@ -309,7 +318,7 @@ function DIALOGSELECT_ON_MSG(frame, msg, argStr, argNum)
 		if questreward ~= nil then
     		questreward:ShowWindow(0)
     	end
-	elseif  msg == 'DIALOG_ADD_SELECT'  then
+	elseif msg == 'DIALOG_ADD_SELECT' then
 		DialogSelect_Type = 0;
 		DIALOGSELECT_ITEM_ADD(frame, msg, argStr, argNum);
 
@@ -329,7 +338,26 @@ function DIALOGSELECT_ON_MSG(frame, msg, argStr, argNum)
 
 		mouse.SetPos(x,y);
 		mouse.SetHidable(0);
-	elseif  msg == 'DIALOG_CLOSE'  then
+	elseif msg == 'DIALOG_ADD_SELECT_MULTIPLE' then
+		DialogSelect_Type = 0;
+		DIALOGSELECT_ITEM_ADD(frame, msg, argStr, argNum);
+
+		local ItemBtn = frame:GetChild('item1Btn');
+		local itemWidth = ItemBtn:GetWidth();
+		local x, y = GET_SCREEN_XY(ItemBtn, itemWidth / 2.5);		
+
+		local questRewardBox = frame:GetChild('questreward');
+		if questRewardBox ~= nil then
+			argNum = argNum - 1;
+			y = y - questRewardBox:GetY();
+		end
+
+		DialogSelect_count = argNum;
+		DialogSelect_index = 1;
+
+		mouse.SetPos(x,y);
+		mouse.SetHidable(0);
+	elseif msg == 'DIALOG_CLOSE' then
 		DIALOGSELECT_FIX_WIDTH(frame, 540);
 		frame:SetUserValue("QUESTFRAME_HEIGHT",  0);
 		frame:SetUserValue("FIRSTORDER_MAXHEIGHT", 0);
@@ -352,7 +380,19 @@ function DIALOGSELECT_ON_MSG(frame, msg, argStr, argNum)
 		DIALOGSELECT_ITEM_SELECT(frame);
 	elseif msg == 'DIALOGSELECT_SELECT' then
 		if DialogSelect_index ~= 0 then
-			control.DialogSelect(DialogSelect_index);
+			if session.IsMultipleSelect() == true then
+				DIALOGSELECT_MULTIPLE_SELECT_EVENT(DialogSelect_index);
+			else
+				control.DialogSelect(DialogSelect_index);
+			end
+		end
+	elseif msg == "DIALOGSELECT_MULTIPLE_SKIN_RESET" then
+		if session.IsMultipleSelect() == true then
+			DIALOGSELECT_MULTIPLE_SELECT_SKIN_RESET(frame);
+		end
+	elseif msg == "DIALOGSELECT_MULTIPLE_SELECT_TOGGLE" then
+		if session.IsMultipleSelect() == true then
+			DIALOGSELECT_MULTIPLE_SELECT_TOGGLE(frame, argStr, argNum);
 		end
 	end
 end
@@ -366,7 +406,7 @@ function DIALOGSELECT_ITEM_SELECT(frame)
 	end;
 
     local itemWidth = ItemBtn:GetWidth();
-	local x, y = GET_SCREEN_XY(ItemBtn,itemWidth/2.5);
+	local x, y = GET_SCREEN_XY(ItemBtn,itemWidth / 2.5);
 	mouse.SetPos(x, y);
 	mouse.SetHidable(0);
 end
@@ -486,6 +526,27 @@ function MAKE_REWARD_ITEM_CTRL(box, cls, y)
 	end
 
 	return y;
+end
+
+function DIALOGSELECT_MULTIPLE_SELECT_SKIN_RESET(frame)
+	if frame == nil then return; end
+	for i = 0, frame:GetChildCount() - 1 do
+		local child = frame:GetChildByIndex(i);
+		if child ~= nil and string.find(child:GetName(), "item") ~= nil then
+			child:SetSkinName("test_pvp_btn");
+		end
+	end
+end
+
+function DIALOGSELECT_MULTIPLE_SELECT_TOGGLE(frame, argStr, argNum)
+	if frame == nil then return; end
+	local item_btn = GET_CHILD_RECURSIVELY(frame, "item"..argNum.."Btn");
+	if item_btn == nil then return; end
+	if argStr == "select" then
+		item_btn:SetSkinName("test_gray_button");
+	else
+		item_btn:SetSkinName("test_pvp_btn");
+	end
 end
 
 

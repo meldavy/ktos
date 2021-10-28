@@ -1289,7 +1289,9 @@ function IS_ENABLED_USER_TRADE_ITEM(invitem)
 	if false == itemProp:IsEnableUserTrade()then
         return false;
 	elseif true == IS_DISABLED_TRADE(invitem, TRADE_TYPE_USER) then
-        return false;
+		return false;
+	elseif TryGetProp(invitem, 'TeamBelonging', 0) ~= 0 then
+		return false;
     else
         return true;
 	end
@@ -1301,7 +1303,9 @@ function IS_ENABLED_MARKET_TRADE_ITEM(invitem)
     if false == itemProp:IsEnableMarketTrade() then
         return false;
     elseif true == IS_DISABLED_TRADE(invitem, TRADE_TYPE_MARKET) then
-        return false;
+		return false;
+	elseif TryGetProp(invitem, 'TeamBelonging', 0) ~= 0 then
+		return false;
     else
         return true;
     end

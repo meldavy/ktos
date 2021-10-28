@@ -121,7 +121,6 @@ function ADVENTURE_BOOK_TEAM_BATTLE_RANK_UPDATE(frame, msg, argStr, argNum)
 	local reward = GET_CHILD_RECURSIVELY(frame, 'teamBattleRewardBtn');
 	local cid = session.GetMySession():GetCID();
 	local myRank = session.worldPVP.GetPrevRankInfoByCID(cid);
-	print(myRank)
 	if myRank ~= nil and myRank.ranking < 3 then
 		reward:SetEnable(1)
 	else
