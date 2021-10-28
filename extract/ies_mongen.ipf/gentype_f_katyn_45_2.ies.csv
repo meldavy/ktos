@@ -1,5 +1,5 @@
 ClassID,GenType,Lv,Range,GenRange,RespawnTime,MaxPop,Minimap,Hide,UseAIOufOfPC,AnchorCount,UP_ReturnRange,P_MaxDialog,ClassType,Name,UniqueName,QuestName,Tag,Tactics,BTree,SimpleAI,Dialog,Enter,Leave,OnlyPCCheck,SmartGen,Faction,ArgStr1,ArgStr2,ArgStr3,Tendency,Save
-1,1,1,30,1,1,1,1,0,0,0,0,0,Warp_arrow,그리나스 구릉지,,,,MON_DUMMY,,,,KATYN45_2_KATYN45_3,,YES,NO,Neutral,,,,,
+1,1,1,30,1,1,1,2,0,0,0,0,0,Warp_arrow,그리나스 구릉지,,,,MON_DUMMY,,,,KATYN45_2_KATYN45_3,,YES,NO,Neutral,,,,,
 2,2,1,30,1,1,1,2,0,0,0,0,0,Warp_arrow,그리나스 숲길,,,,MON_DUMMY,,,,KATYN45_2_KATYN45_1,,YES,NO,Neutral,,,,,
 3,3,0,40,30,0,40,0,0,0,0,0,0,Ridimed_blue,,,,,,,KATYN_45_2_SQ_11_AI,,,,YES,NO,Monster,SmartGen,,,,NO
 4,4,0,40,30,0,15,0,0,0,0,0,0,puragi_red,,,,,,,KATYN_45_2_SQ_11_AI,,,,YES,NO,Monster,SmartGen,,,,NO
@@ -26,3 +26,4 @@ ClassID,GenType,Lv,Range,GenRange,RespawnTime,MaxPop,Minimap,Hide,UseAIOufOfPC,A
 26,26,1,40,-1,60000,6,0,0,0,1,0,1,siauliai_grass_3,풀 더미,,,,,,,KATYN_45_2_SQ_9_HERB,,,YES,NO,Neutral,,,,,NO
 27,27,1,200,-1,60000,1,0,0,0,0,0,0,HiddenTrigger6,SQ13,,,,,,,,KATYN_45_2_SQ_13,,YES,NO,Neutral,,,,,NO
 30,30,1,40,1,60000,1,1,0,0,0,0,0,npc_dievdirbys_m_2,딥디르비 아젤,,,,,,,KATYN_45_2_AJEL3,,,YES,NO,Neutral,,,,,NO
+31,1000,1,0,1,1,1,0,0,0,0,0,0,treasure_box1,보물 상자 LV1,,,,,,,TREASUREBOX_LV,,,YES,NO,Neutral,LV1,ITEM:COLLECT_280:1,,,

@@ -1,6 +1,6 @@
 ClassID,GenType,Lv,Range,GenRange,RespawnTime,MaxPop,Minimap,Hide,UseAIOufOfPC,UP_ReturnRange,AnchorCount,ClassType,Name,UniqueName,QuestName,Tag,Tactics,BTree,SimpleAI,Dialog,Enter,Leave,Save,OnlyPCCheck,SmartGen,Faction,ArgStr1,ArgStr2,ArgStr3,Tendency,P_MaxDialog
-1,1,1,20,1,100,1,3,0,0,0,1,Warp_arrow,페레토리 구릉,,,,MON_DUMMY,,,,PILGRIM313_TO_PILGRIM311,,NO,YES,NO,Neutral,,,,,0
-2,2,1,20,1,100,1,3,0,0,0,1,Warp_arrow,수타티스 교역로,,,,MON_DUMMY,,,,PILGRIM313_TO_PILGRIM312,,NO,YES,NO,Neutral,,,,,0
+1,1,1,20,1,100,1,2,0,0,0,1,Warp_arrow,페레토리 구릉,,,,MON_DUMMY,,,,PILGRIM313_TO_PILGRIM311,,NO,YES,NO,Neutral,,,,,0
+2,2,1,20,1,100,1,2,0,0,0,1,Warp_arrow,수타티스 교역로,,,,MON_DUMMY,,,,PILGRIM313_TO_PILGRIM312,,NO,YES,NO,Neutral,,,,,0
 3,3,1,40,1,1000,1,1,0,0,150,1,npc_Erikais,파드너 에리카스,,,,,,,PILGRIM313_ERIKAS,,,NO,YES,NO,Neutral,,,,,0
 4,4,1,40,1,1000,1,1,0,0,150,1,npc_williya,스콰이어 윌리야,,,,,,,PILGRIM313_WILLIYA,,,NO,YES,NO,Neutral,,,,,0
 5,5,1,40,1,1000,1,1,0,0,150,1,npc_Galius,가일류스 르귄,,,,,,PILGRIM313_GALIUS_AI,PILGRIM313_GALIUS,,,NO,YES,NO,Neutral,,,,,0
@@ -20,3 +20,6 @@ ClassID,GenType,Lv,Range,GenRange,RespawnTime,MaxPop,Minimap,Hide,UseAIOufOfPC,U
 25,25,0,40,30,0,35,0,0,0,0,0,Sec_Templeslave_mage,,,,,,,,,,,NO,YES,NO,Monster,SmartGen,,,,0
 26,26,0,30,150,30000,8,0,0,0,0,1,rootcrystal_01,나무뿌리 수정,,,,MON_TORCH,,,,,,NO,YES,NO,RootCrystal,,,,,0
 27,1000,1,0,1,1,1,0,0,0,0,0,treasure_box1,보물 상자 LV1,,,,,,,TREASUREBOX_LV,,,,YES,NO,Neutral,LV1,ITEM:COLLECT_242:1,,,
+28,1001,1,20,1,60000,1,0,0,0,0,0,HiddenTrigger4,UnvisibleName,,,,,,,,EXPLORER_MISLE39,,NO,YES,NO,Neutral,,,,,0
+29,1002,1,20,-1,60000,1,2,0,0,0,0,blank_npc_warp,바우바스 동굴,,,,MON_DUMMY,,VELNIAS_WARP_GATE_EFFECT,PILGRIM313_TO_D_LIMESTONECAVE_71_1,,,NO,YES,NO,Neutral,,,,,0
+30,1003,1,40,1,1,1,0,0,0,0,0,Board2,경고문,,,,,,,FREE_DUNGEON_SIGN8,,,NO,YES,NO,Neutral,,,,,0
