@@ -205,7 +205,6 @@ function CREATE_LIST_LBDBLCLICK(frame, obj, argStr, argNum)
 			ui.Chat(msg);
 		end
 
-
 	elseif CheatList_curtabIndex == 3 then
 
 		local isrunscp = IS_EDITING_RUNSCP(frame);
@@ -213,18 +212,18 @@ function CREATE_LIST_LBDBLCLICK(frame, obj, argStr, argNum)
 			CHEATLIST_RUNSCRIPT(frame);
 		else
 			local ForkName = CheatList_ForkName:GetText();
-				local curItem	= CheatList_tree_array[CheatList_curtabIndex]:GetSelect(0);
-				local caption = CheatList_tree_array[CheatList_curtabIndex]:GetItemCaption(curItem);
+			local curItem	= CheatList_tree_array[CheatList_curtabIndex]:GetSelect(0);
+			local caption = CheatList_tree_array[CheatList_curtabIndex]:GetItemCaption(curItem);
 
-				if caption ~= nil then
-					local classID	= CheatList_tree_array[CheatList_curtabIndex]:GetItemValue(curItem);
-					local cheat = GetClassString('Cheat', classID, 'Scp');
-					if cheat == "None" then
-						print("[Log] cheat is [None]! classID : "..classID);
-					else
-						loadstring(cheat)();
-					end
+			if caption ~= nil then
+				local classID	= CheatList_tree_array[CheatList_curtabIndex]:GetItemValue(curItem);
+				local cheat = GetClassString('Cheat', classID, 'Scp');
+				if cheat == "None" then
+					print("[Log] cheat is [None]! classID : "..classID);
+				else
+					load(cheat)();
 				end
+			end
 		end
 	else
 		ui.Chat(ScpArgMsg("Auto_SiSeuTemoLyuLo_inHayeo_ChiTeuLeul_SayongHal_Su_eopSeupNiDa."));
@@ -264,6 +263,9 @@ function CHEATLIST_RUNSCRIPT(frame)
 			break;
 		else
 			local argText = eobj:GetText();
+			if string.find(argText, ' ') ~= nil then
+                argText = string.gsub(argText, ' ', '/')
+            end
 			if argText == "" then
 				argText = "None";
 			end
@@ -494,7 +496,7 @@ function CHEATOTHERS_UPDATE_OTHERS(frame)
 	frame = frame:GetTopParentFrame();
 	local othersGroup = frame:GetChild("OthersGroup");
 	local edit = GET_CHILD(othersGroup, "ForkName", "ui::CEditControl");
-	local cap = edit:GetText();
+	local cap = string.upper(edit:GetText());
 
 	local cheatTree = CheatList_tree_array[3];
 	cheatTree:Clear();
@@ -515,7 +517,7 @@ function CHEATOTHERS_UPDATE_OTHERS(frame)
 
 	for i = 0 , cnt - 1 do
 		local cls = GetClassByIndexFromList(clslist, i);
-		local name = dictionary.ReplaceDicIDInCompStr(cls.Name);		
+		local name = string.upper(dictionary.ReplaceDicIDInCompStr(cls.Name));		
 		if cap == "" or nil ~= string.find(name, cap) then
 			local curItem 	= cheatTree:Add(parentItem, "{@st43b}" .. cls.Name, cls.ClassID);
 		end
@@ -533,7 +535,7 @@ function CHEATOTHERS_UPDATE_OTHERS(frame)
 
 	for i = 0 , cnt - 1 do
 		local cls = GetClassByIndexFromList(clslist, i);
-		local name = dictionary.ReplaceDicIDInCompStr(cls.Name);		
+		local name = string.upper(dictionary.ReplaceDicIDInCompStr(cls.Name));		
 		if cap == "" or nil ~= string.find(name, cap) then
 			local curItem 	= cheatTree:Add(parentItem, "{@st43b}" .. cls.Name, cls.ClassID);
 		end
@@ -550,3 +552,6 @@ function CHEATLIST_UI_CLOSE(frame, obj, argStr, argNum)
 	USECHEAT_ListSortType		= 'Cheat_Open';
 end
 
+function TEST_ALARM()
+	test.TestAlarm();
+end
