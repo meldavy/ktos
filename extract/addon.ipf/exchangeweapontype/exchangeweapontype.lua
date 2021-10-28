@@ -333,7 +333,7 @@ function EXCHANGEWEAPONTYPE_DROP(frame, icon)
 	else
 		return;
 	end
-
+	EXCHANGEWEAPONTYPE_UI_CLEAR();
 	local frame = ui.GetFrame('exchangeweapontype');
 	local liftIcon = ui.GetLiftIcon();
 	local FromFrame = liftIcon:GetTopParentFrame();
@@ -385,6 +385,7 @@ function EXCHANGEWEAPONTYPE_SLOT_POP(parent, ctrl)
 			item_slot_2:ClearIcon();
 			EXCHANGEWEAPONTYPE_SET_SLOT_ITEM(item_slot_2, 0);
 			item_slot_2:SetUserValue('SELECTED_INV_GUID', 'None');
+			item_slot_2:SetUserValue('SELECTED_ID', 'None');
 		end
 
 		local item_pic_2 = GET_CHILD_RECURSIVELY(parent, 'item_pic_2', "ui::CPicture");
@@ -641,6 +642,7 @@ function EXCHANGEWEAPONTYPE_UI_CLEAR()
 		item_slot_2:ClearIcon();
 		EXCHANGEWEAPONTYPE_SET_SLOT_ITEM(item_slot_2, 0);
 		item_slot_2:SetUserValue('SELECTED_INV_GUID', 'None');
+		item_slot_2:SetUserValue('SELECTED_ID', 'None');
 	end
 
 	local item_pic_2 = GET_CHILD_RECURSIVELY(frame, 'item_pic_2', "ui::CPicture");
