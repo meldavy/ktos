@@ -28,11 +28,11 @@ function IS_ANCIENT_ENABLE_MAP(self)
     else
         if IsRaidField() == 1 or IsRaidMap() == 1 then
             local mGameName = session.mgame.GetCurrentMGameName()
-            if mGameName ~= nil and mGameName ~= 'None' then
-                clsIndun = GetClassByStrProp("Indun", "MGame", mGameName)
-            end
-            end
+			if mGameName ~= nil and mGameName ~= 'None' then
+				clsIndun = GetClassByStrProp("Indun", "MGame", mGameName)
+			end
         end
+	end
     if clsIndun ~= nil and (TryGetProp(clsIndun, "SubType", "None") == "Casual" or TryGetProp(clsIndun, "DungeonType", "None") == "WeeklyRaid" or TryGetProp(clsIndun, "DungeonType", "None") == "FreeDungeon") then
         return "YES";
     end
@@ -72,7 +72,8 @@ function IS_ANCIENT_HEAL_ENABLE(self)
             mGameName = cmd:GetMGameName()
         end
     else
-        if IsRaidField() == 1 or IsRaidMap() == 1 then
+        zoneName = session.GetMapName();
+		if zoneName == 'id_irredians_113_1' then
             mGameName = session.mgame.GetCurrentMGameName()
         end
     end
