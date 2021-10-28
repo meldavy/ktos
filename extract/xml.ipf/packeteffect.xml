@@ -228,6 +228,8 @@
 		<Effect Name="Bokor_BwaKayiman"/>
 		<Effect Name="Sadhu_AstralBodySmite"/>
 		<Effect Name="F_wizard_compulsionlink_shot_explosion_blue"/>
+		<Effect Name="Peltasta_ShieldLob"/>
+		<Effect Name="Peltasta_ShieldLob2"/>
 	</Category>
 	<Category ID="70">
 		<Effect Name="EVENT_2001_NEWYEAR_INIT_PAD"/>
