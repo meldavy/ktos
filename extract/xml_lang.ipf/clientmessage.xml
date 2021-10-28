@@ -756,7 +756,7 @@
 		<Class ClassID="4105" ClassName="ItemCheck" Data="아이템 확인"/>
 		<Class ClassID="4106" ClassName="HaveItemReallyUse" Data="보유하고 있는 아이템이 있습니다.{nl}그래도 사용하시겠습니까?{nl}보유하고 있는 아이템"/>
 		<Class ClassID="4107" ClassName="CantUseEnchantBomb" Data="주변에 대상이 없습니다."/>
-		<Class ClassID="4108" ClassName="AreYouSureEquipCard" Data="선택하신 카드를 장착하시겠습니까?{nl}장착해제시 카드 레벨이 하락합니다."/>
+		<Class ClassID="4108" ClassName="AreYouSureEquipCard" Data="선택하신 카드를 장착하시겠습니까?{nl}장착해제시 실버가 소모됩니다."/>
 		<Class ClassID="4109" ClassName="NoHaveZombiefySkill" Data="좀비만들기 스킬이 없어 좀비를 생성할 수 없습니다."/>
 		<Class ClassID="4110" ClassName="IsMaxCountZombie" Data="좀비 최대 생성수에 도달하여 좀비를 생성할 수 없습니다."/>
 		<Class ClassID="4111" ClassName="Money{MAX}OverAtAcc" Data="최대 {MAX} 소지금을 초과하여 저장 할 수 없습니다."/>
@@ -1073,6 +1073,7 @@
 		<Class ClassID="4429" ClassName="EngravedOptionExist" Data="{#FE7E00}저장된 옵션이 있습니다!{/}"/>
 		<Class ClassID="4430" ClassName="ReallyEngraveOption" Data="{#FE7E00}각인은 캐릭터에 귀속되며, 기존 옵션은 복구되지 않습니다.{/}{nl}선택한 아이템과 재료로 각인 저장을 시도하시겠습니까?"/>
 		<Class ClassID="4457" ClassName="DontUseItem" Data="사용할 수 없는 아이템입니다."/>
+		<Class ClassID="4471" ClassName="{Name}FirstRelicGemMaxLevel{item}" Data="[{Name}]님이 서버 최초로 [{item}] 10레벨을 달성하셨습니다."/>
 	</Category>
 	<Category Name="ItemTooltip">
 		<Class ClassID="5001" ClassName="CoolDown : {Sec} Sec" Data="재사용 대기시간 : {Sec}초"/>

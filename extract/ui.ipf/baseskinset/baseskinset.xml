@@ -13530,6 +13530,8 @@
 		<image name="plate_achieve_Master_of_kannushi" file="\skin\user_title_skin.tga" imgrect="1075 854 214 34"/>
 		<image name="plate_achieve_Prank_of_Apolonija" file="\skin\user_title_skin.tga" imgrect="0 889 214 34" CMM_Caption="스팀_성별이 바뀐 npc 보상"/>
 		<image name="plate_achieve_weeklyrank_17" file="\skin\user_title_skin.tga" imgrect="215 889 214 34" CMM_Caption="주간보스_아시오메이지"/>
+		<image name="plate_achieve_relic_gem_first" file="\skin\user_title_skin.tga" imgrect="0 924 214 34" CMM_Caption="성물젬 10강_퍼스트"/>
+		<image name="plate_achieve_relic_gem_clear" file="\skin\user_title_skin.tga" imgrect="215 924 214 34" CMM_Caption="성물젬 10강_일반"/>
 	</imagelist>
 	<imagelist category="skin_hair">
 		<image name="icon_skintone_01_m01" file="\skin\skinhair\icon_skintone_01_m01.png" imgrect="0 0 80 80" CMM_Caption="남성 01"/>

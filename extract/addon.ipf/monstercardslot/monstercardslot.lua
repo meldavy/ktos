@@ -487,19 +487,13 @@ function EQUIP_CARDSLOT_INFO_OPEN(slotIndex)
 	local multiValue = 64;	-- 꽉 찬 카드 이미지를 하고 싶다면 90 으로. (단, 카드레벨 하락 정보가 잘 안보일 수 있음.)
 	local star_bg = GET_CHILD(frame, "star_bg");
 	local cardStar_Before = GET_CHILD(star_bg, "cardStar_Before");
-	local cardStar_After = GET_CHILD(star_bg, "cardStar_After");
-	local downArrow = GET_CHILD(star_bg, "downArrow");
 	local imgSize = frame:GetUserConfig('starSize');
 	if cardLv <= 1 then	
 		multiValue = 90;
-		cardStar_After:SetTextByKey("value", GET_STAR_TXT(imgSize, cardLv, cls));
 		cardStar_Before:SetVisible(0);
-		downArrow:SetVisible(0);
 	else
 		cardStar_Before:SetTextByKey("value", GET_STAR_TXT(imgSize, cardLv, cls));
-		cardStar_After:SetTextByKey("value", GET_STAR_TXT(imgSize, cardLv - 1, cls));	-- 카드 제거시 별 하나 줄어들게 설정.
 		cardStar_Before:SetVisible(1);
-		downArrow:SetVisible(1);
 	end;
 
 	-- 카드 크기 변환.
@@ -708,18 +702,18 @@ function _CARD_SLOT_EQUIP(slotIndex, itemClsId, itemLv, itemExp)
 end;
 
 -- 카드 슬롯의 카드 제거 요청
-function EQUIP_CARDSLOT_BTN_REMOVE(frame, ctrl)
-	-- local inven = ui.GetFrame("monstercardslot");
-	-- local argStr = string.format("%d", frame:GetUserIValue("REMOVE_CARD_SLOTINDEX"));
+-- function EQUIP_CARDSLOT_BTN_REMOVE(frame, ctrl)
+-- 	-- local inven = ui.GetFrame("monstercardslot");
+-- 	-- local argStr = string.format("%d", frame:GetUserIValue("REMOVE_CARD_SLOTINDEX"));
 
-	-- argStr = argStr .. " 0" -- 0: 카드 레벨 떨어지면서 제거
-	-- pc.ReqExecuteTx_NumArgs("SCR_TX_UNEQUIP_CARD_SLOT", argStr);
+-- 	-- argStr = argStr .. " 0" -- 0: 카드 레벨 떨어지면서 제거
+-- 	-- pc.ReqExecuteTx_NumArgs("SCR_TX_UNEQUIP_CARD_SLOT", argStr);
 
-	local yesScp = string.format("_EQUIP_CARDSLOT_BTN_REMOVE");
-	local clmsg = ScpArgMsg("ReallyRemoveCardWithoutCost");
+-- 	local yesScp = string.format("_EQUIP_CARDSLOT_BTN_REMOVE");
+-- 	local clmsg = ScpArgMsg("ReallyRemoveCardWithoutCost");
 
-	WARNINGMSGBOX_FRAME_OPEN_WITH_CHECK(clmsg, yesScp, "None");
-end;
+-- 	WARNINGMSGBOX_FRAME_OPEN_WITH_CHECK(clmsg, yesScp, "None");
+-- end;
 
 function _EQUIP_CARDSLOT_BTN_REMOVE()
 	local frame = ui.GetFrame("equip_cardslot_info")

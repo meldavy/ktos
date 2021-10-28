@@ -1,6 +1,7 @@
 local json = require 'json_imc'
 local has_claim = nil
 local colony_map_list = nil
+local _open_flag = nil
 
 function COLONY_BATTLE_INFO_ON_INIT(addon, frame)
     addon:RegisterMsg('GAME_START', 'CHECK_ENABLE_COLONY_BATTLE_INFO')
@@ -107,10 +108,18 @@ function IS_COLONY_PROGRESS()
 end
 
 function CHECK_ENABLE_COLONY_BATTLE_INFO(frame, msg, arg_str, arg_num)
+    if _open_flag == nil then
+        if session.colonywar.GetIsColonyWarMap() == true then
+            _open_flag = 'open'
+        else
+            _open_flag = 'close'
+        end
+    end
+
     if msg == 'GAME_START' or msg == 'IN_COLONYWAR_STATE' then
-        frame:ShowWindow(BoolToNumber(IS_COLONY_PROGRESS()))
+        frame:ShowWindow(BoolToNumber(IS_COLONY_PROGRESS() and _open_flag == 'open'))
     elseif msg == 'COLONY_STATE_UPDATE' then
-        frame:ShowWindow(arg_num)
+        frame:ShowWindow(BoolToNumber(IS_COLONY_PROGRESS() and _open_flag == 'open' and arg_num == 1))
     end
 end
 
@@ -132,7 +141,7 @@ function OPEN_COLONY_BATTLE_UI(frame, msg)
 end
 
 function CLOSE_COLONY_BATTLE_UI(frame)
-
+    _open_flag = 'close'
 end
 
 function CALLBACK_OPEN_COLONY_BATTLE_UI(code, ret_json, args)
@@ -179,6 +188,8 @@ function _OPEN_COLONY_BATTLE_UI(frame)
 
     COLONY_BATTLE_BUILD_ICON_UPDATE()
     COLONY_BATTLE_OCCUPY_COUNT_UPDATE(frame)
+
+    _open_flag = 'open'
 end
 
 function COLONY_BATTLE_INFO_INIT(frame)

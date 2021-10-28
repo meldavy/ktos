@@ -5,7 +5,7 @@
 	<option visible="false" closebutton="false" hideable="false" alwaysVisible="false"/>
 	<sound opensound="win_open" closesound="win_close"/>
 	<draw drawframe="false" drawtitlebar="false"/>
-	<layer layerlevel="92"/>
+	<layer layerlevel="79"/>
 	<input moveable="true" hittestframe="true" moveintitlebar="false"/>
 	<script OpenScp="OPEN_COLONY_BATTLE_UI" CloseScp="CLOSE_COLONY_BATTLE_UI" LBtnUpScp="COLONY_BATTLE_INFO_LBTN_UP"/>
 	<controls>

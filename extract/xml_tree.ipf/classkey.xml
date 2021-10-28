@@ -492,6 +492,7 @@
         <Key Name="EquipActionType" Value="109140"/>
         <Key Name="EvolvedItemLv" Value="109141"/>
         <Key Name="Fail_Goddess_Reinforce_Revision" Value="109424"/>
+        <Key Name="ReinforceRevision" Value="109644"/>
     </KeyIDSpc>
     <KeyIDSpc Name="Party">
         <Key Name="P_PARTY_Q_040" Value="53"/>

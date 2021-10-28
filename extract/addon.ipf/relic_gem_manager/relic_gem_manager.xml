@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by imc (imc) -->
-<uiframe name="relic_gem_manager" x="0" y="0" width="500" height="890">
+<uiframe name="relic_gem_manager" x="0" y="0" width="500" height="950">
 	<frame fullheight="false" fasthide="true" layout_gravity="center center" margin="0 0 0 0"/>
 	<skin frameskin=" "/>
 	<draw drawtitlebar="false"/>
@@ -13,8 +13,8 @@
 	<userconfig DO_RESULT_SOUND="sys_transcend_success" DO_RESULT_EFFECT="UI_item_parts2" DO_SUCCESS_SOUND="sys_transcend_success" DO_SUCCESS_EFFECT="UI_item_parts2_success" DO_FAIL_SOUND="sys_transcend_success" DO_FAIL_EFFECT="UI_item_parts2_fail" EFFECT_SCALE="5" EFFECT_DURATION="3" SUCCESS_EFFECT_SCALE="7" SUCCESS_EFFECT_DURATION="2" FAIL_EFFECT_SCALE="4" FAIL_EFFECT_DURATION="2"/>
 	<controls>
 		<!-- 상단 -->
-		<groupbox name="bg" rect="0 0 448 824" margin="0 10 0 0" layout_gravity="center top" draw="true" hittestbox="false" resizebyparent="false" resizebyresolution="false" scrollbar="false" skin="test_frame_low"/>
-		<groupbox name="bg_inner" parent="bg" rect="0 0 424 714" margin="0 97 0 0" layout_gravity="center top" draw="true" hittestbox="false" resizebyparent="false" resizebyresolution="false" scrollbar="false" skin="relic_frame_bg"/>
+		<groupbox name="bg" rect="0 0 448 939" margin="0 10 0 0" layout_gravity="center top" draw="true" hittestbox="false" resizebyparent="false" resizebyresolution="false" scrollbar="false" skin="test_frame_low"/>
+		<groupbox name="bg_inner" parent="bg" rect="0 0 424 829" margin="0 97 0 0" layout_gravity="center top" draw="true" hittestbox="false" resizebyparent="false" resizebyresolution="false" scrollbar="false" skin="relic_frame_bg"/>
 		<groupbox name="gem_manager_top" rect="0 0 477 76" margin="0 0 0 0" layout_gravity="center top" draw="true" hittestbox="false" resizebyparent="false" scrollbar="false" skin="relic_frame_top" stretch="true"/>
 		<richtext name="title" rect="0 0 120 24" margin="0 23 0 0" layout_gravity="center top" drawbackground="false" fixwidth="false" maxwidth="0" resizebytext="true" slideshow="false" spacey="0" textalign="left top" updateparent="false" format="{@st44}{s22}%s{/}{/}" param1="value" param1_def="성물 젬"/>
 		<button name="close" rect="0 0 35 35" margin="0 20 0 0" layout_gravity="right top" LBtnUpArgNum="" LBtnUpScp="RELIC_GEM_MANAGER_CLOSE" oversound="button_over" MouseOffAnim="btn_mouseoff" MouseOnAnim="btn_mouseover" clicksound="button_click_big" image="testclose_button" texttooltip="{@st59}창을 닫습니다{/}"/>
@@ -25,19 +25,33 @@
 		<tabitem name="tab_transfer" parent="type_Tab" width="104" caption="{@st66b}이전{/}" texttooltip="{@st59}성물 젬의 레벨을 다른 젬으로 이전합니다.{/}" layout_gravity="left top"/>
 		<tabitem name="tab_decompose" parent="type_Tab" width="104" caption="{@st66b}분해{/}" texttooltip="{@st59}성물 젬을 분해하여 재료 아이템을 획득합니다.{/}" layout_gravity="left top"/>
 		<!-- 강화 -->
-		<groupbox name="reinforceBg" parent="bg" rect="0 0 424 714" margin="0 97 0 0" layout_gravity="center top" draw="false" hittestbox="false" tabname="tab_reinforce" resizebyparent="false" resizebyresolution="false" scrollbar="false" skin="relic_frame_bg"/>
-		<groupbox name="rslot_gb" parent="reinforceBg" rect="0 0 424 210" margin="0 0 0 0" layout_gravity="center top" draw="false" hittestbox="true"/>
-		<richtext name="rinput_plz" parent="rslot_gb" rect="0 0 30 24" margin="0 20 0 0" layout_gravity="center top" format="{@sti1c}{s18}%s{/}{/}" param1="value" param1_def="아이템을 올려주세요" resizebytext="true" textalign="left center"/>
-		<richtext name="rgem_name" parent="rslot_gb" rect="0 0 30 24" margin="0 20 0 0" layout_gravity="center top" format="%s" param1="value" param1_def="아이템을 올려주세요" resizebytext="true" textalign="left center"/>
-		<picture name="rgem_slot_bg" parent="rslot_gb" rect="0 0 128 146" margin="0 50 0 0" layout_gravity="center top" image="relic_item_frame" stretch="true"/>
+		<groupbox name="reinforceBg" parent="bg" rect="0 0 424 829" margin="0 97 0 0" layout_gravity="center top" draw="false" hittestbox="false" tabname="tab_reinforce" resizebyparent="false" resizebyresolution="false" scrollbar="false" skin="relic_frame_bg"/>
+		<groupbox name="rinput_gb" parent="reinforceBg" rect="0 0 424 210" margin="0 0 0 0" layout_gravity="center top" draw="false" hittestbox="true"/>
+		<richtext name="rinput_plz" parent="rinput_gb" rect="0 0 30 24" margin="0 20 0 0" layout_gravity="center top" format="{@sti1c}{s18}%s{/}{/}" param1="value" param1_def="아이템을 올려주세요" resizebytext="true" textalign="left center"/>
+		<picture name="rgem_slot_input_bg" parent="rinput_gb" rect="0 0 128 146" margin="0 50 0 0" layout_gravity="center top" image="relic_item_frame" stretch="true"/>
+		<slot name="rgem_input_slot" parent="rgem_slot_input_bg" rect="0 0 128 128" margin="0 0 0 0" layout_gravity="center center" changecursor="false" hittestbox="true" skin="None" draw="false" DropScp="RELIC_GEM_MANAGER_REINFORCE_GEM_DROP" RBtnUpScp="None"/>
+		<groupbox name="rslot_gb" parent="reinforceBg" rect="0 0 424 210" margin="0 0 0 0" layout_gravity="center top" draw="false" hittestbox="true" scrollbar="false"/>
+		<groupbox name="rslot_inner_gb" parent="rslot_gb" rect="0 0 210 240" margin="0 0 0 0" layout_gravity="left top" draw="false" hittestbox="true"/>
+		<richtext name="rgem_name" parent="rslot_inner_gb" rect="0 0 30 24" margin="0 20 0 0" layout_gravity="center top" format="%s" param1="value" param1_def="아이템을 올려주세요" resizebytext="true" textalign="left center" omitbywidth="true" ellipsistexttooltip="true"/>
+		<picture name="rgem_slot_bg" parent="rslot_inner_gb" rect="0 0 128 146" margin="0 50 0 0" layout_gravity="center top" image="relic_item_frame" stretch="true"/>
 		<slot name="rgem_slot" parent="rgem_slot_bg" rect="0 0 128 128" margin="0 0 0 0" layout_gravity="center center" changecursor="false" hittestbox="true" skin="None" draw="false" DropScp="RELIC_GEM_MANAGER_REINFORCE_GEM_DROP" RBtnUpScp="RELIC_GEM_MANAGER_REINFORCE_GEM_REMOVE"/>
-		<groupbox name="rmatBg" parent="reinforceBg" rect="0 0 424 374" margin="0 210 0 0" layout_gravity="center top" draw="false" hittestbox="false" resizebyparent="false" resizebyresolution="false" scrollbar="false" skin="relic_frame_bg"/>
+		<groupbox name="rprob_gb" parent="rslot_gb" rect="0 0 204 170" margin="0 20 20 0" layout_gravity="right top" skin="relic_frame_inner" draw="true" hittestbox="false" resizebyparent="false" resizebyresolution="false" scrollbar="false"/>
+		<richtext name="rdef_rate_text" parent="rprob_gb" margin="10 0 0 0" rect="0 0 180 30" format="{@st202}{s16}기본 확률{/}{/}" textalign="left center" fontname="white_20_ol" fixwidth="true" layout_gravity="left top" resizebytext="false" omitbywidth="true" ellipsistexttooltip="true"/>
+		<richtext name="rdef_rate_value" parent="rprob_gb" margin="10 25 0 0" rect="0 0 180 30" format="{@st202}{s16}  ▶ %s%{/}{/}" param1="value" param1_def="0.00" textalign="left center" fontname="white_20_ol" fixwidth="true" layout_gravity="left top" resizebytext="false"/>
+		<richtext name="radd_rate_text" parent="rprob_gb" margin="10 55 0 0" rect="0 0 180 30" format="{@st202}{s16}누적 실패 보정{/}{/}" textalign="left center" fontname="white_20_ol" fixwidth="true" layout_gravity="left top" resizebytext="false" omitbywidth="true" ellipsistexttooltip="true"/>
+		<richtext name="radd_rate_value" parent="rprob_gb" margin="10 80 0 0" rect="0 0 180 30" format="{@st202}{s16}  ▶ %s%{/}{/}" param1="value" param1_def="0.00" textalign="left center" fontname="white_20_ol" fixwidth="true" layout_gravity="left top" resizebytext="false"/>
+		<richtext name="rtotal_rate_text" parent="rprob_gb" margin="10 110 0 0" rect="0 0 180 30" format="{@st202}{s16}성공 확률{/}{/}" textalign="left center" fontname="white_20_ol" fixwidth="true" layout_gravity="left top" resizebytext="false" omitbywidth="true" ellipsistexttooltip="true"/>
+		<richtext name="rtotal_rate_value" parent="rprob_gb" margin="10 135 0 0" rect="0 0 180 30" format="{@st202}{s16}  ▶ %s%{/}{/}" param1="value" param1_def="0.00" textalign="left center" fontname="white_20_ol" fixwidth="true" layout_gravity="left top" resizebytext="false"/>
+		<groupbox name="rmatBg" parent="reinforceBg" rect="0 0 424 489" margin="0 210 0 0" layout_gravity="center top" draw="false" hittestbox="false" resizebyparent="false" resizebyresolution="false" scrollbar="false" skin="relic_frame_bg"/>
 		<richtext name="rmat_title" parent="rmatBg" rect="0 0 50 24" margin="0 10 0 0" layout_gravity="center top" format="{@st202}{s16}%s{/}{/}" param1="value" param1_def="소모 아이템" resizebytext="true" textalign="left center"/>
 		<groupbox name="rmat_info" parent="rmatBg" rect="0 0 378 146" margin="0 40 0 0" layout_gravity="center top" skin="relic_frame_inner" stretch="false" scrollbar="false"/>
 		<groupbox name="rmat_inner" parent="rmat_info" rect="0 0 378 146" margin="0 0 0 0" layout_gravity="center top" draw="false" skin="relic_frame_inner" stretch="false" scrollbar="false"/>
 		<controlset name="rmat_1" parent="rmat_inner" rect="0 0 358 58" margin="0 10 0 0" type="relic_gem_lvup_material" layout_gravity="left top"/>
 		<controlset name="rmat_2" parent="rmat_inner" rect="0 0 358 58" margin="0 78 0 0" type="relic_gem_lvup_material" layout_gravity="left top"/>
-		<groupbox name="rprice_info" parent="rmatBg" rect="0 0 378 210" margin="0 186 0 0" layout_gravity="center top" skin="relic_frame_inner" draw="false" stretch="false" scrollbar="false"/>
+		<groupbox name="rextra_mat_info" parent="rmatBg" rect="0 0 378 115" margin="0 186 0 0" layout_gravity="center top" skin="relic_frame_inner" draw="false" stretch="false" scrollbar="false"/>
+		<richtext name="rextra_mat_text" rect="0 0 378 30" margin="0 12 0 0" layout_gravity="left top" parent="rextra_mat_info" format="{@st202}추가 재료 ▶ (실패 시 확률 %s% 보정){/}" param1="value" param1_def="0.00"/>
+		<slotset name="rslotlist_extra_mat" parent="rextra_mat_info" rect="0 0 360 0" margin="0 45 0 0" layout_gravity="center top" LBtnDownScp="SCR_LBTNDOWN_RELIC_GEM_REINF_EXTRA_MAT" LBtnDblClickScp="SCR_LBTNDOWN_RELIC_GEM_REINF_EXTRA_MAT" RBtnDownScp="SCR_LBTNDOWN_RELIC_GEM_REINF_EXTRA_MAT" col="6" row="1" cursoronresize="false" dropsound="icon_get_down" enabledrag="false" enableselect="true" hideindrag="true" image="slot" maxselect="80" movepop="false" oversound="button_over" picksound="icon_pick_up" selectmode="count" size="58 58" skin="invenslot2" spc="2 2"/>
+		<groupbox name="rprice_info" parent="rmatBg" rect="0 0 378 210" margin="0 301 0 0" layout_gravity="center top" skin="relic_frame_inner" draw="false" stretch="false" scrollbar="false"/>
 		<richtext name="rdiscount_text" rect="0 0 378 30" margin="0 12 0 0" layout_gravity="left top" parent="rprice_info" caption="{@st202}할인 쿠폰 ▶{/}"/>
 		<slotset name="rslotlist_discount" parent="rprice_info" rect="0 0 360 0" margin="0 45 0 0" layout_gravity="center top" LBtnDownScp="RELIC_GEM_MANAGER_REINFORCE_DISCOUNT_CLICK" LBtnDblClickScp="RELIC_GEM_MANAGER_REINFORCE_DISCOUNT_CLICK" RBtnDownScp="RELIC_GEM_MANAGER_REINFORCE_DISCOUNT_CLICK" col="6" row="1" cursoronresize="false" dropsound="icon_get_down" enabledrag="false" enableselect="true" hideindrag="true" image="slot" maxselect="80" movepop="false" oversound="button_over" picksound="icon_pick_up" selectmode="count" size="58 58" skin="invenslot2" spc="2 2"/>
 		<richtext name="r_price_name" parent="rprice_info" rect="0 0 64 20" margin="1 120 0 0" layout_gravity="left top" caption="{@st202}소모 비용 ▶{/}" textalign="left center"/>
@@ -57,7 +71,7 @@
 		<button name="send_ok_reinforce" parent="reinforceBg" rect="0 0 160 70" margin="0 0 0 20" layout_gravity="center bottom" LBtnUpScp="CONFIRM_RELIC_GEM_MANAGER_REINFORCE" skin="relic_btn_purple" format="{@st41b}{s18}%s" oversound="button_cursor_over_3" param1="value" param1_def="확인" MouseOffAnim="btn_mouseoff" MouseOnAnim="btn_mouseover" clicksound="button_click_big"/>
 		<!-- 강화 끝 -->
 		<!-- 합성 -->
-		<groupbox name="composeBg" parent="bg" rect="0 0 424 714" margin="0 97 0 0" layout_gravity="center top" draw="false" hittestbox="false" tabname="tab_compose" resizebyparent="false" resizebyresolution="false" scrollbar="false" skin="relic_frame_bg"/>
+		<groupbox name="composeBg" parent="bg" rect="0 0 424 829" margin="0 97 0 0" layout_gravity="center top" draw="false" hittestbox="false" tabname="tab_compose" resizebyparent="false" resizebyresolution="false" scrollbar="false" skin="relic_frame_bg"/>
 		<groupbox name="cmatBg" parent="composeBg" rect="0 0 424 504" margin="0 80 0 0" layout_gravity="center top" draw="false" hittestbox="false" resizebyparent="false" resizebyresolution="false" scrollbar="false" skin="relic_frame_bg"/>
 		<richtext name="cmat_title" parent="cmatBg" rect="0 0 50 24" margin="0 270 0 0" layout_gravity="center top" format="{@st202}{s16}%s{/}{/}" param1="value" param1_def="소모 아이템" resizebytext="true" textalign="left center"/>
 		<groupbox name="cmat_info" parent="cmatBg" rect="0 0 378 82" margin="0 300 0 0" layout_gravity="center top" skin="relic_frame_inner" stretch="false" scrollbar="false"/>
@@ -83,7 +97,7 @@
 		<slot name="cgem_slot3" parent="slot_bg3" rect="0 0 128 146" margin="0 0 0 0" layout_gravity="center top" changecursor="false" hittestbox="true" skin="None" draw="false" DropScp="RELIC_GEM_MANAGER_COMPOSE_GEM_DROP" RBtnUpScp="CLEAR_RELIC_GEM_MANAGER_COMPOSE_SLOT"/>
 		<!-- 합성 끝 -->
 		<!-- 이전 -->
-		<groupbox name="transferBg" parent="bg" rect="0 0 424 714" margin="0 97 0 0" layout_gravity="center top" draw="false" hittestbox="false" tabname="tab_transfer" resizebyparent="false" resizebyresolution="false" scrollbar="false" skin="relic_frame_bg"/>
+		<groupbox name="transferBg" parent="bg" rect="0 0 424 829" margin="0 97 0 0" layout_gravity="center top" draw="false" hittestbox="false" tabname="tab_transfer" resizebyparent="false" resizebyresolution="false" scrollbar="false" skin="relic_frame_bg"/>
 		<groupbox name="tinput_gb" parent="transferBg" rect="0 0 424 240" margin="0 0 0 0" layout_gravity="center top" draw="false" hittestbox="true"/>
 		<richtext name="tinput_plz" parent="tinput_gb" rect="0 0 30 24" margin="0 20 0 0" layout_gravity="center top" format="{@sti1c}{s18}%s{/}{/}" param1="value" param1_def="아이템을 올려주세요" resizebytext="true" textalign="left center"/>
 		<picture name="tinput_slot_bg" parent="tinput_gb" rect="0 0 128 146" margin="0 50 0 0" layout_gravity="center top" image="relic_item_frame" stretch="true"/>
@@ -106,7 +120,7 @@
 		<button name="send_ok_transfer" parent="transferBg" rect="0 0 160 70" margin="0 0 0 20" layout_gravity="center bottom" LBtnUpScp="CLEAR_RELIC_GEM_MANAGER_TRANSFER" skin="relic_btn_purple" format="{@st41b}{s18}%s" oversound="button_cursor_over_3" param1="value" param1_def="확인" MouseOffAnim="btn_mouseoff" MouseOnAnim="btn_mouseover" clicksound="button_click_big"/>
 		<!-- 이전 끝 -->
 		<!-- 분해 -->
-		<groupbox name="decomposeBg" parent="bg" rect="0 0 424 714" margin="0 97 0 0" layout_gravity="center top" draw="false" hittestbox="false" tabname="tab_decompose" resizebyparent="false" resizebyresolution="false" scrollbar="false" skin="relic_frame_bg"/>
+		<groupbox name="decomposeBg" parent="bg" rect="0 0 424 829" margin="0 97 0 0" layout_gravity="center top" draw="false" hittestbox="false" tabname="tab_decompose" resizebyparent="false" resizebyresolution="false" scrollbar="false" skin="relic_frame_bg"/>
 		<groupbox name="slot_box" parent="decomposeBg" rect="0 0 380 360" margin="10 34 0 0" layout_gravity="center top" draw="false" hittestbox="false" resizebyparent="false" resizebyresolution="false" scrollbar="true" skin="relic_frame_bg"/>
 		<slotset name="slotlist" parent="slot_box" rect="0 0 360 0" margin="0 0 0 0" layout_gravity="left top" LBtnDownScp="SCP_LBTDOWN_RELIC_GEM_DECOMPOSE" LBtnDblClickScp="SCP_LBTDOWN_RELIC_GEM_DECOMPOSE" RBtnDownScp="SCP_LBTDOWN_RELIC_GEM_DECOMPOSE" col="6" cursoronresize="false" dropsound="icon_get_down" enabledrag="false" enableselect="true" hideindrag="true" image="slot" maxselect="36" movepop="false" oversound="button_over" picksound="icon_pick_up" row="6" selectmode="count" size="58 58" skin="invenslot2" spc="2 2"/>
 		<groupbox name="dmatBg" parent="decomposeBg" rect="0 0 424 190" margin="0 394 0 0" layout_gravity="center top" draw="false" hittestbox="false" resizebyparent="false" resizebyresolution="false" scrollbar="false" skin="relic_frame_bg"/>

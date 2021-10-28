@@ -74,6 +74,8 @@ ClassID,ClassName,Name,UseDaily,UseWeekly
 2004,Shovel,삽질,NO,NO
 2005,Potion,물약,NO,NO
 2006,BOOKCOLLECTIONAP,책교환,NO,NO
+2007,Relic_First,The Ruler of Relic,NO,NO
+2008,Relic_Lv10,Relic Trailblazer,NO,NO
 2501,VELCOFFER_KILL,벨코퍼 처치 횟수,NO,NO
 2502,whitecrow_first_kill,[흰 까마귀의 영면지: 레전드] 서버별 최초 클리어,NO,NO
 2503,whitecrow_clear,[흰 까마귀의 영면지: 레전드] 일정 기간 내 클리어,NO,NO

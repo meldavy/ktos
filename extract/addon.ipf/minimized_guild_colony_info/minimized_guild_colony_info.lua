@@ -27,6 +27,11 @@ function TOGGLE_COLONY_INFO(parent, ctrl)
 end
 
 function COLONY_BATTLE_INFO_ICON_NOTICE(enable)
+	if IS_COLONY_PROGRESS() == false then
+		ui.CloseFrame('minimized_guild_colony_info')
+		return
+	end
+
 	local frame = ui.GetFrame('minimized_guild_colony_info')
 	if enable == 1 then
 		frame:ShowWindow(1)

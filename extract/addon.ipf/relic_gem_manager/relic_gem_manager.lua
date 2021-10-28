@@ -176,6 +176,11 @@ local function _CLEAR_ALL_REINFORCE_MATERIAL(frame)
 	for i = 0, discountSet:GetSlotCount() - 1 do
 		frame:SetUserValue('DISCOUNT_MAT_' .. i, 0)
 	end
+
+	local extraMatSet = GET_CHILD_RECURSIVELY(frame, 'rslotlist_extra_mat')
+	for i = 0, extraMatSet:GetSlotCount() - 1 do
+		frame:SetUserValue('EXTRA_MAT_' .. i, 0)
+	end
 end
 
 -- 강화 실패 시의 강화 UI 업데이트
@@ -223,6 +228,18 @@ function UPDATE_RELIC_GEM_MANAGER_REINFORCE(frame)
 			stone_discount = stone_discount + (prevCnt * stone)
 		end
 
+		local extraMatSet = GET_CHILD_RECURSIVELY(frame, 'rslotlist_extra_mat')
+		for i = 0, extraMatSet:GetSelectedSlotCount() - 1 do
+			local slot = extraMatSet:GetSelectedSlot(i)
+			local _guid = slot:GetUserValue('ITEM_GUID')
+			local mat_item = session.GetInvItemByGuid(_guid)
+			local prevCnt = frame:GetUserIValue('EXTRA_MAT_' .. slot:GetSlotIndex())
+			if mat_item == nil or mat_item.count < prevCnt then
+				clear_flag = true
+				break
+			end
+		end
+
 		local rmat_1 = GET_CHILD_RECURSIVELY(frame, 'rmat_1')
 		local rmat_1_slot = GET_CHILD(rmat_1, 'mat_slot', 'ui::CSlot')
 		local misc_cnt = rmat_1_slot:GetUserIValue('NEED_COUNT')
@@ -247,6 +264,8 @@ function UPDATE_RELIC_GEM_MANAGER_REINFORCE(frame)
 		end
 
 		UPDATE_RELIC_GEM_MANAGER_REINFORCE_DISCOUNT(frame)
+
+		UPDATE_RELIC_GEM_REINF_EXTRA_MAT(frame)
 	end
 end
 
@@ -321,6 +340,151 @@ function RELIC_GEM_MANAGER_REINFORCE_TOTAL_DISCOUNT_PRICE()
     end
     
     return totalDiscount, stoneDiscount
+end
+
+-- 추가 재료 업데이트
+function UPDATE_RELIC_GEM_REINF_EXTRA_MAT(frame)
+	local slotset = GET_CHILD_RECURSIVELY(frame, 'rslotlist_extra_mat')
+	slotset:ClearIconAll()
+	slotset:SetUserValue('NORMAL_MAT_COUNT', 0)
+	slotset:SetUserValue('PREMIUM_MAT_COUNT', 0)
+
+	local guid = frame:GetUserValue('GEM_GUID')
+	if guid ~= 'None' then
+		local inv_item = session.GetInvItemByGuid(guid)
+		if inv_item == nil then return end
+
+		local inv_item_list = session.GetInvItemList()
+
+		FOR_EACH_INVENTORY(inv_item_list, function(inv_item_list, inv_item, slotset)
+			local obj = GetIES(inv_item:GetObject())
+			local arg_str = item_relic_reinforce.is_reinforce_percentUp(obj)
+			if arg_str ~= 'NO' then
+				local slotindex = imcSlot:GetEmptySlotIndex(slotset)
+				local slot = slotset:GetSlotByIndex(slotindex)
+				local icon = CreateIcon(slot)
+				icon:Set(obj.Icon, 'Item', inv_item.type, slotindex, inv_item:GetIESID(), inv_item.count)
+				slot:SetUserValue('ITEM_GUID', inv_item:GetIESID())
+				slot:SetUserValue('MAT_TYPE', arg_str)
+				slot:SetMaxSelectCount(inv_item.count)
+				local class = GetClassByType('Item', inv_item.type)
+				SET_SLOT_ITEM_TEXT_USE_INVCOUNT(slot, inv_item, obj, inv_item.count)
+				ICON_SET_INVENTORY_TOOLTIP(icon, inv_item, 'poisonpot', class)
+
+				local prevSelectedCount = frame:GetUserIValue('EXTRA_MAT_' .. slotindex)
+				if prevSelectedCount <= inv_item.count then
+					slot:Select(1)
+					slot:SetSelectCount(prevSelectedCount)
+					SCR_LBTNDOWN_RELIC_GEM_REINF_EXTRA_MAT(slotset, slot)
+				else
+					slot:SetSelectCount(0)
+					slot:Select(0)
+					frame:SetUserValue('EXTRA_MAT_' .. slotindex, 0)
+				end
+			end
+		end, false, slotset)
+	end
+
+	slotset:MakeSelectionList()
+end
+
+function RELIC_GEM_REINF_RATE_UPDATE(frame)
+	local guid = frame:GetUserValue('GEM_GUID')
+	if guid == nil or guid == 'None' then return end
+	
+	local inv_item = session.GetInvItemByGuid(guid)
+	if inv_item == nil then return end
+
+	local item_obj = GetIES(inv_item:GetObject())
+	local gem_lv = frame:GetUserIValue('GEM_LV')
+
+	local def_rate = shared_item_relic.get_gem_reinforce_ratio(gem_lv)
+	local rdef_rate_value = GET_CHILD_RECURSIVELY(frame, 'rdef_rate_value')
+	rdef_rate_value:SetTextByKey('value', string.format('%.2f', def_rate * 0.0001))
+
+	local add_rate_by_failure = item_relic_reinforce.get_additional_ratio(item_obj)
+	local radd_rate_value = GET_CHILD_RECURSIVELY(frame, 'radd_rate_value')
+	radd_rate_value:SetTextByKey('value', string.format('%.3f', add_rate_by_failure * 0.0001))
+
+	local final_rate = def_rate + add_rate_by_failure
+	local rtotal_rate_value = GET_CHILD_RECURSIVELY(frame, 'rtotal_rate_value')
+	rtotal_rate_value:SetTextByKey('value', string.format('%.3f', final_rate * 0.0001))
+
+	local slotset = GET_CHILD_RECURSIVELY(frame, 'rslotlist_extra_mat')
+	local normal_cnt = slotset:GetUserIValue('NORMAL_MAT_COUNT')
+	local premium_cnt = slotset:GetUserIValue('PREMIUM_MAT_COUNT')
+	local add_rate_when_failed = item_relic_reinforce.get_revision_ratio(def_rate, normal_cnt, premium_cnt)	
+	local rextra_mat_text = GET_CHILD_RECURSIVELY(frame, 'rextra_mat_text')
+	rextra_mat_text:SetTextByKey('value', string.format('%.3f', add_rate_when_failed * 0.0001))
+end
+
+function SCR_LBTNDOWN_RELIC_GEM_REINF_EXTRA_MAT(slotset, slot)
+	if ui.CheckHoldedUI() == true then return end
+
+	local frame = slotset:GetTopParentFrame()
+	ui.EnableSlotMultiSelect(1)
+
+	local guid = frame:GetUserValue('GEM_GUID')
+	if guid == 'None' then return end
+	
+	local normal_max = GET_RELIC_MAX_SUB_REVISION_COUNT()
+	local premium_max = GET_RELIC_MAX_PREMIUM_SUB_REVISION_COUNT()
+	local normal_cnt = 0
+	local premium_cnt = 0
+	for i = 0, slotset:GetSlotCount() - 1 do
+		local _slot = slotset:GetSlotByIndex(i)
+		if _slot ~= slot then
+			local cnt = _slot:GetSelectCount()
+			if cnt > 0 then
+				local arg_str = _slot:GetUserValue('MAT_TYPE')
+				if arg_str == 'normal' then
+					normal_cnt = normal_cnt + cnt
+				elseif arg_str == 'premium' then
+					premium_cnt = premium_cnt + cnt
+				end
+			end
+			
+			if cnt == 0 then
+				_slot:Select(0)
+			end
+		end
+	end
+
+	local select_cnt = slot:GetSelectCount()
+	local arg_str = slot:GetUserValue('MAT_TYPE')
+	if arg_str == 'normal' then
+		if normal_cnt + select_cnt > normal_max then
+			local adjust_cnt = normal_max - normal_cnt
+			if adjust_cnt < 0 then
+				adjust_cnt = 0
+			end
+
+			select_cnt = adjust_cnt
+		end
+		normal_cnt = normal_cnt + select_cnt
+	elseif arg_str == 'premium' then
+		if premium_cnt + select_cnt > premium_max then
+			local adjust_cnt = premium_max - premium_cnt
+			if adjust_cnt < 0 then
+				adjust_cnt = 0
+			end
+			
+			select_cnt = adjust_cnt
+		end
+		premium_cnt = premium_cnt + select_cnt
+	end
+
+	slot:SetSelectCount(select_cnt)
+	if select_cnt == 0 then
+		slot:Select(0)
+	end
+
+	frame:SetUserValue('EXTRA_MAT_' .. slot:GetSlotIndex(), select_cnt)
+
+	slotset:SetUserValue('NORMAL_MAT_COUNT', normal_cnt)
+	slotset:SetUserValue('PREMIUM_MAT_COUNT', premium_cnt)
+
+	RELIC_GEM_REINF_RATE_UPDATE(frame)
 end
 
 function RELIC_GEM_MANAGER_REINFORCE_DISCOUNT_CLICK(slotSet, slot)
@@ -528,13 +692,19 @@ function RELIC_GEM_MANAGER_REINFORCE_REG_GEM(frame, inv_item, item_obj)
 		return
 	end
 
-	local rinput_plz = GET_CHILD_RECURSIVELY(frame, 'rinput_plz')
-	rinput_plz:ShowWindow(0)
+	local rinput_gb = GET_CHILD_RECURSIVELY(frame, 'rinput_gb')
+	if rinput_gb:IsVisible() == 1 then
+		rinput_gb:ShowWindow(0)
+	end
+
+	local rslot_gb = GET_CHILD_RECURSIVELY(frame, 'rslot_gb')
+	if rslot_gb:IsVisible() == 0 then
+		rslot_gb:ShowWindow(1)
+	end
 
 	local rgem_name = GET_CHILD_RECURSIVELY(frame, 'rgem_name')
 	local name_str = GET_RELIC_GEM_NAME_WITH_FONT(item_obj)
 	rgem_name:SetTextByKey('value', name_str)
-	rgem_name:ShowWindow(1)
 
 	local rgem_slot = GET_CHILD_RECURSIVELY(frame, 'rgem_slot')
 	SET_SLOT_ITEM(rgem_slot, inv_item)
@@ -561,10 +731,17 @@ function RELIC_GEM_MANAGER_REINFORCE_REG_GEM(frame, inv_item, item_obj)
 
 	rmat_inner:ShowWindow(1)
 
+	local rextra_mat_info = GET_CHILD_RECURSIVELY(frame, 'rextra_mat_info')
+	rextra_mat_info:ShowWindow(1)
+
+	UPDATE_RELIC_GEM_REINF_EXTRA_MAT(frame)
+
 	local rprice_info = GET_CHILD_RECURSIVELY(frame, 'rprice_info')
 	rprice_info:ShowWindow(1)
 
 	UPDATE_RELIC_GEM_MANAGER_REINFORCE_DISCOUNT(frame)
+
+	RELIC_GEM_REINF_RATE_UPDATE(frame)
 
 	_REINFORCE_EXEC_BTN_UPDATE(frame)
 end
@@ -656,24 +833,24 @@ function CLEAR_RELIC_GEM_MANAGER_REINFORCE()
 	local rresult_gb = GET_CHILD_RECURSIVELY(frame, 'rresult_gb')
 	rresult_gb:ShowWindow(0)
 
-	local rslot_gb = GET_CHILD_RECURSIVELY(frame, 'rslot_gb')
-	rslot_gb:ShowWindow(1)
-
-	local send_ok_reinforce = GET_CHILD_RECURSIVELY(frame, 'send_ok_reinforce')
-	send_ok_reinforce:ShowWindow(0)
-
-	local do_reinforce = GET_CHILD_RECURSIVELY(frame, 'do_reinforce')
-	do_reinforce:ShowWindow(1)
-	do_reinforce:SetEnable(0)
-	
 	local rgem_slot = GET_CHILD_RECURSIVELY(frame, 'rgem_slot')
 	rgem_slot:ClearIcon()
 	
 	local rgem_name = GET_CHILD_RECURSIVELY(frame, 'rgem_name')
-	rgem_name:ShowWindow(0)
+	rgem_name:SetText('')
 
-	local rinput_plz = GET_CHILD_RECURSIVELY(frame, 'rinput_plz')
-	rinput_plz:ShowWindow(1)
+	local rslot_gb = GET_CHILD_RECURSIVELY(frame, 'rslot_gb')
+	rslot_gb:ShowWindow(0)
+	
+	local rinput_gb = GET_CHILD_RECURSIVELY(frame, 'rinput_gb')
+	rinput_gb:ShowWindow(1)
+
+	local send_ok_reinforce = GET_CHILD_RECURSIVELY(frame, 'send_ok_reinforce')
+	send_ok_reinforce:ShowWindow(0)
+	
+	local do_reinforce = GET_CHILD_RECURSIVELY(frame, 'do_reinforce')
+	do_reinforce:ShowWindow(1)
+	do_reinforce:SetEnable(0)
 
 	frame:SetUserValue('GEM_TYPE', 0)
 	frame:SetUserValue('GEM_GUID', 'None')
@@ -683,8 +860,16 @@ function CLEAR_RELIC_GEM_MANAGER_REINFORCE()
 		frame:SetUserValue('DISCOUNT_MAT_' .. i, 0)
 	end
 
+	local extraMatSet = GET_CHILD_RECURSIVELY(frame, 'rslotlist_extra_mat', 'ui::CSlotSet')
+	for i = 0, extraMatSet:GetSlotCount() - 1 do
+		frame:SetUserValue('EXTRA_MAT_' .. i, 0)
+	end
+
 	local rmat_inner = GET_CHILD_RECURSIVELY(frame, 'rmat_inner')
 	rmat_inner:ShowWindow(0)
+
+	local rextra_mat_info = GET_CHILD_RECURSIVELY(frame, 'rextra_mat_info')
+	rextra_mat_info:ShowWindow(0)
 
 	local rprice_info = GET_CHILD_RECURSIVELY(frame, 'rprice_info')
 	rprice_info:ShowWindow(0)
@@ -780,7 +965,6 @@ function RELIC_GEM_MANAGER_REINFORCE_EXEC(parent)
 
     -- 강화 할인 쿠폰 등록
     local discountSet = GET_CHILD_RECURSIVELY(frame, 'rslotlist_discount', 'ui::CSlotSet')
-
     for i = 0, discountSet:GetSelectedSlotCount() -1 do
         local slot = discountSet:GetSelectedSlot(i)
         local Icon = CreateIcon(slot)
@@ -789,6 +973,15 @@ function RELIC_GEM_MANAGER_REINFORCE_EXEC(parent)
 		local dis_item = session.GetInvItemByGuid(iconInfo:GetIESID())
         session.AddItemID(iconInfo:GetIESID(), cnt)
     end
+	
+	-- 여기서 보조제를 등록
+	local extraMatSet = GET_CHILD_RECURSIVELY(frame, 'rslotlist_extra_mat')
+	for i = 0, extraMatSet:GetSelectedSlotCount() - 1 do
+		local slot = extraMatSet:GetSelectedSlot(i)
+		local _guid = slot:GetUserValue('ITEM_GUID')
+		local cnt = slot:GetSelectCount()
+		session.AddItemID(_guid, cnt)
+	end
 	
 	local check_no_msgbox = GET_CHILD_RECURSIVELY(frame, 'check_no_msgbox')
 	if check_no_msgbox:IsChecked() == 1 then

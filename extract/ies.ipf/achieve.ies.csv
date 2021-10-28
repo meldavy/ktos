@@ -453,3 +453,5 @@ ClassID,NeedCount,ClassName,Group,Category,Name,Desc,Icon,Hidden,DescTitle,Rewar
 160086,1,WEEKLY_BOSS_RANK_CLASS_86,AchievePoint,랭킹,아처,주간 보스 레이드 클래스 랭킹 1등 칭호,icon_item_Misc_00021,YES,아처,,True,WeeklyRankClass_86,YES,,,,,,NO,plate_achieve_Master_of_Archer
 160087,1,WEEKLY_BOSS_RANK_CLASS_87,AchievePoint,랭킹,클레릭,주간 보스 레이드 클래스 랭킹 1등 칭호,icon_item_Misc_00021,YES,클레릭,,True,WeeklyRankClass_87,YES,,,,,,NO,plate_achieve_Master_of_Cleric
 160088,1,WEEKLY_BOSS_RANK_CLASS_88,AchievePoint,랭킹,위저드,주간 보스 레이드 클래스 랭킹 1등 칭호,icon_item_Misc_00021,YES,위저드,,True,WeeklyRankClass_88,YES,,,,,,NO,plate_achieve_Master_of_Wizard
+170001,1,Relic_First,AchievePoint,성물,The Ruler of Relic,서버 최초 성물 젬 10 레벨 달성,icon_item_Misc_00021,YES,The Ruler of Relic,,True,Relic_First,YES,,,,,,NO,plate_achieve_relic_gem_first
+170002,1,Relic_Lv10,AchievePoint,성물,Relic Trailblazer,성물 젬 10 레벨 달성,icon_item_Misc_00021,YES,Relic Trailblazer,,True,Relic_Lv10,YES,,,,,,NO,plate_achieve_relic_gem_clear
