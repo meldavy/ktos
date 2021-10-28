@@ -1,0 +1,11 @@
+ClassID,Time,X,Y,ClassName
+1,0.1,0,0.1,ThrowMove_1
+2,0.2,0.05,0.2,ThrowMove_2
+3,0.3,0.1,0.3,ThrowMove_3
+4,0.4,0.2,0.6,ThrowMove_4
+5,0.5,0.5,1,ThrowMove_5
+6,0.6,0.7,0.9,ThrowMove_6
+7,0.7,0.9,0.8,ThrowMove_7
+8,0.8,1,0,ThrowMove_8
+9,0.9,1,0,ThrowMove_9
+10,1,1,0,ThrowMove_10
