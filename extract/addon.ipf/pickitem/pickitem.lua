@@ -1,5 +1,11 @@
-function PICKITEM_ON_INIT(addon, frame)
+function PICKITEM_ON_INIT(addon, frame) -- ÀüÃ¼ ±â´ÉÀ» sequentialpickitem.lua·Î ¿Å±â´Â Áß
+
 	PickCount = 0;
+	--¸Þ½ÃÁö
+	--addon:RegisterMsg('BUFF_ADD', 'PICKITEM_ON_MSG');
+	--addon:RegisterMsg('INV_ITEM_ADD', 'PICKITEM_ON_MSG');
+	--addon:RegisterMsg('INV_ITEM_CHANGE_COUNT', 'PICKITEM_ON_MSG');
+	--addon:RegisterMsg('INV_ITEM_IN', 'PICKITEM_IN');
 end
 
 function END_PICKITEM(frame, msg, argStr, argNum)
@@ -33,12 +39,12 @@ function PICKITEM_IN(frame, msg, itemGuid, itemCount, class)
 	--frame:ShowWindow(1);
 	PickCount = PickCount + 1;
 
-	-- Pcik ï¿½ï¿½ï¿½ï¿½ï¿½Û½ï¿½ È­ï¿½ï¿½ ï¿½ß¾Ó¿ï¿½ Ç¥ï¿½ï¿½ï¿½ï¿½ ControlSet ï¿½ï¿½ï¿½ï¿½
+	-- Pcik ¾ÆÀÌÅÛ½Ã È­¸é Áß¾Ó¿¡ Ç¥ÇöÇÒ ControlSet »ý¼º
 	local PickItem 			= frame:GetChild('pickitem');
 	local PickItemGropBox	= tolua.cast(PickItem, "ui::CGroupBox");
 	PickItemGropBox:RemoveAllChild();
 
-	-- ControlSet ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½
+	-- ControlSet ÀÌ¸§ ¼³Á¤
 	local img = GET_ITEM_ICON_IMAGE(class);
 	
 	local controlSetName = "icon_"..tostring(PickCount);
@@ -54,7 +60,7 @@ function PICKITEM_IN(frame, msg, itemGuid, itemCount, class)
 
 	icon:Set(iconName, 'PICKITEM', itemCount, 0);
 
-	-- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ È¹ï¿½æ·® ï¿½ï¿½ï¿½
+	-- ¾ÆÀÌÅÛ ÀÌ¸§°ú È¹µæ·® Ãâ·Â
 	local printName	 = '{@st43}' ..GET_FULL_NAME(class);
 	local printCount = '{@st41b}'..ScpArgMsg("GetByCount{Count}", "Count", itemCount);
 
@@ -62,7 +68,7 @@ function PICKITEM_IN(frame, msg, itemGuid, itemCount, class)
 	PickItemCountCtrl:SetTextByKey('ItemCount', printCount);
 
 
-	-- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½Ê¹ï¿½ï¿½æ¶§ Â©ï¿½ï¿½ï¿½ï¿½ resize ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½.
+	-- ¾ÆÀÌÅÛÀÌ¸§ ³Ê¹«±æ¶§ Â©·Á¼­ resize ÀÏ´Ü ¼ÂÆÃ.
 	PickItemGropBox:Resize(300, 120);
 	frame:Resize(300, 120);
 	local textLen = string.len(printName);

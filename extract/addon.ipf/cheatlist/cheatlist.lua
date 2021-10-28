@@ -264,9 +264,6 @@ function CHEATLIST_RUNSCRIPT(frame)
 			break;
 		else
 			local argText = eobj:GetText();
-			if string.find(argText, ' ') ~= nil then
-                argText = string.gsub(argText, ' ', '/')
-            end
 			if argText == "" then
 				argText = "None";
 			end
@@ -497,7 +494,7 @@ function CHEATOTHERS_UPDATE_OTHERS(frame)
 	frame = frame:GetTopParentFrame();
 	local othersGroup = frame:GetChild("OthersGroup");
 	local edit = GET_CHILD(othersGroup, "ForkName", "ui::CEditControl");
-	local cap = string.upper(edit:GetText());
+	local cap = edit:GetText();
 
 	local cheatTree = CheatList_tree_array[3];
 	cheatTree:Clear();
@@ -518,7 +515,7 @@ function CHEATOTHERS_UPDATE_OTHERS(frame)
 
 	for i = 0 , cnt - 1 do
 		local cls = GetClassByIndexFromList(clslist, i);
-		local name = string.upper(dictionary.ReplaceDicIDInCompStr(cls.Name));		
+		local name = dictionary.ReplaceDicIDInCompStr(cls.Name);		
 		if cap == "" or nil ~= string.find(name, cap) then
 			local curItem 	= cheatTree:Add(parentItem, "{@st43b}" .. cls.Name, cls.ClassID);
 		end
@@ -536,7 +533,7 @@ function CHEATOTHERS_UPDATE_OTHERS(frame)
 
 	for i = 0 , cnt - 1 do
 		local cls = GetClassByIndexFromList(clslist, i);
-		local name = string.upper(dictionary.ReplaceDicIDInCompStr(cls.Name));		
+		local name = dictionary.ReplaceDicIDInCompStr(cls.Name);		
 		if cap == "" or nil ~= string.find(name, cap) then
 			local curItem 	= cheatTree:Add(parentItem, "{@st43b}" .. cls.Name, cls.ClassID);
 		end
@@ -553,6 +550,3 @@ function CHEATLIST_UI_CLOSE(frame, obj, argStr, argNum)
 	USECHEAT_ListSortType		= 'Cheat_Open';
 end
 
-function TEST_ALARM()
-	test.TestAlarm();
-end

@@ -1,10 +1,11 @@
-﻿
+
 function GUILDGROWTH_ON_INIT(addon, frame)
 	
 	addon:RegisterMsg("OPEN_DLG_GUILDGROWTH", "ON_OPEN_DLG_GUILDGROWTH");		
 	addon:RegisterOpenOnlyMsg("GUILD_PROPERTY_UPDATE", "GUILDGROWTH_GUILD_PROPERTY_UPDATE");
-	addon:RegisterOpenOnlyMsg("GUILD_SKILL_UPDATE", "GUILDGROWTH_UPDATE_SKIL");
 	addon:RegisterOpenOnlyMsg("GUILD_MEMBER_PROP_UPDATE", "GUILDGROWTH_GUILD_PROPERTY_UPDATE");
+	
+
 end
 
 function ON_OPEN_DLG_GUILDGROWTH(frame)
@@ -14,14 +15,15 @@ end
 function GUILDGROWTH_UPDATE_ABILITY(frame, guildObj)
 
 	local abilities = GET_CHILD(frame, "abilities");
-	local gbox_ability = GET_CHILD(abilities, 'gbox_ability');
-	local txt_current_point = GET_CHILD(gbox_ability, "txt_current_point");
+
+	local txt_current_point = GET_CHILD(abilities, "txt_current_point");
 	local used = guildObj.UsedAbilStat;
 	local current = GET_GUILD_ABILITY_POINT(guildObj);
 	local ablePoint = current - used;
 	local ablePointText = ScpArgMsg("UsableAbilityPoint") .. " : " .. ablePoint;	
 	txt_current_point:SetTextByKey("value", ablePointText);
-
+	
+	local gbox_ability = abilities:GetChild("gbox_ability");
 	local gbox_list = gbox_ability:GetChild("gbox_list");
 	gbox_list:RemoveAllChild();
 	
@@ -33,6 +35,8 @@ function GUILDGROWTH_UPDATE_ABILITY(frame, guildObj)
 	end
 
 	GBOX_AUTO_ALIGN(gbox_list, 10, 10, 10, true, false);
+	
+
 end
 
 function UPDATE_GUILD_ABILITY_CTRLSET(ctrlSet, cls, guildObj)
@@ -68,6 +72,7 @@ function UPDATE_GUILD_ABILITY_CTRLSET(ctrlSet, cls, guildObj)
 end
 
 function GUILD_ABILITY_UP(parent, ctrl)
+
 	local clsID = parent:GetUserIValue("CLASSID");
 	local yesScp = string.format("_EXEC_GUILD_ABILITY_UP(%d)", clsID);
 	ui.MsgBox( ScpArgMsg("ExecLearnAbility"), yesScp, "None");
@@ -93,9 +98,7 @@ function _EXEC_GUILD_ABILITY_UP(clsID)
 end
 
 function GUILDGROWTH_OPEN(frame)
-	if frame == nil then
-		frame = ui.GetFrame('guildgrowth');
-	end
+
 	local pcGuild = session.party.GetPartyInfo(PARTY_GUILD);
 	if pcGuild == nil then
 		--frame:ShowWindow(0);
@@ -143,48 +146,6 @@ function GUILDGROWTH_OPEN(frame)
 
 	GUILDGROWTH_UPDATE_CONTRIBUTION(frame, guildObj)
 	GUILDGROWTH_UPDATE_ABILITY(frame, guildObj);
-end
-
-function GUILD_SKILL_UP(frame, ctrl)
-	local isLeader = AM_I_LEADER(PARTY_GUILD);
-	if isLeader == 0 then
-		ui.MsgBox(ScpArgMsg("OnlyGuildLeader"));
-		return;
-	end
-
-	local sklName = frame:GetUserValue("SKLNAME");
-	local yesScp = string.format("_EXEC_GUILD_SKILL_UP(\'%s\')", sklName);
-	ui.MsgBox( ScpArgMsg("LearnGuildSKil"), yesScp, "None");
-end
-
-function _EXEC_GUILD_SKILL_UP(sklName)
-	local skl = session.GetSkillByName(sklName)
-	if skl == nil then
-		ui.MsgBox(ScpArgMsg("NotEnoughPoint"));
-		return;
-	end
-
-	local pcGuild = session.party.GetPartyInfo(PARTY_GUILD);
-	local guildObj = GetIES(pcGuild:GetObject());
-
-	local obj = GetIES(skl:GetObject());	
-	local level = TryGetProp(guildObj, sklName .. '_Lv');
-	if nil == level then
-		level = 0;
-	end
-
-	if level > obj.Level then
-		ui.MsgBox(ScpArgMsg("NotEnoughPoint"));
-		return;
-	end
-
-	if false == HAS_GUILDGROWTH_SKL_OBJ(guildObj, sklName, obj.Level) then
-		ui.MsgBox(ScpArgMsg("DestoryBuilding"));
-		return;
-	end
-
-	local scpString = string.format("/learnguildskl %s", sklName);
-	ui.Chat(scpString);
 
 end
 
@@ -214,13 +175,11 @@ function GUILDGROWTH_UPDATE_CONTRIBUTION(frame, guildObj)
 			t_name:SetTextByKey("value", partyMemberInfo:GetName());
 			if currentExp > 0 then
 				local percent = curContribution * 100 / currentExp;
-				local percentStr = string.format('%.2f', percent);
 				local t_percent = GET_CHILD(ctrlSet, "t_percent");
-				t_percent:SetTextByKey("value", percentStr);
+				t_percent:SetTextByKey("value", percent);
 				local gauge = GET_CHILD(ctrlSet, "gauge");
 				gauge:SetPoint(curContribution, currentExp);
 			end
-
 			
 		end
 
@@ -242,20 +201,13 @@ function DROP_GUILDGROWTH_TALT(parent, ctrl)
 	local invItem = GET_DRAG_INVITEM_INFO();
 
 	local dropItemCls = GetClassByType("Item", invItem.type);
-	local itemGuildCheck = TryGetProp(dropItemCls, "StringArg")
-	if itemGuildCheck ~= "Guild_EXP" then
-	    local text = ScpArgMsg("ItemOnlyForGuildExpUpPlz");
+	local itemName = GET_GUILD_EXPUP_ITEM_INFO();
+	local taltCls = GetClass("Item", itemName);
+	if itemName ~= dropItemCls.ClassName then
+		local text = ScpArgMsg("DropItem{Name}ForGuildExpUp", "Name", taltCls.Name);
 		ui.SysMsg(text);
 		return;
 	end
-	
---	local itemName = GET_GUILD_EXPUP_ITEM_INFO();
---	local taltCls = GetClass("Item", itemName);
---	if itemName ~= dropItemCls.ClassName then
---		local text = ScpArgMsg("DropItem{Name}ForGuildExpUp", "Name", taltCls.Name);
---		ui.SysMsg(text);
---		return;
---	end
 
 	local frame = parent:GetTopParentFrame();
 	INPUT_NUMBER_BOX(frame, ScpArgMsg("InputCount"), "EXEC_DROP_GUILDTALT", invItem.count, 1, invItem.count);
@@ -279,14 +231,6 @@ function EXEC_DROP_GUILDTALT(frame, count, inputframe, fromFrame)
 end
 
 function EXEC_GUILD_GROWTH_TALT(parent, ctrl)
-
-	local pic = GET_CHILD(parent, "pic");
-
-	local item = GET_SLOT_ITEM(pic);
-	if nil == item then
-		ui.SysMsg(ClMsg('NoTaltinTheSlot'));
-		return;
-	end;
 
 	local yesScp = "_EXEC_GUILD_GROWTH_TALT()";
 	ui.MsgBox(ScpArgMsg('REALLY_DO'), yesScp, "None");
@@ -313,3 +257,8 @@ function GUILDGROWTH_GUILD_PROPERTY_UPDATE(frame)
 	GUILDGROWTH_OPEN(frame);	
 
 end
+
+
+
+
+
