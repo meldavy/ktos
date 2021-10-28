@@ -2184,12 +2184,12 @@
 		<Level Level="1" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="OptDesc/트리플렛 렌즈 스킬 레벨 + 1" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/트리플렛 렌즈 스킬 레벨 + 1" PropList_HandOrFoot_Penalty="None"/>
 	</Item>
 	<Item Name="GEM_Chronomancer_TimeEruption">
-		<Level Level="0" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/타임 이럽션 스킬 레벨 + 1" PropList_HandOrFoot_Penalty="None"/>
-		<Level Level="1" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/타임 이럽션 스킬 레벨 + 1" PropList_HandOrFoot_Penalty="None"/>
+		<Level Level="0" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="OptDesc/타임 이럽션 스킬 레벨 + 1" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/타임 이럽션 스킬 레벨 + 1" PropList_HandOrFoot_Penalty="None"/>
+		<Level Level="1" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="OptDesc/타임 이럽션 스킬 레벨 + 1" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/타임 이럽션 스킬 레벨 + 1" PropList_HandOrFoot_Penalty="None"/>
 	</Item>
 	<Item Name="GEM_Chronomancer_TimeRestriction">
-		<Level Level="0" PropList_TopLeg="OptDesc/타임 리스트릭션 스킬 레벨 + 1" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="None" PropList_HandOrFoot_Penalty="None"/>
-		<Level Level="1" PropList_TopLeg="OptDesc/타임 리스트릭션 스킬 레벨 + 1" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="None" PropList_HandOrFoot_Penalty="None"/>
+		<Level Level="0" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="OptDesc/타임 리스트릭션 스킬 레벨 + 1" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/타임 리스트릭션 스킬 레벨 + 1" PropList_HandOrFoot_Penalty="None"/>
+		<Level Level="1" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="OptDesc/타임 리스트릭션 스킬 레벨 + 1" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/타임 리스트릭션 스킬 레벨 + 1" PropList_HandOrFoot_Penalty="None"/>
 	</Item>
 	<Item Name="GEM_Linker_ChainGrip">
 		<Level Level="0" PropList_TopLeg="None" PropList_TopLeg_Penalty="None" PropList_MainOrSubWeapon="None" PropList_MainOrSubWeapon_Penalty="None" PropList_HandOrFoot="OptDesc/체인 그립 스킬 레벨 + 1" PropList_HandOrFoot_Penalty="None"/>
