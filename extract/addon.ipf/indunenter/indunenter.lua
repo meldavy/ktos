@@ -211,7 +211,7 @@ function SHOW_INDUNENTER_DIALOG(indunType, isAlreadyPlaying, enableAutoMatch, en
     frame:SetUserValue('ENABLE_PARTYMATCH', enablePartyMatch);
     INDUNENTER_SET_ENABLE(enableEnterRight, enableAutoMatch, enablePartyMatch, enableMulti);
 
-    -- 해외 UI 세팅
+    -- ?�외 UI ?�팅
     if (config.GetServiceNation() ~= "KOR") then
         INDUNENTER_GLOBAL_UI_SETTING(frame)
     end
@@ -293,7 +293,7 @@ function INDUNENTER_MAKE_PICTURE(frame, indunCls)
     end
 end
 
--- 스킬 제한 경고문
+-- ?�킬 ?�한 경고�?
 function INDUNENTER_MAKE_ALERT(frame, indunCls)
     local restrictBox = GET_CHILD_RECURSIVELY(frame, 'restrictBox');
     restrictBox:ShowWindow(0);
@@ -320,72 +320,6 @@ function INDUNENTER_MAKE_ALERT(frame, indunCls)
     end
 end
 
-function INDUNENTER_MAKE_CHALLENGE_DIVISION_HELP_TEXT(frame)
-    if frame == nil then return; end
-    INDUNENTER_SHOW_WINDOW_MONBOX_AND_REWARDBOX(frame, 0);
-
-    local indun_cls = GetClass("contents_info", "ChallengeMode_HardMode");
-    if indun_cls == nil then return; end
-
-    local map_list = StringSplit(TryGetProp(indun_cls, "StartMap", ""), '/');
-    if map_list ~= nil then
-        local map_help_text = GET_CHILD_RECURSIVELY(frame, "mapHelpText");
-        map_help_text:SetTextByKey("text", ClMsg("challenge_auto_division_mode_day_help_text"));
-
-        for i = 1, 6 do
-            local map_text = GET_CHILD_RECURSIVELY(frame, "mapText"..i);
-            if map_text ~= nil then
-                local map = map_list[i];
-                if map ~= nil then
-                    local map_cls = GetClass("Map", map);
-                    if map_cls ~= nil then
-                        local name = map_cls.Name;
-                        local cl_msg = "challenge_auto_division_mode_day_"..i.."{mapName}";
-                        local text = ScpArgMsg(cl_msg, "mapName", name);
-                        map_text:SetText(text);
-                    end
-                end
-            end
-        end
-    end
-end
-
-function INDUNENTER_SHOW_WINDOW_MONBOX_AND_REWARDBOX(frame, isVisible)
-    local mon_slot_set = GET_CHILD_RECURSIVELY(frame, 'monSlotSet');
-    local mon_right_btn = GET_CHILD_RECURSIVELY(frame, 'monRightBtn');
-    local mon_left_btn = GET_CHILD_RECURSIVELY(frame, 'monLeftBtn');
-    local mon_text = GET_CHILD_RECURSIVELY(frame, "monText");
-    local mon_pic = GET_CHILD_RECURSIVELY(frame, "monPic");
-    mon_slot_set:ShowWindow(isVisible);
-    mon_right_btn:ShowWindow(isVisible);
-    mon_left_btn:ShowWindow(isVisible);
-    mon_text:ShowWindow(isVisible);
-    mon_pic:ShowWindow(isVisible);
-
-    local reward_box = GET_CHILD_RECURSIVELY(frame, "rewardBox");
-    reward_box:ShowWindow(isVisible);
-
-    for i = 1, 6 do
-        local map_help_box = GET_CHILD_RECURSIVELY(frame, "mapHelpBox");
-        if map_help_box ~= nil then
-            if isVisible == 0 then map_help_box:ShowWindow(1);
-            elseif isVisible == 1 then map_help_box:ShowWindow(0); end
-        end
-
-        local map_help_text = GET_CHILD_RECURSIVELY(frame, "mapHelpText");
-        if map_help_text ~= nil then
-            if isVisible == 0 then map_help_text:ShowWindow(1);
-            elseif isVisible == 1 then map_help_text:ShowWindow(0); end
-        end
-
-        local map_text = GET_CHILD_RECURSIVELY(frame, "mapText"..i);
-        if map_text ~= nil then
-            if isVisible == 0 then map_text:ShowWindow(1);
-            elseif isVisible == 1 then map_text:ShowWindow(0); end
-        end
-    end
-end
-
 function INDUNENTER_MAKE_MONLIST(frame, indunCls)
     if frame == nil then
         return;
@@ -394,21 +328,7 @@ function INDUNENTER_MAKE_MONLIST(frame, indunCls)
     local monSlotSet = GET_CHILD_RECURSIVELY(frame, 'monSlotSet');
     local monRightBtn = GET_CHILD_RECURSIVELY(frame, 'monRightBtn');
     local monLeftBtn = GET_CHILD_RECURSIVELY(frame, 'monLeftBtn');
-    local monText = GET_CHILD_RECURSIVELY(frame, "monText");
-    local monPic = GET_CHILD_RECURSIVELY(frame, "monPic");
-   
-     -- 챌린지 모드 자동매칭 분열 위치 표시 처리
-    if indunCls ~= nil and TryGetProp(indunCls, "PlayPerResetType") == 816 then
-        if frame:GetName() == "induninfo" then
-            INDUNENTER_MAKE_CHALLENGE_DIVISION_HELP_TEXT(frame, indunCls);
-            return;
-        else
-            INDUNENTER_SHOW_WINDOW_MONBOX(frame, 1);
-        end
-    else
-        INDUNENTER_SHOW_WINDOW_MONBOX_AND_REWARDBOX(frame, 1);
-    end
-
+    
     -- init
     monSlotSet:ClearIconAll();
     monSlotSet:SetUserValue('CURRENT_SLOT', 1);
@@ -466,12 +386,12 @@ function INDUNENTER_MAKE_ETCINFO_BOX(frame, indunCls)
     end
 end
 
--- 큐브 재개봉 시스템 개편에 따른 변경사항으로 보상 아이템 목록 보여주는 부분 큐브 대신 구성품으로 풀어서 보여주도록 변경함(2019.2.27 변경)
+-- ?�브 ?�개�??�스??개편???�른 변경사??���?보상 ?�이??목록 보여주는 부�??�브 ?�??구성?�으�??�?�서 보여주도�?변경함(2019.2.27 변�?
 function INDUNENTER_DROPBOX_ITEM_LIST(parent, control)
     local frame = ui.GetFrame('indunenter');
     local rewardBox = GET_CHILD_RECURSIVELY(frame, 'rewardBox');
     local controlName = control:GetName();
-    -- 여기서 부터
+    -- ?�기??부??
     local topFrame = frame:GetTopParentFrame();
     local indunType = topFrame:GetUserValue('INDUN_TYPE');
     local indunCls = GetClassByType('Indun', indunType);
@@ -490,13 +410,13 @@ function INDUNENTER_DROPBOX_ITEM_LIST(parent, control)
     
     if groupList ~= nil then
         for i = 1, #groupList do
-            -- 신규 레벨던전의 경우 'ClassName;1'의 형식으로 보상 이름이 들어가있을 수 있어서 ';'으로 파싱 한번 더해줌
+            -- ?�규 ?�벨?�전??경우 'ClassName;1'???�식?�로 보상 ?�름???�어가?�을 ???�어??';'?�로 ?�싱 ?�번 ?�해�?
             local strList = SCR_STRING_CUT(groupList[i], ';')
             local itemName = strList[1]
             local itemCls = GetClass('Item', itemName)
             local itemGroupName = TryGetProp(itemCls, 'GroupName')
             if itemGroupName == 'Cube' then
-                -- 큐브 재개봉 시스템 개편에 따른 변경사항으로 보상 아이템 목록 보여주는 부분 큐브 대신 구성품으로 풀어서 보여주도록 변경함
+                -- ?�브 ?�개�??�스??개편???�른 변경사??���?보상 ?�이??목록 보여주는 부�??�브 ?�??구성?�으�??�?�서 보여주도�?변경함
                 local itemStringArg = TryGetProp(itemCls, 'StringArg')
                 for j = 0, allIndunRewardItemCount - 1  do
                     local indunRewardItemClass = GetClassByIndexFromList(allIndunRewardItemList, j);
@@ -533,7 +453,7 @@ function INDUNENTER_DROPBOX_ITEM_LIST(parent, control)
         itemFrame = ui.GetNewToolTip("wholeitem_link", "wholeitem_link");
     end
     itemFrame:SetUserValue('MouseClickedCheck','NO')
-    -- 여기까지
+    -- ?�기까�?
 end 
 
 function INDUNENTER_MAKE_DROPBOX(parent, control)
@@ -954,7 +874,7 @@ function INDUNENTER_MAKE_PARTY_CONTROLSET(pcCount, memberTable, understaffCount)
         matchedIcon:ShowWindow(0);
         understaffAllowImg:ShowWindow(0);
 
-        if i <= pcCount then -- 참여???�원만큼 보여주는 부�?
+        if i <= pcCount then -- 참여???�원만큼 보여주는 부�?
             if i * PC_INFO_COUNT <= #memberTable then -- ?�티?�인 경우      
                 -- show leader
                 local aid = memberTable[i * PC_INFO_COUNT - (PC_INFO_COUNT - 1)];
@@ -1456,7 +1376,7 @@ local autoMatchBtn = GET_CHILD_RECURSIVELY(frame, 'autoMatchBtn');
     _INDUNENTER_SET_ENABLE_PARTYMATCHBTN(frame, withParty);
     INDUNENTER_SET_ENABLE_MULTI(multi);
 
-    -- multi btn: 배수?�큰 ?�어???�용 가?? ?�던/?�뢰??미션�??�용가??
+    -- multi btn: 배수?�큰 ?�어???�용 가?? ?�던/?�뢰??미션�??�용가??
     local indunCls = GetClassByType('Indun', frame:GetUserIValue('INDUN_TYPE'));
     local resetType = TryGetProp(indunCls, 'PlayPerResetType');
     local itemCount = GET_INDUN_MULTIPLE_ITEM_LIST();

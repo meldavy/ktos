@@ -1065,7 +1065,6 @@ function INDUNINFO_MAKE_DETAIL_COMMON_INFO(frame,indunCls,resetGroupID)
     local posBox = GET_CHILD_RECURSIVELY(frame, 'posBox');
     DESTROY_CHILD_BYNAME(posBox, 'MAP_CTRL_');
     local mapList = StringSplit(TryGetProp(indunCls,"StartMap",""), '/');
-
     -- 챌린지 분열 특이점 모드 & 분열 특이점 모드 자동매칭 예외처리
     if resetGroupID == -101 or resetGroupID == 816 then
         local sysTime = geTime.GetServerSystemTime();
@@ -1073,7 +1072,6 @@ function INDUNINFO_MAKE_DETAIL_COMMON_INFO(frame,indunCls,resetGroupID)
         local curMapName = mapList[sysTime.wDayOfWeek + 1]
         mapList = { curMapName }
     end
-
     for i = 1, #mapList do
         local mapCls = GetClass('Map', mapList[i]);        
         if mapCls ~= nil then

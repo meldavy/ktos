@@ -90,6 +90,8 @@ function SCR_QUESTPROGRESS_CHECK( pc, quest_list, quest_name, npcquestcount_list
     return quest_count , quest_check, quest_succ, quest_progress, lvImpossibleList;
 end
 
+-- SCR_QUEST_CHECK 함수 CPP로 이전되었습니다.
+-- 아래 내용이 수정 될 경우, 프로그램팀에도 내용 전달 부탁드립니다.
 function SCR_QUEST_CHECK(pc,questname,npcquestcount_list)    
     
 	if IsServerSection(pc) == 0 then
