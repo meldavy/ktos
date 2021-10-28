@@ -14443,6 +14443,7 @@
 		<Class ClassID="302272" ClassName="EVENT_2011_5TH_Special_Shop_Item_MSG_5" Data="[이벤트] 5주년 바이보라 유니크 무기 계열 선택 상자는 5주년 특별 상점에서 5주년 기념주화 2000개를 소비해야 구매할 수 있습니다.{nl}[이벤트] 5주년 바이보라 유니크 무기 계열 선택 상자 구매 후{nl}[이벤트] 5주년 바이보라 유니크 무기 랜덤 상자를 구매할 수 있습니다.{nl}"/>
 		<Class ClassID="302273" ClassName="EVENT_2011_5TH_Use_5th_Coin_tip_MSG_1" Data="주화 교환은 '[이벤트] 5주년 바이보라 유니크 무기 계열 선택 상자'를 구매하기 위한{nl} 소비 조건에 해당되지 않습니다."/>
 		<Class ClassID="302274" ClassName="EVENT_2011_5TH_Use_5th_Coin_tip_MSG_2" Data="바이보라 합성에 사용되는 주화는 '[이벤트] 5주년 바이보라 유니크 무기 계열 선택 상자'를 구매하기 위한{nl} 소비 조건에 해당되지 않습니다."/>
+		<Class ClassID="302276" ClassName="Enable_Pc_{LV}" Data="{LV}레벨 이상의 캐릭터만 이용할 수 있습니다."/>
 	</Category>
 	<Category Name="Account">
 		<Class ClassID="303001" ClassName="MaxAccountWarehouseCount" Data="팀 창고"/>

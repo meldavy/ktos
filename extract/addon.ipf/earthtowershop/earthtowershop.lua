@@ -1006,6 +1006,18 @@ function EXCHANGE_INIT_TAB_INFO()
     bg_category:RemoveAllChild();
     bg_category:Resize(bg_category:GetOriginalWidth(), bg_category:GetOriginalHeight());
     _CLEAR_INFO();
+
+    local tree = GET_CHILD_RECURSIVELY(frame, 'recipetree','ui::CTreeControl')
+    if nil ~= tree then
+        AUTO_CAST(tree)
+        tree:Clear();
+        tree:EnableDrawTreeLine(false)
+        tree:EnableDrawFrame(false)
+        tree:SetFitToChild(true,200)
+        tree:SetFontName("brown_18_b");
+        tree:SetTabWidth(5);
+    
+    end
 end
 
 function EXCHANGE_MAKE_TAB_BTN(groupName)

@@ -83,3 +83,7 @@ end
 function GET_EVENT_2011_5TH_TOS_COIN_BONUS_RANGE()
     return 100;
 end
+
+function GET_EVENT_2011_5TH_VIBORA_COMPOSITE_LV_LIMIT()
+    return 400;
+end

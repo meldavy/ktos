@@ -407,6 +407,13 @@ function EVENT_2011_5TH_SPECIAL_VIBORA_BTN_CLLICK()
 		return;
 	end
 
+	local lv = GETMYPCLEVEL();
+	local limitLv = GET_EVENT_2011_5TH_VIBORA_COMPOSITE_LV_LIMIT();
+	if lv < limitLv then
+		ui.SysMsg(ScpArgMsg("Enable_Pc_{LV}", "LV", limitLv));
+		return;
+	end
+
 	local aObj = GetMyAccountObj();
 	local cnt = TryGetProp(aObj, "EVENT_2011_5TH_SPECIAL_VIBORA_SHOP_USE_COUNT", 9999999);
 	if GET_EVENT_2011_5TH_VIBORA_COMPOSITE_MAX_COUNT() <= cnt then
