@@ -15,8 +15,14 @@ function BUFF_ON_INIT(addon, frame)
 	addon:RegisterMsg('BUFF_REMOVE', 'BUFF_ON_MSG');
 	addon:RegisterMsg('BUFF_UPDATE', 'BUFF_ON_MSG');
 
+	addon:RegisterMsg('TEST_ADDON_MSG_DUMP_MSG', 'TEST_ADDON_MSG_DUMP');
+
 	INIT_BUFF_UI(frame, s_buff_ui, "MY_BUFF_TIME_UPDATE");
 	INIT_PREMIUM_BUFF_UI(frame);
+end
+
+function TEST_ADDON_MSG_DUMP(frame)
+	test.TestFunction();
 end
 
 function INIT_PREMIUM_BUFF_UI(frame)
@@ -64,6 +70,7 @@ function GET_BUFF_TIME_TXT(time, istooltip)
 
 	sec = sec - day * 86400;
 
+	-- 버프를 분단위로 표시하기위해 주석
 	local hour = math.floor(sec / 3600);
 	if hour < 0 then
 		hour = 0;
@@ -84,15 +91,24 @@ function GET_BUFF_TIME_TXT(time, istooltip)
 		if istooltip == 1 then
 			txt = txt .. day .. ScpArgMsg("Auto_il");
 		else
-			return "{#FFFF00}{ol}{s12}" .. day + 1 .. ScpArgMsg("Auto_il");
+		    if day == 1 then
+		        return "{#FFFF00}{ol}{s12}" .. hour + day*24 .. ScpArgMsg("Auto_SiKan");
+		    else
+    			return "{#FFFF00}{ol}{s12}" .. day .. ScpArgMsg("Auto_il");
+    		end
 		end
 	end
 
+	-- 버프를 분단위로 표시하기 위해 주석
 	if hour > 0 then
 		if istooltip == 1 then
 			txt = txt .. hour .. ScpArgMsg("Auto_SiKan");
 		else
-			return "{#FFFF00}{ol}{s12}" .. hour + 1 .. ScpArgMsg("Auto_SiKan");
+		    if hour == 1 then
+		        return "{#FFFF00}{ol}{s12}" .. min + hour*60 .. ScpArgMsg("Auto_Bun");
+		    else
+    			return "{#FFFF00}{ol}{s12}" .. hour .. ScpArgMsg("Auto_SiKan");
+    		end
 		end
 	end
 
@@ -100,7 +116,11 @@ function GET_BUFF_TIME_TXT(time, istooltip)
 		if istooltip == 1 then
 			txt = txt .. min .. ScpArgMsg("Auto_Bun")
 		else
-			return "{#FFFF00}{ol}{s12}" .. min .. ScpArgMsg("Auto_Bun");
+		    if min == 1 then
+		        return "{#FFFF00}{ol}{s12}" .. sec + min * 60 .. ScpArgMsg("Auto_Cho");
+		    else
+    			return "{#FFFF00}{ol}{s12}" .. min .. ScpArgMsg("Auto_Bun");
+    		end
 		end
 	end
 
@@ -113,31 +133,48 @@ function GET_BUFF_TIME_TXT(time, istooltip)
 end
 
 function REMOVE_BUF(frame, data, argStr, argNum)
-
 	packet.ReqRemoveBuff(argNum);
+end
 
+function HOLD_EXP_BOOK_TIME(frame, data, argStr, argNum)	
+	if pc.IsNonCombatZone() == 0 then				-- 전투지역에서만 토글 기능이 동작하도록 함(서버에서도 체크함)
+		if argNum == 70006 or argNum == 70007 then	-- Client에서 자체적으로 경험의서(x4, x8)인 경우만, Request를 하도록...(서버에서도 체크함)
+			--packet.ReqHoldExpBookTime(argNum);					
+		end
+	end	
+end
+
+function GET_BUFF_ICON_NAME(buffCls)
+	local imageName = 'icon_' .. buffCls.Icon;
+	return imageName;
 end
 
 function SET_BUFF_SLOT(slot, capt, class, buffType, handle, slotlist, buffIndex)	
+	local icon = slot:GetIcon();
+	local imageName = GET_BUFF_ICON_NAME(class);
 
-	local icon 				= slot:GetIcon();
-	
-	local imageName 		= 'icon_' .. class.Icon;
 	icon:Set(imageName, 'BUFF', buffType, 0);
 	icon:SetUserValue("BuffIndex", buffIndex);	
 	if tonumber(handle) == nil then
-		return
+		return;
 	end
-	local buff 					= info.GetBuff(tonumber(handle), buffType);
+
+	local buff = info.GetBuff(tonumber(handle), buffType);
+	if nil == buff then
+		return;
+	end
 
 	if buff.over > 1 then
 		slot:SetText('{s13}{ol}{b}'..buff.over, 'count', 'right', 'bottom', -5, -3);
 	else
 		slot:SetText("");
 	end
+	
+    if slot:GetTopParentFrame():GetName() ~= "targetbuff" then
+    	slot:SetEventScript(ui.RBUTTONUP, 'REMOVE_BUF');
+    	slot:SetEventScriptArgNumber(ui.RBUTTONUP, buffType);
+	end
 
-	slot:SetEventScript(ui.RBUTTONUP, 'REMOVE_BUF');
-	slot:SetEventScriptArgNumber(ui.RBUTTONUP, buffType);
 	slot:EnableDrop(0);
 	slot:EnableDrag(0);
 
@@ -157,23 +194,27 @@ function SET_BUFF_SLOT(slot, capt, class, buffType, handle, slotlist, buffIndex)
 	
 	if class.ClassName == "Premium_Nexon" or class.ClassName =="Premium_Token" then
 		icon:SetTooltipType('premium');
-		local argNum = 0;
-		if class.ClassName == "Premium_Nexon" then
-			argNum = NEXON_PC;
-		else
-			argNum = ITEM_TOKEN;
-		end
-
-		icon:SetTooltipArg(argNum, buffType, "");
+		icon:SetTooltipArg(handle, buffType, buff.arg1);
 	else
-	icon:SetTooltipType('buff');
-	icon:SetTooltipArg(handle, buffType, "");
+	    icon:SetTooltipType('buff');
+	    icon:SetTooltipArg(handle, buffType, buffIndex);
 	end
 
-	--slot:SetSkinName(class.SlotType);
-
 	slot:Invalidate();
+end
 
+function SET_DEBUFF_CAPTION_OFFSET(slotset, buff_ui)
+    if slotset:GetName() ~= 'debuffslot' then
+        return;
+    end
+    local captionList = buff_ui["captionlist"][2];
+    local totalDebuffSlotCount = slotset:GetRow() * slotset:GetCol();
+    for i = 0, totalDebuffSlotCount - 1 do
+        local slot = slotset:GetSlotByIndex(i);
+        local slotHeight = slot:GetHeight();
+        local caption = captionList[i];
+        caption:SetOffset(caption:GetX(), slotset:GetY() + slotHeight);
+    end
 end
 
 function GET_BUFF_ARRAY_INDEX(i, colcnt)
@@ -181,16 +222,16 @@ function GET_BUFF_ARRAY_INDEX(i, colcnt)
 end
 
 --[[
--- �Ųٷ� ä�������� ����
+-- 거꾸로 채워나가는 버전
 function GET_BUFF_SLOT_INDEX(j, colcnt)
 	local row = math.floor(j / colcnt);
 	local col = j - row * colcnt;
 	local i = row * colcnt + (colcnt - col) - 1;
 	return i;
 end
-]]
+]]--
 
--- ������ ����
+-- 순방향 버젼
 function GET_BUFF_SLOT_INDEX(j, colcnt)
 	local row = math.floor(j / colcnt);
 	local col = j - row * colcnt;
@@ -233,8 +274,9 @@ function COMMON_BUFF_MSG(frame, msg, buffType, handle, buff_ui, buffIndex)
 	if "None" == buffIndex or nil == buffIndex then
 		buffIndex = 0;
 	end
+    buffIndex = tonumber(buffIndex);
 
-	local class 				= GetClassByType('Buff', buffType);
+	local class = GetClassByType('Buff', buffType);
 	if class.ShowIcon == "FALSE" then
 		return;
 	end
@@ -243,7 +285,7 @@ function COMMON_BUFF_MSG(frame, msg, buffType, handle, buff_ui, buffIndex)
 	local slotcount;
 	local captionlist;
 	local colcnt = 0;
-
+	local ApplyLimitCountBuff = "YES"
 	if class.Group1 == 'Debuff' then
 		slotlist = buff_ui["slotlist"][2];
 		slotcount = buff_ui["slotcount"][2];
@@ -254,7 +296,7 @@ function COMMON_BUFF_MSG(frame, msg, buffType, handle, buff_ui, buffIndex)
 			slotlist = buff_ui["slotlist"][0];
 			slotcount = buff_ui["slotcount"][0];
 			captionlist = buff_ui["captionlist"][0];
-			-- targetbuff�ΰ� ������ .. �� �޾ƿ��� nil �̵Ǵµ� �ֿܼ� ? �� �ۼ��Ǽ� ����ó��
+			-- targetbuff인거 같은데 .. 못 받아오면 nil 이되는데 콘솔에 ? 로 작성되서 예외처리
 			if nil ~= buff_ui["slotsets"][0] then
 				colcnt = buff_ui["slotsets"][0]:GetCol();
 			end
@@ -263,6 +305,7 @@ function COMMON_BUFF_MSG(frame, msg, buffType, handle, buff_ui, buffIndex)
 			slotcount = buff_ui["slotcount"][1];
 			captionlist = buff_ui["captionlist"][1];
 			colcnt = buff_ui["slotsets"][1]:GetCol();
+			ApplyLimitCountBuff = "NO";
 		end
 	end
 
@@ -270,7 +313,7 @@ function COMMON_BUFF_MSG(frame, msg, buffType, handle, buff_ui, buffIndex)
 		for j = 0, slotcount - 1 do
 			local i = GET_BUFF_SLOT_INDEX(j, colcnt);
 			local slot				= slotlist[i];
-
+           
 			if slot:IsVisible() == 0 then
 				SET_BUFF_SLOT(slot, captionlist[i], class, buffType, handle, slotlist, buffIndex);
 				break;
@@ -287,27 +330,26 @@ function COMMON_BUFF_MSG(frame, msg, buffType, handle, buff_ui, buffIndex)
 			if slot:IsVisible() == 1 then
 				local oldBuffIndex = oldIcon:GetUserIValue("BuffIndex");			
 				local iconInfo = oldIcon:GetInfo();
-				if iconInfo.type == buffType then
+                local isBuffIndexSame = oldBuffIndex - buffIndex;
+				if iconInfo.type == buffType and isBuffIndexSame == 0 then
 					CLEAR_BUFF_SLOT(slot, text);
 					local j = GET_BUFF_ARRAY_INDEX(i, colcnt);
-					PULL_BUFF_SLOT_LIST(slotlist, captionlist, j, slotcount, colcnt, buffIndex);
+					PULL_BUFF_SLOT_LIST(slotlist, captionlist, j, slotcount, colcnt, ApplyLimitCountBuff);
 					frame:Invalidate();
-					return;
+					break;
 				end
 			end
 		end
 
-	elseif msg == "UPDATE" then
-
-			for i = 0, slotcount - 1 do
-
-			local slot		= slotlist[i];
-			local text		= captionlist[i];
-			local oldIcon 		= slot:GetIcon();
+	elseif msg == "UPDATE" then    
+		for i = 0, slotcount - 1 do
+			local slot = slotlist[i];
+			local text = captionlist[i];
+			local oldIcon = slot:GetIcon();
 
 			if slot:IsVisible() == 1 then
 				local iconInfo = oldIcon:GetInfo();
-				if iconInfo.type == buffType then
+				if iconInfo.type == buffType and oldIcon:GetUserIValue("BuffIndex") == buffIndex then                
 					SET_BUFF_SLOT(slot, captionlist[i], class, buffType, handle, slotlist, buffIndex);
 					break;
 				end
@@ -315,9 +357,50 @@ function COMMON_BUFF_MSG(frame, msg, buffType, handle, buff_ui, buffIndex)
 		end
 	end
 
+    ARRANGE_DEBUFF_SLOT(frame, buff_ui);
 end
 
-function PULL_BUFF_SLOT_LIST(slotlist, captionlist, index, slotcount, colcnt)
+function ARRANGE_DEBUFF_SLOT(frame, buff_ui)
+    if frame:GetName() ~= 'buff' then
+        return;
+    end
+
+    -- get visible row of unlimitedBuffSlotset
+    local unlimitedBuffSlotset = frame:GetChild('buffslot');
+    local unlimitedBuffSlotCol = unlimitedBuffSlotset:GetCol();
+    local totalUnlimitBuffSlotCount = unlimitedBuffSlotset:GetRow() * unlimitedBuffSlotCol;
+
+    local visibleSlotCount = 0;
+    for i = 0, totalUnlimitBuffSlotCount - 1 do
+        local unlimitedSlot = unlimitedBuffSlotset:GetSlotByIndex(i);
+        if unlimitedSlot == nil or unlimitedSlot:IsVisible() == 0 then
+            visibleSlotCount = i;
+            break;
+        end
+    end
+    local visibleRowCount = math.floor(visibleSlotCount / unlimitedBuffSlotCol);
+    if visibleRowCount > 0 and visibleRowCount % unlimitedBuffSlotCol == 0 then
+        visibleRowCount = visibleRowCount + 1;
+    end
+    visibleRowCount = visibleRowCount + 1;
+
+    -- set offset debuff slotset
+    local debuffSlotset = frame:GetChild('debuffslot');
+    local DEFAULT_SLOT_Y_OFFSET = tonumber(frame:GetUserConfig('DEFAULT_SLOT_Y_OFFSET'));
+    unlimitedBuffSlotset:Resize(unlimitedBuffSlotset:GetWidth(), DEFAULT_SLOT_Y_OFFSET * (visibleRowCount));
+    debuffSlotset:SetOffset(debuffSlotset:GetX(), unlimitedBuffSlotset:GetY() + DEFAULT_SLOT_Y_OFFSET * visibleRowCount);
+
+    -- set offset caption
+    SET_DEBUFF_CAPTION_OFFSET(debuffSlotset, buff_ui);
+end
+
+function PULL_BUFF_SLOT_LIST(slotlist, captionlist, index, slotcount, colcnt, ApplyLimitCountBuff)
+	if index == slotcount-1 and "NO" == ApplyLimitCountBuff then
+		local actor = GetMyActor();	
+		local aslot	= slotlist[index-1];
+		local aicon = aslot:GetIcon();
+		actor:GetBuff():InvalidateLastBuff(aicon:GetTooltipNumArg(), aicon:GetUserIValue("BuffIndex"));
+	end
 
 	for j = index,  slotcount - 2 do
 		local i = GET_BUFF_SLOT_INDEX(j, colcnt);
@@ -329,6 +412,11 @@ function PULL_BUFF_SLOT_LIST(slotlist, captionlist, index, slotcount, colcnt)
 
 		if bslot:IsVisible() == 1 then
 			COPY_BUFF_SLOT_INFO(bslot, aslot, btext, atext);
+			if j+1 <= slotcount-1 and "NO" == ApplyLimitCountBuff then
+				local actor = GetMyActor();	
+				local bicon = bslot:GetIcon();
+				actor:GetBuff():InvalidateLastBuff(bicon:GetTooltipNumArg(), bicon:GetUserIValue("BuffIndex"));
+			end
 		end
 	end
 end
