@@ -757,3 +757,14 @@ function GIBBS_SAMPLING(list, max_number)
     return #list
 end
 
+function IS_EXTRACTABLE_SPECIAL_UNIQUE(item)
+    local str_arg = TryGetProp(item, 'StringArg', 'None')
+    local num_arg = TryGetProp(item, 'NumberArg1', 0)
+    if str_arg == 'Vibora' and num_arg > 1 then
+        return false
+    elseif str_arg == 'goddess' or str_arg == 'evil' then
+        return false
+    end
+
+    return true
+end

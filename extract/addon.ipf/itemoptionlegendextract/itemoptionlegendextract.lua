@@ -212,7 +212,7 @@ function ITEM_OPTION_LEGEND_EXTRACT_REG_TARGETITEM(frame, argNum, itemobj, invsl
 	end
 
 	-- 연성 가능한 아이템인지 확인
-	if IS_ENABLE_EXTRACT_OPTION(itemobj) ~= true then
+	if IS_ENABLE_EXTRACT_OPTION(itemobj) ~= true or IS_EXTRACTABLE_SPECIAL_UNIQUE(itemobj) ~= true then
 		ui.SysMsg(ClMsg("NotAllowedItemOptionExtract"));
 		return;
 	end

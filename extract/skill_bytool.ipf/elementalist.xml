@@ -284,10 +284,20 @@ return value"/>
                 <Str Str="None"/>
             </ToolScp>
             <ToolScp Scp="C_EFFECT" Client="YES" UseSleep="NO">
-                <Str_Arg Str="spread_in011_rainbow" Arg="0.2"/>
+				<Str_Arg Str="spread_in011_rainbow" Arg="0.3"/>
                 <Str Str="Bip01 L Finger1"/>
                 <Num Num="0"/>
             </ToolScp>
+			<ToolScp Scp="C_EFFECT" Client="YES" UseSleep="NO">
+				<Str_Arg Str="F_circle001" Arg="0"/>
+				<Str Str="Bip01 R Finger12"/>
+				<Num Num="0"/>
+			</ToolScp>
+			<ToolScp Scp="C_EFFECT" Client="YES" UseSleep="NO">
+				<Str_Arg Str="F_spread_out036_ground_circle_rainbow" Arg="2.5"/>
+				<Str Str="Bip01 L Foot"/>
+				<Num Num="0"/>
+			</ToolScp>
             <ToolScp Scp="SKL_PLAY_SOUND" Client="NO" UseSleep="NO">
                 <Str Str="skl_eff_elementalist_elementalessence_cast"/>
                 <Num Num="0"/>
@@ -300,6 +310,14 @@ return value"/>
                 <Str_Arg Str="spread_in011_rainbow" Arg="1"/>
                 <Num Num="0.2"/>
             </ToolScp>
+			<ToolScp Scp="C_EFFECT_DETACH" Client="YES" UseSleep="NO">
+				<Str_Arg Str="F_spread_out036_ground_circle_rainbow" Arg="1"/>
+				<Num Num="0.2"/>
+			</ToolScp>
+			<ToolScp Scp="C_EFFECT_DETACH" Client="YES" UseSleep="NO">
+				<Str_Arg Str="I_circle003_spin_loop_violet" Arg="1"/>
+				<Num Num="0.2"/>
+			</ToolScp>
             <ToolScp Scp="SKL_STOP_SOUND" Client="NO" UseSleep="NO">
                 <Str Str="skl_eff_elementalist_elementalessence_cast"/>
                 <Str Str="skl_eff_elementalist_elementalessence_cast"/>

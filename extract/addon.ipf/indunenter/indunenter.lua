@@ -1253,7 +1253,7 @@ function INDUNENTER_AUTOMATCH_TYPE(indunType, needUnderstaffAllow)
         local indunCls = GetClassByType('Indun', indunType)
         if indunCls ~= nil then
             local dungeonType = TryGetProp(indunCls, 'DungeonType', 'None')
-            if dungeonType == 'Raid' or dungeonType == 'GTower' then
+            if dungeonType == 'Raid' or dungeonType == 'GTower' or dungeonType == "Challenge_Auto" then
                 needUnderstaffAllow = 0;
             end
         end
