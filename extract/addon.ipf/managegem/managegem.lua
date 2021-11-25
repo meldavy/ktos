@@ -288,10 +288,16 @@ function CLICK_REMOVE_GEM_BUTTON(frame, slot, argStr, argNum)
 		return;
 	end
 	
+	local isGemRemoveCare = IS_GEM_EXTRACT_CARE_20211125()
+
 	local itemname = argStr;
 	local yesScp = string.format("EXEC_REMOVE_GEM()");
 
-	ui.MsgBox( "'"..itemname ..ScpArgMsg("Auto_'_SeonTaeg")..ScpArgMsg("ReallyRemoveGem"), yesScp, "None");
+	if isGemRemoveCare == true then
+		ui.MsgBox( "'"..itemname ..ScpArgMsg("Auto_'_SeonTaeg")..ScpArgMsg("ReallyRemoveGem_Care"), yesScp, "None");
+	else
+		ui.MsgBox( "'"..itemname ..ScpArgMsg("Auto_'_SeonTaeg")..ScpArgMsg("ReallyRemoveGem"), yesScp, "None");
+	end
 end
 
 function EXEC_REMOVE_GEM()

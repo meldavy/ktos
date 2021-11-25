@@ -246,6 +246,7 @@ function DRAW_ETC_DESC_TOOLTIP(tooltipframe, invitem, yPos, mainframename)
 	end
 
 	Desc = DRAW_COLLECTION_INFO(invitem, Desc)
+	Desc = DRAW_USAGEDESC_INFO(invitem, Desc)
 	
 	descRichtext:SetText(Desc)
 
@@ -258,6 +259,17 @@ function DRAW_ETC_DESC_TOOLTIP(tooltipframe, invitem, yPos, mainframename)
 
 	return yPos
 
+end
+
+function DRAW_USAGEDESC_INFO(invitem, desc)
+	local UsageDesc = TryGetProp(invitem, 'UsageDesc', 'None')
+
+	if UsageDesc ~= "None" then
+		local text = UsageDesc
+		desc = desc .. '{nl} {nl}' .. text
+	end
+
+	return desc
 end
 
 function DRAW_ETC_RECIPE_NEEDITEM_TOOLTIP(tooltipframe, invitem, ypos, mainframename)

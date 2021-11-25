@@ -370,7 +370,7 @@
                         </Scp>
                         <Scp Scp="CREATE_BLINK_DUMMYPC" Client="NO" UseSleep="NO" Time="800">
                             <Pos Angle="0" Dist="0" PosType="5"/>
-                            <Num Num="10"/>
+                            <Num Num="20"/>
                             <Str Str="BLINK_MON"/>
                         </Scp>
                         <Scp Scp="SKL_INVIN" Client="NO" UseSleep="NO" Time="800">

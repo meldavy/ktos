@@ -282,15 +282,6 @@
                     <Angle Angle="0"/>
                     <Str Str="Assassin_HallucinationSmoke"/>
                 </Scp>
-                <Scp Client="NO" Scp="SKL_BUFF" Time="300" UseSleep="NO">
-                    <Str Str="HallucinationSmoke_Buff"/>
-                    <Num FuncTxt="return obj.Level;" Num="1" UseFunc="1"/>
-                    <Num Num="0"/>
-                    <Num Num="30000"/>
-                    <Num Num="1"/>
-                    <Num Num="100"/>
-                    <Num Num="0"/>
-                </Scp>
                 <Scp Client="YES" Scp="C_VOICE_SOUND" Time="400" UseSleep="NO">
                     <Str Str="voice_scout_m_hallucinationsmoke_cast"/>
                     <Str Str="voice_scout_f_hallucinationsmoke_cast"/>

@@ -406,3 +406,90 @@ function SCR_ENABLE_GET_SKILL_Sadhu_Moksha(pc, skillClsName)
 	end
 	return true;
 end
+
+function SCR_ENABLE_GET_SKILL_Fletcher_BodkinPoint(pc, skillClsName)
+	local FletcherArrowShot = nil;
+	if IsServerObj(pc) == 1 then
+		FletcherArrowShot = GetSkill(pc, 'Fletcher_FletcherArrowShot');
+	else
+		FletcherArrowShot = session.GetSkillByName('Fletcher_FletcherArrowShot');
+	end
+
+	if FletcherArrowShot == nil then
+		return false;
+	end
+	return true;
+end
+
+function SCR_ENABLE_GET_SKILL_Fletcher_BarbedArrow(pc, skillClsName)
+	local FletcherArrowShot = nil;
+	if IsServerObj(pc) == 1 then
+		FletcherArrowShot = GetSkill(pc, 'Fletcher_FletcherArrowShot');
+	else
+		FletcherArrowShot = session.GetSkillByName('Fletcher_FletcherArrowShot');
+	end
+
+	if FletcherArrowShot == nil then
+		return false;
+	end
+	return true;
+end
+
+function SCR_ENABLE_GET_SKILL_Fletcher_CrossFire(pc, skillClsName)
+	local FletcherArrowShot = nil;
+	if IsServerObj(pc) == 1 then
+		FletcherArrowShot = GetSkill(pc, 'Fletcher_FletcherArrowShot');
+	else
+		FletcherArrowShot = session.GetSkillByName('Fletcher_FletcherArrowShot');
+	end
+
+	if FletcherArrowShot == nil then
+		return false;
+	end
+	return true;
+end
+
+function SCR_ENABLE_GET_SKILL_Fletcher_Singijeon(pc, skillClsName)
+	local FletcherArrowShot = nil;
+	if IsServerObj(pc) == 1 then
+		FletcherArrowShot = GetSkill(pc, 'Fletcher_FletcherArrowShot');
+	else
+		FletcherArrowShot = session.GetSkillByName('Fletcher_FletcherArrowShot');
+	end
+
+	if FletcherArrowShot == nil then
+		return false;
+	end
+	return true;
+end
+
+function SCR_ENABLE_GET_SKILL_Fletcher_CatenaChainArrow(pc, skillClsName)
+	local FletcherArrowShot = nil;
+	if IsServerObj(pc) == 1 then
+		FletcherArrowShot = GetSkill(pc, 'Fletcher_FletcherArrowShot');
+	else
+		FletcherArrowShot = session.GetSkillByName('Fletcher_FletcherArrowShot');
+	end
+
+	if FletcherArrowShot == nil then
+		return false;
+	end
+	return true;
+end
+
+function SCR_ENABLE_GET_SKILL_TigerHunter_EyeofBeast(pc, skillClsName)
+	local Tracking = nil;
+	if IsServerObj(pc) == 1 then
+		Tracking = GetSkill(pc, 'TigerHunter_Tracking');
+	else
+		Tracking = session.GetSkillByName('TigerHunter_Tracking');
+	end
+
+	if Tracking == nil then
+		return false;
+	end
+	return true;
+end
+
+
+

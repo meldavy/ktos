@@ -51,18 +51,6 @@
                if func == nil then return end
                return func(skill.Level)"/>
                 </ToolScp>
-                <ToolScp Scp="S_R_COND_ARMORMATERIAL" Client="NO" UseSleep="NO">
-                    <Str Str="Iron"/>
-                </ToolScp>
-                <ToolScp Scp="S_R_TGTBUFF" Client="NO" UseSleep="NO">
-                    <Str Str="ShieldBash_Debuff"/>
-                    <Num Num="1"/>
-                    <Num Num="0"/>
-                    <Num Num="5000"/>
-                    <Num Num="1"/>
-                    <Num Num="100"/>
-                    <Num Num="-1"/>
-                </ToolScp>
             </ResultList>
         </MainSkl>
     </Skill>

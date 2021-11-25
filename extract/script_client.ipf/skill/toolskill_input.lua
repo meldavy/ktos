@@ -4,7 +4,7 @@ function SKL_KEY_DYNAMIC_CASTING(actor, obj, dik, movable, rangeChargeTime, maxC
 
 	if buffName ~= nil and type(buffName) == 'string' and buffName ~= 'None' then
 		local buff = info.GetBuffByName(session.GetMyHandle(), buffName);
-		if buffName == 'ITEM_BUFF_VIBORA_THSWORD_PUNISH' then
+		if buffName == 'ITEM_BUFF_VIBORA_THSWORD_PUNISH' or buffName == 'Bazooka_Buff' then
 			if buff == nil then
 				return 0, 1
 			end

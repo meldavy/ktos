@@ -233,14 +233,10 @@
                     <Str Str="DeedsOfValor"/>
                     <Num Num="0" UseFunc="1" FuncTxt="return obj.Level"/>
                     <Num Num="0"/>
-                    <Num Num="0" UseFunc="1" FuncTxt="    local value = 10000 + obj.Level * 10000
+                    <Num Num="0" UseFunc="1" FuncTxt="local value = 1800000
     local abil = GetAbility(self, 'Doppelsoeldner37')
     if abil ~= nil and TryGetProp(abil, 'ActiveState', 0) == 1 then
         value = 15000
-
-        if IsBuffApplied(self, 'Frenzy_Buff') == 'YES' then
-            value = value + 3000
-        end
     end
 
     return value"/>
@@ -497,9 +493,6 @@ end" Arg="0"/>
             </ToolScp>
             <ToolScp Scp="SKL_BUFF_REMOVE" Client="NO" UseSleep="NO">
                 <Str Str="Cyclone_Buff_ImmuneAbil"/>
-            </ToolScp>
-            <ToolScp Scp="SKL_RUN_SCRIPT" Client="NO" UseSleep="NO">
-                <Str Str="SCR_FRENZY_CYCLONE"/>
             </ToolScp>
             <ToolScp Scp="SKL_BUFF_REMOVE" Client="NO" UseSleep="NO">
                 <Str Str="Cyclone_EnableMovingShot_Buff"/>

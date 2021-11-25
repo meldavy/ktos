@@ -1491,7 +1491,6 @@
 		<controls>
 			<button rect="0 0 200 134" layout_gravity="left top" clicksound="button_click_big" oversound="button_over" name="button"/>
 			<richtext name="jobname" autofontsizebywidth="true" rect="0 0 220 50" format="{@sti7}{s22}{ds}%s{/}" param1="param_jobcname" param1_def="DefVal" layout_gravity="center center" margin="0 0 0 0" textalign="center top" fixwidth="true" resizebytext="true" hittest="false"/>
-			<picture name="hotimg" layout_gravity="left top" rect="0 0 69 73" margin="0 0 0 0" hittest="false" image="class_tree_hot_icon"/>
 		</controls>
 	</controlset>
 	<controlset name="map_icon" toggle="false" width="104" height="80">

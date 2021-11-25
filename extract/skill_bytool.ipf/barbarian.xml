@@ -122,6 +122,11 @@
         </MainSkl>
     </Skill>
     <Skill Name="Barbarian_Frenzy">
+		<EnableScripts>
+			<ToolScp Scp="SKL_CHECK_FLETCHER" Client="BOTH" UseSleep="NO">
+				<Num Num="0"/>
+			</ToolScp>
+		</EnableScripts>
         <MainSkl JumpFlee="NO" MSPDToUsePos="0" ScrLock="None">
             <EtcList>
                 <Scp Client="NO" Scp="SKL_BUFF" Time="0" UseSleep="NO">
@@ -139,22 +144,6 @@
                 </Scp>
             </EtcList>
         </MainSkl>
-        <ByCondSkills>
-            <SubSkl>
-                <Cond>
-                    <ToolScp Client="NO" Scp="SKL_SELECT_BUFF" UseSleep="NO">
-                        <Str Str="Frenzy_Buff"/>
-                    </ToolScp>
-                </Cond>
-                <Skill JumpFlee="NO" MSPDToUsePos="0" ScrLock="None">
-                    <EtcList>
-                        <Scp Client="NO" Scp="SKL_BUFF_REMOVE" Time="0" UseSleep="NO">
-                            <Str Str="Frenzy_Buff"/>
-                        </Scp>
-                    </EtcList>
-                </Skill>
-            </SubSkl>
-        </ByCondSkills>
     </Skill>
     <Skill Name="Barbarian_StompingKick">
         <EnableScripts>

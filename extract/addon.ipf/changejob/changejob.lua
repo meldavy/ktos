@@ -385,14 +385,14 @@ function CJ_UPDATE_RIGHT_INFOMATION(frame, jobid)
 
     local pc = GetMyPCObject();
     local preFuncName = TryGetProp(jobinfo, 'PreFunction')
-    if preFuncName ~= nil and preFuncName ~= 'None' then
-        local preFunc = _G[preFuncName]
+	if preFuncName ~= nil and preFuncName ~= 'None' then
+		local preFunc = _G[preFuncName]
 		if preFunc ~= nil then
 			local jobCount = GetTotalJobCount(pc);
 			if isClassChangeMode == true then
 				jobCount = jobCount - 1;
 			end
-			local result = preFunc(pc, jobCount);			
+			local result = preFunc(pc, jobCount);		
             if result == 'NO' then
                 return;
             end
@@ -479,13 +479,6 @@ function IS_COMPANIONSKILL_JOB(jobinfo)
 	return false;
 end
 
-local function IS_NEW_JOB(jobCls)
-	if jobCls.ClassName == 'Char3_21' or jobCls.ClassName == 'Char5_16' then
-		return true;
-	end
-	return false;
-end
-
 local function TRANS_BOOLEAN(number)
 	if number == 0 then
 		return false;
@@ -516,12 +509,12 @@ function UPDATE_CHANGEJOB(frame)
 		if preFuncName == 'None' then
 			return true;
 		end
-	--	if jobCls.HiddenJob == "YES" then
-	--    	local pcEtc = GetMyEtcObject();
-	--    	if pcEtc["HiddenJob_"..jobCls.ClassName] ~= 300 and IS_KOR_TEST_SERVER() == false then
-	--    	    return false;
-	--    	end
-	--	end
+	
+		local name = TryGetProp(jobCls, "JobName", "None")
+		if name ~= 'Appraiser' and name ~= 'NakMuay' and name ~= 'Shinobi' and name ~= 'Miko' and name ~= 'RuneCaster' then
+			return true
+		end
+
 		return false;
 	end
 
@@ -533,7 +526,6 @@ function UPDATE_CHANGEJOB(frame)
 		if pcCtrlType == jobCls.CtrlType and jobCls.Rank <= JOB_CHANGE_MAX_RANK then			
 			jobInfos[#jobInfos + 1] = { JobClassID = jobCls.ClassID,
 										IsHave = IS_HAD_JOB(jobCls.ClassID),
-										IsNew = IS_NEW_JOB(jobCls),
 										HotCount = session.GetChangeJobHotRank(jobCls.ClassName),
 										IsSatisfiedHiddenQuest = _IS_SATISFIED_HIDDEN_JOB_TRIGGER(jobCls)};
 										
@@ -595,8 +587,13 @@ function UPDATE_CHANGEJOB(frame)
 		-- button img
 		if info.IsHave == true then
 		    local preFuncName = TryGetProp(jobCls, 'PreFunction', 'None')
-			if jobCls.HiddenJob == 'YES' and preFuncName ~= 'None'  then
-				button:SetImage(BUTTON_IMG_HAD_HIDDEN_JOB);
+			if jobCls.HiddenJob == 'YES' and preFuncName ~= 'None' then
+				local jobname = TryGetProp(jobCls, 'JobName', 'None')
+				if jobname == 'Appraiser' or jobname == 'NakMuay' or jobname == 'Shinobi' or jobname == 'Miko' or name == 'RuneCaster' then
+					button:SetImage(BUTTON_IMG_HAD_HIDDEN_JOB);
+				else
+					button:SetImage(BUTTON_IMG_HAVE_JOB);
+				end
 			else
 				button:SetImage(BUTTON_IMG_HAVE_JOB);
 			end
@@ -604,14 +601,6 @@ function UPDATE_CHANGEJOB(frame)
 			button:SetImage(BUTTON_IMG_HIDDEN_JOB);
 		else
 			button:SetImage(BUTTON_IMG_DEFAULT);
-		end
-		
-		-- hot tag
-		local charpic = GET_CHILD(subClassCtrl, "hotimg");
-		charpic:ShowWindow(0);
-		if info.IsNew == true then
-			charpic:SetImage(BUTTON_IMG_NEW_JOB);
-			charpic:ShowWindow(1);
 		end
 
 		-- name			

@@ -1585,7 +1585,7 @@ function ON_WORLD_MSG_0(name, type, pointType, point)
 	end
 	
 	if nil ~= session.friends.GetFriendByFamilyName(FRIEND_LIST_COMPLETE, name) or ispartymesmbers == true then
-		local achiName = geAchieveTable.GetName(type);	
+		local achiName = geAchieveTable.GetDescTitle(type);	
 		local msg = ScpArgMsg("Auto_{#FFFF00}[{Auto_1}]Nimi_<{Auto_2}>eopJeogeul_DalSeongHayeossSeupNiDa.","Auto_1", name, "Auto_2",achiName);
 		ui.AddText("SystemMsgFrame", msg);
 	end

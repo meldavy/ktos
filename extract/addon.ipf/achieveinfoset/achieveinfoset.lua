@@ -50,10 +50,14 @@ function ON_UPDATE_ACHIEVEINFOSET()
 		return
 	else
 		if QUESTINFOSET_2_IS_DRAW() == 1 then
-			if CHASEINFO_IS_QUEST_FOLD() == 1 then
-				CHASEINFO_SET_ACHIEVE_INFOSET_FOLD(0)
-			else
+			if CHASEINFO_IS_QUEST_FOLD() == 0 then
 				CHASEINFO_SET_ACHIEVE_INFOSET_FOLD(1)
+			else
+				if CHASEINFO_IS_ACHIEVE_FOLD() == 1 then
+					CHASEINFO_SET_ACHIEVE_INFOSET_FOLD(1)
+				else
+					CHASEINFO_SET_ACHIEVE_INFOSET_FOLD(0)
+				end
 			end
 		else
 			CHASEINFO_SET_ACHIEVE_INFOSET_FOLD(0)
@@ -62,6 +66,9 @@ function ON_UPDATE_ACHIEVEINFOSET()
 	
 	-- Frame
 	if QUESTINFOSET_2_IS_VALID_QUEST() == 1 and CHASEINFO_IS_QUEST_FOLD() == 0 then
+		frame:ShowWindow(0)
+		return
+	elseif CHASEINFO_IS_ACHIEVE_FOLD() == 1 then
 		frame:ShowWindow(0)
 		return
 	else

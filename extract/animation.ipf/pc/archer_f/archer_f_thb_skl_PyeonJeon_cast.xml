@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by IMC (IMCGames Co., Ltd) -->
+<ActionDesc>
+	<AttachModel frame="0" XAC="arrow_pyeonjeon" node="Dummy_arrow" isAttach="true" autoDetach="false" index="0" anim="None"/>
+	<AttachModel frame="0" XAC="arrow_pyeonjeon_cover" node="Dummy_arrow" isAttach="true" autoDetach="false" index="0" anim="None"/>
+</ActionDesc>

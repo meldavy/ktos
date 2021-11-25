@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ActionDesc>
+    <Sound frame="0.00" soundFile="F_pc_run_blank_dummy" />
+    <Sound frame="6.00" soundFile="F_pc_run_blank_dummy" />
+</ActionDesc>

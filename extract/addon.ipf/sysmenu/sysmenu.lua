@@ -18,6 +18,10 @@ function SYSMENU_ON_INIT(addon, frame)
 	addon:RegisterMsg("ENABLE_PCBANG_SHOP", "SYSMENU_ON_MSG");
 	addon:RegisterMsg("NEW_USER_REQUEST_GUILD_JOIN", "SYSMENU_ON_MSG");
 	addon:RegisterMsg("GUILD_PROMOTE_NOTICE", "SYSMENU_GUILD_PROMOTE_NOTICE");
+	
+	addon:RegisterMsg("ACHIEVE_REWARD", "SYSMENU_ON_MSG")
+	addon:RegisterMsg("ACHIEVE_REWARD_ALL", "SYSMENU_ON_MSG")
+	addon:RegisterMsg("ACHIEVE_NEW", "SYSMENU_ON_MSG")
 	frame:EnableHideProcess(1);
 end
 
@@ -65,6 +69,10 @@ function SYSMENU_ON_MSG(frame, msg, argStr, argNum)
 	if msg == 'JOB_SKILL_POINT_UPDATE' then
 		SYSMENU_PC_SKILL_NOTICE(frame);
 		imcSound.PlaySoundEvent('sys_alarm_skl_status_point_count');
+	end
+
+	if msg =='GAME_START' or msg == 'ACHIEVE_REWARD' or msg == "ACHIEVE_REWARD_ALL" or msg == "ACHIEVE_NEW" then
+		SYSMENU_JOURNAL_NOTICE(frame);
 	end
 
 	if msg == 'UPDATE_FRIEND_LIST' or msg == 'REMOVE_FRIEND' or msg == 'ADD_FRIEND' then
@@ -410,6 +418,13 @@ function SYSMENU_PC_SKILL_NOTICE(frame)
 	local parentCtrl = frame:GetChild("skilltree");
 	local point = session.GetSkillPoint();
 	NOTICE_CTRL_SET(parentCtrl, "skilltree", point);
+end
+
+function SYSMENU_JOURNAL_NOTICE(frame)
+	local parentCtrl = frame:GetChild("journal");
+	local list = ADVENTURE_BOOK_ACHIEVE_CONTENT.LIST_REWARD()
+	local point = #list
+	NOTICE_CTRL_SET(parentCtrl, "journal", point);
 end
 
 function SYSMENU_COLLECTION_NOTICE(frame)

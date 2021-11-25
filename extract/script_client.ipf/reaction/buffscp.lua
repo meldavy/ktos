@@ -279,6 +279,9 @@ function Finestra_LEAVE(actor, obj, buff)
     actor:GetAnimation():ResetSTDAnim();
     actor:GetAnimation():ResetRUNAnim();
     ScpChangeSwordmanStanceAnimationSet(actor, obj, buff)
+
+    actor:GetAnimation():PlayAnimByFrame("SKL_FINESTRA_SWITCH", 0.7, 1, 1, 0, 15);
+    actor:GetAnimation():ReserveAnim("ASTD", 1, 1);
 end
 
 function EpeeGarde_ENTER(actor, obj, buff)
@@ -1309,6 +1312,7 @@ function ScpChangeSwordmanStanceAnimationSet(actor, obj, buff)
         actor:GetAnimation():SetOnAIRAnim("SKL_MURMILLO_ONAIR")
         actor:GetAnimation():SetFALLAnim("SKL_MURMILLO_FALL")
     elseif buffEnmascarado ~= nil then
+        actor:GetAnimation():ResetRUNAnim();
         actor:GetAnimation():SetSTDAnim("SKL_LUCHADOR_ASTD");
         actor:GetAnimation():SetSTDAnim("SKL_LUCHADOR_ASTD");
         actor:GetAnimation():SetTURNAnim("SKL_LUCHADOR_ASTD");
@@ -1756,6 +1760,34 @@ function LuchadorComboClientScp_LEAVE(actor, obj, buff)
     actor:SetAuraInfo("None");
 end
 
+function PyeonJeonClientScp_ENTER(actor, obj, buff)
+    actor:GetAnimation():SetSTDAnim("skl_PyeonJeon_loop");
+    actor:GetAnimation():SetRUNAnim("skl_PyeonJeon_move");
+    actor:GetAnimation():SetWLKAnim("skl_PyeonJeon_move");
+    actor:GetAnimation():SetTURNAnim("None");
+    actor:SetAlwaysBattleState(true);
+end
+
+function PyeonJeonClientScp_LEAVE(actor, obj, buff)
+    actor:GetAnimation():ResetSTDAnim();
+    actor:GetAnimation():ResetRUNAnim();
+    actor:GetAnimation():ResetWLKAnim();
+    actor:GetAnimation():ResetTURNAnim();
+    actor:SetAlwaysBattleState(false);
+end
+
+function DOLL_ZANAS_BUFF_ENTER(actor, obj, buff)
+end
+
+function DOLL_ZANAS_BUFF_UPDATE(actor, obj, buff)
+	SCR_CREATE_FAIRY(actor:GetHandleVal(), "doll_zanas");
+end
+
+function DOLL_ZANAS_BUFF_LEAVE(actor, obj, buff)
+	SCR_REMOVE_FAIRY(actor:GetHandleVal(), "doll_zanas");
+end
+
+
 function OOBE_Possession_Buff_LEAVE(actor, obj, buff)
     -- actor:GetAnimation():ResetAnim();
     -- actor:GetAnimation():PlayFixAnim('SKL_OOBE_READY', 1.8, 0);
@@ -1823,3 +1855,65 @@ function OOBE_Moksha_Buff_LEAVE(actor, obj, buff)
     local femaleVoice = "voice_cleric_f_moksha_shot"
     C_VOICE_SOUND(actor, obj, maleVoice, femaleVoice)
 end
+
+function CatenaChainArrow_ENTER(actor, obj, buff)
+    local caster = buff:GetHandle();
+    hardSkill.LinkToObject(actor, caster, "Linker_blue", "Bip01 Spine2", "Dummy_emitter");
+end
+
+function CatenaChainArrow_LEAVE(actor, obj, buff)
+    local caster = buff:GetHandle();
+    hardSkill.LinkToObject(nil, caster, "Linker_blue", "Bip01 Spine2", "Dummy_emitter");
+    local myactor = world.GetActor(caster);
+
+    effect.DetachActorEffect(myactor, "I_emo_bound", 0.0);
+end
+
+function CatenaChainArrow_UPDATE(actor, obj, buff)
+    local handle = actor:GetHandleVal();
+    local dist = info.GetDistance(handle);
+    local caster = buff:GetHandle();
+    local myactor = world.GetActor(caster);
+
+    if dist >= 250 and myactor:GetUserIValue("CatenaChainArrow_UPDATE") == 0 then
+        local actorPos = myactor:GetPos();
+        effect.AddActorEffect(myactor, "I_emo_bound", 3.3, actorPos.x, actorPos.y + 45, actorPos.z, -1)
+        myactor:SetUserValue('CatenaChainArrow_UPDATE', 1)
+    elseif dist <= 250 and myactor:GetUserIValue("CatenaChainArrow_UPDATE") == 1 then
+        effect.DetachActorEffect(myactor, "I_emo_bound", 0.0);
+        myactor:SetUserValue("CatenaChainArrow_UPDATE", 0)
+    end
+end
+
+
+function DoNotRetreat_Arts_UPDATE(actor, obj, buff)
+    local pc = GetMyPCObject()
+    local my_angle = fsmactor.GetAngle(actor)
+    local caster_angle = GetExProp(pc, 'DoNotRetreat_CASTER_ANGLE')
+
+    local calc_angle = my_angle - caster_angle
+    calc_angle = math.floor(calc_angle)
+
+    local angle = 60
+    local revAngle = angle * -1
+    local relativeAngle = math.floor(calc_angle)
+
+    if (angle/2 >= relativeAngle and 0 <= relativeAngle) or (revAngle/2 <= relativeAngle and 0 >= relativeAngle) then
+        if actor:GetUserIValue("DoNotRetreat_UPDATE") == 0 then
+            local actorPos = actor:GetPos();
+            actor:SetUserValue('DoNotRetreat_UPDATE', 1)
+            actor:GetEffect():SetColorBlink(0,0,0,0,0,0,0.5,0, 2, 1);
+        end
+    else
+        actor:SetUserValue('DoNotRetreat_UPDATE', 0)
+        actor:GetEffect():SetColorBlink(0,0,0,0,0,0,0,0, 0 , 1);
+    end
+
+end
+
+function DoNotRetreat_Arts_LEAVE(actor, obj, buff)
+    actor:SetUserValue('DoNotRetreat_UPDATE', 0)
+    actor:GetEffect():SetColorBlink(0,0,0,0,0,0,0,0, 0 , 1);
+end
+
+

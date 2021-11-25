@@ -721,3 +721,127 @@ function SCR_SKL_CHECK_TRANSFORM_C(actor, skl)
 
     return 0;
 end
+
+function SKL_CHECK_HWARANG_HORN_BOW_C(actor, skl)
+    local pc = GetMyPCObject()
+    local buff_stack = GetExProp(pc, 'Hwarang_Skillcost_Buff')
+    local debuff_stack = GetExProp(pc, 'Hwarang_Target_Debuff')
+
+    if buff_stack > 0  and debuff_stack > 0 then            
+        return 1
+    end
+
+    return 0
+end
+
+function SKL_CHECK_HWARANG_SKILLCOST_C(actor, skl)
+    local pc = GetMyPCObject()
+    local buff_stack = GetExProp(pc, 'Hwarang_Skillcost_Buff')
+
+    if buff_stack > 0  then            
+        return 1
+    end
+
+    return 0
+end
+
+function SKL_CHECK_FLETCHER_C(actor, skl)
+    return 0
+end
+
+function SKL_CHECK_GROVINGMUZZLE_C(actor, skl)
+    local pc = GetMyPCObject()
+    if IsBuffApplied(pc, 'GroovingMuzzle_UseStack_Buff') == 'YES' then
+        return 0
+    end
+
+    return 1
+end
+
+function SKL_CHECK_FLETCHER_ARROW_SHOT_C(actor, skl)
+    local handle = session.GetTargetHandle()
+    if handle == 0 or handle == nil then
+        return 0
+    end
+
+    if actor:GetBuff():GetBuff('Fletcher_BodkinPoint_Buff') ~= nil then
+        return 1
+    end
+
+    if actor:GetBuff():GetBuff('Fletcher_BarbedArrow_Buff') ~= nil then
+        return 1
+    end
+
+    if actor:GetBuff():GetBuff('Fletcher_CrossFire_Buff') ~= nil then
+        return 1
+    end
+
+    if actor:GetBuff():GetBuff('Fletcher_Singijeon_Buff') ~= nil then
+        return 1
+    end
+
+    return 0
+end
+
+function SKL_CHECK_FLETCHER_CATENA_C(actor, skl)
+    local pc = GetMyPCObject()
+    if  GetExProp(pc, 'FLETCHER_CATENA_ENABLE') > 0 then
+        return 0
+    end
+
+    return 1
+end
+
+function SKL_CHECK_EXIST_TARGET_C(actor, skl)
+    local handle = session.GetTargetHandle()
+    if handle == 0 or handle == nil then
+        return 0
+    end
+
+    return 1
+end
+
+function SCR_CHECK_STRAFINGSHOT_C(actor, skl)
+    local pc = GetMyPCObject()
+    if GetExProp(pc, 'Ranger_StrapingShot') == 1 then
+        local handle = session.GetTargetHandle()
+        if handle == 0 or handle == nil then
+            return 0
+        end
+
+        local dist = info.GetDistance(handle)
+        if dist > 200 then
+            return 0
+        end
+        
+        return 1
+    end
+
+    return 0
+end
+
+function SKL_CHECK_DesperateDefense_C(actor, skl)
+    local pc = GetMyPCObject()
+    if GetExProp(pc, 'DesperateDefense_SET') == 1 then
+       return 0
+    end
+    return 1
+end
+
+function SKL_CHECK_ArquebusBarrage_C(actor, skl)
+    return 0
+end
+
+function SCR_CHECK_EyeofBeast_C(actor, skl)
+    local pc = GetMyPCObject()
+    if GetExProp(pc, 'TigerHunter_EyeofBeast_HANDLE') ~= 0 then
+        local handle = GetExProp(pc, 'TigerHunter_EyeofBeast_HANDLE')
+        if handle == 0 or handle == nil then
+            return 0
+        end
+        
+        return 1
+    end
+
+    return 0
+end

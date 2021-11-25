@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by IMC (IMCGames Co., Ltd) -->
+<ActionDesc>
+	<BlendOn frame="0" R="0" G="0" B="0" A="50"/>
+	<BlendOn frame="2" R="150" G="150" B="100" A="100"/>
+	<BlendOn frame="3" R="80" G="60" B="30" A="100"/>
+	<BlendOn frame="3" R="0" G="0" B="0" A="50"/>
+	<BlendOn frame="4" R="150" G="150" B="100" A="100"/>
+	<BlendOn frame="4" R="80" G="60" B="30" A="100"/>
+	<BlendOn frame="5" R="0" G="0" B="0" A="50"/>
+	<BlendOn frame="5" R="150" G="150" B="100" A="100"/>
+	<BlendOn frame="6" R="80" G="60" B="30" A="100"/>
+	<BlendOn frame="6" R="0" G="0" B="0" A="50"/>
+	<BlendOn frame="7" R="150" G="150" B="100" A="100"/>
+	<BlendOn frame="7" R="80" G="60" B="30" A="100"/>
+	<BlendOn frame="8" R="0" G="0" B="0" A="50"/>
+	<BlendOn frame="8" R="150" G="150" B="100" A="100"/>
+	<BlendOn frame="9" R="80" G="60" B="30" A="100"/>
+	<BlendOn frame="9" R="0" G="0" B="0" A="50"/>
+	<BlendOn frame="10" R="150" G="150" B="100" A="100"/>
+	<BlendOn frame="10" R="80" G="60" B="30" A="100"/>
+	<BlendOn frame="11" R="0" G="0" B="0" A="50"/>
+	<BlendOn frame="11" R="150" G="150" B="100" A="100"/>
+	<BlendOn frame="12" R="80" G="60" B="30" A="100"/>
+	<BlendOn frame="12" R="0" G="0" B="0" A="50"/>
+	<BlendOn frame="13" R="150" G="150" B="100" A="100"/>
+	<BlendOn frame="13" R="80" G="60" B="30" A="100"/>
+	<BlendOn frame="14" R="0" G="0" B="0" A="50"/>
+	<BlendOff frame="35" R="0" G="0" B="0" A="0"/>
+	<Particle frame="2" attachNode="Dummy_Force" particleName="I_archer_ArrowRain_arrow_mash" useAttach="true" hiddenObj="false" changeEffect="None" scale="1" pause="true" use2DEffect="true" soft2DValue="20"/>
+	<Particle frame="4" attachNode="Dummy_Force" particleName="I_archer_ArrowRain_arrow_mash" useAttach="true" hiddenObj="false" changeEffect="None" scale="1" pause="true" use2DEffect="true" soft2DValue="20"/>
+	<Particle frame="5" attachNode="Dummy_Force" particleName="I_archer_ArrowRain_arrow_mash" useAttach="true" hiddenObj="false" changeEffect="None" scale="1" pause="true" use2DEffect="true" soft2DValue="20"/>
+	<Particle frame="7" attachNode="Dummy_Force" particleName="I_archer_ArrowRain_arrow_mash" useAttach="true" hiddenObj="false" changeEffect="None" scale="1" pause="true" use2DEffect="true" soft2DValue="20"/>
+	<Particle frame="8" attachNode="Dummy_Force" particleName="I_archer_ArrowRain_arrow_mash" useAttach="true" hiddenObj="false" changeEffect="None" scale="1" pause="true" use2DEffect="true" soft2DValue="20"/>
+	<Particle frame="10" attachNode="Dummy_Force" particleName="I_archer_ArrowRain_arrow_mash" useAttach="true" hiddenObj="false" changeEffect="None" scale="1" pause="true" use2DEffect="true" soft2DValue="20"/>
+	<Particle frame="11" attachNode="Dummy_Force" particleName="I_archer_ArrowRain_arrow_mash" useAttach="true" hiddenObj="false" changeEffect="None" scale="1" pause="true" use2DEffect="true" soft2DValue="20"/>
+	<Particle frame="13" attachNode="Dummy_Force" particleName="I_archer_ArrowRain_arrow_mash" useAttach="true" hiddenObj="false" changeEffect="None" scale="1" pause="true" use2DEffect="true" soft2DValue="20"/>
+	<Sound frame="0" soundFile="arrow_cast2"/>
+	<Sound frame="0" soundFile="arrow_cast"/>
+	<Sound frame="2" soundFile="arrow_shot_skl"/>
+	<Sound frame="3" soundFile="arrow_shot_skl"/>
+	<Sound frame="5" soundFile="arrow_shot_skl"/>
+	<Sound frame="6" soundFile="arrow_shot_skl"/>
+	<Sound frame="8" soundFile="arrow_shot_skl"/>
+	<Sound frame="9" soundFile="arrow_shot_skl"/>
+	<Sound frame="11" soundFile="arrow_shot_skl"/>
+	<Sound frame="12" soundFile="arrow_shot_skl"/>
+</ActionDesc>

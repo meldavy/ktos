@@ -2064,7 +2064,7 @@ function UPDATE_RELIC_GEM_MANAGER_DECOMPOSE(frame)
 	local dis_slotSet = GET_CHILD_RECURSIVELY(frame, 'dslotlist_discount', 'ui::CSlotSet')
 	dis_slotSet:ClearIconAll()
 	FOR_EACH_INVENTORY(invItemList, function(invItemList, invItem, slotSet, materialItemList)
-		local coupon_table = SCR_REINFORCE_COUPON()
+		local coupon_table = SCR_RELIC_REINFORCE_COUPON()
 		local obj = GetIES(invItem:GetObject())
 		for i, v in pairs(coupon_table) do
 			if v == TryGetProp(obj, "ClassName", "None") then

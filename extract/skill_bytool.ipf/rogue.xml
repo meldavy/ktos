@@ -40,15 +40,6 @@
 					<Num Num="100"/>
 					<Num Num="-1"/>
 				</ToolScp>
-				<ToolScp Scp="S_R_TGTBUFF" Client="NO" UseSleep="NO">
-					<Str Str="KnifeThrowing_Crtdr_Debuff"/>
-					<Num Num="1" UseFunc="1" FuncTxt="return  skill.Level"/>
-					<Num Num="0"/>
-					<Num Num="0" UseFunc="1" FuncTxt="local value = 5000 + skill.Level * 1000 local zone = GetZoneName(self); if IsPVPServer(self) == 1 or IsPVPField(self) == 1 then     value = value * 0.5; end return value"/>
-					<Num Num="1"/>
-					<Num Num="100"/>
-					<Num Num="-1"/>
-				</ToolScp>
 				<ToolScp Client="NO" Scp="S_R_TGT_Decrease_heal_debuff" UseSleep="NO">
 					<Str FuncTxt="local func_name = 'get_decrease_heal_debuff_tooltip_' .. TryGetProp(skill, 'ClassName', 'None')
                local func = _G[func_name]
@@ -357,7 +348,12 @@ return func(skill.Level)" Str="0" UseFunc="1"/>
 		</ByCondSkills>
 	</Skill>
 	<Skill Name="Rogue_SneakHit">
-		<MainSkl JumpFlee="NO" MSPDToUsePos="0" ScrLock="None">
+		<EnableScripts>
+			<ToolScp Scp="SKL_CHECK_FLETCHER" Client="BOTH" UseSleep="NO">
+				<Num Num="0"/>
+			</ToolScp>
+		</EnableScripts>
+        <MainSkl JumpFlee="NO" MSPDToUsePos="0" ScrLock="None">
 			<EtcList>
 				<Scp Client="YES" Scp="C_VOICE_SOUND" Time="200" UseSleep="NO">
 					<Str Str="voice_war_atk_medium"/>
@@ -767,15 +763,13 @@ return 2500 + obj.Level * 200;"/>
 					<Num Num="0"/>
 					<Num Num="1"/>
 				</Scp>
-				<Scp Scp="SKL_TGT_BUFF" Client="NO" UseSleep="NO" Time="330">
-					<Str Str="Feints_Debuff"/>
+                <Scp Scp="SKL_BUFF" Client="NO" UseSleep="NO" Time="0">
+                    <Str Str="Feint_Buff"/>
 					<Num Num="1"/>
 					<Num Num="0"/>
-					<Num Num="5000" UseFunc="1" FuncTxt="
-return 2500 + obj.Level * 200;"/>
+                    <Num Num="3500"/>
 					<Num Num="1"/>
 					<Num Num="100"/>
-					<Num Num="0"/>
 					<Num Num="0"/>
 				</Scp>
 				<Scp Scp="MONSKL_C_PLAY_ANIM" Client="YES" UseSleep="NO" Time="340">
@@ -784,7 +778,12 @@ return 2500 + obj.Level * 200;"/>
 					<Num Num="1"/>
 					<Num Num="0"/>
 				</Scp>
-			</EtcList>
+			<Scp Scp="SKL_TGT_DMG" Client="NO" UseSleep="NO" Time="550">
+                    <Num Num="1"/>
+                    <Num Num="0"/>
+                    <Num Num="0"/>
+                </Scp>
+            </EtcList>
 		</MainSkl>
 	</Skill>
 	<Skill Name="Rogue_BrandishBow">

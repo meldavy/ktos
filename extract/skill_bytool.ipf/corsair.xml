@@ -78,15 +78,6 @@
                     <Num Num="1"/>
                     <Num Num="1"/>
                 </Scp>
-                <Scp Client="NO" Scp="SKL_BUFF" Time="0" UseSleep="NO">
-                    <Str Str="QuickandDead_PistolDamage_Buff"/>
-                    <Num FuncTxt=" return obj.Level" Num="1" UseFunc="1"/>
-                    <Num Num="0"/>
-                    <Num Num="10000"/>
-                    <Num Num="1"/>
-                    <Num Num="100"/>
-                    <Num Num="0"/>
-                </Scp>
                 <Scp Scp="MONSKL_C_PLAY_ANIM" Client="YES" UseSleep="NO" Time="0">
                     <Str Str="SKL_PISTOLSHOT"/>
                     <Num Num="3"/>
@@ -579,6 +570,11 @@
         </MainSkl>
     </Skill>
     <Skill Name="Corsair_Brutality">
+		<EnableScripts>
+			<ToolScp Scp="SKL_CHECK_FLETCHER" Client="BOTH" UseSleep="NO">
+				<Num Num="0"/>
+			</ToolScp>
+		</EnableScripts>
         <MainSkl JumpFlee="NO" MSPDToUsePos="0" ScrLock="None">
             <HitList>
                 <Frame Angle="0" AniTime="9999" Dist="0" ForceATK="0" HitCount="1" PosType="0" RandDist="0" RandomPerHit="0" RotAngle="0" TermMax="0" TermMin="0" Time="9799" Type="FAN"/>
@@ -602,32 +598,6 @@
                 </Scp>
             </EtcList>
         </MainSkl>
-        <ByCondSkills>
-            <SubSkl>
-                <Cond>
-                    <ToolScp Scp="SKL_SELECT_BUFF" Client="NO" UseSleep="NO">
-                        <Str Str="Brutality_Buff"/>
-                    </ToolScp>
-                </Cond>
-                <Skill ScrLock="None" JumpFlee="NO" MSPDToUsePos="0">
-                    <HitList>
-                        <Frame Type="FAN" Time="9799" HitCount="1" TermMin="0" TermMax="0" PosType="0" Dist="0" RandDist="0" RandomPerHit="0" Angle="0" AniTime="9999" RotAngle="0" ForceATK="0"/>
-                    </HitList>
-                    <EtcList>
-                        <Scp Scp="SKL_TOGGLE_ON" Client="NO" UseSleep="NO" Time="0">
-                            <Num Num="0"/>
-                        </Scp>
-                        <Scp Scp="SKL_BUFF_REMOVE" Client="NO" UseSleep="NO" Time="0">
-                            <Str Str="Brutality_Buff"/>
-                        </Scp>
-                        <Scp Scp="C_VOICE_SOUND" Client="YES" UseSleep="NO" Time="100">
-                            <Str Str="voice_scout_m_brutality_cast"/>
-                            <Str Str="voice_scout_f_brutality_cast"/>
-                        </Scp>
-                    </EtcList>
-                </Skill>
-            </SubSkl>
-        </ByCondSkills>
     </Skill>
     <Skill Name="Corsair_Looting">
         <MainSkl JumpFlee="NO" MSPDToUsePos="0" ScrLock="None">

@@ -285,6 +285,14 @@ function MONSKL_C_PLAY_ANIM_OOBE(actor, skill, animName, spd, freezeAnim)
     end
 end
 
+function MONSKL_C_PLAY_ANIM_BOW_CTRL(actor, skill, anim, speed, freeze_anim, cancelbyhit)
+    local _cancelbyhit = false;
+    if cancelbyhit == 1 then _cancelbyhit = true; end
+    local use_bow_control = true;
+    actor:GetAnimation():ResetAnim();
+    actor:GetAnimation():PlayFixAnim(anim, speed, freeze_anim, 0, 0, 0, true, 0, _cancelbyhit, use_bow_control);
+end
+
 function MONSKL_C_STOP_ANIM_OOBE(actor)
     local oobeActor = actor:GetOOBEActor();
     if oobeActor ~= nil then

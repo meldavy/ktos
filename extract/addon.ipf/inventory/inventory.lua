@@ -5462,8 +5462,15 @@ function CHECK_CLIENT_USE_MULTIPLE_USE_STRING_GIVE_ITEM_NUMBER_SPLIT_BELONGING_C
 		multiple_string_give_item_numbersplit = tostring(item_id)
 		RUN_CLIENT_USE_MULTIPLE_USE_STRING_GIVE_ITEM_NUMBER_SPLIT(1)
 	elseif invItem.count ~= 0 and realItemCount == 0 then
-		ui.SysMsg(ClMsg("DontDecomposeNoTrade"));
-		return;
+		local itemClsName = TryGetProp(itemObj, 'ClassName', 'None')
+		if itemClsName == 'Dungeon_Key02' then
+			local titleText = ScpArgMsg("INPUT_CNT_D_D", "Auto_1", 1, "Auto_2", invItem.count)
+			INPUT_NUMBER_BOX(nil, titleText, "RUN_CLIENT_USE_MULTIPLE_USE_STRING_GIVE_ITEM_NUMBER_SPLIT", 1, 1, invItem.count)
+			multiple_string_give_item_numbersplit = tostring(item_id)
+		else
+			ui.SysMsg(ClMsg("DontDecomposeNoTrade"));
+			return;
+		end
 	else
 		local titleText = ScpArgMsg("INPUT_CNT_D_D", "Auto_1", 1, "Auto_2", realItemCount)
 		INPUT_NUMBER_BOX(nil, titleText, "RUN_CLIENT_USE_MULTIPLE_USE_STRING_GIVE_ITEM_NUMBER_SPLIT", 1, 1, realItemCount)

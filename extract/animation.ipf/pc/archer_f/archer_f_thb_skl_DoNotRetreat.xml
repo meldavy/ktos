@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by imc (IMCGames Co., Ltd) -->
+<ActionDesc>
+	<AttachModel frame="0" XAC="DoNotRetreat_flag_PC" node="Dummy_arrow" isAttach="true" autoDetach="true" index="1" anim="pc_skl_DoNotRetreat_ani.xsm"/>
+</ActionDesc>

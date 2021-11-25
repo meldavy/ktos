@@ -192,7 +192,7 @@
 					<Str Str="VisibleTalent_Buff"/>
 					<Num FuncTxt="return obj.Level;" Num="1" UseFunc="1"/>
 					<Num Num="0"/>
-					<Num Num="10000"/>
+					<Num Num="5000"/>
 					<Num Num="1"/>
 					<Num Num="100"/>
 					<Num Num="0"/>

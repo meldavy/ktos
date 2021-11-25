@@ -55,9 +55,6 @@
                     <Num Num="0"/>
                     <Num Num="1"/>
                 </Scp>
-                <Scp Scp="SKL_RUN_SCRIPT" Client="NO" UseSleep="NO" Time="300">
-                    <Str Str="SCR_SKL_MIKO_KASIWADE"/>
-                </Scp>
             </EtcList>
         </MainSkl>
     </Skill>

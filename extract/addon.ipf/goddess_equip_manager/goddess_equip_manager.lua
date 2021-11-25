@@ -3744,17 +3744,8 @@ function GODDESS_MGR_SOCKET_REQ_GEM_REMOVE(parent, btn)
 			msg_cls_name = 'ReallyRemoveGem_AetherGem'
 			clmsg = "[" .. item_name .. "]" .. ScpArgMsg(msg_cls_name) .. tostring(price)
 		else
-			local startTimeStr = "2021-04-22 09:00:00"
-			local endTimeStr = "2021-07-22 08:59:59"
-			local nowTime = date_time.get_lua_now_datetime_str()
-			local isBeforeTime = date_time.is_later_than(nowTime, startTimeStr)
-			local isAfterTime = date_time.is_later_than(nowTime, endTimeStr)
-			local isGemRemoveCare = false
-			if isBeforeTime == true and isAfterTime == false then
-				isGemRemoveCare = true
-			end
-
-
+			local isGemRemoveCare = IS_GEM_EXTRACT_CARE_20211125()
+		
 			if isGemRemoveCare == true then
 				msg_cls_name = "ReallyRemoveGem_Care"
 			else
@@ -4911,9 +4902,20 @@ function GODDESS_MGR_CONVERT_MAT_LIST_UPDATE(frame)
 	local ex_group = TryGetProp(target_cls, 'ExchangeGroup', 'None')
 	
 	if ex_group == 'Weapon_Vasilisa' and taget_is_weapon == true then
-		local invCareItemCount = GetInvItemCount(pc, 'Exchange_Weapon_Book_460_14d')
-		if invCareItemCount > 0 then
+		local invCareItemCount1 = GetInvItemCount(pc, 'Exchange_Weapon_Book_460_limit')
+		if invCareItemCount1 > 0 then
+			ex_group = 'Weapon_Vasilisa_BalanceCare'
+		end
+		local invCareItemCount2 = GetInvItemCount(pc, 'Exchange_Weapon_Book_460_14d')
+		if invCareItemCount2 > 0 then
 			ex_group = 'Weapon_Vasilisa_Care'
+		end
+	end
+	
+	if ex_group == 'Armor_Vasilisa' and taget_is_weapon == false then
+		local invCareItemCount = GetInvItemCount(pc, 'Exchange_Weapon_Book_460_limit')
+		if invCareItemCount > 0 then
+			ex_group = 'Armor_Vasilisa_BalanceCare'
 		end
 	end
 

@@ -109,19 +109,31 @@ function ADVENTURE_BOOK_ACHIEVE_MAIN_INIT_CUR_STATUS(mainPage)
     local page_achieve_main = GET_CHILD(gb_achieve, "page_achieve_main")
     local page_achieve_main_left = GET_CHILD(page_achieve_main, "page_achieve_main_left")
 
-    local list = ADVENTURE_BOOK_ACHIEVE_CONTENT.GET_MAIN_CATEGORY_CLASS_LIST()
+    local listMainCategory = ADVENTURE_BOOK_ACHIEVE_CONTENT.GET_MAIN_CATEGORY_CLASS_LIST()
+    local listAll = ADVENTURE_BOOK_ACHIEVE_CONTENT.LIST_ALL()
+    
+    for i = 1, #listMainCategory do
+        local category = listMainCategory[i].ClassName
+        local ctrlSet = GET_CHILD(page_achieve_main_left, "achieve_main_curstatus_"..category)
 
-    for i = 1, #list do
-        local ctrlSet = GET_CHILD(page_achieve_main_left, "achieve_main_curstatus_"..list[i].ClassName)
+        local listFilter = ADVENTURE_BOOK_ACHIEVE_CONTENT.FILTER_CATEGORY(listAll, category)
+        if category == "Event" then
+            listFilter = ADVENTURE_BOOK_ACHIEVE_CONTENT.FILTER_PERIOD(listFilter, 1)
+        else
+            listFilter = ADVENTURE_BOOK_ACHIEVE_CONTENT.FILTER_NON_PERIOD(listFilter)
+        end
+        local listComplete = ADVENTURE_BOOK_ACHIEVE_CONTENT.FILTER_COMPLETE(listFilter)
+        local listReward = ADVENTURE_BOOK_ACHIEVE_CONTENT.FILTER_REWARD(listFilter)
 
         local icon_pic = GET_CHILD(ctrlSet, "icon_pic", "ui::CPicture")
-        icon_pic:SetImage(list[i].Icon)
+        icon_pic:SetImage(listMainCategory[i].Icon)
 
         local category_name = GET_CHILD(ctrlSet, "category_name", "ui::CRichText")
-        category_name:SetText(ClMsg(list[i].Name))
-
-        local max = ADVENTURE_BOOK_ACHIEVE_CONTENT.GET_COUNT_MAX(list[i].ClassName)
-        local complete = ADVENTURE_BOOK_ACHIEVE_CONTENT.GET_COUNT_COMPLETE(list[i].ClassName)
+        category_name:SetText(ClMsg(listMainCategory[i].Name))
+        -- local max = ADVENTURE_BOOK_ACHIEVE_CONTENT.GET_COUNT_MAX(category)
+        local max = #listFilter
+        -- local complete = ADVENTURE_BOOK_ACHIEVE_CONTENT.GET_COUNT_COMPLETE(category)
+        local complete = #listComplete
         local gauge = GET_CHILD(ctrlSet, "gauge_score", "ui::CGauge")
         if max == 0 then
             gauge:SetPoint(0, 0)
@@ -131,16 +143,110 @@ function ADVENTURE_BOOK_ACHIEVE_MAIN_INIT_CUR_STATUS(mainPage)
 
         local shortcut = GET_CHILD(ctrlSet, "shortcut", "ui::CButton")
         shortcut:SetEventScript(ui.LBUTTONUP, "ADVENTURE_BOOK_ACHIEVE_LINK")
-        shortcut:SetEventScriptArgString(ui.LBUTTONUP, list[i].ClassName);
+        shortcut:SetEventScriptArgString(ui.LBUTTONUP, category);
         
         local newreward = GET_CHILD(ctrlSet, "newreward")
-        local count = ADVENTURE_BOOK_ACHIEVE_CONTENT.GET_COUNT_REWARD(list[i].ClassName)
+        -- local count = ADVENTURE_BOOK_ACHIEVE_CONTENT.GET_COUNT_REWARD(category)
+        local count = #listReward
         if count >= 1 then
             newreward:SetVisible(1)
         else
             newreward:SetVisible(0)
         end
     end
+end
+
+function ADVENTURE_BOOK_ACHIEVE_SORT_EXCHANGE_EVENT(a, b)
+    -- 구매여부
+    -- 레벨(내 레벨보다 낮은 내림차순, 내 레벨보다 높은 내림차순)
+    -- 등급 내림차순
+    -- 구입 비용 내림차순
+    -- ClassID
+
+    -- local noBuyList = {} 
+    -- local BuyList = {}
+    -- for i = 1, #list do
+    --     local clsID = TryGetProp(list[i], "ClassID")
+    --     if clsID ~= nil then
+    --         if IS_GET_REWARD_ACHIEVE_EXCHANGE_EVENT(list.ClassID) == 0 then
+    --             noBuyList[#noBuyList + 1] = noBuyList
+    --         else
+    --             BuyList[#BuyList + 1] = BuyList
+    --         end
+    --     end
+    -- end
+
+    local clsIDA = TryGetProp(a, "ClassID", 0)
+    local clsIDB = TryGetProp(b, "ClassID", 0)
+    local isGetRewardA = IS_GET_REWARD_ACHIEVE_EXCHANGE_EVENT(clsIDA)
+    local isGetRewardB = IS_GET_REWARD_ACHIEVE_EXCHANGE_EVENT(clsIDB)
+
+    if isGetRewardA == 0 and isGetRewardB == 1 then
+        return true
+    elseif isGetRewardA == 1 and isGetRewardB == 0 then
+        return false
+    end
+    
+    -- 레벨
+    local achieveLevel = GetAchieveLevel()
+    local LimitLevelA = TryGetProp(a, "Limit_Level", "None")
+    local LimitLevelB = TryGetProp(b, "Limit_Level", "None")
+    if LimitLevelA == "None" then
+        LimitLevelA = "0"
+    end
+    LimitLevelA = tonumber(LimitLevelA)
+    if LimitLevelB == "None" then
+        LimitLevelB = "0"
+    end
+    LimitLevelB = tonumber(LimitLevelB)
+    if achieveLevel < LimitLevelA and achieveLevel >= LimitLevelB then
+        return false
+    elseif achieveLevel < LimitLevelB and achieveLevel >= LimitLevelA then
+        return true
+    end
+
+    if LimitLevelA > LimitLevelB then
+        return true
+    elseif LimitLevelA < LimitLevelB then
+        return false
+    end
+
+    -- 등급
+    local grade = { "SS", "S", "A", "B", "C" }
+    local GradeA = TryGetProp(a, "Grade")
+    local GradeB = TryGetProp(b, "Grade")
+    local GradeNumA = 1
+    local GradeNumB = 1
+    for i = 1, #grade do
+        if grade == GradeA then
+            GradeNumA = i
+            break
+        end
+    end
+    for i = 1, #grade do
+        if grade == GradeB then
+            GradeNumB = i
+            break
+        end
+    end
+
+    if GradeNumA < GradeNumB then
+        return true
+    elseif GradeNumA > GradeNumB then
+        return false
+    end
+
+    -- 비용
+    local NeedCoinA = TryGetProp(a, "NeedCoin")
+    local NeedCoinB = TryGetProp(b, "NeedCoin")
+    
+    if NeedCoinA > NeedCoinB then
+        return true
+    elseif NeedCoinA < NeedCoinB then
+        return false
+    end
+    
+    return clsIDA < clsIDB
 end
 
 function ADVENTURE_BOOK_ACHIEVE_MAIN_INIT_EXCHANGE_EVENT(mainPage)
@@ -177,6 +283,10 @@ function ADVENTURE_BOOK_ACHIEVE_MAIN_INIT_EXCHANGE_EVENT(mainPage)
         end
     end
 
+    -- 정렬
+    table.sort(drawList, ADVENTURE_BOOK_ACHIEVE_SORT_EXCHANGE_EVENT)
+
+    -- 그리기
     for i = 1, cnt do
         local cls = drawList[i]
         ADVENTURE_BOOK_ACHIEVE_MAIN_EXCHANGE_EVENT_INIT_CTRL(gb, i, cls)
@@ -396,7 +506,7 @@ function ADVENTURE_BOOK_ACHIEVE_MAIN_INIT_HIGH_PROGRESS(mainPage)
     end
 
     local list_box = GET_CHILD(mainPage, "achieve_main_high_progress_list", "ui::CGroupBox")
-    ADVENTURE_BOOK_ACHIEVE.FILL_LIST_CONTROL(drawList, list_box)
+    ADVENTURE_BOOK_ACHIEVE.FILL_LIST_CONTROL(drawList, list_box, "MainPage_HighProgress")
 end
 
 function ADVENTURE_BOOK_ACHIEVE_MAIN_INIT_NEW_ACHIEVE(mainPage)
@@ -404,7 +514,7 @@ function ADVENTURE_BOOK_ACHIEVE_MAIN_INIT_NEW_ACHIEVE(mainPage)
     local drawList = ADVENTURE_BOOK_ACHIEVE_CONTENT.SORT_BY_ADDDATE_DES(newAchieveList)
 
     local list_box = GET_CHILD(mainPage, "achieve_main_new_achieve_list", "ui::CGroupBox")
-    ADVENTURE_BOOK_ACHIEVE.FILL_LIST_CONTROL(drawList, list_box)
+    ADVENTURE_BOOK_ACHIEVE.FILL_LIST_CONTROL(drawList, list_box, "MainPage_NewAchieve")
 end 
 
 -- argnum: Achieve Exchange Reward Class ID

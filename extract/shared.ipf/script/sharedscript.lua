@@ -3155,10 +3155,7 @@ function JOB_NAKMUAY_PRE_CHECK(pc, jobCount)
 end
 
 function JOB_LUCHADOR_PRE_CHECK(pc, jobCount)
-    if jobCount == nil then
-        jobCount = GetTotalJobCount(pc);
-    end
-    if jobCount >= 2 then
+
         local aObj
         if IsServerSection() == 0 then
             aObj = GetMyAccountObj();
@@ -3172,9 +3169,27 @@ function JOB_LUCHADOR_PRE_CHECK(pc, jobCount)
                 return 'YES'
             end
         end
-    end
 
     return 'NO'
+end
+
+function JOB_HWARANG_PRE_CHECK(pc, jobCount)
+
+    -- local aObj
+    -- if IsServerSection() == 0 then
+    --     aObj = GetMyAccountObj();
+    -- else
+    --     aObj = GetAccountObj(pc);
+    -- end
+    
+    -- if aObj ~= nil then
+    --     local value = TryGetProp(aObj, 'UnlockQuest_Char3_22', 0)
+    --     if value == 1 or IS_KOR_TEST_SERVER() == true then
+    --         return 'YES'
+    --     end
+    -- end
+
+    return 'YES'
 end
 
 

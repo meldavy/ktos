@@ -100,7 +100,7 @@
                 </Scp>
                 <Scp Scp="MONSKL_CRE_MON_SCR" Client="NO" UseSleep="NO" Time="400">
                     <Str Str="" UseFunc="1" FuncTxt="   local mon = &quot;pcskill_FireFoxShikigami&quot;     local abil = GetAbility(self, &quot;Onmyoji3&quot;)     if abil ~= nil and TryGetProp(abil, &quot;ActiveState&quot;) == 1 then         if IMCRandom(1, 100) &lt; 50 then             mon = &quot;pcskill_Big_FireFoxShikigami&quot;         end     end     return mon"/>
-                    <Pos Angle="0" Dist="3.2281915e-38"/>
+                    <Pos Angle="0" Dist="0"/>
                     <Angle Angle="0"/>
                     <Str Str="불여우 식신령"/>
                     <Str Str="PC_Summon_FireFox"/>

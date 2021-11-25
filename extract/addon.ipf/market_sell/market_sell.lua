@@ -80,7 +80,12 @@ function MARKET_SELL_UPDATE_SLOT_ITEM(frame)
 		itemObj = GetIES(slotItem:GetObject());
 		itemname:SetTextByKey("name", GET_FULL_NAME(itemObj));
 		-- 아이커 종류 표시	
-		SET_SLOT_ICOR_CATEGORY(slot_item, itemObj);
+		if itemObj.GroupName == 'Icor' or TryGetProp(itemObj, 'GroupName', 'None') == 'Arcane' then
+			SET_SLOT_ICOR_CATEGORY(slot_item, itemObj);
+		else
+			local msg = ''
+			slot_item:SetText(msg, 'quickiconfont', ui.CENTER_VERT, ui.CENTER_HORZ, -2, 1);
+		end
 	end
 
 end

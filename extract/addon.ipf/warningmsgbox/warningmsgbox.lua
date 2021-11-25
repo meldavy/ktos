@@ -573,3 +573,60 @@ function _WARNINGMSGBOX_FRAME_OPEN_DELETE_ITEM_NO(parent, ctrl, argStr, argNum)
 	ui.CloseFrame("warningmsgbox")
 	ui.CloseFrame("item_tooltip")
 end
+
+-- 리사이클 메달 상점
+function WARNINGMSGBOX_FRAME_OPEN_EXCHANGE_RECYCLE(clmsg, yesScp, noScp, itemGuid)
+	ui.OpenFrame("warningmsgbox")
+	
+	local frame = ui.GetFrame('warningmsgbox')
+	frame:EnableHide(1);
+	
+	local warningText = GET_CHILD_RECURSIVELY(frame, "warningtext")
+	warningText:SetText(clmsg)
+
+    local input_frame = GET_CHILD_RECURSIVELY(frame, "input")
+    input_frame:ShowWindow(1)
+	input_frame:SetText('')
+	input_frame:SetMaxLen(20)
+    
+	local yesBtn = GET_CHILD_RECURSIVELY(frame, "yes")
+	tolua.cast(yesBtn, "ui::CButton");
+
+	yesBtn:SetEventScript(ui.LBUTTONUP, '_WARNINGMSGBOX_FRAME_OPEN_EXCHANGE_RECYCLE_YES');
+	yesBtn:SetEventScriptArgString(ui.LBUTTONUP, yesScp);
+
+	local noBtn = GET_CHILD_RECURSIVELY(frame, "no")
+	tolua.cast(noBtn, "ui::CButton");
+
+	local buttonMargin = noBtn:GetMargin()
+	local warningbox = GET_CHILD_RECURSIVELY(frame, 'warningbox')
+	local totalHeight = warningbox:GetY() + warningText:GetY() + warningText:GetHeight() + noBtn:GetHeight() + 2 * buttonMargin.bottom + input_frame:GetHeight()
+
+	local okBtn = GET_CHILD_RECURSIVELY(frame, "ok")
+	tolua.cast(okBtn, "ui::CButton");
+
+	yesBtn:ShowWindow(1);
+	noBtn:ShowWindow(1);
+	okBtn:ShowWindow(0);
+
+	local bg = GET_CHILD_RECURSIVELY(frame, 'bg')
+	warningbox:Resize(warningbox:GetWidth(), totalHeight)
+	bg:Resize(bg:GetWidth(), totalHeight)
+	frame:Resize(frame:GetWidth(), totalHeight)
+end
+
+function _WARNINGMSGBOX_FRAME_OPEN_EXCHANGE_RECYCLE_YES(parent, ctrl, argStr, argNum)	
+	local input_frame = GET_CHILD_RECURSIVELY(parent, "input")    	
+    if input_frame:GetText() ~= dic.getTranslatedStr(ClMsg('exchange_enchant_item')) then
+        -- 확인메시지 불일치
+		ui.SysMsg(ClMsg('miss_match_confirm_text'))
+        return
+    end
+
+	IMC_LOG("INFO_NORMAL", "_WARNINGMSGBOX_FRAME_OPEN_EXCHANGE_RECYCLE_YES" .. argStr)
+	local scp = _G[argStr]
+	if scp ~= nil then
+		scp()
+	end
+	ui.CloseFrame("warningmsgbox")
+end

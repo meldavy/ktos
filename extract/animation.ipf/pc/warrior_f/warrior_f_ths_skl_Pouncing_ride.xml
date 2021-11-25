@@ -3,8 +3,8 @@
 <ActionDesc>
 	<HeadRotBip frame="0" BipName="none"/>
 	<Sound frame="0.00" soundFile="swd_attack2"/>
-	<Sound frame="0.00" soundFile="walk_left"/>
-	<Sound frame="8.00" soundFile="walk_left"/>
+	<Sound frame="0.00" soundFile="F_pc_run_blank_dummy"/>
+	<Sound frame="8.00" soundFile="F_pc_run_blank_dummy"/>
 	<HeadRotBip frame="8" BipName="Bip01"/>
 	<Sound frame="10.00" soundFile="swd_attack2"/>
 	<HeadRotBip frame="15" BipName="none"/>

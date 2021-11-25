@@ -276,7 +276,12 @@
         </MainSkl>
     </Skill>
     <Skill Name="Hackapell_HakkaPalle">
-        <MainSkl ScrLock="None" JumpFlee="NO" MSPDToUsePos="0">
+        <EnableScripts>
+			<ToolScp Scp="SKL_CHECK_FLETCHER" Client="BOTH" UseSleep="NO">
+				<Num Num="0"/>
+			</ToolScp>
+		</EnableScripts>
+		<MainSkl ScrLock="None" JumpFlee="NO" MSPDToUsePos="0">
             <EtcList>
                 <Scp Scp="SKL_BUFF" Client="NO" UseSleep="NO" Time="0">
                     <Str Str="HakkaPalle_Buff"/>

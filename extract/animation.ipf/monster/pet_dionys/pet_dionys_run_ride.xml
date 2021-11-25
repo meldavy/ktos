@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="EUC-KR"?>
-<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by IMCGames Co., Ltd (IMCGames Co., Ltd) -->
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by imc (imc) -->
 <ActionDesc>
+	<Sound frame="0.00" soundFile="mon_ride_step"/>
+	<Sound frame="7.00" soundFile="mon_ride_step"/>
 	<Particle frame="4" attachNode="Dummy_effect_FR" particleName="F_little_dionys_ground001" useAttach="false" hiddenObj="false" changeEffect="None" scale="0.55" pause="true" use2DEffect="false" soft2DValue="20"/>
 	<Particle frame="6" attachNode="Dummy_effect_FL" particleName="F_little_dionys_ground001" useAttach="false" hiddenObj="false" changeEffect="None" scale="0.55" pause="true" use2DEffect="false" soft2DValue="20"/>
 	<Particle frame="9" attachNode="Dummy_effect_BL" particleName="F_little_dionys_ground001" useAttach="false" hiddenObj="false" changeEffect="None" scale="0.55" pause="true" use2DEffect="false" soft2DValue="20"/>

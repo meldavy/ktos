@@ -793,6 +793,11 @@ return value"/>
         </MainSkl>
     </Skill>
     <Skill Name="Daoshi_LightningCharm">
+        <EnableScripts>
+			<ToolScp Scp="SKL_CHECK_FLETCHER" Client="BOTH" UseSleep="NO">
+				<Num Num="0"/>
+			</ToolScp>
+		</EnableScripts>
         <MainSkl JumpFlee="NO" MSPDToUsePos="0" ScrLock="None">
             <HitList>
                 <Frame Angle="0" AniTime="9999" Dist="0" ForceATK="0" HitCount="1" PosType="0" RandDist="0" RandomPerHit="0" RotAngle="0" TermMax="0" TermMin="0" Time="9799" Type="FAN"/>

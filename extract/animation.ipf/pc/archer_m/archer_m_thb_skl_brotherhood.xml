@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by IMC (IMCGames Co., Ltd) -->
+<ActionDesc>
+	<Particle frame="6" attachNode="Dummy_emitter" particleName="F_archer_Brotherhood_buff" useAttach="true" hiddenObj="false" changeEffect="None" scale="1.5" pause="false" use2DEffect="false" targetPos="false"/>
+</ActionDesc>

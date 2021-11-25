@@ -885,7 +885,6 @@ function _EXEC_BUY_RECYCLE_ITEM(itemListStr)
 end
 
 function EXEC_SELL_RECYCLE_ITEM()
-
 	session.ResetItemList();
 	
 	local slotsetname = nil
@@ -902,28 +901,35 @@ function EXEC_SELL_RECYCLE_ITEM()
 	local slotCount = slotset:GetSlotCount();
 
 	local allprice = 0
+	local isHatOption = 0
 
 	for i = 0, slotCount - 1 do
 		local slotIcon	= slotset:GetIconByIndex(i);
 
 		if slotIcon ~= nil then
-
 			local slot  = slotset:GetSlotByIndex(i);
 			local tpitemname = slot:GetUserValue("TPITEMNAME");
 			local itemguid = slot:GetUserValue("SELLITEMGUID");
+			local invitem = session.GetInvItemByGuid(itemguid);
+			if invitem ~= nil then 
+				local itemobj = GetIES(invitem:GetObject());
+				if itemobj ~= nil then
+					if itemobj["HatPropName_1"] ~= "None" then
+						isHatOption = 1
+					end
+				end
+			end
+
 			local cnt = tonumber(slot:GetUserValue("COUNT"));
 			local tpitem = GetClass("recycle_shop",tpitemname)
 
 			if tpitem ~= nil then
-							
 				allprice = allprice + (tpitem.SellPrice * cnt)
 
 				session.AddItemID(itemguid, cnt);
-				
 			else
 				return
 			end
-
 		end
 	end
 
@@ -931,6 +937,15 @@ function EXEC_SELL_RECYCLE_ITEM()
 		return
 	end
 
+	if isHatOption == 1 then
+		local msg = ScpArgMsg('ConfirmExchangeHatAccHaveOption{msg}', 'msg', ClMsg('exchange_enchant_item'));
+		WARNINGMSGBOX_FRAME_OPEN_EXCHANGE_RECYCLE(msg, 'CONFIRM_SELL_RECYCLE_ITEM');
+	else
+		CONFIRM_SELL_RECYCLE_ITEM()
+	end
+end
+
+function CONFIRM_SELL_RECYCLE_ITEM()
 	local resultlist = session.GetItemIDList();
 	item.DialogTransaction("RECYCLE_SHOP_SELL", resultlist);
 	

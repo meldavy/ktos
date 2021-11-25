@@ -1344,7 +1344,7 @@ function DRAW_EXCHANGE_SHOP_IETMS(categoryName)
 end
 
 
-function EARTH_TOWER_SHOP_EXEC(parent, ctrl)    
+function EARTH_TOWER_SHOP_EXEC(parent, ctrl)
     local frame = parent:GetTopParentFrame();
     local shopType = frame:GetUserValue("SHOP_TYPE");
 	s_earth_shop_frame_name = frame:GetName();
@@ -1363,9 +1363,8 @@ function EARTH_TOWER_SHOP_EXEC(parent, ctrl)
         resultCount = 1;
     end
 
+    local recipeCount = {}
     local recipecls = GetClass('ItemTradeShop', parent:GetName());
-
-
     if g_account_prop_shop_table[shopType] == nil then
         if recipecls ~= nil then
             local isExceptionFlag = false;
@@ -1373,16 +1372,16 @@ function EARTH_TOWER_SHOP_EXEC(parent, ctrl)
                 local clsName = "Item_"..index.."_1";
                 local itemName = recipecls[clsName];
                 local recipeItemCnt, invItemCnt, dragRecipeItem, invItem, recipeItemLv, invItemlist = GET_RECIPE_MATERIAL_INFO(recipecls, index, GetMyPCObject());
-
+                
                 recipeItemCnt = GET_CURRENT_OVERBUY_COUNT(shopType, recipeItemCnt, recipecls, GetMyAccountObj()) -- 추가 회득
-
                 if dragRecipeItem ~= nil then
                     local itemCount = GET_TOTAL_ITEM_CNT(dragRecipeItem.ClassID);
-                    if itemCount < recipeItemCnt * resultCount then
+                    if itemCount < recipeItemCnt * resultCount then                        
                         ui.AddText("SystemMsgFrame", ScpArgMsg('NotEnoughRecipe'));
                         isExceptionFlag = true;
                         break;
                     end
+                    recipeCount[#recipeCount + 1] = recipeItemCnt * resultCount
                 end
             end
 
@@ -1402,33 +1401,75 @@ function EARTH_TOWER_SHOP_EXEC(parent, ctrl)
     end
     
     if (shopType == 'PVPMine' or shopType == 'GabijaCertificate' or shopType == 'DailyRewardShop') and resultCount >= 10 then
+        local coin_name = ""
+        local before_count = 0
+        local after_count = 0
+        local recipecls = GetClass('ItemTradeShop', parent:GetName());
+        if g_account_prop_shop_table[shopType] == nil then -- 아이템
+            local itemName = TryGetProp(recipecls, "Item_1_1", "None");
+            local itemCls = GetClass('Item', itemName)
+            before_count = GET_TOTAL_ITEM_CNT(itemCls.ClassID)
+            after_count = before_count - recipeCount[1]
+            coin_name = TryGetProp(itemCls, "Name", "None")
+        else -- 주화
+            local coinCls = GetClassByStrProp('accountprop_inventory_list', 'ClassName', g_account_prop_shop_table[shopType]['propName'])
+            local recipeCnt = TryGetProp(recipecls, "Item_1_1_Cnt", 0);
+            local aObj = GetMyAccountObj()
+            local count = TryGetProp(aObj, g_account_prop_shop_table[shopType]['propName'], '0')
+            if count == 'None' then
+                count = '0'
+            end
+            before_count = tonumber(count) -- 현재 갯수
+            after_count = before_count - (recipeCnt * resultCount)
+            coin_name = ClMsg(TryGetProp(coinCls, "ClassName", "None"))
+        end
+        before_count = GET_COMMAED_STRING(before_count)
+        after_count = GET_COMMAED_STRING(after_count)
+
         local target_item = GetClass('Item', TryGetProp(recipecls, 'TargetItem', 'None'))
         local name = TryGetProp(target_item, 'Name', 'None')
-        if recipecls==nil or recipecls["Item_2_1"] ~='None' then                 
-            local msg = ScpArgMsg("TooManyItemBuy{name}{count}", "name", name, "count", resultCount);
+        if recipecls==nil or recipecls["Item_2_1"] ~='None' then
+            local msg = ScpArgMsg("TooManyItemBuy{name}{count}{coinname}{beforecount}{aftercount}", "name", name, "count", resultCount, "coinname", coin_name, "beforecount", before_count, "aftercount", after_count);
             local yesscp = string.format('YES_SCP_BUY_SHOP_EXEC_1(%d, "%s")', resultCount, shopType);
             ui.MsgBox_NonNested(msg, frame:GetName(), yesscp, 'None');
         else            
-            local msg = ScpArgMsg("TooManyItemBuy{name}{count}", "name", name, "count", resultCount);
+            local msg = ScpArgMsg("TooManyItemBuy{name}{count}{coinname}{beforecount}{aftercount}", "name", name, "count", resultCount, "coinname", coin_name, "beforecount", before_count, "aftercount", after_count);
             local yesscp = string.format('YES_SCP_BUY_SHOP_EXEC_2(%d, "%s")', resultCount, shopType);
             ui.MsgBox_NonNested(msg, frame:GetName(), yesscp, 'None');
         end
+    elseif frame:GetName() == "legend_craft" and frame:GetUserValue("CRAFT_TYPE") == "SPECIAL_MISC_CRAFT" then  -- 특수 재료 제작
+        local parent = GET_CHILD_RECURSIVELY(frame, s_earth_shop_parent_name);
+        local control = GET_CHILD_RECURSIVELY(parent, g_earth_shop_control_name);
+        local targetRecipeName = control:GetUserValue('TARGET_RECIPE_NAME');
+        local itemCls = GetClassByStrProp("Item", "ClassName", targetRecipeName)
+        local UsageDesc = TryGetProp(itemCls, "UsageDesc", "None")
+        if UsageDesc ~= "None" then
+            if recipecls==nil or recipecls["Item_2_1"] ~='None' then
+                local msg = ScpArgMsg("ReallyManufactureItem_legendcraft{usage}", "usage", UsageDesc);
+                local yesscp = string.format('YES_SCP_BUY_SHOP_EXEC_SPECIAL_MISC_CRAFT_1(%d)', resultCount);
+                ui.MsgBox_NonNested(msg, frame:GetName(), yesscp, 'None');
+            else
+                local msg = ScpArgMsg("ReallyManufactureItem_legendcraft{usage}", "usage", UsageDesc);
+                local yesscp = string.format('YES_SCP_BUY_SHOP_EXEC_SPECIAL_MISC_CRAFT_2');
+                ui.MsgBox_NonNested(msg, frame:GetName(), yesscp, 'None');
+            end
+        end
     else
-    if recipecls==nil or recipecls["Item_2_1"] ~='None' then        
-        if g_account_prop_shop_table[shopType] ~= nil then
-            AddLuaTimerFuncWithLimitCountEndFunc("ACCOUNT_PROPERTY_SHOP_TRADE_ENTER", 100, resultCount - 1, "EARTH_TOWER_SHOP_TRADE_LEAVE");            
+        if recipecls==nil or recipecls["Item_2_1"] ~='None' then
+            if g_account_prop_shop_table[shopType] ~= nil then
+                AddLuaTimerFuncWithLimitCountEndFunc("ACCOUNT_PROPERTY_SHOP_TRADE_ENTER", 100, resultCount - 1, "EARTH_TOWER_SHOP_TRADE_LEAVE");
         else
             AddLuaTimerFuncWithLimitCountEndFunc("EARTH_TOWER_SHOP_TRADE_ENTER", 100, resultCount - 1, "EARTH_TOWER_SHOP_TRADE_LEAVE");
         end
         
     else        
-        if g_account_prop_shop_table[shopType] ~= nil  then
+            if g_account_prop_shop_table[shopType] ~= nil  then
             AddLuaTimerFuncWithLimitCountEndFunc("ACCOUNT_PROPERTY_SHOP_TRADE_ENTER", 100, 0, "");
         else
             AddLuaTimerFuncWithLimitCountEndFunc("EARTH_TOWER_SHOP_TRADE_ENTER", 100, 0, "EARTH_TOWER_SHOP_TRADE_LEAVE");
         end
     end
-end
+    end
 end
 
 function YES_SCP_BUY_SHOP_EXEC_1(resultCount, shopType)
@@ -1447,6 +1488,13 @@ function YES_SCP_BUY_SHOP_EXEC_2(resultCount, shopType)
     end
 end
 
+function YES_SCP_BUY_SHOP_EXEC_SPECIAL_MISC_CRAFT_1(resultCount) -- 특수 재료 제작
+    AddLuaTimerFuncWithLimitCountEndFunc("EARTH_TOWER_SHOP_TRADE_ENTER", 100, resultCount - 1, "EARTH_TOWER_SHOP_TRADE_LEAVE");
+end
+
+function YES_SCP_BUY_SHOP_EXEC_SPECIAL_MISC_CRAFT_2() -- 특수 재료 제작
+    AddLuaTimerFuncWithLimitCountEndFunc("EARTH_TOWER_SHOP_TRADE_ENTER", 100, 0, "EARTH_TOWER_SHOP_TRADE_LEAVE");
+end
 
 function EARTH_TOWER_SHOP_TRADE_ENTER()
 	local frame = ui.GetFrame(s_earth_shop_frame_name);

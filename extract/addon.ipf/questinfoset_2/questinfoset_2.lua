@@ -305,12 +305,15 @@ function ON_UPDATE_QUESTINFOSET_2(frame, msg, check, updateQuestID)
 		frame:ShowWindow(0)
 		return
 	else
-		CHASEINFO_SHOW_QUEST_TOGGLE(1)
 		if ACHIEVEINFOSET_IS_DRAW() == 1 then
-			if CHASEINFO_IS_ACHIEVE_FOLD() == 1 then
-				CHASEINFO_SET_QUEST_INFOSET_FOLD(0)
-			else
+			if CHASEINFO_IS_ACHIEVE_FOLD() == 0 then
 				CHASEINFO_SET_QUEST_INFOSET_FOLD(1)
+			else
+				if CHASEINFO_IS_QUEST_FOLD() == 1 then
+					CHASEINFO_SET_QUEST_INFOSET_FOLD(1)
+				else
+					CHASEINFO_SET_QUEST_INFOSET_FOLD(0)
+				end
 			end
 		else
 			CHASEINFO_SET_QUEST_INFOSET_FOLD(0)
@@ -321,10 +324,13 @@ function ON_UPDATE_QUESTINFOSET_2(frame, msg, check, updateQuestID)
 	if ACHIEVEINFOSET_IS_VALID_ACHIEVE() == 1 and CHASEINFO_IS_ACHIEVE_FOLD() == 0 then
 		frame:ShowWindow(0)
 		return
+	elseif CHASEINFO_IS_QUEST_FOLD() == 1 then
+		frame:ShowWindow(0)
+		return
 	else
 		frame:ShowWindow(1)
 	end
-
+	
 	-- Only Update
 	if updateQuestID ~= nil and updateQuestID > 0 then
 		local GroupCtrl = GET_CHILD(frame, "member", "ui::CGroupBox");

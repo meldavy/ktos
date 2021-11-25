@@ -28,9 +28,11 @@
 		<groupbox name="skilltreenotice" rect="0 0 20 20" margin="0 0 305 40" layout_gravity="right bottom" hittest="false" skin="digitnotice_bg"/>
 		<groupbox name="friendnotice" rect="0 0 20 20" margin="0 0 179 40" layout_gravity="right bottom" hittest="false" skin="digitnotice_bg"/>
 		<groupbox name="statusnotice" rect="0 0 20 20" margin="0 0 376 40" layout_gravity="right bottom" hittest="false" skin="digitnotice_bg"/>
+		<groupbox name="journalnotice" rect="0 0 20 20" margin="0 0 268 40" layout_gravity="right bottom" hittest="false" skin="digitnotice_bg"/>
 		<richtext name="statusnoticetext" parent="statusnotice" rect="0 0 20 20" margin="0 0 0 0" layout_gravity="center center" caption="11" fixwidth="false" hittest="false" resizebytext="true"/>
 		<richtext name="skilltreenoticetext" parent="skilltreenotice" rect="0 0 20 20" margin="0 0 0 0" layout_gravity="center center" caption="12" fixwidth="false" hittest="false" resizebytext="true"/>
 		<richtext name="friendnoticetext" parent="friendnotice" rect="0 0 20 20" margin="0 0 0 0" layout_gravity="center center" caption="13" fixwidth="false" hittest="false" resizebytext="true"/>
+		<richtext name="journalnoticetext" parent="journalnotice" rect="0 0 20 20" margin="0 0 0 0" layout_gravity="center center" caption="13" fixwidth="false" hittest="false" resizebytext="true"/>
 		<queue name="alarmqueue" rect="0 0 44 44" margin="0 1000 0 0" layout_gravity="center top" skin="None"/>
 	</controls>
 </uiframe>

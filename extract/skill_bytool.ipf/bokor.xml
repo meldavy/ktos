@@ -528,7 +528,7 @@ return time"/>
                     <Str Str="ENEMY"/>
                     <Num Num="0"/>
                     <Num Num="0"/>
-                    <Str Str="CurseOfWeakness_Debuff"/>
+                    <Str Str="CurseOfWeakness_Damage_Debuff"/>
                 </Scp>
                 <Scp Scp="SKL_TGT_EFFECT" Client="NO" UseSleep="NO" Time="250">
                     <Str_Arg Str="F_blood002_dark" Arg="1.6"/>
@@ -574,16 +574,6 @@ return time"/>
                     <Num Num="30000"/>
                     <Num Num="1"/>
                     <Num Num="100"/>
-                    <Num Num="0"/>
-                </Scp>
-                <Scp Scp="SKL_TGT_BUFF" Client="NO" UseSleep="NO" Time="250">
-                    <Str Str="CurseOfWeakness_Debuff"/>
-                    <Num Num="0" UseFunc="1" FuncTxt="return obj.Level;"/>
-                    <Num Num="0"/>
-                    <Num Num="30000"/>
-                    <Num Num="1"/>
-                    <Num Num="100"/>
-                    <Num Num="0"/>
                     <Num Num="0"/>
                 </Scp>
                 <Scp Scp="SKL_TGT_BUFF" Client="NO" UseSleep="NO" Time="250">
@@ -643,16 +633,6 @@ return time"/>
                             <Num Num="30000"/>
                             <Num Num="1"/>
                             <Num Num="100"/>
-                            <Num Num="0"/>
-                        </Scp>
-                        <Scp Scp="SKL_TGT_BUFF" Client="NO" UseSleep="NO" Time="250">
-                            <Str Str="CurseOfWeakness_Debuff"/>
-                            <Num Num="0" UseFunc="1" FuncTxt="return obj.Level;"/>
-                            <Num Num="0"/>
-                            <Num Num="30000"/>
-                            <Num Num="0"/>
-                            <Num Num="100"/>
-                            <Num Num="0"/>
                             <Num Num="0"/>
                         </Scp>
                         <Scp Scp="SKL_TGT_BUFF" Client="NO" UseSleep="NO" Time="250">

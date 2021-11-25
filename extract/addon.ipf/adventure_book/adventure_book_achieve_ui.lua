@@ -1,4 +1,7 @@
 ADVENTURE_BOOK_ACHIEVE = {};
+ADVENTURE_BOOK_ACHIEVE_LIST_INFO = {}
+local ADVENTURE_BOOK_ACHIEVE_LIST_MAX_SHOW = 10
+
 function ADVENTURE_BOOK_ACHIEVE.RENEW(category, isRenewInfo)
 	ADVENTURE_BOOK_ACHIEVE.CLEAR(category)
 	local achieve_list = ADVENTURE_BOOK_ACHIEVE.FILL_LIST(category)
@@ -36,7 +39,30 @@ function ADVENTURE_BOOK_ACHIEVE.FILL_LIST(category)
 	local list_box = GET_CHILD(page_left, "list_achieve_"..category, "ui::CGroupBox");
 
 	local subCategory = ADVENTURE_BOOK_ACHIEVE_GET_SELECT_SUBCATEGORY(category)
-	local achieve_list = ADVENTURE_BOOK_ACHIEVE_CONTENT.LIST_ALL(category, subCategory, 1)
+	local achieve_list = {}
+
+	local category_name
+	if category == "search" then
+		category_name = category
+		local change_search_option = page_left:GetUserIValue("CHANGE_SEARCH_OPTION")
+		if change_search_option == 1 then
+			achieve_list = ADVENTURE_BOOK_ACHIEVE_CONTENT.LIST_ALL(category)
+			page_left:SetUserValue("CHANGE_SEARCH_OPTION", "0")
+		else
+			if ADVENTURE_BOOK_ACHIEVE_LIST_INFO["search"] ~= nil and
+			   ADVENTURE_BOOK_ACHIEVE_LIST_INFO["search"][2] ~= nil then
+				achieve_list = ADVENTURE_BOOK_ACHIEVE_LIST_INFO["search"][2]
+			else
+				achieve_list = ADVENTURE_BOOK_ACHIEVE_CONTENT.LIST_ALL(category)
+			end
+		end
+	else
+		category_name = category.."_"..subCategory
+		achieve_list = ADVENTURE_BOOK_ACHIEVE_CONTENT.LIST_ALL(category, subCategory, 1)
+	end
+
+	ADVENTURE_BOOK_ACHIEVE.FILL_LIST_CONTROL(achieve_list, list_box, category_name)
+	list_box:SetScrollPos(0)
 
 	local text_desc = GET_CHILD(page_left, "text_desc", "ui::CRichText");
 	if #achieve_list == 0 then
@@ -44,9 +70,6 @@ function ADVENTURE_BOOK_ACHIEVE.FILL_LIST(category)
 	else
 		text_desc:SetVisible(0)
 	end
-
-	ADVENTURE_BOOK_ACHIEVE.FILL_LIST_CONTROL(achieve_list, list_box)
-	list_box:SetScrollPos(0)
 
 	if category ~= "search" then
 		local is_reward = 0
@@ -71,11 +94,14 @@ function ADVENTURE_BOOK_ACHIEVE.FILL_LIST(category)
 	return achieve_list
 end
 
-function ADVENTURE_BOOK_ACHIEVE.FILL_LIST_CONTROL(list, list_box)
+-- category: maincategory_subcategory, ADVENTURE_BOOK_ACHIEVE_LIST_INFO에서 사용
+function ADVENTURE_BOOK_ACHIEVE.FILL_LIST_CONTROL(list, list_box, category)
 	list_box:RemoveAllChild()
 
 	local y = 0
 	local drawGroup = {}
+	local drawCnt = 0
+	local idxLast = 0
 	for idx = 1, #list do
 		local clsID = list[idx]
 		local cls = GetClassByType("Achieve", clsID);
@@ -103,202 +129,278 @@ function ADVENTURE_BOOK_ACHIEVE.FILL_LIST_CONTROL(list, list_box)
 
 		if isDraw == true and cls ~= nil and info ~= nil then
 			local ctrlSet = list_box:CreateOrGetControlSet("adventure_book_achieve_summary", "list_achieve_"..clsID, ui.LEFT, ui.TOP, 0, y, 0, 0)
-			ctrlSet:SetUserValue("clsID", clsID)
-
-			-- 그룹박스
-			local gb = GET_CHILD(ctrlSet, "gb")
-			gb:SetEventScript(ui.LBUTTONUP, "ADVENTURE_BOOK_ACHIEVE_SELECT")
-			gb:SetEventScriptArgNumber(ui.LBUTTONUP, clsID)
-
-			-- 카테고리 아이콘
-			local clsAchieveInfo = GetClassByStrProp("AchieveInfo", "ClassName", cls.MainCategory);
-			local icon_pic = GET_CHILD(ctrlSet, "icon_pic", "ui::CPicture")
-			icon_pic:SetImage(TryGetProp(clsAchieveInfo, "Icon", "None"))
-
-			-- 시계 아이콘
-			local icon_clock = GET_CHILD(ctrlSet, "icon_clock", "ui::CPicture")
-			local isEnableTime, remainsec = ADVENTURE_BOOK_ACHIEVE_CONTENT.GET_REMAIN_TIME(clsID)
-			icon_clock:SetVisible(isEnableTime)
-		
-			if isEnableTime == 1 then
-				local endtime = ADVENTURE_BOOK_ACHIEVE_CONTENT.GET_END_TIME(clsID)
-				local impendenceTime = 3 * 24 * 60 * 60
-				if impendenceTime > remainsec then
-					icon_clock:SetImage("achievement_time_attack02")
-				end
-				icon_clock:SetTextTooltip(ScpArgMsg("adventure_book_achieve_endtime_tooltip", "ENDTIME", endtime))
+			y = ADVENTURE_BOOK_ACHIEVE.UPDATE_LIST_CONTROLSET(cls, clsID, info, ctrlSet, y)
+			drawCnt = drawCnt + 1
+			idxLast = idx
+			if drawCnt >= ADVENTURE_BOOK_ACHIEVE_LIST_MAX_SHOW then
+				break
 			end
-
-			-- 텍스트
-			local desc = GET_CHILD(ctrlSet, "desc", "ui::CRichText")
-			SET_TEXT(ctrlSet, "title", "title", info['title'])
-
-			local desclist = StringSplit(info['desc'], '{nt}')
-			SET_TEXT(ctrlSet, "desc", "value", desclist[1])
-
-			if info['level_group_name'] == nil then
-				if info['is_complete'] == 1 then
-					SET_TEXT(ctrlSet, "title", "level", "Max")
-				else
-					SET_TEXT(ctrlSet, "title", "level", "1")
-				end
-			else
-				if info['is_complete'] == 1 and (GetGroupAchieveMaxLevel(info['level_group_name']) == tonumber(info['group_level'])) then
-					SET_TEXT(ctrlSet, "title", "level", "Max")
-				else
-					SET_TEXT(ctrlSet, "title", "level", info['group_level'])
-				end
-			end
-
-			local yoffset = 0
-			if desc:GetHeight() > 45 then
-				yoffset = desc:GetHeight() - 45 + 10
-			end
-
-			-- 추적
-			local chase = GET_CHILD(ctrlSet, "chase", "ui::CButton")
-			local chase_enable = 1
-
-			if ADVENTURE_BOOK_ACHIEVE_CONTENT.IS_COMPLETE(argNum) == 1 then chase_enable = 0 end
-			if ADVENTURE_BOOK_ACHIEVE_CONTENT.IS_TIME_END(argNum) == 1 then chase_enable = 0 end
-			if info['main_category'] == "Event" and info['sub_category'] == "End" then chase_enable = 0 end
-
-			if chase_enable == 1 then
-				chase:SetEventScript(ui.LBUTTONUP, "ADVENTURE_BOOK_ACHIEVE_CLICK_CHASE_BTN");
-				chase:SetEventScriptArgNumber(ui.LBUTTONUP, clsID);
-				ADVENTURE_BOOK_ACHIEVE_CHECK_CHASE_B(chase, info['is_chase'])
-			else
-				chase:SetEventScript(ui.LBUTTONUP, "");
-				chase:SetEventScriptArgNumber(ui.LBUTTONUP, 0);
-				ADVENTURE_BOOK_ACHIEVE_CHECK_CHASE_B(chase, 0)
-			end
-			
-			--  게이지
-			local gauge = GET_CHILD(ctrlSet, "gauge_score", "ui::CGauge")
-			
-			local point = 0
-			local maxpoint = 0
-			if info['level_group_name'] ~= nil then
-				local prev_needpoint = GetPrevLevelAchieveNeedCount(clsID)
-				point = math.max(0, info['point'] - prev_needpoint)
-				maxpoint = info['need_count'] - prev_needpoint
-			else
-				point = info['point']
-				maxpoint = info['need_count']
-			end
-			gauge:SetPoint(point, maxpoint)
-			gauge:SetTextStat(0, GET_COMMAED_STRING(point).." / "..GET_COMMAED_STRING(maxpoint))
-
-			local colortone_enable = "FFFFFFFF"
-			local colortone_disable = "FF333333"
-
-			-- 보상 슬롯
-			local reward_cnt = 0
-			local slotset = GET_CHILD(ctrlSet, "slotset_reward")
-
-			-- 보상: 칭호
-			if info['name'] ~= nil then
-				local icon = CreateIcon(slotset:GetSlotByIndex(reward_cnt))
-				icon:SetTextTooltip(ScpArgMsg("adventure_book_achieve_reward_name_tooltip", "NAME", info['name']))
-				icon:SetImage("icon_item_holyark");
-				reward_cnt = reward_cnt + 1
-			end
-
-			-- 보상: 구보상 (무조건 1개만 들어가는 것으로 가정함)
-			if info['reward'] ~= nil then
-				if info['reward_type'] == "Item" then
-					local ItemInfo = StringSplit(info['reward'], '/')
-					local cls = GetClassByStrProp("Item", "ClassName", info['reward'])
-					if cls ~= nil then
-						local icon = CreateIcon(slotset:GetSlotByIndex(reward_cnt))
-						
-						iconName = BEAUTYSHOP_SIMPLELIST_ICONNAME_CHECK(TryGetProp(cls, "Icon", "None"), TryGetProp(cls, "UseGender", "None"))
-						icon:SetImage(iconName)
-
-						SET_ITEM_TOOLTIP_BY_NAME(icon, cls.ClassName);
-						icon:SetTooltipOverlap(1);
-						reward_cnt = reward_cnt + 1
-					end
-				elseif info['reward_type'] == "HairColor" then
-					local icon = CreateIcon(slotset:GetSlotByIndex(reward_cnt))
-					icon:SetImage(info['reward_icon'])
-					icon:SetTextTooltip(info['reward'])
-					reward_cnt = reward_cnt + 1
-				end
-			end
-			-- 보상: 신보상
-			if info['reward_count'] ~= nil and info['reward_count'] > 0  then
-				for i = 1, math.min(info['reward_count'], slotset:GetSlotCount()) do
-					local icon = CreateIcon(slotset:GetSlotByIndex(reward_cnt))
-					local cls = GetClassByStrProp("Item", "ClassName", info['reward_item'..i])
-					
-					if cls ~= nil then
-						iconName = BEAUTYSHOP_SIMPLELIST_ICONNAME_CHECK(TryGetProp(cls, "Icon", "None"), TryGetProp(cls, "UseGender", "None"))
-						icon:SetImage(iconName)
-
-						SET_ITEM_TOOLTIP_BY_NAME(icon, cls.ClassName);
-						icon:SetTooltipOverlap(1);
-					end
-					reward_cnt = reward_cnt + 1				
-				end
-
-			end
-
-			-- 아이콘 색상
-			local icon_colortone = "FFFFFF"
-			if info['is_complete'] == 1 or info['is_timeend'] == 1 then
-				if info['is_reward'] == 1 then
-					icon_colortone = "FFFFFFFF"
-				else
-					icon_colortone = "FF333333"
-				end
-			elseif info['main_category'] == "Event" and info['sub_category'] == 'End' then
-				icon_colortone = "FF333333"
-			else
-				icon_colortone = "FF777777"
-			end
-
-			for i = 0, reward_cnt - 1 do
-				local icon = slotset:GetIconByIndex(i)
-				icon:SetColorTone(icon_colortone)
-			end
-
-			local slotCount = slotset:GetSlotCount()
-			for i = 0, slotCount - 1 do
-				local slot = slotset:GetSlotByIndex(i)
-				if info['is_complete'] == 1 and info['is_reward'] == 1 then
-					slot:SetSkinName('None')
-				else
-					slot:SetSkinName('slot')
-				end
-			end
-
-			-- 완료 색상
-			local colortone = colortone_enable
-			if info['is_reward'] == 0 then
-				if info['is_complete'] == 1 or
-					info['is_timeend'] == 1 or
-					info['main_category'] == "Event" and info['sub_category'] == 'End' then
-					colortone = colortone_disable
-				end
-			end
-			
-			GET_CHILD(ctrlSet, "gb"):SetColorTone(colortone)
-			GET_CHILD(ctrlSet, "icon_pic"):SetColorTone(colortone)
-			GET_CHILD(ctrlSet, "gauge_score"):SetColorTone(colortone)
-			GET_CHILD(ctrlSet, "chase"):SetColorTone(colortone)
-			GET_CHILD(ctrlSet, "title"):SetColorTone(colortone)
-			GET_CHILD(ctrlSet, "titlebg"):SetColorTone(colortone)
-			icon_clock:SetColorTone(colortone)
-
-			-- Set Cls ID
-			ctrlSet:SetUserValue('BtnArg', clsID);
-
-			gb:Resize(gb:GetWidth(), gb:GetHeight() + yoffset)
-			ctrlSet:Resize(ctrlSet:GetWidth(), ctrlSet:GetHeight() + yoffset)
-			y = y + ctrlSet:GetHeight()
 		end
 	end
+
+	ADVENTURE_BOOK_ACHIEVE_LIST_INFO[category] = { idxLast, list, drawGroup }
+	list_box:SetUserValue("CATEGORY", category)
+	list_box:SetEventScript(ui.SCROLL, "ADVENTURE_BOOK_ACHIEVE_ON_SCROLL")
+end
+
+function ADVENTURE_BOOK_ACHIEVE_ON_SCROLL(frame, ctrl, argstr, argnum)
+	if (ctrl:GetScrollCurPos() <= 0) or (ctrl:GetScrollCurPos() < ctrl:GetScrollBarMaxPos()) then
+		return
+	end
+	
+	local category = ctrl:GetUserValue("CATEGORY")
+	if ADVENTURE_BOOK_ACHIEVE_LIST_INFO[category] == nil then return end
+
+	local idxLast = ADVENTURE_BOOK_ACHIEVE_LIST_INFO[category][1]
+	local list = ADVENTURE_BOOK_ACHIEVE_LIST_INFO[category][2]
+	local drawGroup = ADVENTURE_BOOK_ACHIEVE_LIST_INFO[category][3]
+	if idxLast == nil or list == nil or drawGroup == nil then return end
+	if idxLast < ADVENTURE_BOOK_ACHIEVE_LIST_MAX_SHOW or idxLast >= #list then return end
+	
+	local drawStart = idxLast
+	local ctrlSetLast = ctrl:GetChildByIndex(ctrl:GetChildCount() - 1)
+	if ctrlSetLast == nil then
+		return
+	end
+	local drawCnt = 0
+	local y = ctrlSetLast:GetY() + ctrlSetLast:GetHeight()
+	for i = idxLast + 1, #list do
+		local idx = i
+		local clsID = list[idx]
+		if clsID == nil then
+			break
+		end
+		local cls = GetClassByType("Achieve", clsID);
+		local info = ADVENTURE_BOOK_ACHIEVE_CONTENT.ACHIEVE_INFO(clsID)
+
+		local isDraw = false
+		if info['level_group_name'] == nil then -- 레벨 그룹 정보가 없음
+			isDraw = true
+		else -- 레벨 그룹 정보가 있음
+			-- 그룹의 가장 높은 레벨 하나만 보여줌
+			if drawGroup[info['level_group_name']] == nil then
+				local progressID = GetCurProgressLevelAchieve(info['level_group_name'])
+				drawGroup[info['level_group_name']] = progressID
+				if progressID ~= 0 then
+					isDraw = true
+					if progressID ~= clsID then
+						-- ID가 다르면 정보 다시 가져옴
+						clsID = progressID
+						cls = GetClassByType("Achieve", clsID);
+						info = ADVENTURE_BOOK_ACHIEVE_CONTENT.ACHIEVE_INFO(clsID)
+					end
+				end
+			end
+		end
+
+		if isDraw == true and cls ~= nil and info ~= nil then
+			local ctrlSet = ctrl:CreateOrGetControlSet("adventure_book_achieve_summary", "list_achieve_"..clsID, ui.LEFT, ui.TOP, 0, y, 0, 0)
+			y = ADVENTURE_BOOK_ACHIEVE.UPDATE_LIST_CONTROLSET(cls, clsID, info, ctrlSet, y)
+			drawCnt = drawCnt + 1
+			idxLast = idx
+			if drawCnt >= ADVENTURE_BOOK_ACHIEVE_LIST_MAX_SHOW then
+				break
+			end
+		end
+	end
+	ADVENTURE_BOOK_ACHIEVE_LIST_INFO[category] = { idxLast, list, drawGroup }
+end
+
+function ADVENTURE_BOOK_ACHIEVE.UPDATE_LIST_CONTROLSET(cls, clsID, info, ctrlSet, y)
+	ctrlSet:SetUserValue("clsID", clsID)
+
+	-- 그룹박스
+	local gb = GET_CHILD(ctrlSet, "gb")
+	gb:SetEventScript(ui.LBUTTONUP, "ADVENTURE_BOOK_ACHIEVE_SELECT")
+	gb:SetEventScriptArgNumber(ui.LBUTTONUP, clsID)
+
+	-- 카테고리 아이콘
+	local clsAchieveInfo = GetClassByStrProp("AchieveInfo", "ClassName", cls.MainCategory);
+	local icon_pic = GET_CHILD(ctrlSet, "icon_pic", "ui::CPicture")
+	icon_pic:SetImage(TryGetProp(clsAchieveInfo, "Icon", "None"))
+
+	-- 시계 아이콘
+	local icon_clock = GET_CHILD(ctrlSet, "icon_clock", "ui::CPicture")
+	local isEnableTime, remainsec = ADVENTURE_BOOK_ACHIEVE_CONTENT.GET_REMAIN_TIME(clsID)
+	icon_clock:SetVisible(isEnableTime)
+		
+	if isEnableTime == 1 then
+		local endtime = ADVENTURE_BOOK_ACHIEVE_CONTENT.GET_END_TIME(clsID)
+		local impendenceTime = 3 * 24 * 60 * 60
+		if impendenceTime > remainsec then
+			icon_clock:SetImage("achievement_time_attack02")
+		end
+		icon_clock:SetTextTooltip(ScpArgMsg("adventure_book_achieve_endtime_tooltip", "ENDTIME", endtime))
+	end
+
+	-- 텍스트
+	local desc = GET_CHILD(ctrlSet, "desc", "ui::CRichText")
+	SET_TEXT(ctrlSet, "title", "title", info['title'])
+
+	local desclist = StringSplit(info['desc'], '{nt}')
+	SET_TEXT(ctrlSet, "desc", "value", desclist[1])
+
+	if info['level_group_name'] == nil then
+		if info['is_complete'] == 1 then
+			SET_TEXT(ctrlSet, "title", "level", "Max")
+		else
+			SET_TEXT(ctrlSet, "title", "level", "1")
+		end
+	else
+		if info['is_complete'] == 1 and (GetGroupAchieveMaxLevel(info['level_group_name']) == tonumber(info['group_level'])) then
+			SET_TEXT(ctrlSet, "title", "level", "Max")
+		else
+			SET_TEXT(ctrlSet, "title", "level", info['group_level'])
+		end
+	end
+
+	local yoffset = 0
+	if desc:GetHeight() > 45 then
+		yoffset = desc:GetHeight() - 45 + 10
+	end
+
+	-- 추적
+	local chase = GET_CHILD(ctrlSet, "chase", "ui::CButton")
+	local chase_enable = 1
+
+	if ADVENTURE_BOOK_ACHIEVE_CONTENT.IS_COMPLETE(argNum) == 1 then chase_enable = 0 end
+	if ADVENTURE_BOOK_ACHIEVE_CONTENT.IS_TIME_END(argNum) == 1 then chase_enable = 0 end
+	if info['main_category'] == "Event" and info['sub_category'] == "End" then chase_enable = 0 end
+
+	if chase_enable == 1 then
+		chase:SetEventScript(ui.LBUTTONUP, "ADVENTURE_BOOK_ACHIEVE_CLICK_CHASE_BTN");
+		chase:SetEventScriptArgNumber(ui.LBUTTONUP, clsID);
+		ADVENTURE_BOOK_ACHIEVE_CHECK_CHASE_B(chase, info['is_chase'])
+	else
+		chase:SetEventScript(ui.LBUTTONUP, "");
+		chase:SetEventScriptArgNumber(ui.LBUTTONUP, 0);
+		ADVENTURE_BOOK_ACHIEVE_CHECK_CHASE_B(chase, 0)
+	end
+	
+	--  게이지
+	local gauge = GET_CHILD(ctrlSet, "gauge_score", "ui::CGauge")
+	
+	local point = 0
+	local maxpoint = 0
+	if info['level_group_name'] ~= nil then
+		local prev_needpoint = GetPrevLevelAchieveNeedCount(clsID)
+		point = math.max(0, info['point'] - prev_needpoint)
+		maxpoint = info['need_count'] - prev_needpoint
+	else
+		point = info['point']
+		maxpoint = info['need_count']
+	end
+	gauge:SetPoint(point, maxpoint)
+	gauge:SetTextStat(0, GET_COMMAED_STRING(point).." / "..GET_COMMAED_STRING(maxpoint))
+
+	local colortone_enable = "FFFFFFFF"
+	local colortone_disable = "FF333333"
+
+	-- 보상 슬롯
+	local reward_cnt = 0
+	local slotset = GET_CHILD(ctrlSet, "slotset_reward")
+
+	-- 보상: 칭호
+	if info['name'] ~= nil then
+		local icon = CreateIcon(slotset:GetSlotByIndex(reward_cnt))
+		icon:SetTextTooltip(ScpArgMsg("adventure_book_achieve_reward_name_tooltip", "NAME", info['name']))
+		icon:SetImage("icon_item_holyark");
+		reward_cnt = reward_cnt + 1
+	end
+
+	-- 보상: 구보상 (무조건 1개만 들어가는 것으로 가정함)
+	if info['reward'] ~= nil then
+		if info['reward_type'] == "Item" then
+			local ItemInfo = StringSplit(info['reward'], '/')
+			local cls = GetClassByStrProp("Item", "ClassName", ItemInfo[1])
+			if cls ~= nil then
+				local icon = CreateIcon(slotset:GetSlotByIndex(reward_cnt))
+				
+				iconName = BEAUTYSHOP_SIMPLELIST_ICONNAME_CHECK(TryGetProp(cls, "Icon", "None"), TryGetProp(cls, "UseGender", "None"))
+				icon:SetImage(iconName)
+
+				SET_ITEM_TOOLTIP_BY_NAME(icon, cls.ClassName);
+				icon:SetTooltipOverlap(1);
+				reward_cnt = reward_cnt + 1
+			end
+		elseif info['reward_type'] == "HairColor" then
+			local icon = CreateIcon(slotset:GetSlotByIndex(reward_cnt))
+			icon:SetImage(info['reward_icon'])
+			icon:SetTextTooltip(info['reward'])
+			reward_cnt = reward_cnt + 1
+		end
+	end
+	-- 보상: 신보상
+	if info['reward_count'] ~= nil and info['reward_count'] > 0  then
+		for i = 1, math.min(info['reward_count'], slotset:GetSlotCount()) do
+			local icon = CreateIcon(slotset:GetSlotByIndex(reward_cnt))
+			local cls = GetClassByStrProp("Item", "ClassName", info['reward_item'..i])
+			
+			if cls ~= nil then
+				iconName = BEAUTYSHOP_SIMPLELIST_ICONNAME_CHECK(TryGetProp(cls, "Icon", "None"), TryGetProp(cls, "UseGender", "None"))
+				icon:SetImage(iconName)
+
+				SET_ITEM_TOOLTIP_BY_NAME(icon, cls.ClassName);
+				icon:SetTooltipOverlap(1);
+			end
+			reward_cnt = reward_cnt + 1				
+		end
+
+	end
+
+	-- 아이콘 색상
+	local icon_colortone = "FFFFFF"
+	if info['is_complete'] == 1 or info['is_timeend'] == 1 then
+		if info['is_reward'] == 1 then
+			icon_colortone = "FFFFFFFF"
+		else
+			icon_colortone = "FF333333"
+		end
+	elseif info['main_category'] == "Event" and info['sub_category'] == 'End' then
+		icon_colortone = "FF333333"
+	else
+		icon_colortone = "FF777777"
+	end
+
+	for i = 0, reward_cnt - 1 do
+		local icon = slotset:GetIconByIndex(i)
+		icon:SetColorTone(icon_colortone)
+	end
+
+	local slotCount = slotset:GetSlotCount()
+	for i = 0, slotCount - 1 do
+		local slot = slotset:GetSlotByIndex(i)
+		if info['is_complete'] == 1 and info['is_reward'] == 1 then
+			slot:SetSkinName('None')
+		else
+			slot:SetSkinName('slot')
+		end
+	end
+
+	-- 완료 색상
+	local colortone = colortone_enable
+	if info['is_reward'] == 0 then
+		if info['is_complete'] == 1 or
+			info['is_timeend'] == 1 or
+			info['main_category'] == "Event" and info['sub_category'] == 'End' then
+			colortone = colortone_disable
+		end
+	end
+	
+	GET_CHILD(ctrlSet, "gb"):SetColorTone(colortone)
+	GET_CHILD(ctrlSet, "icon_pic"):SetColorTone(colortone)
+	GET_CHILD(ctrlSet, "gauge_score"):SetColorTone(colortone)
+	GET_CHILD(ctrlSet, "chase"):SetColorTone(colortone)
+	GET_CHILD(ctrlSet, "title"):SetColorTone(colortone)
+	GET_CHILD(ctrlSet, "titlebg"):SetColorTone(colortone)
+	icon_clock:SetColorTone(colortone)
+
+	-- Set Cls ID
+	ctrlSet:SetUserValue('BtnArg', clsID);
+
+	gb:Resize(gb:GetWidth(), gb:GetHeight() + yoffset)
+	ctrlSet:Resize(ctrlSet:GetWidth(), ctrlSet:GetHeight() + yoffset)
+	return y + ctrlSet:GetHeight()
 end
 
 function ADVENTURE_BOOK_ACHIEVE.FILL_INFO(category, clsID)

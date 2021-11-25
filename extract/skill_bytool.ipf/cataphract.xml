@@ -2,6 +2,11 @@
 <!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by imc (imc) -->
 <ToolSkill>
 	<Skill Name="Cataphract_AcrobaticMount">
+		<EnableScripts>
+			<ToolScp Scp="SKL_CHECK_FLETCHER" Client="BOTH" UseSleep="NO">
+				<Num Num="0"/>
+			</ToolScp>
+		</EnableScripts>
 		<MainSkl JumpFlee="NO" MSPDToUsePos="0" ScrLock="None">
 			<EtcList>
 				<Scp Client="NO" Scp="SKL_BUFF" Time="0" UseSleep="NO">
@@ -307,7 +312,7 @@
 					<Str Str="Impaler_Debuff"/>
 					<Num Num="1"/>
 					<Num Num="0"/>
-					<Num FuncTxt="  local zone = GetZoneName(self); if IsPVPServer(self) == 1 or IsPVPField(self) == 1 then return 6000     else return 8000 + obj.Level * 1000 end" Num="10000" UseFunc="1"/>
+					<Num FuncTxt="  local zone = GetZoneName(self); if IsPVPServer(self) == 1 or IsPVPField(self) == 1 then return 6000     else return 10000 end" Num="10000" UseFunc="1"/>
 					<Num Num="1"/>
 					<Num Num="100"/>
 				</Scp>

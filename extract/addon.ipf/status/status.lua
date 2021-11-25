@@ -1390,9 +1390,16 @@ function STATUS_HIDDEN_JOB_UNLOCK_VIEW(pc, opc, frame, gboxctrl, y)
                     flag = true
                 end
                 
+                local jobName
+                if config.GetServiceNation() == 'GLOBAL_JP' or config.GetServiceNation() == 'KOR' then
+                    jobName = jobIES.Name
+                else 
+                    jobName = jobIES.EngName
+                end
+					
                 if flag == true and((etcObj["HiddenJob_" .. jobIES.ClassName] == 300 and jobIES.PreFunction ~= 'None' ) or IS_KOR_TEST_SERVER()) then
                     local hidden_job = gboxctrl:CreateControl('richtext', 'HIDDEN_JOB_' .. jobIES.ClassName, 10, y, 100, 25);
-                    hidden_job:SetText('{@sti8}' .. ScpArgMsg("HIDDEN_JOB_UNLOCK_VIEW_MSG1", "JOBNAME", jobIES.Name))
+                    hidden_job:SetText('{@sti8}' .. ScpArgMsg("HIDDEN_JOB_UNLOCK_VIEW_MSG1", "JOBNAME", jobName))
                     y = y + 25
                 end
                 
@@ -1400,7 +1407,7 @@ function STATUS_HIDDEN_JOB_UNLOCK_VIEW(pc, opc, frame, gboxctrl, y)
                     if aObj["UnlockQuest_" .. jobIES.ClassName] ~= nil then
                         if flag == true and((aObj["UnlockQuest_" .. jobIES.ClassName] == 1 and jobIES.PreFunction ~= 'None' ) or IS_KOR_TEST_SERVER()) then
                             local hidden_job = gboxctrl:CreateControl('richtext', 'HIDDEN_JOB_' .. jobIES.ClassName, 10, y, 100, 25);
-                            hidden_job:SetText('{@sti8}' .. ScpArgMsg("HIDDEN_JOB_UNLOCK_VIEW_MSG1", "JOBNAME", jobIES.Name))
+                            hidden_job:SetText('{@sti8}' .. ScpArgMsg("HIDDEN_JOB_UNLOCK_VIEW_MSG1", "JOBNAME", jobName))
                             y = y + 25
                         end
                     end

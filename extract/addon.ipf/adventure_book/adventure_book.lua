@@ -130,7 +130,9 @@ function ADVENTURE_BOOK_RENEW_SELECTED_TAB_ADVENTURE()
     local bookmark = GET_CHILD(gb_adventure, 'bookmark');
 	local selectedTabName = bookmark:GetSelectItemName();
 	
-	if selectedTabName == "tab_monster" then
+	if selectedTabName == "tab_main" then
+		ADVENTURE_BOOK_MAIN_INIT()
+	elseif selectedTabName == "tab_monster" then
 		ADVENTURE_BOOK_RENEW_MONSTER()
 	elseif selectedTabName == "tab_item" then
 		ADVENTURE_BOOK_RENEW_ITEM()
@@ -478,22 +480,16 @@ function ADVENTURE_BOOK_SORT_PROP_BY_CLASSID_ASC(idSpace, propName, a, b)
 end
 
 function ADVENTURE_BOOK_FILTER_ITEM(list, func, arg1, arg2, arg3)
-	local i=1;
-	while i <= (#list) do
-		local ret = false
+	local retTable = {}
+	for i = 1, #list do
 		for j = 1, #arg2 do
 			if func(list[i], arg1, arg2[j], arg3) == true then
-				ret = true
+				retTable[#retTable + 1] = list[i]
+				break
 			end
 		end
-		if ret == false then
-			list[i]=list[#list]
-			list[#list]=nil
-        else
-            i=i+1;
-		end
 	end
-	return list;
+	return retTable;
 end
 
 function ADVENTURE_BOOK_SEARCH_PROP_BY_CLASSID_FUNC(clsID, idSpace, propName, searchText)
@@ -557,26 +553,6 @@ function UI_TOGGLE_JOURNAL()
 	end
 
 	ui.ToggleFrame('adventure_book')
-
-	local frame = ui.GetFrame('adventure_book')
-
-	if frame:IsVisible() == 0 then
-		return
-	end
-
-    local mainTab = GET_CHILD(frame, 'mainTab');
-	local selectedTabName = mainTab:GetSelectItemName();
-	
-	if selectedTabName == "tab_main_achieve" then
-		ADVENTURE_BOOK_ACHIEVE_INIT()
-	elseif selectedTabName == "tab_main_adventure" then
-		ADVENTURE_BOOK_ADVENTURE_INIT()
-	end
-
-	local gb_achieve = GET_CHILD(frame, "gb_achieve")
-	local page_achieve_main = GET_CHILD(gb_achieve, "page_achieve_main")
-	local achieve_main_level_reward_bg = GET_CHILD(page_achieve_main, "achieve_main_level_reward_bg")
-	achieve_main_level_reward_bg:ShowWindow(0)
 end
 
 function OPEN_DO_JOURNAL(frame)
@@ -590,7 +566,6 @@ function OPEN_DO_JOURNAL(frame)
 end
 
 function OPEN_ADVENTURE_BOOK(frame, isopenbynpc)
-
     if frame == nil then
         frame = ui.GetFrame('adventure_book');
 	end
@@ -600,18 +575,26 @@ function OPEN_ADVENTURE_BOOK(frame, isopenbynpc)
     else
         isopenbynpc = 'NO';
 	end
+	ADVENTURE_BOOK_ISOPENBYNPC(isopenbynpc)
 
 	ADVENTURE_BOOK_ACHIEVE.INIT_SEARCH_FILTER_OPTION()
 	
-	ADVENTURE_BOOK_ISOPENBYNPC(isopenbynpc)
-	
 	if isopenbynpc == "YES" then
-		ADVENTURE_BOOK_ACHIEVE_MAIN_INIT()
-		ADVENTURE_BOOK_MAIN_SELECT(frame); -- 탭 변경되면서 ADVENTURE_BOOK_MAIN_INIT 호출함
+		ADVENTURE_BOOK_MAIN_SELECT(frame); -- 탭 변경하면서 ADVENTURE_BOOK_MAIN_INIT 호출함
 	else
-		ADVENTURE_BOOK_ACHIEVE_MAIN_INIT()
-		ADVENTURE_BOOK_MAIN_INIT();
+		local mainTab = GET_CHILD(frame, 'mainTab');
+		local selectedTabName = mainTab:GetSelectItemName();
+		if selectedTabName == "tab_main_achieve" then
+			ADVENTURE_BOOK_ACHIEVE_INIT()
+		elseif selectedTabName == "tab_main_adventure" then
+			ADVENTURE_BOOK_ADVENTURE_INIT()
+		end
 	end
+	
+	local gb_achieve = GET_CHILD(frame, "gb_achieve")
+	local page_achieve_main = GET_CHILD(gb_achieve, "page_achieve_main")
+	local achieve_main_level_reward_bg = GET_CHILD(page_achieve_main, "achieve_main_level_reward_bg")
+	achieve_main_level_reward_bg:ShowWindow(0)
 end
 
 function CLOSE_ADVENTURE_BOOK(frame)
@@ -773,13 +756,23 @@ function ADVENTURE_BOOK_ACHIEVE_LINK(frame, ctrl, argstr, argnum)
 	ADVENTURE_BOOK_ACHIEVE.INIT_SCROLL_POS(argstr)
 end
 
+function ADVENTURE_BOOK_ACHIEVE_CLICK_SEARCH_BUTTON()
+	local frame = ui.GetFrame("adventure_book")
+	local gb_achieve = GET_CHILD(frame, "gb_achieve")
+	local page = GET_CHILD(gb_achieve, "page_achieve_list_search")
+	local page_left = GET_CHILD(page, "page_achieve_list_search_left")
+	page_left:SetUserValue("CHANGE_SEARCH_OPTION", "1")
+
+	ADVENTURE_BOOK_RENEW_ACHIEVE_SEARCH()
+end
+
 function ADVENTURE_BOOK_ACHIEVE_SELECT_SEARCH_OPTION_MAINCATEGORY()
 	local frame = ui.GetFrame("adventure_book")
 	local gb_achieve = GET_CHILD(frame, "gb_achieve")
-	local page_achieve_list_search = GET_CHILD(gb_achieve, "page_achieve_list_search")
-	local page_achieve_list_search_left = GET_CHILD(page_achieve_list_search, "page_achieve_list_search_left")
-	local droplist_option_maincategory = GET_CHILD(page_achieve_list_search_left, "droplist_option_maincategory", "ui::CDropList")
-	local droplist_option_subcategory = GET_CHILD(page_achieve_list_search_left, "droplist_option_subcategory", "ui::CDropList")
+	local page = GET_CHILD(gb_achieve, "page_achieve_list_search")
+	local page_left = GET_CHILD(page, "page_achieve_list_search_left")
+	local droplist_option_maincategory = GET_CHILD(page_left, "droplist_option_maincategory", "ui::CDropList")
+	local droplist_option_subcategory = GET_CHILD(page_left, "droplist_option_subcategory", "ui::CDropList")
 	droplist_option_subcategory:ClearItems()
 
 	local listMain = ADVENTURE_BOOK_ACHIEVE_CONTENT.GET_SEARCH_FILTER_OPTION_LIST_MAINCATEGORY()
@@ -789,10 +782,48 @@ function ADVENTURE_BOOK_ACHIEVE_SELECT_SEARCH_OPTION_MAINCATEGORY()
 		droplist_option_subcategory:AddItem(listSub[i][1], ClMsg(listSub[i][2]))
 	end
 
+	page_left:SetUserValue("CHANGE_SEARCH_OPTION", "1")
+
 	ADVENTURE_BOOK_RENEW_ACHIEVE_SEARCH()
 end
 
 function ADVENTURE_BOOK_ACHIEVE_SELECT_SEARCH_OPTION_SUBCATEGORY()
+	local frame = ui.GetFrame("adventure_book")
+	local gb_achieve = GET_CHILD(frame, "gb_achieve")
+	local page = GET_CHILD(gb_achieve, "page_achieve_list_search")
+	local page_left = GET_CHILD(page, "page_achieve_list_search_left")
+	page_left:SetUserValue("CHANGE_SEARCH_OPTION", "1")
+
+	ADVENTURE_BOOK_RENEW_ACHIEVE_SEARCH()
+end
+
+function ADVENTURE_BOOK_ACHIEVE_SELECT_CHECK_OPTION_REWARD()
+	local frame = ui.GetFrame("adventure_book")
+	local gb_achieve = GET_CHILD(frame, "gb_achieve")
+	local page = GET_CHILD(gb_achieve, "page_achieve_list_search")
+	local page_left = GET_CHILD(page, "page_achieve_list_search_left")
+	page_left:SetUserValue("CHANGE_SEARCH_OPTION", "1")
+
+	ADVENTURE_BOOK_RENEW_ACHIEVE_SEARCH()
+end
+
+function ADVENTURE_BOOK_ACHIEVE_SELECT_CHECK_OPTION_NAME()
+	local frame = ui.GetFrame("adventure_book")
+	local gb_achieve = GET_CHILD(frame, "gb_achieve")
+	local page = GET_CHILD(gb_achieve, "page_achieve_list_search")
+	local page_left = GET_CHILD(page, "page_achieve_list_search_left")
+	page_left:SetUserValue("CHANGE_SEARCH_OPTION", "1")
+
+	ADVENTURE_BOOK_RENEW_ACHIEVE_SEARCH()
+end
+
+function ADVENTURE_BOOK_ACHIEVE_SELECT_CHECK_OPTION_PERIOD()
+	local frame = ui.GetFrame("adventure_book")
+	local gb_achieve = GET_CHILD(frame, "gb_achieve")
+	local page = GET_CHILD(gb_achieve, "page_achieve_list_search")
+	local page_left = GET_CHILD(page, "page_achieve_list_search_left")
+	page_left:SetUserValue("CHANGE_SEARCH_OPTION", "1")
+
 	ADVENTURE_BOOK_RENEW_ACHIEVE_SEARCH()
 end
 
@@ -1181,7 +1212,11 @@ end
 
 -- argNum: ClassID
 function ON_UPDATE_ACHIEVE_EXCHANGE_EVENT(frame, msg, argStr, argNum)
-	ADVENTURE_BOOK_ACHIEVE_MAIN_EXCHANGE_EVENT_UPDATE_CTRL(argNum)
+    local frame = ui.GetFrame("adventure_book")
+    local gb_achieve = frame:GetChild('gb_achieve')
+    mainPage = gb_achieve:GetChild('page_achieve_main')
+
+	ADVENTURE_BOOK_ACHIEVE_MAIN_INIT_EXCHANGE_EVENT(mainPage)	
 end
 
 function ON_RESET_ACHIEVE_EXCHANGE_EVENT(frame)

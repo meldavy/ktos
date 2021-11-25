@@ -228,6 +228,11 @@ return value"/>
 					<Num Num="0" />
 					<Num Num="0" />
 				</Scp>
+			<Scp Client="NO" LoopTime="1000" Scp="SKL_TGT_DMG" Time="600" UseSleep="NO">
+					<Num Num="1"/>
+					<Num Num="0"/>
+					<Num Num="0"/>
+				</Scp>
 			</EtcList>
             <ResultList>
             <ToolScp Client="NO" Scp="S_R_TGT_REMOVE_BUFF" UseSleep="NO">
@@ -279,7 +284,12 @@ return value"/>
                             <Num Num="0"/>
                             <Num Num="0"/>
                         </Scp>
-                    </EtcList>
+                    <Scp Scp="SKL_TGT_DMG" Client="NO" UseSleep="NO" Time="600" LoopTime="500">
+							<Num Num="1"/>
+							<Num Num="0"/>
+							<Num Num="0"/>
+						</Scp>
+					</EtcList>
                     <ResultList>
                         <ToolScp Scp="S_R_TGT_REMOVE_BUFF" Client="NO" UseSleep="NO">
                             <Str Str="0" UseFunc="1" FuncTxt="local func_name = 'get_remove_buff_tooltip_' .. TryGetProp(skill, 'ClassName', 'None')
@@ -561,7 +571,7 @@ return value"/>
 				<Scp Client="NO" LoopTime="500" Scp="SKL_SET_TARGET_SQUARE" Time="350" UseSleep="NO">
 					<Pos Angle="0" Dist="0" />
 					<Num Num="0" />
-					<Num FuncTxt="local value = 40 if IsBuffApplied(self, &quot;FireFoxShikigami_Buff&quot;) == &quot;YES&quot; then     value = value + 50 end return value" Num="0" UseFunc="1" />
+					<Num FuncTxt="return 90" Num="0" UseFunc="1" />
 					<Num Num="25" />
 					<Num Num="1" UseFunc="1" FuncTxt="local value = 4 + obj.Level * 1
 					if IsPVPField(self) == 1 and value > 2 then

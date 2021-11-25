@@ -113,6 +113,10 @@
 		<Class ClassID="522" ClassName="Vibora_DobleAtaque_Chat01" Data="애송이"/>
 		<Class ClassID="523" ClassName="Vibora_DobleAtaque_Chat02" Data="잘 있어라!!!!!"/>
 		<Class ClassID="524" ClassName="CannotUseThisInOOBEState" Data="유체 상태에서는 해당 기능을 이용할 수 없습니다."/>
+		<Class ClassID="525" ClassName="TigerHunting_LostTarget" Data="[추적] 대상을 잃었습니다. 캐스팅을 중단합니다."/>
+		<Class ClassID="526" ClassName="DESPERATEDEFENSE_CRAFT" Data="데스퍼레이트 디펜스"/>
+		<Class ClassID="527" ClassName="DESPERATEDEFENSE_CRAFT_2" Data="파티원의 데스퍼레이트 디펜스에만 상호작용할 수 있습니다."/>
+		<Class ClassID="528" ClassName="DESPERATEDEFENSE_CRAFT_3" Data="근처에 이미 설치된 데스퍼레이트 디펜스가 있습니다."/>
 	</Category>
 	<Category Name="SimpleWords">
 		<Class ClassID="1100" ClassName="ValidTime" Data="지속 시간"/>
@@ -566,6 +570,12 @@
 		<Class ClassID="2619" ClassName="CannotGetSkillMessage_Sadhu_Tanoti" Data="[스킬] 유체숙련 1레벨 이상 필요"/>
 		<Class ClassID="2620" ClassName="CannotGetSkillMessage_Sadhu_Patati" Data="[스킬] 유체숙련 1레벨 이상 필요"/>
 		<Class ClassID="2621" ClassName="CannotGetSkillMessage_Sadhu_Moksha" Data="[스킬] 유체숙련 1레벨 이상 필요"/>
+		<Class ClassID="2622" ClassName="CannotGetSkillMessage_Fletcher_BodkinPoint" Data="[스킬] 플레쳐 애로우 샷 1레벨 이상 필요"/>
+		<Class ClassID="2623" ClassName="CannotGetSkillMessage_Fletcher_BarbedArrow" Data="[스킬] 플레쳐 애로우 샷 1레벨 이상 필요"/>
+		<Class ClassID="2624" ClassName="CannotGetSkillMessage_Fletcher_CrossFire" Data="[스킬] 플레쳐 애로우 샷 1레벨 이상 필요"/>
+		<Class ClassID="2625" ClassName="CannotGetSkillMessage_Fletcher_Singijeon" Data="[스킬] 플레쳐 애로우 샷 1레벨 이상 필요"/>
+		<Class ClassID="2626" ClassName="CannotGetSkillMessage_Fletcher_CatenaChainArrow" Data="[스킬] 플레쳐 애로우 샷 1레벨 이상 필요"/>
+		<Class ClassID="2627" ClassName="CannotGetSkillMessage_TigerHunter_EyeofBeast" Data="[스킬] 추적 1레벨 이상 필요"/>
 	</Category>
 	<Category Name="Manufacture">
 		<Class ClassID="3001" ClassName="CONTINUE_MIXING_USING_S" Data="{Auto_1} 아이템을 사용하여 제작을 시작합니다. 계속하시겠습니까?"/>
@@ -646,7 +656,7 @@
 		<Class ClassID="3080" ClassName="Set_option" Data="세트 옵션"/>
 		<Class ClassID="3081" ClassName="FixedIcorOptin" Data="고정 아이커 옵션"/>
 		<Class ClassID="3082" ClassName="OnlyUseHavingZeroCount_Raid" Data="[{Raid}] 입장 가능 횟수가 0 인 경우에만 사용 가능합니다."/>
-		<Class ClassID="3083" ClassName="ReallyRemoveGem_Care" Data="{nl}젬을 추출하면 젬의 등급이 한단계 하락합니다.{nl}젬을 추출하시겠습니까?{nl}(단, 1레벨이하 젬은 소멸됩니다.){nl}{@st66d}{s20}(스킬 젬 추출 시 실버가 소모되지 않으며,{nl}추출된 스킬 젬이 소멸하지 않습니다.){nl}{@st66d}{s20}{#ffc500}(기간 : 4/22 점검 후 ~ 7/22 점검 전까지)"/>
+		<Class ClassID="3083" ClassName="ReallyRemoveGem_Care" Data="{nl}젬을 추출하면 젬의 등급이 한단계 하락합니다.{nl}젬을 추출하시겠습니까?{nl}(단, 1레벨이하 젬은 소멸됩니다.){nl}{@st66d}{s20}(스킬 젬 추출 시 실버가 소모되지 않으며,{nl}추출된 스킬 젬이 소멸하지 않습니다.){nl}{@st66d}{s20}{#ffc500}(기간 : 11/25 점검 후 ~ 12/09 점검 전까지)"/>
 		<Class ClassID="3084" ClassName="CheckLuciferiItemStatus" Data="먼저 스크롤을 통해 속성을 추출하세요.{nl}루시페리 계열은 0초월 0강화 0포텐셜인 경우에만 분해가 가능합니다."/>
 		<Class ClassID="3085" ClassName="AlreadyExtractedLuriferi" Data="이미 속성이 추출된 아이템입니다."/>
 		<Class ClassID="3086" ClassName="AlreadyExtractedProperty" Data="(추출불가)"/>
@@ -656,6 +666,7 @@
 		<Class ClassID="3090" ClassName="ReallyRemoveGem_AetherGem" Data="{nl}무기에서 에테르 젬을 추출하시겠습니까?{nl}추출 비용 : {img silver 20 20/}"/>
 		<Class ClassID="3091" ClassName="composition_sklgem_result" Data="{@st66d_y}{s20}스킬 젬 합성 결과 예상{/}{/}{nl} {nl}{s17} - 무작위 소드맨 계열 스킬 젬{@st55_hero_count}{s16}{RATE1}{/}{/}%{nl} - 무작위 위저드 계열 스킬 젬{@st55_hero_count}{s16}{RATE2}{/}{/}%{nl} - 무작위 아처 계열 스킬 젬{@st55_hero_count}{s16}{RATE3}{/}{/}%{nl} - 무작위 클레릭 계열 스킬 젬{@st55_hero_count}{s16}{RATE4}{/}{/}%{nl} - 무작위 스카우트 계열 스킬 젬{@st55_hero_count}{s16}{RATE5}{/}{/}%{nl} {nl}{@st66d_y}{s20}추가 획득 아이템{/}{/}{nl} {nl} - 스킬 젬 파편 1개"/>
 		<Class ClassID="3092" ClassName="NotValidItem" Data="올바른 아이템이 아닙니다."/>
+		<Class ClassID="3094" ClassName="ReallyManufactureItem_legendcraft{usage}" Data="해당 아이템의 사용처는 다음과 같습니다.{nl} {nl}{@st66d_y}{usage}{/}{nl} {nl}정말로 제작하시겠습니까?"/>
 	</Category>
 	<Category Name="ItemPuzzle">
 		<Class ClassID="3501" ClassName="WouldYouSelectThisCombinationAsAlchemystryTarget?" Data="이 조합을 연금 대상으로 선택합니까?"/>
@@ -1133,6 +1144,22 @@
 		<Class ClassID="4474" ClassName="CantEquipToyInSubSlot" Data="서브 슬롯에는 장난감 아이템을 착용할 수 없습니다."/>
 		<Class ClassID="4476" ClassName="NeedSameHairAcc" Data="같은 종류의 헤어 코스튬 아이템으로만 옵션 이전이 가능합니다."/>
 		<Class ClassID="4477" ClassName="FirstRegisterTargetForBriquetting_HairAcc" Data="옵션을 추출할 장비를 먼저 등록해주세요."/>		
+		<Class ClassID="4479" ClassName="OpenExtractCabinetVibora" Data="바이보라 선택 추출권"/>
+		<Class ClassID="4480" ClassName="{set}ReallyExtractCabinetVibora" Data="[{#FF0000}{set}{/}]을 정말로 추출하시겠습니까?"/>
+		<Class ClassID="4481" ClassName="CabinetAllClose" Data="개방된 아이템이 없습니다."/>
+		<Class ClassID="4482" ClassName="{lv}OpenSelectCabinetVibora" Data="{#FF0000}[Lv{lv}]{/} 바이보라 비전 선택 개방권"/>
+		<Class ClassID="4483" ClassName="{set}ReallyOpenCabinetVibora" Data="[{#FF0000}{set}{/}]을 정말로 개방하시겠습니까?"/>
+		<Class ClassID="4484" ClassName="{set}ReallyOpenCabinetVibora_2" Data="[{#FF0000}{set}{/}](은)는 부분적으로 개방된 상태입니다. 정말로 사용하시겠습니까?"/>
+		<Class ClassID="4485" ClassName="InvalidCabinetItemIcor" Data="장비에 부여된 고정 아이커의 종류가 장비 보관함에 개방되어 있지 않거나 레벨이 낮아 장비가 해제되었습니다."/>
+		<Class ClassID="4486" ClassName="CantEquipCuzInvalidViboraIcor" Data="무기에 부여된 바이보라 비전의 종류가 장비 보관함에 개방되어 있지 않거나 레벨이 낮아 장비를 장착할 수 없습니다."/>
+		<Class ClassID="4487" ClassName="ExtractViboraRichtext" Data="{@st41}선택한 종류의 바이보라 비전을 보관함에서 추출합니다.{/}" />	
+		<Class ClassID="4488" ClassName="OpenViboraRichtext" Data="{@st41}선택한 종류의 바이보라 비전을 보관함에서 개방합니다.{/}" />
+		<Class ClassID="4489" ClassName="OpenExtractCabinetGoddess" Data="여/마신 방어구 선택 추출권"/>
+		<Class ClassID="4490" ClassName="ExtractGoddessRichtext" Data="{@st41}선택한 종류의 여/마신 방어구를 보관함에서 추출합니다.{/}" />	
+		<Class ClassID="4491" ClassName="{lv}OpenSelectCabinetGoddess" Data="{#FF0000}[Lv{lv}]{/} 여/마신 방어구 선택 개방권"/>
+		<Class ClassID="4492" ClassName="OpenGoddessRichtext" Data="{@st41}선택한 종류의 여/마신 방어구를 보관함에서 개방합니다.{/}" />
+		<Class ClassID="4493" ClassName="CantEquipCuzInvalidGoddessIcor" Data="방어구에 부여된 여/마신 방어구의 종류가 장비 보관함에 개방되어 있지 않거나 레벨이 낮아 장비를 장착할 수 없습니다."/>		
+		<Class ClassID="4497" ClassName="SelectItemTrade{ITEM}" Data="{@st66d_y}{s20}{ITEM}{/}{/} {nl}을/를 정말 선택하시겠습니까?{nl} {nl}선택 후에는 다른 선택지로 변경 할 수 없습니다."/>
 	</Category>
 	<Category Name="ItemTooltip">
 		<Class ClassID="5001" ClassName="CoolDown : {Sec} Sec" Data="재사용 대기시간 : {Sec}초"/>
@@ -1205,65 +1232,65 @@
 		<Class ClassID="5068" ClassName="AccountAbilityOptionText{Option}{addvalue}" Data="1 레벨당 {Option} {addvalue} 증가"/>
 		<Class ClassID="5069" ClassName="tooltip_RenovateTrigger" Data="{nl} {nl}트리거 개조{nl} - 리마콘 버프 중 권총 기본 공격 계수{img green_up_arrow 16 16}200%{nl} - 리마콘 버프 중 권총 기본 공격 속도{img green_up_arrow 16 16}40%"/>
 		<Class ClassID="5070" ClassName="tooltip_Reventador_Lv4" Data="{nl} {nl}{@st66d}{s15} - 발레스트라 팡트 시전 시 레벤타도르 발동{nl}지나간 범위 내 대상에게 10회 타격 (찌르기 속성){nl}(레벤타도르 스킬 계수 현재 레벨 발레스트라 팡트의 10%){nl} - 최대 대상수 10{/}{/}"/>
-		<Class ClassID="5071" ClassName="tooltip_Saber_Lv4" Data="{nl} {nl}{@st66d}{s15} - 인피니트 어썰트 재사용 대기시간 5초 감소{nl} - 인피니트 어썰트 시전 시 전방으로 돌진하여{nl}스칼푸그닝을 빠르게 2회 시전{nl}(대상과의 거리가 100이하일 경우 돌진하지 않음){nl} {nl}해당 효과로 시전되는 스칼푸그닝은 기병도의 스킬 대미지 증가가 적용되지 않음{/}{/}"/>
-		<Class ClassID="5072" ClassName="tooltip_ReinforceString_Lv4" Data="{nl} {nl}{@st66d}{s15} - 보드킨 포인트 시전 시 [쉐이프 차지]를 추가 시전하여 단일 대상 대미지{nl}(쉐이프 차지 스킬 계수 현재 레벨 보드킨 포인트의 50%){nl} - 쉐이프 차지 명중 시 불 디버프를 부여하여 1초마다 입힌 대미지의 30% 만큼 피해를 줌{nl} - 불 디버프 지속시간 10초{/}{/}"/>
-		<Class ClassID="5073" ClassName="tooltip_CamnonHold_Lv4" Data="{nl} {nl}{@st66d}{s15} - 캐노니어 공격 스킬 시전 시 자신의 연막탄 위치에 [에어버스트]를 시전하여 광역 대미지{nl}(에어버스트 스킬 계수 현재 레벨 캐논 샷과 동일){nl} - 에어버스트 광역 공격 비율 20"/>
+		<Class ClassID="5071" ClassName="tooltip_Saber_Lv4" Data="{nl} {nl}{@st66d}{s15} - 인피니트 어썰트 시전 시 전방으로 돌진하여{nl}스칼푸그닝을 빠르게 2회 시전{nl}(대상과의 거리가 100이하일 경우 돌진하지 않음){nl} {nl}해당 효과로 시전되는 스칼푸그닝은 기병도의 스킬 대미지 증가가 적용되지 않음{/}{/}"/>
+		<Class ClassID="5072" ClassName="tooltip_ReinforceString_Lv4" Data="{nl} {nl}{@st66d}{s15} - 신기전 최종 대미지{img green_up_arrow 16 16}100%"/>
+		<Class ClassID="5073" ClassName="tooltip_CamnonHold_Lv4" Data="{nl} {nl}{@st66d}{s15} - 스위핑 캐논 재사용 대기시간 20초 감소"/>
 		<Class ClassID="5074" ClassName="tooltip_Convict_Lv4" Data="{nl} {nl}{@st66d}{s15} - 세이크리드 시전 시 30초 동안 자가 버프 부여{nl} - 버프 중 홀리 스매시 시전 시 [단죄]를 시전하여 전방 추가 타격{nl}(단죄 스킬 계수 현재 레벨 세이크리드의 20%){nl} - 최대 대상 수 10"/>
-		<Class ClassID="5075" ClassName="tooltip_PiercingShell_Lv4" Data="{nl} {nl}{@st66d}{s15} - 스나이퍼즈 세리니티 버프 상태에서 이동 중일 때 [은신]{nl}(은신 발동 지연시간 2초){nl} - 스나이퍼즈 세리니티 버프 상태에서 이동 중 2초마다 헤드샷과 스나이프의 재사용 대기시간이 2초 감소"/>
+		<Class ClassID="5075" ClassName="tooltip_PiercingShell_Lv4" Data="{nl} {nl}{@st66d}{s15} - 스나이프 최종 대미지{img green_up_arrow 16 16}100%"/>
 		<Class ClassID="5076" ClassName="tooltip_MassHealFreeze_Lv4" Data="{nl} {nl}{@st66d}{s15} - 매스 힐 시전 시 12초 동안 자가 버프 부여{nl} - 버프 중 3초마다 자신 주변 150 범위 내의 파티원에게 [힐] 자동 시전"/>
-		<Class ClassID="5077" ClassName="tooltip_TimeRush_Lv4" Data="{nl} {nl}{@st66d}{s15}  - 슬로우 시전 시 지정 위치에 [타임 클러치] 시전{nl}  - 캐스팅이 완전히 끝난 후 효과가 발생하는 공격 스킬 시전 시, 스킬의 원래 캐스팅 시간만큼 슬로우 재사용 대기시간 감소{nl} {nl}타임 클러치{nl}  - 지정 위치 60 범위에 무속성 마법 대미지{nl}(스킬 계수 슬로우 스킬 레벨*600%*2회){nl}  - 최대 대상 수 10{nl}  - 대상 침묵 2초"/>
+		<Class ClassID="5077" ClassName="tooltip_TimeRush_Lv4" Data="{nl} {nl}{@st66d}{s15}  - 슬로우 시전 시 지정 위치에 [타임 클러치] 시전{nl}  - 캐스팅이 완전히 끝난 후 효과가 발생하는 공격 스킬 시전 시, 스킬의 원래 캐스팅 시간만큼 슬로우 재사용 대기시간 감소{nl} {nl}타임 클러치{nl}  - 지정 위치 60 범위에 무속성 마법 대미지{nl}(스킬 계수 슬로우 스킬 레벨*400%*2회){nl}  - 최대 대상 수 10{nl}  - 대상 침묵 2초"/>
 		<Class ClassID="5078" ClassName="tooltip_LewaAdvent" Data="{nl}  - 댐발라 스킬 레벨 {img green_up_arrow 16 16}1{nl} {nl} 르와 강림 {nl} - 댐발라 시전 시 대상에게 [르와 강림] 디버프 5초 부여{nl} - [르와 강림] 디버프 지속시간 동안 어둠의 힘 중첩 수 {img green_up_arrow 16 16}1{nl} - [르와 강림] 디버프의 지속시간이 끝나면 대상에게 댐발라의 스킬 계수의 75% *4회 만큼 추가 타격{nl} - 추가 타격은 대상에게 걸려 있는 보코르 클래스가 부여한 디버프 당 대미지 20% 증가(최대 60%) "/>
 		<Class ClassID="5079" ClassName="tooltip_LewaAdvent_Lv4" Data="{nl} {nl}{@st66d}{s15} - 에피지 최종 대미지 {img green_up_arrow 16 16}100%"/>
-		<Class ClassID="5080" ClassName="tooltip_ChillWind" Data=" - 낙무아이 모든 스킬 레벨{img green_up_arrow 16 16}1{nl} {nl}삭풍{nl} - 낙무아이 공격 스킬 시전 시 삭풍 버프 1 중첩 (지속시간 30초){nl} - 버프 8 중첩일 때 람무아이 시전 시 [파야카룬] 시전{nl} {nl}파야카룬{nl} - 전방 범위 적들에게 10 연타 때리기 대미지{nl}(파야카룬 총 스킬 계수 낙무아이 모든 공격 스킬의 합){nl} - 광역 공격 비율 30{nl} - 시전 중 받는 피해 70% 감소 및 넉백,넉다운 면역"/>
+		<Class ClassID="5080" ClassName="tooltip_ChillWind" Data=" - 낙무아이 모든 스킬 레벨{img green_up_arrow 16 16}1{nl} {nl}삭풍{nl} - 낙무아이 공격 스킬 시전 시 삭풍 버프 1 중첩 (지속시간 30초){nl} - 버프 12 중첩일 때 람무아이 시전 시 [파야카룬] 시전{nl} {nl}파야카룬{nl} - 전방 범위 적들에게 10 연타 때리기 대미지{nl}(파야카룬 총 스킬 계수 낙무아이 모든 공격 스킬의 합){nl} - 광역 공격 비율 10{nl} - 시전 중 받는 피해 70% 감소 및 넉백,넉다운 면역"/>
 		<Class ClassID="5081" ClassName="tooltip_KnifeSpread" Data=" - 클로운 모든 스킬 레벨{img green_up_arrow 16 16}1{nl} {nl}달가림 칼{nl} - 클라이맥스 시전 시 전방에 클라이맥스로 던진{nl}[포켓 나이프] 수와 동일한 수의 단검을 투척하여 피해{nl}(스킬 계수 클라이맥스의 25%){nl} - 연타 수 던진 단검 수에 비례 (최대 10){nl} - 최대 대상 수 10"/>
 		<Class ClassID="5082" ClassName="tooltip_Grind" Data=" - 퀸테인 스킬 레벨{img green_up_arrow 16 16}3{nl} {nl}분쇄{nl} - 크러시 시전 시 현재 레벨의 퀸테인 시전"/>
-		<Class ClassID="5083" ClassName="tooltip_DiffuseReflection" Data=" - 섀도우 쏜 스킬 레벨{img green_up_arrow 16 16}2{nl}  - 섀도우 쏜 연타 수{img green_up_arrow 16 16}1{nl}  - 섀도우 쏜 재사용 대기시간 5초 감소{nl} {nl}확산투영{nl} - 섀도우 쏜이 대상 주변 최대 5명에게 피해를 줌"/>
+		<Class ClassID="5083" ClassName="tooltip_DiffuseReflection" Data=" - 섀도우 쏜 스킬 레벨{img green_up_arrow 16 16}2{nl}  - 섀도우 쏜 연타 수{img green_up_arrow 16 16}1{nl} {nl}확산투영{nl} - 섀도우 쏜이 대상 주변 최대 5명에게 피해를 줌"/>
 		<Class ClassID="5084" ClassName="tooltip_ShadowClone" Data=" - 인법 분신술을 제외한 모든 시노비 스킬 레벨{img green_up_arrow 16 16}1{nl}  - 인법 분신술 스킬 레벨 1이상 일 때, 착용 시 그림자 분신 1명 소환{nl} {nl}그림자 분신{nl} - 지속시간 무한{nl} - 일반 공격 불가, 본체의 시노비 공격 스킬을 따라함{nl} - HP/SP가 소모되지 않음{nl} - 인법 분신술로 소환한 분신과 중복 가능{nl} - 그림자 분신은 클로킹을 따라함"/>
-		<Class ClassID="5085" ClassName="tooltip_FireBolt" Data=" - 파이어 필라 스킬 레벨{img green_up_arrow 16 16}2{nl}  - 파이어 필라 스킬 대미지{img green_up_arrow 16 16}100%{nl} {nl}불벼락{nl} - 파이어 필라 주변 무작위 적의 위치에 운석 낙하{nl} - 운석 낙하 주기 1초{nl} - 운석은 파이어 필라와 동일한 스킬로 판정"/>
+		<Class ClassID="5085" ClassName="tooltip_FireBolt" Data=" - 파이어 필라 스킬 레벨{img green_up_arrow 16 16}2{nl}  - 파이어 필라 스킬 대미지{img green_up_arrow 16 16}100%{nl} {nl}불벼락{nl} - 파이어 필라 주변 무작위 적의 위치에 운석 낙하{nl} - 운석 낙하 주기는 파이어 필라 타격 주기와 동일{nl} - 운석은 파이어 필라와 동일한 스킬로 판정"/>
 		<Class ClassID="5086" ClassName="tooltip_WickedDesire" Data=" - 소서러 모든 스킬 레벨{img green_up_arrow 16 16}1{nl} {nl}사념{nl} - 이보케이션 스킬 시전 후 보조 카드의 악마가 잔존{nl} - 소환수 스킬 자동 사용, 탑승 불가{nl} - 지속시간 10초"/>
 		<Class ClassID="5087" ClassName="tooltip_SacredArmor" Data="{nl} {nl}신성무구{nl} - 비나시오 지속시간 30분으로 변경{nl} {nl}아이템 장착 해제 시 비나시오 버프 제거"/>
 		<Class ClassID="5088" ClassName="tooltip_Outrage" Data=" - 갓 스매시 스킬 레벨{img green_up_arrow 16 16}3{nl}  - 갓 스매시 스킬 범위{img green_up_arrow 16 16}100%{nl}  - 갓 스매시 연타 수{img green_up_arrow 16 16}1{nl}  - 갓 스매시 시전 시 진노 버프 1중첩{nl} {nl}진노{nl} - 지속시간 8초 (최대 3중첩){nl} - 중첩 수에 따라 캐릭터 크기 증가{nl} - 3 중첩 시 받는 마법 피해 50% 감소{nl} - 3 중첩 일 때 브레스트 리퍼 시전 시 중첩을{nl}모두 소모, 5초 동안 브레스트 리퍼 스킬 대미지{img green_up_arrow 16 16}30%"/>
 		<Class ClassID="5089" ClassName="tooltip_CarpetBombing" Data=" - 그라나다 스킬 레벨{img green_up_arrow 16 16}3{nl}  - 그라나다 스킬 광역 공격 비율{img green_up_arrow 16 16}10{nl} {nl}융단폭격{nl} - 탈리오 시전 중 0.25초 마다 주변 범위에 수류탄을 투척, 현재 레벨 그라나다 스킬 계수 50%로 피해{nl} - 보스, 캐릭터에게는 융단폭격 피해 절반 감소"/>
 		<Class ClassID="5090" ClassName="tooltip_ThrowingKnife" Data=" - 로그 모든 스킬 레벨{img green_up_arrow 16 16}1{nl} {nl}비도{nl} - 나이프 스로잉 시전 시 다음 3회의 기본 공격을 단검 투척으로 변경 (10초 지속){nl}(단검 투척 스킬 계수 현재 레벨 나이프 스로잉의 60%){nl} - 세 번째 단검 투척 후 3초 동안 주는 대미지{img green_up_arrow 16 16}30%"/>
-		<Class ClassID="5091" ClassName="tooltip_OrbitalArrow" Data=" - 화살비 스킬 레벨{img green_up_arrow 16 16}2{nl}  - 화살비 재사용 대기시간 20초 감소{nl} {nl}궤도화살{nl} - 화살비 시전 위치에 1초마다 거대 화살을 낙하하여 범위 내의 적 20명에게 추가 피해를 줌{nl} - 지속시간 3초{nl}(궤도화살은 화살비 1타와 동일한 스킬 계수)"/>
+		<Class ClassID="5091" ClassName="tooltip_OrbitalArrow" Data=" - 화살비 스킬 레벨{img green_up_arrow 16 16}2{nl}  - 화살비 재사용 대기시간 20초 감소{nl} {nl}궤도화살{nl} - 화살비 시전 위치에 1초마다 거대 화살을 낙하하여 범위 내의 적 20명에게 추가 피해를 줌{nl}(궤도화살은 화살비 1타와 동일한 스킬 계수{nl} - 발사된 화살비와 지속시간 동일"/>
 		<Class ClassID="5092" ClassName="tooltip_Saber" Data=" - 하카펠 모든 스킬 레벨{img green_up_arrow 16 16}1{nl} {nl}기병도{nl} - 스칼푸그닝 스킬 대미지{img green_up_arrow 16 16}100%{nl} - 그라인드 커터 스킬 대미지{img green_up_arrow 16 16}100%"/>
 		<Class ClassID="5093" ClassName="tooltip_EternalFrozenLand" Data=" - 아이스 파이크 스킬 레벨{img green_up_arrow 16 16}3{nl} {nl}영구동토{nl} - 캐릭터가 [결빙], [한기] 디버프를 걸 때 마다 영구동토 버프 1 중첩{nl} - 영구동토 버프 지속시간 30초, 최대 30 중첩{nl} - 버프 1 중첩 이상일 때, 기본 공격 시 영구동토 버프 중첩을 모두 소모하고 [거스트] 스킬 시전{nl} {nl}거스트{nl} - 광역 공격 비율 20, 얼음 속성 마법 대미지{nl} - 스킬 계수 현재 레벨의 아이스 파이크와 동일{nl} - 시전 시 소모한 영구동토 버프 1 중첩 당 스킬 대미지 7% 증가{nl} - 영구동토 버프 30 중첩 일 때 시전 시 스킬 대미지 100% 추가 증가, 4초 동안 결빙 디버프 부여"/>
-		<Class ClassID="5094" ClassName="tooltip_DualSword" Data=" - 카타 스트로크 스킬 레벨{img green_up_arrow 16 16}3{nl}  - 스카이라이너 스킬 레벨{img green_up_arrow 16 16}2{nl}  - 크로스 가드 블록 확률 증가 효과{img green_up_arrow 16 16}100%{nl} {nl}듀얼소드{nl} - 크로스 가드 시전 중 3초 동안 버프 활성화{nl} - 버프 중 크로스 가드 최대 유지시간 3초로 변경{nl} - 버프 중 일반 해제 가능한 모든 상태이상 저항{nl} - 버프 중 블록 성공 시 [반전베기] 시전{nl} {nl}반전베기{nl} - 정면 방향 200 거리 이내 적의 공격으로 발동{nl}   [마법진], [범위 지속형] 스킬에 발동 불가{nl} - 공격자에게 돌진{nl} - 현재 레벨의 카타 스트로크 스킬 계수 * 200%를 총 4회로 나눠 타격{nl} {nl}크로스 가드로 반전베기 성공 시 즉시 재사용 가능{nl}실패 시 3초 동안 반전베기 사용 불가"/>
+		<Class ClassID="5094" ClassName="tooltip_DualSword" Data=" - 크로스컷 스킬 레벨{img green_up_arrow 16 16}3{nl}  - 스카이라이너 스킬 레벨{img green_up_arrow 16 16}2{nl}  - 크로스 가드 블록 확률 증가 효과{img green_up_arrow 16 16}100%{nl} {nl}듀얼소드{nl} - 크로스 가드 시전 중 3초 동안 버프 활성화{nl} - 버프 중 크로스 가드 최대 유지시간 3초로 변경{nl} - 버프 중 일반 해제 가능한 모든 상태이상 저항{nl} - 버프 중 블록 성공 시 [반전베기] 시전{nl} {nl}반전베기{nl} - 정면 방향 200 거리 이내 적의 공격으로 발동{nl}   [마법진], [범위 지속형] 스킬에 발동 불가{nl} - 공격자에게 돌진{nl} - 현재 레벨의 크로스컷 스킬 계수 * 200%를 총 4회로 나눠 타격"/>
 		<Class ClassID="5095" ClassName="tooltip_Javelin" Data=" - 하플라이트 모든 스킬 레벨{img green_up_arrow 16 16}1{nl}  - 투창 스킬 레벨{img green_up_arrow 16 16}2{nl}  - 투창 시전 시 [자벨린] 버프 중첩을 1개 획득{nl}(최대 3중첩까지 획득 가능, 지속시간 25초){nl} {nl}자벨린{nl} - 기본 공격 시 버프 중첩 1개를 소모해서 250 거리 이하 단일 대상에게 창을 투척{nl} - 자벨린 스킬 계수 현재 레벨의 투창과 동일{nl} - 타격 수 6회"/>
 		<Class ClassID="5096" ClassName="tooltip_TripleStepsSingleShot" Data=" - 산포 모든 스킬 레벨{img green_up_arrow 16 16}1{nl}  - 관통 사격 스킬 광역 공격 비율{img green_up_arrow 16 16}10{nl}{nl}  - 관통 사격 스킬 범위{img green_up_arrow 16 16}100%{nl}  - 관통 사격 재사용 대기시간 10초 감소{nl} {nl}삼보방포{nl} - 연발 사격이 대상 주변 최대 10명에게 피해를 줌"/>
 		<Class ClassID="5097" ClassName="tooltip_Desition" Data=" - 카타디카조 스킬 레벨{img green_up_arrow 16 16}2{nl} {nl}종언{nl} - 카타디카조 시전 위치에 마법진 설치{nl} - 마법진 지속시간 20초{nl} - 마법진 소멸 시 창을 떨어뜨려 범위 내의 적 최대 20명에게 4연타 피해를 줌{nl}(현재 레벨의 카타디카조 스킬 계수 50%로 피해){nl} - 마법진 위에 있는 파티원에게 버프 부여{nl} - 버프 대상 [신성], [불] 속성 마법 스킬 대미지{img green_up_arrow 16 16}20%{nl} - 버프 대상 [신성], [불] 속성 마법 스킬 시전 시 마다 마법진 소멸 시간 1초씩 단축"/>
-		<Class ClassID="5098" ClassName="tooltip_ClusterShot" Data=" - 쿼렐슈터 모든 스킬 레벨 {img green_up_arrow 16 16} 1{nl}  - 장착 시 [클러스터 샷] 스킬 습득{nl} {nl}클러스터 샷{nl} - 전방에 폭발하는 볼트를 발사하여 피해를 줌{nl} - 스킬 계수 현재 레벨 철거의 150%, 연타 수 2{nl} - 재사용 대기시간 15초{nl} - 최대 대상 수 30{nl} {nl}철거 1레벨 이상일 때 클러스터 샷 습득 가능"/>
-		<Class ClassID="5099" ClassName="tooltip_ExplosionEdge" Data=" - 퍼니시 스킬 레벨 {img green_up_arrow 16 16}3{nl} {nl}쐐기폭파{nl} - 퍼니시 재사용 대기시간 20초로 변경{nl} - 퍼니시 베기 속성으로 변경{nl} - 퍼니시 캐스팅 시간 1초로 변경{nl} - 퍼니시 넉다운 대상 판정 및 타겟된 적에게 이동 기능 삭제{nl} - 퍼니시 5연타로 변경{nl} - 퍼니시가 자신 주변 다수의 적에게 피해를 줌{nl} - 최대 대상 수 30"/>
+		<Class ClassID="5098" ClassName="tooltip_ClusterShot" Data=" - 쿼렐슈터 모든 스킬 레벨 {img green_up_arrow 16 16} 1{nl}  - 장착 시 [클러스터 샷] 스킬 습득{nl} {nl}클러스터 샷{nl} - 전방에 폭발하는 볼트를 발사하여 피해를 줌{nl}(스킬 계수 현재 레벨 래피드 파이어와 동일, 연타 수 2){nl} - 재사용 대기시간 15초{nl} - 최대 대상 수 30{nl} {nl}래피드 파이어 1레벨 이상일 때 클러스터 샷 습득 가능"/>
+		<Class ClassID="5099" ClassName="tooltip_ExplosionEdge" Data=" - 퍼니시 스킬 레벨 {img green_up_arrow 16 16}3{nl} {nl}쐐기폭파{nl} - 퍼니시 재사용 대기시간 20초로 변경{nl} - 퍼니시 베기 속성으로 변경{nl} - 퍼니시 캐스팅 시간 1초로 변경{nl} - 퍼니시 넉다운 대상 판정 및 타겟된 적에게 이동 기능 삭제{nl} - 퍼니시 4연타로 변경{nl} - 퍼니시가 자신 주변 다수의 적에게 피해를 줌{nl} - 최대 대상 수 10"/>
 		<Class ClassID="5100" ClassName="tooltip_OneManRush" Data=" - 캐터프랙트 모든 스킬 레벨{img green_up_arrow 16 16}1{nl}  - 돌격 스킬 범위{img green_up_arrow 16 16}100%{nl} {nl}일기당천{nl} - 돌격 채널링 3초 후 추가 공격 2회 시전(베기 속성){nl} - 추가 공격 1회 당 5회 타격{nl} - 스킬 계수 현재 레벨의 돌격과 동일{nl} - 추가 공격 광역 공격 비율 20{nl} {nl}추가 공격은 채널링/캐스팅으로 판정되지 않음"/>
 		<Class ClassID="5101" ClassName="tooltip_Banderilla" Data=" - 마타도르 모든 스킬 레벨 {img green_up_arrow 16 16}1{nl}  - 올레 재사용 대기시간 10초 감소{nl}  - 카포티 재사용 대기시간 10초 감소{nl} {nl}반데릴라{nl} - 올레, 카포티 스킬 시전 시 버프 1중첩{nl}(버프 지속시간 5초, 최대 3중첩){nl} - 버프 중 150 범위 내에서 보스 몬스터 혹은 적 캐릭터가 공격 스킬 사용 시 [꿰어짐] 디버프 부여{nl} - 발동 시 버프 1중첩 소모{nl} {nl}꿰어짐{nl} - 1초 마다 찌르기 속성 지속 대미지{nl}  (스킬 계수 현재 레벨 파소 도블레의 20%){nl} - 디버프 중첩 당 지속 대미지 타격 수{img green_up_arrow 16 16}1{nl} - 디버프 대상에게 자신이 받는 피해 중첩 당 6% 감소{nl} - 디버프 중첩 당 이동속도 4 감소{nl} - 지속시간 10초, 최대 3중첩{nl} {nl}꿰어짐 대상이 캐릭터일 경우 중첩 마다 창을 꽂는 이펙트 효과"/>
-		<Class ClassID="5102" ClassName="tooltip_SpeedLoader" Data=" - 셰리프 모든 스킬 레벨 {img green_up_arrow 16 16}1{nl}  - 웨스트레이드 재사용 대기시간 25초 감소{nl} {nl}스피드 로더{nl} - 장착 시 5초 마다 [셰리프: 리로드] 버프 3 중첩{nl} - [셰리프: 리로드] 버프가 10중첩 일 때, 웨스트레이드 시전 시 중첩을 모두 소모하고{nl}[피스메이커], [에이밍 샷] 재사용 대기시간 초기화 ([피스메이커: 무장 해제] 특성이 활성화 중에는 피스메이커 재사용 대기시간이 초기화 되지 않음)"/>
+		<Class ClassID="5102" ClassName="tooltip_SpeedLoader" Data=" - 셰리프 모든 스킬 레벨 {img green_up_arrow 16 16}1{nl}  - 웨스트레이드 재사용 대기시간 25초 감소{nl} {nl}스피드 로더{nl} - 장착 시 5초 마다 [셰리프: 리로드] 버프 3 중첩{nl} - [셰리프: 리로드] 버프가 10중첩 일 때, 웨스트레이드 시전 시 중첩을 모두 소모하고 [에이밍 샷] 재사용 대기시간 초기화"/>
 		<Class ClassID="5103" ClassName="tooltip_CenterFire" Data=" - 익스플로전 스킬 레벨 {img green_up_arrow 16 16} 3{nl} {nl}센터파이어{nl} - 대상에게 익스플로전 시전 시 1회 추가 발사{nl}(스킬 계수 현재 레벨 익스플로전의 30%, 연타 수 5){nl} - 추가 시전 된 익스플로전은 주 대상 1명에게만 피해"/>
 		<Class ClassID="5104" ClassName="tooltip_DeflectGravitation" Data=" - 사이코키노 모든 스킬 레벨{img green_up_arrow 16 16}1{nl} {nl}편향인력{nl} - 그라비티 폴 시전 중 넉백, 넉다운 면역{nl} - 그라비티 폴 시전 중 1초 마다 부채꼴 범위 타격{nl}(현재 레벨의 그라비티 폴 스킬 계수 50%로 피해){nl} - 대상이 몬스터면 매 타격 마다 조금씩 끌어당김{nl} - 그라비티폴 채널링 종료 시 원형 범위 추가 타격{nl}(현재 레벨의 그라비티 폴 스킬 계수로 5회 타격){nl} - 최대 대상 수 20{nl} {nl}편향인력은 채널링으로 판정되지 않음"/>
-		<Class ClassID="5105" ClassName="tooltip_Necrosis" Data=" - 소각 스킬 레벨{img green_up_arrow 16 16}3{nl}  - 판데믹 스킬 범위{img green_up_arrow 16 16}60%{nl} {nl}괴사{nl} - 판데믹 [공황] 받는 마법 피해 효과 최대치 50% 증가{nl}(보유한 디버프 개수 당 30%로 변경){nl} - 판데믹 시전 시 현재 레벨의 [소각], [흑사병 증기] 디버프 부여{nl} - 판데믹 시전 시 적 몬스터에게 4초 동안 [이동불가] 디버프 부여{nl} - 최대 대상 수 20{nl} {nl}장착 해제 시 괴사로 부여한 [소각], [흑사병 증기] 및 [이동불가] 디버프 제거"/>
+		<Class ClassID="5105" ClassName="tooltip_Necrosis" Data=" - 소각 스킬 레벨{img green_up_arrow 16 16}3{nl}  - 판데믹 스킬 범위{img green_up_arrow 16 16}60%{nl} {nl}괴사{nl} - 판데믹 시전 시 현재 레벨의 [소각], [흑사병 증기] 디버프 부여{nl} - 판데믹 시전 시 적 몬스터에게 4초 동안 [이동불가] 디버프 부여{nl} - 최대 대상 수 20{nl} {nl}장착 해제 시 괴사로 부여한 [소각], [흑사병 증기] 및 [이동불가] 디버프 제거"/>
 		<Class ClassID="5106" ClassName="tooltip_AwakeningRune" Data=" - 룬 캐스터 모든 스킬 레벨{img green_up_arrow 16 16}1{nl} {nl}각성의 룬{nl} - [룬캐스터: 캐스팅] 버프 최대 중첩 5로 변경{nl} - [룬캐스터: 캐스팅] 중첩 당 룬 캐스터 스킬로 주는 대미지{img green_up_arrow 16 16}20%{nl} - [룬캐스터 : 캐스팅] 5 중첩 일 때, 돌의 룬 시전 시 [룬캐스터 : 캐스팅]을 3 중첩 소모하고{nl} 돌의 룬 스킬 재사용 대기시간 초기화"/>
-		<Class ClassID="5107" ClassName="tooltip_AddDamageSword" Data="{nl} {nl}반향{nl} - 공격 시 추가 대미지 능력치 20% 최종 증가 "/>
+		<Class ClassID="5107" ClassName="tooltip_AddDamageSword" Data="{nl} {nl}반향{nl} - 공격 시 추가 대미지 능력치 10% 최종 증가 "/>
 		<Class ClassID="5108" ClassName="tooltip_SlashSpace" Data=" - 로델레로 모든 스킬 레벨{img green_up_arrow 16 16}1{nl}  - 몬타노 스킬 레벨{img green_up_arrow 16 16}2{nl}  {nl}에스쿠도 에스파다{nl}  - 몬타노 시전 시 전방의 적 20명에게 [에스쿠도 에스파다] 추가 타격{nl}  - 타격에 맞은 적은 3초동안 [언밸런스] 디버프에 걸림 (보스 몬스터 제외){nl}  - (스킬 계수 현재 레벨 몬타노와 동일)"/>
 		<Class ClassID="5109" ClassName="tooltip_BlossomBlader_BlossomSlash" Data=" - 매화 베기 스킬 레벨 {img green_up_arrow 16 16} 2{nl}  - 매화 베기 재사용 대기시간 15초 감소{nl} {nl}화산검법{nl} - 매화 베기가 한 대상이 아닌 주변 최대 4명의 대상에게 순차적으로 대미지를 입힘"/>
 		<Class ClassID="5110" ClassName="tooltip_TimeRush" Data=" - 퀵 캐스트 스킬 레벨{img green_up_arrow 16 16}2{nl} {nl}타임러시{nl} - 퀵 캐스트 지속 중 퀵 캐스트 스킬 레벨 * 3.5%만큼 주는 대미지 증가{nl}  - 타임 포워드 적용 스킬{img green_up_arrow 16 16}2 "/>
-		<Class ClassID="5111" ClassName="tooltip_ReinforceString" Data=" - 바브드 애로우 스킬 레벨 {img green_up_arrow 16 16}3{nl}  - 보드킨 포인트 스킬 레벨 {img green_up_arrow 16 16}3{nl}  - 바브드 애로우 스킬 대미지 {img green_up_arrow 16 16}100%{nl} {nl}시위 강화{nl} - 바브드 애로우 스킬 치명타 발생 능력치 30% 추가 적용{nl} - 바브드 애로우가 상대의 방어구 타입을 무시하고 5연타로 적용"/>
-		<Class ClassID="5112" ClassName="tooltip_DoubleMarking" Data=" - 아발리스터 모든 스킬 레벨 {img green_up_arrow 16 16} 1{nl} {nl}이중표식{nl} - 유도화살 확률 20% 추가 증가"/>
+		<Class ClassID="5111" ClassName="tooltip_ReinforceString" Data=" - 플레쳐 모든 스킬 레벨 {img green_up_arrow 16 16}1{nl} {nl}시위 강화{nl} - 보드킨 포인트 버프 부여 시 2 중첩으로 부여{nl} - 바브드 애로우 버프 부여 시 2 중첩으로 부여"/>
+		<Class ClassID="5112" ClassName="tooltip_DoubleMarking" Data=" - 아발리스터 모든 스킬 레벨 {img green_up_arrow 16 16} 1{nl} {nl}이중표식{nl} - 유도화살 발사 확률 2배"/>
 		<Class ClassID="5113" ClassName="tooltip_MassHealFreeze" Data=" - 매스 힐 스킬 레벨{img green_up_arrow 16 16}1 {nl} {nl}매스 힐: 냉각{nl}-  매스 힐 사용시 [힐: 과부하] 중첩에 따라{nl}매스 힐 재사용 대기시간 감소{nl} - 과부하 중첩당 1초 감소{nl} - 매스 힐 사용 시 [힐: 과부하] 중첩 모두 제거"/>
 		<Class ClassID="5114" ClassName="tooltip_Convict" Data=" - 크루세이더 모든 스킬 레벨 {img green_up_arrow 16 16}1{nl} {nl}단죄{nl} - 홀리 스매시 재사용 대기시간 5초 감소{nl} - 컨뎀 재사용 대기시간 10초 감소"/>
 		<Class ClassID="5115" ClassName="tooltip_Retiarii_ThrowNet" Data=" - 레티아리이 모든 스킬 레벨 {img green_up_arrow 16 16}1{nl}  - 투망 던지기 스킬 레벨{img green_up_arrow 16 16}2{nl} {nl}투망 발사장치{nl} - 트라이던트 피니시 첫 번째 오버히트 시전시{nl}현재 레벨의 [투망 던지기] 디버프 부여"/>
-		<Class ClassID="5116" ClassName="tooltip_Halberd" Data=" - 드라군 모든 스킬 레벨 {img green_up_arrow 16 16}1{nl} {nl}미늘창{nl} - 대형, 보스 몬스터에게 주는 최종 대미지 15% 증가 (드라군 전직 필요){nl} -  보스 몬스터에게 디쓰론 명중시 5초간 디버프 부여{nl}디버프 대상에게 자신이 받는 대미지 15% 감소"/>
+		<Class ClassID="5116" ClassName="tooltip_Halberd" Data=" - 드라군 모든 스킬 레벨 {img green_up_arrow 16 16}1{nl} {nl}미늘창{nl} - 드라군 스킬이 대형, 보스 몬스터에게 주는 최종 대미지 15% 증가{nl} -  보스 몬스터에게 디쓰론 명중시 5초간 디버프 부여{nl}디버프 대상에게 자신이 받는 대미지 15% 감소"/>
 		<Class ClassID="5117" ClassName="tooltip_CurseDagger" Data=" - 루카 스킬 레벨{img green_up_arrow 16 16}3{nl}  - 케레티한 스킬 레벨{img green_up_arrow 16 16}2 {nl} {nl}저주의 비수{nl} - 루카 시전 시 현재 레벨의 케레티한 디버프 4중첩 부여{nl} - 루카 시전 시 [저주의 비수] 디버프를 부여{nl} - 저주의 비수는 현재 레벨의 루카와 동일한 지속 피해를 줌{nl} - 저주의 비수 지속시간 10초"/>
 		<Class ClassID="5118" ClassName="tooltip_StoneSlinger" Data=" - 스톤 샤워 스킬 레벨 {img green_up_arrow 16 16}2{nl} {nl}무릿매{nl} - 샌드 블래스트 치명타 적중 시 현재 레벨의 스톤 샤워 시전{nl} - 치명타가 아닐 때, 샌드 블래스트 적중 시 15% 확률로 스톤 샤워 시전"/>
 		<Class ClassID="5119" ClassName="tooltip_CryoliteBullet" Data=" - R.I.P 스킬 레벨 {img green_up_arrow 16 16}3{nl}  - R.I.P 재사용 대기시간 10초 감소{nl}  - 모잠비크 드릴 재사용 대기시간 10초 감소{nl} {nl}크리오라이트 탄두{nl}- 프리즈 불릿이 R.I.P에 적용"/>
 		<Class ClassID="5120" ClassName="tooltip_Reventador" Data=" - 펜서 모든 스킬 레벨 {img green_up_arrow 16 16}1{nl} {nl}레벤타도르{nl} - 세테뚜와르 재사용 대기시간 5초 감소{nl} - 플레쉬 재사용 대기시간 10초 감소"/>
-		<Class ClassID="5121" ClassName="tooltip_CamnonHold" Data=" - 캐논 샷 스킬 레벨{img green_up_arrow 16 16} 3{nl}  - 익스플로전 스킬 레벨 {img green_up_arrow 16 16} 3{nl} {nl}캐논홀드{nl} - 대상 스킬 사용 시 3초간 자신이 받는 피해 30% 감소{nl} - 대상 스킬 사용 시 3초간 넉백, 넉다운 면역{nl} - 대상 스킬 사용 시 3초간 캐논 샷 스킬{nl}주는 대미지{img green_up_arrow 16 16}100%{nl} {nl}대상스킬{nl}[캐논 블래스트], [캐논 배라지], [익스플로전]"/>
-		<Class ClassID="5122" ClassName="tooltip_PiercingShell" Data=" - 헤드샷 스킬 레벨 {img green_up_arrow 16 16}3{nl}  - 스나이프 스킬 레벨 {img green_up_arrow 16 16}1{nl} {nl}철갑탄{nl} - 자신의 블록 관통과 상대의 블록 차이만큼 스나이프의 대미지 증가{nl}(10차이 당 1% 증가, 최대 100% / PVE 시 40% 추가, 최대 140%)"/>
+		<Class ClassID="5121" ClassName="tooltip_CamnonHold" Data=" - 캐노니어 모든 스킬 레벨 {img green_up_arrow 16 16}1{nl} {nl}에어버스트{nl} - 연막탄 시전 시 1초 마다 연막탄 범위 내에 [에어버스트]가 발동되어 피해{nl}(스킬 계수 현재 레벨 캐논 샷에 비례){nl}- 광역 공격 비율 20{nl}- 피격 대상 2초 동안 [슬로우]"/>
+		<Class ClassID="5122" ClassName="tooltip_PiercingShell" Data=" - 머스킷티어 모든 스킬 레벨 {img green_up_arrow 16 16}1{nl} {nl}철갑탄{nl} - 모든 머스킷티어 공격 스킬 및 일반 공격 시 상대 방어력을 15% 무시{nl}(상대가 캐릭터일 경우 방어력 무시 20%로 적용)"/>
 		<Class ClassID="5123" ClassName="tooltip_ConcentratedDefence" Data=" - 최종블록률 {img green_up_arrow 16 16}2%{nl} {nl}집중방어{nl} - 메인 슬롯 또는 서브 슬롯에 방패 착용 시 자신 주변 150범위 파티원에게 [집중방어] 버프 부여{nl} - [마법진], [범위 지속형] 공격에 받는 피해 5% * [방패 착용 수] 만큼 감소{nl} - 몬스터에게 받는 피해 5% * [방패 착용 수] 만큼 감소{nl} - 블록 성공시 3초간 집중방어 효과 2배 적용"/>
-		<Class ClassID="5124" ClassName="tooltip_LeverAction" Data=" - 아퀴버지어 모든 스킬 레벨{img green_up_arrow 16 16}1{nl} {nl}레버액션{nl} - 프리시전 파이어 발사 속도 2배{nl} - [클린 힛] 버프 최대 중첩 수 10 으로 변경"/>
+		<Class ClassID="5124" ClassName="tooltip_LeverAction" Data=" - 아퀴버지어 모든 스킬 레벨{img green_up_arrow 16 16}1{nl} {nl}레버액션{nl} - 프리시전 파이어 발사 속도 2배"/>
 		<Class ClassID="5125" ClassName="tooltip_Agni" Data="{nl} {nl}아그니{nl} - 에니라 발동 시 전방에 화염을 뿜으며,{nl}적들에게 10초동안 [아그니: 화염] 디버프 부여{nl} {nl}[아그니: 화염]{nl} - 1초 마다 에니라로 받은 총 대미지의 10%만큼 지속 피해를 입음{nl} - 디버프 시전자에게 받는 피해가 20% 증가"/>
 		<Class ClassID="5126" ClassName="tooltip_Agni_Lv4" Data="{nl} {nl}{@st66d}{s15} - 모크샤 연타 수 2배"/>
 		<Class ClassID="5127" ClassName="tooltip_SacredArmor_Lv4" Data="{nl} {nl}{@st66d}{s15} - 비지블 탤런트 최종 대미지 {img green_up_arrow 16 16}100%{nl} {nl}비지블 탤런트 버프 중 아이템 장착 시 버프 제거"/>
 		<Class ClassID="5128" ClassName="tooltip_Grind_Lv4" Data="{nl} {nl}{@st66d}{s15} - 자우스트 재사용 대기시간 10초 감소{nl} - 자우스트 시전 시 기마대를 소환하여 주변 범위 대미지{nl}(스킬 계수 현재 레벨 기간테 마르샤와 동일. 타격수 10회){nl} - 최대 대상 수 10{nl} {nl}PVP 지역에서 스킬 계수 기간테 마르샤의 50%로 변경{/}{/}"/>
-		<Class ClassID="5129" ClassName="tooltip_AddDamageSword_Lv4" Data="{nl} {nl}{@st66d}{s15}반향{nl} - 공격 시 추가 대미지 능력치 40% 최종 증가"/>
+		<Class ClassID="5129" ClassName="tooltip_AddDamageSword_Lv4" Data="{nl} {nl}{@st66d}{s15}반향{nl} - 공격 시 추가 대미지 능력치 20% 최종 증가"/>
 		<Class ClassID="5130" ClassName="tooltip_SlashSpace_Lv4" Data="{nl} {nl}{@st66d}{s15} - 슈팅 스타 최종 대미지 {img green_up_arrow 16 16}100%"/>
 		<Class ClassID="5131" ClassName="tooltip_BlossomBlader_BlossomSlash_Lv4" Data="{nl} {nl}{@st66d}{s15} - 어검술 최종 대미지 {img green_up_arrow 16 16}100%"/>
 		<Class ClassID="5132" ClassName="tooltip_DualSword_Lv4" Data="{nl} {nl}{@st66d}{s15} - 뮬리넷 최종 대미지 {img green_up_arrow 16 16}100%"/>
@@ -1290,13 +1317,13 @@
 		<Class ClassID="5153" ClassName="tooltip_OneManRush_Lv4" Data="{nl} {nl}{@st66d}{s15} - 둠 스파이크 최종 대미지  {img green_up_arrow 16 16}100%"/>
 		<Class ClassID="5154" ClassName="tooltip_Banderilla_Lv4" Data="{nl} {nl}{@st66d}{s15} - 파에나 최종 대미지 {img green_up_arrow 16 16}100%"/>
 		<Class ClassID="5155" ClassName="tooltip_SpeedLoader_Lv4" Data="{nl} {nl}{@st66d}{s15} - 패닝 최종 대미지 {img green_up_arrow 16 16}100%"/>
-		<Class ClassID="5156" ClassName="tooltip_CenterFire_Lv4" Data="{nl} {nl}{@st66d}{s15} - 크라우칭 스트라이크 재사용 대기시간 5초 감소"/>
+		<Class ClassID="5156" ClassName="tooltip_CenterFire_Lv4" Data="{nl} {nl}{@st66d}{s15} - 아틸러리 콜 재사용 대기시간 20초 감소"/>
 		<Class ClassID="5157" ClassName="tooltip_DeflectGravitation_Lv4" Data="{nl} {nl}{@st66d}{s15} - 사이킥 프레셔 연타 수 {img green_up_arrow 16 16}1"/>
 		<Class ClassID="5158" ClassName="tooltip_Necrosis_Lv4" Data="{nl} {nl}{@st66d}{s15} - 흑사병 증기 최종 대미지 {img green_up_arrow 16 16}100%"/>
 		<Class ClassID="5159" ClassName="tooltip_AwakeningRune_Lv4" Data="{nl} {nl}{@st66d}{s15} - 정의의 룬 재사용 대기시간 15초 감소"/>
 		<Class ClassID="5160" ClassName="tooltip_ChillWind_Lv4" Data="{nl} {nl}{@st66d}{s15} - 때카, 쏙콴, 때트롱 스킬 계수 30% 최종 증가{nl}"/>
 		<Class ClassID="5161" ClassName="tooltip_KnifeSpread_Lv4" Data="{nl} {nl}{@st66d}{s15} - 페이탈 룰렛 최종 대미지 {img green_up_arrow 16 16}100%"/>
-		<Class ClassID="5162" ClassName="tooltip_LeverAction_Lv4" Data="{nl} {nl}{@st66d}{s15} - 핀포인트 파이어 최종 대미지 {img green_up_arrow 16 16}100%"/>
+		<Class ClassID="5162" ClassName="tooltip_LeverAction_Lv4" Data="{nl} {nl}{@st66d}{s15} - 아퀴버스 배라지 최종 대미지{img green_up_arrow 16 16}100%"/>
 		<Class ClassID="5163" ClassName="tooltip_ClusterShot_Lv4" Data="{nl} {nl}{@st66d}{s15} - 블록 앤드 샷 발사 속도 2배"/>
 		<Class ClassID="5164" ClassName="tooltip_Extinction" Data=" - 엘리멘탈리스트 모든 스킬 레벨 {img green_up_arrow 16 16}1{nl}  - 엘리멘탈 버스트 스킬에 섬멸 효과 추가{nl} {nl}섬멸{nl} - 엘리멘탈 버스트 시전 시 전방에 섬멸 광선 발사{nl} - 최대 대상 수 20, 타격 수 6{nl} - 같은 대상에게 중복 타격 불가능{nl} - 속성은 스킬 레벨 합이 제일 높은 속성으로 결정 됨{nl} {nl}스킬 레벨 합{nl} - 불 : 파이어 클러 + 메테오{nl} - 얼음 : 헤일 + 블리자드 스톰{nl} - 전기 : 일렉트로큐트 + 라이트닝 오브{nl}(투자한 스킬 포인트만 계산){nl} {nl}섬멸은 캐스팅으로 판정되지 않음"/>
 		<Class ClassID="5165" ClassName="tooltip_Extinction_Lv4" Data="{nl} {nl}{@st66d}{s15}[섬멸 속성]에 따라 아래 효과 적용{nl} - 불 : 파이어 클러 최종 대미지 {img green_up_arrow 16 16}100%{nl} - 얼음 : 블리자드 스톰 최종 대미지 {img green_up_arrow 16 16}100%{nl} - 전기 : 라이트닝 오브 전기 결정 연타 수 {img green_up_arrow 16 16}1{nl} {nl}아이템 장착 해제 시 30초동안 Lv4 효과를 받을 수 없음"/>
@@ -1313,7 +1340,7 @@
 		<Class ClassID="5176" ClassName="tooltip_DivineShock_Lv4" Data="{nl} {nl}{@st66d}{s15} - 자이바스 최종 대미지 {img green_up_arrow 16 16}100%"/>
 		<Class ClassID="5177" ClassName="tooltip_Sabotage" Data=" - 아웃로 모든 스킬 레벨 {img green_up_arrow 16 16}1{nl}  - 난동 부리기 시전 후 적에게 받는 피해 증가, 받는 피해 회피 불가 효과 제거{nl}  {nl}파괴공작{nl} - 난동 부리기 시전 시 공격 마다 추가 공격 발생{nl} - 스킬 계수 현재 레벨의 난동 부리기와 동일{nl} - 추가 공격 대상 수 18"/>
 		<Class ClassID="5178" ClassName="tooltip_Sabotage_Lv4" Data="{nl} {nl}{@st66d}{s15} - 난사 최종 대미지 {img green_up_arrow 16 16}100%{nl}{@st66d}{s15} - 난도질 최종 대미지 {img green_up_arrow 16 16}100%"/>
-		<Class ClassID="5181" ClassName="tooltip_SuddenDeath" Data=" - 어쌔신 모든 스킬 레벨 {img green_up_arrow 16 16}1{nl}  - 타흐카브 알칼브 스킬 레벨 {img green_up_arrow 16 16}1{nl}  {nl}절명{nl} - 타흐카브 알칼브 명중 시 대상에게 [절명] 디버프 20초 부여{nl} - [절명] 디버프 대상은 1초마다 시전자에게만 보이는 [은밀]을 생성{nl} - 시전자가 [은밀]을 밟을 때마다 버프 중첩 1증가{nl}(버프 중 은신, 이동속도 {img green_up_arrow 16 16}10, 최대 중첩 수 5){nl} - [절명] 디버프 대상을 어쌔신 스킬로 타격 시 디버프를 제거하고 찌르기 속성으로 5연타{nl} - [은밀] 버프 중첩 만큼 [절명] 연타 수 증가{nl} - 스킬 계수 타흐카브 알칼브의 46.5%{nl} - 절명 디버프 부여 재사용 대기시간 20초{nl} {nl}절명 디버프는 보스 및 캐릭터에게만 부여 가능{nl}어쌔신 스킬로 인한 지속 대미지로 절명효과 발동 불가능"/>
+		<Class ClassID="5181" ClassName="tooltip_SuddenDeath" Data=" - 어쌔신 모든 스킬 레벨 {img green_up_arrow 16 16}1{nl}  - 타흐카브 알칼브 스킬 레벨 {img green_up_arrow 16 16}1{nl}  {nl}절명{nl} - 타흐카브 알칼브 명중 시 대상에게 [절명] 디버프 30초 부여{nl} - [절명] 디버프 대상은 1초마다 시전자에게만 보이는 [은밀]을 생성{nl} - 시전자가 [은밀]을 밟을 때마다 버프 중첩 1증가{nl}(버프 중 은신, 이동속도 {img green_up_arrow 16 16}10, 최대 중첩 수 5){nl} - [절명] 디버프 대상을 어쌔신 스킬로 타격 시 디버프를 제거하고 찌르기 속성으로 5연타{nl} - [은밀] 버프 중첩 만큼 [절명] 연타 수 증가{nl} - 스킬 계수 타흐카브 알칼브의 46.5%{nl} - 절명 디버프 부여 재사용 대기시간 30초{nl} {nl}절명 디버프는 보스 및 캐릭터에게만 부여 가능{nl}어쌔신 스킬로 인한 지속 대미지로 절명효과 발동 불가능"/>
 		<Class ClassID="5182" ClassName="tooltip_SuddenDeath_Lv4" Data="{nl} {nl}{@st66d}{s15} - 이브아다탄 재사용 대기시간 15초 감소"/>
 		<Class ClassID="5183" ClassName="tooltip_SelfImmolate" Data=" - 이몰레이션 스킬 레벨 {img green_up_arrow 16 16}3{nl}  - 이몰레이션 범위 25% 증가{nl}  {nl}소신{nl} - 이몰레이션 시전 시 대상의 크기에 따라 디버프 지속시간 증가{nl}(소형 : 2초, 중형 : 4초, 대형 : 6초, 초대형 : 8초){nl} - [이몰레이션: 멜트 아머]의 지속시간이 20초로 증가{nl} {nl}소신 장착 해제 시 이몰레이션 디버프 제거"/>
 		<Class ClassID="5184" ClassName="tooltip_SelfImmolate_Lv4" Data="{nl} {nl}{@st66d}{s15} - 엠퍼시스 트러스트 공격 가능 횟수 {img green_up_arrow 16 16}10{nl} {nl}아이템 장착 해제 시 엠퍼시스 트러스트 디버프 제거"/>
@@ -1325,7 +1352,7 @@
 		<Class ClassID="5190" ClassName="tooltip_ProtectionGrace_Lv4" Data="{nl} {nl}{@st66d}{s15} - 리스토레이션 회복 주기 50% 감소"/>
 		<Class ClassID="5191" ClassName="tooltip_CriticalEdge" Data="{nl} {nl}크리티컬 엣지{nl} - 헥슨 드롭퍼 최소 치명타 확률{img green_up_arrow 16 16}40%{nl} - 헥슨 드롭퍼 치명타 시 최종 대미지{img green_up_arrow 16 16}60%"/>
 		<Class ClassID="5192" ClassName="tooltip_CriticalEdge_Lv4" Data="{nl} {nl}{@st66d}{s15} - 킬홀링 연타 수 {img green_up_arrow 16 16}4"/>
-		<Class ClassID="5193" ClassName="tooltip_Hawking" Data=" - 멍텅구 스킬 레벨 {img green_up_arrow 16 16}2{nl}  - 음속타 스킬 레벨 {img green_up_arrow 16 16}1{nl} {nl}매 사냥{nl} - 멍텅구 사용 시 매 5마리가 날아와 해당 지점을 공격{nl} - 5초동안 매 한 마리당 총 2회 공격{nl}(스킬 계수, 현재 레벨의 멍텅구의 20%, 최대 10연타){nl} - '멍텅구: 전광석화', '응사: 매의 눈' 특성 효과 적용 됨{nl} - 추가 소환된 매로 야수형 적 공격 시 대미지 {img green_up_arrow 16 16}50%"/>
+		<Class ClassID="5193" ClassName="tooltip_Hawking" Data=" - 멍텅구 스킬 레벨 {img green_up_arrow 16 16}2{nl}  - 음속타 스킬 레벨 {img green_up_arrow 16 16}1{nl} {nl}매 사냥{nl} - 멍텅구 사용 시 매 5마리가 날아와 해당 지점을 공격{nl} - 5초동안 매 한 마리당 총 2회 공격{nl}(스킬 계수, 현재 레벨의 멍텅구의 15%, 최대 10연타){nl} - '응사: 매의 눈' 특성 효과 적용 됨{nl} - 추가 소환된 매로 야수형 적 공격 시 대미지 {img green_up_arrow 16 16}50%"/>
 		<Class ClassID="5194" ClassName="tooltip_Hawking_Lv4" Data="{nl} {nl}{@st66d}{s15} - 토마호크 최종 대미지 {img green_up_arrow 16 16}30%"/>
 		<Class ClassID="5195" ClassName="tooltip_RapidGrowth" Data="{nl} {nl}급성장{nl} - 크기 확대 버프를 받은 대상에게 [성장]버프 12초 부여{nl} - [성장] : 최종 대미지 {img green_up_arrow 16 16}10%{nl} - 크기 확대로 커지는 크기 2배 증가"/>
 		<Class ClassID="5196" ClassName="tooltip_RapidGrowth_Lv4" Data="{nl} {nl}{@st66d}{s15} - 스웰 핸즈 공격력 추가 증가 {img green_up_arrow 16 16}2.5%"/>
@@ -1334,7 +1361,7 @@
 		<Class ClassID="5199" ClassName="tooltip_MemoryLeap" Data=" - 딥디르비 모든 스킬 레벨 {img green_up_arrow 16 16}1{nl}  - 바카리네 여신상 오버히트 {img green_up_arrow 16 16}1{nl}  - 바카리네 여신상 지속시간 2분 30초로 증가{nl}  - 바카리네 여신상 재사용 대기시간 3분으로 증가{nl}  - 바카리네 여신상 기존 기능 제거{nl} {nl}기억 도약{nl} - 바카리네 여신상 최대 2개 설치 가능{nl} - 설치된 바카리네 여신상에 상호작용 시{nl} 같은 맵에 존재하는 동일한 스킬로 생성된{nl}다른 바카리네 여신상으로 이동{nl} - 이동 재사용 대기시간 10초{nl} {nl}기억 도약의 재사용 대기시간은 개인별로 적용됨"/>
 		<Class ClassID="5200" ClassName="tooltip_MemoryLeap_Lv4" Data="{nl} {nl}{@st66d}{s15} - 세계수 조각에 블록, 치명타 저항 감소 효과 추가{nl}(감소율은 회피와 동일)"/>
 		<Class ClassID="5201" ClassName="tooltip_AwfulPoison" Data=" - 오공고 스킬 레벨 {img green_up_arrow 16 16}3{nl}  - 금와 스킬 레벨 {img green_up_arrow 16 16}2{nl}{nl} {nl}무영지독{nl} - 금와 사용 시 주변에 독비가 내려 적에게 피해를 입힘{nl} - 독비는 금와와 동일한 스킬로 판정"/>
-		<Class ClassID="5202" ClassName="tooltip_AwfulPoison_Lv4" Data="{nl} {nl}{@st66d}{s15} - 독 항아리 최종 대미지 {img green_up_arrow 16 16}80%"/>
+		<Class ClassID="5202" ClassName="tooltip_AwfulPoison_Lv4" Data="{nl} {nl}{@st66d}{s15} - 독 항아리 최종 대미지 {img green_up_arrow 16 16}100%"/>
 		<Class ClassID="5203" ClassName="EvolvedBy" Data="[진화]"/>
 		<Class ClassID="5204" ClassName="tooltip_ConcentratedDefence_Lv4" Data="{nl} {nl}{@st66d}{s15} - 집중방어 효과로 인한 받는 피해 감소 {img green_up_arrow 16 16}2.5% * [방패 착용 수]"/>
 		<Class ClassID="5205" ClassName="tooltip_RapidGrowth_Skill" Data="{nl} {nl}[급성장 Lv4]{nl}추가 공격력 {value} 증가"/>
@@ -1344,6 +1371,10 @@
 		<Class ClassID="5209" ClassName="tooltip_Arena_Lv4" Data="{nl} {nl}{@st66d}{s15} -  헤드버트가 적에게 적중 시 잔상이 2명 소환되어 각각 적에게 버터플라이 시전 (재발동 대기시간 30초. [헤드버트: 엠퍼러즈 베인] 특성 활성화 중에는 시전되지 않음)"/>
 		<Class ClassID="5210" ClassName="tooltip_Ema" Data="{nl} {nl}에마{nl} - 오미쿠지 시전 시 [대길: 명예]가 나오지 않으면 오미쿠지 지속시간 만큼 [대길: 평화]를 부여{nl} - [대길: 평화] : 공격력 2.5% 증가{nl} - 오미쿠지 시전 시 [대길: 명예], [대길: 소망]이 아니라면 오미쿠지 재사용 대기시간 초기화{nl} {nl}[대길: 평화]는 중복해서 부여할 수 없음{nl}오미쿠지 재사용 대기시간 초기화는 연속으로 적용되지 않음"/>
 		<Class ClassID="5211" ClassName="tooltip_Ema_Lv4" Data="{nl} {nl}{@st66d}{s15} - 카구라 캐스팅 시간 15초로 변경,{nl}캐스팅 도중 중단 시에도 버프 부여가 되도록 변경 됨{nl} - 카구라 캐스팅 시간에 비례하여{nl}최종 대미지 증가 {img green_up_arrow 16 16}4 ~ 8%{nl} {nl}해당 효과는 캐스팅에 관련된 아이템, 스킬 등의 영향을 받지 않음"/>
+		<Class ClassID="5218" ClassName="tooltip_AncientArchery" Data=" - 화랑 모든 스킬 레벨 {img green_up_arrow 16 16}1{nl}  - 기백 버프 최대 4중첩으로 변경{nl} {nl}주살내기{nl} - 애기살 시전 시 연속 2회 발사"/>
+		<Class ClassID="5219" ClassName="tooltip_AncientArchery_Lv4" Data="{nl} {nl}{@st66d}{s15} - 백각궁 최종 대미지{img green_up_arrow 16 16} 50%{nl} - 흑각궁 최종 대미지{img green_up_arrow 16 16} 50%"/>
+		<Class ClassID="5216" ClassName="tooltip_Tempest" Data=" - 레인저 모든 스킬 레벨 {img green_up_arrow 16 16}1{nl} {nl}템페스트{nl} - 더블 테이크 재사용 대기시간 5초 감소{nl} - 더블 테이크 시전 시 대상을 중심으로 회오리가 발생하여 70 범위 내에 피해{nl} - 보스가 아닌 몬스터를 1초 동안 공중으로 띄움{nl}(스킬 계수 현재 레벨 더블 테이크와 동일){nl} - 대상 수 10"/>
+		<Class ClassID="5217" ClassName="tooltip_Tempest_Lv4" Data="{nl} {nl}{@st66d}{s15} - 블레이징 애로우 최종 대미지 {img green_up_arrow 16 16}100%"/>
 	</Category>
 	<Category Name="PeriodicTitle">
 		<Class ClassID="6001" ClassName="TournamentChampion" Data="토너먼트 챔피언"/>
@@ -1926,7 +1957,7 @@
 		<Class ClassID="10590" ClassName="pvp_mine_already_request" Data="이미 지역 이동을 대기중입니다."/>
 		<Class ClassID="10591" ClassName="retry_zone_move" Data="지역 이동이 지연되고 있습니다. 다시 시도해 주시기 바랍니다."/>
 		<Class ClassID="10592" ClassName="ExceedColonyGuildMemberCount" Data="현재 콜로니 지역에 입장 가능한 길드원 수를 초과하였습니다."/>
-		<Class ClassID="10593" ClassName="TooManyItemBuy{name}{count}" Data="정말로 [{#0054FF}{name}{/}] [{#FF0000}{count}{/}]개를 구매하시겠습니까?"/>
+		<Class ClassID="10593" ClassName="TooManyItemBuy{name}{count}{coinname}{beforecount}{aftercount}" Data="정말로 [{#0054FF}{name}{/}] [{#FF0000}{count}{/}]개를 구매하시겠습니까?{nl} {nl}{@st66d_y}[{coinname}]{/}{nl}{beforecount} → {#FF0000}{aftercount}{/}"/>
 		<Class ClassID="10594" ClassName="NotEnoughMasterPiece" Data="아츠 습득 비용이 부족합니다.{nl}현재 보유한 신비한 서 개수를 확인하세요."/>
 		<Class ClassID="10595" ClassName="ReallyDecompose" Data="정말 분해하시겠습니까?"/>
 		<Class ClassID="10596" ClassName="DontDecomposeNoTrade" Data="거래 불가 아이템은 분해할 수 없습니다."/>
@@ -6021,7 +6052,7 @@
 		<Class ClassID="28283" ClassName="SKILL_CAPTION_MSG4" Data="[찌르기]"/>
 		<Class ClassID="28284" ClassName="SKILL_CAPTION_MSG5" Data="[베기]"/>
 		<Class ClassID="28285" ClassName="SKILL_CAPTION_MSG6" Data="[때리기]"/>
-		<Class ClassID="28286" ClassName="SKILL_CAPTION_MSG7" Data="[활]"/>
+		<Class ClassID="28286" ClassName="SKILL_CAPTION_MSG7" Data="[화살]"/>
 		<Class ClassID="28287" ClassName="SKILL_CAPTION_MSG8" Data="[총기]"/>
 		<Class ClassID="28288" ClassName="SKILL_CAPTION_MSG9" Data="[캐논]"/>
 		<Class ClassID="28289" ClassName="SKILL_CAPTION_MSG10" Data="[불]"/>
@@ -10157,6 +10188,7 @@
 		<Class ClassID="92116" ClassName="RECYCLE_NEWCHARACTER_MSG" Data="캐릭터 슬롯이 모두 개방되어 있어 리사이클 메달 66개가 지급됩니다"/>
 		<Class ClassID="92118" ClassName="Mileage_SilverGacha_USE{BEFORE}{AFTER}" Data="마신의 유혹 포인트 : {BEFORE} → {AFTER}"/>
 		<Class ClassID="92121" ClassName="Achieve_Exceed_Period_of_Use" Data="칭호의 사용 기간이 초과되었습니다."/>
+		<Class ClassID="92122" ClassName="Event_JobexpCard_BOX_RankTooHigh" Data="이미 클래스 최대 레벨을 달성하여 사용할 수 없습니다."/>
 	</Category>
 	<Category Name="BattleText">
 		<Class ClassID="100001" ClassName="ADD_DAMAGE_{Auto_1}!" Data="추가 대미지 {Auto_1}!"/>
@@ -11259,7 +11291,7 @@
 		<Class ClassID="111269" ClassName="Ark_storm_desc{base1}{base2}" Data="[폭풍] 스킬 적중시 다수의 대상에게 전기 속성 광역 마법 피해{nl}3레벨 달성시 폭풍 적용 대상수 +{base1}{nl}3레벨 달성시 폭풍 계수 +{base2}%{nl}*발동 대기시간 1초(소환수에 의한 발동도 대기시간을 공유함)"/>
 		<Class ClassID="111270" ClassName="Ark_thunderbolt_desc{base1}{base2}" Data="[낙뢰] 단일 대상에게 전기 속성 마법 피해{nl}[낙뢰 발동] 스킬로 적에게 피해를 입히면 3초간 이동속도 증가{nl}3레벨 달성시 이동속도 +{base1}{nl}3레벨 달성시 낙뢰 계수 +{base2}%{nl}*발동 대기시간 1초(소환수에 의한 발동도 대기시간을 공유함)"/>
 		<Class ClassID="111271" ClassName="Ark_pc_storm_desc{base1}{base2}" Data="[폭풍] 최대 7명의 대상에게 전기 속성 광역 피해{nl}[폭풍 발동] 입힌 피해에 비례하여 최대 발동확률까지 증가{nl}3레벨 달성시 최대 폭풍 발동 확률 +{base1}%{nl}3레벨 달성시 폭풍 계수 +{base2}%"/>
-		<Class ClassID="111272" ClassName="Arrow_Atk" Data="활 대미지 증가"/>
+		<Class ClassID="111272" ClassName="Arrow_Atk" Data="화살 대미지 증가"/>
 		<Class ClassID="111273" ClassName="Cannon_Atk" Data="캐논 대미지 증가"/>
 		<Class ClassID="111274" ClassName="Gun_Atk" Data="총기 대미지 증가"/>
 		<Class ClassID="111275" ClassName="Magic_Melee_Atk" Data="무 속성 마법 대미지 증가"/>
@@ -11970,8 +12002,8 @@
 		<Class ClassID="134126" ClassName="NotEnoughTicketPossibleCount_SoloDungeon" Data="베르니케의 파편 던전을 이용할 수 없는 시간입니다.{nl}이용제한 : 월요일 오전 5시부터 오전 6시 전까지"/>
 		<Class ClassID="134127" ClassName="LowAblityPointScore_ChangeCharacter" Data="특성 달성률이 낮아 캐릭터를 교체할 수 없습니다."/>
 		<Class ClassID="134128" ClassName="MustGoddessEquipWeaponArmorToEnter_ChangeCharacter" Data="가디스 등급의 장비를 장착하지 않은 부위가 있어서 캐릭터 교체가 불가능합니다."/>
-		<Class ClassID="134129" ClassName="DoNotHealerCharacterChange" Data="힐러 클래스는 캐릭터 교체가 불가합니다."/>		
-		<Class ClassID="134130" ClassName="IsExsitHealerClassMyCharacterChangeDeck" Data="등록된 캐릭터에 힐러 클래스가 존재하여 입장할 수 없습니다."/>				
+		<Class ClassID="134129" ClassName="DoNotHealerCharacterChange" Data="힐러 클래스는 캐릭터 교체가 불가합니다."/>
+		<Class ClassID="134130" ClassName="IsExsitHealerClassMyCharacterChangeDeck" Data="등록된 캐릭터에 힐러 클래스가 존재하여 입장할 수 없습니다."/>
 	</Category>
 	<Category Name="AchieveReward">
 		<Class ClassID="135001" ClassName="GainAchieveHairBefore" Data="이미 업적 보상을 받았습니다."/>
@@ -15030,6 +15062,8 @@
 		<Class ClassID="300211" ClassName="Reset" Data="초기화"/>
 		<Class ClassID="300213" ClassName="SelectPurchaseRestrictedItemByWeekly" Data="해당 아이템의 주간 구매 가능 횟수는 {Value}번 입니다.{nl} {nl}현재 구매 가능 횟수 :  {Value2} / {Value}{nl} {nl}구매하시겠습니까?"/>
 		<Class ClassID="300214" ClassName="SelectPurchaseRestrictedItemByCustom" Data="해당 아이템의 구매 가능 횟수는 {Value}번 입니다.{nl} {nl}현재 구매 가능 횟수 :  {Value2} / {Value}{nl} {nl}구매하시겠습니까?"/>
+		<Class ClassID="300215" ClassName="ConfirmExchangeHatAccHaveOption{msg}" Data="교환하려는 헤어 액세서리 중{nl}{@st66d_y}옵션이 적용된 아이템{/}이 포함되어 있습니다.{nl}정말 교환하시겠습니까?{nl} {nl}교환하시려면 {@st66d_y}[{msg}]{/}을 입력해주세요. "/>
+		<Class ClassID="300216" ClassName="exchange_enchant_item" Data="인챈트 아이템 교환"/>
 	</Category>
 	<Category Name="TPHistory">
 		<Class ClassID="301001" ClassName="RemainLogoutPC" Data="로그아웃 PC 만들기"/>
@@ -15708,6 +15742,17 @@
 		<Class ClassID="302705" ClassName="EVENT_2111_WINTER_CHECK_MSG" Data="{#0066FF}[따끈따끈 겨울 준비]{/} 이벤트 현황{nl}접속 시간 ({#0066FF}{TIME}{/}분){nl}일일 [이벤트] 군고구마 주화 획득 ({#0066FF}{COIN}{/}/{MAX}){nl}일일 [따끈따끈] 고구마 지급 ({#0066FF}{ITEM}{/}/1){nl}{#FF3333}※일일 제한은 매일 오전 06시 초기화 됩니다.{/}"/>
 		<Class ClassID="302706" ClassName="STEAMED_BUNS_OPEN_BASIC_MSG" Data="{nl} {nl}사용 시 '[이벤트] 따끈따끈 구운찐빵' 버프가 적용 중 일 경우, 해당 버프가 지워집니다.{nl}{@st66d_y}{s20}{nl} {nl}정말 사용하시겠습니까?"/>
 		<Class ClassID="302707" ClassName="GRILLED_STEAMED_BUNS_OPEN_BASIC_MSG" Data="{nl} {nl}사용 시 '[이벤트] 맛있는 찐빵' 버프가 적용 중 일 경우, 해당 버프가 지워집니다.{nl}{@st66d_y}{s20}{nl} {nl}정말 사용하시겠습니까?"/>
+		<Class ClassID="302708" ClassName="EP13CARE_TRADE8" Data="초기화 관련 아이템 지급"/>
+		<Class ClassID="302709" ClassName="GiveViboraCare" Data="[장비 보관함] 바이보라 비전 선택 추출권 획득"/>
+		<Class ClassID="302710" ClassName="GiveGoddessCare" Data="[장비 보관함] 여신/마신급 방어구 선택 추출권 획득"/>
+		<Class ClassID="302711" ClassName="GiveResetItem" Data="스킬, 특성, 아츠 초기화 및 클래스 변경권 아이템 획득"/>
+		<Class ClassID="302712" ClassName="FailGiveItem" Data="아이템 지급에 실패하였습니다"/>
+		<Class ClassID="302713" ClassName="FailGiveItem_FullCount" Data="이미 해당 아이템을 최대치만큼 소지하고 있습니다."/>
+		<Class ClassID="302714" ClassName="GiveItemCount" Data="아이템 지급 개수를 입력해주세요.{nl}{#003399}0 ~ {MAX}{/}"/>
+		<Class ClassID="302715" ClassName="FailGiveItem_FullCount2" Data="더 이상 아이템을 지급받을 수 없습니다."/>
+		<Class ClassID="302716" ClassName="GiveCountIs{Count}" Data="아이템 지급 횟수가 {Count}번 남았습니다."/>
+		<Class ClassID="302717" ClassName="GiveExchangeEquip" Data="장비 계열 변경의 서 획득"/>
+		<Class ClassID="302718" ClassName="OnlyNumberPlzUpper1" Data="1이상의 숫자만 입력해주세요."/>
 	</Category>
 	<Category Name="Account">
 		<Class ClassID="303001" ClassName="MaxAccountWarehouseCount" Data="팀 창고"/>
@@ -16003,6 +16048,7 @@
 		<Class ClassID="510740" ClassName="pvp_mine_enter_5min" Data="5분 이후에는 참가 신청을 받지 않습니다."/>
 		<Class ClassID="510741" ClassName="NotActiveTimePVP" Data="입장 가능한 시간이 아닙니다."/>
 		<Class ClassID="510742" ClassName="BOSS_COOP_SHOP" Data="보스 협동전 훈장 상점"/>
+		<Class ClassID="510743" ClassName="pvp_mine_reset_msg" Data="주간 획득량이 초기화되었습니다!"/>
 	</Category>
 	<Category Name="Beauty_Shop">
 		<Class ClassID="510801" ClassName="Beauty_Shop_IN" Data="뷰티샵 입장"/>

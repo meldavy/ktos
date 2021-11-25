@@ -1,7 +1,12 @@
 <?xml version="1.0" standalone="yes"?>
-<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by IMCGames Co., Ltd (IMCGames Co., Ltd) -->
+<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by imc (imc) -->
 <!-- edited with XMLSpy v2006 U (http://www.altova.com) by Administrator (EMBRACE) -->
 <TextureInfo>
+	<Texture Name="success_text_green" File="success_text_green.tga" Size="512 128"/>
+	<Texture Name="success_text_blue" File="success_text_blue.tga" Size="512 128"/>
+	<Texture Name="success_text" File="success_text.tga" Size="512 128"/>
+	<Texture Name="square009" File="square009.dds" Size="512 128"/>
+	<Texture Name="sptire088_1024" File="sptire088_1024.tga" Size="1024 1024"/>
 	<Texture Name="dash001_alpha2" File="dash001_alpha2.dds" Size="32 16"/>
 	<Texture Name="dash001_pink_alpha" File="dash001_pink_alpha.dds" Size="32 16"/>
 	<Texture Name="minimap_icon_except_progress" File="minimap_icon_except_progress.dds" Size="64 64"/>
@@ -371,12 +376,12 @@
 	<Texture Name="pattern019" File="pattern019.dds" Size="256 256"/>
 	<Texture Name="pattern018_2" File="pattern018_2.dds" Size="64 64"/>
 	<Texture Name="pattern018_1" File="pattern018_1.dds" Size="64 64"/>
-	<Texture Name="light023_orange" File="light023_orange.dds" Size="256 128"/>
-	<Texture Name="light023_alpha" File="light023_alpha.dds" Size="256 128"/>
+	<Texture Name="light023_orange" File="light023_orange.tga" Size="256 128"/>
+	<Texture Name="light023_alpha" File="light023_alpha.tga" Size="256 128"/>
 	<Texture Name="circle039" File="circle039.dds" Size="128 128"/>
 	<Texture Name="sprite021_alpha" File="sprite021_alpha.dds" Size="192 256"/>
 	<Texture Name="sprite021" File="sprite021.dds" Size="192 256"/>
-	<Texture Name="square007" File="square007.dds" Size="128 128"/>
+	<Texture Name="square007" File="square007.tga" Size="128 128"/>
 	<Texture Name="square006" File="square006.dds" Size="128 128"/>
 	<Texture Name="sprite020" File="sprite020.dds" Size="384 256"/>
 	<Texture Name="pattern017" File="pattern017.dds" Size="64 64"/>
@@ -501,7 +506,7 @@
 	<Texture Name="circle017" File="circle017.dds" Size="128 128"/>
 	<Texture Name="circle016" File="circle016.dds" Size="128 128"/>
 	<Texture Name="circle014" File="circle014.dds" Size="128 128"/>
-	<Texture Name="circle006" File="circle006.dds" Size="64 64"/>
+	<Texture Name="circle006" File="circle006.dds" Size="256 256"/>
 	<Texture Name="circle005" File="circle005.dds" Size="64 64"/>
 	<Texture Name="circle001" File="circle001.dds" Size="64 64"/>
 	<Texture Name="background001" File="background001.dds" Size="64 64"/>

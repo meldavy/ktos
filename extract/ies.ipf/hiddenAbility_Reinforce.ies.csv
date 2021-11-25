@@ -164,7 +164,7 @@ ClassID,FactorByLevel,AddFactor,ClassName,HiddenReinforceAbil,CMM_Caption
 163,1.25,0,Archer_TwinArrows,Archer38,[아츠] 트윈 애로우: 상급 강화
 164,1.25,0,Ranger_Barrage,Ranger40,[아츠] 배라지: 상급 강화
 165,1.25,0,Ranger_HighAnchoring,Ranger41,[아츠] 하이 앵커링: 상급 강화
-166,1.25,0,Ranger_CriticalShot,Ranger42,[아츠] 크리티컬 샷: 상급 강화
+166,1.25,0,Ranger_CriticalShot,Ranger42,[아츠] 더블 테이크: 상급 강화
 167,1.25,0,Ranger_BounceShot,Ranger43,[아츠] 바운스 샷: 상급 강화
 168,1.25,0,Ranger_SpiralArrow,Ranger44,[아츠] 스파이럴 애로우: 상급 강화
 169,1.25,0,QuarrelShooter_ScatterCaltrop,QuarrelShooter27,[아츠] 캘트롭 뿌리기: 상급 강화
@@ -391,6 +391,18 @@ ClassID,FactorByLevel,AddFactor,ClassName,HiddenReinforceAbil,CMM_Caption
 430,1.25,0,Luchador_Chocar,Luchador16,[아츠] 쵸카르: 상급 강화
 431,1.25,0,Luchador_Martinete,Luchador17,[아츠] 마르티네테: 상급 강화
 426,1.25,0,Zealot_BlindFaith,Zealot18,[아츠] 블라인드 페이쓰: 상급 강화
+436,1.25,0,Hwarang_PyeonJeon,Hwarang8,[아츠] 애기살: 상급 강화
+437,1.25,0,Hwarang_BlackHornBow,Hwarang9,[아츠] 흑각궁: 상급 강화
+438,1.25,0,Hwarang_WhiteHornBow,Hwarang10,[아츠] 백각궁: 상급 강화
+439,1.25,0,Hwarang_ArrowDancing,Hwarang11,[아츠] 궁무: 상급 강화
+440,1.25,0,Fletcher_FletcherArrowShot,Fletcher38,[아츠] 플레쳐 애로우 샷: 상급 강화
+441,1.25,0,Fletcher_CatenaChainArrow,Fletcher39,[아츠] 카테나 체인 애로우: 상급 강화
+442,1.25,0,Ranger_Strafe,Ranger52,[아츠] 스트레이프: 상급 강화
+443,1.25,0,Ranger_BlazingArrow,Ranger53,[아츠] 블레이징 애로우: 상급 강화
+444,1.25,0,TigerHunter_EyeofBeast,TigerHunter16,[아츠] 포호: 상급 강화
+445,1.25,0,Matross_ArtilleryCall,Matross22,[아츠] 아틸러리 콜: 상급 강화
+446,1.25,0,Druid_Carnivory,Druid30,[아츠] 육식화: 상급 강화
+447,1.25,0,Rogue_Feint,Rogue29,[아츠] 페인트: 상급 강화
 10001,0,0,Barbarian35,Barbarian35,[아츠] 가죽 마스터리: 야수성
 10002,0,0,Sadhu26,Sadhu26,[아츠] 사두: 고행
 10003,0,0,Exorcist20,Exorcist20,[아츠] 루브릭: 타락

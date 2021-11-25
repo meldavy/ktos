@@ -1384,10 +1384,22 @@ function CREATE_VIBORA_SELECT_CTRL(box, y, index, ItemName, itemCnt, callFunc, t
 	
 	local icon = GET_ITEM_ICON_IMAGE(itemCls, GETMYPCGENDER())
 	SET_SLOT_IMG(slot, icon);
+	
+	local JobText = ""
+	local viboraCls = GetClass("EliteEquipDrop", ItemName);
+	local JobName = TryGetProp(viboraCls, "JobName")
+	if JobName ~= nil then
+		local jobCls = GetClassByStrProp("Job", "JobName", JobName);
+		local name = TryGetProp(jobCls, "Name")
+		if name ~= nil then
+			JobText = " {#FF0000}("..name.."){/}"
+		end
+	end
+	
 
 	local ItemName = ctrlSet:GetChild("ItemName");
 	local itemText = string.format("{@st41b}%s x%d", itemCls.Name, itemCnt);
-	ItemName:SetText(itemText);
+	ItemName:SetText(itemText..JobText);
 
 	ctrlSet:SetOverSound("button_cursor_over_3");
 	ctrlSet:SetClickSound("button_click_stats");

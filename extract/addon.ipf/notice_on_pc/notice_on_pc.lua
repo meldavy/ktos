@@ -40,8 +40,19 @@ function UPDATE_NOTICE_ICON_POS(frame, num)
 	local handle = frame:GetUserIValue("HANDLE");
 	local picture = GET_CHILD_RECURSIVELY(frame, "icon");
 	local point = info.GetPositionInUI(handle, 3);
-	point.x = point.x - frame:GetWidth()/2;
-	point.y = point.y - picture:GetImageHeight();
+	local margin_rate = 1;
+	local clientWidth = option.GetClientWidth();
+	local clientHeight = option.GetClientHeight();
+	local clientInitWidth = ui.GetClientInitialWidth();
+	local clientInitHeight = ui.GetClientInitialHeight();
+	if clientWidth * 9 > clientHeight * 16 then
+		-- resolution width over 16:9(21:9, 32:9)
+		local width_rate = clientWidth / clientInitWidth;
+		local height_rate = clientHeight / clientInitHeight;
+		margin_rate = width_rate / height_rate;
+	end
+	point.x = (point.x * margin_rate) - frame:GetWidth()/2;
+	point.y = (point.y * margin_rate) - picture:GetImageHeight();
 	frame:MoveFrame(point.x, point.y);
 	return 1;
 end
