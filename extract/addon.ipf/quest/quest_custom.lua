@@ -155,7 +155,7 @@ function ON_CUSTOM_QUEST_UPDATE(frame, msg, keyName, argNum)
 	-- INFOSET
 	local frame2 = ui.GetFrame("questinfoset_2");	
 	QUESTINFOSET_2_MAKE_CUSTOM(frame2, true);
-	frame2:ShowWindow(1);
+	TOGGLE_QUEST_INFOSET_FOLD(0)
 end
 
 function CUSTOM_CONTROLSET_UPDATE(quest_ctrl, quest, argStr, cnt)
@@ -535,7 +535,7 @@ function QUEST_CUSTOM_OPTION_CHECK(frame, ctrl, argStr, argNum)
 		customOption:SetUserValue("is_quest_custom_draw", argNum);
 	end
 
-	UPDATE_QUESTINFOSET_2(frame2);
+	ON_UPDATE_QUESTINFOSET_2(frame2);
 
 end
 	

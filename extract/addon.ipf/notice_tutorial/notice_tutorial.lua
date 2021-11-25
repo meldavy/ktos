@@ -14,6 +14,7 @@ function INIT_KEYBOARD_TUTORIAL(frame)
 	
 	END_KEYBOARD_TUTORIAL(frame);
 	frame:GetChild('comment'):ShowWindow(0);
+	frame:GetChild('comment2'):ShowWindow(0);
 	frame:GetChild('SpaceKey'):ShowWindow(0);
 	frame:GetChild('MoveKey'):ShowWindow(0);
 	frame:GetChild('MoveKey2'):ShowWindow(0);
@@ -190,6 +191,9 @@ function ON_DIALOG_SPACE_TUTORIAL(frame, msg, argStr, argNum)
 	comment:ShowWindow(1);
 	local groupBox = frame:GetChild('SpaceKey');
 	groupBox:ShowWindow(1);
+	local comment2 = frame:GetChild('comment2');
+	comment2:SetText( ScpArgMsg("USE_Growth_Equip_Box") );
+	comment2:ShowWindow(1);
 
 	groupBox:GetChild("SpaceText"):SetText(ScpArgMsg("Auto_{@st41}DaeHwa_SinCheongKi{/}"));
 	

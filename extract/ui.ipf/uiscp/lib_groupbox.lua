@@ -9,7 +9,6 @@ function QUEST_GBOX_AUTO_ALIGN(frame, GroupCtrl, starty, spacey, gboxaddy) -- qu
 
 	if needResize then
 		GBOX_AUTO_ALIGN(GroupCtrl, starty, spacey, gboxaddy);
-		frame:Resize(frame:GetWidth(), height);
 	else
 		GroupCtrl:SetScrollBar(GroupCtrl:GetOriginalHeight())
 		GBOX_AUTO_ALIGN(GroupCtrl, starty, spacey, gboxaddy, false, false);

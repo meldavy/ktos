@@ -20,10 +20,7 @@ function UI_TOGGLE_POSE_MACRO()
 end
 
 function CHATMACRO_CLOSE(frame)
-	local questInfoSetFrame = ui.GetFrame('questinfoset_2');
-	if questInfoSetFrame:IsVisible() == 0 and ui.IsVisibleFramePIPType('CHATMACRO') == false then
-		questInfoSetFrame:ShowWindow(1);
-	end
+	CHASEINFO_OPEN_FRAME()
 	ui.CloseFrame('skilltree');
 end
 

@@ -83,6 +83,4 @@ ClassID,GenType,Lv,Range,GenRange,RespawnTime,MaxPop,Minimap,Hide,UseAIOufOfPC,A
 5271,5271,1,40,1,1,1,2,0,0,0,0,0,dungeon_tower_1,미지의 성역 관문,,,,,,,UNKNOWN_SANTUARY_GATE_GUILD,,,NO,YES,NO,Nuetral,,,,
 5272,5272,1,1,1,1,1,2,0,0,0,0,0,Hiddennpc_BountyHunt_Start_B,[바운티 헌트]{nl}지명수배 게시판,,,,MON_DUMMY,,,BOUNTY_HUNT_START,,,NO,YES,NO,Neutral,,,,
 5273,5273,1,40,1,60000,1,2,0,0,0,0,0,NPC_GM,가디스 재료 교환 도우미,,,,,,,EP13CARE_TRADE,,,NO,YES,NO,Netural,,,,
-5277,5277,1,40,1,1,1,2,0,0,0,0,0,Event_2110_Npc,[이벤트]{nl}유령 소녀,,,,,,KLAPEDA_EVENT_2110_GHOST,CITY_EVENT_2110_NPC,,,NO,YES,NO,Neutral,,,,
-5278,5278,1,40,1,1,1,2,0,0,0,0,0,Event_2110_npc_cauldron_stew,[이벤트]{nl}호박 스튜 솥,,,,,,KLAPEDA_EVENT_2110_NPC,EVENT_2110_POT_NPC,,,NO,YES,NO,Neutral,,,,
-5282,5282,1,40,1,1,1,2,0,0,0,0,0,Event_2110_Npc2,[이벤트] 폐도 피난민,,,,,,KLAPEDA_EVENT_2110_NPC,CITY_EVENT_2110_NPC2,,,NO,YES,NO,Neutral,,,,
+5283,5283,1,40,1,1,1,2,0,0,0,0,0,Event_2111_npc,[이벤트]{nl}마을 청년,,,,,,,EVENT_2111_WINTER,,,NO,YES,NO,Neutral,,,,

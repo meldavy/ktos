@@ -216,6 +216,60 @@ function GET_RANDOM_OPTION_VALUE_VER2(item, option_name)
         return min, max
     end
 end
+
+function GET_RANDOM_OPTION_VALUE_BY_LEVEL(item, lv, option_name)
+    local equipGroup = TryGetProp(item, 'EquipGroup', 'None');
+
+    if equipGroup == 'Weapon' or equipGroup == 'THWeapon' or equipGroup == 'SubWeapon' then
+        equipGroup = 'Weapon'
+    elseif equipGroup == 'SHIRT' or equipGroup == 'PANTS' or equipGroup == 'BOOTS' or equipGroup == 'GLOVES' then
+        equipGroup = 'SHIRT'
+    end
+
+    if g_random_option_range_table[lv] == nil then
+        return nil, nil
+    elseif g_random_option_range_table[lv][option_name] == nil then
+        return nil, nil
+    elseif g_random_option_range_table[lv][option_name][equipGroup] == nil then
+        return nil, nil
+    else
+        local item_grade = TryGetProp(item, 'ItemGrade', 1)
+        local grade_ratio = get_item_grade_ratio(item_grade)  -- 아이템 등급에 따른 min 비율
+        local max = g_random_option_range_table[lv][option_name][equipGroup][2]
+        local min = math.ceil(max * grade_ratio)
+        return min, max
+    end
+end
+
+icor_clsType_list = {}
+icor_clsType_list['Shirt'] = 'TOP04_157'
+icor_clsType_list['Pants'] = 'LEG04_157'
+icor_clsType_list['Boots'] = 'FOOT04_157'
+icor_clsType_list['Gloves'] = 'HAND04_159'
+icor_clsType_list['Sword'] = 'SWD04_125'
+icor_clsType_list['THSword'] = 'TSW04_125'
+icor_clsType_list['Staff'] = 'STF04_126'
+icor_clsType_list['THBow'] = 'TBW04_125'
+icor_clsType_list['Bow'] = 'BOW04_125'
+icor_clsType_list['Mace'] = 'MAC04_128'
+icor_clsType_list['THMace'] = 'TMAC04_117'
+icor_clsType_list['Shield'] = 'SHD04_121'
+icor_clsType_list['Spear'] = 'SPR04_126'
+icor_clsType_list['THSpear'] = 'TSP04_127'
+icor_clsType_list['Dagger'] = 'DAG04_122'
+icor_clsType_list['THStaff'] = 'TSF04_128'
+icor_clsType_list['Pistol'] = 'PST04_121'
+icor_clsType_list['Rapier'] = 'RAP04_123'
+icor_clsType_list['Cannon'] = 'CAN04_117'
+icor_clsType_list['Musket'] = 'MUS04_117'
+icor_clsType_list['Trinket'] = 'TRK04_104'
+
+function GET_RANDOM_OPTION_NAME_BY_CLSTYPE(item)
+    local itemClsType = TryGetProp(item, 'ClassType', 'None')
+    return icor_clsType_list[itemClsType]
+end
+
+
 ------------ end of 랜덤 옵션 관련 ---------------------------------------------------------
 -------------------------------------------------------------------------------------------
 

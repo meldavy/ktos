@@ -10,7 +10,8 @@ end
 
 function ADVENTURE_BOOK_GROW.CLEAR()
 	local frame = ui.GetFrame('adventure_book');
-	local page = GET_CHILD(frame, "page_grow", "ui::CGroupBox");
+	local gb_adventure = GET_CHILD(frame, "gb_adventure", "ui::CGroupBox");
+	local page = GET_CHILD(gb_adventure, "page_grow", "ui::CGroupBox");
 	local charList = GET_CHILD(page, "grow_char_list", "ui::CGroupBox");
 
 	local warriorList = GET_CHILD(page, "page_grow_warrior", "ui::CGroupBox");
@@ -29,7 +30,8 @@ end
 
 function ADVENTURE_BOOK_GROW.FILL_CHAR_LIST()
 	local frame = ui.GetFrame('adventure_book');
-	local page = GET_CHILD(frame, "page_grow", "ui::CGroupBox");
+	local gb_adventure = GET_CHILD(frame, "gb_adventure", "ui::CGroupBox");
+	local page = GET_CHILD(gb_adventure, "page_grow", "ui::CGroupBox");
 	local gbox = GET_CHILD(page, "grow_char_list", "ui::CGroupBox");
 
 	local char_name_func = ADVENTURE_BOOK_GROW_CONTENT['CHAR_NAME_LIST']
@@ -66,7 +68,8 @@ end
 
 function ADVENTURE_BOOK_GROW.FILL_CTRL_TYPE(ctrlType, ctrlName)
 	local frame = ui.GetFrame('adventure_book');
-	local page = GET_CHILD(frame, "page_grow", "ui::CGroupBox");
+	local gb_adventure = GET_CHILD(frame, "gb_adventure", "ui::CGroupBox");
+	local page = GET_CHILD(gb_adventure, "page_grow", "ui::CGroupBox");
 	local gbox = GET_CHILD(page, ctrlName, "ui::CGroupBox");
 
 	local job_list_func = ADVENTURE_BOOK_GROW_CONTENT['JOB_LIST_BY_TYPE']
@@ -112,7 +115,8 @@ end
 
 function ADVENTURE_BOOK_GROW_SET_POINT()
     local adventure_book = ui.GetFrame('adventure_book');
-    local page_grow = adventure_book:GetChild('page_grow');
+    local gb_adventure = adventure_book:GetChild('gb_adventure');
+    local page_grow = gb_adventure:GetChild('page_grow');
     local total_score_text = page_grow:GetChild('total_score_text');
     local totalScore = ADVENTURE_GROWTH_CATEGORY();   
     total_score_text:SetTextByKey('value', totalScore);
@@ -120,7 +124,8 @@ end
 
 function ADVENTURE_BOOK_GROW_SET_TEAM_LEVEL()
     local adventure_book = ui.GetFrame('adventure_book');
-    local page_grow = adventure_book:GetChild('page_grow');
+    local gb_adventure = adventure_book:GetChild('gb_adventure');
+    local page_grow = gb_adventure:GetChild('page_grow');
     local team_level_text = page_grow:GetChild('team_level_text');
     local team_score_text = page_grow:GetChild('team_score_text');
     local class_score_text = page_grow:GetChild('class_score_text');

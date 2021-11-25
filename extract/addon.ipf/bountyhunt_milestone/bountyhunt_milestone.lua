@@ -13,7 +13,7 @@ function BOUNTYHUNT_MILESTONE_OPEN(frame, msg, strarg, numarg)
     local frame = ui.GetFrame("bountyhunt_milestone");
     if frame == nil then return end
 
-	ui.CloseFrame('questinfoset_2');
+	CHASEINFO_CLOSE_FRAME()
 
     local frame = ui.GetFrame("bountyhunt_milestone");
     if frame ~= nil then
@@ -125,8 +125,7 @@ function BOUNTYHUNT_YESSCP_EXITMSGBOX()
 	
 	    ui.CloseFrame("bountyhunt_milestone")
 	
-		ui.OpenFrame('questinfoset_2')
-
+		CHASEINFO_OPEN_FRAME()
 	end
 end
 

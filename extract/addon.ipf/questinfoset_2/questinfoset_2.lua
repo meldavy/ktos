@@ -12,17 +12,17 @@ SCROLL_WIDTH_TITLE = 90;
 
 function QUESTINFOSET_2_ON_INIT(addon, frame)
 	addon:RegisterOpenOnlyMsg('ANGLE_UPDATE', 'QUESTINFOSET_2_QUEST_ANGLE');
-	addon:RegisterMsg('GAME_START', 'UPDATE_QUESTINFOSET_2');
-	addon:RegisterMsg('LAYER_CHANGE', 'UPDATE_QUESTINFOSET_2');
-	addon:RegisterMsg('QUEST_UPDATE', 'UPDATE_QUESTINFOSET_2');
-	addon:RegisterMsg('S_OBJ_UPDATE', 'UPDATE_QUESTINFOSET_2');
-	addon:RegisterMsg('SET_REMAIN_TIME', 'UPDATE_QUESTINFOSET_2');
+	-- addon:RegisterMsg('GAME_START', 'ON_UPDATE_QUESTINFOSET_2'); -- chaseinfo로 이동
+	addon:RegisterMsg('LAYER_CHANGE', 'ON_UPDATE_QUESTINFOSET_2');
+	addon:RegisterMsg('QUEST_UPDATE', 'ON_UPDATE_QUESTINFOSET_2');
+	addon:RegisterMsg('S_OBJ_UPDATE', 'ON_UPDATE_QUESTINFOSET_2');
+	addon:RegisterMsg('SET_REMAIN_TIME', 'ON_UPDATE_QUESTINFOSET_2');
 	addon:RegisterMsg('END_QUEST_KILLCNT', 'QUEST_KILLCNT_END');
 	addon:RegisterMsg('SESSIONOBJ_QUEST_ADD', 'UPDATE_CHECK_QUEST');
 	addon:RegisterMsg('QUEST_EFFECT_START', 'QUESTINFOSET_2_QUEST_EFFECT');
 	
-	addon:RegisterMsg('PARTY_MEMBER_PROP_UPDATE', 'QUEST_PARTY_MEMBER_PROP_UPDATE');
-	addon:RegisterMsg('PARTY_MEMBER_UPDATE', 'QUESTSET2_PARTY_MEMBER_UPDATE');
+	addon:RegisterMsg('PARTY_MEMBER_PROP_UPDATE', 'ON_PARTY_MEMBER_PROP_UPDATE');
+	addon:RegisterMsg('PARTY_MEMBER_UPDATE', 'ON_PARTY_MEMBER_UPDATE');
 	addon:RegisterMsg("PARTY_SOBJ_UPDATE", "QUEST_PARTY_SOBJ_UPDATE");
 	
 end
@@ -133,7 +133,7 @@ function QUESTINFOSET_2_NEW_QUEST(frame, msg, argStr, questID)
 
 	if questcls.JobLvup ~= 'None' or questcls.JobLvdown ~= 'None' or tonumber(questcls.JobStep) ~= 0 then
 		quest.CheckJobLvQuestList();
-		UPDATE_QUESTINFOSET_2(frame);
+		ON_UPDATE_QUESTINFOSET_2(frame);
 	end
 
 	if questcls.QuestMode ~= 'MAIN' then
@@ -194,7 +194,7 @@ function QUESTINFOSET_2_QUEST_EFFECT(frame, msg, argStr, argNum)
 	end
 end
 
-function PC_ENTER_QUESTINFO(frame)
+function PC_ENTER_QUESTINFO(frame)	
 	local cnt = quest.GetCheckQuestCount();
 	for i = 0 , cnt - 1 do
 		local questID =  quest.GetCheckQuest(i);
@@ -233,21 +233,99 @@ function QUESTINFOSET_2_REMOVE_QUEST(frame, questID)
 	QUESTINFOSET_2_AUTO_ALIGN(frame, GroupCtrl);
 end
 
-function UPDATE_QUESTINFOSET_2(frame, msg, check, updateQuestID)
-    if UI_CHECK_NOT_PVP_MAP() == 0 then
-        frame:ShowWindow(0);
-        return;
-    end
+function QUESTINFOSET_2_GET_QUEST_NUM()
+	return quest.GetCheckQuestCount();
+end
 
-	local cnt = quest.GetCheckQuestCount();
-	local customCnt = geQuest.GetCustomQuestCount();
+function QUESTINFOSET_2_GET_PARTY_SHARED_NUM()
+	local list = session.party.GetPartyMemberList(PARTY_NORMAL);
+	local myInfo = session.party.GetMyPartyObj(PARTY_NORMAL);
+	local count = list:Count();
 
-	if cnt + customCnt > 0 then
-		frame:ShowWindow(1);
-	else
-		frame:ShowWindow(0);
+	local sharedQuestCnt = 0;
+	for i = 0 , count - 1 do
+		local pcInfo = list:Element(i);
+		if pcInfo ~= myInfo and pcInfo:GetMapID() > 0 then
+			local memberObj = GetIES(pcInfo:GetObject());
+			if memberObj.Shared_Quest > 0 then 
+				sharedQuestCnt = sharedQuestCnt + 1;
+			end
+		end
 	end
 
+	return sharedQuestCnt
+end
+
+function QUESTINFOSET_2_GET_CUSTOM_QUEST_NUM()
+	return geQuest.GetCustomQuestCount();
+end
+
+function QUESTINFOSET_2_IS_VALID_QUEST()
+	local questCnt = QUESTINFOSET_2_GET_QUEST_NUM()
+	local sharedQuestCnt = QUESTINFOSET_2_GET_PARTY_SHARED_NUM()
+	local customQuestCnt = QUESTINFOSET_2_GET_CUSTOM_QUEST_NUM()
+	if questCnt + sharedQuestCnt + customQuestCnt > 0 then
+		return 1
+	end
+
+	return 0
+end
+
+-- questinfoset_2 보여줄건지 여부
+function QUESTINFOSET_2_IS_DRAW()
+	local frame = ui.GetFrame("questinfoset_2")
+
+	-- PVP 맵에서는 출력하지 않음
+    if UI_CHECK_NOT_PVP_MAP() == 0 then
+        return 0
+    end
+
+	if QUESTINFOSET_2_IS_VALID_QUEST() == 0 then
+		return 0
+	end
+
+	return 1
+end
+
+function ON_UPDATE_QUESTINFOSET_2(frame, msg, check, updateQuestID)
+	if frame == nil then
+		frame = ui.GetFrame("questinfoset_2")
+	end
+
+	if CHASEINFO_IS_SHOW() == 0 then
+		CHASEINFO_CLOSE_FRAME()
+		return
+	end
+	
+	-- Toggle Button / Fold
+	CHASEINFO_SHOW_QUEST_TOGGLE(QUESTINFOSET_2_IS_DRAW())
+	CHASEINFO_SHOW_ACHIEVE_TOGGLE(ACHIEVEINFOSET_IS_DRAW())
+
+	if QUESTINFOSET_2_IS_DRAW() == 0 then
+		frame:ShowWindow(0)
+		return
+	else
+		CHASEINFO_SHOW_QUEST_TOGGLE(1)
+		if ACHIEVEINFOSET_IS_DRAW() == 1 then
+			if CHASEINFO_IS_ACHIEVE_FOLD() == 1 then
+				CHASEINFO_SET_QUEST_INFOSET_FOLD(0)
+			else
+				CHASEINFO_SET_QUEST_INFOSET_FOLD(1)
+			end
+		else
+			CHASEINFO_SET_QUEST_INFOSET_FOLD(0)
+		end
+	end
+
+	-- Frame
+	if ACHIEVEINFOSET_IS_VALID_ACHIEVE() == 1 and CHASEINFO_IS_ACHIEVE_FOLD() == 0 then
+		frame:ShowWindow(0)
+		return
+	else
+		frame:ShowWindow(1)
+	end
+
+	-- Only Update
 	if updateQuestID ~= nil and updateQuestID > 0 then
 		local GroupCtrl = GET_CHILD(frame, "member", "ui::CGroupBox");
 		UPDATE_QUESTINFOSET_2_BY_TYPE(GroupCtrl, msg, updateQuestID);
@@ -259,27 +337,41 @@ function UPDATE_QUESTINFOSET_2(frame, msg, check, updateQuestID)
 		PC_ENTER_QUESTINFO(frame);
 	end
 
-	-- 모든 자식 리스트를 지우고,
+	-- 모든 자식 리스트 삭제
 	local GroupCtrl = GET_CHILD(frame, "member", "ui::CGroupBox");
 	GroupCtrl:DeleteAllControl();
-	
+
+	local quest_custom = GET_CHILD(frame, "quest_custom")
+	local quest_custom_size = quest_custom:GetMargin().top + quest_custom:GetHeight()
+	local y = quest_custom_size
 	local customOption = GET_CHILD(frame, "quest_custom", "ui::CCheckBox");
 	if customOption:IsChecked() == 0 then
 		-- 새로 만든다.
+		local cnt = QUESTINFOSET_2_GET_QUEST_NUM()
 		for i = 0 , cnt - 1 do
 			local questID = quest.GetCheckQuest(i);
 			local questcls = GetClassByType("QuestProgressCheck", questID);
-			MAKE_QUEST_INFO_C(GroupCtrl, questcls, msg);
+			local ctrlset = MAKE_QUEST_INFO_C(GroupCtrl, questcls, msg);
+			if ctrlset ~= nil then
+				y = y + ctrlset:GetHeight()
+			end
 		end
 	end	
+	
 
 	local value = customOption:GetUserIValue("is_quest_custom_draw");
+	local customCnt = QUESTINFOSET_2_GET_CUSTOM_QUEST_NUM()
 	if customCnt > 0 and (value ~= - 1 or customOption:IsChecked() == 1) then
-		QUESTINFOSET_2_MAKE_CUSTOM(frame, true);
+		ctrlset = QUESTINFOSET_2_MAKE_CUSTOM(frame, true);
+		if ctrlset ~= nil then
+			y = y + ctrlset:GetHeight()
+		end
 	end
 
 	QUESTINFOSET_2_AUTO_ALIGN(frame, GroupCtrl);
-	QUEST_PARTY_MEMBER_PROP_UPDATE(frame);
+	if customOption:IsChecked() == 0 then
+		QUEST_PARTY_MEMBER_PROP_UPDATE(frame);
+	end
 end
 
 function CHEAK_QUEST_MONSTER(questIES)
@@ -980,7 +1072,6 @@ function MAKE_QUEST_INFO(GroupCtrl, questIES, msg, progVal) -- progVal이 nil이
 	return ctrlset;
 end
 
-
 function MAKE_QUEST_GROUP_INFO(gBox, questIES, msg, progVal)
 	local translated_QuestGroup = dictionary.ReplaceDicIDInCompStr(questIES.QuestGroup); 
 
@@ -1087,7 +1178,7 @@ function MAKE_QUEST_GROUP_INFO(gBox, questIES, msg, progVal)
 					local startx = titleX + _GET_QUEST_INFO_CTRLSET_BODY_OFFSET_X();
 					local content = ctrlset:CreateOrGetControl('richtext', questCtrlName[i], startx, y, ctrlset:GetWidth() - startx - SCROLL_WIDTH, 10);
 					tolua.cast(content, "ui::CRichText");
-    				if questState == questCtrlName[i] then
+					if questState == questCtrlName[i] then
     					content:EnableHitTest(0);
     					content:SetTextFixWidth(1);
     					content:SetText('{s16}{ol}{#ffcc33}'..desc);
@@ -1137,7 +1228,6 @@ function MAKE_QUEST_INFO_BASE_CTRL(gBox, ctrlname, x, y, questIES, result)
 	ctrlset:SetSValue(result);
 	ctrlset:SetAlpha(GET_QUESTINFOSET_TRANSPARENCY());
 	ctrlset:Resize(gBox:GetWidth() - gBox:GetX(), ctrlset:GetHeight());
-
 
 	-- 슬롯생성(아마도 임시 아이템 사용같은거)
 	local titleWidth = ctrlset:GetWidth() - 10;
@@ -3033,8 +3123,26 @@ function SCR_GET_PARTY_MEMBER_ITEM(itemName)
 end
 
 -- 파티퀘공유시에 렉걸리면 여기를 디바운스 시키면됨.
-function QUESTSET2_PARTY_MEMBER_UPDATE(frame)
-	QUEST_PARTY_MEMBER_PROP_UPDATE(frame);
+function ON_PARTY_MEMBER_UPDATE(frame)
+	if QUESTINFOSET_2_IS_DRAW() == 0 then
+		CHASEINFO_SHOW_QUEST_TOGGLE(0)
+		frame:ShowWindow(0)
+		return 
+	end
+
+	CHASEINFO_SHOW_QUEST_TOGGLE(1)
+	QUEST_PARTY_MEMBER_PROP_UPDATE(frame)
+end
+
+function ON_PARTY_MEMBER_PROP_UPDATE(frame)
+	if QUESTINFOSET_2_IS_DRAW() == 0 then
+		CHASEINFO_SHOW_QUEST_TOGGLE(0)
+		frame:ShowWindow(0)
+		return 
+	end
+
+	CHASEINFO_SHOW_QUEST_TOGGLE(1)
+	QUEST_PARTY_MEMBER_PROP_UPDATE(frame)
 end
 
 function QUEST_PARTY_MEMBER_PROP_UPDATE(frame)
@@ -3080,6 +3188,9 @@ function QUEST_PARTY_MEMBER_PROP_UPDATE(frame)
 		g_isPartyMembetQuest = true;
 		g_questCheckFunc = SCR_QUEST_CHECK;
 		g_getItemCountFunc = SCR_GET_PARTY_MEMBER_ITEM;
+		local y = 0
+		local starty = 3
+		local spacey = 3
 		local bg = ctrlSet:GetChild("bg");
 		bg:RemoveAllChild();
 		for i = 0 , count - 1 do
@@ -3097,11 +3208,15 @@ function QUEST_PARTY_MEMBER_PROP_UPDATE(frame)
 					local ctrlTxt = bg:CreateOrGetControl("richtext", "_NAME_" .. pcInfo:GetAID() , 0, 0, bg:GetWidth(), 20);
 					ctrlTxt:ShowWindow(1);
 					ctrlTxt:SetText("{@sti9}" .. ScpArgMsg("QuestOf{Name}", "Name", pcInfo:GetName()));
+					y = y + ctrlTxt:GetHeight()
 				end
 
 				if questID > 0 then
 					local questIES = GetClassByType("QuestProgressCheck", questID);
-					MAKE_QUEST_INFO_C(bg, questIES, nil, TryGetProp(memberObj, 'Shared_Progress'))
+					local newCtrlSet = MAKE_QUEST_INFO_C(bg, questIES, nil, TryGetProp(memberObj, 'Shared_Progress'))
+					if newCtrlSet ~= nil then
+						y = y + newCtrlSet:GetHeight()
+					end
 				end
 
 				g_currentPartyMemberInfo = nil;
@@ -3112,11 +3227,11 @@ function QUEST_PARTY_MEMBER_PROP_UPDATE(frame)
 		g_isPartyMembetQuest = nil;
 		g_questCheckFunc = nil;
 		g_getItemCountFunc = nil;
-		GBOX_AUTO_ALIGN(bg, 0, 3, 10, true);
+		GBOX_AUTO_ALIGN(bg, starty, spacey, 0, true, true);
 		local curValue = config.GetXMLConfig("QuestShareFolded");
 		local btn = GET_CHILD(ctrlSet, "btn");
 		if curValue == 0 then
-			ctrlSet:Resize(ctrlSet:GetWidth(), bg:GetHeight() + bg:GetY());
+			ctrlSet:Resize(ctrlSet:GetWidth(), bg:GetHeight() + bg:GetY())
 			btn:SetImage("btn_minus");
 		else
 			ctrlSet:Resize(ctrlSet:GetWidth(), 30);
@@ -3162,62 +3277,6 @@ function TOGGLE_PARTY_QUEST_FOLDER(parent, ctrl)
 		end
 		QUESTINFOSET_2_AUTO_ALIGN(groupCtrl:GetTopParentFrame(), groupCtrl);	
 	end
-	
-end
-
--- 
-function TOGGLE_QUEST_INFOSET_FOLDER(parent, ctrl, strArg, numArg)
-	local frame = parent:GetTopParentFrame();
-	local member = GET_CHILD_RECURSIVELY(frame, 'member');
-	if member == nil then
-		return
-	end
-
-	local openMark = GET_CHILD_RECURSIVELY(parent, 'openMark');
-	if openMark == nil then
-		return
-	end
-	
-	local quest_custom_name = GET_CHILD_RECURSIVELY(frame, 'quest_custom_name');
-	if quest_custom_name == nil then
-		return
-	end
-
-	local quest_custom = GET_CHILD_RECURSIVELY(frame, 'quest_custom');
-	if quest_custom == nil then
-		return
-	end
-
-	local uiFold = parent:GetUserIValue('UI_FOLD');
-	if uiFold == nil or uiFold == 0 then
-		member:ShowWindow(0);
-		member:EnableHitTest(0);
-		parent:SetUserValue('UI_FOLD', 1);
-		local expend = frame:GetUserConfig("EXPEND")
-		if expend == nil then
-			expend = "btn_minus";
-		end
-		openMark:SetImage(expend);
-
-		quest_custom_name:ShowWindow(0);		
-		quest_custom:ShowWindow(0);
-		quest_custom:EnableHitTest(0);
-	else
-		member:ShowWindow(1);
-		member:EnableHitTest(1);
-		parent:SetUserValue('UI_FOLD', 0);
-		local fold = frame:GetUserConfig("FOLD")
-		if fold == nil then
-			fold = "btn_plus";
-		end
-		openMark:SetImage(fold);
-		
-		quest_custom_name:ShowWindow(1);		
-		quest_custom:ShowWindow(1);
-		quest_custom:EnableHitTest(1);
-
-		UPDATE_QUESTINFOSET_2(frame); 
-	end
 end
 
 function GET_QUESTINFOSET_TRANSPARENCY(frame)
@@ -3243,5 +3302,5 @@ function UPDATE_QUESTINFOSET_TRANSPARENCY(frame)
 		return;
 	end
 	
-	UPDATE_QUESTINFOSET_2(frame); 
+	ON_UPDATE_QUESTINFOSET_2(frame); 
 end

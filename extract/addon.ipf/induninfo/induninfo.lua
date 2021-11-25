@@ -317,12 +317,6 @@ function INDUNINFO_CREATE_CATEGORY(frame, selectIndun)
             end
         end
     end
-    -- set the number of indun
-    for groupID, numIndun in pairs(groupTable) do        
-        local categoryCtrl = categoryBox:GetChild('CATEGORY_CTRL_'..groupID);
-        local name = categoryCtrl:GetChild('name');
-        name:SetTextByKey('cnt', numIndun);
-    end
 
     INDUNINFO_CATEGORY_ALIGN_DEFAULT(categoryBox);
     -- default select
@@ -1382,13 +1376,20 @@ function INDUNINFO_SET_ENTERANCE_TIME_BY_RAID(frame, indunCls)
 end
 
 function INDUNINFO_SET_ENTERANCE_TIME(frame,indunCls)
-    local pvpbox = GET_CHILD_RECURSIVELY(frame, 'pvpbox');
     --time
+    local pvpbox = GET_CHILD_RECURSIVELY(frame, 'pvpbox');
     local timeData = GET_CHILD_RECURSIVELY(pvpbox,'timeData')
-    local startTime = string.format("%02d:%02d",TryGetProp(indunCls,"StartHour",0),TryGetProp(indunCls,"StartMin",0))
-    local endTime = string.format("%02d:%02d",TryGetProp(indunCls,"EndHour",0),TryGetProp(indunCls,"EndMin",0))
-    timeData:SetTextByKey('start', startTime);
-    timeData:SetTextByKey('end', endTime);
+    if GetServerNation() == "GLOBAL" then
+        local start_time = string.format("%02d:%02d", TryGetProp(indunCls, "GlobalStartHour", 0), TryGetProp(indunCls, "GlobalStartMin", 0));
+        local end_time = string.format("%02d:%02d", TryGetProp(indunCls, "GlobalEndHour", 0), TryGetProp(indunCls, "GlobalEndMin", 0));
+        timeData:SetTextByKey("start", start_time);
+        timeData:SetTextByKey("end", end_time);
+    else
+        local startTime = string.format("%02d:%02d",TryGetProp(indunCls,"StartHour",0),TryGetProp(indunCls,"StartMin",0))
+        local endTime = string.format("%02d:%02d",TryGetProp(indunCls,"EndHour",0),TryGetProp(indunCls,"EndMin",0))
+        timeData:SetTextByKey('start', startTime);
+        timeData:SetTextByKey('end', endTime);
+    end
 
     local dayPic = GET_CHILD_RECURSIVELY(frame,'dayPic')
     dayPic:ShowWindow(1)
@@ -1879,25 +1880,31 @@ function PVP_INDUNINFO_UI_OPEN(frame)
             end
             INDUNINFO_ADD_COUNT(resetGroupTable,groupID)
             do --time setting
-                local timeText = categoryCtrl:GetChild("timeText")
-                local startTime = string.format("%02d:%02d",indunCls.StartHour,indunCls.StartMin)
-                if startTime < timeText:GetTextByKey("start") then
-                    timeText:SetTextByKey("start",startTime)
-                end
-                local endTime = string.format("%02d:%02d",indunCls.EndHour,indunCls.EndMin)
-                if endTime > timeText:GetTextByKey("end") then
-                    timeText:SetTextByKey("end",endTime)
+                local timeText = categoryCtrl:GetChild("timeText");
+                if GetServerNation() == "GLOBAL" then
+                    local start_time = string.format("%02d:%02d", TryGetProp(indunCls, "GlobalStartHour", 0), TryGetProp(indunCls, "GlobalStartMin", 0));
+                    if start_time < timeText:GetTextByKey("start") then
+                        timeText:SetTextByKey("start", start_time);
+                    end
+                    local end_time = string.format("%02d:%02d", TryGetProp(indunCls, "GlobalEndHour", 0), TryGetProp(indunCls, "GlobalEndMin", 0));
+                    if end_time > timeText:GetTextByKey("end") then
+                        timeText:SetTextByKey("end", end_time);                     
+                    end
+                else
+                    local startTime = string.format("%02d:%02d",indunCls.StartHour,indunCls.StartMin)
+                    if startTime < timeText:GetTextByKey("start") then
+                        timeText:SetTextByKey("start",startTime)
+                    end
+                    local endTime = string.format("%02d:%02d",indunCls.EndHour,indunCls.EndMin)
+                    if endTime > timeText:GetTextByKey("end") then
+                        timeText:SetTextByKey("end",endTime)
+                    end
                 end
             end
         end
     end
     INDUNINFO_CATEGORY_ALIGN_DEFAULT(categoryBox);
-    -- set the number of indun
-    for resetGroupID, numIndun in pairs(resetGroupTable) do
-        local categoryCtrl = categoryBox:GetChild('CATEGORY_CTRL_'..resetGroupID);
-        local name = categoryCtrl:GetChild('name');
-        name:SetTextByKey('cnt', numIndun);
-    end
+
     -- default select
     PVP_INDUNINFO_CATEGORY_LBTN_CLICK(firstBtn:GetParent(), firstBtn);
 end
@@ -1952,31 +1959,42 @@ end
 
 function PVP_INDUNINFO_DETAIL_SET_ONLINE_PIC(indunDetailCtrl)
     local indunClsID = indunDetailCtrl:GetUserValue('INDUN_CLASS_ID');
-	local indunCls = GetClassByType("PVPIndun",indunClsID)
+	local indunCls = GetClassByType("PVPIndun", indunClsID);
+    local startTime = geTime.GetServerSystemTime();
+    local endTime = geTime.GetServerSystemTime();
+    local start_hour, start_min, end_hour, end_min;
+    if GetServerNation() == "GLOBAL" then
+        start_hour = TryGetProp(indunCls, "GlobalStartHour", 0);
+        start_min = TryGetProp(indunCls, "GlobalStartMin", 0);
+        end_hour = TryGetProp(indunCls, "GlobalEndHour", 0);
+        end_min =  TryGetProp(indunCls, "GlobalEndMin", 0);
+    else
+        start_hour = TryGetProp(indunCls, "StartHour", 0);
+        start_min = TryGetProp(indunCls, "StartMin", 0);
+        end_hour = TryGetProp(indunCls, "EndHour", 0);
+        end_min =  TryGetProp(indunCls, "EndMin", 0);
+    end
 
-	local startTime = geTime.GetServerSystemTime()
-	startTime.wHour = indunCls.StartHour
-	startTime.wMinute = indunCls.StartMin
-	startTime.wSecond = 0
-
-	local endTime = geTime.GetServerSystemTime()
-	endTime.wHour = indunCls.EndHour
-	if indunCls.EndHour >= 24 then
-		endTime.wDay = endTime.wDay + 1
-		endTime.wHour = endTime.wHour - 24
-	elseif indunCls.EndHour < indunCls.StartHour then
-		endTime.wDay = endTime.wDay + 1
-	elseif indunCls.EndHour == indunCls.StartHour and indunCls.EndMin < indunCls.StartMin then
-		endTime.wDay = endTime.wDay + 1
-	end
-	endTime.wMinute = indunCls.EndMin
-	endTime.wSecond = 0
+    startTime.wHour = start_hour;
+    startTime.wMinute = start_min;
+    startTime.wSecond = 0;
+    endTime.wHour = end_hour;
+    if end_hour >= 24 then
+        endTime.wDay = endTime.wDay + 1
+        endTime.wHour = endTime.wHour - 24;
+    elseif end_hour < start_hour then
+        endTime.wDay = endTime.wDay + 1;
+    elseif end_hour == start_hour and end_min < start_min then
+        endTime.wDay = endTime.wDay + 1;
+    end
+    endTime.wMinute = end_min;
+    endTime.wSecond = 0;
 
     if imcTime.GetDiffSecFromNow(startTime) >= 0 then
         if imcTime.GetDiffSecFromNow(endTime) < 0 then
             local onlinePic = indunDetailCtrl:GetChild('onlinePic');
-            AUTO_CAST(onlinePic)
-            onlinePic:SetImage('guild_online')
+            AUTO_CAST(onlinePic);
+            onlinePic:SetImage('guild_online');
         end
     end
 end

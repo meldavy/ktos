@@ -422,6 +422,7 @@ end
 function SCR_EVENT_STAMP_OPEN_ADVENTURE_BOOK_MAP()
 	local frame = ui.GetFrame('adventure_book')
 	frame:ShowWindow(1)
-	local tab = GET_CHILD_RECURSIVELY(frame, "bookmark");
+	local gb_adventure = GET_CHILD(frame, "gb_adventure");
+	local tab = GET_CHILD(gb_adventure, "bookmark");
 	tab:SelectTab(7);
 end

@@ -539,8 +539,7 @@ function NEW_QUEST_ADD(frame, msg, argStr, argNum)
 		if isNew == 1 and quest.IsCheckQuest(argNum) == false then
 			if quest.GetCheckQuestCount() < 5 then	
 				quest.AddCheckQuest(argNum);
-				local questframe2 = ui.GetFrame("questinfoset_2");
-				UPDATE_QUESTINFOSET_2(questframe2); -- infoset에 보여줌.
+				ON_UPDATE_QUESTINFOSET_2()
 			end
 		end
 	end
@@ -888,23 +887,23 @@ function DRAW_QUEST_CTRL(bgCtrl, titleInfo, y)
 			-- filter 적용
 			if CHECK_QUEST_VIEW_FILTER(titleInfo.name, questInfo) == true then
 			
-			if titleInfo.isOpened == true then -- 트리가 열려있을 때만 컨트롤 생성
-				local ctrlName = "_Q_" .. questInfo.QuestClassID;
-				local Quest_Ctrl = questListGbox:CreateOrGetControlSet(controlSetType, ctrlName, 5, controlsetHeight * (drawTargetCount));			
-				
-				-- 배경 설정.
-				if cnt % 2 == 1 then
-					Quest_Ctrl:SetSkinName("chat_window_2");
-				else
-					Quest_Ctrl:SetSkinName('None');
-				end
-				cnt = cnt +1
-				
-				-- detail 설정
-				UPDATE_QUEST_CTRL(Quest_Ctrl, questInfo );
+				if titleInfo.isOpened == true then -- 트리가 열려있을 때만 컨트롤 생성
+					local ctrlName = "_Q_" .. questInfo.QuestClassID;
+					local Quest_Ctrl = questListGbox:CreateOrGetControlSet(controlSetType, ctrlName, 5, controlsetHeight * (drawTargetCount));			
+					
+					-- 배경 설정.
+					if cnt % 2 == 1 then
+						Quest_Ctrl:SetSkinName("chat_window_2");
+					else
+						Quest_Ctrl:SetSkinName('None');
+					end
+					cnt = cnt +1
+					
+					-- detail 설정
+					UPDATE_QUEST_CTRL(Quest_Ctrl, questInfo );
 
-				questCtrlTotalHeight = questCtrlTotalHeight + Quest_Ctrl:GetHeight();
-			end
+					questCtrlTotalHeight = questCtrlTotalHeight + Quest_Ctrl:GetHeight();
+				end
 
 				drawTargetCount = drawTargetCount +1
 			end
@@ -1123,8 +1122,7 @@ function ADD_QUEST_INFOSET_CTRL(frame, ctrl, argStr, questClassID, notUpdateRigh
 	end
 
 	if notUpdateRightUI ~= true then
-		local questframe2 = ui.GetFrame("questinfoset_2");
-		UPDATE_QUESTINFOSET_2(questframe2);
+		ON_UPDATE_QUESTINFOSET_2();
 	end
 
 	UPDATE_QUEST_LIST()
@@ -1629,8 +1627,7 @@ function QUEST_RESET_CHASE(frame, ctrl, argStr, argNum)
 	quest.RemoveCheckQuestAll();
 	
 	-- infoset
-	local questframe2 = ui.GetFrame("questinfoset_2");
-	UPDATE_QUESTINFOSET_2(questframe2); 
+	ON_UPDATE_QUESTINFOSET_2(); 
 	-- quest
 	local topFrame = ui.GetFrame("quest");
 	DRAW_QUEST_LIST(topFrame)
@@ -2159,8 +2156,7 @@ function EXEC_ABANDON_QUEST(questID)
 	local frame = ui.GetFrame('quest');
 	pc.ReqExecuteTx("ABANDON_Q", questID);
 
-	local questinfoset2Frame = ui.GetFrame('questinfoset_2');
-	UPDATE_QUESTINFOSET_2(questinfoset2Frame, 'ABANDON_QUEST', 0, questID);
+	ON_UPDATE_QUESTINFOSET_2(nil, 'ABANDON_QUEST', 0, questID);
 
 	quest.RemoveAllQuestMonsterList(questID);
 	quest.RemoveCheckQuest(questID);
@@ -2181,8 +2177,7 @@ function SCR_QUEST_SHARE_PARTY_MEMBER(ctrlSet, ctrl, strArg, numArg)
 
 	local frame = ui.GetFrame('quest');
 	DRAW_QUEST_LIST(frame);
-	local infosetFrame = ui.GetFrame('questinfoset_2');
-	UPDATE_QUESTINFOSET_2(infosetFrame);
+	ON_UPDATE_QUESTINFOSET_2();
 end
 
 function REQUEST_QUEST_SHARE_PARTY_PROGRESS(questClsID)

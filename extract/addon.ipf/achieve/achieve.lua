@@ -9,6 +9,8 @@ function GET_NEW_ACHIEVE(frame, msg, argStr, classID)
 	local achiName = geAchieveTable.GetDescTitle(classID);	
 	local msg = ScpArgMsg("Auto_[{Auto_1}]_eopJeogeul_HoegDeugHayeossSeupNiDa.", "Auto_1", achiName);
 	ui.AddText("SystemMsgFrame",  msg);
+	
+	ADVENTURE_BOOK_ACHIEVE_INIT_LEVEL_REWARD()
 end
 
 function GET_RANK_ACHIEVE(frame, msg, argStr, classID)

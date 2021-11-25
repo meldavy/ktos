@@ -26,7 +26,8 @@ end
 
 function ADVENTURE_BOOK_ITEM.CLEAR()
 	local frame = ui.GetFrame('adventure_book');
-	local page = GET_CHILD(frame, "page_item", "ui::CGroupBox");
+	local gb_adventure = GET_CHILD(frame, "gb_adventure", "ui::CGroupBox");
+	local page = GET_CHILD(gb_adventure, "page_item", "ui::CGroupBox");
 	local list_box = GET_CHILD(page, "item_list", "ui::CGroupBox");
 	local info_box = GET_CHILD(page, "item_info_gb", "ui::CGroupBox");
 	
@@ -35,7 +36,8 @@ end
 
 function ADVENTURE_BOOK_ITEM.FILL_ITEM_LIST()
 	local frame = ui.GetFrame('adventure_book');
-	local page = GET_CHILD(frame, "page_item", "ui::CGroupBox");
+	local gb_adventure = GET_CHILD(frame, "gb_adventure", "ui::CGroupBox");
+	local page = GET_CHILD(gb_adventure, "page_item", "ui::CGroupBox");
 	local list_box = GET_CHILD(page, "item_list", "ui::CGroupBox");
 	list_box:RemoveAllChild();
 	local sort_opt_list = GET_CHILD(page, "sort_opt_list", "ui::CDropList");
@@ -411,7 +413,8 @@ end
 
 function ADVENTURE_BOOK_ITEM.FILL_ITEM_INFO()
 	local frame = ui.GetFrame('adventure_book');
-	local page = GET_CHILD(frame, "page_item", "ui::CGroupBox");
+	local gb_adventure = GET_CHILD(frame, "gb_adventure", "ui::CGroupBox");
+	local page = GET_CHILD(gb_adventure, "page_item", "ui::CGroupBox");
 	local info_box = GET_CHILD(page, "item_info_gb", "ui::CGroupBox");
 	info_box:RemoveAllChild()
 	
@@ -455,7 +458,8 @@ end
 
 function ADVENTURE_BOOK_ITEM.DROPDOWN_LIST_INIT()
 	local frame = ui.GetFrame('adventure_book');
-	local page = GET_CHILD(frame, "page_item", "ui::CGroupBox");
+	local gb_adventure = GET_CHILD(frame, "gb_adventure", "ui::CGroupBox");
+	local page = GET_CHILD(gb_adventure, "page_item", "ui::CGroupBox");
 	local sort_opt_list = GET_CHILD(page, "sort_opt_list", "ui::CDropList");
 	local category_opt_list = GET_CHILD(page, "category_opt_list", "ui::CDropList");
 	local sub_category_opt_list = GET_CHILD(page, "sub_category_opt_list", "ui::CDropList");
@@ -484,7 +488,8 @@ end
 
 function ADVENTURE_BOOK_ITEM.DROPDOWN_LIST_UPDATE_SUB()
 	local frame = ui.GetFrame('adventure_book');
-	local page = GET_CHILD(frame, "page_item", "ui::CGroupBox");
+	local gb_adventure = GET_CHILD(frame, "gb_adventure", "ui::CGroupBox");
+	local page = GET_CHILD(gb_adventure, "page_item", "ui::CGroupBox");
 	local category_opt_list = GET_CHILD(page, "category_opt_list", "ui::CDropList");
 	local sub_category_opt_list = GET_CHILD(page, "sub_category_opt_list", "ui::CDropList");
 	local categoryOption = category_opt_list:GetSelItemIndex();
@@ -528,7 +533,8 @@ end
 
 function ADVENTURE_BOOK_ITEM_SET_POINT()
     local adventure_book = ui.GetFrame('adventure_book');
-    local page_item = adventure_book:GetChild('page_item');
+	local gb_adventure = GET_CHILD(adventure_book, "gb_adventure", "ui::CGroupBox");
+    local page_item = gb_adventure:GetChild('page_item');
     local total_score_text = page_item:GetChild('total_score_text');
     local totalScore = GET_ADVENTURE_BOOK_ITEM_POINT();
     total_score_text:SetTextByKey('value', totalScore);

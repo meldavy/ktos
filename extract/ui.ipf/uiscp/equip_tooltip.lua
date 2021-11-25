@@ -987,8 +987,9 @@ end
 function IS_NEED_TO_DRAW_SUBFRAME_ICHOR(invitem)
     local itemGrade = TryGetProp(invitem, "ItemGrade")
     local targetGroup = TryGetProp(invitem, "EquipGroup")
-
-	if itemGrade > 4 and TryGetProp(invitem, "UseLv", 1) >= 360 or TryGetProp(invitem, "StringArg", "None") == "TOSHeroEquip" then
+	local useLv = TryGetProp(invitem, "UseLv", 1)
+	local stringArg = TryGetProp(invitem, "StringArg", "None")
+	if itemGrade > 4 and (useLv >= 360 or stringArg == "TOSHeroEquip" or IS_GROWTH_ITEM(invitem) == true) then
         -- 레전드 등급 이상 무기
         if targetGroup == "THWeapon" or targetGroup == "SubWeapon" or targetGroup == "Weapon" then
             return true
@@ -1094,9 +1095,16 @@ function DRAW_EQUIP_AWAKEN_AND_ENCHANT(invitem, property_gbox, inner_yPos)
     return inner_yPos
 end
 
+local growth_except_list = { MSTA = true }
+
 -- 랜덤 아이커
 function DRAW_EQUIP_RANDOM_ICHOR(invitem, property_gbox, inner_yPos)
     local init_yPos = inner_yPos;
+
+	local growth_rate = 1
+	if IS_GROWTH_ITEM(invitem) == true then
+		growth_rate = GET_ITEM_GROWTH_RATE(invitem)
+	end
 
     for i = 1, MAX_OPTION_EXTRACT_COUNT do
         local propGroupName = "RandomOptionGroup_"..i;
@@ -1127,6 +1135,12 @@ function DRAW_EQUIP_RANDOM_ICHOR(invitem, property_gbox, inner_yPos)
 			local strInfo = nil
 			if max ~= nil then
 				local current_value = propItem[propValue]						
+				if growth_except_list[propName] ~= true and growth_rate > 0 and growth_rate < 1 then
+					current_value = math.floor(current_value * growth_rate)
+					if current_value <= 0 then
+						current_value = 1
+					end
+				end
 				if max == current_value then
 					strInfo = ABILITY_DESC_NO_PLUS(opName, propItem[propValue], 1);
 				else
@@ -1137,7 +1151,14 @@ function DRAW_EQUIP_RANDOM_ICHOR(invitem, property_gbox, inner_yPos)
 					strInfo = strInfo .. ' {@st66b}{#e28500}{ol}(' .. max .. ')'
 				end
 			else
-				strInfo = ABILITY_DESC_NO_PLUS(opName, propItem[propValue], 0);
+				local current_value = propItem[propValue]
+				if growth_rate > 0 and growth_rate < 1 then
+					current_value = math.floor(current_value * growth_rate)
+					if current_value <= 0 then
+						current_value = 1
+					end
+				end
+				strInfo = ABILITY_DESC_NO_PLUS(opName, current_value, 0);
 			end
 
             inner_yPos = ADD_ITEM_PROPERTY_TEXT(property_gbox, strInfo, 0, inner_yPos);
@@ -1155,6 +1176,11 @@ end
 -- 고정 아이커
 function DRAW_EQUIP_FIXED_ICHOR(invitem, inheritanceItem, property_gbox, inner_yPos)
     local init_yPos = inner_yPos;
+
+	local growth_rate = 1
+	if IS_GROWTH_ITEM(invitem) == true then
+		growth_rate = GET_ITEM_GROWTH_RATE(invitem)
+	end
 
     -- 옵션 아이템 선택
     if inheritanceItem ~= nil then
@@ -1196,6 +1222,13 @@ function DRAW_EQUIP_FIXED_ICHOR(invitem, inheritanceItem, property_gbox, inner_y
     for i = 1, #list do
         local propName = list[i];
         local propValue = TryGetProp(class, propName, 0);
+		if growth_except_list[propName] ~= true and growth_rate > 0 and growth_rate < 1 then
+		local growth_value = math.floor(propValue * growth_rate)
+		if propValue > 0 and growth_value <= 0 then
+			growth_value = 1
+		end
+		propValue = growth_value
+	end
         local needToShow = true;
 
         for j = 1, #basicTooltipPropList do

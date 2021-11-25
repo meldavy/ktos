@@ -7,7 +7,7 @@ g_showIndex = 0
 
 function CONTENTS_ALERT_OPEN(frame, msg, argStr, argNum)
 	local frame = ui.GetFrame("contents_alert")
-	local text = GET_CHILD(frame,"text")
+	local text = GET_CHILD_RECURSIVELY(frame,"text")
 	local yesBtn = GET_CHILD(frame, "yesBtn")
 	local cls = GetClassByType("contents_alert_table", argNum)
 	local gearScore = TryGetProp(cls, "GearScore")
@@ -35,7 +35,7 @@ function CONTENTS_ALERT_MOVE_CHECK(parent, self, argStr, argNum)
 	local moveForce = TryGetProp(cls, "MoveForce")
 
 	if moveForce == 1 or mapName ~= GetZoneName(self) then
-		local text = GET_CHILD(parent,"text")
+		local text = GET_CHILD_RECURSIVELY(parent,"text")
 		local yesBtn = GET_CHILD(parent, "yesBtn")
 		text:SetTextByKey("value", ScpArgMsg('ContentsAlert_SysMsg_3'))
 		yesBtn:SetEventScript(ui.LBUTTONUP, "CONTENTS_ALERT_REQUEST_MOVE");

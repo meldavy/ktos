@@ -88,7 +88,7 @@ function OPEN_HOUSING_EDITMODE()
 
 	HOUSING_EDITMODE_CONTROL_IMAGE_SET(true, true);
 	
-	ui.CloseFrame("questinfoset_2");
+	CHASEINFO_CLOSE_FRAME()
 	
 	local currentMapName = session.GetMapName();
 	local housingPlaceClass = GetClass("Housing_Place", currentMapName);

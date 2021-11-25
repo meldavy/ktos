@@ -419,10 +419,8 @@ function INVENTORY_OPEN(frame)
 	session.CheckOpenInvCnt();
 	ui.CloseFrame('layerscore');
 	MAKE_WEAPON_SWAP_BUTTON();
-	local questInfoSetFrame = ui.GetFrame('questinfoset_2');
-	if questInfoSetFrame:IsVisible() == 1 then
-		questInfoSetFrame:ShowWindow(0);
-	end
+	
+	CHASEINFO_CLOSE_FRAME()
 
 	INV_HAT_VISIBLE_STATE(frame);
 	INV_HAIR_WIG_VISIBLE_STATE(frame);
@@ -441,8 +439,7 @@ function INVENTORY_CLOSE()
 	local curpos = tree_box:GetScrollCurPos();
 	frame:SetUserValue("INVENTORY_CUR_SCROLL_POS", curpos);
 
-	local questInfoSetFrame = ui.GetFrame('questinfoset_2');
-	questInfoSetFrame:ShowWindow(1);
+	CHASEINFO_OPEN_FRAME()
 
 	local minimapFrame = ui.GetFrame('minimap');
 	minimapFrame:ShowWindow(1);
@@ -5623,4 +5620,32 @@ function BEFORE_APPLIED_CHANGE_VIBORA(invItem)
 	
 	local textmsg = string.format("[ %s ]{nl}%s", itemobj.Name, ScpArgMsg("YESSCP_OPEN_BASIC_MSG"));
 	ui.MsgBox_NonNested(textmsg, itemobj.Name, 'REQUEST_SUMMON_BOSS_TX', "None");
+end
+
+function STEAMED_BUNS_OPEN_BASIC_MSG(invItem)
+	if invItem == nil then
+		return;
+	end
+
+	local invFrame = ui.GetFrame("inventory");	
+	local itemobj = GetIES(invItem:GetObject());
+	local itemClassName = TryGetProp(itemobj, "ClassName", "None")
+	print(itemClassName)
+	if itemobj == nil or itemClassName == nil then
+		return;
+	end
+	local msg = nil
+
+	if itemClassName == 'Event_2111_Steamed_buns' then
+		msg = 'STEAMED_BUNS_OPEN_BASIC_MSG'
+	elseif itemClassName == 'Event_2111_Grilled_Steamed_buns' then
+		msg = 'GRILLED_STEAMED_BUNS_OPEN_BASIC_MSG'
+	end
+	if msg == nil then return end
+	invFrame:SetUserValue("REQ_USE_ITEM_GUID", invItem:GetIESID());
+	
+	local textmsg = string.format("[ %s ]{nl}%s", itemobj.Name, ScpArgMsg(msg));
+	ui.MsgBox_NonNested(textmsg, itemobj.Name, 'REQUEST_SUMMON_BOSS_TX', "None");
+
+	return;
 end

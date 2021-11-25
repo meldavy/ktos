@@ -62,10 +62,17 @@ end
 
 function ON_EVENTBANNER_DETAIL_BTN_TEAMBATTLE(ctrlset, btn)
 	local advFrame = ui.GetFrame("adventure_book")
-	local rankingTab = GET_CHILD(advFrame, "rankingTab")
-	local index = rankingTab:GetIndexByName("teamBattleRankingTab")
-	advFrame:ShowWindow(1);
-	rankingTab:SelectTab(index);
+	local mainTab = GET_CHILD(advFrame, "mainTab")
+	local mainIndex = mainTab:GetIndexByName("tab_main_adventure")
+	
+	local gb_adventure = GET_CHILD(advFrame, "gb_adventure")
+	local rankingTab = GET_CHILD(gb_adventure, "rankingTab")
+	local subIndex = rankingTab:GetIndexByName("teamBattleRankingTab")
+
+	mainTab:SelectTab(mainIndex)
+	rankingTab:SelectTab(subIndex)
+	
+	advFrame:ShowWindow(1)
 end
 
 function ON_EVENTBANNER_SOLODUNGEON(frame)

@@ -7,7 +7,7 @@ function GET_RANDOM_ICOR_PORTION(item)
     if item == nil then
         return 0
     end
-
+    
     local max = 4
     local cnt = 1
     local portion = 0
@@ -20,14 +20,23 @@ function GET_RANDOM_ICOR_PORTION(item)
         if name ~= 'None' then			
             local value = TryGetProp(item, 'RandomOptionValue_'..i, 0)
             cnt = cnt + 1
+            local use_lv = TryGetProp(item, 'UseLv', 1)
+
+            if TryGetProp(item, 'StringArg', 'None') == 'Growth_Item_Legend' and TryGetProp(item, 'NumberArg1', 0) ~= 0 then
+                local growthItem = CALC_GROWTH_ITEM_LEVEL(item);
+                if growthItem ~= nil then
+                    use_lv = growthItem;
+                end
+            end
+
             local _, max_value = GET_RANDOM_OPTION_VALUE_VER2(item, name)
-            if max_value == nil or TryGetProp(item, 'UseLv', 1) < 430 then                
+            if max_value == nil or use_lv < 430 then                
                 max_value = 2000
             end
-            
             if max_value <= 0 then
                 max_value = 2000
             end
+            
             local diff = (value / max_value)
             if diff < 0 then
                 diff = 0
@@ -38,7 +47,7 @@ function GET_RANDOM_ICOR_PORTION(item)
             portion = portion + diff * 100
 		end
     end
-    
+
     return math.floor(portion / max + 0.5) / 100
 end
 
@@ -93,7 +102,7 @@ function GET_ENCHANT_OPTION_PORTION(item)
     return math.floor(portion + 0.5) / 100
 end
 
-function GET_GEAR_SCORE(item, pc)
+function GET_GEAR_SCORE(item, pc)     
     if TryGetProp(item, 'StringArg', 'None') == 'WoodCarving' then 
         return 0
     end
@@ -137,6 +146,13 @@ function GET_GEAR_SCORE(item, pc)
     local grade = TryGetProp(item, 'ItemGrade', 1)
     local use_lv = TryGetProp(item, 'UseLv', 1)
     local item_lv = TryGetProp(item, 'EvolvedItemLv', 0)
+
+    if TryGetProp(item, 'StringArg', 'None') == 'Growth_Item_Legend' and TryGetProp(item, 'NumberArg1', 0) ~= 0 then
+        local growthItem = CALC_GROWTH_ITEM_LEVEL(item);
+        if growthItem ~= nil then
+            use_lv = growthItem;
+        end
+    end
 
     use_lv = math.max(use_lv, item_lv)
 
@@ -226,12 +242,18 @@ function GET_GEAR_SCORE(item, pc)
             end
 
             -- 랜덤 옵션 수치
-            local random_option_portion = GET_RANDOM_ICOR_PORTION(item)
+            local random_option_portion = GET_RANDOM_ICOR_PORTION(item)    
+            if TryGetProp(item, 'StringArg', 'None') == 'Growth_Item_Legend' and TryGetProp(item, 'NumberArg1', 0) ~= 0 then
+                random_option_portion = 1
+            end             
             local diff = 1 - random_option_portion
             random_option_penalty = 0.05 * diff -- 5% 비중
 
             -- 인챈트 수치
-            local enchant_portion = GET_ENCHANT_OPTION_PORTION(item)            
+            local enchant_portion = GET_ENCHANT_OPTION_PORTION(item)       
+            if TryGetProp(item, 'StringArg', 'None') == 'Growth_Item_Legend' and TryGetProp(item, 'NumberArg1', 0) ~= 0 then
+                enchant_portion = 1
+            end     
             diff = 1 - enchant_portion
             enchant_option_penalty = 0.05 * diff -- 5% 비중
 
@@ -321,6 +343,10 @@ function GET_GEAR_SCORE(item, pc)
             if is_sub_slot == true then
                 set_advantage = 1
             end
+
+            if TryGetProp(item, 'StringArg', 'None') == 'Growth_Item_Legend' and TryGetProp(item, 'NumberArg1', 0) ~= 0 then
+                set_advantage = 1.1
+            end
         end
 
         set_option = 1 - random_option_penalty - enchant_option_penalty        
@@ -333,7 +359,7 @@ function GET_GEAR_SCORE(item, pc)
     return 0
 end
 
-function GET_PLAYER_GEAR_SCORE(pc)    
+function GET_PLAYER_GEAR_SCORE(pc)        
     local total = 13
     local score = 0
 
@@ -442,8 +468,15 @@ function GET_GEAR_SCORE_BY(type, transcend, reinforce, grade, use_lv, item_lv)
                     cls = GetClass('Item', ran_name)
                     if cls ~= nil then
                         random_icor_lv = TryGetProp(cls, 'UseLv', 1)
+                        
                     end
                 else -- 세비노스 계열
+                    if TryGetProp(item, 'StringArg', 'None') == 'Growth_Item_Legend' and TryGetProp(item, 'NumberArg1', 0) ~= 0 then
+                        local growthItem = CALC_GROWTH_ITEM_LEVEL(item);
+                        if growthItem ~= nil then
+                            use_lv = growthItem;
+                        end
+                    end
                     random_icor_lv = use_lv
                 end
             else
@@ -453,11 +486,17 @@ function GET_GEAR_SCORE_BY(type, transcend, reinforce, grade, use_lv, item_lv)
 
             -- 랜덤 옵션 수치
             local random_option_portion = 0
+            if TryGetProp(item, 'StringArg', 'None') == 'Growth_Item_Legend' and TryGetProp(item, 'NumberArg1', 0) ~= 0 then
+                random_option_portion = 1
+            end             
             local diff = 1 - random_option_portion
             random_option_penalty = 0.05 * diff -- 5% 비중
 
             -- 인챈트 수치
             local enchant_portion = 0
+            if TryGetProp(item, 'StringArg', 'None') == 'Growth_Item_Legend' and TryGetProp(item, 'NumberArg1', 0) ~= 0 then
+                enchant_portion = 1
+            end             
             diff = 1 - enchant_portion
             enchant_option_penalty = 0.05 * diff -- 5% 비중            
         end
@@ -482,6 +521,10 @@ function GET_GEAR_SCORE_BY(type, transcend, reinforce, grade, use_lv, item_lv)
                         set_advantage = 1 
                     end
                 end
+            end
+            
+            if TryGetProp(item, 'StringArg', 'None') == 'Growth_Item_Legend' and TryGetProp(item, 'NumberArg1', 0) ~= 0 then
+                set_advantage = 1.1
             end
         end        
         set_option = 1 - random_option_penalty - enchant_option_penalty        

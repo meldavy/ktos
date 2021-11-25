@@ -1774,10 +1774,8 @@ function STATUS_VIEW(frame, curtabIndex)
     if curtabIndex == 0 then
         STATUS_INFO_VIEW(frame);
     elseif curtabIndex == 1 then
-        STATUS_ACHIEVE_VIEW(frame);
-    elseif curtabIndex == 2 then
         STATUS_LOGOUTPC_VIEW(frame);
-    elseif curtabIndex == 3 then
+    elseif curtabIndex == 2 then
         STATUS_REPUTATION_VIEW(frame);
     end
 end
@@ -1785,8 +1783,6 @@ end
 function STATUS_INFO_VIEW(frame)
     local gboxctrl = frame:GetChild('statusGbox');
     gboxctrl:ShowWindow(1);
-    local achievectrl = frame:GetChild('achieveGbox');
-    achievectrl:ShowWindow(0);
     local logoutGBox = frame:GetChild("logoutGBox");
     logoutGBox:ShowWindow(0);
     local statusupGbox = frame:GetChild('statusUpGbox');
@@ -1795,24 +1791,9 @@ function STATUS_INFO_VIEW(frame)
     reputationGBox:ShowWindow(0);
 end
 
-function STATUS_ACHIEVE_VIEW(frame)
-    local gboxctrl = frame:GetChild('statusGbox');
-    gboxctrl:ShowWindow(0);
-    local achievectrl = frame:GetChild('achieveGbox');
-    achievectrl:ShowWindow(1);
-    local logoutGBox = frame:GetChild("logoutGBox");
-    logoutGBox:ShowWindow(0);
-    local statusupGbox = frame:GetChild('statusUpGbox');
-    statusupGbox:ShowWindow(0);
-    local reputationGBox = frame:GetChild('reputationGBox')
-    reputationGBox:ShowWindow(0);
-end
-
 function STATUS_LOGOUTPC_VIEW(frame)
     local gboxctrl = frame:GetChild('statusGbox');
     gboxctrl:ShowWindow(0);
-    local achievectrl = frame:GetChild('achieveGbox');
-    achievectrl:ShowWindow(0);
     local logoutGBox = frame:GetChild("logoutGBox");
     logoutGBox:ShowWindow(1);
     local statusupGbox = frame:GetChild('statusUpGbox');
@@ -1824,8 +1805,6 @@ end
 function STATUS_REPUTATION_VIEW(frame)
     local gboxctrl = frame:GetChild('statusGbox');
     gboxctrl:ShowWindow(0);
-    local achievectrl = frame:GetChild('achieveGbox');
-    achievectrl:ShowWindow(0);
     local logoutGBox = frame:GetChild("logoutGBox");
     logoutGBox:ShowWindow(0);
     local statusupGbox = frame:GetChild('statusUpGbox');
@@ -2067,116 +2046,119 @@ function SET_HAIR_COLOR_LIST(gbox, row_top_margin, col_left_margin, select_margi
     end
 end
 
+-- 캐릭터 설정 - 장착 가능한 칭호, 현재 칭호 버프 단계, 다음 단계까지 필요한 칭호 필요
 function STATUS_ACHIEVE_INIT()
 	local frame = ui.GetFrame("status");
-    local achieveGbox = frame:GetChild('achieveGbox');
-    local internalBox = achieveGbox:GetChild("internalBox");
+--     local achieveGbox = frame:GetChild('achieveGbox');
+--     local internalBox = achieveGbox:GetChild("internalBox");
     local clslist, clscnt = GetClassList("Achieve");
-    local accObj = GetMyAccountObj();
-    local x = 10;
-    local y = 10;
+--     local accObj = GetMyAccountObj();
+--     local x = 10;
+--     local y = 10;
 
     local equipAchieveName = pc.GetEquipAchieveName();
-    for i = 0, clscnt - 1 do
-        local cls = GetClassByIndexFromList(clslist, i);
-        if cls == nil then
-            break;
-        end
+--     for i = 0, clscnt - 1 do
+--         local cls = GetClassByIndexFromList(clslist, i);
+--         if cls == nil then
+--             break;
+--         end
 
-        if HAVE_ACHIEVE_FIND(cls.ClassID) == 1 or cls.Hidden == "NO" or IS_UNLOCK_QUEST_STARTED(nil, cls.ClassName) == true then
-            local nowpoint = GetAchievePoint(GetMyPCObject(), cls.NeedPoint);
-            local ctrlset = internalBox:CreateOrGetControlSet('each_achieve', 'ACHIEVE_RICHTEXT_' .. i, x, y);
-            tolua.cast(ctrlset, "ui::CControlSet");
-            ctrlset:SetUserValue('ACHIEVE_ID', cls.ClassID);
+--         local Hidden = TryGetProp(cls, "Hidden", "No")
+--         local className = TryGetProp(cls, "ClassName", "None")
+--         if HAVE_ACHIEVE_FIND(cls.ClassID) == 1 or Hidden == "NO" or IS_UNLOCK_QUEST_STARTED(nil, className) == true then
+--             local nowpoint = GetAchievePoint(GetMyPCObject(), cls.NeedPoint);
+--             local ctrlset = internalBox:CreateOrGetControlSet('each_achieve', 'ACHIEVE_RICHTEXT_' .. i, x, y);
+--             tolua.cast(ctrlset, "ui::CControlSet");
+--             ctrlset:SetUserValue('ACHIEVE_ID', cls.ClassID);
 
-            local NORMAL_SKIN = ctrlset:GetUserConfig("NORMAL_SKIN");
-            local HAVE_SKIN = ctrlset:GetUserConfig("HAVE_SKIN");
+--             local NORMAL_SKIN = ctrlset:GetUserConfig("NORMAL_SKIN");
+--             local HAVE_SKIN = ctrlset:GetUserConfig("HAVE_SKIN");
 
-            local gbox = GET_CHILD_RECURSIVELY(ctrlset, 'each_achieve_gbox')
-            local desc_title = GET_CHILD_RECURSIVELY(ctrlset, 'achieve_desctitle')
-            local reward = GET_CHILD_RECURSIVELY(ctrlset, 'achieve_reward')
-            local gauge = GET_CHILD_RECURSIVELY(ctrlset, 'achieve_gauge')
-            local static_accomplishment = GET_CHILD_RECURSIVELY(ctrlset, 'achieve_static_accomplishment')
-            local accomplishment = GET_CHILD_RECURSIVELY(ctrlset, 'achieve_accomplishment')
-            local static_desc = GET_CHILD_RECURSIVELY(ctrlset, 'achieve_static_desc')
-            local desc = GET_CHILD_RECURSIVELY(ctrlset, 'achieve_desc')
-            local name = GET_CHILD_RECURSIVELY(ctrlset, 'achieve_name')
-            local req_btn = GET_CHILD_RECURSIVELY(ctrlset, 'req_reward_btn')
-            req_btn:ShowWindow(0);
+--             local gbox = GET_CHILD_RECURSIVELY(ctrlset, 'each_achieve_gbox')
+--             local desc_title = GET_CHILD_RECURSIVELY(ctrlset, 'achieve_desctitle')
+--             local reward = GET_CHILD_RECURSIVELY(ctrlset, 'achieve_reward')
+--             local gauge = GET_CHILD_RECURSIVELY(ctrlset, 'achieve_gauge')
+--             local static_accomplishment = GET_CHILD_RECURSIVELY(ctrlset, 'achieve_static_accomplishment')
+--             local accomplishment = GET_CHILD_RECURSIVELY(ctrlset, 'achieve_accomplishment')
+--             local static_desc = GET_CHILD_RECURSIVELY(ctrlset, 'achieve_static_desc')
+--             local desc = GET_CHILD_RECURSIVELY(ctrlset, 'achieve_desc')
+--             local name = GET_CHILD_RECURSIVELY(ctrlset, 'achieve_name')
+--             local req_btn = GET_CHILD_RECURSIVELY(ctrlset, 'req_reward_btn')
+--             req_btn:ShowWindow(0);
             
-            --조건과 칭호의 위치를 텍스트 길이가 가장 긴 "달성도" 기준으로 맞춘다
-            desc:SetOffset(static_desc:GetX() + static_accomplishment:GetWidth() + 10, desc:GetY())
-            accomplishment:SetOffset(static_accomplishment:GetX() + static_accomplishment:GetWidth() + 10, accomplishment:GetY());
-            gauge:SetOffset(static_accomplishment:GetX() + static_accomplishment:GetWidth() + 10, gauge:GetY());
-            gauge:Resize(gbox:GetWidth() - static_accomplishment:GetWidth() -50, gauge:GetHeight());
-            accomplishment:SetText("("..nowpoint.."/"..cls.NeedCount..")");
+--             --조건과 칭호의 위치를 텍스트 길이가 가장 긴 "달성도" 기준으로 맞춘다
+--             desc:SetOffset(static_desc:GetX() + static_accomplishment:GetWidth() + 10, desc:GetY())
+--             accomplishment:SetOffset(static_accomplishment:GetX() + static_accomplishment:GetWidth() + 10, accomplishment:GetY());
+--             gauge:SetOffset(static_accomplishment:GetX() + static_accomplishment:GetWidth() + 10, gauge:GetY());
+--             gauge:Resize(gbox:GetWidth() - static_accomplishment:GetWidth() -50, gauge:GetHeight());
+--             accomplishment:SetText("("..nowpoint.."/"..cls.NeedCount..")");
 
-            local isHasAchieve = 0;
-            if HAVE_ACHIEVE_FIND(cls.ClassID) == 1 and nowpoint >= cls.NeedCount then
-                isHasAchieve = 1;
-            end
+--             local isHasAchieve = 0;
+--             if HAVE_ACHIEVE_FIND(cls.ClassID) == 1 and nowpoint >= cls.NeedCount then
+--                 isHasAchieve = 1;
+--             end
 
-            if isHasAchieve == 1 then
-                if equipAchieveName ~= 'None' and equipAchieveName == cls.Name then
-                    desc_title:SetText(cls.DescTitle .. ScpArgMsg('Auto__(SayongJung)'));
-                else
-                    desc_title:SetText(cls.DescTitle);
-                end
-                gbox:SetSkinName(HAVE_SKIN);
-            else
-                desc_title:SetText(cls.DescTitle);
-                gbox:SetSkinName(NORMAL_SKIN);
-            end
+--             if isHasAchieve == 1 then
+--                 if equipAchieveName ~= 'None' and equipAchieveName == cls.Name then
+--                     desc_title:SetText(cls.DescTitle .. ScpArgMsg('Auto__(SayongJung)'));
+--                 else
+--                     desc_title:SetText(cls.DescTitle);
+--                 end
+--                 gbox:SetSkinName(HAVE_SKIN);
+--             else
+--                 desc_title:SetText(cls.DescTitle);
+--                 gbox:SetSkinName(NORMAL_SKIN);
+--             end
 
-            desc:SetText(cls.Desc);
-            gauge:SetPoint(nowpoint, cls.NeedCount);
-            name:SetTextByKey('name', cls.Name);
-            reward:SetTextByKey('reward', cls.Reward);
+--             desc:SetText(cls.Desc);
+--             gauge:SetPoint(nowpoint, cls.NeedCount);
+--             name:SetTextByKey('name', cls.Name);
+--             reward:SetTextByKey('reward', cls.Reward);
 
-            if isHasAchieve == 1 then
-                gauge:ShowWindow(0);
-                static_accomplishment:ShowWindow(0);
-                accomplishment:ShowWindow(0);
-                static_desc:SetOffset(static_desc:GetX(), static_accomplishment:GetY());
-                desc:SetOffset(desc:GetX(), static_desc:GetY());
-                local value = TryGetProp(accObj, "AchieveReward_"..cls.ClassName);
-                if value ~= nil and value == 0 then
-                    req_btn:ShowWindow(1);
-                end
-            else
-                gauge:ShowWindow(1);
-                static_accomplishment:ShowWindow(1);
-                accomplishment:ShowWindow(1);
-            end
+--             if isHasAchieve == 1 then
+--                 gauge:ShowWindow(0);
+--                 static_accomplishment:ShowWindow(0);
+--                 accomplishment:ShowWindow(0);
+--                 static_desc:SetOffset(static_desc:GetX(), static_accomplishment:GetY());
+--                 desc:SetOffset(desc:GetX(), static_desc:GetY());
+--                 local value = TryGetProp(accObj, "AchieveReward_"..cls.ClassName);
+--                 if value ~= nil and value == 0 then
+--                     req_btn:ShowWindow(1);
+--                 end
+--             else
+--                 gauge:ShowWindow(1);
+--                 static_accomplishment:ShowWindow(1);
+--                 accomplishment:ShowWindow(1);
+--             end
 
-            local suby = desc:GetY() + desc:GetHeight() + 10;
-            if cls.Name ~= 'None' then
-                name:ShowWindow(1);
-                name:SetOffset(name:GetX(), suby);
-                suby = name:GetY() + name:GetHeight() + 10;
-            else
-                name:ShowWindow(0);
-            end
+--             local suby = desc:GetY() + desc:GetHeight() + 10;
+--             if cls.Name ~= 'None' then
+--                 name:ShowWindow(1);
+--                 name:SetOffset(name:GetX(), suby);
+--                 suby = name:GetY() + name:GetHeight() + 10;
+--             else
+--                 name:ShowWindow(0);
+--             end
 
-            if cls.Reward ~= 'None' then
-                reward:ShowWindow(1)
-                reward:SetOffset(reward:GetX(), suby)
-                suby = reward:GetY() + reward:GetHeight() + 10
-            else
-                reward:ShowWindow(0)
-            end
+--             if cls.Reward ~= 'None' then
+--                 reward:ShowWindow(1)
+--                 reward:SetOffset(reward:GetX(), suby)
+--                 suby = reward:GetY() + reward:GetHeight() + 10
+--             else
+--                 reward:ShowWindow(0)
+--             end
 
-            gbox:Resize(gbox:GetWidth(), suby);
-            ctrlset:Resize(ctrlset:GetWidth(), gbox:GetHeight());
-            y = y + ctrlset:GetHeight() + 10;
-        end
-    end
+--             gbox:Resize(gbox:GetWidth(), suby);
+--             ctrlset:Resize(ctrlset:GetWidth(), gbox:GetHeight());
+--             y = y + ctrlset:GetHeight() + 10;
+--         end
+--     end
  
-    local customizingGBox =  GET_CHILD_RECURSIVELY(frame, 'customizingGBox')
-    STATUS_ACHIEVE_INIT_HAIR_COLOR(customizingGBox); -- 가발 염색 목록 보여주기
-    DESTROY_CHILD_BYNAME(customizingGBox, "ACHIEVE_RICHTEXT_");
+--     local customizingGBox =  GET_CHILD_RECURSIVELY(frame, 'customizingGBox')
+--     STATUS_ACHIEVE_INIT_HAIR_COLOR(customizingGBox); -- 가발 염색 목록 보여주기
+--     DESTROY_CHILD_BYNAME(customizingGBox, "ACHIEVE_RICHTEXT_");
     
-    local index = 0; local x = 40; local y = 145;
+--     local index = 0; local x = 40; local y = 145;
 	local useableTitleList = GET_CHILD_RECURSIVELY(frame, "useableTitleList", "ui::CDropList");
 	useableTitleList:SelectItemByKey(config.GetXMLConfig("SelectAchieveKey"));
 	if equipAchieveName == nil or equipAchieveName == 'None' then

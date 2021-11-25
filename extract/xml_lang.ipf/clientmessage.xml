@@ -1114,6 +1114,8 @@
 		<Class ClassID="4455" ClassName="Ark_storm" Data="아크 - 폭풍"/>
 		<Class ClassID="4456" ClassName="CantUseEventItem" Data="이벤트 아이템에는 사용할 수 없습니다."/>
 		<Class ClassID="4457" ClassName="DontUseItem" Data="사용할 수 없는 아이템입니다."/>
+		<Class ClassID="4458" ClassName="SelectItem{ITEM}" Data="{@st66d_y}{s20}{ITEM}{/}{/} {nl}해당 아이템을 선택 하시겠습니까?{nl} {nl}한번 지급된 아이템은 변경할 수 없습니다."/>
+		<Class ClassID="4459" ClassName="SelectItemSet{ITEM}" Data="{@st66d_y}{s20}{ITEM}{/}{/} {nl}해당 아이템 세트를 선택 하시겠습니까?{nl} {nl}한번 지급된 아이템 세트는 변경할 수 없습니다."/>
 		<Class ClassID="4460" ClassName="CreateCabinetAcc" Data="카랄리엔 액세서리 생성"/>
 		<Class ClassID="4461" ClassName="CreateCabinetAcc2" Data="루시페리 액세서리 생성"/>
 		<Class ClassID="4462" ClassName="NotExistOpenedItem" Data="조건을 만족하는 아이템이 장비 보관함에서 개방되어 있지 않습니다."/>
@@ -5900,7 +5902,8 @@
 		<Class ClassID="28093" ClassName="EVENT_1906_GUILD_MSG1" Data="이벤트 보상은 길드에 가입해야 수령할 수 있습니다"/>
 		<Class ClassID="28094" ClassName="GET_KEDORA_SUPPORT_BOX_MSG_1" Data="케도라 상단의 지원 보금품을 획득했습니다."/>
 		<Class ClassID="28095" ClassName="GET_KEDORA_SUPPORT_BOX_MSG_2" Data=" 케도라 상단의 지원 보급품 수령"/>
-		<Class ClassID="28096" ClassName="GET_KEDORA_SUPPORT_BOX_MSG_3" Data="모두 받기"/>
+		<Class ClassID="28096" ClassName="GET_KEDORA_SUPPORT_BOX_MSG_3" Data="지원 보급품 모두 받기"/>
+		<Class ClassID="28097" ClassName="GET_KEDORA_SUPPORT_BOX_MSG_4" Data="[성장] 장비 세트 선택 상자 지급"/>
 		<Class ClassID="28100" ClassName="EVENT_1807_RANK_MSG1" Data="접속 시간 : {MIN}분{nl}랭크 초기화 이벤트 {NAME} {COUNT}개를 획득했습니다"/>
 		<Class ClassID="28101" ClassName="EVENT_1807_RANK_MSG2" Data="교환한다({COUNT} / 2)"/>
 		<Class ClassID="28102" ClassName="EVENT_1807_RANK_MSG3" Data="{MONTH}월 {DAY}일 출석 체크!{nl}누적 : {COUNT}일차"/>
@@ -10153,6 +10156,7 @@
 		<Class ClassID="92115" ClassName="MustUseWeeklyCount" Data="소모한 주간 교환 횟수가 없어 사용할 수 없습니다."/>
 		<Class ClassID="92116" ClassName="RECYCLE_NEWCHARACTER_MSG" Data="캐릭터 슬롯이 모두 개방되어 있어 리사이클 메달 66개가 지급됩니다"/>
 		<Class ClassID="92118" ClassName="Mileage_SilverGacha_USE{BEFORE}{AFTER}" Data="마신의 유혹 포인트 : {BEFORE} → {AFTER}"/>
+		<Class ClassID="92121" ClassName="Achieve_Exceed_Period_of_Use" Data="칭호의 사용 기간이 초과되었습니다."/>
 	</Category>
 	<Category Name="BattleText">
 		<Class ClassID="100001" ClassName="ADD_DAMAGE_{Auto_1}!" Data="추가 대미지 {Auto_1}!"/>
@@ -11366,6 +11370,7 @@
 		<Class ClassID="112039" ClassName="Normal_Eng" Data="Normal"/>
 		<Class ClassID="112040" ClassName="Hard_Eng" Data="Hard"/>
 		<Class ClassID="112041" ClassName="VeryHard_Eng" Data="Very Hard"/>
+		<Class ClassID="112042" ClassName="USE_Growth_Equip_Box" Data="{@st64}인벤토리(F2)를 열고, '[성장] 장비 세트 선택 상자'를 사용하세요.{nl}'[성장] 장비 세트 선택 상자'는 마을에 위치한 '바이보라의 날개'NPC 에게서도 받을 수 있습니다."/>
 	</Category>
 	<Category Name="JobCategoryName">
 		<Class ClassID="113001" ClassName="Char1" Data="전사 계열"/>
@@ -11977,6 +11982,8 @@
 		<Class ClassID="135006" ClassName="GainAchieveGimmick3" Data="능수능란한 모험가 업적 보상을 받았습니다."/>
 		<Class ClassID="135007" ClassName="GainAchieveGimmick4" Data="피난처의 방문자 업적 보상을 받았습니다."/>
 		<Class ClassID="135008" ClassName="GainAchieveUnlockQuest" Data="마스터 의뢰 콘텐츠 보상을 수령했습니다."/>
+		<Class ClassID="135009" ClassName="GainAchieveReward" Data="업적 보상을 받았습니다."/>
+		<Class ClassID="135010" ClassName="GainAchieveReward{NAME}" Data="'{NAME}' 업적 보상을 받았습니다."/>
 	</Category>
 	<Category Name="AutoAdded">
 		<Class ClassID="136001" ClassName="TestTestTest" Data="임시공간"/>
@@ -15690,6 +15697,17 @@
 		<Class ClassID="302694" ClassName="ALFONSO_1" Data="악세서리 상점"/>
 		<Class ClassID="302695" ClassName="ALFONSO_2" Data="헤어 코스튬 옵션 이전"/>
 		<Class ClassID="302696" ClassName="EVENT_KlAPEDA_GHOST_CHECK_ATTENDENT" Data="{#0066FF}[할로윈 이벤트 출석체크]{/}{nl}1시간 접속 시 보상 획득 ({#0066FF}{TIME}{/}/60분){nl}{#0066FF}※보상 획득 기간{/}{nl}10월27일 오전 06시 ~ 10월31일 오전 23시 59분 까지 총 5회"/>
+		<Class ClassID="302697" ClassName="EVENT_2111_WINTER_SEL1" Data="{#003399}[따끈따끈]{/}이벤트 설명"/>
+		<Class ClassID="302698" ClassName="EVENT_2111_WINTER_SEL2" Data="{#003399}[따끈따끈]{/}먹을걸 구워달라 하기"/>
+		<Class ClassID="302699" ClassName="EVENT_2111_WINTER_SHOP" Data="{#003399}[따끈따끈]{/}이벤트 상점"/>
+		<Class ClassID="302700" ClassName="EVENT_2111_WINTER_ITEM_TRADE1" Data="{#003399}고구마를 구워달라 하기{/}"/>
+		<Class ClassID="302701" ClassName="EVENT_2111_WINTER_ITEM_TRADE2" Data="{#003399}찐빵을 구워달라 하기{/}"/>
+		<Class ClassID="302702" ClassName="EVENT_2111_WINTER_NPC_CHAT1" Data="아이템 개수를 다시 확인해주세요!"/>
+		<Class ClassID="302703" ClassName="EVENT_2111_WINTER_NPC_CHAT2" Data="앗 뜨거! 맛있게 구워졌네요!"/>
+		<Class ClassID="302704" ClassName="EVENT_2111_WINTER_ITEM_TRADE3" Data="교환을 원하는 개수를 입력해주세요.{nl}{#003399}0 ~ {MAX}{/}"/>
+		<Class ClassID="302705" ClassName="EVENT_2111_WINTER_CHECK_MSG" Data="{#0066FF}[따끈따끈 겨울 준비]{/} 이벤트 현황{nl}접속 시간 ({#0066FF}{TIME}{/}분){nl}일일 [이벤트] 군고구마 주화 획득 ({#0066FF}{COIN}{/}/{MAX}){nl}일일 [따끈따끈] 고구마 지급 ({#0066FF}{ITEM}{/}/1){nl}{#FF3333}※일일 제한은 매일 오전 06시 초기화 됩니다.{/}"/>
+		<Class ClassID="302706" ClassName="STEAMED_BUNS_OPEN_BASIC_MSG" Data="{nl} {nl}사용 시 '[이벤트] 따끈따끈 구운찐빵' 버프가 적용 중 일 경우, 해당 버프가 지워집니다.{nl}{@st66d_y}{s20}{nl} {nl}정말 사용하시겠습니까?"/>
+		<Class ClassID="302707" ClassName="GRILLED_STEAMED_BUNS_OPEN_BASIC_MSG" Data="{nl} {nl}사용 시 '[이벤트] 맛있는 찐빵' 버프가 적용 중 일 경우, 해당 버프가 지워집니다.{nl}{@st66d_y}{s20}{nl} {nl}정말 사용하시겠습니까?"/>
 	</Category>
 	<Category Name="Account">
 		<Class ClassID="303001" ClassName="MaxAccountWarehouseCount" Data="팀 창고"/>
@@ -16437,7 +16455,7 @@
 		<Class ClassID="820046" ClassName="AncientMonsterBuffHelp" Data="{S14}※메인 슬롯에 등록된 어시스터의 패시브가 적용됩니다.{nl}※어시스터의 레벨, 진화 등급에 따라 효과가 강화됩니다."/>
 		<Class ClassID="820047" ClassName="AncientComboBuffHelp" Data="{S14}※어시스터의 속성, 종족, 등급 조합에 따라 패시브가 적용됩니다.{nl}※조합된 어시스터의 레벨, 등급, 진화 등급에 따라 강화됩니다."/>
 		<Class ClassID="820048" ClassName="AncientCostOver" Data="총 코스트가 초과하여 등록할 수 없습니다."/>
-		<Class ClassID="820049" ClassName="AncientAddMaxCost" Data="어시스터 코스트가 {addCost} 증가하였습니다."/>
+		<Class ClassID="820049" ClassName="AncientAddMaxCost" Data="어시스터 코스트 최대치가 증가하였습니다."/>
 		<Class ClassID="820052" ClassName="AncientCombineSameCard" Data="동일한 카드 3장으로는 합성할 수 없습니다.{/}"/>
 		<Class ClassID="820053" ClassName="AncientCardLock" Data="어시스터가 잠금 상태입니다."/>
 		<Class ClassID="820054" ClassName="AncientCardLockMsg" Data="잠금 설정할 어시스터를 선택해주세요."/>
@@ -16801,6 +16819,12 @@
 		<Class ClassID="513014" ClassName="WeeklyBossClassRankRewardTitle" Data="{JobName} 순위 보상"/>
 		<Class ClassID="513015" ClassName="WeeklyBossClassRankEmptyTitle" Data="{#ff9900}※ 클래스 순위 보상 안내 ※{/}{nl}{nl}기본 계열 클래스에는 클래스 순위 보상이 없습니다. 다른 클래스를 선택하여 보상을 확인하세요."/>
 	<Class ClassID="513016" ClassName="WeeklyBossClassRankDisEnableTitle" Data="{#ff9900}※ 클래스 순위 보상 안내 ※{/}{nl}{nl}클래스 순위 보상이 없는 시즌입니다."/>
+		<Class ClassID="513017" ClassName="WeeklyBoss_Diena_Skill_Chat_1" Data="어머, 놀라셨나요?"/>
+		<Class ClassID="513018" ClassName="WeeklyBoss_Diena_Skill_Chat_2" Data="이건 몰랐을거에요."/>
+		<Class ClassID="513019" ClassName="WeeklyBoss_Diena_Skill_Chat_3" Data="정말 잘 어울리시네요~"/>
+		<Class ClassID="513020" ClassName="WeeklyBoss_Diena_Skill_Chat_4" Data="제 선물, 맘에 드셨나요?"/>
+		<Class ClassID="513021" ClassName="WeeklyBoss_Diena_Skill_Chat_5" Data="쉿, 조용히 해주세요"/>
+		<Class ClassID="513022" ClassName="WeeklyBoss_Diena_Skill_Chat_6" Data="조금 진정되셨나요?"/>
 	</Category>
 	<Category Name="JobSelectGuide">
 		<Class ClassID="515001" ClassName="JobSelectGuide_Result" Data="결과"/>
@@ -17467,6 +17491,48 @@
 		<Class ClassID="1030003" ClassName="ReallyDoAetherGemReinforce" Data="{name} 아이템을 강화합니다. 계속하시겠습니까?"/>
 		<Class ClassID="1030004" ClassName="CantUseAetherGemUpgradeToken" Data="베르니케 파편 던전 클리어 이후에 사용 가능합니다."/>
 	</Category>
+	<Category Name="adventure_book_ui">
+		<Class ClassID="1031000" ClassName="adventure_book_maintitle_achieve" Data="업적"/>
+		<Class ClassID="1031001" ClassName="adventure_book_maintitle_adventure" Data="모험 일지"/>
+		<Class ClassID="1031002" ClassName="adventure_book_achieve_maincategory_maincont" Data="주요 업적"/>
+		<Class ClassID="1031003" ClassName="adventure_book_achieve_maincategory_subcont" Data="콘텐츠 업적"/>
+		<Class ClassID="1031004" ClassName="adventure_book_achieve_maincategory_special" Data="특별 업적"/>
+		<Class ClassID="1031005" ClassName="adventure_book_achieve_maincategory_event" Data="이벤트 업적"/>
+		<Class ClassID="1031006" ClassName="adventure_book_achieve_subcategory_maincont_pvp" Data="PvP/대전"/>
+		<Class ClassID="1031007" ClassName="adventure_book_achieve_subcategory_maincont_raid" Data="레이드"/>
+		<Class ClassID="1031008" ClassName="adventure_book_achieve_subcategory_maincont_hunt" Data="사냥"/>
+		<Class ClassID="1031009" ClassName="adventure_book_achieve_subcategory_maincont_arcade" Data="아케이드"/>
+		<Class ClassID="1031010" ClassName="adventure_book_achieve_subcategory_maincont_character" Data="캐릭터"/>
+		<Class ClassID="1031011" ClassName="adventure_book_achieve_subcategory_maincont_quest" Data="퀘스트"/>
+		<Class ClassID="1031012" ClassName="adventure_book_achieve_subcategory_maincont_field" Data="필드"/>
+		<Class ClassID="1031013" ClassName="adventure_book_achieve_subcategory_subcont_commerce" Data="상업"/>
+		<Class ClassID="1031014" ClassName="adventure_book_achieve_subcategory_subcont_collect" Data="수집"/>
+		<Class ClassID="1031015" ClassName="adventure_book_achieve_subcategory_subcont_explore" Data="탐험"/>
+		<Class ClassID="1031016" ClassName="adventure_book_achieve_subcategory_special_contest" Data="공모전"/>
+		<Class ClassID="1031017" ClassName="adventure_book_achieve_subcategory_special_memorial" Data="기념"/>
+		<Class ClassID="1031018" ClassName="adventure_book_achieve_subcategory_special_ranking" Data="랭킹"/>
+		<Class ClassID="1031019" ClassName="adventure_book_achieve_subcategory_event_do" Data="진행중"/>
+		<Class ClassID="1031020" ClassName="adventure_book_achieve_subcategory_event_end" Data="종료"/>
+		<Class ClassID="1031021" ClassName="adventure_book_achieve_subcategory_etc" Data="기타"/>
+		<Class ClassID="1031022" ClassName="adventure_book_achieve_reward_name_tooltip" Data="칭호: {NAME}"/>
+		<Class ClassID="1031023" ClassName="adventure_book_achieve_search_option_all_list" Data="전체 보기"/>
+		<Class ClassID="1031024" ClassName="adventure_book_achieve_endtime_tooltip" Data="종료일: {ENDTIME}"/>
+		<Class ClassID="1031025" ClassName="adventure_book_achieve_period_remaining_time" Data="기간제  {DAY}일 {TIME}"/>
+		<Class ClassID="1031026" ClassName="adventure_book_achieve_period_end" Data="기간이 종료되었습니다."/>
+		<Class ClassID="1031027" ClassName="adventure_book_achieve_subcategory_maincont_masterQuest" Data="마스터 의뢰"/>
+	</Category>
+	<Category Name="achieve_msg">
+		<Class ClassID="1032000" ClassName="achieve_fail_add_chase_full_size" Data="업적을 추적창에 더 이상 등록할 수 없습니다.{nl}업적은 추적창에 최대 5개까지 등록 가능합니다."/>
+		<Class ClassID="1032001" ClassName="achieve_exchange_event_reward_confirm_coin" Data="'{CONSUME}' 주화 {NUM}개를 사용하여 {ITEM} 아이템을 교환 하시겠습니까?"/>
+		<Class ClassID="1032002" ClassName="achieve_exchange_event_reward_confirm_item" Data="'{CONSUME}' 아이템 {NUM}개를 사용하여 {ITEM} 아이템을 교환 하시겠습니까?"/>
+		<Class ClassID="1032003" ClassName="achieve_exchange_event_reward_success" Data="{ITEM} 아이템을 {NUM}개 획득하였습니다."/>
+		<Class ClassID="1032004" ClassName="achieve_exchange_event_reward_not_enough_coin" Data="교환에 필요한 주화가 부족합니다."/>
+		<Class ClassID="1032005" ClassName="achieve_exchange_event_reward_not_enough_item" Data="교환에 필요한 아이템이 부족합니다."/>
+		<Class ClassID="1032006" ClassName="achieve_exchange_event_reward_not_enough_achieve_level" Data="업적 레벨이 부족합니다."/>
+		<Class ClassID="1032007" ClassName="achieve_level_reward_not_enough_achieve_level" Data="업적 레벨이 부족합니다."/>
+		<Class ClassID="1032008" ClassName="achieve_level_reward_confirm" Data="아이템을 수령하시겠습니까?"/>
+		<Class ClassID="1032009" ClassName="achieve_level_reward_success" Data="업적 레벨 달성 보상을 수령하였습니다."/>
+	</Category>
 	<Category Name="unknown_santuary">
 		<Class ClassID="1040000" ClassName="UNKNOWN_SANTUARY_GATE_CLMSG_INFO" Data="{#0000FF}[미지의 성역] 안내{/}"/>
 		<Class ClassID="1040001" ClassName="UNKNOWN_SANTUARY_GATE_CLMSG_PAY_1" Data="미지의 성역 : 성역의 가호 획득"/>
@@ -17529,6 +17595,14 @@
 		<Class ClassID="1050020" ClassName="trade_select_item_set_f_ep13raincoat02_2" Data="산들림 우파루파 우비 세트 (여)"/>
 		<Class ClassID="1050021" ClassName="trade_select_item_set_m_ep13raincoat03_2" Data="산들림 노란 우의 세트 (남)"/>
 		<Class ClassID="1050022" ClassName="trade_select_item_set_f_ep13raincoat03_2" Data="산들림 노란 우의 세트 (여)"/>
+		<Class ClassID="1050023" ClassName="trade_select_item_set_growth_melee" Data="[성장] 장비 세트(물리)"/>
+		<Class ClassID="1050024" ClassName="trade_select_item_set_growth_magic" Data="[성장] 장비 세트(마법)"/>
+		<Class ClassID="1050025" ClassName="trade_select_item_set_growth_cloth_melee" Data="[성장] 천 방어구 세트(물리)"/>
+		<Class ClassID="1050026" ClassName="trade_select_item_set_growth_leather_melee" Data="[성장] 가죽 방어구 세트(물리)"/>
+		<Class ClassID="1050027" ClassName="trade_select_item_set_growth_iron_melee" Data="[성장] 판금 방어구 세트(물리)"/>
+		<Class ClassID="1050028" ClassName="trade_select_item_set_growth_cloth_magic" Data="[성장] 천 방어구 세트(마법)"/>
+		<Class ClassID="1050029" ClassName="trade_select_item_set_growth_leather_magic" Data="[성장] 가죽 방어구 세트(마법)"/>
+		<Class ClassID="1050030" ClassName="trade_select_item_set_growth_iron_magic" Data="[성장] 판금 방어구 세트(마법)"/>
 	</Category>
 	<Category Name="UnlockQuest">
 		<Class ClassID="1060001" ClassName="UnlockQuest_SysMsg_1" Data="{#FFFF00}{s20}{QuestInfoName}{/}{/}{nl}퀘스트 목표를 갱신합니다"/>

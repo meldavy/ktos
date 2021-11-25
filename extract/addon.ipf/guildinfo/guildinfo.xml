@@ -534,7 +534,7 @@
 																	<richtext name="colonizedLeagueText" margin="40 0 0 0" textalign="left center" caption="지역 리그" fontname="black_18"/>
 																</layoutsection>
 																<layoutsection name="colonizedHeaderSection" size="15%">
-																	<richtext name="colonizedAreaText" textalign="left center" caption="점령 지역" fontname="black_18"/>
+																	<richtext name="colonizedAreaText" margin="10 0 0 0" textalign="left center" caption="점령 지역" fontname="black_18"/>
 																</layoutsection>
 																<layoutsection name="colonizedCitySection" size="15%">
 																	<richtext name="colonizedCityText" textalign="left center" caption="" fontname="black_18" hittest="true"/>

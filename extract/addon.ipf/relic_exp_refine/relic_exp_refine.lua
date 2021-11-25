@@ -212,7 +212,7 @@ function UPDATE_RELIC_EXP_REFINE_UI(frame)
 
 	local invItemList = session.GetInvItemList()
     local materialItemList = shared_item_relic.get_refine_material_list()
-    local discountItemList = SCR_REINFORCE_COUPON()
+    local discountItemList = SCR_RELIC_REINFORCE_COUPON()
 	FOR_EACH_INVENTORY(invItemList, function(invItemList, invItem, slotSet, discountSet, materialItemList, discountItemList)
 		local obj = GetIES(invItem:GetObject())
         local itemName = TryGetProp(obj, 'ClassName', 'None')

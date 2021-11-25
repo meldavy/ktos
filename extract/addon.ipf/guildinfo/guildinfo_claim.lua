@@ -178,12 +178,11 @@ function GUILDMEMBER_LIST_GET()
     end
 end
 
-function ON_PLAYER_MEMBER_TITLE_GET(code, ret_json)    
+function ON_PLAYER_MEMBER_TITLE_GET(code, ret_json)
     if ret_json == "\"null\"" or ret_json == "" then
         return
     end
-    if code ~= 200 then
-        SHOW_GUILD_HTTP_ERROR(code, ret_json, "ON_PLAYER_MEMBER_TITLE_GET")
+    if code ~= 200 then        
         return
     end
     local decoded_json = json.decode(ret_json)
@@ -574,8 +573,8 @@ function GUILDMEMBER_LIST_CREATE(frame, page)
                     memberTitleList:SelectItemByKey(aidx_claimIDTable[tostring(partyMemberInfo:GetAID())])
                 else
                     call_count = call_count + 1
-                    ReserveScript('GET_PLAYER_MEMBER_TITLE(\"' .. partyMemberInfo:GetAID() .. "\")", call_count * 0.15)                     
-                end     
+                    ReserveScript('GET_PLAYER_MEMBER_TITLE(\"' .. partyMemberInfo:GetAID() .. "\")", call_count * 0.3)
+                end
             end       
         end
     end
