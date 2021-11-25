@@ -177,14 +177,14 @@ function DRAW_ETC_DESC_TOOLTIP(tooltipframe, invitem, yPos, mainframename)
 		if nameFunc ~= nil then
 			local desc = invitem.Desc;
 			desc = desc .. "{nl} {nl}" .. nameFunc(invitem);
-			descRichtext:SetText(desc );
+			descRichtext:SetText(desc);
 			customSet = true;
 		end
 	end
 
 	-------- 확률 공개 큐브일 경우 reward_ratio_open_list.xml에서 툴팁을 불러온다
 	local Desc = ClMsg('tooltip_reward_ratio_open_list')
-	if false == customSet and (TryGetProp(invitem, "GroupName", "None") == "Cube" or TryGetProp(invitem, "GroupName", "None") == "Premium" or TryGetProp(invitem, "GroupName", "None") == "Misc" or TryGetProp(invitem, "GroupName", "None") == "Drug") then
+	if false ~= customSet and (TryGetProp(invitem, "GroupName", "None") == "Cube" or TryGetProp(invitem, "GroupName", "None") == "Premium" or TryGetProp(invitem, "GroupName", "None") == "Misc" or TryGetProp(invitem, "GroupName", "None") == "Drug") then
 
 		local cls_list, cls_cnt = GetClassList("reward_ratio_open_list")
         local TableGroup = TryGetProp(invitem, 'StringArg', 'None')
