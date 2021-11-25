@@ -1,6 +1,6 @@
 ADVENTURE_BOOK_ACHIEVE_CONTENT = {}
 
-function ADVENTURE_BOOK_ACHIEVE_CONTENT.LIST_ALL(category, subCategory)
+function ADVENTURE_BOOK_ACHIEVE_CONTENT.LIST_ALL(category, subCategory, isCheckCompleteOption)
 	local RewardList, ChaseList, ExistHistoryList, ExceptHistoryList, FinishList = ADVENTURE_BOOK_ACHIEVE_CONTENT.LIST_SPLIT(1)
 	
 	-- filter
@@ -45,12 +45,14 @@ function ADVENTURE_BOOK_ACHIEVE_CONTENT.LIST_ALL(category, subCategory)
 	local droplist_option_subcategory = GET_CHILD(page_achieve_list_search_left, "droplist_option_subcategory", "ui::CDropList")
 	
 	if ADVENTURE_BOOK_ACHIEVE_CONTENT.VAILD_MAIN_CATEGORY(category) == 1 then
-		local page_achieve_list = GET_CHILD(gb_achieve, "page_achieve_list_"..category)
-		local page_achieve_list_left = GET_CHILD(page_achieve_list, "page_achieve_list_"..category.."_left")
-		local check_option_invisible_complete = GET_CHILD(page_achieve_list_left, "check_option_invisible_complete", "ui::CCheckBox")
+		if isCheckCompleteOption == 1 then
+			local page_achieve_list = GET_CHILD(gb_achieve, "page_achieve_list_"..category)
+			local page_achieve_list_left = GET_CHILD(page_achieve_list, "page_achieve_list_"..category.."_left")
+			local check_option_invisible_complete = GET_CHILD(page_achieve_list_left, "check_option_invisible_complete", "ui::CCheckBox")
 
-		if check_option_invisible_complete:IsChecked() == 1 then
-			FinishList = {}
+			if check_option_invisible_complete:IsChecked() == 1 then
+				FinishList = {}
+			end
 		end
 	end
 	if #FinishList > 0 then
@@ -533,9 +535,11 @@ function ADVENTURE_BOOK_SORT_PROP_BY_PROGRESS_ASC(a, b)
 	local pointB = GetAchievePoint(GetMyPCObject(), clsB.NeedPoint)
 	if TryGetProp(clsA, "LevelGroup", "None") ~= "None" then
 		pointA = pointA - GetPrevLevelAchieveNeedCount(clsA.ClassID)
+		needA = needA - GetPrevLevelAchieveNeedCount(clsA.ClassID)
 	end
 	if TryGetProp(clsB, "LevelGroup", "None") ~= "None" then
 		pointB = pointB - GetPrevLevelAchieveNeedCount(clsB.ClassID)
+		needB = needB - GetPrevLevelAchieveNeedCount(clsB.ClassID)
 	end
 
 	local progressA = tonumber(pointA) / tonumber(needA)

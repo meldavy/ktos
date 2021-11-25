@@ -36,7 +36,7 @@ function ADVENTURE_BOOK_ACHIEVE.FILL_LIST(category)
 	local list_box = GET_CHILD(page_left, "list_achieve_"..category, "ui::CGroupBox");
 
 	local subCategory = ADVENTURE_BOOK_ACHIEVE_GET_SELECT_SUBCATEGORY(category)
-	local achieve_list = ADVENTURE_BOOK_ACHIEVE_CONTENT.LIST_ALL(category, subCategory)
+	local achieve_list = ADVENTURE_BOOK_ACHIEVE_CONTENT.LIST_ALL(category, subCategory, 1)
 
 	local text_desc = GET_CHILD(page_left, "text_desc", "ui::CRichText");
 	if #achieve_list == 0 then
