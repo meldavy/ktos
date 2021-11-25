@@ -204,18 +204,21 @@ function ADVENTURE_BOOK_ACHIEVE.FILL_LIST_CONTROL(list, list_box)
 				reward_cnt = reward_cnt + 1
 			end
 
-			-- 보상: 구보상
+			-- 보상: 구보상 (무조건 1개만 들어가는 것으로 가정함)
 			if info['reward'] ~= nil then
 				if info['reward_type'] == "Item" then
-					local icon = CreateIcon(slotset:GetSlotByIndex(reward_cnt))
+					local ItemInfo = StringSplit(info['reward'], '/')
 					local cls = GetClassByStrProp("Item", "ClassName", info['reward'])
-					
 					if cls ~= nil then
-						icon:SetImage(cls.Icon)
+						local icon = CreateIcon(slotset:GetSlotByIndex(reward_cnt))
+						
+						iconName = BEAUTYSHOP_SIMPLELIST_ICONNAME_CHECK(TryGetProp(cls, "Icon", "None"), TryGetProp(cls, "UseGender", "None"))
+						icon:SetImage(iconName)
+
 						SET_ITEM_TOOLTIP_BY_NAME(icon, cls.ClassName);
 						icon:SetTooltipOverlap(1);
+						reward_cnt = reward_cnt + 1
 					end
-					reward_cnt = reward_cnt + 1
 				elseif info['reward_type'] == "HairColor" then
 					local icon = CreateIcon(slotset:GetSlotByIndex(reward_cnt))
 					icon:SetImage(info['reward_icon'])
@@ -507,20 +510,28 @@ function ADVENTURE_BOOK_ACHIEVE.FILL_INFO(category, clsID)
 	local slotset = GET_CHILD(gb_reward_item_content_slot_bg, "slotset_list_reward", "ui::CSlotSet")
 	
 	local rewardCnt = 0
+	local oldRewardCnt = 0
 	local slotMaxCnt = slotset:GetSlotCount()
 	local max_view = 5
-	-- 보상: 구보상
+	-- 보상: 구보상 (무조건 1개만 들어가는 것으로 가정함)
 	if info['reward'] ~= nil then
 		if info['reward_type'] == "Item" then
-			local icon = CreateIcon(slotset:GetSlotByIndex(rewardCnt))
-			local cls = GetClassByStrProp("Item", "ClassName", info['reward'])
-			
+			local ItemInfo = StringSplit(info['reward'], '/')
+			local cls = GetClassByStrProp("Item", "ClassName", ItemInfo[1])
 			if cls ~= nil then
-				icon:SetImage(cls.Icon)
+				local slot = slotset:GetSlotByIndex(0)
+				local icon = CreateIcon(slotset:GetSlotByIndex(rewardCnt))
+				
+				SET_SLOT_COUNT_TEXT(slot, ItemInfo[2])
+
+				iconName = BEAUTYSHOP_SIMPLELIST_ICONNAME_CHECK(TryGetProp(cls, "Icon", "None"), TryGetProp(cls, "UseGender", "None"))
+				icon:SetImage(iconName)
+
 				SET_ITEM_TOOLTIP_BY_NAME(icon, cls.ClassName);
 				icon:SetTooltipOverlap(1);
+				rewardCnt = rewardCnt + 1
+				oldRewardCnt = oldRewardCnt + 1
 			end
-			rewardCnt = rewardCnt + 1
 		elseif info['reward_type'] == "HairColor" then
 			local icon = CreateIcon(slotset:GetSlotByIndex(rewardCnt))
 			icon:SetImage(info['reward_icon'])
@@ -537,7 +548,7 @@ function ADVENTURE_BOOK_ACHIEVE.FILL_INFO(category, clsID)
 				slot = slotset:AddSlot("slot"..slotMaxCnt, (slotset:GetSlotWidth() + slotset:GetSpcX()) * (slotMaxCnt - 1), 0, slotset:GetSlotWidth(), slotset:GetSlotHeight())
 				slot:SetSkinName("invenslot2")
 			else
-				slot = slotset:GetSlotByIndex(i - 1)
+				slot = slotset:GetSlotByIndex(i - 1 + oldRewardCnt)
 			end
 			
 			local icon = CreateIcon(slotset:GetSlotByIndex(rewardCnt))

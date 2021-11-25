@@ -140,8 +140,17 @@ function ADVENTURE_BOOK_ACHIEVE_CONTENT.IS_HAVE_REWARD(clsID) -- 받아야 할 �
 
 	local accObj = GetMyAccountObj();
 	local value = TryGetProp(accObj, "AchieveReward_"..cls.ClassName)
-	if value ~= nil and value == 0 then
-		return 1
+	local oldReward = TryGetProp(cls, "OldReward", "NO")
+	if oldReward == "YES" then
+		if value == 3 then
+			return 0
+		else
+			return 1
+		end
+	else
+		if value ~= nil and value == 0 then
+			return 1
+		end
 	end
 
 	return 0

@@ -266,17 +266,21 @@ function GET_GEAR_SCORE(item, pc)
             end
             for start_idx = 0, max_socket_count do
                 local gem_id = 0
-                local gem_lv = 0
+                local gem_lv = 0                
                 if IsServerSection() == 1 then
                     gem_id, gem_lv = GetItemSocketInfo(item, start_idx)
                 else
-                    local inv_item = session.GetInvItemByGuid(GetIESID(item))
+                    local inv_item = session.GetInvItemByGuid(GetIESID(item))                    
                     if inv_item == nil then
                         inv_item = session.GetEquipItemByGuid(GetIESID(item))
                     end
+                    if inv_item == nil then
+                        inv_item = session.otherPC.GetItemByGuid(GetIESID(item))
+                    end
+
                     if inv_item ~= nil then
                         gem_id = inv_item:GetEquipGemID(start_idx)
-                        gem_lv = inv_item:GetEquipGemLv(start_idx)                        
+                        gem_lv = inv_item:GetEquipGemLv(start_idx)
                     end
                 end
                    
@@ -321,7 +325,7 @@ function GET_GEAR_SCORE(item, pc)
                 end
             end
         else
-            local prefix = TryGetProp(item, 'LegendPrefix', 'None')            
+            local prefix = TryGetProp(item, 'LegendPrefix', 'None')               
             if prefix ~= 'None' then                
                 local set_cls = GetClass('LegendSetItem', prefix)
                 if set_cls ~= nil then
@@ -348,10 +352,10 @@ function GET_GEAR_SCORE(item, pc)
                 set_advantage = 1.1
             end
         end
-
+        
         set_option = 1 - random_option_penalty - enchant_option_penalty        
         local ret = 0.5 * ( (4*transcend) + (3*reinforce)) + ( (30*grade) + (1.66*avg_lv) )*0.5
-        ret = ret * set_option * set_advantage + add_acc + gem_point
+        ret = ret * set_option * set_advantage + add_acc + gem_point        
         
         return math.floor(ret + 0.5)
     end
