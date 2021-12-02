@@ -2156,8 +2156,6 @@ function EXEC_ABANDON_QUEST(questID)
 	local frame = ui.GetFrame('quest');
 	pc.ReqExecuteTx("ABANDON_Q", questID);
 
-	ON_UPDATE_QUESTINFOSET_2(nil, 'ABANDON_QUEST', 0, questID);
-
 	quest.RemoveAllQuestMonsterList(questID);
 	quest.RemoveCheckQuest(questID);
 
