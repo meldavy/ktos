@@ -493,7 +493,7 @@
 		<Class ClassID="2378" ClassName="OnlyUseCharacterBelongItem" Data="캐릭터에 귀속된 아이템에만 사용가능합니다."/>
 		<Class ClassID="2379" ClassName="CantUseDiffenentDefaultEquipSlot" Data="종류가 다른 아이템에는 사용할 수 없습니다."/>
 		<Class ClassID="2380" ClassName="AlreadyTooMuchReaminTime" Data="현재 버프의 남은 시간이 너무 많아 더이상 사용할 수 없습니다."/>
-		<Class ClassID="2381" ClassName="pvp_mine_misc_boost_tooltip{a}{b}{c}{d}{e}{f}" Data="- 주간 획득량 제한{img green_up_arrow 16 16}{a}{nl}- 업힐 디펜스 1회 획득량{img green_up_arrow 16 16}{b}{nl}- 차원 붕괴 지점 1회 획득량{img green_up_arrow 16 16}{c}{nl}- 베르니케 파편 던전 획득량{img green_up_arrow 16 16}{d}{nl}- 주간 보스 레이드 500K 대미지 보상 획득량{img green_up_arrow 16 16}{e}{nl}- 필드 사냥시 획득량{img green_up_arrow 16 16}{f}%"/>
+		<Class ClassID="2381" ClassName="pvp_mine_misc_boost_tooltip{a}{b}{c}{d}{e}{f}" Data="- 주간 획득량 제한{img green_up_arrow 16 16}{a}{nl}- 업힐 디펜스 1회 획득량{img green_up_arrow 16 16}{b}{nl}- 차원 붕괴 지점 1회 획득량{img green_up_arrow 16 16}{c}{nl}- 베르니케 파편 던전 획득량{img green_up_arrow 16 16}{d}{nl}- 주간 보스 레이드 125K 대미지 보상 획득량{img green_up_arrow 16 16}{e}{nl}- 필드 사냥시 획득량{img green_up_arrow 16 16}{f}%"/>
 		<Class ClassID="2382" ClassName="CantDecomposition" Data="분해할 수 없는 대상입니다."/>
 		<Class ClassID="2383" ClassName="BeExceedMaxUpgrade" Data="연성 최대 수치를 초과하게 됩니다."/>
 		<Class ClassID="2384" ClassName="IsNotRegister" Data="활성화되지 않은 아이템입니다."/>
@@ -1160,6 +1160,7 @@
 		<Class ClassID="4492" ClassName="OpenGoddessRichtext" Data="{@st41}선택한 종류의 여/마신 방어구를 보관함에서 개방합니다.{/}" />
 		<Class ClassID="4493" ClassName="CantEquipCuzInvalidGoddessIcor" Data="방어구에 부여된 여/마신 방어구의 종류가 장비 보관함에 개방되어 있지 않거나 레벨이 낮아 장비를 장착할 수 없습니다."/>		
 		<Class ClassID="4497" ClassName="SelectItemTrade{ITEM}" Data="{@st66d_y}{s20}{ITEM}{/}{/} {nl}을/를 정말 선택하시겠습니까?{nl} {nl}선택 후에는 다른 선택지로 변경 할 수 없습니다."/>
+		<Class ClassID="4499" ClassName="YouHaveSameLevelArcane" Data="개방권의 레벨과 같거나 더 높은 레벨의 아이템이 등록되어 있습니다."/>
 	</Category>
 	<Category Name="ItemTooltip">
 		<Class ClassID="5001" ClassName="CoolDown : {Sec} Sec" Data="재사용 대기시간 : {Sec}초"/>
@@ -1252,7 +1253,7 @@
 		<Class ClassID="5088" ClassName="tooltip_Outrage" Data=" - 갓 스매시 스킬 레벨{img green_up_arrow 16 16}3{nl}  - 갓 스매시 스킬 범위{img green_up_arrow 16 16}100%{nl}  - 갓 스매시 연타 수{img green_up_arrow 16 16}1{nl}  - 갓 스매시 시전 시 진노 버프 1중첩{nl} {nl}진노{nl} - 지속시간 8초 (최대 3중첩){nl} - 중첩 수에 따라 캐릭터 크기 증가{nl} - 3 중첩 시 받는 마법 피해 50% 감소{nl} - 3 중첩 일 때 브레스트 리퍼 시전 시 중첩을{nl}모두 소모, 5초 동안 브레스트 리퍼 스킬 대미지{img green_up_arrow 16 16}30%"/>
 		<Class ClassID="5089" ClassName="tooltip_CarpetBombing" Data=" - 그라나다 스킬 레벨{img green_up_arrow 16 16}3{nl}  - 그라나다 스킬 광역 공격 비율{img green_up_arrow 16 16}10{nl} {nl}융단폭격{nl} - 탈리오 시전 중 0.25초 마다 주변 범위에 수류탄을 투척, 현재 레벨 그라나다 스킬 계수 50%로 피해{nl} - 보스, 캐릭터에게는 융단폭격 피해 절반 감소"/>
 		<Class ClassID="5090" ClassName="tooltip_ThrowingKnife" Data=" - 로그 모든 스킬 레벨{img green_up_arrow 16 16}1{nl} {nl}비도{nl} - 나이프 스로잉 시전 시 다음 3회의 기본 공격을 단검 투척으로 변경 (10초 지속){nl}(단검 투척 스킬 계수 현재 레벨 나이프 스로잉의 60%){nl} - 세 번째 단검 투척 후 3초 동안 주는 대미지{img green_up_arrow 16 16}30%"/>
-		<Class ClassID="5091" ClassName="tooltip_OrbitalArrow" Data=" - 화살비 스킬 레벨{img green_up_arrow 16 16}2{nl}  - 화살비 재사용 대기시간 20초 감소{nl} {nl}궤도화살{nl} - 화살비 시전 위치에 1초마다 거대 화살을 낙하하여 범위 내의 적 20명에게 추가 피해를 줌{nl}(궤도화살은 화살비 1타와 동일한 스킬 계수{nl} - 발사된 화살비와 지속시간 동일"/>
+		<Class ClassID="5091" ClassName="tooltip_OrbitalArrow" Data=" - 메르겐 모든 스킬 레벨{img green_up_arrow 16 16}1{nl}  - 화살비 재사용 대기시간 20초 감소{nl} {nl}궤도화살{nl} - 화살비 시전 위치에 1초마다 거대 화살을 낙하하여 범위 내의 적 20명에게 추가 피해를 줌{nl}(궤도화살은 화살비 1타와 동일한 스킬 계수{nl} - 발사된 화살비와 지속시간 동일"/>
 		<Class ClassID="5092" ClassName="tooltip_Saber" Data=" - 하카펠 모든 스킬 레벨{img green_up_arrow 16 16}1{nl} {nl}기병도{nl} - 스칼푸그닝 스킬 대미지{img green_up_arrow 16 16}100%{nl} - 그라인드 커터 스킬 대미지{img green_up_arrow 16 16}100%"/>
 		<Class ClassID="5093" ClassName="tooltip_EternalFrozenLand" Data=" - 아이스 파이크 스킬 레벨{img green_up_arrow 16 16}3{nl} {nl}영구동토{nl} - 캐릭터가 [결빙], [한기] 디버프를 걸 때 마다 영구동토 버프 1 중첩{nl} - 영구동토 버프 지속시간 30초, 최대 30 중첩{nl} - 버프 1 중첩 이상일 때, 기본 공격 시 영구동토 버프 중첩을 모두 소모하고 [거스트] 스킬 시전{nl} {nl}거스트{nl} - 광역 공격 비율 20, 얼음 속성 마법 대미지{nl} - 스킬 계수 현재 레벨의 아이스 파이크와 동일{nl} - 시전 시 소모한 영구동토 버프 1 중첩 당 스킬 대미지 7% 증가{nl} - 영구동토 버프 30 중첩 일 때 시전 시 스킬 대미지 100% 추가 증가, 4초 동안 결빙 디버프 부여"/>
 		<Class ClassID="5094" ClassName="tooltip_DualSword" Data=" - 크로스컷 스킬 레벨{img green_up_arrow 16 16}3{nl}  - 스카이라이너 스킬 레벨{img green_up_arrow 16 16}2{nl}  - 크로스 가드 블록 확률 증가 효과{img green_up_arrow 16 16}100%{nl} {nl}듀얼소드{nl} - 크로스 가드 시전 중 3초 동안 버프 활성화{nl} - 버프 중 크로스 가드 최대 유지시간 3초로 변경{nl} - 버프 중 일반 해제 가능한 모든 상태이상 저항{nl} - 버프 중 블록 성공 시 [반전베기] 시전{nl} {nl}반전베기{nl} - 정면 방향 200 거리 이내 적의 공격으로 발동{nl}   [마법진], [범위 지속형] 스킬에 발동 불가{nl} - 공격자에게 돌진{nl} - 현재 레벨의 크로스컷 스킬 계수 * 200%를 총 4회로 나눠 타격"/>
@@ -1296,7 +1297,7 @@
 		<Class ClassID="5132" ClassName="tooltip_DualSword_Lv4" Data="{nl} {nl}{@st66d}{s15} - 뮬리넷 최종 대미지 {img green_up_arrow 16 16}100%"/>
 		<Class ClassID="5133" ClassName="tooltip_WickedDesire_Lv4" Data="{nl} {nl}{@st66d}{s15} - 이보케이션 재사용 대기시간 10초 감소"/>
 		<Class ClassID="5134" ClassName="tooltip_EternalFrozenLand_Lv4" Data="{nl} {nl}{@st66d}{s15} - 아이스 블래스트 연타 수 2배"/>
-		<Class ClassID="5135" ClassName="tooltip_OrbitalArrow_Lv4" Data="{nl} {nl}{@st66d}{s15} - 스프레드 샷 재사용 대기시간 10초 감소"/>
+		<Class ClassID="5135" ClassName="tooltip_OrbitalArrow_Lv4" Data="{nl} {nl}{@st66d}{s15} - 트리플 애로우 최종 대미지 {img green_up_arrow 16 16}100%"/>
 		<Class ClassID="5136" ClassName="tooltip_DoubleMarking_Lv4" Data="{nl} {nl}{@st66d}{s15} - 데드 존 최종 대미지 {img green_up_arrow 16 16}100%"/>
 		<Class ClassID="5137" ClassName="tooltip_Outrage_Lv4" Data="{nl} {nl}{@st66d}{s15} - 브레스트 리퍼 재사용 대기시간 25초 감소"/>
 		<Class ClassID="5138" ClassName="tooltip_Desition_Lv4" Data="{nl} {nl}{@st66d}{s15} - 루브릭 최종 대미지 {img green_up_arrow 16 16}100%"/>
@@ -1329,7 +1330,7 @@
 		<Class ClassID="5165" ClassName="tooltip_Extinction_Lv4" Data="{nl} {nl}{@st66d}{s15}[섬멸 속성]에 따라 아래 효과 적용{nl} - 불 : 파이어 클러 최종 대미지 {img green_up_arrow 16 16}100%{nl} - 얼음 : 블리자드 스톰 최종 대미지 {img green_up_arrow 16 16}100%{nl} - 전기 : 라이트닝 오브 전기 결정 연타 수 {img green_up_arrow 16 16}1{nl} {nl}아이템 장착 해제 시 30초동안 Lv4 효과를 받을 수 없음"/>
 		<Class ClassID="5166" ClassName="tooltip_ShakeFoot" Data=" - 몽크 모든 스킬 레벨 {img green_up_arrow 16 16}1{nl}  - 장착 후 3초 후부터 [진각] 효과 발동{nl} {nl}진각{nl} - 몽크 스킬로 공격 시 자신 주변 100범위의 적에게 때리기 속성으로 타격{nl} - 재사용 대기시간 5초{nl} - [금종조 : 해방] 버프 중에는 재사용 대기시간 2초 감소{nl} - 스킬 계수, 현재 레벨의 쌍쇄공의 20%{nl} - 대상 수 15, 연타 수 2{nl} - 단일 대상일 경우 2배의 대미지를 입히는 [진각 : 극]이 시전 됨"/>
 		<Class ClassID="5167" ClassName="tooltip_ShakeFoot_Lv4" Data="{nl} {nl}{@st66d}{s15} - 쌍쇄공 시전 시 타격 주기마다 [철사장 : 권] 발동{nl} {nl}철사장 : 권{nl} - 스킬계수 현재 레벨의 철사장의 27.5%"/>
-		<Class ClassID="5168" ClassName="tooltip_RedTigerNail" Data=" - 백호령 스킬 레벨{img green_up_arrow 16 16}3{nl} {nl}적호조{nl} - 백호령 타격 수 {img green_up_arrow 16 16}3{nl} - 백호령 명중 시 무속성 취약 디버프를 부여{nl} - 디버프 지속시간 5초{nl} - 시전자가 디버프 대상에게 무속성 마법 공격으로 피해를 줄 때 대미지 증가 {img green_up_arrow 16 16}100% {nl} {nl}적호조 아이템 장착 해제 시 디버프 효과 미적용"/>
+		<Class ClassID="5168" ClassName="tooltip_RedTigerNail" Data=" - 백호령 스킬 레벨{img green_up_arrow 16 16}3{nl} {nl}적호조{nl} - 백호령 타격 수 {img green_up_arrow 16 16}3{nl} - 백호령 명중 시 취약 디버프를 부여{nl} - 디버프 지속시간 5초{nl} - 시전자가 디버프 대상에게 음양사 스킬로 피해를 줄 때 대미지 증가 {img green_up_arrow 16 16}100% {nl} {nl}적호조 아이템 장착 해제 시 디버프 효과 미적용"/>
 		<Class ClassID="5169" ClassName="tooltip_RedTigerNail_Lv4" Data="{nl} {nl}{@st66d}{s15} - 바람의 식신령 최종 대미지 {img green_up_arrow 16 16}100%"/>
 		<Class ClassID="5170" ClassName="tooltip_Distortion" Data=" - 세이지 모든 스킬 레벨 {img green_up_arrow 16 16}1{nl}  - 홀 오브 다크니스 시전 시 지정 범위 내 적 최대 10명에게 [공간 왜곡] 디버프 10초부여{nl} {nl}왜곡{nl} - 마이크로 디멘션을 사용할 때마다 400범위 내 [공간 왜곡] 디버프 대상에게 무속성 마법 피해{nl}(현재 레벨의 홀 오브 다크니스의 35%를 6회에 나눠서 타격){nl} {nl}왜곡은 캐스팅으로 판정되지 않음"/>
 		<Class ClassID="5171" ClassName="tooltip_Distortion_Lv4" Data="{nl} {nl}{@st66d}{s15} - 얼티밋 디멘션 최종 대미지 {img green_up_arrow 16 16}100%"/>

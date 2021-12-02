@@ -3439,3 +3439,11 @@ end
 function SCR_ABIL_Archer39_INACTIVE(self, ability)
     RemoveBuff(self, "Concentration_Buff");
 end
+
+function SCR_ABIL_Doppelsoeldner37_ACTIVE(self, ability)
+    RemoveBuff(self, "DeedsOfValor");
+end
+
+function SCR_ABIL_Doppelsoeldner37_INACTIVE(self, ability)
+    RemoveBuff(self, "DeedsOfValor");
+end

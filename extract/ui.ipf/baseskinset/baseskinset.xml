@@ -13800,6 +13800,7 @@
 		<image name="plate_achieve_relic_gem_clear" file="\skin\user_title_skin.tga" imgrect="215 924 214 34" CMM_Caption="성물젬 10강_일반"/>
 		<image name="plate_achieve_Saduh" file="\skin\user_title_skin.tga" imgrect="430 924 214 34" CMM_Caption="사두 퀘스트 칭호"/>
 		<image name="plate_achieve_weeklyrank_18" file="\skin\user_title_skin.tga" imgrect="645 924 214 34" CMM_Caption="주보레_디에나"/>
+		<image name="plate_achieve_hwarang_weekraid" file="\skin\user_title_skin.tga" imgrect="860 889 214 34" CMM_Caption="주보레_화랑"/>
 	</imagelist>
 	<imagelist category="skin_hair">
 		<image name="icon_skintone_01_m01" file="\skin\skinhair\icon_skintone_01_m01.png" imgrect="0 0 80 80" CMM_Caption="남성 01"/>

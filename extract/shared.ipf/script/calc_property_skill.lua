@@ -10495,7 +10495,7 @@ end
 -- done , 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_GET_Heal_Ratio3_Common(skill)    
     local pc = GetSkillOwner(skill)
-    local value = 214.6 + (skill.Level - 1) * 80.5
+    local value = 85.9 + (skill.Level - 1) * 32.2
     
     local addAbilRate = 1;
     local reinforceAbilName = "Cleric33"
@@ -12986,7 +12986,7 @@ end
 
 -- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_GET_HakkaPalle_Ratio2(skill)
-    local value = 3 + skill.Level
+    local value = 3 * skill.Level
     
     return value
 end
@@ -15218,7 +15218,11 @@ function SCR_COMMON_COOLDOWN_DECREASE(pc, skill, basicCoolDown)
     local neck = GetEquipItem(pc, 'NECK')
 	if IS_TOS_HERO_ZONE(pc) == 'YES' and TryGetProp(skill, "ValueType", "None") == "Attack" and basicCoolDown <= 20000 and GetBuffOver(pc, "TOSHero_Buff_Tear3_AttackSPD") >= 5 and TryGetProp(neck, "ClassName", "None") == "TOSHero_NECK_AS" then
         basicCoolDown = 5000
-	end
+    end
+    
+    if basicCoolDown < 1000 and TryGetProp(skill, 'ClassName', 'None') == 'Cleric_Heal' then
+        basicCoolDown = 1000
+    end
 
 	return basicCoolDown
 end
@@ -15738,7 +15742,7 @@ end
 function SCR_Get_SkillFactor_ViboraGravity(skill)
     local pc = GetSkillOwner(skill)
     local Teardown = GetSkill(pc, "Psychokino_GravityPole")
-    local value = TryGetProp(Teardown, "SkillFactor", 0) * 0.5
+    local value = TryGetProp(Teardown, "SkillFactor", 0)
 
     return value
 end
@@ -15747,7 +15751,7 @@ end
 function SCR_Get_SkillFactor_ViboraGravity_Finish(skill)
     local pc = GetSkillOwner(skill)
     local Teardown = GetSkill(pc, "Psychokino_GravityPole")
-    local value = TryGetProp(Teardown, "SkillFactor", 0) * 5
+    local value = TryGetProp(Teardown, "SkillFactor", 0) * 10
 
     return value
 end
@@ -16373,10 +16377,6 @@ function SCR_GET_SKL_COOLDOWN_Unload(skill)
     local pc = GetSkillOwner(skill)
     local basicCoolDown = TryGetProp(skill, "BasicCoolDown", 0)
     local abilAddCoolDown = GetAbilityAddSpendValue(pc, skill.ClassName, "CoolDown")
-
-    if GetExProp(pc, "ITEM_VIBORA_OrbitalArrow_LV4") > 0 then
-        basicCoolDown = basicCoolDown - 10000
-    end
  
     basicCoolDown = basicCoolDown + abilAddCoolDown;
     basicCoolDown = SCR_COMMON_COOLDOWN_DECREASE(pc, skill, basicCoolDown)
