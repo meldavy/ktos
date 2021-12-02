@@ -210,6 +210,8 @@ function OPEN_CABINET_VIBORA(frame, ctrl, argStr, argNum)
 end
 
 function RUN_OPEN_VIBORA(itemGuid, arg_str)
+	local frame = ui.GetFrame("open_select_vibora")
+	local itemGuid = frame:GetUserValue("UseItemGuid")
 	pc.ReqExecuteTx_Item("OPEN_CABINET_VIBORA", itemGuid, arg_str)
 end
 
@@ -443,5 +445,7 @@ function OPEN_CABINET_GODDESS(frame, ctrl, argStr, argNum)
 end
 
 function RUN_OPEN_GODDESS(itemGuid, arg_str)
+	local frame = ui.GetFrame("open_select_vibora")
+	local itemGuid = frame:GetUserValue("UseItemGuid")
 	pc.ReqExecuteTx_Item("OPEN_CABINET_GODDESS", itemGuid, arg_str)
 end
