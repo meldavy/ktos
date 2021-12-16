@@ -1,4 +1,4 @@
--- type : 1 = 실버 사용 추출, 2 = 특성 포인트 사용 추출
+-- type : 1 = 실버 사용 추출
 function ABILITY_POINT_EXTRACTOR_ON_INIT(addon, frame)
     addon:RegisterMsg('SUCCESS_EXTRACT_ABILITY_POINT', 'ABILITY_POINT_EXTRACTOR_RESET');
 end
@@ -17,9 +17,6 @@ function ABILITY_POINT_EXTRACTOR_RESET(frame, msg, argStr, type)
 
     local feeValueText = GET_CHILD_RECURSIVELY(frame, 'feeValueText');
     local extractScrollEdit = GET_CHILD_RECURSIVELY(frame, 'extractScrollEdit');
-    local consumeMoney2Box = GET_CHILD(frame, 'consumeMoney2Box');
-    local consumeMoneyBox = GET_CHILD(frame, 'consumeMoneyBox');
-    local expectMoneyBox = GET_CHILD(frame, 'expectMoneyBox');
 
     local enableCountByMoney = 0;
     local enableCountByPoint = 0;
@@ -41,22 +38,6 @@ function ABILITY_POINT_EXTRACTOR_RESET(frame, msg, argStr, type)
         else
             enableCount = enableCountByPoint;
         end
-        
-        consumeMoney2Box:ShowWindow(0);
-        consumeMoneyBox:ShowWindow(1);
-        expectMoneyBox:ShowWindow(1);
-
-    elseif type == 2 then
-        local fee = GET_ABILITY_POINT_EXTRACTOR_FEE(type);
-        feeValueText:SetTextByKey('value', GET_COMMAED_STRING(fee));
-        feeValueText:SetTextByKey('value2', "%");
-        
-        enableCountByMoney = math.floor(session.ability.GetAbilityPoint() / (ABILITY_POINT_SCROLL_RATE + (ABILITY_POINT_SCROLL_RATE / 100 * fee)));
-        enableCountByPoint = math.floor(session.ability.GetAbilityPoint() / ABILITY_POINT_SCROLL_RATE);
-        enableCount = math.min(enableCountByMoney, enableCountByPoint);
-        consumeMoney2Box:ShowWindow(1);
-        consumeMoneyBox:ShowWindow(0);
-        expectMoneyBox:ShowWindow(0);
     end
     
     frame:SetUserValue('TYPE', type);
@@ -158,13 +139,7 @@ function ABILITY_POINT_EXTRACTOR_UPDATE_MONEY(frame)
         consumeMoneyText:SetTextByKey('value', consumeMoneyStr);
         
         local expectMoneyText = GET_CHILD_RECURSIVELY(frame, 'expectMoneyText');
-        expectMoneyText:SetTextByKey('value', expectMoneyStr);   
-    elseif type == 2 then
-        expectAbilityPoint = expectAbilityPoint - consumeMoney;
-
-        local consumeMoney2Text = GET_CHILD_RECURSIVELY(frame, 'consumeMoney2Text');
-        local consumeMoneyStr = GET_COMMAED_STRING(consumeMoney);
-        consumeMoney2Text:SetTextByKey('value', consumeMoneyStr);
+        expectMoneyText:SetTextByKey('value', expectMoneyStr);
     end
 
     local consumePointStr = GET_COMMAED_STRING(consumePoint);
@@ -182,11 +157,6 @@ function ABILITY_POINT_EXTRACTOR_GET_CONSUME_MONEY(frame)
     local type = frame:GetUserIValue('TYPE');
     local scrollCount = frame:GetUserIValue('SCROLL_COUNT');
     local exchangeFee = ABILITY_POINT_EXTRACTOR_FEE;
-
-    if type == 2 then
-        local fee = GET_ABILITY_POINT_EXTRACTOR_FEE(type);
-        exchangeFee = ABILITY_POINT_SCROLL_RATE / 100 * fee;
-    end
 
     local consumeMoney = MultForBigNumberInt64(scrollCount, exchangeFee);
     local sObj = session.GetSessionObjectByName("ssn_klapeda");
@@ -281,20 +251,6 @@ function ABILITY_POINT_EXTRACTOR(parent, ctrl)
 
         local yesscp = string.format('EXEC_ABILITY_POINT_EXTRACTOR(%d, %d)', count, type);
         ui.MsgBox_NonNested(msg, topFrame:GetName(), yesscp, 'None');
-    elseif type == 2 then
-        if count < GET_ABILITY_POINT_EXTRACTOR_MIN_VALUE(type) then
-            ui.SysMsg(ScpArgMsg("AbilityPointExtractorMinCount{VALUE}", "VALUE", GET_ABILITY_POINT_EXTRACTOR_MIN_VALUE(type)))
-            return;
-        end
-        local consumePoint = ABILITY_POINT_EXTRACTOR_GET_CONSUME_POINT(topFrame);
-        local consumeMoney, eventDiscount = ABILITY_POINT_EXTRACTOR_GET_CONSUME_MONEY(topFrame);
-        
-        local consumePointStr = GET_COMMAED_STRING(consumePoint);
-        local consumeMoneyStr = GET_COMMAED_STRING(consumeMoney + consumePoint);
-        
-        msg = ScpArgMsg("AskExtractAbilityPoint2{AllConsumePoint}{Scroll}{ConsumePoint}", "AllConsumePoint", consumeMoneyStr, "Scroll", count, "ConsumePoint", consumePointStr);
-        local yesscp = string.format('EXEC_ABILITY_POINT_EXTRACTOR(%d, %d)', count, type);
-        ui.MsgBox_NonNested(msg, topFrame:GetName(), yesscp, 'None');
     end
     
 end
@@ -302,8 +258,6 @@ end
 function EXEC_ABILITY_POINT_EXTRACTOR(count, type)
     if type == 1 then
         control.CustomCommand('REQ_EXTRACT_ABILITY', count);
-    elseif type == 2 then
-        control.CustomCommand('REQ_EXTRACT_ABILITY_BY_ABILITY_POINT', count);
     end
 end
 
@@ -311,10 +265,6 @@ function ABILITY_POINT_EXTRACTOR_TYPE_RADIO_BTN_CLICK(parent, ctrl, argStr, type
     local frame = parent:GetTopParentFrame();
     local question = GET_CHILD(frame, "question");
     local tooltipText = ClMsg("AbilityPointExtractorTooltipText_1");
-    if type == 2 then
-        local fee = GET_ABILITY_POINT_EXTRACTOR_FEE(type);
-        tooltipText = ScpArgMsg("AbilityPointExtractorTooltipText_2{VALUE}{MIN}", "VALUE", fee, "MIN", GET_ABILITY_POINT_EXTRACTOR_MIN_VALUE(type));
-    end
     question:SetTextTooltip(tooltipText);
 
     ABILITY_POINT_EXTRACTOR_RESET(frame, "", "", type);
