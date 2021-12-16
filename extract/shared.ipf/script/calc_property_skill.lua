@@ -1365,14 +1365,14 @@ function SCR_Get_SkillFactor(skill)
     local sklFactor;
     local skillOwner = GetSkillOwner(skill);
     
-    sklFactor = skill.SklFactor + (skill.Level - 1) * skill.SklFactorByLevel;
+    sklFactor = SyncFloor(skill.SklFactor * 10) * 0.1 + SyncFloor(skill.SklFactorByLevel * 10) * 0.1 * (skill.Level - 1);
     return math.floor(sklFactor);
 end
 
 -- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_Get_SkillFactor_Reinforce_Ability(skill)
     local pc = GetSkillOwner(skill)
-    local value = skill.SklFactor + skill.SklFactorByLevel * (skill.Level - 1)-- 스킬팩터 계산
+    local value = SyncFloor(skill.SklFactor * 10) * 0.1 + SyncFloor(skill.SklFactorByLevel * 10) * 0.1 * (skill.Level - 1)
 
     if IsInTOSHeroMap(pc) == true then
         return math.floor(value)
@@ -3030,7 +3030,7 @@ end
 
 -- done , 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_GET_EpeeGarde_Ratio(skill)
-    local value = skill.Level * 4;
+    local value = skill.Level * 3;
 
     value = value * SCR_REINFORCEABILITY_TOOLTIP(skill)
     
@@ -14085,7 +14085,7 @@ function SCR_GET_MuayThai_Ratio2(skill)
         cnt = cnt + 1
     end
 
-    local value = 10 + skill.Level * cnt * 0.7
+    local value = 10 + skill.Level * cnt * 0.35
     
     return value;
 end
@@ -15220,7 +15220,8 @@ function SCR_COMMON_COOLDOWN_DECREASE(pc, skill, basicCoolDown)
         basicCoolDown = 5000
     end
     
-    if basicCoolDown < 1000 and TryGetProp(skill, 'ClassName', 'None') == 'Cleric_Heal' then
+    -- 재사용 대기시간이 없는 스킬은 제외
+    if IsExpertSkill(TryGetProp(skill, 'ClassName', 'None')) == 1 and basicCoolDown > 0 and basicCoolDown < 1000 then
         basicCoolDown = 1000
     end
 

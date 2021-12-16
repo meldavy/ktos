@@ -88,7 +88,7 @@
 		<Class ClassID="330" ClassName="SavingUserInfo" Data="캐릭터 정보를 저장중입니다."/>
 		<Class ClassID="331" ClassName="{guild}{name}InvalidRequest" Data="[{guild}]길드 {name}님이 비정상적인 방법으로 콜로니전 보상 수령을 시도하였습니다."/>
 		<Class ClassID="332" ClassName="{date}CantUseAutoMatching" Data="신고 누적으로 인해 {date} 까지 자동매칭을 이용하실 수 없습니다."/>
-	</Category>
+		</Category>
 	<Category Name="Skill">
 		<Class ClassID="500" ClassName="CannotGetSkill{NAME}" Data="[{NAME}] 스킬을 습득할 수 없습니다."/>
 		<Class ClassID="501" ClassName="CannotGetSkill{Reason}" Data="[{Reason}] 조건이 만족하지 않아 습득할 수 없습니다."/>
@@ -179,6 +179,7 @@
 		<Class ClassID="1160" ClassName="GraceTime" Data="추가 시간"/>
 		<Class ClassID="1161" ClassName="GoddessCardCopy" Data="여신 카드 레벨 복사"/>
 		<Class ClassID="1162" ClassName="SkillFactorText" Data="스킬 계수 "/>
+		<Class ClassID="1164" ClassName="Update" Data="업데이트"/>
 	</Category>
 	<Category Name="Reinforce">
 		<Class ClassID="2001" ClassName="NotEnoughReinforcePotential" Data="강화에 필요한 포텐셜이 부족합니다"/>
@@ -656,7 +657,7 @@
 		<Class ClassID="3080" ClassName="Set_option" Data="세트 옵션"/>
 		<Class ClassID="3081" ClassName="FixedIcorOptin" Data="고정 아이커 옵션"/>
 		<Class ClassID="3082" ClassName="OnlyUseHavingZeroCount_Raid" Data="[{Raid}] 입장 가능 횟수가 0 인 경우에만 사용 가능합니다."/>
-		<Class ClassID="3083" ClassName="ReallyRemoveGem_Care" Data="{nl}젬을 추출하면 젬의 등급이 한단계 하락합니다.{nl}젬을 추출하시겠습니까?{nl}(단, 1레벨이하 젬은 소멸됩니다.){nl}{@st66d}{s20}(스킬 젬 추출 시 실버가 소모되지 않으며,{nl}추출된 스킬 젬이 소멸하지 않습니다.){nl}{@st66d}{s20}{#ffc500}(기간 : 11/25 점검 후 ~ 12/09 점검 전까지)"/>
+		<Class ClassID="3083" ClassName="ReallyRemoveGem_Care" Data="{nl}젬을 추출하면 젬의 등급이 한단계 하락합니다.{nl}젬을 추출하시겠습니까?{nl}(단, 1레벨이하 젬은 소멸됩니다.){nl}{@st66d}{s20}(스킬 젬 추출 시 실버가 소모되지 않으며,{nl}추출된 스킬 젬이 소멸하지 않습니다.){nl}{@st66d}{s20}{#ffc500}(기간 : 11/25 점검 후 ~ 12/16 점검 전까지)"/>
 		<Class ClassID="3084" ClassName="CheckLuciferiItemStatus" Data="먼저 스크롤을 통해 속성을 추출하세요.{nl}루시페리 계열은 0초월 0강화 0포텐셜인 경우에만 분해가 가능합니다."/>
 		<Class ClassID="3085" ClassName="AlreadyExtractedLuriferi" Data="이미 속성이 추출된 아이템입니다."/>
 		<Class ClassID="3086" ClassName="AlreadyExtractedProperty" Data="(추출불가)"/>
@@ -1963,6 +1964,9 @@
 		<Class ClassID="10595" ClassName="ReallyDecompose" Data="정말 분해하시겠습니까?"/>
 		<Class ClassID="10596" ClassName="DontDecomposeNoTrade" Data="거래 불가 아이템은 분해할 수 없습니다."/>
 		<Class ClassID="10597" ClassName="OccupiedByAnohterUser" Data="다른 플레이어가 이미 사용중입니다."/>
+		<Class ClassID="10598" ClassName="{sec}CanBeRequested" Data="{sec}초 마다 요청 가능합니다. 아직 요청할 수 없습니다."/>
+		<Class ClassID="10599" ClassName="RemainTimeToDelete{min}{sec}" Data="{@st105_y_16}{s14}모집 공고 자동 삭제까지{@st43b}{s20} {min}:{sec} {@st105_y_16}{s14}남았습니다"/>
+		<Class ClassID="10600" ClassName="{datetime}CantUseFor" Data="[{datetime}]이후 조회 가능합니다."/>
 	</Category>
 	<Category Name="FoodTable">
 		<Class ClassID="20001" ClassName="IncreaseHP{Value}For{Time}Minute" Data="{Time}분 동안 HP가 {Value}% 증가합니다."/>
@@ -2415,6 +2419,11 @@
 		<Class ClassID="21448" ClassName="TP_Social" Data="소셜"/>
 		<Class ClassID="21449" ClassName="AlreadyHaveGesture" Data="이미 보유 중인 제스처입니다."/>
 		<Class ClassID="21450" ClassName="WarningTitle" Data="주의"/>
+		<Class ClassID="21452" ClassName="InputPartyName" Data="파티공고 제목을 입력해주세요."/>
+		<Class ClassID="21453" ClassName="ApplyChangedData" Data="변경사항을 반영합니다"/>
+		<Class ClassID="21454" ClassName="ThereIsNoChangedData" Data="변경사항이 없습니다"/>
+		<Class ClassID="21455" ClassName="NewEpisodeLockMsg_Episode_14_1" Data="{@st59}해당 에피소드의 클리어 보상은 추후 공개될 예정입니다.{nl}{#FFFF00}[Episode14-1]{/}의 퀘스트 시작은 {#FFFF00}오르샤{/}의 {#FFFF00}이네사 해먼데일{/}로부터 시작할 수 있습니다."/>
+		<Class ClassID="21456" ClassName="EpisodeLockMsg_TUTO" Data="{@st59}이 에피소드는 잠겨있으며, 해당 캐릭터가 튜토리얼을 완료해야 잠금이 해제됩니다."/>
 	</Category>
 	<Category Name="ChatText">
 		<Class ClassID="22001" ClassName="Guard" Data="방어"/>
@@ -7809,6 +7818,15 @@
 		<Class ClassID="60400" ClassName="EVENT_2011_SILVER_GACHA_1" Data="[이벤트] 마신의 유혹 참여{nl}[이벤트] 마신의 유혹 참여 횟수 {#3366FF}( {COUNT} 회){/}"/>
 		<Class ClassID="60401" ClassName="EVENT_2011_SILVER_GACHA_2" Data="[이벤트] 마신의 유혹 참여{nl}[이벤트] 마신의 유혹 참여 횟수 {#3366FF}( 완료 ){/}"/>
 		<Class ClassID="60402" ClassName="MISSIONSHOP_NPC_01_SELECT1_MSG7" Data="진행 가능한 모든 의뢰 받기"/>
+		<Class ClassID="60410" ClassName="EP14_3LINE_TUTO_MQ_2_DLG_RUN_1" Data="무슨일이 있었는지 묻는다"/>
+		<Class ClassID="60411" ClassName="EP14_3LINE_TUTO_MQ_2_DLG_RUN_2" Data="자세히 들려달라고 한다"/>
+		<Class ClassID="60412" ClassName="EP14_3LINE_TUTO_MQ_2_DLG_RUN_3" Data="다른 곳은 어떻게 됐는지 묻는다"/>
+		<Class ClassID="60413" ClassName="EP14_3LINE_TUTO_MQ_2_DLG_RUN_CLEAR" Data="피난민에게 모로스 섬의 상황을 들었습니다"/>
+		<Class ClassID="60414" ClassName="EP14_3LINE_TUTO_MQ_1_2_AFTER_1" Data='인벤토리(F2)에서 "[성장] 장비 세트 선택 상자"를 선택하여 장비를 획득하세요'/>
+		<Class ClassID="60415" ClassName="EP14_3LINE_TUTO_MQ_1_2_EQUIP_1" Data="[방어구 4부위 착용하기] 성공"/>
+		<Class ClassID="60416" ClassName="EP14_3LINE_TUTO_MQ_1_2_EQUIP_2" Data="[주/보조 무기 2부위 착용하기] 성공"/>
+		<Class ClassID="60417" ClassName="SSN_EP14_3LINE_TUTO_MQ_8_MSG_1" Data="피난민에게 마족으로 의심되는 색상이 보였습니다"/>
+		<Class ClassID="60418" ClassName="TUTO_START_LINE3_PASS" Data="튜토리얼을 건너뛴다"/>
 		<Class ClassID="66000" ClassName="MASSIVE_CONTENTS_SHOP_NAME" Data="왕국 보급품"/>
 		<Class ClassID="66001" ClassName="RVR_BK_KAZE_NPC_SEL_EVENT" Data="[이벤트]우르바스 증표 사용"/>
 		<Class ClassID="66002" ClassName="RVR_BK_KAZE_NPC_SEL_MSG_1" Data="우르바스 증표 사용"/>
@@ -9609,6 +9627,37 @@
 		<Class ClassID="81104" ClassName="EP13_F_SIAULIAI_3_SQ_02_3" Data="파야우타님?{nl}이럴 수가!{nl}감사합니다!!"/>
 		<Class ClassID="81105" ClassName="EP13_F_SIAULIAI_3_SQ_02_4" Data="검은 옷을 입은 창백한 남자를 피해 숨어있었어요{nl}찾아주셔서 감사합니다!"/>
 		<Class ClassID="81106" ClassName="EP13_F_SIAULIAI_3_SQ_02_5" Data="파야우타님 감사합니다!{nl}그런데 혹시 형제가 있으신가요? 흠.."/>
+		<Class ClassID="81107" ClassName="EP14_1_FCASTLE1_MQ_2_MSG1" Data="도와주셔서 감사합니다!"/>
+		<Class ClassID="81108" ClassName="EP14_1_FCASTLE1_MQ_2_MSG2" Data="합류하겠습니다!"/>
+		<Class ClassID="81109" ClassName="EP14_1_FCASTLE1_MQ_2_MSG3" Data="함께하겠습니다!"/>
+		<Class ClassID="81110" ClassName="EP14_1_FCASTLE1_MQ_2_MSG4" Data="말하는 중"/>
+		<Class ClassID="81111" ClassName="EP14_1_FCASTLE3_MQ_3_MSG1" Data="뭐 좀 알아 냈니?"/>
+		<Class ClassID="81112" ClassName="EP14_1_FCASTLE3_MQ_3_MSG2" Data="흔적이 모두 엉망이구나"/>
+		<Class ClassID="81113" ClassName="EP14_1_FCASTLE3_MQ_3_MSG3" Data="서두르지 않으면 놓칠 거야"/>
+		<Class ClassID="81114" ClassName="EP14_1_FCASTLE3_MQ_3_MSG4" Data="흔적에서 아무 것도 찾지 못했습니다"/>
+		<Class ClassID="81115" ClassName="EP14_1_FCASTLE3_MQ_3_MSG5" Data="족적을 발견했습니다"/>
+		<Class ClassID="81116" ClassName="EP14_1_FCASTLE3_MQ_4_MSG1" Data="불을 지피는 중"/>
+		<Class ClassID="81117" ClassName="EP14_1_FCASTLE3_MQ_4_MSG2" Data="텐트에 불을 지폈습니다!"/>
+		<Class ClassID="81118" ClassName="EP14_1_FCASTLE4_MQ_3_MSG1" Data="낙오된 정찰병이 무사히 왕국군 거점에 합류했습니다!"/>
+		<Class ClassID="81119" ClassName="EP14_1_FCASTLE4_MQ_3_MSG2" Data="함께 왕국군 거점까지 가주겠다고 한다"/>
+		<Class ClassID="81120" ClassName="EP14_1_FCASTLE4_MQ_3_MSG3" Data="잘못 본 거 같으니 신경 끄라고 한다"/>
+		<Class ClassID="81121" ClassName="EP14_1_FCASTLE4_FIELDNPC_MSG1" Data="위험하니 비켜주십쇼"/>
+		<Class ClassID="81122" ClassName="EP14_1_FCASTLE4_FIELDNPC_MSG2" Data="거기 계시면 다치십니다"/>
+		<Class ClassID="81123" ClassName="EP14_1_FCASTLE4_FIELDNPC_MSG3" Data="거기 서 계시면 훈련에 방해가 됩니다"/>
+		<Class ClassID="81124" ClassName="EP14_1_FCASTLE4_FIELDNPC2_MSG1" Data="하나!"/>
+		<Class ClassID="81125" ClassName="EP14_1_FCASTLE4_FIELDNPC2_MSG2" Data="둘!"/>
+		<Class ClassID="81126" ClassName="EP14_1_FCASTLE4_MQ_7_MSG1" Data="머티니스를 이미 충분히 가지고 있습니다"/>
+		<Class ClassID="81127" ClassName="EP14_1_FCASTLE4_MQ_7_MSG2" Data="충분한 피해를 주었습니다{nl}주시자의 검은 수정을 확인하세요"/>
+		<Class ClassID="81128" ClassName="EP14_1_FCASTLE2_MQ_7_MSG1" Data="아군을 증원하라!"/>
+		<Class ClassID="81129" ClassName="EP14_1_FCASTLE4_MQ_SOLDIER_CHAT_1" Data="계시자님만 믿고 가겠습니다"/>
+		<Class ClassID="81130" ClassName="EP14_1_FCASTLE4_MQ_SOLDIER_CHAT_2" Data="덕분에 살았습니다{nl}감사합니다"/>
+		<Class ClassID="81131" ClassName="EP14_1_FCASTLE4_MQ_SOLDIER_NAME" Data="구출 중인 정찰병"/>
+		<Class ClassID="81132" ClassName="EP14_1_FCASTLE5_MQ_1_MSG1" Data="이미 확인한 대상입니다"/>
+		<Class ClassID="81133" ClassName="EP14_1_FCASTLE5_MQ_MONKILL_CNT" Data="진행도{nl}{#FFFF00}{s18}{VALUE}%{/}{/}"/>
+		<Class ClassID="81134" ClassName="EP14_1_FCASTLE5_MQ_4_MSG1" Data="지나갈 수 없습니다!"/>
+		<Class ClassID="81135" ClassName="EP14_1_FCASTLE5_PAJAUTA_CHAT_1" Data="서둘러 리다스 길을 공격하자"/>
+		<Class ClassID="81136" ClassName="EP14_1_FCASTLE5_PAJAUTA_CHAT_2" Data="이제 남은 건 앞마당 뿐이야"/>
+		<Class ClassID="81137" ClassName="EP14_1_FCASTLE2_MQ_2_MSG1" Data="{ITEMNAME}는 충분히 모았습니다"/>
 		<Class ClassID="90001" ClassName="CORAL_32_2_SQ_6_FAIL2" Data="퀘스트를 포기했습니다"/>
 		<Class ClassID="90002" ClassName="DCAPITAL_20_5_SQ_30" Data="작은 돌 파편을 얻었습니다"/>
 		<Class ClassID="90003" ClassName="DCAPITAL_20_5_SQ_60_ITEM_DTA" Data="신성력 감지 구슬 사용중"/>
@@ -10190,6 +10239,7 @@
 		<Class ClassID="92118" ClassName="Mileage_SilverGacha_USE{BEFORE}{AFTER}" Data="마신의 유혹 포인트 : {BEFORE} → {AFTER}"/>
 		<Class ClassID="92121" ClassName="Achieve_Exceed_Period_of_Use" Data="칭호의 사용 기간이 초과되었습니다."/>
 		<Class ClassID="92122" ClassName="Event_JobexpCard_BOX_RankTooHigh" Data="이미 클래스 최대 레벨을 달성하여 사용할 수 없습니다."/>
+		<Class ClassID="92130" ClassName="GACHA_SITEM_GET_ALLMSG_11" Data="{s24}축하드립니다!{nl}{PC} 님이 6주년-복각: 축복받은 여신의 큐브에서{nl}{ITEMNAME} 를(을) 획득하셨습니다!"/>
 	</Category>
 	<Category Name="BattleText">
 		<Class ClassID="100001" ClassName="ADD_DAMAGE_{Auto_1}!" Data="추가 대미지 {Auto_1}!"/>
@@ -10450,7 +10500,11 @@
 		<Class ClassID="101148" ClassName="GuildMemberJoinAutoLimit" Data="길드 가입이 제한된 유저입니다."/>
 		<Class ClassID="101149" ClassName="OnlyPartyLeaderStartIndunMatching" Data="파티 리더만 최초 [파티원과 자동매칭] 신청을 시작할 수 있습니다."/>
 		<Class ClassID="101150" ClassName="OnlyPartyLeaderRegisterIndunMatching" Data="파티 리더만 [현재 모인 멤버로 자동매칭]을 시작할 수 있습니다."/>
+		<Class ClassID="101151" ClassName="NotExistTargetUser" Data="해당 유저는 현재 접속중이 아닙니다."/>
+		<Class ClassID="101152" ClassName="ExpireConfirmFindPartyJoin" Data="수락 대기 시간이 모두 경과하여 요청을 수락할 수 없습니다."/>
 		<Class ClassID="101153" ClassName="GrowthSupportGuildJoinPartyMemberCheck" Data="성장 지원 길드원과 현재 모인 맴버로 자동매칭시에는 5명으로 참여하여야 합니다."/>
+		<Class ClassID="101154" ClassName="NeedToCreateParty" Data="파티 생성 후 등록 가능합니다."/>
+		<Class ClassID="101155" ClassName="PartyParticipantNotice" Data="파티 모집에 지원한 플레이어가 있습니다.{nl}{#0000ff}파티 모집 게시판 등록 탭{#000000}에서 수락 가능합니다."/>
 	</Category>
 	<Category Name="Guild">
 		<Class ClassID="102001" ClassName="GuildMember{Cur}/{Max}People,OnLine{On}People" Data="길드원 ( {Cur} / {Max} 명, 온라인 {On} 명 )"/>
@@ -10776,6 +10830,12 @@
 		<Class ClassID="102504" ClassName="CopiedToClipboard" Data="클립보드에 복사되었습니다"/>
 		<Class ClassID="102505" ClassName="AccountCantParticipateColonyWar{date}" Data="해당 계정은 {date} 까지 콜로니전에 참가할 수 없습니다."/>
 		<Class ClassID="102506" ClassName="GuildCantParticipateColonyWar{date}" Data="해당 길드는 {date} 까지 콜로니전에 참가할 수 없습니다."/>
+		<Class ClassID="102507" ClassName="DeleteMessageFromEveryone" Data="모두에게서 삭제"/>
+		<Class ClassID="102508" ClassName="DeleteMessageFromEveryoneDesc" Data="선택한 메시지를 모든 대화 상대의 채팅방 화면에서 삭제합니다. 삭제하시겠습니까?"/>
+		<Class ClassID="102509" ClassName="YouAreGagged" Data="채팅을 금지당하여 메시지를 전송할 수 없습니다."/>
+		<Class ClassID="102510" ClassName="GagMember" Data="채팅 금지시키기"/>
+		<Class ClassID="102511" ClassName="UngagMember" Data="채팅 금지 해제"/>
+		<Class ClassID="102512" ClassName="UnpinMessage" Data="공지 내리기"/>
 </Category>
 	<Category Name="EqupClasses">
 		<Class ClassID="103001" ClassName="THSword" Data="양손검"/>
@@ -14434,6 +14494,7 @@
 		<Class ClassID="138423" ClassName="HighItemGradeReallyDestroy{msg}{ITEM}{COUNT}" Data="{#fe7e00}[{ITEM}]{/}을/를 {#fe7e00}[{COUNT}]{/}개 파괴하실려면 {#fe7e00}[{msg}]{/}를 입력해주세요."/>
 		<Class ClassID="138424" ClassName="HighItemGradeReallyDestroy{msg}{ITEM}" Data="정말 {#fe7e00}[{ITEM}]{/}을/를 파괴하실려면 {#fe7e00}[{msg}]{/} 을 입력해주세요."/>
 		<Class ClassID="138425" ClassName="OtherSlotEquipMent{ITEM1}{ITEM2}" Data="선택한 장비가 계승 전과 같은 종류의 장비가 아닙니다.{nl} {nl}정말 {#fe7e00}[{ITEM1}]{/}을/를{nl}{#fe7e00}[{ITEM2}]{/}으로 계승하시겠습니까?"/>
+		<Class ClassID="138427" ClassName="Auto_isnotPassTutorial_startline3" Data="해당 캐릭터는 모로스 라인 튜토리얼을 진행 중이거나 완료하지 않았습니다."/>
 	</Category>
 	<Category Name="SkillMsg">
 		<Class ClassID="200001" ClassName="DontBuildCampThisAria" Data="해당 지역에서는 거점을 설치할 수 없습니다."/>
@@ -15754,6 +15815,16 @@
 		<Class ClassID="302716" ClassName="GiveCountIs{Count}" Data="아이템 지급 횟수가 {Count}번 남았습니다."/>
 		<Class ClassID="302717" ClassName="GiveExchangeEquip" Data="장비 계열 변경의 서 획득"/>
 		<Class ClassID="302718" ClassName="OnlyNumberPlzUpper1" Data="1이상의 숫자만 입력해주세요."/>
+		<Class ClassID="302719" ClassName="EVENT_2112_6TH_SEL1" Data="{#003399}[6주년 이벤트]{/}이벤트 설명"/>
+		<Class ClassID="302720" ClassName="EVENT_2112_6TH_SEL2" Data="{#003399}[6주년 이벤트]{/}이벤트 버프 수령 ({#003399}{BUFF}{/}/3)"/>
+		<Class ClassID="302721" ClassName="EVENT_2112_6TH_SHOP" Data="{#003399}[6주년]{/}이벤트 상점"/>
+		<Class ClassID="302722" ClassName="EVENT_2112_6TH_BUFF_OVER" Data="{#FF3333}최대 횟수를 초과하였습니다.{nl}매일 오전 06시 초기화 됩니다.{/}"/>
+		<Class ClassID="302723" ClassName="EVENT_2112_6TH_NPC_CHAT1" Data="버프가 성공적으로 적용되었어요!"/>
+		<Class ClassID="302724" ClassName="EVENT_2112_6TH_CHECK_MSG" Data="{#0066FF}[6주년]{/} 이벤트 현황{nl}접속 시간({#0066FF}{TIME}{/}분){nl}일일 [이벤트] 6주년 주화 현황 ({#0066FF}{COIN}{/}/{MAX}){nl}일일 6주년 축하 버프 받기({#0066FF}{BUFF}{/}/3){nl}{#FF3333}※일일 제한은 매일 오전 06시 초기화 됩니다.{/}"/>
+		<Class ClassID="302725" ClassName="EVENT_2112_6TH_SEL3" Data="{#003399}[6주년 성장&amp;득템]{/}경험의 황금 사과 받기({#003399}{COUNT}{/}/1)"/>
+		<Class ClassID="302726" ClassName="EVENT_2112_6TH_APPLE_OVER" Data="{#FF3333}최대 수령 횟수를 초과하였습니다.{nl}매주 월요일 오전 06시 초기화 됩니다.{/}"/>
+		<Class ClassID="302727" ClassName="EVENT_2112_6TH_CHECK_MSG2" Data="{#0066FF}[6주년]{/} 콘텐츠 보상 2배 지급 현황{nl}LV400 레벨 던전({#0066FF}{COUNT1}{/}/10회){nl}텔하르샤({#0066FF}{COUNT2}{/}/10회){nl}마신의 성소 자동매칭({#0066FF}{COUNT3}{/}/10회){nl}챌린지 모드 자동매칭(460LV)({#0066FF}{COUNT4}{/}/10회){nl}분열 특이점 자동 매칭({#0066FF}{COUNT5}{/}/10회){nl}성자의 기도소 - 1인,자동매칭({#0066FF}{COUNT6}{/}/10회){nl}성물 레이드 - 1인,자동매칭 Nomal({#0066FF}{COUNT7}{/}/10회){nl}성물 레이드 - 파티,자동매칭 Hard({#0066FF}{COUNT8}{/}/10회){nl}{#FF3333}※주간 제한은 매주 월요일 오전 06시 초기화 됩니다.{/}"/>
+		<Class ClassID="302728" ClassName="EVENT_2112_6TH_SEL4" Data="{#003399}[6주년 성장&amp;득템]{/}이벤트 설명"/>
 	</Category>
 	<Category Name="Account">
 		<Class ClassID="303001" ClassName="MaxAccountWarehouseCount" Data="팀 창고"/>
@@ -16580,7 +16651,7 @@
 		<Class ClassID="1000048" ClassName="challenge_auto_division_mode_day_5{mapName}" Data="금요일 : {mapName}"/>
 		<Class ClassID="1000049" ClassName="challenge_auto_division_mode_day_6{mapName}" Data="토요일 : {mapName}"/>
 		<Class ClassID="1000050" ClassName="challenge_auto_division_mode_day_help_text" Data="챌린지 모드 : 분열 특이점 (필드) 위치 정보"/>
-		<Class ClassID="1000051" ClassName="challenge_auto_division_mode_day_7" Data="일요일 : 모든 지역(EP.13)"/>
+		<Class ClassID="1000051" ClassName="challenge_auto_division_mode_day_7" Data="일요일 : 모든 지역(EP.14)"/>
 		<Class ClassID="1000052" ClassName="challenge_Mode_Auto_Disable_ReEnter" Data="게임 시작 이전에 퇴장하였으므로 다시 참여할 수 없습니다."/>
 	</Category>
 	<Category Name="RankReset">
@@ -16741,7 +16812,12 @@
 		<Class ClassID="2000221" ClassName="WebService_601" Data="조회시간이 현재시간보다 과거여야합니다."/>
 		<Class ClassID="2000222" ClassName="WebService_602" Data="조회시간이 존재해야 합니다."/>
 		<Class ClassID="2000223" ClassName="WebService_603" Data="조회할 길드 인덱스가 필요합니다."/>
+    <Class ClassID="2000224" ClassName="WebService_650" Data="파티찾기 게시판 등록이 실패하였습니다."/>
+    <Class ClassID="2000225" ClassName="WebService_651" Data="파티찾기 게시판 정보 갱신이 실패하였습니다."/>
+    <Class ClassID="2000226" ClassName="WebService_652" Data="파티찾기 게시판 정보 삭제가 실패하였습니다."/>
 		<Class ClassID="2000227" ClassName="WebService_46" Data="지원하지 않는 문자(언어)가 포함되어 있습니다."/>
+    <Class ClassID="2000228" ClassName="WebService_653" Data="검색어는 2글자 이상 또는 10글자 이하여야 합니다."/>
+		<Class ClassID="2000229" ClassName="WebService_654" Data="메시지는 55바이트를 넘을 수 없습니다."/>
 		<Class ClassID="2000230" ClassName="WebService_604" Data="이름은 1바이트 이상 12바이트 이하여야 합니다."/>
 		<Class ClassID="2099994" ClassName="ImageUploadSuccess" Data="이미지가 성공적으로 업로드되었습니다"/>
 		<Class ClassID="2099995" ClassName="RegGuildPromoteBeforeImage" Data="이미지를 등록하기 전에 길드 홍보글을 등록해주세요"/>
@@ -17567,6 +17643,8 @@
 		<Class ClassID="1031025" ClassName="adventure_book_achieve_period_remaining_time" Data="기간제  {DAY}일 {TIME}"/>
 		<Class ClassID="1031026" ClassName="adventure_book_achieve_period_end" Data="기간이 종료되었습니다."/>
 		<Class ClassID="1031027" ClassName="adventure_book_achieve_subcategory_maincont_masterQuest" Data="마스터 의뢰"/>
+		<Class ClassID="1031028" ClassName="adventure_book_achieve_subcategory_maincont_grewup" Data="성장 업적"/>
+		<Class ClassID="1031029" ClassName="adventure_book_achieve_subcategory_maincont_grewup_sub" Data="{nl}※마우스 우클릭 시, {nl}성장 업적의 챕터를 선택할 수 있습니다."/>
 	</Category>
 	<Category Name="achieve_msg">
 		<Class ClassID="1032000" ClassName="achieve_fail_add_chase_full_size" Data="업적을 추적창에 더 이상 등록할 수 없습니다.{nl}업적은 추적창에 최대 5개까지 등록 가능합니다."/>
@@ -17664,5 +17742,17 @@
 		<Class ClassID="1070003" ClassName="ContentsAlert_SysMsg_3" Data="선택하신 콘텐츠 이용을 위해 지역 이동이 필요합니다. 이동하시겠습니까?{nl}{#FF3333}※ '아니요'를 선택하셔도 인벤토리의 '콘텐츠 초대장' 아이템을 사용하여 다시 확인하실 수 있습니다.{/}"/>
 		<Class ClassID="1070004" ClassName="ContentsAlert_SysMsg_4" Data="NPC {NPCNAME}에게 대화를 걸어 콘텐츠에 참여하세요."/>
 		<Class ClassID="1070005" ClassName="ContentsAlert_SysMsg_5" Data="신규/복귀 구원자가 아닐 경우 아이템이 삭제됩니다."/>
+	</Category>
+	<Category Name="PartySearchBoard">
+		<Class ClassID="1080001" ClassName="PartyBoard_Participant_Info" Data="특성 달성률:{ABIL}%{nl} {nl}기어 스코어:{GEAR}{nl} {nl}성물 레벨:{RELIC}"/>
+		<Class ClassID="1080002" ClassName="PartyBoard_Cant_Participate" Data="파티 참가 조건을 만족하지 못해 참가신청을 하실 수 없습니다."/>
+	</Category>
+	<Category Name="TutorialQuest">
+		<Class ClassID="1100000" ClassName="Lv440KlaipeCastle" Data="Lv.440 왕국령 모로스 공관"/>
+		<Class ClassID="1100001" ClassName="Lv1KlaipeWest" Data="Lv.1 샤울레이 서쪽 숲"/>
+		<Class ClassID="1100002" ClassName="StartFromWhere" Data="에서 시작"/>
+		<Class ClassID="1100003" ClassName="CondSelectStartFromKlaipeWest" Data="{#00ffff}왕국령 모로스 공관 튜토리얼 퀘스트 클리어{/}"/>
+		<Class ClassID="1100004" ClassName="StartingPointAndLevel" Data="{s20}{#ff0000}[시작 지역]{/}{/}"/>
+		<Class ClassID="1100005" ClassName="CanUseAfterTutorialClear" Data="튜토리얼 완료 후 이용할 수 있습니다."/>
 	</Category>
 </idspace>

@@ -588,6 +588,7 @@
 	<Texture name="texture_fire001" texture="fire001" width="2.00" height="2.00" pivot_x="0.50" pivot_y="0.50" texel_x="0" texel_y="0" texel_width="64" texel_height="64"/>
 	<Texture name="texture_test_1" texture="fire004" width="2.00" height="2.00" pivot_x="0.50" pivot_y="0.50" texel_x="0" texel_y="0" texel_width="64" texel_height="64"/>
 	<Texture name="texture_test_2" texture="fire004" width="2.00" height="2.00" pivot_x="0.50" pivot_y="0.50" texel_x="0" texel_y="0" texel_width="64" texel_height="64"/>
+	<Sprite name="sptire088_1536" texture="sptire088_1536" width="5.00" height="5.00" pivot_x="0.50" pivot_y="0.50" texel_x="0" texel_y="0" texel_width="256" texel_height="256" loop="false" count="36" pitch="4" ticktime="0.05"/>
 	<Sprite name="sptire088_waterball" texture="sptire088_1024" width="5.00" height="5.00" pivot_x="0.50" pivot_y="0.50" texel_x="0" texel_y="0" texel_width="171" texel_height="171" loop="false" count="36" pitch="4" ticktime="0.05"/>
 	<Sprite name="complete_logo" texture="complete_logo" width="5.00" height="5.00" pivot_x="0.50" pivot_y="0.50" texel_x="0" texel_y="0" texel_width="256" texel_height="256" loop="false" count="16" pitch="4" ticktime="0.05"/>
 	<Sprite name="complete_logo_add" texture="complete_logo_add" width="5.00" height="5.00" pivot_x="0.50" pivot_y="0.50" texel_x="0" texel_y="0" texel_width="256" texel_height="64" loop="false" count="16" pitch="2" ticktime="0.05"/>
@@ -740,6 +741,7 @@
 	<Trail name="dash001_pink" texture="dash001_pink" height="5.00" texel_x="0" texel_y="0" texel_width="32" texel_height="16"/>
 	<Trail name="dash001" texture="dash001" height="5.00" texel_x="0" texel_y="0" texel_width="32" texel_height="16"/>
 	<Trail name="smoke002" texture="smoke002" height="10.00" texel_x="512" texel_y="512" texel_width="64" texel_height="64"/>
+	<Model name="boss_DelmoreCastleGate_kruvina2_dead" model="boss_DelmoreCastleGate_kruvina2_dead.xac" motion="boss_DelmoreCastleGate_kruvina2_dead_ani.xsm" texturepath="effect\high\modeltexture\" overlap="true" AlphaType="TEST"/>
 	<Model name="effect_zanas_400" model="effect_zanas_400.xac" motion="effect_zanas_400_ani.xsm" texturepath="effect\high\modeltexture\" overlap="false" AlphaType="TEST"/>
 	<Model name="effect_zanas" model="effect_zanas.xac" motion="effect_zanas_ani.xsm" texturepath="effect\high\modeltexture\" overlap="false" AlphaType="TEST"/>
 	<Model name="I_stone001_2_mesh" model="I_stone001_2_mesh.xac" motion="I_stone001_2_mesh_ani.xsm" texturepath="effect\high\modeltexture\" overlap="false" AlphaType="TEST"/>
@@ -1159,7 +1161,7 @@
 	<Model name="stone_explosion" model="stone_explosion.xac" motion="stone_explosion_ani.xsm" texturepath="effect\high\modeltexture\" overlap="false" AlphaType="TEST"/>
 	<Model name="stone_ground" model="stone_ground.xac" motion="None" texturepath="effect\high\modeltexture\" overlap="false" AlphaType="TEST"/>
 	<Model name="sparnasman_dead" model="sparnasman_dead.xac" motion="sparnasman_dead_ani.xsm" texturepath="char_texture\monster\Sparnanman\" overlap="false" AlphaType="TEST"/>
-	<Model name="arrow004_mash" model="arrow004_mash.xac" motion="None" texturepath="item_texture" overlap="false" AlphaType="TEST"/>
+	<Model name="arrow004_mash" model="arrow004_mash.xac" motion="None" texturepath="item_texture\" overlap="false" AlphaType="TEST"/>
 	<Model name="wood_explosion" model="wood_explosion.xac" motion="wood_explosion_ani.xsm" texturepath="char_texture\monster\wood_spirit\" overlap="true" AlphaType="TEST"/>
 	<Model name="ice" model="ice.xac" motion="None" texturepath="effect\high\modeltexture\" overlap="true" AlphaType="TEST"/>
 	<Model name="stone_drop" model="stone_drop.xac" motion="stone_drop_ani.xsm" texturepath="char_texture\monster\yonazolem\" overlap="true" AlphaType="TEST"/>
