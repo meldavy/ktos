@@ -3449,19 +3449,32 @@ function CLMSG_DIALOG_CONVERT(npc,msg)
 end
 
 function GET_ABILITY_POINT_EXTRACTOR_FEE(type)
-    if type == 1 then
-        return 999999999
+    if type == 2 then
+        -- 특성 포인트 추출 수수료 퍼센트
+        return 20;
     end
 
     return 999999999;
 end
 
 function GET_ABILITY_POINT_EXTRACTOR_MIN_VALUE(type)
-    if type == 1 then
-        return 0
+    if type == 2 then
+        -- 특성 포인트 추출 스크롤 교환 최소 개 수 
+        return 10;
     end
 
-    return 0;
+    return 0;    
+end
+
+-- 특성 포인트 추출 스크롤 교환 최소 잔여 포인트
+function GET_ABILITY_POINT_EXTRACTOR_MIN_REMAIN_POINT(type)
+    if type == 1 then
+        return 500000
+    elseif type == 2 then
+        return 1000000
+    end
+
+    return 0;    
 end
 
 -- 합성 가능한 스킬젬인지 확인

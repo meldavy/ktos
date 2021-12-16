@@ -1934,8 +1934,8 @@
 		<Class ClassID="10562" ClassName="KOR_MaxSilverLimitOverDaily" Data="넥슨 ID 보안서비스에 가입하지 않아, 더 이상 사냥을 통해 실버를 획득할 수 없습니다. 넥슨 ID 보안 서비스에 가입하여 주세요.{nl} {nl}보안서비스 가입 후 재접속하여 주세요."/>
 		<Class ClassID="10563" ClassName="GLOBAL_MaxSilverLimitOverDaily" Data="Your account is currently under the daily limit of acquiring silver in the field. If you wish to lift the daily limit, register your account in Steam Guard."/>
 		<Class ClassID="10564" ClassName="GLOBAL_JP_MaxSilverLimitOverDaily" Data="当アカウントは現在フィールドで獲得可能なシルバーの一日獲得数が制限されております。解除したい場合はアカウントをSTEAMガードに登録してください。"/>
-		<Class ClassID="10565" ClassName="AbilityPointExtractorTooltipText_1" Data="{@st59s}100,000실버를 소비하여 특성 포인트 1000당{nl}특성 포인트 스크롤 1개로 추출합니다."/>
-		<Class ClassID="10566" ClassName="AbilityPointExtractorTooltipText_2{VALUE}{MIN}" Data="{@st59s}추출할 특성 포인트의 {VALUE}%를 소비하여 {nl}포인트 1000당 특성 포인트 스크롤 1개로 추출합니다.{nl}최소 {MIN}개 부터 교환 가능합니다."/>
+		<Class ClassID="10565" ClassName="AbilityPointExtractorTooltipText_1{MIN_REMAIN_POINT}" Data="{@st59s}100,000실버를 소비하여 특성 포인트 1000당{nl}특성 포인트 스크롤 1개로 추출합니다.{nl}특성 포인트 {MIN_REMAIN_POINT} 포인트 이상 보유 시 추출할 수 있습니다."/>
+		<Class ClassID="10566" ClassName="AbilityPointExtractorTooltipText_2{VALUE}{MIN_REMAIN_POINT}{MIN}" Data="{@st59s}추출할 특성 포인트의 {VALUE}%를 소비하여 {nl}포인트 1000당 특성 포인트 스크롤 1개로 추출합니다.{nl}특성 포인트 {MIN_REMAIN_POINT} 포인트 이상 보유 시 추출할 수 있습니다.{nl}최소 {MIN}개 부터 교환 가능합니다."/>
 		<Class ClassID="10567" ClassName="AskExtractAbilityPoint2{AllConsumePoint}{Scroll}{ConsumePoint}" Data="{AllConsumePoint} 특성 포인트를 소비하여 특성 포인트 스크롤 {Scroll}개를 추출합니다.{nl}{ConsumePoint} 특성 포인트를 추출하시겠습니까?"/>
 		<Class ClassID="10568" ClassName="AbilityPointExtractorMinCount{VALUE}" Data="최소 교환 개수 : {VALUE}개"/>
 		<Class ClassID="10569" ClassName="WeeklyMaxPvpMineCountOver" Data="주간 최대 획득량에 도달하여 더 이상 용병단 주화를 획득하실 수 없습니다." msg_skip_func="GET_PVP_MINE_COIN_MSG_STATE"/>
@@ -1967,6 +1967,7 @@
 		<Class ClassID="10598" ClassName="{sec}CanBeRequested" Data="{sec}초 마다 요청 가능합니다. 아직 요청할 수 없습니다."/>
 		<Class ClassID="10599" ClassName="RemainTimeToDelete{min}{sec}" Data="{@st105_y_16}{s14}모집 공고 자동 삭제까지{@st43b}{s20} {min}:{sec} {@st105_y_16}{s14}남았습니다"/>
 		<Class ClassID="10600" ClassName="{datetime}CantUseFor" Data="[{datetime}]이후 조회 가능합니다."/>
+		<Class ClassID="10601" ClassName="AbilityPointExtractor_NotEnoughAbilityPoint" Data="특성 포인트를 {MIN} 포인트 이상 보유하고 있어야 추출할 수 있습니다."/>
 	</Category>
 	<Category Name="FoodTable">
 		<Class ClassID="20001" ClassName="IncreaseHP{Value}For{Time}Minute" Data="{Time}분 동안 HP가 {Value}% 증가합니다."/>
