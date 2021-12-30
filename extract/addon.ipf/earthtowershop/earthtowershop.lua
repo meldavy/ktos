@@ -1401,30 +1401,36 @@ function EARTH_TOWER_SHOP_EXEC(parent, ctrl)
         end
     end
     
-    if (shopType == 'PVPMine' or shopType == 'GabijaCertificate' or shopType == 'DailyRewardShop') and resultCount >= 10 then
+    if (shopType == 'PVPMine' or shopType == 'GabijaCertificate' or shopType == 'DailyRewardShop') and resultCount >= 1 then
         local coin_name = ""
+        local recipeCnt = 0
         local before_count = 0
         local after_count = 0
         local recipecls = GetClass('ItemTradeShop', parent:GetName());
+        local aObj = GetMyAccountObj()
         if g_account_prop_shop_table[shopType] == nil then -- 아이템
             local itemName = TryGetProp(recipecls, "Item_1_1", "None");
-            local recipeCnt = TryGetProp(recipecls, "Item_1_1_Cnt", 0);
+            recipeCnt = TryGetProp(recipecls, "Item_1_1_Cnt", 0);
             local itemCls = GetClass('Item', itemName)
             before_count = GET_TOTAL_ITEM_CNT(itemCls.ClassID)
-            after_count = before_count - GET_TOTAL_AMOUNT_OVERBUY(shopType, recipeCnt, recipecls, GetMyAccountObj(), resultCount)
             coin_name = TryGetProp(itemCls, "Name", "None")
         else -- 주화
             local coinCls = GetClassByStrProp('accountprop_inventory_list', 'ClassName', g_account_prop_shop_table[shopType]['propName'])
-            local recipeCnt = TryGetProp(recipecls, "Item_1_1_Cnt", 0);
-            local aObj = GetMyAccountObj()
+            recipeCnt = TryGetProp(recipecls, "Item_1_1_Cnt", 0);
             local count = TryGetProp(aObj, g_account_prop_shop_table[shopType]['propName'], '0')
             if count == 'None' then
                 count = '0'
             end
             before_count = tonumber(count) -- 현재 갯수
-            after_count = before_count - GET_TOTAL_AMOUNT_OVERBUY(shopType, recipeCnt, recipecls, GetMyAccountObj(), resultCount)
             coin_name = ClMsg(TryGetProp(coinCls, "ClassName", "None"))
         end
+
+        if IS_OVERBUY_ITEM(shopType, recipecls, aObj) == false then
+            after_count = before_count - (recipeCnt * resultCount)
+        else
+            after_count = before_count - GET_TOTAL_AMOUNT_OVERBUY(shopType, recipeCnt, recipecls, aObj, resultCount)
+        end
+
         before_count = GET_COMMAED_STRING(before_count)
         after_count = GET_COMMAED_STRING(after_count)
 

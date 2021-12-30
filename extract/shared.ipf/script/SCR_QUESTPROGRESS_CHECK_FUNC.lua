@@ -1124,3 +1124,16 @@ function IS_UNLOCK_QUEST_STARTED(pc, achieve_name)
     end
     return false;
 end
+
+
+-- 영웅담 퀘스트 시작 조건 기본 클래스 포함 4개 이상
+function GET_TOSHERO_TUTO_01_ENABLE(pc, questName)
+    local Job = GetJobHistoryList(pc)
+    
+    if #Job >= 4 then
+        return "YES"
+    else
+        return "NO"
+    end
+
+end

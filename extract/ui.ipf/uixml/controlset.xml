@@ -5998,7 +5998,7 @@
 		<userconfig QUEST_CTRL_HEIGHT="32" QUEST_CTRL_TITLE_HEIGHT="32" OPENED_CTRL_IMAGE="btn_plus" CLOSED_CTRL_IMAGE="btn_minus" CLEAR_COLORTONE="FF777777" NORMAL_SKIN="relabeling_episode_title" NORMAL_REWARD_BOX="compen_btn" CLEAR_REWARD_BOX="compen_open" LOCK_REWARD_BOX="compen_unacted"/>
 		<controls>
 			<groupbox name="relicTitleGbox" rect="0 0 510 70" margin="0 0 0 0" layout_gravity="left top" skin="relabeling_episode_title" draw="true" hittestbox="true" resizebyparent="false" scrollbar="false"/>
-			<richtext name="categoryNameTxt" parent="relicTitleGbox" rect="0 0 245 24" margin="35 0 0 0" layout_gravity="left center" format="{@st42b}{s18}{ds}%s" param1="name" param1_def="카테고리" fixwidth="true" resizebytext="true" hittest="true" fontname="white_24_ol"/>
+		<richtext name="categoryNameTxt" parent="relicTitleGbox" rect="0 0 245 24" margin="35 0 0 0" layout_gravity="left center" format="{@st42b}{s18}{ds}%s" param1="name" param1_def="카테고리" fixwidth="true" resizebytext="true" hittest="true" fontname="white_24_ol"/>
 			<richtext name="totalProgressTxt" parent="relicTitleGbox" rect="0 0 85 24" margin="0 0 100 0" layout_gravity="right center" textalign="right center" format="{@st42b}{s16}{ds}%s" param1="name" param1_def="진행도" fixwidth="true" resizebytext="true" hittest="true" fontname="white_24_ol"/>
 			<picture name="rewardBtn" parent="relicTitleGbox" rect="0 0 36 30" margin="0 20 45 0" layout_gravity="right top" image="compen_btn" stretch="true" LBtnUpScp="CLICK_RELIC_CATEGORY_REWARD" texttooltip="{@st59}보상 정보 확인{/}"/>
 			<groupbox name="rewardStepBox" parent="relicTitleGbox" rect="0 0 25 24" margin="0 10 35 0" layout_gravity="right top" skin="digitnotice_bg"/>
@@ -6010,7 +6010,7 @@
 		<userconfig NORMAL_FONT="{@s16}" NORMAL_COLOR="{#ffffff}" COMP_FONT="{@s16}" COMP_COLOR="{#9f9f9f}" LOCK_REWARD_BOX="compen_unacted"/>
 		<controls>
 			<picture name="typePic" rect="0 0 24 20" margin="10 0 0 0" layout_gravity="left center" image="indun_icon_day_s" stretch="true"/>
-			<richtext name="targetTxt" rect="0 0 200 18" margin="50 0 0 0" layout_gravity="left center" fixwidth="false" resizebytext="true" hittest="true" fontname="yellow_16_ol"/>
+			<richtext name="targetTxt" rect="0 0 310 18" margin="50 0 0 0" layout_gravity="left center" fixwidth="true" resizebytext="false" hittest="true" omitbywidth="true" fontname="yellow_16_ol"/>
 			<richtext name="progressTxt" rect="0 0 80 20" margin="0 0 80 0" layout_gravity="right center" textalign="right center" fixwidth="true" resizebytext="false" hittest="true" omitbywidth="true" fontname="yellow_16_ol"/>
 			<picture name="rewardPic" rect="0 0 22 22" margin="0 0 7 0" layout_gravity="right center" stretch="true" image="compen_btn" LBtnUpScp="CLICK_RELIC_QUEST_REWARD" texttooltip="{@st59}보상 정보 확인{/}"/>
 			<picture name="completePic" rect="0 0 22 22" margin="0 0 7 0" layout_gravity="right center" stretch="true" image="relabeling_end_check" texttooltip="{@st59}완료{/}"/>

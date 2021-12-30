@@ -6534,6 +6534,22 @@
         <Key Name="PHARMACY_GIVE_TUTORIAL_ITEM" Value="110988"/>
         <Key Name="UITUTO_PHARMACY" Value="110989"/>
         <Key Name="EVENT_CPQ_CHALLENGE_COUNT" Value="110993"/>
+        <Key Name="ACHIVE_PLAY_TIME" Value="110997"/>
+        <Key Name="AchieveReward_EVENT_2201_New_Year_Achieve_1" Value="111002"/>
+        <Key Name="AchieveReward_EVENT_2201_New_Year_Achieve_10" Value="111010"/>
+        <Key Name="AchieveReward_EVENT_2201_New_Year_Achieve_11" Value="110994"/>
+        <Key Name="AchieveReward_EVENT_2201_New_Year_Achieve_12" Value="111004"/>
+        <Key Name="AchieveReward_EVENT_2201_New_Year_Achieve_13" Value="111007"/>
+        <Key Name="AchieveReward_EVENT_2201_New_Year_Achieve_14" Value="110996"/>
+        <Key Name="AchieveReward_EVENT_2201_New_Year_Achieve_2" Value="111001"/>
+        <Key Name="AchieveReward_EVENT_2201_New_Year_Achieve_3" Value="110998"/>
+        <Key Name="AchieveReward_EVENT_2201_New_Year_Achieve_4" Value="110995"/>
+        <Key Name="AchieveReward_EVENT_2201_New_Year_Achieve_5" Value="111000"/>
+        <Key Name="AchieveReward_EVENT_2201_New_Year_Achieve_6" Value="110999"/>
+        <Key Name="AchieveReward_EVENT_2201_New_Year_Achieve_7" Value="111006"/>
+        <Key Name="AchieveReward_EVENT_2201_New_Year_Achieve_8" Value="111003"/>
+        <Key Name="AchieveReward_EVENT_2201_New_Year_Achieve_9" Value="111005"/>
+        <Key Name="AchieveReward_EVENT_Best_Painter_4th" Value="111008"/>
     </KeyIDSpc>
     <KeyIDSpc Name="PCEtc">
         <Key Name="Kill_boss_Clymen_Q2" Value="7788"/>
@@ -15825,6 +15841,7 @@
         <Key Name="BalanceCare_Give_Reset_211226" Value="110990"/>
         <Key Name="Kill_boss_DelmoreCastleGate_Auto" Value="110992"/>
         <Key Name="Kill_boss_DelmoreCastleGate_Solo" Value="110991"/>
+        <Key Name="IndunWeeklyEnteredCount_0" Value="111009"/>
     </KeyIDSpc>
     <KeyIDSpc Name="GuildMember">
         <Key Name="Name" Value="9011"/>

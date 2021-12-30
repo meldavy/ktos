@@ -3701,6 +3701,12 @@ function REQ_RAID_SOLO_UI_OPEN(frame, ctrl)
 end
 
 function REQ_TOSHERO_ENTER(frame, ctrl)
+    local pc = GetMyPCObject();
+    if GetTotalJobCount(pc) < 4 then
+        ui.SysMsg(ScpArgMsg('ClassCountIsNotFull'));
+        return
+    end
+    
     -- 매칭 던전중이거나 pvp존이면 이용 불가
     if session.world.IsIntegrateServer() == true or IsPVPField(pc) == 1 or IsPVPServer(pc) == 1 then
         ui.SysMsg(ScpArgMsg('ThisLocalUseNot'));

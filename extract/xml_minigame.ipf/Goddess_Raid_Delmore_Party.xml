@@ -148,6 +148,10 @@
                         </condList>
                         <execList>
                             <ToolScp Scp="MGAME_EXEC_REVIVE" Client="NO" UseSleep="NO"/>
+                            <ToolScp Scp="SCR_LEGEND_RAID_CLEAR_CHECK" Client="NO" UseSleep="NO">
+                                <Str Str="가디스 레이드 : 델무어 격전지(파티)"/>
+                                <Str Str="None"/>
+                            </ToolScp>
                             <ToolScp Scp="EXEC_DUNGEON_GIVE_TAKE_SOBJ_ACHIEVE_TX" Client="NO" UseSleep="NO">
                                 <Str Str="Goddess_Raid_Delmore_Party"/>
                                 <Str Str="None"/>
@@ -224,6 +228,10 @@
                         </condList>
                         <execList>
                             <ToolScp Scp="MGAME_EXEC_REVIVE" Client="NO" UseSleep="NO"/>
+                            <ToolScp Scp="SCR_LEGEND_RAID_CLEAR_CHECK" Client="NO" UseSleep="NO">
+                                <Str Str="가디스 레이드 : 델무어 격전지(파티)"/>
+                                <Str Str="None"/>
+                            </ToolScp>
                             <ToolScp Scp="EXEC_DUNGEON_GIVE_TAKE_SOBJ_ACHIEVE_TX" Client="NO" UseSleep="NO">
                                 <Str Str="Goddess_Raid_Delmore_Party"/>
                                 <Str Str="None"/>
@@ -1273,7 +1281,7 @@
                             </ToolScp>
                             <ToolScp Scp="MGAME_EVT_COND_MONHP" Client="NO" UseSleep="NO">
                                 <MGameObj List="RevivalPaulius/0"/>
-                                <Num Num="99"/>
+                                <Num Num="97"/>
                                 <Str Str="UNDER"/>
                                 <Num Num="1"/>
                                 <Str Str="OVER"/>
@@ -1282,7 +1290,7 @@
                         <execList>
                             <ToolScp Scp="GAME_ST_EVT_EXEC_VALUE" Client="NO" UseSleep="NO">
                                 <Str Str="eyes_object_summon_limit"/>
-                                <Num Num="90"/>
+                                <Num Num="80"/>
                             </ToolScp>
                             <ToolScp Scp="MGAME_EVT_SCP_TO_MON_CMD" Client="NO" UseSleep="NO">
                                 <MGameObj List="RevivalPaulius/0"/>
@@ -1442,6 +1450,10 @@
             <ToolScp Scp="MGAME_ZONEENTER_SCRIPT" Client="NO" UseSleep="NO">
                 <Num Num="2"/>
                 <Str Str="SCR_DELMORE_CASTLE_GATE_RESTART_CHECK"/>
+            </ToolScp>
+            <ToolScp Scp="MGAME_ZONEENTER_SCRIPT" Client="NO" UseSleep="NO">
+                <Num Num="2"/>
+                <Str Str="SCR_DELMORE_CASTLE_GATE_SET_VIEW_RANGE"/>
             </ToolScp>
         </EnterList>
         <WorldInitList>

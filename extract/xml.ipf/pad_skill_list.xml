@@ -22658,18 +22658,12 @@ return 30000 + obj.Level * 5000"/>
 				<Str Str="SpringTrap_Debuff"/>
 				<Num Num="1"/>
 				<Num Num="0"/>
-				<Num Num="30000"/>
+				<Num Num="35000"/>
 				<Num Num="1"/>
 				<Num Num="100"/>
 				<Num Num="0"/>
 			</ToolScp>
-			<ToolScp Scp="PAD_TGT_DAMAGE" Client="NO" UseSleep="NO">
-				<Str Str="ENEMY"/>
-				<Num Num="1"/>
-				<Num Num="0"/>
-				<Num Num="0"/>
-			</ToolScp>
-		</enterEvent>
+			</enterEvent>
 		<updateEvent>
 			<ToolScp Scp="PAD_ADD_LIFE" Client="NO" UseSleep="NO">
 				<Num Num="-100"/>

@@ -191,7 +191,7 @@ function QUEST_REWARD_TEST(frame, questID)
 	box:Resize(box:GetWidth(), y);
 
 	local maxSizeHeightFrame = box:GetY() + box:GetHeight() + 20;
-	local maxSizeHeightWnd = ui.GetSceneHeight();
+	local maxSizeHeightWnd = ui.GetClientInitialHeight();
 	if maxSizeHeightWnd < (maxSizeHeightFrame + MAX_SIZE_HEIGT_FRAME_EMPTY_VALUE) then 
 		local margin = maxSizeHeightWnd / 2;
 		box:EnableScrollBar(1);

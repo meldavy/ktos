@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by imc (imc) -->
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by imc (imc) -->
 <!-- edited with XMLSpy v2008 sp1 (http://www.altova.com) by MintPC (Mi) -->
 <skinset name="Base">
 	<skinlist category="frames">
@@ -8786,6 +8786,8 @@
 		<image name="Collar_Event_Kokuma_skin" file="\skin\Collar_skin.tga" imgrect="155 93 30 30" CMM_Caption="고구마 칭호"/>
 		<image name="Collar_skunk01" file="\skin\Collar_skin.tga" imgrect="186 93 30 30" CMM_Caption="스컹크01"/>
 		<image name="Collar_skunk02" file="\skin\Collar_skin.tga" imgrect="217 93 30 30" CMM_Caption="스컹크02"/>
+		<image name="Collar_2022newyear_1" file="\skin\Collar_skin.tga" imgrect="0 124 30 30" CMM_Caption="2022신년칭호_반짝"/>
+		<image name="Collar_2022newyear_2" file="\skin\Collar_skin.tga" imgrect="31 124 30 30" CMM_Caption="2022신년칭호_흑호"/>
 	</imagelist>
 	<imagelist category="testse_image">
 		<image name="indun_soulcrystal_bg" file="\skin\indun_skin.tga" imgrect="614 552 84 86" CMM_Caption="소울크리스탈 횟수제한 UI"/>
@@ -14431,6 +14433,7 @@
 		<image name="plate_achieve_epicraid_silver" file="\skin\user_title_skin.tga" imgrect="860 959 214 34" CMM_Caption="에픽레이드_은"/>
 		<image name="plate_achieve_epicraid_gold" file="\skin\user_title_skin.tga" imgrect="860 994 214 34" CMM_Caption="에픽레이드_금"/>
 		<image name="plate_achieve_epicraid_firstclear" file="\skin\user_title_skin.tga" imgrect="1075 889 214 36" CMM_Caption="에픽레이드_퍼클"/>
+		<image name="plate_achieve_contest_Event_4th" file="\skin\user_title_skin.tga" imgrect="1075 926 214 34" CMM_Caption="일본 일러스트 공모전 칭호_4th"/>
 	</imagelist>
 	<imagelist category="skin_hair">
 		<image name="icon_skintone_01_m01" file="\skin\skinhair\icon_skintone_01_m01.png" imgrect="0 0 80 80" CMM_Caption="남성 01"/>

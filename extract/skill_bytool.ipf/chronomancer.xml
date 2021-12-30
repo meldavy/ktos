@@ -317,6 +317,7 @@
 	<Skill Name="Chronomancer_Samsara">
 		<EnableScripts>
             <ToolScp Client="BOTH" Scp="CHECK_IS_NO_CHANGEDROPLIST" UseSleep="NO"/>
+            <ToolScp Scp="CHECK_IS_PVE" Client="BOTH" UseSleep="NO"/>
         </EnableScripts>
         <MainSkl JumpFlee="NO" MSPDToUsePos="0" ScrLock="None">
 			<HitList>

@@ -2648,7 +2648,7 @@ end
 
 -- done , 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_GET_Bunshin_no_jutsu_Ratio(skill)
-    local value = 10
+    local value = 20
     
     return value
 end
@@ -2801,7 +2801,7 @@ end
 -- done , 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_GET_Mokuton_no_jutsu_Ratio(skill)
 
-    local value = skill.Level * 6
+    local value = 10 + skill.Level * 4
 
   return value
 
@@ -9368,13 +9368,13 @@ end
 
 -- done , 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_GET_TwistOfFate_Ratio(skill)
-    local value = (skill.Level * 8) - 7
+    local value = 25 + (skill.Level * 2)
     return value
 end
 
 -- done , 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_GET_TwistOfFate_Ratio2(skill)
-    local value = skill.Level * 8
+    local value = 32 + (skill.Level * 2)
     return value
 end
 
@@ -10648,7 +10648,7 @@ end
 
 -- done , 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_GET_Finestra_Ratio(skill)
-    local value = skill.Level * 12
+    local value = 20 + skill.Level * 8
     value = value * SCR_REINFORCEABILITY_TOOLTIP(skill);
     
     return value
@@ -14748,7 +14748,7 @@ end
 
 -- done , 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_GET_StartUp_Ratio(skill)
-    local value = 6 * skill.Level
+    local value = 5 + 4 * skill.Level
     return value
 end
 
@@ -15149,7 +15149,7 @@ function SCR_COMMON_COOLDOWN_DECREASE(pc, skill, basicCoolDown)
     -- 여신의 전언: 불꽃의 기억 쿨다운 감소
     local earring_raid_cooldown = GetExProp(pc, 'earring_raid_cooldown')
     if earring_raid_cooldown > 0 then
-        earring_raid_cooldown = earring_raid_cooldown / 100
+        earring_raid_cooldown = 1 - earring_raid_cooldown / 100
         basicCoolDown = basicCoolDown * earring_raid_cooldown
     end
     
@@ -16491,7 +16491,7 @@ end
 
 -- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_GET_HighMagnifyingGlass_Ratio(skill)
-    local value = skill.Level * 4
+    local value = 12 + skill.Level * 2
     value = value * SCR_REINFORCEABILITY_TOOLTIP(skill)
 
     return value;
@@ -17549,9 +17549,10 @@ end
 -- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.
 function SCR_Get_SkillFactor_TrickShot_Explode(skill)
     local pc = GetSkillOwner(skill)
-    local tripleArrow = GetSkill(pc, 'Mergen_TrickShot')
-
-    return math.floor(SCR_Get_SkillFactor_Reinforce_Ability(tripleArrow) * 0.4)
+    if TryGetProp(skill, 'ClassName', 'None') ~= 'Mergen_TrickShot' then
+        skill = GetSkill(pc, 'Mergen_TrickShot')
+    end
+    return math.floor(TryGetProp(skill, 'SkillFactor', 100) * 0.4)
 end
 
 -- done, 해당 함수 내용은 cpp로 이전되었습니다. 변경 사항이 있다면 반드시 프로그램팀에 알려주시기 바랍니다.

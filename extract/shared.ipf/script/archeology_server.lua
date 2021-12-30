@@ -133,7 +133,7 @@ function TX_SURVEY_ARCHEOLOGY(pc)
     end
 
     local now_count = TryGetProp(acc, 'archeology_try_count', 0)
-    if now_count >= 50 then
+    if now_count >= shared_archeology.get_max_archeology_try_count() then
         SendSysMsg(pc, 'CantSurveyArcheologyCuzManyFail')
         return
     end
@@ -265,9 +265,12 @@ function TX_SURVEY_ARCHEOLOGY(pc)
                 PlaySoundLocal(pc, 'skl_eff_archeology_very_far')
             elseif diff >= 500 then
                 SendSysMsg(pc, 'ArcheologyRelicFarAway')
-                PlaySoundLocal(pc, 'skl_eff_archeology_far')
-            else
+                PlaySoundLocal(pc, 'skl_eff_archeology_far')                
+            elseif diff >= 250 then
                 SendSysMsg(pc, 'ArcheologyRelicNear')
+                PlaySoundLocal(pc, 'skl_eff_archeology_very_close')
+            else
+                SendSysMsg(pc, 'ArcheologyRelicVeryClose')
                 PlaySoundLocal(pc, 'skl_eff_archeology_very_close')
             end
         end
@@ -388,6 +391,11 @@ function SCR_ARCHEOLOGY_RESULT_DIALOG(self, pc)
         if IsRunningScript(pc, 'SCR_NEXON_CPQ_ARCHEOLOGY_CLEAR_CHECK') ~= 1 then
             RunScript('SCR_NEXON_CPQ_ARCHEOLOGY_CLEAR_CHECK', pc)
         end
+        -- 신년 이벤트 업적
+        if IsRunningScript(pc, "TX_ADD_EVENT_CONTENTS_ACHIEVE") ~= 1 then
+            RunScript("TX_ADD_EVENT_CONTENTS_ACHIEVE", pc, 'Archeology');
+        end
+
         Dead(self)        
     end
     sleep(2000)

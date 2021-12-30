@@ -3233,7 +3233,7 @@ function INVENTORY_DELETE(itemIESID, itemType)
 		ui.SysMsg(ClMsg("MaterialItemIsLock"));
 		return;
 	end
-
+	
 	local cls = GetClassByType("Item", itemType);
 	if nil == cls then
 		return;
@@ -3244,6 +3244,12 @@ function INVENTORY_DELETE(itemIESID, itemType)
 	local is_ark = TryGetProp(item_obj, 'GroupName', 'None') == 'Ark' and TryGetProp(item_obj, 'StringArg2', 'None') == 'Made_Ark'
 	local destroable_ark = is_character_belonging and is_ark	
 	local itemProp = geItemTable.IsDestroyable(itemType);	
+	local warningMsgCostumeItem = false
+
+	if cls.MarketCategory == 'Premium_Costume' and cls.StringArg == 'SilverGacha' then
+		warningMsgCostumeItem = true
+	end
+
 	if is_ark == true then
 		if destroable_ark == false or cls.Destroyable == 'NO' or geItemTable.IsDestroyable(itemType) == false then
 			local obj = GetIES(invItem:GetObject());
@@ -3278,7 +3284,7 @@ function INVENTORY_DELETE(itemIESID, itemType)
 				return
 			end
 		end
-		INPUT_NUMBER_BOX(invFrame, titleText, "CHECK_EXEC_DELETE_ITEMDROP", 1, 1, invItem.count);
+		INPUT_NUMBER_BOX(invFrame, titleText, "CHECK_EXEC_DELETE_ITEMDROP", 1, 1, invItem.count, nil, cls.ClassName);			
 			
 	else
 		s_dropDeleteItemIESID = itemIESID;
@@ -3287,7 +3293,7 @@ function INVENTORY_DELETE(itemIESID, itemType)
         item_grade = GetIES(invItem:GetObject()).ItemGrade
 		local yesScp = string.format("EXEC_DELETE_ITEMDROP");
         local clmsg = ScpArgMsg('ReallyDestroy{ITEM}', 'ITEM', s_dropDeleteItemName);
-        if item_grade >= 3 then
+        if item_grade >= 3 or warningMsgCostumeItem == true then
             clmsg = ScpArgMsg('HighItemGradeReallyDestroy{msg}{ITEM}', 'msg', ClMsg('destory_now'), 'ITEM', s_dropDeleteItemName);
         end
 		--ui.MsgBox(clmsg, yesScp, "None");
@@ -3346,10 +3352,17 @@ end
 function CHECK_EXEC_DELETE_ITEMDROP(count, className)    
 	s_dropDeleteItemCount = tonumber(count);
 	local yesScp = string.format("EXEC_DELETE_ITEMDROP");
-    local clmsg = ScpArgMsg('ReallyDestroy{ITEM}{COUNT}', 'ITEM', s_dropDeleteItemName, 'COUNT', s_dropDeleteItemCount);
-    if item_grade >= 3 then
-        clmsg = ScpArgMsg('HighItemGradeReallyDestroy{msg}{ITEM}{COUNT}', 'msg', ClMsg('destory_now'), 'ITEM', s_dropDeleteItemName, 'COUNT', s_dropDeleteItemCount);
-    end
+
+	local warningMsgCostumeItem = false 
+	local cls = GetClass('Item', className:GetUserValue("ArgString"))
+	if cls.MarketCategory == 'Premium_Costume' and cls.StringArg == 'SilverGacha' then
+		warningMsgCostumeItem = true
+	end
+
+	local clmsg = ScpArgMsg('ReallyDestroy{ITEM}{COUNT}', 'ITEM', s_dropDeleteItemName, 'COUNT', s_dropDeleteItemCount);
+	if item_grade >= 3 or warningMsgCostumeItem == true then
+                clmsg = ScpArgMsg('HighItemGradeReallyDestroy{msg}{ITEM}{COUNT}', 'msg', ClMsg('destory_now'), 'ITEM', s_dropDeleteItemName, 'COUNT', s_dropDeleteItemCount);
+        end
 
 	--ui.MsgBox(clmsg, yesScp, "None");
 	local inputstringframe = ui.GetFrame("inputstring");
@@ -5640,7 +5653,6 @@ function STEAMED_BUNS_OPEN_BASIC_MSG(invItem)
 	local invFrame = ui.GetFrame("inventory");	
 	local itemobj = GetIES(invItem:GetObject());
 	local itemClassName = TryGetProp(itemobj, "ClassName", "None")
-	print(itemClassName)
 	if itemobj == nil or itemClassName == nil then
 		return;
 	end

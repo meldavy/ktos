@@ -11,6 +11,8 @@ function ON_CONTENTS_MULTIPLE_OPEN(frame, msg, argStr, argNum)
 	if argNum ~= nil then
 		contents_multiple:SetUserValue("MSG_BOX_CHECK_FLAG", argNum);
 	end
+
+	CONTENTS_MULTIPLE_FIND_AND_REGISTER(frame)
 end
 
 function ON_CONTENTS_MULTIPLE_OPEN_CONTENTS(frame, msg, argStr, argNum)
@@ -30,6 +32,8 @@ function ON_CONTENTS_MULTIPLE_OPEN_CONTENTS(frame, msg, argStr, argNum)
 		if argNum ~= nil then
 			contents_multiple:SetUserValue("MSG_BOX_CHECK_FLAG", argNum);
 		end
+
+		CONTENTS_MULTIPLE_FIND_AND_REGISTER(frame)
 	end
 end
 
@@ -106,6 +110,79 @@ local function CHECK_PARTY_LOCATE()
 	return true;
 end
 
+local function FIND_ITEM_BY_LIFETIME(frame)
+	local str_arg = frame:GetUserValue("ITEM_STR_ARG")
+
+	local multiple_item_list = {}
+	local inv_item_list = session.GetInvItemList()
+	FOR_EACH_INVENTORY(inv_item_list, function(inv_item_list, inv_item, list, str_arg)
+		local obj = GetIES(inv_item:GetObject())
+		if TryGetProp(obj, 'StringArg', 'None') == str_arg and inv_item.isLockState == false then
+			table.insert(list, inv_item)
+		end
+	end, false, multiple_item_list, str_arg)
+
+	if #multiple_item_list == 0 then
+		return nil
+	elseif #multiple_item_list == 1 then
+		return multiple_item_list[1]
+	end
+
+	local list_for_sort = {}
+	for i = 1, #multiple_item_list do
+		local inv_item = multiple_item_list[i]
+		local count = inv_item.count
+		local item_obj = GetIES(inv_item:GetObject())
+		local item_classname = TryGetProp(item_obj, 'ClassName', 'None')
+		local remain_time = 0
+		local expire_time = TryGetProp(item_obj, 'ExpireDateTime', 'None')
+		if expire_time ~= nil and expire_time ~= 'None' then
+			local cur_time = geTime.GetServerSystemTime()
+			local end_time = imcTime.GetSysTimeByYYMMDDHHMMSS(expire_time)
+			remain_time = imcTime.GetDifSec(end_time, cur_time)
+		end
+
+		if TryGetProp(item_obj, 'LifeTime', 0) > 0 and TryGetProp(item_obj, 'ItemLifeTimeOver', 0) < 1 then
+			local life_time = TryGetProp(item_obj, 'ItemLifeTime', 0)
+			remain_time = GetTimeDiff(life_time) * -1
+		end
+
+		if remain_time >= 0 then
+			local market_trade = TryGetProp(item_obj, 'MarketTrade', 'NO')
+			local _temp = {
+				Item = inv_item,
+				Count = count,
+				Time = remain_time,
+				Trade = market_trade,
+			}
+			table.insert(list_for_sort, _temp)
+		end
+	end
+
+	table.sort(list_for_sort, function(a, b)
+		if a.Time > 0 and b.Time > 0 then
+			return a.Time < b.Time
+		elseif a.Time <= 0 and b.Time > 0 then
+			return false
+		elseif a.Time > 0 and b.Time <= 0 then
+			return true
+		else
+			if a.Trade ~= b.Trade then
+				if a.Trade == 'YES' and b.Trade == 'NO' then
+					return false
+				else
+					return true
+				end
+			else
+				return a.Count < b.Count
+			end
+		end
+		return true
+	end)
+
+    return list_for_sort[1].Item
+end
+
 function CONTENTS_MULTIPLE_INIT(frame)
 	if ui.CheckHoldedUI() == true then
 		return;
@@ -121,6 +198,24 @@ function CONTENTS_MULTIPLE_INVENTORY_RBTN_CLICK(itemObj, invSlot, invItemGuid)
 	else
 		CONTENTS_MULTIPLE_REGISTER_ITEM(frame, invItemGuid);
 	end
+end
+
+function CONTENTS_MULTIPLE_SLOT_LBTN_CLICK(parent, ctrl)
+	local frame = parent:GetTopParentFrame()
+
+	local str_arg = frame:GetUserValue("ITEM_STR_ARG")
+	if str_arg == 'None' then return end
+
+	CONTENTS_MULTIPLE_FIND_AND_REGISTER(frame)
+end
+
+function CONTENTS_MULTIPLE_FIND_AND_REGISTER(frame)
+	local str_arg = frame:GetUserValue("ITEM_STR_ARG")
+	if str_arg == 'None' then return end
+
+	local inv_item = FIND_ITEM_BY_LIFETIME(frame)
+	
+	CONTENTS_MULTIPLE_REGISTER_ITEM(frame, inv_item:GetIESID())
 end
 
 function CONTENTS_MULTIPLE_DROP_ITEM(parent, slot)

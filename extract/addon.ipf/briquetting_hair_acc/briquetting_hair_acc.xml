@@ -34,6 +34,6 @@
 		<labelline name="repairLine1_1" parent="reqItemBox" rect="0 0 420 2" margin="0 35 0 0" layout_gravity="center top" skin="None"/>
 		<!-- look material item slotset -->
 		<slotset name="lookMatItemSlot" parent="spendMaterialBox" rect="0 0 410 80" margin="20 150 0 0" layout_gravity="left top" dropsound="inven_equip" oversound="button_cursor_over_3" picksound="icon_pick_up" size="70 70" skin="invenslot2" spc="10 10" DropScp="BRIQUETTING_HAIR_ACC_DROP_LOOK_MATERIAL_ITEM" PopScp="BRIQUETTING_HAIR_ACC_POP_LOOK_MATERIAL_ITEM" enableselect="false"/>
-		<richtext name="matInfoText" parent="spendMaterialBox" rect="0 0 400 30" margin="0 240 0 0" layout_gravity="center top" caption="헤어 코스튬 옵션 이전 소재를 넣어주세요.{nl} {nl}{#ffffff}옵션 이전 후 옵션이 추출된 헤어 코스튬은 소멸합니다." fontname="black_16" fixwidth="true"/>
+		<richtext name="matInfoText" parent="spendMaterialBox" rect="0 0 400 30" margin="0 240 0 0" layout_gravity="center top" caption="헤어 코스튬 옵션 이전 소재를 넣어주세요.{nl} {nl}{#ffffff}{b}옵션 이전 후 옵션이 추출된 헤어 코스튬은 소멸합니다." fontname="black_16" fixwidth="true"/>
 	</controls>
 </uiframe>

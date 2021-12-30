@@ -1030,7 +1030,7 @@ function SET_SLOT_ICOR_CATEGORY(slot, item_obj)
 			msg = msg .. name
 		else
 			local className = TryGetProp(item_obj, 'ClassName', 'None')
-			local lv = string.match(className, "_LV(%d)")
+			local lv = string.match(className, "_Lv(%d)")
 			if lv ~= nil then
 				className = string.sub(className, 1, -5)
 			end

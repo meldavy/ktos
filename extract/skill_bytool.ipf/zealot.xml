@@ -185,7 +185,7 @@
 				</Scp>
 				<Scp Client="NO" Scp="SKL_SET_TARGET_CLIENT_TARGETTING" Time="0" UseSleep="NO" >
                     <Num Num="1"/>
-				<Num Num="140"/>
+					<Num FuncTxt="return 139 + obj.Level * 8" Num="0" UseFunc="1"/>
                 </Scp>
                 <Scp Client="YES" Scp="C_VOICE_SOUND" Time="100" UseSleep="NO">
 					<Str Str="voice_war_atk_medium" />

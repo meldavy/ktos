@@ -53,6 +53,10 @@
 		<Class ClassID="49" ClassName="DisconnectCuzdiffHwid" Data="이전과 다른 하드웨어로 접속하여 보호모드가 실행됩니다."/>
 		<Class ClassID="50" ClassName="SeasonServerCannotCreateTeamName" Data="통합 대상 서버 혹은 시즌 서버에 팀이 존재합니다. 팀은 통합 대상 서버와 시즌 서버 중 한 곳에만 생성할 수 있습니다. {nl} {nl}시즌 서버 운영 기간 중, 팀 생성 및 삭제와 관련한 자세한 내용은 공식 홈페이지의 공지사항을 참고하여 주세요. {nl} {nl} {@st41b}{#ff0000}[통합 대상 서버 혹은 시즌 서버에 팀을 생성/삭제하고 다시 시도해주세요]"/>
 		<Class ClassID="51" ClassName="SeasonServerCannotZoneEnter" Data="팀 사전 등록 기간입니다.{nl}8월 6일 (목) 점검 후부터 팀 사전 등록 보상 수령 및 게임 시작이 가능합니다."/>
+		<Class ClassID="52" Data="{@st43}NGS 초기화 중입니다.{/}"/>
+		<Class ClassID="53" Data="{@st43}게임 접속{/}"/>
+		<Class ClassID="54" Data="{@st43}NGS 초기화 실패{/}"/>
+		<Class ClassID="55" Data="NGS 초기화에 실패하였습니다. 클라이언트를 다시 시작해 주세요."/>
 	</Category>
 	<Category Name="ChatMsg">
 		<Class ClassID="300" ClassName="TemporarilyUnavailable_1" Data="일시적으로 중지된 기능입니다."/>
@@ -695,6 +699,7 @@
 		<Class ClassID="3515" ClassName="ArcheologyRelicNear" Data="유물이 {@st59}{s19}{#33FF33}가까이{/}{/}{/} 있는 것 같습니다."/>
 		<Class ClassID="3516" ClassName="Archeology_Lv470" Data="[Lv.470] 유물 상점"/>		
 		<Class ClassID="3517" ClassName="AllAreaRelicFindedInThisArea" Data="고고학 임무를 통해 모든 유물을 발굴하였습니다. 다시 임무를 받아 유물을 발굴하세요."/>
+		<Class ClassID="3518" ClassName="ArcheologyRelicVeryClose" Data="유물이 {@st59}{s19}{#3BCCFF}매우 가까이{/}{/}{/} 있는 것 같습니다."/>
 	</Category>
 	<Category Name="Item">
 		<Class ClassID="4001" ClassName="GetItem" Data="아이템 획득"/>
@@ -10272,16 +10277,17 @@
 		<Class ClassID="92120" ClassName="OnlyUseBelongingItem" Data="귀속된 아이템만 가능합니다."/>
 		<Class ClassID="92121" ClassName="Achieve_Exceed_Period_of_Use" Data="칭호의 사용 기간이 초과되었습니다."/>
 		<Class ClassID="92122" ClassName="Event_JobexpCard_BOX_RankTooHigh" Data="이미 클래스 최대 레벨을 달성하여 사용할 수 없습니다."/>		
-		<Class ClassID="92130" ClassName="GACHA_SITEM_GET_ALLMSG_11" Data="{s24}축하드립니다!{nl}{PC} 님이 6주년-복각: 축복받은 여신의 큐브에서{nl}{ITEMNAME} 를(을) 획득하셨습니다!"/>
-		<Class ClassID="92129" ClassName="NotEnoughUnlockEarringBelongingScroll" Data="화염불꽃 귀걸이 귀속 해제 스크롤의 개수가 부족합니다."/>
-		<Class ClassID="92132" ClassName="GearScoreMoreThan{score}" Data="{score} 이상"/>
-		<Class ClassID="92133" ClassName="GearScoreMoreThan_1{score}" Data="{score} 이상, 가디스 등급 무기/방어구 장착"/>		
-		<Class ClassID="92134" ClassName="AbilityScoreMoreThan{score}" Data="{score}% 이상"/>
 		<Class ClassID="92124" ClassName="ASSISTOR_QUEST_MSG_03" Data="[Lv.470] 고고학 임무 받기"/>
 		<Class ClassID="92125" ClassName="ASSISTOR_QUEST_MSG_04" Data="[Lv.470] 유물 상점"/>
 		<Class ClassID="92126" ClassName="ARCHEOLOGY_MSG_01" Data="[Lv.470] 고고학에 대해서 묻기"/>
 		<Class ClassID="92127" ClassName="ARCHEOLOGY_HELP" Data="고고학에 관하여"/>
+		<Class ClassID="92128" ClassName="ClassCountIsNotFull" Data="전직한 클래스의 개수가 부족합니다."/>
+		<Class ClassID="92129" ClassName="NotEnoughUnlockEarringBelongingScroll" Data="화염불꽃 귀걸이 귀속 해제 스크롤의 개수가 부족합니다."/>
+		<Class ClassID="92130" ClassName="GACHA_SITEM_GET_ALLMSG_11" Data="{s24}축하드립니다!{nl}{PC} 님이 6주년-복각: 축복받은 여신의 큐브에서{nl}{ITEMNAME} 를(을) 획득하셨습니다!"/>
 		<Class ClassID="92131" ClassName="UITUTO_PHARMACY" Data="비약 조제"/>
+		<Class ClassID="92132" ClassName="GearScoreMoreThan{score}" Data="{score} 이상"/>
+		<Class ClassID="92133" ClassName="GearScoreMoreThan_1{score}" Data="{score} 이상, 가디스 등급 무기/방어구 장착"/>		
+		<Class ClassID="92134" ClassName="AbilityScoreMoreThan{score}" Data="{score}% 이상"/>
 		<Class ClassID="92135" ClassName="WeeklyBoss_GiveUp_MSG2" Data="대미지가 기록되고, 횟수가 차감됩니다.{nl}포기하시겠습니까?"/>
 		<Class ClassID="92136" ClassName="Goddess_Raid_Delmore_Party" Data="델무어 격전지: 가디스 레이드 (파티)"/>
 		<Class ClassID="92137" ClassName="Goddess_Raid_Delmore_Auto" Data="델무어 격전지: 가디스 레이드 (자동 매칭)"/>
@@ -10399,6 +10405,7 @@
 		<Class ClassID="100122" ClassName="BountyBossMark" Data="수배자 보스"/>
 		<Class ClassID="100123" ClassName="BountyBattleSkipMSG" Data="수배자들이 나타났습니다!{nl}하지만 탈 것이 쫓아냈습니다.{nl} {nl}{icon}"/>
 		<Class ClassID="100125" ClassName="Golpear_moving_Immune" Data="면역!"/>
+		<Class ClassID="100126" ClassName="AbnormalMoveInBountyHunt" Data="비정상적인 지역 이동이 감지되었습니다.{nl}바운티 헌트를 종료합니다."/>
 	</Category>
 	<Category Name="Party">
 		<Class ClassID="101001" ClassName="GULID_OUT" Data="길드 탈퇴"/>
@@ -10884,7 +10891,9 @@
 		<Class ClassID="102511" ClassName="UngagMember" Data="채팅 금지 해제"/>
 		<Class ClassID="102512" ClassName="UnpinMessage" Data="공지 내리기"/>
 		<Class ClassID="102513" ClassName="FailCuzTooManyMonster" Data="공략 진행이 지연되어 생성된 몬스터가 너무 많아 공략에 실패하였습니다."/>
-</Category>
+		<Class ClassID="102514" ClassName="GuildRaidNormalMode" Data="일반 모드"/>
+		<Class ClassID="102515" ClassName="GuildRaidBlockadeMode" Data="봉쇄전 모드"/>
+	</Category>
 	<Category Name="EqupClasses">
 		<Class ClassID="103001" ClassName="THSword" Data="양손검"/>
 		<Class ClassID="103002" ClassName="Sword" Data="한손검"/>
@@ -16049,6 +16058,7 @@
 		<Class ClassID="501295" ClassName="BountyHuntBoss_Chat11" Data="저항했지만 빠져나오는데 실패했다!"/>
 		<Class ClassID="501296" ClassName="BountyHuntBoss_Chat12" Data="빠져나오는데 성공했다!"/>
 		<Class ClassID="501297" ClassName="BountyHuntBoss_Chat13" Data="잡아먹혔다!{nl}상호작용으로 저항할 수 있을 것 같다."/>
+		<Class ClassID="501298" ClassName="BURNING_EVENT_COUNT_RESET_SEL2" Data="성물 레이드 : 자동 매칭 (Normal) 입장 횟수 초기화 하기"/>
 		<Class ClassID="501299" ClassName="BountyHunt_Pharmacy_Shop" Data="비약 연성술 재료를 교환한다"/>
 		<Class ClassID="501300" ClassName="EVENT_BOUNTYHUNT_NPC_PHARMACY_SHOP1" Data="비약 연성술 재료 교환"/>
 		<Class ClassID="501301" ClassName="EVENT_BOUNTYHUNT_NPC_PHARMACY_SHOP2" Data="비약 연성술 재료 교환"/>
@@ -16696,9 +16706,9 @@
 		<Class ClassID="1000034" ClassName="CantJoinChallengeCasualMode" Data="파티원이 2명이상인 상태에서는 챌린지 모드(1인)에 입장하실 수 없습니다."/>
 		<Class ClassID="1000035" ClassName="challenge_Mode_Auto_StartMsg" Data="5초 뒤에 시작됩니다."/>
 		<Class ClassID="1000036" ClassName="AutoMathcingWithPartyMaxLimit" Data="최대 파티 인원수 보다 더 많은 파티원으로 매칭할 수 없습니다."/>
-		<Class ClassID="1000037" ClassName="challenge_Mode_Auto_Enter_01" Data="챌린지 모드 : Lv400 1인 모드"/>
-		<Class ClassID="1000038" ClassName="challenge_Mode_Auto_Enter_02" Data="챌린지 모드 : Lv440 1인 모드"/>
-		<Class ClassID="1000039" ClassName="challenge_Mode_Auto_Enter_03" Data="챌린지 모드 : Lv440 자동매칭"/>
+		<Class ClassID="1000037" ClassName="challenge_Mode_Auto_Enter_01" Data="챌린지 모드 : Lv440 1인 모드"/>
+		<Class ClassID="1000038" ClassName="challenge_Mode_Auto_Enter_02" Data="챌린지 모드 : Lv460 1인 모드"/>
+		<Class ClassID="1000039" ClassName="challenge_Mode_Auto_Enter_03" Data="챌린지 모드 : Lv460 자동매칭"/>
 		<Class ClassID="1000040" ClassName="challenge_HardMode_Auto_Enter_01" Data="챌린지 모드 : 분열 특이점 자동매칭 "/>
 		<Class ClassID="1000041" ClassName="challenge_auto_mode_fail" Data="챌린지 모드 자동매칭에 실패하였습니다."/>
 		<Class ClassID="1000042" ClassName="challenge_auto_division_mode_fail" Data="챌린지 모드 : 분열 특이점 자동매칭에 실패하였습니다."/>
@@ -16984,6 +16994,7 @@
 		<Class ClassID="514076" ClassName="Goddess_Raid_Vasilissa_Petrify" Data="거울 4개가 모두 활성화되어 바실리사가 석화 상태가 됩니다."/>
 		<Class ClassID="514077" ClassName="Goddess_Earring_Raid_Start_Msg" Data="{Time}초 후에 게임이 시작됩니다."/>
 		<Class ClassID="514078" ClassName="DelmoreCastleGate_KruvinaBulletGet_MSG" Data="크루비나 탄환을 줍는 중"/>
+		<Class ClassID="514079" ClassName="DelmoreCastleGate_SKL6_StartMsg" Data="주의하십시오{nl}델무어의 성문이 요동칩니다"/>
 	</Category>
 	<Category Name="SoloDungeon">
 		<Class ClassID="513001" ClassName="SoloDungeonStageMSG" Data="스테이지의 몬스터가 몰려옵니다. 모두 처치해 주세요!"/>

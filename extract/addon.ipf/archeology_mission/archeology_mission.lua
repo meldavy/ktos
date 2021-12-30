@@ -16,6 +16,8 @@ function ON_ARCHEOLOGY_MISSION_OPEN(frame, msg, argStr, argNum)
 	if argNum ~= nil then
 		frame:SetUserValue("MSG_BOX_CHECK_FLAG", argNum);
 	end
+
+	ARCHEOLOGY_MISSION_FIND_AND_REGISTER_ITEM(frame);
 end
 
 
@@ -106,6 +108,23 @@ function ARCHEOLOGY_MISSION_DROP_ITEM(parent, slot)
 		local iconInfo = liftIcon:GetInfo();
 		ARCHEOLOGY_MISSION_REGISTER_ITEM(toFrame, iconInfo:GetIESID());
 	end
+end
+
+function ARCHEOLOGY_MISSION_SLOT_LBTN_CLICK(parent, ctrl)
+	local frame = parent:GetTopParentFrame();
+	ARCHEOLOGY_MISSION_FIND_AND_REGISTER_ITEM(frame);
+end
+
+function ARCHEOLOGY_MISSION_FIND_AND_REGISTER_ITEM(frame)
+	local cost_name, cost_count = shared_archeology.get_cost(frame:GetUserIValue('lv'));
+	local mat_item = session.GetInvItemByName(cost_name);
+	if mat_item == nil or mat_item.count < cost_count then
+		ui.SysMsg(ClMsg('Auto_SuLyangi_BuJogHapNiDa.'));
+		ui.CloseFrame('archeology_mission');
+		return;
+	end
+
+	ARCHEOLOGY_MISSION_REGISTER_ITEM(frame, mat_item:GetIESID());
 end
 
 function ARCHEOLOGY_MISSION_REGISTER_ITEM(frame, invItemID)

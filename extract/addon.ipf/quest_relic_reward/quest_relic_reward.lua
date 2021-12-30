@@ -28,12 +28,8 @@ function QUEST_RELIC_REWARD_INFO(questName, xPos, prop)
     local questNameText = GET_CHILD_RECURSIVELY(frame, "questNameText")
     questNameText:SetTextByKey("name", relicQuestIES.Name)
 
-    local categoryNameText = GET_CHILD_RECURSIVELY(frame, "categoryNameText")
     if relicCategoryIES ~= nil then
-        categoryNameText:ShowWindow(1)
-        categoryNameText:SetTextByKey("name", relicCategoryIES.Name)
-    else
-        categoryNameText:ShowWindow(0)
+        questNameText:SetTextByKey("name", relicQuestIES.Name.."{s10}{nl} {nl}{@st42b}{s18}{ds}".. relicCategoryIES.Name)
     end
 
 	local y = 0

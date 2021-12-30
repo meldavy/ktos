@@ -891,8 +891,13 @@ function ON_ADD_ABILITY_COUNT(parent, btn, abilClsName, count)
 
     local abilClass = GetClass("Ability", abilClsName);
     local jobClsName = gb:GetUserValue("JobClsName");
+
     if jobClsName == "Common" then
-        return;
+        return; 
+    end
+
+    if 1 == keyboard.IsKeyPressed("LCTRL") then
+        count = 100
     end
 
     local jobCls = GetClass("Job", jobClsName);
@@ -1570,6 +1575,10 @@ function ON_ADD_ACCOUNT_ABILITY_COUNT(parent, btn, abilClsName, count)
     local abilCls = GetClass("account_ability", abilClsName);
     if abilCls == nil then
         return;
+    end
+
+    if 1 == keyboard.IsKeyPressed("LCTRL") then
+        count = 100
     end
 
     local expprop = TryGetProp(abilCls, "ExpAccountPropertyName", "None");

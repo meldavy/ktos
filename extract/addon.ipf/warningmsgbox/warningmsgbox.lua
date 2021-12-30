@@ -498,11 +498,12 @@ function WARNINGMSGBOX_FRAME_OPEN_DELETE_ITEM(clmsg, yesScp, noScp, itemGuid)
 	else
 		showTooltipCheck:ShowWindow(0)
 	end
-    
+	local item = session.GetInvItemByGuid(itemGuid)
+	local cls = GetIES(item:GetObject())
+
     if itemGuid ~= nil then
-		local item = session.GetInvItemByGuid(itemGuid)
         if item ~= nil then
-            local_item_grade = GetIES(item:GetObject()).ItemGrade
+            local_item_grade = cls.ItemGrade
         else
             local_item_grade = 0
         end
@@ -512,6 +513,10 @@ function WARNINGMSGBOX_FRAME_OPEN_DELETE_ITEM(clmsg, yesScp, noScp, itemGuid)
     
 	local yesBtn = GET_CHILD_RECURSIVELY(frame, "yes")
 	tolua.cast(yesBtn, "ui::CButton");
+
+	if cls.MarketCategory == 'Premium_Costume' and cls.StringArg == 'SilverGacha' then
+		local_item_grade = 3
+	end
 
     if local_item_grade < 3 then
         input_frame:ShowWindow(0)            
@@ -547,7 +552,7 @@ function WARNINGMSGBOX_FRAME_OPEN_DELETE_ITEM(clmsg, yesScp, noScp, itemGuid)
 end
 
 function _WARNINGMSGBOX_FRAME_OPEN_DELETE_ITEM_YES(parent, ctrl, argStr, argNum)	
-	local input_frame = GET_CHILD_RECURSIVELY(parent, "input")    	
+	local input_frame = GET_CHILD_RECURSIVELY(parent, "input")   
     if local_item_grade >= 3 and input_frame:GetText() ~= dic.getTranslatedStr(ClMsg('destory_now')) then
         -- 확인메시지 불일치
 		ui.SysMsg(ClMsg('miss_match_confirm_text'))
