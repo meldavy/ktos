@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ActionDesc>
+    <Sound frame="0.00" soundFile="skl_eff_stone_born_l_1_far"/>
+    <Sound frame="0.00" soundFile="skl_eff_dark_keep"/>
+    <Sound frame="0.00" soundFile="skl_eff_darksight_force"/>
+    <Sound frame="0.00" soundFile="skl_eff_stonearrow_hit"/>
+</ActionDesc>

@@ -14,7 +14,7 @@ g_relicCondition = 0;
 
 
 function PARTY_SEARCH_BOARD_ON_INIT(addon, frame)
-	addon:RegisterMsg('PARTICIPANT_UPDATE', 'PARTY_SEARCH_BOARD_SHOW_PARTICIPANT');
+	addon:RegisterMsg('PARTY_SEARCH_PARTICIPANT_UPDATE', 'PARTY_SEARCH_BOARD_SHOW_PARTICIPANT');
 	addon:RegisterMsg("SUCCESS_ADD_PARTY_INFO", 'PARTY_BOARD_PARTY_UPDATE');
 	addon:RegisterMsg("SUCCESS_UPDATE_PARTY_INFO", "PARTY_BOARD_PARTY_UPDATE");
 end
@@ -437,10 +437,11 @@ function PARTY_SEARCH_BOARD_REGISTER_POST(frame, self)
 end
 
 
-function PARTY_SEARCH_BOARD_SHOW_PARTICIPANT(frame)
+function PARTY_SEARCH_BOARD_SHOW_PARTICIPANT(frame)		
 	local frame = frame:GetTopParentFrame();
 	PARTY_SEARCH_BOARD_UPDATE_PARTICIPANT(frame);
 	PARTY_SEARCH_BOARD_SET_TIMER(frame);
+	ON_PARTY_BOARD_PARTICIPANT_NOTICE(frame)
 end
 
 
@@ -470,7 +471,7 @@ function PARTY_SEARCH_BOARD_UPDATE_PARTICIPANT(frame)
 		local abil = participantInfo:GetParticipantAbil();
 		local gear = participantInfo:GetParticipantGearScore();
 		local relic = participantInfo:GetParticipantRelicLv();
-		local remainTime = participantInfo:GetParticipantRemainTime();
+		local remainTime = participantInfo:GetParticipantRemainTime();		
 
 		local participantCtrl = requestBox:CreateOrGetControlSet('party_board_participant', 'PARTY_BOARD_PARTICIPANT_'..name, 10, i * 135);
 		local nameText = GET_CHILD(participantCtrl, "name_text");
@@ -479,7 +480,7 @@ function PARTY_SEARCH_BOARD_UPDATE_PARTICIPANT(frame)
 		
 		infoPic:SetTextTooltip(ScpArgMsg("PartyBoard_Participant_Info", "ABIL", abil, "GEAR", gear, "RELIC", relic));
 		nameText:SetTextByKey("name", name);
-		gauage:SetPoint(remainTime, 30);
+		gauage:SetPoint(remainTime, 60);
 		participantCtrl:SetUserValue("REMAIN_TIME", remainTime);
 	end
 end
@@ -525,7 +526,7 @@ function PARTY_SEARCH_BOARD_CHECK_PARTICIPANT(frame, timer, str, num, totalTime)
 		local patricipant = requestBox:GetChildByIndex(i);
 		local gauage = GET_CHILD(patricipant, "duration_gauge");
 		local remainTime = patricipant:GetUserValue("REMAIN_TIME");
-		gauage:SetPoint(remainTime - totalTime, 30);
+		gauage:SetPoint(remainTime - totalTime, 60);
 	end
 
 	return 1;
@@ -574,7 +575,11 @@ function PARTY_SEARCH_BOARD_PAGE_NEXT_BUTTON(parent, self)
 end
 
 function PARTY_BOARD_PARTY_UPDATE()
-	GetMyPartyInfo('callback_get_my_party_info');
+	local frame = ui.GetFrame("party_search_board")
+	local search_gb = GET_CHILD_RECURSIVELY(frame, "search_gb")
+	if search_gb:IsVisible() == 0 then
+		GetMyPartyInfo('callback_get_my_party_info');
+	end
 end
 
 function GET_MY_GEAR_SCORE()

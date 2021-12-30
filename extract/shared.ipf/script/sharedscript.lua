@@ -1,5 +1,18 @@
 -- sharedscript.lua
 
+function shuffle(tbl)
+    local ret = {}
+    for k, v in pairs(tbl) do
+        table.insert(ret, v)
+    end
+
+    for i = #ret, 2, -1 do
+      local j = math.random(i)
+      ret[i], ret[j] = ret[j], ret[i]
+    end
+    return ret
+end
+
 ------------ 랜덤 옵션 관련 ----------------------------------------------------------------
 -------------------------------------------------------------------------------------------
 ITEM_POINT_MULTIPLE = 10
@@ -3639,7 +3652,14 @@ end
 function IS_LEFT_SUBFRAME_ACC(item)
     local str = TryGetProp(item, 'StringArg', 'None')
     local ClsName = TryGetProp(item, 'ClassName', 'None')
-    if str == 'Half_Acc_EP12' or str == 'Luciferi' or str == 'Acc_EP12' or (str == 'pvp_Mine' and nil ~= string.find(ClsName, 'PVP_EP12')) then
+    local class_type = TryGetProp(item, 'ClassType', 'None')
+    if class_type == 'Ring' or class_Type == 'Neck' then
+        if TryGetProp(item, 'ItemGrade', 0) >= 6 then
+            return true
+        end
+    end
+
+    if str == 'Half_Acc_EP12' or str == 'Isdavi' or str == 'Acc_EP12' or (str == 'pvp_Mine' and nil ~= string.find(ClsName, 'PVP_EP12')) then
         return true
     else
         return false
@@ -3676,6 +3696,10 @@ function GET_EQUIP_GROUP_NAME(item)
 
     if name == 'Relic' then
         return 'Relic'
+    end
+
+    if name == 'Earring' then
+        return 'Earring'
     end
 
     name = TryGetProp(item, 'DefaultEqpSlot', 'None')
