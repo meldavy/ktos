@@ -21,6 +21,7 @@
 		<richtext name="typeText" rect="0 0 400 30" margin="20 47 0 0" layout_gravity="left top" caption="{@st66b}소비 재화 :{/}"/>
 		<groupbox name="checkTypeBox" rect="0 0 400 30" margin="0 45 0 0" layout_gravity="center top" draw="false"/>
 		<radiobutton name="checkType_1" parent="checkTypeBox" rect="0 0 200 24" margin="0 0 80 0" layout_gravity="right top" caption="{@st66b}실버{/}" group="extractorType" LBtnUpScp="ABILITY_POINT_EXTRACTOR_TYPE_RADIO_BTN_CLICK" LBtnUpArgNum="1"/>
+		<radiobutton name="checkType_2" parent="checkTypeBox" rect="0 0 200 24" margin="0 0 0 0" layout_gravity="right top" caption="{@st66b}특성 포인트{/}" group="extractorType" LBtnUpScp="ABILITY_POINT_EXTRACTOR_TYPE_RADIO_BTN_CLICK" LBtnUpArgNum="2"/>
 		<!-- buy fee -->
 		<groupbox name="feeBox" rect="0 0 400 30" margin="0 77 0 0" layout_gravity="center top" draw="false"/>
 		<groupbox name="feeTextBox" parent="feeBox" rect="0 0 140 25" margin="10 0 0 0" layout_gravity="left top" skin="jour_search"/>
@@ -41,6 +42,11 @@
 		<groupbox name="consumeMoneyTextBox" parent="consumeMoneyBox" rect="0 0 140 25" margin="10 0 0 0" layout_gravity="left top" skin="jour_search"/>
 		<richtext name="consumeMoneyInfoText" parent="consumeMoneyTextBox" rect="0 0 100 30" margin="0 0 0 0" layout_gravity="center center" caption="소비 실버" fontname="brown_16"/>
 		<richtext name="consumeMoneyText" parent="consumeMoneyBox" rect="0 0 100 30" margin="0 0 20 0" layout_gravity="right center" format="%s" fontname="brown_18" param1="value" param1_def="0"/>
+		<!-- consume money2 -->
+		<groupbox name="consumeMoney2Box" rect="0 0 400 30" margin="0 230 0 0" layout_gravity="center top" draw="false"/>
+		<groupbox name="consumeMoney2TextBox" parent="consumeMoney2Box" rect="0 0 140 25" margin="10 0 0 0" layout_gravity="left top" skin="jour_search"/>
+		<richtext name="consumeMoney2InfoText" parent="consumeMoney2TextBox" rect="0 0 100 30" margin="0 0 0 0" layout_gravity="center center" caption="소비 특성 포인트" fontname="brown_16"/>
+		<richtext name="consumeMoney2Text" parent="consumeMoney2Box" rect="0 0 100 30" margin="0 0 20 0" layout_gravity="right center" format="%s" fontname="brown_18" param1="value" param1_def="0"/>
 		<!-- expect value -->
 		<groupbox name="expectMoneyBox" rect="0 0 400 30" margin="0 230 0 0" layout_gravity="center top" draw="false"/>
 		<groupbox name="expectMoneyTextBox" parent="expectMoneyBox" rect="0 0 140 25" margin="10 0 0 0" layout_gravity="left top" skin="jour_search"/>
