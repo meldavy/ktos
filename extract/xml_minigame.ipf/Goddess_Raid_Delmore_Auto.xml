@@ -395,7 +395,7 @@
             <Stage Name="DelmoreCastleGate" AutoStart="0">
                 <ObjList>
                     <Obj Type="Monster" MonType="59721" Pos="-2.00#0.30#-459.00" angle="-89" genCount="1" genTime="20000" autoGen="0" objectKey="0"/>
-                    <Obj Type="Monster" MonType="500002" Pos="127.00#0.30#-1018.00" angle="101" genCount="1" genTime="20000" autoGen="0" objectKey="1" propList="&apos;NumArg2&apos; &apos;2&apos; "/>
+                    <Obj Type="Monster" MonType="500002" Pos="127.00#0.30#-1038.00" angle="101" genCount="1" genTime="20000" autoGen="0" objectKey="1" propList="&apos;NumArg2&apos; &apos;2&apos; "/>
                     <Obj Type="Monster" MonType="500002" Pos="-128.00#0.30#-1082.00" angle="78" genCount="1" genTime="20000" autoGen="0" objectKey="2" propList="&apos;NumArg2&apos; &apos;1&apos; "/>
                 </ObjList>
                 <StageEvents>

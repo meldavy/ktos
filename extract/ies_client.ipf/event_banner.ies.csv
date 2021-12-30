@@ -1,4 +1,9 @@
 ClassID,StartTimeYYYYMM,StartTimeDDHHMM,NewTimeYYYYMM,NewTimeDDHHMM,EndTimeYYYYMM,EndTimeDDHHMM,DeadlineTimeYYYYMM,DeadlineTimeDDHHMM,ExchangeTimeYYYYMM,ExchangeTimeDDHHMM,ClassName,Name,ImagePath,url,UserCommand1,UserCommand2,UserCommand3,ShowType
+996440,202112,230900,202112,280000,202201,60700,202201,10000,0,0,211223_Christmas_package,크리스마스 패키지,211223_Christmas_package,https://tos.nexon.com/News/Update/view?n4ArticleSN=2609,,,,
+996450,202112,230900,202112,280000,202201,200700,202201,150000,0,0,211223_Nexon_cpq,넥슨플레이 이벤트,211223_Nexon_cpq,https://tos.nexon.com/news/events/view?n4ArticleSN=366,,,,
+996460,202112,230900,202112,280000,202201,60000,202201,10000,0,0,211223_hot_week,6주년 핫위크,211223_hot_week,https://tos.nexon.com/news/events/view?n4ArticleSN=365,,,,
+996470,202112,230900,202112,280000,202201,200700,202201,150000,0,0,211223_STAMP,크리스마스 스탬프투어,211223_STAMP,https://tos.nexon.com/events2021/1223/stamptour,,,,
+996480,202112,230900,202112,280000,202201,60700,202201,10000,0,0,211223_6th_event_part2,신규 컨텐츠 정복 이벤트,211223_6th_event_part2,https://tos.nexon.com/news/events/view?n4ArticleSN=364,,,,
 996490,202112,90900,202112,140000,202201,60700,202201,10000,0,0,211209_reward_tp,500+50TP 더드림,211209_reward_tp,https://tos.nexon.com/News/Update/view?n4ArticleSN=2597,,,,
 996500,202112,90900,202112,140000,202201,60700,202201,10000,0,0,event2112goddesscube_regather,복각: 축복받은 여신의 큐브,event2112goddesscube_regather,https://tos.nexon.com/News/Update/view?n4ArticleSN=2595,,,,
 996510,202112,90900,202112,140000,202201,270700,202201,220000,0,0,event_6th_Update,6주년 업데이트,event_6th_Update,https://tos.nexon.com/events2021/1209/anniversary,,,,
