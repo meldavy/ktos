@@ -179,11 +179,11 @@ function GET_GEAR_SCORE(item, pc)
     local is_sub_slot = false
     if IsServerSection() == 1 then
         local guid = GetIESID(item)
-        local sub = GetEquipItem(pc, 'LH_SUB');
+        local sub = GetEquipItemIgnoreDur(pc, 'LH_SUB');
         if sub ~= nil and GetIESID(sub) == guid then
             is_sub_slot = true
         end
-        sub = GetEquipItem(pc, 'RH_SUB');
+        sub = GetEquipItemIgnoreDur(pc, 'RH_SUB');
         if sub ~= nil and GetIESID(sub) == guid then
             is_sub_slot = true
         end        
@@ -438,23 +438,22 @@ function GET_PLAYER_GEAR_SCORE(pc)
     else
         local equipList = GetEquipItemList(pc)        
         local before_score = 0
-        local add_count = 0
         for i = 1, #equipList do
             local itemobj = equipList[i]
             if itemobj ~= nil then
                 score = score + GET_GEAR_SCORE(itemobj, pc)
-                add_count = add_count + 1
             end
         end
 
         before_score = score
 
         local missing_count = 0
-        if IsNoneItem(pc, "RH_SUB") == 1 then
+        local item_sub_lh = GetEquipItemIgnoreDur(pc, 'RH_SUB')        
+        if TryGetProp(item_sub_lh, 'ClassName', 'None') == 'NoWeapon' or TryGetProp(item_sub_lh, 'ClassName', 'None') == 'None' then
             missing_count = missing_count + 1
         end
-
-        if IsNoneItem(pc, "LH_SUB") == 1 then            
+        local item_sub_rh = GetEquipItemIgnoreDur(pc, 'RH_SUB')        
+        if TryGetProp(item_sub_rh, 'ClassName', 'None') == 'NoWeapon' or TryGetProp(item_sub_rh, 'ClassName', 'None') == 'None' then
             missing_count = missing_count + 1
         end
         

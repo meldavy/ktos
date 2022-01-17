@@ -425,7 +425,7 @@ end
 function GET_DISTANCE_ARCHEOLOGY_POINT(pc, pos_str)
     local x, y, z = Get3DPos(pc)
     local token = StringSplit(pos_str, ',')
-    local ret = GetDistanceByFromToPos(x,y,z, tonumber(token[1]), tonumber(token[2]), tonumber(token[3]))
+    local ret = Get2DDistFromPos(pc, tonumber(token[1]), tonumber(token[3]))
     return ret
 end
 
