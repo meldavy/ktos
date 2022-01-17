@@ -450,11 +450,11 @@ function GET_PLAYER_GEAR_SCORE(pc)
         before_score = score
 
         local missing_count = 0
-        if add_count < 14 and IsNoneItem(pc, "RH_SUB") == 1 then
+        if IsNoneItem(pc, "RH_SUB") == 1 then
             missing_count = missing_count + 1
         end
 
-        if add_count < 14 and IsNoneItem(pc, "LH_SUB") == 1 then            
+        if IsNoneItem(pc, "LH_SUB") == 1 then            
             missing_count = missing_count + 1
         end
         

@@ -110,7 +110,8 @@ end
 
 function SEQUENTIALPICKITEM2_UPDATE_FRAME(frame, iconName, itemNameText, itemCountText)
 	local PickItemGropBox = GET_CHILD(frame, 'pickitem')
-	local PickItemCountObj = PickItemGropBox:CreateOrGetControlSet('pickitemset_Type2', 'pickitemset', 0, 0);
+	local PickItemCountObj = PickItemGropBox:CreateControlSet('pickitemset_Type2', 'pickitemset', 0, 0);
+	--PickItemGropBox:CreateOrGetControlSet('pickitemset_Type2', 'pickitemset', 0, 0);
 	local PickItemCountCtrl = tolua.cast(PickItemCountObj, "ui::CControlSet");
 
 	-- 아이콘
@@ -125,10 +126,10 @@ function SEQUENTIALPICKITEM2_UPDATE_FRAME(frame, iconName, itemNameText, itemCou
 
 	-- 갯수
 	local ItemCount = GET_CHILD(PickItemCountCtrl, "ItemCount", "ui::CRichText")
-	local oldCount = frame:GetUserIValue('ITEM_COUNT')
-	ItemCount:SetTextByKey('value', oldCount + itemCountText)
-	frame:SetUserValue("ITEM_COUNT", oldCount + itemCountText)
-	-- UI_PLAYFORCE(ItemCount, 'chat_balloon_start')
+	--local oldCount = frame:GetUserIValue('ITEM_COUNT')
+	ItemCount:SetTextByKey('value', itemCountText);
+	--frame:SetUserValue("ITEM_COUNT", oldCount + itemCountText)
+	UI_PLAYFORCE(ItemCount, 'chat_balloon_start')
 
 	--내용 끝
 	frame:ShowWindow(1);
@@ -136,12 +137,16 @@ function SEQUENTIALPICKITEM2_UPDATE_FRAME(frame, iconName, itemNameText, itemCou
 	frame:Invalidate();
 end
 
+SEQUENTIALPICKITEM2_openCount = 0;
 function SEQUENTIALPICKITEM2_CREATE_FRAME(classID, iconName, itemName, itemCount, type)
-	local frameName = "SEQUENTIAL_PICKITEM2_"..type.."_"..classID;
+	SEQUENTIALPICKITEM2_openCount = SEQUENTIALPICKITEM2_openCount + 1;
+	local frameName = "SEQUENTIAL_PICKITEM2_"..type.."_"..SEQUENTIALPICKITEM2_openCount;
+	ui.DestroyFrame(frameName);
+	
 	local frame = ui.CreateNewFrame("sequentialpickitem2", frameName);
 	if frame == nil then return end
 
-	SEQUENTIALPICKITEM2_OpenItem[type.."_"..classID] = "AlreadyOpen"	
+	SEQUENTIALPICKITEM2_OpenItem[type.."_"..SEQUENTIALPICKITEM2_openCount] = "AlreadyOpen"	
 
 	frame:SetUserValue("TYPE", type)
 	frame:SetUserValue("CLASSID", classID)
@@ -153,7 +158,7 @@ end
 
 function SEQUENTIALPICKITEM2_SORT_FRAME()
 	local framelist = {}
-    for k, v in pairs(SEQUENTIALPICKITEM2_OpenItem) do
+	for k, v in pairs(SEQUENTIALPICKITEM2_OpenItem) do
         local frameTemp = ui.GetFrame("SEQUENTIAL_PICKITEM2_"..k)
         if frameTemp ~= nil and frameTemp:GetDuration() > 0 then
             local frameinfo = {}
@@ -167,7 +172,6 @@ function SEQUENTIALPICKITEM2_SORT_FRAME()
 			else
 				frameinfo["grade"] = 0
 			end
-			
             framelist[#framelist + 1] = frameinfo
         end
 	end
@@ -194,7 +198,7 @@ function SEQUENTIALPICKITEM2_SORT_FRAME()
         local frame = framelist[i]["frame"]
         local lastY = frame:GetUserIValue("LAST_Y")
         local isFirstOpen = frame:GetUserValue("FIRST_OPEN")
-        moveY = y - lastY
+		moveY = y - lastY
 		if isFirstOpen == "NO" then
 			if moveY ~= 0 then
 				UI_PLAYFORCE_CUSTOM_MOVE(frame, 0, moveY)
