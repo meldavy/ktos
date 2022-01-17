@@ -86,9 +86,8 @@ function SEQUENTIALPICKITEM2_OPEN(frame)
 end
 
 function SEQUENTIALPICKITEM2_CLOSE(frame)
-	local type = frame:GetUserValue("TYPE")
-	local classID = frame:GetUserValue("CLASSID")
-	SEQUENTIALPICKITEM2_OpenItem[type.."_"..classID] = nil
+	local tableKey = frame:GetUserValue("TABLE_KEY")
+	SEQUENTIALPICKITEM2_OpenItem[tableKey] = nil
 	-- ui.DestroyFrame(frame:GetName());
 
 	SEQUENTIALPICKITEM2_SORT_FRAME()
@@ -152,6 +151,7 @@ function SEQUENTIALPICKITEM2_CREATE_FRAME(classID, iconName, itemName, itemCount
 	frame:SetUserValue("CLASSID", classID)
 	frame:SetUserValue("ITEM_COUNT", 0)
 	frame:SetUserValue("LAST_Y", SEQUENTIALPICKITEM2_STARTY)
+	frame:SetUserValue("TABLE_KEY", type.."_"..SEQUENTIALPICKITEM2_openCount)
 	
 	SEQUENTIALPICKITEM2_UPDATE_FRAME(frame, iconName, itemName, itemCount)
 end
