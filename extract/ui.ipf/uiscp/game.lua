@@ -1087,7 +1087,7 @@ function GET_FULL_GRADE_NAME(itemCls, gradeSize)
 	return GET_FULL_NAME(itemCls) .. "{nl}" .. gradeTxt;
 end
 
-function GET_FULL_NAME(item, useNewLine, isEquiped)	
+function GET_FULL_NAME(item, useNewLine, isEquiped, timeImgSize)
 	if isEquiped == nil then
 		isEquiped = 0;
 	end
@@ -1123,7 +1123,11 @@ function GET_FULL_NAME(item, useNewLine, isEquiped)
 	end	
 	
 	if 0 ~= tonumber(isHaveLifeTime) then
-		ownName = string.format("{img test_cooltime 30 30}%s{/}", ownName);
+		local timeIconSize = 30
+		if timeImgSize ~= nil then
+			timeIconSize = timeImgSize
+		end
+		ownName = string.format("{img test_cooltime "..timeIconSize.." "..timeIconSize.."}%s{/}", ownName);
 	end
 	
 	if reinforce_2 ~= nil and reinforce_2 > 0 then

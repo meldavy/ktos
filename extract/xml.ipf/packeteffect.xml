@@ -10759,6 +10759,7 @@
 		<Effect Name="I_wizard_hellbreath_fireforce_abil"/>
 		<Effect Name="Success_Direction_StartCheck"/>
 		<Effect Name="Success_Direction"/>
+        <Effect Name="InitializeBlockade"/>
 	</Category>
 	<Category ID="19">
 		<Effect Name="I_fallen_statue_atk002_mash"/>

@@ -363,6 +363,10 @@ end
 function UPDATE_RELIC_GEM_REINF_EXTRA_MAT(frame)
 	local slotset = GET_CHILD_RECURSIVELY(frame, 'rslotlist_extra_mat')
 	slotset:ClearIconAll()
+	for i = 0, slotset:GetSlotCount() - 1 do
+		local slot = slotset:GetSlotByIndex(i)
+		slot:RemoveChild('lv_txt')
+	end
 	slotset:SetUserValue('NORMAL_MAT_COUNT', 0)
 	slotset:SetUserValue('PREMIUM_MAT_COUNT', 0)
 

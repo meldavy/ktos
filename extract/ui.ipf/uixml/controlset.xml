@@ -1172,6 +1172,13 @@
 			<richtext name="AddWiki" rect="0 0 250 25" margin="120 75 0 0" format="{@st41b}%s" param1="value" param1_def="모험일지에 등록되었습니다." fixwidth="true" hittest="false" fontname="white_18_b_ol"/>
 		</controls>
 	</controlset>
+	<controlset name="pickitemset_Type2" toggle="false" hittest="true" width="350" height="64">
+		<controls>
+			<slot name="slot" layout_gravity="left center" skin="slot_empty" rect="20 0 56 56"/>
+			<richtext name="ItemName" rect="0 0 250 25" margin="80 13 0 0" layout_gravity="left top" maxwidth="250" omitbywidth="true" hittest="false" format="{@st43b}{s16}%s" param1="value" param1_def=""/>
+			<richtext name="ItemCount" rect="0 0 250 25" margin="80 0 0 13" layout_gravity="left bottom" maxwidth="250" omitbywidth="true" hittest="false" format="획득 +%s" param1="value" param1_def="0" fontname="white_14_ol"/>
+		</controls>
+	</controlset>
 	<controlset name="Category" toggle="false" hittest="true" width="260" height="24">
 		<controls>
 			<richtext name="CategoryName" rect="12 0 296 20" fixwidth="true" layout_gravity="left center"/>

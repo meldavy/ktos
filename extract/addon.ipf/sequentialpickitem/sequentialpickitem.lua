@@ -4,12 +4,11 @@ SEQUENTIALPICKITEM_openCount = 0;
 SEQUENTIALPICKITEM_alreadyOpendGUIDs = {};
 
 function SEQUENTIALPICKITEM_ON_INIT(addon, frame)
-
-	addon:RegisterMsg('INV_ITEM_IN', 'SEQUENTIAL_PICKITEMON_MSG');
-	addon:RegisterMsg('INV_ITEM_ADD', 'SEQUENTIAL_PICKITEMON_MSG');
+	-- addon:RegisterMsg('INV_ITEM_IN', 'SEQUENTIAL_PICKITEMON_MSG');
+	-- addon:RegisterMsg('INV_ITEM_ADD', 'SEQUENTIAL_PICKITEMON_MSG');
 	addon:RegisterMsg('GUILDWAREHOUSE_ITEM_IN', 'SEQUENTIAL_PICKITEMON_MSG');
-	addon:RegisterMsg('SEAL_LV_UP_POPUP', 'SEAL_LV_UP_POPUP');
-	addon:RegisterMsg('GET_PROPERTY_POINT', 'GET_PROPERTY_POINT')
+	-- addon:RegisterMsg('SEAL_LV_UP_POPUP', 'SEAL_LV_UP_POPUP');
+	-- addon:RegisterMsg('GET_PROPERTY_POINT', 'GET_PROPERTY_POINT')
 end
 
 function SEAL_LV_UP_POPUP(frame, msg, argStr, argNum)		
@@ -25,7 +24,7 @@ function GET_PROPERTY_POINT(frame, msg, argStr, argNum)
 end
 
 function SEQUENTIAL_PICKITEMON_MSG(frame, msg, arg1, type, class)		
-    if IS_IN_EVENT_MAP() == true then
+	if IS_IN_EVENT_MAP() == true then
         return;
     end
 	

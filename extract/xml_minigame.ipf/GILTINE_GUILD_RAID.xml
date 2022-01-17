@@ -6,12 +6,19 @@
             <Stage Name="STAGE_MANAGER">
                 <ObjList>
                     <Obj Type="Monster" MonType="160040" Pos="475.18#23.86#1898.24" genCount="1" genTime="20000" autoGen="0" objectKey="0" propList="&apos;Scale&apos; &apos;1.0&apos; &apos;Dialog&apos; &apos;GUILD_GILTINE_RAID&apos; "/>
+                    <Obj Type="Monster" MonType="154005" Pos="472.13#23.86#2277.55" genCount="1" genTime="20000" autoGen="0" objectKey="1" UseAiOutOfPc="1" propList="&apos;Name&apos; &apos;UnvisibleName&apos; ">
+                        <SelfAI ActiveMessageMapInBattle="1">
+                            <StartList>
+                                <ToolScp Scp="EnableAIOutOfPC" Client="NO" UseSleep="NO"/>
+                            </StartList>
+                        </SelfAI>
+                    </Obj>
                 </ObjList>
                 <StageEvents>
                     <Event execCount="1" eventName="GILTINE_START">
                         <execList>
                             <ToolScp Scp="MGAME_EVT_EXEC_CREMON" Client="NO" UseSleep="NO">
-                                <MGameObjIndex List="STAGE_MANAGER/0"/>
+                                <MGameObjIndex List="STAGE_MANAGER/0/STAGE_MANAGER/1"/>
                                 <Num Num="1"/>
                                 <Num Num="0"/>
                             </ToolScp>
@@ -27,15 +34,7 @@
                         <Num Num="10"/>
                     </ToolScp>
                 </StartScpList>
-                <ObjList>
-                    <Obj Type="Monster" MonType="154005" Pos="472.13#23.86#2277.55" genCount="1" genTime="20000" objectKey="0" UseAiOutOfPc="1" propList="&apos;Name&apos; &apos;UnvisibleName&apos; ">
-                        <SelfAI ActiveMessageMapInBattle="1">
-                            <StartList>
-                                <ToolScp Scp="EnableAIOutOfPC" Client="NO" UseSleep="NO"/>
-                            </StartList>
-                        </SelfAI>
-                    </Obj>
-                </ObjList>
+                <ObjList/>
                 <StageEvents>
                     <Event execCount="1" eventName="MongoLog">
                         <execList>
@@ -55,11 +54,58 @@
                         </condList>
                         <execList>
                             <ToolScp Scp="MGAME_EVT_SCP_TO_MON" Client="NO" UseSleep="NO">
-                                <MGameObj List="Initialize/0"/>
+                                <MGameObj List="STAGE_MANAGER/1"/>
                                 <Str Str="SCR_GUILD_RAID_GILTINE_USED_DAY_RECORD_AFTER"/>
                             </ToolScp>
                             <ToolScp Scp="MGAME_EVT_SCP_TO_MON" Client="NO" UseSleep="NO">
-                                <MGameObj List="Initialize/0"/>
+                                <MGameObj List="STAGE_MANAGER/1"/>
+                                <Str Str="SCR_GUILD_GILTINE_INIT"/>
+                            </ToolScp>
+                            <ToolScp Scp="GAME_ST_EVT_EXEC_STAGE_START" Client="NO" UseSleep="NO">
+                                <Str Str="Boss"/>
+                            </ToolScp>
+                        </execList>
+                    </Event>
+                </StageEvents>
+            </Stage>
+            <Stage Name="InitializeBlockade" AutoStart="0">
+                <StartScpList>
+                    <ToolScp Scp="MGAME_SET_RAID_ICON" Client="NO" UseSleep="NO">
+                        <Str Str="곧 미션이 시작됩니다"/>
+                        <Str Str="stage_ready"/>
+                        <Num Num="10"/>
+                    </ToolScp>
+                    <ToolScp Scp="MGAME_MSG_ICON" Client="YES" UseSleep="NO">
+                        <Str Str="마신의 성소 봉쇄전에 참여합니다."/>
+                        <Str Str="!"/>
+                        <Num Num="10"/>
+                    </ToolScp>
+                </StartScpList>
+                <ObjList/>
+                <StageEvents>
+                    <Event execCount="1" eventName="MongoLog">
+                        <execList>
+                            <ToolScp Scp="MGAME_STAGE_CHECK_LOG_STAGEPROGRESS" Client="NO" UseSleep="NO">
+                                <Str Str="GILTINE_GUILD_RAID"/>
+                                <Str Str="StageStart"/>
+                            </ToolScp>
+                        </execList>
+                    </Event>
+                    <Event execCount="1" eventName="InitGuildGiltineRaidBlockade">
+                        <condList>
+                            <ToolScp Scp="GAME_ST_EVT_COND_VALUE" Client="NO" UseSleep="NO">
+                                <Str Str="is_set_guild_id"/>
+                                <Str Str="EQ"/>
+                                <Num Num="0"/>
+                            </ToolScp>
+                        </condList>
+                        <execList>
+                            <ToolScp Scp="MGAME_EVT_SCP_TO_MON" Client="NO" UseSleep="NO">
+                                <MGameObj List="STAGE_MANAGER/1"/>
+                                <Str Str="SCR_GUILD_RAID_GILTINE_USED_DAY_RECORD_AFTER"/>
+                            </ToolScp>
+                            <ToolScp Scp="MGAME_EVT_SCP_TO_MON" Client="NO" UseSleep="NO">
+                                <MGameObj List="STAGE_MANAGER/1"/>
                                 <Str Str="SCR_GUILD_GILTINE_INIT"/>
                             </ToolScp>
                             <ToolScp Scp="GAME_ST_EVT_EXEC_STAGE_START" Client="NO" UseSleep="NO">
@@ -125,7 +171,7 @@
                     <Event execCount="1" eventName="CompleteWeek">
                         <execList>
                             <ToolScp Scp="MGAME_EVT_SCP_TO_MON" Client="NO" UseSleep="NO">
-                                <MGameObj List="Initialize/0"/>
+                                <MGameObj List="STAGE_MANAGER/1"/>
                                 <Str Str="SCR_GUILD_RAID_GILTINE_CLEAR_WEEK"/>
                             </ToolScp>
                         </execList>
@@ -310,7 +356,7 @@
                     <Event execCount="1" eventName="EndLog">
                         <execList>
                             <ToolScp Scp="MGAME_EVT_SCP_TO_MON" Client="NO" UseSleep="NO">
-                                <MGameObj List="Initialize/0"/>
+                                <MGameObj List="STAGE_MANAGER/1"/>
                                 <Str Str="SCR_GUILD_RAID_GILTINE_MONGOLOG_MGAME_END"/>
                             </ToolScp>
                         </execList>
@@ -346,10 +392,7 @@
                                 <Str Str="BlockadeModeCheck"/>
                             </ToolScp>
                             <ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
-                                <Str Str="GenGiltineNormal"/>
-                            </ToolScp>
-                            <ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
-                                <Str Str="GenGiltineBlockade"/>
+                                <Str Str="NormalModeCheck"/>
                             </ToolScp>
                             <ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
                                 <Str Str="SeasonServerCheck"/>
@@ -374,6 +417,23 @@
                             </ToolScp>
                         </execList>
                     </Event>
+                    <Event execCount="1" eventName="NormalModeCheck" execWithStart="0">
+                        <condList>
+                            <ToolScp Scp="GAME_ST_EVT_COND_VALUE" Client="NO" UseSleep="NO">
+                                <Str Str="is_set_blockade"/>
+                                <Str Str="=="/>
+                                <Num Num="0"/>
+                            </ToolScp>
+                        </condList>
+                        <execList>
+                            <ToolScp Scp="GAME_EVT_OFF_BYNAME" Client="NO" UseSleep="NO">
+                                <Str Str="BlockadeModeCheck"/>
+                            </ToolScp>
+                            <ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
+                                <Str Str="GenGiltineNormal"/>
+                            </ToolScp>
+                        </execList>
+                    </Event>
                     <Event execCount="1" eventName="BlockadeModeCheck" execWithStart="0">
                         <condList>
                             <ToolScp Scp="GAME_ST_EVT_COND_VALUE" Client="NO" UseSleep="NO">
@@ -383,6 +443,12 @@
                             </ToolScp>
                         </condList>
                         <execList>
+                            <ToolScp Scp="GAME_EVT_OFF_BYNAME" Client="NO" UseSleep="NO">
+                                <Str Str="NormalModeCheck"/>
+                            </ToolScp>
+                            <ToolScp Scp="GAME_EVT_ON_BYNAME" Client="NO" UseSleep="NO">
+                                <Str Str="GenGiltineBlockade"/>
+                            </ToolScp>
                             <ToolScp Scp="GAME_ST_EVT_EXEC_STAGE_START" Client="NO" UseSleep="NO">
                                 <Str Str="BlockadeMode"/>
                             </ToolScp>
@@ -543,7 +609,7 @@
                                 <Str Str="Success"/>
                             </ToolScp>
                             <ToolScp Scp="MGAME_EVT_SCP_TO_MON" Client="NO" UseSleep="NO">
-                                <MGameObj List="Initialize/0"/>
+                                <MGameObj List="STAGE_MANAGER/1"/>
                                 <Str Str="SCR_GUILD_RAID_GILTINE_USED_DAY_RECORD_AFTER"/>
                             </ToolScp>
                         </execList>
@@ -568,15 +634,6 @@
             <Stage Name="BlockadeMode" AutoStart="0">
                 <ObjList/>
                 <StageEvents>
-                    <Event execCount="1" eventName="BlockadeModeMsg">
-                        <execList>
-                            <ToolScp Scp="MGAME_MSG_ICON" Client="YES" UseSleep="NO">
-                                <Str Str="마신의 성소 봉쇄전에 참여합니다."/>
-                                <Str Str="!"/>
-                                <Num Num="10"/>
-                            </ToolScp>
-                        </execList>
-                    </Event>
                     <Event eventName="TimeCount">
                         <condList>
                             <ToolScp Scp="MGAME_EVT_COND_MONCNT_OVER" Client="NO" UseSleep="NO">

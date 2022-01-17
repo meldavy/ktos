@@ -104,6 +104,9 @@ function AUTOSELLER_BALLOON(title, sellType, handle, skillID, skillLv)
 end
 
 function BUFFSELLER_OPEN(parent, ctrl)
+	if GetCraftState() == 1 then
+		return;
+	end
 	local frame = parent:GetTopParentFrame();
 	local sellType = frame:GetUserIValue("SELL_TYPE");
 	local handle = parent:GetUserIValue("HANDLE");

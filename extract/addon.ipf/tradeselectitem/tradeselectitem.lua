@@ -630,7 +630,7 @@ function OPEN_TRADE_SELECT_JOB(invItem)
 
 	local lv = TryGetProp(GetMyPCObject(), 'Lv', 1)
 	-- 440 ?�벨 ?�상 ?�용 가??--
-    if lv < PC_MAX_LEVEL - 20 then
+    if lv < 440 then
 		ui.SysMsg(ScpArgMsg('CannotBecauseBaseLevel'));        
         return;
     end

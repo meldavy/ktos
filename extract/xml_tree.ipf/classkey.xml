@@ -6550,6 +6550,49 @@
         <Key Name="AchieveReward_EVENT_2201_New_Year_Achieve_8" Value="111003"/>
         <Key Name="AchieveReward_EVENT_2201_New_Year_Achieve_9" Value="111005"/>
         <Key Name="AchieveReward_EVENT_Best_Painter_4th" Value="111008"/>
+        <Key Name="AchieveReward_EVENT_2201_Seollal_1" Value="111019"/>
+        <Key Name="AchieveReward_EVENT_2201_Seollal_10" Value="111049"/>
+        <Key Name="AchieveReward_EVENT_2201_Seollal_11" Value="111036"/>
+        <Key Name="AchieveReward_EVENT_2201_Seollal_2" Value="111038"/>
+        <Key Name="AchieveReward_EVENT_2201_Seollal_3" Value="111042"/>
+        <Key Name="AchieveReward_EVENT_2201_Seollal_4" Value="111034"/>
+        <Key Name="AchieveReward_EVENT_2201_Seollal_5" Value="111041"/>
+        <Key Name="AchieveReward_EVENT_2201_Seollal_6" Value="111031"/>
+        <Key Name="AchieveReward_EVENT_2201_Seollal_7" Value="111030"/>
+        <Key Name="AchieveReward_EVENT_2201_Seollal_8" Value="111040"/>
+        <Key Name="AchieveReward_EVENT_2201_Seollal_9" Value="111032"/>
+        <Key Name="EVENT_2201_SEOLLAL_BUFF_COUNT" Value="111024"/>
+        <Key Name="EVENT_2201_SEOLLAL_COIN_ACHIEVE" Value="111054"/>
+        <Key Name="EVENT_2201_SEOLLAL_COIN_COUNT" Value="111039"/>
+        <Key Name="EVENT_2201_SEOLLAL_COIN_GIVE" Value="111023"/>
+        <Key Name="EVENT_2201_SEOLLAL_PLAY_TIME" Value="111052"/>
+        <Key Name="EVENT_2201_SEOLLAL_SHOP_1" Value="111037"/>
+        <Key Name="EVENT_2201_SEOLLAL_SHOP_10" Value="111017"/>
+        <Key Name="EVENT_2201_SEOLLAL_SHOP_11" Value="111012"/>
+        <Key Name="EVENT_2201_SEOLLAL_SHOP_12" Value="111021"/>
+        <Key Name="EVENT_2201_SEOLLAL_SHOP_13" Value="111035"/>
+        <Key Name="EVENT_2201_SEOLLAL_SHOP_14" Value="111022"/>
+        <Key Name="EVENT_2201_SEOLLAL_SHOP_15" Value="111015"/>
+        <Key Name="EVENT_2201_SEOLLAL_SHOP_16" Value="111028"/>
+        <Key Name="EVENT_2201_SEOLLAL_SHOP_17" Value="111026"/>
+        <Key Name="EVENT_2201_SEOLLAL_SHOP_18" Value="111044"/>
+        <Key Name="EVENT_2201_SEOLLAL_SHOP_19" Value="111025"/>
+        <Key Name="EVENT_2201_SEOLLAL_SHOP_2" Value="111029"/>
+        <Key Name="EVENT_2201_SEOLLAL_SHOP_20" Value="111020"/>
+        <Key Name="EVENT_2201_SEOLLAL_SHOP_21" Value="111016"/>
+        <Key Name="EVENT_2201_SEOLLAL_SHOP_22" Value="111027"/>
+        <Key Name="EVENT_2201_SEOLLAL_SHOP_23" Value="111046"/>
+        <Key Name="EVENT_2201_SEOLLAL_SHOP_24" Value="111047"/>
+        <Key Name="EVENT_2201_SEOLLAL_SHOP_25" Value="111018"/>
+        <Key Name="EVENT_2201_SEOLLAL_SHOP_26" Value="111048"/>
+        <Key Name="EVENT_2201_SEOLLAL_SHOP_27" Value="111050"/>
+        <Key Name="EVENT_2201_SEOLLAL_SHOP_3" Value="111043"/>
+        <Key Name="EVENT_2201_SEOLLAL_SHOP_4" Value="111045"/>
+        <Key Name="EVENT_2201_SEOLLAL_SHOP_5" Value="111033"/>
+        <Key Name="EVENT_2201_SEOLLAL_SHOP_6" Value="111013"/>
+        <Key Name="EVENT_2201_SEOLLAL_SHOP_7" Value="111053"/>
+        <Key Name="EVENT_2201_SEOLLAL_SHOP_8" Value="111051"/>
+        <Key Name="EVENT_2201_SEOLLAL_SHOP_9" Value="111014"/>
     </KeyIDSpc>
     <KeyIDSpc Name="PCEtc">
         <Key Name="Kill_boss_Clymen_Q2" Value="7788"/>
@@ -15842,6 +15885,7 @@
         <Key Name="Kill_boss_DelmoreCastleGate_Auto" Value="110992"/>
         <Key Name="Kill_boss_DelmoreCastleGate_Solo" Value="110991"/>
         <Key Name="IndunWeeklyEnteredCount_0" Value="111009"/>
+        <Key Name="SelectedPreset" Value="111011"/>
     </KeyIDSpc>
     <KeyIDSpc Name="GuildMember">
         <Key Name="Name" Value="9011"/>
@@ -16956,6 +17000,7 @@
         <Key Name="CTT_TempProperty_GUILD_Str_4" Value="109104"/>
         <Key Name="CTT_TempProperty_GUILD_Str_5" Value="109105"/>
         <Key Name="CTT_TempProperty_GUILD_Str_6" Value="109102"/>
+        <Key Name="GUILD_MISSION_CREATE_ARG" Value="111055"/>
     </KeyIDSpc>
     <KeyIDSpc Name="ZoneObject">
         <Key Name="JaqBoxLock" Value="122"/>

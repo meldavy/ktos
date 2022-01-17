@@ -380,6 +380,10 @@ function GET_GEAR_SCORE(item, pc)
         if TryGetProp(item, 'ItemGrade', 1) >= 6 and TryGetProp(item, 'UseLv', 0) >= 470 then
             transcend = 10
         end
+        if grade >= 6 and TryGetProp(item, 'UseLv', 1) >= 470 and TryGetProp(item, 'GroupName', 'None') == 'Armor' then
+            random_option_penalty = 0
+            enchant_option_penalty = 0
+        end
 
         set_option = 1 - random_option_penalty - enchant_option_penalty        
         local ret = 0.5 * ( (4*transcend) + (3*reinforce)) + ( (30*grade) + (1.66*avg_lv) )*0.5
@@ -422,10 +426,6 @@ function GET_PLAYER_GEAR_SCORE(pc)
             missing_count = missing_count + 1
         end
         
-        if total < 1 then
-            total = 1
-        end
-        
         local add = 0
         if missing_count > 0 then
             local div = total - missing_count
@@ -437,25 +437,27 @@ function GET_PLAYER_GEAR_SCORE(pc)
         return math.floor(score + 0.5)
     else
         local equipList = GetEquipItemList(pc)        
+        local before_score = 0
+        local add_count = 0
         for i = 1, #equipList do
             local itemobj = equipList[i]
             if itemobj ~= nil then
                 score = score + GET_GEAR_SCORE(itemobj, pc)
+                add_count = add_count + 1
             end
         end
+
+        before_score = score
+
         local missing_count = 0
-        if IsNoneItem(pc, "RH_SUB") == 1 then
+        if add_count < 14 and IsNoneItem(pc, "RH_SUB") == 1 then
             missing_count = missing_count + 1
         end
 
-        if IsNoneItem(pc, "LH_SUB") == 1 then            
+        if add_count < 14 and IsNoneItem(pc, "LH_SUB") == 1 then            
             missing_count = missing_count + 1
         end
         
-        if total < 1 then
-            total = 1
-        end
-
         local add = 0
         if missing_count > 0 then
             local div = total - missing_count
@@ -464,6 +466,22 @@ function GET_PLAYER_GEAR_SCORE(pc)
             end
         end
         score = score + add
+
+        if score > 8200 and IsServerSection() == 1 then
+            local log_list = {}
+            table.insert(log_list, 'Type')
+            table.insert(log_list, 'Error')
+            table.insert(log_list, 'missing_count')
+            table.insert(log_list, tostring(missing_count))
+            table.insert(log_list, 'add_value')
+            table.insert(log_list, tostring(add))
+            table.insert(log_list, 'before_score')
+            table.insert(log_list, tostring(before_score))
+            table.insert(log_list, 'result_score')
+            table.insert(log_list, tostring(score))
+
+            CustomMongoLog_WithList(pc, 'GearScore', log_list)
+        end
         return math.floor(score + 0.5)
     end
 end

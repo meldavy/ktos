@@ -255,6 +255,11 @@ function TX_SURVEY_ARCHEOLOGY(pc)
         table.insert(log_list, tostring(now_count + 1))
         table.insert(log_list, 'ResultDistance')
         table.insert(log_list, tostring(diff))
+        
+        if str_pos ~= 'None' then
+            table.insert(log_list, 'GoalPos')
+            table.insert(log_list, tostring(str_pos))
+        end
         CustomMongoLog_WithList(pc, 'ArcheologyMission', log_list)
 
         if diff <= min_detector_length then
@@ -392,9 +397,9 @@ function SCR_ARCHEOLOGY_RESULT_DIALOG(self, pc)
             RunScript('SCR_NEXON_CPQ_ARCHEOLOGY_CLEAR_CHECK', pc)
         end
         -- 신년 이벤트 업적
-        if IsRunningScript(pc, "TX_ADD_EVENT_CONTENTS_ACHIEVE") ~= 1 then
-            RunScript("TX_ADD_EVENT_CONTENTS_ACHIEVE", pc, 'Archeology');
-        end
+        -- if IsRunningScript(pc, "TX_ADD_EVENT_CONTENTS_ACHIEVE") ~= 1 then
+        --     RunScript("TX_ADD_EVENT_CONTENTS_ACHIEVE", pc, 'Archeology');
+        -- end
 
         Dead(self)        
     end

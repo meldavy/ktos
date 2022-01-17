@@ -827,6 +827,10 @@ end
 function GODDESS_MGR_REINFORCE_EXTRA_MAT_UPDATE(frame)
 	local slotset = GET_CHILD_RECURSIVELY(frame, 'reinf_extra_mat_list')
 	slotset:ClearIconAll()
+	for i = 0, slotset:GetSlotCount() - 1 do
+		local slot = slotset:GetSlotByIndex(i)
+		slot:RemoveChild('lv_txt')
+	end
 	slotset:SetUserValue('NORMAL_MAT_COUNT', 0)
 	slotset:SetUserValue('PREMIUM_MAT_COUNT', 0)
 	
@@ -900,6 +904,7 @@ function GODDESS_MGR_REINFORCE_RATE_UPDATE(frame)
 		local normal_cnt = slotset:GetUserIValue('NORMAL_MAT_COUNT')
 		local premium_cnt = slotset:GetUserIValue('PREMIUM_MAT_COUNT')
 		local total_rate = item_goddess_reinforce.get_final_reinforce_prop_percent(item_obj, normal_cnt, premium_cnt)
+		total_rate = string.format('%.2f', math.min(tonumber(total_rate), 100))
 
 		reinf_adjust_rate:SetTextByKey('rate', adjust_rate)
 		reinf_total_rate:SetTextByKey('rate', total_rate)

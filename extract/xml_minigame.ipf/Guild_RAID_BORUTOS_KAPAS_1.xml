@@ -123,6 +123,11 @@
                                 <Str Str="EQ"/>
                                 <Num Num="0"/>
                             </ToolScp>
+                            <ToolScp Scp="GAME_ST_EVT_COND_VALUE" Client="NO" UseSleep="NO">
+                                <Str Str="OPEN_PORTAL_1"/>
+                                <Str Str="EQ"/>
+                                <Num Num="1"/>
+                            </ToolScp>
                         </condList>
                         <execList>
                             <ToolScp Scp="MGAME_EVT_SCP_TO_MON" Client="NO" UseSleep="NO">

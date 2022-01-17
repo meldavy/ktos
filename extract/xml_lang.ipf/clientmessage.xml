@@ -92,7 +92,12 @@
 		<Class ClassID="330" ClassName="SavingUserInfo" Data="캐릭터 정보를 저장중입니다."/>
 		<Class ClassID="331" ClassName="{guild}{name}InvalidRequest" Data="[{guild}]길드 {name}님이 비정상적인 방법으로 콜로니전 보상 수령을 시도하였습니다."/>
 		<Class ClassID="332" ClassName="{date}CantUseAutoMatching" Data="신고 누적으로 인해 {date} 까지 자동매칭을 이용하실 수 없습니다."/>
+		<Class ClassID="333" ClassName="LoadingInformation" Data="정보를 로드중입니다. 잠시만 기다려주세요."/>
+		<Class ClassID="334" ClassName="SavingCardPreSetInfo" Data="정보를 저장중입니다. 잠시만 기다려주세요."/>
 		<Class ClassID="335" ClassName="AlreadyBuffApplied" Data="이미 다른효과가 적용중입니다."/>
+		<Class ClassID="336" ClassName="DuplicateCardPreSetInfo" Data="중복된 정보입니다."/>
+		<Class ClassID="337" ClassName="AppliedCardPreSetInfo" Data="이미 적용된 프리셋입니다."/>
+		<Class ClassID="338" ClassName="NotChangeCardPreSetInfo" Data="카드첩 변경을 취소합니다."/>
 		</Category>
 	<Category Name="Skill">
 		<Class ClassID="500" ClassName="CannotGetSkill{NAME}" Data="[{NAME}] 스킬을 습득할 수 없습니다."/>
@@ -534,6 +539,7 @@
 		<Class ClassID="2411" ClassName="Briquetting_Hair_Acc_Result" Data="등록한 아이템이 소모됩니다.{nl}{@st66d_y}[{BEFORE}]{/}  ▶ {@st66d_y}[{AFTER}]{/}{nl} 헤어 코스튬 옵션이 이전됩니다.{nl} {nl}진행하시겠습니까?"/>		
 		<Class ClassID="2412" ClassName="NeedGoddessGrade" Data="가디스 등급 이상인 아이템만 가능합니다."/>
 		<Class ClassID="2413" ClassName="NeedLuciferiType" Data="루시페리 계열 아이템만 가능합니다."/>
+		<Class ClassID="2414" ClassName="CardPresetNumber{index}" Data="{index}번 프리셋"/>
 		<Class ClassID="2415" ClassName="ExceedCountMiscPvpMine2" Data="인벤토리에 용병단 증표가 너무 많습니다. 사용 후 다시 시도하세요."/>
 		<Class ClassID="2416" ClassName="ConvertMultipleTokenWarning{NAME}" Data="{@st66d_y}{NAME}{/}{nl} {nl}{@st66d_y}거래불가 리사이클 메달(7개)로 변환{/}되며, 변환 시 {@st66d_y}팀에 귀속{/}되고 복구가 불가능합니다.{nl} {nl}정말 변환하시겠습니까?"/>
 	</Category>
@@ -10893,6 +10899,8 @@
 		<Class ClassID="102513" ClassName="FailCuzTooManyMonster" Data="공략 진행이 지연되어 생성된 몬스터가 너무 많아 공략에 실패하였습니다."/>
 		<Class ClassID="102514" ClassName="GuildRaidNormalMode" Data="일반 모드"/>
 		<Class ClassID="102515" ClassName="GuildRaidBlockadeMode" Data="봉쇄전 모드"/>
+		<Class ClassID="102516" ClassName="GuildRaidDifficultySelect" Data="{#003399}입장 모드 선택 - 아래를 선택해 주세요.{/}"/>
+		<Class ClassID="102517" ClassName="GuildRaidDifficultySelectNotice" Data="진행할 길드 미션 모드를 선택해 주세요."/>
 	</Category>
 	<Category Name="EqupClasses">
 		<Class ClassID="103001" ClassName="THSword" Data="양손검"/>
@@ -15888,6 +15896,14 @@
 		<Class ClassID="302728" ClassName="EVENT_2112_6TH_SEL4" Data="{#003399}[6주년 성장&amp;득템]{/}이벤트 설명"/>
 		<Class ClassID="302729" ClassName="EVENT_2112_6TH_CHECK_MSG3" Data="{#0066FF}[6주년]{/} 신규 콘텐츠 지원 현황{nl}접속 시간({#0066FF}{TIME}{/}분){nl}일일 60분 누적 접속 보상 획득 현황({#0066FF}{REWARD1}{/}/{MAX}회){nl}일일 접속 보상 현황({#0066FF}{REWARD2}{/}/1){nl}{#FF3333}{nl}{#FF3333}※일일 제한은 매일 오전 06시 초기화 됩니다.{/}"/>
 		<Class ClassID="302730" ClassName="KUPOLE_TESTSERVER4_DLG_5" Data="비약 연성술"/>
+		<Class ClassID="302731" ClassName="EVENT_2201_SEOLLAL_SEL1" Data="{#003399}[설날]{/}이벤트 설명"/>
+		<Class ClassID="302732" ClassName="EVENT_2201_SEOLLAL_SEL2" Data="{#003399}[설날]{/}이벤트 버프 수령 ({#003399}{BUFF}{/}/3)"/>
+		<Class ClassID="302733" ClassName="EVENT_2201_SEOLLAL_SHOP" Data="{#003399}[설날]{/}이벤트 상점"/>
+		<Class ClassID="302734" ClassName="EVENT_2201_SEOLLAL_BUFF_OVER" Data="{#FF3333}최대 횟수를 초과하였습니다.{nl}매일 오전 06시 초기화 됩니다.{/}"/>
+		<Class ClassID="302735" ClassName="EVENT_2201_SEOLLAL_NPC_CHAT1" Data="설날 버프가 적용됐어!"/>
+		<Class ClassID="302736" ClassName="EVENT_2201_SEOLLAL_NPC_CHAT2" Data="안녕! 버프를 받으러왔어?"/>
+		<Class ClassID="302737" ClassName="EVENT_2201_SEOLLAL_CHECK_MSG" Data="{#0066FF}[설날]{/} 이벤트 현황{nl}접속 시간({#0066FF}{TIME}{/}분){nl}일일 [이벤트] 2022 주화 현황 ({#0066FF}{COIN}{/}/{MAX}){nl}일일 22년 설날 버프 받기({#0066FF}{BUFF}{/}/3){nl}{#FF3333}※일일 제한은 매일 오전 06시 초기화 됩니다.{/}"/>
+		<Class ClassID="302738" ClassName="EVENT_2201_SEOLLAL_DAY_CHECK_MSG" Data="{#0066FF}[설날]{/} 출석체크 이벤트 현황{nl}2시간 접속 시 보상 획득 ({#0066FF}{TIME}{/}분){nl}{#FF3333}※보상 획득 기간{nl}1월 29일 오전 06시 ~ 2월 3일 오전 06시 까지 총 5회{/}"/>
 	</Category>
 	<Category Name="Account">
 		<Class ClassID="303001" ClassName="MaxAccountWarehouseCount" Data="팀 창고"/>
@@ -17567,6 +17583,10 @@
 		<Class ClassID="1007010" ClassName="REPUTATION_QUEST_RESETQUEST_SEARCH" Data="초기화 가능한 명성 일일 퀘스트를 검색 중입니다..."/>
 		<Class ClassID="1007011" ClassName="REPUTATION_QUEST_RESETQUEST_FAIL" Data="아직 명성 일일 퀘스트를 모두 완료하지 않았습니다"/>
 		<Class ClassID="1007012" ClassName="REPUTATION_QUEST_RESETQUEST_COMPLETE" Data="명성 일일 퀘스트를 다시 진행할 수 있습니다"/>
+		<Class ClassID="1007013" ClassName="REPUTATION_TRADE_COIN_SEL1" Data="일괄 판매"/>
+		<Class ClassID="1007014" ClassName="REPUTATION_TRADE_COIN_SEL2" Data="부분 판매"/>
+		<Class ClassID="1007015" ClassName="REPUTATION_TRADE_COIN_SUCCESS" Data="구호 물품을 판매했습니다{nl}　{nl}{s22}{#FFFF00}왕국 재건단 주화 [{#FF0000}{COUNT}{/}]개 획득{/}{/}"/>
+		<Class ClassID="1007016" ClassName="REPUTATION_TRADE_COIN_NOHAVE" Data="소지하고 있는 구호 물품이 없습니다"/>
 	</Category>
 	<Category Name="relic_ui">
 		<Class ClassID="1008001" ClassName="NO_EQUIP_RELIC" Data="성물을 착용 후 이용 가능합니다."/>

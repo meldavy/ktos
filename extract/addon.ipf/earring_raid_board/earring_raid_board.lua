@@ -374,6 +374,11 @@ end
 
 
 function ON_PLAY_LUCKY_REWARD_EFFECT(frame, msg, item_name, count)
+    if item_name == 'GabijaCertificateCoin_10000p' then
+        local earingframe = ui.GetFrame('earring_raid_board')
+        earingframe:ShowWindow(0);
+    end
+    
 	ui.OpenFrame('fulldark_itemblacksmith')
 	local bg_frame = ui.GetFrame('fulldark_itemblacksmith')
 

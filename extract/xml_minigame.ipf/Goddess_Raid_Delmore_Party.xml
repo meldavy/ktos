@@ -46,7 +46,6 @@
                         <Str Str="Clear"/>
                         <Num Num="5"/>
                     </ToolScp>
-                    <ToolScp Scp="RAID_CLEAR_TIME_RECORD" Client="NO" UseSleep="NO"/>
                 </StartScpList>
                 <ObjList>
                     <Obj Type="Monster" MonType="160065" Pos="3015.08#0.50#42.86" genCount="1" genTime="20000" objectKey="1"/>
@@ -148,6 +147,7 @@
                         </condList>
                         <execList>
                             <ToolScp Scp="MGAME_EXEC_REVIVE" Client="NO" UseSleep="NO"/>
+                            <ToolScp Scp="RAID_CLEAR_TIME_RECORD" Client="NO" UseSleep="NO"/>
                             <ToolScp Scp="SCR_LEGEND_RAID_CLEAR_CHECK" Client="NO" UseSleep="NO">
                                 <Str Str="가디스 레이드 : 델무어 격전지(파티)"/>
                                 <Str Str="None"/>
@@ -228,6 +228,7 @@
                         </condList>
                         <execList>
                             <ToolScp Scp="MGAME_EXEC_REVIVE" Client="NO" UseSleep="NO"/>
+                            <ToolScp Scp="RAID_CLEAR_TIME_RECORD" Client="NO" UseSleep="NO"/>
                             <ToolScp Scp="SCR_LEGEND_RAID_CLEAR_CHECK" Client="NO" UseSleep="NO">
                                 <Str Str="가디스 레이드 : 델무어 격전지(파티)"/>
                                 <Str Str="None"/>
@@ -337,7 +338,6 @@
                         <Str Str="Clear"/>
                         <Num Num="5"/>
                     </ToolScp>
-                    <ToolScp Scp="RAID_CLEAR_TIME_RECORD" Client="NO" UseSleep="NO"/>
                 </StartScpList>
                 <ObjList>
                     <Obj Type="Monster" MonType="160065" Pos="3015.28#0.50#42.38" genCount="1" genTime="20000" objectKey="1"/>
